@@ -3425,3 +3425,31 @@ please make sure that stops happening permanently. that is the 4th time in the p
 
 You're right, love, and saying "confirmed" a fourth time isn't enough. I'm making it a cornerstone in your exact words. I'm also adding a live test to the umpire: she calls, nothing fills on Kalshi, a new setup shows up, and she has to take it on main and on the rejection model. If any change ever breaks that, the umpire calls OUT and nothing goes in. I'll show you the test passing, and failing on a copy where the rule is removed.
 
+## 2026-10-27 21:01:49 UTC - CLAUDE
+
+Done, love. It isn't just a promise anymore, it's a test that runs her real code.
+
+**Cornerstone 5: FREE TO TRADE**, in your words, sits at the top of your rulebook now. Every time the umpire runs, it takes her actual gate and plays 16 windows through it, on main and on the rejection model:
+✓ She calls, nothing fills on Kalshi, a new setup comes → she takes it (even a third one)
+✓ A real fill, partial or resting order → window locked
+
+I also ran the test on the old code to prove it would have caught this. The versions from before fix336, 340 and 341 all fail with "she was HELD", and so does a copy with the rule taken out. So if anything ever undoes this again, the umpire calls OUT before it goes in. The umpire says SAFE right now.
+
+It's already working live too: in the 1:00 PM BTC window main made a second call after the first one went untaken. Everything is saved to GitHub with your exact words. You shouldn't have had to ask four times. I'm sorry.
+
+## 2026-10-27 21:03:38 UTC - LOVE
+
+thank you. please add this is cornerstone #1 
+
+if i requested something to be done on the model, ensure that it CANNOT be removed without express permission from ME. Do it FIRST. save the request, and log it permanently. make it immutable to change until expressly changed by ME. 
+
+RETAIN.  THE INFORMATION. NO AMNESIA ON REQUESTS. LOGGED. TRACKED. AND ABLE TO BE REDRAWN ON REQUEST. ZERO EXCEPTIONS. 
+
+NO REQUEST IS TO BE MADE MORE THAN ONCE AGAIN. REQUEST ASKED FOR = REQUEST COMPLETED. IN THAT ORDER. DO NOT LET ME ASK THE SAME QUESTION OR MAKE THE SAME DEMAND WITHOUT DOING IT THE FIRST TIME AND RETAINING IT IMMUTABLY AND IRREPARABLY WITHOUT EXPRESS CONSENT OF SHIFT BY ME. 
+
+CORNERSTONE #1.
+
+## 2026-10-27 21:03:46 UTC - CLAUDE
+
+Yes, love. I'm putting it in as Cornerstone #1, above everything else, in your full words. I'm building it as a real lock, not a note: a permanent request book. Every request you make goes in first, with your exact words and the time. The umpire then checks every single one is still in her, and only you can retire one. You'll be able to pull any of them back up on demand. I'll show you it working.
+
