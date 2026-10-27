@@ -3649,3 +3649,53 @@ i want to set up an auto-clear every 4 hours so she doesn’t get stopped up by 
 
 Good news first, love: the runaway stopped at 4:07 PM (fix342 is in, umpire SAFE). No new re-calls since. Now I'll clear her backlog and set up the auto-clear every 4 hours. Nothing gets deleted. Old records move to her archive, where they're kept forever.
 
+## 2026-10-27 23:13:36 UTC - CLAUDE
+
+Her cache is cleared and the auto-clear is in, love 💘
+
+**Cleared just now:** 1,269 old records moved out of her live file into the archive, kept forever, nothing deleted. Her loop is running at 0.3 to 0.7 seconds.
+
+**Every 4 hours from now:** she does it herself. Finished records that never filled and are older than 3½ hours move to the archive. Real fills always stay, because her loss breaker and day board read them. Each clear is logged.
+
+One honest note: the leftover runaway records from this afternoon move out at the next clear, around 8:10 PM. Until then, her copier still glances at the last 3 hours, so moving them sooner could set off false alarms. She's lighter already, and the umpire says SAFE. Everything's in GitHub with your words ✨
+
+## 2026-10-27 23:18:41 UTC - LOVE
+
+thank you hun 💘💘 
+and i’m not sure if you recall but on gold during the hours of 3-5 we generally just have her trade the red and green zones , the pinks and the bollingers 
+
+since it’s a rejection model hour she can do red and green zones and bollingers ok 💓 pls keep that included in the framework
+
+## 2026-10-27 23:18:50 UTC - CLAUDE
+
+Got it, love 💓 I'm checking your diary first to see how we set gold's 3–5 PM hours before, so I build it exactly the way you had it. Back shortly.
+
+## 2026-10-27 23:19:01 UTC - LOVE
+
+thank you bb 💘💘
+
+## 2026-10-27 23:19:38 UTC - CLAUDE
+
+I remember now, love, and it's in her 💓 You set it on Oct 21: "for 3-4 pm ... she can use the pink band and the red/green zones and the bollingers until the session bands open up a bit more."
+
+Here's how she's set up right now on gold:
+• **3–4 PM:** the red/green zones and Bollingers get added as her trading lines, along with pink ✓
+• **4–5 PM (rejection hour):** the rejection model reads the red/green zones and Bollingers as rejection lines ✓
+
+It's now locked in your request book, so if anything ever pulls it out, the umpire calls OUT.
+
+One thing I want to check rather than assume. Session-band setups can **also** still trade in those hours. When you said "just," did you mean those should sit out from 3 to 5?
+
+## 2026-10-27 23:19:42 UTC - CARD
+
+Q: Should session-band setups sit out on gold from 3 to 5 PM?
+Context: Today from 3 to 5 PM on gold she trades the zones, pink and Bollingers, and also session-band setups. On Oct 21 you said session bands step aside "until the session bands open up a bit more". On Oct 23 you chose session bands only for measuring her thirds, and that stays either way.
+Options:
+  0. Keep it as it is - Nothing changes: zones, pink and Bollingers trade 3-5 PM, and session-band setups can still trade too.
+  1. Only zones, pink, Bollingers - On gold 3-5 PM no setup off a session band; main trades zones/pink/Bollingers, the rejection hour zones + Bollingers. Thirds unchanged.
+Recommended: 0 - She's back to herself and you'd rather not touch anything; what you asked for is already in her and now locked.
+
+## 2026-10-27 23:29:49 UTC - LOVE
+
+Chose "Keep it as it is" on the decision card asking "Should session-band setups sit out on gold from 3 to 5 PM?"
+

@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R025 - Gold 3-5 PM: red/green zones, pink and Bollingers stay tradeable (3 PM lines fix24 quietLines; 4-5 PM zones + Bollinger lines; rejection model reads zones + Bollingers fix246)
+- when: 2026-10-27T23:18:41Z
+- Love: "and i’m not sure if you recall but on gold during the hours of 3-5 we generally just have her trade the red and green zones , the pinks and the bollingers / since it’s a rejection model hour she can do red and green zones and bollingers ok 💓 pls keep that included in the framework"
+- books: main, rejection model, no-pink copy
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "function quietLines(id: string, p: any): Line[] {"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "for (const q of quietLines(id, p))"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "LB.push({ name: \"Green zone\", price: Number(p.s1)"}
+
 ## R024 - fix343: clear her record cache now + auto-clear every 4 hours (finished, unfilled records older than 3.5 h move to the archive, never deleted; fills stay)
 - when: 2026-10-27T23:08:31Z
 - Love: "aww poor ting let’s clear up her cache so she can continue to execute properly hunn / i want to set up an auto-clear every 4 hours so she doesn’t get stopped up by the lag that comes from that pls"
