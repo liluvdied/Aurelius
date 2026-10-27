@@ -1,0 +1,425 @@
+// SCANNER (Claude, Oct 8 ~11 PM PT, Love: "can we go through each market and see which ones may be viable... i want to deal
+// in probabilities, cross checking... slow and steady wins at lower multiples... anything we can actually get some data on
+// and not speculate, i'm not into gambling"). Paper only. Phase 1 = weather, where public data can be cross-checked live:
+//  · DAILY HIGH / LOW LOCK-INS: these settle on the NWS Daily Climate Report. The station's own readings so far today set a
+//    floor under the day's high (and a ceiling over the low), so some answers are already decided while still priced <97c.
+//  · HOURLY TEMPERATURE NEAR THE BELL: the last 45 min, when the live reading sits 3F+ from the strike and the side the
+//    reading points to is still 50-95c. (They settle on Synoptic Data's blended area index; one NWS station is the
+//    cross-check, so the margin is 4F.)  Daily highs/lows settle on The Weather Company or the NWS climate report.
+// Every flag is booked on paper at $10 at the ask (with Kalshi's taker fee) and settled from Kalshi's own result.
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+const ROOT = "https://external-api.kalshi.com";
+const NWS = "https://api.weather.gov";
+const UA = { "User-Agent": "Aurelius desk scanner (personal research)", Accept: "application/geo+json" };
+const STAKE = 10;
+const FILE = () => join(process.cwd(), "data", "scanner-paper.json");
+const MONS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+const FALLBACK_SERIES = ["KXHIGHNY", "KXHIGHCHI", "KXHIGHMIA", "KXHIGHAUS", "KXHIGHDEN", "KXHIGHLAX", "KXHIGHPHIL", "KXLOWNY", "KXLOWCHI", "KXLOWMIA", "KXLOWAUS", "KXLOWDEN", "KXLOWLAX", "KXLOWPHIL"];
+const FALLBACK_STATION: Record<string, string> = { NY: "KNYC", NYC: "KNYC", CHI: "KMDW", MIA: "KMIA", AUS: "KAUS", DEN: "KDEN", LAX: "KLAX", PHIL: "KPHL", PHL: "KPHL" };
+
+type Mkt = { ticker: string; event_ticker: string; title?: string; subtitle?: string; yes_sub_title?: string; strike_type?: string; floor_strike?: number; cap_strike?: number; yes_ask_dollars?: string; no_ask_dollars?: string; close_time?: string; status?: string; result?: string; rules_primary?: string; rules_secondary?: string };
+export type ScanFlag = { ticker: string; title: string; kind: "high-lock" | "low-lock" | "hourly"; side: "yes" | "no"; ask: number; reason: string; station: string; closes: string; obsF?: number; series?: string };
+export type ScanPaper = ScanFlag & { id: string; at: string; stake: number; fee: number; result: "open" | "win" | "loss" | "void"; pnl: number | null };
+type State = { cur?: number; at: number; flags: ScanFlag[]; scanned: number; series: string[]; errors: string[]; cats: Record<string, number>; catsAt: number; seriesAt: number };
+const stationsSeen: Record<string, string | null> = {};
+// LEARNING LOOP (Claude, Oct 9 ~2:15 PM PT, Love: "do you think we can tweak it to learn from the losses there too?").
+// The 3 losses (all NYC hourly, 5 / 7 / 11 AM) shared one cause: the hourly markets settle on an AREA INDEX, and the scanner
+// read one station (KNYC) as a stand-in. At 5 AM KNYC read 55.9F and the index settled under 49F. So now every settled hourly
+// market is a lesson: the index's settled value vs what our station read before the close. Per series it keeps the bias
+// (index minus station) and the spread. Hourly trades only fire once a series has 6+ lessons, read the station PLUS the
+// bias, and need a cushion of 4F or (90th-percentile miss + 1.5F), whichever is bigger. Every paper loss is written up in
+// data/scanner-lessons.jsonl. data/scanner-learn.json holds the calibration.
+type Lesson = { close: number; idx: number; obs: number; err: number };
+const LEARN = () => join(process.cwd(), "data", "scanner-learn.json");
+function readLearn(): Record<string, Lesson[]> {
+  try { return JSON.parse(readFileSync(LEARN(), "utf8")); } catch { return {}; }
+}
+function writeLearn(l: Record<string, Lesson[]>) {
+  try { writeFileSync(LEARN(), JSON.stringify(l)); } catch {}
+}
+export function calib(series: string): { n: number; bias: number; spread: number; cushion: number } {
+  const L = readLearn()[series] || [];
+  if (!L.length) return { n: 0, bias: 0, spread: 99, cushion: 99 };
+  const errs = L.map((x) => x.err).sort((a, b) => a - b);
+  const bias = errs[Math.floor(errs.length / 2)];
+  const dev = L.map((x) => Math.abs(x.err - bias)).sort((a, b) => a - b);
+  const spread = dev[Math.min(dev.length - 1, Math.floor(dev.length * 0.9))];
+  return { n: L.length, bias: Math.round(bias * 10) / 10, spread: Math.round(spread * 10) / 10, cushion: Math.max(4, Math.round((spread + 1.5) * 10) / 10) };
+}
+const learnAt: Record<string, number> = {};
+async function learnSeries(series: string, data: { obs: { t: number; f: number }[] }) {
+  if (Date.now() - (learnAt[series] || 0) < 20 * 60000) return;
+  learnAt[series] = Date.now();
+  const since = Math.floor((Date.now() - 26 * 3600 * 1000) / 1000);
+  const j = await kget(`/trade-api/v2/markets?series_ticker=${series}&status=settled&min_close_ts=${since}&limit=200`);
+  const all = readLearn();
+  const L = all[series] || [];
+  const have = new Set(L.map((x) => x.close));
+  for (const m of j?.markets ?? []) {
+    const close = Date.parse(String(m.close_time || ""));
+    const idx = num(m.expiration_value);
+    if (!Number.isFinite(close) || !Number.isFinite(idx) || have.has(close)) continue;
+    // what the scanner would have seen: the latest station reading 5-75 min before the close
+    const pre = data.obs.filter((o) => o.t <= close - 5 * 60000 && o.t >= close - 75 * 60000);
+    if (!pre.length) continue;
+    const obs = pre[pre.length - 1].f;
+    L.push({ close, idx, obs: Math.round(obs * 10) / 10, err: Math.round((idx - obs) * 10) / 10 });
+    have.add(close);
+  }
+  all[series] = L.sort((a, b) => a.close - b.close).slice(-200);
+  writeLearn(all);
+}
+const rulesSeen: Record<string, string> = {};
+const srcSeen: Record<string, string> = {};
+const g = globalThis as unknown as { __scan?: State; __scanBusy?: boolean; __scanObs?: Record<string, { at: number; obs: { t: number; f: number }[]; tz: string }> };
+const st = (): State => (g.__scan ||= { at: 0, flags: [], scanned: 0, series: [], errors: [], cats: {}, catsAt: 0, seriesAt: 0 });
+
+const r2 = (n: number) => Math.round(n * 100) / 100;
+const num = (s: unknown) => {
+  const n = Number.parseFloat(String(s ?? ""));
+  return Number.isFinite(n) ? n : NaN;
+};
+const feeOf = (ask: number, stake: number) => r2(0.07 * ask * (1 - ask) * (stake / ask));
+
+async function kget(path: string): Promise<any> {
+  const res = await fetch(`${ROOT}${path}`, { signal: AbortSignal.timeout(10000) });
+  if (!res.ok) throw new Error(`kalshi ${res.status} ${path.slice(0, 60)}`);
+  return res.json();
+}
+async function nget(path: string): Promise<any> {
+  const res = await fetch(`${NWS}${path}`, { headers: UA, signal: AbortSignal.timeout(12000) });
+  if (!res.ok) throw new Error(`nws ${res.status} ${path.slice(0, 60)}`);
+  return res.json();
+}
+
+function readPaper(): ScanPaper[] {
+  try {
+    return existsSync(FILE()) ? (JSON.parse(readFileSync(FILE(), "utf8")) as ScanPaper[]) : [];
+  } catch {
+    return [];
+  }
+}
+function writePaper(rows: ScanPaper[]) {
+  writeFileSync(FILE(), JSON.stringify(rows.slice(0, 3000)));
+}
+
+// Hourly "Weather Index" areas (Synoptic Data, several stations blended) -> the main NWS station in that area, a proxy only.
+const AREA_STATION: Record<string, string> = { "new york city": "KNYC", "chicago metro area": "KORD", "coastal los angeles": "KLAX", "los angeles": "KLAX", "washington dc": "KDCA", "washington, dc": "KDCA", "miami": "KMIA", "austin": "KAUS", "denver": "KDEN", "philadelphia": "KPHL", "houston": "KIAH", "seattle": "KSEA", "boston": "KBOS", "atlanta": "KATL", "dallas": "KDFW", "las vegas": "KLAS", "san francisco": "KSFO", "phoenix": "KPHX" };
+function stationOf(m: Mkt, series: string): string | null {
+  const txt = `${m.rules_primary || ""} ${m.rules_secondary || ""}`;
+  const c = /\(CLI([A-Z]{3})\)/.exec(txt);
+  if (c) return `K${c[1]}`;
+  const a = /issuedby=([A-Z]{3})/i.exec(txt);
+  if (a) return `K${a[1].toUpperCase()}`;
+  const b = /\b(K[A-Z]{3})\b/.exec(txt);
+  if (b) return b[1];
+  const area = /recorded at (.+?) for /i.exec(txt);
+  if (area && AREA_STATION[area[1].trim().toLowerCase()]) return AREA_STATION[area[1].trim().toLowerCase()];
+  const city = series.replace(/^KX(HIGHT|LOWT|HIGH|LOW)/, "");
+  return FALLBACK_STATION[city] || (city.length === 3 ? `K${city}` : null);
+}
+function eventDate(ev: string): string | null {
+  const m = /-(\d\d)([A-Z]{3})(\d\d)/.exec(ev);
+  if (!m || MONS.indexOf(m[2]) < 0) return null;
+  return `20${m[1]}-${String(MONS.indexOf(m[2]) + 1).padStart(2, "0")}-${m[3]}`;
+}
+function tzOffsetMin(tz: string, at: Date): number {
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).formatToParts(at).map((x) => [x.type, x.value]));
+  const asUtc = Date.UTC(Number(p.year), Number(p.month) - 1, Number(p.day), Number(p.hour), Number(p.minute));
+  return Math.round((asUtc - at.getTime()) / 60000);
+}
+function localDate(tz: string, at = new Date()): string {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit" }).format(at);
+}
+/** NWS climate day = local STANDARD time midnight to midnight. */
+function climateDayStart(tz: string, ymd: string): number {
+  const [y, mo, d] = ymd.split("-").map(Number);
+  const std = Math.min(tzOffsetMin(tz, new Date(Date.UTC(y, 0, 15))), tzOffsetMin(tz, new Date(Date.UTC(y, 6, 15))));
+  return Date.UTC(y, mo - 1, d) - std * 60000;
+}
+
+async function stationObs(station: string): Promise<{ obs: { t: number; f: number }[]; tz: string } | null> {
+  const cache = (g.__scanObs ||= {});
+  const hit = cache[station];
+  if (hit && Date.now() - hit.at < 110000) return hit;
+  let tz = hit?.tz || "";
+  if (!tz) {
+    const meta = await nget(`/stations/${station}`);
+    tz = String(meta?.properties?.timeZone || "");
+    if (!tz) return null;
+  }
+  const since = new Date(Date.now() - 30 * 3600 * 1000).toISOString();
+  const j = await nget(`/stations/${station}/observations?start=${encodeURIComponent(since)}`);
+  const obs: { t: number; f: number }[] = [];
+  for (const f of j?.features ?? []) {
+    const c = f?.properties?.temperature?.value;
+    const t = Date.parse(f?.properties?.timestamp);
+    if (typeof c === "number" && Number.isFinite(t)) obs.push({ t, f: c * 1.8 + 32 });
+  }
+  obs.sort((a, b) => a.t - b.t);
+  cache[station] = { at: Date.now(), obs, tz };
+  return cache[station];
+}
+
+async function listSeries(s: State): Promise<string[]> {
+  if (s.series.length && Object.keys(srcSeen).length && Date.now() - s.seriesAt < 6 * 3600 * 1000) return s.series;
+  let out: string[] = [];
+  try {
+    const j = await kget(`/trade-api/v2/series?category=${encodeURIComponent("Climate and Weather")}`);
+    out = (j?.series ?? []).map((x: any) => String(x.ticker || "")).filter((t: string) => /^KX(HIGH|LOW|TEMP)/.test(t));
+    for (const x of j?.series ?? []) if (/^KX(HIGH|LOW|TEMP)/.test(String(x.ticker))) srcSeen[String(x.ticker)] = JSON.stringify(x.settlement_sources ?? x.settlement_source ?? "").slice(0, 400);
+  } catch (e) {
+    s.errors.push(String(e).slice(0, 120));
+  }
+  if (!out.length) out = FALLBACK_SERIES;
+  s.series = [...new Set(out)];
+  s.seriesAt = Date.now();
+  return s.series;
+}
+async function categories(s: State) {
+  if (Date.now() - s.catsAt < 6 * 3600 * 1000) return;
+  try {
+    const j = await kget(`/trade-api/v2/series`);
+    const c: Record<string, number> = {};
+    for (const x of j?.series ?? []) c[String(x.category || "Other")] = (c[String(x.category || "Other")] || 0) + 1;
+    s.cats = c;
+    s.catsAt = Date.now();
+  } catch (e) {
+    s.errors.push(String(e).slice(0, 120));
+    s.catsAt = Date.now() - 5 * 3600 * 1000;
+  }
+}
+
+function judge(m: Mkt, series: string, station: string, data: { obs: { t: number; f: number }[]; tz: string }): ScanFlag | null {
+  const yesAsk = num(m.yes_ask_dollars);
+  const noAsk = num(m.no_ask_dollars);
+  const closes = String(m.close_time || "");
+  const title = String(m.title || m.ticker) + (m.yes_sub_title ? ` · ${m.yes_sub_title}` : "");
+  const type = String(m.strike_type || "");
+  const lo = num(m.floor_strike);
+  const hi = num(m.cap_strike);
+  const flag = (kind: ScanFlag["kind"], side: "yes" | "no", reason: string): ScanFlag | null => {
+    const ask = side === "yes" ? yesAsk : noAsk;
+    if (!(ask > 0.02 && ask <= (kind === "hourly" ? 0.95 : 0.97))) return null;
+    if (kind === "hourly" && ask < 0.5) return null;
+    return { ticker: m.ticker, title, kind, side, ask: r2(ask), reason, station, closes };
+  };
+  if (/^KX(HIGH|LOW)/.test(series)) {
+    const day = eventDate(m.event_ticker);
+    if (!day || day !== localDate(data.tz)) return null;
+    const start = climateDayStart(data.tz, day);
+    const today = data.obs.filter((o) => o.t >= start);
+    if (today.length < 3) return null;
+    if (/^KXHIGH/.test(series)) {
+      const maxF = Math.max(...today.map((o) => o.f));
+      const L = Math.round(maxF) - 1; // the day's official high is at least this (1F of rounding room)
+      const why = `${station} has already read ${maxF.toFixed(1)}F today (the official high can't be lower than ~${L}F)`;
+      if (/greater/.test(type) && Number.isFinite(lo) && L > lo) return flag("high-lock", "yes", `${why}; needs above ${lo}F`);
+      if (type === "between" && Number.isFinite(hi) && L > hi) return flag("high-lock", "no", `${why}; this ${lo}-${hi}F range is already passed`);
+      if (/less/.test(type) && Number.isFinite(hi) && L > hi) return flag("high-lock", "no", `${why}; "below ${hi}F" can't happen`);
+      return null;
+    }
+    const minF = Math.min(...today.map((o) => o.f));
+    const U = Math.round(minF) + 1;
+    const why = `${station} has already read ${minF.toFixed(1)}F today (the official low can't be higher than ~${U}F)`;
+    if (/less/.test(type) && Number.isFinite(hi) && U < hi) return flag("low-lock", "yes", `${why}; needs below ${hi}F`);
+    if (type === "between" && Number.isFinite(lo) && U < lo) return flag("low-lock", "no", `${why}; this ${lo}-${hi}F range is already passed`);
+    if (/greater/.test(type) && Number.isFinite(lo) && U < lo) return flag("low-lock", "no", `${why}; "above ${lo}F" can't happen`);
+    return null;
+  }
+  // hourly temperature: only the last 45 minutes before the close
+  const left = Date.parse(closes) - Date.now();
+  if (!(left > 0 && left <= 45 * 60000)) return null;
+  const last = data.obs[data.obs.length - 1];
+  if (!last || Date.now() - last.t > 75 * 60000) return null;
+  const cal = calib(series);
+  if (cal.n < 6) return null; // still learning how this index sits vs our station
+  const raw = last.f;
+  const f = raw + cal.bias;
+  const C = cal.cushion;
+  const mins = Math.round((Date.now() - last.t) / 60000);
+  const why = `${station} reads ${raw.toFixed(1)}F (${mins} min ago); the index runs ${cal.bias >= 0 ? "+" : ""}${cal.bias}F vs it (${cal.n} lessons) -> ~${f.toFixed(1)}F, cushion ${C}F, ${Math.round(left / 60000)} min to the reading`;
+  const fl = (side: "yes" | "no", txt: string) => { const x = flag("hourly", side, txt); if (x) { x.obsF = Math.round(raw * 10) / 10; x.series = series; } return x; };
+  if (/greater/.test(type) && Number.isFinite(lo)) {
+    if (f >= lo + C) return fl("yes", `${why}; strike above ${lo}F`);
+    if (f <= lo - C) return fl("no", `${why}; strike above ${lo}F`);
+  }
+  if (/less/.test(type) && Number.isFinite(hi)) {
+    if (f <= hi - C) return fl("yes", `${why}; strike below ${hi}F`);
+    if (f >= hi + C) return fl("no", `${why}; strike below ${hi}F`);
+  }
+  if (type === "between" && Number.isFinite(lo) && Number.isFinite(hi) && (f <= lo - C || f >= hi + C)) return fl("no", `${why}; range ${lo}-${hi}F`);
+  return null;
+}
+
+async function settle(rows: ScanPaper[]): Promise<boolean> {
+  let changed = false;
+  for (const r of rows.filter((x) => x.result === "open" && Date.parse(x.closes) + 40 * 60000 < Date.now()).slice(0, 15)) {
+    try {
+      const j = await kget(`/trade-api/v2/markets/${r.ticker}`);
+      const res = String(j?.market?.result || "");
+      if (res !== "yes" && res !== "no") {
+        if (Date.now() - Date.parse(r.closes) > 4 * 86400000) {
+          r.result = "void";
+          r.pnl = 0;
+          changed = true;
+        }
+        continue;
+      }
+      const won = res === r.side;
+      r.result = won ? "win" : "loss";
+      r.pnl = r2(won ? (r.stake / r.ask) * (1 - r.ask) - r.fee : -r.stake - r.fee);
+      changed = true;
+      if (!won) {
+        try {
+          const idx = num(j?.market?.expiration_value);
+          const sr = r.series || r.ticker.split("-")[0];
+          const cal = calib(sr);
+          appendFileSync(join(process.cwd(), "data", "scanner-lessons.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: r.ticker, side: r.side, ask: r.ask, pnl: r.pnl, station: r.station, stationRead: r.obsF ?? null, settledAt: Number.isFinite(idx) ? idx : null, miss: Number.isFinite(idx) && r.obsF != null ? Math.round((idx - r.obsF) * 10) / 10 : null, seriesNow: cal, reason: r.reason }) + "\n");
+        } catch {
+        }
+      }
+    } catch {
+    }
+  }
+  return changed;
+}
+
+export async function scannerTick(): Promise<void> {
+  const s = st();
+  if (g.__scanBusy || Date.now() - s.at < 120000) return;
+  g.__scanBusy = true;
+  s.errors = [];
+  try {
+    await categories(s);
+    // US stations only (NWS has no data abroad), hourly series every pass, the daily ones 12 at a time in rotation with a
+    // pause between calls, so the scanner never crowds the desk's own Kalshi requests (the first pass hit Kalshi's limit).
+    const all = (await listSeries(s)).filter((sr) => {
+      const code = sr.replace(/^KX(HIGHT|LOWT|HIGH|LOW|TEMP)/, "");
+      return !(code.length === 4 && !code.startsWith("K"));
+    });
+    const hourly = all.filter((sr) => /^KXTEMP/.test(sr));
+    const daily = all.filter((sr) => !/^KXTEMP/.test(sr));
+    const cur = (s.cur || 0) % Math.max(1, daily.length);
+    const pick = [...hourly, ...daily.slice(cur, cur + 12), ...(cur + 12 > daily.length ? daily.slice(0, cur + 12 - daily.length) : [])];
+    s.cur = cur + 12;
+    const keep = new Set(pick);
+    const flags: ScanFlag[] = s.flags.filter((f) => !keep.has(f.ticker.split("-")[0]) && Date.parse(f.closes) > Date.now());
+    let scanned = 0;
+    for (const sr of pick) {
+      await new Promise((r) => setTimeout(r, 400));
+      let markets: Mkt[] = [];
+      try {
+        const j = await kget(`/trade-api/v2/markets?series_ticker=${sr}&status=open&limit=200`);
+        markets = j?.markets ?? [];
+      } catch (e) {
+        s.errors.push(String(e).slice(0, 120));
+        continue;
+      }
+      scanned += markets.length;
+      if (!markets.length) continue;
+      const station = stationOf(markets[0], sr);
+      stationsSeen[sr] = station;
+      if (!station) rulesSeen[sr] = `${markets[0].rules_primary || ""} || ${markets[0].rules_secondary || ""} || src=${srcSeen[sr] || ""}`.slice(0, 700);
+      if (!station) continue;
+      let data: Awaited<ReturnType<typeof stationObs>> = null;
+      try {
+        data = await stationObs(station);
+      } catch (e) {
+        s.errors.push(String(e).slice(0, 120));
+      }
+      if (!data) continue;
+      if (/^KXTEMP/.test(sr)) {
+        try { await learnSeries(sr, data); } catch (e) { s.errors.push(String(e).slice(0, 120)); }
+      }
+      for (const m of markets) {
+        const f = judge(m, sr, station, data);
+        if (f) flags.push(f);
+      }
+    }
+    s.flags = flags;
+    s.scanned = scanned;
+    s.at = Date.now();
+    const rows = readPaper();
+    let changed = await settle(rows);
+    for (const f of flags) {
+      const id = `${f.ticker}:${f.side}`;
+      if (rows.some((r) => r.id === id)) continue;
+      rows.unshift({ ...f, id, at: new Date().toISOString(), stake: STAKE, fee: feeOf(f.ask, STAKE), result: "open", pnl: null });
+      changed = true;
+    }
+    if (changed) writePaper(rows);
+    try {
+      writeFileSync(join(process.cwd(), "data", "scanner-status.json"), JSON.stringify({ at: new Date().toISOString(), scanned, picked: pick, stations: stationsSeen, rules: rulesSeen, flags, errors: s.errors, cats: s.cats }, null, 1));
+    } catch {
+    }
+  } catch (e) {
+    s.errors.push(String(e).slice(0, 160));
+  } finally {
+    g.__scanBusy = false;
+  }
+}
+
+// SIGNAL LAB (Oct 8, Love): how price behaves after each webhook signal, per source + timeframe (data/signal-paths.json,
+// written by the desk). For each mark: share of signals already moving their way, and the median move.
+function signalLab() {
+  type P = { src: string; tf: number; asset: string; side: string; marks: Record<string, number>; mfe: number; mae: number; done?: boolean };
+  let paths: P[] = [];
+  try {
+    const f = join(process.cwd(), "data", "signal-paths.json");
+    paths = existsSync(f) ? (JSON.parse(readFileSync(f, "utf8")) as P[]) : [];
+  } catch {
+    paths = [];
+  }
+  const marks = ["1", "3", "5", "10", "15", "30", "60"];
+  const med = (a: number[]) => {
+    if (!a.length) return null;
+    const b = [...a].sort((x, y) => x - y);
+    return b[Math.floor(b.length / 2)];
+  };
+  const groups: Record<string, P[]> = {};
+  for (const p of paths) (groups[`${p.src.toUpperCase()} ${p.tf}M ${p.asset.toUpperCase()}`] ||= []).push(p);
+  return Object.entries(groups)
+    .map(([key, ps]) => ({
+      key,
+      n: ps.length,
+      marks: Object.fromEntries(
+        marks.map((k) => {
+          const v = ps.map((p) => p.marks[k]).filter((x): x is number => typeof x === "number");
+          return [k, v.length ? { right: Math.round((100 * v.filter((x) => x > 0).length) / v.length), med: med(v), n: v.length } : null];
+        }),
+      ),
+      mfe: med(ps.filter((p) => p.done).map((p) => p.mfe)),
+      mae: med(ps.filter((p) => p.done).map((p) => p.mae)),
+    }))
+    .sort((a, b) => b.n - a.n);
+}
+
+export function scanner() {
+  const s = st();
+  const rows = readPaper();
+  const done = rows.filter((r) => r.result === "win" || r.result === "loss");
+  const by: Record<string, { n: number; w: number; p: number }> = {};
+  for (const r of done) {
+    const c = (by[r.kind] ||= { n: 0, w: 0, p: 0 });
+    c.n++;
+    if (r.result === "win") c.w++;
+    c.p = r2(c.p + (r.pnl || 0));
+  }
+  return {
+    at: s.at ? new Date(s.at).toISOString() : null,
+    scanned: s.scanned,
+    series: s.series.length,
+    errors: s.errors.slice(0, 5),
+    flags: s.flags,
+    paper: rows.slice(0, 60),
+    open: rows.filter((r) => r.result === "open").length,
+    total: { n: done.length, w: done.filter((r) => r.result === "win").length, p: r2(done.reduce((a, r) => a + (r.pnl || 0), 0)) },
+    by,
+    cats: s.cats,
+    lab: signalLab(),
+    learn: Object.fromEntries(Object.keys(readLearn()).map((k) => [k, calib(k)])),
+  };
+}

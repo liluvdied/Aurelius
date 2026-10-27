@@ -1,0 +1,58 @@
+[
+ {
+  "id": "KXRT-GOD-94:2026-10-10T21:48:14Z",
+  "ticker": "KXRT-GOD-94",
+  "title": "Godzilla Minus Zero RT above 94 (Nov 9)",
+  "side": "no",
+  "ask": 0.35,
+  "prob": 0.46,
+  "reason": "Exactly 95% (38/40); ~100-150 more reviews at wide release must stay ~95%+ fresh; festival scores usually drift down.",
+  "at": "2026-10-10T21:48:14Z",
+  "stake": 10,
+  "fee": 0.46,
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "id": "KXDIESELMON-26OCT31-T6.40:2026-10-10T21:48:14Z",
+  "ticker": "KXDIESELMON-26OCT31-T6.40",
+  "title": "AAA diesel above $6.40 on Oct 31",
+  "side": "no",
+  "ask": 0.57,
+  "prob": 0.2,
+  "reason": "Needs +12c vs downtrend, new Russian supply and ULSD-implied ~$6.10-6.20.",
+  "at": "2026-10-10T21:48:14Z",
+  "stake": 10,
+  "fee": 0.3,
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "id": "KXDIESELMON-26OCT31-T6.30:2026-10-10T21:48:14Z",
+  "ticker": "KXDIESELMON-26OCT31-T6.30",
+  "title": "AAA diesel above $6.30 on Oct 31",
+  "side": "no",
+  "ask": 0.48,
+  "prob": 0.33,
+  "reason": "Retail $6.28 already under, ULSD -4.6% on US-Russia diesel deal, wide retail spread tends to close down.",
+  "at": "2026-10-10T21:48:14Z",
+  "stake": 10,
+  "fee": 0.36,
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "id": "KXAAAGASED-26NOV03-4.25:2026-10-10T21:48:14Z",
+  "ticker": "KXAAAGASED-26NOV03-4.25",
+  "title": "AAA gas above $4.25 on Nov 3",
+  "side": "yes",
+  "ask": 0.42,
+  "prob": 0.52,
+  "reason": "RBOB-implied fair pump ~$4.30-4.35, decline slowing to ~1.4c/week; ~coin flip vs 42c ask.",
+  "at": "2026-10-10T21:48:14Z",
+  "stake": 10,
+  "fee": 0.41,
+  "result": "open",
+  "pnl": null
+ }
+]

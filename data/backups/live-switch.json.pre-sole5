@@ -1,0 +1,133 @@
+{
+ "live": true,
+ "maxDollars": 25,
+ "cooldownAfterLoss": true,
+ "route": "paper",
+ "at": "2026-10-03T20:58:20.456175Z",
+ "note": "Love Oct 3 ~4:55 PM PT: BRICK + COTC + CLAUDE\u00b7TREND live (she meant TREND, not CLAUDE), wired direct, 1:1. Size = slider. Floor 1.37x.",
+ "cooldownExcuse": [
+  "KXGOLD15M-26OCT012200-00"
+ ],
+ "shiftStart": "2026-10-02T01:58:00.000Z",
+ "blockedSetups": [
+  "Tap-reject at -0.5\u03c3|down|gold"
+ ],
+ "lockWin": {
+  "arm": 30,
+  "floor": 20,
+  "on": false,
+  "clear": {
+   "gold": 1.5,
+   "btc": 100
+  }
+ },
+ "channelRule": false,
+ "channelEdge": 0.25,
+ "blockedAssets": [
+  "silver"
+ ],
+ "bigMultipleCap": {
+  "on": true,
+  "x": 3,
+  "dollars": 5
+ },
+ "skipHours": {
+  "btc": [
+   9,
+   16,
+   18,
+   20,
+   21
+  ],
+  "gold": [
+   1,
+   7,
+   12,
+   16,
+   17
+  ]
+ },
+ "navSkip": {
+  "on": true,
+  "assets": [
+   "gold",
+   "btc"
+  ],
+  "frames": [
+   "m1",
+   "m5",
+   "m10",
+   "m15"
+  ],
+  "within": 0.25,
+  "lines": [
+   "center"
+  ],
+  "byAsset": {
+   "btc": {
+    "frames": [
+     "m1",
+     "m5",
+     "m10",
+     "m15"
+    ],
+    "withinDollars": 100,
+    "lines": [
+     "center",
+     "upper",
+     "lower"
+    ]
+   },
+   "gold": {
+    "withinDollars": 2.5,
+    "lines": [
+     "center"
+    ]
+   }
+  }
+ },
+ "navCross": {
+  "on": true,
+  "close": "5m",
+  "frames": [
+   "m15",
+   "m10",
+   "m5"
+  ],
+  "bandAssets": [
+   "btc",
+   "gold"
+  ],
+  "rejectOnly": []
+ },
+ "tpGates": {
+  "on": false,
+  "under165": [
+   0.4
+  ],
+  "over165": [
+   0.55,
+   0.6
+  ]
+ },
+ "primeFortyRule": false,
+ "pathSkip": {
+  "on": true
+ },
+ "model": "new",
+ "autoExits": true,
+ "tpHard": true,
+ "liveBook": {
+  "books": [
+   "brick",
+   "cotc",
+   "trend"
+  ],
+  "dollars": 22,
+  "since": "2026-10-03T20:58:20.456175Z",
+  "cotcSince": "2026-10-03T21:02:54.690410Z",
+  "trendSince": "2026-10-03T23:59:26.343880Z"
+ },
+ "tpOfMax": 90,
+ "netBelow": []
+}

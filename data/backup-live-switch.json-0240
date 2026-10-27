@@ -1,0 +1,358 @@
+{
+  "live": true,
+  "maxDollars": 25,
+  "cooldownAfterLoss": true,
+  "route": "paper",
+  "at": "2026-10-09T02:13:01.711Z",
+  "note": "Turned on from the desk",
+  "cooldownExcuse": [
+    "KXGOLD15M-26OCT012200-00"
+  ],
+  "shiftStart": "2026-10-02T01:58:00.000Z",
+  "blockedSetups": [
+    "Tap-reject at -0.5σ|down|gold"
+  ],
+  "lockWin": {
+    "arm": 30,
+    "floor": 20,
+    "on": false,
+    "clear": {
+      "gold": 0.5,
+      "btc": 100
+    }
+  },
+  "channelRule": false,
+  "channelEdge": 0.25,
+  "blockedAssets": [
+    "silver"
+  ],
+  "bigMultipleCap": {
+    "on": true,
+    "x": 3,
+    "dollars": 5
+  },
+  "skipHours": {
+    "btc": [
+      9,
+      16,
+      18,
+      20,
+      21
+    ],
+    "gold": [
+      1,
+      7,
+      12,
+      16,
+      17
+    ]
+  },
+  "navSkip": {
+    "on": true,
+    "assets": [
+      "gold",
+      "btc"
+    ],
+    "frames": [
+      "m1",
+      "m5",
+      "m10",
+      "m15"
+    ],
+    "within": 0.25,
+    "lines": [
+      "center"
+    ],
+    "byAsset": {
+      "btc": {
+        "frames": [
+          "m1",
+          "m5",
+          "m10",
+          "m15"
+        ],
+        "withinDollars": 100,
+        "lines": [
+          "center",
+          "upper",
+          "lower"
+        ]
+      },
+      "gold": {
+        "withinDollars": 2.5,
+        "lines": [
+          "center"
+        ]
+      }
+    }
+  },
+  "navCross": {
+    "on": true,
+    "close": "5m",
+    "frames": [
+      "m15",
+      "m10",
+      "m5"
+    ],
+    "bandAssets": [
+      "btc",
+      "gold"
+    ],
+    "rejectOnly": []
+  },
+  "tpGates": {
+    "on": false,
+    "under165": [
+      0.4
+    ],
+    "over165": [
+      0.55,
+      0.6
+    ]
+  },
+  "primeFortyRule": false,
+  "pathSkip": {
+    "on": true
+  },
+  "model": "new",
+  "autoExits": true,
+  "tpHard": true,
+  "liveBook": {
+    "books": [
+      "hour",
+      "cotc",
+      "brickt",
+      "confirm",
+      "new",
+      "new24",
+      "brick"
+    ],
+    "dollars": 25,
+    "since": "2026-10-09T02:13:01.712Z",
+    "cotcSince": "2026-10-04T01:25:26.486786Z",
+    "trendSince": "2026-10-03T23:59:26.343880Z",
+    "prevBooks": [
+      "hour",
+      "cotc",
+      "brickt",
+      "confirm",
+      "new",
+      "new24"
+    ],
+    "sole5Since": "2026-10-04T01:04:09.282659Z",
+    "sole5vSince": "2026-10-04T02:00:09.833392Z",
+    "claudeSince": "2026-10-04T05:40:25.433508Z",
+    "brickcSince": "2026-10-04T11:18:37.305121Z",
+    "originalSince": "2026-10-04T17:16:42.493675Z",
+    "threeSince": "2026-10-04T23:35:22.333771Z",
+    "brickBackSince": "2026-10-05T02:29:29.968213Z",
+    "brickAloneSince": "2026-10-05T19:47:42.181126Z",
+    "claudeRunSince": "2026-10-06T21:43:16.459Z",
+    "diamondRunSince": "2026-10-07T02:41:07.646Z",
+    "brickcRunSince": "2026-10-08T21:27:59.959Z",
+    "brickRunSince": "2026-10-09T02:36:29.742Z",
+    "hourRunSince": "2026-10-06T06:07:19.747Z",
+    "cotcRunSince": "2026-10-06T12:34:53.431Z",
+    "bricktRunSince": "2026-10-08T05:23:35.881Z",
+    "newRunSince": "2026-10-08T05:44:19.646Z",
+    "originalRunSince": "2026-10-07T02:05:34.789Z",
+    "confirmRunSince": "2026-10-07T02:41:31.134Z",
+    "optARunSince": "2026-10-07T06:06:54.622Z",
+    "trendRunSince": "2026-10-08T02:41:31.417Z",
+    "optBRunSince": "2026-10-07T06:08:21.842Z",
+    "brk1RunSince": "2026-10-07T07:42:52.041Z",
+    "new24RunSince": "2026-10-09T00:56:27.010277Z"
+  },
+  "tpOfMax": 90,
+  "netBelow": [],
+  "insurance": {
+    "on": true,
+    "arm": 30,
+    "venue": "polymarket",
+    "tiers": [
+      {
+        "at": 0.25,
+        "lo": 0.08,
+        "dollars": 5
+      },
+      {
+        "at": 0.0625,
+        "lo": 0.03,
+        "dollars": 2,
+        "minLeft": 3
+      }
+    ],
+    "bankAt": 200,
+    "bank": true,
+    "bankOfMax": 90,
+    "armBy": "price"
+  },
+  "tpLadder": true,
+  "addOn": {
+    "on": false,
+    "dollars": 5,
+    "maxAsk": 0.55,
+    "minLeft": 5
+  },
+  "timeGate": {
+    "on": true,
+    "minN": 15,
+    "minWin": 0.62,
+    "hours": 4,
+    "exempt": [
+      "brick",
+      "brickc",
+      "brickt"
+    ]
+  },
+  "snipe": {
+    "on": true,
+    "dollars": 3,
+    "maxDist": 20,
+    "minLeft": 60,
+    "maxLeft": 180,
+    "maxAsk": 0.05
+  },
+  "polyLive": true,
+  "polyMirror": {
+    "on": false,
+    "books": [
+      "cotc"
+    ],
+    "dollars": 10,
+    "maxAsk": 0.75,
+    "since": "2026-10-05T06:45:58.393818Z"
+  },
+  "paperLocks": true,
+  "bookLikePaper": true,
+  "polyHour": {
+    "on": true,
+    "books": [
+      "brick"
+    ],
+    "dollars": 15,
+    "maxAsk": 0.75,
+    "minLeftMin": 15,
+    "since": "2026-10-05T19:55:47.843511Z",
+    "followRun": true
+  },
+  "autoRoll": {
+    "on": false,
+    "minN": 12,
+    "minWin": 0.6,
+    "hours": 4,
+    "current": null,
+    "snoozed": {},
+    "since": "2026-10-05T23:21:24.612Z",
+    "checkedAt": "2026-10-05T23:21:24.612Z",
+    "board": [
+      {
+        "book": "sole10",
+        "n": 78,
+        "win": 64,
+        "pnl": 441
+      },
+      {
+        "book": "sole15",
+        "n": 82,
+        "win": 62,
+        "pnl": 368
+      },
+      {
+        "book": "hold90",
+        "n": 67,
+        "win": 72,
+        "pnl": 318
+      },
+      {
+        "book": "original",
+        "n": 67,
+        "win": 72,
+        "pnl": 300
+      },
+      {
+        "book": "claude",
+        "n": 40,
+        "win": 78,
+        "pnl": 271
+      },
+      {
+        "book": "brk1",
+        "n": 17,
+        "win": 82,
+        "pnl": 267
+      }
+    ],
+    "offNote": "Love, Oct 5 ~4:30 PM PT: off, she picks books herself for now; if it comes back, 4h window"
+  },
+  "ripTap": {
+    "on": false,
+    "dollars": 5,
+    "minAsk": 0.02,
+    "maxAsk": 0.33,
+    "minLeftSec": 240,
+    "tol": 15,
+    "bankOfMax": 90
+  },
+  "silverHedge": {
+    "on": true,
+    "dollars": 11,
+    "minMult": 1.6,
+    "minLeftSec": 180
+  },
+  "btcHeadroom": 30,
+  "dailyLossLimit": 200,
+  "breaker": {
+    "on": true,
+    "losses": 4,
+    "hours": 2
+  },
+  "presets": [
+    {
+      "name": "4 Leaf Clover 🍀",
+      "books": [
+        "hour",
+        "cotc",
+        "brickc",
+        "brickt",
+        "new",
+        "confirm",
+        "brk1"
+      ],
+      "savedAt": "2026-10-08T01:11:46.583Z",
+      "note": "Oct 7: BRICK CLEAN, BRICK TVC GOLD, COTC, NEW, CONFIRM, 1ST BREAK (+ HOURLY). Gold early exits within $0.50, BTC $100, 90% take profit, half at 75%."
+    }
+  ],
+  "halfAt75": true,
+  "liveSkipHours": {
+    "gold": [
+      18
+    ]
+  },
+  "brokenBy": {
+    "btc": 3,
+    "gold": 0.25
+  },
+  "followPaperExit": true,
+  "btcHeadroomSession": 30,
+  "goldAtTarget": {
+    "up": 2,
+    "down": 1
+  },
+  "mirrorPaper": true,
+  "goldSessionGap": [
+    1.5,
+    2
+  ],
+  "new24Live": {
+    "until": "2026-10-09T07:00:00Z",
+    "note": "Love, Oct 8 ~6:10 PM PT: NEW 24/7 on Kalshi in NEW's off-hours, for today"
+  },
+  "riskExempt": {
+    "books": [
+      "new24"
+    ],
+    "until": "2026-10-09T02:00:00Z",
+    "note": "Love, Oct 8 ~6:15 PM PT: if the daily stop hits, NEW 24/7 keeps trading for this hour so she can watch its entries"
+  }
+}

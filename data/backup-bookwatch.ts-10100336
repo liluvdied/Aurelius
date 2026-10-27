@@ -1,0 +1,173 @@
+// BOOK WATCH (Claude, Oct 8 ~4 PM PT, Love: "it says the majority of the losses today came from [1ST BREAK], from now on
+// i'd like to be alerted on an alerts tab next to the shift tab. a status report on each running book's performance over
+// the last 4 - 12 - 24 - and all... i don't want one book to be making the losses and not know about it"). Read only.
+// Live = her real Kalshi fills per book (riskguard.liveTrades, same count as the RUN cards). Paper = the book's own paper
+// rows, scaled to $30 a trade so the two sit side by side. Alerts are written to the ALERTS tab and, once each, to the
+// desk's alarm bar.
+import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { listNight } from "./nightbook";
+import { liveTrades } from "./riskguard";
+// Book of a live-book-done key ("TICKER:book", "TICKER:atr:book", or a 5M-X twin "TICKER:bank5p:x5" = bank5px).
+const bookOfKey = (k: string) => { const p = k.split(":"); const last = p.pop() || ""; if (last !== "x5") return last; const base = p.pop() || ""; return ({ bank5p: "bank5px", claude: "claudex", trend: "trendx" } as Record<string, string>)[base] || `${base}x`; };
+
+export type Cell = { n: number; w: number; p: number };
+export type BookStatus = { book: string; name: string; running: boolean; now?: string; live: Record<string, Cell>; paper: Record<string, Cell>; last: { at: string; pnl: number }[] };
+export type Alert = { level: "red" | "amber"; book: string; text: string; key: string };
+export type Skip = { at: string; book: string; asset: string; side: string; reason: string };
+export type BookWatch = { at: string; windows: string[]; books: BookStatus[]; alerts: Alert[]; today: { live: number; losses: number }; skips: Skip[] };
+
+const D = () => join(process.cwd(), "data");
+const r2 = (n: number) => Math.round(n * 100) / 100;
+const WIN: Record<string, number> = { "4H": 4, "12H": 12, "24H": 24, ALL: 1e6 };
+const NAMES: Record<string, string> = { brick: "BRICK", brickc: "BRICK · CLEAN", brickt: "BRICK · TVC GOLD", new: "NEW", cotc: "COTC", confirm: "CONFIRM", brk1: "1ST BREAK", hour: "BTC HOURLY", claude: "CLAUDE", trend: "CLAUDE · TREND", vine: "VINE", reent: "BTC RE-ENTRY", refined: "REFINED", dcd: "DECIDED", bank5p: "BANK SOLE+", bank5px: "BANK SOLE+ · 5M CLOSE EXIT", snapb: "SNAPBACK", bank: "BANK", original: "ORIGINAL" };
+const g = globalThis as unknown as { __bookWatch?: { at: number; v: BookWatch }; __bookWatchSeen?: Record<string, number> };
+const blank = (): Record<string, Cell> => Object.fromEntries(Object.keys(WIN).map((k) => [k, { n: 0, w: 0, p: 0 }]));
+const bump = (c: Cell, p: number) => {
+  c.n += 1;
+  c.w += p > 0.05 ? 1 : 0;
+  c.p = r2(c.p + p);
+};
+const ptDay = (ms: number) => new Date(ms).toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
+
+function paperRows(): { book: string; at: string; pnl: number; stake: number }[] {
+  const rows = new Map<string, { book: string; at: string; pnl: number; stake: number }>();
+  const take = (r: any) => {
+    if (!r || r.dnaMode || r.stale || typeof r.pnl !== "number" || r.result === "open" || !r.book || !r.at) return;
+    rows.set(r.id, { book: r.book, at: r.at, pnl: r.pnl, stake: Number(r.stake) || 50 });
+  };
+  try {
+    for (const line of readFileSync(join(D(), "exit-ledger.jsonl"), "utf8").split("\n")) {
+      if (!line.trim()) continue;
+      try {
+        take(JSON.parse(line));
+      } catch {
+      }
+    }
+  } catch {
+  }
+  for (const r of listNight()) take(r);
+  return [...rows.values()];
+}
+
+export function bookWatch(): BookWatch {
+  if (g.__bookWatch && Date.now() - g.__bookWatch.at < 20000) return g.__bookWatch.v;
+  let running: string[] = [];
+  let shifts: any = null;
+  try {
+    const sw = JSON.parse(readFileSync(join(D(), "live-switch.json"), "utf8"));
+    running = (Array.isArray(sw?.liveBook?.books) ? sw.liveBook.books : []).map(String);
+    shifts = sw?.shifts?.on ? sw.shifts : null;
+  } catch {
+  }
+  // NOW line per running book (Love, Oct 9 ~5 PM PT: "let's fix that so i don't need to bug you every time she skips"):
+  // whose turn it is on the shift clock, in plain words. BTC hours (gold has its own off hours on REFINED).
+  const hNow = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+  const hh = (h: number) => `${h % 12 === 0 ? 12 : h % 12} ${h < 12 || h === 24 ? "AM" : "PM"}`;
+  const shiftNow = (book: string): string | undefined => {
+    if (!shifts) return undefined;
+    const inW = (w: any) => w && hNow >= Number(w.from) && hNow < Number(w.to);
+    const hm = shifts.hourLead?.btc;
+    if (hm && Object.prototype.hasOwnProperty.call(hm, String(hNow))) {
+      const hl = hm[String(hNow)];
+      if (!hl) return `WAITING · nobody trades BTC this hour`;
+      return book === hl ? `ON · her BTC hour (${hh(hNow)}–${hh(hNow + 1)}, alone)` : `WAITING · ${String(hl).toUpperCase()}'s BTC hour (${hh(hNow)}–${hh(hNow + 1)})`;
+    }
+    const lead = String(shifts.day?.lead || "").toUpperCase();
+    const nlOf = (a: string) => String(typeof shifts.night?.lead === "string" ? shifts.night.lead : shifts.night?.lead?.[a] || "");
+    if (inW(shifts.night)) {
+      const mine = ["btc", "gold"].filter((a) => nlOf(a) === book);
+      return mine.length ? `ON · night shift (${mine.map((a) => a.toUpperCase()).join(" + ")}) until ${hh(Number(shifts.night.to))}` : `WAITING · night shift is ${nlOf("btc").toUpperCase()} on BTC / ${nlOf("gold").toUpperCase()} on gold, back at ${hh(Number(shifts.night.to))}`;
+    }
+    if (Array.isArray(shifts.nightOnly) && shifts.nightOnly.includes(book)) {
+      const where = ["btc", "gold"].filter((a) => nlOf(a) === book).map((a) => a.toUpperCase()).join(" + ");
+      return `WAITING · night shift only${where ? ` (${where})` : ""}, starts at ${hh(Number(shifts.night?.from ?? 0))}`;
+    }
+    if (!inW(shifts.day)) return undefined;
+    const off: number[] = (shifts.day.leadOff?.btc || []).map(Number);
+    const leadOn = !off.includes(hNow);
+    let next = hNow + 1;
+    while (next < 24 && (leadOn ? !off.includes(next) : off.includes(next))) next += 1;
+    if (book === shifts.day.lead) return leadOn ? `ON · her BTC hour (alone until ${hh(next)})` : `OFF · her BTC off hour, back at ${hh(next)}`;
+    return leadOn ? `WAITING · ${lead}'s BTC hour, only ${lead} trades until ${hh(next)}` : `ON · filling ${lead}'s off hour until ${hh(next)}`;
+  };
+  const now = Date.now();
+  const live = liveTrades();
+  const recentLive = new Set(live.filter((t) => now - Date.parse(t.first) < 24 * 3600 * 1000).map((t) => t.book));
+  const list = [...new Set([...running, ...recentLive])];
+  const paper = paperRows();
+  const books: BookStatus[] = list.map((book) => {
+    const st: BookStatus = { book, name: NAMES[book] ?? book.toUpperCase(), running: running.includes(book), now: running.includes(book) ? shiftNow(book) : undefined, live: blank(), paper: blank(), last: [] };
+    const lt = live.filter((t) => t.book === book).sort((a, b) => (a.first < b.first ? -1 : 1));
+    for (const t of lt) for (const [k, h] of Object.entries(WIN)) if (now - Date.parse(t.first) < h * 3600 * 1000) bump(st.live[k], t.pnl);
+    st.last = lt.slice(-8).map((t) => ({ at: t.first, pnl: t.pnl }));
+    for (const r of paper) {
+      if (r.book !== book) continue;
+      const p = (r.pnl * 30) / r.stake;
+      for (const [k, h] of Object.entries(WIN)) if (now - Date.parse(r.at) < h * 3600 * 1000) bump(st.paper[k], p);
+    }
+    return st;
+  });
+  // Today's live losses by book (Pacific day).
+  const today = ptDay(now);
+  const lt = live.filter((t) => ptDay(Date.parse(t.first)) === today);
+  const todayLive = r2(lt.reduce((s, t) => s + t.pnl, 0));
+  const lossByBook: Record<string, number> = {};
+  for (const t of lt) if (t.pnl < 0) lossByBook[t.book] = r2((lossByBook[t.book] ?? 0) - t.pnl);
+  const totalLoss = r2(Object.values(lossByBook).reduce((s, x) => s + x, 0));
+  const alerts: Alert[] = [];
+  for (const b of books) {
+    const nm = b.name;
+    const tag = b.running ? "" : " (off Kalshi now)";
+    const l12 = b.live["12H"];
+    const net = r2(lt.filter((t) => t.book === b.book).reduce((s, t) => s + t.pnl, 0));
+    const lost = lossByBook[b.book] ?? 0;
+    if (totalLoss >= 40 && lost / totalLoss >= 0.5 && net <= -40) alerts.push({ level: "red", book: b.book, key: `share:${b.book}:${today}`, text: `${nm}${tag} made $${lost.toFixed(0)} of today's $${totalLoss.toFixed(0)} in live losses (${Math.round((100 * lost) / totalLoss)}%). Net on Kalshi today: -$${Math.abs(net).toFixed(2)}.` });
+    if (l12.n >= 4 && l12.p <= -60) alerts.push({ level: "red", book: b.book, key: `12h:${b.book}:${today}`, text: `${nm}${tag} is -$${Math.abs(l12.p).toFixed(2)} live over the last 12 hours (${l12.w}/${l12.n} won).` });
+    const last6 = b.last.slice(-6);
+    if (b.running && last6.length >= 6 && last6.filter((x) => x.pnl > 0.05).length <= 2) alerts.push({ level: "amber", book: b.book, key: `cold:${b.book}:${last6[last6.length - 1].at}`, text: `${nm} won only ${last6.filter((x) => x.pnl > 0.05).length} of its last 6 live trades.` });
+    const p24 = b.paper["24H"];
+    const l24 = b.live["24H"];
+    if (b.running && l24.n >= 5 && p24.p - l24.p >= 60) alerts.push({ level: "amber", book: b.book, key: `gap:${b.book}:${today}`, text: `${nm} is trailing its own paper by $${(p24.p - l24.p).toFixed(0)} over 24 hours (paper +$${p24.p.toFixed(0)} at $30, live ${l24.p >= 0 ? "+" : "-"}$${Math.abs(l24.p).toFixed(0)}).` });
+    if (b.running && b.live.ALL.n >= 15 && b.live.ALL.p <= -75) alerts.push({ level: "amber", book: b.book, key: `all:${b.book}:${today}`, text: `${nm} is -$${Math.abs(b.live.ALL.p).toFixed(0)} live all-time over ${b.live.ALL.n} trades.` });
+  }
+  alerts.sort((a, b) => (a.level === b.level ? 0 : a.level === "red" ? -1 : 1));
+  // WHY IT DIDN'T GO TO KALSHI (Love, Oct 8 ~6:50 PM PT: "the trades are not going to kalshi... can you see why that keeps
+  // happening?"): the last trades her RUN books took on paper that were held off Kalshi, each with the rule that held it.
+  const skips: Skip[] = [];
+  try {
+    const done = JSON.parse(readFileSync(join(D(), "live-book-done.json"), "utf8")) as Record<string, { at?: string; status?: string; reason?: string; side?: string; ticker?: string }>;
+    for (const [k, d] of Object.entries(done)) {
+      const book = bookOfKey(k);
+      if (!running.includes(book) || !d?.at || now - Date.parse(d.at) > 12 * 3600 * 1000) continue;
+      if (d.status !== "skipped" && d.status !== "blocked" && d.status !== "missed") continue;
+      if (/already|this window already traded|booked before RUN/.test(String(d.reason || ""))) continue;
+      const tk = d.ticker || k.split(":")[0];
+      skips.push({ at: d.at, book: NAMES[book] ?? book.toUpperCase(), asset: /GOLD/.test(tk) ? "gold" : /BTC/.test(tk) ? "btc" : "other", side: String(d.side || ""), reason: String(d.reason || "") });
+    }
+  } catch {
+  }
+  skips.sort((a, b) => (a.at < b.at ? 1 : -1));
+  const v: BookWatch = { at: new Date().toISOString(), windows: Object.keys(WIN), books: books.sort((a, b) => Number(b.running) - Number(a.running) || a.live["24H"].p - b.live["24H"].p), alerts, today: { live: todayLive, losses: totalLoss }, skips: skips.slice(0, 15) };
+  // New red alerts also go to the desk's alarm bar, once each.
+  const seen = (g.__bookWatchSeen ||= {});
+  for (const a of alerts) {
+    if (a.level !== "red" || seen[a.key]) continue;
+    seen[a.key] = now;
+    try {
+      const af = join(D(), "alarm.json");
+      let rows: unknown[] = [];
+      try {
+        const prev = JSON.parse(readFileSync(af, "utf8"));
+        if (Array.isArray(prev)) rows = prev;
+      } catch {
+      }
+      rows.unshift({ at: new Date().toISOString(), text: `BOOK WATCH: ${a.text}` });
+      writeFileSync(af, JSON.stringify(rows.slice(0, 20)));
+      appendFileSync(join(D(), "book-watch-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ...a }) + "\n");
+    } catch {
+    }
+  }
+  g.__bookWatch = { at: now, v };
+  return v;
+}

@@ -1,0 +1,199 @@
+// ORACLE (Claude, Oct 9 ~2:45 PM PT, Love: "can we construct a reasoning model that would cross reference all available
+// markets with available information on those markets... strictly probabilities... as long as it's not a coin flip and
+// we're trading on valid information with conviction and reason for the conviction"). PAPER ONLY.
+//  1. CANDIDATES (this file, every 6 h): open Kalshi markets closing in 6 h-30 days, priced 4-96c, with volume, minus what the
+//     desk / scanner already cover (15-min crypto + metals, hourly BTC, weather). data/oracle-candidates.json.
+//  2. FORECASTS: a scheduled Claude session (twice a day) researches a shortlist and appends one line per market to
+//     data/oracle-forecasts.jsonl: its probability, the reason, the sources, and the price it saw. Written BEFORE the result.
+//  3. PAPER: a forecast trades $10 only when its probability beats the ask by 7+ points after Kalshi's fee.
+//  4. REPORT CARD: every forecast is scored against the market's own price at that moment (Brier score, lower = better).
+//     The bar to ever go live: 100+ settled forecasts that beat the market's score AND a green paper book.
+import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, statSync } from "node:fs";
+import { join } from "node:path";
+import { homedir } from "node:os";
+const BASE = "https://external-api.kalshi.com/trade-api/v2";
+const STAKE = 10;
+const EDGE = 0.07;
+const SKIP = /^(KXBTC|KXETH|KXSOL|KXXRP|KXDOGE|KXGOLD|KXSILVER|KXTEMP|KXHIGH|KXLOW|KXINXU|KXNASDAQ100U)/;
+// EXCHANGE FOLDER (Oct 9 ~7:35 PM PT, Love: "every time we set one it says it doesn't have access to the folder... can you set up
+// a new one and place the folder inside of it"). Scheduled ORACLE runs can't be given the desk's own folder (its name has
+// "<3" in it, which the scheduler refuses), and they shouldn't see the desk's switches anyway. So the desk shares ONLY what
+// ORACLE needs through ~/Downloads/aurelius-oracle: candidates.json, mentions-history.json, report.json (her scored record
+// to learn from), and ORACLE appends forecasts.jsonl there. The desk reads both that file and data/oracle-forecasts.jsonl.
+const EX = join(homedir(), "Downloads", "aurelius-oracle");
+function exchange() {
+  try {
+    mkdirSync(EX, { recursive: true });
+    const readme = join(EX, "README.txt");
+    if (!existsSync(readme)) writeFileSync(readme, "Aurelius <-> ORACLE exchange (paper only).\n- candidates.json: open Kalshi markets the desk shortlisted (refreshed every 6 h)\n- mentions-history.json: Kalshi's record of what speakers said at past events\n- report.json: every past forecast with its result and score, so ORACLE can learn\n- forecasts.jsonl: ORACLE appends one JSON line per forecast here (append only)\nNothing in this folder can place a trade.\n");
+    for (const [src, dst] of [["oracle-candidates.json", "candidates.json"], ["mentions-history.json", "mentions-history.json"]]) {
+      const a = D(src), b = join(EX, dst);
+      if (!existsSync(a)) continue;
+      let stale = true;
+      try { stale = statSync(a).mtimeMs > statSync(b).mtimeMs; } catch {}
+      if (stale) copyFileSync(a, b);
+    }
+  } catch {
+  }
+}
+const g = globalThis as unknown as { __orBusy?: boolean; __orCandAt6?: number; __orAt?: number };
+const D = (f: string) => join(process.cwd(), "data", f);
+const rd = (f: string, dflt: any) => { try { return existsSync(D(f)) ? JSON.parse(readFileSync(D(f), "utf8")) : dflt; } catch { return dflt; } };
+const r2 = (x: number) => Math.round(x * 100) / 100;
+const r3 = (x: number) => Math.round(x * 1000) / 1000;
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const fee = (p: number, stake: number) => r2(0.07 * p * (1 - p) * (stake / p));
+const dol = (m: any, k: string) => { const v = m[`${k}_dollars`]; if (v != null) return Number(v); const c = m[k]; return c != null ? Number(c) / 100 : NaN; };
+async function get(path: string) {
+  const res = await fetch(BASE + path, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(20000) });
+  if (res.status === 429) { await sleep(5000); throw new Error("429"); }
+  if (!res.ok) throw new Error(String(res.status));
+  return res.json() as Promise<any>;
+}
+type F = { at: string; ticker: string; prob: number; reason: string; sources?: string[]; yesAsk?: number; noAsk?: number; title?: string; by?: string };
+type P = { id: string; ticker: string; title: string; side: "yes" | "no"; ask: number; prob: number; reason: string; at: string; stake: number; fee: number; result: "open" | "win" | "loss" | "void"; pnl: number | null };
+function forecasts(): F[] {
+  const out: F[] = [];
+  const seen = new Set<string>();
+  for (const f of [D("oracle-forecasts.jsonl"), join(EX, "forecasts.jsonl")]) {
+    try {
+      if (!existsSync(f)) continue;
+      for (const l of readFileSync(f, "utf8").split("\n")) {
+        if (!l.trim()) continue;
+        try {
+          const x = JSON.parse(l);
+          const k = `${x?.ticker}|${x?.at}`;
+          if (x && x.ticker && x.prob >= 0 && x.prob <= 1 && !seen.has(k)) { seen.add(k); out.push(x); }
+        } catch {}
+      }
+    } catch {}
+  }
+  return out.sort((a, b) => (a.at < b.at ? -1 : 1));
+}
+async function candidates() {
+  const out: any[] = [];
+  const minC = Math.floor((Date.now() + 6 * 3600 * 1000) / 1000), maxC = Math.floor((Date.now() + 30 * 24 * 3600 * 1000) / 1000);
+  const cat: Record<string, string> = {};
+  try { for (const x of (await get(`/series`))?.series ?? []) cat[String(x.ticker)] = String(x.category || ""); } catch {}
+  const byEv: Record<string, any[]> = {};
+  let complete = true;
+  let cursor = "";
+  for (let page = 0; page < 40; page += 1) {
+    await sleep(2500);
+    let j: any = null;
+    for (let tries = 0; tries < 4 && !j; tries += 1) {
+      try { j = await get(`/markets?status=open&min_close_ts=${minC}&max_close_ts=${maxC}&limit=1000${cursor ? `&cursor=${cursor}` : ""}`); } catch (e) { try { writeFileSync(D("oracle-probe.json"), JSON.stringify({ page, tries, error: String(e) })); } catch {} await sleep(6000); }
+    }
+    if (!j) { complete = false; break; }
+    for (const m of j?.markets ?? []) {
+      const series = String(m.event_ticker || "").split("-")[0];
+      if (SKIP.test(series) || SKIP.test(String(m.ticker))) continue;
+      const y = dol(m, "yes_ask");
+      const vol = Number(m.volume_fp ?? m.volume ?? 0);
+      if (!(y >= 0.04 && y <= 0.96 && vol >= 100)) continue; // Oct 9: wider, longshots up to ~25x can be looked at
+      (byEv[m.event_ticker] ||= []).push({ ticker: m.ticker, event: m.event_ticker, category: cat[series] || "", title: m.title, option: m.yes_sub_title || m.subtitle || "", closes: m.close_time, yesAsk: r2(y), noAsk: r2(dol(m, "no_ask")), volume: vol, rules: String(m.rules_primary || "").slice(0, 500) });
+    }
+    cursor = j?.cursor || "";
+    if (!cursor) break;
+  }
+  for (const list of Object.values(byEv)) out.push(...list.sort((a, b) => b.volume - a.volume).slice(0, 3));
+  out.sort((a, b) => b.volume - a.volume);
+  // balance (Oct 9 PM, Love: "album sales, concert sales, box office numbers... companies earnings reports, climate, treasury
+  // yields... anything"): sports capped at 40 so it can't crowd out everything else; every other category gets up to 80.
+  const per: Record<string, number> = {};
+  const bal = out.filter((m) => { const k = m.category || "Other"; per[k] = (per[k] || 0) + 1; return per[k] <= (k === "Sports" ? 40 : 80); });
+  out.length = 0; out.push(...bal);
+  writeFileSync(D("oracle-candidates.json"), JSON.stringify({ at: new Date().toISOString(), n: out.length, complete, note: "Open Kalshi markets closing in 6 h - 30 days, 4-96c, volume 100+, top 3 per event, minus the desk's / scanner's own markets. Prices are a snapshot; re-check before forecasting.", markets: out.slice(0, 800) }, null, 1));
+}
+export async function oracleTick() {
+  if (g.__orBusy || Date.now() - (g.__orAt || 0) < 60000) return;
+  g.__orBusy = true;
+  g.__orAt = Date.now();
+  try {
+    if (Date.now() - (g.__orCandAt6 || 0) > 6 * 3600 * 1000) {
+      let age = Infinity;
+      try { age = Date.now() - Date.parse(rd("oracle-candidates.json", {}).at || 0); } catch {}
+      const prev = rd("oracle-candidates.json", {});
+      const retry = (!prev.n || prev.complete === false || prev.complete == null) && age > 15 * 60000;
+      if (age > 6 * 3600 * 1000 || retry) await candidates();
+      if (rd("oracle-candidates.json", {}).complete === true) g.__orCandAt6 = Date.now();
+    }
+    // paper: one trade per forecast that clears the edge
+    const rows: P[] = rd("oracle-paper.json", []);
+    for (const f of forecasts()) {
+      const y = Number(f.yesAsk), n = Number(f.noAsk);
+      let side: "yes" | "no" | null = null, ask = 0;
+      // RULES OF ENGAGEMENT (Oct 9 PM, Love: "1.05x isn't worth risking the money for... odds over 1.2x... 1.2x is acceptable as
+      // long as it's a very safe conclusion... anything the data supports, i'm all for regardless of how low the chances are").
+      //  - the side bought must pay MORE than 1.2x: ask <= 80c. 81-83c (~1.2x) only when ORACLE's own odds on that side are 92%+.
+      //  - a favorite (ask 50c+) needs ORACLE at 75%+ on that side. A longshot can be any multiple if the edge is there.
+      //  - still needs the 7-point edge after fees in every case.
+      const okSide = (ask: number, ps: number) => ask > 0.02 && ask <= 0.83 && (ask <= 0.80 || ps >= 0.92) && (ask < 0.5 || ps >= 0.75) && ps - ask - fee(ask, 1) * ask >= EDGE;
+      if (okSide(y, f.prob)) { side = "yes"; ask = y; }
+      else if (okSide(n, 1 - f.prob)) { side = "no"; ask = n; }
+      if (!side) continue;
+      const id = `${f.ticker}:${f.at}`;
+      if (rows.some((r) => r.id === id)) continue;
+      rows.unshift({ id, ticker: f.ticker, title: f.title || f.ticker, side, ask: r2(ask), prob: f.prob, reason: f.reason, at: f.at, stake: STAKE, fee: fee(ask, STAKE), result: "open", pnl: null });
+    }
+    // settle paper + score forecasts
+    const results: Record<string, string> = rd("oracle-results.json", {});
+    const need = [...new Set([...rows.filter((r) => r.result === "open").map((r) => r.ticker), ...forecasts().map((f) => f.ticker)])].filter((t) => !results[t]).slice(0, 25);
+    for (const t of need) {
+      await sleep(700);
+      try {
+        const j = await get(`/markets/${encodeURIComponent(t)}`);
+        const res = String(j?.market?.result || "");
+        if (res === "yes" || res === "no") results[t] = res;
+        else if (/void|cancel/i.test(String(j?.market?.status || ""))) results[t] = "void";
+      } catch {}
+    }
+    writeFileSync(D("oracle-results.json"), JSON.stringify(results));
+    for (const r of rows) {
+      if (r.result !== "open" || !results[r.ticker]) continue;
+      if (results[r.ticker] === "void") { r.result = "void"; r.pnl = 0; continue; }
+      const won = results[r.ticker] === r.side;
+      r.result = won ? "win" : "loss";
+      r.pnl = r2(won ? (r.stake / r.ask) * (1 - r.ask) - r.fee : -r.stake - r.fee);
+    }
+    writeFileSync(D("oracle-paper.json"), JSON.stringify(rows.slice(0, 1000), null, 1));
+    exchange();
+    try {
+      const rep = forecasts().map((f) => {
+        const res = results[f.ticker];
+        const mid = (Number(f.yesAsk) + (1 - Number(f.noAsk))) / 2;
+        const o = res === "yes" ? 1 : res === "no" ? 0 : null;
+        return { at: f.at, ticker: f.ticker, title: f.title, prob: f.prob, marketMid: Number.isFinite(mid) ? r3(mid) : null, result: res || "open", ourScore: o == null ? null : r3((f.prob - o) ** 2), marketScore: o == null || !Number.isFinite(mid) ? null : r3((mid - o) ** 2), trade: rows.find((r) => r.id === `${f.ticker}:${f.at}`) || null };
+      });
+      writeFileSync(join(EX, "report.json"), JSON.stringify({ at: new Date().toISOString(), note: "score = (probability - outcome)^2, lower is better. Beat marketScore on average.", forecasts: rep }, null, 1));
+    } catch {}
+  } catch {
+  } finally {
+    g.__orBusy = false;
+  }
+}
+export function oracle() {
+  const fs = forecasts();
+  const results: Record<string, string> = rd("oracle-results.json", {});
+  const rows: P[] = rd("oracle-paper.json", []);
+  let n = 0, ours = 0, mkt = 0;
+  for (const f of fs) {
+    const res = results[f.ticker];
+    if (res !== "yes" && res !== "no") continue;
+    const o = res === "yes" ? 1 : 0;
+    const mid = Number.isFinite(Number(f.yesAsk)) && Number.isFinite(Number(f.noAsk)) ? (Number(f.yesAsk) + (1 - Number(f.noAsk))) / 2 : NaN;
+    if (!Number.isFinite(mid)) continue;
+    n++; ours += (f.prob - o) ** 2; mkt += (mid - o) ** 2;
+  }
+  const done = rows.filter((r) => r.result === "win" || r.result === "loss");
+  const cand = rd("oracle-candidates.json", null);
+  return {
+    candidates: cand ? { at: cand.at, n: cand.n } : null,
+    forecasts: fs.length,
+    scored: n,
+    brierOurs: n ? r3(ours / n) : null,
+    brierMarket: n ? r3(mkt / n) : null,
+    paper: { n: done.length, w: done.filter((r) => r.result === "win").length, p: r2(done.reduce((a, r) => a + (r.pnl || 0), 0)), open: rows.filter((r) => r.result === "open").length },
+    latest: fs.slice(-12).reverse().map((f) => ({ ...f, result: results[f.ticker] || null, trade: rows.find((r) => r.id === `${f.ticker}:${f.at}`) || null })),
+  };
+}

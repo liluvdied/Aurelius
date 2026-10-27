@@ -1,0 +1,71 @@
+# Tight-bands 10x paper book 💎
+
+First 10x+ touch at a band in every Kalshi 15m window, $10 paper. TIGHT = 1σ under $3 gold / $100 BTC; NORMAL is the control. Updated Tue Oct 27 01:22 PM PT.
+
+| Group | Asset | Lane | Trades | Won | Win rate | P&L |
+|---|---|---|---|---|---|---|
+| TIGHT | gold | cash at 3x | 21 | 5 | 24% | $-60.00 |
+| TIGHT | gold | cash at 5x | 21 | 5 | 24% | $+40.00 |
+| TIGHT | gold | cash at 10x | 21 | 3 | 14% | $+84.20 |
+| TIGHT | btc | cash at 3x | 27 | 4 | 15% | $-150.00 |
+| TIGHT | btc | cash at 5x | 27 | 2 | 7% | $-170.00 |
+| TIGHT | btc | cash at 10x | 27 | 1 | 4% | $-170.00 |
+| NORMAL | gold | cash at 3x | 343 | 35 | 10% | $-2380.00 |
+| NORMAL | gold | cash at 5x | 343 | 21 | 6% | $-2380.00 |
+| NORMAL | gold | cash at 10x | 343 | 9 | 3% | $-2530.09 |
+| NORMAL | btc | cash at 3x | 595 | 89 | 15% | $-3280.00 |
+| NORMAL | btc | cash at 5x | 595 | 56 | 9% | $-3150.00 |
+| NORMAL | btc | cash at 10x | 595 | 39 | 7% | $-2098.98 |
+
+## Tight-band trades
+
+| When (PT) | Asset | Side | 1σ | Mult | Band | Peak bid | 3x | 5x | 10x |
+|---|---|---|---|---|---|---|---|---|---|
+| Mon Oct 19 05:56 PM | gold | up | 2.75 | 15.2 | BB lower | 0.17 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 20 04:08 PM | btc | up | 91.15 | 18.9 | 5m S1 | 0.029 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 20 04:42 PM | btc | down | 85.25 | 19.6 | session VWAP | 0.27 | cashed 3x +20.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 20 04:55 PM | btc | down | 82.27 | 18.5 | +1σ | 0.043 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 20 05:22 PM | btc | down | 82.21 | 10.3 | +2σ | 0.07 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 20 05:40 PM | btc | up | 92.82 | 16.1 | +1σ | 0.26 | cashed 3x +20.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 20 05:56 PM | btc | up | 95.0 | 26.3 | session VWAP | 0.015 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 20 06:05 PM | btc | up | 93.69 | 15.2 | BB lower | 0.059 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 20 06:41 PM | btc | up | 99.08 | 29.4 | -1σ | 0.905 | cashed 3x +20.00 | cashed 5x +40.00 | cashed 10x +90.00 |
+| Tue Oct 20 06:58 PM | btc | down | 98.37 | 27.0 | +1σ | 0.01 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 20 07:10 PM | btc | up | 96.22 | 17.2 | -1σ | 0.047 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 04:13 PM | gold | up | 1.9 | 17.5 | -1σ | 0.042 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 04:21 PM | gold | down | 1.85 | 13.2 | session VWAP | 0.2 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 04:34 PM | gold | up | 1.75 | 11.9 | 5m S1 | 0.1 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 04:53 PM | btc | down | 71.43 | 10.0 | BB upper | 0.089 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 04:57 PM | gold | up | 2.43 | 27.0 | -2σ | 0.035 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 05:04 PM | btc | up | 69.31 | 15.9 | -2σ | 0.11 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 05:21 PM | gold | up | 2.63 | 10.6 | -2σ | 0.18 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 05:37 PM | btc | down | 91.45 | 16.1 | 5m R1 | 0.12 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 06:27 PM | btc | down | 89.79 | 10.5 | +1σ | 0.018 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 06:35 PM | btc | up | 89.07 | 12.8 | -1σ | 0.6 | cashed 3x +20.00 | cashed 5x +40.00 | lost -10.00 |
+| Thu Oct 22 06:58 PM | btc | up | 94.59 | 41.7 | session VWAP | 0.013 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 07:12 PM | btc | down | 93.52 | 11.8 | 5m PP | 0.04 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu Oct 22 07:22 PM | btc | down | 92.31 | 10.6 | 5m R1 | 0.09 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Sun Oct 25 04:07 PM | gold | up | 2.09 | 15.6 | fresh -2σ | 0.054 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Sun Oct 25 04:10 PM | btc | up | 82.7 | 20.8 | fresh -1σ | 0.1 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Sun Oct 25 04:22 PM | gold | up | 2.13 | 15.6 | fresh -2σ | 0.917 | cashed 3x +20.00 | cashed 5x +40.00 | cashed 10x +90.00 |
+| Sun Oct 25 04:23 PM | btc | up | 86.09 | 19.2 | fresh -2σ | 0.036 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Sun Oct 25 04:39 PM | gold | down | 1.99 | 10.4 | -1σ | 0.971 | cashed 3x +20.00 | cashed 5x +40.00 | bell win +84.20 |
+| Sun Oct 25 04:46 PM | gold | up | 2.0 | 12.0 | -2σ | 0.6 | cashed 3x +20.00 | cashed 5x +40.00 | lost -10.00 |
+| Sun Oct 25 05:05 PM | gold | up | 2.9 | 15.6 | fresh -3σ | 0.068 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 02:39 PM | btc | down | 60.18 | 18.9 | BB upper | 0.1 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 02:56 PM | btc | up | 80.48 | 11.5 | fresh VWAP | 0.25 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 03:06 PM | btc | up | 72.38 | 11.0 | 5m S1 | 0.21 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 03:49 PM | gold | up | 1.18 | 11.0 | fresh -2σ | 0.51 | cashed 3x +20.00 | cashed 5x +40.00 | lost -10.00 |
+| Mon Oct 26 04:03 PM | btc | up | 65.89 | 15.4 | fresh -3σ | 0.089 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 04:09 PM | gold | up | 1.5 | 15.2 | BB lower | 0.061 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 04:24 PM | btc | down | 89.1 | 15.2 | 5m PP | 0.053 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 04:26 PM | gold | down | 1.65 | 11.0 | 5m PP | 0.064 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 04:37 PM | btc | down | 88.84 | 18.2 | fresh +2σ | 0.055 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 04:39 PM | gold | up | 1.63 | 10.0 | BB lower | 0.062 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 04:51 PM | gold | up | 2.28 | 17.9 | 5m S2 | 0.1 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 05:07 PM | btc | down | 96.75 | 11.1 | 5m R2 | 0.069 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 06:11 PM | gold | down | 2.9 | 22.2 | 5m R1 | 0.033 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 06:22 PM | gold | up | 2.89 | 21.3 | fresh -2σ | 0.903 | cashed 3x +20.00 | cashed 5x +40.00 | cashed 10x +90.00 |
+| Mon Oct 26 07:13 PM | gold | down | 2.91 | 38.5 | fresh +1σ | 0.007 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 07:43 PM | gold | up | 2.96 | 16.9 | fresh VWAP | 0.059 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Mon Oct 26 07:54 PM | gold | up | 2.93 | 18.2 | 5m S1 | 0.12 | lost -10.00 | lost -10.00 | lost -10.00 |

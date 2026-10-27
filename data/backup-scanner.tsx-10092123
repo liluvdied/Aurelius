@@ -1,0 +1,181 @@
+// SCANNER tab (Claude, Oct 8, Love: "let's make it a SCANNER tab to the right of Kalshi... anything we can actually get some
+// data on and not speculate"). Live flags + the paper book + the market map (which Kalshi categories are worth it, and why).
+import { useQuery } from "@tanstack/react-query";
+import { getHourLotto, getScanner } from "@/lib/desk/fns";
+
+const usd = (n: number) => `${n >= 0 ? "+" : "-"}$${Math.abs(n).toFixed(2)}`;
+const tone = (n: number) => (n > 0.005 ? "#3ddc84" : n < -0.005 ? "#ff5c5c" : "rgba(255,255,255,0.7)");
+const KIND: Record<string, string> = { "high-lock": "DAILY HIGH · LOCK-IN", "low-lock": "DAILY LOW · LOCK-IN", hourly: "HOURLY · NEAR THE BELL" };
+const ago = (iso: string | null) => (iso ? `${Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 60000))} min ago` : "starting…");
+
+const MAP: { tier: "green" | "yellow" | "red"; name: string; data: string; status: string }[] = [
+  { tier: "green", name: "Weather · daily high / low", data: "Settles on the station's official max/min (The Weather Company or the NWS climate report). The station's live readings put a floor under the high, and a ceiling over the low, as the day goes.", status: "SCANNING NOW" },
+  { tier: "green", name: "Weather · hourly temperature", data: "Settles on Synoptic Data's blended area reading. The area's main NWS station near the bell is the cross-check, so it needs a 4F cushion.", status: "SCANNING NOW" },
+  { tier: "green", name: "TSA checkpoint numbers (weekly)", data: "TSA publishes each day's screenings the next morning; late in the week most of the average is already known.", status: "NEXT" },
+  { tier: "green", name: "Gas prices (AAA national average)", data: "AAA publishes the average daily and it moves a few cents a day, so the path to the settle date is narrow.", status: "NEXT" },
+  { tier: "green", name: "BTC / gold 15-minute", data: "The desk itself: live price vs the strike, bands, paper first.", status: "THE DESK" },
+  { tier: "yellow", name: "Fed rate decisions", data: "Fed funds futures price the odds; Kalshi can drift from them. Few events a year.", status: "LATER" },
+  { tier: "yellow", name: "CPI / jobs / jobless claims", data: "Nowcasts and economist consensus exist, but release day is a real surprise risk.", status: "LATER" },
+  { tier: "yellow", name: "S&P / Nasdaq daily ranges", data: "Options prices imply the odds of each range; same idea as the desk.", status: "LATER" },
+  { tier: "yellow", name: "Mortgage rates (weekly)", data: "Freddie Mac's weekly number follows the 10-year yield, known days ahead.", status: "LATER" },
+  { tier: "red", name: "Sports · awards · box office · mentions · most politics", data: "No data that settles the answer ahead of the crowd: this is the gambling side. Skipped on purpose.", status: "SKIP" },
+];
+const TIER = { green: "#3ddc84", yellow: "#ffd27a", red: "#ff8a8a" };
+
+export function ScannerTab() {
+  const q = useQuery({ queryKey: ["scanner"], queryFn: () => getScanner(), refetchInterval: 60000 });
+  const d = q.data;
+  const lq = useQuery({ queryKey: ["hour-lotto"], queryFn: () => getHourLotto(), refetchInterval: 60000 });
+  const L = lq.data;
+  const EX: Record<string, string> = { x3: "SELL AT 3x", x5: "SELL AT 5x", c50: "SELL AT 50c", hold: "HOLD TO THE HOUR" };
+  return (
+    <section className="mx-3 mt-3 rounded-[14px] px-3 py-3" style={{ border: "1px solid rgba(255,255,255,0.18)", background: "#000" }}>
+      <div className="flex items-baseline justify-between gap-2">
+        <p className="text-[10px] tracking-[0.28em] text-white/90">SCANNER · DATA, NOT GUESSES</p>
+        <p className="font-mono text-[9px] text-white/55">PAPER ONLY · $10 A FLAG</p>
+      </div>
+      <p className="mt-1 font-mono text-[9px] leading-snug text-white/50">
+        Kalshi markets whose answer public data can already see coming. Each flag is booked on paper at the ask with Kalshi's fee and settled from
+        Kalshi's own result, so the record shows whether the edge is real before a dollar goes in.
+      </p>
+      {!d ? (
+        <p className="mt-3 font-mono text-[10px] text-white/50">loading the scanner…</p>
+      ) : (
+        <>
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            <div className="rounded-[10px] px-2 py-2" style={{ border: "1px solid rgba(255,255,255,0.14)" }}>
+              <p className="text-[8px] tracking-[0.2em] text-white/50">PAPER RECORD</p>
+              <p className="font-mono text-[13px] tabular-nums" style={{ color: tone(d.total.p) }}>{d.total.n ? usd(d.total.p) : "—"}</p>
+              <p className="font-mono text-[9px] text-white/50">{d.total.n ? `${d.total.w}/${d.total.n} right` : "no settles yet"}</p>
+            </div>
+            <div className="rounded-[10px] px-2 py-2" style={{ border: "1px solid rgba(255,255,255,0.14)" }}>
+              <p className="text-[8px] tracking-[0.2em] text-white/50">OPEN ON PAPER</p>
+              <p className="font-mono text-[13px] tabular-nums text-white/85">{d.open}</p>
+              <p className="font-mono text-[9px] text-white/50">waiting on Kalshi</p>
+            </div>
+            <div className="rounded-[10px] px-2 py-2" style={{ border: "1px solid rgba(255,255,255,0.14)" }}>
+              <p className="text-[8px] tracking-[0.2em] text-white/50">LAST SCAN</p>
+              <p className="font-mono text-[13px] tabular-nums text-white/85">{d.scanned}</p>
+              <p className="font-mono text-[9px] text-white/50">markets · {ago(d.at)}</p>
+            </div>
+          </div>
+          {Object.keys(d.by).length ? (
+            <div className="mt-2 flex flex-wrap gap-2">
+              {Object.entries(d.by).map(([k, c]) => (
+                <span key={k} className="font-mono text-[9px] text-white/60">
+                  {KIND[k] ?? k}: <span style={{ color: tone(c.p) }}>{usd(c.p)}</span> {c.w}/{c.n}
+                </span>
+              ))}
+            </div>
+          ) : null}
+
+          <p className="mt-4 text-[9px] tracking-[0.22em] text-white/70">LIVE FLAGS · {d.flags.length}</p>
+          <div className="mt-1 flex flex-col gap-1.5">
+            {d.flags.length ? (
+              d.flags.map((f) => (
+                <div key={`${f.ticker}:${f.side}`} className="rounded-[8px] px-2 py-1.5" style={{ border: "1px solid rgba(61,220,132,0.45)" }}>
+                  <p className="font-mono text-[10px] text-white/90">
+                    {f.side.toUpperCase()} @ {Math.round(f.ask * 100)}c · <span className="text-white/60">{f.title}</span>
+                  </p>
+                  <p className="font-mono text-[9px] leading-snug text-white/55">{KIND[f.kind]} · {f.reason}</p>
+                </div>
+              ))
+            ) : (
+              <p className="rounded-[8px] px-2 py-1.5 font-mono text-[10px] text-white/55" style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
+                Nothing lined up right now. Lock-ins show up through the afternoon; hourly flags in the last 45 minutes before a reading.
+              </p>
+            )}
+          </div>
+
+          <p className="mt-4 text-[9px] tracking-[0.22em] text-white/70">PAPER BOOK · LATEST</p>
+          <div className="mt-1 flex flex-col gap-1">
+            {d.paper.length ? (
+              d.paper.slice(0, 25).map((r) => (
+                <p key={r.id} className="font-mono text-[9px] leading-snug text-white/65">
+                  <span style={{ color: r.result === "open" ? "rgba(255,255,255,0.5)" : tone(r.pnl ?? 0) }}>
+                    {r.result === "open" ? "OPEN" : r.result === "void" ? "VOID" : usd(r.pnl ?? 0)}
+                  </span>{" "}
+                  · {r.side.toUpperCase()} @ {Math.round(r.ask * 100)}c · {r.title}
+                </p>
+              ))
+            ) : (
+              <p className="font-mono text-[9px] text-white/45">The first paper trades land with the first flags.</p>
+            )}
+          </div>
+
+          <p className="mt-4 text-[9px] tracking-[0.22em] text-white/70">SIGNAL LAB · HOW PRICE MOVES AFTER EACH SIGNAL</p>
+          <p className="font-mono text-[8px] leading-snug text-white/45">
+            % = share of signals already moving their way at that minute · median move in $ · MFE / MAE = median best / worst move in the hour after
+          </p>
+          <div className="mt-1 flex flex-col gap-1">
+            {d.lab.length ? (
+              d.lab.map((g) => (
+                <div key={g.key} className="rounded-[8px] px-2 py-1" style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
+                  <p className="font-mono text-[9px] text-white/80">
+                    {g.key} · {g.n} signal{g.n === 1 ? "" : "s"}
+                    {g.mfe != null ? <span className="text-white/50"> · MFE {g.mfe.toFixed(2)} / MAE {(g.mae ?? 0).toFixed(2)}</span> : null}
+                  </p>
+                  <p className="font-mono text-[8px] leading-snug text-white/55">
+                    {Object.entries(g.marks).map(([k, c]) => (c ? `${k}m ${c.right}% (${(c.med ?? 0) >= 0 ? "+" : ""}${(c.med ?? 0).toFixed(2)})` : `${k}m —`)).join(" · ")}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p className="font-mono text-[9px] text-white/45">Fills in as signals arrive; each one is followed for an hour.</p>
+            )}
+          </div>
+
+          <p className="mt-4 text-[9px] tracking-[0.22em] text-white/70">HOURLY LONGSHOTS · BTC · PAPER · $5 A TICKET</p>
+          <p className="font-mono text-[8px] leading-snug text-white/45">
+            Kalshi's hourly BTC ladder, the strike whose side costs 3-8c (12x-33x), 20+ min left. SIGNAL = her 1h nav band (5m reject / break);
+            CONTROL = a plain ticket up and down at :05, no reason. Each ticket runs all four exits side by side. {L ? `${L.open} open.` : ""}
+          </p>
+          {L ? (
+            <div className="mt-1 grid grid-cols-[72px_repeat(4,minmax(0,1fr))] gap-1 font-mono text-[9px]">
+              <span />
+              {Object.keys(EX).map((k) => (
+                <span key={k} className="text-[8px] tracking-[0.12em] text-white/45">{EX[k]}</span>
+              ))}
+              {(["signal", "control"] as const).map((rule) => (
+                <>
+                  <span key={rule} className="text-[8px] tracking-[0.18em] text-white/60">{rule.toUpperCase()}</span>
+                  {Object.keys(EX).map((k) => {
+                    const c = L[rule][k];
+                    return (
+                      <span key={`${rule}${k}`} style={{ color: c && c.n ? tone(c.p) : "rgba(255,255,255,0.35)" }}>
+                        {c && c.n ? `${usd(c.p)} ${c.w}/${c.n}` : "—"}
+                      </span>
+                    );
+                  })}
+                </>
+              ))}
+            </div>
+          ) : null}
+
+          <p className="mt-4 text-[9px] tracking-[0.22em] text-white/70">MARKET MAP · WHAT'S WORTH SCANNING</p>
+          <div className="mt-1 flex flex-col gap-1.5">
+            {MAP.map((m) => (
+              <div key={m.name} className="rounded-[8px] px-2 py-1.5" style={{ border: `1px solid ${TIER[m.tier]}55` }}>
+                <p className="flex items-baseline justify-between gap-2 font-mono text-[10px]" style={{ color: TIER[m.tier] }}>
+                  <span>{m.name}</span>
+                  <span className="text-[8px] tracking-[0.18em]">{m.status}</span>
+                </p>
+                <p className="font-mono text-[9px] leading-snug text-white/55">{m.data}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 font-mono text-[9px] leading-snug text-white/45">
+            Why low multiples: across Kalshi's history, contracts under 10c win less often than their price says (longshots lose most), while 90c+
+            contracts win a little more often than priced. Takers lose more than makers. (Bürgi, Deng &amp; Whelan, 2025.)
+          </p>
+          {Object.keys(d.cats).length ? (
+            <p className="mt-2 font-mono text-[8px] leading-snug text-white/35">
+              Kalshi series by category: {Object.entries(d.cats).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k} ${n}`).join(" · ")}
+            </p>
+          ) : null}
+          {d.errors.length ? <p className="mt-2 font-mono text-[8px] text-[#ffd27a]/70">{d.errors.join(" · ")}</p> : null}
+        </>
+      )}
+    </section>
+  );
+}

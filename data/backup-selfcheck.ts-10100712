@@ -1,0 +1,130 @@
+// SELF CHECK (Claude, Oct 9 ~11:15 PM PT, Love: "can you put safeguards in place somehow so they don't happen again? she
+// works beautifullllly when she's dialed"). Every minute, guards against the four things that went wrong this week:
+//  1. RECORD FILE WIPE (Oct 9 10:08 PM): snapshot live-book-done.json every 15 min; if it shrinks by 20%+, put the missing
+//     records back (atomic write) and raise an alarm.
+//  2. STALE / BACKUP PRICES (Oct 8-9): if 30%+ of the last 15 min of BTC band checks saw prices $15+ apart, raise a
+//     notice (the band check now ignores them; this says the feed itself is flickering).
+//  3. SETTINGS DRIFT: the rules we set (shifts on, gold map = the chosen set, REFINED longs band-free, COTC any hour,
+//     DIAMOND gold-only) must still be in live-switch.json; if a save elsewhere drops one, raise a RED.
+//  4. COPIER HEARTBEAT: if the copier has written nothing for 3 minutes while LIVE is on, raise a RED.
+// Writes data/selfcheck.json (shown on ALERTS); alarms go to the desk's alarm bar once per issue per hour.
+import { copyFileSync, existsSync, readFileSync, renameSync, statSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+const D = (f: string) => join(process.cwd(), "data", f);
+const rd = (f: string, d: any) => {
+  try {
+    return JSON.parse(readFileSync(D(f), "utf8"));
+  } catch {
+    return d;
+  }
+};
+const g = globalThis as unknown as { __selfAt?: number; __selfSnapAt?: number; __selfSaid?: Record<string, number> };
+function alarm(key: string, text: string) {
+  const said = (g.__selfSaid ||= {});
+  if (said[key] && Date.now() - said[key] < 3600000) return;
+  said[key] = Date.now();
+  try {
+    let rows: any[] = [];
+    try {
+      const p = JSON.parse(readFileSync(D("alarm.json"), "utf8"));
+      if (Array.isArray(p)) rows = p;
+    } catch {
+    }
+    rows.unshift({ at: new Date().toISOString(), text });
+    writeFileSync(D("alarm.json.tmp"), JSON.stringify(rows.slice(0, 20)));
+    renameSync(D("alarm.json.tmp"), D("alarm.json"));
+  } catch {
+  }
+}
+export function selfCheckTick() {
+  if (g.__selfAt && Date.now() - g.__selfAt < 60000) return;
+  g.__selfAt = Date.now();
+  const checks: { name: string; ok: boolean; note: string }[] = [];
+  // 1. record file
+  try {
+    const snap = D("guard/live-book-done.snap.json");
+    const cur = rd("live-book-done.json", null);
+    const n = cur && typeof cur === "object" ? Object.keys(cur).length : 0;
+    const old = existsSync(snap) ? rd("guard/live-book-done.snap.json", {}) : null;
+    const on = old ? Object.keys(old).length : 0;
+    if (old && cur && on > 50 && n < on * 0.8) {
+      const merged = { ...old, ...cur };
+      writeFileSync(D("live-book-done.json.guard"), JSON.stringify(merged));
+      renameSync(D("live-book-done.json.guard"), D("live-book-done.json"));
+      alarm("done-restore", `RED: the copier's trade records shrank from ${on} to ${n}. Self-check put the ${on - n} missing back.`);
+      checks.push({ name: "records", ok: false, note: `restored ${on - n} missing records` });
+    } else checks.push({ name: "records", ok: true, note: `${n} records` });
+    if (cur && n >= on * 0.8 && (!g.__selfSnapAt || Date.now() - g.__selfSnapAt > 15 * 60000)) {
+      copyFileSync(D("live-book-done.json"), D("guard/live-book-done.snap.tmp"));
+      renameSync(D("guard/live-book-done.snap.tmp"), snap);
+      g.__selfSnapAt = Date.now();
+    }
+  } catch {
+    checks.push({ name: "records", ok: false, note: "could not read the record file" });
+  }
+  // 2. feed
+  try {
+    const since = new Date(Date.now() - 15 * 60000).toISOString();
+    const lines = readFileSync(D("gate-log.jsonl"), "utf8").split("\n").slice(-400);
+    let n = 0, bad = 0;
+    for (const l of lines) {
+      if (!l) continue;
+      try {
+        const x = JSON.parse(l);
+        if (x.at < since) continue;
+        const sp = (x.spots || []).filter((s: number) => s > 0);
+        if (!sp.length) continue;
+        n++;
+        if (Math.max(...sp) - Math.min(...sp) > 15) bad++;
+      } catch {
+      }
+    }
+    const flaky = n >= 10 && bad / n >= 0.3;
+    if (flaky) alarm("feed", `CHECK: the BTC feed is flickering (${bad} of ${n} band checks saw prices $15+ apart). The band check uses the live price only; watch the signals.`);
+    checks.push({ name: "feed", ok: !flaky, note: n ? `${bad}/${n} checks with split prices` : "no BTC checks in 15 min" });
+  } catch {
+    checks.push({ name: "feed", ok: true, note: "no band checks yet" });
+  }
+  // 3. settings
+  try {
+    const sw = rd("live-switch.json", {});
+    const sh = sw?.shifts || {};
+    const miss: string[] = [];
+    if (!sh.on) miss.push("shifts are off");
+    const act = sh.activeGoldMap;
+    if (act && JSON.stringify(sh.hourLead?.gold || {}) !== JSON.stringify(sh.hourLeadSets?.gold?.[act] || {})) miss.push(`gold map is not the ${String(act).toUpperCase()} set`);
+    if (!(sw?.bandExempt?.btc?.refined || []).includes("up")) miss.push("REFINED longs lost their band pass");
+    if (!(sh.anyHour?.btc || []).includes("cotc")) miss.push("COTC lost any-hour");
+    if (!(sh.bookAssets?.diamond || []).includes("gold")) miss.push("DIAMOND lost gold-only");
+    if (act === "diamond" && !(sw?.liveBook?.books || []).includes("diamond")) miss.push("DIAMOND is off RUN");
+    // Oct 9 ~11:58 PM PT: every book the shift schedule hands an hour to must be on RUN, or that hour goes dark.
+    const run: string[] = sw?.liveBook?.books || [];
+    const named = new Set<string>();
+    if (typeof sh.day?.lead === "string") named.add(sh.day.lead);
+    const nl = sh.night?.lead;
+    if (typeof nl === "string") named.add(nl);
+    else if (nl) for (const v of Object.values(nl)) if (v) named.add(String(v));
+    for (const m of Object.values(sh.hourLead || {})) for (const v of Object.values(m as Record<string, unknown>)) if (v) named.add(String(v));
+    const off = [...named].filter((b) => !run.includes(b));
+    if (off.length) miss.push(`the schedule gives hours to ${off.map((b) => b.toUpperCase()).join(", ")} but ${off.length > 1 ? "they are" : "it is"} off RUN (those hours trade nothing live)`);
+    if (miss.length) alarm("settings:" + miss.join("|"), `RED: a rule we set is missing: ${miss.join("; ")}. Tell Claude.`);
+    checks.push({ name: "rules", ok: !miss.length, note: miss.length ? miss.join("; ") : "every rule in place" });
+  } catch {
+    checks.push({ name: "rules", ok: false, note: "could not read live-switch" });
+  }
+  // 4. copier heartbeat
+  try {
+    const sw = rd("live-switch.json", {});
+    const age = Date.now() - statSync(D("live-book-done.json")).mtimeMs;
+    const quiet = sw?.live && age > 3 * 60000;
+    if (quiet) alarm("copier", `RED: the live copier has not written in ${Math.round(age / 60000)} min while LIVE is on.`);
+    checks.push({ name: "copier", ok: !quiet, note: `last write ${Math.round(age / 1000)} s ago` });
+  } catch {
+    checks.push({ name: "copier", ok: false, note: "no record file" });
+  }
+  try {
+    writeFileSync(D("selfcheck.json.tmp"), JSON.stringify({ at: new Date().toISOString(), ok: checks.every((c) => c.ok), checks }, null, 1));
+    renameSync(D("selfcheck.json.tmp"), D("selfcheck.json"));
+  } catch {
+  }
+}

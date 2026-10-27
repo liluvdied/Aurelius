@@ -1,0 +1,340 @@
+Date,Time (PT),Asset,Side,Setup,Entry (c),Result,P&L at $10
+Wed Oct 14,4:39:38 PM,BTC,LONG,Break above -0.5σ,62,win (took profit),5.03
+Wed Oct 14,4:45:33 PM,GOLD,LONG,Break above session VWAP,70,win (took profit),3.38
+Wed Oct 14,4:46:46 PM,BTC,LONG,Break above -0.5σ,62,win (took profit),5.42
+Wed Oct 14,5:00:14 PM,BTC,SHORT,Close below session VWAP,45,loss,-10.39
+Wed Oct 14,5:15:34 PM,GOLD,LONG,Close above +3σ,39,win (took profit),12.84
+Wed Oct 14,5:16:40 PM,BTC,LONG,Close above +1σ,49,loss,-10.36
+Wed Oct 14,5:30:59 PM,GOLD,LONG,Close above +2σ,49,win (took profit),9.3
+Wed Oct 14,5:31:25 PM,BTC,LONG,Break above +1σ,65,loss,-10.24
+Wed Oct 14,5:45:36 PM,BTC,LONG,Break above -1σ,46,win (took profit),11.08
+Wed Oct 14,5:47:39 PM,GOLD,SHORT,Break below +1.5σ,61,win (took profit),5.33
+Wed Oct 14,6:01:13 PM,GOLD,LONG,Break above +1.5σ,62,win (took profit),5.22
+Wed Oct 14,6:15:36 PM,BTC,SHORT,Break below session VWAP,62,win (took profit),5.18
+Wed Oct 14,6:31:26 PM,GOLD,LONG,Break above +1σ,57,loss,-2.44
+Wed Oct 14,6:45:37 PM,BTC,LONG,Close above +1σ,53,loss,-10.33
+Wed Oct 14,7:00:32 PM,BTC,SHORT,Break below -0.5σ,49,win (took profit),10.02
+Wed Oct 14,7:07:18 PM,GOLD,SHORT,Close below +0.5σ,70,loss,-10.21
+Wed Oct 14,7:15:39 PM,BTC,SHORT,Close below -1.5σ,51,win (took profit),8.29
+Wed Oct 14,7:19:07 PM,GOLD,LONG,Close above +1σ,64,loss,-10.26
+Wed Oct 14,7:30:58 PM,GOLD,SHORT,Break below +0.5σ,64,loss,-10.26
+Wed Oct 14,7:34:49 PM,BTC,SHORT,Break below -3σ,30,loss,-10.49
+Wed Oct 14,7:45:31 PM,BTC,SHORT,Break below -1.5σ,53,loss,-10.33
+Wed Oct 14,7:49:19 PM,GOLD,SHORT,Break below +1σ,23,loss,-10.54
+Wed Oct 14,8:00:41 PM,BTC,SHORT,Break below -0.5σ,55,win (took profit),6.31
+Wed Oct 14,8:02:34 PM,GOLD,SHORT,Break below +1.5σ,56,win (took profit),6.26
+Wed Oct 14,8:15:46 PM,BTC,SHORT,Break below -1.5σ,53,win (took profit),7.14
+Wed Oct 14,8:22:10 PM,GOLD,LONG,Close above +1σ,20,loss,-10.56
+Wed Oct 14,8:32:57 PM,BTC,SHORT,Break below -2.5σ,71,win (took profit),3.4
+Wed Oct 14,8:46:03 PM,BTC,SHORT,Break below -2.5σ,47,loss,-10.38
+Wed Oct 14,9:01:19 PM,BTC,LONG,Break above -2σ,46,loss,-10.38
+Wed Oct 14,9:16:06 PM,BTC,LONG,Break above -1.5σ,65,win (took profit),4.44
+Wed Oct 14,9:16:06 PM,GOLD,LONG,Close above +0.5σ,69,win (took profit),3.56
+Wed Oct 14,9:30:36 PM,BTC,LONG,Close above -0.5σ,61,win (took profit),5.2
+Thu Oct 15,2:39:34 AM,BTC,LONG,Break above session VWAP,53,loss,-1.72
+Thu Oct 15,2:52:04 AM,BTC,LONG,Break above session VWAP,70,loss,-10.21
+Thu Oct 15,3:05:09 AM,BTC,SHORT,Close below -0.5σ,66,win (took profit),4.16
+Thu Oct 15,3:18:06 AM,GOLD,SHORT,Close below +1σ,54,win,8.2
+Thu Oct 15,3:19:57 AM,BTC,SHORT,Break below -0.5σ,23,win (took profit),26.7
+Thu Oct 15,3:30:51 AM,BTC,LONG,Close above -1σ,63,win (took profit),1.75
+Thu Oct 15,3:33:13 AM,GOLD,SHORT,Close below +1σ,34,win,16.91
+Thu Oct 15,3:48:24 AM,BTC,LONG,Break above -1σ,51,win (took profit),7.92
+Thu Oct 15,4:01:32 AM,BTC,SHORT,Break below -1σ,56,win,6.5
+Thu Oct 15,4:21:19 AM,BTC,LONG,Break above -1σ,37,win (took profit),15.1
+Thu Oct 15,4:24:29 AM,GOLD,LONG,Break above +1σ,33,loss,-10.47
+Thu Oct 15,4:36:35 AM,BTC,LONG,Break above -0.5σ,72,win (took profit),3.19
+Thu Oct 15,4:38:08 AM,GOLD,SHORT,Close below +1σ,50,win (took profit),8.42
+Thu Oct 15,4:48:33 AM,BTC,LONG,Break above -0.5σ,52,loss,-10.34
+Thu Oct 15,5:01:15 AM,BTC,LONG,Break above -1σ,35,loss,-10.46
+Thu Oct 15,5:15:30 AM,BTC,SHORT,Break below -1σ,53,loss,-10.33
+Thu Oct 15,5:16:26 AM,GOLD,LONG,Close above +0.5σ,52,win (took profit),7.73
+Thu Oct 15,5:30:41 AM,BTC,SHORT,Break below -1σ,70,win (took profit),3.52
+Thu Oct 15,5:30:58 AM,GOLD,SHORT,Break below +0.5σ,71,win (took profit),3.32
+Thu Oct 15,5:45:34 AM,GOLD,SHORT,Close below +0.5σ,55,loss,-10.31
+Thu Oct 15,5:47:46 AM,BTC,LONG,Break above -1σ,32,loss,-10.48
+Thu Oct 15,6:01:14 AM,BTC,LONG,Break above -2σ,62,loss,-10.27
+Thu Oct 15,6:05:58 AM,GOLD,SHORT,Close below +0.5σ,72,loss,-3.77
+Thu Oct 15,6:57:49 AM,GOLD,SHORT,Close below +1σ,43,win,12.86
+Thu Oct 15,7:00:54 AM,GOLD,SHORT,Close below +1σ,50,win (took profit),8.11
+Thu Oct 15,7:01:24 AM,BTC,LONG,Break above -2.5σ,50,win (took profit),8.34
+Thu Oct 15,7:15:43 AM,BTC,SHORT,Break below -0.5σ,62,loss,-10.27
+Thu Oct 15,7:21:05 AM,GOLD,LONG,Close above +0.5σ,71,win (took profit),3.25
+Thu Oct 15,7:31:07 AM,GOLD,LONG,Close above +1σ,53,win (took profit),7.27
+Thu Oct 15,7:32:05 AM,BTC,SHORT,Close below -0.5σ,72,loss,-10.2
+Thu Oct 15,7:48:23 AM,BTC,LONG,Break above +1σ,61,win (took profit),5.12
+Thu Oct 15,7:55:34 AM,GOLD,SHORT,Close below +1σ,38,loss,-10.44
+Thu Oct 15,8:00:36 AM,GOLD,SHORT,Close below +1σ,52,win (took profit),7.65
+Thu Oct 15,8:02:04 AM,BTC,SHORT,Close below +1.5σ,62,loss,-10.27
+Thu Oct 15,8:16:21 AM,BTC,SHORT,Close below +2.5σ,50,loss,-10.35
+Thu Oct 15,8:30:40 AM,BTC,LONG,Close above +2.5σ,48,win (took profit),9.68
+Thu Oct 15,8:40:08 AM,GOLD,LONG,Close above +0.5σ,21,loss,-10.55
+Thu Oct 15,8:45:40 AM,BTC,SHORT,Break below +2.5σ,67,loss,-10.23
+Thu Oct 15,8:46:04 AM,GOLD,SHORT,Close below +0.5σ,49,win (took profit),9.44
+Thu Oct 15,9:00:34 AM,BTC,SHORT,Close below +2.5σ,58,loss,-10.29
+Thu Oct 15,9:15:41 AM,BTC,SHORT,Close below +2.5σ,55,win (took profit),6.61
+Thu Oct 15,9:15:54 AM,GOLD,LONG,Break above session VWAP,65,win (took profit),4.5
+Thu Oct 15,9:31:46 AM,BTC,SHORT,Break below +1.5σ,50,win (took profit),9.17
+Thu Oct 15,9:54:07 AM,BTC,SHORT,Close below +1.5σ,51,loss,-10.35
+Thu Oct 15,10:03:49 AM,BTC,SHORT,Break below +1.5σ,57,loss,-10.3
+Thu Oct 15,10:08:54 AM,GOLD,LONG,Break above session VWAP,32,win,18.61
+Thu Oct 15,10:15:49 AM,BTC,LONG,Break above +2σ,70,win (took profit),3.32
+Thu Oct 15,10:30:59 AM,BTC,SHORT,Break below +2σ,55,loss,-10.31
+Thu Oct 15,10:55:37 AM,BTC,LONG,Break above +2σ,21,loss,-10.55
+Thu Oct 15,11:00:37 AM,BTC,SHORT,Close below +2σ,70,win (took profit),3.45
+Thu Oct 15,11:17:27 AM,BTC,LONG,Break above +1.5σ,64,win (took profit),4.62
+Thu Oct 15,11:30:35 AM,BTC,LONG,Break above +1.5σ,56,win (took profit),6.95
+Thu Oct 15,11:34:04 AM,GOLD,LONG,Close above +1σ,54,loss,-10.32
+Thu Oct 15,11:54:04 AM,GOLD,SHORT,Close below +1σ,25,loss,-10.53
+Thu Oct 15,12:01:21 PM,GOLD,LONG,Break above +1σ,67,win (took profit),4.25
+Thu Oct 15,12:16:10 PM,BTC,LONG,Break above +2σ,66,win (took profit),3.98
+Thu Oct 15,12:31:04 PM,GOLD,SHORT,Close below +1σ,63,loss,-10.26
+Thu Oct 15,12:49:14 PM,GOLD,LONG,Break above +2σ,56,win (took profit),6.42
+Thu Oct 15,1:15:38 PM,GOLD,LONG,Close above +2σ,50,loss,-10.35
+Thu Oct 15,1:15:39 PM,BTC,LONG,Break above +1.5σ,61,win (took profit),6.08
+Thu Oct 15,1:42:24 PM,BTC,SHORT,Break below +1.5σ,29,win,4.0
+Thu Oct 15,1:48:40 PM,BTC,SHORT,Break below +1.5σ,60,win (took profit),5.63
+Thu Oct 15,2:00:46 PM,BTC,SHORT,Close below +1σ,45,loss,-10.39
+Thu Oct 15,2:32:08 PM,BTC,LONG,Close above +1.5σ,60,loss,-10.29
+Thu Oct 15,2:45:31 PM,BTC,SHORT,Break below +0.5σ,59,loss,-10.29
+Thu Oct 15,3:00:44 PM,BTC,LONG,Close above +2σ,57,win (took profit),6.68
+Thu Oct 15,3:16:31 PM,BTC,SHORT,Break below +1σ,50,loss,-10.35
+Thu Oct 15,3:30:42 PM,BTC,SHORT,Break below +1σ,46,win (took profit),11.02
+Thu Oct 15,3:35:05 PM,GOLD,SHORT,Close below -1σ,50,win (took profit),8.63
+Thu Oct 15,3:46:04 PM,BTC,SHORT,Break below +1σ,42,win (took profit),13.19
+Thu Oct 15,3:48:04 PM,GOLD,SHORT,Close below -1.5σ,66,win (took profit),4.0
+Thu Oct 15,4:00:46 PM,BTC,SHORT,Break below +0.5σ,64,win (took profit),4.5
+Thu Oct 15,4:02:08 PM,GOLD,LONG,Close above -1.5σ,57,loss,-10.3
+Thu Oct 15,4:15:56 PM,BTC,LONG,Break above -1σ,49,win,9.35
+Thu Oct 15,4:30:30 PM,BTC,SHORT,Break below -1σ,47,win (took profit),9.53
+Thu Oct 15,4:35:56 PM,GOLD,SHORT,Close below -1.5σ,65,win (took profit),4.41
+Thu Oct 15,4:46:08 PM,GOLD,SHORT,Close below -2σ,56,win (took profit),6.6
+Thu Oct 15,4:47:05 PM,BTC,LONG,Break above -1σ,66,win (took profit),4.08
+Thu Oct 15,5:01:19 PM,GOLD,SHORT,Break below -2σ,61,win,5.38
+Thu Oct 15,5:01:28 PM,BTC,LONG,Break above -0.5σ,50,win (took profit),8.09
+Thu Oct 15,5:17:10 PM,GOLD,LONG,Close above -1σ,57,win,7.24
+Thu Oct 15,5:18:16 PM,BTC,SHORT,Break below session VWAP,53,loss,-1.86
+Thu Oct 15,5:30:35 PM,BTC,LONG,Break above +0.5σ,55,win (took profit),6.72
+Thu Oct 15,5:33:50 PM,GOLD,SHORT,Break below -1σ,62,win (took profit),5.35
+Thu Oct 15,5:45:38 PM,BTC,SHORT,Break below +0.5σ,72,win (took profit),3.17
+Thu Oct 15,6:00:37 PM,BTC,LONG,Close above session VWAP,40,win (took profit),14.3
+Thu Oct 15,6:01:28 PM,GOLD,LONG,Break above -0.5σ,52,win (took profit),7.96
+Thu Oct 15,6:15:37 PM,BTC,LONG,Break above +0.5σ,45,loss,-10.39
+Thu Oct 15,6:17:06 PM,GOLD,LONG,Break above session VWAP,55,loss,-10.31
+Thu Oct 15,6:30:45 PM,GOLD,SHORT,Close below -1.5σ,50,win,8.86
+Thu Oct 15,6:31:24 PM,BTC,LONG,Break above -1σ,58,loss,-10.29
+Thu Oct 15,6:45:34 PM,BTC,SHORT,Close below -1.5σ,55,win (took profit),6.52
+Thu Oct 15,6:47:08 PM,GOLD,SHORT,Close below -1.5σ,65,loss,-10.24
+Thu Oct 15,7:00:40 PM,GOLD,LONG,Break above -0.5σ,55,win (took profit),6.82
+Thu Oct 15,7:01:25 PM,BTC,LONG,Break above -2σ,42,win (took profit),11.81
+Thu Oct 15,7:16:34 PM,BTC,LONG,Break above -1σ,52,loss,-10.34
+Thu Oct 15,7:17:09 PM,GOLD,SHORT,Close below session VWAP,57,loss,-10.3
+Thu Oct 15,7:30:50 PM,BTC,SHORT,Break below -2σ,51,loss,-10.35
+Thu Oct 15,7:31:16 PM,GOLD,LONG,Close above +1σ,50,win,9.65
+Thu Oct 15,7:45:39 PM,BTC,SHORT,Break below -1σ,64,win (took profit),4.5
+Thu Oct 15,7:45:43 PM,GOLD,LONG,Close above +1σ,50,win (took profit),8.47
+Thu Oct 15,8:00:41 PM,BTC,SHORT,Close below -2σ,62,loss,-10.27
+Thu Oct 15,8:00:47 PM,GOLD,SHORT,Close below +3σ,56,win (took profit),6.34
+Thu Oct 15,8:15:35 PM,BTC,LONG,Close above -1σ,59,loss,-10.29
+Thu Oct 15,8:18:09 PM,GOLD,SHORT,Close below +2σ,67,win (took profit),3.9
+Thu Oct 15,8:30:38 PM,BTC,LONG,Break above -2σ,28,loss,-10.51
+Thu Oct 15,9:00:34 PM,BTC,SHORT,Close below -1σ,70,win (took profit),3.57
+Thu Oct 15,9:00:36 PM,GOLD,LONG,Close above +2.5σ,44,loss,-10.39
+Thu Oct 15,9:15:40 PM,BTC,SHORT,Break below -1.5σ,68,loss,-10.22
+Thu Oct 15,9:16:17 PM,GOLD,LONG,Break above +1.5σ,43,win (took profit),11.12
+Thu Oct 15,9:30:37 PM,BTC,SHORT,Break below -1σ,66,win (took profit),4.1
+Thu Oct 15,9:34:18 PM,GOLD,SHORT,Close below +1.5σ,63,win (took profit),4.75
+Thu Oct 15,9:46:36 PM,BTC,LONG,Break above -1σ,57,win (took profit),6.17
+Thu Oct 15,9:51:06 PM,GOLD,LONG,Close above +1σ,26,loss,-10.52
+Thu Oct 15,10:00:36 PM,GOLD,LONG,Close above +1σ,52,loss,-10.34
+Thu Oct 15,10:00:42 PM,BTC,LONG,Close above -0.5σ,72,win (took profit),3.11
+Thu Oct 15,10:15:45 PM,BTC,LONG,Break above +0.5σ,41,loss,-10.41
+Thu Oct 15,10:31:05 PM,BTC,LONG,Break above session VWAP,61,loss,-10.28
+Thu Oct 15,10:35:58 PM,GOLD,LONG,Break above +1σ,70,win,3.65
+Thu Oct 15,10:45:43 PM,BTC,LONG,Break above -0.5σ,61,win (took profit),5.61
+Thu Oct 15,11:00:33 PM,BTC,LONG,Break above -0.5σ,43,loss,-10.4
+Thu Oct 15,11:00:43 PM,GOLD,SHORT,Close below +1σ,51,win (took profit),8.2
+Thu Oct 15,11:15:40 PM,GOLD,SHORT,Close below +0.5σ,47,loss,-10.38
+Thu Oct 15,11:16:38 PM,BTC,LONG,Break above -1σ,50,win (took profit),8.43
+Thu Oct 15,11:30:37 PM,BTC,LONG,Break above -1σ,68,win (took profit),3.81
+Thu Oct 15,11:30:41 PM,GOLD,LONG,Close above +1σ,54,win (took profit),6.87
+Thu Oct 15,11:45:31 PM,BTC,SHORT,Break below -0.5σ,53,loss,-10.33
+Fri Oct 16,12:00:46 AM,BTC,LONG,Break above session VWAP,41,win (took profit),13.57
+Fri Oct 16,12:15:40 AM,BTC,LONG,Break above session VWAP,48,win (took profit),9.85
+Fri Oct 16,12:16:10 AM,GOLD,LONG,Break above +2σ,64,win (took profit),4.54
+Fri Oct 16,12:30:54 AM,BTC,LONG,Break above +0.5σ,39,loss,-10.43
+Fri Oct 16,12:45:41 AM,BTC,LONG,Close above session VWAP,50,win (took profit),8.17
+Fri Oct 16,12:48:03 AM,GOLD,LONG,Close above +1.5σ,56,win (took profit),6.27
+Fri Oct 16,1:00:34 AM,BTC,LONG,Close above +0.5σ,66,loss,-10.24
+Fri Oct 16,1:01:19 AM,GOLD,SHORT,Close below +1.5σ,63,win (took profit),4.63
+Fri Oct 16,1:16:44 AM,GOLD,SHORT,Break below +1σ,64,loss,-10.26
+Fri Oct 16,1:18:57 AM,BTC,SHORT,Break below session VWAP,61,win (took profit),5.2
+Fri Oct 16,1:30:43 AM,BTC,LONG,Break above +0.5σ,56,win (took profit),6.12
+Fri Oct 16,1:45:44 AM,BTC,LONG,Close above +0.5σ,66,loss,-10.24
+Fri Oct 16,2:00:39 AM,BTC,SHORT,Break below session VWAP,71,win,3.5
+Fri Oct 16,2:05:06 AM,GOLD,LONG,Close above +1.5σ,27,win (took profit),22.89
+Fri Oct 16,2:16:02 AM,BTC,SHORT,Close below session VWAP,71,win (took profit),3.13
+Fri Oct 16,2:30:33 AM,BTC,SHORT,Break below -0.5σ,67,win (took profit),4.14
+Fri Oct 16,2:32:44 AM,GOLD,SHORT,Break below +1σ,60,win (took profit),5.5
+Fri Oct 16,2:45:29 AM,BTC,SHORT,Break below -1σ,67,win (took profit),4.04
+Fri Oct 16,2:52:06 AM,GOLD,SHORT,Close below +1σ,32,win (took profit),17.75
+Fri Oct 16,3:00:34 AM,BTC,LONG,Break above -1σ,38,loss,-10.44
+Fri Oct 16,3:01:48 AM,GOLD,SHORT,Break below +0.5σ,60,loss,-10.29
+Fri Oct 16,3:15:35 AM,BTC,SHORT,Close below -2σ,61,loss,-10.28
+Fri Oct 16,3:17:02 AM,GOLD,LONG,Close above +1σ,55,win (took profit),6.51
+Fri Oct 16,3:30:44 AM,BTC,LONG,Break above -1σ,62,win (took profit),4.7
+Fri Oct 16,3:41:33 AM,GOLD,SHORT,Close below +1σ,72,win (took profit),3.19
+Fri Oct 16,3:45:33 AM,BTC,LONG,Break above session VWAP,36,win (took profit),14.29
+Fri Oct 16,4:01:41 AM,BTC,LONG,Break above +0.5σ,49,win (took profit),8.55
+Fri Oct 16,4:15:35 AM,BTC,SHORT,Break below +3σ,50,loss,-10.35
+Fri Oct 16,4:34:27 AM,BTC,LONG,Break above +3σ,25,loss,-10.53
+Fri Oct 16,4:40:05 AM,GOLD,LONG,Close above +0.5σ,22,loss,-10.55
+Fri Oct 16,4:45:35 AM,BTC,LONG,Break above +2.5σ,36,loss,-10.45
+Fri Oct 16,4:49:07 AM,GOLD,SHORT,Close below +0.5σ,59,win (took profit),5.63
+Fri Oct 16,5:00:35 AM,GOLD,LONG,Close above session VWAP,52,win (took profit),7.59
+Fri Oct 16,5:01:11 AM,BTC,LONG,Break above +2.5σ,50,loss,-10.35
+Fri Oct 16,5:15:50 AM,BTC,SHORT,Close below session VWAP,69,loss,-10.22
+Fri Oct 16,5:30:33 AM,BTC,LONG,Close above +0.5σ,54,loss,-10.32
+Fri Oct 16,5:31:14 AM,GOLD,LONG,Break above +0.5σ,57,loss,-2.21
+Fri Oct 16,5:45:35 AM,BTC,SHORT,Break below session VWAP,57,win (took profit),6.18
+Fri Oct 16,6:00:31 AM,GOLD,LONG,Break above -0.5σ,70,win,3.54
+Fri Oct 16,6:00:32 AM,BTC,LONG,Break above -1σ,56,loss,-10.31
+Fri Oct 16,6:15:32 AM,BTC,LONG,Break above -1σ,50,loss,-10.35
+Fri Oct 16,6:15:49 AM,GOLD,SHORT,Break below -0.5σ,62,win (took profit),4.83
+Fri Oct 16,6:30:43 AM,BTC,SHORT,Break below -1.5σ,50,win (took profit),8.33
+Fri Oct 16,6:34:07 AM,GOLD,LONG,Close above -1σ,62,win (took profit),5.0
+Fri Oct 16,6:45:35 AM,BTC,LONG,Close above -1.5σ,64,win (took profit),4.59
+Fri Oct 16,6:45:35 AM,GOLD,SHORT,Break below +0.5σ,66,loss,-10.24
+Fri Oct 16,7:00:38 AM,GOLD,LONG,Break above +1.5σ,44,win (took profit),10.62
+Fri Oct 16,7:00:39 AM,BTC,LONG,Break above -1σ,42,win (took profit),12.82
+Fri Oct 16,7:15:49 AM,BTC,LONG,Close above -0.5σ,51,win (took profit),7.74
+Fri Oct 16,7:15:49 AM,GOLD,LONG,Close above +1.5σ,54,win (took profit),7.07
+Fri Oct 16,7:31:23 AM,BTC,LONG,Break above +1σ,52,loss,-10.34
+Fri Oct 16,7:32:57 AM,GOLD,SHORT,Break below +2σ,61,win (took profit),5.07
+Fri Oct 16,7:45:31 AM,BTC,LONG,Break above +0.5σ,41,loss,-10.41
+Fri Oct 16,9:31:44 AM,BTC,SHORT,Close below -2σ,67,win (took profit),4.12
+Fri Oct 16,9:33:06 AM,GOLD,LONG,Close above -1σ,33,win,18.76
+Fri Oct 16,9:48:13 AM,BTC,SHORT,Break below -2.5σ,51,win (took profit),7.58
+Fri Oct 16,10:03:35 AM,BTC,LONG,Break above -2.5σ,35,loss,-10.46
+Fri Oct 16,10:35:03 AM,GOLD,LONG,Close above -1σ,61,win (took profit),5.22
+Fri Oct 16,10:47:49 AM,BTC,SHORT,Break below -2σ,64,win (took profit),4.45
+Fri Oct 16,11:00:36 AM,BTC,LONG,Break above -2.5σ,51,win (took profit),7.71
+Fri Oct 16,11:15:46 AM,BTC,LONG,Break above -2σ,56,win (took profit),6.32
+Fri Oct 16,11:45:34 AM,BTC,SHORT,Break below -3σ,60,loss,-2.83
+Fri Oct 16,12:01:18 PM,BTC,SHORT,Break below -2.5σ,54,loss,-10.32
+Fri Oct 16,12:04:01 PM,GOLD,SHORT,Close below -1σ,64,loss,-10.26
+Fri Oct 16,12:21:50 PM,BTC,LONG,Break above -1.5σ,61,win (took profit),5.18
+Fri Oct 16,12:41:21 PM,GOLD,SHORT,Close below session VWAP,21,loss,-10.55
+Fri Oct 16,12:47:30 PM,BTC,LONG,Break above -1.5σ,67,win (took profit),4.0
+Fri Oct 16,1:00:58 PM,BTC,LONG,Break above -1σ,59,loss,-2.67
+Fri Oct 16,1:15:34 PM,BTC,LONG,Break above -1σ,65,win (took profit),4.4
+Fri Oct 16,1:50:26 PM,BTC,LONG,Break above -0.5σ,60,win (took profit),5.44
+Fri Oct 16,2:17:26 PM,BTC,LONG,Break above -0.5σ,66,win (took profit),4.17
+Fri Oct 16,2:35:26 PM,BTC,SHORT,Break below +0.5σ,52,win (took profit),8.41
+Fri Oct 16,2:46:28 PM,BTC,SHORT,Break below -0.5σ,54,win (took profit),7.59
+Fri Oct 16,3:00:36 PM,BTC,LONG,Break above -0.5σ,51,win (took profit),7.75
+Fri Oct 16,3:20:45 PM,BTC,SHORT,Close below +1.5σ,32,win (took profit),16.91
+Fri Oct 16,4:25:18 PM,BTC,SHORT,Break below -1.5σ,62,win (took profit),5.21
+Fri Oct 16,4:36:02 PM,BTC,SHORT,Break below -3σ,67,win (took profit),4.04
+Fri Oct 16,5:00:42 PM,BTC,SHORT,Break below -3σ,60,loss,-10.29
+Fri Oct 16,5:21:39 PM,BTC,SHORT,Break below -3σ,59,win (took profit),5.52
+Fri Oct 16,5:47:20 PM,BTC,SHORT,Close below -2.5σ,72,win (took profit),3.5
+Fri Oct 16,6:25:41 PM,BTC,SHORT,Break below -2σ,49,win (took profit),9.02
+Fri Oct 16,6:31:59 PM,BTC,SHORT,Break below -2.5σ,57,win (took profit),7.08
+Fri Oct 16,7:31:47 PM,BTC,SHORT,Break below -3σ,31,loss,-10.48
+Fri Oct 16,7:49:16 PM,BTC,SHORT,Break below -2.5σ,50,loss,-10.35
+Fri Oct 16,8:51:12 PM,BTC,SHORT,Break below -1σ,50,win (took profit),8.22
+Fri Oct 16,9:01:36 PM,BTC,SHORT,Break below -1.5σ,65,win (took profit),4.71
+Fri Oct 16,9:18:24 PM,BTC,SHORT,Break below -1.5σ,65,win (took profit),4.21
+Fri Oct 16,9:50:24 PM,BTC,SHORT,Break below -1.5σ,61,win (took profit),5.08
+Fri Oct 16,10:23:56 PM,BTC,SHORT,Break below -1σ,68,win (took profit),3.87
+Fri Oct 16,10:31:41 PM,BTC,LONG,Break above session VWAP,44,loss,-10.39
+Fri Oct 16,10:46:30 PM,BTC,LONG,Break above session VWAP,32,loss,-10.48
+Fri Oct 16,11:00:47 PM,BTC,SHORT,Break below -0.5σ,66,loss,-10.24
+Fri Oct 16,11:15:55 PM,BTC,SHORT,Break below session VWAP,52,loss,-10.34
+Fri Oct 16,11:30:57 PM,BTC,LONG,Close above session VWAP,40,win (took profit),13.61
+Fri Oct 16,11:45:54 PM,BTC,LONG,Close above session VWAP,53,win (took profit),8.21
+Sat Oct 17,9:30:46 AM,BTC,SHORT,Break below -3σ,68,win (took profit),3.8
+Sat Oct 17,10:04:59 AM,BTC,SHORT,Close below -3σ,70,loss,-10.21
+Sat Oct 17,3:55:33 PM,BTC,SHORT,Break below +1σ,58,win (took profit),6.29
+Sat Oct 17,4:30:52 PM,BTC,SHORT,Break below session VWAP,69,loss,-10.22
+Sat Oct 17,5:00:33 PM,BTC,SHORT,Close below +1σ,59,win (took profit),5.76
+Sat Oct 17,5:17:42 PM,BTC,LONG,Close above +1σ,64,loss,-10.26
+Sat Oct 17,5:35:42 PM,BTC,SHORT,Break below +1σ,33,loss,-10.47
+Sat Oct 17,5:50:52 PM,BTC,LONG,Break above +1σ,65,win (took profit),4.33
+Sat Oct 17,8:45:31 PM,BTC,LONG,Break above +2σ,64,win (took profit),4.68
+Sun Oct 18,6:33:52 AM,BTC,SHORT,Break below -1σ,67,win (took profit),3.96
+Sun Oct 18,10:16:08 AM,BTC,SHORT,Break below -1σ,33,loss,-10.47
+Sun Oct 18,10:40:21 AM,BTC,SHORT,Close below -1σ,55,win (took profit),6.64
+Sun Oct 18,11:15:32 AM,BTC,SHORT,Break below -1σ,62,win (took profit),5.08
+Sun Oct 18,1:16:21 PM,BTC,SHORT,Break below -2σ,60,loss,-10.29
+Sun Oct 18,2:21:29 PM,BTC,LONG,Break above -1σ,63,loss,-10.26
+Sun Oct 18,3:16:14 PM,BTC,LONG,Break above +1σ,26,loss,-10.52
+Sun Oct 18,3:35:31 PM,BTC,LONG,Break above +1σ,65,win (took profit),4.42
+Sun Oct 18,4:10:33 PM,BTC,LONG,Break above +1σ,27,win,23.57
+Sun Oct 18,4:16:13 PM,BTC,SHORT,Break below +1σ,56,loss,-10.31
+Sun Oct 18,4:30:34 PM,BTC,LONG,Close above +2σ,66,loss,-10.24
+Sun Oct 18,4:53:53 PM,GOLD,SHORT,Break below +1σ,63,loss,-10.26
+Sun Oct 18,6:00:44 PM,GOLD,LONG,Close above -1σ,71,loss,-10.21
+Sun Oct 18,6:15:31 PM,GOLD,LONG,Close above -1σ,54,loss,-10.32
+Sun Oct 18,6:30:48 PM,GOLD,LONG,Break above -1σ,71,win (took profit),3.27
+Sun Oct 18,7:01:27 PM,GOLD,LONG,Close above session VWAP,62,win (took profit),5.03
+Sun Oct 18,7:16:43 PM,GOLD,SHORT,Break below +1σ,61,win (took profit),5.18
+Sun Oct 18,7:30:36 PM,GOLD,LONG,Break above -1σ,70,win (took profit),3.46
+Sun Oct 18,7:46:22 PM,GOLD,SHORT,Break below session VWAP,71,win (took profit),3.22
+Sun Oct 18,8:01:54 PM,GOLD,SHORT,Break below session VWAP,52,loss,-10.34
+Sun Oct 18,8:34:30 PM,BTC,SHORT,Break below +1σ,55,win (took profit),7.05
+Sun Oct 18,9:01:07 PM,GOLD,SHORT,Close below +1σ,61,win (took profit),5.09
+Sun Oct 18,9:50:03 PM,GOLD,LONG,Close above +1σ,72,win (took profit),3.05
+Sun Oct 18,10:06:56 PM,GOLD,LONG,Close above +1σ,21,loss,-10.56
+Sun Oct 18,10:30:33 PM,BTC,LONG,Break above +1σ,71,win (took profit),3.21
+Sun Oct 18,10:46:38 PM,BTC,LONG,Break above +1σ,52,win (took profit),7.53
+Sun Oct 18,11:15:49 PM,GOLD,SHORT,Close below session VWAP,55,win (took profit),7.24
+Sun Oct 18,11:27:46 PM,BTC,LONG,Close above +1σ,20,loss,-10.58
+Sun Oct 18,11:30:36 PM,BTC,LONG,Close above +1σ,68,win (took profit),3.54
+Sun Oct 18,11:33:04 PM,GOLD,LONG,Close above -1σ,26,win,24.28
+Sun Oct 18,11:49:49 PM,GOLD,LONG,Break above session VWAP,68,win (took profit),3.76
+Mon Oct 19,12:00:35 AM,GOLD,LONG,Break above +2σ,66,win (took profit),4.17
+Mon Oct 19,12:18:04 AM,GOLD,LONG,Close above +2σ,66,win (took profit),4.17
+Mon Oct 19,12:31:01 AM,GOLD,LONG,Break above +2σ,56,loss,-10.31
+Mon Oct 19,12:40:14 AM,BTC,SHORT,Break below +1σ,53,loss,-10.33
+Mon Oct 19,12:46:12 AM,BTC,SHORT,Break below +1σ,58,win (took profit),5.39
+Mon Oct 19,12:47:59 AM,GOLD,SHORT,Break below +1σ,44,win (took profit),10.29
+Mon Oct 19,1:00:54 AM,GOLD,LONG,Break above -1σ,54,win (took profit),7.07
+Mon Oct 19,1:16:05 AM,GOLD,SHORT,Close below session VWAP,67,win (took profit),3.9
+Mon Oct 19,1:36:46 AM,BTC,LONG,Break above +1σ,40,win (took profit),12.71
+Mon Oct 19,1:45:37 AM,GOLD,SHORT,Close below -1σ,59,win (took profit),5.75
+Mon Oct 19,1:46:04 AM,BTC,SHORT,Close below +1σ,62,win (took profit),5.01
+Mon Oct 19,2:19:25 AM,BTC,LONG,Break above +1σ,71,win (took profit),3.28
+Mon Oct 19,2:40:06 AM,GOLD,SHORT,Break below -2σ,68,loss,-10.22
+Mon Oct 19,3:31:07 AM,GOLD,SHORT,Close below -2σ,65,win,4.73
+Mon Oct 19,3:38:59 AM,BTC,LONG,Break above session VWAP,57,win (took profit),6.69
+Mon Oct 19,3:45:32 AM,BTC,SHORT,Break below session VWAP,61,win,6.12
+Mon Oct 19,3:45:32 AM,GOLD,SHORT,Close below -2σ,54,loss,-10.32
+Mon Oct 19,4:00:30 AM,BTC,SHORT,Break below session VWAP,59,win (took profit),5.89
+Mon Oct 19,4:00:30 AM,GOLD,LONG,Break above -1σ,65,win (took profit),4.28
+Mon Oct 19,4:16:31 AM,GOLD,LONG,Break above session VWAP,59,loss,-10.29
+Mon Oct 19,4:30:57 AM,GOLD,SHORT,Break below -1σ,59,win (took profit),5.62
+Mon Oct 19,5:05:28 AM,BTC,LONG,Break above session VWAP,59,win (took profit),6.16
+Mon Oct 19,5:05:33 AM,GOLD,LONG,Break above -2σ,68,win (took profit),3.75
+Mon Oct 19,5:24:12 AM,GOLD,SHORT,Break below -2σ,63,win,5.62
+Mon Oct 19,5:31:18 AM,GOLD,SHORT,Break below -2σ,56,win (took profit),6.06
+Mon Oct 19,5:48:39 AM,GOLD,SHORT,Close below -2σ,60,win (took profit),5.59
+Mon Oct 19,6:00:41 AM,GOLD,LONG,Break above -2σ,47,win (took profit),8.81
+Mon Oct 19,6:18:11 AM,GOLD,SHORT,Break below -2σ,66,win (took profit),4.06
+Mon Oct 19,6:33:19 AM,BTC,SHORT,Close below session VWAP,72,win (took profit),3.04
+Mon Oct 19,6:34:06 AM,GOLD,SHORT,Break below -2σ,43,win (took profit),11.38
+Mon Oct 19,6:45:35 AM,GOLD,LONG,Close above -3σ,43,win (took profit),12.48
+Mon Oct 19,6:48:14 AM,BTC,LONG,Break above session VWAP,57,loss,-10.3
+Mon Oct 19,7:01:09 AM,BTC,SHORT,Break below -1σ,67,win (took profit),3.98
+Mon Oct 19,7:17:24 AM,GOLD,LONG,Break above -3σ,58,win (took profit),5.89
+Mon Oct 19,7:31:33 AM,BTC,SHORT,Break below -1σ,72,win (took profit),2.98
+Mon Oct 19,8:27:03 AM,GOLD,LONG,Close above -2σ,50,win (took profit),8.23
+Mon Oct 19,8:30:31 AM,BTC,SHORT,Break below session VWAP,61,win (took profit),4.97
+Mon Oct 19,8:30:35 AM,GOLD,SHORT,Break below -2σ,66,win (took profit),4.3
+Mon Oct 19,9:00:32 AM,BTC,LONG,Break above -1σ,58,win (took profit),6.11
+Mon Oct 19,9:47:15 AM,BTC,SHORT,Break below -1σ,66,win (took profit),4.04
+Mon Oct 19,10:12:22 AM,BTC,SHORT,Break below -1σ,64,win (took profit),4.8
+Mon Oct 19,10:15:34 AM,BTC,LONG,Close above -1σ,52,win (took profit),7.5
+Mon Oct 19,11:34:50 AM,BTC,SHORT,Close below -1σ,21,loss,-10.56
+Mon Oct 19,12:15:35 PM,BTC,LONG,Close above -1σ,56,win (took profit),6.36
+Mon Oct 19,1:00:14 PM,BTC,SHORT,Break below -1σ,30,open,

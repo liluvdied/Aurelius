@@ -1,0 +1,20 @@
+{
+ "at": "2026-10-20T04:58:21Z",
+ "note": "Oct 19 ~9:59 PM PT: (1) $2 reversal add-on - any band or red/green rejection, 3.8x+, no per-window cap (one per distinct rejection); (2) gold quote-freshness matched to BTC (3 s) in kalshiFirst + togFastOk + goldTick.",
+ "files": {
+  "engine.ts": "faea1a3212922c60",
+  "prime-book.ts": "a02496bc92dabc75",
+  "kalshi-live.server.ts": "c45980d63f5a63ab",
+  "paper.ts": "eaba2d666963f580",
+  "auto.ts": "ec817b827977b355",
+  "setup.ts": "c8dd52b18a164f8a",
+  "vwap.ts": "78918a253309f5e0",
+  "scan.ts": "5827c69e2e265051",
+  "kalshi.ts": "a9f8d49b27a30ce7",
+  "goldlaw.ts": "dcc1fd1002ef2c2d",
+  "pivotbooks.ts": "d6925f087618ec3a",
+  "bandlock.ts": "7f2ac2dd19eff078",
+  "quotes.ts": "ff2f58a38f2bd5c8",
+  "recon.ts": "8ce8ef5c14f72a7d"
+ }
+}

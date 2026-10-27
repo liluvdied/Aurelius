@@ -1,0 +1,27 @@
+{
+  "_about": "ORIGINAL = how she was right after the bug fixes, on Love's correct TradingView bands. Her setups, band-in-the-way, 1.38x minimum, one trade per window, her original take-profit table (33/44/50/60/max-15) selling at the touch. No nav skip, no 'between price and target' check, no worst hours, no nav-close/Bollinger entries, no gates, no LOCK THE WIN, no channel rule. Safety stays: silver off, $5 cap on 3x+, LIVE switch.",
+  "navSkip": {
+    "on": false
+  },
+  "pathSkip": {
+    "on": false
+  },
+  "skipHours": {},
+  "navCross": {
+    "on": false
+  },
+  "tpGates": {
+    "on": false
+  },
+  "lockWin": {
+    "on": false,
+    "arm": 30,
+    "floor": 20,
+    "clear": {
+      "gold": 1.5,
+      "btc": 100
+    }
+  },
+  "channelRule": false,
+  "tpMode": "original"
+}

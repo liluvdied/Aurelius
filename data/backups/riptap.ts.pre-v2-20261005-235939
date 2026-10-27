@@ -1,0 +1,104 @@
+// RIP-TAP (Claude, Oct 5 ~5 PM PT, Love: "after btc has gone in one direction violently, rips thru one band and taps the next
+// band on pepperstone... like 4-8x... have her do it every time, whether we're in a trade the other side or not... if there's
+// more than 4 minutes left, have her throw $5 at it").
+// BTC on the desk's Pepperstone feed, her session bands (VWAP +/- 0.5 sigma steps to 3 sigma, data/bands-now.json):
+// within the last 5 minutes price was beyond one band, now it has ripped through it and touches the NEXT band (within $15).
+// Then: $5 on the bounce side (move down -> Up) of Polymarket's BTC 15-minute market, only between 5c and 25c (4x-20x),
+// with 4+ minutes on the clock, once per window, held to the bell. Independent of any Kalshi trade.
+// It never buys against Love's own other-side Polymarket position in that window (Polymarket nets the two).
+// live-switch "ripTap": { on, dollars, minAsk, maxAsk, minLeftSec, windowMin, tol }. Log: data/riptap-log.jsonl.
+// Backtest Oct 4-5 (scripts/rip-tap-lab.py): 16 tickets, 3 won (19% vs 11% needed), +$85 on $5 each. Small sample.
+import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+const g = globalThis as unknown as { __ripTapBusy?: boolean; __ripTapSeen?: Record<string, number>; __ripTapRing?: { t: number; px: number }[] };
+
+function log(x: Record<string, unknown>) {
+  try {
+    appendFileSync(join(process.cwd(), "data", "riptap-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ...x }) + "\n");
+  } catch {
+  }
+}
+
+export async function ripTapTick(assets: any) {
+  if (g.__ripTapBusy) return;
+  g.__ripTapBusy = true;
+  try {
+    let cfg: any = null;
+    try {
+      cfg = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).ripTap;
+    } catch {
+      cfg = null;
+    }
+    if (!cfg?.on) return;
+    const a = assets?.btc;
+    const m = a?.market;
+    let b: any = null;
+    try {
+      b = JSON.parse(readFileSync(join(process.cwd(), "data", "bands-now.json"), "utf8"))?.btc ?? null;
+    } catch {
+      b = null;
+    }
+    const px = Number(b?.spot) || Number(a?.spot) || 0;
+    const vw = Number(b?.vwap) || 0;
+    const sd = Number(b?.sd) || 0;
+    if (!(px > 0)) return;
+    const winMs = (Number(cfg.windowMin) > 0 ? Number(cfg.windowMin) : 5) * 60000;
+    const ring = (g.__ripTapRing ||= []);
+    const now = Date.now();
+    ring.push({ t: now, px });
+    while (ring.length && now - ring[0].t > winMs) ring.shift();
+    if (!m?.ticker || !m.closeTime || !(vw > 0) || !(sd > 0) || ring.length < 5) return;
+    const left = Number(a?.secondsLeft) || (Date.parse(m.closeTime) - now) / 1000;
+    if (!(left >= (Number(cfg.minLeftSec) > 0 ? Number(cfg.minLeftSec) : 240))) return;
+    const seen = (g.__ripTapSeen ||= {});
+    if (seen[m.ticker]) return;
+    const tol = Number(cfg.tol) > 0 ? Number(cfg.tol) : 15;
+    const hi = Math.max(...ring.map((r) => r.px));
+    const lo = Math.min(...ring.map((r) => r.px));
+    const bands = Array.from({ length: 13 }, (_, i) => vw + ((i - 6) / 2) * sd);
+    const name = (i: number) => (i === 6 ? "VWAP" : `${i > 6 ? "+" : ""}${(i - 6) / 2}σ`);
+    let side: "up" | "down" | null = null;
+    let why = "";
+    for (let j = 0; j < 12 && !side; j++) {
+      // down move: was above bands[j+1], ripped through it, now taps bands[j]
+      if (hi >= bands[j + 1] && px < bands[j + 1] && Math.abs(px - bands[j]) <= tol) {
+        side = "up";
+        why = `ripped down through the ${name(j + 1)} and tapped the ${name(j)} (${Math.round(hi - px)} in ${Math.round(winMs / 60000)}m)`;
+      }
+    }
+    for (let j = 1; j < 13 && !side; j++) {
+      // up move: was below bands[j-1], ripped through it, now taps bands[j]
+      if (lo <= bands[j - 1] && px > bands[j - 1] && Math.abs(px - bands[j]) <= tol) {
+        side = "down";
+        why = `ripped up through the ${name(j - 1)} and tapped the ${name(j)} (${Math.round(px - lo)} in ${Math.round(winMs / 60000)}m)`;
+      }
+    }
+    if (!side) return;
+    seen[m.ticker] = now;
+    const pm = await import("./poly-live.server");
+    if (!pm.polymarketArmed()) {
+      log({ status: "skipped", ticker: m.ticker, side, why, reason: "Polymarket keys not loaded" });
+      return;
+    }
+    const dollars = Number(cfg.dollars) > 0 ? Number(cfg.dollars) : 5;
+    const minAsk = Number(cfg.minAsk) > 0 ? Number(cfg.minAsk) : 0.05;
+    const maxAsk = Number(cfg.maxAsk) > 0 ? Number(cfg.maxAsk) : 0.25;
+    const win = await pm.polyWindowFor(m.closeTime).catch(() => null);
+    const mine = await pm.polymarketHoldings().catch(() => []);
+    const hers = win?.slug ? mine.find((h: any) => h.slug === win.slug && Math.abs(h.net) > 0.01) : undefined;
+    if (hers && Math.sign(hers.net) !== (side === "up" ? 1 : -1)) {
+      log({ status: "skipped", ticker: m.ticker, slug: win?.slug, side, why, spot: px, reason: "you hold the other side of this window on Polymarket; a ticket would net against yours" });
+      return;
+    }
+    const fill = await pm.takeSide(side, m.closeTime, dollars, maxAsk, minAsk, 0.02, ":riptap").catch((err: any) => {
+      log({ status: "error", ticker: m.ticker, side, why, error: String(err?.message || err).slice(0, 160) });
+      return null;
+    });
+    if (fill) log({ status: "filled", ticker: m.ticker, slug: fill.slug, side, why, spot: px, contracts: fill.filled, price: fill.price, minutesLeft: Math.round(left / 60) });
+    else log({ status: "missed", ticker: m.ticker, side, why, spot: px, minutesLeft: Math.round(left / 60), reason: pm.takeSideWhy?.() });
+  } catch {
+  } finally {
+    g.__ripTapBusy = false;
+  }
+}

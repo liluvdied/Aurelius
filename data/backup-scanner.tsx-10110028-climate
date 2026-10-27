@@ -1,0 +1,370 @@
+// SCANNER tab (Claude, Oct 8, Love: "let's make it a SCANNER tab to the right of Kalshi... anything we can actually get some
+// data on and not speculate"). Oct 9 ~7:15 PM PT redesign (Love: "can we make the tab have the same design language as our
+// cards... the wording is hard to make out, it doesn't say specific cities"): every book is a SHIFT-style card (big glowing
+// P&L, thin border that glows green when it's up), and every trade says the place, the time and the bet in plain words.
+import { Fragment, useState, type ReactNode } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { addLoveCall, editLoveCall, getHourLotto, getLoveCalls, getMentions, getOracle, getPositions, getScanner } from "@/lib/desk/fns";
+
+const UP = "#3ddc84";
+const DOWN = "#ff5c5c";
+const usd = (n: number) => `${n >= 0 ? "+" : "−"}$${Math.abs(n).toFixed(2)}`;
+const tone = (n: number) => (n > 0.005 ? UP : n < -0.005 ? DOWN : "rgba(255,255,255,0.75)");
+const ago = (iso: string | null | undefined) => (iso ? `${Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 60000))} min ago` : "starting…");
+const KIND: Record<string, string> = { "high-lock": "DAILY HIGH · LOCK-IN", "low-lock": "DAILY LOW · LOCK-IN", hourly: "HOURLY · NEAR THE READING" };
+
+// "Will the temp in New York City be above 66.99° on Oct 9, 2026 at 11am EDT? · 67° or above"
+//   -> { where: "New York City", when: "Oct 9 · 11am EDT", what: "67° or above" }
+function pretty(title: string) {
+  const t = String(title || "");
+  const [q, opt] = t.split(" · ");
+  const where = (q.match(/\bin ([A-Z][A-Za-z.' -]+?)(?: be| on| today| tomorrow| between| have|\?|,)/) || [])[1] || "";
+  const date = (q.match(/\bon ([A-Z][a-z]{2,8} \d{1,2})/) || [])[1] || "";
+  const time = (q.match(/\bat (\d{1,2}(?::\d\d)?\s?(?:am|pm)(?: [A-Z]{2,4})?)/i) || [])[1] || "";
+  const kind = /\bhigh\b/i.test(q) ? "high" : /\blow\b/i.test(q) ? "low" : /temp/i.test(q) ? "temp" : "";
+  // Eastern -> her Pacific time ("6pm EDT" -> "3pm PT").
+  const et = time.match(/^(\d{1,2})(?::(\d\d))?\s?(am|pm) E[DS]T$/i);
+  let tPT = time;
+  if (et) {
+    let h = (Number(et[1]) % 12) + (/pm/i.test(et[3]) ? 12 : 0) - 3;
+    if (h < 0) h += 24;
+    tPT = `${h % 12 === 0 ? 12 : h % 12}${et[2] ? `:${et[2]}` : ""}${h < 12 ? "am" : "pm"} PT`;
+  }
+  return { where, when: [date, tPT].filter(Boolean).join(" · "), what: (opt || "").trim(), kind, q };
+}
+function betLine(side: string, what: string, kind: string) {
+  const subject = kind === "high" ? "the day's high" : kind === "low" ? "the day's low" : kind === "temp" ? "the reading" : "it";
+  return side === "yes" ? `betting ${subject} IS ${what || "yes"}` : `betting ${subject} is NOT ${what || "yes"}`;
+}
+
+function Card({ title, sub, money, line, children, note }: { title: string; sub?: string; money?: number | null; line?: ReactNode; children?: ReactNode; note?: string }) {
+  const has = typeof money === "number";
+  const c = has ? (money! >= 0 ? UP : DOWN) : "rgba(255,255,255,0.85)";
+  const glow = has && money! > 0.005;
+  return (
+    <div className="flex flex-col gap-1 rounded-2xl border px-4 py-3" style={{ borderColor: glow ? "rgba(61,220,132,0.55)" : has && money! < -0.005 ? "rgba(255,92,92,0.45)" : "rgba(255,255,255,0.2)", boxShadow: glow ? "0 0 14px rgba(61,220,132,0.18)" : "none" }}>
+      <p className="text-[10px] tracking-[0.26em] text-white">{title}</p>
+      {sub ? <p className="text-[9px] leading-snug text-white/55">{sub}</p> : null}
+      {has ? (
+        <p className="mt-1 font-mono text-2xl tabular-nums" style={{ color: c, textShadow: `0 0 10px ${c}` }}>
+          {usd(money!)}
+        </p>
+      ) : null}
+      {line ? <p className="font-mono text-[11px] tabular-nums text-white/80">{line}</p> : null}
+      {note ? <p className="font-mono text-[9px] tracking-[0.12em] text-white/55">{note}</p> : null}
+      {children}
+    </div>
+  );
+}
+function TradeRow({ head, sub, right, rightColor, border }: { head: ReactNode; sub?: ReactNode; right: string; rightColor: string; border?: string }) {
+  return (
+    <div className="flex items-start gap-2 rounded-xl border px-3 py-2" style={{ borderColor: border || "rgba(255,255,255,0.14)" }}>
+      <div className="min-w-0 flex-1">
+        <p className="font-mono text-[10px] leading-snug text-white">{head}</p>
+        {sub ? <p className="font-mono text-[9px] leading-snug text-white/55">{sub}</p> : null}
+      </div>
+      <span className="shrink-0 font-mono text-[11px] tabular-nums" style={{ color: rightColor }}>
+        {right}
+      </span>
+    </div>
+  );
+}
+const H = ({ children }: { children: ReactNode }) => <p className="mt-5 text-[10px] tracking-[0.26em] text-white/80">{children}</p>;
+
+const MAP: { tier: "green" | "yellow" | "red"; name: string; data: string; status: string }[] = [
+  { tier: "green", name: "Weather · daily high / low", data: "Settles on the station's official max/min. The station's live readings put a floor under the high and a ceiling over the low as the day goes.", status: "SCANNING" },
+  { tier: "green", name: "Weather · hourly temperature", data: "Settles on a blended AREA index, not one station. She learns each city's gap from every settled hour, trades a city only after 6+ lessons, and needs a cushion of 4F or the 90th-percentile miss + 1.5F.", status: "SCANNING" },
+  { tier: "yellow", name: "Mentions · what will X say", data: "Kalshi's own record of what each speaker actually said, rallies vs everything else. Before the event only, 20+ points off the record. Paper until it proves itself.", status: "PAPER" },
+  { tier: "yellow", name: "ORACLE · reasoned forecasts", data: "Researched probabilities written before the result, scored against the market's own price. Real money only after 100+ forecasts that beat the crowd.", status: "PAPER" },
+  { tier: "yellow", name: "Fed / CPI / jobs / yields / commodities", data: "Futures and nowcasts price these; ORACLE checks Kalshi against them. Liquid ones are usually fair.", status: "ORACLE" },
+  { tier: "red", name: "Pure coin flips", data: "No data that settles the answer ahead of the crowd. Skipped on purpose.", status: "SKIP" },
+];
+const TIER = { green: UP, yellow: "#ffd27a", red: "#ff8a8a" };
+
+function LoveCalls() {
+  const qc = useQueryClient();
+  const lq = useQuery({ queryKey: ["love-calls"], queryFn: () => getLoveCalls(), refetchInterval: 60000 });
+  const pq = useQuery({ queryKey: ["positions"], queryFn: () => getPositions(), refetchInterval: 30000 });
+  const L = lq.data as any;
+  const pos: any[] = (pq.data as any)?.rows ?? [];
+  const [pick, setPick] = useState("");
+  const [reason, setReason] = useState("");
+  const [sure, setSure] = useState(70);
+  const [busy, setBusy] = useState(false);
+  const [sellAt, setSellAt] = useState<Record<string, string>>({});
+  const p = pos.find((x) => x.ticker === pick);
+  const save = (r: any) => qc.setQueryData(["love-calls"], r);
+  const logged = new Set((L?.rows ?? []).filter((r: any) => r.result === "open").map((r: any) => r.ticker));
+  return (
+    <Card
+      title="LOVE'S CALLS ✍️"
+      sub="Your own trades with the reason you took them, scored against the price you paid. If your instinct beats the crowd over 20-30 calls, that's when the bigger tickets earn their place."
+      money={L?.total?.n ? L.total.p : null}
+      line={L ? `${L.total.w}/${L.total.n} won${L.total.n ? ` · ${L.total.roi >= 0 ? "+" : ""}${L.total.roi}% on what you staked` : ""} · ${L.open} open` : "loading…"}
+      note={L && Object.keys(L.by || {}).length ? Object.entries(L.by).map(([k, c]: any) => `${k.toUpperCase()} ${usd(c.p)} ${c.w}/${c.n}`).join(" · ") : undefined}
+    >
+      <div className="mt-2 flex flex-col gap-1.5 rounded-xl border px-3 py-2" style={{ borderColor: "rgba(179,136,255,0.45)" }}>
+        <p className="text-[9px] tracking-[0.2em]" style={{ color: "#B388FF" }}>LOG A CALL FROM YOUR POSITIONS</p>
+        <select value={pick} onChange={(e) => setPick(e.target.value)} className="rounded-lg bg-black px-2 py-1.5 font-mono text-[10px] text-white" style={{ border: "1px solid rgba(255,255,255,0.25)" }}>
+          <option value="">pick a position…</option>
+          {pos.filter((x) => !logged.has(x.ticker)).map((x) => (
+            <option key={x.ticker} value={x.ticker}>
+              {x.side.toUpperCase()} @ {Math.round(x.entry * 100)}c · ${x.cost.toFixed(2)} · {String(x.title).slice(0, 70)}
+            </option>
+          ))}
+        </select>
+        <textarea value={reason} onChange={(e) => setReason(e.target.value)} placeholder="why you took it (e.g. he always says Iran at rallies)" rows={2} className="rounded-lg bg-black px-2 py-1.5 font-mono text-[10px] text-white placeholder:text-white/35" style={{ border: "1px solid rgba(255,255,255,0.25)" }} />
+        <div className="flex items-center gap-2 font-mono text-[9px] text-white/70">
+          <span>HOW SURE</span>
+          <input type="range" min={50} max={99} value={sure} onChange={(e) => setSure(Number(e.target.value))} className="glass-range flex-1" />
+          <span className="w-8 text-right">{sure}%</span>
+        </div>
+        <button
+          type="button"
+          disabled={!p || !reason.trim() || busy}
+          onClick={() => {
+            if (!p) return;
+            setBusy(true);
+            void addLoveCall({ data: { ticker: p.ticker, side: p.side, entry: p.entry, stake: p.cost, reason, conviction: sure / 100, title: p.title } })
+              .then((r) => { save(r); setPick(""); setReason(""); })
+              .finally(() => setBusy(false));
+          }}
+          className="self-start rounded-full border px-3 py-1 font-mono text-[9px] tracking-[0.15em] disabled:opacity-40"
+          style={{ borderColor: "#B388FF", color: "#B388FF" }}
+        >
+          {busy ? "LOGGING…" : "LOG THIS CALL"}
+        </button>
+      </div>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {(L?.rows ?? []).slice(0, 20).map((r: any) => (
+          <div key={r.id} className="rounded-xl border px-3 py-2" style={{ borderColor: r.result === "open" ? "rgba(179,136,255,0.4)" : (r.pnl ?? 0) >= 0 ? "rgba(61,220,132,0.45)" : "rgba(255,92,92,0.4)" }}>
+            <div className="flex items-start gap-2">
+              <p className="min-w-0 flex-1 font-mono text-[10px] leading-snug text-white">
+                {r.side.toUpperCase()} @ {Math.round(r.entry * 100)}c · {r.title}
+              </p>
+              <span className="shrink-0 font-mono text-[11px]" style={{ color: r.result === "open" ? "#B388FF" : tone(r.pnl ?? 0) }}>
+                {r.result === "open" ? "OPEN" : `${r.result === "sold" ? `SOLD ${Math.round((r.exit ?? 0) * 100)}c ` : r.result.toUpperCase() + " "}${usd(r.pnl ?? 0)}`}
+              </span>
+            </div>
+            <p className="font-mono text-[9px] leading-snug text-white/55">
+              "{r.reason}"{r.conviction ? ` · ${Math.round(r.conviction * 100)}% sure` : ""} · ${r.stake.toFixed(2)} in
+            </p>
+            {r.result === "open" ? (
+              <div className="mt-1 flex items-center gap-1.5">
+                <input value={sellAt[r.id] ?? ""} onChange={(e) => setSellAt((s) => ({ ...s, [r.id]: e.target.value }))} placeholder="sold at ¢" inputMode="numeric" className="w-20 rounded-md bg-black px-2 py-0.5 font-mono text-[9px] text-white placeholder:text-white/35" style={{ border: "1px solid rgba(255,255,255,0.25)" }} />
+                <button type="button" onClick={() => Number(sellAt[r.id]) > 0 && void editLoveCall({ data: { id: r.id, sell: Number(sellAt[r.id]) } }).then(save)} className="rounded-full border px-2 py-0.5 font-mono text-[9px] text-white/80" style={{ borderColor: "rgba(255,255,255,0.35)" }}>
+                  I SOLD IT
+                </button>
+                <span className="flex-1" />
+                <button type="button" onClick={() => void editLoveCall({ data: { id: r.id, remove: true } }).then(save)} className="font-mono text-[9px] text-white/40">
+                  remove
+                </button>
+              </div>
+            ) : null}
+          </div>
+        ))}
+        {L && !L.rows?.length ? <p className="font-mono text-[9px] text-white/45">Your first call shows up here. Held to the end, it settles itself from Kalshi's result.</p> : null}
+      </div>
+    </Card>
+  );
+}
+
+export function ScannerTab() {
+  const q = useQuery({ queryKey: ["scanner"], queryFn: () => getScanner(), refetchInterval: 60000 });
+  const d = q.data as any;
+  const lq = useQuery({ queryKey: ["hour-lotto"], queryFn: () => getHourLotto(), refetchInterval: 60000 });
+  const L = lq.data as any;
+  const mq = useQuery({ queryKey: ["mentions"], queryFn: () => getMentions(), refetchInterval: 60000 });
+  const MN = mq.data as any;
+  const oq = useQuery({ queryKey: ["oracle"], queryFn: () => getOracle(), refetchInterval: 60000 });
+  const OR = oq.data as any;
+  const EX: Record<string, string> = { x3: "SELL AT 3x", x5: "SELL AT 5x", c50: "SELL AT 50c", hold: "HOLD TO THE HOUR" };
+  return (
+    <section className="mx-3 mt-3 rounded-[14px] px-3 py-3" style={{ border: "1px solid rgba(255,255,255,0.18)", background: "#000" }}>
+      <div className="flex items-baseline justify-between gap-2">
+        <p className="text-[10px] tracking-[0.28em] text-white/90">SCANNER · DATA, NOT GUESSES</p>
+        <p className="font-mono text-[9px] text-white/55">PAPER FIRST · ALWAYS</p>
+      </div>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">
+        Kalshi markets where real data can see the answer coming. Every idea is booked on paper at the real price with Kalshi's fee and settled from Kalshi's own
+        result, so the record proves the edge before a dollar goes in.
+      </p>
+
+      <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <Card
+          title="WEATHER 🌡️"
+          sub="Daily high/low lock-ins + hourly readings near the bell. $10 a flag."
+          money={d?.total?.n ? d.total.p : null}
+          line={d ? `${d.total.w}/${d.total.n} right · ${d.open} open · ${(d.flags ?? []).length} live flag${(d.flags ?? []).length === 1 ? "" : "s"}` : "loading…"}
+          note={d ? `last scan ${ago(d.at)} · ${d.scanned} markets` : undefined}
+        />
+        <Card
+          title="MENTIONS 🎙️"
+          sub="What will X say, vs Kalshi's record of what they actually said. $10."
+          money={MN?.total?.n ? MN.total.p : null}
+          line={MN ? `${MN.total.w}/${MN.total.n} settled · ${MN.open} open` : "loading…"}
+          note={MN?.status ? `last look ${ago(MN.status.at)} · ${MN.status.events} events · ${MN.status.live?.length || 0} already live (skipped)` : undefined}
+        />
+        <Card
+          title="ORACLE 🔮"
+          sub="Researched forecasts written before the result. Trades only 7+ points off the price."
+          money={OR?.paper?.n ? OR.paper.p : null}
+          line={OR ? `${OR.forecasts} forecasts · ${OR.scored} scored${OR.scored ? ` · ours ${OR.brierOurs} vs market ${OR.brierMarket}` : ""}` : "loading…"}
+          note={OR?.scored ? ((OR.brierOurs ?? 1) < (OR.brierMarket ?? 0) ? "BEATING THE CROWD" : "NOT BEATING THE CROWD YET") : "scores fill in as markets settle"}
+        />
+        <Card
+          title="HOURLY LONGSHOTS 🎯"
+          sub="BTC hourly ladder, 3-8c tickets, $5. Signal vs a no-reason control."
+          line={L ? `${L.open} open` : "loading…"}
+          note={L ? `SIGNAL hold ${L.signal?.hold?.n ? `${usd(L.signal.hold.p)} ${L.signal.hold.w}/${L.signal.hold.n}` : "—"} · CONTROL hold ${L.control?.hold?.n ? `${usd(L.control.hold.p)} ${L.control.hold.w}/${L.control.hold.n}` : "—"}` : undefined}
+        />
+      </div>
+
+      <div className="mt-2">
+        <LoveCalls />
+      </div>
+
+      <H>WEATHER · LIVE FLAGS</H>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {d?.flags?.length ? (
+          d.flags.map((f: any) => {
+            const x = pretty(f.title);
+            return (
+              <TradeRow
+                key={`${f.ticker}:${f.side}`}
+                head={<>{x.where || f.ticker} · {x.when} · <span style={{ color: UP }}>{f.side.toUpperCase()} @ {Math.round(f.ask * 100)}c</span></>}
+                sub={<>{betLine(f.side, x.what, x.kind)} · {KIND[f.kind] ?? f.kind} · {f.reason}</>}
+                right="FLAG"
+                rightColor={UP}
+                border="rgba(61,220,132,0.45)"
+              />
+            );
+          })
+        ) : (
+          <p className="rounded-xl border px-3 py-2 font-mono text-[10px] text-white/55" style={{ borderColor: "rgba(255,255,255,0.12)" }}>
+            Nothing lined up right now. Lock-ins show up through the afternoon; hourly flags in the last 45 minutes before a reading.
+          </p>
+        )}
+      </div>
+
+      <H>WEATHER · PAPER TRADES</H>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {(d?.paper ?? []).slice(0, 25).map((r: any) => {
+          const x = pretty(r.title);
+          const open = r.result === "open";
+          return (
+            <TradeRow
+              key={r.id}
+              head={<>{x.where || r.ticker} · {x.when}</>}
+              sub={<>{r.side.toUpperCase()} @ {Math.round(r.ask * 100)}c · {betLine(r.side, x.what, x.kind)}</>}
+              right={open ? "OPEN" : r.result === "void" ? "VOID" : usd(r.pnl ?? 0)}
+              rightColor={open ? "rgba(255,255,255,0.55)" : tone(r.pnl ?? 0)}
+              border={open ? "rgba(255,255,255,0.14)" : (r.pnl ?? 0) >= 0 ? "rgba(61,220,132,0.35)" : "rgba(255,92,92,0.35)"}
+            />
+          );
+        })}
+        {d && !d.paper?.length ? <p className="font-mono text-[9px] text-white/45">The first paper trades land with the first flags.</p> : null}
+      </div>
+
+      {d?.learn && Object.keys(d.learn).length ? (
+        <>
+          <H>WEATHER · WHAT SHE'S LEARNED</H>
+          <p className="mt-1 text-[9px] leading-snug text-white/55">How far each city's hourly index sits from the airport station we read. A big gap is why the early NYC trades lost; now she adds the gap back and keeps a cushion.</p>
+          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+            {Object.entries(d.learn as Record<string, any>).map(([k, c]) => (
+              <Card key={k} title={k.replace(/^KXTEMP/, "").replace(/HS$/, "")} line={`${c.n} lessons · index ${c.bias >= 0 ? "+" : ""}${c.bias}°F vs station`} note={c.n >= 6 ? `misses up to ${c.spread}°F · cushion ${c.cushion}°F` : "still learning (needs 6)"} />
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      <H>MENTIONS · BASE RATES</H>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {(MN?.paper ?? []).slice(0, 14).map((r: any) => (
+          <TradeRow
+            key={r.id}
+            head={<>{String(r.word).toUpperCase()} · {r.side.toUpperCase()} @ {Math.round(r.ask * 100)}c</>}
+            sub={<>said in {r.basis} ({Math.round(r.rate * 100)}%) · {String(r.title).replace(/^What will /, "").slice(0, 100)}</>}
+            right={r.result === "open" ? "OPEN" : `${r.result.toUpperCase()} ${usd(r.pnl ?? 0)}`}
+            rightColor={r.result === "open" ? "rgba(255,255,255,0.55)" : tone(r.pnl ?? 0)}
+          />
+        ))}
+        {MN && !MN.paper?.length ? <p className="font-mono text-[9px] text-white/45">No word far enough from its record yet.</p> : null}
+      </div>
+
+      <H>ORACLE · LATEST FORECASTS</H>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {(OR?.latest ?? []).map((f: any) => {
+          const gap = Math.round((f.prob - Number(f.yesAsk)) * 100);
+          return (
+            <TradeRow
+              key={`${f.ticker}${f.at}`}
+              head={<>{String(f.title || f.ticker)}</>}
+              sub={<>ORACLE {Math.round(f.prob * 100)}% vs market {Math.round(Number(f.yesAsk) * 100)}c ({gap >= 0 ? "+" : ""}{gap}) · {String(f.reason || "").slice(0, 200)}</>}
+              right={f.trade ? `${f.trade.side.toUpperCase()}${f.result ? ` · ${String(f.result).toUpperCase()}` : ""}` : f.result ? String(f.result).toUpperCase() : "NO TRADE"}
+              rightColor={f.trade ? UP : "rgba(255,255,255,0.5)"}
+            />
+          );
+        })}
+        {OR && !OR.latest?.length ? <p className="font-mono text-[9px] text-white/45">First forecasts land after the next run.</p> : null}
+      </div>
+
+      <H>SIGNAL LAB · HOW PRICE MOVES AFTER EACH SIGNAL</H>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">% = share of signals already moving their way at that minute · median move · MFE / MAE = median best / worst move in the hour after.</p>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {(d?.lab ?? []).map((g: any) => (
+          <TradeRow
+            key={g.key}
+            head={<>{g.key} · {g.n} signal{g.n === 1 ? "" : "s"}{g.mfe != null ? ` · MFE ${g.mfe.toFixed(2)} / MAE ${(g.mae ?? 0).toFixed(2)}` : ""}</>}
+            sub={Object.entries(g.marks).map(([k, c]: any) => (c ? `${k}m ${c.right}% (${(c.med ?? 0) >= 0 ? "+" : ""}${(c.med ?? 0).toFixed(2)})` : `${k}m —`)).join(" · ")}
+            right=""
+            rightColor="white"
+          />
+        ))}
+        {d && !d.lab?.length ? <p className="font-mono text-[9px] text-white/45">Fills in as signals arrive; each one is followed for an hour.</p> : null}
+      </div>
+
+      {L ? (
+        <>
+          <H>HOURLY LONGSHOTS · ALL FOUR EXITS</H>
+          <div className="mt-2 grid grid-cols-[72px_repeat(4,minmax(0,1fr))] gap-1 font-mono text-[9px]">
+            <span />
+            {Object.keys(EX).map((k) => (
+              <span key={k} className="text-[8px] tracking-[0.12em] text-white/45">{EX[k]}</span>
+            ))}
+            {(["signal", "control"] as const).map((rule) => (
+              <Fragment key={rule}>
+                <span className="text-[8px] tracking-[0.18em] text-white/60">{rule.toUpperCase()}</span>
+                {Object.keys(EX).map((k) => {
+                  const c = L[rule]?.[k];
+                  return (
+                    <span key={`${rule}${k}`} style={{ color: c && c.n ? tone(c.p) : "rgba(255,255,255,0.35)" }}>
+                      {c && c.n ? `${usd(c.p)} ${c.w}/${c.n}` : "—"}
+                    </span>
+                  );
+                })}
+              </Fragment>
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      <H>MARKET MAP · WHAT'S WORTH SCANNING</H>
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {MAP.map((m) => (
+          <div key={m.name} className="rounded-2xl border px-4 py-3" style={{ borderColor: `${TIER[m.tier]}66` }}>
+            <p className="flex items-baseline justify-between gap-2 text-[10px] tracking-[0.18em]" style={{ color: TIER[m.tier] }}>
+              <span>{m.name}</span>
+              <span className="text-[8px] tracking-[0.2em]">{m.status}</span>
+            </p>
+            <p className="mt-1 text-[9px] leading-snug text-white/55">{m.data}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-[9px] leading-snug text-white/45">
+        Why low multiples: across Kalshi's history, contracts under 10c win less often than their price says (longshots lose most), while 90c+ contracts win a little
+        more often than priced. Takers lose more than makers. (Bürgi, Deng &amp; Whelan, 2025.)
+      </p>
+    </section>
+  );
+}

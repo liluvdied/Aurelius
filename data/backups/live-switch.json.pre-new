@@ -1,0 +1,290 @@
+{
+  "live": true,
+  "maxDollars": 33,
+  "cooldownAfterLoss": true,
+  "route": "paper",
+  "at": "2026-10-05T19:47:42.181126Z",
+  "note": "Love, Oct 5 ~12:45 PM PT: BRICK alone on Kalshi, $20, exits like paper, BTC + gold",
+  "cooldownExcuse": [
+    "KXGOLD15M-26OCT012200-00"
+  ],
+  "shiftStart": "2026-10-02T01:58:00.000Z",
+  "blockedSetups": [
+    "Tap-reject at -0.5\u03c3|down|gold"
+  ],
+  "lockWin": {
+    "arm": 30,
+    "floor": 20,
+    "on": false,
+    "clear": {
+      "gold": 1.5,
+      "btc": 100
+    }
+  },
+  "channelRule": false,
+  "channelEdge": 0.25,
+  "blockedAssets": [
+    "silver"
+  ],
+  "bigMultipleCap": {
+    "on": true,
+    "x": 3,
+    "dollars": 5
+  },
+  "skipHours": {
+    "btc": [
+      9,
+      16,
+      18,
+      20,
+      21
+    ],
+    "gold": [
+      1,
+      7,
+      12,
+      16,
+      17
+    ]
+  },
+  "navSkip": {
+    "on": true,
+    "assets": [
+      "gold",
+      "btc"
+    ],
+    "frames": [
+      "m1",
+      "m5",
+      "m10",
+      "m15"
+    ],
+    "within": 0.25,
+    "lines": [
+      "center"
+    ],
+    "byAsset": {
+      "btc": {
+        "frames": [
+          "m1",
+          "m5",
+          "m10",
+          "m15"
+        ],
+        "withinDollars": 100,
+        "lines": [
+          "center",
+          "upper",
+          "lower"
+        ]
+      },
+      "gold": {
+        "withinDollars": 2.5,
+        "lines": [
+          "center"
+        ]
+      }
+    }
+  },
+  "navCross": {
+    "on": true,
+    "close": "5m",
+    "frames": [
+      "m15",
+      "m10",
+      "m5"
+    ],
+    "bandAssets": [
+      "btc",
+      "gold"
+    ],
+    "rejectOnly": []
+  },
+  "tpGates": {
+    "on": false,
+    "under165": [
+      0.4
+    ],
+    "over165": [
+      0.55,
+      0.6
+    ]
+  },
+  "primeFortyRule": false,
+  "pathSkip": {
+    "on": true
+  },
+  "model": "new",
+  "autoExits": true,
+  "tpHard": true,
+  "liveBook": {
+    "books": [
+      "hour",
+      "cotc",
+      "brickc",
+      "brickt"
+    ],
+    "dollars": 33,
+    "since": "2026-10-05T19:47:42.181126Z",
+    "cotcSince": "2026-10-04T01:25:26.486786Z",
+    "trendSince": "2026-10-03T23:59:26.343880Z",
+    "prevBooks": [
+      "hour",
+      "cotc",
+      "brickc"
+    ],
+    "sole5Since": "2026-10-04T01:04:09.282659Z",
+    "sole5vSince": "2026-10-04T02:00:09.833392Z",
+    "claudeSince": "2026-10-04T05:40:25.433508Z",
+    "brickcSince": "2026-10-04T11:18:37.305121Z",
+    "originalSince": "2026-10-04T17:16:42.493675Z",
+    "threeSince": "2026-10-04T23:35:22.333771Z",
+    "brickBackSince": "2026-10-05T02:29:29.968213Z",
+    "brickAloneSince": "2026-10-05T19:47:42.181126Z",
+    "claudeRunSince": "2026-10-05T23:17:34.671085Z",
+    "diamondRunSince": "2026-10-06T05:25:22.556Z",
+    "brickcRunSince": "2026-10-06T12:43:20.399Z",
+    "brickRunSince": "2026-10-06T06:06:59.153Z",
+    "hourRunSince": "2026-10-06T06:07:19.747Z",
+    "cotcRunSince": "2026-10-06T12:34:53.431Z",
+    "bricktRunSince": "2026-10-06T14:27:50.065Z"
+  },
+  "tpOfMax": 90,
+  "netBelow": [],
+  "insurance": {
+    "on": true,
+    "arm": 30,
+    "venue": "polymarket",
+    "tiers": [
+      {
+        "at": 0.25,
+        "lo": 0.08,
+        "dollars": 5
+      },
+      {
+        "at": 0.0625,
+        "lo": 0.03,
+        "dollars": 2,
+        "minLeft": 3
+      }
+    ],
+    "bankAt": 200,
+    "bank": true,
+    "bankOfMax": 90,
+    "armBy": "price"
+  },
+  "tpLadder": true,
+  "addOn": {
+    "on": false,
+    "dollars": 5,
+    "maxAsk": 0.55,
+    "minLeft": 5
+  },
+  "timeGate": {
+    "on": true,
+    "minN": 15,
+    "minWin": 0.62,
+    "hours": 4,
+    "exempt": [
+      "brick",
+      "brickc",
+      "brickt"
+    ]
+  },
+  "snipe": {
+    "on": true,
+    "dollars": 3,
+    "maxDist": 20,
+    "minLeft": 60,
+    "maxLeft": 180,
+    "maxAsk": 0.05
+  },
+  "polyLive": true,
+  "polyMirror": {
+    "on": false,
+    "books": [
+      "cotc"
+    ],
+    "dollars": 10,
+    "maxAsk": 0.75,
+    "since": "2026-10-05T06:45:58.393818Z"
+  },
+  "paperLocks": true,
+  "bookLikePaper": true,
+  "polyHour": {
+    "on": true,
+    "books": [
+      "brick"
+    ],
+    "dollars": 15,
+    "maxAsk": 0.75,
+    "minLeftMin": 15,
+    "since": "2026-10-05T19:55:47.843511Z",
+    "followRun": true
+  },
+  "autoRoll": {
+    "on": false,
+    "minN": 12,
+    "minWin": 0.6,
+    "hours": 4,
+    "current": null,
+    "snoozed": {},
+    "since": "2026-10-05T23:21:24.612Z",
+    "checkedAt": "2026-10-05T23:21:24.612Z",
+    "board": [
+      {
+        "book": "sole10",
+        "n": 78,
+        "win": 64,
+        "pnl": 441
+      },
+      {
+        "book": "sole15",
+        "n": 82,
+        "win": 62,
+        "pnl": 368
+      },
+      {
+        "book": "hold90",
+        "n": 67,
+        "win": 72,
+        "pnl": 318
+      },
+      {
+        "book": "original",
+        "n": 67,
+        "win": 72,
+        "pnl": 300
+      },
+      {
+        "book": "claude",
+        "n": 40,
+        "win": 78,
+        "pnl": 271
+      },
+      {
+        "book": "brk1",
+        "n": 17,
+        "win": 82,
+        "pnl": 267
+      }
+    ],
+    "offNote": "Love, Oct 5 ~4:30 PM PT: off, she picks books herself for now; if it comes back, 4h window"
+  },
+  "ripTap": {
+    "on": false,
+    "dollars": 5,
+    "minAsk": 0.02,
+    "maxAsk": 0.33,
+    "minLeftSec": 240,
+    "tol": 15,
+    "bankOfMax": 90
+  },
+  "silverHedge": {
+    "on": true,
+    "dollars": 11,
+    "minMult": 1.6,
+    "minLeftSec": 180
+  },
+  "btcHeadroom": 30
+}

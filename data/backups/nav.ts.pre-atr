@@ -1,0 +1,105 @@
+// NAV BANDS (Love's "VWAP Bands 7 4 20 0.2 1.2 20 65", rebuilt to the cent on 2026-10-02):
+// center = volume-weighted average of hlc3 over 7 bars; bands = center ± 4 × the standard
+// deviation of that center line over 7 bars. Reference only: logged and shown, not traded on yet.
+import { writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { chartRaw } from "./tv";
+
+function debug(key: string, msg: string) {
+  try {
+    writeFileSync(join(process.cwd(), "data", "nav-debug.json"), JSON.stringify({ at: new Date().toISOString(), key, msg }));
+  } catch {
+    // diagnostic only
+  }
+}
+
+export type NavFrame = { c: number; up: number; dn: number };
+type Bar = { t: number; o: number; h: number; l: number; c: number; v: number };
+
+export function computeNav(bars: Bar[], len = 7, mult = 4): NavFrame | null {
+  if (bars.length < len * 2 - 1) return null;
+  const h3 = (b: Bar) => (b.h + b.l + b.c) / 3;
+  const vwma = (end: number) => {
+    let a = 0;
+    let w = 0;
+    for (let j = end - len + 1; j <= end; j += 1) {
+      a += h3(bars[j]) * (bars[j].v || 0);
+      w += bars[j].v || 0;
+    }
+    return w > 0 ? a / w : h3(bars[end]);
+  };
+  const n = bars.length - 1;
+  const xs = Array.from({ length: len }, (_, i) => vwma(n - len + 1 + i));
+  const m = xs.reduce((t, x) => t + x, 0) / len;
+  const sd = Math.sqrt(xs.reduce((t, x) => t + (x - m) ** 2, 0) / len);
+  const c = xs[len - 1];
+  const r = (x: number) => Math.round(x * 1000) / 1000;
+  return { c: r(c), up: r(c + mult * sd), dn: r(c - mult * sd) };
+}
+
+function to10(bars5: Bar[]): Bar[] {
+  const out = new Map<number, Bar>();
+  for (const b of [...bars5].sort((a, b) => a.t - b.t)) {
+    const k = Math.floor(b.t / 600) * 600;
+    const cur = out.get(k);
+    if (!cur) out.set(k, { ...b, t: k });
+    else out.set(k, { t: k, o: cur.o, h: Math.max(cur.h, b.h), l: Math.min(cur.l, b.l), c: b.c, v: (cur.v || 0) + (b.v || 0) });
+  }
+  return [...out.values()];
+}
+
+const SYMBOL: Record<string, string> = { btc: "PEPPERSTONE:BTCUSD", gold: "OANDA:XAUUSD" };
+const mem = new Map<string, { at: number; frame: NavFrame | null }>();
+const closes = new Map<string, { at: number; close: number; t: number; prev: number; o: number; h: number; l: number }>();
+// The 1-minute candle still forming (Claude, for her DNA: "top of the candle is where she entered").
+const lives = new Map<string, { at: number; t: number; h: number; l: number; c: number }>();
+
+async function frameFor(asset: string, res: "1" | "5" | "10" | "15" | "60", ttl: number): Promise<NavFrame | null> {
+  const key = `${asset}:${res}`;
+  const hit = mem.get(key);
+  if (hit && Date.now() - hit.at < ttl) return hit.frame;
+  try {
+    // TradingView will not serve 10-minute bars to the desk, so 10m bars are built from 5m bars
+    // (two 5m bars per 10m bar, aligned to :00/:10/:20..., same as her chart).
+    const get = async (sym: string) => (res === "10" ? to10((await chartRaw(sym, "5", 90)) as Bar[]) : ((await chartRaw(sym, res, 40)) as Bar[]));
+    let bars = await get(SYMBOL[asset]).catch(() => [] as Bar[]);
+    // Weekend: OANDA BTC is closed Fri 5 PM ET - Sun 5 PM ET; Kalshi BTC is not. Read Coinbase then.
+    const lastT = bars.length ? Math.max(...bars.map((b) => b.t)) : 0;
+    if (asset === "btc" && (bars.length < 8 || Date.now() / 1000 - lastT > (res === "60" ? 2 * 3600 : 20 * 60))) bars = await get("COINBASE:BTCUSD");
+    bars.sort((a, b) => a.t - b.t);
+    const frame = computeNav(bars);
+    // 1m: remember the last CLOSED 1-minute candle's close (the live candle is the last bar).
+    if ((res === "1" || res === "5") && bars.length >= 3) {
+      const k = bars[bars.length - 2];
+      closes.set(`${asset}:${res}`, { at: Date.now(), close: k.c, t: k.t, prev: bars[bars.length - 3].c, o: k.o, h: k.h, l: k.l });
+      const lb = bars[bars.length - 1];
+      if (res === "1" && lb) lives.set(asset, { at: Date.now(), t: lb.t, h: lb.h, l: lb.l, c: lb.c });
+    }
+    if (!frame) debug(key, `only ${bars.length} bars`);
+    mem.set(key, { at: Date.now(), frame });
+    return frame;
+  } catch (err) {
+    debug(key, String((err as Error)?.message || err));
+    return hit?.frame ?? null;
+  }
+}
+
+export async function navFor(asset: string): Promise<{ m1: NavFrame | null; m5: NavFrame | null; m10: NavFrame | null; m15: NavFrame | null; m60?: NavFrame | null; close1m: number | null; prev1m: number | null; close1mAt: number | null; close5m: number | null; prev5m: number | null; close5mAt: number | null; bar5m: { o: number; h: number; l: number; c: number } | null; live1m?: { t: number; h: number; l: number; c: number } | null } | null> {
+  if (!SYMBOL[asset]) return null;
+  // m60 (Love, Oct 2: "the hourly nav band holds up WAY more than the session bands") for the hourly book.
+  const [m1, m5, m10, m15, m60] = await Promise.all([frameFor(asset, "1", 8000), frameFor(asset, "5", 15000), frameFor(asset, "10", 20000), frameFor(asset, "15", 30000), frameFor(asset, "60", 60000)]);
+  const c = closes.get(`${asset}:1`);
+  const fresh = c && Date.now() - c.at < 90000;
+  const c5 = closes.get(`${asset}:5`);
+  const fresh5 = c5 && Date.now() - c5.at < 90000;
+  return {
+    m1, m5, m10, m15, m60,
+    close1m: fresh ? c.close : null, prev1m: fresh ? c.prev : null, close1mAt: fresh ? c.t : null,
+    close5m: fresh5 ? c5.close : null, prev5m: fresh5 ? c5.prev : null, close5mAt: fresh5 ? c5.t : null,
+    bar5m: fresh5 ? { o: c5.o, h: c5.h, l: c5.l, c: c5.close } : null,
+    live1m: (() => {
+      const lv = lives.get(asset);
+      return lv && Date.now() - lv.at < 30000 ? { t: lv.t, h: lv.h, l: lv.l, c: lv.c } : null;
+    })(),
+  };
+}

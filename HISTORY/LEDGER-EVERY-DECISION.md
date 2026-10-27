@@ -1,9 +1,49 @@
-# Every decision Love has made - rebuilt 2026-10-27T19:28:46.893985+00:00
+# Every decision Love has made - rebuilt 2026-10-27T20:27:00.886190+00:00
 
-1127 decisions with Love's words or card picks, out of 1743 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1135 decisions with Love's words or card picks, out of 1757 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-27T20:26:50.043260+00:00  ·  diary line 2221  ·  fix338
+- Love: “yes let's bring it down to 25c for the time being 💘not sure if the market is just slow and it's seeming like a much later entry than normal , but we can see on her next entries if it makes it any better”
+- fix338 IN HER CODE
+- Full entry: 2026-10-27T20:26:50.043260+00:00 THAW (fix338 GOLD PINK BREAK 25c, MAIN ONLY (PINK 10% wall: pink counts as broken once price is 25c through it, was 33c; rejection model, copy, twin and every other book keep 33c). Love Oct 27 1:26 PM PT: "yes let's bring it down to 25c for the time being 💘not sure if the market is just slow and it's seeming like a much later entry than normal , but we can see on her next entries if it makes it any better")
+
+## 2026-10-27T20:18:04.307485+00:00  ·  diary line 2219  ·  fix337
+- Love: “yes. find out what's choking her loop and fix it permanently please i do not want to do this every hour”
+- fix337 IN HER CODE
+- Full entry: 2026-10-27T20:18:04.307485+00:00 THAW (fix337 LOOP UN-CHOKE 3: scannerbooks.ts built a new Pacific-hour clock formatter for every row on every read (6 places); now one shared formatter - same hours, no book or wall touched. Love Oct 27 12:59 PM PT: "yes. find out what's choking her loop and fix it permanently please i do not want to do this every hour")
+
+## 2026-10-27T20:15:32.439414+00:00  ·  diary line 2217  ·  fix336  ·  books: main
+- Love: “i specifically said she is to take any set up that comes that fits her rules if she is not actively in a position on kalshi”
+- fix336 IN HER CODE
+- Full entry: 2026-10-27T20:15:32.439414+00:00 THAW (fix336 NO TRADE EXECUTED - FREE TO TRADE (main book recon-tog only): after main's paper call for the window closes with nothing filled/partial/resting on Kalshi and no order on the wire, her next setup that passes every rule books fresh (either side, as often as it comes); a fill locks the window. Love Oct 27 1:10 PM PT: "i specifically said she is to take any set up that comes that fits her rules if she is not actively in a position on kalshi" + 1:13 PM: "YES. ONE EXECUTED TRADE PER WINDOW. EXECUTED. EXECUTED. EXECUTED. EXECUTED. NO TRADE EXECUTED - FREEEE TO TRADE.")
+
+## 2026-10-27T20:12:09.277097Z  ·  diary line 2216
+- Love: “i never said that she couldn't enter into a trade if it fit the criteria. i quite literally said the opposite. i specifically said she is to take any set up that comes that fits her rules if she is not actively in a position on kalshi. last night. you asked me. i said i wanted that.”
+- Full entry: 2026-10-27T20:12:09.277097Z LOVE'S WORDS (recorded, not yet installed): Love Oct 27 1:10 PM PT: "i never said that she couldn't enter into a trade if it fit the criteria. i quite literally said the opposite. i specifically said she is to take any set up that comes that fits her rules if she is not actively in a position on kalshi. last night. you asked me. i said i wanted that." + 1:11 PM: "i never said the thing about the other side i have no fuckin clue where you got that from". Claude could not find last night's words in this log, the rulebook or the thread transcript - they were never written down.
+
+## 2026-10-27T20:10:03.490294+00:00  ·  diary line 2214  ·  fix335
+- Love: “yes. find out what's choking her loop and fix it permanently please i do not want to do this every hour”
+- fix335 IN HER CODE
+- Full entry: 2026-10-27T20:10:03.490294+00:00 THAW (fix335 LOOP UN-CHOKE 2: pivotBooksTick's paper-twin and no-wall twin sections scanned all 8,000 paper rows for every trade x lane on every tick (and built a new clock formatter per trade); now one index per tick - same rows, same results, no book or wall touched. Love Oct 27 12:59 PM PT: "yes. find out what's choking her loop and fix it permanently please i do not want to do this every hour")
+
+## 2026-10-27T20:06:19.838733Z  ·  diary line 2213
+- Love: “yes. turn her on.”
+- Full entry: 2026-10-27T20:06:19.838733Z GOLD 1 PM LIVE ON (config only, liveSkipHours.gold [4, 9, 13, 23] -> drop 13; every other hour/book unchanged): Love Oct 27 1:06 PM PT: "yes. turn her on." (to: 'say turn gold's 1 PM on')
+
+## 2026-10-27T20:02:38.678606+00:00  ·  diary line 2210  ·  fix301, fix334
+- Love: “yes. find out what's choking her loop and fix it permanently please i do not want to do this every hour”
+- fix301 IN HER CODE
+- fix334 IN HER CODE
+- Full entry: 2026-10-27T20:02:38.678606+00:00 THAW (fix334 LOOP UN-CHOKE: self-check record guard counts archived live-book-done records as kept, so fix301's trim (3.2 MB -> ~0.5 MB) stays; no book, wall or decision touched. Love Oct 27 12:59 PM PT: "yes. find out what's choking her loop and fix it permanently please i do not want to do this every hour")
+
+## 2026-10-27T19:54:53Z  ·  diary line 2209  ·  fix162, fix333
+- Love: “no keep main as is. i was asking why she didn't short AFTER it broke pink?”
+- fix162 IN HER CODE
+- fix333 in her code without its number (see her words in the code comments)
+- Full entry: [2026-10-27T19:54:53Z] DIAGNOSIS (no change): 12:45 PM gold window - main short 'Rejected down off Red zone' held by main's PINK 10%; after the dip price was at most 32c under pink 4061.34, gold break distance is 33c (fix162), so pink stayed unbroken. Love 12:54 PM PT: "no keep main as is. i was asking why she didn't short AFTER it broke pink?" - main unchanged (fix333 prepared, NOT installed).
 
 ## 2026-10-27T19:18:33.877398+00:00  ·  diary line 2206  ·  fix312, fix319, fix332  ·  books: main, no-pink copy
 - Love: “hun i justttttt want her to not take trades when pink and a session band are stacked at the same top/bottom 10% of the channel and NOTHING. ELSE. i just told you this minutes ago.”
@@ -159,7 +199,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 ## 2026-10-27T12:08:30.098058+00:00  ·  diary line 2157  ·  fix295, fix301, fix316  ·  books: main, rejection
 - Love: “you're gonna put this model back where she was before fix295 precisely nothing else”
 - fix295 taken back / replaced (see its entries)
-- fix301 taken back / replaced (see its entries)
+- fix301 IN HER CODE
 - fix316 taken back / replaced (see its entries)
 - Full entry: 2026-10-27T12:08:30.098058+00:00 THAW (fix316 RESTORE PRE-FIX295: bandlock/recon/engine taken back to Monday Oct 26 ~9:30 PM PT (before fix295) - fixes 295/296/297/298/299/300/302/306/307/308/309/310/311/312/315 undone (fix301/304/305 speed/lab only kept); config back to pre-295 (liveSkipHours gold [4,9,13] btc [8,18], gold 10 PM back to main); live lineup main (recon-tog) on BTC + rejection model (recon-rej) on gold, every size $1. Today's whole desk saved in data/SNAPSHOT-TODAY-2026-10-27-0457am to add fixes back on her word): Love Oct 27 4:51 AM PT: "you're gonna put this model back where she was before fix295 precisely nothing else" + 5:04 AM: "okay bring the whole desk back where it was , and keep those changes on file so we can do them again later ... bring her back where she was prior to fix 295, keep all of these on file and something we can add back in at a moments notice. put her live at the pre fix295 model now at $1 on the rejection model ... make sure my main book doesn't. move. an. ATOM." + 5:06 AM: "no put one on the main book and one on rejection , no preference. i need to make sure they are both the same now. never change a book without asking me again please hun."
 
@@ -295,7 +335,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 ## 2026-10-27T05:48:01.250057+00:00  ·  diary line 2114  ·  fix301
 - Love: “yessss pls ... do it”
 - Love: “make it the same kind of archive, one that i can pull up and have load if i want”
-- fix301 taken back / replaced (see its entries)
+- fix301 IN HER CODE
 - Full entry: 2026-10-27T05:48:01.250057+00:00 fix301 SPEED: live-book-done.json trimmed to records since 2026-10-24T07:00Z (this week); older records moved to data/live-book-done-archive.jsonl (+ full copy live-book-done.full-2026-10-27.json; tools/restore-live-book-done.py loads them back). Love Oct 26 10:45 PM PT: "yessss pls ... do it" + "make it the same kind of archive, one that i can pull up and have load if i want". No code change.
 
 ## 2026-10-27T05:43:00.215381+00:00  ·  diary line 2111  ·  fix295, fix300

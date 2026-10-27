@@ -1,0 +1,3437 @@
+import { Component, memo, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { Toaster, toast } from "sonner";
+import { RollDigits, useLiveCountdown, useRollingNumber, useRollingPrice } from "@/components/desk/rolling-price";
+import { AssetCard, AltCard } from "@/components/desk/asset-card";
+import { CashBook, type CashVenue } from "@/components/desk/cash";
+import { Audit } from "@/components/desk/audit";
+import { FillLog } from "@/components/desk/fill-log";
+import { Journal, Analytics, DayBook, Notes } from "@/components/desk/journal";
+import { pointsFromFills, pointsFromPrime, TapeBook } from "@/components/desk/kalshi-tape";
+import { HedgeBook } from "@/components/desk/hedge-book";
+import { LookPanel } from "@/components/desk/look-panel";
+import { Positions } from "@/components/desk/positions";
+import { ScaleBook } from "@/components/desk/scale";
+import { SitRep, explainExit, explainTake, whyTrade } from "@/components/desk/sitrep";
+import { SettingsDrawer } from "@/components/desk/settings-drawer";
+import { autoDecision } from "@/lib/desk/auto";
+import { lateWindow } from "@/lib/desk/setup";
+import { askDeskGrok, armLiveNow, askHelp, closeNow, exitLiveOrder, getAltBoards, getAudit, getBookMode, getComboRows, getDecidedRows, getDeskSnapshot, getExitLog, getFillLog, getFuelRows, getHalfRows, getHeldOrders, getKalshiCash, getLeanRows, getLiveSize, getLiveSpots, getLiveSwitch, setLiveSwitch, getShadow, getLotto, getTruth, getNight, getClaudeBacktest, getMonitor, getPrimeRecords, setFortyRule, getRules, setRule, getMirrorSheet, getOutside, getPolyLedger, getPrimeBook, getPrimeRows, getPrimeScore, getPrimeWatch, getScale75, getSetupBoard, getSymbolLab, getTrail, getWatch, halfLiveOrder, halfNow, pullBook, pushBook, resizeLiveOrder, setBookMode, setEntries, setLiveSize, setPinSale, setScale75, setTrailFloor, trimNow, type HeldOrder } from "@/lib/desk/fns";
+import { trailScale, exitForMultiple, firedBackwards, heldSide, markTrade, outcomeProfit, settleSide, sized, bugExit, smallExit, windowCloseMs, windowStillOpen } from "@/lib/desk/paper";
+import { countdown, money, multiple, pct, reachText, usd } from "@/lib/desk/format";
+import { goldHaltFill, goldHalted } from "@/lib/desk/hours";
+import { farBandProbe } from "@/lib/desk/probe";
+import { sessionStats, useDesk } from "@/lib/desk/store";
+import { LOOK_DEFAULT, loadLook, saveLook, type Look } from "@/lib/desk/look";
+import { overlayDesk } from "@/lib/desk/ticker";
+import type { AssetId, AssetSnapshot, DeskSnapshot, Setup } from "@/lib/desk/types";
+import { cn } from "@/lib/cn";
+
+function ticketDollars(row: { result: string; multiple?: number; profit?: number | null }): number | null {
+  if (row.result !== "open" && row.profit != null && Number.isFinite(row.profit)) return row.profit;
+  if (row.result === "no") return -25;
+  if (row.multiple && row.multiple > 1) return Math.round(25 * (row.multiple - 1) * 100) / 100;
+  return null;
+}
+
+function bookedDollars(row: { result: string; multiple?: number; profit?: number | null }): number | null {
+  if (row.result === "open") return null;
+  return ticketDollars(row);
+}
+
+function PaperShelf({
+  title,
+  blurb,
+  rows,
+}: {
+  title: string;
+  blurb: string;
+  rows: { id: string; asset: string; side: string; pattern: string; result: string; multiple?: number; profit?: number | null }[];
+}) {
+  const yes = rows.filter((row) => row.result === "yes").length;
+  const no = rows.filter((row) => row.result === "no").length;
+  const dollars = rows.reduce((sum, row) => sum + (bookedDollars(row) ?? 0), 0);
+  return (
+    <section className="mt-4 rounded-md border border-white bg-black px-4 py-4 text-white">
+      <div className="flex items-end justify-between gap-3">
+        <p className="text-[10px] tracking-[0.22em] text-white/70">{title}</p>
+        <p className="text-right font-mono text-xs">
+          <span className={dollars >= 0 ? "text-up" : "text-down"}>{money(dollars)}</span>
+          <span className="text-white/40"> · </span>
+          <span className="text-up">{yes} yes</span>
+          <span className="text-white/40"> / </span>
+          <span className="text-down">{no} no</span>
+        </p>
+      </div>
+      <p className="mt-2 text-xs leading-snug text-white/70">{blurb}</p>
+      {rows.length === 0 ? (
+        <p className="mt-4 text-sm text-white/70">Nothing yet. The next window will show here.</p>
+      ) : (
+        <ul className="mt-3 space-y-2">
+          {rows.map((row) => {
+            const dollars = ticketDollars(row);
+            return (
+              <li key={row.id} className="flex items-start justify-between gap-3 rounded-md border border-white bg-black px-4 py-2.5">
+                <div className="min-w-0">
+                  <p className="text-sm text-white">
+                    {row.asset.toUpperCase()} {row.side.toUpperCase()}
+                    <span className="ml-2 text-xs uppercase tracking-wider text-white/70">
+                      {row.multiple && row.multiple > 1 ? `${row.multiple.toFixed(2)}x · ` : ""}
+                      {row.result === "yes" ? "yes" : row.result === "no" ? "no" : "open"}
+                    </span>
+                  </p>
+                  <p className="mt-1 text-xs text-white/60">{row.pattern}</p>
+                </div>
+                <div className="text-right">
+                  <p className={`font-mono text-sm tabular-nums ${dollars == null ? "text-white/50" : dollars >= 0 ? "text-up" : "text-down"}`}>
+                    {dollars == null ? "—" : money(dollars)}
+                  </p>
+                  {row.result === "open" && dollars != null ? <p className="font-mono text-[10px] text-white/50">if yes</p> : null}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+function ComboBook({
+  rows,
+}: {
+  rows: { id: string; at: string; asset: string; side: string; pattern: string; route: string; dollars: number; result: string }[];
+}) {
+  const yes = rows.filter((row) => row.result === "yes").length;
+  const no = rows.filter((row) => row.result === "no").length;
+  return (
+    <section className="rounded-md border border-white bg-black px-4 py-4 text-white">
+      <div className="flex items-end justify-between gap-3">
+        <p className="text-[10px] tracking-[0.22em] text-white/70">PRIME + PAPER</p>
+        <p className="text-right font-mono text-xs">
+          <span className="text-up">{yes} yes</span>
+          <span className="text-white/40"> / </span>
+          <span className="text-down">{no} no</span>
+        </p>
+      </div>
+      <p className="mt-2 text-xs leading-snug text-white/70">
+        The two live routes. Prime stays on its book. The paper book sends Bitcoin and gold only, at $10, and only one side at a time. Nothing else can send.
+      </p>
+      {rows.length === 0 ? (
+        <p className="mt-4 text-sm text-white/70">Nothing sent on the combined book yet. The next one will show here.</p>
+      ) : (
+        <ul className="mt-3 space-y-2">
+          {rows.map((row) => (
+            <li key={row.id} className="flex items-start justify-between gap-3 rounded-md border border-white bg-black px-4 py-2.5">
+              <div className="min-w-0">
+                <p className="text-sm text-white">
+                  {row.asset.toUpperCase()} {row.side.toUpperCase()}
+                  <span className="ml-2 text-xs uppercase tracking-wider text-white/70">
+                    {row.route} · ${row.dollars} · {row.result}
+                  </span>
+                </p>
+                <p className="mt-1 text-xs text-white/60">{row.pattern}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+function useHydrated() {
+  const [h, setH] = useState(false);
+  useEffect(() => setH(true), []);
+  return h;
+}
+
+function useForeground() {
+  const [on, setOn] = useState(true);
+  useEffect(() => {
+    const sync = () => setOn(document.visibilityState === "visible");
+    sync();
+    document.addEventListener("visibilitychange", sync);
+    return () => document.removeEventListener("visibilitychange", sync);
+  }, []);
+  return on;
+}
+
+function useWakeLock(active: boolean) {
+  useEffect(() => {
+    if (!active || typeof navigator === "undefined" || !("wakeLock" in navigator)) return;
+    let lock: WakeLockSentinel | null = null;
+    let cancelled = false;
+
+    const request = async () => {
+      try {
+        lock = await navigator.wakeLock.request("screen");
+      } catch {
+        // iOS may deny unless the desk is installed / foregrounded
+      }
+    };
+
+    void request();
+    const onVis = () => {
+      if (!cancelled && document.visibilityState === "visible") void request();
+    };
+    document.addEventListener("visibilitychange", onVis);
+    return () => {
+      cancelled = true;
+      document.removeEventListener("visibilitychange", onVis);
+      void lock?.release();
+    };
+  }, [active]);
+}
+
+function PnlFigure({ value, ready }: { value: number; ready: boolean }) {
+  const shown = useRollingNumber(value);
+  return (
+    <p className={`mt-1 font-mono text-3xl tabular-nums leading-none ${shown >= 0 ? "text-up" : "text-down"}`}>
+      {ready ? money(shown) : "—"}
+    </p>
+  );
+}
+
+const StillJournal = memo(Journal);
+
+const salePins = new Map<string, number>();
+const SALE_PCTS = [25, 38, 50, 75, 100];
+
+function savedSale(ticker: string): number | null {
+  const held = salePins.get(ticker);
+  if (held != null) return held;
+  try {
+    const n = Number(localStorage.getItem(`aurelius-sale-pct:${ticker}`));
+    if (!Number.isFinite(n) || n < 5) return null;
+    salePins.set(ticker, n);
+    return n;
+  } catch {
+    return null;
+  }
+}
+
+function keepSale(ticker: string, n: number) {
+  salePins.set(ticker, n);
+  try {
+    localStorage.setItem(`aurelius-sale-pct:${ticker}`, String(n));
+  } catch {
+    // the map still holds it for this session
+  }
+}
+
+function patternBackwards(side: string, pattern: string): boolean {
+  const above = /\+[0-9]/.test(pattern);
+  if (side === "up" && (pattern.startsWith("Open -") || pattern.startsWith("Open −") || pattern.includes("through −") || pattern.includes("through -"))) return true;
+  if (side === "down" && (above || pattern === "At VWAP")) return true;
+  return false;
+}
+
+function LiveOrder({
+  row,
+  spot,
+  mark,
+  closeTime,
+  secondsLeft,
+  why,
+  onRefresh,
+}: {
+  row: HeldOrder;
+  spot: number;
+  mark: number;
+  closeTime?: string;
+  secondsLeft: number;
+  why: string;
+  onRefresh: () => void;
+}) {
+  const step = row.name === "BTC" ? 1 : 0.01;
+  const price = useRollingPrice(spot);
+  const strike = useRollingPrice(row.target ?? 0);
+  const left = useLiveCountdown(closeTime, secondsLeft);
+  const maxCash = Math.round(row.contracts * 100) / 100;
+  const mult = row.cost > 0 ? maxCash / row.cost : 0;
+  const cash = mark > 0 ? mark : row.value > 0 ? row.value : 0;
+  const halfCash = cash > 0 ? cash / 2 : 0;
+  const cashRoll = useRollingPrice(cash);
+  const halfRoll = useRollingPrice(halfCash);
+  const livePct = row.cost > 0 ? ((cash - row.cost) / row.cost) * 100 : 0;
+  const pctRoll = useRollingNumber(livePct);
+  const tone = pctRoll > 0.5 ? "text-up" : pctRoll < -0.5 ? "text-down" : "text-white";
+  const maxPct = row.cost > 0 && maxCash > row.cost ? Math.round(((maxCash - row.cost) / row.cost) * 1000) / 10 : 100;
+  const cap = Math.max(5, maxPct);
+  // Default slider = her per-multiple take-profit table (33 / 44 / 50 / 60 / max-15).
+  const entryPx = row.contracts > 0 ? row.cost / row.contracts : 0;
+  const tableArm = trailScale(entryPx).arm;
+  const gatePct = tableArm > 0 ? Math.min(cap, tableArm) : Math.max(5, Math.round((cap - 15) * 10) / 10);
+  const remembered = savedSale(row.ticker);
+  const [pin, setPin] = useState<number | null>(remembered != null && remembered <= cap + 0.2 ? remembered : null);
+  const [drag, setDrag] = useState<number | null>(null);
+  const [showWhy, setShowWhy] = useState(false);
+  const cashAt = (pct: number) => Math.round(Math.min(maxCash, row.cost * (1 + pct / 100)) * 100) / 100;
+  const arm = (pct: number) => {
+    const n = Math.max(5, Math.min(cap, Math.round(pct * 10) / 10));
+    setPin(n);
+    setDrag(null);
+    keepSale(row.ticker, n);
+    void setPinSale({ data: { ticker: row.ticker, ask: cashAt(n), pct: n } });
+  };
+  const armCash = (dollars: number) => {
+    if (!(row.cost > 0)) return;
+    const ask = Math.round(Math.min(maxCash, Math.max(row.cost, dollars)) * 100) / 100;
+    arm(((ask - row.cost) / row.cost) * 100);
+  };
+  // Claude (4:30 AM): the slider no longer arms itself on every new order. An auto-set slider
+  // overrode her take profit (no 1% trail, no gates, no "reason" rules). Now the slider only acts
+  // when Love moves it; otherwise the desk's take profit + trail + gates run the exit.
+  const pill =
+    "inline-flex h-7 shrink-0 items-center justify-center rounded-md border border-white bg-black px-2 font-sans text-[10px] leading-none tracking-[0.06em] text-white";
+  const pctPill =
+    "inline-flex h-5 min-w-11 shrink-0 items-center justify-center rounded-md border border-white bg-black px-2.5 font-sans text-[10px] leading-none tracking-[0.04em] text-white";
+  return (
+    <li className="mt-2 border-t-[0.5px] border-white pt-1 first:mt-0 first:border-t-0 first:pt-0">
+      <div className="flex items-baseline justify-between gap-3">
+        <p className="min-w-0 font-sans text-[15px] tracking-wide text-white">
+          {row.name}
+          <span className="px-1.5 text-white/40">•</span>
+          {row.side.toUpperCase()}
+          <span className="px-1.5 text-white/40">•</span>
+          <span className="tabular-nums">{countdown(left)}</span>
+        </p>
+        <p className="shrink-0 text-right font-sans text-[12px] tabular-nums leading-none text-white">
+          {row.stale ? <span className="mr-2 rounded-full border border-[#e7c56a] px-1.5 py-0.5 text-[9px] tracking-[0.18em] text-[#e7c56a]">STALE QUOTE</span> : null}
+          MAX ${usd(maxCash, 2)}
+          <span className="px-2 text-white/40">•</span>
+          {mult > 0 ? `${mult.toFixed(2)}x` : "—"}
+        </p>
+      </div>
+      <p className="mt-1.5 text-right font-sans text-[22px] font-medium leading-none tabular-nums">
+        <span className="text-white">{livePct > 0.5 ? "+" : livePct < -0.5 ? "−" : ""}</span>
+        <RollDigits className={tone} text={`${Math.abs(livePct).toFixed(1)}%`} />
+        <span className="mx-4 text-white/30">•</span>
+        <span className="text-white">$</span>
+        <RollDigits className={tone} text={cash.toFixed(2)} />
+      </p>
+      <p className="mt-1 font-sans text-[22px] font-medium tabular-nums leading-none text-white">
+        {spot > 0 ? <>$<RollDigits text={usd(spot, 2)} /></> : "—"}
+      </p>
+      <p className="mt-1 font-sans text-[11px] tabular-nums text-white/80">
+        Target {row.target != null && strike > 0 ? `$${usd(strike, 2)}` : "—"}
+      </p>
+      <input
+        type="range"
+        min={Math.round(row.cost * 100) / 100}
+        max={maxCash}
+        step={0.01}
+        value={drag ?? (pin != null ? cashAt(pin) : cashAt(Math.min(gatePct, cap)))}
+        onInput={(e) => setDrag(Number(e.currentTarget.value))}
+        onChange={(e) => setDrag(Number(e.currentTarget.value))}
+        onPointerUp={(e) => armCash(drag ?? Number(e.currentTarget.value))}
+        onKeyUp={() => {
+          if (drag != null) armCash(drag);
+        }}
+        aria-label="Sell at this Kalshi price"
+        className="glass-range mt-1.5 w-full cursor-pointer"
+        style={{ touchAction: "none" }}
+      />
+      <div className="mt-1.5 flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          className={pill}
+          onClick={() => {
+            void halfNow({ data: { ticker: row.ticker } }).then((res) => {
+              toast(res ? `Half banked $${res.payout.toFixed(2)}.` : "Half didn't fill.");
+              onRefresh();
+            });
+          }}
+        >
+          HALF{halfRoll > 0 ? ` $${halfRoll >= 20 ? halfRoll.toFixed(0) : halfRoll.toFixed(1)}` : ""}
+        </button>
+        <button
+          type="button"
+          className={pill}
+          onClick={() => {
+            void closeNow({ data: { ticker: row.ticker } }).then((res) => {
+              toast(res.line);
+              onRefresh();
+            }).catch(() => toast("Close didn't send. Press it again."));
+          }}
+        >
+          CLOSE{cashRoll > 0 ? ` $${cashRoll >= 20 ? cashRoll.toFixed(0) : cashRoll.toFixed(1)}` : ""}
+        </button>
+        <label className={pill}>
+          SIZE
+          <input
+            inputMode="decimal"
+            defaultValue={String(Math.max(1, Math.round(row.cost)))}
+            onBlur={(e) => {
+              const n = Math.max(1, Math.min(100, Math.round(Number(e.target.value) || row.cost)));
+              e.target.value = String(n);
+              if (n >= row.cost - 0.5) return;
+              void trimNow({ data: { ticker: row.ticker, dollars: n } }).then((res) => {
+                toast(res ? `Size left at $${res.left.toFixed(0)}.` : "Size didn't change.");
+                onRefresh();
+              });
+            }}
+            className="w-5 bg-transparent text-center font-sans text-[10px] text-white outline-none"
+          />
+        </label>
+        <span className="ml-auto font-sans text-[10px] tracking-[0.08em] text-white/70">
+          {drag != null
+            ? `SELL AT $${drag.toFixed(2)} · +${row.cost > 0 ? (((drag - row.cost) / row.cost) * 100).toFixed(1) : "0"}%`
+            : pin != null
+              ? `SELL AT $${cashAt(pin).toFixed(2)} · +${Math.round(pin)}%`
+              : gatePct <= cap
+                ? `TAKE PROFIT $${cashAt(gatePct).toFixed(2)} · +${Math.round(gatePct)}% · RIDES 1% TRAIL`
+                : "HOLD TO THE BELL"}
+        </span>
+      </div>
+      <div className="mt-1.5 flex flex-wrap items-center justify-end gap-1.5">
+        <button type="button" onClick={() => setShowWhy((on) => !on)} className={cn(pctPill, showWhy ? "bg-white/10" : "")}>
+          WHY
+        </button>
+        {SALE_PCTS.map((pct) => (
+          <button
+            key={pct}
+            type="button"
+            disabled={pct > cap}
+            onClick={() => arm(pct)}
+            className={cn(pctPill, pin === pct ? "bg-white text-black" : "", pct > cap ? "opacity-30" : "")}
+          >
+            {pct}%
+          </button>
+        ))}
+      </div>
+      {showWhy ? <p className="mt-1.5 text-[12px] leading-snug text-white/80">{why}</p> : null}
+    </li>
+  );
+}
+
+function DockOrder({ row, onClose }: { row: HeldOrder; onClose: () => void }) {
+  const cash = row.value > 0 ? row.value : row.cost;
+  const roll = useRollingPrice(cash);
+  const livePct = row.cost > 0 ? ((cash - row.cost) / row.cost) * 100 : 0;
+  const tone = livePct > 0.5 ? "text-up" : livePct < -0.5 ? "text-down" : "text-white";
+  return (
+    <div className="flex items-center gap-2 border-t-[0.5px] border-white py-2 first:border-t-0">
+      <p className="min-w-0 flex-1 truncate font-sans text-[12px] leading-none tabular-nums text-white">
+        {row.name}
+        <span className="px-1 text-white/40">•</span>
+        {row.side.toUpperCase()}
+        <span className="px-1 text-white/40">•</span>
+        <span className={tone}>
+          {livePct > 0.5 ? "+" : livePct < -0.5 ? "−" : ""}
+          {Math.abs(Math.round(livePct))}%
+        </span>
+        <span className="px-1 text-white/40">•</span>
+        <span className={tone}>${roll >= 20 ? roll.toFixed(0) : roll.toFixed(2)}</span>
+      </p>
+      <button type="button" className="h-11 min-w-[92px] shrink-0 rounded-md border border-white bg-black px-3 text-[12px] tracking-[0.12em] text-white" onClick={onClose}>
+        CLOSE
+      </button>
+    </div>
+  );
+}
+
+function WatchingCards({ note }: { note?: Record<string, string> }) {
+  return (
+    <section className="rounded-md border border-white bg-black px-4 py-4 text-white">
+      <p className="text-[10px] tracking-[0.22em] text-white/70">WATCHING</p>
+      <p className="mt-2 text-xs leading-snug text-white/70">Prime book only. No chart. This is what it sees right now.</p>
+      <ul className="mt-3 space-y-2">
+        {(["btc", "gold", "silver"] as const).map((id) => (
+          <li key={id} className="rounded-md border border-white bg-black px-4 py-2.5">
+            <p className="text-sm text-white">{id.toUpperCase()}</p>
+            <p className="mt-1 whitespace-pre-line text-xs leading-snug text-white/80">{note?.[id] || "looking"}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function DeskTab({
+  active,
+  label,
+  onClick,
+}: {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      data-active={active ? "true" : "false"}
+      className={cn(
+        "desk-tab-glow shrink-0 rounded-[6px] border-[0.5px] px-2.5 py-1 text-center text-[10px] leading-none tracking-[0.12em]",
+        active ? "text-fg" : "text-muted",
+      )}
+    >
+      {label}
+    </button>
+  );
+}
+
+class QuietChart extends Component<{ children: ReactNode }, { bad: boolean }> {
+  state = { bad: false };
+  static getDerivedStateFromError() {
+    return { bad: true };
+  }
+  render() {
+    if (this.state.bad) return <p className="text-sm text-subtle">The chart is off so the book can stay open.</p>;
+    return this.props.children;
+  }
+}
+
+function MirrorSheet({ rows }: { rows: { id: string; asset: string; side: string; pattern: string; kind: string; result: string }[] }) {
+  const names = ["btc", "gold", "silver", "platinum", "palladium"] as const;
+  const label: Record<string, string> = {
+    btc: "BITCOIN",
+    gold: "GOLD",
+    silver: "SILVER",
+    platinum: "PLATINUM",
+    palladium: "PALLADIUM",
+  };
+  const groups = names.map((id) => {
+    const mine = rows.filter((row) => row.asset === id && (row.result === "yes" || row.result === "no"));
+    const tally = new Map<string, { pattern: string; primeYes: number; primeNo: number; otherYes: number; otherNo: number }>();
+    for (const row of mine) {
+      const cur = tally.get(row.pattern) || { pattern: row.pattern, primeYes: 0, primeNo: 0, otherYes: 0, otherNo: 0 };
+      const other = row.kind === "other-way" || row.kind === "mirror";
+      if (row.result === "yes") other ? (cur.otherYes += 1) : (cur.primeYes += 1);
+      else other ? (cur.otherNo += 1) : (cur.primeNo += 1);
+      tally.set(row.pattern, cur);
+    }
+    return { id, open: rows.filter((row) => row.asset === id && row.result === "open").length, scores: [...tally.values()] };
+  }).filter((group) => group.open || group.scores.length);
+  return (
+    <section className="rounded-md border border-white bg-black px-4 py-4 text-white">
+      <p className="text-[10px] tracking-[0.22em] text-white/70">MIRROR SHEET</p>
+      <p className="mt-2 text-xs leading-snug text-white/70">
+        Score only. Not a book. Nothing here can send an order. Each prime setup is written down, and so is the other direction, on bitcoin, gold, and silver. Platinum and palladium only score a band reject.
+      </p>
+      {groups.length === 0 ? (
+        <p className="mt-4 text-sm text-white/70">Nothing scored yet.</p>
+      ) : (
+        <ul className="mt-4 space-y-4">
+          {groups.map((group) => (
+            <li key={group.id}>
+              <p className="text-[10px] tracking-[0.18em] text-white/70">{label[group.id]}{group.open ? ` · ${group.open} open` : ""}</p>
+              <ul className="mt-1 space-y-2">
+                {group.scores.map((row) => (
+                  <li key={row.pattern} className="border-t border-white/20 pt-2">
+                    <p className="text-sm text-white">{row.pattern}</p>
+                    <p className="mt-1 font-mono text-[11px] text-white/80">
+                      <span className="text-white/50">her way </span>
+                      <span className="text-up">{row.primeYes}</span>
+                      <span className="text-white/40">-</span>
+                      <span className="text-down">{row.primeNo}</span>
+                      <span className="text-white/50"> · other way </span>
+                      <span className="text-up">{row.otherYes}</span>
+                      <span className="text-white/40">-</span>
+                      <span className="text-down">{row.otherNo}</span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+function BookRoll({
+  rows,
+}: {
+  rows: { asset: string; side: string; setup: string; yes: number; no: number; net: number }[];
+}) {
+  const [which, setWhich] = useState<"all" | "prime" | "paper">("all");
+  const [sort, setSort] = useState<"paying" | "hitting" | "success">("hitting");
+  const grouped = useMemo(() => {
+    const prime = rows.filter((row) => row.yes >= 2 && row.yes > row.no);
+    const primeKeys = new Set(prime.map((row) => `${row.asset}|${row.side}|${row.setup}`));
+    const paper = rows.filter((row) => !primeKeys.has(`${row.asset}|${row.side}|${row.setup}`));
+    return { all: rows, prime, paper };
+  }, [rows]);
+  const shown = useMemo(() => {
+    const list = grouped[which];
+    const hit = (row: { yes: number; no: number }) => {
+      const n = row.yes + row.no;
+      return n ? row.yes / n : 0;
+    };
+    return [...list].sort((a, b) => {
+      if (sort === "paying") return b.net - a.net || hit(b) - hit(a);
+      if (sort === "hitting") return hit(b) - hit(a) || b.yes - a.yes;
+      return b.yes - b.no - (a.yes - a.no) || hit(b) - hit(a);
+    });
+  }, [grouped, which, sort]);
+  const totals = useMemo(() => {
+    const list = grouped[which];
+    const yes = list.reduce((sum, row) => sum + row.yes, 0);
+    const no = list.reduce((sum, row) => sum + row.no, 0);
+    return { yes, no, hit: yes + no ? Math.round((100 * yes) / (yes + no)) : 0 };
+  }, [grouped, which]);
+  const pill = (on: boolean) => cn("desk-pill h-6 px-2", on ? "text-fg" : "text-white/45");
+  return (
+    <section className="px-3 pb-8">
+      <div className="flex flex-wrap gap-1">
+        <button type="button" className={pill(which === "all")} onClick={() => setWhich("all")}>ALL</button>
+        <button type="button" className={pill(which === "prime")} onClick={() => setWhich("prime")}>PRIME</button>
+        <button type="button" className={pill(which === "paper")} onClick={() => setWhich("paper")}>PAPER</button>
+      </div>
+      <div className="mt-2 flex flex-wrap gap-1">
+        <button type="button" className={pill(sort === "paying")} onClick={() => setSort("paying")}>HIGHEST PAYING</button>
+        <button type="button" className={pill(sort === "hitting")} onClick={() => setSort("hitting")}>HIGHEST HITTING</button>
+        <button type="button" className={pill(sort === "success")} onClick={() => setSort("success")}>MOST SUCCESSFUL</button>
+      </div>
+      <p className="mt-3 text-[12px] text-white/60">
+        {shown.length} setups · {totals.yes}-{totals.no} · {totals.hit}%
+        {" · "}
+        <a className="underline" href="/aurelius-source.zip" download="aurelius-source.zip">app source</a>
+      </p>
+      <div className="mt-3">
+        <table className="w-full text-left text-[12px]">
+          <thead>
+            <tr className="text-[10px] tracking-[0.14em] text-white/45">
+              <th className="pb-2 pr-2 font-medium">SETUP</th>
+              <th className="pb-2 pr-2 text-right font-medium">YES-NO</th>
+              <th className="pb-2 pr-2 text-right font-medium">HIT</th>
+              <th className="pb-2 text-right font-medium">$</th>
+            </tr>
+          </thead>
+          <tbody>
+            {shown.map((row) => {
+              const n = row.yes + row.no;
+              const rate = n ? Math.round((100 * row.yes) / n) : 0;
+              return (
+                <tr key={`${row.asset}-${row.side}-${row.setup}`} className="border-t border-white/10">
+                  <td className="max-w-[14rem] py-2 pr-2">
+                    <p className="truncate">{row.setup}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-white/40">{row.asset} {row.side}</p>
+                  </td>
+                  <td className="py-2 pr-2 text-right font-mono tabular-nums">{row.yes}-{row.no}</td>
+                  <td className="py-2 pr-2 text-right font-mono tabular-nums">{rate}%</td>
+                  <td className={`py-2 text-right font-mono tabular-nums ${row.net < 0 ? "text-down" : "text-up"}`}>{row.net.toFixed(2)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+function spanLine(rows: { at: string; win: boolean }[], hours: number) {
+  const ms = hours ? hours * 3600e3 : 0;
+  let hit = 0;
+  let lost = 0;
+  for (const row of rows) {
+    if (ms) {
+      const t = Date.parse(row.at);
+      if (!Number.isFinite(t) || Date.now() - t > ms) continue;
+    }
+    if (row.win) hit += 1;
+    else lost += 1;
+  }
+  const n = hit + lost;
+  return n ? `${Math.round((hit / n) * 100)}%  ${hit}-${lost}` : "—";
+}
+
+function ModeSwitch({
+  live,
+  paper,
+  prime,
+  onSubmit,
+}: {
+  live: "paper" | "prime" | "both";
+  paper: { at: string; kind: string; venue: string; profit: number | null; ticker?: string; id?: string }[];
+  prime: { at: string; result: string; ticker?: string; id: string }[];
+  onSubmit: (only: "paper" | "prime" | "both") => void;
+}) {
+  const [pick, setPick] = useState<"paper" | "prime" | "both">(live);
+  useEffect(() => setPick(live), [live]);
+  const rates = useMemo(() => {
+    const paperBook = new Map<string, { at: string; win: boolean }>();
+    for (const row of paper) {
+      if (row.kind !== "banked" || row.venue !== "paper" || row.profit == null) continue;
+      const key = row.ticker || row.id || row.at;
+      const prev = paperBook.get(key);
+      if (!prev || row.at > prev.at) paperBook.set(key, { at: row.at, win: row.profit > 0 });
+    }
+    const primeBook = prime
+      .filter((row) => row.result === "yes" || row.result === "no")
+      .map((row) => ({ key: row.ticker || row.id, at: row.at, win: row.result === "yes" }));
+    const both = new Map<string, { at: string; win: boolean }>(paperBook);
+    for (const row of primeBook) {
+      if (!both.has(row.key)) both.set(row.key, { at: row.at, win: row.win });
+    }
+    const pack = (rows: { at: string; win: boolean }[]) => ({
+      h12: spanLine(rows, 12),
+      h24: spanLine(rows, 24),
+      all: spanLine(rows, 0),
+    });
+    return {
+      paper: pack([...paperBook.values()]),
+      prime: pack(primeBook),
+      both: pack([...both.values()]),
+    };
+  }, [paper, prime]);
+  const lines = [
+    ["PAPER", rates.paper],
+    ["PRIME", rates.prime],
+    ["BOTH", rates.both],
+  ] as const;
+  return (
+    <section className="flex flex-col gap-4">
+      <p className="text-[10px] tracking-[0.18em] text-subtle">TAP A BOOK. SUBMIT LOCKS IT.</p>
+      <div className="flex gap-2">
+        {(["paper", "prime", "both"] as const).map((key) => (
+          <button
+            key={key}
+            type="button"
+            onClick={() => setPick(key)}
+            className={cn(
+              "h-8 min-w-16 rounded-[3px] border-[0.5px] border-[#4a1020] px-3 text-[10px] tracking-[0.14em]",
+              pick === key
+                ? "translate-y-px bg-black text-fg shadow-[inset_0_2px_6px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.14)]"
+                : "bg-transparent text-muted shadow-[0_1px_0_rgba(255,255,255,0.2)]",
+            )}
+          >
+            {key === "both" ? "BOTH" : key.toUpperCase()}
+          </button>
+        ))}
+      </div>
+      <button
+        type="button"
+        onClick={() => onSubmit(pick)}
+        className="h-8 w-fit rounded-[3px] border-[0.5px] border-white/70 px-4 text-[10px] tracking-[0.16em] text-fg"
+      >
+        SUBMIT
+      </button>
+      <p className="text-sm text-muted">{pick === live ? `Live on ${live}.` : `${live} is live. Submit to switch to ${pick}.`}</p>
+      <div className="grid grid-cols-4 gap-y-2 font-mono text-[11px] tabular-nums text-fg">
+        <span />
+        <span className="text-right text-[10px] tracking-[0.14em] text-subtle">12H</span>
+        <span className="text-right text-[10px] tracking-[0.14em] text-subtle">24H</span>
+        <span className="text-right text-[10px] tracking-[0.14em] text-subtle">ALL</span>
+        {lines.map(([name, row]) => (
+          <span key={name} className="contents">
+            <span className="text-[10px] tracking-[0.14em] text-subtle">{name}</span>
+            <span className="text-right">{row.h12}</span>
+            <span className="text-right">{row.h24}</span>
+            <span className="text-right">{row.all}</span>
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function DeskApp() {
+  const [bookTab, setBookTab] = useState<"mode" | "shift" | "paper" | "prime" | "lead" | "open" | "watch" | "lean" | "fuel" | "symbols" | "mirror" | "markets" | "kalshi" | "poly" | "cash" | "stats" | "scale" | "hedge" | "log" | "audit" | "look" | "outside" | "notes" | "pnl" | "day" | "alerts" | "sitrep" | "books">("kalshi");
+  const [span, setSpan] = useState<"12" | "24" | "all">("24");
+  const [deskNote, setDeskNote] = useState("");
+  const [cashVenue, setCashVenue] = useState<CashVenue>("kalshi");
+  const [look, setLook] = useState<Look>(LOOK_DEFAULT);
+  const hydrated = useHydrated();
+  useEffect(() => setLook(loadLook()), []);
+  useEffect(() => {
+    try {
+      sessionStorage.removeItem("aurelius-stall-reload");
+    } catch {
+      // a private browser can skip this
+    }
+  }, []);
+  const foreground = useForeground();
+  const settings = useDesk((s) => s.settings);
+  const setSettings = useDesk((s) => s.setSettings);
+  const trades = useDesk((s) => s.trades);
+  const grokBySetup = useDesk((s) => s.grokBySetup);
+  const acted = useDesk((s) => s.acted);
+  const rememberGrok = useDesk((s) => s.rememberGrok);
+  const openPaper = useDesk((s) => s.openPaper);
+  const patchTrade = useDesk((s) => s.patchTrade);
+  const closeTrade = useDesk((s) => s.closeTrade);
+  const adoptBook = useDesk((s) => s.adoptBook);
+
+  useWakeLock(hydrated && settings.autoPaper && foreground);
+
+  const settingsRef = useRef(settings);
+  settingsRef.current = settings;
+
+  const q = useQuery({
+    queryKey: ["desk"],
+    queryFn: () => getDeskSnapshot({ data: { settings: settingsRef.current } }),
+    refetchInterval: foreground ? (bookTab === "open" || bookTab === "kalshi" || bookTab === "prime" ? 4000 : 12000) : 20000,
+    refetchOnWindowFocus: false,
+    staleTime: 3500,
+    placeholderData: (prev) => prev,
+  });
+
+  const bookMode = useQuery({
+    queryKey: ["book-mode"],
+    queryFn: () => getBookMode(),
+    refetchInterval: foreground ? 8000 : false,
+  });
+
+  const book = useQuery({
+    queryKey: ["book"],
+    queryFn: () => pullBook(),
+    refetchInterval: 12000,
+    refetchOnWindowFocus: false,
+    staleTime: 4000,
+  });
+
+  useEffect(() => {
+    if (!hydrated || !book.data) return;
+    adoptBook(book.data);
+  }, [book.data, hydrated, adoptBook]);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    const timer = window.setTimeout(() => {
+      void pushBook({ data: { trades, settings } });
+    }, 400);
+    return () => window.clearTimeout(timer);
+  }, [trades, settings, hydrated]);
+
+  const sizeTouched = useRef(false);
+  useEffect(() => {
+    if (!hydrated) return;
+    void getLiveSize().then((row) => {
+      if (sizeTouched.current || !(row.dollars >= 1)) return;
+      setSettings({ liveStake: row.dollars });
+    });
+  }, [hydrated, setSettings]);
+
+  const spots = useQuery({
+    queryKey: ["spots"],
+    queryFn: () => getLiveSpots(),
+    refetchInterval: foreground ? 8000 : 12000,
+    refetchOnWindowFocus: false,
+    staleTime: 400,
+  });
+  const alts = useQuery({
+    queryKey: ["alt-boards"],
+    queryFn: () => getAltBoards(),
+    enabled: hydrated && bookTab === "markets",
+    refetchInterval: foreground ? 20000 : false,
+  });
+  const fillLog = useQuery({
+    queryKey: ["fill-log"],
+    queryFn: () => getFillLog(),
+    enabled: hydrated,
+    refetchInterval: foreground ? 20000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const exitLog = useQuery({
+    queryKey: ["exit-log"],
+    queryFn: () => getExitLog(),
+    enabled: hydrated,
+    refetchInterval: foreground ? 20000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const primeScore = useQuery({
+    queryKey: ["prime-score"],
+    queryFn: () => getPrimeScore(),
+    enabled: hydrated && (bookTab === "paper" || bookTab === "prime" || bookTab === "lead" || bookTab === "open"),
+    refetchInterval: foreground && (bookTab === "paper" || bookTab === "prime" || bookTab === "lead" || bookTab === "open") ? (bookTab === "open" ? 4000 : 12000) : false,
+    refetchOnWindowFocus: false,
+  });
+  const primeRows = useQuery({
+    queryKey: ["prime-rows"],
+    queryFn: () => getPrimeRows(),
+    enabled: hydrated && (bookTab === "prime" || bookTab === "lead" || bookTab === "open" || bookTab === "books" || bookTab === "mode"),
+    refetchInterval: foreground && (bookTab === "prime" || bookTab === "lead" || bookTab === "open" || bookTab === "mode") ? 12000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const setupBoard = useQuery({
+    queryKey: ["setup-board"],
+    queryFn: () => getSetupBoard(),
+    enabled: hydrated && bookTab === "books",
+    refetchOnWindowFocus: false,
+  });
+  const comboRows = useQuery({
+    queryKey: ["combo-rows"],
+    queryFn: () => getComboRows(),
+    enabled: hydrated && (bookTab === "paper" || bookTab === "prime"),
+    refetchInterval: foreground && (bookTab === "paper" || bookTab === "prime") ? 8000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const halfRows = useQuery({
+    queryKey: ["half-rows"],
+    queryFn: () => getHalfRows(),
+    enabled: hydrated && bookTab === "prime",
+    refetchInterval: foreground && bookTab === "prime" ? 12000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const decidedRows = useQuery({
+    queryKey: ["decided-rows"],
+    queryFn: () => getDecidedRows(),
+    enabled: hydrated && (bookTab === "prime" || bookTab === "lead"),
+    refetchInterval: foreground && (bookTab === "prime" || bookTab === "lead") ? 12000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const primeWatch = useQuery({
+    queryKey: ["prime-watch"],
+    queryFn: () => getPrimeWatch(),
+    enabled: hydrated && (bookTab === "watch" || bookTab === "prime" || bookTab === "lead" || bookTab === "open"),
+    refetchInterval: foreground && (bookTab === "watch" || bookTab === "prime" || bookTab === "lead" || bookTab === "open") ? 12000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const leanRows = useQuery({
+    queryKey: ["lean-rows"],
+    queryFn: () => getLeanRows(),
+    enabled: hydrated && bookTab === "lean",
+    refetchInterval: foreground && bookTab === "lean" ? 12000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const fuelRows = useQuery({
+    queryKey: ["fuel-rows"],
+    queryFn: () => getFuelRows(),
+    enabled: hydrated && bookTab === "fuel",
+    refetchInterval: foreground && bookTab === "fuel" ? 12000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const symbolLab = useQuery({
+    queryKey: ["symbol-lab"],
+    queryFn: () => getSymbolLab(),
+    enabled: hydrated && bookTab === "symbols",
+    refetchInterval: foreground && bookTab === "symbols" ? 12000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const mirrorSheet = useQuery({
+    queryKey: ["mirror-sheet"],
+    queryFn: () => getMirrorSheet(),
+    enabled: hydrated && bookTab === "mirror",
+    refetchInterval: foreground && bookTab === "mirror" ? 12000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const poly = useQuery({
+    queryKey: ["poly-ledger"],
+    queryFn: () => getPolyLedger(),
+    enabled: hydrated,
+    refetchInterval: 8000,
+    refetchOnWindowFocus: false,
+  });
+  const kalshiCash = useQuery({
+    queryKey: ["kalshi-cash"],
+    queryFn: () => getKalshiCash(),
+    enabled: hydrated,
+    refetchInterval: 8000,
+    refetchOnWindowFocus: false,
+  });
+  const prime = useQuery({
+    queryKey: ["prime-book"],
+    queryFn: () => getPrimeBook(),
+    enabled: hydrated,
+    refetchInterval: foreground ? 20000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const audit = useQuery({
+    queryKey: ["audit"],
+    queryFn: () => getAudit(),
+    enabled: hydrated,
+    refetchInterval: foreground ? 20000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const outside = useQuery({
+    queryKey: ["outside"],
+    queryFn: () => getOutside(),
+    enabled: hydrated,
+    refetchInterval: foreground ? 20000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const watch = useQuery({
+    queryKey: ["watch"],
+    queryFn: () => getWatch(),
+    enabled: hydrated,
+    refetchInterval: foreground ? 15000 : false,
+    refetchOnWindowFocus: false,
+  });
+  const trailQ = useQuery({
+    queryKey: ["trail"],
+    queryFn: () => getTrail(),
+    enabled: hydrated,
+    refetchInterval: 20000,
+    refetchOnWindowFocus: false,
+  });
+  const rulesQ = useQuery({
+    queryKey: ["desk-rules"],
+    queryFn: () => getRules(),
+    enabled: hydrated && bookTab === "shift",
+    refetchInterval: 20000,
+  });
+  const recordsQ = useQuery({
+    queryKey: ["prime-records"],
+    queryFn: () => getPrimeRecords(),
+    enabled: hydrated && bookTab === "prime",
+    refetchInterval: 15000,
+  });
+  const monitorQ = useQuery({
+    queryKey: ["claude-monitor"],
+    queryFn: () => getMonitor(),
+    enabled: hydrated && bookTab === "shift",
+    refetchInterval: 15000,
+  });
+  const shadowQ = useQuery({
+    queryKey: ["shadow-reject"],
+    queryFn: () => getShadow(),
+    enabled: hydrated && bookTab === "shift",
+    refetchInterval: 15000,
+  });
+  const btQ = useQuery({
+    queryKey: ["claude-backtest"],
+    queryFn: () => getClaudeBacktest(),
+    enabled: hydrated && bookTab === "shift",
+    refetchInterval: 60000,
+  });
+  const nightQ = useQuery({
+    queryKey: ["night-book"],
+    queryFn: () => getNight(),
+    enabled: hydrated && bookTab === "shift",
+    refetchInterval: 15000,
+  });
+  const truthQ = useQuery({
+    queryKey: ["kalshi-truth"],
+    queryFn: () => getTruth(),
+    enabled: hydrated && bookTab === "shift",
+    refetchInterval: 30000,
+  });
+  const lottoQ = useQuery({
+    queryKey: ["lotto-lab"],
+    queryFn: () => getLotto(),
+    enabled: hydrated && bookTab === "shift",
+    refetchInterval: 15000,
+  });
+  const liveQ = useQuery({
+    queryKey: ["live-switch"],
+    queryFn: () => getLiveSwitch(),
+    enabled: hydrated,
+    refetchInterval: 10000,
+  });
+  const scaleQ = useQuery({
+    queryKey: ["scale75"],
+    queryFn: () => getScale75(),
+    enabled: hydrated,
+    refetchInterval: 20000,
+    refetchOnWindowFocus: false,
+  });
+  const [trail, setTrail] = useState(45);
+  const trailDrag = useRef(false);
+  useEffect(() => {
+    if (trailDrag.current) return;
+    const n = trailQ.data?.pct;
+    if (typeof n === "number" && Number.isFinite(n)) setTrail(n);
+  }, [trailQ.data?.pct]);
+  useEffect(() => {
+    if (!hydrated || trailDrag.current) return;
+    void setTrailFloor({ data: { pct: settings.defaultExitPct } });
+  }, [settings.defaultExitPct, hydrated]);
+  const held = useQuery({
+    queryKey: ["held-orders"],
+    queryFn: () => getHeldOrders(),
+    enabled: hydrated,
+    refetchInterval: foreground ? (bookTab === "open" || bookTab === "kalshi" || bookTab === "prime" ? 4000 : 10000) : false,
+    refetchOnWindowFocus: false,
+    placeholderData: (prev) => prev,
+  });
+
+  const snap: DeskSnapshot | undefined = useMemo(
+    () => overlayDesk(q.data, spots.data),
+    [q.data, spots.data],
+  );
+  const cashView = useMemo(() => {
+    const events = fillLog.data ?? [];
+    const gaps = (venue: "paper" | "kalshi") => {
+      const flags: string[] = [];
+      const rows = events
+        .filter((e) => e.kind === "banked" && e.venue === venue)
+        .map((e) => {
+          const book = trades.find((t) => t.id === e.tradeId);
+          let flag: string | undefined;
+          if (book && book.profit != null && e.profit != null && Math.abs(book.profit - e.profit) > 0.5) {
+            flag = `book ${money(book.profit)} vs log ${money(e.profit)}`;
+          }
+          if (flag) flags.push(`${e.asset.toUpperCase()} ${e.side.toUpperCase()} · ${flag}`);
+          return {
+            id: e.id,
+            at: e.at,
+            label: `${e.asset.toUpperCase()} ${e.side.toUpperCase()}`,
+            profit: e.profit,
+            flag,
+          };
+        })
+        .sort((a, b) => b.at.localeCompare(a.at));
+      return { rows, flags };
+    };
+    if (cashVenue === "paper") {
+      const { rows, flags } = gaps("paper");
+      const ordered = [...rows].sort((a, b) => a.at.localeCompare(b.at));
+      let run = 0;
+      const trail = ordered.map((row) => {
+        run += row.profit ?? 0;
+        return { t: row.at, cash: Math.round(run * 100) / 100 };
+      });
+      return { cash: trail.length ? run : 0, anchor: 0, trail, rows, flags };
+    }
+    if (cashVenue === "kalshi") {
+      const { rows, flags } = gaps("kalshi");
+      for (const row of audit.data ?? []) {
+        if (row.desk == null || Math.abs(row.desk - row.kalshi) <= 0.5) continue;
+        flags.push(`${row.asset.toUpperCase()} ${row.side.toUpperCase()} · desk ${money(row.desk)} vs Kalshi ${money(row.kalshi)}`);
+      }
+      const book = kalshiCash.data;
+      return {
+        cash: book?.cash ?? snap?.kalshi?.cash ?? null,
+        anchor: book?.anchor ?? null,
+        trail: book?.trail ?? [],
+        rows,
+        flags,
+      };
+    }
+    const book = poly.data;
+    const flags: string[] = [];
+    const rows = (book?.rows ?? []).map((row) => {
+      let flag: string | undefined;
+      if (row.status === "off" || row.status === "missing") flag = row.note || row.status;
+      else if (row.expected != null && row.accountNet != null && Math.abs(row.expected - row.accountNet) > 0.5) {
+        flag = `book ${money(row.expected)} vs account ${money(row.accountNet)}`;
+      }
+      if (flag) flags.push(`${row.side.toUpperCase()} · ${flag}`);
+      return { id: row.orderId || row.slug, at: row.at, label: `${row.side.toUpperCase()} ${row.status}`, profit: row.accountNet, flag };
+    });
+    return {
+      cash: book?.cash ?? null,
+      anchor: book?.anchor ?? null,
+      trail: book?.trail ?? [],
+      rows,
+      flags,
+    };
+  }, [audit.data, cashVenue, fillLog.data, kalshiCash.data, poly.data, snap?.kalshi?.cash, trades]);
+  const [grokBusy, setGrokBusy] = useState<Record<string, boolean>>({});
+  const [grokError, setGrokError] = useState<Record<string, string>>({});
+  const asking = useRef(new Set<string>());
+  const heard = useRef(new Set<string>());
+  const papered = useRef(new Set<string>());
+  const told = useRef(new Set<string>());
+  const toldReady = useRef(false);
+  const exiting = useRef(new Set<string>());
+  const exitWait = useRef(new Map<string, number>());
+  const spotMemory = useRef<Record<string, number>>({});
+  const lastSpot = useRef<Record<AssetId, number>>({ btc: 0, gold: 0, silver: 0 });
+
+  useEffect(() => {
+    if (!hydrated) return;
+    if (!toldReady.current) {
+      if (!trades.length) return;
+      for (const t of trades) told.current.add(`${t.id}:${t.result}`);
+      toldReady.current = true;
+      return;
+    }
+    for (const t of trades) {
+      if (t.venue !== "kalshi" && t.venue !== "polymarket") continue;
+      if (t.source !== "live") continue;
+      const key = `${t.id}:${t.result}`;
+      if (told.current.has(key)) continue;
+      const sawOpen = told.current.has(`${t.id}:open`);
+      told.current.add(key);
+      const name = t.asset === "gold" ? "Gold" : t.asset === "eth" ? "ETH" : t.asset === "sol" ? "SOL" : t.asset === "silver" ? "Silver" : "BTC";
+      const where = t.venue === "polymarket" ? "Polymarket" : "Kalshi";
+      if (t.result === "open") {
+        toast(`${where} fill`, { description: `${name} ${t.side.toUpperCase()}` });
+        continue;
+      }
+      if (!sawOpen || t.profit == null || t.profit === 0) continue;
+      const closedAt = Date.parse(t.closedAt ?? "");
+      if (!Number.isFinite(closedAt) || Date.now() - closedAt > 2 * 60 * 1000) continue;
+      toast(t.profit > 0 ? `${where} banked` : `${where} loss`, {
+        description: `${name} ${t.side.toUpperCase()} ${money(t.profit)}`,
+      });
+    }
+  }, [trades, hydrated]);
+
+  useEffect(() => {
+    if (!snap) return;
+    for (const id of ["btc", "gold", "silver"] as AssetId[]) {
+      const asset = snap.assets[id];
+      if (asset?.spot) lastSpot.current[id] = asset.spot;
+    }
+  }, [snap]);
+
+  useEffect(() => {
+    if (!hydrated || !snap) return;
+    for (const t of trades) {
+      try {
+      if (t.result !== "open") continue;
+      if (goldHaltFill(t)) {
+        closeTrade(t.id, {
+          result: "exited",
+          payout: t.stake,
+          profit: 0,
+          notes: "Gold book closed",
+        });
+        continue;
+      }
+      const asset = snap.assets[t.asset];
+      if (!asset) continue;
+      if (asset.spot) spotMemory.current[t.id] = asset.spot;
+
+      const liveTicker = asset.market?.ticker;
+      if (asset.secondsLeft > 0 || liveTicker !== t.ticker || windowStillOpen(t.ticker)) continue;
+
+      const spot = spotMemory.current[t.id] ?? t.lastSpot ?? asset.spot ?? lastSpot.current[t.asset];
+      const target = t.target ?? asset.target;
+      if (target == null || !spot) {
+        closeTrade(t.id, {
+          result: "loss",
+          payout: 0,
+          profit: -t.stake,
+          notes: "No settle print",
+        });
+        continue;
+      }
+      const win = settleSide(t.side, spot, target);
+      const payout = win ? t.contracts * 1 : 0;
+      closeTrade(t.id, {
+        result: win ? "win" : "loss",
+        payout,
+        profit: payout - t.stake,
+        lastSpot: spot,
+      });
+      } catch {
+        // one bad card cannot take the whole desk down
+      }
+    }
+  }, [snap, trades, hydrated, closeTrade, settings.defaultExitPct]);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    for (const t of trades) {
+      if (t.result !== "open" || t.grokThesis || !t.setupId) continue;
+      const call = grokBySetup[t.setupId];
+      if (!call) continue;
+      patchTrade(t.id, {
+        grokThesis: call.thesis,
+        conviction: call.side === "pass" ? t.conviction : call.conviction,
+        exitPct: exitForMultiple(t.multiple, settings.defaultExitPct),
+        holdToExpiry: false,
+        notes: call.side === "pass" ? "Grok would have passed" : t.notes,
+      });
+    }
+  }, [grokBySetup, trades, hydrated, patchTrade]);
+
+  async function runGrok(setup: Setup, asset: AssetSnapshot) {
+    if (asking.current.has(setup.id)) return;
+    asking.current.add(setup.id);
+    setGrokBusy((s) => ({ ...s, [setup.id]: true }));
+    setGrokError((s) => ({ ...s, [setup.id]: "" }));
+    try {
+      const res = await askDeskGrok({ data: { setup, asset } });
+      if (res.ok) {
+        rememberGrok(res.call);
+      } else {
+        setGrokError((s) => ({ ...s, [setup.id]: res.error }));
+      }
+    } catch (err) {
+      setGrokError((s) => ({
+        ...s,
+        [setup.id]: err instanceof Error ? err.message : "Grok failed",
+      }));
+    } finally {
+      setGrokBusy((s) => ({ ...s, [setup.id]: false }));
+      asking.current.delete(setup.id);
+    }
+  }
+
+  function takePaper(
+    setup: Setup,
+    asset: AssetSnapshot,
+    autoFilled = false,
+    probe = false,
+  ) {
+    if (goldHalted(setup.asset)) return;
+    if (papered.current.has(setup.id)) return;
+    papered.current.add(setup.id);
+    const grok = grokBySetup[setup.id];
+    const trade = openPaper(setup, {
+      grok,
+      target: asset.target,
+      lastSpot: asset.spot,
+      autoFilled,
+      probe,
+      stake: setup.clip,
+    });
+    if (trade) {
+      if (!probe && asset.market) {
+        void armLiveNow({ data: { setup, asset } })
+          .then(async (live) => {
+            if (live) {
+              adoptBook([live]);
+              return;
+            }
+            const book = await pullBook();
+            const hit = book.find(
+              (t) =>
+                t.source === "live" &&
+                (t.setupId === `${setup.id}:live` ||
+                  t.setupId === `${setup.id}:poly` ||
+                  (t.ticker === setup.ticker && t.side === setup.side && t.venue !== "polymarket")),
+            );
+            if (hit) adoptBook([hit]);
+          })
+          .catch(() => {
+            // the live book announces the fill
+          });
+      }
+    } else {
+      papered.current.delete(setup.id);
+    }
+  }
+
+  useEffect(() => {
+    if (!hydrated || !snap || !foreground) return;
+    for (const id of ["btc", "gold", "silver"] as AssetId[]) {
+      const asset = snap.assets[id];
+      if (!asset) continue;
+      const setup = asset.setup;
+      if (goldHalted(id)) continue;
+      const lockedOut = (side: Setup["side"], ticker: string) => {
+        const held = heldSide(useDesk.getState().trades, ticker, snap.sideLocks);
+        return Boolean(held && held !== side);
+      };
+      const late = lateWindow(asset);
+      const openWindow = useDesk
+        .getState()
+        .trades.some((t) => t.result === "open" && t.ticker === late?.ticker && !t.probe);
+      if (
+        late &&
+        !openWindow &&
+        !lockedOut(late.side, late.ticker) &&
+        !acted.includes(late.id) &&
+        !papered.current.has(late.id)
+      ) {
+        takePaper(late, asset, true);
+      }
+      if (!setup || lockedOut(setup.side, setup.ticker)) continue;
+
+      if (!setup.watchOnly && !heard.current.has(setup.id)) {
+        heard.current.add(setup.id);
+        toast("Setup", { description: `${setup.side.toUpperCase()} · ${setup.pattern.label}` });
+      }
+
+      if (settings.autoGrok && !setup.watchOnly && !grokBySetup[setup.id] && !asking.current.has(setup.id)) {
+        void runGrok(setup, asset);
+      }
+
+      if (acted.includes(setup.id) || papered.current.has(setup.id)) {
+        const probe = farBandProbe(setup);
+        if (
+          probe &&
+          !acted.includes(probe.id) &&
+          !papered.current.has(probe.id)
+        ) {
+          takePaper(probe, asset, true, true);
+        }
+        continue;
+      }
+      const verdict = autoDecision(setup, settings, grokBySetup[setup.id]);
+      if (verdict.action === "fill") takePaper(setup, asset, true);
+      const probe = farBandProbe(setup);
+      if (probe && !acted.includes(probe.id) && !papered.current.has(probe.id)) {
+        takePaper(probe, asset, true, true);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [snap, settings.autoGrok, settings.autoPaper, settings.minConviction, grokBySetup, hydrated, acted, foreground]);
+
+  // Claude: the paper headline is the real ledger. Every banked paper trade, its real stake and
+  // real profit. Grok's version skipped "backwards" trades and exited losses and re-scored the rest.
+  const paperOut = useMemo(() => {
+    const ms = span === "12" ? 12 * 3600e3 : span === "24" ? 24 * 3600e3 : 0;
+    const seen = new Set<string>();
+    let pnl = 0;
+    let hit = 0;
+    let lost = 0;
+    for (const row of fillLog.data ?? []) {
+      if (row.venue !== "paper" || row.kind !== "banked" || row.profit == null) continue;
+      if (seen.has(row.tradeId)) continue;
+      seen.add(row.tradeId);
+      if (ms) {
+        const at = Date.parse(row.at ?? "");
+        if (!Number.isFinite(at) || Date.now() - at > ms) continue;
+      }
+      pnl += row.profit;
+      if (row.profit > 0) hit += 1;
+      else if (row.profit < 0) lost += 1;
+    }
+    const closed = hit + lost;
+    return { pnl: Math.round(pnl * 100) / 100, hit, lost, closed, rate: closed ? (hit / closed) * 100 : 0 };
+  }, [fillLog.data, span]);
+  const shown = useMemo(() => {
+    if (bookTab === "poly") {
+      const now = Date.now();
+      const rows = (poly.data?.rows ?? []).filter((row) => row.deskStake >= 7);
+      if (!rows.length) {
+        return trades
+          .filter((t) => t.venue === "polymarket" && t.stake >= 7)
+          .map((t) => {
+            const match = t.ticker.match(/(\d{4}-\d{2}-\d{2})-(\d{2})(\d{2})z$/);
+            const end = match ? Date.parse(`${match[1]}T${match[2]}:${match[3]}:00Z`) + 15 * 60 * 1000 : NaN;
+            if (!Number.isFinite(end) || now < end) return t;
+            return { ...t, result: "exited" as const, profit: t.profit ?? 0, notes: t.notes || "Window ended." };
+          });
+      }
+      return rows.map((row) => {
+        const trade = trades.find((t) => t.ticker === row.slug && t.venue === "polymarket");
+        const match = row.slug.match(/(\d{4}-\d{2}-\d{2})-(\d{2})(\d{2})z$/);
+        const end = match ? Date.parse(`${match[1]}T${match[2]}:${match[3]}:00Z`) + 15 * 60 * 1000 : NaN;
+        const stillOpen = row.status === "open" && (!Number.isFinite(end) || now < end);
+        const won =
+          row.downWon == null ? (row.expected ?? 0) > 0 : row.side === "down" ? row.downWon : !row.downWon;
+        const waiting = !stillOpen && row.expected == null && row.downWon == null;
+        return {
+          id: trade?.id ?? row.slug,
+          openedAt: trade?.openedAt ?? row.at,
+          closedAt: stillOpen ? null : (trade?.closedAt ?? row.at),
+          asset: "btc" as const,
+          ticker: row.slug,
+          side: row.side,
+          source: "live" as const,
+          setupId: trade?.setupId ?? row.slug,
+          autoFilled: true,
+          patternLabel: trade?.patternLabel ?? "Polymarket",
+          stake: row.accountCost ?? row.deskStake,
+          ask: row.deskAsk || trade?.ask || 0,
+          multiple: row.deskAsk > 0 ? 1 / row.deskAsk : (trade?.multiple ?? 0),
+          contracts: row.deskContracts,
+          result: stillOpen ? ("open" as const) : waiting ? ("exited" as const) : won ? ("win" as const) : ("loss" as const),
+          payout: null,
+          profit: stillOpen ? null : (row.expected ?? 0),
+          exitPct: null,
+          holdToExpiry: true,
+          conviction: trade?.conviction ?? 0,
+          notes: waiting ? "Window ended. Waiting on the cash." : row.note,
+          grokThesis: "",
+          target: row.beat ?? trade?.target ?? null,
+          lastSpot: trade?.lastSpot ?? null,
+          venue: "polymarket" as const,
+        };
+      });
+    }
+    if (bookTab === "kalshi") return trades.filter((t) => t.source === "live" && t.venue !== "polymarket" && !bugExit(t));
+    return trades.filter((t) => t.source !== "live" && !bugExit(t));
+  }, [trades, bookTab, poly.data]);
+  const runScore = useMemo(() => {
+    const ms = span === "12" ? 12 * 3600e3 : span === "24" ? 24 * 3600e3 : 0;
+    const inSpan = (at: string | undefined) => {
+      if (!ms) return true;
+      const t = Date.parse(at ?? "");
+      return Number.isFinite(t) && Date.now() - t <= ms;
+    };
+    if (bookTab === "kalshi") {
+      const grouped = new Map<string, { pnl: number; stake: number }>();
+      for (const row of exitLog.data ?? []) {
+        if (!inSpan(row.at)) continue;
+        const key = row.ticker || row.at;
+        const cur = grouped.get(key) ?? { pnl: 0, stake: 0 };
+        cur.pnl += row.profit ?? 0;
+        cur.stake += row.stake ?? 0;
+        grouped.set(key, cur);
+      }
+      for (const row of fillLog.data ?? []) {
+        if (row.kind !== "banked" || row.venue !== "kalshi" || row.profit == null || !inSpan(row.at)) continue;
+        const key = row.ticker || row.id;
+        if (grouped.has(key)) continue;
+        grouped.set(key, { pnl: row.profit, stake: row.stake ?? 0 });
+      }
+      let hit = 0;
+      let lost = 0;
+      for (const row of grouped.values()) {
+        if (row.stake > 0 && row.stake < 1) continue;
+        if (row.pnl > 0.05) hit += 1;
+        else if (row.pnl < -0.05) lost += 1;
+      }
+      return { hit, lost, closed: hit + lost };
+    }
+    const venue = bookTab === "poly" ? "polymarket" : "paper";
+    const rows = (fillLog.data ?? []).filter((row) => {
+      if (row.kind !== "banked" || row.venue !== venue || row.profit == null || smallExit(row.profit, row.stake)) return false;
+      if (row.opposite || patternBackwards(row.side, row.pattern || "")) return false;
+      return inSpan(row.at);
+    });
+    const latest = new Map<string, (typeof rows)[number]>();
+    for (const row of rows) {
+      const key = row.ticker || row.id;
+      const prev = latest.get(key);
+      if (!prev || row.at > prev.at) latest.set(key, row);
+    }
+    let hit = 0;
+    let lost = 0;
+    for (const row of latest.values()) {
+      if ((row.profit ?? 0) > 0) hit += 1;
+      else if ((row.profit ?? 0) < 0) lost += 1;
+    }
+    return { hit, lost, closed: latest.size };
+  }, [bookTab, fillLog.data, exitLog.data, span]);
+  const stats = useMemo(
+    () => sessionStats(shown, bookTab === "kalshi" || bookTab === "poly" ? 0 : settings.stake),
+    [shown, bookTab, settings.stake],
+  );
+  const stakeView = bookTab === "kalshi" || bookTab === "poly" ? 0 : settings.stake;
+  const livePnl = useMemo(() => {
+    if (bookTab === "poly" || bookTab === "cash") {
+      const cash = poly.data?.cash;
+      const anchor = poly.data?.anchor;
+      if (cash != null && anchor != null) {
+        let marks = 0;
+        if (bookTab === "poly" && snap) {
+          for (const t of shown) {
+            if (t.result !== "open") continue;
+            marks += markTrade(t, snap.assets[t.asset]).value;
+          }
+        }
+        return Math.round((cash + marks - anchor) * 100) / 100;
+      }
+    }
+    let pnl = stats.pnl;
+    if (!snap) return pnl;
+    for (const t of shown) {
+      if (t.result !== "open" || goldHaltFill(t)) continue;
+      const mark = markTrade(t, snap.assets[t.asset]);
+      pnl +=
+        t.probe || t.source === "live" || !(stakeView > 0)
+          ? mark.profit
+          : sized(mark.profit, t.stake, stakeView);
+    }
+    return pnl;
+  }, [bookTab, poly.data, shown, snap, stats.pnl, stakeView]);
+
+
+  const paused = hydrated && settings.autoPaper && !foreground;
+
+  return (
+    <div data-desk="live" className="h-dvh overflow-x-hidden overflow-y-auto overscroll-y-contain bg-bg text-fg [-webkit-overflow-scrolling:touch]">
+      <Toaster
+        theme="dark"
+        position="bottom-right"
+        closeButton
+        expand={false}
+        visibleToasts={3}
+        gap={14}
+        offset={{ bottom: 12, right: 12 }}
+        duration={8000}
+        toastOptions={{
+          style: {
+            background: "#000000",
+            color: "#ffffff",
+            border: "1px solid rgba(255,255,255,0.28)",
+          },
+        }}
+      />
+      <header className="sticky top-0 z-30 border-b border-line bg-bg pt-[env(safe-area-inset-top)]">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-3 py-2">
+          <p className="shrink-0 font-display text-xs font-medium uppercase leading-none tracking-[0.22em]">
+            Aurelius
+            <a className="ml-2 text-[10px] tracking-[0.16em] text-white/45 underline" href="/aurelius-source.zip" download="aurelius-source.zip">source</a>
+          </p>
+          <div className="flex min-w-0 items-center gap-1">
+            <button
+              type="button"
+              onClick={() => {
+                void askHelp()
+                  .then((row) => {
+                    toast(row.line || "Help called.", { duration: 12000 });
+                  })
+                  .catch(() => {
+                    toast("Help didn't go through. Tap it again.");
+                  });
+              }}
+              className={cn(
+                "flex h-8 items-center rounded-md px-2 text-[10px] tracking-[0.16em] hairline-soft",
+                watch.data?.ok === false ? "text-fg" : "text-muted",
+              )}
+              aria-label="Call for help"
+            >
+              HELP
+            </button>
+            <span
+              className="flex h-8 items-center rounded-md px-2 hairline-soft"
+              title={watch.data?.line ?? "Firewall on"}
+              aria-label={watch.data?.ok === false ? "Firewall alarm" : "Firewall on"}
+            >
+              <span
+                className={cn(
+                  "inline-block size-2.5 rounded-full",
+                  watch.data?.ok === false ? "firewall-bad" : "firewall-on",
+                )}
+              />
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                const next = !(watch.data?.entries === true);
+                void setEntries({ data: { on: next } }).then(() => {
+                  toast(next ? "Entries on. $25." : "Entries off. Open trades can still cash.");
+                  void watch.refetch();
+                });
+              }}
+              className="flex h-8 items-center rounded-md px-2 text-[10px] tracking-[0.16em] hairline-soft"
+              aria-pressed={watch.data?.entries === true}
+              aria-label="Toggle new entries"
+            >
+              {watch.data?.entries === false ? "OFF" : "ON"}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                const next = scaleQ.data?.on === false;
+                void setScale75({ data: { on: next } }).then(() => {
+                  toast(next ? "75% scale on. She sells when a trade clears it." : "75% scale off. You close.");
+                  void scaleQ.refetch();
+                });
+              }}
+              className="flex h-8 items-center rounded-md px-2 text-[10px] tracking-[0.16em] hairline-soft"
+              aria-pressed={scaleQ.data?.on !== false}
+              aria-label="Toggle 75 percent scale"
+            >
+              <span className={scaleQ.data?.on === false ? "text-muted" : "text-fg"}>
+                {scaleQ.data?.on === false ? "75 OFF" : "75%"}
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                const next = liveQ.data?.live !== true;
+                if (next && !window.confirm(`Turn LIVE on? Real Kalshi and Polymarket orders will be sent, up to $${liveQ.data?.maxDollars ?? 10} each.`)) return;
+                void setLiveSwitch({ data: { live: next } }).then(() => {
+                  toast(next ? "LIVE is on. Real orders can go out." : "LIVE is off. No new orders will be sent.");
+                  void liveQ.refetch();
+                });
+              }}
+              className={cn(
+                "flex h-8 items-center gap-1.5 rounded-md px-2 hairline-soft",
+                liveQ.data?.live === true ? "ring-1 ring-red-500/70" : "",
+              )}
+              aria-pressed={liveQ.data?.live === true}
+              aria-label="Toggle live trading"
+            >
+              <span className={cn("inline-block size-1.5 rounded-full", liveQ.data?.live === true ? "bg-red-500" : "bg-subtle")} />
+              <span className={cn("text-[10px] tracking-[0.16em]", liveQ.data?.live === true ? "text-fg" : "text-muted")}>
+                {liveQ.data?.live === true ? "LIVE ON" : "LIVE OFF"}
+              </span>
+            </button>
+            {hydrated ? (
+              <button
+                type="button"
+                onClick={() => setSettings({ autoPaper: !settings.autoPaper })}
+                className="flex h-8 items-center gap-1.5 rounded-md px-2 hairline-soft"
+                aria-pressed={settings.autoPaper}
+                aria-label="Toggle auto paper"
+              >
+                <span
+                  className={cn(
+                    "inline-block size-1.5 rounded-full",
+                    paused ? "bg-warn" : settings.autoPaper ? "bg-fg glow-live" : "bg-subtle",
+                  )}
+                />
+                <span className="text-[10px] tracking-[0.14em] text-muted">
+                  {paused ? "PAUSED" : settings.autoPaper ? "AUTO" : "MANUAL"}
+                </span>
+              </button>
+            ) : null}
+            {hydrated ? (
+              <SettingsDrawer
+                settings={settings}
+                onChange={(patch) => {
+                  setSettings(patch);
+                  if (typeof patch.liveStake === "number") {
+                    sizeTouched.current = true;
+                    void setLiveSize({ data: { dollars: patch.liveStake } });
+                  }
+                }}
+              />
+            ) : null}
+          </div>
+        </div>
+        <label className="mx-auto hidden max-w-5xl items-center gap-2 px-3 pb-2 md:flex">
+          <span className="text-[10px] tracking-[0.16em] text-muted">TRAIL</span>
+          <input
+            type="range"
+            min={35}
+            max={65}
+            step={1}
+            value={trail}
+            aria-label="Trailing autosell trigger"
+            className="glass-range min-w-0 flex-1 cursor-pointer"
+            style={{ touchAction: "none" }}
+            onPointerDown={() => {
+              trailDrag.current = true;
+            }}
+            onChange={(e) => {
+              const n = Number(e.target.value);
+              setTrail(n);
+              setSettings({ defaultExitPct: n });
+            }}
+            onPointerUp={() => {
+              trailDrag.current = false;
+            }}
+            onPointerCancel={() => {
+              trailDrag.current = false;
+            }}
+          />
+          <span className="w-9 text-right text-sm tabular-nums text-fg">{trail}%</span>
+        </label>
+        <label className="mx-auto hidden max-w-5xl items-center gap-2 px-3 pb-2 md:flex">
+          <span className="text-[10px] tracking-[0.16em] text-muted">SIZE</span>
+          <input
+            type="range"
+            min={5}
+            max={100}
+            step={1}
+            value={Math.min(100, Math.max(5, Math.round(settings.liveStake || 50)))}
+            aria-label="Position size"
+            className="glass-range min-w-0 flex-1 cursor-pointer"
+            style={{ touchAction: "none" }}
+            onChange={(e) => {
+              const n = Number(e.target.value);
+              sizeTouched.current = true;
+              setSettings({ liveStake: n });
+              void setLiveSize({ data: { dollars: n } });
+            }}
+          />
+          <span className="w-10 text-right text-sm tabular-nums text-fg">${Math.round(settings.liveStake || 50)}</span>
+        </label>
+        <div className="flex flex-nowrap gap-1 overflow-x-auto overflow-y-hidden px-3 pb-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <DeskTab active={bookTab === "mode"} label="MODE" onClick={() => setBookTab("mode")} />
+          <DeskTab active={bookTab === "shift"} label="SHIFT" onClick={() => setBookTab("shift")} />
+          <DeskTab active={bookTab === "kalshi"} label="KALSHI" onClick={() => setBookTab("kalshi")} />
+          <DeskTab active={bookTab === "books"} label="BOOKS" onClick={() => setBookTab("books")} />
+          <DeskTab active={bookTab === "prime"} label="PRIME BOOK" onClick={() => setBookTab("prime")} />
+          <DeskTab active={bookTab === "lead"} label="$150" onClick={() => setBookTab("lead")} />
+          <DeskTab active={bookTab === "symbols"} label="SYMBOLS" onClick={() => setBookTab("symbols")} />
+          <DeskTab active={bookTab === "mirror"} label="MIRROR" onClick={() => setBookTab("mirror")} />
+          <DeskTab active={bookTab === "open"} label="OPEN" onClick={() => setBookTab("open")} />
+          <DeskTab active={bookTab === "paper"} label="PAPER" onClick={() => setBookTab("paper")} />
+          <DeskTab active={bookTab === "watch"} label="WATCHING" onClick={() => setBookTab("watch")} />
+          <DeskTab active={bookTab === "cash"} label="CASH" onClick={() => setBookTab("cash")} />
+          <DeskTab active={bookTab === "lean"} label="SILVER" onClick={() => setBookTab("lean")} />
+          <DeskTab active={bookTab === "fuel"} label="FUEL" onClick={() => setBookTab("fuel")} />
+          <DeskTab active={bookTab === "markets"} label="MARKETS" onClick={() => setBookTab("markets")} />
+          <DeskTab active={bookTab === "pnl"} label="P&L" onClick={() => setBookTab("pnl")} />
+          <DeskTab active={bookTab === "day"} label="DAY" onClick={() => setBookTab("day")} />
+          <DeskTab active={bookTab === "poly"} label="POLY" onClick={() => setBookTab("poly")} />
+          <DeskTab active={bookTab === "cash"} label="CASH" onClick={() => setBookTab("cash")} />
+          <DeskTab active={bookTab === "alerts"} label="ALERTS" onClick={() => setBookTab("alerts")} />
+          <DeskTab active={bookTab === "hedge"} label="HEDGE" onClick={() => setBookTab("hedge")} />
+          <DeskTab active={bookTab === "scale"} label="SCALE" onClick={() => setBookTab("scale")} />
+          <DeskTab active={bookTab === "stats"} label="STATS" onClick={() => setBookTab("stats")} />
+          <DeskTab active={bookTab === "log"} label="LOG" onClick={() => setBookTab("log")} />
+          <DeskTab active={bookTab === "sitrep"} label="SITREP" onClick={() => setBookTab("sitrep")} />
+          <DeskTab active={bookTab === "audit"} label="MATCH" onClick={() => setBookTab("audit")} />
+          <DeskTab active={bookTab === "outside"} label="OUTSIDE" onClick={() => setBookTab("outside")} />
+          <DeskTab active={bookTab === "look"} label="LOOK" onClick={() => setBookTab("look")} />
+          <DeskTab active={bookTab === "notes"} label="NOTES" onClick={() => setBookTab("notes")} />
+        </div>
+      </header>
+
+      <main className={cn("mx-auto flex max-w-5xl flex-col gap-4 px-4 py-3", (held.data ?? []).length ? "pb-28" : "pb-8")}>
+        {paused ? (
+          <p className="text-sm text-warn">
+            This screen is asleep. The desk keeps filling, and the book stays put if the page goes black.
+          </p>
+        ) : null}
+        {bookTab === "paper" ? <PaperTruth fills={fillLog.data ?? []} /> : null}
+        {bookTab === "prime" ? <PrimeTruth
+            rows={primeRows.data ?? []}
+            fills={fillLog.data ?? []}
+            records={recordsQ.data}
+            onForty={(on) => {
+              void setFortyRule({ data: { on } }).then(() => recordsQ.refetch());
+            }}
+          /> : null}
+        {bookTab === "shift" ? <ShiftBook fills={fillLog.data ?? []} start={liveQ.data?.shiftStart} held={held.data ?? []} shadow={shadowQ.data ?? []} lotto={lottoQ.data ?? []} night={nightQ.data ?? []} bt={(btQ.data as ClaudeBt) ?? null} paperStake={settings.stake} truth={truthQ.data ?? null} monitor={monitorQ.data} rules={rulesQ.data} onRule={(patch) => { void setRule({ data: patch }).then(() => rulesQ.refetch()); }} /> : null}
+        <div className={bookTab === "shift" ? "hidden" : "contents"}>
+
+        <section className="flex flex-col gap-4">
+          <div className="flex items-end justify-between gap-3">
+            <div>
+            {bookTab === "audit" ? (
+              <>
+                <p className="mt-1 text-[10px] tracking-[0.18em] text-subtle">KALSHI VS DESK</p>
+                <p className="mt-1 font-mono text-3xl tabular-nums leading-none text-fg">
+                  {(audit.data ?? []).length ? (audit.data ?? []).length : "OK"}
+                </p>
+              </>
+            ) : bookTab === "sitrep" ? (
+              <>
+                <p className="mt-1 text-[10px] tracking-[0.18em] text-subtle">SITUATION REPORT</p>
+                <p className="mt-1 font-mono text-3xl tabular-nums leading-none text-fg">{(exitLog.data ?? []).length}</p>
+              </>
+            ) : bookTab === "log" ? (
+              <>
+                <p className="mt-1 text-[10px] tracking-[0.18em] text-subtle">OPPOSITE FILLS</p>
+                <p className="mt-1 font-mono text-3xl tabular-nums leading-none text-fg">
+                  {(fillLog.data ?? []).filter((e) => e.kind === "taken" && e.opposite).length}
+                </p>
+              </>
+            ) : bookTab === "kalshi" ? (
+              <>
+                <p className="mt-1 text-[10px] tracking-[0.18em] text-white">BALANCE</p>
+                <p className="mt-1 font-mono text-3xl tabular-nums leading-none text-white">
+                  {(kalshiCash.data?.cash ?? snap?.kalshi?.cash) != null ? `$${usd(Math.max(0, kalshiCash.data?.cash ?? snap?.kalshi?.cash ?? 0), 2)}` : "—"}
+                </p>
+              </>
+            ) : bookTab === "mode" ? (
+              <>
+                <p className="mt-1 text-[10px] tracking-[0.18em] text-white">MODE</p>
+                <p className="mt-1 font-mono text-3xl tabular-nums leading-none text-white">
+                  {(bookMode.data?.only ?? "paper").toUpperCase()}
+                </p>
+              </>
+            ) : bookTab === "markets" ? (
+              <>
+                <p className="mt-1 text-[10px] tracking-[0.18em] text-subtle">MARKETS</p>
+                <p className="mt-1 font-mono text-3xl tabular-nums leading-none text-fg">TAPE</p>
+              </>
+            ) : bookTab === "scale" || bookTab === "hedge" || bookTab === "pnl" || bookTab === "day" ? null : (
+              <>
+                <p className="mt-1 text-[10px] tracking-[0.18em] text-subtle">
+                  {bookTab === "paper" ? "PAPER · REAL LEDGER" : bookTab === "kalshi" ? `$${(settings.liveStake ?? 20).toFixed(0)} LIVE` : bookTab === "cash" ? "SINCE START" : bookTab === "poly" ? "LIVE P&L" : hydrated ? "OUTCOMES" : ""}
+                </p>
+                <PnlFigure value={bookTab === "paper" ? paperOut.pnl : livePnl} ready={hydrated} />
+              </>
+            )}
+          </div>
+          {bookTab === "audit" ? (
+            <div className="text-right font-mono text-xs tabular-nums text-muted">
+              <p>Kalshi wins a tie</p>
+            </div>
+          ) : bookTab === "log" ? (
+            <div className="text-right font-mono text-xs tabular-nums text-muted">
+              <p>{(fillLog.data ?? []).filter((e) => e.kind === "taken").length} taken</p>
+              <p className="mt-1 text-subtle">
+                {(fillLog.data ?? []).filter((e) => e.kind === "banked").length} banked
+              </p>
+            </div>
+          ) : bookTab === "cash" ? (
+            <div className="text-right font-mono text-xs tabular-nums text-muted">
+              <p>{cashView.cash != null ? `$${usd(cashView.cash, 2)}` : "—"}</p>
+              <p className="mt-1 text-subtle">{cashVenue} now</p>
+            </div>
+          ) : bookTab === "mode" || bookTab === "scale" || bookTab === "pnl" || bookTab === "markets" ? null : (
+            <div className="text-right font-mono text-xs tabular-nums text-muted">
+              {bookTab === "paper" ? (
+                <>
+                  <p>
+                    <span className="text-up">{paperOut.hit} hit</span>
+                    <span> / </span>
+                    <span className="text-down">{paperOut.lost} lost</span>
+                  </p>
+                  <p className="mt-1 text-subtle">{paperOut.closed ? `${Math.round(paperOut.rate)}%` : ""}</p>
+                  <p className="mt-1 text-subtle">
+                    PRIME {primeScore.data?.yes ?? 0} yes / {primeScore.data?.no ?? 0} no · all-time {primeScore.data?.allYes ?? 0} yes / {primeScore.data?.allNo ?? 0} no
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="flex items-baseline justify-end gap-3">
+                    <span className="text-up">{runScore.hit}W</span>
+                    <span>/</span>
+                    <span className="text-down">{runScore.lost}L</span>
+                    <span className="text-white/40">•</span>
+                    <span className="text-white">{hydrated ? `${runScore.closed ? Math.round((runScore.hit / runScore.closed) * 100) : 0}%` : ""}</span>
+                  </p>
+                </>
+              )}
+              <div className="mt-2 flex justify-end gap-1">
+                {(["12", "24", "all"] as const).map((key) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setSpan(key)}
+                    className={cn("desk-pill h-6 px-2", span === key ? "text-fg" : "text-muted")}
+                  >
+                    {key === "all" ? "ALL" : `${key}H`}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          </div>
+        </section>
+
+        {bookTab === "stats" ? (
+          <Analytics
+            trades={trades.filter((t) => t.source !== "live")}
+            prime={prime.data ?? []}
+            events={fillLog.data ?? []}
+          />
+        ) : null}
+
+        {bookTab === "cash" ? (
+          <CashBook
+            venue={cashVenue}
+            onVenue={setCashVenue}
+            cash={cashView.cash}
+            anchor={cashView.anchor}
+            trail={cashView.trail}
+            rows={cashView.rows}
+            flags={cashView.flags}
+          />
+        ) : null}
+
+        {bookTab === "audit" ? <Audit rows={audit.data ?? []} /> : null}
+
+        {bookTab === "outside" ? (
+          <section className="flex flex-col gap-2">
+            <p className="text-[10px] tracking-[0.18em] text-subtle">NO DESK ID</p>
+            {(outside.data ?? []).length === 0 ? (
+              <p className="text-sm text-muted">None in the last six hours.</p>
+            ) : (
+              (outside.data ?? []).map((row) => (
+                <div key={`${row.at}-${row.ticker}-${row.action}-${row.yes}`} className="flex items-baseline justify-between gap-3 border-b border-white/10 py-2">
+                  <div className="min-w-0">
+                    <p className="truncate font-mono text-xs text-fg">
+                      {row.ticker} {row.action} {row.side}
+                    </p>
+                    <p className="font-mono text-[10px] text-subtle">
+                      {row.at.slice(11, 19)} · {row.qty} @ {row.yes} · {row.status}
+                    </p>
+                  </div>
+                </div>
+              ))
+            )}
+          </section>
+        ) : null}
+
+        {bookTab === "log" ? <FillLog events={fillLog.data ?? []} /> : null}
+
+        {bookTab === "sitrep" ? (
+          <SitRep
+            rows={exitLog.data ?? []}
+            takes={(fillLog.data ?? []).filter((row) => row.kind === "taken" && row.venue === "kalshi").slice(-4).reverse()}
+            answer=""
+            note={deskNote}
+            error=""
+            busy={false}
+            onAsk={() => {
+              const last = (fillLog.data ?? []).filter((row) => row.kind === "taken" && row.venue === "kalshi").slice(-1)[0];
+              const text = last
+                ? explainTake(last)
+                : (exitLog.data ?? [])[0]
+                  ? explainExit((exitLog.data ?? [])[0])
+                  : "Nothing to explain yet.";
+              setDeskNote(text);
+            }}
+            onDig={(row) => setDeskNote(explainExit(row))}
+            onTake={(row) => setDeskNote(explainTake(row))}
+          />
+        ) : null}
+
+
+        {(bookTab === "kalshi" || bookTab === "prime") ? (
+          <div className="flex flex-col gap-3">
+          <section className={cn("rounded-md border border-[#6b1524]", (held.data ?? []).length === 0 ? "px-4 py-4" : "px-3 pt-1.5 pb-1.5")}>
+            <p className="pb-1 text-[10px] leading-none tracking-[0.18em] text-muted">LIVE ORDERS</p>
+            {(held.data ?? []).length === 0 ? (
+              <p className="mt-1 text-sm text-subtle">No open 15-minute order.</p>
+            ) : (
+              <ul className="flex flex-col">
+                {(held.data ?? []).map((row) => {
+                  const book =
+                    row.name === "GOLD"
+                      ? snap?.assets.gold
+                      : row.name === "SILVER"
+                        ? snap?.assets.silver
+                      : row.name === "BTC"
+                        ? snap?.assets.btc
+                        : undefined;
+                  const market = book?.market;
+                  const bid = market && market.ticker === row.ticker ? (row.side === "up" ? market.yesBid : market.noBid) : 0;
+                  // One source of truth: the fresh Kalshi quote for this exact position. The board
+                  // snapshot is only a fallback when that quote is stale.
+                  // Freshest number wins: the position's own Kalshi quote if it is under 6 seconds old,
+                  // otherwise the board's live bid for this exact contract.
+                  const rowAge = row.at ? Date.now() - Date.parse(row.at) : Infinity;
+                  const fresh = !row.stale && rowAge < 6000 && row.value > 0;
+                  const mark = fresh ? row.value : bid > 0 ? Math.round(row.contracts * bid * 100) / 100 : row.value;
+                  const taken = (fillLog.data ?? []).find(
+                    (event) => event.ticker === row.ticker && event.kind === "taken" && event.pattern && event.pattern !== "Live",
+                  );
+                  const closeMs = windowCloseMs(row.ticker);
+                  const tickerLeft = closeMs ? Math.max(0, Math.round((closeMs - Date.now()) / 1000)) : 0;
+                  return (
+                  <LiveOrder
+                    key={row.ticker}
+                    row={row}
+                    why={whyTrade({
+                      name: row.name,
+                      side: row.side,
+                      pattern: taken?.pattern,
+                      spot: taken?.spot ?? row.spot,
+                      target: taken?.target ?? row.target,
+                    })}
+                    spot={
+                      row.name === "ETH"
+                        ? (spots.data?.eth ?? 0)
+                        : row.name === "SOL"
+                          ? (spots.data?.sol ?? 0)
+                          : row.spot && row.spot > 0
+                            ? row.spot
+                            : (book?.spot ?? 0)
+                    }
+                    mark={mark}
+                    closeTime={book?.market?.closeTime}
+                    secondsLeft={book?.secondsLeft || tickerLeft}
+                    onRefresh={() => {
+                      void held.refetch();
+                    }}
+                  />
+                  );
+                })}
+              </ul>
+            )}
+          </section>
+            {bookTab === "prime" ? <WatchingCards note={primeWatch.data?.note} /> : null}
+            {bookTab === "kalshi" ? (
+              <QuietChart>
+                <TapeBook title="KALSHI" points={pointsFromFills(fillLog.data ?? [])} cash={kalshiCash.data?.cash ?? snap?.kalshi?.cash ?? null} list scaled={false} />
+              </QuietChart>
+            ) : (
+              <QuietChart>
+                <TapeBook title="PRIME BOOK" points={pointsFromPrime(prime.data ?? [])} list={false} scaled={false} />
+              </QuietChart>
+            )}
+          </div>
+        ) : null}
+
+        {bookTab === "mode" ? (
+          <ModeSwitch
+            live={bookMode.data?.only ?? "paper"}
+            paper={fillLog.data ?? []}
+            prime={primeRows.data ?? []}
+            onSubmit={(only) => {
+              void setBookMode({ data: { only } }).then(() => bookMode.refetch());
+            }}
+          />
+        ) : null}
+
+        {bookTab === "books" ? <BookRoll rows={setupBoard.data ?? []} /> : null}
+
+        {bookTab === "notes" ? <Notes notices={watch.data?.notices ?? []} lessons={watch.data?.lessons ?? []} /> : null}
+        {bookTab === "alerts" ? <Notes notices={watch.data?.notices ?? []} /> : null}
+
+        {bookTab === "day" ? <DayBook trades={trades} /> : null}
+
+        {bookTab === "pnl" ? (
+          <div className="flex flex-col gap-4">
+            <TapeBook
+              title="TAKEN"
+              points={pointsFromFills(fillLog.data ?? [])}
+              cash={kalshiCash.data?.cash ?? snap?.kalshi?.cash ?? null}
+            />
+            <TapeBook title="PRIME BOOK" points={pointsFromPrime(prime.data ?? [], "kalshi")} />
+          </div>
+        ) : null}
+
+        {bookTab === "mode" || bookTab === "scale" || bookTab === "hedge" || bookTab === "log" || bookTab === "audit" || bookTab === "outside" || bookTab === "cash" || bookTab === "stats" || bookTab === "notes" || bookTab === "pnl" || bookTab === "day" || bookTab === "alerts" || bookTab === "sitrep" || bookTab === "kalshi" || bookTab === "prime" || bookTab === "lead" || bookTab === "open" || bookTab === "watch" || bookTab === "lean" || bookTab === "fuel" || bookTab === "symbols" || bookTab === "mirror" || bookTab === "books" || !hydrated || !snap ? null : (
+          <Positions
+            trades={shown}
+            assets={snap.assets}
+            stake={bookTab === "poly" || bookTab === "kalshi" ? 0 : settings.stake}
+            asLive={bookTab === "kalshi"}
+            onSellAt={(id, cash) => {
+              const t = trades.find((x) => x.id === id);
+              if (!t) return;
+              const next = cash == null ? null : Math.round(cash * 100) / 100;
+              for (const row of trades) {
+                if (row.result !== "open" || row.ticker !== t.ticker || row.side !== t.side) continue;
+                patchTrade(row.id, { exitCash: next });
+              }
+              toast(next == null ? "Auto sell restored" : `Holds until $${next.toFixed(2)}`);
+            }}
+            onSize={(id, dollars) => {
+              const t = shown.find((x) => x.id === id);
+              if (!t || t.venue === "polymarket") return;
+              if (t.source !== "live") {
+                setSettings({ stake: dollars });
+                return;
+              }
+              const market = snap.assets[t.asset].market;
+              void resizeLiveOrder({
+                data: { id, dollars, yesBid: market?.yesBid ?? 0, yesAsk: market?.yesAsk ?? 0 },
+              }).then((res) => {
+                if (!res) {
+                  toast("Kalshi didn't resize");
+                  return;
+                }
+                patchTrade(id, { stake: res.trade.stake, contracts: res.trade.contracts });
+                if (res.slice) adoptBook([res.slice]);
+                toast("Size updated", { description: `$${res.trade.stake.toFixed(2)} on Kalshi` });
+              });
+            }}
+            onHalf={(id) => {
+              void halfLiveOrder({ data: { id } }).then((res) => {
+                if (!res) {
+                  toast("Half didn't fill. The position is still whole.");
+                  return;
+                }
+                toast(`Half banked $${res.payout.toFixed(2)}. The rest is still running.`);
+              });
+            }}
+            onExit={(id) => {
+              const t = shown.find((x) => x.id === id);
+              if (!t) return;
+              if (bookTab === "kalshi" || t.source === "live") {
+                void closeNow({ data: { ticker: t.ticker } }).then((row) => toast(row.line)).catch(() => toast("Close didn't send. Press it again."));
+                return;
+              }
+              if (!t || t.venue === "polymarket" || !snap) return;
+              const mtm = markTrade(t, snap.assets[t.asset]);
+              closeTrade(id, {
+                result: "exited",
+                payout: mtm.value,
+                profit: mtm.profit,
+              });
+            }}
+          />
+        )}
+
+        {q.error ? (
+          <p className="text-sm text-warn">
+            Scanner: {q.error instanceof Error ? q.error.message : "scan failed"}
+          </p>
+        ) : null}
+        {snap?.error ? <p className="text-sm text-warn">{snap.error}</p> : null}
+
+        {bookTab === "look" ? (
+          <LookPanel
+            look={look}
+            onChange={(patch) =>
+              setLook((prev) => {
+                const next = { ...prev, ...patch };
+                saveLook(next);
+                return next;
+              })
+            }
+            onReset={() => {
+              saveLook(LOOK_DEFAULT);
+              setLook(LOOK_DEFAULT);
+            }}
+          />
+        ) : null}
+
+        {!q.data && q.isLoading ? (
+          <div className="grid gap-4 md:grid-cols-2">
+            {["BTC", "GOLD", "SILVER"].map((name) => (
+              <section key={name} className="min-h-80 rounded-xl bg-surface p-4 hairline">
+                <p className="font-display text-3xl leading-none tracking-tight">{name}</p>
+                <p className="mt-3 text-[10px] tracking-[0.22em] text-subtle">SCANNING TAPE</p>
+              </section>
+            ))}
+          </div>
+        ) : bookTab !== "markets" || !snap ? null : (
+          <div className="grid gap-4 md:grid-cols-2">
+            {(["btc", "gold", "silver"] as AssetId[]).map((id) => {
+              const asset = snap.assets[id];
+              if (!asset) return null;
+              const setup = asset.setup;
+              const grok = setup ? grokBySetup[setup.id] : undefined;
+              const already = Boolean(setup && acted.includes(setup.id));
+              const verdict = setup ? autoDecision(setup, settings, grok) : null;
+              const filled = setup
+                ? trades.find(
+                    (t) =>
+                      t.setupId === setup.id ||
+                      (t.result === "open" && t.ticker === setup.ticker && t.side === setup.side),
+                  )
+                : undefined;
+              const autoNote = already
+                ? filled?.autoFilled
+                  ? "Auto filled. Sitting until expiry or the exit hurdle."
+                  : "Logged. Sitting until expiry or the exit hurdle."
+                : verdict?.action === "skip"
+                  ? verdict.reason
+                  : verdict?.action === "fill"
+                    ? "Armed. Auto fill on this scan."
+                    : undefined;
+              return (
+                <AssetCard
+                  key={id}
+                  snap={asset}
+                  grok={grok}
+                  grokBusy={Boolean(setup && grokBusy[setup.id])}
+                  grokError={setup ? grokError[setup.id] : undefined}
+                  already={already}
+                  stake={settings.stake}
+                  autoPaper={settings.autoPaper}
+                  autoNote={autoNote}
+                  look={look}
+                  onAsk={() => setup && void runGrok(setup, asset)}
+                  onPaper={() => setup && takePaper(setup, asset, false)}
+                />
+              );
+            })}
+            {(alts.data ?? []).map((board) => (
+              <AltCard key={board.name} board={board} look={look} />
+            ))}
+          </div>
+        )}
+
+        {bookTab === "prime" ? (
+          <section className="rounded-md border border-white bg-black px-4 py-4 text-white">
+            <div className="flex items-end justify-between gap-3">
+              <p className="text-[10px] tracking-[0.22em] text-white/70">PRIME BOOK</p>
+              <p className="text-right font-mono text-xs">
+                <span className="text-white/50">HYPOTHETICAL </span>
+                <span className={(primeRows.data ?? []).reduce((sum, row) => sum + (bookedDollars(row) ?? 0), 0) >= 0 ? "text-up" : "text-down"}>
+                  {money((primeRows.data ?? []).reduce((sum, row) => sum + (bookedDollars(row) ?? 0), 0))}
+                </span>
+                <span className="text-white/40"> · </span>
+                <span className="text-up">{primeScore.data?.yes ?? 0} yes</span>
+                <span className="text-white/40"> / </span>
+                <span className="text-down">{primeScore.data?.no ?? 0} no</span>
+                <span className="text-white/40"> · </span>
+                <span className="text-white/80">all-time {primeScore.data?.allYes ?? 0} yes / {primeScore.data?.allNo ?? 0} no</span>
+              </p>
+            </div>
+            <p className="mt-2 text-xs leading-snug text-white/70">
+              The setups that have hit the most in the log. No band between the price and the strike. Kalshi takes this book, and the paper book on Bitcoin and gold at $10. One side at a time. Nothing else can send.
+            </p>
+            {(primeRows.data ?? []).length === 0 ? (
+              <p className="mt-4 text-sm text-white/70">No prime trades yet. The next winning setup will show here.</p>
+            ) : (
+              <ul className="mt-3 space-y-2">
+                {(primeRows.data ?? []).map((row) => {
+                  const dollars = ticketDollars(row);
+                  return (
+                  <li key={row.id} className="flex items-start justify-between gap-3 rounded-md border border-white bg-black px-4 py-2.5">
+                    <div className="min-w-0">
+                    <p className="text-sm text-white">
+                      {row.asset.toUpperCase()} {row.side.toUpperCase()}
+                      <span className="ml-2 text-xs uppercase tracking-wider text-white/70">
+                        {`${row.bookYes ?? 0} yes / ${row.bookNo ?? 0} no · `}
+                        {row.multiple && row.multiple > 1 ? `${row.multiple.toFixed(2)}x · ` : ""}
+                        {row.result === "yes" ? "yes" : row.result === "no" ? "no" : "open"}
+                      </span>
+                    </p>
+                    <p className="mt-1 text-xs leading-snug text-white/80">
+                      {whyTrade({ name: row.asset, side: row.side, pattern: row.pattern })}
+                    </p>
+                    <p className="mt-1 text-xs text-white/60">{row.pattern}</p>
+                    {reachText(row.multiple, row.peak) ? (
+                      <p className="mt-1 font-mono text-[10px] tabular-nums text-white/70">{reachText(row.multiple, row.peak)}</p>
+                    ) : null}
+                    </div>
+                    <div className="text-right">
+                    <p className={`font-mono text-sm tabular-nums ${dollars == null ? "text-white/50" : dollars >= 0 ? "text-up" : "text-down"}`}>
+                      {dollars == null ? "—" : money(dollars)}
+                    </p>
+                    {row.result === "open" && dollars != null ? <p className="font-mono text-[10px] text-white/50">if yes</p> : null}
+                    </div>
+                  </li>
+                  );
+                })}
+              </ul>
+            )}
+            <PaperShelf
+              title="HALF-BAND BOOK"
+              blurb="Same prime setups, same no-band rule. If price is already past the strike, the lead has to be at least half a band or she skips it. Paper only."
+              rows={halfRows.data ?? []}
+            />
+            <PaperShelf
+              title="$150 BOOK"
+              blurb="Bitcoin only. Long when price is already $150 over the strike. Short when it is already $150 under. One try per window. Paper only."
+              rows={decidedRows.data ?? []}
+            />
+          </section>
+        ) : null}
+
+        {bookTab === "lead" ? (
+          <PaperShelf
+            title="$150 BOOK"
+            blurb="Bitcoin only. Long when price is already $150 over the strike. Short when it is already $150 under. One try per window. Paper only. It does not use the band rule, because price is already through the strike."
+            rows={decidedRows.data ?? []}
+          />
+        ) : null}
+
+        {bookTab === "open" ? (
+          <section className="rounded-md border border-white bg-black px-4 py-4 text-white">
+            <p className="text-[10px] tracking-[0.22em] text-white/70">OPEN POSITIONS</p>
+            <p className="mt-2 text-xs leading-snug text-white/70">Prime book only. The same row Kalshi is allowed to hold.</p>
+            {(primeRows.data ?? []).filter((row) => row.result === "open").length === 0 ? (
+              <p className="mt-4 text-sm text-white/70">No open prime position.</p>
+            ) : (
+              <ul className="mt-3 space-y-2">
+                {(primeRows.data ?? []).filter((row) => row.result === "open").map((row) => {
+                  const book = row.asset === "gold" ? snap?.assets.gold : row.asset === "silver" ? snap?.assets.silver : snap?.assets.btc;
+                  const market = book?.market;
+                  const bid = market && market.ticker === row.ticker ? (row.side === "up" ? market.yesBid : market.noBid) : 0;
+                  const live = (held.data ?? []).find((item) => item.ticker === row.ticker);
+                  const entry = row.multiple && row.multiple > 1 ? 1 / row.multiple : 0;
+                  const livePct = live && live.cost > 0 ? ((live.value - live.cost) / live.cost) * 100 : entry > 0 && bid > 0 ? (bid / entry - 1) * 100 : null;
+                  const dollars = live ? live.value - live.cost : null;
+                  const spot = book?.spot ?? 0;
+                  const tone = livePct == null ? "text-white/50" : livePct > 0.5 ? "text-up" : livePct < -0.5 ? "text-down" : "text-white";
+                  return (
+                  <li key={row.id} className="rounded-md border border-white bg-black px-4 py-2.5">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-sm text-white">
+                          {row.asset.toUpperCase()} {row.side.toUpperCase()}
+                          <span className="ml-2 text-xs uppercase tracking-wider text-white/70">
+                            {row.live === "filled" ? "on Kalshi" : "waiting"}
+                            {row.multiple && row.multiple > 1 ? ` · ${row.multiple.toFixed(2)}x` : ""}
+                          </span>
+                        </p>
+                        <p className="mt-1 font-mono text-sm tabular-nums text-white">{spot > 0 ? `$${usd(spot, 2)}` : "—"}</p>
+                        <p className="mt-1 text-xs text-white/80">{row.pattern}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className={`font-mono text-sm tabular-nums ${tone}`}>
+                          {livePct == null ? "—" : `${livePct > 0.5 ? "+" : livePct < -0.5 ? "−" : ""}${Math.abs(Math.round(livePct))}%`}
+                        </p>
+                        <p className={`mt-1 font-mono text-xs tabular-nums ${tone}`}>{dollars == null ? (bid > 0 ? `${Math.round(bid * 100)}¢` : "—") : money(dollars)}</p>
+                      </div>
+                    </div>
+                  </li>
+                  );
+                })}
+              </ul>
+            )}
+          </section>
+        ) : null}
+
+        {bookTab === "watch" ? <WatchingCards note={primeWatch.data?.note} /> : null}
+
+        {bookTab === "symbols" ? (() => {
+          const rows = symbolLab.data?.rows ?? [];
+          const check = symbolLab.data?.check;
+          const names = ["btc", "gold", "silver", "oil", "gas", "copper", "eth", "sol"] as const;
+          const label: Record<string, string> = {
+            btc: "BITCOIN",
+            gold: "GOLD",
+            silver: "SILVER",
+            oil: "OIL",
+            gas: "GAS",
+            copper: "COPPER",
+            eth: "ETH",
+            sol: "SOL",
+          };
+          const clock = check?.at
+            ? new Date(check.at).toLocaleTimeString("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit" })
+            : "";
+          const groups = names.map((id) => {
+            const mine = rows.filter((row) => row.asset === id);
+            const tally = new Map<string, { side: string; pattern: string; yes: number; no: number; profit: number }>();
+            for (const row of mine) {
+              if (row.result !== "yes" && row.result !== "no") continue;
+              const key = `${row.side}|${row.pattern}`;
+              const cur = tally.get(key) || { side: row.side, pattern: row.pattern, yes: 0, no: 0, profit: 0 };
+              if (row.result === "yes") cur.yes += 1;
+              else cur.no += 1;
+              cur.profit += row.profit || 0;
+              tally.set(key, cur);
+            }
+            return { id, open: mine.filter((row) => row.result === "open"), scores: [...tally.values()] };
+          }).filter((group) => group.open.length || group.scores.length);
+          const green = check?.greenHours ?? 0;
+          return (
+            <section className="rounded-md border border-white bg-black px-4 py-4 text-white">
+              <p className="text-[10px] tracking-[0.22em] text-white/70">EVERY SYMBOL</p>
+              <p className="mt-2 text-xs leading-snug text-white/70">
+                Every prime setup, on bitcoin, gold, silver, oil, gas, copper, eth, and sol. A long does not fire with a band above. A short does not fire with a band below. Paper only. Kalshi stays off until this is clean and green for 24 hours. It will not turn itself live.
+              </p>
+              <p className={`mt-3 text-sm ${check?.halted ? "text-down" : "text-white"}`}>
+                {check?.halted
+                  ? `Stopped. ${check.reason || "The logic broke."} New paper is off. Your positions were left alone.`
+                  : clock
+                    ? `Checked ${clock} PT. Logic is clean. ${green} of 24 green hours.`
+                    : "Hourly check is on. It looks every hour and stops the test if a long is under a band or a short is above one."}
+              </p>
+              {groups.length === 0 ? (
+                <p className="mt-4 text-sm text-white/70">Nothing has cleared yet. It only papers a setup the prime book already knows, and only when the band is not in the way.</p>
+              ) : (
+                <ul className="mt-4 space-y-4">
+                  {groups.map((group) => (
+                    <li key={group.id}>
+                      <p className="text-[10px] tracking-[0.18em] text-white/70">{label[group.id]}</p>
+                      <ul className="mt-1 space-y-2">
+                        {group.scores.map((row) => (
+                          <li key={`${row.side}|${row.pattern}`} className="flex items-start justify-between gap-3 border-t border-white/20 pt-2">
+                            <p className="text-sm text-white">
+                              {row.side === "up" ? "UP" : "DOWN"}
+                              <span className="mt-1 block text-xs text-white/70">{row.pattern}</span>
+                            </p>
+                            <p className="text-right font-mono text-xs">
+                              <span className="text-up">{row.yes} yes</span>
+                              <span className="text-white/40"> / </span>
+                              <span className="text-down">{row.no} no</span>
+                              <span className={`mt-1 block tabular-nums ${row.profit >= 0 ? "text-up" : "text-down"}`}>{money(row.profit)}</span>
+                            </p>
+                          </li>
+                        ))}
+                        {group.open.map((row) => (
+                          <li key={row.id} className="flex items-start justify-between gap-3 border-t border-white/20 pt-2">
+                            <p className="text-sm text-white">
+                              {row.side === "up" ? "UP" : "DOWN"}
+                              <span className="ml-2 text-xs uppercase tracking-wider text-white/70">open{row.multiple && row.multiple > 1 ? ` · ${row.multiple.toFixed(2)}x` : ""}</span>
+                              <span className="mt-1 block text-xs text-white/70">{row.pattern}</span>
+                            </p>
+                            <p className="font-mono text-xs text-white/70">paper</p>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          );
+        })() : null}
+
+        {bookTab === "mirror" ? <MirrorSheet rows={mirrorSheet.data ?? []} /> : null}
+
+        {bookTab === "fuel" ? (
+          <section className="rounded-md border border-white bg-black px-4 py-4 text-white">
+            <p className="text-[10px] tracking-[0.22em] text-white/70">OIL, GAS, COPPER</p>
+            <p className="mt-2 text-xs leading-snug text-white/70">Paper only. Same prime setups as bitcoin, gold, and silver. Kalshi does not take these.</p>
+            {(fuelRows.data ?? []).length === 0 ? (
+              <p className="mt-4 text-sm text-white/70">Nothing on the fuel book yet. It takes the next prime setup that clears the band.</p>
+            ) : (
+              <ul className="mt-3 space-y-2">
+                {(fuelRows.data ?? []).map((row) => (
+                  <li key={row.id} className="rounded-md border border-white bg-black px-4 py-2.5">
+                    <p className="text-sm text-white">
+                      {row.asset.toUpperCase()} {row.side.toUpperCase()}
+                      <span className="ml-2 text-xs uppercase tracking-wider text-white/70">
+                        {row.multiple && row.multiple > 1 ? `${row.multiple.toFixed(2)}x · ` : ""}
+                        {row.result}
+                      </span>
+                    </p>
+                    <p className="mt-1 text-xs text-white/70">{row.pattern}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ) : null}
+
+        {bookTab === "lean" ? (
+          <section className="rounded-md border border-white bg-black px-4 py-4 text-white">
+            <div className="flex items-end justify-between gap-3">
+              <p className="text-[10px] tracking-[0.22em] text-white/70">SILVER PAPER</p>
+              <p className="text-right font-mono text-xs">
+                <span className={(leanRows.data ?? []).reduce((sum, row) => sum + (bookedDollars(row) ?? 0), 0) >= 0 ? "text-up" : "text-down"}>
+                  {money((leanRows.data ?? []).reduce((sum, row) => sum + (bookedDollars(row) ?? 0), 0))}
+                </span>
+                <span className="text-white/40"> · </span>
+                <span className="text-up">{(leanRows.data ?? []).filter((row) => row.result === "yes").length} yes</span>
+                <span className="text-white/40"> / </span>
+                <span className="text-down">{(leanRows.data ?? []).filter((row) => row.result === "no").length} no</span>
+              </p>
+            </div>
+            <p className="mt-2 text-xs leading-snug text-white/70">
+              Paper only. The setups Bitcoin and gold have won. Kalshi does not take these.
+            </p>
+            {(leanRows.data ?? []).length === 0 ? (
+              <p className="mt-4 text-sm text-white/70">No silver paper trades yet. The next Bitcoin or gold setup will show here.</p>
+            ) : (
+              <ul className="mt-3 space-y-2">
+                {(leanRows.data ?? []).map((row) => {
+                  const dollars = ticketDollars(row);
+                  return (
+                  <li key={row.id} className="flex items-start justify-between gap-3 rounded-md border border-white bg-black px-4 py-2.5">
+                    <div className="min-w-0">
+                    <p className="text-sm text-white">
+                      {row.asset.toUpperCase()} {row.side.toUpperCase()}
+                      <span className="ml-2 text-xs uppercase tracking-wider text-white/70">
+                        {row.multiple.toFixed(2)}x · {row.result === "yes" ? "yes" : row.result === "no" ? "no" : "open"}
+                      </span>
+                    </p>
+                    <p className="mt-1 text-xs leading-snug text-white/80">
+                      {whyTrade({ name: row.asset, side: row.side, pattern: row.pattern })} Price had already decided, and it was on the side of the target.
+                    </p>
+                    <p className="mt-1 text-xs text-white/60">{row.pattern}</p>
+                    </div>
+                    <div className="text-right">
+                    <p className={`font-mono text-sm tabular-nums ${dollars == null ? "text-white/50" : dollars >= 0 ? "text-up" : "text-down"}`}>
+                      {dollars == null ? "—" : money(dollars)}
+                    </p>
+                    {row.result === "open" && dollars != null ? <p className="font-mono text-[10px] text-white/50">if yes</p> : null}
+                    </div>
+                  </li>
+                  );
+                })}
+              </ul>
+            )}
+          </section>
+        ) : null}
+
+        {bookTab === "paper" || bookTab === "prime" ? <ComboBook rows={comboRows.data ?? []} /> : null}
+
+        {bookTab === "scale" ? (
+          <ScaleBook />
+        ) : bookTab === "hedge" ? (
+          <HedgeBook />
+        ) : bookTab === "log" || bookTab === "audit" || bookTab === "outside" || bookTab === "cash" || bookTab === "stats" || bookTab === "look" || bookTab === "notes" || bookTab === "pnl" || bookTab === "alerts" || bookTab === "sitrep" || bookTab === "markets" || bookTab === "kalshi" || bookTab === "prime" || bookTab === "lead" || bookTab === "open" || bookTab === "watch" || bookTab === "lean" || bookTab === "fuel" || bookTab === "symbols" || bookTab === "mirror" ? null : hydrated ? (
+          <StillJournal trades={shown} stake={bookTab === "paper" ? 25 : bookTab === "kalshi" || bookTab === "poly" ? 0 : settings.stake} outcomes={bookTab === "paper"} exits={exitLog.data ?? []} mirrorExits={bookTab === "kalshi"} />
+        ) : null}
+      </div>
+      </main>
+      {(held.data ?? []).length ? (
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t-[0.5px] border-white bg-black px-3 py-0.5 pb-[max(4px,env(safe-area-inset-bottom))]">
+          {(held.data ?? []).map((row) => (
+            <DockOrder
+              key={row.ticker}
+              row={row}
+              onClose={() => {
+                void closeNow({ data: { ticker: row.ticker } }).then((res) => {
+                  toast(res.line);
+                  void held.refetch();
+                }).catch(() => toast("Close didn't send. Press it again."));
+              }}
+            />
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+import { useMemo as useShiftMemo, useState as useShiftState } from "react";
+import type { FillEvent as ShiftFill } from "@/lib/desk/fill-log";
+import type { HeldOrder as ShiftHeld } from "@/lib/desk/fns";
+
+// SHIFT — the book that starts when Claude took over the desk.
+// Kalshi live only. One row per 15-minute window. Pure black; light comes only from lines and numbers.
+
+const SHIFT_UP = "#3ddc84";
+const SHIFT_DOWN = "#ff5c5c";
+
+type ShiftRow = { ticker: string; at: string; asset: string; side: string; setup: string; stake: number; multiple: number; pnl: number };
+
+function shiftClock(at: string) {
+  return new Date(at).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
+}
+function shiftDay(at: string) {
+  return new Date(at).toLocaleDateString("en-US", { month: "short", day: "numeric" }).toUpperCase();
+}
+function shiftMoney(n: number) {
+  const s = `$${Math.abs(n).toFixed(2)}`;
+  return n > 0.004 ? `+${s}` : n < -0.004 ? `−${s}` : s;
+}
+const shiftGlow = (color: string, px = 10) => ({ textShadow: `0 0 ${px}px ${color}` });
+
+function ShiftChip({ label, value, tone }: { label: string; value: string; tone?: "up" | "down" }) {
+  const color = tone === "up" ? SHIFT_UP : tone === "down" ? SHIFT_DOWN : "#ffffff";
+  return (
+    <div className="flex min-w-[96px] flex-1 flex-col items-center gap-1 rounded-full border border-white/25 px-4 py-2 shadow-[0_0_14px_rgba(255,255,255,0.08)]">
+      <span className="text-[9px] tracking-[0.24em] text-white/70">{label}</span>
+      <span className="font-mono text-sm tabular-nums" style={{ color, ...shiftGlow(color, 8) }}>
+        {value}
+      </span>
+    </div>
+  );
+}
+
+function ShiftCurve({ rows }: { rows: ShiftRow[] }) {
+  const [hover, setHover] = useShiftState<number | null>(null);
+  const W = 640;
+  const H = 200;
+  const P = 18;
+  const pts = useShiftMemo(() => {
+    let run = 0;
+    const out: { x: number; y: number; row: ShiftRow | null }[] = [{ x: 0, y: 0, row: null }];
+    rows.forEach((row, i) => {
+      run += row.pnl;
+      out.push({ x: i + 1, y: Math.round(run * 100) / 100, row });
+    });
+    return out;
+  }, [rows]);
+  const ys = pts.map((p) => p.y);
+  const lo = Math.min(0, ...ys);
+  const hi = Math.max(0, ...ys);
+  const span = hi - lo || 1;
+  const sx = (x: number) => P + (x / Math.max(1, pts.length - 1)) * (W - 2 * P);
+  const sy = (y: number) => H - P - ((y - lo) / span) * (H - 2 * P);
+  const last = pts[pts.length - 1].y;
+  const color = last >= 0 ? SHIFT_UP : SHIFT_DOWN;
+  const path = pts.map((p, i) => `${i ? "L" : "M"}${sx(p.x).toFixed(1)},${sy(p.y).toFixed(1)}`).join(" ");
+  const h = hover != null ? pts[hover] : null;
+  return (
+    <div className="relative" onMouseLeave={() => setHover(null)}>
+      <svg viewBox={`0 0 ${W} ${H}`} className="h-[200px] w-full" preserveAspectRatio="none" onMouseLeave={() => setHover(null)}>
+        <defs>
+          <filter id="shift-shiftGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="b" />
+            <feMerge>
+              <feMergeNode in="b" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <line x1={P} x2={W - P} y1={sy(0)} y2={sy(0)} stroke="rgba(255,255,255,0.28)" strokeDasharray="3 6" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <path d={path} fill="none" stroke={color} strokeWidth="2" filter="url(#shift-shiftGlow)" vectorEffect="non-scaling-stroke" strokeLinejoin="round" />
+      </svg>
+      {pts.map((p, i) =>
+        i === 0 ? null : (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Close ${i}`}
+            onMouseEnter={() => setHover(i)}
+            onFocus={() => setHover(i)}
+            onClick={() => setHover(i)}
+            className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-[1.6px] bg-black transition-all"
+            style={{
+              left: `${(sx(p.x) / W) * 100}%`,
+              top: `${(sy(p.y) / H) * 100}%`,
+              width: hover === i ? 11 : 8,
+              height: hover === i ? 11 : 8,
+              borderColor: (p.row?.pnl ?? 0) >= 0 ? SHIFT_UP : SHIFT_DOWN,
+              boxShadow: `0 0 8px ${(p.row?.pnl ?? 0) >= 0 ? SHIFT_UP : SHIFT_DOWN}`,
+            }}
+          />
+        ),
+      )}
+      {h?.row ? (
+        <div className="pointer-events-none absolute right-2 top-2 rounded-xl border border-white/30 bg-black px-3 py-2 text-right shadow-[0_0_16px_rgba(255,255,255,0.12)]">
+          <p className="text-[9px] tracking-[0.22em] text-white/70">
+            {shiftClock(h.row.at)} · {h.row.asset.toUpperCase()} {h.row.side === "up" ? "LONG" : "SHORT"}
+          </p>
+          <p className="font-mono text-sm tabular-nums" style={{ color: h.row.pnl >= 0 ? SHIFT_UP : SHIFT_DOWN }}>
+            {shiftMoney(h.row.pnl)}
+          </p>
+          <p className="font-mono text-[11px] tabular-nums text-white/80">RUN {shiftMoney(h.y)}</p>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+type ShiftShadow = { id: string; at: string; asset: string; side: string; band: string; multiple: number; result: string; bellProfit: number | null; tpProfit: number | null; tpHit: boolean };
+
+function ShadowCard({ rows }: { rows: ShiftShadow[] }) {
+  const done = rows.filter((r) => r.result !== "open");
+  const wins = done.filter((r) => r.result === "win").length;
+  const bell = done.reduce((t, r) => t + (r.bellProfit ?? 0), 0);
+  const tp = done.reduce((t, r) => t + (r.tpProfit ?? 0), 0);
+  const open = rows.filter((r) => r.result === "open").length;
+  return (
+    <section className="rounded-[22px] border border-white/20 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.05)]">
+      <div className="flex items-baseline justify-between gap-3">
+        <p className="text-[10px] tracking-[0.28em] text-white/85">REJECTION MODEL · SHADOW</p>
+        <p className="text-[9px] tracking-[0.2em] text-white/50">PAPER ONLY · 1-MIN CLOSE OFF A BAND</p>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <ShiftChip label="CALLS" value={String(rows.length)} />
+        <ShiftChip label="AT THE BELL" value={done.length ? `${wins}-${done.length - wins}` : "—"} />
+        <ShiftChip label="HIT RATE" value={done.length ? `${Math.round((wins / done.length) * 100)}%` : "—"} />
+        <ShiftChip label="HELD P&L" value={done.length ? shiftMoney(bell) : "—"} tone={bell >= 0 ? "up" : "down"} />
+        <ShiftChip label="WITH TAKE PROFIT" value={done.length ? shiftMoney(tp) : "—"} tone={tp >= 0 ? "up" : "down"} />
+      </div>
+      <div className="mt-3 flex flex-col gap-1.5">
+        {rows.slice(0, 6).map((r) => {
+          const p = r.result === "open" ? null : r.tpProfit ?? r.bellProfit;
+          const c = p == null ? "#ffffff" : p >= 0 ? SHIFT_UP : SHIFT_DOWN;
+          return (
+            <div key={r.id} className="flex items-center justify-between gap-3 rounded-full border border-white/15 px-4 py-1.5">
+              <span className="text-[10px] tracking-[0.16em] text-white/85">
+                {shiftClock(r.at)} · {r.asset.toUpperCase()} {r.side === "up" ? "LONG" : "SHORT"} · OFF {r.band} · {Number(r.multiple).toFixed(2)}x
+              </span>
+              <span className="font-mono text-[11px] tabular-nums" style={{ color: c }}>
+                {r.result === "open" ? (open ? "OPEN" : "") : `${r.result.toUpperCase()} ${shiftMoney(p ?? 0)}`}
+              </span>
+            </div>
+          );
+        })}
+        {!rows.length ? <p className="py-2 text-center text-[10px] tracking-[0.22em] text-white/55">WATCHING FOR THE FIRST REJECTION</p> : null}
+      </div>
+    </section>
+  );
+}
+
+type ShiftLotto = { id: string; at: string; asset: string; side: string; sigma: number; multiple: number; peakPct: number; result: string; profits: Record<string, number> | null };
+
+// LOTTO LAB: $5 out-of-band tickets, 3x-20x, scored five ways on real Kalshi bids. Paper only.
+function LottoCard({ rows }: { rows: ShiftLotto[] }) {
+  const done = rows.filter((r) => r.result !== "open" && r.profits);
+  const rules = ["+50", "+100", "+200", "+300", "hold"];
+  const score = rules.map((k) => {
+    const pnl = done.reduce((t, r) => t + (r.profits?.[k] ?? 0), 0);
+    const wins = done.filter((r) => (r.profits?.[k] ?? 0) > 0).length;
+    return { k, pnl, wins };
+  });
+  const best = done.length ? score.reduce((b, x) => (x.pnl > b.pnl ? x : b), score[0]) : null;
+  return (
+    <section className="rounded-[22px] border border-white/20 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.05)]">
+      <div className="flex items-baseline justify-between gap-3">
+        <p className="text-[10px] tracking-[0.28em] text-white/85">LOTTO LAB · OUT OF BAND</p>
+        <p className="text-[9px] tracking-[0.2em] text-white/50">PAPER ONLY · $5 · 3x–20x · FADE 2σ+</p>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <ShiftChip label="TICKETS" value={`${rows.length}${rows.length - done.length ? ` · ${rows.length - done.length} OPEN` : ""}`} />
+        {score.map((x) => (
+          <ShiftChip
+            key={x.k}
+            label={`${x.k === "hold" ? "HOLD TO BELL" : `SELL AT ${x.k}%`}${best && best.k === x.k ? " ★" : ""}`}
+            value={done.length ? `${shiftMoney(x.pnl)} · ${x.wins}/${done.length}` : "—"}
+            tone={done.length ? (x.pnl >= 0 ? "up" : "down") : undefined}
+          />
+        ))}
+      </div>
+      <div className="mt-3 flex flex-col gap-1.5">
+        {rows.slice(0, 8).map((r) => {
+          const p = best && r.profits ? r.profits[best.k] : null;
+          const c = p == null ? "#ffffff" : p >= 0 ? SHIFT_UP : SHIFT_DOWN;
+          return (
+            <div key={r.id} className="flex items-center justify-between gap-3 rounded-full border border-white/15 px-4 py-1.5">
+              <span className="text-[10px] tracking-[0.16em] text-white/85">
+                {shiftClock(r.at)} · {r.asset.toUpperCase()} {r.side === "up" ? "LONG" : "SHORT"} · {r.sigma > 0 ? "+" : ""}{Number(r.sigma).toFixed(1)}σ · {Number(r.multiple).toFixed(1)}x
+              </span>
+              <span className="font-mono text-[11px] tabular-nums" style={{ color: c }}>
+                PEAK {r.peakPct > 0 ? "+" : ""}{r.peakPct}%{r.result === "open" ? " · OPEN" : p != null ? ` · ${shiftMoney(p)}` : ""}
+              </span>
+            </div>
+          );
+        })}
+        {!rows.length ? <p className="py-2 text-center text-[10px] tracking-[0.22em] text-white/55">WAITING FOR PRICE TO LEAVE THE BANDS</p> : null}
+      </div>
+    </section>
+  );
+}
+
+type ShiftNight = { id: string; book: "original" | "new" | "refined" | "golden" | "optA" | "optB" | "claude" | "trend" | "brick" | "cotc" | "diamond" | "bank" | "bank2" | "brk" | "hold90"; at: string; asset: string; side: string; setup: string; multiple: number; stake: number; peakPct: number; exit: string | null; result: string; pnl: number | null; notes?: { worked: string[]; better: string[]; keep: string[] } | null; bankPnl?: number | null; bankExit?: string; stale?: boolean };
+
+// NIGHT PAPER: the same setups traded two ways on real Kalshi bids while LIVE is off.
+function NightCard({ rows: rowsIn, scale = 1, size = 50 }: { rows: ShiftNight[]; scale?: number; size?: number }) {
+  // Love's paper-size slider: every ledger books at $50 ($25 on 3x+); the card shows it at her size.
+  // Love's toggle: every trade re-run with BANK's exits (trailing gate 5% off the high after +30%,
+  // band-tap rejection banks, breaks hold). Computed on the server from the real bid paths.
+  const [bankView, setBankView] = useState(false);
+  const rowsAll = useMemo(
+    () =>
+      rowsIn
+        .map((r) => (bankView && r.bankPnl !== undefined ? { ...r, pnl: r.bankPnl ?? null, exit: r.bankExit ?? r.exit, result: r.bankPnl == null ? "open" : r.bankPnl >= 0 ? "win" : "loss" } : r))
+        .map((r) => ({ ...r, stake: r.stake * scale, pnl: r.pnl == null ? null : r.pnl * scale })),
+    [rowsIn, scale, bankView],
+  );
+  // Trades booked while the BTC feed was frozen (OANDA closed for the weekend, Fri 2:00-5:24 PM PT) are
+  // listed but never counted: they were decided on a price that wasn't moving.
+  const rows = useMemo(() => rowsAll.filter((r) => !r.stale), [rowsAll]);
+  // Head to head: every ledger counted from the moment REFINED + GOLDEN started (fair comparison).
+  // Seven-ledger start (CLAUDE / OPTION A / OPTION B arrived 8:45 AM PT Oct 2); fall back to REFINED + GOLDEN.
+  const firstOf = (books: string[]) => rows.filter((r) => books.includes(r.book)).reduce((m, r) => (r.at < m ? r.at : m), "9999");
+  const seven = "2026-10-02T15:45:00.000Z";
+  // Ten-ledger start (TREND / BRICK / COTC arrived 10:15 AM PT Oct 2).
+  const ten = "2026-10-02T17:15:00.000Z";
+  const since = rows.some((r) => r.book === "brick" || r.book === "cotc" || r.book === "trend") ? ten : rows.some((r) => r.book === "claude" || r.book === "optB") ? seven : firstOf(["golden", "refined"]);
+  const h2h = since !== "9999";
+  const side = (book: ShiftNight["book"]) => {
+    const xs = rows.filter((r) => r.book === book && (!h2h || r.at >= since));
+    const done = xs.filter((r) => r.result !== "open" && r.pnl != null);
+    const pnl = done.reduce((t, r) => t + (r.pnl ?? 0), 0);
+    const wins = done.filter((r) => (r.pnl ?? 0) > 0.05).length;
+    const losses = done.filter((r) => (r.pnl ?? 0) < -0.05).length;
+    return { n: xs.length, open: xs.length - done.length, pnl, wins, losses };
+  };
+  const BOOKS: { book: ShiftNight["book"]; title: string; note: string }[] = [
+    { book: "bank", title: "BANK ⛨", note: "ORIGINAL's DNA-clean entries with her banking exits: after +30%, sells 5% off the highest bid; taps a band and the 1m candle rejects = banks it, breaks through = holds. Never sells at a loss." },
+    { book: "brk", title: "BREAK ⚡ · 24H TEST", note: "Every entry any ledger takes (first one per window). Out the moment the line she entered on breaks with a strong push (1m close through by BTC $20 / gold $0.40, or two closes through). Otherwise a hard take profit." },
+    { book: "hold90", title: "HOLD 90 ✦", note: "ORIGINAL's entries, hard take profit. A clear winner (past the strike by BTC $100 / gold $1.50, no line in between) rides for 90% of the max, backstopped at the take-profit line." },
+    { book: "bank2", title: "BANK 2 ⛨", note: "Same entries as BANK, gentler bank from the lab: arms at +30% → +40%, gives back 10% of the peak instead of 5%, no band-tap. Being tuned this week." },
+    { book: "diamond", title: "DIAMOND ◆", note: "Her best stretches, reinforced: already through the strike (nothing between her and it), no purple/Bollinger right in front, bands open (BTC σ ≥ $150, gold ≥ $5), no 2–7 PM PT chop." },
+    { book: "brick", title: "BRICK ▣", note: "Entry logic rewritten from scratch by Claude. A closed 5m candle rejects or breaks one of her lines; the road to the strike must be clear of every band and nav line, and nothing sits right in front (BTC: purple/Bollinger $100, bands $25 · gold $0.75–2.50)." },
+    { book: "cotc", title: "C O T C ♛", note: "Cream of the crop: only the 8 setups that won 75%+ over 15+ trades. Gold long taps at −1.5σ / −2σ / +1.5σ, gold Open −0.5σ, gold retests, BTC short taps at +1σ / +1.5σ, BTC close above +1σ." },
+    { book: "trend", title: "CLAUDE · TREND", note: "CLAUDE, but gold follows the trend: under the session VWAP and the 15m purple = shorts only; above both = longs only." },
+    { book: "claude", title: "CLAUDE ✦", note: "Claude's pick: gold longs (taps, retests, clock, nav close), BTC short taps, BTC close-above longs. Nav + path guards, her worst hours, no-loss gates." },
+    { book: "golden", title: "GOLDEN · OCT 1 12:45–3:30", note: "Her Oct 1 afternoon model on its own feeds (BTC session from 5 PM PT, gold bands on 15m, her TP table) — and since 3:02 PM, her true DNA." },
+    { book: "optA", title: "OPTION A", note: "NEW, but BTC entries read the 5 PM-start bands. Her 2 PM bands still run nav / path / hour rules." },
+    { book: "optB", title: "OPTION B", note: "NEW, but no BTC entries 2:00–3:59 PM PT, right after the session reset." },
+    { book: "refined", title: "REFINED", note: "NEW + morning fixes: no BTC purple-close entries, a gate or lock never sells under breakeven after a gap." },
+    { book: "new", title: "NEW", note: "Every rule tonight. Nav skip + nav-close entries, worst hours, TP 50/75% of max, LOCK THE WIN." },
+    { book: "original", title: "ORIGINAL", note: "Her table 33/44/50/60/max−15, no hours, no lock. Carries her DNA since 11:55 AM: never a line right in front, never a line between her and the strike." },
+  ];
+  const ranked = BOOKS.map((b) => ({ ...b, s: side(b.book) })).sort((a, b) => b.s.pnl - a.s.pnl);
+  const [pick, setPick] = useState<ShiftNight["book"] | "all" | "origClean">("all");
+  // ORIGINAL without her band errors (Love: "that's what she looks like"): every ORIGINAL trade whose
+  // own review says she entered with a line right above a long / right below a short is set aside.
+  const bandErr = (r: ShiftNight) => (r.notes?.better ?? []).some((t) => /right (above|below) her/.test(t));
+  const origDone = rows.filter((r) => r.book === "original" && r.result !== "open" && r.pnl != null);
+  const statOf = (xs: ShiftNight[]) => ({ n: xs.length, pnl: xs.reduce((t, r) => t + (r.pnl ?? 0), 0), wins: xs.filter((r) => (r.pnl ?? 0) > 0.05).length, losses: xs.filter((r) => (r.pnl ?? 0) < -0.05).length });
+  const clean = statOf(origDone.filter((r) => !bandErr(r)));
+  const errs = statOf(origDone.filter(bandErr));
+  const allO = statOf(origDone);
+  const [limit, setLimit] = useState(40);
+  const LABEL: Record<string, string> = { original: "ORIG", new: "NEW", refined: "REFINED", golden: "GOLDEN", optA: "OPT A", optB: "OPT B", claude: "CLAUDE", trend: "TREND", brick: "BRICK", cotc: "COTC", diamond: "DIAMOND", bank: "BANK", bank2: "BANK 2", brk: "BREAK", hold90: "HOLD 90" };
+  // A book's whole record, every row it ever booked (not only head to head).
+  const record = (book: ShiftNight["book"]) => {
+    const done = rows.filter((r) => r.book === book && r.result !== "open" && r.pnl != null);
+    return { n: done.length, pnl: done.reduce((t, r) => t + (r.pnl ?? 0), 0), wins: done.filter((r) => (r.pnl ?? 0) > 0.05).length, losses: done.filter((r) => (r.pnl ?? 0) < -0.05).length, from: rows.filter((r) => r.book === book).reduce((m, r) => (r.at < m ? r.at : m), "9999") };
+  };
+  const Col = ({ book, title, note, s }: { book: ShiftNight["book"]; title: string; note: string; s: ReturnType<typeof side> }) => {
+    const c = s.pnl >= 0 ? SHIFT_UP : SHIFT_DOWN;
+    const on = pick === book;
+    return (
+      <button
+        type="button"
+        onClick={() => {
+          setPick(on ? "all" : book);
+          setLimit(40);
+        }}
+        className="flex flex-1 flex-col gap-1 rounded-2xl border px-4 py-3 text-left transition-shadow"
+        style={{ borderColor: on ? c : "rgba(255,255,255,0.2)", boxShadow: on ? `0 0 16px ${c}55` : "none" }}
+      >
+        <p className="text-[10px] tracking-[0.26em] text-white">{title}</p>
+        <p className="text-[9px] leading-snug text-white/55">{note}</p>
+        <p className="mt-1 font-mono text-2xl tabular-nums" style={{ color: c, textShadow: `0 0 10px ${c}` }}>{shiftMoney(s.pnl)}</p>
+        <p className="font-mono text-[11px] tabular-nums text-white/80">{s.wins}W · {s.losses}L{s.open ? ` · ${s.open} open` : ""}</p>
+        <p className="text-[9px] tracking-[0.18em] text-white/45">{on ? "SHOWING ITS TRADES · TAP FOR ALL" : "TAP FOR ITS TRADES"}</p>
+      </button>
+    );
+  };
+  const list = pick === "all" ? rowsAll : pick === "origClean" ? rows.filter((r) => r.book === "original" && !bandErr(r)) : rowsAll.filter((r) => r.book === pick);
+  const rec = pick === "all" || pick === "origClean" ? null : record(pick);
+  const chip = (b: ShiftNight["book"] | "all" | "origClean", label: string) => (
+    <button
+      key={b}
+      type="button"
+      onClick={() => {
+        setPick(b);
+        setLimit(40);
+      }}
+      className="rounded-full border px-3 py-1 text-[9px] tracking-[0.2em]"
+      style={{ borderColor: pick === b ? "#ffffff" : "rgba(255,255,255,0.22)", color: pick === b ? "#ffffff" : "rgba(255,255,255,0.6)" }}
+    >
+      {label}
+    </button>
+  );
+  return (
+    <section className="rounded-[22px] border border-white/25 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
+      <div className="flex items-baseline justify-between gap-3">
+        <p className="text-[10px] tracking-[0.28em] text-white/90">PAPER · FIFTEEN LEDGERS · RANKED{h2h ? ` · SINCE ${shiftClock(since)}` : ""}</p>
+        <p className="text-[9px] tracking-[0.2em] text-white/50">SHOWN AT ${Math.round(size)} A TRADE · NO ORDERS SENT</p>
+      </div>
+      <button
+        type="button"
+        onClick={() => setBankView((v) => !v)}
+        className="mt-2 w-full rounded-2xl border px-4 py-2 text-left text-[10px] tracking-[0.2em]"
+        style={{ borderColor: bankView ? SHIFT_UP : "rgba(255,255,255,0.3)", color: bankView ? SHIFT_UP : "rgba(255,255,255,0.8)", boxShadow: bankView ? `0 0 14px ${SHIFT_UP}33` : "none" }}
+      >
+        BANK EXITS ON EVERY TRADE · {bankView ? "ON: every ledger shows what BANK's exits would have made" : "OFF: real exits"} · TAP
+      </button>
+      <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {ranked.map((b, i) => (
+          <Col key={b.book} book={b.book} title={`${i + 1}. ${b.title}`} note={b.note} s={b.s} />
+        ))}
+      </div>
+      <button
+        type="button"
+        onClick={() => {
+          setPick(pick === "origClean" ? "all" : "origClean");
+          setLimit(40);
+        }}
+        className="mt-3 flex w-full flex-col gap-1 rounded-2xl border px-4 py-3 text-left"
+        style={{ borderColor: pick === "origClean" ? SHIFT_UP : "rgba(255,255,255,0.35)", boxShadow: `0 0 18px ${SHIFT_UP}33` }}
+      >
+        <p className="text-[10px] tracking-[0.26em] text-white">ORIGINAL ✦ WITHOUT BAND ERRORS · WHOLE RECORD</p>
+        <p className="text-[9px] leading-snug text-white/55">Every ORIGINAL trade except the ones her own notes flagged: a line right above a long or right below a short. This is her with the DNA.</p>
+        <div className="mt-1 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <p className="font-mono text-2xl tabular-nums" style={{ color: clean.pnl >= 0 ? SHIFT_UP : SHIFT_DOWN, textShadow: `0 0 10px ${clean.pnl >= 0 ? SHIFT_UP : SHIFT_DOWN}` }}>{shiftMoney(clean.pnl)}</p>
+          <p className="font-mono text-[11px] tabular-nums text-white/80">{clean.wins}W · {clean.losses}L{clean.n ? ` · ${Math.round((clean.wins / clean.n) * 100)}% wins` : ""}</p>
+        </div>
+        <p className="font-mono text-[10px] tabular-nums text-white/60">
+          ALL ORIGINAL {shiftMoney(allO.pnl)} ({allO.wins}W · {allO.losses}L) · BAND ERRORS {shiftMoney(errs.pnl)} ({errs.wins}W · {errs.losses}L)
+        </p>
+        <p className="text-[9px] tracking-[0.18em] text-white/45">{pick === "origClean" ? "SHOWING HER CLEAN TRADES · TAP FOR ALL" : "TAP FOR HER CLEAN TRADES"}</p>
+      </button>
+      <div className="mt-4 flex flex-wrap gap-1.5">
+        {chip("all", `ALL · ${rows.length}`)}
+        {chip("origClean", `ORIG ✦ CLEAN · ${rows.filter((r) => r.book === "original" && !bandErr(r)).length}`)}
+        {BOOKS.map((b) => chip(b.book, `${LABEL[b.book]} · ${rows.filter((r) => r.book === b.book).length}`))}
+      </div>
+      {rec ? (
+        <p className="mt-2 font-mono text-[11px] tabular-nums text-white/80">
+          {LABEL[pick as string]} WHOLE RECORD{rec.from !== "9999" ? ` SINCE ${shiftClock(rec.from)}` : ""} ·{" "}
+          <span style={{ color: rec.pnl >= 0 ? SHIFT_UP : SHIFT_DOWN }}>{shiftMoney(rec.pnl)}</span> · {rec.wins}W · {rec.losses}L
+        </p>
+      ) : null}
+      <div className="mt-3 flex flex-col gap-1.5">
+        {list.slice(0, limit).map((r) => {
+          const c = r.pnl == null ? "#ffffff" : r.pnl >= 0 ? SHIFT_UP : SHIFT_DOWN;
+          return (
+            <details key={r.id} className="group rounded-2xl border border-white/15 px-4 py-1.5">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+                <span className="truncate text-[10px] tracking-[0.14em] text-white/85">
+                  {shiftClock(r.at)} · {LABEL[r.book] ?? r.book.toUpperCase()} · {r.asset.toUpperCase()} {r.side === "up" ? "LONG" : "SHORT"} · {Number(r.multiple).toFixed(2)}x{r.notes ? " · NOTES" : ""}
+                </span>
+                <span className="shrink-0 font-mono text-[11px] tabular-nums" style={{ color: c }}>
+                  {r.stale ? "FROZEN FEED · NOT COUNTED" : r.result === "open" ? `OPEN · PEAK ${r.peakPct > 0 ? "+" : ""}${r.peakPct}%` : shiftMoney(r.pnl ?? 0)}
+                </span>
+              </summary>
+              <div className="mt-1.5 flex flex-col gap-1 pb-1 text-[11px] leading-snug">
+                {r.exit ? <p className="text-white/60">{r.setup} · {r.exit}</p> : <p className="text-white/60">{r.setup}</p>}
+                {(r.notes?.worked ?? []).map((t, i) => <p key={`w${i}`} style={{ color: SHIFT_UP }}>✓ {t}</p>)}
+                {(r.notes?.better ?? []).map((t, i) => <p key={`b${i}`} style={{ color: SHIFT_DOWN }}>△ {t}</p>)}
+                {(r.notes?.keep ?? []).map((t, i) => <p key={`k${i}`} className="text-white/80">→ {t}</p>)}
+                {!r.notes && r.result !== "open" ? <p className="text-white/50">Review lands once Kalshi settles the window.</p> : null}
+              </div>
+            </details>
+          );
+        })}
+        {list.length > limit ? (
+          <div className="flex gap-2 pt-1">
+            <button type="button" onClick={() => setLimit((n) => n + 60)} className="flex-1 rounded-2xl border border-white/25 py-2 text-[10px] tracking-[0.22em] text-white/80">
+              SHOW 60 MORE · {list.length - limit} LEFT
+            </button>
+            <button type="button" onClick={() => setLimit(list.length)} className="flex-1 rounded-2xl border border-white/25 py-2 text-[10px] tracking-[0.22em] text-white/80">
+              SHOW ALL {list.length}
+            </button>
+          </div>
+        ) : null}
+        {!list.length ? <p className="py-2 text-center text-[10px] tracking-[0.22em] text-white/55">WAITING FOR THE NEXT SETUP</p> : null}
+      </div>
+    </section>
+  );
+}
+
+type ClaudeBtRow = { ticker: string; at: string; asset: string; side: string; setup: string; multiple: number; hourPT: number; claude: boolean; why: string | null; claudePnl: number | null; claudeExit: string | null; newPnl: number | null; newExit: string | null; origPnl: number | null; bell: string | null; cat: string };
+type ClaudeBt = { at: string; night: ClaudeBtRow[]; week: { half: string; group: string; n: number; winPct: number; roiPct: number; pnl10: number }[] } | null;
+
+// CLAUDE BACKTEST: which setups CLAUDE would have taken that the others didn't (and the reverse).
+function ClaudeBacktestCard({ bt: btIn, scale = 1 }: { bt: ClaudeBt; scale?: number }) {
+  const bt = useMemo(
+    () => (btIn ? { ...btIn, night: btIn.night.map((r) => ({ ...r, claudePnl: r.claudePnl == null ? null : r.claudePnl * scale, newPnl: r.newPnl == null ? null : r.newPnl * scale, origPnl: r.origPnl == null ? null : r.origPnl * scale })), week: btIn.week.map((w) => ({ ...w, pnl10: w.pnl10 * scale })) } : null),
+    [btIn, scale],
+  );
+  const [cat, setCat] = useState<"claude-only" | "both" | "others-only" | "all">("claude-only");
+  const [limit, setLimit] = useState(30);
+  if (!bt) return null;
+  const sum = (xs: ClaudeBtRow[], k: "claudePnl" | "newPnl" | "origPnl") => xs.reduce((t, r) => t + (Number(r[k]) || 0), 0);
+  const by = (c: string) => bt.night.filter((r) => r.cat === c);
+  const took = bt.night.filter((r) => r.claude);
+  const tiles = [
+    { c: "claude-only", title: "ONLY CLAUDE TOOK", xs: by("claude-only"), main: "claudePnl" as const, sub: "NEW didn't take these" },
+    { c: "both", title: "CLAUDE + NEW BOTH TOOK", xs: by("both"), main: "claudePnl" as const, sub: `NEW made ${shiftMoney(sum(by("both"), "newPnl"))} on the same trades` },
+    { c: "others-only", title: "CLAUDE PASSED", xs: by("others-only"), main: "newPnl" as const, sub: `what NEW made on them · ORIGINAL ${shiftMoney(sum(by("others-only"), "origPnl"))}` },
+  ];
+  const list = cat === "all" ? bt.night : bt.night.filter((r) => r.cat === cat);
+  const money = (v: number | null) => (v == null ? "—" : shiftMoney(v));
+  const col = (v: number | null) => (v == null ? "rgba(255,255,255,0.45)" : v >= 0 ? SHIFT_UP : SHIFT_DOWN);
+  return (
+    <section className="rounded-[22px] border border-white/25 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
+      <div className="flex items-baseline justify-between gap-3">
+        <p className="text-[10px] tracking-[0.28em] text-white/90">CLAUDE ✦ BACKTEST</p>
+        <p className="text-[9px] tracking-[0.2em] text-white/50">AS OF {shiftClock(bt.at)}</p>
+      </div>
+      <p className="mt-1 text-[10px] leading-snug text-white/55">
+        Every setup since the night book began, replayed with CLAUDE's list and exits on the real Kalshi bid path. CLAUDE took {took.length} of {bt.night.length}:{" "}
+        <span style={{ color: col(sum(took, "claudePnl")) }}>{shiftMoney(sum(took, "claudePnl"))}</span>.
+      </p>
+      <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
+        {tiles.map((t) => {
+          const v = sum(t.xs, t.main);
+          const on = cat === t.c;
+          return (
+            <button key={t.c} type="button" onClick={() => { setCat(on ? "all" : (t.c as typeof cat)); setLimit(30); }} className="flex flex-col gap-1 rounded-2xl border px-4 py-3 text-left" style={{ borderColor: on ? col(v) : "rgba(255,255,255,0.2)" }}>
+              <p className="text-[10px] tracking-[0.22em] text-white">{t.title} · {t.xs.length}</p>
+              <p className="font-mono text-xl tabular-nums" style={{ color: col(v), textShadow: `0 0 10px ${col(v)}` }}>{shiftMoney(v)}</p>
+              <p className="text-[9px] leading-snug text-white/55">{t.sub}</p>
+            </button>
+          );
+        })}
+      </div>
+      <div className="mt-3 flex flex-col gap-1.5">
+        {list.slice(0, limit).map((r) => (
+          <details key={r.ticker} className="rounded-2xl border border-white/15 px-4 py-1.5">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+              <span className="truncate text-[10px] tracking-[0.14em] text-white/85">
+                {shiftClock(r.at)} · {r.asset.toUpperCase()} {r.side === "up" ? "LONG" : "SHORT"} · {Number(r.multiple).toFixed(2)}x · {r.claude ? "CLAUDE ✓" : "CLAUDE ✕"}
+              </span>
+              <span className="shrink-0 font-mono text-[11px] tabular-nums">
+                <span style={{ color: col(r.claudePnl) }}>C {money(r.claudePnl)}</span> · <span style={{ color: col(r.newPnl) }}>N {money(r.newPnl)}</span>
+              </span>
+            </summary>
+            <div className="mt-1.5 flex flex-col gap-1 pb-1 text-[11px] leading-snug text-white/70">
+              <p>{r.setup} · {r.hourPT}:00 PT · bell {r.bell === "yes" ? "UP" : r.bell === "no" ? "DOWN" : "—"}</p>
+              {r.claude ? <p style={{ color: SHIFT_UP }}>CLAUDE took it · {r.claudeExit}</p> : <p style={{ color: SHIFT_DOWN }}>CLAUDE passed: {r.why}</p>}
+              <p>NEW {r.newPnl == null ? "didn't take it" : `${money(r.newPnl)} · ${r.newExit ?? ""}`} · ORIGINAL {money(r.origPnl)}</p>
+            </div>
+          </details>
+        ))}
+        {list.length > limit ? (
+          <button type="button" onClick={() => setLimit(list.length)} className="rounded-2xl border border-white/25 py-2 text-[10px] tracking-[0.22em] text-white/80">SHOW ALL {list.length}</button>
+        ) : null}
+      </div>
+      <p className="mt-4 text-[10px] tracking-[0.24em] text-white/80">THE WEEK · {bt.week.find((w) => w.group === "ALL") ? `SEP 24 – OCT 2 · $${Math.round(50 * scale)} A TRADE` : ""}</p>
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {["Sep 24-27", "Sep 28-Oct 2"].map((h) => (
+          <div key={h} className="rounded-2xl border border-white/15 px-4 py-3">
+            <p className="text-[10px] tracking-[0.22em] text-white/85">{h.toUpperCase()}</p>
+            {bt.week.filter((w) => w.half === h).map((w) => (
+              <p key={w.group} className="mt-1 flex justify-between font-mono text-[11px] tabular-nums text-white/80">
+                <span>{w.group} · {w.n}</span>
+                <span>{w.winPct}% W · <span style={{ color: col(w.pnl10) }}>{shiftMoney(w.pnl10)}</span></span>
+              </p>
+            ))}
+          </div>
+        ))}
+      </div>
+      <p className="mt-2 text-[9px] leading-snug text-white/45">
+        The week is in-sample: CLAUDE's list was chosen from it. The replay leaves out gates / LOCK THE WIN (CLAUDE's only bank profit) and the path guard (rows don't keep the strike), so it reads a little conservative.
+      </p>
+    </section>
+  );
+}
+
+type ShiftReview = { flags: string[]; lessons: string[]; exit: string; peakPct: number | null; takeProfitPct: number; record: string };
+type ShiftMonitor = { status: { modelOk?: boolean; changed?: string[]; approvedAt?: string | null; notes?: string[] }; reviews: Record<string, ShiftReview> };
+
+type ShiftRules = { lockWin: { on: boolean; arm: number; floor: number }; channelRule: boolean; channelEdge: number; blockedSetups: string[]; blockedAssets?: string[]; tpGates?: boolean; model?: string };
+
+function RuleChip({ on, label, detail, onClick }: { on: boolean; label: string; detail: string; onClick: () => void }) {
+  return (
+    <button type="button" onClick={onClick} className="flex flex-1 flex-col items-start gap-1 rounded-2xl border px-4 py-3 text-left transition-shadow" style={{ borderColor: on ? SHIFT_UP : "rgba(255,255,255,0.25)", boxShadow: on ? `0 0 14px rgba(61,220,132,0.18)` : "none" }}>
+      <span className="text-[10px] tracking-[0.24em]" style={{ color: on ? SHIFT_UP : "rgba(255,255,255,0.7)" }}>{label} · {on ? "ON" : "OFF"}</span>
+      <span className="text-[10px] leading-snug text-white/60">{detail}</span>
+    </button>
+  );
+}
+
+export function ShiftBook({ fills, start, held, shadow = [], lotto = [], night = [], bt = null, paperStake = 50, truth = null, monitor, rules, onRule }: { fills: ShiftFill[]; start?: string | null; held: ShiftHeld[]; shadow?: ShiftShadow[]; lotto?: ShiftLotto[]; night?: ShiftNight[]; bt?: ClaudeBt; paperStake?: number; truth?: { at: string | null; rows: (ShiftRow & { exit?: string; manual?: number; fees?: number })[]; open: string[] } | null; monitor?: ShiftMonitor; rules?: ShiftRules; onRule?: (patch: { lockOn?: boolean; channelOn?: boolean; gatesOn?: boolean; asset?: "btc" | "gold" | "silver"; assetOn?: boolean; model?: "original" | "new" }) => void }) {
+  const from = start || "2026-10-02T01:58:00.000Z";
+  const real = Boolean(truth?.rows?.length);
+  // CLOSES: this shift, or every Kalshi window on record (Love: "the full history").
+  const [allCloses, setAllCloses] = useState(false);
+  const [closeLimit, setCloseLimit] = useState(60);
+  const rows = useShiftMemo<ShiftRow[]>(() => {
+    // Kalshi truth first: every window rebuilt from Kalshi's own fills + settlements, fees included.
+    if (truth?.rows?.length) return truth.rows.filter((r) => r.at >= from).map((r) => ({ ...r }));
+    const byTicker = new Map<string, ShiftRow>();
+    for (const e of fills) {
+      if (e.venue !== "kalshi" || e.kind !== "banked" || e.profit == null || e.at < from) continue;
+      const cur = byTicker.get(e.ticker);
+      if (cur) {
+        cur.pnl += e.profit;
+        continue;
+      }
+      byTicker.set(e.ticker, {
+        ticker: e.ticker,
+        at: e.at,
+        asset: String(e.asset),
+        side: String(e.side),
+        setup: e.pattern || "",
+        stake: Number(e.stake) || 0,
+        multiple: Number(e.multiple) || 0,
+        pnl: e.profit,
+      });
+    }
+    return [...byTicker.values()].sort((a, b) => a.at.localeCompare(b.at));
+  }, [fills, from, truth]);
+  const s = useShiftMemo(() => {
+    const wins = rows.filter((r) => r.pnl > 0.05);
+    const losses = rows.filter((r) => r.pnl < -0.05);
+    const pnl = rows.reduce((t, r) => t + r.pnl, 0);
+    const avg = (xs: ShiftRow[]) => (xs.length ? xs.reduce((t, r) => t + r.pnl, 0) / xs.length : 0);
+    const best = rows.reduce((b, r) => (r.pnl > b ? r.pnl : b), 0);
+    const decided = wins.length + losses.length;
+    return { pnl, wins: wins.length, losses: losses.length, hit: decided ? (wins.length / decided) * 100 : 0, decided, avgWin: avg(wins), avgLoss: avg(losses), best };
+  }, [rows]);
+  const pnlColor = s.pnl >= 0 ? SHIFT_UP : SHIFT_DOWN;
+
+  return (
+    <div className="flex flex-col gap-4">
+      <section className="rounded-[22px] border border-white/30 px-5 pb-5 pt-4 shadow-[0_0_24px_rgba(255,255,255,0.07)]">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-[11px] tracking-[0.36em] text-white" style={shiftGlow("rgba(255,255,255,0.75)", 8)}>
+              SHIFT
+            </p>
+            <p className="mt-1 text-[9px] tracking-[0.22em] text-white/60">
+              SINCE {shiftClock(from)} · {shiftDay(from)} · {real ? "KALSHI TRUTH ✓ · FEES IN" : "KALSHI LIVE"}
+            </p>
+            {monitor?.status ? (
+              <p
+                className="mt-2 inline-flex rounded-full border px-2.5 py-0.5 text-[9px] tracking-[0.2em]"
+                style={{ borderColor: monitor.status.modelOk ? SHIFT_UP : SHIFT_DOWN, color: monitor.status.modelOk ? SHIFT_UP : SHIFT_DOWN }}
+                title={monitor.status.changed?.length ? `Changed: ${monitor.status.changed.join(", ")}` : "Every model file matches the approved fingerprint."}
+              >
+                {monitor.status.modelOk ? "MODEL ✓ APPROVED" : `MODEL CHANGED · ${(monitor.status.changed ?? []).join(", ")}`}
+              </p>
+            ) : null}
+          </div>
+          <p className="whitespace-nowrap font-mono text-[28px] leading-none tabular-nums sm:text-[34px]" style={{ color: pnlColor, ...shiftGlow(pnlColor, 14) }}>
+            {shiftMoney(s.pnl)}
+          </p>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <ShiftChip label="WINS" value={String(s.wins)} tone="up" />
+          <ShiftChip label="LOSSES" value={String(s.losses)} tone="down" />
+          <ShiftChip label="HIT RATE" value={s.decided ? `${s.hit.toFixed(0)}%` : "—"} />
+          <ShiftChip label="AVG WIN" value={s.wins ? shiftMoney(s.avgWin) : "—"} tone="up" />
+          <ShiftChip label="AVG LOSS" value={s.losses ? shiftMoney(s.avgLoss) : "—"} tone="down" />
+          <ShiftChip label="BEST" value={s.best > 0 ? shiftMoney(s.best) : "—"} tone="up" />
+        </div>
+        <div className="mt-4">
+          {rows.length ? (
+            <ShiftCurve rows={rows} />
+          ) : (
+            <p className="py-10 text-center text-[10px] tracking-[0.24em] text-white/60">THE FIRST CLOSE DRAWS THE LINE</p>
+          )}
+        </div>
+      </section>
+
+      {held.length ? (
+        <section className="rounded-[22px] border border-[#6b1524] px-5 py-4 shadow-[0_0_20px_rgba(107,21,36,0.35)]">
+          <p className="text-[10px] tracking-[0.28em] text-white/80">OPEN NOW</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {held.map((h) => {
+              const c = h.profit >= 0 ? SHIFT_UP : SHIFT_DOWN;
+              return (
+                <div key={h.ticker} className="flex items-center gap-3 rounded-full border border-white/25 px-4 py-2">
+                  <span className="text-[10px] tracking-[0.2em] text-white">
+                    {h.name} {h.side === "up" ? "LONG" : "SHORT"}
+                  </span>
+                  <span className="font-mono text-xs tabular-nums text-white/70">${h.cost.toFixed(2)}</span>
+                  <span className="font-mono text-xs tabular-nums" style={{ color: c, ...shiftGlow(c, 6) }}>
+                    {shiftMoney(h.profit)}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      ) : null}
+
+      {rules && onRule ? (
+        <section className="flex flex-col gap-2">
+          <p className="-mb-1 px-1 text-[9px] tracking-[0.26em] text-white/55">MODEL · ONE TAP TO SWITCH</p>
+          <div className="flex gap-2">
+            {([["new", "NEW · EVERYTHING FROM OCT 2"], ["original", "ORIGINAL · DEBUGGED BASELINE"]] as const).map(([m, label]) => {
+              const on = (rules.model ?? "new") === m;
+              return (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => {
+                    if (on) return;
+                    if (!window.confirm(`Switch her to ${m === "new" ? "NEW (every rule from Oct 2)" : "the ORIGINAL debugged baseline"}? You can switch back anytime.`)) return;
+                    onRule({ model: m });
+                  }}
+                  className="flex-1 rounded-full border px-4 py-2 text-[10px] tracking-[0.2em] transition-shadow"
+                  style={{ borderColor: on ? "#B388FF" : "rgba(255,255,255,0.25)", color: on ? "#B388FF" : "rgba(255,255,255,0.7)", boxShadow: on ? "0 0 14px rgba(179,136,255,0.25)" : "none" }}
+                >
+                  {label}{on ? " · ACTIVE" : ""}
+                </button>
+              );
+            })}
+          </div>
+        </section>
+      ) : null}
+      {rules && onRule ? (
+        <p className="-mb-2 px-1 text-[9px] tracking-[0.26em] text-white/55">SYMBOLS · TAP TO TURN ON / OFF</p>
+      ) : null}
+      {rules && onRule ? (
+        <section className="flex flex-wrap gap-2">
+          {(["btc", "gold", "silver"] as const).map((a) => {
+            const on = !(rules.blockedAssets ?? []).includes(a);
+            return (
+              <button
+                key={a}
+                type="button"
+                onClick={() => onRule({ asset: a, assetOn: !on })}
+                className="flex flex-1 items-center justify-center gap-2 rounded-full border px-4 py-2 text-[10px] tracking-[0.24em] transition-shadow"
+                style={{ borderColor: on ? SHIFT_UP : SHIFT_DOWN, color: on ? SHIFT_UP : SHIFT_DOWN, boxShadow: on ? "0 0 12px rgba(61,220,132,0.18)" : "0 0 12px rgba(255,92,92,0.15)" }}
+              >
+                {a.toUpperCase()} · {on ? "TRADING" : "OFF"}
+              </button>
+            );
+          })}
+        </section>
+      ) : null}
+
+      {rules && onRule ? (
+        <p className="-mb-2 px-1 text-[9px] tracking-[0.26em] text-white/55">EXIT RULES · APPLY TO EVERY SYMBOL</p>
+      ) : null}
+      {rules && onRule ? (
+        <section className="flex flex-col gap-2 sm:flex-row">
+          <RuleChip
+            on={rules.tpGates !== false}
+            label="TAKE PROFIT + GATES"
+            detail="BTC + gold. Take profit +50% under 1.65x, 75% of the max at 1.65x+. Past it she rides and trails 1% under the best quote. Gates (+40% / 55% / 60% of max) and the lock only sell with a reason: gold within $1.50 of the target, BTC within $100, or a band rejection."
+            onClick={() => onRule({ gatesOn: !(rules.tpGates !== false) })}
+          />
+          <RuleChip
+            on={rules.lockWin.on}
+            label="LOCK THE WIN (SAFETY NET)"
+            detail={`BTC + gold. Last net under the gates: once a trade is up +${rules.lockWin.arm}%, she sells if it falls back to +${rules.lockWin.floor}% profit.`}
+            onClick={() => onRule({ lockOn: !rules.lockWin.on })}
+          />
+          <RuleChip
+            on={rules.channelRule}
+            label="NO MID-CHANNEL"
+            detail={`Longs only in the bottom ${Math.round(rules.channelEdge * 100)}% of a channel, shorts only in the top ${Math.round(rules.channelEdge * 100)}%. The middle is a coin flip.`}
+            onClick={() => onRule({ channelOn: !rules.channelRule })}
+          />
+        </section>
+      ) : null}
+
+      <NightCard rows={night} scale={(paperStake > 0 ? paperStake : 50) / 50} size={paperStake > 0 ? paperStake : 50} />
+
+      <ClaudeBacktestCard bt={bt} scale={(paperStake > 0 ? paperStake : 50) / 50} />
+
+      <ShadowCard rows={shadow} />
+
+      <LottoCard rows={lotto} />
+
+      <section className="flex flex-col gap-2">
+        <div className="flex items-center justify-between gap-2 px-1">
+          <p className="text-[10px] tracking-[0.28em] text-white/80">CLOSES · {(allCloses && truth?.rows?.length ? truth.rows : rows).length}{allCloses ? " · ALL TIME" : " · THIS SHIFT"}</p>
+          <button type="button" onClick={() => { setAllCloses((v) => !v); setCloseLimit(60); }} className="rounded-full border border-white/30 px-3 py-1 text-[9px] tracking-[0.2em] text-white/80">
+            {allCloses ? "THIS SHIFT" : "FULL HISTORY"}
+          </button>
+        </div>
+        {[...(allCloses && truth?.rows?.length ? (truth.rows as ShiftRow[]) : rows)].reverse().slice(0, closeLimit).map((r) => {
+          const c = r.pnl >= 0 ? SHIFT_UP : SHIFT_DOWN;
+          const sideColor = r.side === "up" ? SHIFT_UP : SHIFT_DOWN;
+          return (
+            <div key={r.ticker} className="rounded-2xl border border-white/20 px-4 py-3 transition-shadow hover:shadow-[0_0_16px_rgba(255,255,255,0.12)]">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex min-w-0 flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <span className="rounded-full border px-2 py-0.5 text-[9px] tracking-[0.2em]" style={{ borderColor: sideColor, color: sideColor }}>
+                    {r.asset.toUpperCase()} {r.side === "up" ? "LONG" : "SHORT"}
+                  </span>
+                  <span className="text-[10px] tracking-[0.16em] text-white/60">{shiftClock(r.at)}</span>
+                </div>
+                <span className="truncate text-[11px] tracking-[0.08em] text-white/90">{r.setup.replace(/[a-z]/g, (c) => c.toUpperCase())}{(r as { exit?: string }).exit === "sold" ? " · SOLD EARLY" : ""}{(r as { manual?: number }).manual ? " · + OUTSIDE ORDER" : ""}</span>
+              </div>
+              <div className="flex shrink-0 flex-col items-end gap-1">
+                <span className="font-mono text-base tabular-nums" style={{ color: c, ...shiftGlow(c, 8) }}>
+                  {shiftMoney(r.pnl)}
+                </span>
+                <span className="font-mono text-[10px] tabular-nums text-white/55">
+                  {r.multiple ? `${r.multiple.toFixed(2)}x · ` : ""}${r.stake.toFixed(2)}
+                </span>
+              </div>
+            </div>
+            {monitor?.reviews?.[r.ticker] ? (
+              <div className="mt-2 flex flex-col gap-1 border-t border-white/10 pt-2">
+                {monitor.reviews[r.ticker].flags.map((t, i) => (
+                  <p key={`f${i}`} className="text-[11px] leading-snug" style={{ color: SHIFT_DOWN }}>FLAG · {t}</p>
+                ))}
+                {monitor.reviews[r.ticker].lessons.map((t, i) => (
+                  <p key={`l${i}`} className="text-[11px] leading-snug text-white/75">{t}</p>
+                ))}
+                <p className="text-[9px] tracking-[0.18em] text-white/45">
+                  {monitor.reviews[r.ticker].exit.toUpperCase()} · PEAK {monitor.reviews[r.ticker].peakPct != null ? `${(monitor.reviews[r.ticker].peakPct ?? 0) >= 0 ? "+" : "−"}${Math.abs(monitor.reviews[r.ticker].peakPct ?? 0)}%` : "—"} · RECORD {monitor.reviews[r.ticker].record}
+                </p>
+              </div>
+            ) : null}
+            </div>
+          );
+        })}
+        {(allCloses && truth?.rows?.length ? truth.rows.length : rows.length) > closeLimit ? (
+          <button type="button" onClick={() => setCloseLimit((n) => n + 120)} className="rounded-2xl border border-white/25 py-2 text-[10px] tracking-[0.22em] text-white/80">
+            SHOW MORE · {(allCloses && truth?.rows?.length ? truth.rows.length : rows.length) - closeLimit} LEFT
+          </button>
+        ) : null}
+      </section>
+    </div>
+  );
+}
+
+
+// ─── TRUTH BOOKS (Claude) ─────────────────────────────────────────────────────
+// PAPER and PRIME, told from the real ledger, with what Kalshi actually did on the same trade.
+type TruthFill = { at: string; kind: string; venue: string; ticker: string; side: string; asset: string; tradeId: string; stake: number; profit: number | null; pattern: string; multiple: number };
+
+function kalshiByTrade(fills: TruthFill[]) {
+  const live = new Map<string, number>();
+  for (const r of fills) {
+    if (r.venue !== "kalshi" || r.kind !== "banked" || r.profit == null) continue;
+    const k = `${r.ticker}|${r.side}`;
+    live.set(k, (live.get(k) ?? 0) + r.profit);
+  }
+  return live;
+}
+
+function TruthHeader({ title, sub, chips }: { title: string; sub: string; chips: { label: string; value: string; tone?: "up" | "down" }[] }) {
+  return (
+    <section className="rounded-[22px] border border-white/30 px-5 pb-4 pt-4 shadow-[0_0_24px_rgba(255,255,255,0.07)]">
+      <p className="text-[11px] tracking-[0.32em] text-white" style={shiftGlow("rgba(255,255,255,0.7)", 8)}>{title}</p>
+      <p className="mt-1 text-[9px] tracking-[0.2em] text-white/60">{sub}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {chips.map((c) => (
+          <ShiftChip key={c.label} label={c.label} value={c.value} tone={c.tone} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TruthRow({ when, asset, side, setup, left, right, note }: { when: string; asset: string; side: string; setup: string; left: number | null; right: number | null | "none"; note?: string }) {
+  const lc = left == null ? "#ffffff" : left >= 0 ? SHIFT_UP : SHIFT_DOWN;
+  const rc = right === "none" || right == null ? "rgba(255,255,255,0.45)" : right >= 0 ? SHIFT_UP : SHIFT_DOWN;
+  const sideColor = side === "up" ? SHIFT_UP : SHIFT_DOWN;
+  return (
+    <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/15 px-4 py-2.5">
+      <div className="flex min-w-0 flex-col gap-1">
+        <div className="flex items-center gap-2">
+          <span className="rounded-full border px-2 py-0.5 text-[9px] tracking-[0.2em]" style={{ borderColor: sideColor, color: sideColor }}>
+            {asset.toUpperCase()} {side === "up" ? "LONG" : "SHORT"}
+          </span>
+          <span className="text-[10px] tracking-[0.14em] text-white/55">{when}</span>
+        </div>
+        <span className="truncate text-[11px] tracking-[0.06em] text-white/85">{setup.replace(/[a-z]/g, (c) => c.toUpperCase())}</span>
+        {note ? <span className="text-[10px] text-white/50">{note}</span> : null}
+      </div>
+      <div className="flex shrink-0 flex-col items-end gap-0.5 font-mono tabular-nums">
+        <span className="text-sm" style={{ color: lc }}>{left == null ? "—" : shiftMoney(left)}</span>
+        <span className="text-[10px]" style={{ color: rc }}>
+          {right === "none" ? "NOT SENT" : right == null ? "—" : `KALSHI ${shiftMoney(right)}`}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export function PaperTruth({ fills }: { fills: TruthFill[] }) {
+  const [all, setAll] = useState(false);
+  const live = useMemo(() => kalshiByTrade(fills), [fills]);
+  const rows = useMemo(() => {
+    const seen = new Set<string>();
+    const out: TruthFill[] = [];
+    for (const r of [...fills].sort((a, b) => b.at.localeCompare(a.at))) {
+      if (r.venue !== "paper" || r.kind !== "banked" || r.profit == null || seen.has(r.tradeId)) continue;
+      seen.add(r.tradeId);
+      out.push(r);
+    }
+    return out;
+  }, [fills]);
+  const today = rows.filter((r) => Date.now() - Date.parse(r.at) < 24 * 3600e3);
+  const w = today.filter((r) => (r.profit ?? 0) > 0).length;
+  const l = today.filter((r) => (r.profit ?? 0) < 0).length;
+  const pnl = today.reduce((t, r) => t + (r.profit ?? 0), 0);
+  const both = today.filter((r) => live.has(`${r.ticker}|${r.side}`));
+  const paperOnBoth = both.reduce((t, r) => t + (r.profit ?? 0), 0);
+  const liveOnBoth = both.reduce((t, r) => t + (live.get(`${r.ticker}|${r.side}`) ?? 0), 0);
+  return (
+    <div className="flex flex-col gap-3">
+      <TruthHeader
+        title="PAPER · THE REAL LEDGER"
+        sub="LAST 24 HOURS · EVERY TRADE, REAL STAKE, NOTHING HIDDEN"
+        chips={[
+          { label: "RECORD", value: `${w}-${l}` },
+          { label: "PAPER P&L", value: shiftMoney(pnl), tone: pnl >= 0 ? "up" : "down" },
+          { label: "ALSO ON KALSHI", value: String(both.length) },
+          { label: "PAPER ON THOSE", value: shiftMoney(paperOnBoth), tone: paperOnBoth >= 0 ? "up" : "down" },
+          { label: "KALSHI ON THOSE", value: shiftMoney(liveOnBoth), tone: liveOnBoth >= 0 ? "up" : "down" },
+        ]}
+      />
+      <div className="flex flex-col gap-1.5">
+        {(all ? rows : rows.slice(0, 12)).map((r) => {
+          const k = `${r.ticker}|${r.side}`;
+          return (
+            <TruthRow
+              key={r.tradeId}
+              when={`${shiftClock(r.at)} · $${Number(r.stake).toFixed(0)} PAPER`}
+              asset={r.asset}
+              side={r.side}
+              setup={r.pattern || ""}
+              left={r.profit}
+              right={live.has(k) ? (live.get(k) ?? 0) : "none"}
+            />
+          );
+        })}
+      </div>
+      {rows.length > 12 ? (
+        <button type="button" onClick={() => setAll((v) => !v)} className="self-center rounded-full border border-white/30 px-4 py-1.5 text-[10px] tracking-[0.22em] text-white/80">
+          {all ? "SHOW LESS" : `SHOW ALL ${rows.length}`}
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
+type TruthPrime = { id: string; at: string; asset: string; side: string; pattern: string; result: string; ticker?: string; multiple?: number; live?: string };
+
+type TruthRecords = { honest: { yes: number; no: number }; forty: { yes: number; no: number }; fortyOn: boolean };
+
+export function PrimeTruth({ rows, fills, records, onForty }: { rows: TruthPrime[]; fills: TruthFill[]; records?: TruthRecords; onForty: (on: boolean) => void }) {
+  const [all, setAll] = useState(false);
+  const live = useMemo(() => kalshiByTrade(fills), [fills]);
+  const done = rows.filter((r) => r.result === "yes" || r.result === "no");
+  const sent = done.filter((r) => r.ticker && live.has(`${r.ticker}|${r.side}`));
+  const notSent = done.length - sent.length;
+  const real = sent.reduce((t, r) => t + (live.get(`${r.ticker}|${r.side}`) ?? 0), 0);
+  const realW = sent.filter((r) => (live.get(`${r.ticker}|${r.side}`) ?? 0) > 0).length;
+  const call = done.filter((r) => r.result === "yes").length;
+  return (
+    <div className="flex flex-col gap-3">
+      <TruthHeader
+        title="PRIME BOOK · WHAT REALLY HAPPENED"
+        sub="THE BOOK'S CALLS VS. YOUR KALSHI FILLS ON THE SAME WINDOW"
+        chips={[
+          { label: "BOOK CALLED RIGHT", value: done.length ? `${call}/${done.length}` : "—" },
+          { label: "SENT TO KALSHI", value: String(sent.length) },
+          { label: "NEVER SENT", value: String(notSent) },
+          { label: "KALSHI RECORD", value: sent.length ? `${realW}-${sent.length - realW}` : "—" },
+          { label: "KALSHI P&L", value: shiftMoney(real), tone: real >= 0 ? "up" : "down" },
+        ]}
+      />
+      {records ? (
+        <section className="rounded-[22px] border border-white/20 px-5 py-4">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-[10px] tracking-[0.28em] text-white/85">TWO WAYS TO SCORE THE BOOK</p>
+            <button
+              type="button"
+              onClick={() => onForty(!records.fortyOn)}
+              className="rounded-full border px-3 py-1 text-[9px] tracking-[0.2em]"
+              style={{ borderColor: records.fortyOn ? SHIFT_UP : "rgba(255,255,255,0.35)", color: records.fortyOn ? SHIFT_UP : "rgba(255,255,255,0.75)" }}
+              title="When on, the prime book approves setups using the 40% rule instead of the honest record."
+            >
+              40% RULE {records.fortyOn ? "ON" : "OFF"}
+            </button>
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <ShiftChip label="HONEST BOOK" value={`${records.honest.yes}-${records.honest.no}`} />
+            <ShiftChip label="HONEST HIT RATE" value={records.honest.yes + records.honest.no ? `${Math.round((records.honest.yes / (records.honest.yes + records.honest.no)) * 100)}%` : "—"} />
+            <ShiftChip label="40% BOOK" value={`${records.forty.yes}-${records.forty.no}`} />
+            <ShiftChip label="40% HIT RATE" value={records.forty.yes + records.forty.no ? `${Math.round((records.forty.yes / (records.forty.yes + records.forty.no)) * 100)}%` : "—"} />
+          </div>
+          <p className="mt-2 text-[10px] leading-snug text-white/55">
+            Honest: a call counts only if it won at the bell. 40% book: a loser that was up 40% or more first also counts. The toggle decides which one approves setups.
+          </p>
+        </section>
+      ) : null}
+      <div className="flex flex-col gap-1.5">
+        {(all ? done : done.slice(0, 12)).map((r) => {
+          const k = `${r.ticker}|${r.side}`;
+          return (
+            <TruthRow
+              key={r.id}
+              when={`${shiftClock(r.at)} · BOOK SAID ${r.result.toUpperCase()}${r.multiple ? ` · ${Number(r.multiple).toFixed(2)}x` : ""}`}
+              asset={r.asset}
+              side={r.side}
+              setup={r.pattern || ""}
+              left={null}
+              right={r.ticker && live.has(k) ? (live.get(k) ?? 0) : "none"}
+            />
+          );
+        })}
+      </div>
+      {done.length > 12 ? (
+        <button type="button" onClick={() => setAll((v) => !v)} className="self-center rounded-full border border-white/30 px-4 py-1.5 text-[10px] tracking-[0.22em] text-white/80">
+          {all ? "SHOW LESS" : `SHOW ALL ${done.length}`}
+        </button>
+      ) : null}
+    </div>
+  );
+}

@@ -1,0 +1,1840 @@
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { createPrivateKey, randomUUID, sign, constants } from "node:crypto";
+import { closeCash, halfCuts, screenBid } from "./paper";
+import { bandInWay, bandOnPath, bandReach, centerWrong, shortBandOnTarget, shortTap, survivalBlock } from "./auto";
+import { listPrimePaper, onPrimeBook, primeOwns, primeProven } from "./prime-book";
+import { readBook } from "./book";
+import { bandLevels, liveOn, loveSkip, maxDollars, noteBlock, recordFire } from "./live-guard";
+const ROOT = "https://external-api.kalshi.com";
+const LIVE_DOLLARS = 10;
+let cachedKey = null;
+function keyId() {
+  return readFileSync(join(process.cwd(), ".secrets", "kalshi.id"), "utf8").trim();
+}
+function privateKey() {
+  if (!cachedKey) cachedKey = createPrivateKey(readFileSync(join(process.cwd(), ".secrets", "kalshi.pem"), "utf8"));
+  return cachedKey;
+}
+function kalshiArmed() {
+  try {
+    return keyId().length > 0 && Boolean(privateKey());
+  } catch {
+    return false;
+  }
+}
+// LIVE GUARD at the wire (Claude). Every Kalshi order passes here. An opening order is refused
+// while the live switch is off and is cut to the size ceiling. Exits always go through.
+// This is a safety layer only. It does not change which trades the model takes.
+function guardKalshiOrder(method, path, body) {
+  if (method !== "POST" || !/\/portfolio\/(events\/)?orders/.test(path) || !body || body.reduce_only === true) return { body };
+  if (!liveOn()) {
+    noteBlock({ venue: "kalshi", ticker: body.ticker, reason: "Live switch is OFF" });
+    return { refused: "Live switch is OFF. No new Kalshi order was sent." };
+  }
+  const yes = Number(body.price);
+  const px = body.side === "bid" ? yes : 1 - yes;
+  const count = Number.parseFloat(body.count);
+  let cap = maxDollars();
+  // Love (2026-10-01): anything paying 3x or more goes on at $5 max (live-switch "bigMultipleCap").
+  let capWhy = "ceiling";
+  try {
+    const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+    const big = sw.bigMultipleCap || { x: 3, dollars: 5 };
+    if (big && big.on !== false && px > 0 && 1 / px >= Number(big.x) - 1e-9 && Number(big.dollars) > 0 && Number(big.dollars) < cap) {
+      cap = Number(big.dollars);
+      capWhy = `${Number(big.x)}x+ cap`;
+    }
+  } catch {
+  }
+  if (px > 0 && count > 0 && count * px > cap + 1e-6) {
+    const fixed = Math.floor(cap / px * 100) / 100;
+    noteBlock({ venue: "kalshi", ticker: body.ticker, reason: `Size cut from $${(count * px).toFixed(2)} to the $${cap} ${capWhy}` });
+    if (!(fixed >= 0.01)) return { refused: "Size under the ceiling rounds to zero." };
+    return { body: { ...body, count: fixed.toFixed(2) } };
+  }
+  return { body };
+}
+async function kalshi(method, path, query = "", body) {
+  const guarded = guardKalshiOrder(method, path, body);
+  if (guarded.refused) return new Response(JSON.stringify({ error: guarded.refused }), { status: 403, headers: { "Content-Type": "application/json" } });
+  body = guarded.body;
+  const timestamp = Date.now().toString();
+  const signature = sign("sha256", Buffer.from(`${timestamp}${method}${path}`), {
+    key: privateKey(),
+    padding: constants.RSA_PKCS1_PSS_PADDING,
+    saltLength: constants.RSA_PSS_SALTLEN_DIGEST
+  }).toString("base64");
+  return fetch(ROOT + path + query, {
+    method,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "KALSHI-ACCESS-KEY": keyId(),
+      "KALSHI-ACCESS-TIMESTAMP": timestamp,
+      "KALSHI-ACCESS-SIGNATURE": signature
+    },
+    body: body === void 0 ? void 0 : JSON.stringify(body),
+    signal: AbortSignal.timeout(8000)
+  });
+}
+async function marketResult(ticker) {
+  const res = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(8000) });
+  if (!res.ok) return null;
+  const data = await res.json();
+  const result = data.market?.result;
+  return result === "yes" || result === "no" ? result : null;
+}
+function settlementProfitOf(row) {
+  const yesCount = Number.parseFloat(row.yes_count_fp ?? "");
+  const noCount = Number.parseFloat(row.no_count_fp ?? "");
+  const yesCost = Number.parseFloat(row.yes_total_cost_dollars ?? "");
+  const noCost = Number.parseFloat(row.no_total_cost_dollars ?? "");
+  const fee = Number.parseFloat(row.fee_cost ?? "0");
+  const value = Number(row.value ?? NaN);
+  if (![yesCount, noCount, yesCost, noCost, value].every(Number.isFinite)) return null;
+  const yesPay = value / 100 * yesCount;
+  const noPay = (1 - value / 100) * noCount;
+  return Math.round((yesPay + noPay - yesCost - noCost - (Number.isFinite(fee) ? fee : 0)) * 100) / 100;
+}
+const settleCache = globalThis;
+async function settlementProfits() {
+  const hit = settleCache.__aureliusSettle;
+  if (hit && Date.now() - hit.at < 2e4) return hit.map;
+  const map = /* @__PURE__ */ new Map();
+  let cursor = "";
+  for (let page = 0; page < 4; page += 1) {
+    const res = await kalshi("GET", "/trade-api/v2/portfolio/settlements", `?limit=200${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`);
+    if (!res.ok) break;
+    const data = await res.json();
+    for (const row of data.settlements ?? []) {
+      if (!row.ticker || map.has(row.ticker)) continue;
+      const profit = settlementProfitOf(row);
+      if (profit == null) continue;
+      map.set(row.ticker, profit);
+    }
+    if (!data.cursor) break;
+    cursor = data.cursor;
+  }
+  settleCache.__aureliusSettle = { at: Date.now(), map };
+  return map;
+}
+async function kalshiBooks() {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/balance");
+  if (!res.ok) return null;
+  const data = await res.json();
+  const total = Number.parseFloat(data.balance_dollars ?? "");
+  const rows = Array.isArray(data.balance_breakdown) ? data.balance_breakdown : [];
+  const shard = rows.find((row) => Number(row.exchange_index) === 2);
+  const tradable = Number.parseFloat(shard?.balance ?? "");
+  return {
+    total: Number.isFinite(total) ? total : null,
+    tradable: Number.isFinite(tradable) ? tradable : null
+  };
+}
+async function kalshiCash() {
+  const books = await kalshiBooks();
+  if (!books) return null;
+  return books.total;
+}
+async function signedPosition(ticker) {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position");
+  if (!res.ok) return 0;
+  const data = await res.json();
+  const row = data.market_positions?.find((p) => p.ticker === ticker);
+  const n = Number.parseFloat(row?.position_fp ?? "0");
+  return Number.isFinite(n) ? n : 0;
+}
+function money(n) {
+  return n.toFixed(4);
+}
+function contractsFor(price, dollars) {
+  if (!(price > 0.02 && price < 0.98)) return null;
+  const count = Math.floor(dollars / price * 100) / 100;
+  if (count < 0.01) return null;
+  if (count * price > dollars + 1e-3) return null;
+  return count.toFixed(2);
+}
+async function fifteenOpen() {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position");
+  if (!res.ok) return [];
+  const data = await res.json();
+  const rows = [];
+  for (const row of data.market_positions ?? []) {
+    if (!row.ticker || !row.ticker.includes("15M")) continue;
+    const pos = Number.parseFloat(row.position_fp ?? "0");
+    const cost = Number.parseFloat(row.market_exposure_dollars ?? "0");
+    if (Number.isFinite(pos) && Math.abs(pos) >= 0.01) rows.push({ ticker: row.ticker, pos, cost: Number.isFinite(cost) ? Math.abs(cost) : 0 });
+  }
+  return rows;
+}
+let entryGate = Promise.resolve();
+function symbolOf(ticker) {
+  if (ticker.includes("BTC")) return "btc";
+  if (ticker.includes("GOLD")) return "gold";
+  if (ticker.includes("ETH")) return "eth";
+  if (ticker.includes("SOL")) return "sol";
+  if (ticker.includes("WTI")) return "wti";
+  if (ticker.includes("NATGAS")) return "natgas";
+  if (ticker.includes("SILVER")) return "silver";
+  if (ticker.includes("COPPER")) return "copper";
+  return ticker;
+}
+function paperOnly() {
+  try {
+    return JSON.parse(readFileSync(join(process.cwd(), "data", "live-manual.json"), "utf8")).off === true;
+  } catch {
+    return false;
+  }
+}
+// ONE BOOK (Claude): the same live rules, asked BEFORE the paper book takes a trade, so paper only
+// takes what Kalshi would take. Returns a reason when Kalshi would refuse, or null.
+function wouldRefuse(ticker, side, line, ask) {
+  const sym = symbolOf(ticker);
+  let sw = {};
+  try {
+    sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+  } catch {
+    sw = {};
+  }
+  // Love's blocked symbols are off BOTH books: paper does not take what Kalshi will not.
+  if (Array.isArray(sw.blockedAssets) && sw.blockedAssets.includes(sym)) return `${sym} is off (Love's call)`;
+  const skip = loveSkip(sym, side, Number(line?.spot), Date.now(), Number(line?.target) || 0, ["atr", "free", "chan"].includes(line?.dnaMode) ? line.dnaMode : "fixed");
+  if (skip) return skip.replace(/\.$/, "");
+  const mult = ask > 0 ? 1 / ask : 0;
+  if (!(mult + 1e-9 >= 1.38)) return `${mult.toFixed(2)}x under 1.38`;
+  const key = `${String(line?.label || "").replace(/−/g, "-").replace(/\s+/g, " ").trim()}|${side}|${sym}`;
+  if (Array.isArray(sw.blockedSetups) && sw.blockedSetups.includes(key)) return `${key.split("|")[0]} is off the list (Love's call)`;
+  const spot = Number(line?.spot), vwap = Number(line?.vwap), stdev = Number(line?.stdev);
+  if (!(spot > 0) || !(vwap > 0) || !(stdev > 0)) return "the bands could not be read";
+  const edge = Number(sw.channelEdge ?? 0.25);
+  if (sw.channelRule !== false && edge > 0 && edge < 0.5) {
+    const levels = [vwap];
+    for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(vwap + step * stdev, vwap - step * stdev);
+    const below = Math.max(...levels.filter((v) => v <= spot), spot - stdev * 0.5);
+    const above = Math.min(...levels.filter((v) => v > spot), spot + stdev * 0.5);
+    const pos = above - below > 0 ? (spot - below) / (above - below) : 0.5;
+    if (side === "up" ? pos > edge : pos < 1 - edge) return `price is ${Math.round(pos * 100)}% up its channel`;
+  }
+  // Paper twins only (Oct 3, Love): "free" books trade unrestricted, the ATR twin's DNA replaces this $40 guard.
+  const paperMode = line?.dnaMode === "atr" || line?.dnaMode === "chan"; // her channel rule / ATR replace this guard
+  if (!paperMode && bandInWay(side, spot, vwap, stdev, sym)) return side === "up" ? "a band is directly above" : "a band is directly below";
+  const wb = wireBreaks({ ...line, paperCopy: true, paperBook: true }, side === "up" ? "bid" : "ask", sym);
+  if (wb) return wb.replace(/^Blocked\. /, "");
+  return null;
+}
+async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding = false, forceExit = false) {
+  // LIVE BOOK lock (Love, Oct 3): while a live book is named, no other route may OPEN a position. Exits always pass.
+  if (!reduceOnly) {
+    try {
+      const lb = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook;
+      const books = lb ? (Array.isArray(lb.books) ? lb.books : lb.book ? [lb.book] : []) : [];
+      if (books.length && !books.includes(line?.bookCopy)) {
+        sent.__aureliusBlock = `Blocked. Only ${books.map((b) => String(b).toUpperCase()).join(" + ")} go live right now.`;
+        return null;
+      }
+    } catch {
+    }
+  }
+  if (!reduceOnly && paperOnly() && !line?.primeCopy && !line?.paperCopy && !line?.gateTest && !line?.bookCopy) return null;
+  // Love's blocked symbols (data/live-switch.json "blockedAssets"). Paper can still record them.
+  if (!reduceOnly && !line?.gateTest) {
+    try {
+      const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+      if (Array.isArray(sw.blockedAssets) && sw.blockedAssets.includes(symbolOf(ticker))) {
+        const why = `Blocked. ${symbolOf(ticker)} is off Kalshi (Love's call). Paper only.`;
+        sent.__aureliusBlock = why;
+        noteGate(ticker, "before", false, why);
+        noteBlock({ venue: "kalshi", ticker, setup: line?.label || "", reason: why });
+        return null;
+      }
+    } catch {
+    }
+  }
+  // Love's skips: each asset's worst hours, and gold's 10m/15m nav lines (live-guard.ts).
+  // A live book copies its paper book 1:1 (Love, Oct 3: "as she was"): that book already applied its own rules.
+  if (!reduceOnly && !line?.gateTest && !line?.bookCopy) {
+    const skipSide = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+    // A paper book copied live (Love, Oct 3: BRICK) is guarded by the DNA that book trades on (her 25% channel rule).
+    const skip = loveSkip(symbolOf(ticker), skipSide, Number(line?.spot), Date.now(), Number(line?.target) || 0, line?.bookCopy && line?.dnaMode === "chan" ? "chan" : "fixed");
+    if (skip) {
+      const why = `Blocked. ${skip}`;
+      sent.__aureliusBlock = why;
+      noteGate(ticker, "before", false, why);
+      noteBlock({ venue: "kalshi", ticker, setup: line?.label || "", side: skipSide, spot: Number(line?.spot) || null, reason: why });
+      return null;
+    }
+  }
+  // Love's blocked setups (data/live-switch.json "blockedSetups", "label|side|asset").
+  // These never go to Kalshi. The paper book can still record them so we keep measuring.
+  if (!reduceOnly && !line?.gateTest) {
+    try {
+      const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+      const blocked = Array.isArray(sw.blockedSetups) ? sw.blockedSetups : [];
+      const wantSide = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+      const key = `${String(line?.label || "").replace(/−/g, "-").replace(/\s+/g, " ").trim()}|${wantSide}|${symbolOf(ticker)}`;
+      if (blocked.includes(key)) {
+        const why = `Blocked. ${key.split("|")[0]} ${wantSide === "up" ? "long" : "short"} on ${symbolOf(ticker)} is off the list (Love's call).`;
+        sent.__aureliusBlock = why;
+        noteGate(ticker, "before", false, why);
+        noteBlock({ venue: "kalshi", ticker, side: wantSide, setup: line?.label || "", reason: why });
+        return null;
+      }
+    } catch {
+    }
+  }
+  // CHANNEL RULE (Love): no trades in the middle of a channel. Between two bands, a long is only
+  // allowed in the bottom 25% (sitting on the band below it), a short only in the top 25%
+  // (sitting under the band above it). The middle 50% is a coin flip, so she waits.
+  if (!reduceOnly && !line?.gateTest && !line?.bookCopy) {
+    try {
+      const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+      const edge = Number(sw.channelEdge ?? 0.25);
+      const spot = Number(line?.spot), vwap = Number(line?.vwap), stdev = Number(line?.stdev);
+      if (sw.channelRule !== false && spot > 0 && vwap > 0 && stdev > 0 && edge > 0 && edge < 0.5) {
+        const levels = [vwap];
+        for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(vwap + step * stdev, vwap - step * stdev);
+        const below = Math.max(...levels.filter((v) => v <= spot), spot - stdev * 0.5);
+        const above = Math.min(...levels.filter((v) => v > spot), spot + stdev * 0.5);
+        const width = above - below;
+        const pos = width > 0 ? (spot - below) / width : 0.5;
+        const wantSide = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+        const ok = wantSide === "up" ? pos <= edge : pos >= 1 - edge;
+        if (!ok) {
+          const why = `Blocked. Price is ${Math.round(pos * 100)}% of the way up its channel. A ${wantSide === "up" ? "long needs the bottom" : "short needs the top"} ${Math.round(edge * 100)}%.`;
+          sent.__aureliusBlock = why;
+          noteGate(ticker, "before", false, why);
+          noteBlock({ venue: "kalshi", ticker, side: wantSide, setup: line?.label || "", spot, vwap, stdev, reason: why });
+          return null;
+        }
+      }
+    } catch {
+    }
+  }
+  // Claude, Love's one rule on top of the 8-2 model: never fire straight into a band.
+  // No long with a band just above price, no short with a band just below it, on every book.
+  // Live books (BRICK / COTC) copy 1:1: their paper book already cleared its own band rules (Love, Oct 3).
+  if (!reduceOnly && !line?.gateTest && !line?.bookCopy) {
+    const wantSide = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+    const spot = Number(line?.spot), vwap = Number(line?.vwap), stdev = Number(line?.stdev);
+    if (spot > 0 && vwap > 0 && stdev > 0 && bandInWay(wantSide, spot, vwap, stdev, symbolOf(ticker))) {
+      const wall = wantSide === "up" ? "Blocked. A VWAP band is directly above. The long was not sent." : "Blocked. A VWAP band is directly below. The short was not sent.";
+      noteGate(ticker, "before", false, wall);
+      noteBlock({ venue: "kalshi", ticker, side: wantSide, setup: line?.label || "", spot, vwap, stdev, reason: wall });
+      return null;
+    }
+  }
+  if (!reduceOnly) {
+    let release2 = () => {
+    };
+    const previous = entryGate;
+    entryGate = new Promise((resolve) => {
+      release2 = resolve;
+    });
+    await previous;
+    try {
+      if (!adding && doneSet().has(ticker)) return null;
+      const open = await fifteenOpen();
+      if (open.some((row) => symbolOf(row.ticker) === symbolOf(ticker) && row.ticker !== ticker)) return null;
+      return await sendOrder(ticker, bookSide, yesPrice, count, false, line, adding);
+    } finally {
+      release2();
+    }
+  }
+  return sendOrder(ticker, bookSide, yesPrice, count, true, undefined, false, forceExit);
+}
+const heldSymbol = /* @__PURE__ */ new Map();
+async function symbolOpen(sym) {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position");
+  if (!res.ok) return null;
+  const data = await res.json();
+  for (const row of data.market_positions ?? []) {
+    if (!row.ticker || !row.ticker.includes("15M") || symbolOf(row.ticker) !== sym) continue;
+    const pos = Number.parseFloat(row.position_fp ?? "0");
+    if (Number.isFinite(pos) && Math.abs(pos) >= 0.01) return true;
+  }
+  return false;
+}
+const FIRE_PATH = join(process.cwd(), "data", "firewall.json");
+const SIZE_PATH = join(process.cwd(), "data", "live-size.json");
+const FIRED_PATH = join(process.cwd(), "data", "fired.json");
+function prime75() {
+  try {
+    return JSON.parse(readFileSync(join(process.cwd(), "data", "book-mode.json"), "utf8")).mode === "prime75";
+  } catch {
+    return false;
+  }
+}
+function pacificHourNum() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Los_Angeles",
+    hour: "numeric",
+    hourCycle: "h23",
+  }).formatToParts(new Date());
+  return Number(parts.find((part) => part.type === "hour")?.value ?? "12");
+}
+function hourOpen(asset) {
+  const name = String(asset || "").toLowerCase();
+  return name === "gold" || name === "btc";
+}
+function btcPaused() {
+  try {
+    const until = Date.parse(JSON.parse(readFileSync(join(process.cwd(), "data", "btc-pause.json"), "utf8")).until || "");
+    return Number.isFinite(until) && Date.now() < until;
+  } catch {
+    return false;
+  }
+}
+function liveDollars() {
+  let n = 20;
+  try {
+    const parsed = Number(JSON.parse(readFileSync(SIZE_PATH, "utf8")).dollars);
+    if (parsed >= 1 && parsed <= 100) n = parsed;
+  } catch {
+  }
+  return n;
+}
+function sizeFor(asset, ignoreSit = false) {
+  const name = String(asset || "").toLowerCase();
+  if (name === "btc" && !ignoreSit && btcPaused()) return 0;
+  let row = {};
+  try {
+    row = JSON.parse(readFileSync(SIZE_PATH, "utf8"));
+  } catch {
+    row = {};
+  }
+  if (name === "gold") {
+    const gold = Number(row.gold);
+    if (gold >= 1 && gold <= 100) return gold;
+  }
+  return liveDollars();
+}
+function budgetFor(full, multiple) {
+  const base = Number(full);
+  if (!(base > 0)) return base;
+  const m = Number(multiple);
+  if (m > 10.8) return 1;
+  if (m > 2.2) return Math.round(base * 0.75 * 100) / 100;
+  return base;
+}
+function cappedCount(count, bookSide, yesPrice, line, reduceOnly) {
+  if (reduceOnly) return count;
+  const px = bookSide === "bid" ? Number(yesPrice) : Math.max(0.01, 1 - Number(yesPrice));
+  if (!(px > 0)) return count;
+  const implied = 1 / px;
+  const multiple = Number(line?.multiple);
+  const cap = budgetFor(Number(line?.dollars) > 0 ? Number(line.dollars) : liveDollars(), Math.max(multiple || 0, implied));
+  const maxCount = Math.floor(cap / px * 100) / 100;
+  const wanted = Number.parseFloat(count);
+  if (!(wanted > maxCount + 1e-9)) return count;
+  return maxCount.toFixed(2);
+}
+function writeLiveDollars(dollars) {
+  const n = Math.max(1, Math.min(100, Math.round(dollars * 10) / 10));
+  let prev = {};
+  try {
+    prev = JSON.parse(readFileSync(SIZE_PATH, "utf8"));
+  } catch {
+    prev = {};
+  }
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(SIZE_PATH, JSON.stringify({ ...prev, dollars: n, gold: n }));
+  } catch {
+  }
+}
+function noteGate(ticker, stage, ok, reason) {
+  const row = { at: (/* @__PURE__ */ new Date()).toISOString(), ticker, stage, ok, reason };
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    const path = join(process.cwd(), "data", "firewall-check.json");
+    let prev = [];
+    try {
+      const parsed = JSON.parse(readFileSync(path, "utf8"));
+      if (Array.isArray(parsed)) prev = parsed;
+    } catch {
+      prev = [];
+    }
+    writeFileSync(path, JSON.stringify([row, ...prev].slice(0, 80)));
+  } catch {
+  }
+}
+function firedSet() {
+  try {
+    const disk = JSON.parse(readFileSync(FIRED_PATH, "utf8"));
+    return new Set(Array.isArray(disk) ? disk : []);
+  } catch {
+    return /* @__PURE__ */ new Set();
+  }
+}
+function fireOnce(ticker) {
+  const set = firedSet();
+  set.add(ticker);
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(FIRED_PATH, JSON.stringify([...set]));
+  } catch {
+  }
+}
+async function freshLine(ticker) {
+  const inst = ticker.includes("GOLD") ? "XAU-USDT-SWAP" : ticker.includes("BTC") ? "BTC-USDT-SWAP" : "";
+  if (!inst) return null;
+  try {
+    const [tape, market] = await Promise.all([
+      fetch(`https://www.okx.com/api/v5/market/candles?instId=${inst}&bar=1m&limit=60`).then((res) => res.json()),
+      kalshi("GET", `/trade-api/v2/markets/${ticker}`).then((res) => res.json())
+    ]);
+    const rows = Array.isArray(tape?.data) ? tape.data : [];
+    let pv = 0;
+    let vol = 0;
+    let spot = 0;
+    for (const row of rows) {
+      const high = Number(row[2]);
+      const low = Number(row[3]);
+      const close = Number(row[4]);
+      const size = Number(row[5]) || 1;
+      pv += (high + low + close) / 3 * size;
+      vol += size;
+      if (!spot) spot = close;
+    }
+    let dev = 0;
+    const vwap = pv / vol;
+    for (const row of rows) {
+      const typical = (Number(row[2]) + Number(row[3]) + Number(row[4])) / 3;
+      const size = Number(row[5]) || 1;
+      dev += (typical - vwap) ** 2 * size;
+    }
+    const target = Number(market?.market?.floor_strike);
+    if (!(spot > 0) || !(vol > 0) || !(target > 0)) return null;
+    return { spot, vwap, target, stdev: Math.sqrt(dev / vol) };
+  } catch {
+    return null;
+  }
+}
+function towardBand(spot, vwap, stdev) {
+  const width = Math.max(stdev || 0, vwap * 0.00015);
+  let best = Math.abs(spot - vwap);
+  for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) {
+    best = Math.min(best, Math.abs(spot - (vwap + step * width)), Math.abs(spot - (vwap - step * width)));
+  }
+  return Math.max(0, Math.min(1, 1 - best / (width * 0.5)));
+}
+function wireBreaks(line, bookSide, asset) {
+  const side = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+  const spot = Number(line?.spot);
+  const vwap = Number(line?.vwap);
+  const stdev = Number(line?.stdev);
+  if (line?.paperCopy || line?.primeCopy) {
+    if (!(spot > 0) || !(vwap > 0) || !(stdev > 0)) {
+      return "Blocked. The bands could not be read, so the order was not sent.";
+    }
+    const target = Number(line.target);
+    if (!(target > 0)) return "Blocked. The target could not be read, so the order was not sent.";
+    // Spine rule: a band blocks only the side that still has to cross it to reach the strike.
+    // A trade already through its target has nothing left to cross.
+    const through = side === "down" ? spot < target : spot > target;
+    if (!through) {
+      const touch = stdev * 0.2;
+      const levels = [vwap];
+      for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(vwap + step * stdev, vwap - step * stdev);
+      const crossing = levels.some((level) => {
+        if (Math.abs(spot - level) <= touch) return false;
+        return side === "down" ? spot > level && level > target : spot < level && level < target;
+      });
+      if (crossing) return "Blocked. A VWAP band sits between price and the target, and this side still has to cross it.";
+    }
+    if (bandInWay(side, spot, vwap, stdev, asset)) {
+      return side === "down"
+        ? "Blocked. A VWAP band is below. The short was not sent."
+        : "Blocked. A VWAP band is above. The long was not sent.";
+    }
+    // Spine rule: price and target on the wrong side of VWAP blocks only until price reaches the target.
+    if (!through && centerWrong(side, spot, target, vwap)) {
+      const where = side === "up" ? "above" : "below";
+      return `Blocked. VWAP is ${where} the price and the target, and price has not reached the target.`;
+    }
+    return null;
+  }
+  if (!line || !(spot > 0) || !(vwap > 0) || !(Number(line.target) > 0)) {
+    return "Blocked. The VWAP could not be read, so the order was not sent.";
+  }
+  const target = Number(line.target);
+  if (line.primeCopy) {
+    if (!line.label || !onPrimeBook(line.label, side, asset)) return "Blocked. That setup is not on the prime book.";
+    return null;
+  }
+  if (!(stdev > 0)) {
+    return "Blocked. The bands could not be read, so the order was not sent.";
+  }
+  const near = bandReach(String(asset || ""), stdev);
+  const levels = [vwap];
+  for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(vwap + step * stdev, vwap - step * stdev);
+  if (side === "up" && levels.some((level) => level > spot && level - spot <= near)) {
+    return "Blocked. A VWAP band is above. The long was not sent.";
+  }
+  if (side === "down" && levels.some((level) => level < spot && spot - level <= near)) {
+    return "Blocked. A VWAP band is below. The short was not sent.";
+  }
+  if (!line.label || !onPrimeBook(line.label, side, asset)) return "Blocked. That setup is not on the prime book.";
+  if (line.primeCopy) {
+    if (side === "up" && levels.some((level) => level > spot && level - spot <= near)) {
+      return "Blocked. A VWAP band is above. The long was not sent.";
+    }
+    if (side === "down" && levels.some((level) => level < spot && spot - level <= near)) {
+      return "Blocked. A VWAP band is below. The short was not sent.";
+    }
+    return null;
+  }
+  const spineName = /btc|gold|silver/i.test(String(asset));
+  const bandBreak = /close below|tap-reject|broke/i.test(String(line.label || ""));
+  if (!spineName) {
+    const onTarget = shortBandOnTarget(asset, side, target, vwap, line.stdev, spot);
+    if (onTarget) return onTarget;
+  }
+  const above = spot > vwap && target > vwap;
+  const below = spot < vwap && target < vwap;
+  const longCross = side === "up" && spot < vwap && target > vwap;
+  if (side === "down" && spot > vwap && target < vwap && !bandBreak) return "Blocked. A short has to cross the VWAP.";
+  if (side === "down" && spot > target && above && !shortTap(line.label, side)) return "Blocked. Price and the target are above the VWAP. A short is not allowed.";
+  if (side === "up" && spot < target && below) return "Blocked. Price and the target are below the VWAP. A long is not allowed.";
+  if (longCross) return "Blocked. A long has to cross the main VWAP to reach the target.";
+  if (spot < vwap && side === "up" && !shortTap(line.label, side)) return "Blocked. Price is under the VWAP. A long is not allowed.";
+  if (spot > vwap && side === "down" && !(target < vwap) && !shortTap(line.label, side)) return "Blocked. Price is over the VWAP. A short is not allowed.";
+  const alive = survivalBlock(spot, vwap, line.stdev, side, line.label, target, asset);
+  if (alive) return alive;
+  if (!spineName) {
+    const width = Math.max(line.stdev || 0, vwap * 0.00015);
+    const pad = vwap > 20000 ? Math.max(25, width * 0.12) : Math.max(vwap * 0.0004, width * 0.2);
+    const levels = [vwap];
+    for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(vwap + step * width, vwap - step * width);
+    const blocked = levels.some((level) => {
+      if (Math.abs(level - target) <= pad || Math.abs(level - spot) <= pad) return false;
+      if (side === "down" && level === vwap) return false;
+      return side === "down" ? spot > level && target < level : spot < level && target > level;
+    });
+    if (blocked) return "Blocked. A VWAP band sits between price and the target.";
+  }
+  return null;
+}
+async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine, adding = false, forceExit = false) {
+  if (!reduceOnly && paperOnly() && !sameLine?.primeCopy && !sameLine?.paperCopy && !sameLine?.paperBook && !sameLine?.gateTest && !sameLine?.bookCopy) return null;
+  if (!reduceOnly && !sameLine?.primeCopy && !sameLine?.paperBook && !sameLine?.gateTest) {
+    try {
+      const halt = JSON.parse(readFileSync(join(process.cwd(), "data", "halt.json"), "utf8"));
+      if (halt.off === true) return null;
+    } catch {
+    }
+  }
+  const sym = symbolOf(ticker);
+  if (!reduceOnly) {
+    if (firedSet().has(ticker) || doneSet().has(ticker)) {
+      noteGate(ticker, "before", false, "already fired this window");
+      return null;
+    }
+    if (!adding && !sameLine?.primeCopy && !sameLine?.paperBook) {
+      const live = await symbolOpen(sym);
+      if (live === null || live) {
+        noteGate(ticker, "before", false, live ? "symbol already open" : "could not read positions");
+        return null;
+      }
+      const memory = heldSymbol.get(sym);
+      if (memory != null && Date.now() - memory < 8000) {
+        noteGate(ticker, "before", false, "too soon");
+        return null;
+      }
+    }
+    heldSymbol.set(sym, Date.now());
+    if (!sameLine?.gateTest && !sameLine?.bookCopy) {
+      const line = sameLine && sameLine.vwap > 0 ? sameLine : await freshLine(ticker);
+      const broken = line ? wireBreaks(line, bookSide, sym) : "Blocked. The VWAP could not be read, so the order was not sent.";
+      if (broken) {
+        sent.__aureliusBlock = broken;
+        noteGate(ticker, "before", false, broken);
+        heldSymbol.delete(sym);
+        try {
+          const file = join(process.cwd(), "data", "alarm.json");
+          const prev = JSON.parse(readFileSync(file, "utf8"));
+          const text = `RED: ${broken}`;
+          const rows = Array.isArray(prev) ? prev : [];
+          if (!rows.some((row) => row.text === text && Date.now() - Date.parse(row.at) < 10 * 6e4)) {
+            rows.unshift({ at: (/* @__PURE__ */ new Date()).toISOString(), text });
+            writeFileSync(file, JSON.stringify(rows.slice(0, 20)));
+          }
+        } catch {
+          writeFileSync(join(process.cwd(), "data", "alarm.json"), JSON.stringify([{ at: (/* @__PURE__ */ new Date()).toISOString(), text: `RED: ${broken}` }]));
+        }
+        return null;
+      }
+    }
+    noteGate(ticker, "before", true, sameLine?.primeCopy ? "prime copy" : "clear");
+  } else {
+    let paperHeld = false;
+    try {
+      paperHeld = JSON.parse(readFileSync(join(process.cwd(), "data", "paper-live.json"), "utf8")).ticker === ticker;
+    } catch {
+      paperHeld = false;
+    }
+    if (!forceExit && !primeOwns(ticker) && !paperHeld) {
+      noteGate(ticker, "before", false, "exit is not an open book");
+      return null;
+    }
+    const pos = await signedPosition(ticker);
+    const qty = Number.parseFloat(count);
+    if (bookSide === "ask" && !(pos > 0)) return null;
+    if (bookSide === "bid" && !(pos < 0)) return null;
+    if (!(qty > 0) || qty > Math.abs(pos) + 1e-3) return null;
+  }
+  if (!reduceOnly) {
+    const want = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+    if (sameLine?.paperBook) {
+      noteGate(ticker, "before", true, "paper book");
+    } else if (sameLine?.bookCopy) {
+      // Live book (BRICK / COTC, Love Oct 3): its own open paper row is the approval.
+      noteGate(ticker, "before", true, `${String(sameLine.bookCopy).toUpperCase()} live book`);
+    } else if (sameLine?.paperCopy) {
+      const seat = paperSeat(ticker, want);
+      if (!seat) {
+        noteGate(ticker, "before", false, "not the single paper trade");
+        heldSymbol.delete(sym);
+        return null;
+      }
+    } else if (!sameLine?.gateTest) {
+      const open = listPrimePaper().find((paper) => paper.result === "open" && paper.ticker === ticker && paper.side === want);
+      if (!open) {
+        noteGate(ticker, "before", false, "not the open prime trade");
+        heldSymbol.delete(sym);
+        return null;
+      }
+    }
+  }
+  if (!reduceOnly) {
+    const paid = bookSide === "bid" || bookSide === "up" ? Number(yesPrice) : Math.round((1 - Number(yesPrice)) * 1e4) / 1e4;
+    const multiple = paid > 0 ? 1 / paid : 0;
+    const closeAt = windowClose(ticker);
+    const left = closeAt != null ? (closeAt - Date.now()) / 1000 : 9999;
+    const side = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+    const spot = Number(sameLine?.spot);
+    const target = Number(sameLine?.target);
+    const reject = /tap-reject/i.test(String(sameLine?.label || ""));
+    const right = side === "up" ? spot > target : spot < target;
+    const late = left > 0 && left <= 300 && reject && right && spot > 0 && target > 0;
+    // Paper-book copies follow the paper book: if paper took it, the copy only needs 1.2x
+    // (the spine's lowest), since the price check upstream already proves it is the same trade.
+    // Love: 1.38x is the minimum for any Kalshi order. Below that the payout isn't worth the risk.
+    // A live-book copy is checked on the limit price (ask + 2c slip room); its paper book already took it at 1.38x+ on the ask.
+    const floor = sameLine?.bookCopy ? 1.3 : 1.38;
+    const ok = multiple + 1e-9 >= floor;
+    if (!ok) {
+      noteGate(ticker, "before", false, `${multiple.toFixed(2)}x under ${floor}`);
+      return null;
+    }
+    if (!(sent.__oneDoor instanceof Set)) sent.__oneDoor = new Set();
+    if (sent.__oneDoor.has(ticker) || firedSet().has(ticker) || doneSet().has(ticker) || sealBlocks(ticker)) {
+      noteGate(ticker, "before", false, "duplicate door shut");
+      return null;
+    }
+    sent.__oneDoor.add(ticker);
+  }
+  const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
+    ticker,
+    client_order_id: randomUUID(),
+    side: bookSide,
+    count: cappedCount(count, bookSide, yesPrice, sameLine, reduceOnly),
+    price: money(yesPrice),
+    time_in_force: "immediate_or_cancel",
+    self_trade_prevention_type: "taker_at_cross",
+    post_only: false,
+    reduce_only: reduceOnly,
+    cancel_order_on_pause: true,
+    exchange_index: 2
+  });
+  if (!res.ok) {
+    if (!reduceOnly) {
+      heldSymbol.delete(sym);
+      sent.__oneDoor?.delete(ticker);
+    }
+    const text = await res.text();
+    noteGate(ticker, "after", false, text.slice(0, 140) || "rejected");
+    throw new Error(text.slice(0, 180));
+  }
+  const data = await res.json();
+  const filled = Number.parseFloat(data.fill_count ?? "0");
+  if (!data.order_id || !(filled > 0)) {
+    if (!reduceOnly) {
+      heldSymbol.delete(sym);
+      sent.__oneDoor?.delete(ticker);
+      noteGate(ticker, "after", false, "unfilled");
+    }
+    return null;
+  }
+  if (!reduceOnly && !adding) fireOnce(ticker);
+  const yes = Number.parseFloat(data.average_fill_price ?? "") || yesPrice;
+  if (!reduceOnly) {
+    const fside = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+    const paidNow = fside === "up" ? Number(yes) : Math.round((1 - Number(yes)) * 1e4) / 1e4;
+    const closeAt = windowClose(ticker);
+    recordFire({
+      ticker, asset: sym, side: fside, setup: sameLine?.label || "",
+      book: sameLine?.primeCopy ? "prime" : sameLine?.paperBook ? "paper book" : sameLine?.paperCopy ? "paper copy" : sameLine?.gateTest ? "gate test" : "other",
+      spot: Number(sameLine?.spot) || null, target: Number(sameLine?.target) || null,
+      vwap: Number(sameLine?.vwap) || null, stdev: Number(sameLine?.stdev) || null,
+      bands: bandLevels(Number(sameLine?.vwap), Number(sameLine?.stdev)),
+      contracts: filled, paid: paidNow, cost: Math.round(filled * paidNow * 100) / 100,
+      multiple: paidNow > 0 ? Math.round(100 / paidNow) / 100 : null,
+      secondsLeft: closeAt != null ? Math.round((closeAt - Date.now()) / 1000) : null,
+      cap: maxDollars(), orderId: data.order_id,
+    });
+  }
+  if (!reduceOnly) {
+    const again = await symbolOpen(sym);
+    const rows = await fifteenOpen();
+    const same = rows.filter((row) => symbolOf(row.ticker) === sym);
+    if (!again || same.length > 1) {
+      noteGate(ticker, "after", false, "position did not match one open trade");
+    } else {
+      noteGate(ticker, "after", true, "one position");
+    }
+  }
+  return { orderId: data.order_id, filled, yesPrice: yes };
+}
+const sided = globalThis;
+const LOCK_PATH = join(process.cwd(), ".secrets", "side-lock.json");
+function locks() {
+  let disk = {};
+  try {
+    disk = JSON.parse(readFileSync(LOCK_PATH, "utf8"));
+  } catch {
+    disk = {};
+  }
+  if (!sided.__aureliusSide) sided.__aureliusSide = {};
+  const next = {};
+  for (const [ticker, side] of Object.entries(disk)) next[ticker] = side;
+  sided.__aureliusSide = next;
+  return sided.__aureliusSide;
+}
+function lockSide(ticker, side, force = false) {
+  const book = locks();
+  if (book[ticker] === side) return;
+  if (book[ticker] && !force) return;
+  book[ticker] = side;
+  try {
+    writeFileSync(LOCK_PATH, JSON.stringify(book));
+  } catch {
+  }
+}
+function unlockSide(ticker) {
+  const book = locks();
+  if (!book[ticker]) return;
+  delete book[ticker];
+  try {
+    writeFileSync(LOCK_PATH, JSON.stringify(book));
+  } catch {
+  }
+}
+function allLocks() {
+  return { ...locks() };
+}
+function sideLock(ticker) {
+  return locks()[ticker] ?? null;
+}
+async function openingSide(ticker) {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/fills", `?limit=80&ticker=${encodeURIComponent(ticker)}`);
+  if (!res.ok) return sideLock(ticker);
+  const data = await res.json();
+  const fills = (data.fills ?? []).filter((f) => f.ticker === ticker).sort((a, b) => Date.parse(a.created_time ?? "") - Date.parse(b.created_time ?? ""));
+  const first = fills[0];
+  if (!first?.action || !first.side) return sideLock(ticker);
+  if (first.action === "buy" && first.side === "yes") return "up";
+  if (first.action === "sell" && first.side === "yes") return "down";
+  if (first.action === "buy" && first.side === "no") return "down";
+  if (first.action === "sell" && first.side === "no") return "down";
+  return sideLock(ticker);
+}
+const sent = globalThis;
+const finishedMem = globalThis;
+const DONE_PATH = join(process.cwd(), ".secrets", "side-done.json");
+function doneSet() {
+  let disk = [];
+  try {
+    const parsed = JSON.parse(readFileSync(DONE_PATH, "utf8"));
+    if (Array.isArray(parsed)) disk = parsed.filter((ticker) => typeof ticker === "string");
+  } catch {
+    disk = [];
+  }
+  const set = new Set(disk);
+  finishedMem.__aureliusDone = set;
+  return set;
+}
+function releaseTicker(ticker) {
+  heldSymbol.delete(symbolOf(ticker));
+  const fired = firedSet();
+  fired.delete(ticker);
+  try {
+    writeFileSync(FIRED_PATH, JSON.stringify([...fired]));
+  } catch {
+  }
+  const done = doneSet();
+  done.delete(ticker);
+  try {
+    writeFileSync(DONE_PATH, JSON.stringify([...done]));
+  } catch {
+  }
+  finishedMem.__aureliusDone?.delete(ticker);
+  unlockSide(ticker);
+  const seals = readSeals();
+  delete seals[symbolOf(ticker)];
+  try {
+    writeFileSync(SEAL_PATH, JSON.stringify(seals));
+  } catch {
+  }
+}
+function markDone(ticker) {
+  const done = doneSet();
+  done.add(ticker);
+  try {
+    writeFileSync(DONE_PATH, JSON.stringify([...done]));
+  } catch {
+  }
+}
+const SEAL_PATH = join(process.cwd(), "data", "order-seal.json");
+const SEAL_MS = 30 * 60 * 1e3;
+function readSeals() {
+  try {
+    const parsed = JSON.parse(readFileSync(SEAL_PATH, "utf8"));
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+function windowClose(ticker) {
+  const match = ticker.match(/(\d{2})([A-Z]{3})(\d{2})(\d{2})(\d{2})/);
+  if (!match) return null;
+  const months = {
+    JAN: 0,
+    FEB: 1,
+    MAR: 2,
+    APR: 3,
+    MAY: 4,
+    JUN: 5,
+    JUL: 6,
+    AUG: 7,
+    SEP: 8,
+    OCT: 9,
+    NOV: 10,
+    DEC: 11
+  };
+  const month = months[match[2]];
+  if (month == null) return null;
+  const year = 2e3 + Number(match[1]);
+  const day = Number(match[3]);
+  const hour = Number(match[4]);
+  const minute = Number(match[5]);
+  const guess = Date.UTC(year, month, day, hour + 4, minute);
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(new Date(guess));
+  const gotH = Number(parts.find((part) => part.type === "hour")?.value);
+  const gotM = Number(parts.find((part) => part.type === "minute")?.value);
+  return guess - (gotH * 60 + gotM - (hour * 60 + minute)) * 6e4;
+}
+function sealBlocks(ticker) {
+  const row = readSeals()[symbolOf(ticker)];
+  if (!row?.ticker) return false;
+  if (row.ticker === ticker) return true;
+  const close = windowClose(row.ticker);
+  return close != null && Date.now() < close;
+}
+function writeSeal(ticker, side) {
+  const all = readSeals();
+  all[symbolOf(ticker)] = { ticker, side, at: (/* @__PURE__ */ new Date()).toISOString() };
+  mkdirSync(join(process.cwd(), "data"), { recursive: true });
+  writeFileSync(SEAL_PATH, JSON.stringify(all));
+}
+function hold(key) {
+  if (!(sent.__aureliusSent instanceof Map)) sent.__aureliusSent = /* @__PURE__ */ new Map();
+  const book = sent.__aureliusSent;
+  const at = book.get(key);
+  if (at != null && Date.now() - at < 12000) return false;
+  book.set(key, Date.now());
+  return true;
+}
+function release(key) {
+  sent.__aureliusSent?.delete(key);
+}
+async function liveAsks(ticker) {
+  const res = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(8000) });
+  if (!res.ok) return null;
+  const data = await res.json();
+  const yes = Number.parseFloat(data.market?.yes_ask_dollars ?? "");
+  const no = Number.parseFloat(data.market?.no_ask_dollars ?? "");
+  if (!(yes > 0) || !(no > 0)) return null;
+  return { yesAsk: yes, noAsk: no };
+}
+function paperShape(label) {
+  const text = String(label || "").replace(/−/g, "-").replace(/\s+/g, " ").trim();
+  return /^tap-reject at /i.test(text) || /^close above /i.test(text) || /^close below /i.test(text);
+}
+function paperSeat(ticker, side) {
+  let trades = [];
+  try {
+    trades = readBook().trades;
+  } catch {
+    return null;
+  }
+  const mine = trades.filter((t) => t && t.ticker === ticker && t.source !== "live" && t.venue !== "polymarket" && !t.probe);
+  const sides = new Set(mine.map((t) => t.side));
+  if (sides.size !== 1 || !sides.has(side)) return null;
+  return mine.find((t) => t.result === "open" && t.side === side && (t.asset === "btc" || t.asset === "gold") && paperShape(t.patternLabel)) || null;
+}
+function readPaperLive() {
+  try {
+    const row = JSON.parse(readFileSync(join(process.cwd(), "data", "paper-live.json"), "utf8"));
+    return row && typeof row === "object" ? row : {};
+  } catch {
+    return {};
+  }
+}
+async function sendPaperBook(side, ticker, yesAsk, noAsk, opts) {
+  const sym = symbolOf(ticker);
+  if (sym !== "btc" && sym !== "gold") return { status: "blocked", reason: "paper book is bitcoin and gold" };
+  const open = await fifteenOpen();
+  const here = open.find((row) => row.ticker === ticker);
+  if (here) {
+    const held = here.pos > 0 ? "up" : "down";
+    if (held === side) return { status: "filled", reason: "already", filled: Math.abs(here.pos) };
+    return { status: "blocked", reason: "you already hold the other side" };
+  }
+  const other = open.find((row) => symbolOf(row.ticker) === sym && row.ticker !== ticker);
+  if (other) return { status: "blocked", reason: "symbol already open" };
+  if (doneSet().has(ticker) || firedSet().has(ticker) || sealBlocks(ticker)) {
+    return { status: "blocked", reason: "this window already traded" };
+  }
+  const spot = Number(opts?.line?.spot);
+  const vwap = Number(opts?.line?.vwap);
+  const stdev = Number(opts?.line?.stdev);
+  const target = Number(opts?.line?.target);
+  if (spot > 0 && vwap > 0 && stdev > 0 && target > 0 && bandOnPath(side, spot, target, vwap, stdev)) {
+    return { status: "blocked", reason: "a band is in front" };
+  }
+  if (spot > 0 && vwap > 0 && stdev > 0 && bandInWay(side, spot, vwap, stdev, sym)) {
+    return { status: "blocked", reason: side === "down" ? "a band is below" : "a band is above" };
+  }
+  const quote = await liveAsks(ticker);
+  const yes = quote?.yesAsk ?? yesAsk;
+  const no = quote?.noAsk ?? noAsk;
+  const ask = side === "up" ? yes : no;
+  if (!(ask > 0.01) || !(ask < 0.99)) return { status: "blocked", reason: "no quote" };
+  const multiple = Math.round((1 / ask) * 100) / 100;
+  const left = Number(opts?.secondsLeft);
+  const known = Number.isFinite(left) && left > 0;
+  const label = opts?.line?.label || "";
+  const reject = /tap-reject/i.test(String(label));
+  const right = side === "up" ? spot > target : spot < target;
+  const late = known && left <= 300 && reject && right;
+  if (!(multiple + 1e-9 >= 1.38)) {
+    const why = `${multiple.toFixed(2)}x under 1.38`;
+    return { status: "blocked", reason: why };
+  }
+  const full = sizeFor(sym, true);
+  const budget = budgetFor(full, multiple);
+  const count = Math.floor(budget / ask * 100) / 100;
+  if (!(count >= 0.01)) return { status: "blocked", reason: "size" };
+  const bookSide = side === "up" ? "bid" : "ask";
+  const yesPrice = side === "up"
+    ? Math.min(0.99, Math.round((ask + 0.02) * 100) / 100)
+    : Math.max(0.01, Math.round((1 - ask - 0.02) * 100) / 100);
+  const line = { ...(opts?.line || {}), paperBook: true, paperCopy: true, multiple, dollars: full, label: opts?.line?.label || "paper" };
+  let placed = null;
+  try {
+    placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, line, true);
+  } catch (err) {
+    return { status: "blocked", reason: err instanceof Error ? err.message.slice(0, 140) : "paper book failed" };
+  }
+  if (!placed || !(placed.filled > 0)) return { status: "blocked", reason: sent.__aureliusBlock || "unfilled" };
+  lockSide(ticker, side);
+  markDone(ticker);
+  fireOnce(ticker);
+  writeSeal(ticker, side);
+  const paid = side === "up" ? placed.yesPrice : Math.round((1 - placed.yesPrice) * 1e4) / 1e4;
+  return { status: "filled", orderId: placed.orderId, filled: placed.filled, yesPrice: placed.yesPrice, paid };
+}
+async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, opts) {
+  if (opts?.paperBook) {
+    try {
+      const lb = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook;
+      if (lb?.book || (Array.isArray(lb?.books) && lb.books.length)) return { status: "blocked", reason: "live books only right now (Love's call)" };
+    } catch {
+    }
+    return sendPaperBook(side, ticker, yesAsk, noAsk, opts);
+  }
+  const paperCopy = opts?.paperCopy === true;
+  const symEarly = symbolOf(ticker);
+  const full = sizeFor(symEarly);
+  if (!(full >= 1)) return { status: "blocked", reason: "bitcoin is sitting until 2pm" };
+  if (!(typeof opts?.bookCopy === "string" && opts.bookCopy) && (symEarly === "btc" || symEarly === "gold") && !hourOpen(symEarly)) {
+    return { status: "blocked", reason: `${symEarly} sits this hour` };
+  }
+  // LIVE BOOK (Love, Oct 3 ~1:45 PM PT: "let's run BRICK on kalshi... @ $22 position sizes"). While live-switch
+  // "liveBook" names a paper book, ONLY that book's trades go to Kalshi; the prime and paper copiers stand down.
+  let liveBook = null;
+  try {
+    liveBook = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook || null;
+  } catch {
+    liveBook = null;
+  }
+  const bookCopy = typeof opts?.bookCopy === "string" ? opts.bookCopy : "";
+  const liveBooks = liveBook ? (Array.isArray(liveBook.books) ? liveBook.books : liveBook.book ? [liveBook.book] : []) : [];
+  if (liveBooks.length && !bookCopy) return { status: "blocked", reason: `${liveBooks.map((b) => String(b).toUpperCase()).join(" + ")} only right now (Love's call)` };
+  if (bookCopy && !liveBooks.includes(bookCopy)) return { status: "blocked", reason: `${bookCopy} is not a live book` };
+  // New lock (Oct 3, Love): ONLY a named live book can open a position. The Grok-era prime / paper copy routes are gone.
+  if (!bookCopy) return { status: "blocked", reason: "only a named live book opens positions" };
+  if (opts?.primeCopy && paperCopy) return { status: "blocked", reason: "one book at a time" };
+  if (doneSet().has(ticker) || firedSet().has(ticker) || sealBlocks(ticker)) {
+    return { status: "blocked", reason: "this window already traded" };
+  }
+  let label = opts?.line?.label || "";
+  if (bookCopy) {
+    const sym = symbolOf(ticker);
+    if (sym !== "btc" && sym !== "gold") return { status: "blocked", reason: "the live book is bitcoin and gold only" };
+  } else if (paperCopy) {
+    const sym = symbolOf(ticker);
+    if (sym !== "btc" && sym !== "gold") return { status: "blocked", reason: "paper live is bitcoin and gold only" };
+    const seat = opts?.line?.ownBook ? { patternLabel: label } : paperSeat(ticker, side);
+    if (!seat) return { status: "blocked", reason: "not the single paper trade" };
+    label = seat.patternLabel || label;
+    const otherWay = listPrimePaper().some((row) => row.result === "open" && row.ticker === ticker && row.side !== side);
+    if (otherWay) return { status: "blocked", reason: "prime book is the other way" };
+    const openNow = await fifteenOpen();
+    const mark = readPaperLive();
+    if (mark.ticker && symbolOf(mark.ticker) === sym && openNow.some((row) => row.ticker === mark.ticker)) {
+      return { status: "blocked", reason: "paper book already has one order out" };
+    }
+  } else {
+    const book = listPrimePaper().find((row) => row.result === "open" && row.ticker === ticker && row.side === side);
+    if (!book) {
+      return { status: "blocked", reason: "prime book is not in this trade" };
+    }
+    const otherWay = listPrimePaper().some((row) => row.result === "open" && row.ticker === ticker && row.side !== side && row.live !== "filled");
+    if (otherWay) {
+      return { status: "blocked", reason: "prime book is the other way" };
+    }
+    if (!primeProven(book.pattern || "", book.side, book.asset)) {
+      return { status: "blocked", reason: "the prime book has not approved this" };
+    }
+    label = book.pattern || label;
+  }
+  const key = `${ticker}:${side}`;
+  if (!hold(key)) return { status: "blocked", reason: "working" };
+  const open = await fifteenOpen();
+  const here = open.find((row) => row.ticker === ticker);
+  if (here) {
+    const held = here.pos > 0 ? "up" : "down";
+    release(key);
+    return { status: "blocked", reason: held === side ? "already" : "you already hold the other side" };
+  }
+  const other = open.find((row) => symbolOf(row.ticker) === symbolOf(ticker) && row.ticker !== ticker);
+  if (other) {
+    release(key);
+    return { status: "blocked", reason: "symbol already open" };
+  }
+  const quote = await liveAsks(ticker);
+  const yes = quote?.yesAsk ?? yesAsk;
+  const no = quote?.noAsk ?? noAsk;
+  const ask = side === "up" ? yes : no;
+  if (!(ask > 0.01) || !(ask < 0.99)) {
+    release(key);
+    return { status: "blocked", reason: "no quote" };
+  }
+  const multiple = ask > 0 ? Math.round((1 / ask) * 100) / 100 : 0;
+  const left = Number(opts?.secondsLeft);
+  const known = Number.isFinite(left) && left > 0;
+  const spotNow = Number(opts?.line?.spot);
+  const targetNow = Number(opts?.line?.target);
+  const reject = /tap-reject/i.test(String(opts?.line?.label || ""));
+  const right = side === "up" ? spotNow > targetNow : spotNow < targetNow;
+  const late = known && left <= 300 && reject && right && spotNow > 0 && targetNow > 0;
+  if (!(multiple + 1e-9 >= 1.38)) {
+    release(key);
+    const why = `${multiple.toFixed(2)}x under 1.38`;
+    return { status: "blocked", reason: why };
+  }
+  // Live books size off Love's Position size slider (data/live-size.json "dollars"), capped by the switch ceiling (Oct 3).
+  const budget = bookCopy ? budgetFor(Math.min(liveDollars() || Number(liveBook?.dollars) || 0, maxDollars()), multiple) : budgetFor(full, multiple);
+  const count = Math.floor(budget / ask * 100) / 100;
+  if (!(count >= 0.01)) {
+    release(key);
+    return { status: "blocked", reason: "size" };
+  }
+  const bookSide = side === "up" ? "bid" : "ask";
+  const yesPrice = side === "up"
+    ? Math.min(0.99, Math.round((ask + 0.02) * 100) / 100)
+    : Math.max(0.01, Math.round((1 - ask - 0.02) * 100) / 100);
+  const line = bookCopy
+    ? { ...(opts?.line || {}), primeCopy: false, paperCopy: false, bookCopy, multiple, dollars: budget, label: label || bookCopy }
+    : { ...(opts?.line || {}), primeCopy: !paperCopy, paperCopy, multiple, dollars: full, label: label || (paperCopy ? "paper" : "prime") };
+  let placed = null;
+  try {
+    placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, line, true);
+  } catch (err) {
+    release(key);
+    return { status: "blocked", reason: err instanceof Error ? err.message.slice(0, 140) : "copy failed" };
+  }
+  if (!placed || !(placed.filled > 0)) {
+    release(key);
+    return { status: "blocked", reason: sent.__aureliusBlock || "unfilled" };
+  }
+  lockSide(ticker, side);
+  markDone(ticker);
+  fireOnce(ticker);
+  writeSeal(ticker, side);
+  const paid = side === "up" ? placed.yesPrice : Math.round((1 - placed.yesPrice) * 1e4) / 1e4;
+  return { status: "filled", orderId: placed.orderId, filled: placed.filled, yesPrice: placed.yesPrice, paid };
+}
+async function clearResting(ticker) {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/orders", "?limit=40");
+  if (!res.ok) return;
+  const data = await res.json();
+  for (const order of data.orders ?? []) {
+    if (order.ticker !== ticker || order.status !== "resting" || !order.order_id) continue;
+    if (order.client_order_id) continue;
+    await cancelOrder(order.order_id, ticker);
+  }
+}
+async function closeAtBand(trade, yesBid, yesAsk, force = false, protect = false, floorPct) {
+  void trade;
+  void yesBid;
+  void yesAsk;
+  void force;
+  void protect;
+  void floorPct;
+  return null;
+}
+const AUTO_PATH = join(process.cwd(), "data", "autosell.json");
+async function cancelOrder(orderId, ticker) {
+  const path = `/trade-api/v2/portfolio/events/orders/${orderId}`;
+  await kalshi("DELETE", path, `?market_ticker=${encodeURIComponent(ticker)}&exchange_index=-1`);
+}
+async function restAutoSell(trade, floorPct) {
+  void trade;
+  void floorPct;
+}
+const OUTSIDE_PATH = join(process.cwd(), "data", "outside-orders.json");
+function readOutside() {
+  try {
+    const parsed = JSON.parse(readFileSync(OUTSIDE_PATH, "utf8"));
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+async function outsideOrders() {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/orders", "?limit=40");
+  if (!res.ok) return [];
+  const data = await res.json();
+  const rows = [];
+  const lines = [];
+  for (const order of data.orders ?? []) {
+    if (!order.ticker?.includes("15M")) continue;
+    if (order.client_order_id) continue;
+    const age = Date.now() - Date.parse(order.created_time ?? "");
+    if (!Number.isFinite(age) || age > 6 * 60 * 60 * 1e3) continue;
+    const qty = order.fill_count_fp && Number(order.fill_count_fp) > 0 ? order.fill_count_fp : order.initial_count_fp ?? "";
+    rows.push({
+      at: order.created_time ?? "",
+      ticker: order.ticker,
+      action: order.action ?? "",
+      side: order.side ?? "",
+      qty,
+      yes: order.yes_price_dollars ?? "",
+      status: order.status ?? ""
+    });
+    if (age <= 3 * 60 * 1e3 || order.status === "resting") {
+      lines.push(
+        `RED: No desk id. ${order.ticker} ${order.action ?? ""} ${order.side ?? ""} ${qty} at ${(order.created_time ?? "").slice(11, 19)} (${order.status ?? "open"}).`
+      );
+    }
+    if (order.status === "executed" && order.action === "sell" && order.ticker) {
+      const prev = readSeals()[symbolOf(order.ticker)];
+      const soldAt = Date.parse(order.created_time ?? "");
+      if (!prev?.at || Date.parse(prev.at) < soldAt) {
+        const all = readSeals();
+        all[symbolOf(order.ticker)] = {
+          ticker: order.ticker,
+          side: order.side === "no" ? "down" : "up",
+          at: order.created_time ?? (/* @__PURE__ */ new Date()).toISOString()
+        };
+        try {
+          mkdirSync(join(process.cwd(), "data"), { recursive: true });
+          writeFileSync(SEAL_PATH, JSON.stringify(all));
+        } catch {
+        }
+      }
+    }
+  }
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(OUTSIDE_PATH, JSON.stringify(rows));
+  } catch {
+  }
+  return lines;
+}
+async function kickForbidden() {
+  return;
+}
+async function watchAccount(trades) {
+  try {
+    await kickForbidden();
+  } catch {
+  }
+  const open = await fifteenOpen();
+  const nets = await settlementProfits();
+  const alerts = [];
+  const mismatches = [];
+  try {
+    alerts.push(...await outsideOrders());
+  } catch {
+  }
+  const btc = open.filter((row) => symbolOf(row.ticker) === "btc");
+  const gold = open.filter((row) => symbolOf(row.ticker) === "gold");
+  for (const row of open) {
+    try {
+      await clearResting(row.ticker);
+    } catch {
+    }
+  }
+  if (btc.length > 1) alerts.push(`RED: ${btc.length} Bitcoin positions are open at once.`);
+  if (gold.length > 1) alerts.push(`RED: ${gold.length} gold positions are open at once.`);
+  for (const row of gold) {
+    const line = await freshLine(row.ticker);
+    if (!line) {
+      alerts.push("RED: Gold is open and the VWAP could not be read.");
+      continue;
+    }
+    const side = row.pos > 0 ? "bid" : "ask";
+    const broken = wireBreaks(line, side, "gold");
+    if (broken) alerts.push(`RED: ${broken} ${row.ticker} is still open.`);
+  }
+  for (const row of open) {
+    const side = row.pos > 0 ? "up" : "down";
+    const locked = sideLock(row.ticker);
+    const banked = trades.find(
+      (t) => t.source === "live" && t.venue !== "polymarket" && t.ticker === row.ticker && t.result !== "open" && (t.profit ?? 0) > 0
+    );
+    if (banked && banked.side !== side) {
+      alerts.push(
+        `RED: ${row.ticker} opened ${side.toUpperCase()} after ${banked.side.toUpperCase()} banked $${banked.profit}.`
+      );
+    } else if (locked && locked !== side) {
+      alerts.push(`RED: ${row.ticker} is ${side.toUpperCase()} after it was sealed ${locked.toUpperCase()}.`);
+    }
+  }
+  for (const trade of trades) {
+    if (trade.source !== "live" || trade.venue === "polymarket" || trade.result === "open" || trade.profit == null) continue;
+    const net = nets.get(trade.ticker);
+    if (net == null || Math.abs(trade.profit - net) <= 0.5) continue;
+    mismatches.push(`${trade.ticker} shows $${trade.profit.toFixed(2)} on the desk and $${net.toFixed(2)} on Kalshi.`);
+  }
+  try {
+    const logged = JSON.parse(readFileSync(join(process.cwd(), "data", "exit-log.json"), "utf8"));
+    if (Array.isArray(logged)) {
+      for (const row of logged) {
+        const age = Date.now() - Date.parse(row.at ?? "");
+        if (!Number.isFinite(age) || age > 2 * 60 * 60 * 1e3) continue;
+        if (row.line) {
+          alerts.push(row.line);
+        } else if (row.short) {
+          alerts.push(
+            `RED: ${row.ticker} sold under its target. Bid was ${row.bidPct ?? "?"}% and the target was ${row.targetPct ?? "?"}%.`
+          );
+        } else if (row.reason === "salvage-missed") {
+          alerts.push(`RED: ${row.ticker} was a sure loss and did not cash out.`);
+        } else if (typeof row.profit === "number" && row.profit < 0 && row.reason !== "salvage" && age < 30 * 60 * 1e3) {
+          alerts.push(`RED: ${row.ticker} was sold while it was negative.`);
+        }
+      }
+    }
+  } catch {
+  }
+  for (const trade of trades) {
+    if (trade.result !== "open" || trade.source === "live" || trade.probe || !trade.ticker?.includes("15M")) continue;
+    const sym = symbolOf(trade.ticker);
+    if (open.some((row) => symbolOf(row.ticker) === sym)) continue;
+    const seal = readSeals()[sym];
+    const sealed = seal?.at != null && Date.now() - Date.parse(seal.at) < SEAL_MS;
+    const paperAge = Date.now() - Date.parse(trade.openedAt);
+    if (!sealed && paperAge > 9e4) {
+      alerts.push(`RED: Paper ${sym.toUpperCase()} ${trade.side.toUpperCase()} filled and Kalshi did not.`);
+    }
+  }
+  for (const line of betweenFlags()) alerts.push(line);
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(
+      join(process.cwd(), "data", "red-alert.json"),
+      JSON.stringify({ at: (/* @__PURE__ */ new Date()).toISOString(), alerts, mismatches, open })
+    );
+  } catch {
+  }
+  try {
+    const cash = await kalshiCash();
+    if (cash != null) rememberKalshiCash(cash);
+  } catch {
+  }
+}
+const CASH_PATH = join(process.cwd(), "data", "kalshi-cash.json");
+function readKalshiCash() {
+  try {
+    const parsed = JSON.parse(readFileSync(CASH_PATH, "utf8"));
+    return {
+      cash: parsed.cash ?? null,
+      anchor: parsed.anchor ?? null,
+      trail: Array.isArray(parsed.trail) ? parsed.trail.filter((p) => p && Number.isFinite(p.cash)) : []
+    };
+  } catch {
+    return { cash: null, anchor: null, trail: [] };
+  }
+}
+async function refreshKalshiCash() {
+  const cash = await kalshiCash();
+  if (cash != null && cash >= 0) rememberKalshiCash(cash);
+  return readKalshiCash();
+}
+function rememberKalshiCash(cash) {
+  const book = readKalshiCash();
+  if (book.anchor == null) book.anchor = cash;
+  book.cash = cash;
+  const last = book.trail[book.trail.length - 1];
+  const age = last ? Date.now() - Date.parse(last.t) : Infinity;
+  if (!last || Math.abs(last.cash - cash) >= 0.01 || age > 2e4) {
+    book.trail.push({ t: (/* @__PURE__ */ new Date()).toISOString(), cash });
+  }
+  book.trail = book.trail.slice(-400);
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(CASH_PATH, JSON.stringify(book));
+  } catch {
+  }
+}
+async function flattenLive(trade, yesBid, yesAsk) {
+  let pct = 45;
+  try {
+    const n = Number(JSON.parse(readFileSync(join(process.cwd(), "data", "trail-floor.json"), "utf8")).pct);
+    if (Number.isFinite(n)) pct = Math.min(65, Math.max(35, Math.round(n)));
+  } catch {
+    pct = 45;
+  }
+  return closeAtBand(trade, yesBid, yesAsk, true, false, pct);
+}
+let lastHeldRows = [];
+let heldAt = 0;
+let heldFlight = null;
+async function heldFifteens() {
+  if (heldFlight) return heldFlight;
+  if (Date.now() - heldAt < 2000) return lastHeldRows;
+  heldFlight = loadHeld().finally(() => {
+    heldFlight = null;
+    heldAt = Date.now();
+  });
+  return heldFlight;
+}
+async function loadHeld() {
+  const rows = [];
+  let cursor = "";
+  for (let page = 0; page < 6; page += 1) {
+    const query = `?limit=200&count_filter=position${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`;
+    const res = await kalshi("GET", "/trade-api/v2/portfolio/positions", query);
+    if (!res.ok) return lastHeldRows;
+    const data = await res.json();
+    for (const row of data.market_positions ?? []) {
+      if (!row.ticker || !String(row.ticker).includes("15M")) continue;
+      const pos = Number.parseFloat(row.position_fp ?? row.position ?? "0");
+      const cost = Number.parseFloat(row.market_exposure_dollars ?? "0");
+      if (Number.isFinite(pos) && Math.abs(pos) >= 0.01) {
+        rows.push({ ticker: row.ticker, pos, cost: Number.isFinite(cost) ? cost : 0 });
+      }
+    }
+    if (!data.cursor) break;
+    cursor = data.cursor;
+  }
+  lastHeldRows = rows;
+  return rows;
+}
+async function restingFifteens() {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/orders", "?status=resting&limit=50");
+  if (!res.ok) return [];
+  const data = await res.json();
+  const rows = [];
+  for (const order of data.orders ?? []) {
+    if (!order.ticker || !order.ticker.includes("15M") || order.status !== "resting") continue;
+    if (order.action === "sell") continue;
+    const contracts = Number.parseFloat(order.remaining_count_fp ?? order.initial_count_fp ?? "0");
+    const yes = Number.parseFloat(order.yes_price_dollars ?? "0");
+    if (!(contracts >= 0.01) || !(yes > 0)) continue;
+    const side = order.side === "no" ? "down" : "up";
+    const px = side === "up" ? yes : Math.max(0.01, 1 - yes);
+    rows.push({
+      ticker: order.ticker,
+      side,
+      contracts,
+      cost: Math.round(contracts * px * 100) / 100,
+    });
+  }
+  return rows;
+}
+const closeBook = globalThis;
+function rememberClose(ticker, payout, profit) {
+  if (!closeBook.__aureliusClose) closeBook.__aureliusClose = {};
+  closeBook.__aureliusClose[ticker] = { payout, profit, at: Date.now() };
+}
+function closeResult(ticker) {
+  const row = closeBook.__aureliusClose?.[ticker];
+  if (!row || Date.now() - row.at > 20000) return null;
+  return row;
+}
+function finishClose(ticker, payout, basis) {
+  if (!(payout > 0)) return null;
+  const cash = Math.round(payout * 100) / 100;
+  const profit = Math.round((payout - basis) * 100) / 100;
+  rememberClose(ticker, cash, profit);
+  return cash;
+}
+async function flattenTicker(ticker, manual = false, minPct = 0, gate = false, minPrice = 0) {
+  if (!manual && !gate && paperOnly()) return null;
+  let payout = 0;
+  let basis = 0;
+  for (let guard = 0; guard < 5; guard += 1) {
+    const resPos = await kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position");
+    if (!resPos.ok) return finishClose(ticker, payout, basis);
+    const book = await resPos.json();
+    const row = book.market_positions?.find((p) => p.ticker === ticker);
+    const pos = Number.parseFloat(row?.position_fp ?? "0");
+    if (!(Math.abs(pos) >= 0.01)) return finishClose(ticker, payout, basis);
+    const sign = pos > 0 ? 1 : -1;
+    const res = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) return finishClose(ticker, payout, basis);
+    const data = await res.json();
+    const yesBid = Number.parseFloat(data.market?.yes_bid_dollars ?? "0");
+    const noBid = Number.parseFloat(data.market?.no_bid_dollars ?? "0");
+    const yesAsk = Number.parseFloat(data.market?.yes_ask_dollars ?? "0");
+    const noAsk = Number.parseFloat(data.market?.no_ask_dollars ?? "0");
+    const qty = Math.abs(pos);
+    const cost = Number.parseFloat(row?.market_exposure_dollars ?? "0");
+    const entry = cost > 0 ? cost / qty : 0;
+    const slip = manual ? 0.05 : 0.01;
+    const liveBid = screenBid(pos, yesBid, yesAsk, noBid, noAsk);
+    if (gate) return finishClose(ticker, payout, basis);
+    if (!(liveBid > 0.02)) return finishClose(ticker, payout, basis);
+    if (manual && minPrice > 0.02 && liveBid + 0.005 < minPrice) return finishClose(ticker, payout, basis);
+    if (!manual) return finishClose(ticker, payout, basis);
+    const rung = null;
+    const asked = 0;
+    const triggerPct = 0;
+    const triggerBid = 0;
+    const floorBid = minPrice > 0.02 ? Math.round(minPrice * 100) / 100 : Math.round((liveBid - slip) * 100) / 100;
+    const low = floorBid;
+    const cashPrices = [];
+    const start = Math.round(Math.min(0.99, liveBid) * 100) / 100;
+    const stop = Math.round(Math.max(0.02, Math.min(start, low)) * 100) / 100;
+    for (let px = start; px >= stop - 1e-9 && cashPrices.length < (minPrice > 0.02 ? 3 : 6); px = Math.round((px - 0.01) * 100) / 100) {
+      if (!cashPrices.includes(px)) cashPrices.push(px);
+    }
+    const prices = pos > 0
+      ? cashPrices
+      : cashPrices.map((cash) => Math.round((1 - cash) * 100) / 100).filter((px, index, all) => px > 0.01 && px < 0.99 && all.indexOf(px) === index);
+    const bookSide = pos > 0 ? "ask" : "bid";
+    let filledThis = false;
+    for (const px of prices) {
+      try {
+        const placed = await place(ticker, bookSide, px, qty.toFixed(2), true, undefined, false, true);
+        if (!placed || !(placed.filled >= 0.01)) continue;
+        const cash = closeCash(pos, px, placed.yesPrice, placed.filled);
+        payout += cash;
+        basis += entry * placed.filled;
+        filledThis = true;
+        const after = await signedPosition(ticker);
+        if (after * sign < -0.01) {
+          noteGate(ticker, "flip", false, "exit opened the other side");
+          const back = Math.abs(after);
+          const undoSide = after > 0 ? "ask" : "bid";
+          const quote = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(8000) });
+          const undone = quote.ok ? await quote.json() : {};
+          const undoBid = screenBid(
+            after,
+            Number.parseFloat(undone.market?.yes_bid_dollars ?? "0"),
+            Number.parseFloat(undone.market?.yes_ask_dollars ?? "0"),
+            Number.parseFloat(undone.market?.no_bid_dollars ?? "0"),
+            Number.parseFloat(undone.market?.no_ask_dollars ?? "0"),
+          );
+          if (undoBid > 0.02) {
+            const undoStart = Math.round(Math.min(0.99, undoBid) * 100) / 100;
+            for (let i = 0; i < 3; i += 1) {
+              const raw = Math.round((undoStart - i * 0.01) * 100) / 100;
+              const undoPx = undoSide === "ask" ? raw : Math.round((1 - raw) * 100) / 100;
+              if (!(undoPx > 0.01) || !(undoPx < 0.99)) continue;
+              try {
+                await place(ticker, undoSide, undoPx, back.toFixed(2), true, undefined, false, true);
+              } catch {
+              }
+              const left = await signedPosition(ticker);
+              if (Math.abs(left) < 0.01 || left * after < 0) break;
+            }
+          }
+          markDone(ticker);
+          fireOnce(ticker);
+        }
+        break;
+      } catch {
+      }
+    }
+    if (!filledThis) return finishClose(ticker, payout, basis);
+  }
+  return finishClose(ticker, payout, basis);
+}
+const GATE_TEST = join(process.cwd(), "data", "gate-test.json");
+function readGateTest() {
+  try {
+    const row = JSON.parse(readFileSync(GATE_TEST, "utf8"));
+    return row && typeof row === "object" ? row : {};
+  } catch {
+    return {};
+  }
+}
+async function seedGate(side, ticker, yesAsk, noAsk, label) {
+  const sym = symbolOf(ticker);
+  if (sym !== "silver") return { status: "blocked", reason: "the one-dollar test is silver only" };
+  if (side !== "up" && side !== "down") return { status: "blocked", reason: "no side" };
+  const open = await fifteenOpen();
+  if (open.some((row) => symbolOf(row.ticker) === "silver")) return { status: "blocked", reason: "silver is already open" };
+  const quote = await liveAsks(ticker);
+  const yes = quote?.yesAsk ?? yesAsk;
+  const no = quote?.noAsk ?? noAsk;
+  const ask = side === "up" ? yes : no;
+  if (!(ask > 0.02) || !(ask < 0.99)) return { status: "blocked", reason: "no quote" };
+  const count = Math.floor(1 / ask * 100) / 100;
+  if (!(count >= 0.01)) return { status: "blocked", reason: "size" };
+  const bookSide = side === "up" ? "bid" : "ask";
+  const yesPrice = side === "up"
+    ? Math.min(0.99, Math.round((ask + 0.01) * 100) / 100)
+    : Math.max(0.01, Math.round((1 - ask - 0.01) * 100) / 100);
+  let placed = null;
+  try {
+    placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, { gateTest: true, label: label || "gate test" }, true);
+  } catch (err) {
+    return { status: "blocked", reason: err instanceof Error ? err.message.slice(0, 140) : "test failed" };
+  }
+  if (!placed || !(placed.filled > 0)) return { status: "blocked", reason: sent.__aureliusBlock || "unfilled" };
+  const paid = side === "up" ? placed.yesPrice : Math.round((1 - placed.yesPrice) * 1e4) / 1e4;
+  const row = {
+    on: true,
+    ticker,
+    side,
+    dollars: 1,
+    asset: "silver",
+    label: label || "gate test",
+    at: new Date().toISOString(),
+    filled: placed.filled,
+    paid,
+  };
+  writeFileSync(GATE_TEST, JSON.stringify(row, null, 2));
+  return { status: "filled", ...row };
+}
+async function alignPrime() {
+  const open = await fifteenOpen();
+  let paper = {};
+  try {
+    paper = JSON.parse(readFileSync(join(process.cwd(), "data", "paper-live.json"), "utf8"));
+  } catch {
+    paper = {};
+  }
+  const test = readGateTest();
+  for (const held of open) {
+    const side = held.pos > 0 ? "up" : "down";
+    if (test.on === true && test.ticker === held.ticker && test.side === side) continue;
+    if (paper.on === true && paper.ticker === held.ticker && paper.side === side) continue;
+    if (paperSeat(held.ticker, side)) continue;
+    const rows = listPrimePaper().filter((row) => row.ticker === held.ticker);
+    const live = rows.find((row) => row.result === "open");
+    const approved = live || rows[0];
+    if (approved && approved.side === side) continue;
+    if (approved && approved.side !== side) await flattenTicker(held.ticker);
+    else if (!approved) await flattenTicker(held.ticker);
+  }
+}
+async function halfLive(ticker) {
+  await clearResting(ticker);
+  for (let pass = 0; pass < 3; pass += 1) {
+    const open = await fifteenOpen();
+    const row = open.find((item) => item.ticker === ticker);
+    const pos = row?.pos ?? await signedPosition(ticker);
+    if (!(Math.abs(pos) >= 0.02)) return null;
+    const res = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) continue;
+    const data = await res.json();
+    const yesBid = Number.parseFloat(data.market?.yes_bid_dollars ?? "0");
+    const noBid = Number.parseFloat(data.market?.no_bid_dollars ?? "0");
+    const yesAsk = Number.parseFloat(data.market?.yes_ask_dollars ?? "0");
+    const cost = row?.cost ?? 0;
+    const quote = screenBid(pos, yesBid, yesAsk, noBid, Number.parseFloat(data.market?.no_ask_dollars ?? "0"));
+    const floor = Math.max(0.02, Math.round((quote - 0.05) * 100) / 100);
+    const plan = halfCuts(pos, yesBid, noBid, yesAsk, 0, floor);
+    if (!plan) continue;
+    for (const px of plan.prices) {
+      try {
+        const placed = await place(ticker, plan.bookSide, px, plan.count, true, undefined, false, true);
+        if (!placed || !(placed.filled >= 0.01)) continue;
+        const payout = closeCash(pos, px, placed.yesPrice, placed.filled);
+        const left = Math.round((Math.abs(pos) - placed.filled) * 100) / 100;
+        return { filled: placed.filled, payout: Math.round(payout * 100) / 100, left };
+      } catch (err) {
+        noteGate(ticker, "half", false, err instanceof Error ? err.message.slice(0, 140) : "half rejected");
+      }
+    }
+  }
+  return null;
+}
+async function trimLive() {
+  return null;
+}
+// PART SELL (Love, Oct 3 ~2:50 PM PT: "25 - 50 - 75 - 100% buttons on the lil black ones at the bottom"). Sells that
+// share of the open position right now (reduce-only, walks the bid down up to 5c like HALF). 100% uses CLOSE.
+async function partLive(ticker, pct) {
+  const frac = Math.max(0.01, Math.min(1, Number(pct) / 100));
+  await clearResting(ticker);
+  for (let pass = 0; pass < 3; pass += 1) {
+    const open = await fifteenOpen();
+    const row = open.find((item) => item.ticker === ticker);
+    const pos = row?.pos ?? await signedPosition(ticker);
+    if (!(Math.abs(pos) >= 0.02)) return null;
+    const res = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) continue;
+    const data = await res.json();
+    const yesBid = Number.parseFloat(data.market?.yes_bid_dollars ?? "0");
+    const noBid = Number.parseFloat(data.market?.no_bid_dollars ?? "0");
+    const yesAsk = Number.parseFloat(data.market?.yes_ask_dollars ?? "0");
+    const quote = screenBid(pos, yesBid, yesAsk, noBid, Number.parseFloat(data.market?.no_ask_dollars ?? "0"));
+    const floor = Math.max(0.02, Math.round((quote - 0.05) * 100) / 100);
+    const plan = halfCuts(pos, yesBid, noBid, yesAsk, 0, floor);
+    if (!plan) continue;
+    const want = Math.floor(Math.abs(pos) * frac * 100) / 100;
+    if (!(want >= 0.01)) return null;
+    for (const px of plan.prices) {
+      try {
+        const placed = await place(ticker, plan.bookSide, px, want.toFixed(2), true, undefined, false, true);
+        if (!placed || !(placed.filled >= 0.01)) continue;
+        const payout = closeCash(pos, px, placed.yesPrice, placed.filled);
+        const left = Math.round((Math.abs(pos) - placed.filled) * 100) / 100;
+        return { filled: placed.filled, payout: Math.round(payout * 100) / 100, left };
+      } catch (err) {
+        noteGate(ticker, "part", false, err instanceof Error ? err.message.slice(0, 140) : "part sell rejected");
+      }
+    }
+  }
+  return null;
+}
+// AUDIT (Claude, read only): Kalshi's own record of every fill and order, so the desk's ledger
+// can be checked against the exchange. Writes data/kalshi-audit.json. Never sends anything.
+async function auditKalshi() {
+  const out = { at: new Date().toISOString(), fills: [], orders: [] };
+  try {
+    let cursor = "";
+    for (let page = 0; page < 5; page += 1) {
+      const f = await kalshi("GET", "/trade-api/v2/portfolio/fills", `?limit=200${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`);
+      if (!f.ok) {
+        out.fillsError = f.status;
+        break;
+      }
+      const data = await f.json();
+      out.fills.push(...(data.fills ?? []).map((x) => ({ t: x.created_time, ticker: x.ticker, action: x.action, side: x.side, count: x.count_fp ?? x.count, yes: x.yes_price_dollars ?? x.yes_price, no: x.no_price_dollars ?? x.no_price, fee: x.fee_cost ?? null, order: String(x.order_id ?? "").slice(0, 13), taker: x.is_taker })));
+      if (!data.cursor || !(data.fills ?? []).length) break;
+      cursor = data.cursor;
+    }
+  } catch (err) {
+    out.fillsError = String(err?.message || err);
+  }
+  try {
+    const st = await kalshi("GET", "/trade-api/v2/portfolio/settlements", "?limit=200");
+    if (st.ok) out.settlements = ((await st.json()).settlements ?? []).map((x) => ({ t: x.settled_time, ticker: x.ticker, result: x.market_result, value: x.value, revenue: x.revenue, fee: x.fee_cost ?? null, yesCount: x.yes_count_fp ?? x.yes_count, noCount: x.no_count_fp ?? x.no_count }));
+  } catch {
+  }
+  try {
+    const o = await kalshi("GET", "/trade-api/v2/portfolio/orders", "?limit=200");
+    if (o.ok) out.orders = ((await o.json()).orders ?? []).map((x) => ({ t: x.created_time, ticker: x.ticker, action: x.action, side: x.side, status: x.status, type: x.type, count: x.fill_count_fp ?? x.fill_count, initial: x.initial_count_fp ?? x.initial_count, yes: x.yes_price_dollars ?? x.yes_price, id: String(x.order_id ?? "").slice(0, 13), client: x.client_order_id }));
+    else out.ordersError = o.status;
+  } catch (err) {
+    out.ordersError = String(err?.message || err);
+  }
+  try {
+    writeFileSync(join(process.cwd(), "data", "kalshi-audit.json"), JSON.stringify(out, null, 1));
+  } catch {
+  }
+  return out;
+}
+// HISTORY (Claude, read only): every Kalshi fill + settlement we can page back through.
+async function kalshiHistory() {
+  const out = { at: new Date().toISOString(), fills: [], settlements: [] };
+  for (const [path, key] of [["/trade-api/v2/portfolio/fills", "fills"], ["/trade-api/v2/portfolio/settlements", "settlements"]]) {
+    let cursor = "";
+    for (let page = 0; page < 40; page += 1) {
+      const res = await kalshi("GET", path, `?limit=200${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`);
+      if (!res.ok) break;
+      const data = await res.json();
+      const rows = data[key] ?? [];
+      if (key === "fills") out.fills.push(...rows.map((x) => ({ t: x.created_time, ticker: x.ticker, action: x.action, count: x.count_fp ?? x.count, yes: x.yes_price_dollars ?? x.yes_price, fee: x.fee_cost ?? null, order: x.order_id })));
+      else out.settlements.push(...rows.map((x) => ({ t: x.settled_time, ticker: x.ticker, result: x.market_result })));
+      if (!data.cursor || !rows.length) break;
+      cursor = data.cursor;
+    }
+  }
+  try {
+    writeFileSync(join(process.cwd(), "data", "kalshi-history.json"), JSON.stringify(out));
+  } catch {
+  }
+  return { fills: out.fills.length, settlements: out.settlements.length };
+}
+async function resizeLive(_trade, _dollars, _yesBid, _yesAsk) {
+  return null;
+}
+try {
+  writeFileSync(join(process.cwd(), "data", "route-shut.json"), JSON.stringify({
+    at: new Date().toISOString(),
+    door: "one order per window, 1.36x, band in front blocked",
+  }));
+} catch {
+}
+export {
+  auditKalshi,
+  kalshiHistory,
+  allLocks,
+  closeAtBand,
+  closeResult,
+  releaseTicker,
+  enterLive,
+  partLive,
+  seedGate,
+  alignPrime,
+  flattenLive,
+  flattenTicker,
+  halfLive,
+  heldFifteens,
+  restingFifteens,
+  kalshiArmed,
+  kalshiCash,
+  refreshKalshiCash,
+  liveDollars,
+  lockSide,
+  marketResult,
+  readKalshiCash,
+  readOutside,
+  resizeLive,
+  restAutoSell,
+  settlementProfits,
+  sideLock,
+  trimLive,
+  watchAccount,
+  wireBreaks,
+  wouldRefuse,
+  writeLiveDollars
+};

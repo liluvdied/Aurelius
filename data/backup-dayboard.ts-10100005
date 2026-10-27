@@ -1,0 +1,339 @@
+// DAY BOARD (Claude, Oct 7 ~10:50 PM PT, Love: "can you make it display all of our books on all of their days... organized
+// in 4 even rows: Best | Mean | Below Mean | Worst... the best and worst times for each symbol for all books and for any
+// book when clicked... one card for kalshi itself with its own hit rate... and one for Combined · Prime, whatever the
+// current combined books are actually hitting at"). Server side only: reads the permanent exit ledger + the night book
+// (paper), and Kalshi's own fills + settlements (live). Never sends anything.
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { listNight } from "./nightbook";
+
+export type Cell = { n: number; w: number; p: number };
+export type Block = Cell & { days: Record<string, Cell>; hours: Record<string, Record<number, Cell>>; f?: number };
+export type BoardTrade = { at: string; book: string; asset: string; side: string; setup: string; exit: string; pnl: number; ticker: string };
+export type DayBoard = {
+  at: string;
+  names: Record<string, string>;
+  books: Record<string, Block>;
+  all: Block;
+  kalshi: Block & { desk: Block; you: Block; byBook: Record<string, Cell>; running: string[] };
+  combo: Block & { books: string[]; name: string | null };
+  calls: Cell & { list: { out: string; back: string | null; paper: number; n: number }[] };
+};
+
+const D = () => join(process.cwd(), "data");
+const LOTTO = /^(snap|x16|tap|rescue)/;
+export const NAMES: Record<string, string> = {
+  brickc: "BRICK · CLEAN", brick: "BRICK", brickt: "BRICK · TVC GOLD", brickp: "BRICK · PUSH", bricks: "BRICK · SESSION",
+  brickx: "BRICK · 5M-X", brickcr: "CLEAN · RIDE", brickc75: "CLEAN · 75%", brickcf: "CLEAN · AFTER FEES", brickcm: "CLEAN · MAKER",
+  brickcpt: "CLEAN · PATIENT", brickcx: "CUT 2 BANDS", brickcw: "CUT WALL", brickcl: "CUT LATE", brickch: "HALF AT 75%",
+  new: "NEW", original: "ORIGINAL", refined: "REFINED", golden: "GOLDEN", optA: "OPTION A", optB: "OPTION B", claude: "CLAUDE",
+  trend: "CLAUDE · TREND", claudex: "CLAUDE · 5M-X", trendx: "TREND · 5M-X", cotc: "COTC", diamond: "DIAMOND", diamond25: "DIAMOND 25%",
+  confirm: "CONFIRM", brk1: "1ST BREAK", brk: "BREAK", hold90: "HOLD 90", sole5: "5M SOLE", sole10: "10M SOLE", sole15: "15M SOLE",
+  sole5p: "5M SOLE+", sole5z: "5M SOLE Z", sole5v: "5M SOLE V", lastmin: "LAST MINUTE", lastgrant: "LAST GRANT", bank: "BANK",
+  bank2: "BANK 2", bank5p: "BANK SOLE+", bank5px: "BANK SOLE+ 5M-X", hour: "BTC HOURLY", squeeze: "SQUEEZE",
+  clover: "CLOVER 🍀 · EVERY TRADE", reent: "BTC RE-ENTRY", vine: "VINE", gall: "GOLD · ALL", gclear: "GOLD · CLEAR $1.50", dcd: "DECIDED", new24: "NEW · 24/7", rt100: "RIP & TAP · +100%", rt200: "RIP & TAP · +200%", rt90: "RIP & TAP · 90% OF MAX", w5: "WAIT 5", anchor: "ANCHOR", phr: "PRIME HOURS", rvw: "REVERSAL · WORST HOURS", snapb: "SNAPBACK", snpt: "SNAPBACK · TVC LINES", b11: "BRICK 1:1 · REAL", cfol: "CANDLE FOLLOW", ldc1: "LDC · 1M", ldc5: "LDC · 5M", ldc15: "LDC · 15M", ldc2: "LDC · 2M", ldc10: "LDC · 10M", ldc20: "LDC · 20M", ldc30: "LDC · 30M", vwap1: "VWAP SIGNAL · 1M", vwap2: "VWAP SIGNAL · 2M", vwap5: "VWAP SIGNAL · 5M", vwap10: "VWAP SIGNAL · 10M", vwap15: "VWAP SIGNAL · 15M", vwap30: "VWAP SIGNAL · 30M", vlc: "VWAP + LDC", newp: "NEW · PATIENT", diap: "DIAMOND · PATIENT", litmus: "LITMUS", cur: "CURRENT · DAY", flow: "CURRENT · FLOW", select: "SELECT",
+};
+
+const blank = (): Block => ({ n: 0, w: 0, p: 0, days: {}, hours: { btc: {}, gold: {} } });
+const ptDate = (iso: string) => new Date(iso).toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
+const ptHour = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+const r2 = (n: number) => Math.round(n * 100) / 100;
+function bump(c: Cell, pnl: number) {
+  c.n += 1;
+  c.w += pnl > 0.05 ? 1 : 0;
+  c.p = r2(c.p + pnl);
+}
+function add(b: Block, at: string, asset: string, pnl: number, fee = 0) {
+  bump(b, pnl);
+  if (fee) b.f = r2((b.f ?? 0) + fee);
+  bump((b.days[ptDate(at)] ||= { n: 0, w: 0, p: 0 }), pnl);
+  if (asset === "btc" || asset === "gold") bump((b.hours[asset][ptHour(at)] ||= { n: 0, w: 0, p: 0 }), pnl);
+}
+const assetOf = (tk: string) => (/^KXBTC/.test(tk) ? "btc" : /^KXGOLD/.test(tk) ? "gold" : /^KXSILVER/.test(tk) ? "silver" : "other");
+
+type PaperRow = { id: string; book: string; at: string; asset: string; ticker: string; side: string; setup: string; exit: string; pnl: number; ask?: number; stake?: number; mult?: number; sellBid?: number | null; end?: string | null };
+const g = globalThis as unknown as { __dayBoard?: { at: number; board: DayBoard; paper: PaperRow[]; live: LiveRow[]; derived?: Record<string, PaperRow[]> } };
+
+const MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+/** Window close from a Kalshi ticker (KXBTC15M-26OCT061315-15 = Oct 6 2026 13:15 ET), as ISO. */
+function closeIso(ticker: string): string | null {
+  const m = /-(\d\d)([A-Z]{3})(\d\d)(\d\d)(\d\d)/.exec(ticker);
+  if (!m || MON.indexOf(m[2]) < 0) return null;
+  const guess = Date.UTC(2000 + Number(m[1]), MON.indexOf(m[2]), Number(m[3]), Number(m[4]) + 4, Number(m[5]));
+  const nyHour = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "2-digit", hourCycle: "h23" }).format(new Date(guess)));
+  return new Date(nyHour === Number(m[4]) ? guess : guess + 3600 * 1000).toISOString();
+}
+/** Kalshi taker fee estimate at the paper stake: 7% x contracts x p x (1-p) going in, again going out if sold before the
+ *  bell (settlement is free). Paper never pays it, Kalshi always does. */
+function feeOf(r: PaperRow): number {
+  const a = Number(r.ask);
+  if (!(a > 0 && a < 1)) return 0;
+  const c = (Number(r.stake) || 50) / a;
+  let f = 0.07 * c * a * (1 - a);
+  const b = Number(r.sellBid);
+  if (r.sellBid != null && b > 0 && b < 1) f += 0.07 * c * b * (1 - b);
+  return f;
+}
+
+// CURRENT BOOKS (Claude, Oct 8 ~1 AM PT, Love: "it's more plausible that we can determine the DAYS to trade, and when not
+// to... can we start a book that sits those days out? trades the following day? i wanna see how that stacks up over the next
+// couple of weeks... go with the current, not against it"). Paper scoreboards built from the 4 Leaf Clover books' own rows,
+// one trade per window (first to fire owns it, like Kalshi). A rule only sees trades that had already CLOSED when the next
+// one opened, never a result still in play. scripts/current-lab.py has the replay (Oct 4-7 Clover + Sep 20-Oct 5 BRICK).
+//   CLOVER 🍀 · EVERY TRADE  the baseline: every Clover trade.
+//   CURRENT · DAY (Love's)   3 closed losses in a row = done for the Pacific day; back at midnight.
+//   CURRENT · FLOW (Claude)  trades only while 2 of the last 3 closed trades that day won; back in when the current turns.
+//   SELECT (Claude)          only 1ST BREAK + CONFIRM (the two books that earned the most per trade after fees), under 2.2x,
+//                            no gold in the 6 PM PT hour. Fewer, cleaner trades.
+const CLOVER = ["hour", "cotc", "brickc", "brickt", "new", "confirm", "brk1"];
+function currentBooks(paper: PaperRow[]): Record<string, PaperRow[]> {
+  const out: Record<string, PaperRow[]> = { clover: [], cur: [], flow: [], select: [] };
+  const seen = new Set<string>();
+  const seenS = new Set<string>();
+  const byDay = new Map<string, PaperRow[]>();
+  for (const r of paper) {
+    if (CLOVER.includes(r.book) && !seen.has(r.ticker)) {
+      seen.add(r.ticker);
+      const d = ptDate(r.at);
+      byDay.set(d, [...(byDay.get(d) || []), r]);
+    }
+    if ((r.book === "brk1" || r.book === "confirm") && !seenS.has(r.ticker) && !(Number(r.mult) >= 2.2) && !(r.asset === "gold" && ptHour(r.at) === 18)) {
+      seenS.add(r.ticker);
+      out.select.push(r);
+    }
+  }
+  for (const rs of byDay.values()) {
+    let out3 = false;
+    rs.forEach((r, i) => {
+      const t = Date.parse(r.at);
+      const h = rs
+        .slice(0, i)
+        .filter((x) => x.end && Date.parse(x.end) <= t)
+        .sort((a, b) => Date.parse(a.end!) - Date.parse(b.end!))
+        .map((x) => x.pnl);
+      out.clover.push(r);
+      if (!out3) {
+        let run = 0;
+        for (const x of h) {
+          run = x < -0.05 ? run + 1 : 0;
+          if (run >= 3) out3 = true;
+        }
+      }
+      if (!out3) out.cur.push(r);
+      const last = h.slice(-3);
+      if (last.length === 3 && last.filter((x) => x > 0.05).length >= 2) out.flow.push(r);
+    });
+  }
+  return out;
+}
+
+function paperRows(): PaperRow[] {
+  const rows = new Map<string, PaperRow>();
+  const take = (r: any) => {
+    if (!r || r.dnaMode || r.stale || typeof r.pnl !== "number" || r.result === "open" || !r.book || !r.at) return;
+    rows.set(r.id, { id: r.id, book: r.book, at: r.at, asset: r.asset || assetOf(r.ticker || ""), ticker: r.ticker || String(r.id).split(":")[0], side: r.side, setup: r.setup || "", exit: r.exit || r.result || "", pnl: r.pnl,
+      ask: Number(r.ask) || 0, stake: Number(r.stake) || 50, mult: Number(r.multiple) || 0, sellBid: r.result === "sold" ? Number(r.sellBid) : null,
+      end: r.soldAt || closeIso(r.ticker || String(r.id).split(":")[0]) });
+  };
+  try {
+    for (const line of readFileSync(join(D(), "exit-ledger.jsonl"), "utf8").split("\n")) {
+      if (!line.trim()) continue;
+      try {
+        take(JSON.parse(line));
+      } catch {
+      }
+    }
+  } catch {
+  }
+  for (const r of listNight()) take(r);
+  return [...rows.values()].sort((a, b) => (a.at < b.at ? -1 : 1));
+}
+
+type LiveRow = { ticker: string; first: string; pnl: number; book: string | null; asset: string; side: string };
+function liveRows(): LiveRow[] {
+  const fills = new Map<string, any>();
+  const results = new Map<string, string>();
+  try {
+    const h = JSON.parse(readFileSync(join(D(), "kalshi-history.json"), "utf8"));
+    for (const f of h.fills ?? []) fills.set(`${f.t}|${f.ticker}|${f.count}|${String(f.order).slice(0, 13)}`, f);
+    for (const s of h.settlements ?? []) if (s.result === "yes" || s.result === "no") results.set(s.ticker, s.result);
+  } catch {
+  }
+  try {
+    const a = JSON.parse(readFileSync(join(D(), "kalshi-audit.json"), "utf8"));
+    for (const f of a.fills ?? []) fills.set(`${f.t}|${f.ticker}|${f.count}|${String(f.order).slice(0, 13)}`, f);
+    for (const s of a.settlements ?? []) if (s.result === "yes" || s.result === "no") results.set(s.ticker, s.result);
+  } catch {
+  }
+  try {
+    const w = JSON.parse(readFileSync(join(D(), "window-results.json"), "utf8"));
+    for (const [k, v] of Object.entries(w)) if (!results.has(k) && (v === "yes" || v === "no")) results.set(k, v as string);
+  } catch {
+  }
+  const owner = new Map<string, string>();
+  try {
+    const done = JSON.parse(readFileSync(join(D(), "live-book-done.json"), "utf8")) as Record<string, { status?: string; ticker?: string; at?: string }>;
+    for (const [k, v] of Object.entries(done).sort((x, y) => String(x[1]?.at).localeCompare(String(y[1]?.at)))) {
+      if (v?.status !== "filled" && v?.status !== "partial") continue;
+      const tk = v.ticker || k.split(":")[0];
+      if (!owner.has(tk)) owner.set(tk, k.split(":").pop() || "");
+    }
+  } catch {
+  }
+  const per = new Map<string, { cash: number; y: number; n: number; fee: number; first: string; side0: string }>();
+  for (const f of fills.values()) {
+    const x = per.get(f.ticker) || { cash: 0, y: 0, n: 0, fee: 0, first: f.t, side0: "" };
+    if (!x.side0 || f.t < x.first) x.side0 = `${f.action}|${f.side ?? ""}` === "buy|yes" || `${f.action}|${f.side ?? ""}` === "sell|yes" ? "up" : "down";
+    const c = Number(f.count) || 0;
+    const py = Number(f.yes) || 0;
+    const k = `${f.action}|${f.side ?? ""}`;
+    if (k === "buy|no") { x.cash -= c * (1 - py); x.n += c; }
+    else if (k === "sell|yes") { x.cash += c * (1 - py); x.n -= c; }
+    else if (f.action === "buy") { x.cash -= c * py; x.y += c; }
+    else { x.cash += c * py; x.y -= c; }
+    x.fee += Number(f.fee) || 0;
+    if (f.t < x.first) x.first = f.t;
+    per.set(f.ticker, x);
+  }
+  const out: LiveRow[] = [];
+  for (const [tk, x] of per) {
+    const open = Math.abs(x.y) >= 0.01 || Math.abs(x.n) >= 0.01;
+    const res = results.get(tk);
+    if (open && !res) continue;
+    const Y = res === "yes" ? 1 : 0;
+    const pnl = x.cash + x.y * Y + x.n * (1 - Y) - x.fee;
+    out.push({ ticker: tk, first: x.first, pnl: r2(pnl), book: owner.get(tk) ?? null, asset: assetOf(tk), side: x.side0 });
+  }
+  return out.sort((a, b) => (a.first < b.first ? -1 : 1));
+}
+
+export function dayBoard(): DayBoard {
+  const hit = g.__dayBoard;
+  if (hit && Date.now() - hit.at < 60000) return hit.board;
+  const paper = paperRows();
+  const books: Record<string, Block> = {};
+  const all = blank();
+  for (const r of paper) {
+    if (LOTTO.test(r.book)) continue;
+    add((books[r.book] ||= blank()), r.at, r.asset, r.pnl, feeOf(r));
+    add(all, r.at, r.asset, r.pnl, feeOf(r));
+  }
+  const derived = currentBooks(paper);
+  for (const [k, rows] of Object.entries(derived)) {
+    const blk = (books[k] = blank());
+    for (const r of rows) add(blk, r.at, r.asset, r.pnl, feeOf(r));
+  }
+  let sw: any = {};
+  try {
+    sw = JSON.parse(readFileSync(join(D(), "live-switch.json"), "utf8"));
+  } catch {
+    sw = {};
+  }
+  const running: string[] = (Array.isArray(sw?.liveBook?.books) ? sw.liveBook.books : []).map(String);
+  const comboBooks = running.filter((b) => b !== "hour");
+  const preset = (Array.isArray(sw.presets) ? sw.presets : []).find((p: { books: string[] }) => {
+    const pb = (p.books || []).filter((b: string) => b !== "hour");
+    return pb.length === comboBooks.length && pb.every((b: string) => comboBooks.includes(b));
+  });
+  // COMBINED · PRIME: the books on RUN now, one trade per window, the first of them to fire owns it (how Kalshi runs).
+  const combo = { ...blank(), books: comboBooks, name: preset?.name ?? null };
+  const owned = new Set<string>();
+  for (const r of paper) {
+    if (!comboBooks.includes(r.book) || owned.has(r.ticker)) continue;
+    owned.add(r.ticker);
+    add(combo, r.at, r.asset, r.pnl, feeOf(r));
+  }
+  // LITMUS (Love, Oct 8 ~7:30 PM PT: "only send out orders IF the paper books are doing well that day... use the paper books
+  // as the litmus test for the market"). The books on RUN, one trade per window, but a trade only counts while ALL the
+  // paper books together are averaging over +$1 a closed trade (at $30) so far that PT day, with at least 30 closed.
+  // Looked back Oct 4-8: kept $887 of $962 on 40% fewer trades; the red day (Oct 7) went -$176 -> -$73.
+  {
+    const ev = paper
+      .filter((r) => !LOTTO.test(r.book) && r.end)
+      .map((r) => ({ e: Date.parse(r.end!), d: ptDate(r.end!), p: (r.pnl * 30) / (r.stake || 30) }))
+      .sort((x, y) => x.e - y.e);
+    const lit = (books.litmus = blank());
+    const sums = new Map<string, { s: number; n: number }>();
+    const seenL = new Set<string>();
+    let k = 0;
+    for (const r of paper) {
+      if (!comboBooks.includes(r.book) || seenL.has(r.ticker)) continue;
+      seenL.add(r.ticker);
+      const t = Date.parse(r.at);
+      while (k < ev.length && ev[k].e <= t) {
+        const c = sums.get(ev[k].d) || { s: 0, n: 0 };
+        c.s += ev[k].p;
+        c.n += 1;
+        sums.set(ev[k].d, c);
+        k++;
+      }
+      const c = sums.get(ptDate(r.at));
+      if (c && c.n >= 30 && c.s / c.n > 1) add(lit, r.at, r.asset, r.pnl, feeOf(r));
+    }
+  }
+  // KALSHI: every settled window on the account (the desk's books and Love's own trades), from Kalshi's own records.
+  const live = liveRows();
+  const kalshi = { ...blank(), desk: blank(), you: blank(), byBook: {} as Record<string, Cell>, running };
+  for (const t of live) {
+    add(kalshi, t.first, t.asset, t.pnl);
+    if (t.book) {
+      add(kalshi.desk, t.first, t.asset, t.pnl);
+      bump((kalshi.byBook[t.book] ||= { n: 0, w: 0, p: 0 }), t.pnl);
+    } else add(kalshi.you, t.first, t.asset, t.pnl);
+  }
+  const names: Record<string, string> = {};
+  for (const b of Object.keys(books)) names[b] = NAMES[b] ?? b.toUpperCase();
+  // YOUR CALLS (Oct 8): each time Love stepped out, what the RUN books did on paper (one per window) until she came back
+  // in, or midnight PT. Saved = minus that. A call "won" when the books lost money while she was away.
+  const calls: DayBoard["calls"] = { n: 0, w: 0, p: 0, list: [] };
+  try {
+    const ev = readFileSync(join(D(), "step-out.jsonl"), "utf8").split("\n").filter((l) => l.trim()).map((l) => JSON.parse(l) as { at: string; action: string });
+    ev.forEach((e, i) => {
+      if (e.action !== "out") return;
+      const nx = ev.slice(i + 1).find((x) => x.action === "in");
+      const dayEnd = new Date(new Date(e.at).toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+      const midnight = Date.parse(e.at) + ((24 - dayEnd.getHours()) * 3600 - dayEnd.getMinutes() * 60 - dayEnd.getSeconds()) * 1000;
+      const end = Math.min(nx ? Date.parse(nx.at) : Date.now(), midnight, Date.now());
+      const seenC = new Set<string>();
+      let sum = 0;
+      let n = 0;
+      for (const r of paper) {
+        const t = Date.parse(r.at);
+        if (t < Date.parse(e.at) || t >= end || !comboBooks.includes(r.book) || seenC.has(r.ticker)) continue;
+        seenC.add(r.ticker);
+        sum += r.pnl;
+        n += 1;
+      }
+      calls.list.push({ out: e.at, back: nx?.at ?? null, paper: r2(sum), n });
+      bump(calls, -sum);
+    });
+  } catch {
+  }
+  const board: DayBoard = { at: new Date().toISOString(), names, books, all, kalshi, combo, calls };
+  g.__dayBoard = { at: Date.now(), board, paper, live, derived };
+  return board;
+}
+
+/** The trades behind one card: a book, "all", "combo", "kalshi" (account), "desk" or "you". Newest first. */
+export function boardTrades(key: string, limit = 150): BoardTrade[] {
+  dayBoard();
+  const cache = g.__dayBoard!;
+  if (key === "kalshi" || key === "desk" || key === "you") {
+    return cache.live
+      .filter((t) => key === "kalshi" || (key === "desk" ? t.book : !t.book))
+      .slice(-limit)
+      .reverse()
+      .map((t) => ({ at: t.first, book: t.book ? NAMES[t.book] ?? t.book.toUpperCase() : "YOU", asset: t.asset, side: t.side, setup: t.ticker, exit: "Kalshi", pnl: t.pnl, ticker: t.ticker }));
+  }
+  let rows = cache.paper.filter((r) => !LOTTO.test(r.book));
+  if (cache.derived?.[key]) rows = cache.derived[key];
+  if (key === "combo") {
+    const b = cache.board.combo.books;
+    const seen = new Set<string>();
+    rows = rows.filter((r) => b.includes(r.book) && !seen.has(r.ticker) && (seen.add(r.ticker), true));
+  } else if (key !== "all" && !cache.derived?.[key]) rows = rows.filter((r) => r.book === key);
+  return rows
+    .slice(-limit)
+    .reverse()
+    .map((r) => ({ at: r.at, book: NAMES[r.book] ?? r.book.toUpperCase(), asset: r.asset, side: r.side, setup: r.setup, exit: r.exit, pnl: r.pnl, ticker: r.ticker }));
+}
