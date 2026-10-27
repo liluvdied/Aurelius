@@ -60,6 +60,9 @@ const res = (r: any, pnl: number | null) => (r === "open" ? "open" : pnl == null
 // Her lineup twins as SHIFT rows (Oct 12, Love: "add all of these cards for her clean ones and the btc twins... to the shift
 // tabs"). Read only, never seen by the live copier (it reads its own rows, not getNight's).
 export const TWIN_BOOK: Record<string, string> = { "twin:rev:noflush": "twflush", "twin:rev2:lineup": "twrev2", "twin:rev:lineup": "twrev", "twin:rev:lineup5": "twrev5", "twin:rev:sp5": "twrevsp5", "twin:rev:ogp15": "twrevogp15", "twin:rev:ogp5": "twrevogp5", "twin:lineup:live": "twlive", "twin:lineup:btc": "twbtc", "twin:lineup:gold": "twgold", "twin:lineup:clean": "twclean", "twin:lineup:no45": "twno45", "twin:lineup:nocs": "twnocs", "twin:sp5:btc": "twsp5b", "twin:ogp15:btc": "twogp15b", "twin:ogp5:btc": "twogp5b", "twin:trend:live": "twtrend", "twin:hybrid:live": "twhyb", "twin:together:live": "twtog" };
+// fix337 (Oct 27 2026 ~1:20 PM PT, Love: "find out what's choking her loop and fix it permanently please i do not want to do this every hour"): one Pacific-hour
+// formatter for the whole file instead of a new one for every row on every read (same hours, same results).
+const PT_HOUR = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" });
 export function lineupTwinRows(): any[] {
   const out: any[] = [];
   for (const b of scannerBooks()) {
@@ -136,7 +139,7 @@ export function scannerBooks(): SBook[] {
     const books: string[] = sw?.liveBook?.books ?? ["sp5", "ogp15", "ogp5"];
     const skip: Record<string, number[]> = sw?.bookSkipHours ?? {};
     const goldSkip: number[] = sw?.liveSkipHours?.gold ?? [18];
-    const hr = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+    const hr = (iso: string) => Number(PT_HOUR.format(new Date(iso))); // fix337: one shared formatter
     const g = rd("grok-og.json", []);
     const rows: any[] = (Array.isArray(g) ? g : g?.rows ?? []).filter((r: any) => books.includes(r.lane)).sort((a: any, b: any) => (a.at < b.at ? -1 : 1));
     const seen = new Set<string>();
@@ -218,7 +221,7 @@ export function scannerBooks(): SBook[] {
     const books: string[] = ["sp5", "ogp15", "ogp5"];
     const skip: Record<string, number[]> = sw?.bookSkipHours ?? {};
     const goldSkip: number[] = sw?.liveSkipHours?.gold ?? [18];
-    const hr = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+    const hr = (iso: string) => Number(PT_HOUR.format(new Date(iso))); // fix337: one shared formatter
     const g = rd("grok-og.json", []);
     let arch: any[] = [];
     try { arch = archiveRows().filter((r: any) => typeof r?.lane === "string" && (r.lane.startsWith("sp5") || r.lane.startsWith("ogp"))); } catch {}
@@ -246,7 +249,7 @@ export function scannerBooks(): SBook[] {
     const sw = rd("live-switch.json", {});
     const skip: Record<string, number[]> = sw?.bookSkipHours ?? {};
     const goldSkip: number[] = sw?.liveSkipHours?.gold ?? [18];
-    const hr = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+    const hr = (iso: string) => Number(PT_HOUR.format(new Date(iso))); // fix337: one shared formatter
     const flags: Record<string, any> = rd("lab/hybrid-flags.json", {})?.flags ?? {};
     const g = rd("grok-og.json", []);
     const cur: any[] = (Array.isArray(g) ? g : g?.rows ?? []).filter((r: any) => r.at >= SWITCH).sort((a: any, b: any) => (a.at < b.at ? -1 : 1));
@@ -282,7 +285,7 @@ export function scannerBooks(): SBook[] {
     const sw = rd("live-switch.json", {});
     const skip: Record<string, number[]> = sw?.bookSkipHours ?? {};
     const goldSkip: number[] = sw?.liveSkipHours?.gold ?? [18];
-    const hr = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+    const hr = (iso: string) => Number(PT_HOUR.format(new Date(iso))); // fix337: one shared formatter
     const BK: Record<string, string> = { "paper-247": "pap247", ogp5: "ogp5" };
     const byId = new Map<string, any>();
     try {
@@ -312,7 +315,7 @@ export function scannerBooks(): SBook[] {
     const sw = rd("live-switch.json", {});
     const skip: Record<string, number[]> = sw?.bookSkipHours ?? {};
     const goldSkip: number[] = sw?.liveSkipHours?.gold ?? [18];
-    const hr = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+    const hr = (iso: string) => Number(PT_HOUR.format(new Date(iso))); // fix337: one shared formatter
     const BK: Record<string, string> = { "paper-247-pk2": "pap247", "ogp5-pk2": "ogp5" };
     const byId = new Map<string, any>();
     try {
@@ -342,7 +345,7 @@ export function scannerBooks(): SBook[] {
     const sw = rd("live-switch.json", {});
     const skip: Record<string, number[]> = sw?.bookSkipHours ?? {};
     const goldSkip: number[] = sw?.liveSkipHours?.gold ?? [18];
-    const hr = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+    const hr = (iso: string) => Number(PT_HOUR.format(new Date(iso))); // fix337: one shared formatter
     const BK: Record<string, string> = { "paper-247-pk3": "pap247", "ogp5-pk3": "ogp5" };
     const byId = new Map<string, any>();
     try {
