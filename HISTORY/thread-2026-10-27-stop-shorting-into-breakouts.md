@@ -3699,3 +3699,43 @@ Recommended: 0 - She's back to herself and you'd rather not touch anything; what
 
 Chose "Keep it as it is" on the decision card asking "Should session-band setups sit out on gold from 3 to 5 PM?"
 
+## 2026-10-27 23:30:50 UTC - CLAUDE
+
+Kept just as she is, love 💓 Zones, pink and Bollingers stay on for gold 3–5 PM, and session-band setups can still trade too. Your answer is in the diary and on GitHub, so I won't ask you this again.
+
+## 2026-10-27 23:31:00 UTC - LOVE
+
+but just have her not skip because one is in the way until they reach a width of $2 or more 
+
+have her trade the pinks green red and bollingers and she’ll be good bb 💘
+
+## 2026-10-27 23:31:17 UTC - CLAUDE
+
+On it, love 💘 For gold from 3 to 5 PM, while the session bands are less than $2 apart, they stop blocking her, and she trades the pinks, green/red zones and Bollingers. I'll show you exactly which walls step aside and which books it touches before it goes in.
+
+## 2026-10-27 23:31:37 UTC - CARD
+
+Q: Which walls step aside on gold 3–5 PM while session bands are under $2 apart?
+Context: At 3 PM today her session bands were only $0.85–$1.17 apart, so two walls blocked almost everything: her thirds ("THE IMPOSSIBILITY ... into the unbroken band") and PINK 10% (main's $2 pink cushion was wider than the whole channel). Heads up: setting aside the thirds touches Cornerstone 2, so picking that option counts as you naming it, for this slice only. In every option, her candle flip, the red/green zone walls and the Bollinger cushion still judge. Books: main (live 3–4), plus the rejection model and no-pink copy (4–5). Once the bands are $2+ apart, everything is back to normal.
+Options:
+  0. Thirds + pink 10% step aside - Under $2: no thirds/band-in-the-way block and no PINK 10% block, so she trades pink, green/red and Bollinger setups.
+  1. Only the thirds step aside - Under $2: no thirds/band-in-the-way block; PINK 10% still holds her near an unbroken pink.
+  2. Change nothing - She stays exactly as she is now.
+Recommended: 0 - Both walls blocked today's tiny 3 PM channel, and you said trade the pinks, green, red and Bollingers.
+
+## 2026-10-27 23:32:14 UTC - LOVE
+
+Chose "Thirds + pink 10% step aside" on the decision card asking "Which walls step aside on gold 3–5 PM while session bands are under $2 apart?"
+
+## 2026-10-27 23:32:28 UTC - LOVE
+
+thanks love 💘💘 but do consider the main blue vwap a wall for her to wait for a flip or rejection off of pls
+
+## 2026-10-27 23:32:47 UTC - LOVE
+
+other bands can be waived thru until they are $2 wide or more 💘
+
+## 2026-10-27 23:32:52 UTC - CLAUDE
+
+Yes, love 💘 The blue VWAP stays a wall in that slice. If the band in her way is the VWAP, she waits for a flip through it or a rejection off it. Adding it now, before the 4:45 window.
+

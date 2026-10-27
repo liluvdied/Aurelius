@@ -2,6 +2,20 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R027 - fix344b: inside fix344's gold 3-5 PM tight-band slice, the session VWAP stays a wall - when VWAP is the band in her way she waits for a flip or a rejection off it
+- when: 2026-10-27T23:32:28Z
+- Love: "thanks love 💘💘 but do consider the main blue vwap a wall for her to wait for a flip or rejection off of pls"
+- books: main, rejection model, no-pink copy
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix344b"}
+
+## R026 - fix344: gold 3:00-4:59 PM PT, session channel under $2: her thirds (THE IMPOSSIBILITY / ONLY IN HER THIRD) and PINK 10% step aside on main, rejection, no-pink copy (Love named Cornerstone 2 for this slice by her card pick)
+- when: 2026-10-27T23:32:14Z
+- Love: "but just have her not skip because one is in the way until they reach a width of $2 or more / have her trade the pinks green red and bollingers and she’ll be good bb 💘 + card "Which walls step aside on gold 3–5 PM while session bands are under $2 apart?" -> "Thirds + pink 10% step aside""
+- books: main, rejection model, no-pink copy
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix344"}
+
 ## R025 - Gold 3-5 PM: red/green zones, pink and Bollingers stay tradeable (3 PM lines fix24 quietLines; 4-5 PM zones + Bollinger lines; rejection model reads zones + Bollingers fix246)
 - when: 2026-10-27T23:18:41Z
 - Love: "and i’m not sure if you recall but on gold during the hours of 3-5 we generally just have her trade the red and green zones , the pinks and the bollingers / since it’s a rejection model hour she can do red and green zones and bollingers ok 💓 pls keep that included in the framework"

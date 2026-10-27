@@ -2361,9 +2361,20 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   const pos = (tick - below) / (above - below);
   const IMPOSSIBLE = lockPctFor(asset, above - below);
   const pctTxt = Math.round(IMPOSSIBLE * 100);
+  // GOLD 3-5 PM, TIGHT BANDS (fix344, Oct 27 2026 4:31 PM PT, Love: "but just have her not skip because one is in the way until they reach a width of $2 or more /
+  // have her trade the pinks green red and bollingers and she'll be good bb" + card "Which walls step aside on gold 3-5 PM while session bands are under $2 apart?" ->
+  // "Thirds + pink 10% step aside" - Love named Cornerstone 2 for this slice only): on gold from 3:00 to 4:59 PM PT, while the session channel around price is under
+  // $2 wide, THE IMPOSSIBILITY / ONLY IN HER THIRD and PINK 10% do not refuse main, the rejection model or the no-pink copy. Her candle flip, the zone walls and the
+  // Bollinger cushion still judge. At $2+ apart everything is as before.
+  const tight344 = asset === "gold" && (flipRule || togpLoose) && (above - below) < 2 && (() => { try { const h = Number(PT_HOUR_Q.format(new Date())); return h === 15 || h === 16; } catch { return false; } })();
+  // THE BLUE VWAP STAYS A WALL (fix344b, Oct 27 2026 4:32 PM PT, Love: "thanks love 💘💘 but do consider the main blue vwap a wall for her to wait for a flip or
+  // rejection off of pls"): inside that slice, when the unbroken band in her way is the session VWAP (above a long, below a short), her thirds still hold - she waits
+  // for price to flip through the VWAP or reject off it.
+  const vw344 = Number((L || []).find((l: Line) => String(l.name) === "session VWAP")?.price) || 0;
+  const tightUp = tight344 && !(vw344 > 0 && Math.abs(above - vw344) < 0.005), tightDn = tight344 && !(vw344 > 0 && Math.abs(below - vw344) < 0.005);
   let why = "";
-  if (!beyond && side === "up" && pos >= 1 - IMPOSSIBLE) why = `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${pctTxt}%, into the unbroken band above. never.`;
-  if (!beyond && side === "down" && pos <= IMPOSSIBLE) why = `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${pctTxt}%, into the unbroken band below. never.`;
+  if (!tightUp && !beyond && side === "up" && pos >= 1 - IMPOSSIBLE) why = `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${pctTxt}%, into the unbroken band above. never.`;
+  if (!tightDn && !beyond && side === "down" && pos <= IMPOSSIBLE) why = `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${pctTxt}%, into the unbroken band below. never.`;
   // BREAK INTO A ZONE (fix238, Oct 25 ~9:25 PM PT, Love: "do her trades that break a session band and go right into a red zone or green zone typically do well ..?
   // or do they reverse almost immediately afterwards ... is this another one of the bleeds" -> "yeeeup we stopping bleeds bb"; ~/brkzone.py, 3,260 recon calls Oct 20-26:
   // a break landing inside a zone 28 trades 50% -$113, gold break with a zone ahead before the next band 107 trades 46% -$296, BTC with a zone ahead 123 trades +$170):
@@ -2444,8 +2455,8 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
       // THE 5M PINK CUSHION (fix199, Oct 25 ~3:50 AM PT, Love: "let's loosen it to $25 on there bb"): on Polymarket's 5m board the BTC pink cushion is $25 at most.
       let w10e = asset === "btc" && Number(G.__pinkCap5) > 0 ? Math.min(w10, Number(G.__pinkCap5)) : asset === "gold" ? Math.max(w10, 2) : w10; // fix262 (Oct 26 ~2:50 AM PT, Love: "its 10% or $2. whichever comes first" - 2:46 AM gold short $1.18 over the unbroken pink passed the $1.05 10%): gold pink cushion = 10% of the channel, never under $2 (her fix89 "$2 of the pink")
       if (togpLoose && asset === "btc" && (above - below) <= 100 /* fix298: the copy caps at $25 only at $100 and under */) w10e = Math.min(w10e, 25); // fix292 (Oct 26 ~3:24 PM PT, Love card "Pink cushion $25 for the copy"): the no-pink copy's BTC PINK 10% cushion is $25 at most (3:16 PM: $50 cushion in a $68 channel held her long); main and gold unchanged
-      if (!why && side === "up" && pp > tick - pbd && pp - tick <= w10e) why = `PINK 10%: long $${(pp - tick).toFixed(2)} under the unbroken pink (${pp.toFixed(2)}) - inside ${asset === "gold" ? 10 : 10}% ($${w10e.toFixed(2)}) of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel. wait for pink to break up.`;
-      if (!why && side === "down" && pp < tick + pbd && tick - pp <= w10e) why = `PINK 10%: short $${(tick - pp).toFixed(2)} over the unbroken pink (${pp.toFixed(2)}) - inside ${asset === "gold" ? 10 : 10}% ($${w10e.toFixed(2)}) of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel. wait for pink to break down.`;
+      if (!why && !tight344 && side === "up" && pp > tick - pbd && pp - tick <= w10e) why = `PINK 10%: long $${(pp - tick).toFixed(2)} under the unbroken pink (${pp.toFixed(2)}) - inside ${asset === "gold" ? 10 : 10}% ($${w10e.toFixed(2)}) of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel. wait for pink to break up.`;
+      if (!why && !tight344 && side === "down" && pp < tick + pbd && tick - pp <= w10e) why = `PINK 10%: short $${(tick - pp).toFixed(2)} over the unbroken pink (${pp.toFixed(2)}) - inside ${asset === "gold" ? 10 : 10}% ($${w10e.toFixed(2)}) of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel. wait for pink to break down.`;
     }
     // BOLLINGER CUSHION (fix173, Oct 24 ~8:34 PM PT, Love: "yess lets make it $50 from where price is, minimum as a baseline hun" + card "Same cushion as pink" - 8:15 PM
     // BTC main long "Rejected up off 5m PP" at 80,891 fired $14 under the Bollinger upper): the same cushion as the pink, measured from price - no long with the 5m
@@ -2655,8 +2666,8 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // Oct 22 ~3:20 AM PT, Love: "the session bands hun, same way we have her set up at 33% both ways / we will do 20% after bands exceed $500 apart / 33% under that" -
   // on BTC her thirds slide with THE IMPOSSIBILITY (33% to $500 wide, 20% past). Gold keeps the fixed third.
   const TH = IMPOSSIBLE, thTxt = Math.round(TH * 100);
-  if (!why && side === "up" && pos >= 1 - TH) why = `ONLY IN HER THIRD: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no long in the top ${thTxt}%, under the unbroken band above.`;
-  if (!why && side === "down" && pos <= TH) why = `ONLY IN HER THIRD: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no short in the bottom ${thTxt}%, over the unbroken band below.`;
+  if (!why && !tightUp && side === "up" && pos >= 1 - TH) why = `ONLY IN HER THIRD: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no long in the top ${thTxt}%, under the unbroken band above.`;
+  if (!why && !tightDn && side === "down" && pos <= TH) why = `ONLY IN HER THIRD: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no short in the bottom ${thTxt}%, over the unbroken band below.`;
   // HER CANDLE (Oct 20 ~8:07 PM PT, Love: "she is clear to long a rising candle that either came up from the bottom, or broke pink upwards, she can long
   // anywhere but the top 33% of the channel, same for shorts on a falling candle that fell from the band, or broke the pink downwards ... hardwired into her
   // architecture, no other method of operations"): a rising 5m candle (over its open, lifted the tap off its low) is a long or nothing; a falling one (under
