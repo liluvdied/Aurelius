@@ -1,9 +1,9 @@
 {
-  "at": "2026-10-27T20:57:56.984028+00:00",
+  "at": "2026-10-27T23:07:40.070004+00:00",
   "lockedBy": "Love",
-  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix341)",
+  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix342)",
   "files": {
-    "recon.ts": "6c3d4691735b32dc"
+    "recon.ts": "34c9e911e2f98cae"
   },
   "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
   "signedBy": [

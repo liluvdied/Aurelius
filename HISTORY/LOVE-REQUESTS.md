@@ -2,6 +2,21 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R024 - fix343: clear her record cache now + auto-clear every 4 hours (finished, unfilled records older than 3.5 h move to the archive, never deleted; fills stay)
+- when: 2026-10-27T23:08:31Z
+- Love: "aww poor ting let’s clear up her cache so she can continue to execute properly hunn / i want to set up an auto-clear every 4 hours so she doesn’t get stopped up by the lag that comes from that pls"
+- books: every book (copier records)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/selfcheck.ts", "has": "fix343"}
+
+## R023 - fix342: a call skipped only because that book isn't live this hour no longer frees main/rejection every second (stops the runaway); free to trade otherwise unchanged
+- when: 2026-10-27T23:07:20Z
+- Love: "card "Stop the runaway re-calls in hours a book isn't live?" -> "Yes, stop the runaway""
+- books: main, rejection model
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix342"}
+- proof: {"test": "tools/free-to-trade-test.py"}
+
 ## R022 - Track + log (record only) every 5M trade that comes from main's extra free-to-trade calls; leave the behaviour as is
 - when: 2026-10-27T21:25:48Z
 - Love: "yesss pls that’s perfect , track and log those and we’ll see if it’s a problem or a proud one :)"

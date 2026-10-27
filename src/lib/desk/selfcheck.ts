@@ -133,6 +133,31 @@ export function selfCheckTick() {
     }
   } catch {
   }
+  // AUTO-CLEAR EVERY 4 HOURS (fix343, Oct 27 2026 4:08 PM PT, Love: "aww poor ting let's clear up her cache so she can continue to execute properly hunn / i want to set up an
+  // auto-clear every 4 hours so she doesn't get stopped up by the lag that comes from that pls"): every 4 hours (and once when she starts) each finished record that never
+  // filled (skipped / missed / blocked-final) and is older than 3.5 h moves out of live-book-done.json into live-book-done-archive.jsonl - kept forever, never deleted.
+  // Fills and partials stay (the breaker and day board read them). The copier only looks at rows from the last 3 h, so nothing she still needs is moved.
+  try {
+    const G4 = globalThis as any;
+    if (!G4.__doneTrimAt || Date.now() - G4.__doneTrimAt >= 4 * 3600000) {
+      G4.__doneTrimAt = Date.now();
+      const d0 = rd("live-book-done.json", null);
+      if (d0 && typeof d0 === "object") {
+        const cut = Date.now() - 3.5 * 3600000; const keep: Record<string, any> = {}; let lines = ""; let moved = 0;
+        for (const [k, v] of Object.entries(d0) as [string, any][]) {
+          const t = Date.parse(String(v?.at));
+          if (v && v.final === true && v.status !== "filled" && v.status !== "partial" && Number.isFinite(t) && t < cut) { lines += JSON.stringify({ key: k, ...v, archivedAt: new Date().toISOString(), archivedBy: "fix343 auto-clear" }) + "\n"; moved++; }
+          else keep[k] = v;
+        }
+        if (moved) {
+          appendFileSync(D("live-book-done-archive.jsonl"), lines);
+          writeFileSync(D("live-book-done.json.trim"), JSON.stringify(keep)); renameSync(D("live-book-done.json.trim"), D("live-book-done.json"));
+          try { copyFileSync(D("live-book-done.json"), D("guard/live-book-done.snap.tmp")); renameSync(D("guard/live-book-done.snap.tmp"), D("guard/live-book-done.snap.json")); g.__selfSnapAt = Date.now(); } catch {}
+          try { appendFileSync(D("auto-clear.jsonl"), JSON.stringify({ at: new Date().toISOString(), moved, kept: Object.keys(keep).length }) + "\n"); } catch {}
+        }
+      }
+    }
+  } catch {}
   // 1. record file
   try {
     const snap = D("guard/live-book-done.snap.json");

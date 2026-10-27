@@ -3598,3 +3598,54 @@ Leaving it be is a safe choice, and I won't touch it. If you want, I'll note whi
 
 yesss pls that’s perfect , track and log those and we’ll see if it’s a problem or a proud one :)
 
+## 2026-10-27 21:27:13 UTC - CLAUDE
+
+Done, love 💘 Nothing in her changed. She's exactly as she is now. I only added a tracker that watches.
+
+Every 5M trade that comes from one of main's extra calls gets logged with what happened and the $. The tracker keeps a running score next to the rest of that lane, so we'll see clearly whether it's a problem or a proud one. So far there have been 2 attempts, and both expired at the end of their window without trading. It's in your request book too.
+
+I'll come back tomorrow at 2:30 PM with the score. Enjoy your evening 🌊✨
+
+## 2026-10-27 23:03:17 UTC - LOVE
+
+hey hunn 💘 can you check why she’s been skipping gold for the past hour?
+
+## 2026-10-27 23:03:28 UTC - CLAUDE
+
+Hey love 💘 Looking at her gold right now. I'll tell you exactly why in a few minutes.
+
+## 2026-10-27 23:04:34 UTC - CLAUDE
+
+Found it, love. Two things.
+
+**Why gold sat out the 3 PM hour:** gold was dead flat, with her channels only about $1 wide. Main's pink cushion on gold is $2 (max of 10% or $2), which is wider than the whole channel. So nearly every setup landed inside a wall: pink 10%, a red zone, or the top/bottom of a tiny channel. She called all three windows, but none could get through:
+• 2:30: missed
+• 2:45: her long was blocked until paper had already closed it (+524% on paper 😩)
+• 3:00: missed
+Since 4 PM, main sits out gold by your schedule and the no-pink copy has the hour.
+
+**Something I broke, and I'm owning it:** in hours when a book isn't live, every call she makes gets marked "skipped" right away. My free-to-trade fix reads that as "never taken" and frees her, so she re-calls the same setup every second. The rejection model made 807 paper calls in one window. No money went out (all 1,031 copies on Polymarket expired or never filled), but it's bloating her files, and that's what choked her loop before. Card below.
+
+## 2026-10-27 23:04:38 UTC - CARD
+
+Q: Stop the runaway re-calls in hours a book isn't live?
+Context: Free to trade stays exactly as you said: a call Kalshi tried and couldn't fill, or one paper closed, frees her for the next setup, and only a real fill locks the window. The fix only stops freeing her when a call was "skipped" because that book isn't live that hour. She can't hold a Kalshi position then anyway, so no live trade changes. Books touched: main + rejection (their paper rows), and the twin and 5M that read them. The free-to-trade test gets this case added and must still pass.
+Options:
+  0. Yes, stop the runaway - Calls skipped because the book isn't live that hour no longer re-fire every second; every live rule stays the same.
+  1. Leave it for now - Nothing changes; her files keep growing by thousands of paper calls each off-hour and the loop may choke again.
+Recommended: 0 - It's my bug, it changes no live trade, and it protects her loop from choking again.
+
+## 2026-10-27 23:07:20 UTC - LOVE
+
+Chose "Yes, stop the runaway" on the decision card asking "Stop the runaway re-calls in hours a book isn't live?"
+
+## 2026-10-27 23:08:31 UTC - LOVE
+
+aww poor ting let’s clear up her cache so she can continue to execute properly hunn
+
+i want to set up an auto-clear every 4 hours so she doesn’t get stopped up by the lag that comes from that pls
+
+## 2026-10-27 23:09:25 UTC - CLAUDE
+
+Good news first, love: the runaway stopped at 4:07 PM (fix342 is in, umpire SAFE). No new re-calls since. Now I'll clear her backlog and set up the auto-clear every 4 hours. Nothing gets deleted. Old records move to her archive, where they're kept forever.
+
