@@ -19,6 +19,16 @@ const rd = (f: string, d: any) => {
     return d;
   }
 };
+function doneArchKeys(): Set<string> { // fix334: keys in the live-book-done archive, parsed once per change of the file
+  try {
+    const p = D("live-book-done-archive.jsonl"); const st = statSync(p); const G1 = globalThis as any; const c0 = G1.__doneArch;
+    if (c0 && c0.m === st.mtimeMs && c0.s === st.size) return c0.k;
+    const k = new Set<string>();
+    for (const l of readFileSync(p, "utf8").split("\n")) { if (!l) continue; try { const o = JSON.parse(l); if (o && o.key) k.add(String(o.key)); } catch {} }
+    G1.__doneArch = { m: st.mtimeMs, s: st.size, k };
+    return k;
+  } catch { return new Set(); }
+}
 const g = globalThis as unknown as { __selfAt?: number; __selfSnapAt?: number; __selfSaid?: Record<string, number> };
 function alarm(key: string, text: string) {
   const said = (g.__selfSaid ||= {});
@@ -129,6 +139,10 @@ export function selfCheckTick() {
     const cur = rd("live-book-done.json", null);
     const n = cur && typeof cur === "object" ? Object.keys(cur).length : 0;
     const old = existsSync(snap) ? rd("guard/live-book-done.snap.json", {}) : null;
+    // fix334 (Oct 27 2026 ~1:05 PM PT, Love: "find out what's choking her loop and fix it permanently please i do not want to do this every hour"): a record
+    // moved into data/live-book-done-archive.jsonl (fix301, Love Oct 26 10:45 PM PT: "yessss pls ... do it") is kept, not missing - this guard was putting the
+    // archived weeks back into the 3 MB file that every tick parses. Only records that vanished without reaching the archive are put back.
+    if (old && cur) { const ak = doneArchKeys(); if (ak.size) for (const k0 of Object.keys(old)) if (ak.has(k0) && !(k0 in cur)) delete old[k0]; }
     const on = old ? Object.keys(old).length : 0;
     if (old && cur && on > 50 && n < on * 0.8) {
       const merged = { ...old, ...cur };

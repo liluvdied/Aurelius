@@ -1646,10 +1646,14 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
       const nb = (await import("./nightbook")).listNight();
       const piv5: Record<string, Piv | null> = {};
       for (const id of ["btc", "gold"]) { const c = g.__pivBars?.[id]; piv5[id] = c ? pivot(resample(c.bars, 5), 5) : null; }
+      // fix335 (Oct 27 2026 ~1:10 PM PT, Love: "find out what's choking her loop and fix it permanently please i do not want to do this every hour"): one index of the 8,000 rows instead of a
+      // full scan for every night trade on every tick (same row found, first one wins, exactly as rows.find did).
+      const nwIx = new Map<string, { r: any; o: number }>(); for (let i = rows.length - 1; i >= 0; i--) nwIx.set(rows[i].id, { r: rows[i], o: i }); let nwTop = 0;
       for (const p of nb) {
         if (!["brick", "squeeze"].includes(p.book) || (p as any).dnaMode || (p as any).stale) continue;
         const lane = `${p.book}-nowall`;
-        const have = rows.find((r) => r.id === `${p.id}:${lane}` || r.id === `${p.id}:${lane}:skip`);
+        const nh1 = nwIx.get(`${p.id}:${lane}`), nh2 = nwIx.get(`${p.id}:${lane}:skip`);
+        const have = nh1 && nh2 ? (nh1.o <= nh2.o ? nh1.r : nh2.r) : (nh1 || nh2)?.r;
         if (!have) {
           if (Date.now() - Date.parse(p.at) > 90000) continue; // only fresh entries, bands as they were
           const a = assets[p.asset];
@@ -1659,6 +1663,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
           const lo = Math.min(spot, target), hi = Math.max(spot, target);
           const wall = [pv.pp, pv.r1, pv.s1, pv.r2, pv.s2].some((L) => L > lo && L < hi);
           rows.unshift({ id: `${p.id}:${lane}${wall ? ":skip" : ""}`, lane: wall ? `${lane}-skipped` : lane, parent: p.id, at: p.at, asset: p.asset, ticker: p.ticker, side: p.side, label: p.setup, ask: p.ask, multiple: p.multiple, intoWindow: 0, stake: p.stake, fee: 0, result: "open", exit: null, pnl: null });
+          nwIx.set(rows[0].id, { r: rows[0], o: --nwTop }); // fix335
           changed = true;
         } else if (have.result === "open" && p.result !== "open" && p.pnl != null) {
           have.result = p.pnl > 0.05 ? "win" : "loss";
@@ -1681,7 +1686,8 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
       const BEST = new Set([3, 11, 15, 19, 20, 22]);
       const WIN = new Set(["btc|down|Tap-reject at +1.5σ", "btc|down|Tap-reject at -0.5σ", "btc|up|Tap-reject at -0.5σ"]);
       const since = Date.parse("2026-10-11T11:30:00Z");
-      const hourOf = (at: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(at)));
+      const hourFmt = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }); // fix335: one formatter, same hours
+      const hourOf = (at: string) => Number(hourFmt.format(new Date(at)));
       let pzCfg: any = {};
       try { pzCfg = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.pivotZone || {}; } catch {}
       const pzMap: Record<string, { lane: string; why: string }> = ((globalThis as any).__pzSeen ||= {});
@@ -1711,16 +1717,21 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
       ];
       // the hold twin starts when it was built (Oct 18 1:58 PM PT): no copies of PAPER's older trades, which the hold never judged
       for (let i = rows.length - 1; i >= 0; i--) if ((rows[i].lane === "paper-247-hold" && Date.parse(rows[i].at) < HOLD_TWIN_FROM) || (/^paper-247-pk[23]$/.test(String(rows[i].lane)) && Date.parse(rows[i].at) < PINK_TWIN_FROM)) { rows.splice(i, 1); changed = true; }
+      // fix335 (Oct 27 2026 ~1:10 PM PT, Love: "find out what's choking her loop and fix it permanently please i do not want to do this every hour"): the paper twins look rows up by id
+      // (first one wins, as rows.find did) and know PAPER-20's own tickers up front, instead of scanning every row for every trade x lane on every tick.
+      const ptIx = new Map<string, any>(); for (let i = rows.length - 1; i >= 0; i--) ptIx.set(rows[i].id, rows[i]);
+      const p20T = new Set<any>(); for (const r of rows) if (r.lane === "paper-20" && !r.parent) p20T.add(r.ticker);
       for (const t of pb) {
         if (t?.source !== "paper" || Date.parse(t.openedAt) < since) continue;
         const k = 25 / (Number(t.stake) || 25);
         for (const [lane, ok] of lanes) {
           if (!ok(t)) continue;
-          if (lane === "paper-20" && rows.some((r) => r.lane === "paper-20" && !r.parent && r.ticker === t.ticker)) continue;
+          if (lane === "paper-20" && p20T.has(t.ticker)) continue;
           const id = `${t.id}:${lane}`;
-          const have = rows.find((r) => r.id === id);
+          const have = ptIx.get(id);
           if (!have) {
             rows.unshift({ id, lane, parent: t.id, at: t.openedAt, asset: t.asset, ticker: t.ticker, side: t.side, label: /^paper-piv/.test(lane) ? `${t.patternLabel} · ${lane === "paper-piv-skip" ? "skipped: " : ""}${pzMap[t.id]?.why || ""}` : t.patternLabel, ask: r2(Number(t.ask) || 0), multiple: r2(Number(t.multiple) || 0), intoWindow: 0, stake: 25, fee: 0, result: "open", exit: null, pnl: null });
+            ptIx.set(id, rows[0]); // fix335
             changed = true;
           } else if (have.result === "open" && t.result !== "open" && t.profit != null) {
             have.pnl = r2(Number(t.profit) * k);
