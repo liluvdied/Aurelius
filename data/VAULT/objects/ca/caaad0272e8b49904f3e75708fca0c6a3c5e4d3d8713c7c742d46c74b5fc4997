@@ -1,0 +1,161 @@
+// NAV BANDS (Love's "VWAP Bands 7 4 20 0.2 1.2 20 65", rebuilt to the cent on 2026-10-02):
+// center = volume-weighted average of hlc3 over 7 bars; bands = center ± 4 × the standard
+// deviation of that center line over 7 bars. Reference only: logged and shown, not traded on yet.
+import { writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { chartRaw } from "./tv";
+import { quoteTick } from "./quotes";
+
+function debug(key: string, msg: string) {
+  try {
+    writeFileSync(join(process.cwd(), "data", "nav-debug.json"), JSON.stringify({ at: new Date().toISOString(), key, msg }));
+  } catch {
+    // diagnostic only
+  }
+}
+
+export type NavFrame = { c: number; up: number; dn: number };
+type Bar = { t: number; o: number; h: number; l: number; c: number; v: number };
+
+export function computeNav(bars: Bar[], len = 7, mult = 4): NavFrame | null {
+  if (bars.length < len * 2 - 1) return null;
+  const h3 = (b: Bar) => (b.h + b.l + b.c) / 3;
+  const vwma = (end: number) => {
+    let a = 0;
+    let w = 0;
+    for (let j = end - len + 1; j <= end; j += 1) {
+      a += h3(bars[j]) * (bars[j].v || 0);
+      w += bars[j].v || 0;
+    }
+    return w > 0 ? a / w : h3(bars[end]);
+  };
+  const n = bars.length - 1;
+  const xs = Array.from({ length: len }, (_, i) => vwma(n - len + 1 + i));
+  const m = xs.reduce((t, x) => t + x, 0) / len;
+  const sd = Math.sqrt(xs.reduce((t, x) => t + (x - m) ** 2, 0) / len);
+  const c = xs[len - 1];
+  const r = (x: number) => Math.round(x * 1000) / 1000;
+  return { c: r(c), up: r(c + mult * sd), dn: r(c - mult * sd) };
+}
+
+function to10(bars5: Bar[]): Bar[] {
+  const out = new Map<number, Bar>();
+  for (const b of [...bars5].sort((a, b) => a.t - b.t)) {
+    const k = Math.floor(b.t / 600) * 600;
+    const cur = out.get(k);
+    if (!cur) out.set(k, { ...b, t: k });
+    else out.set(k, { t: k, o: cur.o, h: Math.max(cur.h, b.h), l: Math.min(cur.l, b.l), c: b.c, v: (cur.v || 0) + (b.v || 0) });
+  }
+  return [...out.values()];
+}
+
+// Gold on TVC:GOLD (Love, Oct 6 ~7:30 AM PT), OANDA as the backup if TVC goes quiet.
+// BTC ON OANDA (Oct 16 ~3:20 PM PT, Love: "let's put her on oanda the pepperstone chart is freezing"). Pepperstone is now the second feed.
+const SYMBOL: Record<string, string> = { btc: "INDEX:BTCUSD", gold: "TVC:GOLD" }; // Love, Oct 18 ~4:36 PM PT: "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS" // was: { btc: "PEPPERSTONE:BTCUSD", gold: "TVC:GOLD" }; // Love, Oct 18 ~4:31 PM PT: "we need to switch it back to pepperstones hun... vantages chart DEFINITELY flips more than pepperstones... pepperstone pls" // // Love, Oct 17 ~5:49 PM PT: back on Vantage // Love, Oct 17 ~4:54 PM PT: back on Pepperstone // Love, Oct 17 ~12:03 AM PT: Vantage // Love, Oct 16 ~11:58 PM PT: INDEX // Love, Oct 16 ~10:25 PM PT: "i want her on pepperstone if we can"
+// (was Vantage from ~3:25 PM PT) // Love ~3:25 PM PT: "let's trade vantage"
+const mem = new Map<string, { at: number; frame: NavFrame | null; goodAt?: number }>();
+const closes = new Map<string, { at: number; close: number; t: number; prev: number; o: number; h: number; l: number }>();
+// The 1-minute candle still forming (Claude, for her DNA: "top of the candle is where she entered").
+const lives = new Map<string, { at: number; t: number; h: number; l: number; c: number }>();
+// ATR(14) on CLOSED 5-minute bars (Claude, Oct 2 night, Love: "work it out to ATR, it shouldn't be one set
+// price for all points of the day"). Her DNA's reach breathes with the market through this.
+const atrs = new Map<string, { at: number; atr: number }>();
+/** The live 1-minute candle's last price (the same TVC / Pepperstone chart her lines come from), if read in the last 20 s. */
+/** Her live price WITH when it arrived. QUOTE STREAM FIRST (Oct 15, Love: "fire with speed without firing backwards"):
+ * the pushed tick from quotes.ts is the newest truth; the polled 1m candle read stays as the fallback, so losing the
+ * stream only ever makes her price older (and the freshness checks then hold her), never wrong. */
+export function liveTick(asset: string): { c: number; at: number } | null {
+  let q: { c: number; at: number } | null = null;
+  try { q = quoteTick(asset); } catch {}
+  const lv = lives.get(asset);
+  const p = lv && lv.c > 0 ? { c: lv.c, at: lv.at } : null;
+  if (q && p) return q.at >= p.at ? q : p;
+  return q || p;
+}
+export function liveClose(asset: string): number | null {
+  const t = liveTick(asset);
+  return t && Date.now() - t.at < 20000 ? t.c : null;
+}
+export function atr14(bars: Bar[]): number | null {
+  const xs = bars.slice(-16, -1); // last bar is still forming
+  if (xs.length < 15) return null;
+  let sum = 0;
+  for (let i = 1; i < xs.length; i += 1) sum += Math.max(xs[i].h - xs[i].l, Math.abs(xs[i].h - xs[i - 1].c), Math.abs(xs[i].l - xs[i - 1].c));
+  return sum / 14;
+}
+
+async function frameFor(asset: string, res: "1" | "5" | "10" | "15" | "60", ttl: number): Promise<NavFrame | null> {
+  const key = `${asset}:${res}`;
+  const hit = mem.get(key);
+  if (hit && Date.now() - hit.at < ttl) return hit.frame;
+  try {
+    // TradingView will not serve 10-minute bars to the desk, so 10m bars are built from 5m bars
+    // (two 5m bars per 10m bar, aligned to :00/:10/:20..., same as her chart).
+    const get = async (sym: string) => (res === "10" ? to10((await chartRaw(sym, "5", 90)) as Bar[]) : ((await chartRaw(sym, res, 40)) as Bar[]));
+    let bars = await get(SYMBOL[asset]).catch(() => [] as Bar[]);
+    // Weekend: OANDA BTC is closed Fri 5 PM ET - Sun 5 PM ET; Kalshi BTC is not. Read Coinbase then.
+    const lastT = bars.length ? Math.max(...bars.map((b) => b.t)) : 0;
+    // Love, Oct 3 ~5:50 PM PT: backup is Vantage (Coinbase held her bands worst); Coinbase only if Vantage is quiet too.
+    const quiet = (b: Bar[]) => b.length < 8 || Date.now() / 1000 - Math.max(...b.map((x) => x.t)) > (res === "60" ? 2 * 3600 : 20 * 60);
+    // NO SILENT SWAP (Oct 16 ~10:25 PM PT, Love): BTC never swaps charts. Vantage sat ~$100 over Pepperstone, so swapping when one
+    // went quiet put her bands and her price on two different charts (6:32 PM and 6:45 PM fires: $130 / $114 apart). A quiet
+    // Pepperstone now keeps its own last good frame; feed health holds her until it ticks again.
+    if (asset === "gold" && quiet(bars)) bars = await get("OANDA:XAUUSD");
+    bars.sort((a, b) => a.t - b.t);
+    const frame = computeNav(bars);
+    if (res === "5") {
+      const a = atr14(bars);
+      if (a && a > 0) atrs.set(asset, { at: Date.now(), atr: a });
+    }
+    // 1m: remember the last CLOSED 1-minute candle's close (the live candle is the last bar).
+    if ((res === "1" || res === "5") && bars.length >= 3) {
+      const k = bars[bars.length - 2];
+      closes.set(`${asset}:${res}`, { at: Date.now(), close: k.c, t: k.t, prev: bars[bars.length - 3].c, o: k.o, h: k.h, l: k.l });
+      const lb = bars[bars.length - 1];
+      if (res === "1" && lb) lives.set(asset, { at: Date.now(), t: lb.t, h: lb.h, l: lb.l, c: lb.c });
+    }
+    if (!frame) debug(key, `only ${bars.length} bars`);
+    // HOLD THE LAST GOOD FRAME (Claude, Oct 4 ~11:10 AM PT): TradingView sometimes answers with 0 bars. That used to wipe the
+    // frame, so her 5m/10m/15m lines vanished and the 25% rule ran blind (214 of 294 live-book entries were booked in a gap:
+    // 71% won vs 82% with the lines present). A gap now keeps the last good frame for up to 10 minutes and retries in ~3 s.
+    if (!frame && hit?.frame && Date.now() - (hit.goodAt ?? hit.at) < 600000) {
+      mem.set(key, { at: Date.now() - ttl + 3000, frame: hit.frame, goodAt: hit.goodAt ?? hit.at });
+      return hit.frame;
+    }
+    mem.set(key, { at: frame ? Date.now() : Date.now() - ttl + 3000, frame, goodAt: frame ? Date.now() : hit?.goodAt });
+    return frame;
+  } catch (err) {
+    debug(key, String((err as Error)?.message || err));
+    return hit?.frame ?? null;
+  }
+}
+
+export async function navFor(asset: string): Promise<{ m1: NavFrame | null; m5: NavFrame | null; m10: NavFrame | null; m15: NavFrame | null; m60?: NavFrame | null; close1m: number | null; prev1m: number | null; close1mAt: number | null; close5m: number | null; prev5m: number | null; close5mAt: number | null; bar5m: { o: number; h: number; l: number; c: number } | null; live1m?: { t: number; h: number; l: number; c: number } | null; atr5m?: number | null } | null> {
+  if (!SYMBOL[asset]) return null;
+  // m60 (Love, Oct 2: "the hourly nav band holds up WAY more than the session bands") for the hourly book.
+  // FIRST DIBS (Love, Oct 6 ~2:40 AM PT: "direct wire brick and brick clean to kalshi... so she gets first dibs"): the 5m and
+  // 1m candles used to be re-read every 15 s / 8 s, so a 5-minute close could reach BRICK up to ~15 s late. In the first 25 s
+  // after every 5-minute boundary (when BRICK's signals are born) they are re-read every 2 s instead.
+  const edge = Date.now() / 1000 % 300 < 25;
+  const [m1, m5, m10, m15, m60] = await Promise.all([frameFor(asset, "1", edge ? 2000 : asset === "gold" ? 4000 : 8000), frameFor(asset, "5", edge ? 2000 : 15000), frameFor(asset, "10", 20000), frameFor(asset, "15", 30000), frameFor(asset, "60", 60000)]);
+  const c = closes.get(`${asset}:1`);
+  const fresh = c && Date.now() - c.at < 90000;
+  const c5 = closes.get(`${asset}:5`);
+  const fresh5 = c5 && Date.now() - c5.at < 90000;
+  return {
+    m1, m5, m10, m15, m60,
+    close1m: fresh ? c.close : null, prev1m: fresh ? c.prev : null, close1mAt: fresh ? c.t : null,
+    close5m: fresh5 ? c5.close : null, prev5m: fresh5 ? c5.prev : null, close5mAt: fresh5 ? c5.t : null,
+    bar5m: fresh5 ? { o: c5.o, h: c5.h, l: c5.l, c: c5.close } : null,
+    atr5m: (() => {
+      const x = atrs.get(asset);
+      return x && Date.now() - x.at < 120000 ? Math.round(x.atr * 100) / 100 : null;
+    })(),
+    live1m: (() => {
+      const lv = lives.get(asset);
+      return lv && Date.now() - lv.at < 30000 ? { t: lv.t, h: lv.h, l: lv.l, c: lv.c } : null;
+    })(),
+  };
+}
+
+// Oct 15: reload nudge so quotes.ts v3 (dual sockets) arms.

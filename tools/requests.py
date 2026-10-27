@@ -14,19 +14,27 @@
 #   python3 tools/requests.py check                every active request still in her + chain unbroken (the umpire runs this)
 # Proof kinds: {"code": "path", "has": "text"} | {"code": "path", "lacks": "text"} | {"config": "path", "key": "a.b", "lacks": x | "has": x | "equals": x}
 #              | {"test": "tools/x.py"} | {"exists": "path"} | {"process": "how it is kept"} (a working rule with no code - shown on every check, never dropped)
-import os, sys, json, hashlib, datetime, subprocess, stat
+import os, sys, json, hashlib, datetime, subprocess, stat, glob, shutil
 os.chdir(os.path.join(os.path.dirname(__file__), ".."))
 P = "data/LOVE-REQUESTS.jsonl"; MD = "HISTORY/LOVE-REQUESTS.md"
 def load():
     if not os.path.exists(P): return []
-    return [json.loads(l) for l in open(P, encoding="utf8") if l.strip()]
+    out = []
+    for l in open(P, encoding="utf8", errors="replace"):
+        if not l.strip(): continue
+        try: out.append(json.loads(l))
+        except Exception: out.append({"kind": "damaged", "text": l[:80]})  # a damaged line breaks the chain below, so check() calls it out
+    return out
 def h(e): return hashlib.sha256(json.dumps({k: v for k, v in e.items() if k != "hash"}, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
 def append(e):
     L = load(); e["prev"] = L[-1]["hash"] if L else "start"; e["hash"] = h(e)
     try: os.chmod(P, 0o644)
     except Exception: pass
     with open(P, "a", encoding="utf8") as f: f.write(json.dumps(e, ensure_ascii=False) + "\n")
-    os.chmod(P, 0o444); write_md(); return e
+    os.chmod(P, 0o444); copy1(e); write_md(); return e
+def copy1(e):  # CORNERSTONE #2 (Love Oct 27 2:06 PM PT: "every request, every change, and every fix has a copied 1:1 file of them"): one file per line
+    os.makedirs("data/VAULT/requests", exist_ok=True); q = f'data/VAULT/requests/{e["id"] if e.get("kind") == "request" else "retire-" + e["of"]}.json'
+    if not os.path.exists(q): open(q, "w", encoding="utf8").write(json.dumps(e, ensure_ascii=False)); os.chmod(q, 0o444)
 def state():
     L = load(); req = {}; ret = {}
     for e in L:
@@ -74,6 +82,10 @@ def check():
         if e.get("prev") != prev or e.get("hash") != h(e): bad.append(f"line {i + 1} of the request book was changed or removed"); break
         prev = e["hash"]
     if not L: bad.append("the request book is empty")
+    for e in [x for x in L if x.get("kind") in ("request", "retire")]:  # every line has its 1:1 copy; a missing copy is written now, a different one is reported
+        q = f'data/VAULT/requests/{e["id"] if e.get("kind") == "request" else "retire-" + e["of"]}.json'
+        if not os.path.exists(q): copy1(e)
+        elif json.loads(open(q, encoding="utf8").read()) != e: bad.append(f"{os.path.basename(q)}: the book and its 1:1 copy differ - restore with: tools/requests.py restore")
     for e in req.values():
         if e["id"] in ret: continue
         for p in e.get("proof", []):
@@ -92,6 +104,13 @@ if __name__ == "__main__":
         e = json.loads(a[1]); assert e.get("words") and e.get("what") and e.get("proof"), "words, what and proof are required"
         _, req, _ = state(); e = {"kind": "request", "id": "R%03d" % (len(req) + 1), "at": e.get("at") or datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"), **{k: v for k, v in e.items() if k != "at"}}
         print("recorded", append(e)["id"])
+    elif a[0] == "restore":  # draw the whole book back from its 1:1 copies (only on Love's words)
+        C = [json.loads(open(q, encoding="utf8").read()) for q in glob.glob("data/VAULT/requests/*.json")]
+        C.sort(key=lambda e: e["at"] if e.get("kind") == "retire" else "")  # requests chained in book order below
+        chain = []; prev = "start"; byprev = {e["prev"]: e for e in C}
+        while prev in byprev: e = byprev[prev]; chain.append(e); prev = e["hash"]
+        if os.path.exists(P): os.chmod(P, 0o644); shutil.copyfile(P, P + ".damaged-" + datetime.datetime.now().strftime("%H%M%S"))
+        open(P, "w", encoding="utf8").write("".join(json.dumps(e, ensure_ascii=False) + "\n" for e in chain)); os.chmod(P, 0o444); print("restored", len(chain), "lines from the 1:1 copies")
     elif a[0] == "retire":
         assert len(a) >= 3 and a[2].strip(), "retiring needs Love's exact words"
         _, req, _ = state(); assert a[1] in req, "no such request"

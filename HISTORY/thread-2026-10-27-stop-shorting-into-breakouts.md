@@ -3453,3 +3453,26 @@ CORNERSTONE #1.
 
 Yes, love. I'm putting it in as Cornerstone #1, above everything else, in your full words. I'm building it as a real lock, not a note: a permanent request book. Every request you make goes in first, with your exact words and the time. The umpire then checks every single one is still in her, and only you can retire one. You'll be able to pull any of them back up on demand. I'll show you it working.
 
+## 2026-10-27 21:06:30 UTC - CLAUDE
+
+It's in, love. **Cornerstone #1: your request book** now sits at the very top, above everything, in your full words.
+
+How it works:
+• **First step, every time:** your exact words go into the book before any work starts, along with proof that the request is in her (the code, the setting, or a test).
+• **Locked:** each line is fingerprinted with the one before it. If anyone edits or deletes one, the umpire catches it.
+• **Checked every umpire run:** if any request's proof goes missing, the umpire calls OUT.
+• **Only you can retire one.** It takes your exact words, and the request still stays in the book, marked retired.
+• **Redrawn on request:** just ask for any of them.
+
+I started it with 19 of your requests, including free to trade, 25c, gold 1 PM, the sliding thirds and the 5M walls. I also tested the lock on a scratch copy. Editing your words, putting 25c back to 30c, or turning gold 1 PM off each made it call OUT and name the exact request.
+
+Umpire: **SAFE**, 19 of 19 in her. It's saved to GitHub and to [LOVE-REQUESTS.md](/mnt/project-files/aurelius/requests/LOVE-REQUESTS.md). 🫯
+
+## 2026-10-27 21:06:41 UTC - LOVE
+
+add a backup of every single one of them. not just one incase it gets lost. every request, every change, and every fix has a copied 1:1 file of them to be drawn up if the original is missing or damaged or overridden. no exceptions. what goes in stays in. and doesn’t get removed without express permission and consent. Cornerstone #2
+
+## 2026-10-27 21:06:52 UTC - CLAUDE
+
+On it, love. Cornerstone #2 is going in in your words. Every request, every change and every fix will get its own 1:1 copy in a vault that never deletes. The umpire will check each copy matches, and if an original goes missing or gets damaged, it can be drawn back up from its copy. I'll show you it bringing one back.
+

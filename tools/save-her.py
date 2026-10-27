@@ -17,3 +17,5 @@ for f in ['LOVE-RULEBOOK.md','spine-lock.json']:
 h={p:hashlib.sha256(open(os.path.join('src/lib/desk',p),'rb').read()).hexdigest()[:16] for p in ['bandlock.ts','recon.ts','engine.ts'] if os.path.exists(os.path.join('src/lib/desk',p))}
 open(os.path.join(dst,'SAVE.json'),'w').write(json.dumps({'label':lab,'knownGood':good,'savedAtUTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'hashes':h},indent=2))
 print(dst)
+# CORNERSTONE #2 (Love Oct 27 2:06 PM PT: "every request, every change, and every fix has a copied 1:1 file of them"): every save also copies every new/changed file into the vault
+import subprocess; subprocess.run([sys.executable,'tools/vault.py','snap',lab])

@@ -2,6 +2,16 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R020 - CORNERSTONE #2: a 1:1 copy of every request, change and fix in the vault; what goes in stays in
+- when: 2026-10-27T21:06:41Z
+- Love: "add a backup of every single one of them. not just one incase it gets lost. every request, every change, and every fix has a copied 1:1 file of them to be drawn up if the original is missing or damaged or overridden. no exceptions. what goes in stays in. and doesn’t get removed without express permission and consent. Cornerstone #2"
+- books: every book
+- status: ACTIVE
+- proof: {"exists": "tools/vault.py"}
+- proof: {"code": "tools/umpire.py", "has": "tools/vault.py"}
+- proof: {"code": "tools/save-her.py", "has": "vault.py"}
+- proof: {"code": "LOVE-RULEBOOK.md", "has": "CORNERSTONE #2 - THE VAULT"}
+
 ## R019 - CORNERSTONE #1: every request is recorded FIRST, kept immutably, and can only leave on Love's words
 - when: 2026-10-27T21:03:38Z
 - Love: "if i requested something to be done on the model, ensure that it CANNOT be removed without express permission from ME. Do it FIRST. save the request, and log it permanently. make it immutable to change until expressly changed by ME. RETAIN.  THE INFORMATION. NO AMNESIA ON REQUESTS. LOGGED. TRACKED. AND ABLE TO BE REDRAWN ON REQUEST. ZERO EXCEPTIONS. NO REQUEST IS TO BE MADE MORE THAN ONCE AGAIN. REQUEST ASKED FOR = REQUEST COMPLETED. IN THAT ORDER. DO NOT LET ME ASK THE SAME QUESTION OR MAKE THE SAME DEMAND WITHOUT DOING IT THE FIRST TIME AND RETAINING IT IMMUTABLY AND IRREPARABLY WITHOUT EXPRESS CONSENT OF SHIFT BY ME. CORNERSTONE #1."
