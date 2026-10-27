@@ -1,0 +1,1384 @@
+// PIVOT BOOKS (Claude, Oct 11 ~3:10 AM PT, Love: "yesss PLEASE... let's run a book on the 2M, 5M, 10M & 15M pivot bands by
+// themselves, another set that uses the session bands & the pivot bands, i want her to take the trade immediately if it's
+// there too, that model was genuinely the most successful"). PAPER ONLY, never sends an order. Same store as GROK OG.
+// CM Pivot Bands (ChrisMoody): PP = EMA7 of hlc3; R1/S1 = PP +/- the average high-low range of the last 7 bars; R2/S2 = 2x.
+// Built from 1m bars (BTC: PEPPERSTONE, gold: TVC, the desk's own charts) resampled to 2 / 5 / 10 / 15 minutes, bands
+// taken from the last CLOSED bar of each timeframe.
+// Entries = the OG's way, instantly (2+ min left): price on/near a line (within 0.35 of that line's unit) -> long if price
+// is on/above it, short if under; or the last 1m candle closed through a line -> trade the break. Her band rule on the
+// lines the book uses: none sitting between price and the strike, center (PP / session VWAP) not on the wrong side of both.
+// 1.18x and up, no cap. One ticket per window per book. Grok's gate exit (arms at +50%, locks 5% steps) or the bell.
+//   PIVOT 2M / 5M / 10M / 15M  = pivot lines only.        SESSION+PIVOT 2M / 5M / 10M / 15M = pivot lines + her session bands.
+// Also two NO-WALL twins: BRICK and SQUEEZE's own paper trades, minus any with a 5m pivot line between price and the strike
+// (Oct 7-10 lab: those 62 trades won 53% for -$98). Twins copy the parent's result.
+import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync, statSync } from "node:fs";
+import { join } from "node:path";
+import { chartRaw } from "./tv";
+import { quoteTick, tickPush } from "./quotes";
+import { zoneRejection, goldLaw } from "./goldlaw";
+import { paperBandFilter } from "./bandlock";
+
+const STAKE = 20;
+const D = (f: string) => join(process.cwd(), "data", f);
+const r2 = (n: number) => Math.round(n * 100) / 100;
+const fee = (n: number, p: number) => Math.ceil(0.07 * n * p * (1 - p) * 100) / 100;
+const FILE = () => D("grok-og.json");
+const read = (): any[] => { try { return existsSync(FILE()) ? JSON.parse(readFileSync(FILE(), "utf8")) : []; } catch { return []; } };
+// ARCHIVE (Oct 13 ~noon PT, Love asked for the all-day model's card and Oct 12's rows were gone): this file keeps the newest
+// 8000 rows; every row trimmed off the end is now appended to grok-og-archive.jsonl first, so no book's history is lost.
+export function archiveTrimmed(rows: any[]) {
+  if (rows.length <= 8000) return;
+  try { appendFileSync(D("grok-og-archive.jsonl"), rows.slice(8000).map((r) => JSON.stringify(r)).join("\n") + "\n"); } catch {}
+}
+// PAPER BOOK, READ ONCE PER CHANGE (Oct 15, close-lag hunt: live-paper-book.json, ~2.9 MB, was parsed 5-6 times a second
+// here - read-only uses - stalling the server her close clicks go through). One parse until the file changes.
+function pbTrades(): any[] {
+  const G = globalThis as any;
+  let key = "";
+  try { const st = statSync(D("live-paper-book.json")); key = `${st.mtimeMs}:${st.size}`; } catch { return []; }
+  if (G.__pbShared?.key === key) return G.__pbShared.trades;
+  let trades: any[] = [];
+  try { trades = JSON.parse(readFileSync(D("live-paper-book.json"), "utf8"))?.trades ?? []; } catch {}
+  G.__pbShared = { key, trades };
+  return trades;
+}
+const write = (rows0: any[]) => { const rows = paperBandFilter(rows0, "pivot"); archiveTrimmed(rows); writeFileSync(FILE() + ".tmp", JSON.stringify(rows.slice(0, 8000))); renameSync(FILE() + ".tmp", FILE()); };
+type Bar = { t: number; o: number; h: number; l: number; c: number };
+type Piv = { pp: number; r1: number; s1: number; r2: number; s2: number; a: number };
+const g = globalThis as unknown as { __pivBars?: Record<string, { at: number; bars: Bar[] }>; __pivBusy?: boolean };
+const SYM: Record<string, string> = { btc: "PEPPERSTONE:BTCUSD", gold: "TVC:GOLD" };
+
+export function resample(b: Bar[], mins: number): Bar[] {
+  const out: Bar[] = [];
+  const span = mins * 60;
+  for (const x of b) {
+    const k = Math.floor(x.t / span) * span;
+    const last = out[out.length - 1];
+    if (last && last.t === k) { last.h = Math.max(last.h, x.h); last.l = Math.min(last.l, x.l); last.c = x.c; }
+    else out.push({ t: k, o: x.o, h: x.h, l: x.l, c: x.c });
+  }
+  return out;
+}
+// SMI (Oct 14 ~1:20 AM PT, Love: "a stochastic momentum index entry/confirmation model... if it crosses over the trigger, it
+// confirms the direction"). Classic Blau SMI, TradingView defaults: %K 10, %D 3, signal EMA 3, on FINISHED candles.
+// Backtest on her 5M trades since Sunday: BTC with the 1m SMI agreeing 76% vs 63% against; gold with the 5m SMI agreeing
+// 61% vs 49%. Returns SMI minus its signal line (> 0 = momentum up) for the last finished candle, or null.
+export function smiGap(b: Bar[], tf: number, nowSec: number, K = 10, D = 3, E = 3): number | null {
+  const bars = (tf > 1 ? resample(b, tf) : b).filter((x) => x.t + tf * 60 <= nowSec + 1);
+  if (bars.length < K + 10) return null;
+  const ema = (xs: number[], n: number) => { const k = 2 / (n + 1); const out: number[] = []; let e: number | null = null; for (const v of xs) { e = e == null ? v : v * k + e * (1 - k); out.push(e); } return out; };
+  const rd: number[] = [], df: number[] = [];
+  for (let i = 0; i < bars.length; i++) {
+    const w = bars.slice(Math.max(0, i - K + 1), i + 1);
+    const hh = Math.max(...w.map((x) => x.h)), ll = Math.min(...w.map((x) => x.l));
+    rd.push(bars[i].c - (hh + ll) / 2); df.push(hh - ll);
+  }
+  const ar = ema(ema(rd, D), D), ad = ema(ema(df, D), D);
+  const smi = ar.map((a, i) => (ad[i] ? (100 * a) / (ad[i] / 2) : 0));
+  const sig = ema(smi, E);
+  return smi[smi.length - 1] - sig[sig.length - 1];
+}
+// HER CHART'S 5-MINUTE BOLLINGER + KNN LINE (Oct 14 ~2:55 AM PT, Love's TradingView exports): Bollinger = 20-bar SMA of the
+// 5m close +/- 2 standard deviations (matched her export exactly); KNN line = the Lorentzian's "Kernel Regression Estimate",
+// a rational-quadratic kernel (h 8, r 8) over 5m closes (matched her export within $1 on BTC, 3c on gold). Finished 5m candles.
+export function fiveMinFrame(b: Bar[], nowSec: number): { close: number; bbU: number; bbL: number; bbB: number; knn: number } | null {
+  const c5 = resample(b, 5).filter((x) => x.t + 300 <= nowSec + 1).map((x) => x.c);
+  if (c5.length < 40) return null;
+  const w20 = c5.slice(-20);
+  const m = w20.reduce((q, v) => q + v, 0) / 20;
+  const sd = Math.sqrt(w20.reduce((q, v) => q + (v - m) ** 2, 0) / 20);
+  let num = 0, den = 0;
+  for (let j = 0; j < Math.min(c5.length, 226); j++) {
+    const w = Math.pow(1 + (j * j) / (8 * 8 * 2 * 8), -8);
+    num += c5[c5.length - 1 - j] * w;
+    den += w;
+  }
+  return { close: c5[c5.length - 1], bbU: m + 2 * sd, bbL: m - 2 * sd, bbB: m, knn: num / den };
+}
+export function pivot(bars: Bar[], mins: number): Piv | null {
+  // MATCH HER CHART (Oct 16 ~1:37 PM PT, Love: "Match bands to chart"): the forming bar counts, like TradingView's live bands.
+  const closed = bars;
+  if (closed.length < 10) return null;
+  const k = 2 / 8;
+  let ema = 0;
+  const rng: number[] = [];
+  closed.forEach((x, i) => { const pp = (x.h + x.l + x.c) / 3; ema = i === 0 ? pp : pp * k + ema * (1 - k); rng.push(x.h - x.l); });
+  const a = rng.slice(-7).reduce((s, v) => s + v, 0) / 7;
+  return { pp: ema, r1: ema + a, s1: ema - a, r2: ema + 2 * a, s2: ema - 2 * a, a };
+}
+// PIVOT ZONE (Oct 14 ~11:30 AM PT, Love: "a variable zone... ATR x ADX compromise... without blocking all of her trades when
+// bands are tight"; "she should short when it hits the red if anything at all, not long"). Zone = k x ATR(14, 5m) x ADX
+// factor (trend: clamp(ADX/25, 0.5, 1.5); flat: 1), so it shrinks when the market is tight. "color": a long only minds
+// red/pink lines above (R1, R2, PP), a short only green/pink below (S1, S2, PP). The pink PP gets its own fixed $ (gold $1).
+// Replay of PAPER's 139 gold trades (Oct 9-14): k 0.3 trend + PP $1 -> keeps 64 at 77%, +$240 vs all 139 at 68%, +$166;
+// better in both halves. BTC at her $50-75 scale (k 0.35 trend): 34 of 139 kept at 79%, about even on dollars -> paper first.
+export function atrAdx5(b: Bar[], n = 14): { atr: number; adx: number } | null {
+  const now = Date.now() / 1000;
+  const c = resample(b, 5).filter((x) => x.t + 300 <= now + 1);
+  if (c.length < 2 * n + 2) return null;
+  const tr: number[] = [], pdm: number[] = [], ndm: number[] = [];
+  for (let i = 1; i < c.length; i++) {
+    const h = c[i].h, l = c[i].l, pc = c[i - 1].c;
+    tr.push(Math.max(h - l, Math.abs(h - pc), Math.abs(l - pc)));
+    const up = h - c[i - 1].h, dn = c[i - 1].l - l;
+    pdm.push(up > dn && up > 0 ? up : 0); ndm.push(dn > up && dn > 0 ? dn : 0);
+  }
+  const wild = (v: number[]) => { let s = v.slice(0, n).reduce((a, x) => a + x, 0); const o = [s]; for (const x of v.slice(n)) { s = s - s / n + x; o.push(s); } return o; };
+  const T = wild(tr), P = wild(pdm), N = wild(ndm);
+  const dx = T.map((a, i) => { const pd = a ? (100 * P[i]) / a : 0, nd = a ? (100 * N[i]) / a : 0; return pd + nd ? (100 * Math.abs(pd - nd)) / (pd + nd) : 0; });
+  let adx = dx.slice(0, n).reduce((a, x) => a + x, 0) / n;
+  for (const x of dx.slice(n)) adx = (adx * (n - 1) + x) / n;
+  return { atr: T[T.length - 1] / n, adx };
+}
+// Oct 14 ~4:40 AM PT (Love: "gold fasho... get her at 74% in both halves"): gold minds only the 5m pivots. Replay of PAPER's
+// 139 gold trades: a 5m line in her way inside the zone -> 50% wins, -$137; blocking just those keeps 105 at 74% (+$303 vs
+// +$166), 75% / 74% in each half. 10m/15m lines in the way were winners (price runs through them).
+export const PIVZONE_DEFAULT: Record<string, { k: number; adx: "trend" | "flat"; lines: "color" | "any"; pp?: number; tfs?: number[] }> = {
+  gold: { k: 0.3, adx: "trend", lines: "color", tfs: [5] },
+  btc: { k: 0.35, adx: "trend", lines: "color" }, // her $50-75 scale (mid ~$54): keeps 34 of 139 at 79%, +$135 vs +$125
+};
+export function pivotZoneCheck(id: string, side: string, spot: number, cfgIn?: any): { block: boolean; why: string; zone: number; kind?: "wall" | "chase" } | null {
+  const c = g.__pivBars?.[id]?.bars;
+  if (!c?.length || !(spot > 0)) return null;
+  const cfg = { ...PIVZONE_DEFAULT[id], ...(cfgIn || {}) };
+  if (!cfg?.k) return null;
+  const aa = atrAdx5(c);
+  if (!aa) return null;
+  const f = cfg.adx === "trend" ? Math.min(1.5, Math.max(0.5, aa.adx / 25)) : 1;
+  const zone = cfg.k * aa.atr * f;
+  const up = side === "up";
+  // NO CHASING PAST THE PINK (Oct 14 ~6:25 AM PT, Love: "wait for it to come up and tap the pink pivot band"). Gold sold more
+  // than 1 ATR (5m) under the 5m PP, or bought more than 1 ATR over it: 30 trades, 47% wins, -$164 (both halves red); the rest
+  // 200 at 66%, +$293. BTC is the opposite (those won 81%), so this is per asset: live-switch pivotZone.<asset>.chase (ATRs).
+  if (Number(cfg.chase) > 0) {
+    const p5 = pivot(resample(c, 5), 5);
+    if (p5) {
+      const st = up ? spot - p5.pp : p5.pp - spot;
+      if (st >= Number(cfg.chase) * aa.atr) return { block: true, kind: "chase", why: `chasing: $${st.toFixed(2)} ${up ? "over" : "under"} the pink 5m PP (${p5.pp.toFixed(2)}), more than ${Number(cfg.chase)} ATR ($${(Number(cfg.chase) * aa.atr).toFixed(2)}); waiting for it to come back to the pink`, zone };
+    }
+  }
+  for (const tf of (Array.isArray(cfg.tfs) && cfg.tfs.length ? cfg.tfs : [2, 5, 10, 15])) {
+    const p = pivot(resample(c, tf), tf);
+    if (!p) continue;
+    for (const [nm, v] of [["PP", p.pp], ["R1", p.r1], ["S1", p.s1], ["R2", p.r2], ["S2", p.s2]] as [string, number][]) {
+      if (up ? !(v > spot) : !(v < spot)) continue;
+      if (cfg.lines === "color" && nm.startsWith(up ? "S" : "R")) continue;
+      const d = Math.abs(v - spot);
+      // PINK ZONE (Oct 14 ~9:30 AM PT, Love: "yesss both"): the pink PP gets at least ppAtr x ATR (gold 0.5: ~$1.90 calm,
+      // ~$3.65 today). Gold longs 0.37-0.5 ATR under the pink went 44%, -$59. Fixed cfg.pp still wins if set.
+      const lim = nm === "PP" && Number(cfg.pp) > 0 ? Number(cfg.pp) : nm === "PP" && Number(cfg.ppAtr) > 0 ? Math.max(zone, Number(cfg.ppAtr) * aa.atr) : zone;
+      if (d < lim) return { block: true, kind: "wall", why: `${tf}m ${nm} ${up ? "above" : "below"}, ${id === "btc" ? "$" + d.toFixed(0) : "$" + d.toFixed(2)} away (zone ${id === "btc" ? "$" + lim.toFixed(0) : "$" + lim.toFixed(2)}, ATR ${aa.atr.toFixed(2)}, ADX ${aa.adx.toFixed(0)})`, zone };
+    }
+  }
+  return { block: false, why: `clear (zone $${zone.toFixed(2)}, ADX ${aa.adx.toFixed(0)})`, zone };
+}
+type Line = { name: string; price: number; unit: number; center?: boolean };
+export function lines(p: Piv, tf: number): Line[] {
+  const u = p.a;
+  return [{ name: `${tf}m PP`, price: p.pp, unit: u, center: true }, { name: `${tf}m R1`, price: p.r1, unit: u }, { name: `${tf}m S1`, price: p.s1, unit: u }, { name: `${tf}m R2`, price: p.r2, unit: u }, { name: `${tf}m S2`, price: p.s2, unit: u }];
+}
+export function sessionLines(a: any): Line[] {
+  const f = a?.vwap1m?.vwap ? a.vwap1m : a?.vwap5m;
+  const v = Number(f?.vwap) || 0, sd = Number(f?.stdev) || 0;
+  if (!(v > 0 && sd > 0)) return [];
+  // VWAP RULE OFF (Love, Oct 13 ~2:45 AM PT: "she could not comprehend not longing or shorting into a band... that does not mean
+  // to never short into one if it's far enough away and clearly rejecting off of a band... turn it off"). The session VWAP is
+  // no longer a "centre": a short above VWAP / a long below it is allowed. It still counts as a line for the wall rule
+  // (no line between price and the strike), and the pivot PP centres are unchanged. Inherited from the old engine's "spine
+  // rule" (Grok); she never chose it. Old file: _to_delete/bak-oct12-combofix/pivotbooks.ts.pre-novwap.
+  const out: Line[] = [{ name: "session VWAP", price: v, unit: sd, center: false }];
+  for (const s of [0.5, 1, 1.5, 2, 2.5, 3]) out.push({ name: `+${s}σ`, price: v + s * sd, unit: sd }, { name: `-${s}σ`, price: v - s * sd, unit: sd });
+  return out;
+}
+// NO GROK (Love, Oct 13 ~2:55 AM PT: "all i asked of grok was to not have her long into a band above her and not short into a band
+// below her... please remove any trace of grok left"). Her rule, exactly: a line still AHEAD of price on the way to the strike
+// blocks the trade (a long that must climb through a band above, a short that must fall through one below). Gone: Grok's
+// "spine" rules, i.e. blocking on lines BEHIND price once it is already past the strike, and the centre rule (pivot PP /
+// session VWAP "on the wrong side"). legacy=true keeps the old rules for the paper "-old" twins only (Monday comparison).
+// BREAK BOOK (paper, Oct 14 ~4:40 PM PT, Love: "just session bands, long above one, short below one, trade the break, no band
+// between price and vwap, instant entry, her bands too, 5M 10M & 15M for her rolling bands"). A break = the last finished
+// 1m candle CLOSED through a line, or (instant) it closed on one side and live price is now through it by her break distance
+// (BTC $10, gold $0.92). Long above it, short below it. "No band between price and the target": apart from the line just
+// broken, no line may sit between live price and the Kalshi strike. No walls to the strike, no bounce/rejection, no centre rule.
+function breakDecide(L: Line[], a: any, last1m: Bar | undefined): { side: "up" | "down"; label: string } | null {
+  const spot = Number(a?.spot) || 0;
+  if (!(spot > 0) || !last1m || !L.length) return null;
+  const vwL = L.find((l) => l.name === "session VWAP");
+  if (!vwL) return null;
+  G_LIVEBREAK();
+  const brk = spot > 10000 ? lbCache.btc : spot > 1000 ? lbCache.gold : 0;
+  let hit: { side: "up" | "down"; l: Line; how: string } | null = null, gap = Infinity;
+  for (const l of L) {
+    const bd = brk > 0 ? brk : 0.15 * l.unit;
+    const upB = (last1m.o < l.price && last1m.c > l.price && spot > l.price) || (last1m.c <= l.price && spot >= l.price + bd);
+    const dnB = (last1m.o > l.price && last1m.c < l.price && spot < l.price) || (last1m.c >= l.price && spot <= l.price - bd);
+    const d = Math.abs(spot - l.price);
+    if ((upB || dnB) && d < gap) { gap = d; hit = { side: upB ? "up" : "down", l, how: (upB ? last1m.c > l.price && last1m.o < l.price : last1m.c < l.price && last1m.o > l.price) ? "Close" : "Break" }; }
+  }
+  if (!hit) return null;
+  // Oct 14 ~4:55 PM PT (Love: "i did mean to say target"): no line between live price and the Kalshi target (strike).
+  const target = Number(a?.target) || 0;
+  if (!(target > 0)) return null;
+  const lo = Math.min(spot, target), hi = Math.max(spot, target);
+  if (L.some((l) => l !== hit!.l && l.price > lo && l.price < hi)) return null;
+  return { side: hit.side, label: `${hit.how} ${hit.side === "up" ? "above" : "below"} ${hit.l.name}` };
+}
+let pkCache: { at: number; on: boolean; min: number } = { at: 0, on: true, min: 3 };
+function G_PINK(): { on: boolean; min: number } {
+  if (Date.now() - pkCache.at > 3000) {
+    let on = true, min = 3;
+    try { const sw = JSON.parse(readFileSync(D("live-switch.json"), "utf8")); on = sw?.pinkBreak !== false; min = Math.max(1, Math.min(15, Number(sw?.pinkBreakMin) || 3)); } catch {}
+    pkCache = { at: Date.now(), on, min };
+  }
+  return pkCache;
+}
+let lbCache: { at: number; on: boolean; btc: number; gold: number } = { at: 0, on: true, btc: 10, gold: 0.92 };
+function G_LIVEBREAK(): boolean {
+  if (Date.now() - lbCache.at > 3000) {
+    let on = true, btc = 10, gold = 0.92;
+    try { const sw = JSON.parse(readFileSync(D("live-switch.json"), "utf8")); on = sw?.liveBreak !== false; btc = Number(sw?.liveBreakDist?.btc) || 10; gold = Number(sw?.liveBreakDist?.gold) || 0.92; } catch {}
+    lbCache = { at: Date.now(), on, btc, gold };
+  }
+  return lbCache.on;
+}
+export function decide(L: Line[], a: any, last1m: Bar | undefined, legacy = false, hist: Bar[] = []): { side: "up" | "down"; label: string } | null {
+  const spot = Number(a?.spot) || 0, target = Number(a?.target) || 0;
+  if (!(spot > 0 && target > 0) || !L.length) return null;
+  const looks: { side: "up" | "down"; label: string }[] = [];
+  // PINK BREAK MEMORY (Oct 15 ~3:20 AM PT, Love: "if there is a break of the pink band i'd like her to enter in the direction
+  // it broke"). 3:00 AM BTC: price had closed down through the 5m PP a candle or two before the window opened; by the time
+  // she could act, the breaking candle was no longer the LAST candle, so neither "Close below" nor the live break fired,
+  // and the positional rule longed "On -0.5σ" $47 above that band while price was still falling. Now: a close through the
+  // lane's pink (its PP) on any of the last pinkBreakMin (3) finished candles, not closed back across since, with price
+  // still on the broken side = the entry, in the break's direction, ahead of every other look; and no look against it.
+  // Replay Oct 11-15 (1m bars, direction vs the strike at the open): break on the last candle BTC 42/64 (65%), gold 35/57
+  // (61%); any break in the last 3 min BTC 61%, gold 57%; 10 min 57% / 56% (it fades, so 3). live-switch pinkBreak:false off.
+  let pinkSide: "up" | "down" | null = null;
+  if (hist.length && G_PINK().on) {
+    const pink = L.find((l) => /^\d+m PP$/.test(l.name));
+    if (pink) {
+      const K = G_PINK().min, recent = hist.slice(-K);
+      let brk: { side: "up" | "down"; i: number } | null = null;
+      for (let i = 0; i < recent.length; i++) {
+        const c = recent[i];
+        if (c.o > pink.price && c.c < pink.price) brk = { side: "down", i };
+        else if (c.o < pink.price && c.c > pink.price) brk = { side: "up", i };
+        else if (brk && ((brk.side === "down" && c.c > pink.price) || (brk.side === "up" && c.c < pink.price))) brk = null;
+      }
+      // LIVE PUSH (Oct 15 ~3:30 AM PT, Love: "we don't need to wait for a 1m close on the break... if there is a break and a
+      // push thru a band of $10 on btc i want her to get in"): the last finished candle on one side of the pink and live
+      // price through it by her break distance (BTC $10 / gold $0.92, live-switch liveBreakDist) counts as the break too.
+      let live = false;
+      if (!brk && recent.length && G_LIVEBREAK()) {
+        const lc = recent[recent.length - 1];
+        const bd = spot > 10000 ? lbCache.btc : spot > 1000 ? lbCache.gold : 0.15 * pink.unit;
+        if (lc.c >= pink.price && spot <= pink.price - bd) { brk = { side: "down", i: recent.length - 1 }; live = true; }
+        else if (lc.c <= pink.price && spot >= pink.price + bd) { brk = { side: "up", i: recent.length - 1 }; live = true; }
+      }
+      if (brk && ((brk.side === "down" && spot < pink.price) || (brk.side === "up" && spot > pink.price))) {
+        pinkSide = brk.side;
+        const ago = recent.length - brk.i;
+        looks.push({ side: brk.side, label: `Break ${brk.side === "down" ? "below" : "above"} ${pink.name}${live ? " (live push)" : ago > 1 ? ` (${ago} min ago)` : ""}` });
+      }
+    }
+  }
+  if (last1m) for (const l of L) {
+    if (last1m.o > l.price && last1m.c < l.price) { looks.push({ side: "down", label: `Close below ${l.name}` }); break; }
+    if (last1m.o < l.price && last1m.c > l.price) { looks.push({ side: "up", label: `Close above ${l.name}` }); break; }
+  }
+  // LIVE BREAK (Oct 14 ~2:25 PM PT, Love: "a push through the pink band is good enough for me... waiting for a 1 minute
+  // candle to close can miss an entire move... get in immediately on a break"). The last finished candle closed on one side
+  // of a line and live price is now through it by her break distance (her words, Oct 13: "$25 through a band on btc is a
+  // straight up break", "92c on gold is not a wick, that is a full break") = the trade, now, without waiting for the close.
+  // live-switch liveBreak:false turns it off.
+  if (!looks.length && last1m && G_LIVEBREAK()) {
+    const brk = spot > 10000 ? lbCache.btc : spot > 1000 ? lbCache.gold : 0; // live-switch liveBreakDist (Love: BTC $10, gold $0.92)
+    for (const l of L) {
+      const bd = brk > 0 ? brk : 0.15 * l.unit;
+      if (last1m.c >= l.price && spot <= l.price - bd) { looks.push({ side: "down", label: `Break below ${l.name}` }); break; }
+      if (last1m.c <= l.price && spot >= l.price + bd) { looks.push({ side: "up", label: `Break above ${l.name}` }); break; }
+    }
+  }
+  let best: Line | null = null, gap = Infinity;
+  for (const l of L) { const d = Math.abs(spot - l.price); if (d <= 0.35 * l.unit && d < gap) { best = l; gap = d; } }
+  if (best) looks.push({ side: spot >= best.price ? "up" : "down", label: `On ${best.name}` });
+  if (pinkSide) {
+    const dropped = looks.filter((k) => k.side !== pinkSide);
+    if (dropped.length) { try { appendFileSync(D("pink-break.jsonl"), JSON.stringify({ at: new Date().toISOString(), spot, pinkSide, dropped: dropped.map((k) => k.label) }) + "\n"); } catch {} }
+  }
+  for (const look of pinkSide ? looks.filter((k) => k.side === pinkSide) : looks) {
+    const lo = Math.min(spot, target), hi = Math.max(spot, target);
+    const through = look.side === "up" ? spot > target : spot < target;
+    const wall = (legacy || !through) && L.some((l) => Math.abs(spot - l.price) > 0.2 * l.unit && l.price > lo && l.price < hi);
+    if (wall) continue;
+    if (legacy) {
+      const wrong = L.filter((l) => l.center || l.name === "session VWAP").some((c) => (look.side === "up" ? c.price > spot && c.price > target : c.price < spot && c.price < target));
+      if (wrong) continue;
+    }
+    return look;
+  }
+  return null;
+}
+// REJECTION / BOUNCE, HER DEFINITION (Love, Oct 13 ~5:55 AM PT): "92c on gold is not a wick, that is a full break" /
+// "$25 through a band on btc is a straight up break". A REJECTION is price TOUCHING a band (within POKE of it, never further
+// through) and closing back on the side it came from. Anything further through is a BREAK, never a rejection.
+// POKE = how close a wick must come to count as a TAP (BTC $5, gold $0.25, others 5% of unit); a wick may poke through by any
+// amount as long as the body stays on its side (Oct 13 ~6:05 AM PT). Kept from earlier tonight:
+//  - a bounce off a band below that carries price up to TAP a band above does not stop the short at that upper band, and it
+//    is not a long either (no long into a band above her). Mirror for longs.
+//  - a bounce is an entry (Love, Oct 13 ~4:45 AM PT: "yess pls, bounce an entry").
+const POKE = (asset: string, l: Line) => (asset === "btc" ? 5 : asset === "gold" ? 0.25 : 0.05 * l.unit);
+// Oct 13 ~6:05 AM PT (Love): decided by the candle BODY, not the wick. Support rejection at a band = the wick taps it (within
+// POKE above it) or pokes through it by any amount, while the whole body (open and close) stays above it. A body that crosses
+// the band is a break. Mirror for resistance.
+// Oct 15 ~1:20 PM PT (Love): the ONLY $5 change she asked for is the break distance (liveBreakDist.btc 10 -> 5). A candle
+// that pokes through a band and CLOSES back on its side is still her rejection/bounce entry, exactly as she set it Oct 13.
+// (A wick-depth filter added here ~1:00 PM without her asking was removed at 1:20 PM on her word.)
+function touchBelow(bar: Bar, L: Line[], asset: string) {
+  return L.filter((l) => bar.l <= l.price + POKE(asset, l) && Math.min(bar.o, bar.c) >= l.price).sort((x, y) => Math.abs(bar.l - x.price) - Math.abs(bar.l - y.price))[0];
+}
+function touchAbove(bar: Bar, L: Line[], asset: string) {
+  return L.filter((l) => bar.h >= l.price - POKE(asset, l) && Math.max(bar.o, bar.c) <= l.price).sort((x, y) => Math.abs(bar.h - x.price) - Math.abs(bar.h - y.price))[0];
+}
+export function rejects(bar: Bar | undefined, side: "up" | "down", L: Line[], _label = "", asset = ""): string | null {
+  if (!bar || !(bar.h - bar.l > 0)) return null;
+  if (side === "down") {
+    const sup = touchBelow(bar, L, asset);
+    if (!sup || touchAbove(bar, L, asset)) return null;
+    return `held ${sup.name} (touched it and closed back above)`;
+  }
+  const res = touchAbove(bar, L, asset);
+  if (!res || touchBelow(bar, L, asset)) return null;
+  return `held ${res.name} (touched it and closed back under)`;
+}
+export function bounceLook(L: Line[], a: any, bar: Bar | undefined, asset = ""): { side: "up" | "down"; label: string } | null {
+  const spot = Number(a?.spot) || 0, target = Number(a?.target) || 0;
+  if (!bar || !(spot > 0 && target > 0) || !L.length || !(bar.h - bar.l > 0)) return null;
+  const sup = touchBelow(bar, L, asset), res = touchAbove(bar, L, asset);
+  let look: { side: "up" | "down"; label: string } | null = null;
+  if (sup && !res) look = { side: "up", label: `Bounce off ${sup.name}` };
+  else if (res && !sup) look = { side: "down", label: `Rejected off ${res.name}` };
+  if (!look) return null;
+  const through = look.side === "up" ? spot > target : spot < target;
+  const lo = Math.min(spot, target), hi = Math.max(spot, target);
+  if (!through && L.some((l) => Math.abs(spot - l.price) > 0.2 * l.unit && l.price > lo && l.price < hi)) return null;
+  return look;
+}
+async function bars1m(id: string): Promise<Bar[]> {
+  const c = (g.__pivBars ||= {});
+  // Oct 13 ~5:40 AM PT (Love: entries late): a fresh pull as soon as each 1m candle closes (2 s after the minute) instead of
+  // reusing bars up to 55 s old, so a break or bounce is seen on the candle that made it.
+  // Oct 14 ~12:50 AM PT (Love: "can we cut down the latency even more"): the cached chart is good until the minute turns.
+  // From then on she re-reads every second (each read ~1-3 s) until TradingView shows the new minute's candle, which also
+  // means the candle that just closed is final. It used to wait until 2 s past the minute before even asking.
+  const minStart = Math.floor(Date.now() / 60000) * 60;
+  const lastT = c[id]?.bars?.[c[id].bars.length - 1]?.t ?? 0;
+  const secIn = Date.now() / 1000 - minStart;
+  if (c[id] && (lastT >= minStart || Date.now() - c[id].at < (secIn < 20 ? 900 : 30000))) return c[id].bars;
+  const b = (await chartRaw(SYM[id], "1", 900)) as unknown as Bar[];
+  b.sort((x, y) => x.t - y.t);
+  if (b.length) c[id] = { at: Date.now(), bars: b };
+  return c[id]?.bars ?? [];
+}
+// OWN CLOCK (Oct 13 ~11:40 PM PT, Love: "her execution is still really slow... she's been catching 1.4x sometimes when she
+// could have gotten in at the beginning of the move"). She only ran when the desk's full pass finished (every 10-20 s), so
+// window-open entries landed 12-50 s in. Now she runs every second on the desk's latest snapshot, and both charts are read
+// at the same time.
+export function ensurePivotClock() {
+  const G = globalThis as any;
+  G.__pivFn = pivotBooksTick;
+  // Oct 14 ~1:30 PM PT (Love: "1:1 where they were"): live-switch pivotClock:false = no own 1 s clock; she runs on the desk's
+  // pass like on Oct 13 (the clock came in at 11:40 PM that night).
+  let clockOn = true;
+  try { clockOn = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.pivotClock !== false; } catch {}
+  if (!clockOn) { if (G.__pivClock) { clearInterval(G.__pivClock); G.__pivClock = null; } return; }
+  if (G.__pivClock) return;
+  G.__pivClock = setInterval(() => { const fn = G.__pivFn; if (G.__lastAssets && typeof fn === "function") void fn(G.__lastAssets).catch(() => {}); }, 1000);
+}
+// ONE RULEBOOK FOR EVERY RUNNING BOOK (Oct 16 ~2:22 AM PT, Love: "from now on i'd like you to implement the same rules for any
+// book we have running. i don't want to hear, it wasn't set for this book - again please / institute a unilateral default for
+// all books when they are running"). Every live-switch list the main book (liveBook.books[0]) is on - no-locks, gate
+// exemptions, paper fires, any-hour, mirror exits... - every other book on liveBook.books is put on too, checked every 30 s.
+// Per-book values she set on purpose (bookDollars, bookSkipHours) are maps, not lists, and are left alone.
+function syncBookRules() {
+  const G = globalThis as any;
+  if (G.__ruleSyncAt > Date.now() - 30000) return;
+  G.__ruleSyncAt = Date.now();
+  try {
+    const d = JSON.parse(readFileSync(D("live-switch.json"), "utf8"));
+    const books: string[] = Array.isArray(d?.liveBook?.books) ? d.liveBook.books : [];
+    if (books.length < 2) return;
+    const main = books[0];
+    const added: string[] = [];
+    const walk = (o: any, path: string) => {
+      if (Array.isArray(o)) { if (o.includes(main)) for (const b of books) if (!o.includes(b)) { o.push(b); added.push(`${path}+${b}`); } return; }
+      if (o && typeof o === "object") for (const k of Object.keys(o)) { if (path === "" && k === "liveBook") continue; walk(o[k], `${path}.${k}`); }
+    };
+    walk(d, "");
+    if (added.length) {
+      writeFileSync(D("live-switch.json.tmp"), JSON.stringify(d, null, 2));
+      renameSync(D("live-switch.json.tmp"), D("live-switch.json"));
+      try { appendFileSync(D("overnight-fixes.log"), `${new Date().toISOString()} | ONE RULEBOOK sync: ${added.join(", ")}\n`); } catch {}
+    }
+  } catch {}
+}
+export async function pivotBooksTick(assets: Record<string, any> | null | undefined) {
+  syncBookRules();
+  // the close button's own lane (closelane.server.ts): started here, refreshed every 30 s so it always runs the newest close code
+  { const G = globalThis as any; if (!(G.__closeLaneAt > Date.now() - 30000)) { G.__closeLaneAt = Date.now(); import("./closelane.server").then((m) => m.startCloseLane()).catch(() => {}); } }
+  if (!assets || g.__pivBusy) return;
+  g.__pivBusy = true;
+  try {
+    // HAND GUARD (Oct 14 ~3:25 AM PT): every 2 s, pull any resting book order on a market where Love holds the other side.
+    { const G = globalThis as any; if (!G.__handGuardAt || Date.now() - G.__handGuardAt > 2000) { G.__handGuardAt = Date.now(); void import("./kalshi-live.server").then((m: any) => m.guardRestsAgainstHand?.()).then((pulled: any) => { if (Array.isArray(pulled) && pulled.length) { try { appendFileSync(D("overnight-fixes.log"), `[${new Date().toISOString()}] HAND GUARD pulled resting book order(s) on ${pulled.join(", ")} (Love held the other side)\n`); } catch {} } }).catch(() => {}); } }
+    const T0 = Date.now();
+    await Promise.all(["btc", "gold"].map((x) => bars1m(x).catch(() => [])));
+    const Tbars = Date.now() - T0;
+    let rows = read();
+    let changed = false;
+    // DOOR FLIPS STICK (Oct 15, Love: "both"): a side the Kalshi door re-check flipped is re-applied to the paper row on every
+    // read, so this pass can never write the old side back over it. Card = Kalshi.
+    { const df = (globalThis as any).__doorFlip; if (df) { for (const k of Object.keys(df)) { if (Date.now() - df[k].at > 3600000) { delete df[k]; continue; } const r = rows.find((x: any) => x && x.id === k); if (r && r.result === "open" && r.side !== df[k].side) { Object.assign(r, df[k].patch); changed = true; } } } }
+    const status: Record<string, unknown> = { at: new Date().toISOString() };
+    for (const id of ["btc", "gold"]) {
+      let a = assets[id];
+      // NEW WINDOW AT ONCE (Oct 13 ~9:40 PM PT, Love: "fix her execution speed again... she got a 1.3x when it broke the band at
+      // 1.7x"). The desk's market snapshot rolls to the new 15M window 25-60 s late, so every entry at a window's open waited
+      // for it. If the snapshot is still on the old window, read the new one straight from Kalshi (cached 2 s).
+      try {
+        const { fifteenTicker, fetchMarket } = await import("./kalshi");
+        const tk = fifteenTicker(id === "btc" ? "KXBTC15M" : "KXGOLD15M");
+        // WINDOW-OPEN RUSH OFF (Oct 14 ~5:15 PM PT, Love: "dig into it... diagnose and resolve"). This read let her trade a new
+        // window in its first seconds. Before it (Oct 11-13) gold never entered in the first 20 s and won 56% (live Oct 13: 20/25,
+        // +$308); after it, live gold first-20 s entries went 1/10 (-$238) and BTC 16/31 (-$110). live-switch newWindowAtOnce
+        // (default false) = wait for the desk's own roll to the new window, exactly like Oct 13.
+        let nwOn = false;
+        try { nwOn = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.newWindowAtOnce === true; } catch {}
+        try {
+          const RL = ((g as any).__rollSeen ||= {});
+          if (a?.market?.ticker === tk && RL[id] !== tk) { RL[id] = tk; const into = Math.round((Date.now() / 1000) % 900); appendFileSync(D("window-roll.jsonl"), JSON.stringify({ at: new Date().toISOString(), asset: id, ticker: tk, desk_rolled_at_s: into }) + "\n"); }
+        } catch {}
+        if (nwOn && a?.market?.ticker !== tk) {
+          const c = ((g as any).__pivMk ||= {});
+          if (!c[tk] || Date.now() - c[tk].at > 2000) c[tk] = { at: Date.now(), m: await fetchMarket(tk) };
+          const fm: any = c[tk].m;
+          if (fm?.ticker === tk && Number(fm.target) > 0) {
+            const closeMs = fm.closeTime ? Date.parse(fm.closeTime) : NaN;
+            a = { ...a, target: fm.target, secondsLeft: Number.isFinite(closeMs) ? Math.max(0, Math.floor((closeMs - Date.now()) / 1000)) : 0, market: { ticker: fm.ticker, yesAsk: fm.yesAsk, noAsk: fm.noAsk, yesBid: fm.yesBid, noBid: fm.noBid } };
+            // The copier reads the same shared snapshot: hand it the new window too, so it can send at once instead of waiting
+            // 10-60 s for the desk's own roll (Oct 13 ~11:40 PM PT). The desk's next full pass overwrites it with its own read.
+            try { if (assets[id]) Object.assign(assets[id], { target: a.target, secondsLeft: a.secondsLeft, market: { ...(assets[id].market || {}), ...a.market } }); } catch {}
+          }
+        }
+      } catch {}
+      const m = a?.market;
+      const left = Number(a?.secondsLeft) || 0;
+      if (!m?.ticker || !(left >= 120)) continue;
+      // OPENING FLOOR (Oct 14 ~5:50 PM PT, Love: "would be great if she could not lose 9 out of 10 trades"). Since the Oct 13
+      // 9:40 PM speed change her entries in a window's first 20 s ran backwards (BTC break/close 35%, -$850; gold 16-38%, live
+      // gold 1/10) while the same rules 20 s+ in won 54-57%. No pivot-book entry before live-switch openFloorSec (30) seconds
+      // into the window.
+      let preFloor = false;
+      {
+        let fl = 30;
+        try { const v = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.openFloorSec; if (Number.isFinite(Number(v))) fl = Number(v); } catch {}
+        // left > 900 = the snapshot briefly holds a far-out market (seen 3:43 PM: 28 h left); the window math is
+        // meaningless then, so the floor and the after-open check stand down instead of holding her on garbage numbers.
+        if (left <= 900 && 900 - left < fl) { status[id] = `opening floor: ${Math.round(900 - left)}s into the window (waits until ${fl}s; FAST OPEN lab may trade)`; preFloor = true; }
+      }
+      // FRESH PRICE (Oct 14 ~6:30 PM PT, Love: "figure it out"). THE backwards fires. Her price (a.spot) came from the desk's
+      // snapshot: the live 1m candle as last READ, handed back from caches for up to 8-20 s. The chart is read the moment a new
+      // minute's candle appears, so for the first 8-20 s of every minute her price was that candle's FIRST tick. At a window
+      // open the first tick IS the Kalshi strike, so she judged every opening entry with price == strike, blind to the first
+      // 10-20 s of the move the market had already priced. Live OGP5 BTC fills 7-19 s into a window: her spot equalled
+      // TradingView's :00 candle open to the cent (5:30 PM 83509.75, 4:00 PM 81541.46, 5:00 PM 81560.15...); first 20 s won
+      // 40% BTC / 15% gold vs 62% / 56% at 20-60 s. Before Oct 13 9:40 PM she could not act until the desk rolled (median
+      // 41 s in), by which time the price had been re-read. Now: her price is the newest read of the live candle (nav's 1m
+      // read or this file's), it must be younger than live-switch spotMaxAgeSec (8) and taken at least spotAfterOpenSec (5)
+      // after the window opened, or she waits (status says so). The price she decides on is written to each row (band.spot).
+      try {
+        const { liveTick } = await import("./nav");
+        const lt = liveTick(id);
+        const pb = g.__pivBars?.[id]; const pbLast = pb?.bars?.[pb.bars.length - 1];
+        const cands: { c: number; at: number }[] = [];
+        if (lt) cands.push(lt);
+        if (pb && pbLast && pbLast.c > 0) cands.push({ c: pbLast.c, at: pb.at });
+        cands.sort((x, y) => y.at - x.at);
+        const best = cands[0];
+        let maxAge = 8, afterOpen = 5;
+        try { const sw = JSON.parse(readFileSync(D("live-switch.json"), "utf8")); if (Number.isFinite(Number(sw?.spotMaxAgeSec))) maxAge = Number(sw.spotMaxAgeSec); if (Number.isFinite(Number(sw?.spotAfterOpenSec))) afterOpen = Number(sw.spotAfterOpenSec); } catch {}
+        const openMs = Date.now() + left * 1000 - 900000;
+        const age = best ? (Date.now() - best.at) / 1000 : Infinity;
+        if (!best || age > maxAge) { status[id] = `price read is ${Number.isFinite(age) ? age.toFixed(1) : "?"} s old (limit ${maxAge} s): waiting for a fresh read`; continue; }
+        if (left <= 900 && best.at < openMs + afterOpen * 1000) { status[id] = `price read was taken ${((best.at - openMs) / 1000).toFixed(1)} s after the open (needs ${afterOpen} s): waiting`; continue; }
+        a = { ...a, spot: best.c };
+      } catch {}
+      // OPEN ROAD (Love, Oct 11 ~7:35 AM PT: "can you see why she's not entering? btc just broke a band and those are her
+      // go to's"). PAPER sees setups on BOTH her books but her own rule benches them: a short needs $40 of clear road to the
+      // next band below, a long $40 above. Her bands sit every half sigma, so when BTC's sigma is under ~$80 there is ALWAYS
+      // a band within $40 both ways and she is boxed in. This paper lane takes exactly what she benched (both books agree,
+      // only the band said no), once per window, $25, our exits; PAPER herself is untouched.
+      try {
+        const why = String(JSON.parse(readFileSync(D("prime-why.json"), "utf8"))?.note?.[id] || "");
+        const pb = pbTrades();
+        const paperIn = pb.some((t: any) => t?.source === "paper" && t.ticker === m.ticker);
+        if (!paperIn && !rows.some((r) => r.ticker === m.ticker && r.lane === "open-road")) {
+          const line = why.split("\n").find((l) => /prime book, paper book, blocked by the band/.test(l) && !/taking/.test(l));
+          const mm = line ? /^(up|down) (.+?), prime book/.exec(line) : null;
+          if (mm) {
+            const side = mm[1] as "up" | "down";
+            const ask = Number(side === "up" ? m.yesAsk : m.noAsk);
+            if (ask >= 0.2 && ask < 0.98 && 1 / ask >= 1.38) {
+              const n = 25 / ask;
+              rows.unshift({ id: `${m.ticker}:open-road`, lane: "open-road", at: new Date().toISOString(), asset: id, ticker: m.ticker, side, label: `${mm[2]} (band said no)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 25, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null });
+              changed = true;
+            }
+          }
+        }
+      } catch {
+      }
+      // PAPER · 20% ROAD (Love, Oct 11 ~7:45 AM PT: "can we make a twin that operates on a 20% rule? distance of the band,
+      // 80% thru the channel... keep the og unadulterated"). PAPER's own trades (mirrored below) PLUS the setups her $40 rule
+      // benched, taken when the road is open by THIS rule instead: the channel is the gap between the band behind price and
+      // the band ahead of it (bands every half sigma, VWAP's own gap is a full sigma); she's only blocked once price is 80%+
+      // of the way through it, i.e. the band ahead is within 20% of the channel. Same side PAPER chose, never flipped.
+      try {
+        const f = a?.vwap1m?.vwap ? a.vwap1m : a?.vwap5m;
+        const v = Number(f?.vwap) || 0, sd = Number(f?.stdev) || 0, spot = Number(a?.spot) || 0;
+        const why = String(JSON.parse(readFileSync(D("prime-why.json"), "utf8"))?.note?.[id] || "");
+        const pb = pbTrades();
+        const paperIn = pb.some((t: any) => t?.source === "paper" && t.ticker === m.ticker);
+        status[`${id}20`] = { v, sd, spot, paperIn, yesAsk: m.yesAsk, noAsk: m.noAsk, target: a?.target, left };
+        // TIGHT BANDS ONLY (Love, Oct 11 ~4:25 PM PT: "let's have it set to only run when the bands are tight"): the extra
+        // entries need the session sigma under live-switch "road20MaxSd" (default $100).
+        let maxSd = 100;
+        try { maxSd = Number(JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.road20MaxSd) || 100; } catch {}
+        if (v > 0 && sd > 0 && sd < maxSd && spot > 0 && !paperIn && !rows.some((r) => r.ticker === m.ticker && r.lane === "paper-20" && !r.parent)) {
+          const levels: number[] = [];
+          for (const k of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(v + k * sd, v - k * sd);
+          const clear20 = (side: "up" | "down") => {
+            const above = levels.filter((L) => L > spot).sort((x, y) => x - y)[0];
+            const below = levels.filter((L) => L < spot).sort((x, y) => y - x)[0];
+            const ahead = side === "up" ? above : below, behind = side === "up" ? below : above;
+            if (ahead == null) return true;
+            if (behind == null) return Math.abs(ahead - spot) > 0.2 * 0.5 * sd;
+            return Math.abs(ahead - spot) > 0.2 * Math.abs(ahead - behind);
+          };
+          for (const line of why.split("\n")) {
+            const mm = /^(up|down) (.+?), prime book, paper book, blocked by the band/.exec(line);
+            if (!mm || /taking/.test(line)) continue;
+            const side = mm[1] as "up" | "down";
+            if (!clear20(side)) continue;
+            const ask = Number(side === "up" ? m.yesAsk : m.noAsk);
+            if (!(ask >= 0.2 && ask < 0.98 && 1 / ask >= 1.38)) continue;
+            const n = 25 / ask;
+            rows.unshift({ id: `${m.ticker}:paper-20`, lane: "paper-20", at: new Date().toISOString(), asset: id, ticker: m.ticker, side, label: `${mm[2]} (20% road)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 25, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null });
+            changed = true;
+            break;
+          }
+        }
+      } catch {
+      }
+      let b: Bar[] = [];
+      try { b = await bars1m(id); } catch { b = []; }
+      if (b.length < 60) { status[id] = "no 1m bars"; continue; }
+      const now = Date.now() / 1000;
+      // CLOSED MEANS CLOSED (Oct 14 ~5:55 PM PT). Two ways a still-forming candle was being read as the finished one:
+      //  (1) the "+ 1" below counted the forming candle as closed in the last second of every minute (7:30:59 AM gold short
+      //      "Close below -2σ" used close 4145.91; the candle really closed 4146.13), and
+      //  (2) once the forming candle was in the cache it was not re-read for the rest of its minute, so at the next minute's
+      //      start (or whenever TradingView refused the fresh read) its FIRST ticks stood in as its close.
+      // A candle now counts as finished only if it ended before the chart read that produced it.
+      const readAt = Number(g.__pivBars?.[id]?.at || 0) / 1000;
+      const closed1m = b.filter((x) => x.t + 60 <= now && x.t + 60 <= readAt);
+      const last1m = closed1m[closed1m.length - 1];
+      // HER CHANNEL EDGE (same night): the channel (+/-1σ of the session VWAP) is drawn exactly like her TradingView chart:
+      // TVC:GOLD / her BTC chart, 5-minute bars from the 5 PM ET session open, hlc3, volume-weighted (matched her 9:19 and
+      // 9:34 PM gold screens to the cent). In or out is decided by the last FINISHED candle's close, the body, not a live
+      // tick. At 9:45 gold closed 4162.58 under her +1σ 4163.42 (inside) but the desk's own VWAP + a live tick called it
+      // outside and handed the trade to the Trend Assassin.
+      let chan: { vw: number; sd: number } | null = null;
+      try {
+        const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
+        const bit = (t: string) => Number(parts.find((p) => p.type === t)?.value ?? "0");
+        const day = new Date(Date.UTC(bit("year"), bit("month") - 1, bit("day"), 21, 0, 0));
+        if (bit("hour") < 17) day.setUTCDate(day.getUTCDate() - 1);
+        const S0 = day.getTime() / 1000;
+        const bk = new Map<number, { h: number; l: number; c: number; v: number }>();
+        for (const x of b as any[]) {
+          if (x.t < S0 || !(Number(x.v) > 0)) continue;
+          const k = x.t - ((x.t - S0) % 300);
+          const y = bk.get(k);
+          if (!y) bk.set(k, { h: x.h, l: x.l, c: x.c, v: Number(x.v) });
+          else { y.h = Math.max(y.h, x.h); y.l = Math.min(y.l, x.l); y.c = x.c; y.v += Number(x.v); }
+        }
+        const rs = [...bk.values()];
+        const vol = rs.reduce((q, z) => q + z.v, 0);
+        if (rs.length >= 2 && vol > 0) {
+          const vw0 = rs.reduce((q, z) => q + ((z.h + z.l + z.c) / 3) * z.v, 0) / vol;
+          const sd0 = Math.sqrt(rs.reduce((q, z) => q + z.v * ((z.h + z.l + z.c) / 3 - vw0) ** 2, 0) / vol);
+          if (vw0 > 0 && sd0 > 0) chan = { vw: vw0, sd: sd0 };
+        }
+      } catch {}
+      const sess = sessionLines(a);
+      // CONFIRMED HYBRID (Oct 13 ~11:25 PM PT, Love: "let's have her not flip modes when it's not a genuine mode-switch worthy
+      // event"). The live hybrid flipped to the Trend Assassin on any tick past +/-1σ (9:45 PM gold: a 10c poke). This mode
+      // ("hybridc") hands off only after N 1-minute candles in a row have CLOSED outside the channel (live-switch
+      // hybridConfirm, default 3), and comes back to both ways on the first close back inside. Same desk VWAP, same models,
+      // same rules; only the hand-off timing differs.
+      const cfvC = a?.vwap1m?.vwap ? a.vwap1m : a?.vwap5m;
+      const cvw = Number(cfvC?.vwap) || 0, csd = Number(cfvC?.stdev) || 0;
+      const cst = (((g as any).__chanState ||= {})[id] ||= { t: 0, outN: 0 });
+      if (last1m && last1m.t !== cst.t && cvw > 0 && csd > 0) { cst.t = last1m.t; cst.outN = Math.abs(last1m.c - cvw) > csd ? cst.outN + 1 : 0; }
+      let confN = 3;
+      try { confN = Number(JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.hybridConfirm) || 3; } catch {}
+      const outsideC = cst.outN >= confN;
+      const st: Record<string, unknown> = {};
+      if (chan) st.channel = { vwap: r2(chan.vw), sd: r2(chan.sd), up1: r2(chan.vw + chan.sd), dn1: r2(chan.vw - chan.sd), close: last1m?.c, inside: last1m ? Math.abs(last1m.c - chan.vw) <= chan.sd : null };
+      for (const tf of [2, 5, 10, 15]) {
+        const p = pivot(resample(b, tf), tf);
+        if (!p) continue;
+        st[`${tf}m`] = { pp: r2(p.pp), r1: r2(p.r1), s1: r2(p.s1), r2: r2(p.r2), s2: r2(p.s2) };
+        // OG + PIVOT (Love, Oct 11 ~4:55 AM PT: "can you run another OG book with session bands &&& the pivot bands"):
+        // the OG exactly (session bands, instant on-the-band / break entries, no band between price and strike, 1.18x+ no cap)
+        // with this timeframe's pivot lines added to the same lines and the same rules.
+        // CHANNEL HYBRID (Love, Oct 13 ~3:15 AM PT: "i want the model that was running all day on whenever price is outside of the
+        // channel... whenever it starts doing that, we let this one in"; channel = within 1 sigma of the session VWAP, "yes").
+        // Her SESSION+PIVOT / OG+PIVOT books: price more than 1 sigma from the session VWAP = the all-day model (one way, the
+        // side of VWAP price is on); inside the +/-1 sigma channel = both ways (walls only ahead of price). Pivot-only books
+        // never used the VWAP rule and stay as they were.
+        const fv = a?.vwap1m?.vwap ? a.vwap1m : a?.vwap5m;
+        const vw = Number(fv?.vwap) || 0, vsd = Number(fv?.stdev) || 0, sp0 = Number(a?.spot) || 0;
+        const outside = vw > 0 && vsd > 0 && sp0 > 0 && Math.abs(sp0 - vw) > vsd;
+        // BACKUP SWITCH (Love, Oct 13 ~3:25 AM PT: "i want the model we were using to be able to be brought back at any time"):
+        // live-switch lineupMode = "hybrid" (default) | "allday" (the all-day model, always) | "both" (both ways, always).
+        let lmode = "hybrid";
+        // Oct 14 ~1:25 PM PT (Love: "put her on both ways for btc"): live-switch lineupModeByAsset { btc: "both" } wins per asset.
+        try { const swm = JSON.parse(readFileSync(D("live-switch.json"), "utf8")); lmode = String(swm?.lineupModeByAsset?.[id] || swm?.lineupMode || "hybrid"); } catch {}
+        const useOld = lmode === "allday" ? true : lmode === "both" ? false : lmode === "hybridc" ? outsideC : outside;
+        // BOUNCE RULES switch (Oct 13 ~4:55 AM PT, Love: "we can turn her back to the break model if it doesn't work well"):
+        // live-switch bounceRules false = her plain band / break entries, no rejection block, no bounce entries.
+        let bounceOn = true;
+        try { bounceOn = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.bounceRules !== false; } catch {}
+        const lanes: [string, Line[], boolean][] = [[`piv${tf}`, lines(p, tf), false], [`sp${tf}`, [...lines(p, tf), ...sess], useOld], [`ogp${tf}`, [...sess, ...lines(p, tf)], useOld]];
+        // twins (paper only, never in LANE_BOOK) for Monday's review: "-old" = the all-day model always, "-both" = both ways always.
+        if (tf === 5 || tf === 15) lanes.push([`sp${tf}-old`, [...lines(p, tf), ...sess], true], [`ogp${tf}-old`, [...sess, ...lines(p, tf)], true], [`sp${tf}-both`, [...lines(p, tf), ...sess], false], [`ogp${tf}-both`, [...sess, ...lines(p, tf)], false]);
+        // "-hyb" twins (Oct 13 ~12:30 PM PT, Love: "can you include a hybrid card of its own?"): HYBRID always, whatever mode
+        // her live books are on: the all-day model outside the +/-1 sigma channel, both ways with today's rules inside.
+        if (tf === 5 || tf === 15) lanes.push([`sp${tf}-hyb`, [...lines(p, tf), ...sess], outside], [`ogp${tf}-hyb`, [...sess, ...lines(p, tf)], outside]);
+        // "-hybc" twin (paper): the CONFIRMED hybrid, always, so it can be watched before it runs live.
+        if (tf === 5) lanes.push([`ogp5-hybc`, [...sess, ...lines(p, tf)], outsideC]);
+        // "ogp5-smi" (paper): her live 5M book exactly, but it only books once the SMI agrees with the trade (BTC: 1m SMI,
+        // gold: 5m SMI). A setup with the SMI against waits in the window for the cross, then goes in the right direction.
+        if (tf === 5) lanes.push([`ogp5-smi`, [...sess, ...lines(p, tf)], useOld]);
+        // "ogp5-px" (paper, Oct 14 ~2:35 AM PT, Love: "yes i do want a paper twin on that"): her live 5M book exactly, but it
+        // skips entries priced 40-50c (price sitting on the strike: since Sunday those won 49%, gold 41%, vs ~70% at 50-70c).
+        if (tf === 5) lanes.push([`ogp5-px`, [...sess, ...lines(p, tf)], useOld]);
+        // "ogp5-bb" (paper): her 5M book, but never chasing: no long when the last 5m candle closed at/over her upper
+        // Bollinger, no short at/under the lower one (one day of her exports: those chases won ~30%).
+        // "ogp5-knn" (paper, "KNN magnet"): her 5M book, but only trades heading BACK TOWARD the KNN line (long only with price
+        // under it, short only with price over it): one day of exports, BTC 73% that way vs 53% the other.
+        if (tf === 5) lanes.push([`ogp5-bb`, [...sess, ...lines(p, tf)], useOld], [`ogp5-knn`, [...sess, ...lines(p, tf)], useOld]);
+        // BREAK BOOK lanes (paper): session bands only, and session bands + her rolling bands on 5M / 10M / 15M.
+        // FAST OPEN lab (Love, Oct 15 ~12:50 PM PT: "fix the execution speed on a paper ledger... fire at the beginning of
+        // a window without firing completely backwards... every hour on the hour test... it's okay if it's not IMMEDIATELY,
+        // just soon enough to not miss the entire move"). Paper ONLY (not in LANE_BOOK, never copied). Exempt from the
+        // opening floor; in exchange it must see a pushed tick under 1.5 s old AND the last 3 s of ticks moving WITH its
+        // side (BTC $2+ / gold 15c+), so it cannot sell a rising burst or buy a falling one. Ledger: data/fast-open.jsonl.
+        if (tf === 5) lanes.push([`ogp5-fast`, [...sess, ...lines(p, tf)], false]);
+        // pink + this 5m candle's open for the all-books "no long into a pink break while falling" door check (engine)
+        if (tf === 5) { try { const pkL = (lines(p, tf) as any[]).find((l) => l.name === "5m PP"); const f0 = Math.floor(now / 300) * 300; const in0 = closed1m.filter((x) => x.t >= f0); const o0 = in0.length ? in0[0].o : (last1m ? last1m.c : 0); if (pkL) ((globalThis as any).__pinkNow ||= {})[id] = { at: Date.now(), pp: Number(pkL.price), fiveOpen: o0, frame: f0 }; } catch {} }
+        // GOLD WAITS A MINUTE (Oct 15, Love: "let's run a new paper twin that does that though. i want to see how she does over
+        // night. if she does better we'll institute that"): the fast twin exactly, except a GOLD entry inside the first 60 s of a
+        // 5m candle is not booked - she keeps watching, and once the 5m candle is a minute old her laws decide. Paper only.
+        if (tf === 5) lanes.push([`ogp5-gw`, [...sess, ...lines(p, tf)], false]);
+        // PAPER (Oct 16 ~5:00 AM PT, Love: "we run paper books of the request i made" - "Both, as two books"):
+        //  ogp5-lock: the twin with the 4:50 rules on BOTH assets (last-candle break needs a 5m close + same-candle lock).
+        //  ogp5-btco: BTC on her own BTC band laws + red-zone rejection = short, green-zone rejection = long, and no long at a
+        //             red-zone band (5m R1/R2) while the 5m candle is falling. BTC only.
+        if (tf === 5) lanes.push([`ogp5-lock`, [...sess, ...lines(p, tf)], false]);
+        if (tf === 5 && id === "btc") lanes.push([`ogp5-btco`, [...sess, ...lines(p, tf)], false]);
+        // BOLLINGER BOOK (Oct 15, Love: "let's add a paper book that trades gold and btc off the... bollinger bands too pls. i want
+        // to see if they do any better"): the live fast twin exactly - her BTC band laws, her gold laws - with the 5m Bollinger
+        // bands (20 x 5m closes, 2 sd) added to the bands she reads. Paper only.
+        if (tf === 5) { const bbX = fiveMinFrame(b, Date.now() / 1000); const uX = sess[0]?.unit ?? 1; lanes.push([`ogp5-boll`, [...sess, ...lines(p, tf), ...(bbX ? [{ name: "5m BB upper", price: bbX.bbU, unit: uX }, { name: "5m BB lower", price: bbX.bbL, unit: uX }] : [])], false]); }
+        // GOLD RED/GREEN (Love, Oct 15 ~3:30 PM PT: "a new book for gold, pivot bands only. short on red, buy on green.
+        // same rules as our current book for the pink pivot in the middle - trade the break or the rejection"). Paper only.
+        // 5m pivot lines ONLY (no session bands): any setup at a red line (R1/R2) is a SHORT, at a green line (S1/S2) a
+        // LONG; the pink (PP) trades only its break or its rejection, in that entry's own direction - no positional "On PP".
+        if (tf === 5 && id === "gold") lanes.push([`gold-rg`, lines(p, tf), false]);
+        // PUSH VETO twin (Love, Oct 15 ~2:00 PM PT: "let's run it on a paper twin and see if it effects her negatively or
+        // positively"): her 5M book exactly, but a Bounce/Rejected entry is vetoed while the last 3 s of ticks push AGAINST
+        // it (BTC $2+, gold 15c+). Breaks and "On" entries untouched. Paper only. Vetoes -> data/push-veto.jsonl.
+        if (tf === 5) lanes.push([`ogp5-pv`, [...sess, ...lines(p, tf)], useOld]);
+        if (tf === 5) lanes.push([`brk-sess`, [...sess], false]);
+        if (tf === 5 || tf === 10 || tf === 15) lanes.push([`brk${tf}`, [...sess, ...lines(p, tf)], false]);
+        // BAND LOCK FEED (Oct 16 ~1:05 PM PT, Love): the twin's live band list for the door + last gate, and the goldLaw self-test.
+        if (id === "gold" || id === "btc") {
+          try {
+            const fl = (lanes as any[]).find((x) => x[0] === "ogp5-fast");
+            if (fl) ((globalThis as any).__lawBands ||= {})[id] = { at: Date.now(), L: (fl[1] as any[]).map((l) => ({ name: String(l.name), price: Number(l.price) })).filter((l) => l.price > 0) };
+            const GS = globalThis as any;
+            if (!GS.__bandSelfAt || Date.now() - GS.__bandSelfAt > 600000) { GS.__bandSelfAt = Date.now(); void import("./bandlock").then((mm) => mm.bandSelfTest(goldLaw)).catch(() => { GS.__bandLawBroken = true; }); }
+          } catch {}
+        }
+        for (const [lane, L, legacy] of lanes) {
+          // BRK15 FAST (Oct 15 ~4:45 PM PT, Love: "let's get the other book set up to handle the execution speed without
+          // failing and firing backwards" - the BREAK BOOK 15M PIVOTS is her fallback if the fast twin has issues live).
+          // Same recipe as the fast twin: may fire pre-floor, and EVERY entry needs the fresh-tick + push-with-side gate.
+          // BRK10 FAST added too (Oct 15 ~4:55 PM PT, Love: "install the same rails for the 10m version and we'll see
+          // how they do over the hour. if no backwards fires, we will put one of them on for the day").
+          if (preFloor && lane !== "ogp5-fast" && lane !== "ogp5-gw" && lane !== "ogp5-boll" && lane !== "brk15" && lane !== "brk10") continue;
+          // TICKET BACK (Oct 13 ~11:45 PM PT, Love: "yes plssss put that in"; replay of 44 refused windows: 24 later setups,
+          // 17W 7L, +$407 at $20). If the copier REFUSED her lane's trade (backwards / band in the way / band at the target),
+          // that trade no longer uses up her window: the lane may book its next valid, different setup (up to 3 a window).
+          // Kalshi still gets one trade per window, and her hand trades still come first.
+          const mine = rows.filter((r) => r.ticker === m.ticker && r.lane === lane);
+          let reId = "";
+          let flipFrom: any = null;
+          if (mine.length) {
+            // NEXT OPPORTUNITY (Oct 15 ~11:15 AM PT, Love: "change her mind on a DECISION not an EXECUTION... to not skip a
+            // potential short because she initially wanted to go long. if she missed the opportunity, she should take the
+            // NEXT OPPORTUNITY to present itself"). Her row in a window is a decision; it only spends the window once Kalshi
+            // EXECUTED it. If the copy did not execute (blocked, missed, no quote, refused, you held the window by hand) and
+            // a new setup appears, the unexecuted row is retired ("missed on Kalshi: took the next setup") and the new one
+            // is booked (":n2", up to nextOpportunityMax 3 a window). The other side is always a new setup; the same side
+            // only once the old copy is finally refused/missed (not while it is still trying). Windows where live is not
+            // playing at all (her off hours, BTC-only live, live off) stand as paper: paper executed. The earlier
+            // "change her mind" (closing an EXECUTED trade to reverse) was my misreading: live-switch changeMind stays false.
+            let noOn = true, noMax = 3;
+            try { const swn = JSON.parse(readFileSync(D("live-switch.json"), "utf8")); noOn = swn?.nextOpportunity !== false; noMax = Math.max(2, Math.min(4, Number(swn?.nextOpportunityMax) || 3)); } catch {}
+            const cur = mine.find((r) => r.result === "open");
+            // her twins swap the decision in place (see CHANGE HER MIND below), so count the changes per window here
+            const chgKey = `${m.ticker}:${lane}`;
+            const chgN = /^ogp5-(fast|gw|boll|lock|btco)$/.test(lane) ? Number(((globalThis as any).__chgN ||= {})[chgKey] || mine.length) : mine.length;
+            if (noOn && cur && /^(sp|ogp)\d+$|^ogp5-(fast|gw|boll|lock|btco)$/.test(lane) && chgN < noMax) {
+              const G = globalThis as any;
+              if (!G.__pivDone || Date.now() - G.__pivDone.at > 2000) { try { G.__pivDone = { at: Date.now(), d: JSON.parse(readFileSync(D("live-book-done.json"), "utf8")) }; } catch { G.__pivDone = { at: Date.now(), d: {} }; } }
+              const v = (G.__pivDone.d || {})[`${cur.ticker}:${lane}:${cur.id}`];
+              const executed = v && (v.status === "filled" || v.status === "partial" || (v.status === "resting" && v.orderId) || v.reason === "already");
+              const notLive = v && v.status === "skipped" && /sits out|trades [A-Z]+ only|LIVE OFF|not a live book|only right now|paper closed it/.test(String(v.reason || ""));
+              const terminal = v && v.final === true;
+              if (v && !executed && !notLive) {
+                const nl = decide(L, a, last1m, legacy, legacy ? [] : closed1m);
+                if (nl && (nl.side !== cur.side || (terminal && nl.label !== cur.label))) { flipFrom = cur; (flipFrom as any).__why = String(v.reason || v.firstReason || v.status || "did not execute"); reId = `:n${chgN + 1}`; }
+              }
+            }
+            if (!flipFrom) {
+            // Oct 14 ~1:20 PM PT (Love: put her back where she was): live-switch ticketBack:false = one ticket per window again.
+            let tbOn = true;
+            try { tbOn = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.ticketBack !== false; } catch {}
+            if (!tbOn || !/^(sp|ogp)\d+$|^ogp5-(fast|gw|boll|lock|btco)$/.test(lane) || mine.length >= 3) continue;
+            const G = globalThis as any;
+            if (!G.__pivDone || Date.now() - G.__pivDone.at > 2000) { try { G.__pivDone = { at: Date.now(), d: JSON.parse(readFileSync(D("live-book-done.json"), "utf8")) }; } catch { G.__pivDone = { at: Date.now(), d: {} }; } }
+            const dn = G.__pivDone.d || {};
+            const refused = mine.every((r) => { const v = dn[`${r.ticker}:${lane}:${r.id}`]; return v && /band never broke|nav band in the way|REFUSED|band at the target/.test(`${v.reason || ""} ${v.firstReason || ""}`); });
+            if (!refused) continue;
+            reId = `:t${mine.length + 1}`;
+            }
+          }
+          let look = lane.startsWith("brk") ? breakDecide(L, a, last1m) : decide(L, a, last1m, legacy, legacy ? [] : closed1m);
+          // HER ORDER (Love, Oct 13 ~6:05 AM PT: "a wick/poke through and clear rejection is the entry and a clear visible
+          // candle push through a band is a break... a tap at the line and rejection off of it is it, if it breaks thru at all
+          // it is short"): 1) a candle that CLOSES through a band (any amount) = the break, taken as is; 2) otherwise a tap /
+          // wick through a band whose body stays on its side = the rejection entry in the rejection's direction; 3) otherwise
+          // her positional "On a band" entry. A positional entry the rejection overrides is booked as "<lane>-rej" (paper).
+          // Oct 13 ~12:20 PM PT (Love: "it will put the TREND ASSASSIN one from yesterday back on exactly as she was right?"):
+          // whenever a book trades the all-day model (hybrid outside the channel, or TREND ASSASSIN mode) it is EXACTLY that
+          // model: none of today's bounce / rejection / price-side rules.
+          const liveLane = bounceOn && !legacy && /^(sp|ogp)\d+(-hybc?|-smi|-px|-bb|-knn)?$|^ogp5-(fast|gw|boll|lock|btco)$/.test(lane);
+          const isBreak = !!look && /^Close (below|above) /.test(look.label);
+          if (liveLane && !isBreak) {
+            const bounce = bounceLook(L, a, last1m, id);
+            if (bounce) {
+              if (look && look.side !== bounce.side) {
+                const rl = `${lane.replace(/-hyb$/, "")}-rej${lane.endsWith("-hyb") ? "h" : ""}`;
+                if (!rows.some((r) => r.ticker === m.ticker && r.lane === rl)) {
+                  const ask0 = Number(look.side === "up" ? m.yesAsk : m.noAsk);
+                  if (ask0 > 0.02 && ask0 < 0.98 && 1 / ask0 >= 1.38) {
+                    rows.unshift({ id: `${m.ticker}:${rl}`, lane: rl, at: new Date().toISOString(), asset: id, ticker: m.ticker, side: look.side, label: `${look.label} (overridden: ${bounce.label})`, ask: r2(ask0), multiple: r2(1 / ask0), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(STAKE / ask0, ask0), peak: ask0, lastBid: 0, result: "open", exit: null, pnl: null });
+                    changed = true;
+                  }
+                }
+              }
+              look = bounce;
+            }
+          }
+          // HER FOUR GOLD LAWS, NOTHING ELSE (Oct 15, Love: "a break of any band is a trade in that direction / red candle
+          // broke through a band & falling away = trade down / green candle broke through & shooting up = trade up / a
+          // rejection off the green pivot zone is a long / a rejection off the red pivot zone is a short / nothing else no
+          // exceptions"). Gold on her live twin (and its gold-waits paper twin): ONLY goldlaw.ts decides - every other gold
+          // read, flip and filter below is skipped. No call = no gold trade. BTC untouched.
+          let goldCall: ReturnType<typeof goldLaw> = null;
+          let goldTick = 0;
+          // BTC TOO (Oct 16 ~4:33 AM PT, Love: "absolutely apply all the rules we instituted for gold on btc. everything i asked
+          // you for. nothing. else."): BTC on her twins now decides by the same laws (goldlaw.ts).
+          if ((id === "gold" || id === "btc") && /^ogp5-(fast|gw|boll|lock)$/.test(lane)) {
+            const qL = quoteTick(id);
+            const fsL = Math.floor(now / 300) * 300;
+            const inL = closed1m.filter((x) => x.t >= fsL);
+            const openL = inL.length ? inL[0].o : (last1m ? last1m.c : 0);
+            goldTick = qL && Date.now() - qL.at <= 3000 ? qL.c : 0;
+            const prevL = closed1m.filter((x) => x.t >= fsL - 300 && x.t < fsL);
+            // BROKEN BANDS (Oct 16, Love: a band a 5m candle closed through stays broken until a later 5m candle closes back on
+            // the other side). Each 5m candle is judged against the band levels of ITS OWN time (recorded here as they happen).
+            const GH = globalThis as any;
+            const hist: Record<number, Record<string, number>> = (GH.__gBandHist ||= {});
+            hist[fsL] = Object.fromEntries(L.map((l: any) => [l.name, Number(l.price)]));
+            for (const k of Object.keys(hist)) if (Number(k) < fsL - 300 * 60) delete hist[Number(k)];
+            const broken: { name: string; side: "up" | "down" }[] = [];
+            {
+              const frames = Object.keys(hist).map(Number).filter((f) => f + 300 <= now).sort((x, y) => x - y);
+              const candles = frames.map((f) => { const bs = closed1m.filter((x) => x.t >= f && x.t < f + 300); return bs.length ? { f, o: bs[0].o, c: bs[bs.length - 1].c } : null; }).filter(Boolean) as { f: number; o: number; c: number }[];
+              for (const l of L) {
+                let st: "up" | "down" | null = null;
+                for (const k of candles) {
+                  const lv = hist[k.f]?.[l.name];
+                  if (!(lv > 0)) continue;
+                  if (k.o > lv && k.c < lv) st = "down";
+                  else if (k.o < lv && k.c > lv) st = "up";
+                  else if (st === "down" && k.c > lv) st = null;
+                  else if (st === "up" && k.c < lv) st = null;
+                }
+                if (st) broken.push({ name: l.name, side: st });
+              }
+            }
+            // the first band break price makes in this 5m candle locks the candle's direction (goldlaw.ts SAME-CANDLE LOCK)
+            const lk: Record<string, { f: number; side: "up" | "down" }> = ((globalThis as any).__firstBrk ||= {});
+            const lkKey = `${id}:${lane}`;
+            if (!lk[lkKey] || lk[lkKey].f !== fsL) {
+              const crossedUp = goldTick > 0 && openL > 0 && (L as any[]).some((l) => openL < l.price && goldTick > l.price);
+              const crossedDn = goldTick > 0 && openL > 0 && (L as any[]).some((l) => openL > l.price && goldTick < l.price);
+              if (crossedUp !== crossedDn) lk[lkKey] = { f: fsL, side: crossedUp ? "up" : "down" };
+            }
+            const lockSide = lk[lkKey]?.f === fsL ? lk[lkKey].side : null;
+            // gold (every lane) + the ogp5-lock paper book: 4:50 rules on. BTC on the twin + gw/boll: as she was at 4:45 (Love: "As she was at 4:45").
+            // Oct 16 ~5:04 AM PT (Love: "no we can't have that on. let's take that off for gold too"): the 4:50 rules are OFF for gold
+            // too - only the ogp5-lock paper book runs them.
+            const rules450 = lane === "ogp5-lock";
+            goldCall = goldTick > 0 ? goldLaw(L, goldTick, { open: openL, bars: inL }, prevL.length ? { open: prevL[0].o, bars: prevL } : null, last1m, broken, rules450 ? lockSide : null, rules450) : null;
+            look = goldCall ? { side: goldCall.side, label: goldCall.label } : null;
+            if (goldCall) { try { appendFileSync(D("gold-law.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, kind: goldCall.kind, from: goldCall.from, side: goldCall.side, band: goldCall.band.name, bandPx: r2(goldCall.band.price), tick: goldTick, fiveOpen: r2(openL), last1m: last1m ? { l: r2(last1m.l), h: r2(last1m.h), c: r2(last1m.c) } : null }) + "\n"); } catch {} }
+          }
+          if (lane === "ogp5-btco") {
+            if (id !== "btc") continue;
+            const qB = quoteTick(id);
+            const tkB = qB && Date.now() - qB.at <= 3000 ? qB.c : 0;
+            const fsB = Math.floor(now / 300) * 300;
+            const inB = closed1m.filter((x) => x.t >= fsB);
+            const oB = inB.length ? inB[0].o : (last1m ? last1m.c : 0);
+            const prB = closed1m.filter((x) => x.t >= fsB - 300 && x.t < fsB);
+            const zB = tkB > 0 ? zoneRejection(L as any, tkB, { open: oB, bars: inB }, prB.length ? { open: prB[0].o, bars: prB } : null) : null;
+            if (zB) look = { side: zB.side, label: zB.label } as any;
+            else if (look && look.side === "up" && tkB > 0 && oB > 0 && tkB < oB && /5m R[12]\b/.test(String(look.label))) look = null;
+          }
+          if (!look) continue;
+          if (lane === "ogp5-gw" && id === "gold" && now - Math.floor(now / 300) * 300 < 60) continue;
+          if (lane === "ogp5-pv" && /^(Bounce|Rejected)/.test(look.label)) {
+            const push = tickPush(id, 3000);
+            const dead = id === "btc" ? 2 : 0.15;
+            if (push && (look.side === "down" ? push.d >= dead : push.d <= -dead)) {
+              try { appendFileSync(D("push-veto.jsonl"), JSON.stringify({ at: new Date().toISOString(), asset: id, ticker: m.ticker, vetoed: { side: look.side, label: look.label }, push3s: r2(push.d) }) + "\n"); } catch {}
+              continue;
+            }
+          }
+          if (lane === "gold-rg") {
+            const bandM = /\d+m (PP|R1|R2|S1|S2)/.exec(look.label);
+            const bandT = bandM ? bandM[1] : "";
+            if (bandT === "R1" || bandT === "R2") { if (look.side !== "down") look = { side: "down", label: `Short on red ${bandT} (${look.label})` }; }
+            else if (bandT === "S1" || bandT === "S2") { if (look.side !== "up") look = { side: "up", label: `Buy on green ${bandT} (${look.label})` }; }
+            else if (bandT === "PP" && /^On /.test(look.label)) continue;
+            else if (!bandT) continue;
+          }
+          // PUSH GATE PULLED OFF THE TWIN (Oct 15, Love: "yeah get rid of that dude respectfully i never asked you for
+          // that and it made her skip a huge long... get rid of THAT - keep everything else"): the 15c/3s push floor and
+          // 1.5s tick check were my invention, never her rule - a steady $1/min gold climb failed the burst test while the
+          // trade walked away (the 03:45 5m PP break). ogp5-fast books what her 5M book books, the moment it books it.
+          // brk10/brk15 keep the rails on paper (her ask: "install the same rails for the 10m version and we'll see").
+          if (lane === "brk15" || lane === "brk10") {
+            const q = quoteTick(id);
+            if (!q || Date.now() - q.at > 1500) continue;
+            const push = tickPush(id, 3000);
+            const dead = id === "btc" ? 2 : 0.15;
+            if (!push || (look.side === "up" ? !(push.d >= dead) : !(push.d <= -dead))) continue;
+            try { appendFileSync(D("fast-open.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look.side, label: look.label, into: Math.round(900 - left), spot: r2(Number(a?.spot) || 0), tick: q.c, tickAgeMs: Date.now() - q.at, push3s: r2(push.d) }) + "\n"); } catch {}
+          }
+          // NEVER WITHOUT AN ANSWER (Oct 15, Love: "yes absolutely never - not have an answer for me please"): every twin
+          // signal held or skipped AFTER the speed gate writes one line - rule, band, tick, ask - to fast-skip.jsonl.
+          const skipNote = (rule: string, extra: Record<string, unknown>) => { if (lane !== "ogp5-fast") return; try { const qS = quoteTick(id); appendFileSync(D("fast-skip.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look?.side, label: look?.label, rule, tick: qS ? qS.c : null, ask: r2(Number(look?.side === "up" ? m.yesAsk : m.noAsk) || 0), ...extra }) + "\n"); } catch {} };
+          // PIVOT CHECK IN HER BRAIN (Oct 14 ~9:00 AM PT, Love: "wait why does she just never go in"). The gold pivot gate used to
+          // sit only at Kalshi's door: she booked the long, the door held it, and if the pink rejected she had already spent her
+          // ticket for the window. Now she checks the 5m red/pink/green walls and the no-chasing rule BEFORE she books: a blocked
+          // look is not booked, she keeps watching, and the same window can still give her the short off the rejection or the
+          // long on the break. Gold, her live 5M books (live-switch pivotZoneTerminal.gold).
+          if (!goldCall && id === "gold" && /^(sp|ogp)\d+(-hybc?|-smi|-px|-bb|-knn)?$|^ogp5-(fast|gw|boll|lock|btco)$/.test(lane)) {
+            let pzOn = false, pzC: any = undefined;
+            try { const swz = JSON.parse(readFileSync(D("live-switch.json"), "utf8")); pzOn = swz?.pivotZoneTerminal?.gold === true; pzC = swz?.pivotZone?.gold; } catch {}
+            if (pzOn) {
+              const ckB = pivotZoneCheck("gold", look.side, Number(a?.spot) || 0, pzC);
+              if (!ckB || ckB.block) {
+                const rlB = `${lane.replace(/-hybc?$/, "")}-held`;
+                if (ckB && !rows.some((r) => r.ticker === m.ticker && r.lane === rlB && r.side === look!.side)) {
+                  const askB = Number(look.side === "up" ? m.yesAsk : m.noAsk);
+                  if (askB > 0.02 && askB < 0.98) {
+                    rows.unshift({ id: `${m.ticker}:${rlB}:${look.side}`, lane: rlB, at: new Date().toISOString(), asset: id, ticker: m.ticker, side: look.side, label: `${look.label} (held, still watching: ${ckB.why})`, ask: r2(askB), multiple: r2(1 / askB), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(STAKE / askB, askB), peak: askB, lastBid: 0, result: "open", exit: null, pnl: null });
+                    changed = true;
+                  }
+                }
+                skipNote("gold pivot zone", { why: ckB?.why || "no zone read" });
+                continue;
+              }
+            }
+          }
+          // PRICE IS WHERE IT IS (Love, Oct 13 ~6:15 AM PT: "she follows the body of the candle and where price actively is. if
+          // price is on the wrong side of the band, she doesn't trade the other direction... that rule alone would save that
+          // instance"). Her live books: a short off / through a band needs price to be UNDER that band right now, a long needs
+          // it OVER. Gold 4:30 AM: the candle closed 7c under the 15m PP, then flipped and shot back over it; no short there.
+          // GOLD ROOM (Oct 14 ~12:10 AM PT, Love: "$2.22"; replay of 155 gold trades since Sunday on HER CHART's session bands
+          // = VWAP, +/-1, 2, 3σ: skipping trades with one of those bands unbroken within $2.22 ahead -> 59% wins, +$267 vs 56%,
+          // +$161). Gold only (on BTC the same rule cost $200-400). No long with one of her chart's session bands less than $2.22
+          // above price, no short with one less than $2.22 below. live-switch goldBandRoom { on, dollars }.
+          if (!goldCall && id === "gold" && /^(sp|ogp)\d+(-hybc?|-smi|-px|-bb|-knn)?$|^ogp5-(fast|gw|boll|lock|btco)$/.test(lane)) {
+            let gr: any = { on: true, dollars: 2.22 };
+            try { gr = { ...gr, ...(JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.goldBandRoom || {}) }; } catch {}
+            const spotG = Number(a?.spot) || 0;
+            if (gr.on !== false && spotG > 0) {
+              const vis = sess.filter((l) => l.name === "session VWAP" || /^[+-][123]σ$/.test(l.name));
+              const ah = vis.filter((l) => (look!.side === "up" ? l.price > spotG : l.price < spotG)).sort((x, y) => Math.abs(x.price - spotG) - Math.abs(y.price - spotG))[0];
+              // SHORTS GO FREE (Oct 14 ~4:20 AM PT, Love: "we don't block her shorts if they're hitting that often"): her 5M book's
+              // gold shorts within $1 of a session band won 71% (+$58); longs into one won 31% (-$100). goldBandRoom.down = 0 = off.
+              const grLim = look.side === "down" && gr.down != null ? Number(gr.down) : Number(gr.dollars || 2.22);
+              if (ah && grLim > 0 && Math.abs(ah.price - spotG) < grLim) {
+                const rl = `${lane.replace(/-hybc?$/, "")}-rej${/-hybc?$/.test(lane) ? "h" : ""}`;
+                if (!rows.some((r) => r.ticker === m.ticker && r.lane === rl)) {
+                  const ask0 = Number(look.side === "up" ? m.yesAsk : m.noAsk);
+                  if (ask0 > 0.02 && ask0 < 0.98) {
+                    rows.unshift({ id: `${m.ticker}:${rl}`, lane: rl, at: new Date().toISOString(), asset: id, ticker: m.ticker, side: look.side, label: `${look.label} (skipped: ${ah.name} ${look.side === "up" ? "above" : "below"}, unbroken, $${Math.abs(ah.price - spotG).toFixed(2)} away)`, ask: r2(ask0), multiple: r2(1 / ask0), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(STAKE / ask0, ask0), peak: ask0, lastBid: 0, result: "open", exit: null, pnl: null });
+                    changed = true;
+                  }
+                }
+                skipNote("gold band room ($2.22)", { band: ah.name, bandPx: r2(ah.price), spot: r2(spotG), away: r2(Math.abs(ah.price - spotG)) });
+                continue;
+              }
+            }
+          }
+          // BAND SNAPSHOT (Oct 13 ~9:25 PM PT): every live-lane row keeps the band it traded, live price and the last close.
+          let lnSnap: { name: string; price: number; spot: number; close: number } | null = goldCall ? { name: goldCall.band.name, price: r2(goldCall.band.price), spot: r2(goldTick), close: r2(Number(last1m?.c) || 0) } : null;
+          if (!goldCall && !legacy && /^(sp|ogp)\d+(-hybc?|-smi|-px|-bb|-knn)?$|^ogp5-(fast|gw|boll|lock|btco)$/.test(lane)) {
+            const nm = /^(?:On|Close below|Close above|Break below|Break above|Bounce off|Rejected off) (.+)$/.exec(look.label)?.[1];
+            const ln = nm ? L.find((l) => l.name === nm) : undefined;
+            const spotNow = Number(a?.spot) || 0;
+            if (ln) lnSnap = { name: ln.name, price: r2(ln.price), spot: r2(spotNow), close: r2(Number(last1m?.c) || 0) };
+            // ON A BAND = BODY AND PRICE AGREE (Love, Oct 13 ~2:05 PM PT, BTC 2:00 PM: she went long "On 15m R1" because live
+            // price had poked $3 over the R1 while the last candle closed $24 under it, i.e. price tapping up INTO the band
+            // from below). For "On X": the last closed candle must be on the trade's side of X as well; a live poke through
+            // with the body still on the other side is a tap, not a trade (the tap's rejection or the break decides).
+            const lastC = Number(last1m?.c) || 0;
+            const pokeOnly = ln && /^On /.test(look.label) && lastC > 0 && (look.side === "up" ? lastC < ln.price : lastC > ln.price);
+            if (ln && spotNow > 0 && (pokeOnly || (look.side === "down" ? spotNow >= ln.price : spotNow <= ln.price))) {
+              const rl = `${lane.replace(/-hyb$/, "")}-rej${lane.endsWith("-hyb") ? "h" : ""}`;
+              if (!rows.some((r) => r.ticker === m.ticker && r.lane === rl)) {
+                const ask0 = Number(look.side === "up" ? m.yesAsk : m.noAsk);
+                if (ask0 > 0.02 && ask0 < 0.98 && 1 / ask0 >= 1.38) {
+                  rows.unshift({ id: `${m.ticker}:${rl}`, lane: rl, at: new Date().toISOString(), asset: id, ticker: m.ticker, side: look.side, label: `${look.label} (skipped: ${pokeOnly ? `only poking ${look.side === "up" ? "over" : "under"} ${ln.name}, candle closed ${look.side === "up" ? "under" : "over"} it` : `price back ${look.side === "down" ? "over" : "under"} ${ln.name}`})`, ask: r2(ask0), multiple: r2(1 / ask0), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(STAKE / ask0, ask0), peak: ask0, lastBid: 0, result: "open", exit: null, pnl: null });
+                  changed = true;
+                }
+              }
+              skipNote("on-a-band body rule", { band: ln!.name, bandPx: r2(ln!.price), spot: r2(spotNow), lastClose: r2(lastC), poke: !!pokeOnly });
+              continue;
+            }
+          }
+          if (lane === "ogp5-bb" || lane === "ogp5-knn") {
+            const fr = fiveMinFrame(b, Date.now() / 1000);
+            if (!fr) continue;
+            if (lane === "ogp5-bb" && (look.side === "up" ? fr.close >= fr.bbU : fr.close <= fr.bbL)) continue;
+            const spK = Number(a?.spot) || fr.close;
+            if (lane === "ogp5-knn" && (look.side === "up" ? !(spK < fr.knn) : !(spK > fr.knn))) continue;
+          }
+          if (lane === "ogp5-px") {
+            const a0 = Number(look.side === "up" ? m.yesAsk : m.noAsk);
+            if (a0 >= 0.4 && a0 < 0.5) continue;
+          }
+          if (lane === "ogp5-smi") {
+            const pend = (((g as any).__smiPend ||= {}) as Record<string, { side: string; label: string; line?: number }>);
+            const gap = smiGap(b, id === "btc" ? 1 : 5, Date.now() / 1000);
+            const ok = gap != null && (look.side === "up" ? gap > 0 : gap < 0);
+            if (!ok) { pend[m.ticker] = { side: look.side, label: look.label }; continue; }
+            if (pend[m.ticker]?.side === look.side) look = { ...look, label: `${look.label} (waited for the SMI cross)` };
+          }
+          // PRICE'S SIDE OF THE BAND DECIDES, AT ORDER TIME (Love, Oct 15 ~2:45 PM PT: "HAVE HER TAKE THE TRADE IN THE
+          // DIRECTION PRICE IS AT OVER/UNDER THE BAND... price over/under a band = get. in. break = get. in. rejection =
+          // get. in. either direction throughout the window... do notttttt let her skip the entire window because the
+          // initial direction she wanted changed"). Her live lanes only: whatever the trigger (break / rejection / on the
+          // band), the SIDE she enters is the side of that band her live tick is on the moment she books. Price crossed
+          // while she decided (the 2:15 PM short that filled with price already over the pink) = she takes the OTHER
+          // direction, never a skip. A tick within $2 BTC / 15c gold of the line is ON the line: the original read stands.
+          // HER FAST TWIN RUNS EVERY LANE RULE (Oct 15, Love: "assume that EVERY FIX I ASKED OF YOU applies to the book
+          // that's actually running and not just paper... she needs to short there"): ogp5-fast now carries this side
+          // rule plus next-opportunity, ticket-back, bounce/rejection, gold pivot zone, gold band room and the on-a-band
+          // body check above. The $25 session-room rule below stays OFF for the twin - her order, same day.
+          if (!goldCall && /^(sp|ogp)\d+$|^ogp5-(fast|gw|boll|lock|btco)$/.test(lane)) {
+            const bandName = look.label.replace(/^(On|Close above|Close below|Bounce off|Rejected off|Break above|Break below) /, "").replace(/ \(.*$/, "");
+            const lnX = L.find((l) => l.name === bandName);
+            const qX = quoteTick(id);
+            if (lnX && qX && Date.now() - qX.at <= 3000) {
+              const tol = id === "btc" ? 2 : 0.15;
+              const pSide = qX.c >= lnX.price + tol ? "up" : qX.c <= lnX.price - tol ? "down" : null;
+              if (pSide && pSide !== look.side) {
+                try { appendFileSync(D("side-flip.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, band: lnX.name, bandPx: r2(lnX.price), tick: qX.c, was: { side: look.side, label: look.label }, now: pSide }) + "\n"); } catch {}
+                look = { side: pSide, label: `${pSide === "up" ? "Over" : "Under"} ${lnX.name} at entry (was: ${look.label})` };
+              }
+            }
+          }
+          // FALLING AWAY FROM A BAND = SHORT (Oct 15, Love: "falling away from a band = short / red 5M candle at the
+          // window, price falling away from a band = short. that's what was happening here. i think the chart just proved
+          // that" - her ruling on the 04:00:36 gold long: tick 2c over the +2.5σ while the live 5m candle was 31c red and
+          // gold fell $19 in 2 min; the instant tick lied, her 5m candle did not). At order time, a LONG off/at a band
+          // (On / Close / Break reads; her tap-rejection and bounce entries keep their own Oct 13 law) with the live 5M
+          // candle red and the tick not clear of the band (on the line or under) IS price falling away: she shorts it
+          // instead - never a skip. Longs clearly over the band stand. No new numbers: the on-the-line tolerance is the
+          // same disclosed $2 BTC / 15c gold.
+          // NO EXEMPTIONS (Oct 15, Love: "if price is FALLING THRU THE BAND - SHORT - DO NOT LONG"): the bounce/
+          // rejection carve-out below was Claude's judgment call, not hers, and it let the 05:45 gold bounce long fill
+          // while the pivot was giving way. EVERY long read off a band - bounce included - obeys falling-away now.
+          if (!goldCall && (/^(sp|ogp)\d+$|^ogp5-(fast|gw|boll|lock|btco)$/.test(lane)) && look.side === "up") {
+            const bandNameF = look.label.replace(/^(On|Close above|Close below|Bounce off|Rejected off|Break above|Break below) /, "").replace(/ \(.*$/, "");
+            const lnF = L.find((l) => l.name === bandNameF);
+            const qF = quoteTick(id);
+            const tolF = id === "btc" ? 2 : 0.15;
+            if (lnF && qF && Date.now() - qF.at <= 3000 && qF.c <= lnF.price + tolF) {
+              const fs0 = Math.floor(now / 300) * 300;
+              const inFrameF = closed1m.filter((x) => x.t >= fs0);
+              const fiveOpenF = inFrameF.length ? inFrameF[0].o : (last1m ? last1m.c : 0);
+              if (fiveOpenF > 0 && qF.c < fiveOpenF) {
+                try { appendFileSync(D("falling-away.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, band: lnF.name, bandPx: r2(lnF.price), tick: qF.c, fiveOpen: r2(fiveOpenF), was: { side: look.side, label: look.label } }) + "\n"); } catch {}
+                look = { side: "down", label: `Falling away from ${lnF.name}, red 5m (was: ${look.label})` };
+              }
+            }
+          }
+          // RISING THROUGH A BAND = LONG (Oct 15, Love: "current candle breaking band & going up = long"; candle confirmed
+          // as the live 5M, same as her falling-away law). The mirror: at order time, a SHORT read off a band with the live
+          // 5M candle green (tick over where the 5m opened) and the tick at or over the band flips to long - never a skip.
+          if (!goldCall && (/^(sp|ogp)\d+$|^ogp5-(fast|gw|boll|lock|btco)$/.test(lane)) && look.side === "down") {
+            const bandNameR = look.label.replace(/^(On|Close above|Close below|Bounce off|Rejected off|Break above|Break below) /, "").replace(/ \(.*$/, "");
+            const lnR = L.find((l) => l.name === bandNameR);
+            const qR = quoteTick(id);
+            const tolR = id === "btc" ? 2 : 0.15;
+            if (lnR && qR && Date.now() - qR.at <= 3000 && qR.c >= lnR.price - tolR) {
+              const fsR = Math.floor(now / 300) * 300;
+              const inFrameR = closed1m.filter((x) => x.t >= fsR);
+              const fiveOpenR = inFrameR.length ? inFrameR[0].o : (last1m ? last1m.c : 0);
+              if (fiveOpenR > 0 && qR.c > fiveOpenR) {
+                try { appendFileSync(D("rising-through.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, band: lnR.name, bandPx: r2(lnR.price), tick: qR.c, fiveOpen: r2(fiveOpenR), was: { side: look.side, label: look.label } }) + "\n"); } catch {}
+                look = { side: "up", label: `Rising through ${lnR.name}, green 5m (was: ${look.label})` };
+              }
+            }
+          }
+          // GOLD: A REJECTION OFF THE GREEN PIVOT ZONE IS A LONG (Oct 15, Love: "just change it be for the pivot zone luv, if
+          // she rejects off the green pivot zone that is a long. simple" - replaces the broader live-candle rule from minutes
+          // before). Gold, at order time: the last 1m candle dipped into the green 5m pivot zone (its low reached 5m S1, or
+          // S2), price is still above S2, and the live tick is pushing back up over that candle's close = she longs it, whatever
+          // the read was. Her live twin + its gold-waits paper twin. Log: data/green-reject.jsonl.
+          if (!goldCall && id === "gold" && /^ogp5-(fast|gw|boll|lock|btco)$/.test(lane) && look.side === "down" && last1m) {
+            const qG = quoteTick(id);
+            const s1G = L.find((l) => l.name === "5m S1");
+            const s2G = L.find((l) => l.name === "5m S2");
+            if (qG && Date.now() - qG.at <= 3000 && s1G) {
+              const touched = last1m.l <= s1G.price + POKE(id, s1G);
+              const held = !s2G || qG.c > s2G.price;
+              const pushing = qG.c > last1m.c;
+              if (touched && held && pushing) {
+                try { appendFileSync(D("green-reject.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, s1: r2(s1G.price), s2: s2G ? r2(s2G.price) : null, low1m: r2(last1m.l), close1m: r2(last1m.c), tick: qG.c, was: { side: look.side, label: look.label } }) + "\n"); } catch {}
+                look = { side: "up", label: `Rejected up off the green 5m S1 (was: ${look.label})` };
+                lnSnap = { name: s1G.name, price: r2(s1G.price), spot: r2(qG.c), close: r2(last1m.c) };
+              }
+            }
+          }
+          // NO TRADING INTO AN UNBROKEN SESSION BAND WITHIN $25 (Love, Oct 15 ~3:05 PM PT: "i don't want her to trade
+          // into an unbroken session band within $25 of her entry... i do want that rule in place for future trades").
+          // BTC, her live lanes: if a session band (VWAP or a sigma line) sits in the trade's direction within $25 of her
+          // entry price and no 1m candle closed through it in the last 3 finished candles (same freshness as her pink
+          // break), the entry is held - the window stays open for the next setup. Gold: awaiting Love's number.
+          if (/^(sp|ogp)\d+$/.test(lane) && id === "btc") {
+            const spR = Number(a?.spot) || 0;
+            const roomR = 25;
+            const tgtR = Number(a?.target) || 0;
+            // Oct 15 ~3:12 PM PT (Love: yes): only a band IN THE TRADE'S PATH holds her - an unbroken session band sitting
+            // BETWEEN her entry and the strike, within $25. Already past the strike with nothing in the way = no hold.
+            if (spR > 0 && tgtR > 0) {
+              const loR = Math.min(spR, tgtR), hiR = Math.max(spR, tgtR);
+              const aheadR = sess.filter((l) => l.price > loR && l.price < hiR && Math.abs(l.price - spR) <= roomR);
+              const brokenR = (l: Line) => closed1m.slice(-3).some((c) => (look!.side === "up" ? c.o < l.price && c.c > l.price : c.o > l.price && c.c < l.price));
+              const wallR = aheadR.find((l) => !brokenR(l));
+              if (wallR) {
+                try { appendFileSync(D("session-room.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, side: look.side, label: look.label, spot: r2(spR), band: wallR.name, bandPx: r2(wallR.price), away: r2(Math.abs(wallR.price - spR)) }) + "\n"); } catch {}
+                continue;
+              }
+            }
+          }
+          // a second ticket is for a NEW setup, not the same refused one again
+          if (reId && mine.some((r) => r.side === look!.side && r.label === look!.label)) { skipNote("same refused setup again", {}); continue; }
+          const ask = Number(look.side === "up" ? m.yesAsk : m.noAsk);
+          // 1.18x-5x (Oct 11: a 25x short with 2 min left on the strike is a lottery ticket, not her tap-at-4x).
+          // OG + PIVOT lanes keep the OG's own rule: 1.18x and up, no cap.
+          const og = lane.startsWith("ogp");
+          // 1.38x floor on every pivot / OG lane (Love, Oct 11 ~5:30 AM PT: "keep the 1.38x floor, not 1.18").
+          if (!((og ? ask > 0.02 : ask >= 0.2) && ask < 0.98) || !(1 / ask >= 1.38)) { skipNote("1.38x floor / ask bounds", { multiple: ask > 0 ? r2(1 / ask) : null }); continue; }
+          const n = STAKE / ask;
+          // Oct 12 (Love: the 3:01 PM short into a flush): the 1m candle that brought price to the line + the session sigma,
+          // so the NO FLUSH twin can tell a calm touch from a one-minute flush into the line. Record only.
+          const sdNow = Number((a?.vwap1m?.vwap ? a.vwap1m : a?.vwap5m)?.stdev) || 0;
+          const bar = last1m ? { o: r2(last1m.o), h: r2(last1m.h), l: r2(last1m.l), c: r2(last1m.c) } : null;
+          if (flipFrom) {
+            // retire the unexecuted decision; the copier stops trying it (paper no longer open) and tries this one instead
+            flipFrom.result = "missed";
+            flipFrom.exit = `missed on Kalshi (${String(flipFrom.__why || "").slice(0, 60)}): took the next setup, ${look.label}`;
+            flipFrom.pnl = null;
+            try { appendFileSync(D("next-opportunity.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, retired: { side: flipFrom.side, label: flipFrom.label, why: flipFrom.__why }, next: { side: look.side, label: look.label, ask } }) + "\n"); } catch {}
+            delete flipFrom.__why;
+          }
+          rows.unshift({ id: `${m.ticker}:${lane}${reId}`, lane, mode: /-hybc?$/.test(lane) ? (legacy ? "trend (outside 1σ)" : "channel (inside 1σ)") : /^(sp|ogp)\d+$/.test(lane) ? (lmode === "allday" ? "trend assassin (switch)" : lmode === "both" ? "both ways (switch)" : legacy ? "trend (outside 1σ)" : "channel (inside 1σ)") : undefined, at: new Date().toISOString(), asset: id, ticker: m.ticker, side: look.side, label: look.label, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null, bar, sd: r2(sdNow), band: lnSnap, ...(goldCall ? { goldLaw: { kind: goldCall.kind, floor: goldCall.floor ?? null, ceil: goldCall.ceil ?? null, frame: Math.floor(now / 300) * 300, from: goldCall.from } } : {}) });
+          changed = true;
+          // CHANGE HER MIND, DON'T OPEN-CLOSE-OPEN (Oct 16 ~1:45 AM PT, Love: "she's allowed to CHANGE HER MIND IF PRICE REACTS AT
+          // A BAND. NOT LITERALLLLLLLY OPEN A SHORT - CLOSE IT - AND OPEN A LONG."). On her twins the unexecuted decision is no
+          // longer closed out as its own trade: the new decision TAKES ITS PLACE - one position on the card that changed sides.
+          let swappedInv = false;
+          if (flipFrom && /^ogp5-(fast|gw|boll|lock|btco)$/.test(lane)) {
+            ((globalThis as any).__chgN ||= {})[`${m.ticker}:${lane}`] = Number(String(reId).replace(/\D/g, "")) || 2;
+            const fi = rows.indexOf(flipFrom);
+            if (fi >= 0) rows.splice(fi, 1);
+            if (lane === "ogp5-fast") {
+              const ii = rows.findIndex((r) => r.ticker === m.ticker && r.lane === "ogp5-inv" && r.result === "open");
+              if (ii >= 0) { rows.splice(ii, 1); swappedInv = true; }
+            }
+          }
+          void swappedInv;
+          // INVERSE BOOK (Oct 15, Love: "I WANT TO CREATE AN INVERSE BOOK ON PAPER THAT TAKES THE OPPOSITE OF WHATEVER WE TAKE...
+          // WHEN WE ARE DOING BAD WE CAN PUT IT ON THAT BOOK"): every trade her live twin books, the inverse books the other
+          // side at that side's own ask, same window, same exits. Paper only. A Kalshi-door flip of the twin flips it too.
+          if (lane === "ogp5-fast") {
+            const invSide = look.side === "up" ? "down" : "up";
+            const invAsk = Number(invSide === "up" ? m.yesAsk : m.noAsk);
+            if (invAsk > 0.02 && invAsk < 0.98) rows.unshift({ id: `${m.ticker}:ogp5-inv${reId}`, lane: "ogp5-inv", at: new Date().toISOString(), asset: id, ticker: m.ticker, side: invSide, label: `Inverse of: ${look.label}`, ask: r2(invAsk), multiple: r2(1 / invAsk), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(STAKE / invAsk, invAsk), peak: invAsk, lastBid: 0, result: "open", exit: null, pnl: null });
+          }
+          // 5M · WAITS FOR THE REJECTION 🕯️ (Oct 14 ~8:40 AM PT, Love: "oh absolutelyyy"). Paper twin of her 5M book: every
+          // trade copied as is, except "On X", which waits for the 1-minute candle it fired in to close: closed back on her
+          // side of the line = take it then at that moment's price; closed through it = skip (kept as ogp5-wait-skip at her
+          // original price so we can see what waiting saved or cost). Replay since Oct 13: gold closed-through 5 trades 20%,
+          // -$68; BTC closed-through 15 trades 67%, +$141.
+          if (lane === "ogp5" && !reId) {
+            try {
+              if (/^On /.test(look.label)) {
+                const lnW = L.find((l) => l.name === look!.label.slice(3));
+                if (lnW) ((g as any).__waitPend ||= {})[`${m.ticker}`] = { ticker: m.ticker, asset: id, side: look.side, label: look.label, line: lnW.price, minute: Math.floor(Date.now() / 60000) * 60, ask: r2(ask), at: new Date().toISOString() };
+              } else if (!rows.some((r) => r.id === `${m.ticker}:ogp5-wait`)) {
+                rows.unshift({ id: `${m.ticker}:ogp5-wait`, lane: "ogp5-wait", at: new Date().toISOString(), asset: id, ticker: m.ticker, side: look.side, label: `${look.label} (no wait needed)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null });
+              }
+            } catch {}
+          }
+        }
+      }
+      status[id] = st;
+    }
+    // 🕯️ the waiting "On X" trades: decide once their entry minute has closed.
+    try {
+      const pend: Record<string, any> = ((g as any).__waitPend ||= {});
+      for (const [k, w] of Object.entries(pend)) {
+        if (Date.now() / 1000 < w.minute + 61) continue;
+        delete pend[k];
+        const barsW = g.__pivBars?.[w.asset]?.bars || [];
+        const bw = barsW.find((x: Bar) => x.t === w.minute);
+        if (!bw) continue;
+        const ok = w.side === "up" ? bw.c > w.line : bw.c < w.line;
+        const aw = assets[w.asset];
+        const mw = aw?.market;
+        const leftW = Number(aw?.secondsLeft) || 0;
+        if (ok) {
+          if (!mw?.ticker || mw.ticker !== w.ticker || leftW < 60) continue;
+          const askW = Number(w.side === "up" ? mw.yesAsk : mw.noAsk);
+          if (!(askW > 0.02 && askW < 0.95)) continue;
+          if (rows.some((r) => r.id === `${w.ticker}:ogp5-wait`)) continue;
+          rows.unshift({ id: `${w.ticker}:ogp5-wait`, lane: "ogp5-wait", at: new Date().toISOString(), asset: w.asset, ticker: w.ticker, side: w.side, label: `${w.label} · waited: the candle closed ${w.side === "up" ? "above" : "below"} it (${r2(bw.c)} vs ${r2(w.line)}); she paid ${r2(w.ask)}, this paid ${r2(askW)}`, ask: r2(askW), multiple: r2(1 / askW), secondsLeft: Math.round(leftW), intoWindow: Math.round(900 - leftW), stake: STAKE, fee: fee(STAKE / askW, askW), peak: askW, lastBid: 0, result: "open", exit: null, pnl: null });
+        } else {
+          if (rows.some((r) => r.id === `${w.ticker}:ogp5-wait-skip`)) continue;
+          rows.unshift({ id: `${w.ticker}:ogp5-wait-skip`, lane: "ogp5-wait-skip", at: w.at, asset: w.asset, ticker: w.ticker, side: w.side, label: `${w.label} · skipped: the candle closed ${w.side === "up" ? "under" : "over"} it (${r2(bw.c)} vs ${r2(w.line)})`, ask: w.ask, multiple: r2(1 / w.ask), secondsLeft: 0, intoWindow: 0, stake: STAKE, fee: fee(STAKE / w.ask, w.ask), peak: w.ask, lastBid: 0, result: "open", exit: null, pnl: null });
+        }
+        changed = true;
+      }
+    } catch {}
+    // NO-WALL twins of BRICK and SQUEEZE (5m pivot wall test at the parent's entry).
+    try {
+      const nb = (await import("./nightbook")).listNight();
+      const piv5: Record<string, Piv | null> = {};
+      for (const id of ["btc", "gold"]) { const c = g.__pivBars?.[id]; piv5[id] = c ? pivot(resample(c.bars, 5), 5) : null; }
+      for (const p of nb) {
+        if (!["brick", "squeeze"].includes(p.book) || (p as any).dnaMode || (p as any).stale) continue;
+        const lane = `${p.book}-nowall`;
+        const have = rows.find((r) => r.id === `${p.id}:${lane}` || r.id === `${p.id}:${lane}:skip`);
+        if (!have) {
+          if (Date.now() - Date.parse(p.at) > 90000) continue; // only fresh entries, bands as they were
+          const a = assets[p.asset];
+          const pv = piv5[p.asset];
+          const spot = Number(a?.spot) || 0, target = Number(a?.target) || 0;
+          if (!pv || !(spot > 0 && target > 0) || a?.market?.ticker !== p.ticker) continue;
+          const lo = Math.min(spot, target), hi = Math.max(spot, target);
+          const wall = [pv.pp, pv.r1, pv.s1, pv.r2, pv.s2].some((L) => L > lo && L < hi);
+          rows.unshift({ id: `${p.id}:${lane}${wall ? ":skip" : ""}`, lane: wall ? `${lane}-skipped` : lane, parent: p.id, at: p.at, asset: p.asset, ticker: p.ticker, side: p.side, label: p.setup, ask: p.ask, multiple: p.multiple, intoWindow: 0, stake: p.stake, fee: 0, result: "open", exit: null, pnl: null });
+          changed = true;
+        } else if (have.result === "open" && p.result !== "open" && p.pnl != null) {
+          have.result = p.pnl > 0.05 ? "win" : "loss";
+          have.pnl = p.pnl;
+          have.exit = p.exit;
+          changed = true;
+        }
+      }
+    } catch {
+    }
+    // PAPER TWINS (Love, Oct 11 ~4:30 AM PT). The original PAPER book's own trades (live-paper-book.json, source "paper"),
+    // mirrored at $25 a ticket so her old oversized tickets ($250 / $695) can't swing them; each copies the parent's result.
+    //  - paper-247:     everything she takes, every hour ("one that runs 24/7 to confirm she's the same").
+    //  - paper-best:    only the hours green in BOTH halves of Oct 2-11: 3 AM, 11 AM, 3 PM, 7 PM, 8 PM, 10 PM PT, no silver
+    //                   (+$1,076 on 221 vs +$92 on all 938).
+    //  - paper-winners: only the setups green on BOTH paper and prime, any hour ("those losing set ups... one more book,
+    //                   with those gone. just these winning ones"): BTC short off +1.5σ, BTC short off -0.5σ, BTC long off -0.5σ.
+    try {
+      const pb = pbTrades();
+      const BEST = new Set([3, 11, 15, 19, 20, 22]);
+      const WIN = new Set(["btc|down|Tap-reject at +1.5σ", "btc|down|Tap-reject at -0.5σ", "btc|up|Tap-reject at -0.5σ"]);
+      const since = Date.parse("2026-10-11T11:30:00Z");
+      const hourOf = (at: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(at)));
+      let pzCfg: any = {};
+      try { pzCfg = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.pivotZone || {}; } catch {}
+      const pzMap: Record<string, { lane: string; why: string }> = ((globalThis as any).__pzSeen ||= {});
+      const pzSeen = (t: any): string => {
+        if (pzMap[t.id]) return pzMap[t.id].lane;
+        if (t.asset !== "btc" && t.asset !== "gold") return "";
+        if (Date.now() - Date.parse(t.openedAt) > 90000) return "";
+        const a3 = assets[t.asset];
+        const sp3 = Number(a3?.spot) || 0;
+        const ck = pivotZoneCheck(t.asset, t.side, sp3, pzCfg?.[t.asset]);
+        if (!ck) return "";
+        pzMap[t.id] = { lane: ck.block ? "paper-piv-skip" : "paper-piv", why: ck.why };
+        return pzMap[t.id].lane;
+      };
+      const lanes: [string, (t: any) => boolean][] = [
+        ["paper-247", () => true],
+        ["paper-best", (t) => t.asset !== "silver" && BEST.has(hourOf(t.openedAt))],
+        ["paper-20", () => true],
+        ["paper-winners", (t) => WIN.has(`${t.asset}|${t.side}|${String(t.patternLabel || "").replace(/\u2212/g, "-").replace(/\s+/g, " ").trim()}`)],
+        // PAPER 24/7 · RESPECTS PIVOTS (Oct 14, Love: "yesss definitely"): her trades, minus the ones inside the pivot zone
+        // (pivotZoneCheck, live-switch "pivotZone" per asset). Decided once, the moment PAPER books it; the skipped ones go
+        // to paper-piv-skip so we can see what the zone cost or saved.
+        ["paper-piv", (t) => pzSeen(t) === "paper-piv"],
+        ["paper-piv-skip", (t) => pzSeen(t) === "paper-piv-skip"],
+      ];
+      for (const t of pb) {
+        if (t?.source !== "paper" || Date.parse(t.openedAt) < since) continue;
+        const k = 25 / (Number(t.stake) || 25);
+        for (const [lane, ok] of lanes) {
+          if (!ok(t)) continue;
+          if (lane === "paper-20" && rows.some((r) => r.lane === "paper-20" && !r.parent && r.ticker === t.ticker)) continue;
+          const id = `${t.id}:${lane}`;
+          const have = rows.find((r) => r.id === id);
+          if (!have) {
+            rows.unshift({ id, lane, parent: t.id, at: t.openedAt, asset: t.asset, ticker: t.ticker, side: t.side, label: /^paper-piv/.test(lane) ? `${t.patternLabel} · ${lane === "paper-piv-skip" ? "skipped: " : ""}${pzMap[t.id]?.why || ""}` : t.patternLabel, ask: r2(Number(t.ask) || 0), multiple: r2(Number(t.multiple) || 0), intoWindow: 0, stake: 25, fee: 0, result: "open", exit: null, pnl: null });
+            changed = true;
+          } else if (have.result === "open" && t.result !== "open" && t.profit != null) {
+            have.pnl = r2(Number(t.profit) * k);
+            have.result = have.pnl > 0.05 ? "win" : "loss";
+            have.exit = t.notes || t.result;
+            changed = true;
+          }
+        }
+      }
+    } catch {
+    }
+    // ORPHAN TWINS (Oct 11, 8:45 AM PT window): PAPER sometimes drops a trade from her own book after opening it (her 49c
+    // "close above 10m nav upper band" long vanished two minutes later, replaced by a 59c tap-reject). Its twins then had no
+    // parent to copy and sat "open" forever, though live had copied it. Once the window is 16+ min old, a twin whose parent
+    // is gone settles on Kalshi's result at $25: right = paid in full, wrong = -$25.
+    try {
+      const pbIds = new Set((pbTrades()).map((t: any) => t.id));
+      for (const r of rows) {
+        if (r.result !== "open" || !r.parent || !/^paper-/.test(String(r.lane)) || pbIds.has(r.parent)) continue;
+        if (Date.now() - Date.parse(r.at) < 16 * 60000) continue;
+        try {
+          const mk = (await (await import("./scanner")).kget(`/trade-api/v2/markets/${r.ticker}`))?.market;
+          if (mk?.result !== "yes" && mk?.result !== "no") continue;
+          const won = (mk.result === "yes") === (r.side === "up");
+          r.pnl = won ? r2(25 / r.ask - 25) : -25;
+          r.result = won ? "win" : "loss";
+          r.exit = "PAPER dropped this trade from her book; settled on Kalshi's result";
+          changed = true;
+        } catch {
+        }
+      }
+    } catch {
+    }
+    if (changed) write(rows);
+    // CONSENSUS 🤝 (Oct 14 ~1:25 AM PT, Love: "anything you can think of that may help us... choosing the correct ones at the
+    // correct times?"). Paper only, $20. When PAPER 24/7 and her 5M book call the SAME side of the same window, take it at the
+    // price when the second one agrees. Since Sunday: both agreeing won 73% (BTC 79%), the 5M alone 51%, PAPER alone 66%.
+    try {
+      for (const id of ["btc", "gold"]) {
+        const a2 = assets[id];
+        const m2 = a2?.market;
+        const left2 = Number(a2?.secondsLeft) || 0;
+        if (!m2?.ticker || left2 < 120 || rows.some((r) => r.ticker === m2.ticker && r.lane === "consensus")) continue;
+        const pp = rows.find((r) => r.ticker === m2.ticker && r.lane === "paper-247");
+        const oo = rows.find((r) => r.ticker === m2.ticker && r.lane === "ogp5");
+        if (!pp || !oo || pp.side !== oo.side) continue;
+        const ask = Number(pp.side === "up" ? m2.yesAsk : m2.noAsk);
+        if (!(ask > 0.02 && ask < 0.9)) continue;
+        rows.unshift({ id: `${m2.ticker}:consensus`, lane: "consensus", at: new Date().toISOString(), asset: id, ticker: m2.ticker, side: pp.side, label: `both agree · 5M ${oo.label} + PAPER ${pp.label}`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left2), intoWindow: Math.round(900 - left2), stake: STAKE, fee: fee(STAKE / ask, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null });
+        changed = true;
+      }
+    } catch {}
+    // SHORT THE RED / LONG THE GREEN 🔁 (Oct 14, Love: "yesss please do"; ~6:45 AM PT: "i would like to have a model that does the
+    // polar opposite of that on both"). Paper only, $20, gold-flip + btc-flip. When PAPER 24/7 or her 5M book books a trade
+    // straight into a wall (a long into a 5m red/pink above, a short into a 5m green/pink below) or chasing more than 1 ATR past
+    // the pink 5m PP, this book takes the OTHER side at that moment's real price. Rules from live-switch pivotZone.<asset>
+    // (BTC uses the same red/green zone and 1 ATR chase as gold here, paper only). One flip per source per window.
+    try {
+      let zcAll: any = {};
+      try { zcAll = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.pivotZone || {}; } catch {}
+      const seen4: Record<string, number> = ((globalThis as any).__flipSeen ||= {});
+      for (const fa of ["gold", "btc"]) {
+        const a4 = assets[fa];
+        const m4 = a4?.market;
+        const left4 = Number(a4?.secondsLeft) || 0;
+        const sp4 = Number(a4?.spot) || 0;
+        if (!m4?.ticker || !(left4 > 60) || !(sp4 > 0)) continue;
+        const zc = fa === "btc" ? { k: 0.35, adx: "trend", lines: "color", tfs: [5], chase: 1, ...(zcAll?.btcFlip || {}) } : zcAll?.gold;
+        for (const src of ["paper-247", "ogp5"]) {
+          const s4 = rows.find((r) => r.ticker === m4.ticker && r.lane === src);
+          if (!s4 || seen4[s4.id] || Date.now() - Date.parse(s4.at) > 30000) continue;
+          seen4[s4.id] = Date.now();
+          const ck4 = pivotZoneCheck(fa, s4.side, sp4, zc);
+          try { const fd: any[] = ((globalThis as any).__flipDbg ||= []); fd.unshift({ at: new Date().toISOString(), fa, src, row: s4.id, side: s4.side, spot: sp4, ck: ck4 }); fd.length = Math.min(fd.length, 40); writeFileSync(D("flip-debug.json"), JSON.stringify(fd, null, 1)); } catch {}
+          if (!ck4?.block) continue;
+          const side4 = s4.side === "up" ? "down" : "up";
+          const ask4 = Number(side4 === "up" ? m4.yesAsk : m4.noAsk);
+          if (!(ask4 > 0.02 && ask4 < 0.95)) continue;
+          const lane4 = `${fa}-flip`;
+          const id4 = `${m4.ticker}:${lane4}:${src}`;
+          if (rows.some((r) => r.id === id4)) continue;
+          const what = ck4.kind === "chase" ? (side4 === "down" ? "SHORT back toward the pink" : "LONG back toward the pink") : side4 === "down" ? "SHORT at the red" : "LONG at the green";
+          rows.unshift({ id: id4, lane: lane4, at: new Date().toISOString(), asset: fa, ticker: m4.ticker, side: side4, label: `${what} · flipped ${src === "ogp5" ? "5M" : "PAPER"} ${s4.side === "up" ? "long" : "short"} (${s4.label}) · ${ck4.why}`, ask: r2(ask4), multiple: r2(1 / ask4), secondsLeft: Math.round(left4), intoWindow: Math.round(900 - left4), stake: STAKE, fee: fee(STAKE / ask4, ask4), peak: ask4, lastBid: 0, result: "open", exit: null, pnl: null });
+          changed = true;
+        }
+      }
+    } catch {}
+    // SAVE FIX (Oct 14 ~8:05 AM PT): CONSENSUS and the flip books add their rows AFTER the save above, so they were never kept
+    // (the next tick re-reads the file). Save again here.
+    if (changed) write(rows);
+    // TIMING (Oct 14 ~12:40 AM PT): in the first 90 s of a window, log how long each step took (speed hunt).
+    try {
+      const into = (Date.now() / 1000) % 900;
+      if (into < 90) appendFileSync(D("piv-timing.jsonl"), JSON.stringify({ at: new Date().toISOString(), into: Math.round(into), barsMs: Tbars, totalMs: Date.now() - T0, gold: (g.__pivBars as any)?.gold?.bars?.slice(-1)?.[0]?.t, btc: (g.__pivBars as any)?.btc?.bars?.slice(-1)?.[0]?.t, mk: Object.fromEntries(Object.entries(((globalThis as any).__pivMk || {}) as Record<string, any>).filter(([k]) => Date.now() - (globalThis as any).__pivMk[k].at < 5000).map(([k, v]) => [k.slice(0, 8), Number(v?.m?.target) || 0])) }) + "\n");
+    } catch {}
+    try { writeFileSync(D("pivot-now.json"), JSON.stringify(status, null, 1)); } catch {}
+  } finally {
+    g.__pivBusy = false;
+  }
+}

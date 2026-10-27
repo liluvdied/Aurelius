@@ -1,0 +1,74 @@
+// HER FOUR GOLD LAWS (Oct 15, Love: "a break of any band is a trade in that direction / red candle broke through a band &
+// falling away from the band = is a trade down / green candle broke through a band & shooting up from a band = is a trade
+// up / a rejection off of the green pivot zone is a long / a rejection off the red pivot zone is a short / nothing else no
+// exceptions"). Gold on her live 5M twin decides ONLY by these. Pure function, no I/O, so it can be tested on its own.
+//
+//   green zone = 5m S1 / S2      red zone = 5m R1 / R2      candle = the live 5m (tick vs where the 5m opened)
+//
+// 1) Rejection off the green zone: the last finished 1m candle's low reached 5m S1 (25c poke, same touch as her bounce),
+//    the zone held (tick above S2, or above S1 if no S2) and the tick is pushing back up over that 1m close = LONG.
+// 2) Rejection off the red zone: the mirror - high reached 5m R1, zone held (tick under R2 / R1), tick pushing down
+//    under that 1m close = SHORT. A rejection outranks a break (Love's 6:15 ruling: rejecting up off the green zone was a
+//    long even though +0.5σ above had just broken down).
+// 3) Break down: the live 5m candle is red (tick under its open), it opened at or above a band and the tick is now under
+//    that band (any amount) = SHORT, off the crossed band nearest the tick.
+// 4) Break up: the mirror - green candle, opened at or under a band, tick now over it = LONG.
+// Anything else = no gold trade.
+
+export type GLine = { name: string; price: number };
+export type GBar = { o: number; h: number; l: number; c: number };
+export type GoldCall = {
+  side: "up" | "down";
+  kind: "green-reject" | "red-reject" | "break-up" | "break-down";
+  label: string;
+  band: GLine;
+  floor?: number;
+  ceil?: number;
+};
+
+export function goldLaw(L: GLine[], tick: number, fiveOpen: number, last1m: GBar | undefined, poke = 0.25): GoldCall | null {
+  if (!(tick > 0)) return null;
+  const s1 = L.find((l) => l.name === "5m S1");
+  const s2 = L.find((l) => l.name === "5m S2");
+  const r1 = L.find((l) => l.name === "5m R1");
+  const r2 = L.find((l) => l.name === "5m R2");
+  let green: GoldCall | null = null;
+  let red: GoldCall | null = null;
+  if (last1m && s1) {
+    const floor = s2 ? s2.price : s1.price;
+    if (last1m.l <= s1.price + poke && tick > floor && tick > last1m.c) {
+      green = { side: "up", kind: "green-reject", label: "Rejected up off the green 5m zone", band: s1, floor };
+    }
+  }
+  if (last1m && r1) {
+    const ceil = r2 ? r2.price : r1.price;
+    if (last1m.h >= r1.price - poke && tick < ceil && tick < last1m.c) {
+      red = { side: "down", kind: "red-reject", label: "Rejected down off the red 5m zone", band: r1, ceil };
+    }
+  }
+  if (green && red) return Math.abs(tick - s1!.price) <= Math.abs(tick - r1!.price) ? green : red;
+  if (green) return green;
+  if (red) return red;
+  if (!(fiveOpen > 0)) return null;
+  if (tick < fiveOpen) {
+    const crossed = L.filter((l) => fiveOpen >= l.price && tick < l.price).sort((a, b) => (a.price - tick) - (b.price - tick))[0];
+    if (crossed) return { side: "down", kind: "break-down", label: `Red 5m broke down through ${crossed.name}`, band: crossed };
+  }
+  if (tick > fiveOpen) {
+    const crossed = L.filter((l) => fiveOpen <= l.price && tick > l.price).sort((a, b) => (tick - a.price) - (tick - b.price))[0];
+    if (crossed) return { side: "up", kind: "break-up", label: `Green 5m broke up through ${crossed.name}`, band: crossed };
+  }
+  return null;
+}
+
+// The same four laws at the Kalshi door, from what was booked: if the market has since done the opposite of the booked
+// call (the green zone broke on a red candle, the red zone broke on a green candle, or a break reversed back through its
+// band on the opposite candle), she takes the other side. Otherwise the booked side stands.
+export function goldDoor(call: { kind: string; bandPx: number; floor?: number; ceil?: number }, side: "up" | "down", tick: number, fiveOpen: number): "up" | "down" {
+  if (!(tick > 0) || !(fiveOpen > 0)) return side;
+  if (call.kind === "green-reject" && Number(call.floor) > 0 && tick < Number(call.floor) && tick < fiveOpen) return "down";
+  if (call.kind === "red-reject" && Number(call.ceil) > 0 && tick > Number(call.ceil) && tick > fiveOpen) return "up";
+  if (call.kind === "break-up" && tick < call.bandPx && tick < fiveOpen) return "down";
+  if (call.kind === "break-down" && tick > call.bandPx && tick > fiveOpen) return "up";
+  return side;
+}

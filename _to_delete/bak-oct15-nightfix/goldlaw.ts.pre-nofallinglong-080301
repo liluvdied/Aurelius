@@ -1,0 +1,123 @@
+// HER GOLD LAWS (Oct 15, Love), gold on her live 5M twin decides ONLY by these. Pure functions, no I/O, tested on their own.
+//
+//  "a break of any band is a trade in that direction / red candle broke through a band & falling away = trade down / green
+//   candle broke through a band & shooting up = trade up / a rejection off of the green pivot zone is a long / a rejection off
+//   the red pivot zone is a short / nothing else no exceptions"  +  "any band"  +
+//  "if price breaks UP through a band if it starts falling BACK down in the same candle, it doesn't really count / whichever
+//   direction the candle initially broke takes precedence / if it breaks and falls thru on a fresh candle, that is the
+//   direction"  +  "don't have her trade the last direction of a break anywhere... she could long directly into an unbroken
+//   band above"
+//
+// Candles are 5m. BREAK vs TAP is her own body law (Oct 13, Love: "a candle that CLOSES through a band (any amount) = the
+// break... a tap / wick through a band whose body stays on its side = the rejection"). No distances, no numbers. In order:
+//  1) THIS 5m candle: a REJECTION (wick reached an unbroken band, body - open and price now - on its side -> away from the
+//     band; green zone 5m S1/S2 or any band below = LONG, red zone 5m R1/R2 or any band above = SHORT; pink PP both ways)
+//     and/or a BREAK (first 1m candle that closed through a band -> that direction; a fall-back later in the same 5m candle
+//     doesn't count). If both, THE CLOSEST BAND TO PRICE DECIDES (Love, Oct 15: "trade off of the closest band").
+//  2) Else the 5m candle that JUST closed, the same way (one candle back only - never an older break).
+//  Anything else = no gold trade.
+
+export type GLine = { name: string; price: number };
+export type GBar = { o: number; h: number; l: number; c: number };
+export type GoldCall = {
+  side: "up" | "down";
+  kind: "green-reject" | "red-reject" | "break-up" | "break-down";
+  label: string;
+  band: GLine;
+  floor?: number;
+  ceil?: number;
+  from: "this candle" | "rejection" | "last candle";
+};
+
+/** The first band a 5m candle broke - a 1m candle CLOSING through it from the side the 5m candle opened on - and the direction. */
+export function firstBreak(L: GLine[], open: number, closes: number[]): { side: "up" | "down"; band: GLine } | null {
+  if (!(open > 0)) return null;
+  for (const p of closes) {
+    let hit: { side: "up" | "down"; band: GLine } | null = null;
+    for (const l of L) {
+      if (open < l.price && p > l.price && (!hit || Math.abs(l.price - open) < Math.abs(hit.band.price - open))) hit = { side: "up", band: l };
+      if (open > l.price && p < l.price && (!hit || Math.abs(l.price - open) < Math.abs(hit.band.price - open))) hit = { side: "down", band: l };
+    }
+    if (hit) return hit;
+  }
+  return null;
+}
+
+type Candle = { open: number; low: number; high: number; close: number };
+function candleOf(open: number, bars: GBar[], tick?: number): Candle | null {
+  if (!(open > 0)) return null;
+  const xs = bars.flatMap((x) => [x.l, x.h]);
+  if (tick && tick > 0) xs.push(tick);
+  if (!xs.length) return null;
+  const close = tick && tick > 0 ? tick : bars[bars.length - 1].c;
+  return { open, low: Math.min(open, ...xs), high: Math.max(open, ...xs), close };
+}
+// A band a 1m candle CLOSED through inside this 5m candle was broken there, so it can't also be a rejection (her body law).
+function rejection(L: GLine[], k: Candle, tick: number, from: GoldCall["from"], closes: number[] = []): GoldCall | null {
+  const broke = (px: number) => closes.some((c) => (k.open < px ? c > px : c < px));
+  const s1 = L.find((l) => l.name === "5m S1");
+  const s2 = L.find((l) => l.name === "5m S2");
+  const r1 = L.find((l) => l.name === "5m R1");
+  const r2 = L.find((l) => l.name === "5m R2");
+  const zone = new Set(["5m S1", "5m S2", "5m R1", "5m R2"]);
+  const cands: { c: GoldCall; px: number }[] = [];
+  if (s1) {
+    const floor = s2 ? s2.price : s1.price;
+    if (k.low <= s1.price && k.open > floor && k.close > floor && tick > floor && !closes.some((c) => c < floor)) cands.push({ c: { side: "up", kind: "green-reject", label: "Rejected up off the green 5m zone", band: s1, floor, from }, px: s1.price });
+  }
+  if (r1) {
+    const ceil = r2 ? r2.price : r1.price;
+    if (k.high >= r1.price && k.open < ceil && k.close < ceil && tick < ceil && !closes.some((c) => c > ceil)) cands.push({ c: { side: "down", kind: "red-reject", label: "Rejected down off the red 5m zone", band: r1, ceil, from }, px: r1.price });
+  }
+  for (const l of L) {
+    if (zone.has(l.name) || broke(l.price)) continue;
+    if (k.low <= l.price && k.open > l.price && k.close > l.price && tick > l.price) cands.push({ c: { side: "up", kind: "green-reject", label: `Rejected up off ${l.name}`, band: l, floor: l.price, from }, px: l.price });
+    if (k.high >= l.price && k.open < l.price && k.close < l.price && tick < l.price) cands.push({ c: { side: "down", kind: "red-reject", label: `Rejected down off ${l.name}`, band: l, ceil: l.price, from }, px: l.price });
+  }
+  return cands.length ? cands.sort((a, b) => Math.abs(tick - a.px) - Math.abs(tick - b.px))[0].c : null;
+}
+
+export function goldLaw(
+  L: GLine[],
+  tick: number,
+  cur: { open: number; bars: GBar[] },
+  prev: { open: number; bars: GBar[] } | null,
+  _last1m?: GBar,
+): GoldCall | null {
+  if (!(tick > 0)) return null;
+  // THE CLOSEST BAND DECIDES (Oct 15, Love: "she trades the direction the closest band dictates... let's have her trade off of
+  // the closest band pls, i think that will be a perfect medium" - replaces "rejection wins"). When a candle shows both a
+  // rejection (tap at an unbroken band) and a break (1m close through another band), the band nearest price now wins.
+  const brk = (b: { side: "up" | "down"; band: GLine } | null, last: boolean): GoldCall | null => b ? { side: b.side, kind: b.side === "up" ? "break-up" : "break-down", label: `${last ? (b.side === "up" ? "Last 5m broke up through" : "Last 5m broke down through") : (b.side === "up" ? "Green 5m broke up through" : "Red 5m broke down through")} ${b.band.name}`, band: b.band, from: last ? "last candle" : "this candle" } : null;
+  const nearer = (x: GoldCall | null, y: GoldCall | null) => (!x ? y : !y ? x : Math.abs(tick - x.band.price) <= Math.abs(tick - y.band.price) ? x : y);
+  // 1) this 5m candle: its rejection vs its first break - the closest band wins
+  const kNow = candleOf(cur.open, cur.bars, tick);
+  const rNow = kNow ? rejection(L, kNow, tick, "rejection", cur.bars.map((x) => x.c)) : null;
+  const bNow = brk(firstBreak(L, cur.open, cur.bars.map((x) => x.c)), false);
+  const now = nearer(rNow, bNow);
+  if (now) return now;
+  // 2) the 5m candle that just closed: same, one candle back only (never older)
+  const kLast = prev && prev.bars.length ? candleOf(prev.open, prev.bars) : null;
+  const rLast = kLast ? rejection(L, kLast, tick, "rejection", prev!.bars.map((x) => x.c)) : null;
+  const bLast = prev ? brk(firstBreak(L, prev.open, prev.bars.map((x) => x.c)), true) : null;
+  return nearer(rLast, bLast);
+}
+
+// The same laws at the Kalshi door. Inside the 5m candle she booked in, nothing flips (a fall-back in the same candle doesn't
+// count). On a FRESH 5m candle: price back through the booked band the other way on that candle's color, or
+// the booked zone/band broken from the other side, flips her to that side.
+export function goldDoor(
+  call: { kind: string; bandPx: number; floor?: number; ceil?: number; frame?: number },
+  side: "up" | "down",
+  tick: number,
+  fiveOpen: number,
+  nowFrame: number,
+): "up" | "down" {
+  if (!(tick > 0) || !(fiveOpen > 0)) return side;
+  if (Number(call.frame) > 0 && nowFrame === Number(call.frame)) return side;
+  if (call.kind === "green-reject" && Number(call.floor) > 0 && tick < Number(call.floor) && tick < fiveOpen) return "down";
+  if (call.kind === "red-reject" && Number(call.ceil) > 0 && tick > Number(call.ceil) && tick > fiveOpen) return "up";
+  if (call.kind === "break-up" && tick < call.bandPx && tick < fiveOpen) return "down";
+  if (call.kind === "break-down" && tick > call.bandPx && tick > fiveOpen) return "up";
+  return side;
+}

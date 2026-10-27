@@ -1,0 +1,307 @@
+// PIVOT BOOKS (Claude, Oct 11 ~3:10 AM PT, Love: "yesss PLEASE... let's run a book on the 2M, 5M, 10M & 15M pivot bands by
+// themselves, another set that uses the session bands & the pivot bands, i want her to take the trade immediately if it's
+// there too, that model was genuinely the most successful"). PAPER ONLY, never sends an order. Same store as GROK OG.
+// CM Pivot Bands (ChrisMoody): PP = EMA7 of hlc3; R1/S1 = PP +/- the average high-low range of the last 7 bars; R2/S2 = 2x.
+// Built from 1m bars (BTC: PEPPERSTONE, gold: TVC, the desk's own charts) resampled to 2 / 5 / 10 / 15 minutes, bands
+// taken from the last CLOSED bar of each timeframe.
+// Entries = the OG's way, instantly (2+ min left): price on/near a line (within 0.35 of that line's unit) -> long if price
+// is on/above it, short if under; or the last 1m candle closed through a line -> trade the break. Her band rule on the
+// lines the book uses: none sitting between price and the strike, center (PP / session VWAP) not on the wrong side of both.
+// 1.18x and up, no cap. One ticket per window per book. Grok's gate exit (arms at +50%, locks 5% steps) or the bell.
+//   PIVOT 2M / 5M / 10M / 15M  = pivot lines only.        SESSION+PIVOT 2M / 5M / 10M / 15M = pivot lines + her session bands.
+// Also two NO-WALL twins: BRICK and SQUEEZE's own paper trades, minus any with a 5m pivot line between price and the strike
+// (Oct 7-10 lab: those 62 trades won 53% for -$98). Twins copy the parent's result.
+import { existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { chartRaw } from "./tv";
+
+const STAKE = 20;
+const D = (f: string) => join(process.cwd(), "data", f);
+const r2 = (n: number) => Math.round(n * 100) / 100;
+const fee = (n: number, p: number) => Math.ceil(0.07 * n * p * (1 - p) * 100) / 100;
+const FILE = () => D("grok-og.json");
+const read = (): any[] => { try { return existsSync(FILE()) ? JSON.parse(readFileSync(FILE(), "utf8")) : []; } catch { return []; } };
+const write = (rows: any[]) => { writeFileSync(FILE() + ".tmp", JSON.stringify(rows.slice(0, 8000))); renameSync(FILE() + ".tmp", FILE()); };
+type Bar = { t: number; o: number; h: number; l: number; c: number };
+type Piv = { pp: number; r1: number; s1: number; r2: number; s2: number; a: number };
+const g = globalThis as unknown as { __pivBars?: Record<string, { at: number; bars: Bar[] }>; __pivBusy?: boolean };
+const SYM: Record<string, string> = { btc: "PEPPERSTONE:BTCUSD", gold: "TVC:GOLD" };
+
+export function resample(b: Bar[], mins: number): Bar[] {
+  const out: Bar[] = [];
+  const span = mins * 60;
+  for (const x of b) {
+    const k = Math.floor(x.t / span) * span;
+    const last = out[out.length - 1];
+    if (last && last.t === k) { last.h = Math.max(last.h, x.h); last.l = Math.min(last.l, x.l); last.c = x.c; }
+    else out.push({ t: k, o: x.o, h: x.h, l: x.l, c: x.c });
+  }
+  return out;
+}
+export function pivot(bars: Bar[], mins: number): Piv | null {
+  const now = Date.now() / 1000;
+  const closed = bars.filter((x) => x.t + mins * 60 <= now + 1);
+  if (closed.length < 10) return null;
+  const k = 2 / 8;
+  let ema = 0;
+  const rng: number[] = [];
+  closed.forEach((x, i) => { const pp = (x.h + x.l + x.c) / 3; ema = i === 0 ? pp : pp * k + ema * (1 - k); rng.push(x.h - x.l); });
+  const a = rng.slice(-7).reduce((s, v) => s + v, 0) / 7;
+  return { pp: ema, r1: ema + a, s1: ema - a, r2: ema + 2 * a, s2: ema - 2 * a, a };
+}
+type Line = { name: string; price: number; unit: number; center?: boolean };
+export function lines(p: Piv, tf: number): Line[] {
+  const u = p.a;
+  return [{ name: `${tf}m PP`, price: p.pp, unit: u, center: true }, { name: `${tf}m R1`, price: p.r1, unit: u }, { name: `${tf}m S1`, price: p.s1, unit: u }, { name: `${tf}m R2`, price: p.r2, unit: u }, { name: `${tf}m S2`, price: p.s2, unit: u }];
+}
+export function sessionLines(a: any): Line[] {
+  const f = a?.vwap1m?.vwap ? a.vwap1m : a?.vwap5m;
+  const v = Number(f?.vwap) || 0, sd = Number(f?.stdev) || 0;
+  if (!(v > 0 && sd > 0)) return [];
+  // VWAP RULE OFF (Love, Oct 13 ~2:45 AM PT: "she could not comprehend not longing or shorting into a band... that does not mean
+  // to never short into one if it's far enough away and clearly rejecting off of a band... turn it off"). The session VWAP is
+  // no longer a "centre": a short above VWAP / a long below it is allowed. It still counts as a line for the wall rule
+  // (no line between price and the strike), and the pivot PP centres are unchanged. Inherited from the old engine's "spine
+  // rule" (Grok); she never chose it. Old file: _to_delete/bak-oct12-combofix/pivotbooks.ts.pre-novwap.
+  const out: Line[] = [{ name: "session VWAP", price: v, unit: sd, center: false }];
+  for (const s of [0.5, 1, 1.5, 2, 2.5, 3]) out.push({ name: `+${s}σ`, price: v + s * sd, unit: sd }, { name: `-${s}σ`, price: v - s * sd, unit: sd });
+  return out;
+}
+export function decide(L: Line[], a: any, last1m: Bar | undefined): { side: "up" | "down"; label: string } | null {
+  const spot = Number(a?.spot) || 0, target = Number(a?.target) || 0;
+  if (!(spot > 0 && target > 0) || !L.length) return null;
+  const looks: { side: "up" | "down"; label: string }[] = [];
+  if (last1m) for (const l of L) {
+    if (last1m.o > l.price && last1m.c < l.price) { looks.push({ side: "down", label: `Close below ${l.name}` }); break; }
+    if (last1m.o < l.price && last1m.c > l.price) { looks.push({ side: "up", label: `Close above ${l.name}` }); break; }
+  }
+  let best: Line | null = null, gap = Infinity;
+  for (const l of L) { const d = Math.abs(spot - l.price); if (d <= 0.35 * l.unit && d < gap) { best = l; gap = d; } }
+  if (best) looks.push({ side: spot >= best.price ? "up" : "down", label: `On ${best.name}` });
+  for (const look of looks) {
+    const lo = Math.min(spot, target), hi = Math.max(spot, target);
+    const wall = L.some((l) => Math.abs(spot - l.price) > 0.2 * l.unit && l.price > lo && l.price < hi);
+    if (wall) continue;
+    const wrong = L.filter((l) => l.center).some((c) => (look.side === "up" ? c.price > spot && c.price > target : c.price < spot && c.price < target));
+    if (wrong) continue;
+    return look;
+  }
+  return null;
+}
+async function bars1m(id: string): Promise<Bar[]> {
+  const c = (g.__pivBars ||= {});
+  if (c[id] && Date.now() - c[id].at < 55000) return c[id].bars;
+  const b = (await chartRaw(SYM[id], "1", 900)) as unknown as Bar[];
+  b.sort((x, y) => x.t - y.t);
+  if (b.length) c[id] = { at: Date.now(), bars: b };
+  return c[id]?.bars ?? [];
+}
+export async function pivotBooksTick(assets: Record<string, any> | null | undefined) {
+  if (!assets || g.__pivBusy) return;
+  g.__pivBusy = true;
+  try {
+    let rows = read();
+    let changed = false;
+    const status: Record<string, unknown> = { at: new Date().toISOString() };
+    for (const id of ["btc", "gold"]) {
+      const a = assets[id];
+      const m = a?.market;
+      const left = Number(a?.secondsLeft) || 0;
+      if (!m?.ticker || !(left >= 120)) continue;
+      // OPEN ROAD (Love, Oct 11 ~7:35 AM PT: "can you see why she's not entering? btc just broke a band and those are her
+      // go to's"). PAPER sees setups on BOTH her books but her own rule benches them: a short needs $40 of clear road to the
+      // next band below, a long $40 above. Her bands sit every half sigma, so when BTC's sigma is under ~$80 there is ALWAYS
+      // a band within $40 both ways and she is boxed in. This paper lane takes exactly what she benched (both books agree,
+      // only the band said no), once per window, $25, our exits; PAPER herself is untouched.
+      try {
+        const why = String(JSON.parse(readFileSync(D("prime-why.json"), "utf8"))?.note?.[id] || "");
+        const pb = JSON.parse(readFileSync(D("live-paper-book.json"), "utf8"))?.trades ?? [];
+        const paperIn = pb.some((t: any) => t?.source === "paper" && t.ticker === m.ticker);
+        if (!paperIn && !rows.some((r) => r.ticker === m.ticker && r.lane === "open-road")) {
+          const line = why.split("\n").find((l) => /prime book, paper book, blocked by the band/.test(l) && !/taking/.test(l));
+          const mm = line ? /^(up|down) (.+?), prime book/.exec(line) : null;
+          if (mm) {
+            const side = mm[1] as "up" | "down";
+            const ask = Number(side === "up" ? m.yesAsk : m.noAsk);
+            if (ask >= 0.2 && ask < 0.98 && 1 / ask >= 1.38) {
+              const n = 25 / ask;
+              rows.unshift({ id: `${m.ticker}:open-road`, lane: "open-road", at: new Date().toISOString(), asset: id, ticker: m.ticker, side, label: `${mm[2]} (band said no)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 25, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null });
+              changed = true;
+            }
+          }
+        }
+      } catch {
+      }
+      // PAPER · 20% ROAD (Love, Oct 11 ~7:45 AM PT: "can we make a twin that operates on a 20% rule? distance of the band,
+      // 80% thru the channel... keep the og unadulterated"). PAPER's own trades (mirrored below) PLUS the setups her $40 rule
+      // benched, taken when the road is open by THIS rule instead: the channel is the gap between the band behind price and
+      // the band ahead of it (bands every half sigma, VWAP's own gap is a full sigma); she's only blocked once price is 80%+
+      // of the way through it, i.e. the band ahead is within 20% of the channel. Same side PAPER chose, never flipped.
+      try {
+        const f = a?.vwap1m?.vwap ? a.vwap1m : a?.vwap5m;
+        const v = Number(f?.vwap) || 0, sd = Number(f?.stdev) || 0, spot = Number(a?.spot) || 0;
+        const why = String(JSON.parse(readFileSync(D("prime-why.json"), "utf8"))?.note?.[id] || "");
+        const pb = JSON.parse(readFileSync(D("live-paper-book.json"), "utf8"))?.trades ?? [];
+        const paperIn = pb.some((t: any) => t?.source === "paper" && t.ticker === m.ticker);
+        status[`${id}20`] = { v, sd, spot, paperIn, yesAsk: m.yesAsk, noAsk: m.noAsk, target: a?.target, left };
+        // TIGHT BANDS ONLY (Love, Oct 11 ~4:25 PM PT: "let's have it set to only run when the bands are tight"): the extra
+        // entries need the session sigma under live-switch "road20MaxSd" (default $100).
+        let maxSd = 100;
+        try { maxSd = Number(JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.road20MaxSd) || 100; } catch {}
+        if (v > 0 && sd > 0 && sd < maxSd && spot > 0 && !paperIn && !rows.some((r) => r.ticker === m.ticker && r.lane === "paper-20" && !r.parent)) {
+          const levels: number[] = [];
+          for (const k of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(v + k * sd, v - k * sd);
+          const clear20 = (side: "up" | "down") => {
+            const above = levels.filter((L) => L > spot).sort((x, y) => x - y)[0];
+            const below = levels.filter((L) => L < spot).sort((x, y) => y - x)[0];
+            const ahead = side === "up" ? above : below, behind = side === "up" ? below : above;
+            if (ahead == null) return true;
+            if (behind == null) return Math.abs(ahead - spot) > 0.2 * 0.5 * sd;
+            return Math.abs(ahead - spot) > 0.2 * Math.abs(ahead - behind);
+          };
+          for (const line of why.split("\n")) {
+            const mm = /^(up|down) (.+?), prime book, paper book, blocked by the band/.exec(line);
+            if (!mm || /taking/.test(line)) continue;
+            const side = mm[1] as "up" | "down";
+            if (!clear20(side)) continue;
+            const ask = Number(side === "up" ? m.yesAsk : m.noAsk);
+            if (!(ask >= 0.2 && ask < 0.98 && 1 / ask >= 1.38)) continue;
+            const n = 25 / ask;
+            rows.unshift({ id: `${m.ticker}:paper-20`, lane: "paper-20", at: new Date().toISOString(), asset: id, ticker: m.ticker, side, label: `${mm[2]} (20% road)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 25, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null });
+            changed = true;
+            break;
+          }
+        }
+      } catch {
+      }
+      let b: Bar[] = [];
+      try { b = await bars1m(id); } catch { b = []; }
+      if (b.length < 60) { status[id] = "no 1m bars"; continue; }
+      const now = Date.now() / 1000;
+      const last1m = b.filter((x) => x.t + 60 <= now + 1).pop();
+      const sess = sessionLines(a);
+      const st: Record<string, unknown> = {};
+      for (const tf of [2, 5, 10, 15]) {
+        const p = pivot(resample(b, tf), tf);
+        if (!p) continue;
+        st[`${tf}m`] = { pp: r2(p.pp), r1: r2(p.r1), s1: r2(p.s1), r2: r2(p.r2), s2: r2(p.s2) };
+        // OG + PIVOT (Love, Oct 11 ~4:55 AM PT: "can you run another OG book with session bands &&& the pivot bands"):
+        // the OG exactly (session bands, instant on-the-band / break entries, no band between price and strike, 1.18x+ no cap)
+        // with this timeframe's pivot lines added to the same lines and the same rules.
+        for (const [lane, L] of [[`piv${tf}`, lines(p, tf)], [`sp${tf}`, [...lines(p, tf), ...sess]], [`ogp${tf}`, [...sess, ...lines(p, tf)]]] as [string, Line[]][]) {
+          if (rows.some((r) => r.ticker === m.ticker && r.lane === lane)) continue;
+          const look = decide(L, a, last1m);
+          if (!look) continue;
+          const ask = Number(look.side === "up" ? m.yesAsk : m.noAsk);
+          // 1.18x-5x (Oct 11: a 25x short with 2 min left on the strike is a lottery ticket, not her tap-at-4x).
+          // OG + PIVOT lanes keep the OG's own rule: 1.18x and up, no cap.
+          const og = lane.startsWith("ogp");
+          // 1.38x floor on every pivot / OG lane (Love, Oct 11 ~5:30 AM PT: "keep the 1.38x floor, not 1.18").
+          if (!((og ? ask > 0.02 : ask >= 0.2) && ask < 0.98) || !(1 / ask >= 1.38)) continue;
+          const n = STAKE / ask;
+          // Oct 12 (Love: the 3:01 PM short into a flush): the 1m candle that brought price to the line + the session sigma,
+          // so the NO FLUSH twin can tell a calm touch from a one-minute flush into the line. Record only.
+          const sdNow = Number((a?.vwap1m?.vwap ? a.vwap1m : a?.vwap5m)?.stdev) || 0;
+          const bar = last1m ? { o: r2(last1m.o), h: r2(last1m.h), l: r2(last1m.l), c: r2(last1m.c) } : null;
+          rows.unshift({ id: `${m.ticker}:${lane}`, lane, at: new Date().toISOString(), asset: id, ticker: m.ticker, side: look.side, label: look.label, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null, bar, sd: r2(sdNow) });
+          changed = true;
+        }
+      }
+      status[id] = st;
+    }
+    // NO-WALL twins of BRICK and SQUEEZE (5m pivot wall test at the parent's entry).
+    try {
+      const nb = (await import("./nightbook")).listNight();
+      const piv5: Record<string, Piv | null> = {};
+      for (const id of ["btc", "gold"]) { const c = g.__pivBars?.[id]; piv5[id] = c ? pivot(resample(c.bars, 5), 5) : null; }
+      for (const p of nb) {
+        if (!["brick", "squeeze"].includes(p.book) || (p as any).dnaMode || (p as any).stale) continue;
+        const lane = `${p.book}-nowall`;
+        const have = rows.find((r) => r.id === `${p.id}:${lane}` || r.id === `${p.id}:${lane}:skip`);
+        if (!have) {
+          if (Date.now() - Date.parse(p.at) > 90000) continue; // only fresh entries, bands as they were
+          const a = assets[p.asset];
+          const pv = piv5[p.asset];
+          const spot = Number(a?.spot) || 0, target = Number(a?.target) || 0;
+          if (!pv || !(spot > 0 && target > 0) || a?.market?.ticker !== p.ticker) continue;
+          const lo = Math.min(spot, target), hi = Math.max(spot, target);
+          const wall = [pv.pp, pv.r1, pv.s1, pv.r2, pv.s2].some((L) => L > lo && L < hi);
+          rows.unshift({ id: `${p.id}:${lane}${wall ? ":skip" : ""}`, lane: wall ? `${lane}-skipped` : lane, parent: p.id, at: p.at, asset: p.asset, ticker: p.ticker, side: p.side, label: p.setup, ask: p.ask, multiple: p.multiple, intoWindow: 0, stake: p.stake, fee: 0, result: "open", exit: null, pnl: null });
+          changed = true;
+        } else if (have.result === "open" && p.result !== "open" && p.pnl != null) {
+          have.result = p.pnl > 0.05 ? "win" : "loss";
+          have.pnl = p.pnl;
+          have.exit = p.exit;
+          changed = true;
+        }
+      }
+    } catch {
+    }
+    // PAPER TWINS (Love, Oct 11 ~4:30 AM PT). The original PAPER book's own trades (live-paper-book.json, source "paper"),
+    // mirrored at $25 a ticket so her old oversized tickets ($250 / $695) can't swing them; each copies the parent's result.
+    //  - paper-247:     everything she takes, every hour ("one that runs 24/7 to confirm she's the same").
+    //  - paper-best:    only the hours green in BOTH halves of Oct 2-11: 3 AM, 11 AM, 3 PM, 7 PM, 8 PM, 10 PM PT, no silver
+    //                   (+$1,076 on 221 vs +$92 on all 938).
+    //  - paper-winners: only the setups green on BOTH paper and prime, any hour ("those losing set ups... one more book,
+    //                   with those gone. just these winning ones"): BTC short off +1.5σ, BTC short off -0.5σ, BTC long off -0.5σ.
+    try {
+      const pb = JSON.parse(readFileSync(D("live-paper-book.json"), "utf8"))?.trades ?? [];
+      const BEST = new Set([3, 11, 15, 19, 20, 22]);
+      const WIN = new Set(["btc|down|Tap-reject at +1.5σ", "btc|down|Tap-reject at -0.5σ", "btc|up|Tap-reject at -0.5σ"]);
+      const since = Date.parse("2026-10-11T11:30:00Z");
+      const hourOf = (at: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(at)));
+      const lanes: [string, (t: any) => boolean][] = [
+        ["paper-247", () => true],
+        ["paper-best", (t) => t.asset !== "silver" && BEST.has(hourOf(t.openedAt))],
+        ["paper-20", () => true],
+        ["paper-winners", (t) => WIN.has(`${t.asset}|${t.side}|${String(t.patternLabel || "").replace(/\u2212/g, "-").replace(/\s+/g, " ").trim()}`)],
+      ];
+      for (const t of pb) {
+        if (t?.source !== "paper" || Date.parse(t.openedAt) < since) continue;
+        const k = 25 / (Number(t.stake) || 25);
+        for (const [lane, ok] of lanes) {
+          if (!ok(t)) continue;
+          if (lane === "paper-20" && rows.some((r) => r.lane === "paper-20" && !r.parent && r.ticker === t.ticker)) continue;
+          const id = `${t.id}:${lane}`;
+          const have = rows.find((r) => r.id === id);
+          if (!have) {
+            rows.unshift({ id, lane, parent: t.id, at: t.openedAt, asset: t.asset, ticker: t.ticker, side: t.side, label: t.patternLabel, ask: r2(Number(t.ask) || 0), multiple: r2(Number(t.multiple) || 0), intoWindow: 0, stake: 25, fee: 0, result: "open", exit: null, pnl: null });
+            changed = true;
+          } else if (have.result === "open" && t.result !== "open" && t.profit != null) {
+            have.pnl = r2(Number(t.profit) * k);
+            have.result = have.pnl > 0.05 ? "win" : "loss";
+            have.exit = t.notes || t.result;
+            changed = true;
+          }
+        }
+      }
+    } catch {
+    }
+    // ORPHAN TWINS (Oct 11, 8:45 AM PT window): PAPER sometimes drops a trade from her own book after opening it (her 49c
+    // "close above 10m nav upper band" long vanished two minutes later, replaced by a 59c tap-reject). Its twins then had no
+    // parent to copy and sat "open" forever, though live had copied it. Once the window is 16+ min old, a twin whose parent
+    // is gone settles on Kalshi's result at $25: right = paid in full, wrong = -$25.
+    try {
+      const pbIds = new Set((JSON.parse(readFileSync(D("live-paper-book.json"), "utf8"))?.trades ?? []).map((t: any) => t.id));
+      for (const r of rows) {
+        if (r.result !== "open" || !r.parent || !/^paper-/.test(String(r.lane)) || pbIds.has(r.parent)) continue;
+        if (Date.now() - Date.parse(r.at) < 16 * 60000) continue;
+        try {
+          const mk = (await (await import("./scanner")).kget(`/trade-api/v2/markets/${r.ticker}`))?.market;
+          if (mk?.result !== "yes" && mk?.result !== "no") continue;
+          const won = (mk.result === "yes") === (r.side === "up");
+          r.pnl = won ? r2(25 / r.ask - 25) : -25;
+          r.result = won ? "win" : "loss";
+          r.exit = "PAPER dropped this trade from her book; settled on Kalshi's result";
+          changed = true;
+        } catch {
+        }
+      }
+    } catch {
+    }
+    if (changed) write(rows);
+    try { writeFileSync(D("pivot-now.json"), JSON.stringify(status, null, 1)); } catch {}
+  } finally {
+    g.__pivBusy = false;
+  }
+}

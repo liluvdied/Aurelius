@@ -1,0 +1,111 @@
+// BAND LOCK (Oct 16 ~1:05 PM PT, Love: "i need you to make sure this sticks and doesn't fire again backwards in an hour. or the
+// next window... please make sure that it is a physical impossibility to ever occur again").
+// The last gate before a twin order reaches Kalshi, separate from goldlaw.ts / pivotbooks.ts / engine.ts so a change in any of
+// them can't open the hole again. Every book, every asset (was: law books only): the order must be on
+// the side of the CLOSEST band price is on right now (over it = long, under it = short). If that can't be verified (no fresh
+// price, no fresh band list) or the law fails its self-test, the order is refused. The inverse (ogp5-inv) is not covered:
+// trading against the twin is its job.
+import { appendFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { quoteTick, feedHealth } from "./quotes";
+
+type Line = { name: string; price: number };
+const LAW_BOOKS = /^ogp5-(fast|gw|boll|lock)$/;
+const G = globalThis as any;
+const D = (f: string) => join(process.cwd(), "data", f);
+
+// Its own closest-band math (not imported), so a regression elsewhere can't fool it.
+function nearSide(L: Line[], tick: number): { side: "up" | "down" | null; band: Line } | null {
+  const ls = L.filter((l) => Number(l.price) > 0);
+  if (!(tick > 0) || !ls.length) return null;
+  let near = ls[0];
+  for (const l of ls) if (Math.abs(tick - l.price) < Math.abs(tick - near.price)) near = l;
+  return { side: tick < near.price ? "down" : tick > near.price ? "up" : null, band: near };
+}
+
+export function bandLockCheck(book: string, asset: string, side: string): { ok: true } | { ok: false; reason: string } {
+  // EVERY BOOK (Oct 16 ~1:10 PM PT, Love: "EVERY FUCKING BOOK WE OWN. EVERYTHING THAT EVER RUNS."): no exemptions - the
+  // inverse included, any asset. An asset with no band feed can't be verified, so it can't open.
+  void LAW_BOOKS;
+  const deny = (reason: string, extra: Record<string, unknown> = {}) => {
+    try { appendFileSync(D("band-lock.jsonl"), JSON.stringify({ at: new Date().toISOString(), book, asset, side, reason, ...extra }) + "\n"); } catch {}
+    return { ok: false as const, reason };
+  };
+  if (!(asset === "gold" || asset === "btc")) return deny(`no band feed for ${asset} to verify against - it can't open`);
+  if (G.__bandLawBroken) return deny("band law failed its self-test - no orders until it passes");
+  const lb = G.__lawBands?.[asset];
+  if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > 15000) return deny("can't verify the closest band right now (band list not fresh)");
+  const q = quoteTick(asset);
+  if (!q || !(q.c > 0) || Date.now() - q.at > 3000) return deny("can't verify the closest band right now (no fresh price)");
+  const fh = feedHealth(asset);
+  if (!fh.ok) return deny(`price feed not healthy (${fh.why})`);
+  const ns = nearSide(lb.L, q.c);
+  if (!ns) return deny("can't verify the closest band right now");
+  if (!gateAllows(lb.L, q.c, side)) return deny(`would ${side === "up" ? "long" : "short"} into ${ns.band.name} (unbroken, closest band)`, { tick: q.c, band: ns.band });
+  return { ok: true };
+}
+
+/** The gate's own rule: may an order on `side` go out with price `tick` and these bands? */
+export function gateAllows(L: Line[], tick: number, side: string): boolean {
+  const ns = nearSide(L, tick);
+  return !!ns && (!ns.side || ns.side === side);
+}
+/** Self-test (no-flip version, Oct 16 ~2:20 PM PT): her setups may now disagree with the closest band - the GATE must refuse
+ * every such order and pass every agreeing one. Random scenarios through the live goldLaw + the gate. Sets __bandLawBroken. */
+export function bandSelfTest(goldLaw: (...a: any[]) => any, n = 2000): number {
+  let seed = (Date.now() % 100000) + 7;
+  const rnd = () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
+  const bars = (open: number, k: number, vol: number) => { const out: any[] = []; let p = open; for (let i = 0; i < k; i++) { const o = p, c = o + (rnd() - 0.5) * vol; out.push({ o, c, h: Math.max(o, c) + rnd() * vol * 0.6, l: Math.min(o, c) - rnd() * vol * 0.6, t: i * 60 }); p = c; } return out; };
+  const extra = ["+1σ", "-1σ", "+1.5σ", "-1.5σ", "+2σ", "-2σ", "session VWAP", "2m PP", "10m PP", "15m R1", "15m S1"];
+  let bad = 0, calls = 0;
+  for (let i = 0; i < n; i++) {
+    const base = 4000 + rnd() * 80000, sp = base * (0.0002 + rnd() * 0.003), pp = base + (rnd() - 0.5) * sp * 2, st = sp * (0.5 + rnd());
+    const L: Line[] = [{ name: "5m PP", price: pp }, { name: "5m R1", price: pp + st }, { name: "5m R2", price: pp + 2 * st }, { name: "5m S1", price: pp - st }, { name: "5m S2", price: pp - 2 * st }];
+    for (const nm of extra) if (rnd() < 0.5) L.push({ name: nm, price: base + (rnd() - 0.5) * sp * 6 });
+    const vol = sp * (0.2 + rnd() * 1.5), po = base + (rnd() - 0.5) * sp * 3, pb = bars(po, 5, vol), co = pb[4].c, nc = Math.floor(rnd() * 5), cb = bars(co, nc, vol);
+    const tick = (nc ? cb[nc - 1].c : co) + (rnd() - 0.5) * vol * 2;
+    const broken = L.filter(() => rnd() < 0.15).map((l) => ({ name: l.name, side: rnd() < 0.5 ? "up" : "down" }));
+    let call: any = null;
+    try { call = goldLaw(L, tick, { open: co, bars: cb }, { open: po, bars: pb }, nc ? cb[nc - 1] : pb[4], broken, null, false); } catch { bad++; continue; }
+    if (!call) continue;
+    calls++;
+    const ns = nearSide(L, tick);
+    const into = !!(ns && ns.side && ns.side !== call.side);
+    if (gateAllows(L, tick, call.side) === into) bad++; // gate must refuse exactly the into-band orders
+  }
+  G.__bandLawBroken = bad > 0;
+  try { writeFileSync(D("band-lock-selftest.json"), JSON.stringify({ at: new Date().toISOString(), scenarios: n, calls, intoUnbrokenBand: bad, ok: bad === 0 }, null, 1)); } catch {}
+  return bad;
+}
+
+/** PAPER DNA (Oct 16 ~1:12 PM PT, Love: "0 OF OUR BOOKS ARE TO NOT HAVE THAT INCLUDED IN THEIR DNA. NEVER AGAIN. STAPLE THAT
+ * SHUT AND BURY IT."): every paper book's NEW trade (open, booked in the last 2 min, not yet checked on this side) on gold
+ * (incl. micro gold) or BTC must be on the closest band's side right now, or it is not recorded - the book books again on a
+ * later pass if it still wants to. Can't verify (no fresh price / band list) = not recorded. Drops -> data/band-lock.jsonl. */
+export function paperBandFilter<T>(rows: T[], tag: string): T[] {
+  const seen: Map<string, string> = (G.__bandSeen ||= new Map());
+  const now = Date.now();
+  const out: T[] = [];
+  for (const r0 of rows as any[]) {
+    const r = r0 as any;
+    if (!r || typeof r !== "object") { out.push(r0); continue; }
+    const id = String(r.id ?? ""), side = String(r.side ?? ""), at = Date.parse(String(r.at ?? ""));
+    const open = r.result === undefined || r.result === null || r.result === "open";
+    if (!id || !(side === "up" || side === "down") || !open || !(now - at < 120000) || seen.get(id) === side) { out.push(r0); continue; }
+    const a0 = String(r.asset ?? "").toLowerCase();
+    const asset = a0 === "mgold" ? "gold" : a0;
+    if (!(asset === "gold" || asset === "btc")) { out.push(r0); continue; }
+    const lb = G.__lawBands?.[asset];
+    const q = quoteTick(asset);
+    let why = "";
+    if (G.__bandLawBroken) why = "band law failed its self-test";
+    else if (!lb || !Array.isArray(lb.L) || !lb.L.length || now - Number(lb.at) > 15000) why = "can't verify (band list not fresh)";
+    else if (!q || !(q.c > 0) || now - q.at > 3000) why = "can't verify (no fresh price)";
+    else { const ns = nearSide(lb.L, q.c); if (!ns) why = "can't verify"; else if (ns.side && ns.side !== side) why = `${side === "up" ? "long" : "short"} into ${ns.band.name} (unbroken, closest band)`; }
+    if (why) { const LA: Map<string, number> = (G.__bandLogAt ||= new Map()); const k = `${id}:${side}`; if (!LA.has(k) || now - (LA.get(k) as number) > 30000) { LA.set(k, now); if (LA.size > 5000) LA.clear(); } else continue; try { appendFileSync(D("band-lock.jsonl"), JSON.stringify({ at: new Date().toISOString(), paper: tag, id, book: r.lane ?? r.book ?? "", asset: a0, side, reason: why, tick: q?.c ?? null }) + "\n"); } catch {} continue; }
+    seen.set(id, side);
+    out.push(r0);
+  }
+  if (seen.size > 20000) { let i = 0; for (const k of seen.keys()) { if (i++ > 5000) break; seen.delete(k); } }
+  return out;
+}
