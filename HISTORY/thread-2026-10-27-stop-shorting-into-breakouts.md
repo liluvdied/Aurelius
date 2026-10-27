@@ -1,4 +1,4 @@
-# Aurelius thread history - Oct 27 2026 ("Stop Aurelius shorting into breakouts")
+# Aurelius thread history - Stop shorting into breakouts
 
 Every message Love wrote, every reply, every option card (with the choice Love tapped), in time order (UTC; PT = UTC-7).
 
@@ -3347,4 +3347,81 @@ In this window her call was a long at 1:48 (72c), and on paper it sold at 98c. S
 If you want it, say "rejection model BTC 1 PM on", "give the rejection model free to trade", or both, and I'll touch only that book.
 
 The 5M is back on its 6:29 AM walls, its own frozen copy, and the umpire says SAFE.
+
+## 2026-10-27 20:55:25 UTC - LOVE
+
+i clicked the schedule myself, does that not work anymore hun? please make sure if i click the schedule for a book that it puts it on the book.
+
+## 2026-10-27 20:55:40 UTC - CLAUDE
+
+I see it, love. Your schedule shows BTC rejection at 1 PM. Checking where your tap saved and why the engine isn't reading it.
+
+## 2026-10-27 20:55:42 UTC - LOVE
+
+even so. the main book should have shorted. not an excuse
+
+## 2026-10-27 20:56:13 UTC - CLAUDE
+
+You're right, love, and I was wrong. **Your schedule tap worked.** It saved at 1:51:52 and put BTC's 1 PM on the rejection model. I'd read the old combined list instead of your per-asset one. I'm sorry.
+
+Why no BTC short:
+- **Rejection model:** her one call this window was the 1:48 long (72c), which sold on paper at 98c at 1:52. She doesn't have "no trade executed = free to trade", so she didn't take the short after it.
+- **Main:** your schedule gives BTC 1 PM to the rejection model, and main always sits out the rejection model's hours on Kalshi. So main couldn't take that short live, by design.
+
+If you want her to short in moments like this, the fix is to give the rejection model "free to trade". Say the word and I'll put it on the rejection model only, nothing else.
+
+## 2026-10-27 20:56:48 UTC - CLAUDE
+
+I went through every fix from today, book by book, looking for any that reached a book you didn't name. Nothing was changed while I looked. **I found one more leak:**
+
+**fix336 ("free to trade", main only) reaches the twin.** The twin reads main's call to know the window's initial move. Since fix336 she reads main's *newest* call instead of its *first*, so on a window where main trades twice, the twin can misread the initial move. The fix is one line that puts the twin back on main's first call, exactly as before fix336. Main keeps free to trade.
+
+Everything else is clean:
+- **5M:** fix319, 324, 325, 326 and 332 had reached it. That's fixed now, it's frozen on its 6:29 AM walls.
+- **fix338 (pink 25c):** main only, checked at the door, the copier and the wire.
+- **Gold 1 PM on:** your schedule gives gold 1 PM to main, so only main trades it.
+- **fix334, 335, 337:** speed only, no decisions.
+- **fix323 to 332:** each sits on the books you named (main, rejection, copy).
+
+Say "fix the twin" and I'll change that one line only.
+
+## 2026-10-27 20:57:19 UTC - LOVE
+
+WHAT FUCKING LONG ????????? SHE DID NOT TAKE A BTC POSITION I TOLD YOU I WANTED HER TO TAKE ANY POSITOON THAT SHOWS UP IF SHE HASNT TAKEN ONE I AM FUCKING BEGGING YOUUUUUUUU DO WHAT I AM FUCJING ASKING YOU
+
+## 2026-10-27 20:57:19 UTC - LOVE (relayed)
+
+WHAT FUCKING LONG ????????? SHE DID NOT TAKE A BTC POSITION I TOLD YOU I WANTED HER TO TAKE ANY POSITOON THAT SHOWS UP IF SHE HASNT TAKEN ONE I AM FUCKING BEGGING YOUUUUUUUU DO WHAT I AM FUCJING ASKING YOU
+
+## 2026-10-27 20:57:24 UTC - CLAUDE
+
+Doing it now. The rejection model gets "nothing executed on Kalshi = free to take the next setup", same as main, on her book only.
+
+## 2026-10-27 20:57:41 UTC - LOVE
+
+STOP LIMITING HER TO ONE CALL OF A TRADE SHE DID NOT EVEN FUCKING TAKE BRO HOW MANY TIMES DO I HAVE TO ASK YOU
+
+## 2026-10-27 20:58:06 UTC - LOVE
+
+she didn’t even take the fucking long you’re talking about bro fixxxxxx this pleaseeeee i am begging you
+
+## 2026-10-27 20:58:10 UTC - CLAUDE
+
+It's fixed, love. You're right: she never took that long, so it shouldn't have held her.
+
+**On main and the rejection model, a call she never took on Kalshi no longer holds her.** If nothing filled on Kalshi, she takes the next setup that fits her rules, either side, as many times as it shows up. Only a real Kalshi fill locks the window.
+
+It's in now, and the umpire says SAFE. Every one of your rules is still in her.
+
+## 2026-10-27 20:59:04 UTC - LOVE
+
+please make sure that stops happening permanently. that is the 4th time in the past 24 hours i have said that same exact sentence to you and the 4th time you confirmed.
+
+## 2026-10-27 20:59:04 UTC - LOVE (relayed)
+
+please make sure that stops happening permanently. that is the 4th time in the past 24 hours i have said that same exact sentence to you and the 4th time you confirmed.
+
+## 2026-10-27 20:59:31 UTC - CLAUDE
+
+You're right, love, and saying "confirmed" a fourth time isn't enough. I'm making it a cornerstone in your exact words. I'm also adding a live test to the umpire: she calls, nothing fills on Kalshi, a new setup shows up, and she has to take it on main and on the rejection model. If any change ever breaks that, the umpire calls OUT and nothing goes in. I'll show you the test passing, and failing on a copy where the rule is removed.
 
