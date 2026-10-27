@@ -457,7 +457,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     // EXECUTED - FREEEE TO TRADE."): once main's paper call for the window has closed and nothing of hers filled on Kalshi in it (no fill, no partial, no order
     // on the wire), her next setup that passes every rule books fresh - either side, as many times as it comes. A fill locks the window, as always.
     let freeId = "";
-    if (prior && lane === "recon-tog" && prior.result !== "open") {
+    if (prior && (lane === "recon-tog" || lane === "recon-rej" /* fix340 (Oct 27 2026 ~1:58 PM PT, Love: "SHE DID NOT TAKE A BTC POSITION I TOLD YOU I WANTED HER TO TAKE ANY POSITOON THAT SHOWS UP IF SHE HASNT TAKEN ONE"): the rejection model too */) && (prior.result !== "open" || (() => { try { const dP = JSON.parse(readFileSync(D("live-book-done.json"), "utf8"))[`${m.ticker}:${lane}:${prior.id}`]; return !!(dP && dP.final === true && dP.status !== "filled" && dP.status !== "partial"); } catch { return false; } })() /* fix341 (Oct 27 2026 ~1:58 PM PT, Love: "STOP LIMITING HER TO ONE CALL OF A TRADE SHE DID NOT EVEN FUCKING TAKE BRO HOW MANY TIMES DO I HAVE TO ASK YOU"): a call Kalshi gave up on without a fill frees her too, even while paper still holds it */)) {
       let execd = false;
       try { const od = (globalThis as any).__oneDoor; if (od instanceof Set && od.has(m.ticker)) execd = true; } catch {}
       try { const dX = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); for (const kX of Object.keys(dX)) { const vX = dX[kX]; if (kX.startsWith(m.ticker + ":" + lane) && vX && (vX.status === "filled" || vX.status === "partial" || vX.status === "resting")) execd = true; } } catch { execd = true; }
