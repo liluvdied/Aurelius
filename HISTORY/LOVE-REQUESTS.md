@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R022 - Track + log (record only) every 5M trade that comes from main's extra free-to-trade calls; leave the behaviour as is
+- when: 2026-10-27T21:25:48Z
+- Love: "yesss pls that’s perfect , track and log those and we’ll see if it’s a problem or a proud one :)"
+- books: 5m (main's BTC lane)
+- status: ACTIVE
+- proof: {"exists": "tools/extra-call-5m.py"}
+- proof: {"code": "tools/umpire.py", "has": "tools/extra-call-5m.py"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "let freeId = \"\";"}
+
 ## R021 - CORNERSTONE #3: every word Love says and every reply goes into the repository; every new thread starts with full context
 - when: 2026-10-27T21:09:16Z
 - Love: "thank you. please make sure everything i just said is included in the repository. everything i ever say, and everything you ever say in response; included in the repository. no more amnesia. ever again. every new thread has full context on prior events. cornerstone #3. please 🙏 🙏🙏🙏🙏🙏🙏🙏🙏"

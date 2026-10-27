@@ -19,6 +19,8 @@ for tool in ("tools/verify-golden.py", "tools/cornerstones.py", "tools/rule-anch
     last = (r.stdout.strip().split("\n") or [""])[-1]
     print(("SAFE   " if r.returncode == 0 else "OUT    ") + tool + "  " + last)
     if r.returncode != 0: ok = False; print(r.stdout)
+r9 = subprocess.run([sys.executable, "tools/extra-call-5m.py"], capture_output=True, text=True)  # record only (Love Oct 27 2:25 PM PT: "track and log those")
+print("INFO   tools/extra-call-5m.py  " + ((r9.stdout.strip().split("\n") or [""])[0]))
 saves = sorted(glob.glob("data/SAVES/*"), key=os.path.getmtime)
 fresh = saves and time.time() - os.path.getmtime(saves[-1]) < 900
 print(("SAFE   " if fresh else "CHECK  ") + "latest save: " + (saves[-1] if saves else "none"))
