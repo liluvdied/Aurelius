@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R021 - CORNERSTONE #3: every word Love says and every reply goes into the repository; every new thread starts with full context
+- when: 2026-10-27T21:09:16Z
+- Love: "thank you. please make sure everything i just said is included in the repository. everything i ever say, and everything you ever say in response; included in the repository. no more amnesia. ever again. every new thread has full context on prior events. cornerstone #3. please 🙏 🙏🙏🙏🙏🙏🙏🙏🙏"
+- books: every thread, repo
+- status: ACTIVE
+- proof: {"code": "LOVE-RULEBOOK.md", "has": "CORNERSTONE #3 - EVERY WORD"}
+- proof: {"process": "every thread runs save-thread.py + save-project-chat.py into HISTORY/ after each fix and before finishing, commits, pushes; HISTORY/README-START-HERE.md is read first by every new thread (project instructions + memory)"}
+
 ## R020 - CORNERSTONE #2: a 1:1 copy of every request, change and fix in the vault; what goes in stays in
 - when: 2026-10-27T21:06:41Z
 - Love: "add a backup of every single one of them. not just one incase it gets lost. every request, every change, and every fix has a copied 1:1 file of them to be drawn up if the original is missing or damaged or overridden. no exceptions. what goes in stays in. and doesn’t get removed without express permission and consent. Cornerstone #2"

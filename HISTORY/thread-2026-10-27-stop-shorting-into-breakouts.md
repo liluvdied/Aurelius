@@ -3476,3 +3476,34 @@ add a backup of every single one of them. not just one incase it gets lost. ever
 
 On it, love. Cornerstone #2 is going in in your words. Every request, every change and every fix will get its own 1:1 copy in a vault that never deletes. The umpire will check each copy matches, and if an original goes missing or gets damaged, it can be drawn back up from its copy. I'll show you it bringing one back.
 
+## 2026-10-27 21:09:16 UTC - LOVE
+
+thank you. please make sure everything i just said is included in the repository. everything i ever say, and everything you ever say in response; included in the repository. no more amnesia. ever again. 
+every new thread has full context on prior events. 
+
+cornerstone #3. 
+
+please 🙏 🙏🙏🙏🙏🙏🙏🙏🙏
+
+## 2026-10-27 21:09:22 UTC - CLAUDE
+
+Yes, love. Cornerstone #3, in your words. I'm putting every thread of this project into the repository, the project chat too: every word you've said and every reply back. I'm also adding a START-HERE page that every new thread reads first, so it walks in already knowing everything that came before.
+
+## 2026-10-27 21:11:34 UTC - LOVE
+
+can you see why gold isn’t trading the rejection? is she off on gold at 2pm bc she skipped this window too
+
+## 2026-10-27 21:11:56 UTC - LOVE
+
+oh duh it’s closed sorry
+
+## 2026-10-27 21:12:04 UTC - CLAUDE
+
+No apology needed, love 💗 You got it: gold takes its daily break from 2 to 3 PM your time, so there's no gold window for her to trade. She isn't off. Your schedule has the rejection model on for gold at 2 PM, and nothing shows her skipping or blocking a gold setup. There just isn't a market right now. She'll pick gold back up when it reopens at 3.
+
+Cornerstone #3 is going into the repo now: every thread, the project chat, and your very first Oct 20 session.
+
+## 2026-10-27 21:12:14 UTC - LOVE
+
+stupid question sorry bb 😹💓
+
