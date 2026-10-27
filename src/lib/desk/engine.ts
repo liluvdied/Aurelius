@@ -3171,6 +3171,7 @@ async function polyTwin() {
     const log = (o: any) => { try { appendFileSync(join(process.cwd(), "data", "poly-twin-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ...o }) + "\n"); } catch {} };
     const pm = await import("./poly-live.server");
     const blm = await import("./bandlock");
+    const blm5 = await import("./bandlock5m"); // fix339: the 5M book's own frozen walls (6:29 AM Oct 27)
     let changed = false;
     const MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     // THE HEDGE IN THE TWIN'S KALSHI HOURS (fix118, Oct 22 ~9:00 PM PT, Love: "in the event the delayed entry model is on kalshi, have polymarket take the opposite
@@ -3269,7 +3270,7 @@ async function polyTwin() {
         // WALLS JUDGE THE CALL (fix204, Oct 25 ~5:07 AM PT, Love card "Judge walls at the call" - since 2 AM Kalshi filled 9 of her calls and the 5m only 1: by the time
         // her flip came, price had moved and the walls re-judged her thirds at the new price): the first time the 5m lane sees a call, her walls judge it right then
         // (5m cushions). If it passes, the flip only confirms it - no second wall check at the flip. If it fails, the walls keep judging it at the flip as before.
-        if (d5?.wallOk === undefined && !part5) { let w0: any = null; (globalThis as any).__pinkCap5 = 25; const bbH0 = (globalThis as any).__bbsr; if ((globalThis as any).__bbsrChart) (globalThis as any).__bbsr = (globalThis as any).__bbsrChart; try { w0 = blm.bandLockCheck(String(r.book), r.asset, r.side, String(r.ticker)); } finally { (globalThis as any).__pinkCap5 = 0; (globalThis as any).__bbsr = bbH0; } (base5 as any).wallOk = !!w0?.ok; } else (base5 as any).wallOk = !!d5?.wallOk;
+        if (d5?.wallOk === undefined && !part5) { let w0: any = null; (globalThis as any).__pinkCap5 = 25; const bbH0 = (globalThis as any).__bbsr; if ((globalThis as any).__bbsrChart) (globalThis as any).__bbsr = (globalThis as any).__bbsrChart; try { w0 = blm5.bandLockCheck(String(r.book), r.asset, r.side, String(r.ticker)); /* fix339 */ } finally { (globalThis as any).__pinkCap5 = 0; (globalThis as any).__bbsr = bbH0; } (base5 as any).wallOk = !!w0?.ok; } else (base5 as any).wallOk = !!d5?.wallOk;
         if (FLIP5_BOOKS.includes(String(r.book)) && !part5) { // fix188 + fix189: a finished 1m candle since her call closed her way, just now, with ~4 minutes left
           const callS = Date.parse(String(r.at)) / 1000, nowS = now / 1000;
           const fin = (((globalThis as any).__pivBars?.btc?.bars ?? []) as any[]).filter((x: any) => Number(x.t) + 60 <= nowS + 1 && Number(x.t) + 60 > callS).sort((x: any, y: any) => Number(x.t) - Number(y.t));
@@ -3315,7 +3316,7 @@ async function polyTwin() {
             reg[id5] = { ...base5, status: "waiting", reason: wf }; changed = true; continue;
           }
         }
-        let bl5: any; (globalThis as any).__pinkCap5 = 25; const bbH5 = (globalThis as any).__bbsr; if ((globalThis as any).__bbsrChart) (globalThis as any).__bbsr = (globalThis as any).__bbsrChart; try { bl5 = part5 || (base5 as any).wallOk ? { ok: true } : blm.bandLockCheck(String(r.book), r.asset, r.side, String(r.ticker)); } finally { (globalThis as any).__pinkCap5 = 0; (globalThis as any).__bbsr = bbH5; } // fix199: $25 pink cushion on the 5m board // fix266 (Love Oct 26 9:09 AM PT: "please go back over our last messages yesterday and rebuild a twin EXACTLY. from that configuration, nothing different whatsoever"): the 5m board's walls read the chart's Bollinger as on Sunday, not her own (fix259 stays for Kalshi)
+        let bl5: any; (globalThis as any).__pinkCap5 = 25; const bbH5 = (globalThis as any).__bbsr; if ((globalThis as any).__bbsrChart) (globalThis as any).__bbsr = (globalThis as any).__bbsrChart; try { bl5 = part5 || (base5 as any).wallOk ? { ok: true } : blm5.bandLockCheck( /* fix339 */String(r.book), r.asset, r.side, String(r.ticker)); } finally { (globalThis as any).__pinkCap5 = 0; (globalThis as any).__bbsr = bbH5; } // fix199: $25 pink cushion on the 5m board // fix266 (Love Oct 26 9:09 AM PT: "please go back over our last messages yesterday and rebuild a twin EXACTLY. from that configuration, nothing different whatsoever"): the 5m board's walls read the chart's Bollinger as on Sunday, not her own (fix259 stays for Kalshi)
         if (!bl5.ok) { if (d5?.reason !== bl5.reason) log({ id: id5, status: "blocked", reason: bl5.reason }); reg[id5] = { ...base5, status: "blocked", reason: bl5.reason }; changed = true; continue; }
         const win5 = await pm.polyWindow5(r.asset, closes5).catch(() => null);
         if (!win5 && part5) { reg[id5] = { ...d5, lastTry: now }; changed = true; continue; }

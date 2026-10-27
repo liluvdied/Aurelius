@@ -27,7 +27,7 @@
     "confirm.ts": "9d4790dfd4a9e8ed",
     "dayboard.ts": "85ba614c44331637",
     "dna.ts": "7e15f742d137607e",
-    "engine.ts": "f4440b1bfe84fcc5",
+    "engine.ts": "531edc0088751f99",
     "feedmatch.ts": "8908213d26d0f9fc",
     "fees.ts": "b31480529d0d4c44",
     "fill-log.ts": "1e136cd46cbbbe7f",
@@ -115,7 +115,8 @@
     "twin.ts": "5d167f2f91c25a1e",
     "types.ts": "2bd4d0663c7660e8",
     "vwap.ts": "78918a253309f5e0",
-    "watchdog.ts": "5602586aa0e3daae"
+    "watchdog.ts": "5602586aa0e3daae",
+    "bandlock5m.ts": "b95f88628fc1fa4c"
   },
   "config": {
     "live": "b5bea41b6c",
