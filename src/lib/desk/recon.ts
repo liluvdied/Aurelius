@@ -452,7 +452,19 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
         }
       } catch {}
     }
-    if (prior) {
+    // NO TRADE EXECUTED - FREE TO TRADE (fix336, main book only, Love Oct 27 1:10 PM PT: "i specifically said she is to take any set up that comes that fits
+    // her rules if she is not actively in a position on kalshi" + 1:13 PM: "YES. ONE EXECUTED TRADE PER WINDOW. EXECUTED. EXECUTED. EXECUTED. EXECUTED. NO TRADE
+    // EXECUTED - FREEEE TO TRADE."): once main's paper call for the window has closed and nothing of hers filled on Kalshi in it (no fill, no partial, no order
+    // on the wire), her next setup that passes every rule books fresh - either side, as many times as it comes. A fill locks the window, as always.
+    let freeId = "";
+    if (prior && lane === "recon-tog" && prior.result !== "open") {
+      let execd = false;
+      try { const od = (globalThis as any).__oneDoor; if (od instanceof Set && od.has(m.ticker)) execd = true; } catch {}
+      try { const dX = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); for (const kX of Object.keys(dX)) { const vX = dX[kX]; if (kX.startsWith(m.ticker + ":" + lane) && vX && (vX.status === "filled" || vX.status === "partial" || vX.status === "resting")) execd = true; } } catch { execd = true; }
+      if (execd) return false;
+      freeId = `${m.ticker}:${lane}:n${rows.filter((r) => r.ticker === m.ticker && r.lane === lane).length + 1}`;
+    }
+    if (prior && !freeId) {
       // ONE EXECUTED DIRECTION PER WINDOW (Oct 20 ~8:00 AM PT, Love: "she is clear to take the other side if she doesn't execute a
       // decision in the other. only one EXECUTED direction per window. if she doesn't take a long initially, she is clear to short
       // afterwards. vis versa"): a call that never FILLED on Kalshi does not lock the window. When her bones flip sides and the old
@@ -501,7 +513,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     const n = STAKE / ask;
     const sdNow = Number((ax?.vwap1m?.vwap ? ax.vwap1m : ax?.vwap5m)?.stdev) || 0;
     const bar = last1m ? { o: r2(last1m.o), h: r2(last1m.h), l: r2(last1m.l), c: r2(last1m.c) } : null;
-    rows.unshift({ id: `${m.ticker}:${lane}`, lane, at: new Date().toISOString(), asset: id, ticker: m.ticker, spotAt: Math.round(spot * 100) / 100, side: look.side, first: look.side, label: look.label, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null, bar, sd: r2(sdNow), band: null, recon: true });
+    rows.unshift({ id: freeId || `${m.ticker}:${lane}`, lane, at: new Date().toISOString(), asset: id, ticker: m.ticker, spotAt: Math.round(spot * 100) / 100, side: look.side, first: look.side, label: look.label, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null, bar, sd: r2(sdNow), band: null, recon: true });
     return true;
   };
   // TWIN ADD-ON ON PAPER (Oct 24 PT, Love picked "Paper records, 1/4 of entry": "for the delayed entry model id like you to have her use 1/4 position sizes
