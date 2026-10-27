@@ -1,0 +1,77 @@
+{
+  "live": true,
+  "maxDollars": 25,
+  "cooldownAfterLoss": true,
+  "route": "paper",
+  "at": "2026-10-02T06:22:50.039027Z",
+  "note": "Nav skip 1m/5m/10m/15m purple, 1m close confirm. Gold within $2.50, BTC within $100 (Love's call).",
+  "cooldownExcuse": [
+    "KXGOLD15M-26OCT012200-00"
+  ],
+  "shiftStart": "2026-10-02T01:58:00.000Z",
+  "blockedSetups": [
+    "Tap-reject at -0.5\u03c3|down|gold"
+  ],
+  "lockWin": {
+    "on": true,
+    "arm": 20,
+    "floor": 10
+  },
+  "channelRule": false,
+  "channelEdge": 0.25,
+  "blockedAssets": [
+    "silver"
+  ],
+  "bigMultipleCap": {
+    "on": true,
+    "x": 3,
+    "dollars": 5
+  },
+  "skipHours": {
+    "btc": [
+      9,
+      16,
+      18,
+      20,
+      21
+    ],
+    "gold": [
+      1,
+      7,
+      12,
+      16,
+      17
+    ]
+  },
+  "navSkip": {
+    "on": true,
+    "assets": [
+      "gold",
+      "btc"
+    ],
+    "frames": [
+      "m1",
+      "m5",
+      "m10",
+      "m15"
+    ],
+    "within": 0.25,
+    "lines": [
+      "center"
+    ],
+    "byAsset": {
+      "btc": {
+        "frames": [
+          "m1",
+          "m5",
+          "m10",
+          "m15"
+        ],
+        "withinDollars": 100
+      },
+      "gold": {
+        "withinDollars": 2.5
+      }
+    }
+  }
+}

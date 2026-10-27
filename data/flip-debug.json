@@ -1,0 +1,541 @@
+[
+ {
+  "at": "2026-10-27T19:45:31.559Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271600-00:ogp5",
+  "side": "up",
+  "spot": 4062.31,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $0.69, ADX 22)",
+   "zone": 0.6912947969757025
+  }
+ },
+ {
+  "at": "2026-10-27T19:45:08.623Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271600-00:ogp5",
+  "side": "up",
+  "spot": 80703.2,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $33.66, ADX 23)",
+   "zone": 33.66073083535489
+  }
+ },
+ {
+  "at": "2026-10-27T19:31:37.307Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvr304bw-2tzr1a:paper-247",
+  "side": "down",
+  "spot": 4060.21,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP below, $0.22 away (zone $3.00, ATR 2.70, ADX 21)",
+   "zone": 0.692773969108795
+  }
+ },
+ {
+  "at": "2026-10-27T19:30:28.303Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271545-45:ogp5",
+  "side": "up",
+  "spot": 4060.812,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $0.69, ADX 21)",
+   "zone": 0.6927757485949189
+  }
+ },
+ {
+  "at": "2026-10-27T19:30:09.945Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271545-45:ogp5",
+  "side": "down",
+  "spot": 80526.7,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $32.07, ADX 21)",
+   "zone": 32.07214397534446
+  }
+ },
+ {
+  "at": "2026-10-27T19:15:56.550Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvr2fzt9-r8vz4r:paper-247",
+  "side": "down",
+  "spot": 4060.6,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP below, $1.63 away (zone $3.00, ATR 2.78, ADX 22)",
+   "zone": 0.7371030576848092
+  }
+ },
+ {
+  "at": "2026-10-27T19:15:20.985Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271530-30:ogp5",
+  "side": "up",
+  "spot": 4061.01,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m R1 above, $0.00 away (zone $0.74, ATR 2.78, ADX 22)",
+   "zone": 0.7371030576848092
+  }
+ },
+ {
+  "at": "2026-10-27T19:15:06.665Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271530-30:ogp5",
+  "side": "down",
+  "spot": 80573.24,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP below, $6 away (zone $35, ATR 115.64, ADX 22)",
+   "zone": 34.904470873384895
+  }
+ },
+ {
+  "at": "2026-10-27T19:04:13.467Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271515-15:ogp5",
+  "side": "down",
+  "spot": 4059.128,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP below, $2.57 away (zone $3.00, ATR 2.81, ADX 25)",
+   "zone": 0.8483954888152605
+  }
+ },
+ {
+  "at": "2026-10-27T19:00:43.789Z",
+  "fa": "btc",
+  "src": "paper-247",
+  "row": "mvr1wfyt-9y77jy:paper-247",
+  "side": "up",
+  "spot": 80601.19,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $31.29, ADX 20)",
+   "zone": 31.286410136878317
+  }
+ },
+ {
+  "at": "2026-10-27T19:00:13.037Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271515-15:ogp5",
+  "side": "down",
+  "spot": 80501.26,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $31.29, ADX 20)",
+   "zone": 31.286410136878317
+  }
+ },
+ {
+  "at": "2026-10-27T18:48:14.943Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271500-00:ogp5",
+  "side": "up",
+  "spot": 4055.719,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP above, $0.22 away (zone $3.00, ATR 3.01, ADX 25)",
+   "zone": 0.9082101419731854
+  }
+ },
+ {
+  "at": "2026-10-27T18:46:17.953Z",
+  "fa": "btc",
+  "src": "paper-247",
+  "row": "mvr1dujv-6cv1p9:paper-247",
+  "side": "up",
+  "spot": 80581.29,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $31.67, ADX 19)",
+   "zone": 31.669341751340394
+  }
+ },
+ {
+  "at": "2026-10-27T18:45:13.395Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271500-00:ogp5",
+  "side": "up",
+  "spot": 80594.59,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m R1 above, $22 away (zone $32, ATR 120.57, ADX 19)",
+   "zone": 31.669371279668457
+  }
+ },
+ {
+  "at": "2026-10-27T18:30:10.423Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271445-45:ogp5",
+  "side": "down",
+  "spot": 80507.21,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP below, $2 away (zone $36, ATR 129.52, ADX 20)",
+   "zone": 36.12915277500834
+  }
+ },
+ {
+  "at": "2026-10-27T18:18:09.919Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvr0dq3k-2lgdh5:paper-247",
+  "side": "down",
+  "spot": 4057.637,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $1.09, ADX 27)",
+   "zone": 1.0863820056944626
+  }
+ },
+ {
+  "at": "2026-10-27T18:17:56.355Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvr0deun-15a55p:paper-247",
+  "side": "down",
+  "spot": 4057.805,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $1.09, ADX 27)",
+   "zone": 1.0863854622367923
+  }
+ },
+ {
+  "at": "2026-10-27T18:15:34.604Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271430-30:ogp5",
+  "side": "up",
+  "spot": 4058.477,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP above, $0.04 away (zone $3.00, ATR 3.35, ADX 27)",
+   "zone": 1.0863847709438177
+  }
+ },
+ {
+  "at": "2026-10-27T18:15:11.839Z",
+  "fa": "btc",
+  "src": "paper-247",
+  "row": "mvr09vn4-bpsd4f:paper-247",
+  "side": "up",
+  "spot": 80562.16,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $39.53, ADX 22)",
+   "zone": 39.5344076013768
+  }
+ },
+ {
+  "at": "2026-10-27T18:15:08.687Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271430-30:ogp5",
+  "side": "up",
+  "spot": 80562.16,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $39.53, ADX 22)",
+   "zone": 39.5344076013768
+  }
+ },
+ {
+  "at": "2026-10-27T18:11:02.042Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271415-15:ogp5",
+  "side": "down",
+  "spot": 4057.348,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $1.16, ADX 28)",
+   "zone": 1.160324380336162
+  }
+ },
+ {
+  "at": "2026-10-27T18:01:14.225Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvqzrx6r-o1vobw:paper-247",
+  "side": "down",
+  "spot": 4055.87,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m S1 below, $0.34 away (zone $1.33, ATR 3.52, ADX 32)",
+   "zone": 1.3335079851050777
+  }
+ },
+ {
+  "at": "2026-10-27T18:01:05.581Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvqzrro5-15upo3:paper-247",
+  "side": "down",
+  "spot": 4055.621,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m S1 below, $0.09 away (zone $1.33, ATR 3.52, ADX 32)",
+   "zone": 1.3335079851050777
+  }
+ },
+ {
+  "at": "2026-10-27T18:00:06.928Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271415-15:ogp5",
+  "side": "up",
+  "spot": 80388.95,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $46.65, ADX 25)",
+   "zone": 46.65264348169495
+  }
+ },
+ {
+  "at": "2026-10-27T17:45:33.556Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvqz7r4q-mdz8ci:paper-247",
+  "side": "down",
+  "spot": 4062.37,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP below, $0.08 away (zone $3.00, ATR 3.53, ADX 38)",
+   "zone": 1.588823795508577
+  }
+ },
+ {
+  "at": "2026-10-27T17:45:22.272Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271400-00:ogp5",
+  "side": "up",
+  "spot": 4062.829,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $1.59, ADX 38)",
+   "zone": 1.588823795508577
+  }
+ },
+ {
+  "at": "2026-10-27T17:45:10.624Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271400-00:ogp5",
+  "side": "up",
+  "spot": 80590.45,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $55.32, ADX 29)",
+   "zone": 55.3177493708102
+  }
+ },
+ {
+  "at": "2026-10-27T17:30:23.135Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271345-45:ogp5",
+  "side": "up",
+  "spot": 4062.315,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m R1 above, $0.46 away (zone $1.59, ATR 3.56, ADX 37)",
+   "zone": 1.5942548210859024
+  }
+ },
+ {
+  "at": "2026-10-27T17:30:05.595Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271345-45:ogp5",
+  "side": "down",
+  "spot": 80627.45,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP below, $49 away (zone $56, ATR 146.77, ADX 27)",
+   "zone": 55.62860577239322
+  }
+ },
+ {
+  "at": "2026-10-27T17:15:12.325Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271330-30:ogp5",
+  "side": "up",
+  "spot": 4059.633,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $1.72, ADX 40)",
+   "zone": 1.7240335277178553
+  }
+ },
+ {
+  "at": "2026-10-27T17:15:11.189Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271330-30:ogp5",
+  "side": "up",
+  "spot": 80522.13,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $47.98, ADX 24)",
+   "zone": 47.97578744560583
+  }
+ },
+ {
+  "at": "2026-10-27T17:00:26.508Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271315-15:ogp5",
+  "side": "up",
+  "spot": 4059.23,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP above, $0.05 away (zone $3.00, ATR 4.09, ADX 42)",
+   "zone": 1.8425783815289276
+  }
+ },
+ {
+  "at": "2026-10-27T17:00:03.718Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271315-15:ogp5",
+  "side": "up",
+  "spot": 80527.62,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $44.54, ADX 21)",
+   "zone": 44.542809213398485
+  }
+ },
+ {
+  "at": "2026-10-27T16:45:28.007Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271300-00:ogp5",
+  "side": "up",
+  "spot": 4059.708,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $1.92, ADX 44)",
+   "zone": 1.9199340895205388
+  }
+ },
+ {
+  "at": "2026-10-27T16:45:16.450Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvqx27x7-s69w5d:paper-247",
+  "side": "down",
+  "spot": 4059.54,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP below, $0.33 away (zone $3.00, ATR 4.27, ADX 44)",
+   "zone": 1.9199340895205388
+  }
+ },
+ {
+  "at": "2026-10-27T16:45:07.406Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT271300-00:ogp5",
+  "side": "down",
+  "spot": 80455.25,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $45.87, ADX 22)",
+   "zone": 45.867866488236025
+  }
+ },
+ {
+  "at": "2026-10-27T16:35:17.244Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT271245-45:ogp5",
+  "side": "up",
+  "spot": 4058.18,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP above, $0.32 away (zone $3.00, ATR 4.41, ADX 45)",
+   "zone": 1.9848535651074135
+  }
+ },
+ {
+  "at": "2026-10-27T16:30:59.239Z",
+  "fa": "btc",
+  "src": "paper-247",
+  "row": "mvqwjut4-v9dnzz:paper-247",
+  "side": "up",
+  "spot": 80500.65,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $44.57, ADX 21)",
+   "zone": 44.57485261460177
+  }
+ },
+ {
+  "at": "2026-10-27T16:30:59.239Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvqwjuta-r48kau:paper-247",
+  "side": "down",
+  "spot": 4056.96,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m S1 below, $1.85 away (zone $2.04, ATR 4.54, ADX 47)",
+   "zone": 2.041996216994212
+  }
+ },
+ {
+  "at": "2026-10-27T16:30:56.370Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvqwjtz1-ts3c4g:paper-247",
+  "side": "down",
+  "spot": 4056.95,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m S1 below, $1.84 away (zone $2.04, ATR 4.54, ADX 47)",
+   "zone": 2.041996216994212
+  }
+ }
+]

@@ -1,0 +1,66 @@
+{
+ "at": "2026-10-03T03:04:37.090Z",
+ "herChart": {
+  "btc": 84599.23,
+  "eth": 2676.94,
+  "at": "2026-10-03T03:03:21Z"
+ },
+ "INDEX:BTCUSD 1m": {
+  "bars": 300,
+  "last": 84597.82
+ },
+ "INDEX:BTCUSD": {
+  "bars": 0,
+  "last": null,
+  "00:00 UTC": null,
+  "17:00 ET": null
+ },
+ "BNC:BLX 1m": {
+  "bars": 0,
+  "last": null
+ },
+ "BNC:BLX": {
+  "bars": 0,
+  "last": null,
+  "00:00 UTC": null,
+  "17:00 ET": null
+ },
+ "INDEX:SOLUSD 1m": {
+  "bars": 0,
+  "last": null
+ },
+ "INDEX:SOLUSD": {
+  "bars": 0,
+  "last": null,
+  "00:00 UTC": null,
+  "17:00 ET": null
+ },
+ "INDEX:ETHUSD 1m": {
+  "bars": 0,
+  "last": null
+ },
+ "INDEX:ETHUSD": {
+  "bars": 0,
+  "last": null,
+  "00:00 UTC": null,
+  "17:00 ET": null
+ },
+ "COINBASE:BTCUSD": {
+  "bars": 399,
+  "last": 84585.03,
+  "00:00 UTC": 84598.63,
+  "17:00 ET": 84551.49
+ },
+ "BITSTAMP:BTCUSD": {
+  "bars": 400,
+  "last": 84600.01,
+  "00:00 UTC": 84593.52,
+  "17:00 ET": 84557.73
+ },
+ "COINBASE:SOLUSD": {
+  "bars": 400,
+  "last": 118.93,
+  "00:00 UTC": 119.07,
+  "17:00 ET": 118.71
+ }
+}

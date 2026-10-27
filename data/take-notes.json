@@ -1,0 +1,5 @@
+{
+  "KXSOL15M-26SEP260245-45": "SOL short was not prime. Price was 120.30, under a VWAP band it had already broken, and the 120.29 target sat through another band. The desk only checked the main VWAP, which was above both, so it let the short through.",
+  "KXSOL15M-26SEP260315-15": "SOL short was the same-side setup. Price 120.28 and the 120.21 target were both under the main VWAP at 120.37. It reversed and went red.",
+  "KXETH15M-26SEP260315-15": "ETH short should not have been sent. Price 2685.49 and the 2685.24 target were both above the main VWAP at 2685.12. That is a long, not a short. The nearest upper band pulled it the other way."
+}

@@ -1,0 +1,139 @@
+{
+ "bands": {
+  "COINBASE:BTCUSD|ny": {
+   "touches": 117,
+   "respected": 37,
+   "blewThru": 43,
+   "kalshiSame": "91.7% of 48",
+   "gap": "$4.13"
+  },
+  "COINBASE:BTCUSD|utc": {
+   "touches": 118,
+   "respected": 30,
+   "blewThru": 49,
+   "kalshiSame": "91.7% of 48",
+   "gap": "$4.13"
+  },
+  "BITSTAMP:BTCUSD|ny": {
+   "touches": 96,
+   "respected": 14,
+   "blewThru": 31,
+   "kalshiSame": "89.6% of 48",
+   "gap": "$5.70"
+  },
+  "BITSTAMP:BTCUSD|utc": {
+   "touches": 96,
+   "respected": 11,
+   "blewThru": 34,
+   "kalshiSame": "89.6% of 48",
+   "gap": "$5.70"
+  },
+  "KRAKEN:BTCUSD|ny": {
+   "touches": 98,
+   "respected": 16,
+   "blewThru": 38,
+   "kalshiSame": "91.7% of 48",
+   "gap": "$4.15"
+  },
+  "KRAKEN:BTCUSD|utc": {
+   "touches": 103,
+   "respected": 16,
+   "blewThru": 36,
+   "kalshiSame": "91.7% of 48",
+   "gap": "$4.15"
+  },
+  "INDEX:BTCUSD|ny": {
+   "touches": 105,
+   "respected": 21,
+   "blewThru": 36,
+   "kalshiSame": "89.6% of 48",
+   "gap": "$3.08"
+  },
+  "INDEX:BTCUSD|utc": {
+   "touches": 112,
+   "respected": 23,
+   "blewThru": 35,
+   "kalshiSame": "89.6% of 48",
+   "gap": "$3.08"
+  },
+  "PEPPERSTONE:BTCUSD|ny": {
+   "touches": 133,
+   "respected": 79,
+   "blewThru": 36,
+   "kalshiSame": "88.9% of 45",
+   "gap": "$8.03"
+  },
+  "PEPPERSTONE:BTCUSD|utc": {
+   "touches": 132,
+   "respected": 87,
+   "blewThru": 29,
+   "kalshiSame": "88.9% of 45",
+   "gap": "$8.03"
+  },
+  "BINANCE:BTCUSDT|ny": {
+   "touches": 100,
+   "respected": 19,
+   "blewThru": 43,
+   "kalshiSame": "81.2% of 48",
+   "gap": "$12.57"
+  },
+  "BINANCE:BTCUSDT|utc": {
+   "touches": 98,
+   "respected": 14,
+   "blewThru": 38,
+   "kalshiSame": "81.2% of 48",
+   "gap": "$12.57"
+  },
+  "GEMINI:BTCUSD|ny": {
+   "touches": 102,
+   "respected": 13,
+   "blewThru": 39,
+   "kalshiSame": "93.3% of 45",
+   "gap": "$3.62"
+  },
+  "GEMINI:BTCUSD|utc": {
+   "touches": 98,
+   "respected": 9,
+   "blewThru": 36,
+   "kalshiSame": "93.3% of 45",
+   "gap": "$3.62"
+  }
+ },
+ "firstToBreak": {
+  "COINBASE:BTCUSD": {
+   "first": 4,
+   "followed": 3,
+   "ran": 2
+  },
+  "BITSTAMP:BTCUSD": {
+   "first": 3,
+   "followed": 0,
+   "ran": 1
+  },
+  "KRAKEN:BTCUSD": {
+   "first": 0,
+   "followed": 0,
+   "ran": 0
+  },
+  "INDEX:BTCUSD": {
+   "first": 3,
+   "followed": 0,
+   "ran": 1
+  },
+  "PEPPERSTONE:BTCUSD": {
+   "first": 6,
+   "followed": 3,
+   "ran": 3
+  },
+  "BINANCE:BTCUSDT": {
+   "first": 4,
+   "followed": 2,
+   "ran": 1
+  },
+  "GEMINI:BTCUSD": {
+   "first": 50,
+   "followed": 11,
+   "ran": 18
+  }
+ }
+}

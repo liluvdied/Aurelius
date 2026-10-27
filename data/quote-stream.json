@@ -1,0 +1,30 @@
+{
+ "at": "2026-10-27T19:46:24.699Z",
+ "ver": 30,
+ "connected": true,
+ "sockets": [
+  true,
+  true
+ ],
+ "btc": {
+  "c": 80686.01,
+  "ageMs": 1523,
+  "exAgeMs": 3699
+ },
+ "gold": {
+  "c": 4062.695,
+  "ageMs": 0,
+  "exAgeMs": 1699
+ },
+ "btc_v": {
+  "c": 80709.06,
+  "ageMs": 1984
+ },
+ "gold_v": {
+  "c": 4062.785,
+  "ageMs": 1984
+ },
+ "signedIn": false,
+ "signNote": "no auth token - free stream | home: http 200, 1250 KB, auth_token text 0x, escaped no, username yes, cloudflare no | chart: http 200, 74 KB, auth_token text 0x, escaped no, username yes, cloudflare no",
+ "note": ""
+}

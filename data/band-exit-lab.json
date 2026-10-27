@@ -1,0 +1,93 @@
+{
+ "brick": {
+  "trades": 144,
+  "tested": 144,
+  "noline": 0,
+  "nodata": 0,
+  "base": 391.03,
+  "new": 72.93,
+  "took": 37,
+  "saved": 23,
+  "cameback": 13,
+  "dS": 298.0,
+  "dG": 616.1
+ },
+ "brickc": {
+  "trades": 169,
+  "tested": 169,
+  "noline": 0,
+  "nodata": 0,
+  "base": -102.24,
+  "new": -412.89,
+  "took": 50,
+  "saved": 31,
+  "cameback": 16,
+  "dS": 460.68,
+  "dG": 771.33
+ },
+ "cotc": {
+  "trades": 28,
+  "tested": 28,
+  "noline": 0,
+  "nodata": 0,
+  "base": -75.48,
+  "new": -95.86,
+  "took": 11,
+  "saved": 5,
+  "cameback": 6,
+  "dS": 71.92,
+  "dG": 92.3
+ },
+ "claude": {
+  "trades": 83,
+  "tested": 83,
+  "noline": 0,
+  "nodata": 0,
+  "base": 119.36,
+  "new": 197.11,
+  "took": 31,
+  "saved": 18,
+  "cameback": 13,
+  "dS": 341.9,
+  "dG": 264.15
+ },
+ "trend": {
+  "trades": 81,
+  "tested": 81,
+  "noline": 0,
+  "nodata": 0,
+  "base": -314.57,
+  "new": -23.33,
+  "took": 37,
+  "saved": 24,
+  "cameback": 13,
+  "dS": 535.7,
+  "dG": 244.46
+ },
+ "sole5p": {
+  "trades": 193,
+  "tested": 193,
+  "noline": 0,
+  "nodata": 0,
+  "base": -208.35,
+  "new": -301.68,
+  "took": 78,
+  "saved": 55,
+  "cameback": 22,
+  "dS": 986.42,
+  "dG": 1079.75
+ },
+ "bank5p": {
+  "trades": 105,
+  "tested": 105,
+  "noline": 0,
+  "nodata": 0,
+  "base": -258.34,
+  "new": -200.4,
+  "took": 32,
+  "saved": 26,
+  "cameback": 6,
+  "dS": 344.09,
+  "dG": 286.15
+ }
+}

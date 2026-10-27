@@ -1,0 +1,92 @@
+{
+ "VANTAGE:BTCUSD": {
+  "asset": "btc",
+  "touches": 765,
+  "rejectPct": 46.4,
+  "bouncePaidPct": 88.7
+ },
+ "COINBASE:BTCUSD": {
+  "asset": "btc",
+  "touches": 776,
+  "rejectPct": 51.8,
+  "bouncePaidPct": 91.5
+ },
+ "BITSTAMP:BTCUSD": {
+  "asset": "btc",
+  "touches": 732,
+  "rejectPct": 41.1,
+  "bouncePaidPct": 87.7
+ },
+ "KRAKEN:BTCUSD": {
+  "asset": "btc",
+  "touches": 741,
+  "rejectPct": 44.5,
+  "bouncePaidPct": 84.5
+ },
+ "INDEX:BTCUSD": {
+  "asset": "btc",
+  "touches": 749,
+  "rejectPct": 50.5,
+  "bouncePaidPct": 91.3
+ },
+ "PEPPERSTONE:BTCUSD": {
+  "asset": "btc",
+  "touches": 820,
+  "rejectPct": 56.6,
+  "bouncePaidPct": 95.7
+ },
+ "BINANCE:BTCUSDT": {
+  "asset": "btc",
+  "touches": 737,
+  "rejectPct": 44.5,
+  "bouncePaidPct": 86.3
+ },
+ "GEMINI:BTCUSD": {
+  "asset": "btc",
+  "touches": 759,
+  "rejectPct": 43.2,
+  "bouncePaidPct": 81.7
+ },
+ "BITFINEX:BTCUSD": {
+  "asset": "btc",
+  "touches": 810,
+  "rejectPct": 53.7,
+  "bouncePaidPct": 86.0
+ },
+ "OANDA:BTCUSD": {
+  "asset": "btc",
+  "touches": 790,
+  "rejectPct": 55.7,
+  "bouncePaidPct": 89.3
+ },
+ "OANDA:XAUUSD": {
+  "asset": "gold",
+  "touches": 763,
+  "rejectPct": 53.9,
+  "bouncePaidPct": 94.4
+ },
+ "VANTAGE:XAUUSD": {
+  "asset": "gold",
+  "touches": 754,
+  "rejectPct": 54.4,
+  "bouncePaidPct": 94.4
+ },
+ "PEPPERSTONE:XAUUSD": {
+  "asset": "gold",
+  "touches": 775,
+  "rejectPct": 55.6,
+  "bouncePaidPct": 94.4
+ },
+ "FX:XAUUSD": {
+  "asset": "gold",
+  "touches": 771,
+  "rejectPct": 53.7,
+  "bouncePaidPct": 94.7
+ },
+ "ICMARKETS:XAUUSD": {
+  "asset": "gold",
+  "touches": 757,
+  "rejectPct": 53.8,
+  "bouncePaidPct": 94.3
+ }
+}

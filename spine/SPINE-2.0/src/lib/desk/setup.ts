@@ -1,0 +1,250 @@
+import { exitForMultiple } from "./paper";
+import { goldHalted } from "./hours";
+import { closedAbove, shortTap, winningSetup } from "./auto";
+import { ASSET_META, DEFAULT_SETTINGS, type AssetId, type AssetSnapshot, type DeskSettings, type KalshiMarket, type Pattern, type Setup, type Side, type Trade } from "./types";
+
+const EMPTY: Pattern = {
+  kind: "none",
+  side: null,
+  band: null,
+  quality: 0,
+  label: "No band interaction",
+  reasons: ["Price is not interacting with a VWAP band on this frame."],
+};
+
+function isActionable(p: Pattern): boolean {
+  return p.kind === "tap_reject" || p.kind === "break_retest";
+}
+
+function askFor(side: Side, market: KalshiMarket): number {
+  return side === "up" ? market.yesAsk : market.noAsk;
+}
+
+export function clockFloor(secondsLeft: number): number {
+  if (secondsLeft > 600) return 1.6;
+  if (secondsLeft > 420) return 1.52;
+  if (secondsLeft > 240) return 1.45;
+  if (secondsLeft > 120) return 1.38;
+  return 1.34;
+}
+
+export function vwapAgrees(asset: AssetSnapshot, side: Side): boolean {
+  const frame = asset.vwap1m ?? asset.vwap5m;
+  if (!frame || !(frame.stdev > 0) || !(asset.spot > 0)) return false;
+  const z = (asset.spot - frame.vwap) / frame.stdev;
+  const sided = side === "up" ? z > -0.35 && z < 2.1 : z < 0.35 && z > -2.1;
+  if (!sided) return false;
+  const pattern =
+    (asset.pattern1m.side === side && asset.pattern1m.kind !== "none") ||
+    (asset.pattern5m.side === side && asset.pattern5m.kind !== "none");
+  return pattern || Math.abs(z) <= 1.6;
+}
+
+export function buildSetup(input: {
+  asset: AssetId;
+  market: KalshiMarket | null;
+  pattern1m: Pattern;
+  pattern5m: Pattern;
+  secondsLeft: number;
+  delta: number | null;
+  settings?: DeskSettings;
+}): Setup | null {
+  const settings = input.settings ?? DEFAULT_SETTINGS;
+  const { asset, market, pattern1m, pattern5m, secondsLeft, delta } = input;
+  if (!market || !market.ticker) return null;
+  if (secondsLeft < 30) return null;
+
+  const primary = isActionable(pattern1m)
+    ? pattern1m
+    : isActionable(pattern5m)
+      ? pattern5m
+      : pattern1m.kind === "near_band"
+        ? pattern1m
+        : EMPTY;
+
+  if (!primary.side || primary.kind === "none") return null;
+
+  let side = primary.side;
+  let chosen = primary;
+  const band = primary.band ?? 0;
+  if (secondsLeft >= 120 && band !== 0 && (primary.kind === "tap_reject" || primary.kind === "break_retest")) {
+    const sign = band > 0 ? "+" : "";
+    const opened = `Open ${sign}${band}σ`;
+    if (winningSetup(opened, side, asset)) {
+      chosen = {
+        ...primary,
+        label: opened,
+        reasons: [
+          `Window is open. ${side === "up" ? "Came from above the band and rejected up." : "Came from below the band and rejected down."}`,
+          ...primary.reasons,
+        ],
+      };
+    }
+  }
+  if (!winningSetup(chosen.label, side, asset)) return null;
+
+  const ask = askFor(side, market);
+  const throughNow = delta != null && ((side === "up" && delta > 0) || (side === "down" && delta < 0));
+  const lateClear = throughNow && shortTap(chosen.label, side) && winningSetup(chosen.label, side, asset);
+  const tap = shortTap(chosen.label, side);
+  const maxAsk = tap ? 1 / 1.28 : lateClear ? 1 / 1.2 : 0.74;
+  const minAsk = tap ? 0.02 : 0.08;
+  if (!(ask >= minAsk && ask <= maxAsk + 1e-9)) return null;
+
+  const multiple = 1 / ask;
+  if (tap && multiple > 1.75) return null;
+  const floor = clockFloor(secondsLeft);
+  const openBand = secondsLeft >= 120 && multiple >= 1.8 && chosen.kind !== "near_band";
+  const early = !lateClear && !openBand && secondsLeft >= 120 && multiple + 1e-9 < floor;
+  if (multiple < settings.minMultiple && chosen.kind === "near_band") return null;
+
+  const throughAmt = ASSET_META[asset].through;
+  const throughTarget =
+    delta != null &&
+    ((side === "up" && delta >= throughAmt) || (side === "down" && delta <= -throughAmt));
+
+  let agree = 1;
+  let agreeNote = "5m is quiet — 1m is the sniper frame.";
+  if (isActionable(pattern5m) && pattern5m.side) {
+    if (pattern5m.side !== side) {
+      agree = 0.62;
+      agreeNote = `5m disagrees (${pattern5m.label}). Size down or wait.`;
+    } else {
+      agree = 1.14;
+      agreeNote = `5m agrees: ${pattern5m.label}.`;
+    }
+  }
+
+  const timeScore = secondsLeft > 600 ? 0.9 : secondsLeft > 240 ? 1 : secondsLeft > 120 ? 1.08 : 1.12;
+  const multScore = multiple >= 1.7 ? 1.1 : multiple >= 1.55 ? 1.05 : multiple + 1e-9 >= floor ? 1 : 0.84;
+  const throughScore = throughTarget ? 1.12 : 1;
+
+  const localConviction = Math.max(
+    openBand ? 74 : 0,
+    Math.round(
+      Math.min(
+        94,
+        Math.max(22, chosen.quality * 100 * agree * timeScore * multScore * throughScore),
+      ),
+    ),
+  );
+
+  const tapReady = tap && multiple + 1e-9 >= 1.34;
+  const tapLate = tap && multiple + 1e-9 >= 1.28 && secondsLeft <= 180;
+  const watchOnly =
+    (tap && !tapReady && !tapLate) ||
+    (!tap &&
+      !lateClear &&
+      !closedAbove(chosen.label) &&
+      !/^close below /i.test(chosen.label) &&
+      (chosen.kind === "near_band" || multiple < settings.minMultiple || early));
+
+  const premium = multiple > settings.maxMultiple;
+  const holdToExpiry = false;
+  const exitPct = exitForMultiple(multiple, settings.defaultExitPct);
+
+  const mins = Math.floor(secondsLeft / 60);
+  const secs = String(Math.floor(secondsLeft % 60)).padStart(2, "0");
+  const reasons = [
+    ...(openBand
+      ? [`${multiple.toFixed(2)}× on the band at the open. Taking it.`]
+      : []),
+    ...(tap && !tapReady && !tapLate
+      ? [`${multiple.toFixed(2)}× is the trade. Waiting for 1.34. 1.28 only in the last 3 minutes.`]
+      : []),
+    ...(early
+      ? [`Waiting for ${floor.toFixed(2)}×. ${multiple.toFixed(2)}× with ${mins}m ${secs}s left is early.`]
+      : []),
+    ...chosen.reasons,
+    `${side === "up" ? "Up" : "Down"} offered at ${(ask * 100).toFixed(1)}¢ · ${multiple.toFixed(2)}×`,
+    agreeNote,
+    throughTarget
+      ? `Already ${Math.abs(delta ?? 0).toFixed(0)} through the target — full payout is in play.`
+      : `${mins}m ${secs}s left in the window.`,
+  ];
+
+  return {
+    id: `${market.ticker}:${side}:${chosen.kind}:${chosen.band ?? 0}`,
+    asset,
+    ticker: market.ticker,
+    side,
+    pattern: chosen,
+    ask,
+    multiple,
+    localConviction,
+    exitPct,
+    holdToExpiry,
+    reasons,
+    watchOnly,
+    premium,
+    throughTarget,
+  };
+}
+
+export function lateWindow(asset: AssetSnapshot): Setup | null {
+  if (goldHalted(asset.asset)) return null;
+  if (!(asset.secondsLeft > 8 && asset.secondsLeft < 120)) return null;
+  const market = asset.market;
+  const target = asset.target;
+  const spot = asset.spot;
+  if (!market || target == null || !(spot > 0)) return null;
+  const side: Side = spot >= target ? "up" : "down";
+  const gold = asset.asset === "gold";
+  const extra = asset.secondsLeft >= 60;
+  if (extra && !gold) return null;
+  const ask = askFor(side, market);
+  if (!(ask > 0)) return null;
+  const multiple = 1 / ask;
+  if (multiple < (gold ? 1.34 : 1.5) || multiple > 2.5) return null;
+  const distance = Math.abs(spot - target);
+  const jumps: number[] = [];
+  for (let i = 1; i < asset.spark.length; i += 1) {
+    const move = Math.abs(asset.spark[i] - asset.spark[i - 1]);
+    if (move > 0) jumps.push(move);
+  }
+  const pace = jumps.length ? Math.max(...jumps.slice(-8)) : 0;
+  const vwapOk = vwapAgrees(asset, side);
+  if (gold) {
+    const solid = distance >= 1.5 || (distance >= 0.8 && vwapOk);
+    if (!solid) return null;
+  } else if (distance < Math.max(40, pace * 2) || !vwapOk) {
+    return null;
+  }
+  const label = gold && extra ? "Gold clock" : "Last minute";
+  return {
+    id: `${market.ticker}:late:${side}`,
+    asset: asset.asset,
+    ticker: market.ticker,
+    side,
+    pattern: {
+      kind: "break_retest",
+      side,
+      band: null,
+      quality: 0.8,
+      label,
+      reasons: [
+        gold
+          ? `Gold ${distance.toFixed(2)} through the strike with ${asset.secondsLeft}s left at ${multiple.toFixed(2)}×.`
+          : `${distance.toFixed(0)} through the strike with ${asset.secondsLeft}s left.`,
+      ],
+    },
+    ask,
+    multiple,
+    localConviction: gold ? 76 : 78,
+    exitPct: 45,
+    holdToExpiry: false,
+    reasons: [
+      gold
+        ? `Gold clock. ${side === "up" ? "Up" : "Down"} at ${multiple.toFixed(2)}× with ${asset.secondsLeft}s left.`
+        : `${side === "up" ? "Up" : "Down"} at ${multiple.toFixed(2)}× with ${asset.secondsLeft}s left. Gap is ${distance.toFixed(0)}.`,
+    ],
+    watchOnly: false,
+    premium: false,
+    throughTarget: true,
+    clip: 2,
+  };
+}
+
+export function scaleIntent(_asset: AssetSnapshot, _trades: Trade[]): Setup | null {
+  return null;
+}

@@ -1,0 +1,564 @@
+{
+  "bands": {
+    "BTC:upper1": {
+      "symbol": "BTC",
+      "band": "upper1",
+      "price": 83500,
+      "raw": "{\"s\":\"BTC\",\"b\":\"upper1\",\"p\":83500}",
+      "at": "2026-10-01T01:54:25.433Z"
+    },
+    "XAUUSD:burst-36": {
+      "symbol": "XAUUSD",
+      "band": "burst-36",
+      "price": 4136,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-36\", \"p\": 4136}",
+      "at": "2026-10-01T03:23:35.339Z"
+    },
+    "XAUUSD:burst-34": {
+      "symbol": "XAUUSD",
+      "band": "burst-34",
+      "price": 4134,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-34\", \"p\": 4134}",
+      "at": "2026-10-01T03:23:35.357Z"
+    },
+    "XAUUSD:burst-30": {
+      "symbol": "XAUUSD",
+      "band": "burst-30",
+      "price": 4130,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-30\", \"p\": 4130}",
+      "at": "2026-10-01T03:23:35.363Z"
+    },
+    "XAUUSD:burst-37": {
+      "symbol": "XAUUSD",
+      "band": "burst-37",
+      "price": 4137,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-37\", \"p\": 4137}",
+      "at": "2026-10-01T03:23:35.364Z"
+    },
+    "XAUUSD:burst-31": {
+      "symbol": "XAUUSD",
+      "band": "burst-31",
+      "price": 4131,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-31\", \"p\": 4131}",
+      "at": "2026-10-01T03:23:35.369Z"
+    },
+    "XAUUSD:burst-23": {
+      "symbol": "XAUUSD",
+      "band": "burst-23",
+      "price": 4123,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-23\", \"p\": 4123}",
+      "at": "2026-10-01T03:23:35.371Z"
+    },
+    "XAUUSD:burst-32": {
+      "symbol": "XAUUSD",
+      "band": "burst-32",
+      "price": 4132,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-32\", \"p\": 4132}",
+      "at": "2026-10-01T03:23:35.372Z"
+    },
+    "XAUUSD:burst-1": {
+      "symbol": "XAUUSD",
+      "band": "burst-1",
+      "price": 4101,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-1\", \"p\": 4101}",
+      "at": "2026-10-01T03:23:35.375Z"
+    },
+    "XAUUSD:burst-8": {
+      "symbol": "XAUUSD",
+      "band": "burst-8",
+      "price": 4108,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-8\", \"p\": 4108}",
+      "at": "2026-10-01T03:23:35.379Z"
+    },
+    "XAUUSD:burst-21": {
+      "symbol": "XAUUSD",
+      "band": "burst-21",
+      "price": 4121,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-21\", \"p\": 4121}",
+      "at": "2026-10-01T03:23:35.381Z"
+    },
+    "XAUUSD:burst-22": {
+      "symbol": "XAUUSD",
+      "band": "burst-22",
+      "price": 4122,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-22\", \"p\": 4122}",
+      "at": "2026-10-01T03:23:35.382Z"
+    },
+    "XAUUSD:burst-15": {
+      "symbol": "XAUUSD",
+      "band": "burst-15",
+      "price": 4115,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-15\", \"p\": 4115}",
+      "at": "2026-10-01T03:23:35.384Z"
+    },
+    "XAUUSD:burst-10": {
+      "symbol": "XAUUSD",
+      "band": "burst-10",
+      "price": 4110,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-10\", \"p\": 4110}",
+      "at": "2026-10-01T03:23:35.384Z"
+    },
+    "XAUUSD:burst-16": {
+      "symbol": "XAUUSD",
+      "band": "burst-16",
+      "price": 4116,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-16\", \"p\": 4116}",
+      "at": "2026-10-01T03:23:35.385Z"
+    },
+    "XAUUSD:burst-35": {
+      "symbol": "XAUUSD",
+      "band": "burst-35",
+      "price": 4135,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-35\", \"p\": 4135}",
+      "at": "2026-10-01T03:23:35.387Z"
+    },
+    "XAUUSD:burst-19": {
+      "symbol": "XAUUSD",
+      "band": "burst-19",
+      "price": 4119,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-19\", \"p\": 4119}",
+      "at": "2026-10-01T03:23:35.388Z"
+    },
+    "XAUUSD:burst-9": {
+      "symbol": "XAUUSD",
+      "band": "burst-9",
+      "price": 4109,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-9\", \"p\": 4109}",
+      "at": "2026-10-01T03:23:35.389Z"
+    },
+    "XAUUSD:burst-3": {
+      "symbol": "XAUUSD",
+      "band": "burst-3",
+      "price": 4103,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-3\", \"p\": 4103}",
+      "at": "2026-10-01T03:23:35.392Z"
+    },
+    "XAUUSD:burst-13": {
+      "symbol": "XAUUSD",
+      "band": "burst-13",
+      "price": 4113,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-13\", \"p\": 4113}",
+      "at": "2026-10-01T03:23:35.393Z"
+    },
+    "XAUUSD:burst-20": {
+      "symbol": "XAUUSD",
+      "band": "burst-20",
+      "price": 4120,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-20\", \"p\": 4120}",
+      "at": "2026-10-01T03:23:35.394Z"
+    },
+    "XAUUSD:burst-24": {
+      "symbol": "XAUUSD",
+      "band": "burst-24",
+      "price": 4124,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-24\", \"p\": 4124}",
+      "at": "2026-10-01T03:23:35.398Z"
+    },
+    "XAUUSD:burst-26": {
+      "symbol": "XAUUSD",
+      "band": "burst-26",
+      "price": 4126,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-26\", \"p\": 4126}",
+      "at": "2026-10-01T03:23:35.399Z"
+    },
+    "XAUUSD:burst-6": {
+      "symbol": "XAUUSD",
+      "band": "burst-6",
+      "price": 4106,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-6\", \"p\": 4106}",
+      "at": "2026-10-01T03:23:35.400Z"
+    },
+    "XAUUSD:burst-12": {
+      "symbol": "XAUUSD",
+      "band": "burst-12",
+      "price": 4112,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-12\", \"p\": 4112}",
+      "at": "2026-10-01T03:23:35.401Z"
+    },
+    "XAUUSD:burst-5": {
+      "symbol": "XAUUSD",
+      "band": "burst-5",
+      "price": 4105,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-5\", \"p\": 4105}",
+      "at": "2026-10-01T03:23:35.403Z"
+    },
+    "XAUUSD:burst-18": {
+      "symbol": "XAUUSD",
+      "band": "burst-18",
+      "price": 4118,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-18\", \"p\": 4118}",
+      "at": "2026-10-01T03:23:35.404Z"
+    },
+    "XAUUSD:burst-33": {
+      "symbol": "XAUUSD",
+      "band": "burst-33",
+      "price": 4133,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-33\", \"p\": 4133}",
+      "at": "2026-10-01T03:23:35.406Z"
+    },
+    "XAUUSD:burst-17": {
+      "symbol": "XAUUSD",
+      "band": "burst-17",
+      "price": 4117,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-17\", \"p\": 4117}",
+      "at": "2026-10-01T03:23:35.409Z"
+    },
+    "XAUUSD:burst-29": {
+      "symbol": "XAUUSD",
+      "band": "burst-29",
+      "price": 4129,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-29\", \"p\": 4129}",
+      "at": "2026-10-01T03:23:35.412Z"
+    },
+    "XAUUSD:burst-4": {
+      "symbol": "XAUUSD",
+      "band": "burst-4",
+      "price": 4104,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-4\", \"p\": 4104}",
+      "at": "2026-10-01T03:23:35.414Z"
+    },
+    "XAUUSD:burst-7": {
+      "symbol": "XAUUSD",
+      "band": "burst-7",
+      "price": 4107,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-7\", \"p\": 4107}",
+      "at": "2026-10-01T03:23:35.415Z"
+    },
+    "XAUUSD:burst-39": {
+      "symbol": "XAUUSD",
+      "band": "burst-39",
+      "price": 4139,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-39\", \"p\": 4139}",
+      "at": "2026-10-01T03:23:35.417Z"
+    },
+    "XAUUSD:burst-11": {
+      "symbol": "XAUUSD",
+      "band": "burst-11",
+      "price": 4111,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-11\", \"p\": 4111}",
+      "at": "2026-10-01T03:23:35.418Z"
+    },
+    "XAUUSD:burst-0": {
+      "symbol": "XAUUSD",
+      "band": "burst-0",
+      "price": 4100,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-0\", \"p\": 4100}",
+      "at": "2026-10-01T03:23:35.419Z"
+    },
+    "XAUUSD:burst-38": {
+      "symbol": "XAUUSD",
+      "band": "burst-38",
+      "price": 4138,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-38\", \"p\": 4138}",
+      "at": "2026-10-01T03:23:35.421Z"
+    },
+    "XAUUSD:burst-2": {
+      "symbol": "XAUUSD",
+      "band": "burst-2",
+      "price": 4102,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-2\", \"p\": 4102}",
+      "at": "2026-10-01T03:23:35.424Z"
+    },
+    "XAUUSD:burst-27": {
+      "symbol": "XAUUSD",
+      "band": "burst-27",
+      "price": 4127,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-27\", \"p\": 4127}",
+      "at": "2026-10-01T03:23:35.425Z"
+    },
+    "XAUUSD:burst-14": {
+      "symbol": "XAUUSD",
+      "band": "burst-14",
+      "price": 4114,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-14\", \"p\": 4114}",
+      "at": "2026-10-01T03:23:35.426Z"
+    },
+    "XAUUSD:burst-25": {
+      "symbol": "XAUUSD",
+      "band": "burst-25",
+      "price": 4125,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-25\", \"p\": 4125}",
+      "at": "2026-10-01T03:23:35.430Z"
+    },
+    "XAUUSD:burst-28": {
+      "symbol": "XAUUSD",
+      "band": "burst-28",
+      "price": 4128,
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-28\", \"p\": 4128}",
+      "at": "2026-10-01T03:23:35.431Z"
+    },
+    "BTCUSD:Lower Band #1": {
+      "symbol": "BTCUSD",
+      "band": "Lower Band #1",
+      "price": 83464.5,
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"Lower Band #1\",\"p\":\"null\",\"c\":\"83464.5\"}",
+      "at": "2026-10-01T03:33:59.998Z"
+    },
+    "BTCUSD:VWAP": {
+      "symbol": "BTCUSD",
+      "band": "VWAP",
+      "price": 83561.5,
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"VWAP\",\"p\":\"null\",\"c\":\"83561.5\"}",
+      "at": "2026-10-01T03:37:27.136Z"
+    },
+    "BTCUSD:BB Upper": {
+      "symbol": "BTCUSD",
+      "band": "BB Upper",
+      "price": 83523.5,
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"BB Upper\",\"p\":\"null\",\"c\":\"83523.5\"}",
+      "at": "2026-10-01T03:37:17.776Z"
+    }
+  },
+  "hits": [
+    {
+      "at": "2026-10-01T03:37:27.136Z",
+      "key": "BTCUSD:VWAP",
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"VWAP\",\"p\":\"null\",\"c\":\"83561.5\"}"
+    },
+    {
+      "at": "2026-10-01T03:37:17.776Z",
+      "key": "BTCUSD:BB Upper",
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"BB Upper\",\"p\":\"null\",\"c\":\"83523.5\"}"
+    },
+    {
+      "at": "2026-10-01T03:34:07.856Z",
+      "key": "BTCUSD:VWAP",
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"VWAP\",\"p\":\"null\",\"c\":\"83462.0\"}"
+    },
+    {
+      "at": "2026-10-01T03:33:59.998Z",
+      "key": "BTCUSD:Lower Band #1",
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"Lower Band #1\",\"p\":\"null\",\"c\":\"83464.5\"}"
+    },
+    {
+      "at": "2026-10-01T03:31:54.761Z",
+      "key": "BTCUSD:BB Upper",
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"BB Upper\",\"p\":\"null\",\"c\":\"83399.0\"}"
+    },
+    {
+      "at": "2026-10-01T03:31:44.542Z",
+      "key": "BTCUSD:BB Upper",
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"BB Upper\",\"p\":\"null\",\"c\":\"83407.0\"}"
+    },
+    {
+      "at": "2026-10-01T03:31:33.599Z",
+      "key": "BTCUSD:Lower Band #1",
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"Lower Band #1\",\"p\":\"null\",\"c\":\"83419.5\"}"
+    },
+    {
+      "at": "2026-10-01T03:31:25.051Z",
+      "key": "BTCUSD:VWAP",
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"VWAP\",\"p\":\"null\",\"c\":\"83419.5\"}"
+    },
+    {
+      "at": "2026-10-01T03:30:42.080Z",
+      "key": "BTCUSD:Lower Band #1",
+      "raw": "{\"s\":\"BTCUSD\",\"b\":\"Lower Band #1\",\"p\":\"null\",\"c\":\"83448.0\"}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.431Z",
+      "key": "XAUUSD:burst-28",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-28\", \"p\": 4128}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.430Z",
+      "key": "XAUUSD:burst-25",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-25\", \"p\": 4125}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.426Z",
+      "key": "XAUUSD:burst-14",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-14\", \"p\": 4114}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.425Z",
+      "key": "XAUUSD:burst-27",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-27\", \"p\": 4127}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.424Z",
+      "key": "XAUUSD:burst-2",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-2\", \"p\": 4102}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.421Z",
+      "key": "XAUUSD:burst-38",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-38\", \"p\": 4138}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.419Z",
+      "key": "XAUUSD:burst-0",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-0\", \"p\": 4100}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.418Z",
+      "key": "XAUUSD:burst-11",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-11\", \"p\": 4111}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.417Z",
+      "key": "XAUUSD:burst-39",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-39\", \"p\": 4139}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.415Z",
+      "key": "XAUUSD:burst-7",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-7\", \"p\": 4107}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.414Z",
+      "key": "XAUUSD:burst-4",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-4\", \"p\": 4104}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.412Z",
+      "key": "XAUUSD:burst-29",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-29\", \"p\": 4129}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.409Z",
+      "key": "XAUUSD:burst-17",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-17\", \"p\": 4117}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.406Z",
+      "key": "XAUUSD:burst-33",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-33\", \"p\": 4133}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.404Z",
+      "key": "XAUUSD:burst-18",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-18\", \"p\": 4118}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.403Z",
+      "key": "XAUUSD:burst-5",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-5\", \"p\": 4105}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.401Z",
+      "key": "XAUUSD:burst-12",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-12\", \"p\": 4112}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.400Z",
+      "key": "XAUUSD:burst-6",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-6\", \"p\": 4106}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.399Z",
+      "key": "XAUUSD:burst-26",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-26\", \"p\": 4126}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.398Z",
+      "key": "XAUUSD:burst-24",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-24\", \"p\": 4124}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.394Z",
+      "key": "XAUUSD:burst-20",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-20\", \"p\": 4120}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.393Z",
+      "key": "XAUUSD:burst-13",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-13\", \"p\": 4113}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.392Z",
+      "key": "XAUUSD:burst-3",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-3\", \"p\": 4103}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.389Z",
+      "key": "XAUUSD:burst-9",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-9\", \"p\": 4109}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.388Z",
+      "key": "XAUUSD:burst-19",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-19\", \"p\": 4119}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.387Z",
+      "key": "XAUUSD:burst-35",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-35\", \"p\": 4135}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.385Z",
+      "key": "XAUUSD:burst-16",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-16\", \"p\": 4116}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.384Z",
+      "key": "XAUUSD:burst-10",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-10\", \"p\": 4110}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.384Z",
+      "key": "XAUUSD:burst-15",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-15\", \"p\": 4115}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.382Z",
+      "key": "XAUUSD:burst-22",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-22\", \"p\": 4122}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.381Z",
+      "key": "XAUUSD:burst-21",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-21\", \"p\": 4121}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.379Z",
+      "key": "XAUUSD:burst-8",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-8\", \"p\": 4108}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.375Z",
+      "key": "XAUUSD:burst-1",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-1\", \"p\": 4101}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.372Z",
+      "key": "XAUUSD:burst-32",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-32\", \"p\": 4132}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.371Z",
+      "key": "XAUUSD:burst-23",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-23\", \"p\": 4123}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.369Z",
+      "key": "XAUUSD:burst-31",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-31\", \"p\": 4131}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.364Z",
+      "key": "XAUUSD:burst-37",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-37\", \"p\": 4137}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.363Z",
+      "key": "XAUUSD:burst-30",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-30\", \"p\": 4130}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.357Z",
+      "key": "XAUUSD:burst-34",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-34\", \"p\": 4134}"
+    },
+    {
+      "at": "2026-10-01T03:23:35.339Z",
+      "key": "XAUUSD:burst-36",
+      "raw": "{\"s\": \"XAUUSD\", \"b\": \"burst-36\", \"p\": 4136}"
+    },
+    {
+      "at": "2026-10-01T01:54:25.433Z",
+      "key": "BTC:upper1",
+      "raw": "{\"s\":\"BTC\",\"b\":\"upper1\",\"p\":83500}"
+    }
+  ]
+}

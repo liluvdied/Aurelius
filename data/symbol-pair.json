@@ -1,0 +1,20 @@
+{
+  "gold": {
+    "key": "held-KXGOLD15M-26OCT271415-15|mvqzrx6r-o1vobw",
+    "at": "2026-10-27T18:15:48.029Z",
+    "cause": "market",
+    "note": "Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Tap-reject at +2σ lost. Nothing on the entry to change. It stays."
+  },
+  "btc": {
+    "key": "mvr1dujv-6cv1p9|held-KXBTC15M-26OCT271445-45",
+    "at": "2026-10-27T19:00:05.349Z",
+    "cause": "market",
+    "note": "Tap-reject at +2σ lost. Nothing on the entry to change. It stays. Tap-reject at −0.5σ finished right on the book and the cash lost at the bell. Not an entry error. It stays."
+  },
+  "silver": {
+    "key": "mvqh2hwd-6woe7s|mvqfxuoq-azlaxm",
+    "at": "2026-10-27T09:30:04.278Z",
+    "cause": "market",
+    "note": "Tap-reject at -1σ lost. Nothing on the entry to change. It stays. Tap-reject at -1.5σ lost. Nothing on the entry to change. It stays."
+  }
+}

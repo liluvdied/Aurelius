@@ -1,0 +1,1759 @@
+{
+ "breaches": [
+  {
+   "at": "2026-10-20T23:15:46.718Z",
+   "ticker": "KXBTC15M-26OCT201930-30",
+   "side": "up",
+   "cost": 5.0,
+   "why": [
+    "long on a falling 5m candle (82886.84 under its 82919.45 open)"
+   ]
+  },
+  {
+   "at": "2026-10-20T23:21:05.580Z",
+   "ticker": "KXGOLD15M-26OCT201930-30",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4115.99 under its 4116.64 open)"
+   ]
+  },
+  {
+   "at": "2026-10-20T23:22:36.801Z",
+   "ticker": "KXBTC15M-26OCT201930-30",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (82853.31 under its 82879.58 open)"
+   ]
+  },
+  {
+   "at": "2026-10-20T23:30:43.431Z",
+   "ticker": "KXBTC15M-26OCT201945-45",
+   "side": "up",
+   "cost": 5.0,
+   "why": [
+    "long on a falling 5m candle (82834.96 under its 82844.35 open)"
+   ]
+  },
+  {
+   "at": "2026-10-20T23:45:09.736Z",
+   "ticker": "KXBTC15M-26OCT202000-00",
+   "side": "up",
+   "cost": 5.0,
+   "why": [
+    "long on a falling 5m candle (82915.58 under its 82931.80 open)"
+   ]
+  },
+  {
+   "at": "2026-10-20T23:45:18.127Z",
+   "ticker": "KXGOLD15M-26OCT202000-00",
+   "side": "down",
+   "cost": 3.75,
+   "why": [
+    "short on a rising 5m candle (4115.29 over its 4114.50 open)"
+   ]
+  },
+  {
+   "at": "2026-10-20T23:49:12.212Z",
+   "ticker": "KXGOLD15M-26OCT202000-00",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short on a rising 5m candle (4115.85 over its 4114.50 open)"
+   ]
+  },
+  {
+   "at": "2026-10-20T23:49:19.507Z",
+   "ticker": "KXGOLD15M-26OCT202000-00",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short on a rising 5m candle (4115.85 over its 4114.50 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T00:01:02.839Z",
+   "ticker": "KXBTC15M-26OCT202015-15",
+   "side": "up",
+   "cost": 0.25,
+   "why": [
+    "long on a falling 5m candle (82859.76 under its 82966.29 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T00:15:16.119Z",
+   "ticker": "KXGOLD15M-26OCT202030-30",
+   "side": "up",
+   "cost": 0.99,
+   "why": [
+    "long on a falling 5m candle (4116.41 under its 4117.11 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T00:30:05.092Z",
+   "ticker": "KXGOLD15M-26OCT202045-45",
+   "side": "down",
+   "cost": 0.99,
+   "why": [
+    "short on a rising 5m candle (4119.19 over its 4118.72 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T00:30:10.712Z",
+   "ticker": "KXBTC15M-26OCT202045-45",
+   "side": "down",
+   "cost": 0.99,
+   "why": [
+    "short on a rising 5m candle (83095.55 over its 83083.36 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T01:00:10.097Z",
+   "ticker": "KXBTC15M-26OCT202115-15",
+   "side": "up",
+   "cost": 0.75,
+   "why": [
+    "long on a falling 5m candle (82943.84 under its 82951.94 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T01:01:38.400Z",
+   "ticker": "KXGOLD15M-26OCT202115-15",
+   "side": "up",
+   "cost": 0.75,
+   "why": [
+    "long at 98% of the channel (top third)",
+    "long on a falling 5m candle (4115.12 under its 4116.87 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T01:01:40.881Z",
+   "ticker": "KXGOLD15M-26OCT202115-15",
+   "side": "up",
+   "cost": 0.75,
+   "why": [
+    "long on a falling 5m candle (4115.28 under its 4116.87 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T01:01:57.300Z",
+   "ticker": "KXGOLD15M-26OCT202115-15",
+   "side": "up",
+   "cost": 0.75,
+   "why": [
+    "long on a falling 5m candle (4115.41 under its 4116.87 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T01:04:02.519Z",
+   "ticker": "KXBTC15M-26OCT202115-15",
+   "side": "up",
+   "cost": 1.0,
+   "why": [
+    "long on a falling 5m candle (82856.24 under its 82951.94 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T01:15:09.972Z",
+   "ticker": "KXGOLD15M-26OCT202130-30",
+   "side": "up",
+   "cost": 0.99,
+   "why": [
+    "long on a falling 5m candle (4108.52 under its 4109.03 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T01:15:12.134Z",
+   "ticker": "KXBTC15M-26OCT202130-30",
+   "side": "up",
+   "cost": 0.75,
+   "why": [
+    "long on a falling 5m candle (82747.09 under its 82768.82 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T02:00:16.439Z",
+   "ticker": "KXGOLD15M-26OCT202215-15",
+   "side": "up",
+   "cost": 0.75,
+   "why": [
+    "long on a falling 5m candle (4118.47 under its 4118.88 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T02:34:38.661Z",
+   "ticker": "KXBTC15M-26OCT202245-45",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short on a rising 5m candle (82740.55 over its 82686.60 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T02:36:34.891Z",
+   "ticker": "KXBTC15M-26OCT202245-45",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short on a rising 5m candle (82734.53 over its 82713.01 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T03:04:17.783Z",
+   "ticker": "KXGOLD15M-26OCT202315-15",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short on a rising 5m candle (4119.71 over its 4117.63 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T03:04:34.427Z",
+   "ticker": "KXGOLD15M-26OCT202315-15",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short on a rising 5m candle (4120.26 over its 4117.63 open)"
+   ]
+  },
+  {
+   "at": "2026-10-21T06:30:06.820Z",
+   "ticker": "KXBTC15M-26OCT210245-45",
+   "side": "up",
+   "cost": 10.0,
+   "why": [
+    "long at 70% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T08:00:12.022Z",
+   "ticker": "KXBTC15M-26OCT210415-15",
+   "side": "down",
+   "cost": 9.99,
+   "why": [
+    "short at 24% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T08:17:05.834Z",
+   "ticker": "KXGOLD15M-26OCT210430-30",
+   "side": "down",
+   "cost": 8.47,
+   "why": [
+    "short at 24% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T08:17:08.808Z",
+   "ticker": "KXGOLD15M-26OCT210430-30",
+   "side": "down",
+   "cost": 8.47,
+   "why": [
+    "short at 25% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T08:18:33.696Z",
+   "ticker": "KXGOLD15M-26OCT210430-30",
+   "side": "down",
+   "cost": 8.09,
+   "why": [
+    "short at 25% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T08:18:35.357Z",
+   "ticker": "KXGOLD15M-26OCT210430-30",
+   "side": "down",
+   "cost": 8.09,
+   "why": [
+    "short at 28% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T08:18:41.342Z",
+   "ticker": "KXGOLD15M-26OCT210430-30",
+   "side": "down",
+   "cost": 8.09,
+   "why": [
+    "short at 30% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T09:20:21.477Z",
+   "ticker": "KXGOLD15M-26OCT210530-30",
+   "side": "up",
+   "cost": 0.5,
+   "why": [
+    "long at 87% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T09:55:08.657Z",
+   "ticker": "KXGOLD15M-26OCT210600-00",
+   "side": "up",
+   "cost": 0.5,
+   "why": [
+    "long at 72% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T09:55:26.459Z",
+   "ticker": "KXGOLD15M-26OCT210600-00",
+   "side": "up",
+   "cost": 1.5,
+   "why": [
+    "long at 81% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T09:55:28.631Z",
+   "ticker": "KXGOLD15M-26OCT210600-00",
+   "side": "up",
+   "cost": 1.5,
+   "why": [
+    "long at 83% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T09:55:30.349Z",
+   "ticker": "KXGOLD15M-26OCT210600-00",
+   "side": "up",
+   "cost": 1.5,
+   "why": [
+    "long at 82% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T09:55:32.394Z",
+   "ticker": "KXGOLD15M-26OCT210600-00",
+   "side": "up",
+   "cost": 1.5,
+   "why": [
+    "long at 84% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T09:55:41.521Z",
+   "ticker": "KXGOLD15M-26OCT210600-00",
+   "side": "up",
+   "cost": 1.5,
+   "why": [
+    "long at 80% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T10:30:23.101Z",
+   "ticker": "KXBTC15M-26OCT210645-45",
+   "side": "down",
+   "cost": 10.0,
+   "why": [
+    "short at 22% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-21T12:00:04.748Z",
+   "ticker": "KXBTC15M-26OCT210815-15",
+   "side": "up",
+   "cost": 10.0,
+   "why": [
+    "long at 75% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T01:23:59.729Z",
+   "ticker": "KXBTC15M-26OCT212130-30",
+   "side": "down",
+   "cost": 0.5,
+   "why": [
+    "short on a rising 5m candle (84304.27 over its 84279.15 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T01:31:11.296Z",
+   "ticker": "KXBTC15M-26OCT212145-45",
+   "side": "up",
+   "cost": 0.5,
+   "why": [
+    "long on a falling 5m candle (84145.67 under its 84278.21 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T02:06:04.180Z",
+   "ticker": "KXBTC15M-26OCT212215-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (83254.22 under its 83264.89 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T02:35:03.439Z",
+   "ticker": "KXBTC15M-26OCT212245-45",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short on a rising 5m candle (82812.38 over its 82800.86 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T03:01:31.709Z",
+   "ticker": "KXGOLD15M-26OCT212315-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4113.46 under its 4116.21 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T03:01:33.387Z",
+   "ticker": "KXGOLD15M-26OCT212315-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4113.49 under its 4116.21 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T03:01:36.529Z",
+   "ticker": "KXGOLD15M-26OCT212315-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4113.65 under its 4116.21 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T03:01:39.369Z",
+   "ticker": "KXGOLD15M-26OCT212315-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4113.43 under its 4116.21 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T03:01:42.386Z",
+   "ticker": "KXGOLD15M-26OCT212315-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4113.91 under its 4116.21 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T03:01:45.630Z",
+   "ticker": "KXGOLD15M-26OCT212315-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4113.77 under its 4116.21 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T03:01:48.663Z",
+   "ticker": "KXGOLD15M-26OCT212315-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4113.71 under its 4116.21 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T03:01:50.338Z",
+   "ticker": "KXGOLD15M-26OCT212315-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4113.79 under its 4116.21 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T03:01:52.140Z",
+   "ticker": "KXGOLD15M-26OCT212315-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4113.31 under its 4116.21 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T03:05:04.020Z",
+   "ticker": "KXBTC15M-26OCT212315-15",
+   "side": "down",
+   "cost": 1.99,
+   "why": [
+    "short at 1% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T04:26:19.628Z",
+   "ticker": "KXGOLD15M-26OCT220030-30",
+   "side": "up",
+   "cost": 2.75,
+   "why": [
+    "did not pass through the wire"
+   ]
+  },
+  {
+   "at": "2026-10-22T09:00:27.475Z",
+   "ticker": "KXBTC15M-26OCT220515-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (81702.92 under its 81775.75 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T09:04:08.949Z",
+   "ticker": "KXGOLD15M-26OCT220515-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4081.18 under its 4083.01 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T09:31:03.934Z",
+   "ticker": "KXBTC15M-26OCT220545-45",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (81666.41 under its 81669.80 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T10:49:36.847Z",
+   "ticker": "KXGOLD15M-26OCT220700-00",
+   "side": "up",
+   "cost": 8.25,
+   "why": [
+    "long on a falling 5m candle (4085.96 under its 4087.78 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T11:00:24.629Z",
+   "ticker": "KXGOLD15M-26OCT220715-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4077.99 under its 4079.87 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T11:02:23.221Z",
+   "ticker": "KXBTC15M-26OCT220715-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 79% of the channel (top third)",
+    "long on a falling 5m candle (81852.43 under its 81945.57 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T11:15:44.015Z",
+   "ticker": "KXBTC15M-26OCT220730-30",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 76% of the channel (top third)",
+    "long on a falling 5m candle (81792.75 under its 81880.04 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T11:15:44.895Z",
+   "ticker": "KXGOLD15M-26OCT220730-30",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4068.46 under its 4072.01 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T11:33:38.855Z",
+   "ticker": "KXBTC15M-26OCT220745-45",
+   "side": "up",
+   "cost": 1.99,
+   "why": [
+    "long at 75% of the channel (top third)",
+    "long on a falling 5m candle (81752.77 under its 81793.62 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T11:34:38.420Z",
+   "ticker": "KXGOLD15M-26OCT220745-45",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4058.47 under its 4062.36 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T11:45:32.331Z",
+   "ticker": "KXGOLD15M-26OCT220800-00",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short on a rising 5m candle (4068.49 over its 4066.41 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T11:47:57.101Z",
+   "ticker": "KXBTC15M-26OCT220800-00",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 72% of the channel (top third)",
+    "long on a falling 5m candle (81702.57 under its 81801.06 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:01:02.840Z",
+   "ticker": "KXBTC15M-26OCT220915-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 79% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:05:17.921Z",
+   "ticker": "KXBTC15M-26OCT220915-15",
+   "side": "up",
+   "cost": 1.99,
+   "why": [
+    "long at 80% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:15:10.575Z",
+   "ticker": "KXGOLD15M-26OCT220930-30",
+   "side": "up",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:15:20.134Z",
+   "ticker": "KXBTC15M-26OCT220930-30",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:14.543Z",
+   "ticker": "KXGOLD15M-26OCT220945-45",
+   "side": "up",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:22.977Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:24.692Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:26.724Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:28.733Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:30.432Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:32.094Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:34.024Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:36.049Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:40.447Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:42.496Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:30:44.468Z",
+   "ticker": "KXBTC15M-26OCT220945-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:45:05.183Z",
+   "ticker": "KXBTC15M-26OCT221000-00",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T13:45:14.720Z",
+   "ticker": "KXGOLD15M-26OCT221000-00",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-22T15:15:23.744Z",
+   "ticker": "KXBTC15M-26OCT221130-30",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 73% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T15:30:32.566Z",
+   "ticker": "KXBTC15M-26OCT221145-45",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 73% of the channel (top third)",
+    "long on a falling 5m candle (81365.10 under its 81462.90 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T15:45:39.397Z",
+   "ticker": "KXBTC15M-26OCT221200-00",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 75% of the channel (top third)",
+    "long on a falling 5m candle (81364.99 under its 81414.96 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T16:16:33.040Z",
+   "ticker": "KXGOLD15M-26OCT221230-30",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short on a rising 5m candle (4048.99 over its 4047.63 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T16:19:49.867Z",
+   "ticker": "KXBTC15M-26OCT221230-30",
+   "side": "up",
+   "cost": 1.8,
+   "why": [
+    "long at 100% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T16:32:09.477Z",
+   "ticker": "KXBTC15M-26OCT221245-45",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 80% of the channel (top third)",
+    "long on a falling 5m candle (81367.00 under its 81487.34 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T16:45:21.064Z",
+   "ticker": "KXBTC15M-26OCT221300-00",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 75% of the channel (top third)",
+    "long on a falling 5m candle (81305.52 under its 81329.04 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T16:45:29.226Z",
+   "ticker": "KXGOLD15M-26OCT221300-00",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long on a falling 5m candle (4040.56 under its 4042.10 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T17:00:58.426Z",
+   "ticker": "KXBTC15M-26OCT221315-15",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 71% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T17:30:52.417Z",
+   "ticker": "KXBTC15M-26OCT221345-45",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 77% of the channel (top third)",
+    "long on a falling 5m candle (81237.30 under its 81278.69 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T17:40:17.109Z",
+   "ticker": "KXBTC15M-26OCT221345-45",
+   "side": "up",
+   "cost": 3.0,
+   "why": [
+    "long at 77% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T17:46:45.375Z",
+   "ticker": "KXBTC15M-26OCT221400-00",
+   "side": "up",
+   "cost": 1.99,
+   "why": [
+    "long at 78% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T18:30:16.535Z",
+   "ticker": "KXGOLD15M-26OCT221445-45",
+   "side": "down",
+   "cost": 11.0,
+   "why": [
+    "short at 27% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T19:56:02.786Z",
+   "ticker": "KXGOLD15M-26OCT221600-00",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short at 20% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T19:56:05.167Z",
+   "ticker": "KXGOLD15M-26OCT221600-00",
+   "side": "down",
+   "cost": 3.0,
+   "why": [
+    "short at 20% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T21:30:22.326Z",
+   "ticker": "KXBTC15M-26OCT221745-45",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short at 18% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T21:46:41.166Z",
+   "ticker": "KXBTC15M-26OCT221800-00",
+   "side": "down",
+   "cost": 1.99,
+   "why": [
+    "short at 8% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-22T23:00:31.957Z",
+   "ticker": "KXBTC15M-26OCT221915-15",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short at 13% of the channel (bottom third)",
+    "short on a rising 5m candle (81258.75 over its 81243.38 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T23:07:24.897Z",
+   "ticker": "KXBTC15M-26OCT221915-15",
+   "side": "down",
+   "cost": 3.0,
+   "why": [
+    "did not pass through the wire",
+    "short on a rising 5m candle (81280.19 over its 81264.20 open)"
+   ]
+  },
+  {
+   "at": "2026-10-22T23:30:17.219Z",
+   "ticker": "KXBTC15M-26OCT221945-45",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 86% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-23T00:45:09.536Z",
+   "ticker": "KXBTC15M-26OCT222100-00",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short at 23% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-23T00:49:11.954Z",
+   "ticker": "KXBTC15M-26OCT222100-00",
+   "side": "down",
+   "cost": 3.0,
+   "why": [
+    "did not pass through the wire"
+   ]
+  },
+  {
+   "at": "2026-10-23T01:15:19.073Z",
+   "ticker": "KXBTC15M-26OCT222130-30",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 84% of the channel (top third)",
+    "long on a falling 5m candle (81265.14 under its 81331.70 open)"
+   ]
+  },
+  {
+   "at": "2026-10-23T01:15:46.099Z",
+   "ticker": "KXBTC15M-26OCT222130-30",
+   "side": "up",
+   "cost": 3.0,
+   "why": [
+    "did not pass through the wire",
+    "long on a falling 5m candle (81214.13 under its 81331.70 open)"
+   ]
+  },
+  {
+   "at": "2026-10-23T03:00:08.786Z",
+   "ticker": "KXGOLD15M-26OCT222315-15",
+   "side": "down",
+   "cost": 14.99,
+   "why": [
+    "size $14.99 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T03:00:42.292Z",
+   "ticker": "KXBTC15M-26OCT222315-15",
+   "side": "down",
+   "cost": 14.99,
+   "why": [
+    "size $14.99 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T03:15:07.620Z",
+   "ticker": "KXBTC15M-26OCT222330-30",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T03:15:09.420Z",
+   "ticker": "KXGOLD15M-26OCT222330-30",
+   "side": "down",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T03:17:02.892Z",
+   "ticker": "KXBTC15M-26OCT222330-30",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "did not pass through the wire",
+    "long on a falling 5m candle (81687.94 under its 81764.85 open)"
+   ]
+  },
+  {
+   "at": "2026-10-23T03:27:13.155Z",
+   "ticker": "KXGOLD15M-26OCT222330-30",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "did not pass through the wire",
+    "short on a rising 5m candle (4016.25 over its 4014.78 open)"
+   ]
+  },
+  {
+   "at": "2026-10-23T03:31:01.936Z",
+   "ticker": "KXBTC15M-26OCT222345-45",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "did not pass through the wire",
+    "short on a rising 5m candle (81747.52 over its 81688.28 open)"
+   ]
+  },
+  {
+   "at": "2026-10-23T03:45:08.662Z",
+   "ticker": "KXBTC15M-26OCT230000-00",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T03:49:03.574Z",
+   "ticker": "KXGOLD15M-26OCT230000-00",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T04:00:48.482Z",
+   "ticker": "KXBTC15M-26OCT230015-15",
+   "side": "down",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T04:15:15.249Z",
+   "ticker": "KXBTC15M-26OCT230030-30",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T04:18:02.693Z",
+   "ticker": "KXGOLD15M-26OCT230030-30",
+   "side": "down",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T04:27:58.051Z",
+   "ticker": "KXBTC15M-26OCT230030-30",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "did not pass through the wire"
+   ]
+  },
+  {
+   "at": "2026-10-23T04:30:10.444Z",
+   "ticker": "KXGOLD15M-26OCT230045-45",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T04:33:45.085Z",
+   "ticker": "KXBTC15M-26OCT230045-45",
+   "side": "down",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T04:36:38.092Z",
+   "ticker": "KXBTC15M-26OCT230045-45",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "did not pass through the wire",
+    "short on a rising 5m candle (81570.41 over its 81539.34 open)"
+   ]
+  },
+  {
+   "at": "2026-10-23T04:45:10.329Z",
+   "ticker": "KXGOLD15M-26OCT230100-00",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T04:45:25.414Z",
+   "ticker": "KXBTC15M-26OCT230100-00",
+   "side": "down",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T05:00:14.849Z",
+   "ticker": "KXBTC15M-26OCT230115-15",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T05:00:18.223Z",
+   "ticker": "KXGOLD15M-26OCT230115-15",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T05:15:09.522Z",
+   "ticker": "KXGOLD15M-26OCT230130-30",
+   "side": "down",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T05:15:36.621Z",
+   "ticker": "KXBTC15M-26OCT230130-30",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T05:21:00.624Z",
+   "ticker": "KXBTC15M-26OCT230130-30",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "did not pass through the wire",
+    "long on a falling 5m candle (81675.70 under its 81721.37 open)"
+   ]
+  },
+  {
+   "at": "2026-10-23T05:30:09.454Z",
+   "ticker": "KXGOLD15M-26OCT230145-45",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T05:30:30.767Z",
+   "ticker": "KXBTC15M-26OCT230145-45",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T05:45:27.346Z",
+   "ticker": "KXGOLD15M-26OCT230200-00",
+   "side": "down",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T05:46:10.182Z",
+   "ticker": "KXBTC15M-26OCT230200-00",
+   "side": "down",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T06:00:29.668Z",
+   "ticker": "KXBTC15M-26OCT230215-15",
+   "side": "down",
+   "cost": 1.99,
+   "why": [
+    "short at 9% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-23T06:30:17.340Z",
+   "ticker": "KXBTC15M-26OCT230245-45",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short on a rising 5m candle (81780.27 over its 81740.81 open)"
+   ]
+  },
+  {
+   "at": "2026-10-23T06:31:32.240Z",
+   "ticker": "KXGOLD15M-26OCT230245-45",
+   "side": "up",
+   "cost": 1.99,
+   "why": [
+    "long at 73% of the channel (top third)",
+    "long on a falling 5m candle (4015.04 under its 4015.58 open)"
+   ]
+  },
+  {
+   "at": "2026-10-23T06:45:17.271Z",
+   "ticker": "KXGOLD15M-26OCT230300-00",
+   "side": "up",
+   "cost": 2.0,
+   "why": [
+    "long at 70% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-23T06:45:34.388Z",
+   "ticker": "KXBTC15M-26OCT230300-00",
+   "side": "down",
+   "cost": 2.0,
+   "why": [
+    "short at 26% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-23T07:00:10.182Z",
+   "ticker": "KXGOLD15M-26OCT230315-15",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T07:00:37.566Z",
+   "ticker": "KXBTC15M-26OCT230315-15",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T07:15:33.235Z",
+   "ticker": "KXBTC15M-26OCT230330-30",
+   "side": "down",
+   "cost": 14.99,
+   "why": [
+    "size $14.99 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T07:18:16.140Z",
+   "ticker": "KXGOLD15M-26OCT230330-30",
+   "side": "down",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T07:30:29.527Z",
+   "ticker": "KXBTC15M-26OCT230345-45",
+   "side": "down",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T07:46:01.349Z",
+   "ticker": "KXGOLD15M-26OCT230400-00",
+   "side": "up",
+   "cost": 15.0,
+   "why": [
+    "size $15.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T08:00:15.871Z",
+   "ticker": "KXGOLD15M-26OCT230415-15",
+   "side": "up",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T08:00:24.014Z",
+   "ticker": "KXBTC15M-26OCT230415-15",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T08:15:08.810Z",
+   "ticker": "KXGOLD15M-26OCT230430-30",
+   "side": "up",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T08:15:37.808Z",
+   "ticker": "KXBTC15M-26OCT230430-30",
+   "side": "up",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T08:30:03.701Z",
+   "ticker": "KXBTC15M-26OCT230445-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T08:35:23.861Z",
+   "ticker": "KXGOLD15M-26OCT230445-45",
+   "side": "up",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T08:45:18.825Z",
+   "ticker": "KXGOLD15M-26OCT230500-00",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T08:45:20.105Z",
+   "ticker": "KXBTC15M-26OCT230500-00",
+   "side": "up",
+   "cost": 13.0,
+   "why": [
+    "size $13.00 over her $10"
+   ]
+  },
+  {
+   "at": "2026-10-23T09:15:49.867Z",
+   "ticker": "KXBTC15M-26OCT230530-30",
+   "side": "up",
+   "cost": 2.12,
+   "why": [
+    "long on a falling 5m candle (81638.23 under its 81665.80 open)"
+   ]
+  },
+  {
+   "at": "2026-10-24T00:30:19.737Z",
+   "ticker": "KXBTC15M-26OCT232045-45",
+   "side": "down",
+   "cost": 13.0,
+   "why": [
+    "short on a rising 5m candle (80715.84 over its 80698.76 open)"
+   ]
+  },
+  {
+   "at": "2026-10-25T00:30:55.501Z",
+   "ticker": "KXBTC15M-26OCT242045-45",
+   "side": "up",
+   "cost": 14.0,
+   "why": [
+    "size $14.00 over her $11 slider"
+   ]
+  },
+  {
+   "at": "2026-10-25T00:45:52.599Z",
+   "ticker": "KXBTC15M-26OCT242100-00",
+   "side": "up",
+   "cost": 13.99,
+   "why": [
+    "size $13.99 over her $11 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T05:31:06.372Z",
+   "ticker": "KXBTC15M-26OCT260145-45",
+   "side": "up",
+   "cost": 17.91,
+   "why": [
+    "size $17.91 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T05:49:53.080Z",
+   "ticker": "KXBTC15M-26OCT260200-00",
+   "side": "up",
+   "cost": 16.61,
+   "why": [
+    "size $16.61 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T06:11:39.694Z",
+   "ticker": "KXBTC15M-26OCT260215-15",
+   "side": "up",
+   "cost": 18.0,
+   "why": [
+    "size $18.00 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T06:15:22.410Z",
+   "ticker": "KXBTC15M-26OCT260230-30",
+   "side": "up",
+   "cost": 18.0,
+   "why": [
+    "size $18.00 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T06:17:05.543Z",
+   "ticker": "KXGOLD15M-26OCT260230-30",
+   "side": "down",
+   "cost": 18.0,
+   "why": [
+    "size $18.00 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T06:37:04.043Z",
+   "ticker": "KXBTC15M-26OCT260245-45",
+   "side": "down",
+   "cost": 17.7,
+   "why": [
+    "size $17.70 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T07:00:28.379Z",
+   "ticker": "KXBTC15M-26OCT260315-15",
+   "side": "up",
+   "cost": 18.0,
+   "why": [
+    "size $18.00 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T07:15:19.201Z",
+   "ticker": "KXBTC15M-26OCT260330-30",
+   "side": "up",
+   "cost": 17.87,
+   "why": [
+    "size $17.87 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T07:20:20.032Z",
+   "ticker": "KXGOLD15M-26OCT260330-30",
+   "side": "up",
+   "cost": 18.0,
+   "why": [
+    "size $18.00 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T07:30:10.585Z",
+   "ticker": "KXBTC15M-26OCT260345-45",
+   "side": "down",
+   "cost": 18.0,
+   "why": [
+    "size $18.00 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-26T07:45:24.538Z",
+   "ticker": "KXBTC15M-26OCT260400-00",
+   "side": "up",
+   "cost": 18.0,
+   "why": [
+    "size $18.00 over her $15 slider"
+   ]
+  },
+  {
+   "at": "2026-10-27T00:50:33.734Z",
+   "ticker": "KXGOLD15M-26OCT262100-00",
+   "side": "down",
+   "cost": 9.42,
+   "why": [
+    "short at 12% of the channel (bottom third)"
+   ]
+  },
+  {
+   "at": "2026-10-27T09:31:19.995Z",
+   "ticker": "KXGOLD15M-26OCT270545-45",
+   "side": "down",
+   "cost": 13.16,
+   "why": [
+    "size $13.16 over her $1 slider"
+   ]
+  },
+  {
+   "at": "2026-10-27T09:31:55.140Z",
+   "ticker": "KXGOLD15M-26OCT270545-45",
+   "side": "down",
+   "cost": 13.27,
+   "why": [
+    "size $13.27 over her $1 slider"
+   ]
+  },
+  {
+   "at": "2026-10-27T09:54:31.454Z",
+   "ticker": "KXBTC15M-26OCT270600-00",
+   "side": "down",
+   "cost": 13.3,
+   "why": [
+    "size $13.30 over her $1 slider"
+   ]
+  },
+  {
+   "at": "2026-10-27T10:00:34.125Z",
+   "ticker": "KXGOLD15M-26OCT270615-15",
+   "side": "up",
+   "cost": 13.24,
+   "why": [
+    "size $13.24 over her $1 slider"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:22:24.081Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.77,
+   "why": [
+    "long on a falling 5m candle (80434.75 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:22:25.934Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.77,
+   "why": [
+    "long on a falling 5m candle (80436.58 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:22:26.178Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.81,
+   "why": [
+    "long on a falling 5m candle (80436.58 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:22:27.850Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.81,
+   "why": [
+    "long on a falling 5m candle (80435.17 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:22:29.978Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.81,
+   "why": [
+    "long on a falling 5m candle (80434.90 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:22:31.815Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.81,
+   "why": [
+    "long on a falling 5m candle (80434.09 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:22:36.259Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.81,
+   "why": [
+    "long on a falling 5m candle (80435.14 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:22:55.461Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.79,
+   "why": [
+    "long on a falling 5m candle (80434.21 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:22:57.143Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.79,
+   "why": [
+    "long on a falling 5m candle (80435.65 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:22:59.011Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.79,
+   "why": [
+    "long on a falling 5m candle (80433.73 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:23:03.041Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.79,
+   "why": [
+    "long on a falling 5m candle (80434.22 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:23:04.712Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.79,
+   "why": [
+    "long on a falling 5m candle (80433.95 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:23:06.548Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.79,
+   "why": [
+    "long on a falling 5m candle (80434.41 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:23:06.840Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.84,
+   "why": [
+    "long on a falling 5m candle (80434.41 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T16:23:14.695Z",
+   "ticker": "KXBTC15M-26OCT271230-30",
+   "side": "up",
+   "cost": 0.81,
+   "why": [
+    "long on a falling 5m candle (80434.09 under its 80443.05 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T17:30:30.471Z",
+   "ticker": "KXGOLD15M-26OCT271345-45",
+   "side": "up",
+   "cost": 1.19,
+   "why": [
+    "long on a falling 5m candle (4061.28 under its 4061.66 open)"
+   ]
+  },
+  {
+   "at": "2026-10-27T17:45:16.460Z",
+   "ticker": "KXBTC15M-26OCT271400-00",
+   "side": "up",
+   "cost": 1.0,
+   "why": [
+    "did not pass through the wire"
+   ]
+  }
+ ],
+ "checkedTo": "2026-10-27T19:22:10.471440Z",
+ "lastRun": {
+  "at": "2026-10-27T19:22:10.471440Z",
+  "orders": 11,
+  "breaches": 0
+ },
+ "note": "Cleaned by Claude 3:30 AM PT Oct 21: dropped audit false positives (gold 9:55Z stale pivot; gold 5:30Z predates the 2\u03c3 rule) and duplicates. Real: BTC twin short 2:34 AM PT on a rising candle above every band."
+}

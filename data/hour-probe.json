@@ -1,0 +1,277 @@
+{
+ "at": "2026-10-03T03:12:56.102Z",
+ "KXBTCD": {
+  "status": 200,
+  "open": 200,
+  "closes": [
+   "2026-10-03T04:00:00Z",
+   "2026-10-03T21:00:00Z",
+   "2026-10-09T21:00:00Z"
+  ],
+  "sample": [
+   {
+    "ticker": "KXBTCD-26OCT0917-T97999.99",
+    "title": "Bitcoin price on Oct 9, 2026?",
+    "sub": "$98,000 or above",
+    "strike_type": "greater",
+    "floor": 97999.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXBTCD-26OCT0917-T97499.99",
+    "title": "Bitcoin price on Oct 9, 2026?",
+    "sub": "$97,500 or above",
+    "strike_type": "greater",
+    "floor": 97499.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXBTCD-26OCT0917-T96999.99",
+    "title": "Bitcoin price on Oct 9, 2026?",
+    "sub": "$97,000 or above",
+    "strike_type": "greater",
+    "floor": 96999.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXBTCD-26OCT0917-T96499.99",
+    "title": "Bitcoin price on Oct 9, 2026?",
+    "sub": "$96,500 or above",
+    "strike_type": "greater",
+    "floor": 96499.99,
+    "close": "2026-10-09T21:00:00Z"
+   }
+  ]
+ },
+ "KXBTC": {
+  "status": 200,
+  "open": 200,
+  "closes": [
+   "2026-10-03T04:00:00Z",
+   "2026-10-03T21:00:00Z",
+   "2026-10-09T21:00:00Z"
+  ],
+  "sample": [
+   {
+    "ticker": "KXBTC-26OCT0917-T97999.99",
+    "title": "Bitcoin price range on Oct 9, 2026?",
+    "sub": "$98,000 or above",
+    "strike_type": "greater",
+    "floor": 97999.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXBTC-26OCT0917-T74000",
+    "title": "Bitcoin price range on Oct 9, 2026?",
+    "sub": "$73,999.99 or below",
+    "strike_type": "less",
+    "cap": 74000,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXBTC-26OCT0917-B97750",
+    "title": "Bitcoin price range on Oct 9, 2026?",
+    "sub": "$97,500 to 97,999.99",
+    "strike_type": "between",
+    "floor": 97500,
+    "cap": 97999.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXBTC-26OCT0917-B97250",
+    "title": "Bitcoin price range on Oct 9, 2026?",
+    "sub": "$97,000 to 97,499.99",
+    "strike_type": "between",
+    "floor": 97000,
+    "cap": 97499.99,
+    "close": "2026-10-09T21:00:00Z"
+   }
+  ]
+ },
+ "KXBTCH": {
+  "status": 200,
+  "open": 0,
+  "closes": [],
+  "sample": []
+ },
+ "KXGOLDD": {
+  "status": 200,
+  "open": 40,
+  "closes": [
+   "2026-10-05T21:00:00Z"
+  ],
+  "sample": [
+   {
+    "ticker": "KXGOLDD-26OCT0517-T4373",
+    "title": "Will the gold close price be above 4373 USD/t.oz on October 05, 2026 at 5:00 PM EDT?",
+    "sub": "Above $4373",
+    "strike_type": "greater",
+    "floor": 4373,
+    "close": "2026-10-05T21:00:00Z"
+   },
+   {
+    "ticker": "KXGOLDD-26OCT0517-T4363",
+    "title": "Will the gold close price be above 4363 USD/t.oz on October 05, 2026 at 5:00 PM EDT?",
+    "sub": "Above $4363",
+    "strike_type": "greater",
+    "floor": 4363,
+    "close": "2026-10-05T21:00:00Z"
+   },
+   {
+    "ticker": "KXGOLDD-26OCT0517-T4353",
+    "title": "Will the gold close price be above 4353 USD/t.oz on October 05, 2026 at 5:00 PM EDT?",
+    "sub": "Above $4353",
+    "strike_type": "greater",
+    "floor": 4353,
+    "close": "2026-10-05T21:00:00Z"
+   },
+   {
+    "ticker": "KXGOLDD-26OCT0517-T4343",
+    "title": "Will the gold close price be above 4343 USD/t.oz on October 05, 2026 at 5:00 PM EDT?",
+    "sub": "Above $4343",
+    "strike_type": "greater",
+    "floor": 4343,
+    "close": "2026-10-05T21:00:00Z"
+   }
+  ]
+ },
+ "KXGOLDH": {
+  "status": 200,
+  "open": 0,
+  "closes": [],
+  "sample": []
+ },
+ "KXGOLD": {
+  "status": 200,
+  "open": 0,
+  "closes": [],
+  "sample": []
+ },
+ "KXGOLDW": {
+  "status": 200,
+  "open": 40,
+  "closes": [
+   "2026-10-09T21:00:00Z"
+  ],
+  "sample": [
+   {
+    "ticker": "KXGOLDW-26OCT0917-T4561.99",
+    "title": "Will the gold close price be above 4561.99 USD/t.oz on October 09, 2026 at 5:00 PM EDT?",
+    "sub": "Above $4561.99",
+    "strike_type": "greater",
+    "floor": 4561.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXGOLDW-26OCT0917-T4541.99",
+    "title": "Will the gold close price be above 4541.99 USD/t.oz on October 09, 2026 at 5:00 PM EDT?",
+    "sub": "Above $4541.99",
+    "strike_type": "greater",
+    "floor": 4541.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXGOLDW-26OCT0917-T4521.99",
+    "title": "Will the gold close price be above 4521.99 USD/t.oz on October 09, 2026 at 5:00 PM EDT?",
+    "sub": "Above $4521.99",
+    "strike_type": "greater",
+    "floor": 4521.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXGOLDW-26OCT0917-T4501.99",
+    "title": "Will the gold close price be above 4501.99 USD/t.oz on October 09, 2026 at 5:00 PM EDT?",
+    "sub": "Above $4501.99",
+    "strike_type": "greater",
+    "floor": 4501.99,
+    "close": "2026-10-09T21:00:00Z"
+   }
+  ]
+ },
+ "KXETHD": {
+  "status": 200,
+  "open": 200,
+  "closes": [
+   "2026-10-03T04:00:00Z",
+   "2026-10-03T21:00:00Z",
+   "2026-10-09T21:00:00Z"
+  ],
+  "sample": [
+   {
+    "ticker": "KXETHD-26OCT0917-T3709.99",
+    "title": "Ethereum price at Oct 9, 2026 at 5pm EDT?",
+    "sub": "$3,710 or above",
+    "strike_type": "greater",
+    "floor": 3709.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXETHD-26OCT0917-T3669.99",
+    "title": "Ethereum price at Oct 9, 2026 at 5pm EDT?",
+    "sub": "$3,670 or above",
+    "strike_type": "greater",
+    "floor": 3669.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXETHD-26OCT0917-T3629.99",
+    "title": "Ethereum price at Oct 9, 2026 at 5pm EDT?",
+    "sub": "$3,630 or above",
+    "strike_type": "greater",
+    "floor": 3629.99,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXETHD-26OCT0917-T3589.99",
+    "title": "Ethereum price at Oct 9, 2026 at 5pm EDT?",
+    "sub": "$3,590 or above",
+    "strike_type": "greater",
+    "floor": 3589.99,
+    "close": "2026-10-09T21:00:00Z"
+   }
+  ]
+ },
+ "KXSOLD": {
+  "status": 200,
+  "open": 200,
+  "closes": [
+   "2026-10-03T04:00:00Z",
+   "2026-10-03T21:00:00Z",
+   "2026-10-09T21:00:00Z"
+  ],
+  "sample": [
+   {
+    "ticker": "KXSOLD-26OCT0917-T99.9999",
+    "title": "SOL price on Oct 9, 2026?",
+    "sub": "$100 or above",
+    "strike_type": "greater",
+    "floor": 99.9999,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXSOLD-26OCT0917-T98.9999",
+    "title": "SOL price on Oct 9, 2026?",
+    "sub": "$99 or above",
+    "strike_type": "greater",
+    "floor": 98.9999,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXSOLD-26OCT0917-T97.9999",
+    "title": "SOL price on Oct 9, 2026?",
+    "sub": "$98 or above",
+    "strike_type": "greater",
+    "floor": 97.9999,
+    "close": "2026-10-09T21:00:00Z"
+   },
+   {
+    "ticker": "KXSOLD-26OCT0917-T96.9999",
+    "title": "SOL price on Oct 9, 2026?",
+    "sub": "$97 or above",
+    "strike_type": "greater",
+    "floor": 96.9999,
+    "close": "2026-10-09T21:00:00Z"
+   }
+  ]
+ }
+}

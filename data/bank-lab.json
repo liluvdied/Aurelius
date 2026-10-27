@@ -1,0 +1,337 @@
+{
+ "at": "2026-10-03T01:28:18.919192+00:00",
+ "trades": 152,
+ "span": [
+  "2026-10-02T06:45:31.657000+00:00",
+  "2026-10-02T20:53:09.704000+00:00"
+ ],
+ "grid": [
+  {
+   "name": "HOLD TO THE BELL",
+   "n": 152,
+   "pnl": -101.13,
+   "wins": 90,
+   "cutWinners": 0,
+   "cutCost": 0,
+   "savedLosers": 0,
+   "savedAmt": 0
+  },
+  {
+   "name": "TAKE PROFIT ONLY",
+   "n": 152,
+   "pnl": -211.14,
+   "wins": 92,
+   "cutWinners": 0,
+   "cutCost": 0,
+   "savedLosers": 0,
+   "savedAmt": 0
+  },
+  {
+   "name": "BANK today (arm 30, give 5%, band 1m)",
+   "n": 152,
+   "pnl": -31.49,
+   "wins": 111,
+   "cutWinners": 47,
+   "cutCost": 1045.7,
+   "savedLosers": 21,
+   "savedAmt": 1234.1
+  },
+  {
+   "name": "gate arm 30 give 5%",
+   "n": 152,
+   "pnl": -78.24,
+   "wins": 104,
+   "cutWinners": 30,
+   "cutCost": 703.24,
+   "savedLosers": 14,
+   "savedAmt": 851.94
+  },
+  {
+   "name": "gate arm 30 give 10%",
+   "n": 152,
+   "pnl": -43.03,
+   "wins": 103,
+   "cutWinners": 18,
+   "cutCost": 550.0,
+   "savedLosers": 13,
+   "savedAmt": 766.77
+  },
+  {
+   "name": "gate arm 30 give 15%",
+   "n": 152,
+   "pnl": -31.24,
+   "wins": 101,
+   "cutWinners": 12,
+   "cutCost": 405.15,
+   "savedLosers": 9,
+   "savedAmt": 504.06
+  },
+  {
+   "name": "gate arm 30 give 20%",
+   "n": 152,
+   "pnl": -39.41,
+   "wins": 99,
+   "cutWinners": 7,
+   "cutCost": 275.93,
+   "savedLosers": 7,
+   "savedAmt": 385.36
+  },
+  {
+   "name": "gate arm 30 give 25%",
+   "n": 152,
+   "pnl": -108.47,
+   "wins": 95,
+   "cutWinners": 3,
+   "cutCost": 96.09,
+   "savedLosers": 3,
+   "savedAmt": 159.21
+  },
+  {
+   "name": "gate arm 30 give 30%",
+   "n": 152,
+   "pnl": -55.85,
+   "wins": 95,
+   "cutWinners": 1,
+   "cutCost": 41.18,
+   "savedLosers": 3,
+   "savedAmt": 159.21
+  },
+  {
+   "name": "gate arm 40 give 5%",
+   "n": 152,
+   "pnl": -16.52,
+   "wins": 99,
+   "cutWinners": 15,
+   "cutCost": 331.14,
+   "savedLosers": 8,
+   "savedAmt": 514.19
+  },
+  {
+   "name": "gate arm 40 give 10%",
+   "n": 152,
+   "pnl": 51.26,
+   "wins": 99,
+   "cutWinners": 6,
+   "cutCost": 223.62,
+   "savedLosers": 8,
+   "savedAmt": 501.97
+  },
+  {
+   "name": "gate arm 40 give 15%",
+   "n": 152,
+   "pnl": 34.78,
+   "wins": 98,
+   "cutWinners": 4,
+   "cutCost": 153.33,
+   "savedLosers": 6,
+   "savedAmt": 348.56
+  },
+  {
+   "name": "gate arm 40 give 20%",
+   "n": 152,
+   "pnl": -11.19,
+   "wins": 97,
+   "cutWinners": 3,
+   "cutCost": 130.88,
+   "savedLosers": 5,
+   "savedAmt": 282.68
+  },
+  {
+   "name": "gate arm 40 give 25%",
+   "n": 152,
+   "pnl": -55.85,
+   "wins": 95,
+   "cutWinners": 1,
+   "cutCost": 41.18,
+   "savedLosers": 3,
+   "savedAmt": 159.21
+  },
+  {
+   "name": "gate arm 40 give 30%",
+   "n": 152,
+   "pnl": -55.85,
+   "wins": 95,
+   "cutWinners": 1,
+   "cutCost": 41.18,
+   "savedLosers": 3,
+   "savedAmt": 159.21
+  },
+  {
+   "name": "gate arm 50 give 5%",
+   "n": 152,
+   "pnl": -31.17,
+   "wins": 96,
+   "cutWinners": 5,
+   "cutCost": 131.02,
+   "savedLosers": 5,
+   "savedAmt": 336.94
+  },
+  {
+   "name": "gate arm 50 give 10%",
+   "n": 152,
+   "pnl": -22.56,
+   "wins": 96,
+   "cutWinners": 3,
+   "cutCost": 107.35,
+   "savedLosers": 4,
+   "savedAmt": 255.87
+  },
+  {
+   "name": "gate arm 50 give 15%",
+   "n": 152,
+   "pnl": 7.59,
+   "wins": 96,
+   "cutWinners": 2,
+   "cutCost": 56.73,
+   "savedLosers": 4,
+   "savedAmt": 235.66
+  },
+  {
+   "name": "gate arm 50 give 20%",
+   "n": 152,
+   "pnl": -34.04,
+   "wins": 95,
+   "cutWinners": 1,
+   "cutCost": 32.35,
+   "savedLosers": 3,
+   "savedAmt": 172.2
+  },
+  {
+   "name": "gate arm 50 give 25%",
+   "n": 152,
+   "pnl": -55.85,
+   "wins": 95,
+   "cutWinners": 1,
+   "cutCost": 41.18,
+   "savedLosers": 3,
+   "savedAmt": 159.21
+  },
+  {
+   "name": "gate arm 50 give 30%",
+   "n": 152,
+   "pnl": -55.85,
+   "wins": 95,
+   "cutWinners": 1,
+   "cutCost": 41.18,
+   "savedLosers": 3,
+   "savedAmt": 159.21
+  },
+  {
+   "name": "gate arm 60 give 5%",
+   "n": 152,
+   "pnl": -173.15,
+   "wins": 93,
+   "cutWinners": 2,
+   "cutCost": 75.05,
+   "savedLosers": 1,
+   "savedAmt": 75.53
+  },
+  {
+   "name": "gate arm 60 give 10%",
+   "n": 152,
+   "pnl": -179.03,
+   "wins": 93,
+   "cutWinners": 2,
+   "cutCost": 80.93,
+   "savedLosers": 1,
+   "savedAmt": 75.53
+  },
+  {
+   "name": "gate arm 60 give 15%",
+   "n": 152,
+   "pnl": -147.0,
+   "wins": 93,
+   "cutWinners": 1,
+   "cutCost": 28.43,
+   "savedLosers": 1,
+   "savedAmt": 55.32
+  },
+  {
+   "name": "gate arm 60 give 20%",
+   "n": 152,
+   "pnl": -150.92,
+   "wins": 93,
+   "cutWinners": 1,
+   "cutCost": 32.35,
+   "savedLosers": 1,
+   "savedAmt": 55.32
+  },
+  {
+   "name": "gate arm 60 give 25%",
+   "n": 152,
+   "pnl": -159.74,
+   "wins": 93,
+   "cutWinners": 1,
+   "cutCost": 41.18,
+   "savedLosers": 1,
+   "savedAmt": 55.32
+  },
+  {
+   "name": "gate arm 60 give 30%",
+   "n": 152,
+   "pnl": -159.74,
+   "wins": 93,
+   "cutWinners": 1,
+   "cutCost": 41.18,
+   "savedLosers": 1,
+   "savedAmt": 55.32
+  },
+  {
+   "name": "band 1x1m close back, min +0%",
+   "n": 152,
+   "pnl": -2.2,
+   "wins": 104,
+   "cutWinners": 30,
+   "cutCost": 538.19,
+   "savedLosers": 13,
+   "savedAmt": 747.51
+  },
+  {
+   "name": "band 1x1m close back, min +20%",
+   "n": 152,
+   "pnl": -148.97,
+   "wins": 97,
+   "cutWinners": 24,
+   "cutCost": 308.08,
+   "savedLosers": 6,
+   "savedAmt": 373.21
+  },
+  {
+   "name": "band 2x1m close back, min +0%",
+   "n": 152,
+   "pnl": -204.41,
+   "wins": 99,
+   "cutWinners": 26,
+   "cutCost": 430.86,
+   "savedLosers": 8,
+   "savedAmt": 460.56
+  },
+  {
+   "name": "band 2x1m close back, min +20%",
+   "n": 152,
+   "pnl": -134.14,
+   "wins": 96,
+   "cutWinners": 20,
+   "cutCost": 211.07,
+   "savedLosers": 5,
+   "savedAmt": 313.64
+  }
+ ],
+ "bestGate": {
+  "name": "gate arm 40 give 10%",
+  "n": 152,
+  "pnl": 51.26,
+  "wins": 99,
+  "cutWinners": 6,
+  "cutCost": 223.62,
+  "savedLosers": 8,
+  "savedAmt": 501.97
+ },
+ "winnerDips": {
+  "n": 90,
+  "median": 4.2,
+  "p75": 14.6,
+  "p90": 31.1,
+  "note": "how far a bell WINNER's bid fell from its running peak after first being up 30%+ (percent of the peak bid)"
+ }
+}

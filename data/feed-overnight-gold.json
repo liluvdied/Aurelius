@@ -1,0 +1,82 @@
+{
+ "bands": {
+  "OANDA:XAUUSD|ny": {
+   "touches": 406,
+   "respected": 202,
+   "blewThru": 195,
+   "kalshiSame": "97.6% of 167",
+   "gap": "$0.41"
+  },
+  "OANDA:XAUUSD|utc": {
+   "touches": 396,
+   "respected": 204,
+   "blewThru": 188,
+   "kalshiSame": "97.6% of 167",
+   "gap": "$0.41"
+  },
+  "VANTAGE:XAUUSD|ny": {
+   "touches": 415,
+   "respected": 205,
+   "blewThru": 205,
+   "kalshiSame": "98.2% of 165",
+   "gap": "$0.44"
+  },
+  "VANTAGE:XAUUSD|utc": {
+   "touches": 405,
+   "respected": 218,
+   "blewThru": 181,
+   "kalshiSame": "98.2% of 165",
+   "gap": "$0.44"
+  },
+  "PEPPERSTONE:XAUUSD|ny": {
+   "touches": 426,
+   "respected": 215,
+   "blewThru": 208,
+   "kalshiSame": "97.6% of 165",
+   "gap": "$0.45"
+  },
+  "PEPPERSTONE:XAUUSD|utc": {
+   "touches": 410,
+   "respected": 223,
+   "blewThru": 178,
+   "kalshiSame": "97.6% of 165",
+   "gap": "$0.45"
+  },
+  "FX:XAUUSD|ny": {
+   "touches": 404,
+   "respected": 208,
+   "blewThru": 190,
+   "kalshiSame": "95.8% of 166",
+   "gap": "$0.45"
+  },
+  "FX:XAUUSD|utc": {
+   "touches": 394,
+   "respected": 193,
+   "blewThru": 199,
+   "kalshiSame": "95.8% of 166",
+   "gap": "$0.45"
+  }
+ },
+ "firstToBreak": {
+  "OANDA:XAUUSD": {
+   "first": 21,
+   "followed": 7,
+   "ran": 16
+  },
+  "VANTAGE:XAUUSD": {
+   "first": 3,
+   "followed": 0,
+   "ran": 2
+  },
+  "PEPPERSTONE:XAUUSD": {
+   "first": 14,
+   "followed": 3,
+   "ran": 9
+  },
+  "FX:XAUUSD": {
+   "first": 9,
+   "followed": 3,
+   "ran": 8
+  }
+ }
+}
