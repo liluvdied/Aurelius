@@ -44,6 +44,7 @@ type Piv = { pp: number; r1: number; s1: number; r2: number; s2: number; a: numb
 type Line = { name: string; price: number; unit: number; center?: boolean };
 export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-dly", "recon-rejx", "recon-togr", "recon-rej5", "recon-togp"] as const; /* fix281 recon-togp */ /* fix261 recon-rej5 */ /* fix250 recon-togr */ /* fix171 recon-rejx */ // + MOST SUCCESSFUL 70%+ (Oct 19 ~9:02 PM PT, Love) + REJECTIONS ONLY twin (Oct 20 ~7:39 AM PT, Love)
 export const RECON = new Set<string>(RECON_LANES);
+const DLY_AS_COPY = true; // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): the DELAYED twin is the no-pink copy with a delayed entry
 
 function resample(b: Bar[], mins: number): Bar[] {
   const out: Bar[] = [];
@@ -426,6 +427,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   let changed = false;
   const book = (lane: string, look: { side: "up" | "down"; label: string }, askIn?: number) => {
     const prior = rows.find((r) => r.ticker === m.ticker && r.lane === lane);
+    if (lane === "recon-dly" && DLY_AS_COPY && !(look as any).copy353) return false; // fix353: her old twin calls (initial move, touches, re-aims) no longer book
     // FRESH 5M SWINGS (fix186, Oct 25 ~1:45 AM PT, Love: "can you see why the rejection model didn't long at the rejection of btc at the band? ... it didnt register a
     // couple of taps tonight ... let's make sure she has what she needs to enter when she pleases" + card "Fresh 5m swings, keep the hours"): her books make one call per
     // 15m window, so on Polymarket's 5m board a second tap in the same 15 minutes was invisible (1:15:43 AM rejection long, then the 1:18 tap went unseen). When the main
@@ -635,6 +637,10 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // books from) instead of being handed TOGETHER's one booked call, and an unfilled call re-aims to whatever she reads now (book() above). Pinks stay out unless stacked (fix283).
   try { const srcP: any = firstT;
     if (srcP && (srcP.side === "up" || srcP.side === "down") && (!/5m PP|pink/i.test(String(srcP.label)) || tpStack) /* fix283 */ && book("recon-togp", { side: srcP.side, label: String(srcP.label) }, lookP && !lookT ? lookP.ask : undefined)) changed = true; } catch {}
+  // THE DELAYED TWIN = THE NO-PINK COPY, DELAYED (fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds")): the copy's own read this tick (firstT, pink left out unless stacked, fix283),
+  // booked for recon-dly only once the window is 30 seconds old; the copy's walls judge her at the door and the wire (bandlock fix353).
+  try { const srcD: any = firstT;
+    if (DLY_AS_COPY && srcD && (srcD.side === "up" || srcD.side === "down") && 900 - left >= 30 && (!/5m PP|pink/i.test(String(srcD.label)) || tpStack) && book("recon-dly", { side: srcD.side, label: String(srcD.label), copy353: true } as any, lookP && !lookT ? lookP.ask : undefined)) changed = true; } catch {}
   // 6) DELAYED (Oct 20 ~9:38 PM PT, Love: "a delayed entry model to trade at $1 - same frame, same everything, just waits out the initial move, and enters on the
   // other side of the window than she would have been in had she got in initially when the opportunity presents itself ... her trades go in profit and reverse,
   // so we implement the delayed entry model to be on the other side of it - the right side of it"): TOGETHER's first call in the window is the initial move; this

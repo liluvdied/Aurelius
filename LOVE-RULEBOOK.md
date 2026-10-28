@@ -146,3 +146,9 @@ Love: "why did she long in the top 33% of the channel ….?" + card "Should tiny
 ## fix352 — BTC 6 PM: the delayed twin trades (Oct 27 ~6:02 PM PT, R036)
 Love: "just the delayed entry model pls $2, $5 addon same as the other :))"
 - BTC 6 PM PT hour: only the delayed twin (recon-dly) trades live, $2.50 + $5 add-on. Main, rejection, copy keep sitting it out (Oct 8 call). Gold unchanged.
+
+## fix353 — the delayed twin is the no-pink copy, 30 s late (Oct 27 ~6:10 PM PT, R037)
+Love: "for her rejections on they delayed entry model just put her on the same framework we rebuilt for no pink / or better yet, just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good 💞" + 6:09 PM "i forgot the delayed model needed to be retuned again and we got the no pink rejection back on point 🎯 so we will use that model with a delayed entry - after 30 seconds 💞"
+- recon-dly books exactly the copy's read, never before 30 s into the window, and meets every copy wall (pink scale break-only, HER FLIP, gold 33c, gold 33% thirds).
+- Her old twin entries (initial move, next-band touch, re-aims) and twin-hour freedoms are switched off (DLY_AS_COPY in recon.ts + bandlock.ts; flip to false to restore, only on Love's words).
+- Kept: her hours, $2.50 + $5 add-on, 50c price cap. The Polymarket twin copies her calls, so it follows the new model.

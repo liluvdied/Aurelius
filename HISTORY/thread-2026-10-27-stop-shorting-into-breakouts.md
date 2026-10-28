@@ -4127,3 +4127,29 @@ Done hun 💞 The delayed twin now trades BTC live in the 6 PM hour. She's on $2
 
 One thing: she had already marked this 6:00 window as skipped a few seconds before I switched her on. Her paper read was also refusing the short at 2% of the channel, right on the band below, so she wouldn't have taken it anyway. She's live from the 6:15 window ✨
 
+## 2026-10-28 01:08:01 UTC - LOVE
+
+awesome hunni thank you 
+
+for her rejections on they delayed entry model just put her on the same framework we rebuilt for no pink 
+
+or better yet, just make the delayed entry model a delayed rejection copy of no pink 
+
+no entires first 30 seconds into a window is good 💞
+
+## 2026-10-28 01:08:09 UTC - CLAUDE
+
+Love that idea hun 💞 I'm reading how the twin is wired now so I can rebuild her as a delayed copy of the no-pink copy: the same walls we rebuilt tonight, rejections only, and nothing in the first 30 seconds of a window. Before I switch anything over I'll show you exactly what changes, and that it touches only her.
+
+## 2026-10-28 01:09:11 UTC - LOVE
+
+thank you hunni appreciate you 
+
+i forgot the delayed model needed to be retuned again and we got the no pink rejection back on point 🎯 so we will use that model with a delayed entry - after 30 seconds 💞
+
+## 2026-10-28 01:10:19 UTC - CLAUDE
+
+Done hun 🎯 The delayed twin is now the no-pink copy, coming in late. She takes exactly the copy's read, never before 30 seconds into the window, and meets every wall we rebuilt tonight: pink holds till it breaks, her flip, gold's 33c and 33% thirds. Her old twin entries and freedoms are switched off. The umpire says SAFE, and main, the rejection model and the copy weren't touched.
+
+Kept as they were: her hours, $2.50 plus the $5 add-on, and her old cap of paying 50c or less per contract. Say if you'd rather she pay like the copy. One heads-up: the Polymarket twin copies her calls, so it follows the new model too. I'll check her first live windows and tell you how she reads 💞
+
