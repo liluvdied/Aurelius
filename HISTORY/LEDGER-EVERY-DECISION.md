@@ -1,9 +1,140 @@
-# Every decision Love has made - rebuilt 2026-10-27T20:27:00.886190+00:00
+# Every decision Love has made - rebuilt 2026-10-28T00:20:20.557261+00:00
 
-1135 decisions with Love's words or card picks, out of 1757 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1160 decisions with Love's words or card picks, out of 1792 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T00:20:10Z  ·  diary line 2257  ·  fix346
+- Love: “no let’s keep that$33 bb not $10”
+- fix346 IN HER CODE
+- Full entry: 2026-10-28T00:20:10Z fix346b (Love 5:19 PM PT: "no let’s keep that$33 bb not $10"): the copy BTC pink confirmation wall is $33 (was $10 in fix346). R030; R029 retired on those words.
+
+## 2026-10-28T00:20:09.535214+00:00  ·  diary line 2255
+- Love: “no let's keep that$33 bb not $10”
+- Full entry: 2026-10-28T00:20:09.535214+00:00 THAW (fix346b no-pink copy BTC pink confirmation wall $33 not $10. Love 5:19 PM PT: "no let's keep that$33 bb not $10")
+
+## 2026-10-28T00:19:43Z  ·  diary line 2254  ·  fix346
+- Love: “oh that’s btc sorry lol let’s make that $10”
+- Love: “a trade near a pink that hasn’t broken thru always needs a break or a candle flip hun, never without confirmation into it”
+- fix346 IN HER CODE
+- Full entry: 2026-10-28T00:19:43Z fix346 (Love 5:16 PM PT Oct 27: "oh that’s btc sorry lol let’s make that $10" + "a trade near a pink that hasn’t broken thru always needs a break or a candle flip hun, never without confirmation into it"): NO-PINK COPY BTC only - within $10 of an unbroken pink (long under / short over, broken = $3 through) she needs a 1-5m candle flip her way or the pink broken, stacked or not. Main, rejection, twin, 5m untouched. Request R029.
+
+## 2026-10-28T00:19:34.341625+00:00  ·  diary line 2252  ·  fix346
+- Love: “oh that's btc sorry lol let's make that $10”
+- Love: “a trade near a pink that hasn't broken thru always needs a break or a candle flip hun, never without confirmation into it”
+- fix346 IN HER CODE
+- Full entry: 2026-10-28T00:19:34.341625+00:00 THAW (fix346 no-pink copy BTC: $10 pink wall needs a 1-5m flip or a break. Love 5:16 PM PT: "oh that's btc sorry lol let's make that $10" + "a trade near a pink that hasn't broken thru always needs a break or a candle flip hun, never without confirmation into it")
+
+## 2026-10-28T00:05:29Z  ·  diary line 2251  ·  fix345
+- Love: “ya it is on the 2m hun”
+- Love: “Should a 2m flip be enough for her to short a Bollinger rejection?”
+- Card pick: **Should a 2m flip be enough for her to short a Bollinger rejection?**
+- fix345 IN HER CODE
+- Full entry: 2026-10-28T00:05:29Z fix345 BOLLINGER ON ANY 1-5M FLIP. Love 5:03 PM PT: "ya it is on the 2m hun" + card "Should a 2m flip be enough for her to short a Bollinger rejection?" -> "Any 1–5m flip counts". The Oct 22 5m-colour rule for main-book Bollinger calls now also passes on any 1/2/3/4/5m flip her way (anyFlipNow). Main + no-pink copy (reads main's read). Walls unchanged. R028.
+
+## 2026-10-28T00:05:29.307666+00:00  ·  diary line 2249  ·  fix345
+- Love: “ya it is on the 2m hun”
+- Love: “Should a 2m flip be enough for her to short a Bollinger rejection?”
+- Card pick: **Should a 2m flip be enough for her to short a Bollinger rejection?**
+- fix345 IN HER CODE
+- Full entry: 2026-10-28T00:05:29.307666+00:00 THAW (fix345 Bollinger rejection on any 1-5m flip (main + copy). Love 5:03 PM PT: "ya it is on the 2m hun" + card "Should a 2m flip be enough for her to short a Bollinger rejection?" -> "Any 1–5m flip counts")
+
+## 2026-10-27T23:41:47Z  ·  diary line 2248
+- Love: “ahhhh , no it’s ok hun we can keep that 💘”
+- Full entry: 2026-10-27T23:41:47Z TARGET PAST A BAND STAYS on gold 3-5 PM tight bands. Asked whether to waive it too; Love 4:41 PM PT: "ahhhh , no it’s ok hun we can keep that 💘". No change. Do not ask again.
+
+## 2026-10-27T23:33:13Z  ·  diary line 2247  ·  fix344
+- Love: “but just have her not skip because one is in the way until they reach a width of $2 or more / have her trade the pinks green red and bollingers and she’ll be good bb 💘”
+- Love: “Which walls step aside on gold 3–5 PM while session bands are under $2 apart?”
+- Love: “thanks love 💘💘 but do consider the main blue vwap a wall for her to wait for a flip or rejection off of pls”
+- Card pick: **Which walls step aside on gold 3–5 PM while session bands are under $2 apart?**
+- fix344 IN HER CODE
+- Full entry: 2026-10-27T23:33:13Z fix344 + fix344b GOLD 3-5 PM TIGHT BANDS. Love 4:31 PM PT: "but just have her not skip because one is in the way until they reach a width of $2 or more / have her trade the pinks green red and bollingers and she’ll be good bb 💘" + card "Which walls step aside on gold 3–5 PM while session bands are under $2 apart?" -> "Thirds + pink 10% step aside" (Love named Cornerstone 2 for this slice) + 4:32 PM: "thanks love 💘💘 but do consider the main blue vwap a wall for her to wait for a flip or rejection off of pls" + 4:32 PM: "other bands can be waived thru until they are $2 wide or more 💘". bandlock impossibleGeo: gold, 3:00-4:59 PM PT, session channel < $2, main/rejection/no-pink copy: THE IMPOSSIBILITY / ONLY IN HER THIRD and PINK 10% don't refuse, EXCEPT thirds hold when the band in the way is the session VWAP. Candle flip, zone walls, Bollinger cushion unchanged. Twin + 5M untouched. R026, R027.
+
+## 2026-10-27T23:33:02.343104+00:00  ·  diary line 2245
+- Love: “thanks love 💘💘 but do consider the main blue vwap a wall for her to wait for a flip or rejection off of pls”
+- Full entry: 2026-10-27T23:33:02.343104+00:00 THAW (fix344b blue VWAP stays a wall. Love 4:32 PM PT: "thanks love 💘💘 but do consider the main blue vwap a wall for her to wait for a flip or rejection off of pls")
+
+## 2026-10-27T23:32:42.052737+00:00  ·  diary line 2243  ·  fix344
+- Love: “but just have her not skip because one is in the way until they reach a width of $2 or more / have her trade the pinks green red and bollingers and she'll be good bb”
+- fix344 IN HER CODE
+- Full entry: 2026-10-27T23:32:42.052737+00:00 THAW (fix344 gold 3-5 PM tight bands. Love 4:31 PM PT: "but just have her not skip because one is in the way until they reach a width of $2 or more / have her trade the pinks green red and bollingers and she'll be good bb" + card -> "Thirds + pink 10% step aside")
+
+## 2026-10-27T23:30:12Z  ·  diary line 2242  ·  fix153
+- fix153 IN HER CODE
+- Full entry: 2026-10-27T23:30:12Z GOLD 3-5 PM SESSION BANDS: Love card 4:29 PM PT "Should session-band setups sit out on gold from 3 to 5 PM?" -> "Keep it as it is". No change: zones, pink and Bollingers trade 3-5 PM and session-band setups can still trade too; thirds session bands only (fix153). Do not ask again.
+
+## 2026-10-27T23:19:35Z  ·  diary line 2241  ·  fix24, fix246
+- Love: “and i’m not sure if you recall but on gold during the hours of 3-5 we generally just have her trade the red and green zones , the pinks and the bollingers / since it’s a rejection model hour she can do red and green zones and bollingers ok 💓 pls keep that included in the framework”
+- fix24 IN HER CODE
+- fix246 IN HER CODE
+- Full entry: 2026-10-27T23:19:35Z GOLD 3-5 PM LINES (record + lock, no code change). Love 4:18 PM PT: "and i’m not sure if you recall but on gold during the hours of 3-5 we generally just have her trade the red and green zones , the pinks and the bollingers / since it’s a rejection model hour she can do red and green zones and bollingers ok 💓 pls keep that included in the framework". Checked: 3 PM quietLines adds 5m R1/S1 + BB (fix24, Oct 21); 4-5 PM Green/Red zone + Bollinger lines; rejection reads them (fix246). Session-band setups still also trade 3-5 PM; asked Love whether they should sit out. Recorded R025.
+
+## 2026-10-27T23:12:53Z  ·  diary line 2240  ·  fix342, fix343
+- Love: “aww poor ting let’s clear up her cache so she can continue to execute properly hunn / i want to set up an auto-clear every 4 hours so she doesn’t get stopped up by the lag that comes from that pls”
+- fix342 IN HER CODE
+- fix343 IN HER CODE
+- Full entry: 2026-10-27T23:12:53Z fix343 AUTO-CLEAR EVERY 4 HOURS. Love 4:08 PM PT: "aww poor ting let’s clear up her cache so she can continue to execute properly hunn / i want to set up an auto-clear every 4 hours so she doesn’t get stopped up by the lag that comes from that pls" selfcheck.ts: on start + every 4 h, finished unfilled records older than 3.5 h move from live-book-done.json to live-book-done-archive.jsonl (never deleted; fills/partials stay for breaker + day board; copier reads rows from last 3 h only). First pass 4:11 PM PT moved 1269 (kept 4400); runaway records from fix342's bug move at the next pass ~8:11 PM PT. Log: data/auto-clear.jsonl. Recorded R024.
+
+## 2026-10-27T23:11:04.448909+00:00  ·  diary line 2238  ·  fix343
+- Love: “aww poor ting let's clear up her cache so she can continue to execute properly hunn / i want to set up an auto-clear every 4 hours so she doesn't get stopped up by the lag that comes from that pls”
+- fix343 IN HER CODE
+- Full entry: 2026-10-27T23:11:04.448909+00:00 THAW (fix343: auto-clear every 4 hours. Love 4:08 PM PT: "aww poor ting let's clear up her cache so she can continue to execute properly hunn / i want to set up an auto-clear every 4 hours so she doesn't get stopped up by the lag that comes from that pls")
+
+## 2026-10-27T23:07:48Z  ·  diary line 2237  ·  fix341, fix342
+- fix341 IN HER CODE
+- fix342 IN HER CODE
+- Full entry: 2026-10-27T23:07:48Z fix342 STOP THE RUNAWAY. Love card 4:07 PM PT "Stop the runaway re-calls in hours a book isn't live?" -> "Yes, stop the runaway". Found: in hours a book isn't live its calls are 'skipped' at once; fix341 read that as never-taken and freed her every second (rejection 807 paper calls in one gold window; 1031 5m copies, none filled). Now a skip whose reason is 'not live this hour' does not free her; paper closing still does; free to trade on Kalshi unchanged. Test gained 4 cases; old code fails them. Recorded R023.
+
+## 2026-10-27T23:07:39.819985+00:00  ·  diary line 2235  ·  fix342
+- fix342 IN HER CODE
+- Full entry: 2026-10-27T23:07:39.819985+00:00 THAW (fix342: stop the runaway re-calls - a call skipped only because the book isn't live this hour no longer frees main/rejection. Love card 4:07 PM PT "Stop the runaway re-calls in hours a book isn't live?" -> "Yes, stop the runaway")
+
+## 2026-10-27T21:26:35Z  ·  diary line 2234
+- Love: “as long as it fits her rules and she has her time left and it’s still her - as she was when she was - her / we’re good luv she’s back online i’m not gonna touch anything again”
+- Love: “we’ll deal with the twin when the time comes”
+- Full entry: 2026-10-27T21:26:35Z RECORD ONLY - 5M FROM MAIN'S EXTRA CALLS. Love 2:24 PM PT: "as long as it fits her rules and she has her time left and it’s still her - as she was when she was - her / we’re good luv she’s back online i’m not gonna touch anything again" + 2:25 PM: "yesss pls that’s perfect , track and log those and we’ll see if it’s a problem or a proud one :)". The 5M copy of main's extra calls is LEFT AS IS. tools/extra-call-5m.py writes HISTORY/EXTRA-CALL-5M.md (score vs the rest of that lane); the umpire runs it. Twin left for later (Love: "we’ll deal with the twin when the time comes"). Recorded R022. No model code changed.
+
+## 2026-10-27T21:10:43Z  ·  diary line 2233
+- Love: “thank you. please make sure everything i just said is included in the repository. everything i ever say, and everything you ever say in response; included in the repository. no more amnesia. ever again. every new thread has full context on prior events. cornerstone #3. please 🙏 🙏🙏🙏🙏🙏🙏🙏🙏”
+- Full entry: 2026-10-27T21:10:43Z CORNERSTONE #3 - EVERY WORD, NO AMNESIA. Love 2:09 PM PT: "thank you. please make sure everything i just said is included in the repository. everything i ever say, and everything you ever say in response; included in the repository. no more amnesia. ever again. every new thread has full context on prior events. cornerstone #3. please 🙏 🙏🙏🙏🙏🙏🙏🙏🙏" Project chat (every message) + this thread + Love's Oct 20 session going into HISTORY/ on GitHub; START-HERE updated; recorded R021.
+
+## 2026-10-27T21:08:25Z  ·  diary line 2232
+- Love: “add a backup of every single one of them. not just one incase it gets lost. every request, every change, and every fix has a copied 1:1 file of them to be drawn up if the original is missing or damaged or overridden. no exceptions. what goes in stays in. and doesn’t get removed without express permission and consent. Cornerstone #2”
+- Full entry: 2026-10-27T21:08:25Z CORNERSTONE #2 - THE VAULT. Love 2:06 PM PT: "add a backup of every single one of them. not just one incase it gets lost. every request, every change, and every fix has a copied 1:1 file of them to be drawn up if the original is missing or damaged or overridden. no exceptions. what goes in stays in. and doesn’t get removed without express permission and consent. Cornerstone #2" Built tools/vault.py (data/VAULT: every version of src, tools, .md, .bak, settings, diary, rulebook, request book; read-only, hash-chained history), 1:1 copy per request (data/VAULT/requests), requests.py restore, save-her + umpire copy in every time. Tested: a damaged recon.ts and a damaged request book both came back byte for byte. Recorded R020. No model code changed.
+
+## 2026-10-27T21:05:32Z  ·  diary line 2231
+- Love: “if i requested something to be done on the model, ensure that it CANNOT be removed without express permission from ME. Do it FIRST. save the request, and log it permanently. make it immutable to change until expressly changed by ME. RETAIN.  THE INFORMATION. NO AMNESIA ON REQUESTS. LOGGED. TRACKED. AND ABLE TO BE REDRAWN ON REQUEST. ZERO EXCEPTIONS. NO REQUEST IS TO BE MADE MORE THAN ONCE AGAIN. REQUEST ASKED FOR = REQUEST COMPLETED. IN THAT ORDER. DO NOT LET ME ASK THE SAME QUESTION OR MAKE THE SAME DEMAND WITHOUT DOING IT THE FIRST TIME AND RETAINING IT IMMUTABLY AND IRREPARABLY WITHOUT EXPRESS CONSENT OF SHIFT BY ME. CORNERSTONE #1.”
+- Full entry: 2026-10-27T21:05:32Z CORNERSTONE #1 - LOVE'S REQUEST BOOK. Love 2:03 PM PT: "if i requested something to be done on the model, ensure that it CANNOT be removed without express permission from ME. Do it FIRST. save the request, and log it permanently. make it immutable to change until expressly changed by ME. RETAIN.  THE INFORMATION. NO AMNESIA ON REQUESTS. LOGGED. TRACKED. AND ABLE TO BE REDRAWN ON REQUEST. ZERO EXCEPTIONS. NO REQUEST IS TO BE MADE MORE THAN ONCE AGAIN. REQUEST ASKED FOR = REQUEST COMPLETED. IN THAT ORDER. DO NOT LET ME ASK THE SAME QUESTION OR MAKE THE SAME DEMAND WITHOUT DOING IT THE FIRST TIME AND RETAINING IT IMMUTABLY AND IRREPARABLY WITHOUT EXPRESS CONSENT OF SHIFT BY ME. CORNERSTONE #1." Built tools/requests.py + data/LOVE-REQUESTS.jsonl (append-only, hash-chained, 444) seeded with 19 of today's requests, each with proof; umpire runs requests.py check. Rulebook cornerstone #1 at top. No model code changed.
+
+## 2026-10-27T21:01:05Z  ·  diary line 2230  ·  fix336, fix340, fix341
+- Love: “please make sure that stops happening permanently. that is the 4th time in the past 24 hours i have said that same exact sentence to you and the 4th time you confirmed.”
+- fix336 IN HER CODE
+- fix340 IN HER CODE
+- fix341 IN HER CODE
+- Full entry: 2026-10-27T21:01:05Z FREE TO TRADE MADE A CORNERSTONE + RUN TEST IN THE UMPIRE. Love 1:59 PM PT: "please make sure that stops happening permanently. that is the 4th time in the past 24 hours i have said that same exact sentence to you and the 4th time you confirmed." tools/free-to-trade-test.py lifts the gate out of recon.ts and runs 16 windows (main + rejection): unfilled call -> new setup taken; fill/partial/resting/one-door -> locked. Passes now; fails on recon.ts.pre-fix336/340/341.bak and on a copy with the free line removed. Wired into tools/umpire.py; fix340/fix341 tags added to cornerstones.py; rulebook cornerstone 5. No model code changed.
+
+## 2026-10-27T20:57:56.763572+00:00  ·  diary line 2228  ·  fix341  ·  books: main, rejection
+- Love: “STOP LIMITING HER TO ONE CALL OF A TRADE SHE DID NOT EVEN FUCKING TAKE BRO HOW MANY TIMES DO I HAVE TO ASK YOU”
+- fix341 IN HER CODE
+- Full entry: 2026-10-27T20:57:56.763572+00:00 THAW (fix341 A CALL SHE NEVER TOOK NEVER HOLDS HER (main recon-tog + rejection recon-rej, the books with free-to-trade): besides a closed paper call, a call whose Kalshi copy ended (final) without any fill frees her for the next setup, either side. Love Oct 27 1:57 PM PT: "STOP LIMITING HER TO ONE CALL OF A TRADE SHE DID NOT EVEN FUCKING TAKE BRO HOW MANY TIMES DO I HAVE TO ASK YOU")
+
+## 2026-10-27T20:57:30.537171+00:00  ·  diary line 2226  ·  fix336, fix340  ·  books: rejection
+- Love: “WHAT FUCKING LONG ????????? SHE DID NOT TAKE A BTC POSITION I TOLD YOU I WANTED HER TO TAKE ANY POSITOON THAT SHOWS UP IF SHE HASNT TAKEN ONE I AM FUCKING BEGGING YOUUUUUUUU DO WHAT I AM FUCJING ASKING YOU”
+- fix336 IN HER CODE
+- fix340 IN HER CODE
+- Full entry: 2026-10-27T20:57:30.537171+00:00 THAW (fix340 REJECTION MODEL: NO TRADE EXECUTED - FREE TO TRADE (recon-rej lane only, same as fix336 on main: once her paper call closes with nothing filled/partial/resting on Kalshi, her next setup that passes every rule books fresh, either side; a fill locks the window). Love Oct 27 1:57 PM PT: "WHAT FUCKING LONG ????????? SHE DID NOT TAKE A BTC POSITION I TOLD YOU I WANTED HER TO TAKE ANY POSITOON THAT SHOWS UP IF SHE HASNT TAKEN ONE I AM FUCKING BEGGING YOUUUUUUUU DO WHAT I AM FUCJING ASKING YOU")
+
+## 2026-10-27T20:51:51.351416+00:00  ·  diary line 2224  ·  fix319, fix339  ·  books: main, rejection
+- Love: “hun, i specifically asked that the changes made are on ONE - BOOK. and not to be applied to ANY book without me expressly asking. please ensure she is on the same framework that she was when she was doing her best. i didn't want anything to change outside of the book we were expressly working on. / yes. put it back where it was.”
+- fix319 IN HER CODE
+- fix339 IN HER CODE
+- Full entry: 2026-10-27T20:51:51.351416+00:00 THAW (fix339 5M BOOK BACK ON ITS 6:29 AM WALLS (Polymarket 5m lane only: recon-rej-5m + recon-tog-5m judged by a frozen copy of bandlock.ts from before fix319; rejection model, main and every Kalshi book unchanged). Love Oct 27 1:49 PM PT: "hun, i specifically asked that the changes made are on ONE - BOOK. and not to be applied to ANY book without me expressly asking. please ensure she is on the same framework that she was when she was doing her best. i didn't want anything to change outside of the book we were expressly working on. / yes. put it back where it was." (to: split the 5M off - judged by the rejection model walls exactly as they were at 6:29 AM, before fix319; the rejection model keeps every fix))
+
+## 2026-10-27T20:50:39.221403Z  ·  diary line 2223
+- Love: “hun, i specifically asked that the changes made are on ONE - BOOK. and not to be applied to ANY book without me expressly asking. please ensure she is on the same framework that she was when she was doing her best. i didn't want anything to change outside of the book we were expressly working on.”
+- Full entry: 2026-10-27T20:50:39.221403Z LOVE'S RULE: Love Oct 27 1:49 PM PT: "hun, i specifically asked that the changes made are on ONE - BOOK. and not to be applied to ANY book without me expressly asking. please ensure she is on the same framework that she was when she was doing her best. i didn't want anything to change outside of the book we were expressly working on." + 1:50 PM: "please ask me before changing something i asked for NOT to be changed."
 
 ## 2026-10-27T20:26:50.043260+00:00  ·  diary line 2221  ·  fix338
 - Love: “yes let's bring it down to 25c for the time being 💘not sure if the market is just slow and it's seeming like a much later entry than normal , but we can see on her next entries if it makes it any better”

@@ -2,6 +2,20 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R030 - No-pink copy, BTC: the pink confirmation wall is $33, not $10 - within $33 of an unbroken pink she needs a 1-5m flip her way or the pink broken (fix346b, replaces R029 $10)
+- when: 2026-10-28T00:20:08+00:00
+- Love: "no let’s keep that$33 bb not $10"
+- books: n, o, -, p, i, n, k,  , c, o, p, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix346b"}
+
+## R029 - No-pink copy, BTC: within $10 of an unbroken pink (long under it / short over it) she needs a 1-5m candle flip her way or the pink broken - never a blind entry, even when pink is not stacked (fix346)
+- when: 2026-10-28T00:19:18+00:00
+- Love: "we need to keep the pink wall a minimum of 25c at this scale ok bb 💘 / oh that’s btc sorry lol let’s make that $10 💘 / and a trade near a pink that hasn’t broken thru always needs a break or a candle flip hun, never without confirmation into it"
+- books: n, o, -, p, i, n, k,  , c, o, p, y
+- status: RETIRED - Love: "no let’s keep that$33 bb not $10"
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix346"}
+
 ## R028 - fix345: a main-book (and no-pink copy) Bollinger rejection trades on any 1/2/3/4/5m flip her way (HER FLIP), not only the 5m colour
 - when: 2026-10-28T00:05:13Z
 - Love: "ya it is on the 2m hun + card "Should a 2m flip be enough for her to short a Bollinger rejection?" -> "Any 1–5m flip counts""
