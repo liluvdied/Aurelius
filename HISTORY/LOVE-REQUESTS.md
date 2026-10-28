@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R028 - fix345: a main-book (and no-pink copy) Bollinger rejection trades on any 1/2/3/4/5m flip her way (HER FLIP), not only the 5m colour
+- when: 2026-10-28T00:05:13Z
+- Love: "ya it is on the 2m hun + card "Should a 2m flip be enough for her to short a Bollinger rejection?" -> "Any 1–5m flip counts""
+- books: main, no-pink copy
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix345"}
+
 ## R027 - fix344b: inside fix344's gold 3-5 PM tight-band slice, the session VWAP stays a wall - when VWAP is the band in her way she waits for a flip or a rejection off it
 - when: 2026-10-27T23:32:28Z
 - Love: "thanks love 💘💘 but do consider the main blue vwap a wall for her to wait for a flip or rejection off of pls"
