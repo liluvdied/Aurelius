@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R078 - fix390: pure no-pink (recon-np) meets MAIN walls at the door, the paper sweep and the wire (impossibleGeo flags as main: flipRule, noBBTarget, zoneGuard 0.4; no copy/np-only walls, npPink false) - main sliding pink scale, cushions, tolerances. Her calls stay pure no-pink.
+- when: 2026-10-28T20:11:26+00:00
+- Love: "no just make her have the same cushions and band tolerances and everything and she should be good hun + card Give the pure no-pink main's pink cushion on BTC? -> Main's sliding scale for her"
+- books: recon-np
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix390"}
+
 ## R077 - fix389b: LIVE pure no-pink (recon-np) also books her own band read (the recon-npo read: session bands, zones, Bollinger, rejections only, 1-5m flip, pink check) - first read in a window wins. Undo on Love words = remove the fix389b line. recon-npo stays as the paper record of her own eyes alone.
 - when: 2026-10-28T20:05:46+00:00
 - Love: "and you can put her on that now, we will put her back where she is is she doesn’t do well on it okay :)) would have worked this short too so let’s give her the ability to do that okay bb"
@@ -244,7 +251,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-28T03:09:01+00:00
 - Love: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long"
 - books: n, e, w,  , r, e, c, o, n, -, n, p,  , o, n, l, y,  , (, p, a, p, e, r, )
-- status: ACTIVE
+- status: RETIRED - Love: "no just make her have the same cushions and band tolerances and everything and she should be good hun (fix390: main's walls replace the copy walls; her calls stay in R073/R076/R077, live per R068/R075)"
 - proof: {"code": "src/lib/desk/recon.ts", "has": "book(\"recon-np\""}
 - proof: {"code": "src/lib/desk/bandlock.ts", "has": "book === \"recon-np\" /* fix361 */"}
 

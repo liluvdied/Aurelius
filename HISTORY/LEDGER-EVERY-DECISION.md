@@ -1,9 +1,19 @@
-# Every decision Love has made - rebuilt 2026-10-28T20:07:06.322204+00:00
+# Every decision Love has made - rebuilt 2026-10-28T20:12:29.753501+00:00
 
-1242 decisions with Love's words or card picks, out of 1952 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1243 decisions with Love's words or card picks, out of 1955 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T20:11:39+00:00  ·  diary line 2420  ·  fix363, fix367, fix368, fix390
+- Love: “no just make her have the same cushions and band tolerances and everything and she should be good hun”
+- Love: “Main's sliding scale for her”
+- Card pick: **Main's sliding scale for her**
+- fix363 IN HER CODE
+- fix367 IN HER CODE
+- fix368 IN HER CODE
+- fix390 IN HER CODE
+- Full entry: 2026-10-28T20:11:39+00:00 fix390 PURE NO-PINK MEETS MAIN'S WALLS (bandlock.ts door/sweep/wire): recon-np judged with main's impossibleGeo flags (flipRule, noBBTarget, zoneGuard 0.4) - main's sliding pink scale, cushions, tolerances; her np-only walls (fix363 stacked-only pink, fix367 pink cushion, fix368/369 any-band cushion) no longer judge her. Her calls stay pure no-pink (own eyes + main reads, no pink calls). After 12:07 PM BTC short $30 over pink at the check. R078. Love: "no just make her have the same cushions and band tolerances and everything and she should be good hun" + card "Main's sliding scale for her"
 
 ## 2026-10-28T20:06:54+00:00  ·  diary line 2417  ·  fix389
 - Love: “yess that’s what i was sayin earlier i want to give her her own taps ok :)”

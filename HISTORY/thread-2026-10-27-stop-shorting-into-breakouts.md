@@ -6304,3 +6304,57 @@ thanks hun
 
 fml she shorted into an unbroken pink again hun whyyy????
 
+## 2026-10-28 20:08:25 UTC - LOVE
+
+at a 1.3x ???
+
+## 2026-10-28 20:08:58 UTC - CLAUDE
+
+I'm so sorry, babe 💔 Looking at that fill right now.
+
+## 2026-10-28 20:10:07 UTC - CLAUDE
+
+Here's what happened, hun 💔 It was her new own-eyes call ("1m rejection off Red zone"). Kalshi filled it at **12:07:32 at 81,409, 63c (1.59x)**. The pink was right under her at about 81,399–81,406, only $3–10 away.
+
+Her own pink rule ($25 cushion until pink breaks) **did block this exact short on paper at 12:06**. So the wall knows. The live order still slipped through about a minute later, which shouldn't happen. I'm tracing the live check now to find the gap and close it for every book that uses it, and I'll show you before anything changes.
+
+If you'd rather she not trade her own-eyes reads live while I fix it, just say "pause" and I'll switch that one line off ✨
+
+## 2026-10-28 20:10:39 UTC - CLAUDE
+
+Found it, and I need to correct what I said a minute ago 💔 There was no gap in the live check. Her rules let it through:
+
+• When Kalshi checked the order at 12:07:30, BTC was at **81,429**. The pink was 81,399 at that moment, **$30 below**. The pure no-pink's pink cushion on BTC is **$25**, so she was just outside it.
+• The pink sat in the middle of the channel (+1.5σ 81,152 to +2σ 81,447). Under her rule from last night, pink only holds her when it's stacked with a session band in the top/bottom 10%. Otherwise rejections go right through.
+• Price then dropped $20 in the 2 seconds before the fill, so she got 81,409 at 63c.
+
+So the gap is her cushion size, not a broken wall. Main's sliding scale is $50 (or 10%) once the channel is wider than $100. This channel was $295, so main's scale would have held her here.
+
+## 2026-10-28 20:10:42 UTC - LOVE
+
+no just make her have the same cushions and band tolerances and everything and she should be good hun 💘
+
+## 2026-10-28 20:10:43 UTC - CARD
+
+Q: Give the pure no-pink main's pink cushion on BTC?
+Context: Pure no-pink BTC pink cushion is a flat $25 today, and pink only counts in the middle of the channel within that $25. Main's sliding scale is $25 when the channel is $100 or less, and $50 (or 10%) above that. At 12:07 she shorted $30 over an unbroken pink in a $295 channel. Main's scale would have blocked it. Her book only; main, copy and the 5M don't move.
+Options:
+  0. Main's sliding scale for her - BTC pink cushion becomes $25 at channels up to $100, $50 or 10% above. She waits for pink to break when inside it.
+  1. Flat $50 on BTC - She never shorts or longs within $50 of an unbroken pink on BTC, at any channel width.
+  2. Keep $25 - Nothing changes.
+Recommended: 0 - It's the scale main already trusts. It still lets her trade tight channels, and it would have held this short.
+
+## 2026-10-28 20:10:56 UTC - CLAUDE
+
+Got it, babe 💘 She'll meet main's exact walls, cushions and band tolerances at every check. She stays pure no-pink in what she calls, so she still never takes a pink trade herself. Building it now, and I'll show you exactly what changed.
+
+## 2026-10-28 20:11:13 UTC - LOVE
+
+Chose "Main's sliding scale for her" on the decision card asking "Give the pure no-pink main's pink cushion on BTC?"
+
+## 2026-10-28 20:12:46 UTC - CLAUDE
+
+Done, babe 💘 Since 1:11 PM the pure no-pink is judged by **main's exact walls** at every check, Kalshi's last one included. That covers main's sliding pink scale ($25 up to a $100 channel, $50 or 10% above), main's band cushions, the zone tolerances and the flip rule. Her old pure no-pink-only walls don't judge her anymore. What she calls stays pure: her own band reads plus main's tap and rejection reads, and never a pink trade.
+
+Main didn't move an atom, the 5M is still frozen, and the umpire says SAFE ✨ Saving to GitHub now.
+
