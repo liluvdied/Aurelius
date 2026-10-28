@@ -5,7 +5,7 @@
     "asset": "btc",
     "side": "down",
     "pattern": "Open +0.5σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXBTC15M-26OCT281815-15",
     "hits": 6,
     "multiple": 1.72,
@@ -14,7 +14,8 @@
     "stdev": 82.21610771967636,
     "vwap5": 81240.46949078028,
     "stdev5": 83.09945382539043,
-    "target": 81289.06
+    "target": 81289.06,
+    "profit": 18
   },
   {
     "id": "KXBTC15M-26OCT281800-00:up:Close above +0.5σ",

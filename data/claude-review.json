@@ -85402,5 +85402,63 @@
    "A band was directly in front of the short at entry."
   ],
   "lessons": []
+ },
+ "KXBTC15M-26OCT281800-00": {
+  "ticker": "KXBTC15M-26OCT281800-00",
+  "at": "2026-10-28T22:00:25.658Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Tap-reject at fresh -1σ",
+  "multiple": 1.49,
+  "profit": 2.32,
+  "result": "win",
+  "entry": {
+   "spot": 81169,
+   "band": "-1σ",
+   "distSigma": 0.24,
+   "rightSide": true,
+   "bandAhead": true,
+   "throughTarget": true,
+   "minuteIn": 0.4
+  },
+  "peakPct": 26.9,
+  "maxPct": 49.3,
+  "takeProfitPct": 44.3,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "The rejection shadow agreed (long off VWAP)."
+  ]
+ },
+ "KXBTC15M-26OCT281815-15": {
+  "ticker": "KXBTC15M-26OCT281815-15",
+  "at": "2026-10-28T22:15:11.053Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "Rejected down off fresh +1σ",
+  "multiple": 1.72,
+  "profit": 2.19,
+  "result": "win",
+  "entry": {
+   "spot": 81283.2,
+   "band": "+0.5σ",
+   "distSigma": 0.04,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": true,
+   "minuteIn": 0.4
+  },
+  "peakPct": 58.6,
+  "maxPct": 72.4,
+  "takeProfitPct": 54.3,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, won at the bell."
+  ]
  }
 }

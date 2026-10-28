@@ -1,5 +1,39 @@
 [
   {
+    "id": "held-KXBTC15M-26OCT281815-15",
+    "at": "2026-10-28T22:15:11.053Z",
+    "result": "win",
+    "profit": 2.19,
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at −0.5σ",
+    "multiple": 1.72,
+    "hour": "3pm",
+    "minutesLeft": null,
+    "windowOpen": null,
+    "entrySpot": null,
+    "target": null,
+    "vwap": null,
+    "nearestBand": "",
+    "bandBetween": false,
+    "peakPct": 58.6,
+    "exitPct": 26.5,
+    "giveback": 32.1,
+    "trail": "Trail saw 58.6% and did not take it.",
+    "points": 3,
+    "better": "It hit, and she gave back 32.1 points after it was green. The gate stays. Don't sell it any earlier than that.",
+    "elements": [
+      "Bitcoin short",
+      "Tap-reject at −0.5σ",
+      "1.4x to 2.2x",
+      "cleared the arm",
+      "3pm",
+      "held to the bell",
+      "Trail saw 58.6% and did not take it."
+    ],
+    "note": "Bitcoin short Tap-reject at −0.5σ won +$2.19 (3pm). 1.4x to 2.2x. cleared the arm. held to the bell. Trail saw 58.6% and did not take it.. Max 72.4%, saw 58.6%, closed at 26.5%, gave back 32.1. Trail saw 58.6% and did not take it. It hit, and she gave back 32.1 points after it was green. The gate stays. Don't sell it any earlier than that."
+  },
+  {
     "id": "held-KXBTC15M-26OCT281800-00",
     "at": "2026-10-28T22:00:25.658Z",
     "result": "win",
@@ -14133,40 +14167,5 @@
       "finished on the right side of the strike"
     ],
     "note": "Gold short Tap-reject at +2σ won +$16.67 (6am). 1.4x to 2.2x. still coming into the strike. tight to the strike. went green, short of the watch. held to the bell. Trail never reached the watch.. finished on the right side of the strike. Max 66.7%, saw 45%, closed at 66.7%. Trail never reached the watch. Nothing to change. Same entry next time."
-  },
-  {
-    "id": "held-KXGOLD15M-26OCT270900-00",
-    "at": "2026-10-27T13:00:43.621Z",
-    "result": "loss",
-    "profit": -2.14,
-    "asset": "gold",
-    "side": "down",
-    "pattern": "Live",
-    "multiple": 1.69,
-    "hour": "5am",
-    "minutesLeft": null,
-    "windowOpen": null,
-    "entrySpot": null,
-    "target": null,
-    "vwap": null,
-    "nearestBand": "",
-    "bandBetween": false,
-    "peakPct": 5.1,
-    "exitPct": null,
-    "giveback": null,
-    "trail": "Trail never reached the watch.",
-    "points": 0,
-    "better": "This hour has been the violent one. Size is already $10 after midnight. Same entry.",
-    "elements": [
-      "Gold short",
-      "Live",
-      "1.4x to 2.2x",
-      "went green, short of the watch",
-      "5am",
-      "after midnight",
-      "held to the bell",
-      "Trail never reached the watch."
-    ],
-    "note": "Gold short Live lost −$2.14 (5am). 1.4x to 2.2x. went green, short of the watch. after midnight. held to the bell. Trail never reached the watch.. Max 69.5%, saw 5.1%. Trail never reached the watch. This hour has been the violent one. Size is already $10 after midnight. Same entry."
   }
 ]

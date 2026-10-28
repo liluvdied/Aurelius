@@ -1,6 +1,6 @@
 {
- "at": "2026-10-28T16:07:03.492Z",
- "n": 252,
+ "at": "2026-10-28T22:12:21.165Z",
+ "n": 249,
  "complete": true,
  "note": "Open Kalshi markets closing in 6 h - 30 days, 4-96c, volume 100+, top 3 per event, minus the desk's / scanner's own markets. Prices are a snapshot; re-check before forecasting.",
  "markets": [
@@ -11,9 +11,9 @@
    "title": "Will Denny Hamlin be the NASCAR Cup Series Champion?",
    "option": "Denny Hamlin",
    "closes": "2026-11-15T15:00:00Z",
-   "yesAsk": 0.06,
-   "noAsk": 0.95,
-   "volume": 733934.49,
+   "yesAsk": 0.05,
+   "noAsk": 0.96,
+   "volume": 736290.3,
    "rules": "If Denny Hamlin wins the 2026 NASCAR Cup Series, then the market resolves to Yes."
   },
   {
@@ -25,7 +25,7 @@
    "closes": "2026-11-15T15:00:00Z",
    "yesAsk": 0.9,
    "noAsk": 0.11,
-   "volume": 527415.81,
+   "volume": 527712.52,
    "rules": "If Kyle Larson wins the 2026 NASCAR Cup Series, then the market resolves to Yes."
   },
   {
@@ -37,7 +37,7 @@
    "closes": "2026-11-21T00:00:00Z",
    "yesAsk": 0.92,
    "noAsk": 0.1,
-   "volume": 400120.49,
+   "volume": 413029.45,
    "rules": "If Milwaukee wins the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
   },
   {
@@ -49,7 +49,7 @@
    "closes": "2026-11-21T00:00:00Z",
    "yesAsk": 0.1,
    "noAsk": 0.92,
-   "volume": 358532.99,
+   "volume": 384656.29,
    "rules": "If Tampa Bay wins the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
   },
   {
@@ -61,7 +61,7 @@
    "closes": "2026-11-15T03:00:00Z",
    "yesAsk": 0.73,
    "noAsk": 0.28,
-   "volume": 322816.93,
+   "volume": 361006.41,
    "rules": "If Canelo Alvarez wins the Canelo Alvarez vs Christian Mbilli boxing match originally scheduled for Oct 31, 2026, then the market resolves to Yes."
   },
   {
@@ -71,9 +71,9 @@
    "title": "VidantaWorld Mexico Open: Wyndham Clark wins",
    "option": "Wyndham Clark",
    "closes": "2026-11-15T00:00:00Z",
-   "yesAsk": 0.07,
+   "yesAsk": 0.06,
    "noAsk": 0.94,
-   "volume": 276092.73,
+   "volume": 328195.48,
    "rules": "If Wyndham Clark wins the VidantaWorld Mexico Open, then the market resolves to Yes."
   },
   {
@@ -83,22 +83,10 @@
    "title": "Christian Mbilli wins",
    "option": "Christian Mbilli",
    "closes": "2026-11-15T03:00:00Z",
-   "yesAsk": 0.28,
-   "noAsk": 0.73,
-   "volume": 227245.85,
+   "yesAsk": 0.27,
+   "noAsk": 0.74,
+   "volume": 238026.42,
    "rules": "If Christian Mbilli wins the Canelo Alvarez vs Christian Mbilli boxing match originally scheduled for Oct 31, 2026, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXIPOANTHROPIC-DATE-26NOV16",
-   "event": "KXIPOANTHROPIC-DATE",
-   "category": "Financials",
-   "title": "When will Anthropic officially announce an IPO?",
-   "option": "Before Nov 16, 2026",
-   "closes": "2026-11-16T04:59:00Z",
-   "yesAsk": 0.14,
-   "noAsk": 0.88,
-   "volume": 220657.6,
-   "rules": "If Anthropic confirms an IPO before Nov 16, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXPGATOUR-VIMO26-DGHI",
@@ -109,8 +97,20 @@
    "closes": "2026-11-15T00:00:00Z",
    "yesAsk": 0.04,
    "noAsk": 0.96,
-   "volume": 194656.63,
+   "volume": 227169.97,
    "rules": "If Doug Ghim wins the VidantaWorld Mexico Open, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXIPOANTHROPIC-DATE-26NOV16",
+   "event": "KXIPOANTHROPIC-DATE",
+   "category": "Financials",
+   "title": "When will Anthropic officially announce an IPO?",
+   "option": "Before Nov 16, 2026",
+   "closes": "2026-11-16T04:59:00Z",
+   "yesAsk": 0.1,
+   "noAsk": 0.91,
+   "volume": 227037.51,
+   "rules": "If Anthropic confirms an IPO before Nov 16, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXPGATOUR-VIMO26-BJAM",
@@ -121,20 +121,8 @@
    "closes": "2026-11-15T00:00:00Z",
    "yesAsk": 0.05,
    "noAsk": 0.95,
-   "volume": 187764.62,
+   "volume": 216188.1,
    "rules": "If Benjamin James wins the VidantaWorld Mexico Open, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXMLBSERIESSCORE-26TBMILWS-MIL42",
-   "event": "KXMLBSERIESSCORE-26TBMILWS",
-   "category": "Sports",
-   "title": "Tampa Bay vs Milwaukee Championship Series Exact Score: Milwaukee wins 4-2",
-   "option": "MIL wins 4-2",
-   "closes": "2026-11-21T00:00:00Z",
-   "yesAsk": 0.24,
-   "noAsk": 0.78,
-   "volume": 111994.14,
-   "rules": "If the series score is Milwaukee wins 4-2 in the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
   },
   {
    "ticker": "KXMLBSERIESSCORE-26TBMILWS-MIL41",
@@ -143,22 +131,22 @@
    "title": "Tampa Bay vs Milwaukee Championship Series Exact Score: Milwaukee wins 4-1",
    "option": "MIL wins 4-1",
    "closes": "2026-11-21T00:00:00Z",
-   "yesAsk": 0.6,
-   "noAsk": 0.42,
-   "volume": 99115.42,
+   "yesAsk": 0.57,
+   "noAsk": 0.44,
+   "volume": 114901.97,
    "rules": "If the series score is Milwaukee wins 4-1 in the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
   },
   {
-   "ticker": "KXGPT-ASTRA61-26NOV13",
-   "event": "KXGPT-ASTRA61",
-   "category": "Science and Technology",
-   "title": "Will OpenAI release Astra 6.1 before Nov 13, 2026?",
-   "option": "Before Nov 13, 2026",
-   "closes": "2026-11-13T04:59:00Z",
-   "yesAsk": 0.15,
-   "noAsk": 0.86,
-   "volume": 95013.46,
-   "rules": "If OpenAI releases Astra 6.1 before Nov 13, 2026, then the market resolves to Yes."
+   "ticker": "KXMLBSERIESSCORE-26TBMILWS-MIL42",
+   "event": "KXMLBSERIESSCORE-26TBMILWS",
+   "category": "Sports",
+   "title": "Tampa Bay vs Milwaukee Championship Series Exact Score: Milwaukee wins 4-2",
+   "option": "MIL wins 4-2",
+   "closes": "2026-11-21T00:00:00Z",
+   "yesAsk": 0.25,
+   "noAsk": 0.78,
+   "volume": 114032.85,
+   "rules": "If the series score is Milwaukee wins 4-2 in the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
   },
   {
    "ticker": "KXRT-HUN-90",
@@ -167,10 +155,22 @@
    "title": "The Hunger Games: Sunrise on the Reaping Rotten Tomatoes score?",
    "option": "Above 90",
    "closes": "2026-11-23T15:00:00Z",
-   "yesAsk": 0.15,
-   "noAsk": 0.86,
-   "volume": 91421.78,
+   "yesAsk": 0.11,
+   "noAsk": 0.9,
+   "volume": 109097.61,
    "rules": "If The Hunger Games: Sunrise on the Reaping has a Tomatometer score of above 90 on Nov 23, 2026 at 10:00 AM ET, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXGPT-ASTRA61-26NOV13",
+   "event": "KXGPT-ASTRA61",
+   "category": "Science and Technology",
+   "title": "Will OpenAI release Astra 6.1 before Nov 13, 2026?",
+   "option": "Before Nov 13, 2026",
+   "closes": "2026-11-13T04:59:00Z",
+   "yesAsk": 0.31,
+   "noAsk": 0.74,
+   "volume": 95572.09,
+   "rules": "If OpenAI releases Astra 6.1 before Nov 13, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXRT-HUN-85",
@@ -179,9 +179,9 @@
    "title": "The Hunger Games: Sunrise on the Reaping Rotten Tomatoes score?",
    "option": "Above 85",
    "closes": "2026-11-23T15:00:00Z",
-   "yesAsk": 0.29,
-   "noAsk": 0.72,
-   "volume": 88619.43,
+   "yesAsk": 0.25,
+   "noAsk": 0.79,
+   "volume": 90511.2,
    "rules": "If The Hunger Games: Sunrise on the Reaping has a Tomatometer score of above 85 on Nov 23, 2026 at 10:00 AM ET, then the market resolves to Yes."
   },
   {
@@ -191,10 +191,22 @@
    "title": "The Hunger Games: Sunrise on the Reaping Rotten Tomatoes score?",
    "option": "Above 75",
    "closes": "2026-11-23T15:00:00Z",
-   "yesAsk": 0.69,
-   "noAsk": 0.33,
-   "volume": 84681.3,
+   "yesAsk": 0.59,
+   "noAsk": 0.43,
+   "volume": 87046.18,
    "rules": "If The Hunger Games: Sunrise on the Reaping has a Tomatometer score of above 75 on Nov 23, 2026 at 10:00 AM ET, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXHMONTH-26OCT",
+   "event": "KXHMONTH-26OCT",
+   "category": "Climate and Weather",
+   "title": "Will  Oct 2026 be the hottest Oct ever?",
+   "option": "Hottest ever",
+   "closes": "2026-11-16T03:59:00Z",
+   "yesAsk": 0.79,
+   "noAsk": 0.22,
+   "volume": 52669.93,
+   "rules": "If Oct 2026 is the hottest October ever, then the market resolves to Yes."
   },
   {
    "ticker": "KXCBDSA-26NOV19-C25",
@@ -203,10 +215,22 @@
    "title": "Will the South African Reserve Bank cut 1-25bps at the November Monetary Policy Committee meeting?",
    "option": "Cut 1-25bps",
    "closes": "2026-11-19T13:59:00Z",
-   "yesAsk": 0.13,
+   "yesAsk": 0.43,
    "noAsk": 0.95,
    "volume": 50698.89,
    "rules": "If the South African Reserve Bank takes the action of cut 1-25bps at its November Monetary Policy Committee meeting, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXMLBSERIESSCORE-26TBMILWS-TB43",
+   "event": "KXMLBSERIESSCORE-26TBMILWS",
+   "category": "Sports",
+   "title": "Tampa Bay vs Milwaukee Championship Series Exact Score: Tampa Bay wins 4-3",
+   "option": "TB wins 4-3",
+   "closes": "2026-11-21T00:00:00Z",
+   "yesAsk": 0.1,
+   "noAsk": 0.93,
+   "volume": 50653.45,
+   "rules": "If the series score is Tampa Bay wins 4-3 in the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
   },
   {
    "ticker": "KXRT-HOWT-80",
@@ -245,30 +269,6 @@
    "rules": "If I Play Rocky has a Tomatometer score of above 90 on Nov 23, 2026 at 10:00 AM ET, then the market resolves to Yes."
   },
   {
-   "ticker": "KXHMONTH-26OCT",
-   "event": "KXHMONTH-26OCT",
-   "category": "Climate and Weather",
-   "title": "Will  Oct 2026 be the hottest Oct ever?",
-   "option": "Hottest ever",
-   "closes": "2026-11-16T03:59:00Z",
-   "yesAsk": 0.85,
-   "noAsk": 0.16,
-   "volume": 48482.97,
-   "rules": "If Oct 2026 is the hottest October ever, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXMLBSERIESSCORE-26TBMILWS-TB43",
-   "event": "KXMLBSERIESSCORE-26TBMILWS",
-   "category": "Sports",
-   "title": "Tampa Bay vs Milwaukee Championship Series Exact Score: Tampa Bay wins 4-3",
-   "option": "TB wins 4-3",
-   "closes": "2026-11-21T00:00:00Z",
-   "yesAsk": 0.1,
-   "noAsk": 0.92,
-   "volume": 48481.05,
-   "rules": "If the series score is Tampa Bay wins 4-3 in the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
-  },
-  {
    "ticker": "KXRT-HOWT-90",
    "event": "KXRT-HOWT",
    "category": "Entertainment",
@@ -289,7 +289,7 @@
    "closes": "2026-11-16T15:00:00Z",
    "yesAsk": 0.07,
    "noAsk": 0.94,
-   "volume": 46081.02,
+   "volume": 46582.24,
    "rules": "If Ebenezer has a Tomatometer score of above 75 on Nov 16, 2026 at 10:00 AM ET, then the market resolves to Yes."
   },
   {
@@ -301,7 +301,7 @@
    "closes": "2026-11-16T15:00:00Z",
    "yesAsk": 0.33,
    "noAsk": 0.68,
-   "volume": 45659.54,
+   "volume": 45714.95,
    "rules": "If Ebenezer has a Tomatometer score of above 55 on Nov 16, 2026 at 10:00 AM ET, then the market resolves to Yes."
   },
   {
@@ -313,7 +313,7 @@
    "closes": "2026-11-21T00:00:00Z",
    "yesAsk": 0.8,
    "noAsk": 0.21,
-   "volume": 40626.07,
+   "volume": 40865.64,
    "rules": "If Milwaukee wins by more than 1.5 games in the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
   },
   {
@@ -323,9 +323,9 @@
    "title": "Tampa Bay vs Milwaukee Championship Series total games: Over 5.5 games",
    "option": "Over 5.5 total games",
    "closes": "2026-11-21T00:00:00Z",
-   "yesAsk": 0.4,
-   "noAsk": 0.61,
-   "volume": 36548.61,
+   "yesAsk": 0.45,
+   "noAsk": 0.6,
+   "volume": 38076.27,
    "rules": "If more than 5.5 games are played in the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
   },
   {
@@ -341,6 +341,18 @@
    "rules": "If How to Rob a Bank has a Tomatometer score of above 85 on Nov 16, 2026 at 10:00 AM ET, then the market resolves to Yes."
   },
   {
+   "ticker": "KXBOXING-26OCT31MUNGUIZON-MUNGUI",
+   "event": "KXBOXING-26OCT31MUNGUIZON",
+   "category": "Sports",
+   "title": "Jaime Munguia wins",
+   "option": "Jaime Munguia",
+   "closes": "2026-11-14T18:40:00Z",
+   "yesAsk": 0.91,
+   "noAsk": 0.1,
+   "volume": 35633.42,
+   "rules": "If Jaime Munguia wins the Jaime Munguia vs Nikita Zon boxing match originally scheduled for Oct 31, 2026, then the market resolves to Yes."
+  },
+  {
    "ticker": "KXRT-IPL-77",
    "event": "KXRT-IPL",
    "category": "Entertainment",
@@ -348,21 +360,9 @@
    "option": "Above 77",
    "closes": "2026-11-23T15:00:00Z",
    "yesAsk": 0.73,
-   "noAsk": 0.33,
-   "volume": 35271.45,
+   "noAsk": 0.29,
+   "volume": 35272.45,
    "rules": "If I Play Rocky has a Tomatometer score of above 77 on Nov 23, 2026 at 10:00 AM ET, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXBOXING-26OCT31MUNGUIZON-MUNGUI",
-   "event": "KXBOXING-26OCT31MUNGUIZON",
-   "category": "Sports",
-   "title": "Jaime Munguia wins",
-   "option": "Jaime Munguia",
-   "closes": "2026-11-14T18:40:00Z",
-   "yesAsk": 0.93,
-   "noAsk": 0.08,
-   "volume": 34911.2,
-   "rules": "If Jaime Munguia wins the Jaime Munguia vs Nikita Zon boxing match originally scheduled for Oct 31, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXRT-IPL-80",
@@ -371,22 +371,10 @@
    "title": "I Play Rocky Rotten Tomatoes score?",
    "option": "Above 80",
    "closes": "2026-11-23T15:00:00Z",
-   "yesAsk": 0.44,
-   "noAsk": 0.57,
-   "volume": 30619.27,
+   "yesAsk": 0.49,
+   "noAsk": 0.52,
+   "volume": 31677.39,
    "rules": "If I Play Rocky has a Tomatometer score of above 80 on Nov 23, 2026 at 10:00 AM ET, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXWNBASERIES-26ATLGSFIN-GS",
-   "event": "KXWNBASERIES-26ATLGSFIN",
-   "category": "Sports",
-   "title": "Atlanta vs Golden State Finals series winner: Golden State wins",
-   "option": "Golden State",
-   "closes": "2026-11-14T19:30:00Z",
-   "yesAsk": 0.7,
-   "noAsk": 0.31,
-   "volume": 30484.97,
-   "rules": "If Golden State wins the Atlanta vs Golden State Finals series in the 2026 women's Pro Basketball Playoffs, then the market resolves to Yes."
   },
   {
    "ticker": "KXGTA6ONTIME-26NOV19",
@@ -397,7 +385,7 @@
    "closes": "2026-11-20T04:59:00Z",
    "yesAsk": 0.93,
    "noAsk": 0.09,
-   "volume": 30307.07,
+   "volume": 31666.58,
    "rules": "If GTA 6 has been released on a major platform (PS5, Xbox Series X/S, Windows) by Nov 19, 2026, then the market resolves to Yes."
   },
   {
@@ -409,8 +397,20 @@
    "closes": "2026-11-21T15:00:00Z",
    "yesAsk": 0.05,
    "noAsk": 0.96,
-   "volume": 30173.1,
+   "volume": 31083.57,
    "rules": "If the first calendar day in the 2026-27 winter season on which Aspen Mountain conducts Seasonal Opening Operations occurs before Nov 15, 2026, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXWNBASERIES-26ATLGSFIN-GS",
+   "event": "KXWNBASERIES-26ATLGSFIN",
+   "category": "Sports",
+   "title": "Atlanta vs Golden State Finals series winner: Golden State wins",
+   "option": "Golden State",
+   "closes": "2026-11-14T19:30:00Z",
+   "yesAsk": 0.7,
+   "noAsk": 0.31,
+   "volume": 30554.92,
+   "rules": "If Golden State wins the Atlanta vs Golden State Finals series in the 2026 women's Pro Basketball Playoffs, then the market resolves to Yes."
   },
   {
    "ticker": "KXCAFAIRPLAN-26NOV16-T690000",
@@ -432,7 +432,7 @@
    "option": "LYON",
    "closes": "2026-11-15T15:00:00Z",
    "yesAsk": 0.66,
-   "noAsk": 0.38,
+   "noAsk": 0.39,
    "volume": 27959.69,
    "rules": "If LYON is one of the teams to qualify for the 2026 League of Legends Worlds quarterfinals, then the market resolves to Yes."
   },
@@ -443,22 +443,10 @@
    "title": "Nikita Zon wins",
    "option": "Nikita Zon",
    "closes": "2026-11-14T18:40:00Z",
-   "yesAsk": 0.09,
+   "yesAsk": 0.08,
    "noAsk": 0.93,
-   "volume": 20402.82,
+   "volume": 25608.8,
    "rules": "If Nikita Zon wins the Jaime Munguia vs Nikita Zon boxing match originally scheduled for Oct 31, 2026, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXATPMATCH-26OCT29SHEKYM-KYM",
-   "event": "KXATPMATCH-26OCT29SHEKYM",
-   "category": "Sports",
-   "title": "Jerome Kym wins",
-   "option": "Jerome Kym",
-   "closes": "2026-11-12T10:00:00Z",
-   "yesAsk": 0.27,
-   "noAsk": 0.74,
-   "volume": 20056.5,
-   "rules": "If Jerome Kym wins the Shelton vs Kym professional tennis match in the 2026 ATP Basel Round Of 16 after a ball has been played, then the market resolves to Yes."
   },
   {
    "ticker": "KXSPACEXSTARSHIP-15-26NOV13",
@@ -467,9 +455,9 @@
    "title": "Will SpaceX launch another Starship before Nov 13, 2026?",
    "option": "Before Nov 13, 2026",
    "closes": "2026-11-13T04:59:00Z",
-   "yesAsk": 0.11,
-   "noAsk": 0.91,
-   "volume": 18689.71,
+   "yesAsk": 0.07,
+   "noAsk": 0.94,
+   "volume": 19108.66,
    "rules": "If SpaceX launches Starship flight test number 15 After issuance and before Nov 13, 2026, then the market resolves to Yes."
   },
   {
@@ -503,9 +491,9 @@
    "title": "Tampa Bay vs Milwaukee Championship Series Game Spread: Milwaukee -2.5 games",
    "option": "Milwaukee -2.5 games",
    "closes": "2026-11-21T00:00:00Z",
-   "yesAsk": 0.6,
-   "noAsk": 0.41,
-   "volume": 17959.37,
+   "yesAsk": 0.58,
+   "noAsk": 0.43,
+   "volume": 17962.86,
    "rules": "If Milwaukee wins by more than 2.5 games in the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
   },
   {
@@ -527,9 +515,9 @@
    "title": "Will the United States Producer Price Index for final demand for October 2026 be above 7.3%?",
    "option": "Above 7.3%",
    "closes": "2026-11-13T13:29:00Z",
-   "yesAsk": 0.09,
+   "yesAsk": 0.23,
    "noAsk": 0.96,
-   "volume": 13504.45,
+   "volume": 13506.45,
    "rules": "If the year-over-year percent change in the United States Producer Price Index for final demand for October 2026 is above 7.3%, then the market resolves to Yes."
   },
   {
@@ -539,10 +527,22 @@
    "title": "Will the Argentina inflation rate MoM for October 2026 be above 2.2%?",
    "option": "Above 2.2%",
    "closes": "2026-11-12T19:59:00Z",
-   "yesAsk": 0.22,
-   "noAsk": 0.85,
-   "volume": 12725,
+   "yesAsk": 0.21,
+   "noAsk": 0.86,
+   "volume": 12734,
    "rules": "If the Argentina inflation rate MoM for October 2026 is above 2.2%, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXMC-GTA6-95",
+   "event": "KXMC-GTA6",
+   "category": "Entertainment",
+   "title": "Grand Theft Auto VI Metacritic score?",
+   "option": "Above 95",
+   "closes": "2026-11-26T15:00:00Z",
+   "yesAsk": 0.78,
+   "noAsk": 0.23,
+   "volume": 12600.36,
+   "rules": "If the Metascore for Grand Theft Auto VI is Above 95 seven days after release at 10:00AM ET, then the market resolves to Yes."
   },
   {
    "ticker": "KXLOLQUALIFIERS-26WORLDSQF-KC",
@@ -553,7 +553,7 @@
    "closes": "2026-11-15T15:00:00Z",
    "yesAsk": 0.31,
    "noAsk": 0.7,
-   "volume": 12558.9,
+   "volume": 12583.38,
    "rules": "If Karmine Corp is one of the teams to qualify for the 2026 League of Legends Worlds quarterfinals, then the market resolves to Yes."
   },
   {
@@ -569,30 +569,6 @@
    "rules": "If, as of 11:59 PM ET on Nov 13, 2026, federal law treats a hemp-derived beverage intended for human ingestion containing 3 milligrams or more of Total THC per Container as lawful hemp excluded from the Controlled Substances Act definition of marihuana rather than as a Schedule I controlled substance, then the market resolves to Yes."
   },
   {
-   "ticker": "KXSPACEXSTARSHIP-15-26NOV27",
-   "event": "KXSPACEXSTARSHIP-15",
-   "category": "Science and Technology",
-   "title": "Will SpaceX launch another Starship before Nov 27, 2026?",
-   "option": "Before Nov 27, 2026",
-   "closes": "2026-11-27T04:59:00Z",
-   "yesAsk": 0.76,
-   "noAsk": 0.25,
-   "volume": 12241.66,
-   "rules": "If SpaceX launches Starship flight test number 15 After issuance and before Nov 27, 2026, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXMC-GTA6-95",
-   "event": "KXMC-GTA6",
-   "category": "Entertainment",
-   "title": "Grand Theft Auto VI Metacritic score?",
-   "option": "Above 95",
-   "closes": "2026-11-26T15:00:00Z",
-   "yesAsk": 0.81,
-   "noAsk": 0.2,
-   "volume": 12215.36,
-   "rules": "If the Metascore for Grand Theft Auto VI is Above 95 seven days after release at 10:00AM ET, then the market resolves to Yes."
-  },
-  {
    "ticker": "KXBIGSKYOPEN-27-15NOV26",
    "event": "KXBIGSKYOPEN-27",
    "category": "Climate and Weather",
@@ -601,8 +577,44 @@
    "closes": "2026-11-21T15:00:00Z",
    "yesAsk": 0.06,
    "noAsk": 0.98,
-   "volume": 12205.08,
+   "volume": 12385.69,
    "rules": "If the first calendar day in the 2026-27 winter season on which Big Sky Ski Resort conducts Seasonal Opening Operations occurs before Nov 15, 2026, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXLPGATOUR-MAYC26-ERIHAR",
+   "event": "KXLPGATOUR-MAYC26",
+   "category": "Sports",
+   "title": "Maybank Championship: Erika Hara wins",
+   "option": "Erika Hara",
+   "closes": "2026-11-15T00:00:00Z",
+   "yesAsk": 0.09,
+   "noAsk": 1,
+   "volume": 12318.58,
+   "rules": "If Erika Hara wins the Maybank Championship, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXSPACEXSTARSHIP-15-26NOV27",
+   "event": "KXSPACEXSTARSHIP-15",
+   "category": "Science and Technology",
+   "title": "Will SpaceX launch another Starship before Nov 27, 2026?",
+   "option": "Before Nov 27, 2026",
+   "closes": "2026-11-27T04:59:00Z",
+   "yesAsk": 0.76,
+   "noAsk": 0.26,
+   "volume": 12268.32,
+   "rules": "If SpaceX launches Starship flight test number 15 After issuance and before Nov 27, 2026, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXLPGATOUR-MAYC26-HAERYU",
+   "event": "KXLPGATOUR-MAYC26",
+   "category": "Sports",
+   "title": "Maybank Championship: Hae-Ran Ryu wins",
+   "option": "Hae-Ran Ryu",
+   "closes": "2026-11-15T00:00:00Z",
+   "yesAsk": 0.1,
+   "noAsk": 0.91,
+   "volume": 11753.61,
+   "rules": "If Hae-Ran Ryu wins the Maybank Championship, then the market resolves to Yes."
   },
   {
    "ticker": "KXLOLQUALIFIERS-26WORLDSQF-G2",
@@ -623,8 +635,8 @@
    "title": "Will US building permits for October 2026 be above 1.550M?",
    "option": "Above 1.550M",
    "closes": "2026-11-18T13:29:00Z",
-   "yesAsk": 0.25,
-   "noAsk": 0.91,
+   "yesAsk": 0.24,
+   "noAsk": 0.95,
    "volume": 11139.75,
    "rules": "If the value of US building permits (total units) for October 2026 is above 1.550M (SAAR), then the market resolves to Yes."
   },
@@ -641,14 +653,26 @@
    "rules": "If Donald Trump attends UFC 334, then the market resolves to Yes."
   },
   {
+   "ticker": "KXTRUMPMENTION-26OCT29-DEPO",
+   "event": "KXTRUMPMENTION-26OCT29",
+   "category": "Mentions",
+   "title": "What will Donald Trump say during midterm rally in Rock Hill, South Carolina originally scheduled for October 29, 2026?",
+   "option": "Deport / Deported / Deportation",
+   "closes": "2026-11-12T15:00:00Z",
+   "yesAsk": 0.2,
+   "noAsk": 0.82,
+   "volume": 9916.63,
+   "rules": "If \n Donald Trump says Deport / Deported / Deportation as part of midterm rally in Rock Hill, South Carolina originally scheduled for October 29, 2026\n, then the market resolves to Yes."
+  },
+  {
    "ticker": "KXCBDSA-26NOV19-H25",
    "event": "KXCBDSA-26NOV19",
    "category": "Economics",
    "title": "Will the South African Reserve Bank hike 1-25bps at the November Monetary Policy Committee meeting?",
    "option": "Hike 1-25bps",
    "closes": "2026-11-19T13:59:00Z",
-   "yesAsk": 0.56,
-   "noAsk": 0.77,
+   "yesAsk": 0.6,
+   "noAsk": 0.76,
    "volume": 9717.82,
    "rules": "If the South African Reserve Bank takes the action of hike 1-25bps at its November Monetary Policy Committee meeting, then the market resolves to Yes."
   },
@@ -665,6 +689,18 @@
    "rules": "If the United Kingdom retail sales MoM for October 2026 is above 1.5%, then the market resolves to Yes."
   },
   {
+   "ticker": "KXMLBSERIESGAMES-26TBMILWS-7",
+   "event": "KXMLBSERIESGAMES-26TBMILWS",
+   "category": "Sports",
+   "title": "Tampa Bay vs Milwaukee Championship Series total games: Over 6.5 games",
+   "option": "Over 6.5 total games",
+   "closes": "2026-11-21T00:00:00Z",
+   "yesAsk": 0.2,
+   "noAsk": 0.83,
+   "volume": 9541.07,
+   "rules": "If more than 6.5 games are played in the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
+  },
+  {
    "ticker": "KXEARNINGSMENTIONAAPL-26OCT29-TARI",
    "event": "KXEARNINGSMENTIONAAPL-26OCT29",
    "category": "Mentions",
@@ -672,21 +708,9 @@
    "option": "Tariff",
    "closes": "2026-11-12T15:00:00Z",
    "yesAsk": 0.95,
-   "noAsk": 0.06,
+   "noAsk": 0.1,
    "volume": 9347.45,
    "rules": "If Tariff is said by any Apple representative (including the operator of the call) during the next Apple earnings call (including the Q+A), then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXMLBSERIESGAMES-26TBMILWS-7",
-   "event": "KXMLBSERIESGAMES-26TBMILWS",
-   "category": "Sports",
-   "title": "Tampa Bay vs Milwaukee Championship Series total games: Over 6.5 games",
-   "option": "Over 6.5 total games",
-   "closes": "2026-11-21T00:00:00Z",
-   "yesAsk": 0.21,
-   "noAsk": 0.8,
-   "volume": 9168.67,
-   "rules": "If more than 6.5 games are played in the Tampa Bay vs Milwaukee Championship Series in the 2026 Pro Baseball Playoffs, then the market resolves to Yes."
   },
   {
    "ticker": "KXGEMINI-NEXTPRO-26NOV16",
@@ -695,10 +719,22 @@
    "title": "Will Google release next Gemini Pro model before Nov 16, 2026?",
    "option": "Before Nov 16, 2026",
    "closes": "2026-11-16T04:59:00Z",
-   "yesAsk": 0.07,
-   "noAsk": 0.94,
+   "yesAsk": 0.11,
+   "noAsk": 0.93,
    "volume": 9161.78,
    "rules": "If Google releases next Gemini Pro model before Nov 16, 2026, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXLPGATOUR-MAYC26-MIYYAM",
+   "event": "KXLPGATOUR-MAYC26",
+   "category": "Sports",
+   "title": "Maybank Championship: Miyu Yamashita wins",
+   "option": "Miyu Yamashita",
+   "closes": "2026-11-15T00:00:00Z",
+   "yesAsk": 0.16,
+   "noAsk": 0.86,
+   "volume": 8819.62,
+   "rules": "If Miyu Yamashita wins the Maybank Championship, then the market resolves to Yes."
   },
   {
    "ticker": "KXLOLQUALIFIERS-26WORLDSFIN-T1",
@@ -707,9 +743,9 @@
    "title": "Will T1 qualify for the 2026 League of Legends Worlds final?",
    "option": "T1",
    "closes": "2026-11-23T15:00:00Z",
-   "yesAsk": 0.39,
-   "noAsk": 0.65,
-   "volume": 8709.3,
+   "yesAsk": 0.38,
+   "noAsk": 0.72,
+   "volume": 8772.35,
    "rules": "If T1 is one of the teams to qualify for the 2026 League of Legends Worlds final, then the market resolves to Yes."
   },
   {
@@ -737,6 +773,18 @@
    "rules": "If Atlanta wins the Atlanta vs Golden State Finals series in the 2026 women's Pro Basketball Playoffs, then the market resolves to Yes."
   },
   {
+   "ticker": "KXLOLQUALIFIERS-26WORLDSSF-T1",
+   "event": "KXLOLQUALIFIERS-26WORLDSSF",
+   "category": "Sports",
+   "title": "Will T1 qualify for the 2026 League of Legends Worlds semifinals?",
+   "option": "T1",
+   "closes": "2026-11-21T15:00:00Z",
+   "yesAsk": 0.82,
+   "noAsk": 0.43,
+   "volume": 8358.22,
+   "rules": "If T1 is one of the teams to qualify for the 2026 League of Legends Worlds semifinals, then the market resolves to Yes."
+  },
+  {
    "ticker": "KXLOLTEEMO-WORLDS26-Y",
    "event": "KXLOLTEEMO-WORLDS26",
    "category": "Sports",
@@ -755,7 +803,7 @@
    "title": "What will Apple say during their next earnings call?",
    "option": "Manufacturing",
    "closes": "2026-11-12T15:00:00Z",
-   "yesAsk": 0.88,
+   "yesAsk": 0.89,
    "noAsk": 0.16,
    "volume": 7984.18,
    "rules": "If Manufacturing is said by any Apple representative (including the operator of the call) during the next Apple earnings call (including the Q+A), then the market resolves to Yes."
@@ -767,46 +815,10 @@
    "title": "Will Aaron Boone be out before Nov 15, 2026?",
    "option": "Out before Nov 15, 2026",
    "closes": "2026-11-15T04:59:00Z",
-   "yesAsk": 0.92,
+   "yesAsk": 0.96,
    "noAsk": 0.99,
    "volume": 7968.56,
    "rules": "If the Manager of the New York Yankees Pro Baseball team leaves, or announces they will leave, before Nov 15, 2026, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXLOLQUALIFIERS-26WORLDSSF-T1",
-   "event": "KXLOLQUALIFIERS-26WORLDSSF",
-   "category": "Sports",
-   "title": "Will T1 qualify for the 2026 League of Legends Worlds semifinals?",
-   "option": "T1",
-   "closes": "2026-11-21T15:00:00Z",
-   "yesAsk": 0.62,
-   "noAsk": 0.43,
-   "volume": 7776.22,
-   "rules": "If T1 is one of the teams to qualify for the 2026 League of Legends Worlds semifinals, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXLPGATOUR-MAYC26-MIYYAM",
-   "event": "KXLPGATOUR-MAYC26",
-   "category": "Sports",
-   "title": "Maybank Championship: Miyu Yamashita wins",
-   "option": "Miyu Yamashita",
-   "closes": "2026-11-15T00:00:00Z",
-   "yesAsk": 0.14,
-   "noAsk": 0.87,
-   "volume": 7688.84,
-   "rules": "If Miyu Yamashita wins the Maybank Championship, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXTRUMPMENTION-26OCT29-DEPO",
-   "event": "KXTRUMPMENTION-26OCT29",
-   "category": "Mentions",
-   "title": "What will Donald Trump say during midterm rally in Rock Hill, South Carolina originally scheduled for October 29, 2026?",
-   "option": "Deport / Deported / Deportation",
-   "closes": "2026-11-12T15:00:00Z",
-   "yesAsk": 0.21,
-   "noAsk": 0.8,
-   "volume": 7500.67,
-   "rules": "If \n Donald Trump says Deport / Deported / Deportation as part of midterm rally in Rock Hill, South Carolina originally scheduled for October 29, 2026\n, then the market resolves to Yes."
   },
   {
    "ticker": "KXEARNINGSMENTIONAAPL-26OCT29-FOLD",
@@ -817,7 +829,7 @@
    "closes": "2026-11-12T15:00:00Z",
    "yesAsk": 0.82,
    "noAsk": 0.2,
-   "volume": 7479.96,
+   "volume": 7483.36,
    "rules": "If Fold / Folding / Foldable is said by any Apple representative (including the operator of the call) during the next Apple earnings call (including the Q+A), then the market resolves to Yes."
   },
   {
@@ -828,9 +840,45 @@
    "option": "Revenue Guidance",
    "closes": "2026-11-16T15:00:00Z",
    "yesAsk": 0.89,
-   "noAsk": 0.18,
+   "noAsk": 0.19,
    "volume": 7419.83,
    "rules": "If Revenue Guidance is said by any Palantir representative (including the operator of the call) during the next Palantir earnings call (including the Q+A), then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXTRUMPMENTION-26OCT30-FRAU",
+   "event": "KXTRUMPMENTION-26OCT30",
+   "category": "Mentions",
+   "title": "What will Donald Trump say during midterm rally in Daytona Beach, Florida originally scheduled for October 30, 2026?",
+   "option": "Fraud (3+ times)",
+   "closes": "2026-11-13T15:00:00Z",
+   "yesAsk": 0.59,
+   "noAsk": 0.44,
+   "volume": 7111.13,
+   "rules": "If \n Donald Trump says Fraud (3+ times) as part of midterm rally in Daytona Beach, Florida originally scheduled for October 30, 2026\n, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXTRUMPMENTION-26OCT29-FRAU",
+   "event": "KXTRUMPMENTION-26OCT29",
+   "category": "Mentions",
+   "title": "What will Donald Trump say during midterm rally in Rock Hill, South Carolina originally scheduled for October 29, 2026?",
+   "option": "Fraud (3+ times)",
+   "closes": "2026-11-12T15:00:00Z",
+   "yesAsk": 0.61,
+   "noAsk": 0.4,
+   "volume": 6947.97,
+   "rules": "If \n Donald Trump says Fraud (3+ times) as part of midterm rally in Rock Hill, South Carolina originally scheduled for October 29, 2026\n, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXWNBASERIESSCORE-26ATLGSFIN-GS42",
+   "event": "KXWNBASERIESSCORE-26ATLGSFIN",
+   "category": "Sports",
+   "title": "Atlanta vs Golden State Finals series exact score: Golden State wins 4-2",
+   "option": "GS wins 4-2",
+   "closes": "2026-11-14T19:30:00Z",
+   "yesAsk": 0.47,
+   "noAsk": 0.62,
+   "volume": 6511.69,
+   "rules": "If the series score is Golden State wins 4-2 in the Atlanta vs Golden State Finals series in the 2026 women's Pro Basketball Playoffs, then the market resolves to Yes."
   },
   {
    "ticker": "KXEARNINGSMENTIONPGR-26NOV03-MA",
@@ -840,21 +888,9 @@
    "option": "M&A / Acquisition",
    "closes": "2026-11-17T15:00:00Z",
    "yesAsk": 0.93,
-   "noAsk": 0.11,
+   "noAsk": 0.13,
    "volume": 6481.98,
    "rules": "If M&A / Acquisition is said by any Progressive representative (including the operator of the call) during the next Progressive earnings call (including the Q+A), then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXWNBASERIESSCORE-26ATLGSFIN-GS42",
-   "event": "KXWNBASERIESSCORE-26ATLGSFIN",
-   "category": "Sports",
-   "title": "Atlanta vs Golden State Finals series exact score: Golden State wins 4-2",
-   "option": "GS wins 4-2",
-   "closes": "2026-11-14T19:30:00Z",
-   "yesAsk": 0.4,
-   "noAsk": 0.61,
-   "volume": 6457.74,
-   "rules": "If the series score is Golden State wins 4-2 in the Atlanta vs Golden State Finals series in the 2026 women's Pro Basketball Playoffs, then the market resolves to Yes."
   },
   {
    "ticker": "KXBIGBEAROPEN-27-15NOV26",
@@ -887,10 +923,22 @@
    "title": "Will US building permits for October 2026 be above 1.450M?",
    "option": "Above 1.450M",
    "closes": "2026-11-18T13:29:00Z",
-   "yesAsk": 0.22,
-   "noAsk": 0.86,
+   "yesAsk": 0.88,
+   "noAsk": 0.67,
    "volume": 6367.06,
    "rules": "If the value of US building permits (total units) for October 2026 is above 1.450M (SAAR), then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXTRUMPMENTION-26NOV01-FRAU",
+   "event": "KXTRUMPMENTION-26NOV01",
+   "category": "Mentions",
+   "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
+   "option": "Fraud (3+ times)",
+   "closes": "2026-11-15T15:00:00Z",
+   "yesAsk": 0.62,
+   "noAsk": 0.4,
+   "volume": 6140.71,
+   "rules": "If \n Donald Trump says Fraud (3+ times) as part of midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026\n, then the market resolves to Yes."
   },
   {
    "ticker": "KXPROMISEACT-26AUG-26NOV21",
@@ -911,10 +959,22 @@
    "title": "Will Median Sales Price of Existing Homes (HOSMEDUSM052N) for October 2026 be above $405,000?",
    "option": "Above $405,000",
    "closes": "2026-11-12T14:59:00Z",
-   "yesAsk": 0.71,
-   "noAsk": 0.75,
-   "volume": 5928.28,
+   "yesAsk": 0.96,
+   "noAsk": 0.73,
+   "volume": 5929.28,
    "rules": "If the Median Sales Price of Existing Homes (HOSMEDUSM052N) for October 2026 is above $405,000, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXVOTEHEGSETHIMPEACH-26OCT-NOV14",
+   "event": "KXVOTEHEGSETHIMPEACH-26OCT",
+   "category": "Politics",
+   "title": "Will the House vote on impeaching Pete Hegseth?",
+   "option": "Before Nov 14, 2026",
+   "closes": "2026-11-14T04:59:00Z",
+   "yesAsk": 0.41,
+   "noAsk": 0.6,
+   "volume": 5874.7,
+   "rules": "If the House has conducted any recorded vote on any resolution impeaching Pete Hegseth, any motion to table, refer, or postpone such a resolution, or any special rule that specifically refers to such a resolution after Issuance and before Nov 14, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXBUILDPERMS-26NOV18-T1.300",
@@ -923,8 +983,8 @@
    "title": "Will US building permits for October 2026 be above 1.300M?",
    "option": "Above 1.300M",
    "closes": "2026-11-18T13:29:00Z",
-   "yesAsk": 0.83,
-   "noAsk": 0.71,
+   "yesAsk": 0.69,
+   "noAsk": 0.95,
    "volume": 5756.32,
    "rules": "If the value of US building permits (total units) for October 2026 is above 1.300M (SAAR), then the market resolves to Yes."
   },
@@ -941,27 +1001,15 @@
    "rules": "If the first calendar day in the 26/27 winter season on which Steamboat conducts Seasonal Opening Operations is before Nov 15, 2026, then the market resolves to Yes."
   },
   {
-   "ticker": "KXVOTEHEGSETHIMPEACH-26OCT-NOV14",
-   "event": "KXVOTEHEGSETHIMPEACH-26OCT",
-   "category": "Politics",
-   "title": "Will the House vote on impeaching Pete Hegseth?",
-   "option": "Before Nov 14, 2026",
-   "closes": "2026-11-14T04:59:00Z",
-   "yesAsk": 0.39,
-   "noAsk": 0.62,
-   "volume": 5296.99,
-   "rules": "If the House has conducted any recorded vote on any resolution impeaching Pete Hegseth, any motion to table, refer, or postpone such a resolution, or any special rule that specifically refers to such a resolution after Issuance and before Nov 14, 2026, then the market resolves to Yes."
-  },
-  {
    "ticker": "KXPRESSSECANNOUNCE-26OCT-NOV27",
    "event": "KXPRESSSECANNOUNCE-26OCT",
    "category": "Politics",
    "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (excluding acting/interim) before Nov 27, 2026?",
    "option": "Before Nov 27, 2026",
    "closes": "2026-11-27T04:59:00Z",
-   "yesAsk": 0.4,
-   "noAsk": 0.64,
-   "volume": 5105.77,
+   "yesAsk": 0.36,
+   "noAsk": 0.65,
+   "volume": 5138.12,
    "rules": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (excluding acting/interim) after Issuance and before Nov 27, 2026, then the market resolves to Yes."
   },
   {
@@ -983,7 +1031,7 @@
    "title": "Will the Argentina inflation rate MoM for October 2026 be above 2.0%?",
    "option": "Above 2.0%",
    "closes": "2026-11-12T19:59:00Z",
-   "yesAsk": 0.24,
+   "yesAsk": 0.3,
    "noAsk": 0.79,
    "volume": 4988.16,
    "rules": "If the Argentina inflation rate MoM for October 2026 is above 2.0%, then the market resolves to Yes."
@@ -995,7 +1043,7 @@
    "title": "China unemployment rate in October 2026?",
    "option": "Above 5.1%",
    "closes": "2026-11-16T02:55:00Z",
-   "yesAsk": 0.74,
+   "yesAsk": 0.75,
    "noAsk": 0.69,
    "volume": 4565.62,
    "rules": "If the China unemployment rate is above 5.1% for October 2026, then the market resolves to Yes."
@@ -1008,9 +1056,21 @@
    "option": "Yes",
    "closes": "2026-11-24T15:00:00Z",
    "yesAsk": 0.3,
-   "noAsk": 0.74,
+   "noAsk": 0.75,
    "volume": 4555.68,
    "rules": "If federal courts have unblocked the policy suspending immigrant visa processing for 75 countries before Nov 24, 2026, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXPARKCOPEN-27-22NOV26",
+   "event": "KXPARKCOPEN-27",
+   "category": "Climate and Weather",
+   "title": "Will Park City Mountain open before Nov 22, 2026?",
+   "option": "Before Nov 22, 2026",
+   "closes": "2026-11-22T04:59:00Z",
+   "yesAsk": 0.64,
+   "noAsk": 0.38,
+   "volume": 4537.2,
+   "rules": "If Park City Mountain conducts Seasonal Opening Operations in the 26/27 winter season before Nov 22, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXLOLQUALIFIERS-26WORLDSSF-HLE",
@@ -1019,8 +1079,8 @@
    "title": "Will Hanwha Life Esports qualify for the 2026 League of Legends Worlds semifinals?",
    "option": "Hanwha Life Esports",
    "closes": "2026-11-21T15:00:00Z",
-   "yesAsk": 0.42,
-   "noAsk": 0.67,
+   "yesAsk": 0.43,
+   "noAsk": 0.63,
    "volume": 4530.58,
    "rules": "If Hanwha Life Esports is one of the teams to qualify for the 2026 League of Legends Worlds semifinals, then the market resolves to Yes."
   },
@@ -1032,21 +1092,33 @@
    "option": "Loyalty",
    "closes": "2026-11-18T15:00:00Z",
    "yesAsk": 0.85,
-   "noAsk": 0.22,
+   "noAsk": 0.24,
    "volume": 4521.72,
    "rules": "If Loyalty is said by any McDonald's Corporation representative (including the operator of the call) during the next McDonald's Corporation earnings call (including the Q+A), then the market resolves to Yes."
   },
   {
-   "ticker": "KXPARKCOPEN-27-22NOV26",
-   "event": "KXPARKCOPEN-27",
-   "category": "Climate and Weather",
-   "title": "Will Park City Mountain open before Nov 22, 2026?",
-   "option": "Before Nov 22, 2026",
-   "closes": "2026-11-22T04:59:00Z",
-   "yesAsk": 0.64,
-   "noAsk": 0.39,
-   "volume": 4495.59,
-   "rules": "If Park City Mountain conducts Seasonal Opening Operations in the 26/27 winter season before Nov 22, 2026, then the market resolves to Yes."
+   "ticker": "KXLOLQUALIFIERS-26WORLDSSF-LY",
+   "event": "KXLOLQUALIFIERS-26WORLDSSF",
+   "category": "Sports",
+   "title": "Will LYON qualify for the 2026 League of Legends Worlds semifinals?",
+   "option": "LYON",
+   "closes": "2026-11-21T15:00:00Z",
+   "yesAsk": 0.29,
+   "noAsk": 0.76,
+   "volume": 4446.87,
+   "rules": "If LYON is one of the teams to qualify for the 2026 League of Legends Worlds semifinals, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXMARATHONUSAWIN-NYC26-Y",
+   "event": "KXMARATHONUSAWIN-NYC26",
+   "category": "Sports",
+   "title": "New York City Marathon Male Open Division: American to win",
+   "option": "American to win the Male Open Division",
+   "closes": "2026-11-15T13:00:00Z",
+   "yesAsk": 0.15,
+   "noAsk": 0.9,
+   "volume": 4408.18,
+   "rules": "If any runner representing the United States wins the Male Open Division at the 2026 New York City Marathon originally scheduled for Nov 1, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXEARNINGSMENTIONPLTR-26NOV02-MAVE",
@@ -1056,21 +1128,21 @@
    "option": "Maven",
    "closes": "2026-11-16T15:00:00Z",
    "yesAsk": 0.93,
-   "noAsk": 0.11,
+   "noAsk": 0.14,
    "volume": 4389.22,
    "rules": "If Maven is said by any Palantir representative (including the operator of the call) during the next Palantir earnings call (including the Q+A), then the market resolves to Yes."
   },
   {
-   "ticker": "KXLOLQUALIFIERS-26WORLDSSF-LY",
-   "event": "KXLOLQUALIFIERS-26WORLDSSF",
-   "category": "Sports",
-   "title": "Will LYON qualify for the 2026 League of Legends Worlds semifinals?",
-   "option": "LYON",
-   "closes": "2026-11-21T15:00:00Z",
-   "yesAsk": 0.24,
-   "noAsk": 0.78,
-   "volume": 4213.29,
-   "rules": "If LYON is one of the teams to qualify for the 2026 League of Legends Worlds semifinals, then the market resolves to Yes."
+   "ticker": "KXVOTEHEGSETHIMPEACH-26OCT-NOV21",
+   "event": "KXVOTEHEGSETHIMPEACH-26OCT",
+   "category": "Politics",
+   "title": "Will the House vote on impeaching Pete Hegseth?",
+   "option": "Before Nov 21, 2026",
+   "closes": "2026-11-21T04:59:00Z",
+   "yesAsk": 0.65,
+   "noAsk": 0.36,
+   "volume": 4252.04,
+   "rules": "If the House has conducted any recorded vote on any resolution impeaching Pete Hegseth, any motion to table, refer, or postpone such a resolution, or any special rule that specifically refers to such a resolution after Issuance and before Nov 21, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXBRAZILINF-26OCT-T4.70",
@@ -1091,58 +1163,22 @@
    "title": "Will Andreas Almgren win the New York City Marathon Men's Open Division?",
    "option": "Andreas Almgren",
    "closes": "2026-11-16T03:00:00Z",
-   "yesAsk": 0.39,
+   "yesAsk": 0.38,
    "noAsk": 0.67,
-   "volume": 4103.47,
+   "volume": 4164.94,
    "rules": "If Andreas Almgren wins the 2026 TCS New York City Marathon Men's Open Division, then the market resolves to Yes."
   },
   {
-   "ticker": "KXTRUMPMENTION-26OCT30-FRAU",
-   "event": "KXTRUMPMENTION-26OCT30",
-   "category": "Mentions",
-   "title": "What will Donald Trump say during midterm rally in Daytona Beach, Florida originally scheduled for October 30, 2026?",
-   "option": "Fraud (3+ times)",
-   "closes": "2026-11-13T15:00:00Z",
-   "yesAsk": 0.34,
-   "noAsk": 0.69,
-   "volume": 3916.51,
-   "rules": "If \n Donald Trump says Fraud (3+ times) as part of midterm rally in Daytona Beach, Florida originally scheduled for October 30, 2026\n, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXVOTEHEGSETHIMPEACH-26OCT-NOV21",
-   "event": "KXVOTEHEGSETHIMPEACH-26OCT",
-   "category": "Politics",
-   "title": "Will the House vote on impeaching Pete Hegseth?",
-   "option": "Before Nov 21, 2026",
-   "closes": "2026-11-21T04:59:00Z",
-   "yesAsk": 0.75,
-   "noAsk": 0.27,
-   "volume": 3879.74,
-   "rules": "If the House has conducted any recorded vote on any resolution impeaching Pete Hegseth, any motion to table, refer, or postpone such a resolution, or any special rule that specifically refers to such a resolution after Issuance and before Nov 21, 2026, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXTRUMPMENTION-26OCT29-FRAU",
-   "event": "KXTRUMPMENTION-26OCT29",
-   "category": "Mentions",
-   "title": "What will Donald Trump say during midterm rally in Rock Hill, South Carolina originally scheduled for October 29, 2026?",
-   "option": "Fraud (3+ times)",
-   "closes": "2026-11-12T15:00:00Z",
-   "yesAsk": 0.3,
-   "noAsk": 0.71,
-   "volume": 3853.24,
-   "rules": "If \n Donald Trump says Fraud (3+ times) as part of midterm rally in Rock Hill, South Carolina originally scheduled for October 29, 2026\n, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXLPGATOUR-MAYC26-RUOYIN",
-   "event": "KXLPGATOUR-MAYC26",
-   "category": "Sports",
-   "title": "Maybank Championship: Ruoning Yin wins",
-   "option": "Ruoning Yin",
-   "closes": "2026-11-15T00:00:00Z",
-   "yesAsk": 0.1,
-   "noAsk": 0.91,
-   "volume": 3845.56,
-   "rules": "If Ruoning Yin wins the Maybank Championship, then the market resolves to Yes."
+   "ticker": "KXUSPPIYOY-26NOV13-T6.7",
+   "event": "KXUSPPIYOY-26NOV13",
+   "category": "Economics",
+   "title": "Will the United States Producer Price Index for final demand for October 2026 be above 6.7%?",
+   "option": "Above 6.7%",
+   "closes": "2026-11-13T13:29:00Z",
+   "yesAsk": 0.54,
+   "noAsk": 0.51,
+   "volume": 3850.67,
+   "rules": "If the year-over-year percent change in the United States Producer Price Index for final demand for October 2026 is above 6.7%, then the market resolves to Yes."
   },
   {
    "ticker": "KXEARNINGSMENTIONPLTR-26NOV02-INTE",
@@ -1157,16 +1193,16 @@
    "rules": "If International is said by any Palantir representative (including the operator of the call) during the next Palantir earnings call (including the Q+A), then the market resolves to Yes."
   },
   {
-   "ticker": "KXUSPPIYOY-26NOV13-T6.7",
-   "event": "KXUSPPIYOY-26NOV13",
-   "category": "Economics",
-   "title": "Will the United States Producer Price Index for final demand for October 2026 be above 6.7%?",
-   "option": "Above 6.7%",
-   "closes": "2026-11-13T13:29:00Z",
-   "yesAsk": 0.55,
-   "noAsk": 0.59,
-   "volume": 3613.76,
-   "rules": "If the year-over-year percent change in the United States Producer Price Index for final demand for October 2026 is above 6.7%, then the market resolves to Yes."
+   "ticker": "KXHMONTHRANGE-26OCT-T1.30",
+   "event": "KXHMONTHRANGE-26OCT",
+   "category": "Climate and Weather",
+   "title": "Oct 2026 temperature increase?",
+   "option": "1.30001 or above",
+   "closes": "2026-11-16T04:59:00Z",
+   "yesAsk": 0.95,
+   "noAsk": 0.08,
+   "volume": 3574.59,
+   "rules": "If the Land Ocean-Temperature Index for Oct 2026 is above 1.30, then the market resolves to Yes."
   },
   {
    "ticker": "KXART-MONJAR18NOV26-25000000",
@@ -1187,9 +1223,9 @@
    "title": "Will US new home sales for October 2026 be above 640,000?",
    "option": "Above 640,000",
    "closes": "2026-11-25T14:59:00Z",
-   "yesAsk": 0.5,
-   "noAsk": 0.61,
-   "volume": 3531.01,
+   "yesAsk": 0.39,
+   "noAsk": 0.63,
+   "volume": 3546.01,
    "rules": "If US new home sales (New Residential Sales) for October 2026 (seasonally adjusted annual rate, SAAR, reported in thousands of homes) is above 640,000, then the market resolves to Yes."
   },
   {
@@ -1212,7 +1248,7 @@
    "option": "Before Nov 22, 2026",
    "closes": "2026-11-22T04:59:00Z",
    "yesAsk": 0.75,
-   "noAsk": 0.35,
+   "noAsk": 0.39,
    "volume": 3432.08,
    "rules": "If Heavenly Mountain Resort conducts Seasonal Opening Operations in the 26/27 winter season before Nov 22, 2026, then the market resolves to Yes."
   },
@@ -1235,8 +1271,8 @@
    "title": "Grand Theft Auto VI Metacritic score?",
    "option": "Above 90",
    "closes": "2026-11-26T15:00:00Z",
-   "yesAsk": 0.96,
-   "noAsk": 0.07,
+   "yesAsk": 0.93,
+   "noAsk": 0.1,
    "volume": 3195.81,
    "rules": "If the Metascore for Grand Theft Auto VI is Above 90 seven days after release at 10:00AM ET, then the market resolves to Yes."
   },
@@ -1247,34 +1283,10 @@
    "title": "What will Donald Trump say during midterm rally in Rock Hill, South Carolina originally scheduled for October 29, 2026?",
    "option": "America First",
    "closes": "2026-11-12T15:00:00Z",
-   "yesAsk": 0.86,
-   "noAsk": 0.16,
-   "volume": 3118.29,
+   "yesAsk": 0.85,
+   "noAsk": 0.17,
+   "volume": 3184.63,
    "rules": "If \n Donald Trump says America First as part of midterm rally in Rock Hill, South Carolina originally scheduled for October 29, 2026\n, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXWNBASERIESSCORE-26ATLGSFIN-GS43",
-   "event": "KXWNBASERIESSCORE-26ATLGSFIN",
-   "category": "Sports",
-   "title": "Atlanta vs Golden State Finals series exact score: Golden State wins 4-3",
-   "option": "GS wins 4-3",
-   "closes": "2026-11-14T19:30:00Z",
-   "yesAsk": 0.35,
-   "noAsk": 0.66,
-   "volume": 3042.77,
-   "rules": "If the series score is Golden State wins 4-3 in the Atlanta vs Golden State Finals series in the 2026 women's Pro Basketball Playoffs, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXVANCEMENTION-26OCT29-DEMO",
-   "event": "KXVANCEMENTION-26OCT29",
-   "category": "Mentions",
-   "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
-   "option": "Democrat",
-   "closes": "2026-11-12T15:00:00Z",
-   "yesAsk": 0.81,
-   "noAsk": 0.22,
-   "volume": 3035.31,
-   "rules": "If \n JD Vance says Democrat as part of Fox News: town hall with JD Vance originally scheduled for October 29, 2026\n, then the market resolves to Yes."
   },
   {
    "ticker": "KXTRUMPMENTION-26OCT30-FENT",
@@ -1283,10 +1295,34 @@
    "title": "What will Donald Trump say during midterm rally in Daytona Beach, Florida originally scheduled for October 30, 2026?",
    "option": "Fentanyl",
    "closes": "2026-11-13T15:00:00Z",
-   "yesAsk": 0.17,
-   "noAsk": 0.87,
-   "volume": 3020.53,
+   "yesAsk": 0.18,
+   "noAsk": 0.83,
+   "volume": 3132.22,
    "rules": "If \n Donald Trump says Fentanyl as part of midterm rally in Daytona Beach, Florida originally scheduled for October 30, 2026\n, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXVANCEMENTION-26OCT29-DEMO",
+   "event": "KXVANCEMENTION-26OCT29",
+   "category": "Mentions",
+   "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
+   "option": "Democrat",
+   "closes": "2026-11-12T15:00:00Z",
+   "yesAsk": 0.89,
+   "noAsk": 0.2,
+   "volume": 3053.07,
+   "rules": "If \n JD Vance says Democrat as part of Fox News: town hall with JD Vance originally scheduled for October 29, 2026\n, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXWNBASERIESSCORE-26ATLGSFIN-GS43",
+   "event": "KXWNBASERIESSCORE-26ATLGSFIN",
+   "category": "Sports",
+   "title": "Atlanta vs Golden State Finals series exact score: Golden State wins 4-3",
+   "option": "GS wins 4-3",
+   "closes": "2026-11-14T19:30:00Z",
+   "yesAsk": 0.32,
+   "noAsk": 0.71,
+   "volume": 3047.77,
+   "rules": "If the series score is Golden State wins 4-3 in the Atlanta vs Golden State Finals series in the 2026 women's Pro Basketball Playoffs, then the market resolves to Yes."
   },
   {
    "ticker": "KXART-CEZARL18NOV26-160000000",
@@ -1295,7 +1331,7 @@
    "title": "Will the lot sold price of the Arlequin by Paul Cézanne on Sotheby's be above $160000000 during the live auction beginning November 18, 2026 at 6:00 PM EST (Legendary: The Blaquier-Arrieta Collection)?",
    "option": "Above $160M",
    "closes": "2026-11-19T15:00:00Z",
-   "yesAsk": 0.28,
+   "yesAsk": 0.29,
    "noAsk": 0.8,
    "volume": 3008.11,
    "rules": "If the lot sold price of the Arlequin by Paul Cézanne on Sotheby's is above $160M during the live auction beginning November 18, 2026 at 6:00 PM EST (Legendary: The Blaquier-Arrieta Collection), then the market resolves to Yes."
@@ -1311,18 +1347,6 @@
    "noAsk": 0.86,
    "volume": 2975,
    "rules": "If the annual inflation rate in Brazil is above 4.90% in Oct 2026, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXTRUMPMENTION-26NOV01-FRAU",
-   "event": "KXTRUMPMENTION-26NOV01",
-   "category": "Mentions",
-   "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
-   "option": "Fraud (3+ times)",
-   "closes": "2026-11-15T15:00:00Z",
-   "yesAsk": 0.36,
-   "noAsk": 0.69,
-   "volume": 2928.95,
-   "rules": "If \n Donald Trump says Fraud (3+ times) as part of midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026\n, then the market resolves to Yes."
   },
   {
    "ticker": "KXCBDHUNGARY-26NOV17-HOLD",
@@ -1355,9 +1379,9 @@
    "title": "What will Donald Trump say during midterm rally in Daytona Beach, Florida originally scheduled for October 30, 2026?",
    "option": "Hormuz",
    "closes": "2026-11-13T15:00:00Z",
-   "yesAsk": 0.86,
-   "noAsk": 0.23,
-   "volume": 2856.35,
+   "yesAsk": 0.79,
+   "noAsk": 0.25,
+   "volume": 2860.27,
    "rules": "If \n Donald Trump says Hormuz as part of midterm rally in Daytona Beach, Florida originally scheduled for October 30, 2026\n, then the market resolves to Yes."
   },
   {
@@ -1367,9 +1391,9 @@
    "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
    "option": "Oil / Gas / Gasoline",
    "closes": "2026-11-12T15:00:00Z",
-   "yesAsk": 0.85,
-   "noAsk": 0.24,
-   "volume": 2834.95,
+   "yesAsk": 0.88,
+   "noAsk": 0.2,
+   "volume": 2849.98,
    "rules": "If \n JD Vance says Oil / Gas / Gasoline as part of Fox News: town hall with JD Vance originally scheduled for October 29, 2026\n, then the market resolves to Yes."
   },
   {
@@ -1379,8 +1403,8 @@
    "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (excluding acting/interim) before Nov 20, 2026?",
    "option": "Before Nov 20, 2026",
    "closes": "2026-11-20T04:59:00Z",
-   "yesAsk": 0.37,
-   "noAsk": 0.66,
+   "yesAsk": 0.36,
+   "noAsk": 0.69,
    "volume": 2721.93,
    "rules": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (excluding acting/interim) after Issuance and before Nov 20, 2026, then the market resolves to Yes."
   },
@@ -1391,9 +1415,9 @@
    "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
    "option": "Iran / Iranian",
    "closes": "2026-11-12T15:00:00Z",
-   "yesAsk": 0.84,
-   "noAsk": 0.22,
-   "volume": 2668.33,
+   "yesAsk": 0.83,
+   "noAsk": 0.21,
+   "volume": 2692.57,
    "rules": "If \n JD Vance says Iran / Iranian as part of Fox News: town hall with JD Vance originally scheduled for October 29, 2026\n, then the market resolves to Yes."
   },
   {
@@ -1409,14 +1433,26 @@
    "rules": "If the Bank of Korea takes the action of hike more than 25bps at its November Monetary Policy Board meeting, then the market resolves to Yes."
   },
   {
+   "ticker": "KXCHAMPTOUR-SIBC26-ZJOH",
+   "event": "KXCHAMPTOUR-SIBC26",
+   "category": "Sports",
+   "title": "Simmons Bank Championship: Zach Johnson wins",
+   "option": "Zach Johnson",
+   "closes": "2026-11-15T00:00:00Z",
+   "yesAsk": 0.11,
+   "noAsk": 0.9,
+   "volume": 2632.98,
+   "rules": "If Zach Johnson wins the Simmons Bank Championship, then the market resolves to Yes."
+  },
+  {
    "ticker": "KXALYOPEN-27-15NOV26",
    "event": "KXALYOPEN-27",
    "category": "Climate and Weather",
    "title": "Will Alyeska open before Nov 15, 2026?",
    "option": "Before Nov 15, 2026",
    "closes": "2026-11-21T15:00:00Z",
-   "yesAsk": 0.66,
-   "noAsk": 0.8,
+   "yesAsk": 0.67,
+   "noAsk": 0.87,
    "volume": 2607.59,
    "rules": "If the first calendar day in the 2026-27 winter season on which Alyeska Resort conducts Seasonal Opening Operations occurs before Nov 15, 2026, then the market resolves to Yes."
   },
@@ -1427,7 +1463,7 @@
    "title": "China unemployment rate in October 2026?",
    "option": "Above 5.4%",
    "closes": "2026-11-16T02:55:00Z",
-   "yesAsk": 0.7,
+   "yesAsk": 0.51,
    "noAsk": 0.98,
    "volume": 2594.42,
    "rules": "If the China unemployment rate is above 5.4% for October 2026, then the market resolves to Yes."
@@ -1439,22 +1475,10 @@
    "title": "Will there be 2+ pentakills in the League of Legends Worlds tournament?",
    "option": "2+ pentakills",
    "closes": "2026-11-23T15:00:00Z",
-   "yesAsk": 0.42,
-   "noAsk": 0.59,
+   "yesAsk": 0.59,
+   "noAsk": 0.67,
    "volume": 2561.45,
    "rules": "If all players combined record at least 2 pentakills in the entire tournament of League of Legends Worlds 2026, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXWNBASERIESSPREAD-26ATLGSFIN-GS2",
-   "event": "KXWNBASERIESSPREAD-26ATLGSFIN",
-   "category": "Sports",
-   "title": "Atlanta vs Golden State Finals Series Game Spread: Golden State -1.5 games",
-   "option": "Golden State -1.5 games",
-   "closes": "2026-11-14T19:30:00Z",
-   "yesAsk": 0.52,
-   "noAsk": 0.68,
-   "volume": 2557.27,
-   "rules": "If Golden State wins by more than 1.5 games in the Atlanta vs Golden State Finals series in the 2026 women's Pro Basketball Playoffs, then the market resolves to Yes."
   },
   {
    "ticker": "KXUE-MEX26OCT-2.6",
@@ -1463,7 +1487,7 @@
    "title": "Mexico unemployment rate in October 2026?",
    "option": "Above 2.6%",
    "closes": "2026-11-26T12:55:00Z",
-   "yesAsk": 0.63,
+   "yesAsk": 0.67,
    "noAsk": 0.46,
    "volume": 2538.94,
    "rules": "If the Mexico unemployment rate is above 2.6% for October 2026, then the market resolves to Yes."
@@ -1481,40 +1505,16 @@
    "rules": "If the lot sold price of the En Canot (Jeune fille à la barque) by Pierre-Auguste Renoir on Sotheby's is above $40M during the live auction beginning November 18, 2026 at 6:00 PM EST (Legendary: The Blaquier-Arrieta Collection), then the market resolves to Yes."
   },
   {
-   "ticker": "KXMARATHON-NYCWOMENS26-SHAS",
-   "event": "KXMARATHON-NYCWOMENS26",
-   "category": "Sports",
-   "title": "Will Sifan Hassan win the New York City Marathon Women's Open Division?",
-   "option": "Sifan Hassan",
-   "closes": "2026-11-16T03:00:00Z",
-   "yesAsk": 0.06,
-   "noAsk": 0.99,
-   "volume": 2484.51,
-   "rules": "If Sifan Hassan wins the 2026 TCS New York City Marathon Women's Open Division, then the market resolves to Yes."
-  },
-  {
    "ticker": "KXEHSALES-26NOV12-T3.90",
    "event": "KXEHSALES-26NOV12",
    "category": "Economics",
    "title": "Will US existing home sales for October 2026 be above 3.90M?",
    "option": "Above 3.90M",
    "closes": "2026-11-12T14:59:00Z",
-   "yesAsk": 0.51,
-   "noAsk": 0.55,
+   "yesAsk": 0.75,
+   "noAsk": 0.74,
    "volume": 2473.35,
    "rules": "If US existing home sales for October 2026 (seasonally adjusted annual rate, millions of homes) is above 3.90M, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXCOPPEROPEN-27-08NOV26",
-   "event": "KXCOPPEROPEN-27",
-   "category": "Climate and Weather",
-   "title": "Will Copper Mountain open before Nov 8, 2026?",
-   "option": "Before Nov 8, 2026",
-   "closes": "2026-11-14T15:00:00Z",
-   "yesAsk": 0.96,
-   "noAsk": 0.45,
-   "volume": 2384.47,
-   "rules": "If the first calendar day in the 2026-27 winter season on which Copper Mountain Resort conducts Seasonal Opening Operations occurs before Nov 8, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXSAMOMINF-26NOV18-T0.4",
@@ -1571,7 +1571,7 @@
    "title": "Mexico unemployment rate in October 2026?",
    "option": "Above 2.7%",
    "closes": "2026-11-26T12:55:00Z",
-   "yesAsk": 0.54,
+   "yesAsk": 0.56,
    "noAsk": 0.74,
    "volume": 2232.55,
    "rules": "If the Mexico unemployment rate is above 2.7% for October 2026, then the market resolves to Yes."
@@ -1596,7 +1596,7 @@
    "option": "Australia",
    "closes": "2026-11-16T15:00:00Z",
    "yesAsk": 0.91,
-   "noAsk": 0.13,
+   "noAsk": 0.15,
    "volume": 2190.54,
    "rules": "If Australia is said by any Hims & Hers Health, Inc. representative (including the operator of the call) during the next Hims & Hers Health, Inc. earnings call (including the Q+A), then the market resolves to Yes."
   },
@@ -1607,7 +1607,7 @@
    "title": "Will REBECCA by Becky Hill have above 8000 Pure Album Sales (aka Product Sales) during the November 13, 2026 - November 19, 2026 tracking week?",
    "option": "Above 8K",
    "closes": "2026-11-22T15:00:00Z",
-   "yesAsk": 0.9,
+   "yesAsk": 0.89,
    "noAsk": 0.97,
    "volume": 2138.64,
    "rules": "If REBECCA by Becky Hill has above 8K Pure Album Sales (aka Product Sales) during the November 13, 2026 - November 19, 2026, tracking week, then the market resolves to Yes."
@@ -1631,10 +1631,22 @@
    "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
    "option": "Trump Account",
    "closes": "2026-11-15T15:00:00Z",
-   "yesAsk": 0.06,
+   "yesAsk": 0.09,
    "noAsk": 0.96,
-   "volume": 2050.13,
+   "volume": 2060.06,
    "rules": "If \n Donald Trump says Trump Account as part of midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026\n, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXUSPPIYOY-26NOV13-T7.0",
+   "event": "KXUSPPIYOY-26NOV13",
+   "category": "Economics",
+   "title": "Will the United States Producer Price Index for final demand for October 2026 be above 7.0%?",
+   "option": "Above 7.0%",
+   "closes": "2026-11-13T13:29:00Z",
+   "yesAsk": 0.57,
+   "noAsk": 0.93,
+   "volume": 2051.24,
+   "rules": "If the year-over-year percent change in the United States Producer Price Index for final demand for October 2026 is above 7.0%, then the market resolves to Yes."
   },
   {
    "ticker": "KXCBDINDONESIA-26NOV18-C25",
@@ -1655,8 +1667,8 @@
    "title": "What will McDonald's Corporation say during their next earnings call?",
    "option": "Dividend",
    "closes": "2026-11-18T15:00:00Z",
-   "yesAsk": 0.87,
-   "noAsk": 0.22,
+   "yesAsk": 0.88,
+   "noAsk": 0.21,
    "volume": 2032.03,
    "rules": "If Dividend is said by any McDonald's Corporation representative (including the operator of the call) during the next McDonald's Corporation earnings call (including the Q+A), then the market resolves to Yes."
   },
@@ -1692,7 +1704,7 @@
    "option": "Lab Testing",
    "closes": "2026-11-16T15:00:00Z",
    "yesAsk": 0.9,
-   "noAsk": 0.18,
+   "noAsk": 0.19,
    "volume": 1993.55,
    "rules": "If Lab Testing is said by any Hims & Hers Health, Inc. representative (including the operator of the call) during the next Hims & Hers Health, Inc. earnings call (including the Q+A), then the market resolves to Yes."
   },
@@ -1703,8 +1715,8 @@
    "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
    "option": "Small Business",
    "closes": "2026-11-15T15:00:00Z",
-   "yesAsk": 0.68,
-   "noAsk": 0.34,
+   "yesAsk": 0.7,
+   "noAsk": 0.4,
    "volume": 1985.9,
    "rules": "If \n Donald Trump says Small Business as part of midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026\n, then the market resolves to Yes."
   },
@@ -1721,6 +1733,18 @@
    "rules": "If Northstar California Resort conducts Seasonal Opening Operations in the 26/27 winter season before Nov 22, 2026, then the market resolves to Yes."
   },
   {
+   "ticker": "KXSNOWMENTION-26NOV03-COWO",
+   "event": "KXSNOWMENTION-26NOV03",
+   "category": "Mentions",
+   "title": "What will Sridhar Ramaswamy say during Snowflake Expedition 2026 — The Next Frontier: Driving Efficient Intelligence in the Agentic Enterprise originally scheduled for November 3, 2026?",
+   "option": "CoWork / Snowflake Intelligence",
+   "closes": "2026-11-17T15:00:00Z",
+   "yesAsk": 0.5,
+   "noAsk": 0.53,
+   "volume": 1914.62,
+   "rules": "If \n Sridhar Ramaswamy says CoWork / Snowflake Intelligence as part of Snowflake Expedition 2026 — The Next Frontier: Driving Efficient Intelligence in the Agentic Enterprise originally scheduled for November 3, 2026\n, then the market resolves to Yes."
+  },
+  {
    "ticker": "KXALBUMSTREAMS-SWALLOW26NOV12-14.0M",
    "event": "KXALBUMSTREAMS-SWALLOW26NOV12",
    "category": "Entertainment",
@@ -1733,14 +1757,26 @@
    "rules": "If SWALLOW! by Shygirl has above 14M streams during the November 06, 2026 - November 12, 2026 , tracking week, then the market resolves to Yes."
   },
   {
+   "ticker": "KXACQANNOUNCECART-27MAR01-NOV16",
+   "event": "KXACQANNOUNCECART-27MAR01",
+   "category": "Financials",
+   "title": "Will DoorDash announce acquisition of Instacart (Maplebear) before Nov 16, 2026?",
+   "option": "Before Nov 16, 2026",
+   "closes": "2026-11-16T04:59:00Z",
+   "yesAsk": 0.93,
+   "noAsk": 0.15,
+   "volume": 1851.57,
+   "rules": "If DoorDash announces an agreement to acquire Instacart (Maplebear) before Nov 16, 2026, then the market resolves to Yes."
+  },
+  {
    "ticker": "KXHOUSINGSTART-26NOV18-T1.300",
    "event": "KXHOUSINGSTART-26NOV18",
    "category": "Economics",
    "title": "Will US housing starts for October 2026 be above 1.300M?",
    "option": "Above 1.300M",
    "closes": "2026-11-18T13:29:00Z",
-   "yesAsk": 0.51,
-   "noAsk": 0.74,
+   "yesAsk": 0.52,
+   "noAsk": 0.75,
    "volume": 1833.01,
    "rules": "If US housing starts for October 2026 is above 1.300M, then the market resolves to Yes."
   },
@@ -1751,8 +1787,8 @@
    "title": "Will the lot sold price of the Arlequin by Paul Cézanne on Sotheby's be above $130000000 during the live auction beginning November 18, 2026 at 6:00 PM EST (Legendary: The Blaquier-Arrieta Collection)?",
    "option": "Above $130M",
    "closes": "2026-11-19T15:00:00Z",
-   "yesAsk": 0.68,
-   "noAsk": 0.41,
+   "yesAsk": 0.69,
+   "noAsk": 0.4,
    "volume": 1819.28,
    "rules": "If the lot sold price of the Arlequin by Paul Cézanne on Sotheby's is above $130M during the live auction beginning November 18, 2026 at 6:00 PM EST (Legendary: The Blaquier-Arrieta Collection), then the market resolves to Yes."
   },
@@ -1776,7 +1812,7 @@
    "option": "Above 99",
    "closes": "2026-11-26T15:00:00Z",
    "yesAsk": 0.09,
-   "noAsk": 0.95,
+   "noAsk": 0.94,
    "volume": 1719.5,
    "rules": "If the Metascore for Grand Theft Auto VI is Above 99 seven days after release at 10:00AM ET, then the market resolves to Yes."
   },
@@ -1787,22 +1823,22 @@
    "title": "Will Median Sales Price of Existing Homes (HOSMEDUSM052N) for October 2026 be above $435,000?",
    "option": "Above $435,000",
    "closes": "2026-11-12T14:59:00Z",
-   "yesAsk": 0.09,
-   "noAsk": 0.98,
+   "yesAsk": 0.1,
+   "noAsk": 0.99,
    "volume": 1697,
    "rules": "If the Median Sales Price of Existing Homes (HOSMEDUSM052N) for October 2026 is above $435,000, then the market resolves to Yes."
   },
   {
-   "ticker": "KXSNOWMENTION-26NOV03-COWO",
-   "event": "KXSNOWMENTION-26NOV03",
+   "ticker": "KXEARNINGSMENTIONMCD-26NOV04-REVE",
+   "event": "KXEARNINGSMENTIONMCD-26NOV04",
    "category": "Mentions",
-   "title": "What will Sridhar Ramaswamy say during Snowflake Expedition 2026 — The Next Frontier: Driving Efficient Intelligence in the Agentic Enterprise originally scheduled for November 3, 2026?",
-   "option": "CoWork / Snowflake Intelligence",
-   "closes": "2026-11-17T15:00:00Z",
-   "yesAsk": 0.75,
-   "noAsk": 0.35,
-   "volume": 1696.7,
-   "rules": "If \n Sridhar Ramaswamy says CoWork / Snowflake Intelligence as part of Snowflake Expedition 2026 — The Next Frontier: Driving Efficient Intelligence in the Agentic Enterprise originally scheduled for November 3, 2026\n, then the market resolves to Yes."
+   "title": "What will McDonald's Corporation say during their next earnings call?",
+   "option": "Revenue",
+   "closes": "2026-11-18T15:00:00Z",
+   "yesAsk": 0.36,
+   "noAsk": 0.67,
+   "volume": 1655.19,
+   "rules": "If Revenue is said by any McDonald's Corporation representative (including the operator of the call) during the next McDonald's Corporation earnings call (including the Q+A), then the market resolves to Yes."
   },
   {
    "ticker": "KXALBUMEQUIV-REBECCA26NOV19-8K",
@@ -1812,21 +1848,9 @@
    "option": "Above 8K",
    "closes": "2026-11-22T15:00:00Z",
    "yesAsk": 0.24,
-   "noAsk": 0.83,
+   "noAsk": 0.82,
    "volume": 1655,
    "rules": "If REBECCA by Becky Hill has above 8K Album Equivalent Units during the November 13, 2026 - November 19, 2026, tracking week, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXEARNINGSMENTIONMCD-26NOV04-REVE",
-   "event": "KXEARNINGSMENTIONMCD-26NOV04",
-   "category": "Mentions",
-   "title": "What will McDonald's Corporation say during their next earnings call?",
-   "option": "Revenue",
-   "closes": "2026-11-18T15:00:00Z",
-   "yesAsk": 0.34,
-   "noAsk": 0.67,
-   "volume": 1638.35,
-   "rules": "If Revenue is said by any McDonald's Corporation representative (including the operator of the call) during the next McDonald's Corporation earnings call (including the Q+A), then the market resolves to Yes."
   },
   {
    "ticker": "KXEOWEEK-26OCT31-0",
@@ -1835,8 +1859,8 @@
    "title": "Will the President sign more than 0 Executive Orders between Oct 25, 2026 and Oct 31, 2026?",
    "option": "Above 0",
    "closes": "2026-11-14T14:00:00Z",
-   "yesAsk": 0.61,
-   "noAsk": 0.43,
+   "yesAsk": 0.54,
+   "noAsk": 0.48,
    "volume": 1609.33,
    "rules": "If the President signs above 0 executive orders during Oct 25, 2026 to Oct 31, 2026, then the market resolves to Yes."
   },
@@ -1889,18 +1913,6 @@
    "rules": "If the Chicago Fed National Activity Index for October 2026 is above \n\n-0.10, then the market resolves to Yes."
   },
   {
-   "ticker": "KXPRESSSECANNOUNCE-26OCT-NOV13",
-   "event": "KXPRESSSECANNOUNCE-26OCT",
-   "category": "Politics",
-   "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (excluding acting/interim) before Nov 13, 2026?",
-   "option": "Before Nov 13, 2026",
-   "closes": "2026-11-13T04:59:00Z",
-   "yesAsk": 0.3,
-   "noAsk": 0.74,
-   "volume": 1489.08,
-   "rules": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (excluding acting/interim) after Issuance and before Nov 13, 2026, then the market resolves to Yes."
-  },
-  {
    "ticker": "KXART-VANCHAT18NOV26-220000000",
    "event": "KXART-VANCHAT18NOV26",
    "category": "Entertainment",
@@ -1909,8 +1921,20 @@
    "closes": "2026-11-19T15:00:00Z",
    "yesAsk": 0.45,
    "noAsk": 0.6,
-   "volume": 1475.52,
+   "volume": 1496.91,
    "rules": "If the lot sold price of the Châtaigniers en fleurs by Vincent van Gogh on Sotheby's is above $220M during the live auction beginning November 18, 2026 at 6:00 PM EST (Legendary: The Blaquier-Arrieta Collection), then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXPRESSSECANNOUNCE-26OCT-NOV13",
+   "event": "KXPRESSSECANNOUNCE-26OCT",
+   "category": "Politics",
+   "title": "Will Donald Trump issue any announcement (e.g., Truth Social post) on naming the next White House Press Secretary (excluding acting/interim) before Nov 13, 2026?",
+   "option": "Before Nov 13, 2026",
+   "closes": "2026-11-13T04:59:00Z",
+   "yesAsk": 0.3,
+   "noAsk": 0.74,
+   "volume": 1492.24,
+   "rules": "If Donald Trump has made any announcement (e.g., Truth Social post) naming the next White House Press Secretary (excluding acting/interim) after Issuance and before Nov 13, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXALBUMEQUIV-FRE26NOV12-80K",
@@ -1931,9 +1955,9 @@
    "title": "Oct 2026 temperature increase?",
    "option": "1.24 to 1.30",
    "closes": "2026-11-16T04:59:00Z",
-   "yesAsk": 0.06,
+   "yesAsk": 0.07,
    "noAsk": 0.98,
-   "volume": 1388.92,
+   "volume": 1408.92,
    "rules": "If the Land Ocean-Temperature Index for Oct 2026 is between 1.24-1.30, then the market resolves to Yes."
   },
   {
@@ -2045,16 +2069,16 @@
    "rules": "If Rosella is said by any Progressive representative (including the operator of the call) during the next Progressive earnings call (including the Q+A), then the market resolves to Yes."
   },
   {
-   "ticker": "KXMVECROSSCATEGORY-S2026VCYX6PNZGAKN5J5V-4BOYRRZMT",
-   "event": "KXMVECROSSCATEGORY-S2026VCYX6PNZGAKN5J5V",
-   "category": "Exotics",
-   "title": "yes Jiri Lehecka,yes Flavio Cobolli,yes Arthur Fils,yes Ben Shelton,yes Rafael Jodar",
-   "option": "yes Jiri Lehecka,yes Flavio Cobolli,yes Arthur Fils,yes Ben Shelton,yes Rafael Jodar",
-   "closes": "2026-11-12T10:00:00Z",
-   "yesAsk": 0.18,
-   "noAsk": 1,
-   "volume": 1201.29,
-   "rules": ""
+   "ticker": "KXALBUMEQUIV-SWALLOW26NOV12-1K",
+   "event": "KXALBUMEQUIV-SWALLOW26NOV12",
+   "category": "Entertainment",
+   "title": "Will SWALLOW! by Shygirl have above 1000 Album Equivalent Units during the November 06, 2026 - November 12, 2026 tracking week?",
+   "option": "Above 1K",
+   "closes": "2026-11-15T15:00:00Z",
+   "yesAsk": 0.93,
+   "noAsk": 0.1,
+   "volume": 1197.48,
+   "rules": "If SWALLOW! by Shygirl has above 1K Album Equivalent Units during the November 06, 2026 - November 12, 2026 , tracking week, then the market resolves to Yes."
   },
   {
    "ticker": "KXART-RENCAN18NOV26-35000000",
@@ -2081,18 +2105,6 @@
    "rules": "If FRESH by Lil Baby has above 120K Album Equivalent Units during the November 06, 2026 - November 12, 2026, tracking week, then the market resolves to Yes."
   },
   {
-   "ticker": "KXACQANNOUNCECART-27MAR01-NOV16",
-   "event": "KXACQANNOUNCECART-27MAR01",
-   "category": "Financials",
-   "title": "Will DoorDash announce acquisition of Instacart (Maplebear) before Nov 16, 2026?",
-   "option": "Before Nov 16, 2026",
-   "closes": "2026-11-16T04:59:00Z",
-   "yesAsk": 0.8,
-   "noAsk": 0.28,
-   "volume": 1150.57,
-   "rules": "If DoorDash announces an agreement to acquire Instacart (Maplebear) before Nov 16, 2026, then the market resolves to Yes."
-  },
-  {
    "ticker": "KXUSLEI-26NOV19-T0.0",
    "event": "KXUSLEI-26NOV19",
    "category": "Economics",
@@ -2111,10 +2123,22 @@
    "title": "Will Dream Fatigue by Rex Orange County have above 30000 Album Equivalent Units during the November 06, 2026 - November 12, 2026 tracking week?",
    "option": "Above 30K",
    "closes": "2026-11-15T15:00:00Z",
-   "yesAsk": 0.22,
-   "noAsk": 0.85,
+   "yesAsk": 0.17,
+   "noAsk": 0.9,
    "volume": 1117.03,
    "rules": "If Dream Fatigue by Rex Orange County has above 30K Album Equivalent Units during the November 06, 2026 - November 12, 2026, tracking week, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXALBUMEQUIV-FRE26NOV12-60K",
+   "event": "KXALBUMEQUIV-FRE26NOV12",
+   "category": "Entertainment",
+   "title": "Will FRESH by Lil Baby have above 60000 Album Equivalent Units during the November 06, 2026 - November 12, 2026 tracking week?",
+   "option": "Above 60K",
+   "closes": "2026-11-15T15:00:00Z",
+   "yesAsk": 0.73,
+   "noAsk": 0.35,
+   "volume": 1112.62,
+   "rules": "If FRESH by Lil Baby has above 60K Album Equivalent Units during the November 06, 2026 - November 12, 2026, tracking week, then the market resolves to Yes."
   },
   {
    "ticker": "KXHOUSINGSTART-26NOV18-T1.350",
@@ -2123,7 +2147,7 @@
    "title": "Will US housing starts for October 2026 be above 1.350M?",
    "option": "Above 1.350M",
    "closes": "2026-11-18T13:29:00Z",
-   "yesAsk": 0.55,
+   "yesAsk": 0.93,
    "noAsk": 0.99,
    "volume": 1111.31,
    "rules": "If US housing starts for October 2026 is above 1.350M, then the market resolves to Yes."
@@ -2135,10 +2159,22 @@
    "title": "Will AP call the 2026 U.S. House majority before 12AM ET on Nov 14, 2026?",
    "option": "Before Nov 14",
    "closes": "2026-11-14T05:00:00Z",
-   "yesAsk": 0.92,
-   "noAsk": 0.1,
+   "yesAsk": 0.91,
+   "noAsk": 0.11,
    "volume": 1102.9,
    "rules": "If the Associated Press makes its first definitive call of a winner for the 2026 U.S. House majority before 12AM ET on Nov 14, 2026, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXEOWEEK-26OCT31-1",
+   "event": "KXEOWEEK-26OCT31",
+   "category": "Politics",
+   "title": "Will the President sign more than 1 Executive Orders between Oct 25, 2026 and Oct 31, 2026?",
+   "option": "Above 1",
+   "closes": "2026-11-14T14:00:00Z",
+   "yesAsk": 0.31,
+   "noAsk": 0.72,
+   "volume": 1090.83,
+   "rules": "If the President signs above 1 executive orders during Oct 25, 2026 to Oct 31, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXEHSALES-26NOV12-T4.10",
@@ -2147,8 +2183,8 @@
    "title": "Will US existing home sales for October 2026 be above 4.10M?",
    "option": "Above 4.10M",
    "closes": "2026-11-12T14:59:00Z",
-   "yesAsk": 0.19,
-   "noAsk": 0.87,
+   "yesAsk": 0.7,
+   "noAsk": 0.86,
    "volume": 1053.35,
    "rules": "If US existing home sales for October 2026 (seasonally adjusted annual rate, millions of homes) is above 4.10M, then the market resolves to Yes."
   },
@@ -2159,22 +2195,10 @@
    "title": "Will US existing home sales for October 2026 be above 4.00M?",
    "option": "Above 4.00M",
    "closes": "2026-11-12T14:59:00Z",
-   "yesAsk": 0.28,
-   "noAsk": 0.82,
+   "yesAsk": 0.81,
+   "noAsk": 0.91,
    "volume": 1027.7,
    "rules": "If US existing home sales for October 2026 (seasonally adjusted annual rate, millions of homes) is above 4.00M, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXMVECROSSCATEGORY-S2026RAMEHVY7HKML7G7R-77LQ4IKUX",
-   "event": "KXMVECROSSCATEGORY-S2026RAMEHVY7HKML7G7R",
-   "category": "Exotics",
-   "title": "yes Taylor Fritz,yes Jiri Lehecka,yes Ben Shelton,yes Elena Rybakina",
-   "option": "yes Taylor Fritz,yes Jiri Lehecka,yes Ben Shelton,yes Elena Rybakina",
-   "closes": "2026-11-12T10:00:00Z",
-   "yesAsk": 0.56,
-   "noAsk": 1,
-   "volume": 1001,
-   "rules": ""
   },
   {
    "ticker": "KXALBUMEQUIV-SWALLOW26NOV12-3K",
@@ -2189,18 +2213,6 @@
    "rules": "If SWALLOW! by Shygirl has above 3K Album Equivalent Units during the November 06, 2026 - November 12, 2026 , tracking week, then the market resolves to Yes."
   },
   {
-   "ticker": "KXALBUMEQUIV-FRE26NOV12-340K",
-   "event": "KXALBUMEQUIV-FRE26NOV12",
-   "category": "Entertainment",
-   "title": "Will FRESH by Lil Baby have above 340000 Album Equivalent Units during the November 06, 2026 - November 12, 2026 tracking week?",
-   "option": "Above 340K",
-   "closes": "2026-11-15T15:00:00Z",
-   "yesAsk": 0.04,
-   "noAsk": 1,
-   "volume": 943.25,
-   "rules": "If FRESH by Lil Baby has above 340K Album Equivalent Units during the November 06, 2026 - November 12, 2026, tracking week, then the market resolves to Yes."
-  },
-  {
    "ticker": "KXART-CEZARL18NOV26-150000000",
    "event": "KXART-CEZARL18NOV26",
    "category": "Entertainment",
@@ -2209,8 +2221,20 @@
    "closes": "2026-11-19T15:00:00Z",
    "yesAsk": 0.43,
    "noAsk": 0.66,
-   "volume": 920,
+   "volume": 942.36,
    "rules": "If the lot sold price of the Arlequin by Paul Cézanne on Sotheby's is above $150M during the live auction beginning November 18, 2026 at 6:00 PM EST (Legendary: The Blaquier-Arrieta Collection), then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXUE-CHN26OCT-5.3",
+   "event": "KXUE-CHN26OCT",
+   "category": "Economics",
+   "title": "China unemployment rate in October 2026?",
+   "option": "Above 5.3%",
+   "closes": "2026-11-16T02:55:00Z",
+   "yesAsk": 0.53,
+   "noAsk": 0.96,
+   "volume": 940.13,
+   "rules": "If the China unemployment rate is above 5.3% for October 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXALBUMEQUIV-DREAM26NOV12-25K",
@@ -2231,46 +2255,10 @@
    "title": "Will the MoM percent change in The Conference Board Leading Economic Index for the U.S. for October 2026 be above 0.3%?",
    "option": "Above 0.3%",
    "closes": "2026-11-19T14:59:00Z",
-   "yesAsk": 0.08,
+   "yesAsk": 0.09,
    "noAsk": 0.99,
    "volume": 903,
    "rules": "If the MoM percent change in The Conference Board Leading Economic Index for the U.S. for October 2026 is above \n\n0.3%, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXUE-CHN26OCT-5.3",
-   "event": "KXUE-CHN26OCT",
-   "category": "Economics",
-   "title": "China unemployment rate in October 2026?",
-   "option": "Above 5.3%",
-   "closes": "2026-11-16T02:55:00Z",
-   "yesAsk": 0.67,
-   "noAsk": 0.85,
-   "volume": 889.13,
-   "rules": "If the China unemployment rate is above 5.3% for October 2026, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXUSPPIYOY-26NOV13-T7.0",
-   "event": "KXUSPPIYOY-26NOV13",
-   "category": "Economics",
-   "title": "Will the United States Producer Price Index for final demand for October 2026 be above 7.0%?",
-   "option": "Above 7.0%",
-   "closes": "2026-11-13T13:29:00Z",
-   "yesAsk": 0.51,
-   "noAsk": 0.72,
-   "volume": 889.08,
-   "rules": "If the year-over-year percent change in the United States Producer Price Index for final demand for October 2026 is above 7.0%, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXEOWEEK-26OCT31-1",
-   "event": "KXEOWEEK-26OCT31",
-   "category": "Politics",
-   "title": "Will the President sign more than 1 Executive Orders between Oct 25, 2026 and Oct 31, 2026?",
-   "option": "Above 1",
-   "closes": "2026-11-14T14:00:00Z",
-   "yesAsk": 0.34,
-   "noAsk": 0.67,
-   "volume": 887.78,
-   "rules": "If the President signs above 1 executive orders during Oct 25, 2026 to Oct 31, 2026, then the market resolves to Yes."
   },
   {
    "ticker": "KXUSLEI-26NOV19-T0.2",
@@ -2309,30 +2297,6 @@
    "rules": "If REBECCA by Becky Hill has above 16M streams during the November 13, 2026 - November 19, 2026, tracking week, then the market resolves to Yes."
   },
   {
-   "ticker": "KXBURNHAMMENTION-26OCT28-TAX",
-   "event": "KXBURNHAMMENTION-26OCT28",
-   "category": "Mentions",
-   "title": "What will Andy Burnham say during next Prime Minister's Questions (UK House of Commons)?",
-   "option": "Tax",
-   "closes": "2026-11-18T16:00:00Z",
-   "yesAsk": 0.1,
-   "noAsk": 1,
-   "volume": 828.79,
-   "rules": "If \n Andy Burnham says Tax as part of next Prime Minister's Questions (UK House of Commons)\n, then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXALBUMEQUIV-SWALLOW26NOV12-10K",
-   "event": "KXALBUMEQUIV-SWALLOW26NOV12",
-   "category": "Entertainment",
-   "title": "Will SWALLOW! by Shygirl have above 10000 Album Equivalent Units during the November 06, 2026 - November 12, 2026 tracking week?",
-   "option": "Above 10K",
-   "closes": "2026-11-15T15:00:00Z",
-   "yesAsk": 0.05,
-   "noAsk": 0.99,
-   "volume": 781.53,
-   "rules": "If SWALLOW! by Shygirl has above 10K Album Equivalent Units during the November 06, 2026 - November 12, 2026 , tracking week, then the market resolves to Yes."
-  },
-  {
    "ticker": "KXALBUMSTREAMS-DREAM26NOV12-14.0M",
    "event": "KXALBUMSTREAMS-DREAM26NOV12",
    "category": "Entertainment",
@@ -2355,6 +2319,18 @@
    "noAsk": 1,
    "volume": 757.73,
    "rules": "If REBECCA by Becky Hill has above 10M streams during the November 13, 2026 - November 19, 2026, tracking week, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXEARNINGSMENTIONRDDT-26OCT29-REDD",
+   "event": "KXEARNINGSMENTIONRDDT-26OCT29",
+   "category": "Mentions",
+   "title": "What will Reddit, Inc. say during their next earnings call?",
+   "option": "Reddit Pro",
+   "closes": "2026-11-12T15:00:00Z",
+   "yesAsk": 0.4,
+   "noAsk": 0.65,
+   "volume": 751.03,
+   "rules": "If Reddit Pro is said by any Reddit, Inc. representative (including the operator of the call) during the next Reddit, Inc. live earnings call or official broadcast (including the Q+A), then the market resolves to Yes."
   },
   {
    "ticker": "KXART-VANCHAT18NOV26-180000000",
@@ -2391,18 +2367,6 @@
    "noAsk": 0.99,
    "volume": 700,
    "rules": "If the lot sold price of the Le Jardin des Tuileries by Claude Monet on Sotheby's is above $30M during the live auction beginning November 18, 2026 at 6:00 PM EST (Legendary: The Blaquier-Arrieta Collection), then the market resolves to Yes."
-  },
-  {
-   "ticker": "KXEARNINGSMENTIONRDDT-26OCT29-REDD",
-   "event": "KXEARNINGSMENTIONRDDT-26OCT29",
-   "category": "Mentions",
-   "title": "What will Reddit, Inc. say during their next earnings call?",
-   "option": "Reddit Pro",
-   "closes": "2026-11-12T15:00:00Z",
-   "yesAsk": 0.38,
-   "noAsk": 0.65,
-   "volume": 682.49,
-   "rules": "If Reddit Pro is said by any Reddit, Inc. representative (including the operator of the call) during the next Reddit, Inc. live earnings call or official broadcast (including the Q+A), then the market resolves to Yes."
   },
   {
    "ticker": "KXEARNINGSMENTIONHIMS-26NOV02-EUCA",
@@ -2447,8 +2411,8 @@
    "title": "Fear & Greed Index on Nov 6, 2026?",
    "option": "Extreme Fear",
    "closes": "2026-11-13T21:00:00Z",
-   "yesAsk": 0.19,
-   "noAsk": 0.83,
+   "yesAsk": 0.17,
+   "noAsk": 0.84,
    "volume": 646.01,
    "rules": "If the value at 4:00 PM ET on Nov 6, 2026 is Extreme Fear, then the market resolves to Yes."
   },
@@ -2459,8 +2423,8 @@
    "title": "Will Killington open before Nov 8, 2026?",
    "option": "Before Nov 8, 2026",
    "closes": "2026-11-14T15:00:00Z",
-   "yesAsk": 0.35,
-   "noAsk": 0.84,
+   "yesAsk": 0.83,
+   "noAsk": 0.86,
    "volume": 631.54,
    "rules": "If the first calendar day in the 2026-27 winter season on which Killington Resort conducts Seasonal Opening Operations occurs before Nov 8, 2026, then the market resolves to Yes."
   },
@@ -2537,18 +2501,6 @@
    "rules": "If The Hunger Games: Sunrise on the Reaping - The Album by The Hunger Games has above 40K Album Equivalent Units during the November 13, 2026 - November 19, 2026, tracking week, then the market resolves to Yes."
   },
   {
-   "ticker": "KXMVECROSSCATEGORY-S2026FEPJJA27JVQDIDVS-WUVP5DB7H",
-   "event": "KXMVECROSSCATEGORY-S2026FEPJJA27JVQDIDVS",
-   "category": "Exotics",
-   "title": "yes Taylor Fritz,yes Jiri Lehecka,yes Arthur Fils,yes Tommy Paul,yes Ben Shelton,yes Elena Rybakina,yes Katerina Siniakova",
-   "option": "yes Taylor Fritz,yes Jiri Lehecka,yes Arthur Fils,yes Tommy Paul,yes Ben Shelton,yes Elena Rybakina,yes Katerina Siniakova",
-   "closes": "2026-11-12T12:00:00Z",
-   "yesAsk": 0.22,
-   "noAsk": 1,
-   "volume": 553.13,
-   "rules": ""
-  },
-  {
    "ticker": "KXART-MONJAR18NOV26-20000000",
    "event": "KXART-MONJAR18NOV26",
    "category": "Entertainment",
@@ -2609,6 +2561,18 @@
    "rules": "If Carnaval De Luz by U2 has above 14M streams during the November 13, 2026 - November 19, 2026, tracking week, then the market resolves to Yes."
   },
   {
+   "ticker": "KXMVECROSSCATEGORY-S20265NOIWCKPHLWTO2VF-XSR7XXJ46",
+   "event": "KXMVECROSSCATEGORY-S20265NOIWCKPHLWTO2VF",
+   "category": "Exotics",
+   "title": "yes Yi Zhou,yes Jiri Lehecka,yes Carlos Alcaraz,yes Novak Djokovic,yes Taylor Fritz,yes Arthur Fils,yes Daniil Medvedev,yes Ben Shelton,yes Alexander Zverev,yes Fiona Ferro,yes Elena Rybakina,yes Naomi Osaka,yes Zeynep Sonmez,yes Lilli Tagger",
+   "option": "yes Yi Zhou,yes Jiri Lehecka,yes Carlos Alcaraz,yes Novak Djokovic,yes Taylor Fritz,yes Arthur Fils,yes Daniil Medvedev,yes Ben Shelton,yes Alexander Zverev,yes Fiona Ferro,yes Elena Rybakina,yes Naomi Osaka,yes Zeynep Sonmez,yes Lilli Tagger",
+   "closes": "2026-11-12T14:10:00Z",
+   "yesAsk": 0.05,
+   "noAsk": 1,
+   "volume": 519.48,
+   "rules": ""
+  },
+  {
    "ticker": "KXALBUMEQUIV-HUN26NOV19-25K",
    "event": "KXALBUMEQUIV-HUN26NOV19",
    "category": "Entertainment",
@@ -2633,27 +2597,15 @@
    "rules": "If Spotify releases 2026 Wrapped to the public before Nov 27, 2026, then the market resolves to Yes."
   },
   {
-   "ticker": "KXMVECROSSCATEGORY-S2026QMVMXDQ37ZYBY474-LSDVYSMYA",
-   "event": "KXMVECROSSCATEGORY-S2026QMVMXDQ37ZYBY474",
-   "category": "Exotics",
-   "title": "yes Ben Shelton,yes Philadelphia",
-   "option": "yes Ben Shelton,yes Philadelphia",
-   "closes": "2026-11-12T10:00:00Z",
-   "yesAsk": 0.53,
-   "noAsk": 1,
-   "volume": 501.5,
-   "rules": ""
-  },
-  {
    "ticker": "KXCBDECISIONKOREA-26NOV25-H25",
    "event": "KXCBDECISIONKOREA-26NOV25",
    "category": "Economics",
    "title": "Will the Bank of Korea hike 1-25bps at the November Monetary Policy Board meeting?",
    "option": "Hike 1-25bps",
    "closes": "2026-11-26T01:59:00Z",
-   "yesAsk": 0.77,
+   "yesAsk": 0.78,
    "noAsk": 0.29,
-   "volume": 487.15,
+   "volume": 492.15,
    "rules": "If the Bank of Korea takes the action of hike 1-25bps at its November Monetary Policy Board meeting, then the market resolves to Yes."
   },
   {
@@ -2664,7 +2616,7 @@
    "option": "Yes",
    "closes": "2026-11-18T04:59:00Z",
    "yesAsk": 0.73,
-   "noAsk": 0.3,
+   "noAsk": 0.32,
    "volume": 485.77,
    "rules": "If the League City proposition to continue using Flock cameras passes, then the market resolves to Yes."
   },
@@ -2675,10 +2627,34 @@
    "title": "Will US PPI MoM for October 2026 be above 0.9%?",
    "option": "Above 0.9%",
    "closes": "2026-11-13T13:29:00Z",
-   "yesAsk": 0.1,
+   "yesAsk": 0.11,
    "noAsk": 1,
    "volume": 485,
    "rules": "If US PPI MoM for October 2026 is strictly above \n\n0.9\n\n, then the market resolves to Yes."
+  },
+  {
+   "ticker": "KXMVECROSSCATEGORY-S20264LDKVAVVMKSOIPIE-QEMXNPS6A",
+   "event": "KXMVECROSSCATEGORY-S20264LDKVAVVMKSOIPIE",
+   "category": "Exotics",
+   "title": "yes Jaime Munguia,yes David Picasso",
+   "option": "yes Jaime Munguia,yes David Picasso",
+   "closes": "2026-11-14T18:40:00Z",
+   "yesAsk": 0.77,
+   "noAsk": 1,
+   "volume": 481.25,
+   "rules": ""
+  },
+  {
+   "ticker": "KXSNOWMENTION-26NOV03-COCO",
+   "event": "KXSNOWMENTION-26NOV03",
+   "category": "Mentions",
+   "title": "What will Sridhar Ramaswamy say during Snowflake Expedition 2026 — The Next Frontier: Driving Efficient Intelligence in the Agentic Enterprise originally scheduled for November 3, 2026?",
+   "option": "CoCo",
+   "closes": "2026-11-17T15:00:00Z",
+   "yesAsk": 0.49,
+   "noAsk": 0.55,
+   "volume": 474.28,
+   "rules": "If \n Sridhar Ramaswamy says CoCo as part of Snowflake Expedition 2026 — The Next Frontier: Driving Efficient Intelligence in the Agentic Enterprise originally scheduled for November 3, 2026\n, then the market resolves to Yes."
   },
   {
    "ticker": "KXUSHOME-26NOV25-T395000",
@@ -2735,7 +2711,7 @@
    "title": "Will US PPI MoM for October 2026 be above 1.1%?",
    "option": "Above 1.1%",
    "closes": "2026-11-13T13:29:00Z",
-   "yesAsk": 0.1,
+   "yesAsk": 0.11,
    "noAsk": 0.93,
    "volume": 414,
    "rules": "If US PPI MoM for October 2026 is strictly above \n\n1.1\n\n, then the market resolves to Yes."
@@ -2843,9 +2819,9 @@
    "title": "What will Reddit, Inc. say during their next earnings call?",
    "option": "Reddit Max",
    "closes": "2026-11-12T15:00:00Z",
-   "yesAsk": 0.87,
-   "noAsk": 0.23,
-   "volume": 287.74,
+   "yesAsk": 0.84,
+   "noAsk": 0.25,
+   "volume": 298.74,
    "rules": "If Reddit Max is said by any Reddit, Inc. representative (including the operator of the call) during the next Reddit, Inc. live earnings call or official broadcast (including the Q+A), then the market resolves to Yes."
   },
   {
@@ -2891,9 +2867,9 @@
    "title": "Will Stowe Mountain Resort open before Nov 22, 2026?",
    "option": "Before Nov 22, 2026",
    "closes": "2026-11-22T04:59:00Z",
-   "yesAsk": 0.79,
+   "yesAsk": 0.78,
    "noAsk": 0.51,
-   "volume": 218.48,
+   "volume": 219.67,
    "rules": "If Stowe Mountain Resort conducts Seasonal Opening Operations in the 26/27 winter season before Nov 22, 2026, then the market resolves to Yes."
   },
   {
@@ -2927,7 +2903,7 @@
    "title": "Will the Bank of Korea cut 1-25bps at the November Monetary Policy Board meeting?",
    "option": "Cut 1-25bps",
    "closes": "2026-11-26T01:59:00Z",
-   "yesAsk": 0.06,
+   "yesAsk": 0.07,
    "noAsk": 1,
    "volume": 202.02,
    "rules": "If the Bank of Korea takes the action of cut 1-25bps at its November Monetary Policy Board meeting, then the market resolves to Yes."
@@ -2945,26 +2921,14 @@
    "rules": "If Devotion by David Kushner has above 10K Album Equivalent Units during the November 13, 2026 - November 19, 2026, tracking week, then the market resolves to Yes."
   },
   {
-   "ticker": "KXMVECROSSCATEGORY-S2026HLGRYVMLZZWGYDF2-RTCLZSMPN",
-   "event": "KXMVECROSSCATEGORY-S2026HLGRYVMLZZWGYDF2",
-   "category": "Exotics",
-   "title": "yes Jiri Lehecka,yes Rafael Jodar",
-   "option": "yes Jiri Lehecka,yes Rafael Jodar",
-   "closes": "2026-11-12T10:00:00Z",
-   "yesAsk": 0.66,
-   "noAsk": 1,
-   "volume": 157.01,
-   "rules": ""
-  },
-  {
    "ticker": "KXALBUMEQUIV-CARNAVAL26NOV19-90K",
    "event": "KXALBUMEQUIV-CARNAVAL26NOV19",
    "category": "Entertainment",
    "title": "Will Carnaval de Luz by U2 have above 90000 Album Equivalent Units during the November 13, 2026 - November 19, 2026 tracking week?",
    "option": "Above 90K",
    "closes": "2026-11-22T15:00:00Z",
-   "yesAsk": 0.09,
-   "noAsk": 0.95,
+   "yesAsk": 0.08,
+   "noAsk": 0.96,
    "volume": 135.25,
    "rules": "If Carnaval de Luz by U2 has above 90K Album Equivalent Units during the November 13, 2026 - November 19, 2026, tracking week, then the market resolves to Yes."
   },
@@ -2987,8 +2951,8 @@
    "title": "Fear & Greed Index on Nov 6, 2026?",
    "option": "Greed",
    "closes": "2026-11-13T21:00:00Z",
-   "yesAsk": 0.13,
-   "noAsk": 0.88,
+   "yesAsk": 0.11,
+   "noAsk": 0.91,
    "volume": 126.25,
    "rules": "If the value at 4:00 PM ET on Nov 6, 2026 is Greed, then the market resolves to Yes."
   },

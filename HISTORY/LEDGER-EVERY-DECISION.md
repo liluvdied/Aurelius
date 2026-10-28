@@ -1,9 +1,15 @@
-# Every decision Love has made - rebuilt 2026-10-28T22:00:15.278608+00:00
+# Every decision Love has made - rebuilt 2026-10-28T22:15:15.753008+00:00
 
-1252 decisions with Love's words or card picks, out of 1968 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1253 decisions with Love's words or card picks, out of 1971 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T22:15:03.710433+00:00  ·  diary line 2435
+- Love: “All Kalshi books, 5M frozen”
+- Love: “hun she did it again pleaseeeee stop having her trade into unbroken bands / price needs to be on the same side of the break”
+- Card pick: **All Kalshi books, 5M frozen**
+- Full entry: 2026-10-28T22:15:03.710433+00:00 THAW (fix397b THE BLUE VWAP WALL reads the fresh VWAP / fresh +1σ first (after the daily reset her blue VWAP is the fresh line) - bug fix inside Love 2:46 PM PT "we need to keep the blue vwap a wall on all books when bands are small" + card "All Kalshi books, 5M frozen"; trigger 3:00:25 PM short $27 over fresh VWAP 81245 (Love 3:01 PM: "hun she did it again pleaseeeee stop having her trade into unbroken bands / price needs to be on the same side of the break"))
 
 ## 2026-10-28T22:00:02.432304+00:00  ·  diary line 2432  ·  fix396, fix397
 - Love: “Yes, nearer half only”

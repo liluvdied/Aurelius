@@ -7601,3 +7601,58 @@
 {"at":"2026-10-28T21:52:42.066Z","lane":"ogp5-c5","ticker":"KXBTC15M-26OCT281800-00","side":"down","kind":"break-down","band":"fresh VWAP","bandPx":81239.59,"lastClose":81300.23,"waiting":"5m close"}
 {"at":"2026-10-28T22:00:16.829Z","lane":"ogp5-c1","ticker":"KXBTC15M-26OCT281815-15","side":"down","kind":"break-down","band":"fresh VWAP","bandPx":81245.15,"lastClose":81288.54,"waiting":"1m close"}
 {"at":"2026-10-28T22:00:16.831Z","lane":"ogp5-c5","ticker":"KXBTC15M-26OCT281815-15","side":"down","kind":"break-down","band":"fresh VWAP","bandPx":81245.15,"lastClose":81288.54,"waiting":"5m close"}
+{"at":"2026-10-28T22:01:01.092Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"5m PP","bandPx":4067.01,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:01:14.876Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"green-reject","band":"5m PP","bandPx":4067.01,"lastClose":4067,"waiting":"1m close"}
+{"at":"2026-10-28T22:01:14.876Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"green-reject","band":"5m PP","bandPx":4067.01,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:01:16.965Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"red-reject","band":"+2σ","bandPx":4067.89,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:02:20.823Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"+2σ","bandPx":4067.89,"lastClose":4067.41,"waiting":"1m close"}
+{"at":"2026-10-28T22:02:20.825Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"+2σ","bandPx":4067.89,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:02:23.966Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"red-reject","band":"+2σ","bandPx":4067.89,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:02:59.705Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"5m PP","bandPx":4067.06,"lastClose":4067.41,"waiting":"1m close"}
+{"at":"2026-10-28T22:02:59.707Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"5m PP","bandPx":4067.06,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:03:17.704Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"5m PP","bandPx":4066.88,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:03:35.230Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"5m PP","bandPx":4066.88,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:04:06.168Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"5m PP","bandPx":4066.58,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:04:26.294Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"5m PP","bandPx":4066.58,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:04:41.434Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"5m PP","bandPx":4066.58,"lastClose":0,"waiting":"5m close"}
+{"at":"2026-10-28T22:05:07.569Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"+1σ","bandPx":4065.07,"lastClose":4064.92,"waiting":"1m close"}
+{"at":"2026-10-28T22:05:07.570Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"+1σ","bandPx":4065.07,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:05:34.564Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.28,"lastClose":4064.92,"waiting":"1m close"}
+{"at":"2026-10-28T22:05:34.565Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.28,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:05:50.102Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.28,"lastClose":4064.92,"waiting":"1m close"}
+{"at":"2026-10-28T22:05:50.104Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.28,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:06:15.208Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.41,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:06:32.734Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.41,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:06:49.362Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.41,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:07:05.418Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.53,"lastClose":4066.53,"waiting":"1m close"}
+{"at":"2026-10-28T22:07:05.419Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.53,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:07:25.352Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.53,"lastClose":4066.53,"waiting":"1m close"}
+{"at":"2026-10-28T22:07:25.353Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.53,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:07:44.917Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.53,"lastClose":4066.53,"waiting":"1m close"}
+{"at":"2026-10-28T22:07:44.918Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.53,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:08:59.376Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.51,"lastClose":4066.46,"waiting":"1m close"}
+{"at":"2026-10-28T22:08:59.377Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"break-up","band":"5m PP","bandPx":4066.51,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:09:44.484Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"up","kind":"green-reject","band":"+1σ","bandPx":4065.07,"lastClose":4064.92,"waiting":"5m close"}
+{"at":"2026-10-28T22:10:04.232Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"1m close"}
+{"at":"2026-10-28T22:10:04.233Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:10:31.432Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"1m close"}
+{"at":"2026-10-28T22:10:31.433Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:10:54.385Z","lane":"ogp5-c1","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"1m close"}
+{"at":"2026-10-28T22:10:54.386Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:11:15.116Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:11:32.469Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:11:47.629Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:12:06.960Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:12:30.186Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:12:45.785Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:13:12.751Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:13:36.156Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:13:52.192Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:14:07.433Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:14:27.626Z","lane":"ogp5-c5","ticker":"KXGOLD15M-26OCT292215-15","side":"down","kind":"break-down","band":"+1σ","bandPx":4065.07,"lastClose":4065.4,"waiting":"5m close"}
+{"at":"2026-10-28T22:15:06.569Z","lane":"ogp5-c1","ticker":"KXBTC15M-26OCT281830-30","side":"down","kind":"break-down","band":"5m PP","bandPx":81216.33,"lastClose":81221.75,"waiting":"1m close"}
+{"at":"2026-10-28T22:15:06.570Z","lane":"ogp5-c5","ticker":"KXBTC15M-26OCT281830-30","side":"down","kind":"break-down","band":"5m PP","bandPx":81216.33,"lastClose":81221.75,"waiting":"5m close"}
+{"at":"2026-10-28T22:15:21.963Z","lane":"ogp5-c1","ticker":"KXBTC15M-26OCT281830-30","side":"down","kind":"break-down","band":"5m PP","bandPx":81216.33,"lastClose":81221.75,"waiting":"1m close"}
+{"at":"2026-10-28T22:15:21.965Z","lane":"ogp5-c5","ticker":"KXBTC15M-26OCT281830-30","side":"down","kind":"break-down","band":"5m PP","bandPx":81216.33,"lastClose":81221.75,"waiting":"5m close"}
+{"at":"2026-10-28T22:15:37.200Z","lane":"ogp5-c1","ticker":"KXBTC15M-26OCT281830-30","side":"down","kind":"break-down","band":"5m PP","bandPx":81216.33,"lastClose":81221.75,"waiting":"1m close"}
+{"at":"2026-10-28T22:15:37.201Z","lane":"ogp5-c5","ticker":"KXBTC15M-26OCT281830-30","side":"down","kind":"break-down","band":"5m PP","bandPx":81216.33,"lastClose":81221.75,"waiting":"5m close"}

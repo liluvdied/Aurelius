@@ -1,97 +1,22 @@
 {
- "at": "2026-10-28T21:58:30.971Z",
+ "at": "2026-10-28T22:08:31.302Z",
  "cities": [
-  {
-   "city": "LAX",
-   "station": "KLAX",
-   "hourLocal": 14,
-   "offset": -0.30000000000001137,
-   "lessons": 18,
-   "maxSoFar": 75.2,
-   "mu": 74.9,
-   "sigma": 1.4,
-   "best": {
-    "buckets": [
-     "73° to 74°",
-     "77° or above"
-    ],
-    "cost": 0.02,
-    "p": 0.51,
-    "edge": 0.49
-   }
-  },
   {
    "city": "DEN",
    "station": "KDEN",
-   "hourLocal": 15,
+   "hourLocal": 16,
    "offset": 0.09999999999999432,
    "lessons": 17,
    "maxSoFar": 66.2,
    "mu": 66.3,
-   "sigma": 1.0999999999999999,
-   "best": {
-    "buckets": [
-     "67° to 68°",
-     "69° to 70°"
-    ],
-    "cost": 0.07,
-    "p": 0.43,
-    "edge": 0.35
-   }
-  },
-  {
-   "city": "MIA",
-   "station": "KMIA",
-   "hourLocal": 17,
-   "offset": 0.539999999999992,
-   "lessons": 20,
-   "maxSoFar": 87.8,
-   "mu": 88.3,
    "sigma": 0.8,
    "best": {
     "buckets": [
-     "90° or above"
+     "67° to 68°"
     ],
-    "cost": 0.01,
-    "p": 0.07,
-    "edge": 0.06
-   }
-  },
-  {
-   "city": "CHI",
-   "station": "KMDW",
-   "hourLocal": 16,
-   "offset": -0.09999999999999432,
-   "lessons": 17,
-   "maxSoFar": 75.2,
-   "mu": 75.9,
-   "sigma": 0.8,
-   "best": {
-    "buckets": [
-     "74° to 75°",
-     "78° to 79°"
-    ],
-    "cost": 0.02,
-    "p": 0.33,
-    "edge": 0.31
-   }
-  },
-  {
-   "city": "AUS",
-   "station": "KAUS",
-   "hourLocal": 16,
-   "offset": 0.29999999999999716,
-   "lessons": 18,
-   "maxSoFar": 81,
-   "mu": 83.3,
-   "sigma": 0.8,
-   "best": {
-    "buckets": [
-     "84° to 85°"
-    ],
-    "cost": 0.01,
+    "cost": 0.06,
     "p": 0.4,
-    "edge": 0.39
+    "edge": 0.33
    }
   },
   {
@@ -113,6 +38,42 @@
    }
   },
   {
+   "city": "MIA",
+   "station": "KMIA",
+   "hourLocal": 18,
+   "offset": 0.539999999999992,
+   "lessons": 20,
+   "maxSoFar": 87.8,
+   "mu": 88.3,
+   "sigma": 0.8,
+   "best": {
+    "buckets": [
+     "90° or above"
+    ],
+    "cost": 0.01,
+    "p": 0.07,
+    "edge": 0.06
+   }
+  },
+  {
+   "city": "CHI",
+   "station": "KMDW",
+   "hourLocal": 17,
+   "offset": -0.09999999999999432,
+   "lessons": 17,
+   "maxSoFar": 75.2,
+   "mu": 75.1,
+   "sigma": 0.8,
+   "best": {
+    "buckets": [
+     "78° to 79°"
+    ],
+    "cost": 0.01,
+    "p": 0,
+    "edge": -0.01
+   }
+  },
+  {
    "city": "NY",
    "station": "KNYC",
    "hourLocal": 18,
@@ -129,11 +90,46 @@
     "p": 0.1,
     "edge": 0.09
    }
+  },
+  {
+   "city": "LAX",
+   "station": "KLAX",
+   "hourLocal": 15,
+   "offset": -0.30000000000001137,
+   "lessons": 18,
+   "maxSoFar": 75.2,
+   "mu": 74.9,
+   "sigma": 1.0999999999999999,
+   "best": {
+    "buckets": [
+     "73° to 74°",
+     "77° or above"
+    ],
+    "cost": 0.02,
+    "p": 0.43,
+    "edge": 0.41
+   }
+  },
+  {
+   "city": "AUS",
+   "station": "KAUS",
+   "hourLocal": 17,
+   "offset": 0.29999999999999716,
+   "lessons": 18,
+   "maxSoFar": 81,
+   "mu": 82.3,
+   "sigma": 0.8,
+   "best": {
+    "buckets": [
+     "84° to 85°"
+    ],
+    "cost": 0.04,
+    "p": 0.07,
+    "edge": 0.02
+   }
   }
  ],
- "errors": [
-  "KXHIGHUS: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHUS&status=open&lim"
- ],
+ "errors": [],
  "book": {
   "n": 117,
   "w": 6,

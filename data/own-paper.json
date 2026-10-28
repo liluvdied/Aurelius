@@ -5,10 +5,12 @@
     "asset": "btc",
     "side": "down",
     "pattern": "Open +0.5σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXBTC15M-26OCT281815-15",
     "hits": 0,
-    "multiple": 1.64
+    "multiple": 1.64,
+    "live": "missed",
+    "profit": 16
   },
   {
     "id": "KXBTC15M-26OCT281800-00:up:Open -0.5σ:own",
