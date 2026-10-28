@@ -1,5 +1,58 @@
 [
  {
+  "at": "2026-10-28T07:46:32.195Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT280400-00:ogp5",
+  "side": "down",
+  "spot": 80911.09,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $12.28, ADX 10)",
+   "zone": 12.280541996619185
+  }
+ },
+ {
+  "at": "2026-10-28T07:45:18.856Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT280400-00:ogp5",
+  "side": "up",
+  "spot": 4038.918,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $1.49, ADX 34)",
+   "zone": 1.4915934446785029
+  }
+ },
+ {
+  "at": "2026-10-28T07:45:10.051Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvrt7i9a-ksxr34:paper-247",
+  "side": "down",
+  "spot": 4038.681,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP below, $1.45 away (zone $3.00, ATR 3.64, ADX 34)",
+   "zone": 1.4915934446785029
+  }
+ },
+ {
+  "at": "2026-10-28T07:40:14.607Z",
+  "fa": "btc",
+  "src": "paper-247",
+  "row": "mvrt162k-cb1wv9:paper-247",
+  "side": "up",
+  "spot": 80834.81,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $12.12, ADX 9)",
+   "zone": 12.11677873244365
+  }
+ },
+ {
   "at": "2026-10-28T07:30:17.650Z",
   "fa": "gold",
   "src": "ogp5",
@@ -479,59 +532,6 @@
    "block": false,
    "why": "clear (zone $1.18, ADX 34)",
    "zone": 1.175794499911463
-  }
- },
- {
-  "at": "2026-10-28T05:00:34.491Z",
-  "fa": "gold",
-  "src": "ogp5",
-  "row": "KXGOLD15M-26OCT280115-15:ogp5",
-  "side": "down",
-  "spot": 4036.42,
-  "ck": {
-   "block": true,
-   "kind": "wall",
-   "why": "5m S1 below, $0.14 away (zone $1.18, ATR 2.88, ADX 34)",
-   "zone": 1.175794499911463
-  }
- },
- {
-  "at": "2026-10-28T05:00:15.550Z",
-  "fa": "btc",
-  "src": "ogp5",
-  "row": "KXBTC15M-26OCT280115-15:ogp5",
-  "side": "down",
-  "spot": 80865.92,
-  "ck": {
-   "block": false,
-   "why": "clear (zone $22.37, ADX 16)",
-   "zone": 22.36856755421324
-  }
- },
- {
-  "at": "2026-10-28T04:48:19.605Z",
-  "fa": "gold",
-  "src": "paper-247",
-  "row": "mvrmw4d2-sldr27:paper-247",
-  "side": "down",
-  "spot": 4040.048,
-  "ck": {
-   "block": false,
-   "why": "clear (zone $0.95, ADX 28)",
-   "zone": 0.9483748929218879
-  }
- },
- {
-  "at": "2026-10-28T04:47:39.861Z",
-  "fa": "gold",
-  "src": "paper-247",
-  "row": "mvrmv8mu-lo0bp3:paper-247",
-  "side": "down",
-  "spot": 4040.18,
-  "ck": {
-   "block": false,
-   "why": "clear (zone $0.95, ADX 28)",
-   "zone": 0.948375583069647
   }
  }
 ]

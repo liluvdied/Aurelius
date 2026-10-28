@@ -1,16 +1,16 @@
 {
- "at": "2026-10-28T07:33:27.954Z",
+ "at": "2026-10-28T07:50:41.082Z",
  "ok": true,
  "checks": [
   {
    "name": "records",
    "ok": true,
-   "note": "585 records"
+   "note": "591 records"
   },
   {
    "name": "feed",
    "ok": true,
-   "note": "0/1 checks with split prices"
+   "note": "no BTC checks in 15 min"
   },
   {
    "name": "rules",

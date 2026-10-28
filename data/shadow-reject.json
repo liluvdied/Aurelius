@@ -16,11 +16,11 @@
   "ask": 0.49,
   "multiple": 2.04,
   "tpPct": 78.1,
-  "peakBid": 0.48,
-  "tpHit": false,
-  "result": "open",
-  "bellProfit": null,
-  "tpProfit": null
+  "peakBid": 0.952,
+  "tpHit": true,
+  "result": "win",
+  "bellProfit": 10.41,
+  "tpProfit": 9.43
  },
  {
   "id": "KXBTC15M-26OCT280345-45:up",
@@ -39,11 +39,11 @@
   "ask": 0.46,
   "multiple": 2.17,
   "tpPct": 88.1,
-  "peakBid": 0.49,
+  "peakBid": 0.71,
   "tpHit": false,
-  "result": "open",
-  "bellProfit": null,
-  "tpProfit": null
+  "result": "loss",
+  "bellProfit": -10,
+  "tpProfit": -10
  },
  {
   "id": "KXGOLD15M-26OCT280330-30:down",

@@ -1,5 +1,29 @@
 [
   {
+    "key": "close|held-KXGOLD15M-26OCT280345-45",
+    "at": "2026-10-28T07:45:39.039Z",
+    "kind": "closed",
+    "text": "Gold long Live hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
+    "key": "close|held-KXBTC15M-26OCT280345-45",
+    "at": "2026-10-28T07:45:17.550Z",
+    "kind": "closed",
+    "text": "Bitcoin short Live hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
+    "key": "close|mvrsus06-c63el1",
+    "at": "2026-10-28T07:45:01.225Z",
+    "kind": "closed",
+    "text": "Silver long Tap-reject at +1.5σ lost. This hour has been the violent one. Size is already $10 after midnight. Same entry. Not applied."
+  },
+  {
+    "key": "close|mvrt162k-cb1wv9",
+    "at": "2026-10-28T07:45:01.225Z",
+    "kind": "closed",
+    "text": "Bitcoin long Tap-reject at +1.5σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
     "key": "pair|gold|held-KXGOLD15M-26OCT280330-30|mvrs7eiv-xuou66",
     "at": "2026-10-28T07:30:42.454Z",
     "kind": "pair",
@@ -454,29 +478,5 @@
     "at": "2026-10-28T04:15:26.855Z",
     "kind": "closed",
     "text": "Bitcoin short Live hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "pair|btc|mvrl69hl-9tidb7|held-KXBTC15M-26OCT280000-00",
-    "at": "2026-10-28T04:15:02.274Z",
-    "kind": "pair",
-    "text": "btc lost two in a row. Not an entry error. Tap-reject at +0.5σ lost. Nothing on the entry to change. It stays. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Not applied as a ban."
-  },
-  {
-    "key": "close|mvrl69hl-9tidb7",
-    "at": "2026-10-28T04:15:01.864Z",
-    "kind": "closed",
-    "text": "Bitcoin long Tap-reject at +0.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
-  },
-  {
-    "key": "close|mvrla2oe-e4pdae",
-    "at": "2026-10-28T04:14:14.300Z",
-    "kind": "closed",
-    "text": "Gold short Tap-reject at -1.5σ hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "close|mvrlcwui-ypmw40",
-    "at": "2026-10-28T04:13:32.270Z",
-    "kind": "closed",
-    "text": "Silver short Tap-reject at −1.5σ hit. Nothing to change. Same entry next time. Not applied."
   }
 ]

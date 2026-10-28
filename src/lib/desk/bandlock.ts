@@ -2585,6 +2585,11 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   if (!why && asset === "gold" && (flipRule || (togpLoose && !npPink))) { const zf = (n: string) => Number((L || []).find((l: Line) => String(l.name) === n)?.price) || 0; const r1 = zf("5m R1"), r2 = zf("5m R2"), s1 = zf("5m S1"), s2 = zf("5m S2");
     if (side === "up" && r1 > 0 && r2 > r1 && tick >= r1 && tick < r2) why = `INSIDE THE RED ZONE: long at ${tick.toFixed(2)} inside the red zone (${r1.toFixed(2)}-${r2.toFixed(2)}) - the red belongs to shorts (fix377).`;
     if (side === "down" && s1 > 0 && s2 > 0 && s1 > s2 && tick <= s1 && tick > s2) why = `INSIDE THE GREEN ZONE: short at ${tick.toFixed(2)} inside the green zone (${s2.toFixed(2)}-${s1.toFixed(2)}) - the green belongs to longs (fix377).`; }
+  // $1.50 BEFORE THE ZONE (fix378, Oct 28 2026 12:48 AM PT, Love: "we will make sure she doesn't long in the red zone or short in the green zone pls, and keep the $1.50 tolerance from it in place too" + "yesss pls hunni" + "just gold bb"):
+  // MAIN, REJECTION MODEL, NO-PINK COPY, gold - no long within $1.50 under the 5m red zone (R1), no short within $1.50 over the green zone (S1). The reach half of the Oct 20 zone wall, back beside fix377.
+  if (!why && asset === "gold" && (flipRule || (togpLoose && !npPink))) { const zg = (n: string) => Number((L || []).find((l: Line) => String(l.name) === n)?.price) || 0; const r1 = zg("5m R1"), s1 = zg("5m S1");
+    if (side === "up" && r1 > 0 && tick < r1 && r1 - tick <= 1.5) why = `$1.50 BEFORE THE RED ZONE: long $${(r1 - tick).toFixed(2)} under the red zone (${r1.toFixed(2)}) - inside her $1.50 (fix378).`;
+    if (side === "down" && s1 > 0 && tick > s1 && tick - s1 <= 1.5) why = `$1.50 BEFORE THE GREEN ZONE: short $${(tick - s1).toFixed(2)} over the green zone (${s1.toFixed(2)}) - inside her $1.50 (fix378).`; }
   // BOLLINGER BOUNCE IN HER CANDLE (Oct 22 ~7:23 AM PT, Love: "btc rejected at the bollinger of the candle she entered in / if the candle she entered in rejected at a
   // bollinger she shouldn't short" + card "Within $75"): BTC only - no short while this 5m candle's low came within $75 of the Bollinger lower and price has bounced
   // back up off it; no long while its high came within $75 of the Bollinger upper and price has dropped back off it.

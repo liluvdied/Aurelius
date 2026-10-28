@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T07:33:57.246Z",
+ "at": "2026-10-28T07:50:53.230Z",
  "ver": 30,
  "connected": true,
  "sockets": [
@@ -7,24 +7,24 @@
   true
  ],
  "btc": {
-  "c": 80823.04,
-  "ageMs": 0,
-  "exAgeMs": 3246
+  "c": 80906.77,
+  "ageMs": 567,
+  "exAgeMs": 2230
  },
  "gold": {
-  "c": 4038.14,
-  "ageMs": 1618,
-  "exAgeMs": 2246
+  "c": 4037.85,
+  "ageMs": 462,
+  "exAgeMs": null
  },
  "btc_v": {
-  "c": 80843.87,
-  "ageMs": 8888
+  "c": 80936.88,
+  "ageMs": 2171
  },
  "gold_v": {
-  "c": 4038.355,
-  "ageMs": 3259
+  "c": 4037.96,
+  "ageMs": 390
  },
  "signedIn": false,
- "signNote": "no auth token - free stream | home: http 200, 1245 KB, auth_token text 0x, escaped no, username yes, cloudflare no | chart: http 200, 74 KB, auth_token text 0x, escaped no, username yes, cloudflare no",
+ "signNote": "no auth token - free stream | home: http 200, 1246 KB, auth_token text 0x, escaped no, username yes, cloudflare no | chart: http 200, 74 KB, auth_token text 0x, escaped no, username yes, cloudflare no",
  "note": ""
 }

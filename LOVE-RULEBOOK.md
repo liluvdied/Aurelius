@@ -209,3 +209,5 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 - fix376 (Oct 28 12:23 AM PT, Love: "ohhh got you got you sorry  bb i thought you were saying she’d skip those and take the ones into it for a sec 😹💓 / yess let’s do it 💞 (to: she still only trades away from $10 levels, but waits until price is at least $1.50 clear of the level first; main + rejection + copy)"): gold main/rej/copy - trading away from a $10 level needs price $1.50 clear of it.
 
 - fix377 (Oct 28 12:33 AM PT, Love: "yes pls bb 💘 (to: bring back just the inside-the-zone part - no long inside the red, no short inside the green - for main, the rejection model and the copy)"): gold main/rej/copy - no long inside the red zone, no short inside the green zone.
+
+- fix378 (Oct 28 2026 12:49 AM PT, Love: "we will make sure she doesn't long in the red zone or short in the green zone pls, and keep the $1.50 tolerance from it in place too / yesss pls hunni / just gold bb"): gold only, main + rejection + no-pink copy - no long within $1.50 under the red zone, no short within $1.50 over the green. BTC no zone wall ("no btc wall").

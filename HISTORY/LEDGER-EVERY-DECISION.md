@@ -1,9 +1,16 @@
-# Every decision Love has made - rebuilt 2026-10-28T07:33:46.500133+00:00
+# Every decision Love has made - rebuilt 2026-10-28T07:50:00.372148+00:00
 
-1229 decisions with Love's words or card picks, out of 1913 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1230 decisions with Love's words or card picks, out of 1916 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T07:49:48Z  ·  diary line 2381  ·  fix377, fix378
+- Love: “we will make sure she doesn't long in the red zone or short in the green zone pls, and keep the $1.50 tolerance from it in place too / yesss pls hunni / just gold bb”
+- Love: “no btc wall”
+- fix377 IN HER CODE
+- fix378 IN HER CODE
+- Full entry: 2026-10-28T07:49:48Z fix378 (Oct 28 12:49 AM PT, Love: "we will make sure she doesn't long in the red zone or short in the green zone pls, and keep the $1.50 tolerance from it in place too / yesss pls hunni / just gold bb"): gold $1.50 BEFORE THE RED/GREEN ZONE (reach half of the Oct 20 zone wall) back for main/rej/copy beside fix377. BTC: no wall (Love: "no btc wall").
 
 ## 2026-10-28T07:33:34Z  ·  diary line 2378  ·  fix377
 - Love: “yes pls bb 💘 (to: bring back just the inside-the-zone part - no long inside the red, no short inside the green - for main, the rejection model and the copy)”

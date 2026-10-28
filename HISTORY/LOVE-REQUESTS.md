@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R065 - fix378: gold, main/rej/copy (+ paper delayed copy): no long within $1.50 under the 5m red zone (R1), no short within $1.50 over the green (S1). BTC untouched.
+- when: 2026-10-28T07:49:48+00:00
+- Love: "we will make sure she doesn't long in the red zone or short in the green zone pls, and keep the $1.50 tolerance from it in place too / yesss pls hunni / just gold bb"
+- books: recon-tog, recon-rej, recon-togp, recon-dlyk (paper)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "$1.50 BEFORE THE RED ZONE"}
+
 ## R064 - fix377: gold, main/rej/copy (+ paper delayed copy): no long inside the 5m red zone (R1-R2), no short inside the green zone (S2-S1). No reach.
 - when: 2026-10-28T07:33:34+00:00
 - Love: "yes pls bb 💘 (to: bring back just the inside-the-zone part - no long inside the red, no short inside the green - for main, the rejection model and the copy)"
