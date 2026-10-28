@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T03:10:34.925Z",
+ "at": "2026-10-28T03:35:43.037Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -7,12 +7,12 @@
    "matched": 0
   },
   "NCAAF": {
-   "live": 1,
-   "late": 1,
-   "matched": 1
+   "live": 0,
+   "late": 0,
+   "matched": 0
   },
   "NBA": {
-   "live": 0,
+   "live": 1,
    "late": 0,
    "matched": 0
   },
@@ -28,8 +28,8 @@
   },
   "NHL": {
    "live": 4,
-   "late": 0,
-   "matched": 0
+   "late": 1,
+   "matched": 1
   },
   "MLB": {
    "live": 1,
@@ -39,25 +39,25 @@
  },
  "watching": [
   {
-   "league": "NCAAF",
-   "game": "Sam Houston 3 @ Missouri St 24",
-   "period": 4,
-   "clock": "3:44",
-   "fav": "Missouri St",
-   "wp": 1,
-   "ask": 1,
-   "ticker": "KXNCAAFGAME-26OCT27SHSUMOSU-MOSU",
+   "league": "NHL",
+   "game": "Wild 2 @ Mammoth 0",
+   "period": 3,
+   "clock": "8:56",
+   "fav": "Wild",
+   "wp": null,
+   "ask": 0.97,
+   "ticker": "KXNHLGAME-26OCT27MINUTA-MIN",
    "matched": true
   },
   {
    "league": "MLB",
    "game": "Brewers 2 @ Rays 2",
-   "period": 10,
+   "period": 11,
    "clock": "0:00",
-   "fav": "Brewers",
-   "wp": 0.53,
-   "ask": 0.54,
-   "ticker": "KXMLBGAME-26OCT272000MILTB-MIL",
+   "fav": "Rays",
+   "wp": 0.56,
+   "ask": 0.56,
+   "ticker": "KXMLBGAME-26OCT272000MILTB-TB",
    "matched": true
   }
  ],

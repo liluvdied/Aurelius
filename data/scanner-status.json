@@ -1,6 +1,6 @@
 {
- "at": "2026-10-28T03:10:29.905Z",
- "scanned": 102,
+ "at": "2026-10-28T03:35:46.146Z",
+ "scanned": 126,
  "picked": [
   "KXTEMPDCH",
   "KXTEMPMON",
@@ -9,18 +9,18 @@
   "KXTEMPLAXHS",
   "KXTEMPCHIHS",
   "KXTEMP",
-  "KXLOWNYC",
-  "KXLOWTKSAN",
-  "KXHIGHTHOU",
-  "KXLOWTDC",
-  "KXLOWTOKC",
-  "KXLOWNY",
-  "KXHIGHTMIN",
-  "KXHIGHTLV",
-  "KXHIGHTSEA",
-  "KXHIGHTKSAN",
-  "KXHIGHOU",
-  "KXHIGHTATL"
+  "KXHIGHLAX",
+  "KXLOWTSEA",
+  "KXHIGHTSDF",
+  "KXHIGHAUS",
+  "KXLOWTTTN",
+  "KXLOWTHOU",
+  "KXHIGHTTTN",
+  "KXLOWTCHI",
+  "KXLOWTLAX",
+  "KXHIGHTEWR",
+  "KXHIGHHOU",
+  "KXLOWDEN"
  ],
  "stations": {
   "KXTEMPLAXHS": "KLAX",
@@ -70,10 +70,24 @@
   "KXLOWTNYC": "KNYC"
  },
  "rules": {},
- "flags": [],
+ "flags": [
+  {
+   "ticker": "KXTEMPCHIHS-26OCT2800-T54.99",
+   "title": "Will the temp in Chicago Metro Area be above 54.99° on Oct 28, 2026 at 12am EDT? · 55° or above",
+   "kind": "hourly",
+   "side": "yes",
+   "ask": 0.94,
+   "reason": "KORD reads 62.1F (45 min ago); the index runs -1.8F vs it (200 lessons) -> ~60.3F, cushion 4F, 24 min to the reading; strike above 54.99F",
+   "station": "KORD",
+   "closes": "2026-10-28T04:00:00Z",
+   "obsF": 62.1,
+   "series": "KXTEMPCHIHS"
+  }
+ ],
  "errors": [
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTSEA&status=open&l",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTKSAN&status=open&"
+  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTSEA&status=open&li",
+  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTSDF&status=open&l",
+  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHHOU&status=open&li"
  ],
  "cats": {
   "Financials": 1078,

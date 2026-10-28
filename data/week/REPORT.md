@@ -1,4 +1,4 @@
-# Week tracker - week of Sat Oct 24 (updated Tue 01:22 PM PT)
+# Week tracker - week of Sat Oct 24 (updated Tue 08:21 PM PT)
 
 Paper = $20 a trade per book. Live = what the desk actually did that window.
 
@@ -6,45 +6,20 @@ Paper = $20 a trade per book. Live = what the desk actually did that window.
 
 | Book | Paper trades | Paper P&L | Live filled | Not its hour | Held by a wall | Price cap / unfilled | Price floor |
 |---|---|---|---|---|---|---|---|
-| main book | 516 | -$149.86 | 143 | 344 | 27 | 1 | 0 |
-| rejection model | 509 | +$1,090.36 | 114 | 358 | 36 | 0 | 0 |
-| rejection twin +BB/zones (paper) | 437 | +$549.41 | 0 | 0 | 0 | 0 | 0 |
-| delayed twin | 515 | -$217.54 | 58 | 355 | 57 | 0 | 9 |
-| twin add-on (paper $5) | 137 | +$205.55 | 0 | 0 | 0 | 0 | 0 |
+| main book | 1817 | -$11,890.61 | 151 | 23 | 0 | 0 | 0 |
+| rejection model | 3244 | -$16,407.37 | 114 | 28 | 0 | 0 | 0 |
+| rejection twin +BB/zones (paper) | 488 | +$500.31 | 0 | 0 | 0 | 0 | 0 |
+| delayed twin | 564 | -$172.25 | 65 | 22 | 1 | 1 | 0 |
+| twin add-on (paper $5) | 148 | +$273.92 | 0 | 0 | 0 | 0 | 0 |
 
-Live fills vs paper price: average +1.6c over 316 fills (positive = live paid more).
+Live fills vs paper price: average +1.7c over 330 fills (positive = live paid more).
 
 ## 2. Walls on trial (live hours only)
 
 | Wall | Times it held a trade | Saved a loser | Cost a winner | Net for her |
 |---|---|---|---|---|
-| THE IMPOSSIBILITY | 17 | 9 (+$188.04) | 8 (+$130.84) | +$57.20 |
-| your hand traded this window - it stays yours | 6 | 4 (+$83.61) | 2 (+$26.81) | +$56.80 |
-| BREAK INTO A ZONE | 4 | 3 (+$63.08) | 1 (+$9.00) | +$54.08 |
-| BOLLINGER CUSHION | 3 | 3 (+$44.26) | 0 (+$0.00) | +$44.26 |
-| TARGET PAST A BAND | 8 | 5 (+$91.38) | 3 (+$65.99) | +$25.39 |
-| BACK UNDER BY $10: this 5m candle poked over 80307.58 and pr | 1 | 1 (+$21.37) | 0 (+$0.00) | +$21.37 |
-| PINK TO GREEN | 1 | 1 (+$21.05) | 0 (+$0.00) | +$21.05 |
-| THE $10 LEVEL: short down into 4000 - the target 4000.75 sit | 1 | 1 (+$21.04) | 0 (+$0.00) | +$21.04 |
-| BOLLINGER NOT BROKEN | 1 | 1 (+$21.01) | 0 (+$0.00) | +$21.01 |
-| GREEN ZONE UNDER A BAND | 1 | 1 (+$20.93) | 0 (+$0.00) | +$20.93 |
-| break retry stopped: PINK 10%: short $0.27 over the unbroken | 1 | 1 (+$20.76) | 0 (+$0.00) | +$20.76 |
-| break retry stopped: HER CANDLE: the 5m candle is rising - a | 1 | 1 (+$20.68) | 0 (+$0.00) | +$20.68 |
-| RED ZONE OVER A BAND | 1 | 1 (+$7.48) | 0 (+$0.00) | +$7.48 |
-| break retry stopped: BACK OVER BY $10: this 5m candle dipped | 1 | 0 (+$0.00) | 1 (+$12.66) | -$12.66 |
-| BACK UNDER BY $10: this 5m candle poked over 80610.27 and pr | 1 | 0 (+$0.00) | 1 (+$15.00) | -$15.00 |
-| FAKE-OUT FLOOR | 2 | 1 (+$6.74) | 1 (+$22.92) | -$16.18 |
-| Blocked by the band lock: HER CANDLE: the 5m candle is risin | 1 | 0 (+$0.00) | 1 (+$16.26) | -$16.26 |
-| PINK TO RED | 1 | 0 (+$0.00) | 1 (+$17.25) | -$17.25 |
-| UNFILLED (price ran past her cap) | 1 | 0 (+$0.00) | 1 (+$18.13) | -$18.13 |
-| {"error":"THE IMPOSSIBILITY: short at 14% of the 80300.65 -> | 1 | 0 (+$0.00) | 1 (+$19.97) | -$19.97 |
-| FAKE-OUT BAND | 2 | 0 (+$0.00) | 2 (+$22.01) | -$22.01 |
-| PRICE FLOOR / MULTIPLE | 9 | 3 (+$62.80) | 6 (+$88.90) | -$26.10 |
-| price is falling from the top third of her channel (high 803 | 1 | 0 (+$0.00) | 1 (+$41.51) | -$41.51 |
-| the candle is rising from the bottom third - a long, never a | 1 | 0 (+$0.00) | 1 (+$43.20) | -$43.20 |
-| can't verify the price right now (no fresh price) | 1 | 0 (+$0.00) | 1 (+$63.02) | -$63.02 |
-| window ended before it filled | 47 | 23 (+$398.18) | 24 (+$503.87) | -$105.69 |
-| PINK 10% | 15 | 4 (+$84.25) | 11 (+$289.95) | -$205.70 |
+| window ended before it filled | 1 | 1 (+$20.57) | 0 (+$0.00) | +$20.57 |
+| UNFILLED (price ran past her cap) | 1 | 0 (+$0.00) | 1 (+$14.81) | -$14.81 |
 
 Net for her: positive = the wall saved more than it cost on paper; negative = it cost more than it saved.
 
@@ -405,53 +380,97 @@ Net for her: positive = the wall saved more than it cost on paper; negative = it
 | Tue 10-27 01:02 AM | gold | down | 2 | 13.66 | $2.87 | +$8.02 | won |
 | Tue 10-27 01:05 PM | btc | down | 0 | 0 | $2.33 | +$0.78 | unknown |
 | Tue 10-27 01:15 AM | btc | up | 0 | 0 | $2.79 | -$8.15 | unknown |
-| Tue 10-27 01:15 PM | btc | down | 0 | 0 | $2.50 | open | unknown |
-| Tue 10-27 01:16 PM | gold | down | 0 | 0 | $2.50 | open | unknown |
+| Tue 10-27 01:15 PM | btc | down | 0 | 0 | $2.50 | +$2.30 | unknown |
+| Tue 10-27 01:16 PM | gold | down | 0 | 0 | $2.50 | +$0.79 | unknown |
 | Tue 10-27 01:30 AM | btc | down | 0 | 0 | $2.50 | +$20.88 | unknown |
+| Tue 10-27 01:30 PM | gold | down | 0 | 0 | $2.15 | -$7.45 | unknown |
+| Tue 10-27 01:30 PM | btc | down | 0 | 0 | $2.50 | +$1.70 | unknown |
 | Tue 10-27 01:33 AM | gold | down | 1 | 311.71 | $2.74 | -$0.49 | unknown |
+| Tue 10-27 01:45 PM | gold | up | 0 | 0 | $2.34 | +$1.09 | unknown |
 | Tue 10-27 01:46 AM | btc | down | 0 | 0 | $2.55 | -$7.91 | unknown |
 | Tue 10-27 01:48 AM | gold | down | 3 | 26.17 | $2.85 | +$13.94 | unknown |
+| Tue 10-27 02:01 PM | btc | down | 0 | 0 | $2.56 | +$3.18 | unknown |
 | Tue 10-27 02:02 AM | btc | down | 0 | 0 | $11.51 | +$4.22 | unknown |
 | Tue 10-27 02:03 AM | gold | down | 5 | 233.34 | $2.90 | -$9.96 | unknown |
+| Tue 10-27 02:15 PM | btc | down | 0 | 0 | $2.54 | +$1.82 | unknown |
 | Tue 10-27 02:18 AM | btc | up | 0 | 0 | $11.00 | -$16.57 | unknown |
 | Tue 10-27 02:19 AM | gold | up | 0 | 0 | $11.67 | +$21.95 | unknown |
+| Tue 10-27 02:30 PM | btc | down | 1 | 229.04 | $2.44 | -$8.72 | lost |
 | Tue 10-27 02:31 AM | gold | down | 0 | 0 | $11.38 | -$16.93 | unknown |
 | Tue 10-27 02:32 AM | btc | up | 0 | 0 | $12.01 | -$8.55 | unknown |
+| Tue 10-27 02:50 PM | btc | down | 0 | 0 | $2.41 | +$16.74 | unknown |
 | Tue 10-27 02:54 AM | btc | down | 0 | 0 | $11.01 | -$16.73 | unknown |
 | Tue 10-27 03:00 AM | gold | up | 0 | 0 | $10.59 | -$16.37 | unknown |
 | Tue 10-27 03:00 AM | btc | up | 0 | 0 | $11.00 | -$16.48 | unknown |
+| Tue 10-27 03:10 PM | btc | down | 0 | 0 | $2.42 | -$7.73 | unknown |
+| Tue 10-27 03:15 PM | btc | up | 0 | 0 | $2.51 | +$2.55 | unknown |
+| Tue 10-27 03:30 PM | btc | up | 0 | 0 | $2.50 | -$7.85 | unknown |
 | Tue 10-27 03:31 AM | gold | up | 0 | 0 | $0.97 | +$0.34 | unknown |
 | Tue 10-27 03:33 AM | btc | down | 1 | 116.88 | $1.00 | -$2.92 | lost |
 | Tue 10-27 03:45 AM | btc | up | 0 | 0 | $0.89 | +$0.28 | unknown |
+| Tue 10-27 03:46 PM | btc | up | 0 | 0 | $2.41 | +$10.29 | unknown |
+| Tue 10-27 04:00 PM | btc | down | 0 | 0 | $2.72 | -$7.98 | unknown |
 | Tue 10-27 04:06 AM | btc | down | 0 | 0 | $0.55 | -$1.65 | unknown |
 | Tue 10-27 04:07 AM | gold | down | 0 | 0 | $0.99 | -$2.05 | unknown |
 | Tue 10-27 04:15 AM | gold | up | 0 | 0 | $1.01 | +$0.60 | unknown |
 | Tue 10-27 04:15 AM | btc | down | 0 | 0 | $1.01 | +$0.48 | unknown |
+| Tue 10-27 04:15 PM | btc | up | 0 | 0 | $2.50 | +$28.36 | unknown |
+| Tue 10-27 04:33 PM | btc | up | 0 | 0 | $2.51 | +$28.61 | unknown |
 | Tue 10-27 04:35 AM | btc | up | 0 | 0 | $5.44 | -$5.59 | unknown |
 | Tue 10-27 04:39 AM | gold | up | 0 | 0 | $5.61 | -$5.75 | unknown |
+| Tue 10-27 04:44 PM | gold | up | 1 | 21.75 | $2.83 | -$3.00 | lost |
+| Tue 10-27 04:48 PM | gold | down | 4 | 85.55 | $4.73 | -$11.00 | lost |
+| Tue 10-27 04:48 PM | btc | down | 0 | 0 | $2.51 | +$17.06 | unknown |
+| Tue 10-27 05:00 PM | btc | down | 0 | 0 | $2.50 | +$1.70 | unknown |
+| Tue 10-27 05:02 PM | gold | down | 8 | 596.18 | $2.84 | -$13.94 | lost |
 | Tue 10-27 05:10 AM | btc | down | 0 | 0 | $0.88 | +$0.33 | unknown |
 | Tue 10-27 05:15 AM | gold | down | 0 | 0 | $1.08 | -$2.16 | unknown |
+| Tue 10-27 05:15 PM | btc | up | 0 | 0 | $2.57 | -$7.59 | unknown |
+| Tue 10-27 05:16 PM | gold | down | 0 | 0 | $2.40 | +$0.62 | unknown |
 | Tue 10-27 05:20 AM | btc | down | 0 | 0 | $0.93 | -$2.06 | unknown |
 | Tue 10-27 05:30 AM | gold | down | 0 | 0 | $1.10 | +$2.88 | unknown |
 | Tue 10-27 05:30 AM | btc | down | 0 | 0 | $0.89 | -$1.97 | unknown |
+| Tue 10-27 05:30 PM | gold | up | 0 | 0 | $2.66 | +$1.08 | unknown |
+| Tue 10-27 05:30 PM | btc | down | 0 | 0 | $2.27 | +$9.94 | unknown |
 | Tue 10-27 05:45 AM | gold | down | 0 | 0 | $1.07 | -$2.14 | unknown |
+| Tue 10-27 05:45 PM | btc | down | 0 | 0 | $2.51 | +$12.18 | unknown |
 | Tue 10-27 05:46 AM | btc | up | 0 | 0 | $1.01 | +$0.68 | unknown |
+| Tue 10-27 05:46 PM | gold | up | 1 | 19.0 | $2.51 | +$8.42 | unknown |
 | Tue 10-27 06:00 AM | btc | down | 0 | 0 | $1.10 | +$0.74 | unknown |
+| Tue 10-27 06:00 PM | gold | up | 2 | 20.62 | $2.50 | -$12.67 | lost |
 | Tue 10-27 06:01 AM | gold | down | 0 | 0 | $1.10 | +$0.74 | unknown |
+| Tue 10-27 06:01 PM | btc | up | 2 | 22.02 | $2.87 | -$8.00 | lost |
 | Tue 10-27 06:15 AM | gold | down | 0 | 0 | $1.04 | +$2.60 | unknown |
 | Tue 10-27 06:15 AM | btc | down | 0 | 0 | $1.01 | +$0.53 | unknown |
+| Tue 10-27 06:15 PM | btc | down | 1 | 166.64 | $2.04 | -$9.80 | lost |
+| Tue 10-27 06:16 PM | gold | down | 1 | 17.11 | $2.50 | +$5.37 | lost |
 | Tue 10-27 06:30 AM | btc | down | 0 | 0 | $1.10 | -$2.15 | unknown |
+| Tue 10-27 06:30 PM | gold | down | 0 | 0 | $2.59 | +$1.46 | unknown |
+| Tue 10-27 06:30 PM | btc | down | 2 | 26.69 | $2.79 | -$11.11 | lost |
 | Tue 10-27 06:32 AM | gold | down | 0 | 0 | $1.02 | -$2.08 | unknown |
 | Tue 10-27 06:45 AM | btc | up | 0 | 0 | $1.14 | -$2.22 | unknown |
 | Tue 10-27 06:45 AM | gold | down | 0 | 0 | $1.07 | -$0.74 | unknown |
+| Tue 10-27 06:45 PM | gold | down | 0 | 0 | $2.45 | +$1.77 | unknown |
+| Tue 10-27 06:45 PM | btc | down | 1 | 6.8 | $2.60 | -$6.96 | lost |
 | Tue 10-27 07:00 AM | gold | down | 0 | 0 | $1.02 | -$2.06 | unknown |
+| Tue 10-27 07:00 PM | btc | down | 0 | 0 | $2.50 | -$7.77 | unknown |
 | Tue 10-27 07:04 AM | btc | down | 0 | 0 | $1.00 | -$2.03 | unknown |
+| Tue 10-27 07:07 PM | gold | down | 0 | 0 | $2.45 | +$1.29 | unknown |
 | Tue 10-27 07:15 AM | btc | up | 0 | 0 | $0.86 | +$4.11 | unknown |
+| Tue 10-27 07:15 PM | btc | down | 0 | 0 | $2.48 | +$9.24 | unknown |
 | Tue 10-27 07:24 AM | gold | up | 0 | 0 | $1.00 | +$1.22 | unknown |
+| Tue 10-27 07:27 PM | gold | up | 0 | 0 | $2.22 | -$7.59 | unknown |
 | Tue 10-27 07:30 AM | btc | down | 0 | 0 | $0.94 | -$2.01 | unknown |
+| Tue 10-27 07:30 PM | gold | up | 0 | 0 | $2.52 | +$0.95 | unknown |
+| Tue 10-27 07:30 PM | btc | down | 0 | 0 | $2.77 | +$1.49 | unknown |
 | Tue 10-27 07:32 AM | gold | down | 0 | 0 | $1.02 | -$2.08 | unknown |
 | Tue 10-27 07:45 AM | btc | down | 0 | 0 | $0.81 | -$2.09 | unknown |
+| Tue 10-27 07:45 PM | btc | down | 1 | 22.18 | $2.21 | -$12.88 | lost |
 | Tue 10-27 07:49 AM | gold | down | 0 | 0 | $1.12 | -$2.17 | unknown |
+| Tue 10-27 07:55 PM | gold | down | 0 | 0 | $4.50 | +$26.16 | unknown |
+| Tue 10-27 08:00 PM | gold | down | 1 | 19.53 | $4.40 | -$13.66 | lost |
+| Tue 10-27 08:01 PM | btc | down | 0 | 0 | $5.15 | +$2.25 | unknown |
+| Tue 10-27 08:16 PM | btc | up | 0 | 0 | $5.00 | open | unknown |
 | Tue 10-27 08:22 AM | gold | down | 0 | 0 | $1.01 | -$1.04 | unknown |
 | Tue 10-27 08:30 AM | gold | down | 0 | 0 | $1.00 | -$2.04 | unknown |
 | Tue 10-27 08:45 AM | gold | down | 0 | 0 | $1.09 | -$2.13 | unknown |
@@ -505,27 +524,27 @@ Net for her: positive = the wall saved more than it cost on paper; negative = it
 | 10 AM | 16-7 +$156.13 | 15-8 +$114.56 | 13-6 +$124.44 | 10-14 -$103.74 | 3-3 +$47.67 |
 | 11 AM | 18-6 +$154.08 | 16-8 +$71.46 | 11-9 -$5.26 | 9-15 -$105.84 | 0-3 -$15.90 |
 | 12 PM | 14-10 +$100.06 | 14-10 +$115.26 | 12-7 +$121.96 | 9-14 -$51.84 | 2-5 +$23.72 |
-| 1 PM | 9-9 +$32.75 | 10-8 +$185.07 | 8-6 +$37.32 | 7-11 +$7.67 | 3-7 +$18.46 |
-| 2 PM | 6-5 -$0.52 | 5-5 +$16.53 | 3-4 +$7.67 | 4-8 -$101.44 | 0-2 -$10.63 |
-| 3 PM | 13-5 +$208.32 | 12-6 +$167.91 | 8-6 +$32.75 | 8-10 -$24.15 | - |
-| 4 PM | 5-15 -$219.02 | 6-13 -$91.91 | 4-12 -$95.64 | 10-10 +$6.55 | 1-2 +$5.77 |
-| 5 PM | 10-10 -$73.77 | 11-8 -$13.61 | 8-8 -$38.93 | 9-11 -$22.59 | 1-2 +$39.63 |
-| 6 PM | 7-12 -$146.69 | 9-10 +$88.82 | 10-6 +$190.36 | 13-6 +$138.36 | 1-1 +$17.10 |
-| 7 PM | 10-9 -$31.06 | 11-8 +$11.96 | 10-7 +$24.17 | 9-10 -$71.74 | 0-5 -$26.50 |
-| 8 PM | 13-7 +$69.94 | 12-8 +$576.05 | 14-6 +$355.01 | 12-8 +$5.60 | 2-3 +$29.48 |
+| 1 PM | 14-11 +$46.06 | 15-9 +$219.72 | 13-7 +$78.77 | 9-14 -$26.72 | 3-8 +$13.17 |
+| 2 PM | 9-258 -$5,127.11 | 8-315 -$6,286.94 | 6-5 +$56.00 | 6-9 -$55.95 | 0-2 -$10.63 |
+| 3 PM | 291-506 -$6,222.29 | 859-1308 -$10,684.93 | 10-11 +$12.22 | 11-14 -$34.83 | - |
+| 4 PM | 159-94 -$391.54 | 160-100 -$445.80 | 5-19 -$140.60 | 13-15 +$78.27 | 3-2 +$42.53 |
+| 5 PM | 15-13 -$43.47 | 16-11 +$18.83 | 12-12 -$44.32 | 13-15 -$18.71 | 1-4 +$29.03 |
+| 6 PM | 10-17 -$198.40 | 12-15 +$37.11 | 13-11 +$125.59 | 14-13 +$19.18 | 1-2 +$11.81 |
+| 7 PM | 14-13 -$21.31 | 15-12 +$21.73 | 14-11 +$33.62 | 16-11 +$58.64 | 3-6 +$31.57 |
+| 8 PM | 14-8 +$57.26 | 13-9 +$563.37 | 15-7 +$342.33 | 12-10 -$36.33 | 2-4 +$24.20 |
 | 9 PM | 8-12 -$89.04 | 9-11 -$64.26 | 9-11 -$60.05 | 11-8 +$30.05 | 2-2 +$38.83 |
 | 10 PM | 13-7 +$90.34 | 13-7 +$110.64 | 13-7 +$82.15 | 8-12 -$84.12 | 1-5 -$8.58 |
 | 11 PM | 9-11 -$35.07 | 4-15 -$175.18 | 4-16 -$181.53 | 5-15 -$188.50 | 1-9 -$30.64 |
 
 ## 5. Carried vs fresh session bands (paper P&L)
 
-- main book, carried bands: 40-48, -$216.21
-- main book, fresh bands: 193-160, +$190.10
-- rejection model, carried bands: 42-46, -$11.04
-- rejection model, fresh bands: 187-165, +$990.63
-- rejection twin +BB/zones (paper), carried bands: 43-45, +$27.09
-- rejection twin +BB/zones (paper), fresh bands: 183-166, +$522.32
-- delayed twin, carried bands: 46-43, +$86.13
-- delayed twin, fresh bands: 162-190, -$271.16
-- twin add-on (paper $5), carried bands: 5-12, +$80.93
-- twin add-on (paper $5), fresh bands: 30-90, +$124.62
+- main book, carried bands: 282-141, +$565.32
+- main book, fresh bands: 404-915, -$12,332.18
+- rejection model, carried bands: 793-931, -$4,035.26
+- rejection model, fresh bands: 458-993, -$12,482.88
+- rejection twin +BB/zones (paper), carried bands: 56-66, -$89.56
+- rejection twin +BB/zones (paper), fresh bands: 193-173, +$589.87
+- delayed twin, carried bands: 60-63, +$79.53
+- delayed twin, fresh bands: 170-197, -$219.27
+- twin add-on (paper $5), carried bands: 9-17, +$131.70
+- twin add-on (paper $5), fresh bands: 31-91, +$142.22

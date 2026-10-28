@@ -1,12 +1,12 @@
 # 5m paper books - main, rejection, delayed (BTC)
 
-Updated 2026-10-27T20:22Z. Every BTC call each book made, replayed on the 5m market the desk would take (right = BTC closes that 5m window on her side of its open), next to the same call's own 15m result. P&L at a flat 50c entry (Poly 5m usually opens near even): +$1 per $1 when right, -$1 when wrong.
+Updated 2026-10-28T03:21Z. Every BTC call each book made, replayed on the 5m market the desk would take (right = BTC closes that 5m window on her side of its open), next to the same call's own 15m result. P&L at a flat 50c entry (Poly 5m usually opens near even): +$1 per $1 when right, -$1 when wrong.
 
 | book | calls | 5m right | 5m % | 5m P&L per $1 | 15m settled | 15m right | 15m % |
 |---|---|---|---|---|---|---|---|
-| MAIN 💞 | 247 | 144 | 58% | +41 | 237 | 125 | 53% |
-| REJECTION 🎯 | 240 | 151 | 63% | +62 | 228 | 112 | 49% |
-| DELAYED ⏳ | 246 | 123 | 50% | +0 | 237 | 118 | 50% |
+| MAIN 💞 | 276 | 162 | 59% | +48 | 266 | 142 | 53% |
+| REJECTION 🎯 | 269 | 168 | 62% | +67 | 257 | 129 | 50% |
+| DELAYED ⏳ | 269 | 130 | 48% | -9 | 261 | 131 | 50% |
 
 ## Overnight (12 AM - 9 AM PT)
 
@@ -33,14 +33,14 @@ Updated 2026-10-27T20:22Z. Every BTC call each book made, replayed on the 5m mar
 | 10:00 AM | 20% · 10 | 30% · 10 | 73% · 11 |
 | 11:00 AM | 64% · 11 | 75% · 12 | 73% · 11 |
 | 12:00 PM | 33% · 12 | 58% · 12 | 50% · 12 |
-| 1:00 PM | 70% · 10 | 80% · 10 | 33% · 9 |
-| 2:00 PM | 33% · 6 | 60% · 5 | 86% · 7 |
-| 3:00 PM | 88% · 8 | 88% · 8 | 12% · 8 |
-| 4:00 PM | 25% · 8 | 38% · 8 | 38% · 8 |
-| 5:00 PM | 50% · 8 | 50% · 8 | 25% · 8 |
-| 6:00 PM | 43% · 7 | 60% · 5 | 38% · 8 |
-| 7:00 PM | 40% · 10 | 60% · 10 | 55% · 11 |
-| 8:00 PM | 73% · 11 | 70% · 10 | 55% · 11 |
+| 1:00 PM | 67% · 12 | 75% · 12 | 36% · 11 |
+| 2:00 PM | 44% · 9 | 62% · 8 | 78% · 9 |
+| 3:00 PM | 71% · 14 | 64% · 14 | 9% · 11 |
+| 4:00 PM | 38% · 13 | 46% · 13 | 25% · 12 |
+| 5:00 PM | 42% · 12 | 42% · 12 | 25% · 12 |
+| 6:00 PM | 60% · 10 | 75% · 8 | 45% · 11 |
+| 7:00 PM | 50% · 14 | 64% · 14 | 47% · 15 |
+| 8:00 PM | 77% · 13 | 75% · 12 | 58% · 12 |
 | 9:00 PM | 55% · 11 | 73% · 11 | 45% · 11 |
 | 10:00 PM | 60% · 10 | 60% · 10 | 45% · 11 |
 | 11:00 PM | 60% · 10 | 78% · 9 | 40% · 10 |

@@ -2207,6 +2207,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         // MAIN BOOK ONLY (Love, same message: "ONE $2 dollar add on to our main books positions"): the delayed twin's positions never add.
         let aoTwin = false;
         try { aoTwin = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] === "recon-dly"; } catch { aoTwin = false; }
+        let aoNp = false; try { aoNp = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] === "recon-np"; } catch { aoNp = false; } // fix362: the pure no-pink adds npLive.addOn ($5)
         // $2 AT A BAND, 2.8x+ (Oct 17 ~1:15 PM PT, Love: "implement the $2 add on for me at a band, as long as it's over 2.8x actually / so it's
         // effectively 1/5th of the normal position size" + her picks: band rejection her way, once per window, 5+ min left, BTC and gold, her trades
         // only). addOn { on, dollars 2, maxAsk 0.35 }. A refused/unfilled try retries after 5 s; only a fill uses up the window's add-on.
@@ -2251,7 +2252,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             void (async () => {
               let r: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
               try {
-                r = await live.addOnBuy(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoOff ? aoOff.aoDollars : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: "just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those"): walls skip add-ons like the twin's (was free only for the twin)
+                r = await live.addOnBuy(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoNp ? (Number((liveCfg as any)?.npLive?.addOn) || 5) /* fix362 */ : aoOff ? aoOff.aoDollars : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: "just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those"): walls skip add-ons like the twin's (was free only for the twin)
               } catch (err) {
                 r = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "add-on failed" };
               }
@@ -4624,6 +4625,8 @@ async function copyLiveBook(assets, lane = "") {
     cfg = null;
   }
   const books = cfg ? (Array.isArray(cfg.books) ? cfg.books : cfg.book ? [cfg.book] : []) : [];
+  // fix362b: the pure no-pink joins the Kalshi copier through live-switch npLive.on, NOT liveBook.books (Polymarket's 1H book follows liveBook.books; it must not move)
+  try { const npB = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.npLive; if (npB?.on === true && books.length && !books.includes("recon-np")) books.push("recon-np"); } catch {}
   if (!books.length || !(Number(cfg.dollars) > 0) || entriesOff()) return;
   let live;
   try {
@@ -4943,6 +4946,11 @@ async function copyLiveBook(assets, lane = "") {
           done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: "the DELAYED twin takes this hour live (Love, Oct 23)" };
           continue;
         } }
+      // THE PURE NO-PINK'S LIVE HOUR (fix362, Love Oct 27 2026 8:17 PM PT: "let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls" + card "New one at 9 PM only"): with recon-np on liveBook.books and live-switch npLive { on, hours: [21] }, the pure no-pink twin trades
+      // Kalshi only in npLive.hours (9 PM PT, BTC + gold) and main, the rejection model and the no-pink copy sit that hour out live. Every other hour she stays paper.
+      { const npC = sw?.npLive; const npOn = npC?.on === true; /* fix362b: npLive.on alone (liveBook.books untouched) */ const npH = npOn && Array.isArray(npC.hours) && npC.hours.map(Number).includes(hNow);
+        if (row.book === "recon-np" && !npH && done[row.id]?.status !== "partial") { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: "THE PURE NO-PINK trades live only in her hour (9 PM, Love)" }; continue; }
+        if (npH && (row.book === "recon-tog" || row.book === "recon-rej" || row.book === "recon-togp") && done[row.id]?.status !== "partial") { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: "the PURE NO-PINK takes this hour live (Love, Oct 27)" }; continue; } }
       { const omR = sw?.offHourMain; const rjH = omR?.on === true && rjA(omR, row.asset).includes(hNow); // fix243: per asset
         // fix281 (fix281, Oct 26 ~1:10 PM PT, Love: "copy paste the main book onto a fresh paper twin that excludes pink trades only ... same entry logic, speed and execution ... we will put that book on for the rejection models hours"): with recon-togp on liveBook.books, the no-pink copy of the main book takes her rejection hours live and recon-rej stays paper.
         const tpOn = Array.isArray(sw?.liveBook?.books) && sw.liveBook.books.includes("recon-togp");

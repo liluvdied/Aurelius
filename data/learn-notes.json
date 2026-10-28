@@ -1,5 +1,47 @@
 [
   {
+    "key": "close|held-KXBTC15M-26OCT272330-30",
+    "at": "2026-10-28T03:30:17.751Z",
+    "kind": "closed",
+    "text": "Bitcoin long Live hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
+    "key": "close|mvrjka8w-fmygc5",
+    "at": "2026-10-28T03:24:53.037Z",
+    "kind": "closed",
+    "text": "Gold short Tap-reject at -1σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
+    "key": "pair|gold|held-KXGOLD15M-26OCT272315-15|mvrj29ia-yk9wld",
+    "at": "2026-10-28T03:15:32.197Z",
+    "kind": "pair",
+    "text": "gold lost two in a row. Not an entry error. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Tap-reject at -1.5σ lost. Nothing on the entry to change. It stays. Not applied as a ban."
+  },
+  {
+    "key": "close|held-KXGOLD15M-26OCT272315-15",
+    "at": "2026-10-28T03:15:31.819Z",
+    "kind": "closed",
+    "text": "Gold short Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
+  },
+  {
+    "key": "close|held-KXBTC15M-26OCT272315-15",
+    "at": "2026-10-28T03:15:28.207Z",
+    "kind": "closed",
+    "text": "Bitcoin short Tap-reject at −0.5σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
+    "key": "KXBTC15M-26OCT272330-30|down|Tap-reject at -0.5σ",
+    "at": "2026-10-28T03:15:22.687Z",
+    "kind": "forming",
+    "text": "Bitcoin short Tap-reject at −0.5σ is forming, 15m left. This is a prime setup, 78-51. At 8pm that one is 7-3. a band is still in front, price is on the wrong side of the VWAP. Note only."
+  },
+  {
+    "key": "close|mvrj29ia-yk9wld",
+    "at": "2026-10-28T03:15:02.581Z",
+    "kind": "closed",
+    "text": "Gold short Tap-reject at -1.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
+  },
+  {
     "key": "KXBTC15M-26OCT272315-15|down|Tap-reject at -0.5σ",
     "at": "2026-10-28T03:01:25.612Z",
     "kind": "forming",
@@ -436,47 +478,5 @@
     "at": "2026-10-27T22:58:19.626Z",
     "kind": "closed",
     "text": "Silver short Tap-reject at +1σ hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "KXBTC15M-26OCT271900-00|up|Tap-reject at -0.5σ",
-    "at": "2026-10-27T22:46:10.465Z",
-    "kind": "forming",
-    "text": "Bitcoin long Tap-reject at −0.5σ is forming, 14m left. This is a prime setup, 39-28. At 3pm that one is 4-2. clean so far. Note only."
-  },
-  {
-    "key": "close|held-KXBTC15M-26OCT271845-45",
-    "at": "2026-10-27T22:45:16.561Z",
-    "kind": "closed",
-    "text": "Bitcoin long Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
-  },
-  {
-    "key": "KXBTC15M-26OCT271900-00|down|Tap-reject at -0.5σ",
-    "at": "2026-10-27T22:45:13.006Z",
-    "kind": "forming",
-    "text": "Bitcoin short Tap-reject at −0.5σ is forming, 15m left. This is a prime setup, 78-55. At 3pm that one is 7-2. clean so far. Note only."
-  },
-  {
-    "key": "close|mvr9dsrr-dxmfip",
-    "at": "2026-10-27T22:43:43.929Z",
-    "kind": "closed",
-    "text": "Silver short Tap-reject at +1.5σ hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "KXBTC15M-26OCT271845-45|up|Tap-reject at -0.5σ",
-    "at": "2026-10-27T22:35:03.949Z",
-    "kind": "forming",
-    "text": "Bitcoin long Tap-reject at −0.5σ is forming, 10m left. This is a prime setup, 39-28. At 3pm that one is 4-2. clean so far. Note only."
-  },
-  {
-    "key": "KXBTC15M-26OCT271845-45|down|Tap-reject at -0.5σ",
-    "at": "2026-10-27T22:30:27.342Z",
-    "kind": "forming",
-    "text": "Bitcoin short Tap-reject at −0.5σ is forming, 15m left. This is a prime setup, 78-55. At 3pm that one is 7-2. price is on the wrong side of the VWAP. Note only."
-  },
-  {
-    "key": "close|mvr8uh41-3nkny1",
-    "at": "2026-10-27T22:30:25.110Z",
-    "kind": "closed",
-    "text": "Silver short Tap-reject at +1.5σ hit. Nothing to change. Same entry next time. Not applied."
   }
 ]

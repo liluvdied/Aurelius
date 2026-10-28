@@ -712,7 +712,8 @@
         "recon-tog",
         "recon-rej",
         "recon-dly",
-        "recon-togp"
+        "recon-togp",
+        "recon-np"
       ],
       "gold": [
         "dcd",
@@ -737,7 +738,8 @@
         "recon-tog",
         "recon-rej",
         "recon-dly",
-        "recon-togp"
+        "recon-togp",
+        "recon-np"
       ],
       "silver": [
         "pap247"
@@ -1419,7 +1421,8 @@
   "closeMode": "market",
   "bookDollars": {
     "ogp5-inv": 5,
-    "recon-dly": 2.5
+    "recon-dly": 2.5,
+    "recon-np": 3
   },
   "liveSkipHoursPrev": {
     "gold": [
@@ -1951,5 +1954,13 @@
     "offHourMain.addOn.dollars": 5,
     "live-size.dollars": 2.5,
     "note": "fix360 Love Oct 27 2026 7:44 PM PT: \"hey hunn, we can put our main book and no pink rejection model(s) back on at $5 initial entry , $8 add on pls\" + card \"Main + copy + rejection\" - copy back to undo"
+  },
+  "npLive": {
+    "on": true,
+    "hours": [
+      21
+    ],
+    "addOn": 5,
+    "note": "fix362 Love Oct 27 2026 8:17 PM PT: \"let\u2019s go ahead and try running the new no-pink now at $3 & $5 add ons pls\" + card \"New one at 9 PM only\" - recon-np live on Kalshi only at 9 PM PT (BTC + gold), $3 entry (bookDollars) + $5 add-on; main/rejection/copy sit 9 PM out live. NOT in liveBook.books so Polymarket 1H never follows her."
   }
 }

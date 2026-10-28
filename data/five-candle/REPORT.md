@@ -1,11 +1,11 @@
 # 5m candle paper books 🎴
 
-2m and 3m candle flips on the Polymarket BTC 5m board (main + rejection calls), 3+ minutes left, her side 30-70c, $5 paper. Since Sun 02:00 PM PT. Updated Tue 01:22 PM PT.
+2m and 3m candle flips on the Polymarket BTC 5m board (main + rejection calls), 3+ minutes left, her side 30-70c, $5 paper. Since Sun 02:00 PM PT. Updated Tue 08:21 PM PT.
 
 | Lane | Trades | Won | Lost | Open | Win rate | P&L |
 |---|---|---|---|---|---|---|
-| 2m candles | 24 | 13 | 8 | 3 | 62% | $+19.52 |
-| 3m candles | 25 | 15 | 8 | 2 | 65% | $+29.95 |
+| 2m candles | 30 | 18 | 9 | 3 | 67% | $+28.85 |
+| 3m candles | 31 | 20 | 9 | 2 | 69% | $+52.08 |
 
 Replay before launch (Oct 25 4:50 AM - 1:15 PM PT, quotes on file, main + rejection): 2m flip with 3+ min left 22/25 = 88% (+63%/trade); 3m flip with 3+ min left 9/11 = 82% (+47%/trade); 1m flip with 4+ min left 29/42 = 69% (+27%/trade). Small samples.
 
@@ -60,3 +60,15 @@ Replay before launch (Oct 25 4:50 AM - 1:15 PM PT, quotes on file, main + reject
 | Tue 06:32 AM | 2m | MAIN 💞 | down | 0.61 | 180s | win | $+3.20 |
 | Tue 10:21 AM | 3m | MAIN 💞 | up | 0.43 | 240s | win | $+6.63 |
 | Tue 11:21 AM | 3m | MAIN 💞 | up | 0.64 | 240s | win | $+2.81 |
+| Tue 01:32 PM | 2m | MAIN 💞 | down | 0.54 | 180s | win | $+4.26 |
+| Tue 02:36 PM | 2m | MAIN 💞 | down | 0.7 | 240s | win | $+2.14 |
+| Tue 02:36 PM | 3m | MAIN 💞 | down | 0.7 | 240s | win | $+2.14 |
+| Tue 02:52 PM | 2m | MAIN 💞 | down | 0.6 | 180s | win | $+3.33 |
+| Tue 02:51 PM | 3m | MAIN 💞 | down | 0.6 | 240s | win | $+3.33 |
+| Tue 04:06 PM | 3m | REJECTION 🎯 | up | 0.5 | 240s | loss | $-5.00 |
+| Tue 04:02 PM | 2m | MAIN 💞 | down | 0.61 | 180s | loss | $-5.00 |
+| Tue 04:32 PM | 2m | MAIN 💞 | down | 0.68 | 180s | win | $+2.35 |
+| Tue 05:21 PM | 3m | REJECTION 🎯 | up | 0.46 | 240s | win | $+5.87 |
+| Tue 05:36 PM | 3m | MAIN 💞 | down | 0.42 | 240s | win | $+6.90 |
+| Tue 05:51 PM | 3m | MAIN 💞 | down | 0.36 | 240s | win | $+8.89 |
+| Tue 06:32 PM | 2m | MAIN 💞 | down | 0.69 | 180s | win | $+2.25 |

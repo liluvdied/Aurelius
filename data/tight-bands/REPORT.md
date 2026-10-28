@@ -1,21 +1,21 @@
 # Tight-bands 10x paper book 💎
 
-First 10x+ touch at a band in every Kalshi 15m window, $10 paper. TIGHT = 1σ under $3 gold / $100 BTC; NORMAL is the control. Updated Tue Oct 27 01:22 PM PT.
+First 10x+ touch at a band in every Kalshi 15m window, $10 paper. TIGHT = 1σ under $3 gold / $100 BTC; NORMAL is the control. Updated Tue Oct 27 08:21 PM PT.
 
 | Group | Asset | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|---|---|
-| TIGHT | gold | cash at 3x | 21 | 5 | 24% | $-60.00 |
-| TIGHT | gold | cash at 5x | 21 | 5 | 24% | $+40.00 |
-| TIGHT | gold | cash at 10x | 21 | 3 | 14% | $+84.20 |
+| TIGHT | gold | cash at 3x | 32 | 7 | 22% | $-110.00 |
+| TIGHT | gold | cash at 5x | 32 | 6 | 19% | $-20.00 |
+| TIGHT | gold | cash at 10x | 32 | 4 | 12% | $+70.04 |
 | TIGHT | btc | cash at 3x | 27 | 4 | 15% | $-150.00 |
 | TIGHT | btc | cash at 5x | 27 | 2 | 7% | $-170.00 |
 | TIGHT | btc | cash at 10x | 27 | 1 | 4% | $-170.00 |
-| NORMAL | gold | cash at 3x | 343 | 35 | 10% | $-2380.00 |
-| NORMAL | gold | cash at 5x | 343 | 21 | 6% | $-2380.00 |
-| NORMAL | gold | cash at 10x | 343 | 9 | 3% | $-2530.09 |
-| NORMAL | btc | cash at 3x | 595 | 89 | 15% | $-3280.00 |
-| NORMAL | btc | cash at 5x | 595 | 56 | 9% | $-3150.00 |
-| NORMAL | btc | cash at 10x | 595 | 39 | 7% | $-2098.98 |
+| NORMAL | gold | cash at 3x | 349 | 35 | 10% | $-2440.00 |
+| NORMAL | gold | cash at 5x | 349 | 21 | 6% | $-2440.00 |
+| NORMAL | gold | cash at 10x | 349 | 9 | 3% | $-2590.09 |
+| NORMAL | btc | cash at 3x | 617 | 92 | 15% | $-3410.00 |
+| NORMAL | btc | cash at 5x | 617 | 58 | 9% | $-3270.00 |
+| NORMAL | btc | cash at 10x | 617 | 41 | 7% | $-2118.98 |
 
 ## Tight-band trades
 
@@ -69,3 +69,14 @@ First 10x+ touch at a band in every Kalshi 15m window, $10 paper. TIGHT = 1σ un
 | Mon Oct 26 07:13 PM | gold | down | 2.91 | 38.5 | fresh +1σ | 0.007 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Mon Oct 26 07:43 PM | gold | up | 2.96 | 16.9 | fresh VWAP | 0.059 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Mon Oct 26 07:54 PM | gold | up | 2.93 | 18.2 | 5m S1 | 0.12 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 27 03:37 PM | gold | up | 0.87 | 10.6 | fresh VWAP | 0.986 | cashed 3x +20.00 | cashed 5x +40.00 | bell win +85.84 |
+| Tue Oct 27 03:42 PM | gold | down | 0.88 | 11.6 | 5m R1 | 0.09 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 27 03:58 PM | gold | up | 1.19 | 16.4 | 5m PP | 0.048 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 27 04:10 PM | gold | up | 1.11 | 11.9 | fresh VWAP | 0.18 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 27 04:23 PM | gold | up | 1.01 | 10.6 | fresh -2σ | 0.08 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 27 04:35 PM | gold | up | 1.33 | 17.2 | fresh -3σ | 0.2 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 27 04:53 PM | gold | down | 1.59 | 15.6 | fresh +1σ | 0.051 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 27 05:08 PM | gold | down | 1.79 | 24.4 | fresh +3σ | 0.03 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 27 05:20 PM | gold | up | 2.74 | 15.6 | fresh VWAP | 0.35 | cashed 3x +20.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 27 06:09 PM | gold | up | 2.53 | 17.2 | 5m S1 | 0.14 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue Oct 27 06:35 PM | gold | up | 2.92 | 15.4 | fresh -3σ | 0.2 | lost -10.00 | lost -10.00 | lost -10.00 |

@@ -4655,3 +4655,108 @@ So the new one is basically your OG rejection model with pink taken out complete
 
 She's alive hun 🎯 Her very first paper call at 8:10 PM was **"Rejected up off fresh VWAP" – long on BTC**. That's exactly the blue band rejection long you said she'd wait for ✨
 
+## 2026-10-28 03:12:21 UTC - LOVE
+
+thanks hun 💘💘 
+
+yess that’s exactly right, we will see how she does compared to the one running throughout the hour, 9Pm is a rejection hour for both books, if she does well on paper this hour we will try putting her on wt 9 💘💘at the old $2.50 - $7 add on okay
+
+## 2026-10-28 03:12:33 UTC - CLAUDE
+
+Sounds perfect hun 💘 Just before 9 PM I'll score her 8 PM hour against the no-pink copy, window by window. If she's done well, I'll ask you once and then put her live at 9 on $2.50 + $7 add-on. Everything else stays as it is.
+
+## 2026-10-28 03:15:58 UTC - LOVE
+
+gold broke down pink and btc broke up
+
+## 2026-10-28 03:16:13 UTC - CLAUDE
+
+Both books see it hun 💞
+
+**BTC:** the no-pink copy took the long at 8:16:02 PM, filled live, calling it "green candle rising from the bottom third".
+
+**Gold:** main has the short lined up. At 8:16:07 her tick was still **$4,047.97**, 21c *above* pink ($4,047.76). For main, gold pink only counts as broken once price is **25c through** it, so ≤ $4,047.51. The moment it gets there, she goes. The other books are off gold this hour by your schedule (the new pure twin called the same short on paper).
+
+## 2026-10-28 03:17:54 UTC - LOVE
+
+well now she longed btc while it was closer to the top band than the bottom bb 😹💘
+
+was definitely closer to the top band than the bottom 
+
+let’s go ahead and try running the new no-pink now at $3 &amp; $5 add ons pls 
+
+that would be short on that one , and gold still didn’t short
+
+## 2026-10-28 03:18:03 UTC - CARD
+
+Q: Should the new pure no-pink take over the copy's live seat?
+Context: You want the new pure no-pink live now at $3 + $5 add-on. Right now the no-pink copy holds the live seat in your rejection hours, BTC and gold. If both go live in the same hours, they could open two positions in one window, which your "never two open" rule says no to. Main, the twin and the 5M aren't touched either way.
+Options:
+  0. New one replaces the copy - The pure no-pink trades live in the copy's hours at $3 + $5. The copy goes back to paper. Main's hours stay as they are.
+  1. Both live, first fill wins - Both trade live in those hours. Whichever fills first takes the window and the other sits out, so there's never two positions.
+  2. New one at 9 PM only - The pure no-pink is live only in the 9 PM hour at $3 + $5. The copy keeps every other hour.
+Recommended: 0 - It's the cleanest test: one book in the seat, and we can see her live results against the copy's paper ones.
+
+## 2026-10-28 03:18:18 UTC - CLAUDE
+
+You're right on both, hun 😹💘
+
+**BTC long (copy, 8:16 PM at $80,840):** the session channel was VWAP $80,778 to +1σ $80,888, so she was at **56%**, upper half. The "bottom third" in her label came from a wider channel, and her thirds wall at this width only blocks the top 20%, so it slipped through. The new pure no-pink would **not** have taken it, because she skips every thirds call.
+
+**Gold:** main is still holding the short. At 8:18:13 price was only **9c** under pink ($4,047.43), and main needs 25c through to call gold pink broken. Pink also moved down with the new 5m candle, which keeps pushing her line lower.
+
+The card above is how I'll put the new one live. Tap it and she'll be on at $3 + $5 💞
+
+## 2026-10-28 03:18:31 UTC - LOVE
+
+Chose "New one at 9 PM only" on the decision card asking "Should the new pure no-pink take over the copy's live seat?"
+
+## 2026-10-28 03:18:52 UTC - CLAUDE
+
+Got it hun 💘 She'll be live only at 9 PM, BTC and gold, at $3 + $5 add-on. The copy keeps every other hour and sits 9 PM out. Setting her up now, so she's ready before 9.
+
+## 2026-10-28 03:19:11 UTC - LOVE
+
+gold broke pink by $2 hun
+
+## 2026-10-28 03:19:52 UTC - CLAUDE
+
+She saw it hun 💞 Once gold got 25c through pink (8:19:10 PM), main's wall cleared and she started firing the short. Since then she's been sending an order every ~2 seconds at a 72c limit, but price dropped so fast that the short side is already priced above her limit, so nothing has filled yet. She'll fill if it comes back into her price. Her wall waited for 25c through, and the run was quicker than that.
+
+For what it's worth, the $8 add-ons are landing in full. Kalshi splits them into a $5 order plus a $3 top-up (8:06 PM gold: $4.83 + $3.17).
+
+## 2026-10-28 03:23:09 UTC - CLAUDE
+
+She's set for 9 PM hun 💘 The pure no-pink goes live on Kalshi at 9:00 for BTC and gold at **$3 entry + $5 add-on**. In that hour, main, the rejection model and the copy sit out live. Every other hour she stays on paper.
+
+I kept her off your live-book list on purpose. Your Polymarket hourly book follows that list, and I didn't want it picking her up. So Polymarket and the 5M don't move (freeze check ✓). The umpire says SAFE. I'll watch her first live window at 9 to make sure her orders go through ✨
+
+## 2026-10-28 03:32:11 UTC - LOVE
+
+omgggg i knowwww 💘💘💘 they’re doing muchhh better i like the $8 add on and as for pink holds on the new no-pink one, she only does it if the pink band and the session occupy the same bottom/top 10% of the channel pls 
+otherwise the rejections should blow right thru 
+
+and hun she just shorted gold on a bollinger
+
+## 2026-10-28 03:32:25 UTC - CLAUDE
+
+Yay, I'm so glad the $8 add-on is feeling good 💘 On it hun: I'll make the pure no-pink respect pink only when pink and a session band are stacked in the same top or bottom 10% of the channel, and blow right through it everywhere else. I'm checking the gold Bollinger short too.
+
+## 2026-10-28 03:34:00 UTC - LOVE
+
+thanks luv 🫯 and she was definitely (to my eye) in the bottom 40% of the channel between pink and green
+
+## 2026-10-28 03:35:43 UTC - LOVE
+
+and hun she just shorted btc in the red in the bottom 33% there’s a band under here
+
+## 2026-10-28 03:36:21 UTC - CLAUDE
+
+Found it hun 💞 That was the **no-pink copy**, short at 8:35:00 PM at $81,052.70. Her label says "Top third, seen as a short under 81,060.28 (was: Break above fresh +2σ)".
+
+So main's own read was a **long**, a break up through fresh +2σ ($81,014). The copy flipped it into a short because she measured her thirds against the old session +3σ at $81,060, which is only $8 overhead. On your chart's fresh bands, +2σ $81,014 to +3σ $81,128, she was at **34%**, just above the bottom third, with the band she'd just broken right under her. So you're right, it's a bad short.
+
+The pure no-pink would never take this one, because she skips every thirds call. For the copy, I'd stop her from flipping a fresh break into the opposite trade. Want me to do that for the **copy only**? 💘
+
+On gold: by the desk's lines (pink $4,046.25, green $4,043.39), main's 8:31 short at $4,044.83 was at 50.3%, so it cleared her 50% wall by a hair. On your chart's pink and green it's about the same. If you want her further from green, I can raise **main's gold pink-to-green** to 60%. Just say the word.
+

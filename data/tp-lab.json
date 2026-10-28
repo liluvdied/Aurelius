@@ -6133,5 +6133,21 @@
   "hits": {},
   "done": true,
   "hold": -100
+ },
+ "KXTEMPCHIHS-26OCT2800-T54.99:yes": {
+  "id": "KXTEMPCHIHS-26OCT2800-T54.99:yes",
+  "src": "scan",
+  "at": "2026-10-28T03:17:16.172Z",
+  "stake": 100,
+  "legs": [
+   {
+    "ticker": "KXTEMPCHIHS-26OCT2800-T54.99",
+    "side": "yes",
+    "contracts": 105.26315789473685,
+    "cost": 100
+   }
+  ],
+  "peakValue": 95.79,
+  "hits": {}
  }
 }

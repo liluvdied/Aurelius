@@ -650,7 +650,9 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   try { const srcN: any = firstT, lbN = String(srcN?.label || "");
     const okN = !!srcN && (srcN.side === "up" || srcN.side === "down") && /^(Rejected (up|down) off|Failed break (above|below)) /i.test(lbN) && /σ|VWAP|Bollinger|red zone|green zone/i.test(lbN) && !/5m PP|pink|PP|R1|R2|S1|S2|nav|purple|third/i.test(lbN);
     if (okN) { const bandN = npL.filter((l) => l.price > 0 && lbN.includes(l.name)).sort((x, y) => y.name.length - x.name.length)[0]; const pp = npPink;
-      let pinkN = false; if (pp > 0) { if (bandN) pinkN = srcN.side === "down" ? pp > spot && pp < bandN.price : pp < spot && pp > bandN.price; else pinkN = Math.abs(spot - pp) < (id === "gold" ? 1 : 33); }
+      let pinkN = false; if (pp > 0) { const sesN = npL.filter((l) => /σ|VWAP/.test(l.name) && l.price > 0).map((l) => l.price), uN = Math.min(...sesN.filter((x) => x > spot)), dN = Math.max(...sesN.filter((x) => x <= spot)), wN = uN - dN;
+        const stackN = Number.isFinite(wN) && wN > 0 && pp > dN && pp < uN && ((pp - dN) / wN <= 0.10 || (uN - pp) / wN <= 0.10); /* fix363 (Love Oct 27 2026 8:32 PM PT: "as for pink holds on the new no-pink one, she only does it if the pink band and the session occupy the same bottom/top 10% of the channel pls / otherwise the rejections should blow right thru"): pink holds her only when stacked with a session band in the outer 10% */
+        if (stackN) { if (bandN) pinkN = srcN.side === "down" ? pp > spot && pp < bandN.price : pp < spot && pp > bandN.price; else pinkN = Math.abs(spot - pp) < (id === "gold" ? 1 : 33); } }
       if (!pinkN && book("recon-np", { side: srcN.side, label: lbN } as any, lookP && !lookT ? lookP.ask : undefined)) changed = true; } } catch {}
   // 6) DELAYED (Oct 20 ~9:38 PM PT, Love: "a delayed entry model to trade at $1 - same frame, same everything, just waits out the initial move, and enters on the
   // other side of the window than she would have been in had she got in initially when the opportunity presents itself ... her trades go in profit and reverse,

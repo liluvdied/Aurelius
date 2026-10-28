@@ -1,15 +1,24 @@
 {
-  "at": "2026-10-28T03:10:43.855Z",
+  "at": "2026-10-28T03:36:31.941Z",
   "gen": 417,
-  "window": "2026-10-27T20:00",
+  "window": "2026-10-27T20:30",
   "ok": false,
   "openNow": [
     {
+      "asset": "btc",
+      "side": "up",
+      "ticker": "KXBTC15M-26OCT272345-45",
+      "pattern": "Tap-reject at +3σ",
+      "left": 510,
+      "same": true,
+      "stillOpen": true
+    },
+    {
       "asset": "gold",
       "side": "up",
-      "ticker": "KXGOLD15M-26OCT272315-15",
+      "ticker": "KXGOLD15M-26OCT272345-45",
       "pattern": "Tap-reject at -1.5σ",
-      "left": 258,
+      "left": 510,
       "same": true,
       "stillOpen": true
     }

@@ -1,22 +1,22 @@
 {
- "at": "2026-10-28T03:07:10.828Z",
+ "at": "2026-10-28T03:27:12.293Z",
  "cities": [
   {
-   "city": "AUS",
-   "station": "KAUS",
-   "hourLocal": 22,
-   "offset": 0.29999999999999716,
+   "city": "DEN",
+   "station": "KDEN",
+   "hourLocal": 21,
+   "offset": 0.09999999999999432,
    "lessons": 17,
-   "maxSoFar": 82.4,
-   "mu": 82.7,
+   "maxSoFar": 64.4,
+   "mu": 64.5,
    "sigma": 0.8,
    "best": {
     "buckets": [
-     "84° to 85°"
+     "67° to 68°"
     ],
     "cost": 0.01,
-    "p": 0.16,
-    "edge": 0.15
+    "p": 0.01,
+    "edge": 0
    }
   },
   {
@@ -39,24 +39,6 @@
    }
   },
   {
-   "city": "CHI",
-   "station": "KMDW",
-   "hourLocal": 22,
-   "offset": 0.09999999999999432,
-   "lessons": 16,
-   "maxSoFar": 69.8,
-   "mu": 69.9,
-   "sigma": 0.8,
-   "best": {
-    "buckets": [
-     "72° to 73°"
-    ],
-    "cost": 0.01,
-    "p": 0.02,
-    "edge": 0.01
-   }
-  },
-  {
    "city": "NY",
    "station": "KNYC",
    "hourLocal": 23,
@@ -72,6 +54,24 @@
     "cost": 0.01,
     "p": 0.01,
     "edge": 0
+   }
+  },
+  {
+   "city": "AUS",
+   "station": "KAUS",
+   "hourLocal": 22,
+   "offset": 0.29999999999999716,
+   "lessons": 17,
+   "maxSoFar": 82.4,
+   "mu": 82.7,
+   "sigma": 0.8,
+   "best": {
+    "buckets": [
+     "84° to 85°"
+    ],
+    "cost": 0.01,
+    "p": 0.16,
+    "edge": 0.15
    }
   },
   {
@@ -93,24 +93,6 @@
    }
   },
   {
-   "city": "DEN",
-   "station": "KDEN",
-   "hourLocal": 21,
-   "offset": 0.09999999999999432,
-   "lessons": 17,
-   "maxSoFar": 64.4,
-   "mu": 64.5,
-   "sigma": 0.8,
-   "best": {
-    "buckets": [
-     "67° to 68°"
-    ],
-    "cost": 0.01,
-    "p": 0.01,
-    "edge": 0
-   }
-  },
-  {
    "city": "MIA",
    "station": "KMIA",
    "hourLocal": 23,
@@ -127,6 +109,24 @@
     "cost": 0.02,
     "p": 0.41,
     "edge": 0.39
+   }
+  },
+  {
+   "city": "CHI",
+   "station": "KMDW",
+   "hourLocal": 22,
+   "offset": 0.09999999999999432,
+   "lessons": 16,
+   "maxSoFar": 69.8,
+   "mu": 69.9,
+   "sigma": 0.8,
+   "best": {
+    "buckets": [
+     "72° to 73°"
+    ],
+    "cost": 0.01,
+    "p": 0.02,
+    "edge": 0.01
    }
   }
  ],

@@ -488,5 +488,125 @@
   "left": 240,
   "result": "win",
   "pnl": 2.81
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T20:32:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.54,
+  "left": 180,
+  "result": "win",
+  "pnl": 4.26
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T21:36:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.7,
+  "left": 240,
+  "result": "win",
+  "pnl": 2.14
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T21:36:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.7,
+  "left": 240,
+  "result": "win",
+  "pnl": 2.14
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T21:52:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.6,
+  "left": 180,
+  "result": "win",
+  "pnl": 3.33
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T21:51:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.6,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.33
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T23:06:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.5,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T23:02:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.61,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T23:32:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.68,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.35
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T00:21:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.46,
+  "left": 240,
+  "result": "win",
+  "pnl": 5.87
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T00:36:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.42,
+  "left": 240,
+  "result": "win",
+  "pnl": 6.9
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T00:51:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.36,
+  "left": 240,
+  "result": "win",
+  "pnl": 8.89
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T01:32:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.69,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.25
  }
 ]

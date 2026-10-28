@@ -82020,5 +82020,93 @@
    "Clean: right side of the band, nothing in front, won at the bell.",
    "The rejection shadow went the other way (long off -1σ)."
   ]
+ },
+ "KXBTC15M-26OCT272315-15": {
+  "ticker": "KXBTC15M-26OCT272315-15",
+  "at": "2026-10-28T03:15:28.207Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "Rejected down off fresh +1σ",
+  "multiple": 1.52,
+  "profit": 2.25,
+  "result": "win",
+  "entry": {
+   "spot": 80832.7,
+   "band": "+0.5σ",
+   "distSigma": 0,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": true,
+   "minuteIn": 1.5
+  },
+  "peakPct": 48.5,
+  "maxPct": 51.5,
+  "takeProfitPct": 46.5,
+  "exit": "mirrored RECON-TOGP paper out: half at 75% (92c) + trail from 90%: best +53%, sold at 98c",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of +0.5σ: short just over it.",
+   "A band was directly in front of the short at entry."
+  ],
+  "lessons": [
+   "The rejection shadow agreed (short off +0.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT272315-15": {
+  "ticker": "KXGOLD15M-26OCT272315-15",
+  "at": "2026-10-28T03:15:31.819Z",
+  "asset": "gold",
+  "side": "down",
+  "setup": "Rejected down off -1σ",
+  "multiple": 1.92,
+  "profit": -13.66,
+  "result": "loss",
+  "entry": {
+   "spot": 4046.357,
+   "band": "-1.5σ",
+   "distSigma": 0.02,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": null,
+   "minuteIn": 0.3
+  },
+  "peakPct": 15.4,
+  "maxPct": 92.3,
+  "takeProfitPct": 69.2,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "The rejection shadow agreed (short off -1.5σ)."
+  ]
+ },
+ "KXBTC15M-26OCT272330-30": {
+  "ticker": "KXBTC15M-26OCT272330-30",
+  "at": "2026-10-28T03:30:17.751Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Green candle rising from the bottom third",
+  "multiple": 1.96,
+  "profit": 4.36,
+  "result": "win",
+  "entry": {
+   "spot": 80836.4,
+   "band": "+0.5σ",
+   "distSigma": 0.03,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": false,
+   "minuteIn": 1
+  },
+  "peakPct": 94.1,
+  "maxPct": 96.1,
+  "takeProfitPct": 72.1,
+  "exit": "mirrored RECON-TOGP paper out: half at 75% (87c) + trail from 90%: best +105%, sold at 99c",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, sold on plan.",
+   "The rejection shadow agreed (long off +0.5σ)."
+  ]
  }
 }
