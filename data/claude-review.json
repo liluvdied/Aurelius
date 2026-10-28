@@ -82865,5 +82865,34 @@
   "lessons": [
    "The rejection shadow went the other way (short off -1.5σ)."
   ]
+ },
+ "KXGOLD15M-26OCT280330-30": {
+  "ticker": "KXGOLD15M-26OCT280330-30",
+  "at": "2026-10-28T07:30:41.312Z",
+  "asset": "gold",
+  "side": "down",
+  "setup": "Rejected down off Red zone",
+  "multiple": 2,
+  "profit": -14.02,
+  "result": "loss",
+  "entry": {
+   "spot": 4034.961,
+   "band": "-1σ",
+   "distSigma": 0.09,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": false,
+   "minuteIn": 0.4
+  },
+  "peakPct": 46,
+  "maxPct": 100,
+  "takeProfitPct": 75,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Ran to +46% before turning. Selling around +37% would have banked about $2.08 instead of −$14.02.",
+   "The rejection shadow agreed (short off -1σ)."
+  ]
  }
 }

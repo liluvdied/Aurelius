@@ -1,23 +1,23 @@
 {
- "at": "2026-10-28T07:23:56.169Z",
+ "at": "2026-10-28T07:33:58.791Z",
  "rows": [
   {
-   "ticker": "KXGOLD15M-26OCT280330-30",
-   "title": "Gold price up in next 15 mins? · Target Price: $4,034.62",
-   "side": "no",
-   "qty": 11.32,
-   "cost": 5.66,
-   "entry": 0.5,
-   "bid": 0.47,
-   "ask": 0.48,
-   "value": 5.32,
-   "pnl": -0.34,
-   "pct": -6,
-   "closes": "2026-10-28T07:30:00Z",
-   "updated": "2026-10-28T07:15:25.889859Z",
+   "ticker": "KXGOLD15M-26OCT280345-45",
+   "title": "Gold price up in next 15 mins? · Target Price: $4,038.15",
+   "side": "yes",
+   "qty": 37.21,
+   "cost": 13.01,
+   "entry": 0.35,
+   "bid": 0.48,
+   "ask": 0.49,
+   "value": 17.86,
+   "pnl": 4.85,
+   "pct": 37,
+   "closes": "2026-10-28T07:45:00Z",
+   "updated": "2026-10-28T07:31:11.302665Z",
    "status": "active",
    "rule": null,
-   "lastFill": "2026-10-28T07:15:25.889825Z"
+   "lastFill": "2026-10-28T07:31:11.302638Z"
   },
   {
    "ticker": "KXBTC2026200-27JAN01-200000",

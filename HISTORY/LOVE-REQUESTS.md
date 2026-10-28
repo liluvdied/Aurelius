@@ -2,6 +2,20 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R064 - fix377: gold, main/rej/copy (+ paper delayed copy): no long inside the 5m red zone (R1-R2), no short inside the green zone (S2-S1). No reach.
+- when: 2026-10-28T07:33:34+00:00
+- Love: "yes pls bb 💘 (to: bring back just the inside-the-zone part - no long inside the red, no short inside the green - for main, the rejection model and the copy)"
+- books: recon-tog, recon-rej, recon-togp, recon-dlyk (paper)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "INSIDE THE RED ZONE"}
+
+## R063 - Strategy lab paper books (tools/lab-paper.py): Gold Snapback 15M, Gold Bollinger fade 15M+1H, BTC Bollinger fade 5M, Love VWMA 8/33 BTC 4H + gold 1H, VWMA 8/21 gold 1H, reel EMA9 x VWAP gold+BTC 15M, $5 paper, writes only data/lab/
+- when: 2026-10-28T07:26:03+00:00
+- Love: "Oct 27 11:58 PM PT: "let's test out my 8 & 33 crossover on paper, and this one from the video pls ... anything else aside from these you can think of that we can get going on paper this week bb?" / Oct 28 12:18 AM PT card pick: "Yes, all of them on paper" / Oct 28 12:19 AM PT: "no need for the stop loss on this one either""
+- books: new paper lab books only (lab-gsnap, lab-gboll15, lab-gboll1h, lab-bboll5, lab-vw833b4h, lab-vw833g1h, lab-vw821g1h, lab-reelg15, lab-reelb15); no existing book touched
+- status: ACTIVE
+- proof: {"code": "tools/lab-paper.py", "has": "STRATEGY LAB PAPER BOOKS"}
+
 ## R062 - fix376: gold, main/rej/copy (and the paper delayed copy that shares copy walls): a trade pointing away from the nearest even $10 waits until price is $1.50 clear (30c-$1.50 blocked). INTO wall unchanged.
 - when: 2026-10-28T07:23:56+00:00
 - Love: "ohhh got you got you sorry  bb i thought you were saying she’d skip those and take the ones into it for a sec 😹💓 / yess let’s do it 💞 (to: she still only trades away from $10 levels, but waits until price is at least $1.50 clear of the level first; main + rejection + copy)"

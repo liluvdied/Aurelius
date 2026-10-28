@@ -7213,16 +7213,16 @@
   "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
  },
  "KXBTC15M-26OCT280330-30:recon-togp:KXBTC15M-26OCT280330-30:recon-togp": {
-  "at": "2026-10-28T07:24:16.740Z",
+  "at": "2026-10-28T07:28:44.438Z",
   "ticker": "KXBTC15M-26OCT280330-30",
-  "side": "down",
-  "status": "blocked",
-  "reason": "BOLLINGER CUSHION: short $46.24 over the Bollinger lower (80743.37) - inside the $50.00 cushion. Wait for the break or the rejection.",
+  "side": "up",
+  "status": "skipped",
+  "reason": "paper closed it (half at 75% (90c) + trail from 90%: best +62%, sold at 97c) before the copy filled",
   "firstReason": "PINK $33 (copy): short $0.46 over the unbroken pink (80800.69) - inside $33 she waits for price to break down through the pink first (fix350).",
   "firstTryAt": "2026-10-28T07:15:06.457Z",
-  "bookedAt": "2026-10-28T07:24:16.617Z",
-  "tries": 2300,
-  "final": false,
+  "bookedAt": "2026-10-28T07:24:49.354Z",
+  "tries": 3432,
+  "final": true,
   "paid": null,
   "orderId": null
  },
@@ -7284,6 +7284,90 @@
   "at": "2026-10-28T07:16:02.199Z",
   "ticker": "KXBTC15M-26OCT280330-30",
   "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (12 AM PT) live"
+ },
+ "KXBTC15M-26OCT280345-45:recon-rej:KXBTC15M-26OCT280345-45:recon-rej": {
+  "at": "2026-10-28T07:30:06.245Z",
+  "ticker": "KXBTC15M-26OCT280345-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
+ },
+ "KXBTC15M-26OCT280345-45:recon-tog:KXBTC15M-26OCT280345-45:recon-tog": {
+  "at": "2026-10-28T07:30:06.246Z",
+  "ticker": "KXBTC15M-26OCT280345-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
+ },
+ "KXBTC15M-26OCT280345-45:recon-togp:KXBTC15M-26OCT280345-45:recon-togp": {
+  "at": "2026-10-28T07:34:00.961Z",
+  "ticker": "KXBTC15M-26OCT280345-45",
+  "side": "up",
+  "status": "blocked",
+  "reason": "BOLLINGER CUSHION: long $46.45 under the Bollinger upper (80869.40) - inside the $50.00 cushion. Wait for the break or the rejection.",
+  "firstReason": "BOLLINGER CUSHION: long $44.01 under the Bollinger upper (80869.40) - inside the $50.00 cushion. Wait for the break or the rejection.",
+  "firstTryAt": "2026-10-28T07:33:26.520Z",
+  "bookedAt": "2026-10-28T07:31:47.702Z",
+  "tries": 133,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXBTC15M-26OCT280345-45:recon-np:KXBTC15M-26OCT280345-45:recon-np": {
+  "at": "2026-10-28T07:30:06.260Z",
+  "ticker": "KXBTC15M-26OCT280345-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "THE PURE NO-PINK trades live only in her hour (9 PM, Love)"
+ },
+ "KXGOLD15M-26OCT280345-45:recon-rej:KXGOLD15M-26OCT280345-45:recon-rej": {
+  "at": "2026-10-28T07:30:09.198Z",
+  "ticker": "KXGOLD15M-26OCT280345-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
+ },
+ "KXGOLD15M-26OCT280345-45:recon-togp:KXGOLD15M-26OCT280345-45:recon-togp": {
+  "at": "2026-10-28T07:30:10.271Z",
+  "ticker": "KXGOLD15M-26OCT280345-45",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-10-28T07:30:10.271Z",
+  "bookedAt": "2026-10-28T07:30:09.077Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.58,
+  "orderId": "01a1816a-97e8-7693-b4dc-864b65da2782"
+ },
+ "KXGOLD15M-26OCT280345-45:recon-tog:KXGOLD15M-26OCT280345-45:recon-tog": {
+  "at": "2026-10-28T07:30:10.276Z",
+  "ticker": "KXGOLD15M-26OCT280345-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
+ },
+ "KXGOLD15M-26OCT280345-45:recon-dly:KXGOLD15M-26OCT280345-45:recon-dly": {
+  "at": "2026-10-28T07:30:42.070Z",
+  "ticker": "KXGOLD15M-26OCT280345-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (12 AM PT) live"
+ },
+ "KXBTC15M-26OCT280345-45:recon-dly:KXBTC15M-26OCT280345-45:recon-dly": {
+  "at": "2026-10-28T07:31:39.398Z",
+  "ticker": "KXBTC15M-26OCT280345-45",
+  "side": "up",
   "status": "skipped",
   "final": true,
   "reason": "RECON-DLY sits out her worst hour (12 AM PT) live"

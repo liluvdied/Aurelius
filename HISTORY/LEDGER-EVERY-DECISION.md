@@ -1,9 +1,18 @@
-# Every decision Love has made - rebuilt 2026-10-28T07:24:08.520876+00:00
+# Every decision Love has made - rebuilt 2026-10-28T07:33:46.500133+00:00
 
-1227 decisions with Love's words or card picks, out of 1909 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1229 decisions with Love's words or card picks, out of 1913 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T07:33:34Z  ·  diary line 2378  ·  fix377
+- Love: “yes pls bb 💘 (to: bring back just the inside-the-zone part - no long inside the red, no short inside the green - for main, the rejection model and the copy)”
+- fix377 IN HER CODE
+- Full entry: 2026-10-28T07:33:34Z fix377 (Oct 28 12:33 AM PT, Love: "yes pls bb 💘 (to: bring back just the inside-the-zone part - no long inside the red, no short inside the green - for main, the rejection model and the copy)"): gold INSIDE THE RED/GREEN ZONE wall back (inside part of the Oct 20 zone wall retired 9:20 PM Oct 20; reach stays retired). Cause: 12:30 AM copy long 4038.79 inside red (R1 4038.18) on 'Green candle rising from the bottom third'. BTC not included (offered).
+
+## (no time)  ·  diary line 2375
+- Love: “Yes, all of them on paper”
+- Full entry: Oct 28 12:26 AM PT LAB PAPER (R063): tools/lab-paper.py installed, paper only, writes data/lab/ only. Love: "Yes, all of them on paper" / "no need for the stop loss on this one either"
 
 ## 2026-10-28T07:23:56Z  ·  diary line 2374  ·  fix376
 - Love: “ohhh got you got you sorry  bb i thought you were saying she’d skip those and take the ones into it for a sec 😹💓 / yess let’s do it 💞 (to: she still only trades away from $10 levels, but waits until price is at least $1.50 clear of the level first; main + rejection + copy)”

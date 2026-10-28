@@ -1,5 +1,20 @@
 [
   {
+    "id": "held-KXGOLD15M-26OCT280345-45",
+    "at": "2026-10-28T07:30:10.582Z",
+    "asset": "gold",
+    "ticker": "KXGOLD15M-26OCT280345-45",
+    "side": "up",
+    "pattern": "Live",
+    "venue": "kalshi",
+    "spot": null,
+    "target": null,
+    "vwap": null,
+    "multiple": 1.72,
+    "profit": null,
+    "result": "open"
+  },
+  {
     "id": "mvrsge73-1xxnfg",
     "at": "2026-10-28T07:24:03.423Z",
     "asset": "silver",
@@ -11,8 +26,9 @@
     "target": 53.856,
     "vwap": null,
     "multiple": 1.4925373134328357,
-    "profit": null,
-    "result": "open"
+    "profit": 12.31,
+    "result": "win",
+    "closedAt": "2026-10-28T07:30:03.555Z"
   },
   {
     "id": "mvrsfbzz-4ol14v",
@@ -26,8 +42,9 @@
     "target": 80812.57,
     "vwap": null,
     "multiple": 1.6949152542372883,
-    "profit": null,
-    "result": "open"
+    "profit": 13.14,
+    "result": "win",
+    "closedAt": "2026-10-28T07:28:08.974Z"
   },
   {
     "id": "mvrs7eiv-xuou66",
@@ -41,8 +58,9 @@
     "target": 4034.62,
     "vwap": null,
     "multiple": 1.7241379310344829,
-    "profit": null,
-    "result": "open"
+    "profit": -25,
+    "result": "loss",
+    "closedAt": "2026-10-28T07:30:03.555Z"
   },
   {
     "id": "held-KXGOLD15M-26OCT280330-30",
@@ -56,8 +74,9 @@
     "target": null,
     "vwap": null,
     "multiple": 2,
-    "profit": null,
-    "result": "open"
+    "profit": -14.02,
+    "result": "loss",
+    "closedAt": "2026-10-28T07:30:41.312Z"
   },
   {
     "id": "mvrrvri5-k0b467",
@@ -7938,21 +7957,5 @@
     "profit": -16.73,
     "result": "loss",
     "closedAt": "2026-10-26T15:45:31.413Z"
-  },
-  {
-    "id": "mvpehl30-6kkxom",
-    "at": "2026-10-26T15:17:32.028Z",
-    "asset": "btc",
-    "ticker": "KXBTC15M-26OCT261130-30",
-    "side": "up",
-    "pattern": "Tap-reject at +1σ",
-    "venue": "paper",
-    "spot": 80331.23,
-    "target": 80306.07,
-    "vwap": null,
-    "multiple": 1.6666666666666667,
-    "profit": 12.54,
-    "result": "win",
-    "closedAt": "2026-10-26T15:20:50.826Z"
   }
 ]

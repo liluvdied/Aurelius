@@ -1,5 +1,17 @@
 [
   {
+    "at": "2026-10-28T07:28:08.972Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at VWAP",
+    "stake": 25,
+    "multiple": 1.6949152542372883,
+    "profit": 13.14,
+    "pct": 53,
+    "result": "closed",
+    "why": "hard 52.1% · offered 53%"
+  },
+  {
     "at": "2026-10-28T07:10:57.845Z",
     "asset": "btc",
     "side": "up",
@@ -2386,17 +2398,5 @@
     "pct": 58,
     "result": "closed",
     "why": "hard 50% · offered 58%"
-  },
-  {
-    "at": "2026-10-25T18:41:23.980Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at −1.5σ",
-    "stake": 25,
-    "multiple": 1.6666666666666667,
-    "profit": 12.58,
-    "pct": 50,
-    "result": "closed",
-    "why": "hard 50% · offered 50%"
   }
 ]

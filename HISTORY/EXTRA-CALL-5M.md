@@ -2,7 +2,7 @@
 
 Love Oct 27 2:25 PM PT: "track and log those and we'll see if it's a problem or a proud one :)"
 
-From main's extra calls: 0W 0L, $+0.00  |  rest of that 5M lane: 1W 1L, $-1.89  (since fix336, Oct 27 1:13 PM PT)
+From main's extra calls: 0W 0L, $+0.00  |  rest of that 5M lane: 2W 1L, $+3.32  (since fix336, Oct 27 1:13 PM PT)
 
 | when (UTC) | window | kind | what happened | $ | why |
 |---|---|---|---|---|---|
