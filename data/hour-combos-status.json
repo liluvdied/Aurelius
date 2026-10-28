@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T02:02:26.174Z",
+ "at": "2026-10-28T02:46:58.705Z",
  "markets": 914,
  "perSeries": {
   "KXBTCD": 188,
@@ -8,8 +8,146 @@
   "KXXRPD": 75,
   "KXDOGED": 51
  },
- "lastErr": "KXDOGED-26OCT2722: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXDOGED-26OCT2722&limit=1",
+ "lastErr": "KXDOGED-26OCT2723: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXDOGED-26OCT2723&limit=1",
  "close": "2026-10-28T03:00:00.000Z",
- "lanes": {},
- "minsLeft": 57.6
+ "lanes": {
+  "h1-15-mixed": {
+   "hourMarkets": 914,
+   "eligible": 2682,
+   "picked": [
+    "KXBTCD:no:0.88",
+    "KXETHD:yes:0.9"
+   ],
+   "built": false
+  },
+  "h1-15-floor": {
+   "hourMarkets": 914,
+   "eligible": 2682,
+   "picked": [
+    "KXETHD:yes:0.9"
+   ],
+   "built": false
+  },
+  "h1-15-ceiling": {
+   "hourMarkets": 914,
+   "eligible": 2682,
+   "picked": [
+    "KXBTCD:no:0.88"
+   ],
+   "built": false
+  }
+ },
+ "minsLeft": 13,
+ "series": {
+  "KXBTCD": {
+   "n": 188,
+   "eligible": 188,
+   "events": [
+    "KXBTCD-26OCT2723"
+   ],
+   "types": [
+    "greater"
+   ],
+   "sample": [
+    "80799.99:0.5800/0.4300:active",
+    "80899.99:0.1300/0.8800:active",
+    "80699.99:0.9200/0.0900:active",
+    "80999.99:0.0400/0.9700:active",
+    "89299.99:0.0100/1.0000:active",
+    "89199.99:0.0100/1.0000:active",
+    "89099.99:0.0100/1.0000:active",
+    "88999.99:0.0100/1.0000:active",
+    "88899.99:0.0100/1.0000:active",
+    "88799.99:0.0100/1.0000:active"
+   ]
+  },
+  "KXETHD": {
+   "n": 300,
+   "eligible": 300,
+   "events": [
+    "KXETHD-26OCT2723"
+   ],
+   "types": [
+    "greater"
+   ],
+   "sample": [
+    "2554.99:0.4300/1.0000:active",
+    "2549.99:0.4300/1.0000:active",
+    "2544.99:0.4300/1.0000:active",
+    "2534.99:0.4200/1.0000:active",
+    "2489.99:0.4200/1.0000:active",
+    "2484.99:0.4200/1.0000:active",
+    "2539.99:0.4100/1.0000:active",
+    "2524.99:0.3800/1.0000:active",
+    "2529.99:0.3600/1.0000:active",
+    "2354.99:0.3500/0.6800:active"
+   ]
+  },
+  "KXSOLD": {
+   "n": 300,
+   "eligible": 300,
+   "events": [
+    "KXSOLD-26OCT2723"
+   ],
+   "types": [
+    "greater"
+   ],
+   "sample": [
+    "101.4999:0.4900/0.5500:active",
+    "110.9999:0.4300/1.0000:active",
+    "111.2499:0.4300/1.0000:active",
+    "110.2499:0.4300/1.0000:active",
+    "110.4999:0.4300/1.0000:active",
+    "110.7499:0.4300/1.0000:active",
+    "109.7499:0.4100/1.0000:active",
+    "109.2499:0.4100/1.0000:active",
+    "109.4999:0.4000/1.0000:active",
+    "109.9999:0.4000/1.0000:active"
+   ]
+  },
+  "KXXRPD": {
+   "n": 75,
+   "eligible": 75,
+   "events": [
+    "KXXRPD-26OCT2723"
+   ],
+   "types": [
+    "greater"
+   ],
+   "sample": [
+    "1.3399:0.0200/0.9900:active",
+    "1.7399:0.0100/1.0000:active",
+    "1.8799:0.0100/1.0000:active",
+    "1.8399:0.0100/1.0000:active",
+    "1.9199:0.0100/1.0000:active",
+    "1.8199:0.0100/1.0000:active",
+    "1.9399:0.0100/1.0000:active",
+    "1.7799:0.0100/1.0000:active",
+    "1.7999:0.0100/1.0000:active",
+    "1.8599:0.0100/1.0000:active"
+   ]
+  },
+  "KXDOGED": {
+   "n": 51,
+   "eligible": 51,
+   "events": [
+    "KXDOGED-26OCT2723"
+   ],
+   "types": [
+    "custom"
+   ],
+   "sample": [
+    "undefined:0.0200/1.0000:active",
+    "undefined:0.0100/1.0000:active",
+    "undefined:0.0100/1.0000:active",
+    "undefined:0.0100/1.0000:active",
+    "undefined:0.0100/1.0000:active",
+    "undefined:0.0100/1.0000:active",
+    "undefined:0.0100/1.0000:active",
+    "undefined:0.0100/1.0000:active",
+    "undefined:0.0100/1.0000:active",
+    "undefined:0.0100/1.0000:active"
+   ]
+  }
+ }
 }

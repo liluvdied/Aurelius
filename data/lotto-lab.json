@@ -21,8 +21,14 @@
    "+200": null,
    "+300": null
   },
-  "result": "open",
-  "profits": null
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": -5,
+   "+100": -5,
+   "+200": -5,
+   "+300": -5
+  }
  },
  {
   "id": "KXBTC15M-26OCT272230-30:down",
@@ -38,16 +44,22 @@
   "secondsLeft": 799,
   "ask": 0.31,
   "multiple": 3.23,
-  "peakBid": 0.61,
-  "peakPct": 97,
+  "peakBid": 0.999,
+  "peakPct": 222,
   "exits": {
    "+50": 0.52,
-   "+100": null,
-   "+200": null,
+   "+100": 0.64,
+   "+200": 0.949,
    "+300": null
   },
-  "result": "open",
-  "profits": null
+  "result": "win",
+  "profits": {
+   "hold": 11.13,
+   "+50": 3.39,
+   "+100": 5.32,
+   "+200": 10.31,
+   "+300": 11.13
+  }
  },
  {
   "id": "KXGOLD15M-26OCT272215-15:up",

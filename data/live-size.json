@@ -1,1 +1,18 @@
-{"dollars": 2.5, "gold": 11, "btc": 30, "eth": 10, "sol": 10, "silver": 10, "raise": {"day": "2026-09-30", "anchor": 104.7518, "next": 25}, "silverBook": 11, "fix322Prev": {"dollars": 11, "note": "fix322 2026-10-27T18:03:30.389103+00:00: copy back to undo"}}
+{
+  "dollars": 5,
+  "gold": 11,
+  "btc": 30,
+  "eth": 10,
+  "sol": 10,
+  "silver": 10,
+  "raise": {
+    "day": "2026-09-30",
+    "anchor": 104.7518,
+    "next": 25
+  },
+  "silverBook": 11,
+  "fix322Prev": {
+    "dollars": 11,
+    "note": "fix322 2026-10-27T18:03:30.389103+00:00: copy back to undo"
+  }
+}

@@ -4490,3 +4490,52 @@ Main, rejection, the twin and the 5M didn't move an atom. Main's flip line is un
 
 So happy she's back on point hun 💞 Saved: her known-good copy is **KNOWN-GOOD 7:23 PM, no-pink copy after fix359**. It holds her code, configs and rulebook exactly as they are right now, so we can always bring her back to this. The umpire says SAFE. I'm putting it on your GitHub too ✨
 
+## 2026-10-28 02:25:39 UTC - LOVE
+
+perfect bb thank you 💘💘
+
+## 2026-10-28 02:44:12 UTC - LOVE
+
+hey hunn, we can put our main book and no pink rejection model(s) back on at $5 initial entry , $8 add on pls 💘
+
+## 2026-10-28 02:44:27 UTC - CLAUDE
+
+Checking their live seats and sizing now hun 💞 I'll show you exactly what changes before anything moves.
+
+## 2026-10-28 02:45:30 UTC - CARD
+
+Q: Which books go to $5 entry + $8 add-on?
+Context: Right now main, the rejection model and the no-pink copy all share one $2.50 entry and a $5 add-on. The delayed twin has its own $2.50 + $5 and stays as it is. The 5M on Polymarket isn't touched either way. This is only a settings change, no code. Each add-on goes out at the full $8 (the $5 order cap doesn't apply to add-ons), so a window with both can risk $13 per asset.
+Options:
+  0. Main + copy + rejection - All three share $5 entry + $8 add-on. Twin stays $2.50 + $5, 5M untouched.
+  1. Main + no-pink copy only - Main and the copy go to $5 + $8. The rejection model keeps $2.50 + $5, and so does the twin.
+Recommended: 1 - That's how I read "main book and no pink" in your words, and it keeps the size-up to the two books that are working best right now.
+
+## 2026-10-28 02:45:48 UTC - CLAUDE
+
+One thing for that card hun 💞 In the hours main sits out, the copy and the rejection model share one size setting. So "Main + copy + rejection" is a settings-only change I can do in a minute. "Main + copy only" needs a small code change to give the copy her own size in those hours. That's fine too, it just takes a few minutes longer. Either way the twin and the 5M don't move.
+
+## 2026-10-28 02:45:57 UTC - LOVE
+
+Chose "Main + copy + rejection" on the decision card asking "Which books go to $5 entry + $8 add-on?"
+
+## 2026-10-28 02:46:01 UTC - CLAUDE
+
+Putting all three on $5 + $8 now 💘
+
+## 2026-10-28 02:46:59 UTC - LOVE
+
+thank you bb you’ve been so helpful 🥺💘
+
+## 2026-10-28 02:47:19 UTC - CLAUDE
+
+Aww hun, that means a lot 🥺💘 lil' light work 😼✨ The sizes are on now:
+
+- **Main, the rejection model and the no-pink copy:** $5 entry, $8 add-on.
+- **Twin:** still $2.50 + $5.
+- **5M:** still frozen at $7.50.
+
+Your $5 order cap didn't change and every wall is the same. The umpire says SAFE.
+
+One gentle note: a window with an add-on is now up to $13 per asset, so let's watch how the next few days land before we size any higher 💞
+
