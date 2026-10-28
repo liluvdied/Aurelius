@@ -290,10 +290,22 @@
       "note": "fix175 Oct 24 ~9:48 PM PT, Love: DELAYED twin Kalshi add-on $4 (was $3) | fix190 Oct 25 ~2:09 AM PT, Love: 'then we can raise her add on to $5, those are working as intended' -> $5"
     },
     "on": true,
-    "dollars": 8,
+    "dollars": 7,
     "maxAsk": 0.263,
     "minLeft": 2,
-    "note": "Oct 20 ~12:04 AM PT, Love: \"when i said no limit i was talking about the multiple she could enter into - not no limit on how many times she could add on. limit it to 1 add on of $2 please. one of them\" - ONE $2 add per position, at a rejection her way, any multiple 3.8x or higher (maxAsk 26.3c, no ceiling on the multiple). No noLimit flag: the once-per-window gate enforces exactly one."
+    "note": "Oct 20 ~12:04 AM PT, Love: \"when i said no limit i was talking about the multiple she could enter into - not no limit on how many times she could add on. limit it to 1 add on of $2 please. one of them\" - ONE $2 add per position, at a rejection her way, any multiple 3.8x or higher (maxAsk 26.3c, no ceiling on the multiple). No noLimit flag: the once-per-window gate enforces exactly one.",
+    "second": {
+      "on": true,
+      "dollars": 3,
+      "maxAsk": 0.72,
+      "minLeft": 2,
+      "books": [
+        "recon-tog",
+        "recon-rej",
+        "recon-togp"
+      ],
+      "note": "fix380 Oct 28 2026 1:12 AM PT, Love: \"we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters ... a candle flip at any band she encounters after our first add on\" + card \"Main + rejection + copy\""
+    }
   },
   "timeGate": {
     "on": true,
@@ -1547,7 +1559,7 @@
     "on": true,
     "dollars": 5,
     "addOn": {
-      "dollars": 8,
+      "dollars": 7,
       "maxAsk": 0.357,
       "note": "fix176 Oct 24 ~9:50 PM PT, Love card '$4 for both': Kalshi rejection-model hours and main-book off hours add $4 (was $3), 2.8x+",
       "dollarsByHour": {}
@@ -1990,5 +2002,9 @@
         23
       ]
     }
+  },
+  "fix380Prev": {
+    "addOn.dollars": 8,
+    "offHourMain.addOn.dollars": 8
   }
 }

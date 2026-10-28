@@ -2,6 +2,18 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R067 - fix380: main/rej/copy - entry $5 (unchanged), first add-on $7 (was $8; addOn.dollars, offHourMain.addOn.dollars), then ONE $3 second add-on at the next different band with a 1-5m candle flip her way (anyFlipMinNow), any multiple up to 72c (addOn.second). Twin, pure no-pink, Poly 5M unchanged. Supersedes R045 add-on size.
+- when: 2026-10-28T08:16:52+00:00
+- Love: "we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters / same entry logic, we had some issues last time getting those to go thru correctly at a rejection so we made it just a default entry / but let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on / can we do that bb? + card Main + rejection + copy"
+- books: recon-tog, recon-rej, recon-togp
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "THE SECOND ADD-ON (fix380"}
+- proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 5}
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.dollars", "equals": 5}
+- proof: {"config": "data/live-switch.json", "key": "addOn.dollars", "equals": 7}
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.addOn.dollars", "equals": 7}
+- proof: {"config": "data/live-switch.json", "key": "addOn.second.dollars", "equals": 3}
+
 ## R066 - fix379: BTC THE IMPOSSIBILITY top/bottom 33% (was fix219 20% for one-sigma channels) on main/rej/copy (+ paper delayed copy) while the channel is <= $500 wide; over $500 stays 20%. Pure no-pink unchanged.
 - when: 2026-10-28T08:07:11+00:00
 - Love: "card: Top/bottom 33% instead of 20% / yes pls all of them for sure"
@@ -161,7 +173,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-28T02:46:31+00:00
 - Love: "hey hunn, we can put our main book and no pink rejection model(s) back on at $5 initial entry , $8 add on pls + card "Main + copy + rejection""
 - books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j, ,,  , r, e, c, o, n, -, t, o, g, p
-- status: ACTIVE
+- status: RETIRED - Love: "we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters"
 - proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 5}
 - proof: {"config": "data/live-switch.json", "key": "offHourMain.dollars", "equals": 5}
 - proof: {"config": "data/live-switch.json", "key": "addOn.dollars", "equals": 8}

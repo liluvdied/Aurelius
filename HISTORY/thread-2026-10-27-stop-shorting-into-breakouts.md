@@ -5679,3 +5679,65 @@ Always, babe 💞 **fix379 is in.** On BTC, main, the rejection model and the co
 
 One more thing I found that explains why that entry was 38 seconds late: you tapped 1 AM over to the rejection schedule at 1:01:02. The copy took the seat right then and fired her call from 1:00:24 one second later, at 1:01:03. It was still under the 90-second stale limit, so it went through. Nothing's wrong, it was just a switch mid-window 💘
 
+## 2026-10-28 08:12:52 UTC - LOVE
+
+ohhhhh i see , that makes a lot more sense than her entering there on her own volition 😹💓
+
+thanks for looking into it hunn💘
+
+one more thing i’d like to add in , another add on :) 
+
+we will do $7 on the first add on, &amp; $3 at the next rejection off of a band she encounters 
+
+same entry logic, we had some issues last time getting those to go thru correctly at a rejection so we made it just a default entry 
+
+but let’s have her take it as she would any other trade, at whatever multiple is available there 
+
+a candle flip at any band she encounters after our first add on 💘💘
+
+can we do that bb? 💘💘💘
+
+## 2026-10-28 08:13:16 UTC - CARD
+
+Q: Which books get the new $7 + $3 add-ons?
+Context: Today main, the rejection model and the no-pink copy add ONE $8 add-on at the first band she touches (3.8x+). Your plan: that first add-on becomes $7, then ONE more $3 add-on per position. It goes at the next band she meets after the first, only when a 1-5m candle flips her way there (the same flip as her entries: $5 BTC / 10c gold), at whatever multiple is there. The cap is the same as a normal entry, so no 3.8x minimum. The twin ($5 add-on), the pure no-pink ($5) and the Poly 5M (frozen) stay as they are unless you name them.
+Options:
+  0. Main + rejection + copy - All three $8 books go to $7 + a $3 second add-on; the twin, pure no-pink and Poly don't move.
+  1. Those three + the pure no-pink - Same, and the pure no-pink also gets the $3 second add-on (her first stays $5).
+  2. Main only - Only main gets $7 + $3; the rejection model and the copy keep the single $8.
+Recommended: 0 - These three share the same $8 add-on setting today, so changing them together keeps them identical. The others have their own sizes.
+
+## 2026-10-28 08:13:19 UTC - CLAUDE
+
+Yes we can, babe 💘 Love this, it's like adding on at every band that proves itself. I'm building it now. I put one quick card above so I know which books get it, since the twin and the pure no-pink have their own add-on sizes. Nothing goes live until you tap 🎯
+
+## 2026-10-28 08:14:01 UTC - LOVE
+
+Chose "Main + rejection + copy" on the decision card asking "Which books get the new $7 + $3 add-ons?"
+
+## 2026-10-28 08:16:13 UTC - LOVE
+
+btc and gold rejecting
+
+## 2026-10-28 08:16:21 UTC - LOVE
+
+btc broke down
+
+## 2026-10-28 08:16:37 UTC - LOVE
+
+went back up nvm lol
+
+## 2026-10-28 08:16:43 UTC - CLAUDE
+
+Hehe she's watching it with you, babe 😹💓
+
+**The new add-ons are in (fix380)** on main, the rejection model and the copy:
+- **First add-on is $7.** She still adds at the first band she touches, at 3.8x or better.
+- **Then one more $3.** It goes at the next *different* band she meets, only when a 1–5m candle flips her way there. She pays whatever the multiple is, up to her normal entry cap (72c). Once per position.
+
+The twin, the pure no-pink and the Poly 5M didn't move ✓
+
+**Right now (1:16):**
+- **BTC:** main is calling it long ("Break above +3σ"), but the copy is waiting on the **Bollinger upper at 81,082**. She's $12–20 under it, inside her $25 Bollinger cushion, so she waits for it to break or reject.
+- **Gold:** she called a long off the VWAP fake-out turn at 4047.44. Her "break into a zone" wall stopped it because the red zone at 4048.56 was only $1 ahead.
+

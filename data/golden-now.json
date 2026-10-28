@@ -1,21 +1,21 @@
 {
- "at": "2026-10-28T08:07:39.530Z",
+ "at": "2026-10-28T08:17:19.874Z",
  "btc": {
-  "spot": 81048,
-  "vwap": 80819.57249038728,
-  "sd": 114.37414509802274,
-  "pattern": "Tap-reject at +2σ",
+  "spot": 81040,
+  "vwap": 80823.98902696394,
+  "sd": 117.63254978093838,
+  "pattern": "No band interaction",
   "setup": null,
   "side": null,
   "watchOnly": null
  },
  "gold": {
-  "spot": 4047.535,
-  "vwap": 4048.501346387695,
-  "sd": 11.812232230606924,
-  "pattern": "No band interaction",
-  "setup": null,
-  "side": null,
-  "watchOnly": null
+  "spot": 4049.24,
+  "vwap": 4048.463194380831,
+  "sd": 11.678029095256045,
+  "pattern": "Tap-reject at VWAP",
+  "setup": "Tap-reject at VWAP",
+  "side": "up",
+  "watchOnly": false
  }
 }

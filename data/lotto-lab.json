@@ -21,8 +21,14 @@
    "+200": null,
    "+300": null
   },
-  "result": "open",
-  "profits": null
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": 3.42,
+   "+100": -5,
+   "+200": -5,
+   "+300": -5
+  }
  },
  {
   "id": "KXGOLD15M-26OCT280215-15:up",

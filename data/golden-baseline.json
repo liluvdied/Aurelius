@@ -27,7 +27,7 @@
   "confirm.ts": "9d4790dfd4a9e8ed",
   "dayboard.ts": "85ba614c44331637",
   "dna.ts": "7e15f742d137607e",
-  "engine.ts": "7eaaeb1b6b07ca98",
+  "engine.ts": "33d9f98429705e21",
   "feedmatch.ts": "8908213d26d0f9fc",
   "fees.ts": "b31480529d0d4c44",
   "fill-log.ts": "1e136cd46cbbbe7f",
@@ -148,7 +148,7 @@
   "insurance": "7e56fa5011",
   "tpLadder": "b5bea41b6c",
   "polyTwin": "16806c301c",
-  "addOn": "3a9b7007b9",
+  "addOn": "24d8d38ff0",
   "timeGate": "3048875528",
   "snipe": "08fadc84ae",
   "polyLive": "fcbcf16590",
@@ -267,7 +267,7 @@
   "assetDollarsOff": "8a3eed3ef7",
   "polyLiveNote": "40671f92fd",
   "dlyLiveNote": "0c40f78c42",
-  "offHourMain": "df9136b6da",
+  "offHourMain": "92895c5035",
   "bookSkipHoursByAsset": "5fd7f6a5b5",
   "fix313Prev": "c1e29a6fd6",
   "liveSkipHoursPrev315": "a7a12423e8",
@@ -277,13 +277,14 @@
   "fix352Prev": "23d7ac15bf",
   "fix360Prev": "ac6d740e35",
   "npLive": "951ebde3b2",
-  "fix374Prev": "f6fa805c30"
+  "fix374Prev": "f6fa805c30",
+  "fix380Prev": "9fa58145d8"
  },
  "configFiles": {
   "data/spine-lock.json": "073593da79c367e8",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "2a59d568a025d9fc"
+  "data/live-switch.json": "7f6c4395edcaa6ff"
  },
  "sealLiveBook": "e13f989d61",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

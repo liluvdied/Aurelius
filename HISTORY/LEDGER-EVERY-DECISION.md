@@ -1,9 +1,14 @@
-# Every decision Love has made - rebuilt 2026-10-28T08:07:23.332756+00:00
+# Every decision Love has made - rebuilt 2026-10-28T08:17:04.473359+00:00
 
-1233 decisions with Love's words or card picks, out of 1921 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1234 decisions with Love's words or card picks, out of 1924 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T08:16:52Z  ·  diary line 2389  ·  fix380
+- Love: “we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters / same entry logic, we had some issues last time getting those to go thru correctly at a rejection so we made it just a default entry / but let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on / can we do that bb? + card Main + rejection + copy”
+- fix380 IN HER CODE
+- Full entry: 2026-10-28T08:16:52Z fix380 (Oct 28 1:16 AM PT, Love: "we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters / same entry logic, we had some issues last time getting those to go thru correctly at a rejection so we made it just a default entry / but let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on / can we do that bb? + card Main + rejection + copy"): first add-on $7 (was $8), second add-on $3 (addOn.second, engine after first add-on block) at the next different band + 1-5m candle flip her way, cap 72c, once per position; main/rej/copy only. R045 retired on Love's words ($7).
 
 ## 2026-10-28T08:07:11Z  ·  diary line 2386  ·  fix219, fix379
 - Love: “How much room should BTC longs need under an unbroken session band?”

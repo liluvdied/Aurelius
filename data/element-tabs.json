@@ -17,11 +17,11 @@
   },
   "held to the bell": {
     "win": 1254,
-    "loss": 2538
+    "loss": 2541
   },
   "1.4x to 2.2x": {
-    "win": 3027,
-    "loss": 2023
+    "win": 3029,
+    "loss": 2026
   },
   "7pm": {
     "win": 156,
@@ -32,7 +32,7 @@
     "loss": 114
   },
   "Bitcoin long Live": {
-    "win": 381,
+    "win": 382,
     "loss": 377
   },
   "under 1.4x": {
@@ -64,8 +64,8 @@
     "loss": 7
   },
   "already through the strike": {
-    "win": 1492,
-    "loss": 980
+    "win": 1493,
+    "loss": 982
   },
   "far from the strike": {
     "win": 24,
@@ -76,7 +76,7 @@
     "loss": 93
   },
   "closed before the bell": {
-    "win": 2169,
+    "win": 2171,
     "loss": 153
   },
   "Gold long Tap-reject at +1σ": {
@@ -97,7 +97,7 @@
   },
   "tight to the strike": {
     "win": 1298,
-    "loss": 849
+    "loss": 851
   },
   "4pm": {
     "win": 122,
@@ -121,7 +121,7 @@
   },
   "Gold short Live": {
     "win": 330,
-    "loss": 269
+    "loss": 270
   },
   "Bitcoin short Tap-reject at +1.5σ": {
     "win": 38,
@@ -140,12 +140,12 @@
     "loss": 109
   },
   "after midnight": {
-    "win": 957,
-    "loss": 700
+    "win": 959,
+    "loss": 703
   },
   "finished on the wrong side of the strike": {
     "win": 29,
-    "loss": 1128
+    "loss": 1130
   },
   "Gold short Tap-reject at +2σ": {
     "win": 23,
@@ -156,7 +156,7 @@
     "loss": 16
   },
   "finished on the right side of the strike": {
-    "win": 419,
+    "win": 420,
     "loss": 0
   },
   "Bitcoin short Tap-reject at +0.5σ": {
@@ -168,8 +168,8 @@
     "loss": 19
   },
   "1am": {
-    "win": 135,
-    "loss": 102
+    "win": 137,
+    "loss": 105
   },
   "reached the watch, short of the arm": {
     "win": 14,
@@ -189,7 +189,7 @@
   },
   "went green, short of the watch": {
     "win": 848,
-    "loss": 1840
+    "loss": 1843
   },
   "2am": {
     "win": 167,
@@ -208,11 +208,11 @@
     "loss": 0
   },
   "Bitcoin long Tap-reject at +1.5σ": {
-    "win": 61,
+    "win": 62,
     "loss": 39
   },
   "long above the VWAP": {
-    "win": 201,
+    "win": 202,
     "loss": 131
   },
   "Gold long Tap-reject at +0.5σ": {
@@ -245,7 +245,7 @@
   },
   "Gold short Tap-reject at VWAP": {
     "win": 23,
-    "loss": 6
+    "loss": 7
   },
   "Gold long Tap-reject at -0.5σ": {
     "win": 10,
@@ -261,10 +261,10 @@
   },
   "Trail never reached the watch.": {
     "win": 845,
-    "loss": 1839
+    "loss": 1842
   },
   "cleared the arm": {
-    "win": 2467,
+    "win": 2469,
     "loss": 48
   },
   "Trail took it. High 60.2%, out at 58.5%.": {
@@ -373,7 +373,7 @@
   },
   "short below the VWAP": {
     "win": 170,
-    "loss": 110
+    "loss": 111
   },
   "Trail saw 33.3% and did not take it.": {
     "win": 1,
@@ -961,7 +961,7 @@
   },
   "Silver long Tap-reject at +2.5σ": {
     "win": 0,
-    "loss": 5
+    "loss": 6
   },
   "Trail took it. High 58.4%, out at 58.4%.": {
     "win": 12,
@@ -1368,7 +1368,7 @@
     "loss": 6
   },
   "Trail took it. High 46.6%, out at 46.6%.": {
-    "win": 2,
+    "win": 3,
     "loss": 0
   },
   "Bitcoin long Tap-reject at -2σ": {
@@ -4788,6 +4788,10 @@
     "loss": 0
   },
   "Trail saw 125.6% and did not take it.": {
+    "win": 1,
+    "loss": 0
+  },
+  "Trail took it. High 42%, out at 38.3%.": {
     "win": 1,
     "loss": 0
   }

@@ -1,52 +1,4 @@
 {
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n572:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 11,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n575:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 10,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n574:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 10,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n577:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 10,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
  "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n576:5m": {
   "book": "recon-tog-5m",
   "asset": "btc",
@@ -4952,11 +4904,11 @@
   "side": "down",
   "ticker": "KXBTC15M-26OCT280415-15",
   "setup": "Top third - seen as a short under 81060.28 (was: Break above fresh +2σ)",
-  "lastTry": 1793174865447,
-  "tries": 38,
-  "wallOk": true,
-  "status": "waiting",
-  "reason": "late door only (the other book holds the 5m)"
+  "lastTry": 1793174941345,
+  "tries": 55,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
  },
  "KXBTC15M-26OCT280415-15:recon-rej5:s5977249:5m": {
   "book": "recon-rej-5m",
@@ -4964,10 +4916,58 @@
   "side": "up",
   "ticker": "KXBTC15M-26OCT280415-15",
   "setup": "Launched from the bottom third (low 81042.20) - a long until the top third",
-  "lastTry": 1793174865447,
-  "tries": 37,
+  "lastTry": 1793174941345,
+  "tries": 54,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280415-15:recon-tog:s5977250:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT280415-15",
+  "setup": "Rejected up off 5m PP",
+  "lastTry": 1793175241063,
+  "tries": 57,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280415-15:recon-rej5:s5977250:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT280415-15",
+  "setup": "Launched from the bottom third (low 81064.48) - a long until the top third",
+  "lastTry": 1793175241063,
+  "tries": 57,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280430-30:recon-rej5:KXBTC15M-26OCT280430-30:recon-rej5:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT280430-30",
+  "setup": "1m rejection off fresh +2σ",
+  "lastTry": 1793175441443,
+  "tries": 28,
   "wallOk": false,
   "status": "waiting",
-  "reason": "waiting for her flip with 4+ minutes left in the 5m window"
+  "reason": "waiting for a 1m candle to close green (her 5m flip)"
+ },
+ "KXBTC15M-26OCT280430-30:recon-tog:KXBTC15M-26OCT280430-30:recon-tog:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT280430-30",
+  "setup": "1m rejection off fresh +2σ",
+  "lastTry": 1793175441443,
+  "tries": 28,
+  "wallOk": false,
+  "status": "waiting",
+  "reason": "late door only (the other book holds the 5m)"
  }
 }

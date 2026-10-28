@@ -5,10 +5,11 @@
     "asset": "silver",
     "side": "up",
     "pattern": "Tap-reject at −0.5σ",
-    "result": "open",
+    "result": "no",
     "ticker": "KXSILVER15M-26OCT280415-15",
     "hits": 9,
-    "multiple": 2.17
+    "multiple": 2.17,
+    "profit": -25
   },
   {
     "id": "KXSILVER15M-26OCT271500-00:up:Tap-reject at -0.5σ",

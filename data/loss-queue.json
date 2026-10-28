@@ -1,5 +1,20 @@
 [
   {
+    "id": "KXGOLD15M-26OCT280415-15|2026-10-28T08:15:36.210Z",
+    "at": "2026-10-28T08:15:36.210Z",
+    "ticker": "KXGOLD15M-26OCT280415-15",
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Live",
+    "spot": 4047.9,
+    "vwap": 4047.0056686691155,
+    "stdev": 11.431335920188781,
+    "strike": 4047.14,
+    "profit": -16.54,
+    "reason": "settled",
+    "evaluated": false
+  },
+  {
     "id": "KXBTC15M-26OCT280400-00|2026-10-28T08:00:17.818Z",
     "at": "2026-10-28T08:00:17.818Z",
     "ticker": "KXBTC15M-26OCT280400-00",
@@ -581,21 +596,6 @@
     "stdev": 297.93279304037554,
     "strike": 80437.51,
     "profit": -8.13,
-    "reason": "settled",
-    "evaluated": false
-  },
-  {
-    "id": "KXBTC15M-26OCT271315-15|2026-10-27T17:15:18.756Z",
-    "at": "2026-10-27T17:15:18.756Z",
-    "ticker": "KXBTC15M-26OCT271315-15",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Live",
-    "spot": 80527.68,
-    "vwap": 79903.44395170169,
-    "stdev": 274.9934606896229,
-    "strike": 80525.61,
-    "profit": -0.77,
     "reason": "settled",
     "evaluated": false
   }

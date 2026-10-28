@@ -2264,6 +2264,42 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             })();
           }
         }
+        // THE SECOND ADD-ON (fix380, Oct 28 2026 1:12 AM PT, Love: "we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters / same entry logic ...
+        // let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on" + card "Main + rejection + copy"):
+        // MAIN, REJECTION MODEL, NO-PINK COPY - once her first add-on has filled, ONE more (addOn.second.dollars, $3) on the same side when price is at a band (any band her add-on reads)
+        // that is NOT the first add-on's band and a 1/2/3/4/5m candle has flipped her way there (anyFlipMinNow: $5 BTC / 10c gold past its open). Any multiple up to her entry ceiling
+        // (addOn.second.maxAsk, 72c = 1.37x). Once per position, kept across a restart (addon-log.jsonl rows with add2). The twin, the pure no-pink and Polymarket never take it.
+        try {
+          const ao2 = (ao as any)?.second;
+          const own2 = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] || "";
+          const bk2: string[] = Array.isArray(ao2?.books) ? ao2.books.map(String) : ["recon-tog", "recon-rej", "recon-togp"];
+          if (!g.__aureliusAdd2) {
+            const s2: Record<string, number> = {}, w1: Record<string, string> = {};
+            try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (!x || !x.ok || !x.ticker) continue; if (x.add2) s2[x.ticker] = Date.parse(x.at) || Date.now(); else w1[x.ticker] = String(x.why || ""); } catch {} } } catch {}
+            g.__aureliusAdd2 = s2; g.__aureliusAdd1Why = w1;
+          }
+          const add2 = g.__aureliusAdd2, w1 = g.__aureliusAdd1Why || (g.__aureliusAdd1Why = {});
+          const try2 = g.__aureliusAdd2Try || (g.__aureliusAdd2Try = {});
+          if (addReg[row.ticker] && !(row.ticker in w1) && !(Date.now() - (try2["w:" + row.ticker] || 0) < 5000)) { try2["w:" + row.ticker] = Date.now(); try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.ticker === row.ticker && !x.add2) w1[row.ticker] = String(x.why || ""); } catch {} } } catch {} }
+          const cap2 = Number(ao2?.maxAsk) > 0 && Number(ao2.maxAsk) < 1 ? Number(ao2.maxAsk) : 0.72;
+          if (ao2?.on === true && ao?.on && !aoTwin && !aoNp && bk2.includes(own2) && (id === "btc" || id === "gold") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try2[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap2 && aoLeft >= (Number(ao2.minLeft) || Number(ao.minLeft) || 2)) {
+            const blm3 = await import("./bandlock");
+            const t2 = blm3.addOnTouchNow(id);
+            const bnd = (w: string) => { const m = /^(?:touched |came within \$[\d.]+ of )(.+?) \(/.exec(String(w || "")); return m ? m[1] : ""; };
+            const b2 = bnd(t2), b1 = bnd(w1[row.ticker] || "");
+            const tk2 = Number(quoteTick(id)?.c) || 0;
+            if (t2 && b2 && b2 !== b1 && tk2 > 0 && blm3.anyFlipMinNow(id, mySide, tk2)) {
+              try2[row.ticker] = Date.now();
+              const why2 = `${t2.replace(" - twin add-on, free", "")} and a candle flipped ${mySide === "up" ? "green" : "red"} there - second add-on (fix380)`;
+              void (async () => {
+                let r2: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
+                try { r2 = await live.addOnBuy(row.ticker, mySide, Number(ao2.dollars) || 3, cap2, true); } catch (err) { r2 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "second add-on failed" }; }
+                if (r2?.ok) add2[row.ticker] = Date.now();
+                try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: why2, bid, add2: true, book: own2, ...(r2 || {}) }) + "\n"); } catch {}
+              })();
+            }
+          }
+        } catch {}
       } catch {
       }
       // INSURANCE ON POLYMARKET (Love, Oct 3 ~11 PM PT: "you're not literally selling 25% of the position on kalshi? just
