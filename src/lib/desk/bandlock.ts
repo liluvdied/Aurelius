@@ -167,6 +167,12 @@ export function reconRejectNow(asset: string, L: Line[], tick: number, side: str
 // SLIDING CHANNEL LOCK (Oct 20 ~1:27 PM PT, Love: "bands under $300 wide on btc, the standard 33% - top and bottom. when bands exceed $300 apart,
 // 20% - top and bottom ... for gold, bands under $7.50 remain the 33%, at bands $10 apart it becomes 20%"): the forbidden top/bottom share of a
 // channel by its width. Gold between $7.50 and $10 slides evenly from 33% to 20%. Every channel wall and the wire's impossibility read this.
+// SMALL BANDS (fix399): her blue VWAP to 1σ under $150 BTC / $3 gold - the fresh lines first after the daily reset (fix397b), the session lines otherwise.
+export function blueSmall399(asset: string, L: Line[]): { vw: number; w: number } | null {
+  const f = (n: string) => Number((L || []).find((l: Line) => String(l.name) === n)?.price) || 0;
+  const vw = f("fresh VWAP") || f("session VWAP"), u1 = f("fresh +1σ") || f("+1σ"), w = vw > 0 && u1 > 0 ? Math.abs(u1 - vw) : 0;
+  return vw > 0 && w > 0 && w < (asset === "btc" ? 150 : 3) ? { vw, w } : null;
+}
 export function lockPctFor(asset: string, width: number): number {
   if (!(width > 0)) return 0.33;
   // FRESH BANDS ARE WALLS (fix219, Oct 25 ~3:51 PM PT, Love card "All fresh bands are walls" + "we can make it the top/bottom 20% for bands this small bb"):
@@ -1154,6 +1160,21 @@ export function anyFlipNow(asset: string, side: string, tick: number): boolean {
   try {
     const bars: any[] = G.__pivBars?.[asset]?.bars ?? [], tr = trailNow(asset), ms = Date.now();
     for (const n of [1, 2, 3, 4, 5]) {
+      const f0 = Math.floor(ms / (n * 60000)) * n * 60;
+      const inF = bars.filter((x) => Number(x.t) >= f0).sort((x, y) => x.t - y.t);
+      let o = inF.length ? Number(inF[0].o) : 0;
+      if (!(o > 0)) { const pre = tr.filter((x) => x.t < f0 * 1000 && x.t >= f0 * 1000 - 10000); const inn = tr.filter((x) => x.t >= f0 * 1000); o = pre.length ? Number(pre[pre.length - 1].c) : inn.length ? Number(inn[0].c) : 0; }
+      if (o > 0 && (side === "up" ? tick > o : tick < o)) return true;
+    }
+  } catch {}
+  return false;
+}
+/** fix401 (Oct 28 2026 3:52 PM PT, Love: "same band tolerances as our other models pls and the 2,3,4&5M candle flips pls"): the pure no-pink + sovereign flip -
+ *  a 2/3/4/5m candle past its open her way (no 1m). anyFlipNow (main, rejection, copy) is untouched. */
+export function anyFlip2Now(asset: string, side: string, tick: number): boolean {
+  try {
+    const bars: any[] = G.__pivBars?.[asset]?.bars ?? [], tr = trailNow(asset), ms = Date.now();
+    for (const n of [2, 3, 4, 5]) {
       const f0 = Math.floor(ms / (n * 60000)) * n * 60;
       const inF = bars.filter((x) => Number(x.t) >= f0).sort((x, y) => x.t - y.t);
       let o = inF.length ? Number(inF[0].o) : 0;
@@ -2228,6 +2249,12 @@ export function wireWall(ticker: string, side: "up" | "down"): string {
     if (vw397 > 0 && w397 > 0 && w397 < (asset === "btc" ? 150 : 3)) { const c397 = w397 / 2;
       if (side === "up" && q.c < vw397 && vw397 - q.c <= c397) return deny(`THE BLUE VWAP WALL: long $${(vw397 - q.c).toFixed(2)} under the unbroken session VWAP ${vw397.toFixed(2)} - bands are small (VWAP to 1σ $${w397.toFixed(2)}), no long within half of that ($${c397.toFixed(2)}). Wait for price over the VWAP.`, { tick: q.c });
       if (side === "down" && q.c > vw397 && q.c - vw397 <= c397) return deny(`THE BLUE VWAP WALL: short $${(q.c - vw397).toFixed(2)} over the unbroken session VWAP ${vw397.toFixed(2)} - bands are small (VWAP to 1σ $${w397.toFixed(2)}), no short within half of that ($${c397.toFixed(2)}). Wait for price under the VWAP.`, { tick: q.c }); } }
+  // NEVER ACROSS THE BLUE VWAP TO THE TARGET (fix399 (Love Oct 28 2026 3:24 PM PT: "hun she’s supposed to be on 20% when bands are this small , and can you put a no trades that have to cross the blue vwap to get to the target when bands are this small? the btc long would have been blocked" + 3:27 PM: "i was talking about the bands, not the green/pink ratio hun" + card "All Kalshi books, 5M frozen")): every Kalshi opening order - while bands are small, no long with the unbroken blue VWAP
+  // between price and the window's target above, no short with it between price and the target below. No target read yet = this one check stands aside.
+  { const sm399 = blueSmall399(asset, lb.L); const tg399 = sm399 ? targetNow(asset) : 0;
+    if (sm399 && tg399 > 0) { const v = sm399.vw;
+      if (side === "up" && q.c < v && tg399 > v) return deny(`ACROSS THE BLUE VWAP: long at ${q.c.toFixed(2)} needs to cross the unbroken blue VWAP ${v.toFixed(2)} to reach the target ${tg399.toFixed(2)} - bands are small (VWAP to 1σ $${sm399.w.toFixed(2)}).`, { tick: q.c, target: tg399 });
+      if (side === "down" && q.c > v && tg399 < v) return deny(`ACROSS THE BLUE VWAP: short at ${q.c.toFixed(2)} needs to cross the unbroken blue VWAP ${v.toFixed(2)} to reach the target ${tg399.toFixed(2)} - bands are small (VWAP to 1σ $${sm399.w.toFixed(2)}).`, { tick: q.c, target: tg399 }); } }
   // THE IMPOSSIBILITY (Oct 20 ~12:53 PM PT, Love: "make sure that no orders can get out if its a long in the top 33% and no shorts into an
   // unbroken band in the bottom 33% ... just a straight up impossibility please. immutably - no way for her to change."): plain geometry,
   // fixed numbers, no config, no exemptions, no broken-band memory. The channel is the gap between the band just under price and the band
@@ -2391,7 +2418,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   const foTurn = ((): boolean => { try { const f = fakeOutTurnNow(asset, L, tick); return !!f && f.side === side; } catch { return false; } })(); // fix139
   if (!(above > below)) return { why: "", below: below0 ?? null, above: above0 ?? null, pos: null, lock: null };
   const pos = (tick - below) / (above - below);
-  const IMPOSSIBLE = (flipRule || (togpLoose && !npPink)) && asset === "btc" && above - below <= 500 ? 0.33 /* fix379 (Oct 28 2026 1:06 AM PT, Love card "How much room should BTC longs need under an unbroken session band?" -> "Top/bottom 33% instead of 20%" + "yes pls all of them for sure" - 1:01 AM the copy longed BTC at 81008.24, 77% of the 80925 -> 81033 channel, $3 under the 20% line): MAIN, REJECTION MODEL, NO-PINK COPY, btc - top/bottom 33% under $500 wide (fix160), even when fix219 would lock only 20%; over $500 stays 20% */ : togpLoose && asset === "gold" && above - below < 10 ? 0.33 /* fix351 (Oct 27 2026 5:50 PM PT, Love: "why did she long in the top 33% of the channel ….?" + card "Should tiny gold channels lock 33% instead of 20%, and on which books?" -> "33% on the copy only"): the no-pink copy's gold thirds are 33% under $10, fix219's 20% for one-sigma channels stands down for her only */ : lockPctFor(asset, above - below);
+  const IMPOSSIBLE = !twinFade && blueSmall399(asset, L) ? 0.2 /* fix399 (Love Oct 28 2026 3:24 PM PT: "hun she’s supposed to be on 20% when bands are this small , and can you put a no trades that have to cross the blue vwap to get to the target when bands are this small? the btc long would have been blocked" + 3:27 PM: "i was talking about the bands, not the green/pink ratio hun" + card "All Kalshi books, 5M frozen"): while bands are small the top/bottom tolerance is 20%, every Kalshi book (the Poly twin passes twinFade and keeps hers) */ : (flipRule || (togpLoose && !npPink)) && asset === "btc" && above - below <= 500 ? 0.33 /* fix379 (Oct 28 2026 1:06 AM PT, Love card "How much room should BTC longs need under an unbroken session band?" -> "Top/bottom 33% instead of 20%" + "yes pls all of them for sure" - 1:01 AM the copy longed BTC at 81008.24, 77% of the 80925 -> 81033 channel, $3 under the 20% line): MAIN, REJECTION MODEL, NO-PINK COPY, btc - top/bottom 33% under $500 wide (fix160), even when fix219 would lock only 20%; over $500 stays 20% */ : togpLoose && asset === "gold" && above - below < 10 ? 0.33 /* fix351 (Oct 27 2026 5:50 PM PT, Love: "why did she long in the top 33% of the channel ….?" + card "Should tiny gold channels lock 33% instead of 20%, and on which books?" -> "33% on the copy only"): the no-pink copy's gold thirds are 33% under $10, fix219's 20% for one-sigma channels stands down for her only */ : lockPctFor(asset, above - below);
   const pctTxt = Math.round(IMPOSSIBLE * 100);
   // GOLD 3-5 PM, TIGHT BANDS (fix344, Oct 27 2026 4:31 PM PT, Love: "but just have her not skip because one is in the way until they reach a width of $2 or more /
   // have her trade the pinks green red and bollingers and she'll be good bb" + card "Which walls step aside on gold 3-5 PM while session bands are under $2 apart?" ->

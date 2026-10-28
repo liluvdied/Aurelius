@@ -85460,5 +85460,175 @@
   "lessons": [
    "Clean: right side of the band, nothing in front, won at the bell."
   ]
+ },
+ "KXBTC15M-26OCT281830-30": {
+  "ticker": "KXBTC15M-26OCT281830-30",
+  "at": "2026-10-28T22:30:13.565Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Tap-reject at +1σ",
+  "multiple": 2.86,
+  "profit": -20.8,
+  "result": "loss",
+  "entry": {
+   "spot": 81168.31,
+   "band": "-1σ",
+   "distSigma": 0.13,
+   "rightSide": true,
+   "bandAhead": true,
+   "throughTarget": false,
+   "minuteIn": 1.4
+  },
+  "peakPct": 0,
+  "maxPct": 185.7,
+  "takeProfitPct": 139.3,
+  "exit": "held to the bell",
+  "record": "9-3 (75%)",
+  "flags": [
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "Never went green. The entry itself was wrong, not the exit."
+  ]
+ },
+ "KXGOLD15M-26OCT281830-30": {
+  "ticker": "KXGOLD15M-26OCT281830-30",
+  "at": "2026-10-28T22:30:34.751Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "unknown",
+  "multiple": 14.29,
+  "profit": -4.94,
+  "result": "loss",
+  "entry": null,
+  "peakPct": 0,
+  "maxPct": 1328.6,
+  "takeProfitPct": 996.5,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "No entry snapshot for this one (it filled before the snapshot logger, or through another path).",
+   "Never went green. The entry itself was wrong, not the exit."
+  ]
+ },
+ "KXBTC15M-26OCT281845-45": {
+  "ticker": "KXBTC15M-26OCT281845-45",
+  "at": "2026-10-28T22:45:24.154Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Rejected up off 5m PP",
+  "multiple": 1.52,
+  "profit": 3.46,
+  "result": "win",
+  "entry": {
+   "spot": 81199.75,
+   "band": "VWAP",
+   "distSigma": 0.23,
+   "rightSide": false,
+   "bandAhead": false,
+   "throughTarget": true,
+   "minuteIn": 1.3
+  },
+  "peakPct": 37.9,
+  "maxPct": 51.5,
+  "takeProfitPct": 46.5,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of VWAP: long just under it."
+  ],
+  "lessons": []
+ },
+ "KXGOLD15M-26OCT281845-45": {
+  "ticker": "KXGOLD15M-26OCT281845-45",
+  "at": "2026-10-28T22:45:45.647Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Break above 5m S1",
+  "multiple": 1.67,
+  "profit": 3.96,
+  "result": "win",
+  "entry": {
+   "spot": 4054.6,
+   "band": "-1σ",
+   "distSigma": 0.08,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": false,
+   "minuteIn": 10.5
+  },
+  "peakPct": 55,
+  "maxPct": 66.7,
+  "takeProfitPct": 50,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of -1σ: long just under it.",
+   "A band was directly in front of the long at entry.",
+   "Late entry: 10.5 minutes into the window."
+  ],
+  "lessons": []
+ },
+ "KXBTC15M-26OCT281900-00": {
+  "ticker": "KXBTC15M-26OCT281900-00",
+  "at": "2026-10-28T23:00:11.655Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Rejected up off fresh VWAP",
+  "multiple": 1.82,
+  "profit": -20.89,
+  "result": "loss",
+  "entry": {
+   "spot": 81231.81,
+   "band": "VWAP",
+   "distSigma": 0.09,
+   "rightSide": true,
+   "bandAhead": true,
+   "throughTarget": false,
+   "minuteIn": 0.3
+  },
+  "peakPct": 23.6,
+  "maxPct": 81.8,
+  "takeProfitPct": 61.4,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "The rejection shadow went the other way (short off +0.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT281900-00": {
+  "ticker": "KXGOLD15M-26OCT281900-00",
+  "at": "2026-10-28T23:00:33.866Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Break above 5m S1",
+  "multiple": 2.7,
+  "profit": -15.7,
+  "result": "loss",
+  "entry": {
+   "spot": 4053.26,
+   "band": "-1σ",
+   "distSigma": 0.02,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": false,
+   "minuteIn": 9.8
+  },
+  "peakPct": 35.1,
+  "maxPct": 170.3,
+  "takeProfitPct": 127.7,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of -1σ: long just under it.",
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "The rejection shadow agreed (long off -1σ)."
+  ]
  }
 }

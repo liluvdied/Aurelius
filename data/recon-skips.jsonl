@@ -10931,3 +10931,52 @@
 {"at":"2026-10-28T22:15:08.603Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT281830-30","side":"down","label":"Rejected down off 5m PP","ask":0,"why":"setup is 18% over 17 settled (needs 70%+)"}
 {"at":"2026-10-28T22:15:08.607Z","lane":"recon-rej","ticker":"KXGOLD15M-26OCT281830-30","side":"down","label":"Rejected down off 5m PP","ask":1,"why":"ask out of bounds"}
 {"at":"2026-10-28T22:15:08.612Z","lane":"recon-rejx","ticker":"KXGOLD15M-26OCT281830-30","side":"down","label":"Rejected down off 5m PP","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T22:17:01.356Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281830-30","side":"down","label":"Break below fresh -1σ","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-28T22:18:19.172Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT281830-30","side":"down","label":"Break below 5m S1","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-28T22:18:30.752Z","lane":"recon-dly","ticker":"KXGOLD15M-26OCT281830-30","side":"down","label":"Re-aimed (her call never filled): Rejected down off 5m PP","ask":0.75,"why":"wanted to flip the unfilled call, but it is under her 1.38x floor (1.33x)"}
+{"at":"2026-10-28T22:22:02.010Z","lane":"recon-tog","ticker":"KXGOLD15M-26OCT281830-30","side":"down","label":"Rejected down off 5m S1","ask":0.957,"why":"under her 1.38x floor (1.04x at 96c)"}
+{"at":"2026-10-28T22:22:02.015Z","lane":"recon-rej","ticker":"KXGOLD15M-26OCT281830-30","side":"down","label":"Rejected down off 5m S1","ask":0.957,"why":"under her 1.38x floor (1.04x at 96c)"}
+{"at":"2026-10-28T22:24:13.957Z","lane":"recon-dly","ticker":"KXGOLD15M-26OCT281830-30","side":"down","label":"Re-aimed (her call never filled): Rejected down off 5m S1","ask":0.987,"why":"wanted to flip the unfilled call, but the ask is out of bounds"}
+{"at":"2026-10-28T22:24:25.510Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT281830-30","side":"down","label":"Break below +1σ","ask":0.99,"why":"ask out of bounds"}
+{"at":"2026-10-28T22:25:17.658Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281830-30","side":"down","label":"Break below fresh -2σ","ask":0,"why":"setup is 0% over 1 settled (needs 70%+)"}
+{"at":"2026-10-28T22:25:28.063Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT281830-30","side":"down","label":"Candle falling from the top third","ask":0,"why":"setup is 0% over 9 settled (needs 70%+)"}
+{"at":"2026-10-28T22:30:06.352Z","lane":"recon-ogp5","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Rejected up off 5m S1","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-28T22:30:06.357Z","lane":"recon-tog","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Rejected up off 5m S1","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-28T22:30:06.361Z","lane":"recon-togr","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Rejected up off 5m S1","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-28T22:30:06.366Z","lane":"recon-togp","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Rejected up off 5m S1","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-28T22:30:06.371Z","lane":"recon-sov","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Rejected up off 5m S1","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-28T22:30:06.377Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Rejected up off 5m S1","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-28T22:30:06.383Z","lane":"recon-rej","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Rejected up off 5m S1","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-28T22:30:08.472Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Candle rising from the bottom third","ask":0,"why":"setup is 14% over 14 settled (needs 70%+)"}
+{"at":"2026-10-28T22:30:08.491Z","lane":"recon-rej5","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Candle rising from the bottom third","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-28T22:30:08.507Z","lane":"recon-rejx","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Candle rising from the bottom third","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-28T22:30:28.868Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT281845-45","side":"up","label":"Rejected up off BB lower","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-28T22:31:14.294Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281845-45","side":"up","label":"Break above fresh VWAP","ask":0,"why":"setup is 0% over 3 settled (needs 70%+)"}
+{"at":"2026-10-28T22:35:42.561Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT281845-45","side":"down","label":"Candle falling from the top third","ask":0,"why":"setup is 0% over 9 settled (needs 70%+)"}
+{"at":"2026-10-28T22:45:04.788Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT281900-00","side":"down","label":"Rejected down off 5m S1","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-28T22:45:46.566Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281900-00","side":"down","label":"Launched from the top third (high 81257.78) - a short until the bottom third","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-28T22:45:59.127Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT281900-00","side":"down","label":"Break below 5m S1","ask":0.75,"why":"under her 1.38x floor (1.33x at 75c)"}
+{"at":"2026-10-28T22:50:02.627Z","lane":"recon-togr","ticker":"KXGOLD15M-26OCT281900-00","side":"down","label":"Launched from the top third (high 4052.46) - a short until the bottom third","ask":0.78,"why":"wanted to flip the unfilled call, but it is under her 1.38x floor (1.28x)"}
+{"at":"2026-10-28T22:50:05.599Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281900-00","side":"up","label":"Candle rising from the bottom third","ask":0,"why":"setup is 29% over 17 settled (needs 70%+)"}
+{"at":"2026-10-28T22:50:56.048Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281900-00","side":"up","label":"Break above fresh VWAP","ask":0,"why":"setup is 0% over 3 settled (needs 70%+)"}
+{"at":"2026-10-28T22:51:14.824Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT281900-00","side":"up","label":"Break above 5m S1","ask":0,"why":"setup is 0% over 4 settled (needs 70%+)"}
+{"at":"2026-10-28T22:54:11.737Z","lane":"recon-dly","ticker":"KXGOLD15M-26OCT281900-00","side":"down","label":"Touch of 5m S1 - the next band after the initial move","ask":0.77,"why":"wanted to flip the unfilled call, but it is under her 1.38x floor (1.30x)"}
+{"at":"2026-10-28T22:55:19.922Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281900-00","side":"up","label":"Break above 5m PP","ask":0,"why":"setup is 59% over 49 settled (needs 70%+)"}
+{"at":"2026-10-28T23:00:06.208Z","lane":"recon-ogp5","ticker":"KXBTC15M-26OCT281915-15","side":"down","label":"Launched from the top third (high 81198.02) - a short until the bottom third","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.250Z","lane":"recon-tog","ticker":"KXBTC15M-26OCT281915-15","side":"down","label":"Rejected down off 5m PP","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.260Z","lane":"recon-togr","ticker":"KXBTC15M-26OCT281915-15","side":"down","label":"Rejected down off 5m PP","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.279Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281915-15","side":"down","label":"Launched from the top third (high 81198.02) - a short until the bottom third","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-28T23:00:06.291Z","lane":"recon-rej5","ticker":"KXBTC15M-26OCT281915-15","side":"down","label":"Launched from the top third (high 81198.02) - a short until the bottom third","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.305Z","lane":"recon-rej","ticker":"KXBTC15M-26OCT281915-15","side":"down","label":"Rejected down off 5m PP","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.327Z","lane":"recon-rejx","ticker":"KXBTC15M-26OCT281915-15","side":"down","label":"Launched from the top third (high 81198.02) - a short until the bottom third","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.891Z","lane":"recon-ogp5","ticker":"KXGOLD15M-26OCT281915-15","side":"down","label":"Rejected down off fresh -1σ","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.898Z","lane":"recon-tog","ticker":"KXGOLD15M-26OCT281915-15","side":"down","label":"Rejected down off fresh -1σ","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.905Z","lane":"recon-togr","ticker":"KXGOLD15M-26OCT281915-15","side":"down","label":"Rejected down off fresh -1σ","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.913Z","lane":"recon-togp","ticker":"KXGOLD15M-26OCT281915-15","side":"down","label":"Rejected down off fresh -1σ","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.928Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT281915-15","side":"down","label":"Rejected down off fresh -1σ","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-28T23:00:06.935Z","lane":"recon-rej","ticker":"KXGOLD15M-26OCT281915-15","side":"down","label":"Rejected down off fresh -1σ","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:06.942Z","lane":"recon-rejx","ticker":"KXGOLD15M-26OCT281915-15","side":"down","label":"Rejected down off fresh -1σ","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:07.933Z","lane":"recon-dly","ticker":"KXBTC15M-26OCT281915-15","side":"up","label":"Touch of fresh -1σ - the next band after the initial move","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-28T23:00:37.072Z","lane":"recon-dly","ticker":"KXBTC15M-26OCT281915-15","side":"down","label":"Re-aimed (her call never filled): Launched from the top third (high 81198.02) - a short until the bottom third","ask":0.79,"why":"wanted to flip the unfilled call, but it is under her 1.38x floor (1.27x)"}
+{"at":"2026-10-28T23:00:51.515Z","lane":"recon-top","ticker":"KXBTC15M-26OCT281915-15","side":"down","label":"Break below fresh -2σ","ask":0,"why":"setup is 0% over 1 settled (needs 70%+)"}
+{"at":"2026-10-28T23:01:32.109Z","lane":"recon-sov","ticker":"KXBTC15M-26OCT281915-15","side":"down","label":"1m rejection off fresh -1σ","ask":0.86,"why":"under her 1.38x floor (1.16x at 86c)"}

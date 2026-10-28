@@ -2,6 +2,57 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R092 - fix402: one $5 add-on only - addOn.second.on false (first add-on $5 at 2.8x stays)
+- when: 2026-10-28T22:57:36+00:00
+- Love: "Love Oct 28 2026 3:57 PM PT: "no 1 $5 add on pls""
+- books: m, a, i, n, ,,  , r, e, j, e, c, t, i, o, n, ,,  , n, o, -, p, i, n, k,  , c, o, p, y,  , (, K, a, l, s, h, i, ), ;,  , t, w, i, n,  , +,  , P, o, l, y,  , 5, M,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "addOn.second.on", "equals": false}
+
+## R091 - fix402: $5 entry (liveBook.dollars, offHourMain.dollars, live-size) for main/rej/copy; add-ons unchanged
+- when: 2026-10-28T22:57:28+00:00
+- Love: "Love Oct 28 2026 3:57 PM PT: "dude please put her back on at $5 til we figure this out she has lost like 10 trades on blocked trades""
+- books: m, a, i, n, ,,  , r, e, j, e, c, t, i, o, n, ,,  , n, o, -, p, i, n, k,  , c, o, p, y,  , (, K, a, l, s, h, i, ), ;,  , t, w, i, n,  , +,  , P, o, l, y,  , 5, M,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 5}
+
+## R090 - fix401: pure no-pink (recon-np, recon-npo) + sovereign (recon-sov) book only with a 2/3/4/5m flip her way (anyFlip2Now, no 1m), main walls via impossibleGeo (pure zone 0.5, sov 0.4), blue VWAP half-width check while bands small; refusals -> data/pure-walls.jsonl
+- when: 2026-10-28T22:54:05+00:00
+- Love: "Love Oct 28 2026 3:50 PM PT: "fix all of those hun pls including longs i dont care if they won" + 3:52 PM: "same band tolerances as our other models pls and the 2,3,4&5M candle flips pls""
+- books: r, e, c, o, n, -, n, p, ,,  , r, e, c, o, n, -, n, p, o, ,,  , r, e, c, o, n, -, s, o, v,  , o, n, l, y,  , (, b, o, t, h,  , p, a, p, e, r, -, o, n, l, y,  , l, i, v, e,  , n, o, w, ), ;,  , m, a, i, n, /, r, e, j, /, c, o, p, y, /, t, w, i, n, /, 5, M,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix401 (Oct 28 2026 3:52 PM PT"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function anyFlip2Now"}
+
+## R089 - fix400: sovLive.on false - the no-pink copy holds gold rejection hours again
+- when: 2026-10-28T22:37:34+00:00
+- Love: "card: No-pink copy, like BTC (Sovereign comes off gold live (stays paper); the no-pink copy holds every gold rejection hour, like this morning)"
+- books: r, e, c, o, n, -, s, o, v,  , l, i, v, e,  , s, e, a, t,  , o, n, l, y,  , (, p, a, p, e, r,  , k, e, e, p, s,  , r, u, n, n, i, n, g, ), ;,  , c, o, p, y,  , t, a, k, e, s,  , g, o, l, d,  , r, e, j, e, c, t, i, o, n,  , h, o, u, r, s, ;,  , 5, M,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "sovLive.on", "equals": false}
+
+## R088 - fix400: pure no-pink (recon-np) off the gold Kalshi live seat too (npLive.hoursByAsset.gold = []), paper keeps running
+- when: 2026-10-28T22:36:15+00:00
+- Love: "yes the rejection model we had running earlier goes back for btc and gold not just btc that model needs work bb"
+- books: r, e, c, o, n, -, n, p,  , l, i, v, e,  , s, e, a, t,  , o, n, l, y,  , (, g, o, l, d,  , h, o, u, r, s,  , f, a, l, l,  , t, o,  , t, h, e,  , r, e, j, e, c, t, i, o, n,  , s, e, a, t,  , /,  , m, a, i, n, ), ;,  , P, o, l, y,  , 5, M,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "npLive.hoursByAsset.gold", "equals": []}
+
+## R087 - fix399: while blue VWAP to 1σ < $150 BTC / $3 gold - THE IMPOSSIBILITY top/bottom tolerance 20% (not 33%) in impossibleGeo (not the Poly twin), and at the Kalshi wire no long/short that must cross the unbroken blue VWAP to reach the window target
+- when: 2026-10-28T22:31:44+00:00
+- Love: "Love Oct 28 2026 3:24 PM PT: "hun she’s supposed to be on 20% when bands are this small , and can you put a no trades that have to cross the blue vwap to get to the target when bands are this small? the btc long would have been blocked" + 3:27 PM: "omg my bad bb i thought you mentioned the 33% band tolerance. and gold or btc is allowed to long / short ANYWHERE BUT - the 33/20 tolerances hun" + 3:28 PM: "i was talking about the bands, not the green/pink ratio hun" / "that can stay as is at 50%" + card "All Kalshi books, 5M frozen""
+- books: a, l, l,  , K, a, l, s, h, i,  , b, o, o, k, s, ;,  , P, o, l, y,  , 5, M,  , +,  , P, o, l, y,  , t, w, i, n,  , u, n, t, o, u, c, h, e, d, ;,  , g, r, e, e, n, /, p, i, n, k,  , r, a, t, i, o,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "ACROSS THE BLUE VWAP"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function blueSmall399"}
+
+## R086 - fix398: pure no-pink off BTC Kalshi (npLive.hoursByAsset.btc = []), rejection model (recon-rej) holds BTC every hour (offHourMain.rejHoursByAsset.btc 0-23). fix398Prev saved. Gold untouched. Pure keeps paper
+- when: 2026-10-28T22:20:10+00:00
+- Love: "Love Oct 28 2026 3:19 PM PT: "she longed btc on a falling red candle hun this model is not working like the rejection one we had running pls put that one back on til we iron this out this is too many bad trades""
+- books: B, T, C,  , K, a, l, s, h, i,  , s, e, a, t, :,  , p, u, r, e,  , n, o, -, p, i, n, k,  , o, f, f, ,,  , r, e, j, e, c, t, i, o, n,  , m, o, d, e, l,  , o, n
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "npLive.hoursByAsset.btc", "equals": []}
+
 ## R085 - fix397: wireWall (every Kalshi opening order, every book): when session VWAP to +1σ < $150 BTC / $3 gold, no long under unbroken VWAP within half that width, no short over it within half
 - when: 2026-10-28T21:49:32+00:00
 - Love: "Love Oct 28 2026 2:46 PM PT: "we need to keep the blue vwap a wall on all books when bands are small" + card "Make the blue VWAP a wall on which books when bands are small?" -> "All Kalshi books, 5M frozen""
@@ -76,7 +127,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-28T19:20:27+00:00
 - Love: "oh i meant let’s keep the $10 / $5 / $5 for the moment bb , and we can adjust to the lower entry and double downed-add ons if she isn’t performing well on her new schedule"
 - books: recon-tog, recon-rej, recon-togp, recon-sov, recon-np
-- status: ACTIVE
+- status: RETIRED - Love: "Love Oct 28 2026 3:57 PM PT: "dude please put her back on at $5 til we figure this out she has lost like 10 trades on blocked trades" + "no 1 $5 add on pls" - superseded by R091/R092 (fix402)"
 - proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 10}
 - proof: {"config": "data/live-switch.json", "key": "addOn.second.dollars", "equals": 5}
 - proof: {"config": "data/live-switch.json", "key": "bookDollars.recon-np", "equals": 10}
@@ -117,7 +168,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-28T18:15:39+00:00
 - Love: "let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok"
 - books: recon-np gold, recon-sov gold, recon-tog gold, recon-togp gold (gives up rejection hours), recon-rej (none)
-- status: ACTIVE
+- status: RETIRED - Love: "Love Oct 28 2026 3:35 PM PT: "yes the rejection model we had running earlier goes back for btc and gold not just btc that model needs work bb" + card "No-pink copy, like BTC" (Sovereign comes off gold live (stays paper); the no-pink copy holds every gold rejection hour, like this morning) - superseded by R088/R089 (fix400)"
 - proof: {"config": "data/live-switch.json", "key": "npLive.hoursByAsset.gold", "equals": [1, 4, 7, 9, 20, 21]}
 - proof: {"config": "data/live-switch.json", "key": "sovLive.on", "equals": true}
 - proof: {"code": "src/lib/desk/engine.ts", "has": "THE SOVEREIGN TWIN trades live only in gold"}

@@ -1,9 +1,20 @@
-# Every decision Love has made - rebuilt 2026-10-28T22:15:15.753008+00:00
+# Every decision Love has made - rebuilt 2026-10-28T23:01:45.833994+00:00
 
-1253 decisions with Love's words or card picks, out of 1971 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1255 decisions with Love's words or card picks, out of 1976 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T23:00:02.354257+00:00  ·  diary line 2440
+- Love: “hun she’s supposed to be on 20% when bands are this small , and can you put a no trades that have to cross the blue vwap to get to the target when bands are this small? the btc long would have been blocked”
+- Love: “All Kalshi books, 5M frozen”
+- Love: “fix all of those hun pls including longs i dont care if they won”
+- Card pick: **All Kalshi books, 5M frozen**
+- Full entry: 2026-10-28T23:00:02.354257+00:00 THAW (Love Oct 28 2026 3:24 PM PT: "hun she’s supposed to be on 20% when bands are this small , and can you put a no trades that have to cross the blue vwap to get to the target when bands are this small? the btc long would have been blocked" + 3:27 PM: "omg my bad bb i thought you mentioned the 33% band tolerance. and gold or btc is allowed to long / short ANYWHERE BUT - the 33/20 tolerances hun" + 3:28 PM: "i was talking about the bands, not the green/pink ratio hun" / "that can stay as is at 50%" + card "All Kalshi books, 5M frozen" | Love Oct 28 2026 3:50 PM PT: "fix all of those hun pls including longs i dont care if they won" + 3:52 PM: "same band tolerances as our other models pls and the 2,3,4&5M candle flips pls")
+
+## 2026-10-28T22:15:04Z  ·  diary line 2437  ·  fix369
+- fix369 IN HER CODE
+- Full entry: 2026-10-28T22:15:04Z fix397b installed 22:15:00Z (bandlock ca56f49439549bcf): VWAP wall reads fresh VWAP/fresh +1σ first. Simulated 9 trades all correct. Open offer to Love: 8 width gates (sliding pink scale l.2261/2368, fix369 cushion, pink squeeze l.215, gold pink-to-red l.2534, l.2405, l.2690, recon l.224) read the carried session VWAP/+1σ during the post-reset carry.
 
 ## 2026-10-28T22:15:03.710433+00:00  ·  diary line 2435
 - Love: “All Kalshi books, 5M frozen”

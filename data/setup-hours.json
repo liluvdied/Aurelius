@@ -380,6 +380,11 @@
       "win": 0,
       "loss": 1,
       "net": -25
+    },
+    "3pm": {
+      "win": 1,
+      "loss": 0,
+      "net": 13.06
     }
   },
   "Bitcoin long Tap-reject at -0.5σ": {
@@ -492,8 +497,8 @@
   "Bitcoin long Tap-reject at +0.5σ": {
     "3pm": {
       "win": 6,
-      "loss": 1,
-      "net": 37.32
+      "loss": 2,
+      "net": 12.32
     },
     "12am": {
       "win": 2,
@@ -2437,6 +2442,11 @@
       "win": 1,
       "loss": 0,
       "net": 14.48
+    },
+    "3pm": {
+      "win": 1,
+      "loss": 0,
+      "net": 17.37
     }
   },
   "Gold short Tap-reject at −0.5σ": {
@@ -3104,9 +3114,9 @@
       "net": -103.51
     },
     "3pm": {
-      "win": 7,
-      "loss": 13,
-      "net": -56.78
+      "win": 8,
+      "loss": 15,
+      "net": -73.46
     },
     "3am": {
       "win": 11,
@@ -3232,8 +3242,8 @@
     },
     "3pm": {
       "win": 22,
-      "loss": 14,
-      "net": 54.09
+      "loss": 16,
+      "net": 12.4
     },
     "5pm": {
       "win": 19,
@@ -6094,9 +6104,9 @@
       "net": 107.98
     },
     "3pm": {
-      "win": 4,
+      "win": 5,
       "loss": 2,
-      "net": -14.09
+      "net": -10.63
     },
     "12am": {
       "win": 6,

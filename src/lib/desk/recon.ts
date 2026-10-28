@@ -23,7 +23,7 @@ import { createHash } from "node:crypto";
 import { bandInWay } from "./auto";
 import { dnaNow } from "./dna";
 import { quoteTick, feedHealth } from "./quotes";
-import { addOnTouchNow, anyFlipNow } from "./bandlock"; // fix169 + fix326
+import { addOnTouchNow, anyFlipNow, anyFlip2Now, impossibleGeo, blueSmall399 } from "./bandlock"; // fix169 + fix326 + fix401
 
 const D = (f: string) => join(process.cwd(), "data", f);
 const r2 = (n: number) => Math.round(n * 100) / 100;
@@ -428,6 +428,28 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   const book = (lane: string, look: { side: "up" | "down"; label: string }, askIn?: number) => {
     const prior = rows.find((r) => r.ticker === m.ticker && r.lane === lane);
     if (lane === "recon-dly" && DLY_AS_COPY && !(look as any).copy353) return false; // fix353: her old twin calls (initial move, touches, re-aims) no longer book
+    // fix401 (Oct 28 2026 3:52 PM PT, Love 3:50 PM: "fix all of those hun pls including longs i dont care if they won" + 3:52 PM: "same band tolerances as our other models pls and the 2,3,4&5M candle flips pls"):
+    // the pure no-pink (recon-np + paper recon-npo) and the sovereign twin (recon-sov) book a call only when a 2/3/4/5m candle has flipped her way, MAIN's walls pass
+    // (impossibleGeo with main's settings: cushions, 33/20% tolerance, pink-to-green/red line - pure 50%, sovereign 40% like main) and, while bands are small, she is not
+    // just under the blue VWAP for a long / just over it for a short (half the VWAP-to-1σ width, fix397). Every refusal -> data/pure-walls.jsonl (once per window/lane/reason).
+    if (lane === "recon-np" || lane === "recon-npo" || lane === "recon-sov") {
+      let why401 = "";
+      try {
+        const sd401 = look.side, lb401 = (globalThis as any).__lawBands?.[id], L401 = lb401?.L;
+        if (!anyFlip2Now(id, sd401, spot)) why401 = "no 2/3/4/5m candle flipped her way";
+        else if (Array.isArray(L401) && L401.length && Date.now() - Number(lb401.at) <= 15000) {
+          why401 = impossibleGeo(id, L401, spot, sd401, false, false, false, false, true, lane === "recon-sov" ? 0.4 : 0.5, true, false).why || "";
+          const b401 = why401 ? null : blueSmall399(id, L401);
+          if (b401 && sd401 === "up" && spot < b401.vw && b401.vw - spot <= b401.w / 2) why401 = `long just under the blue VWAP ${b401.vw.toFixed(2)} while bands are small`;
+          if (b401 && sd401 === "down" && spot > b401.vw && spot - b401.vw <= b401.w / 2) why401 = `short just over the blue VWAP ${b401.vw.toFixed(2)} while bands are small`;
+        }
+      } catch {}
+      if (why401) {
+        const k401 = `${m.ticker}:${lane}:${why401.slice(0, 40)}`, G401 = ((globalThis as any).__walls401 ||= {});
+        if (!G401[k401]) { G401[k401] = 1; try { appendFileSync(D("pure-walls.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look.side, label: look.label, spot, why: why401 }) + "\n"); } catch {} }
+        return false;
+      }
+    }
     // FRESH 5M SWINGS (fix186, Oct 25 ~1:45 AM PT, Love: "can you see why the rejection model didn't long at the rejection of btc at the band? ... it didnt register a
     // couple of taps tonight ... let's make sure she has what she needs to enter when she pleases" + card "Fresh 5m swings, keep the hours"): her books make one call per
     // 15m window, so on Polymarket's 5m board a second tap in the same 15 minutes was invisible (1:15:43 AM rejection long, then the 1:18 tap went unseen). When the main
