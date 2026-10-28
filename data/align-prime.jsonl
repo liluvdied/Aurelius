@@ -1745,3 +1745,45 @@
 {"at":"2026-10-27T20:30:11.666Z","ticker":"KXGOLD15M-26OCT271645-45","held":"down","prime":null,"action":"closed","why":"no prime row"}
 {"at":"2026-10-27T20:30:12.747Z","ticker":"KXGOLD15M-26OCT271645-45","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
 {"at":"2026-10-27T20:30:18.203Z","ticker":"KXBTC15M-26OCT271645-45","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T20:45:07.859Z","ticker":"KXGOLD15M-26OCT271700-00","held":"up","prime":null,"action":"closed","why":"no prime row"}
+{"at":"2026-10-27T20:45:09.926Z","ticker":"KXGOLD15M-26OCT271700-00","held":"up","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T21:01:08.142Z","ticker":"KXBTC15M-26OCT271715-15","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T21:15:29.673Z","ticker":"KXBTC15M-26OCT271730-30","held":"down","prime":null,"action":"closed","why":"no prime row"}
+{"at":"2026-10-27T21:15:30.592Z","ticker":"KXBTC15M-26OCT271730-30","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T21:30:13.115Z","ticker":"KXBTC15M-26OCT271745-45","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T21:50:03.216Z","ticker":"KXBTC15M-26OCT271800-00","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T22:10:05.518Z","ticker":"KXBTC15M-26OCT271815-15","held":"down","prime":"up","action":"closed","why":"prime book is on the other side"}
+{"at":"2026-10-27T22:10:06.746Z","ticker":"KXBTC15M-26OCT271815-15","held":"down","prime":"up","action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T22:15:13.001Z","ticker":"KXBTC15M-26OCT271830-30","held":"up","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T22:30:21.042Z","ticker":"KXBTC15M-26OCT271845-45","held":"up","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T22:45:57.825Z","ticker":"KXBTC15M-26OCT271900-00","held":"up","prime":"down","action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T23:00:12.600Z","ticker":"KXBTC15M-26OCT271915-15","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T23:15:12.486Z","ticker":"KXBTC15M-26OCT271930-30","held":"up","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T23:33:49.122Z","ticker":"KXBTC15M-26OCT271945-45","held":"up","prime":"down","action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T23:44:00.791Z","ticker":"KXGOLD15M-26OCT271945-45","held":"up","prime":null,"action":"closed","why":"no prime row"}
+{"at":"2026-10-27T23:44:30.187Z","ticker":"KXGOLD15M-26OCT271945-45","held":"up","prime":null,"action":"kept","why":"you traded it by hand"}
+{"at":"2026-10-27T23:48:34.980Z","ticker":"KXBTC15M-26OCT272000-00","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-27T23:48:52.337Z","ticker":"KXGOLD15M-26OCT272000-00","held":"down","prime":null,"action":"closed","why":"no prime row"}
+{"at":"2026-10-27T23:49:08.630Z","ticker":"KXGOLD15M-26OCT272000-00","held":"down","prime":null,"action":"kept","why":"you traded it by hand"}
+{"at":"2026-10-28T00:00:12.363Z","ticker":"KXBTC15M-26OCT272015-15","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T00:02:24.570Z","ticker":"KXGOLD15M-26OCT272015-15","held":"down","prime":null,"action":"closed","why":"no prime row"}
+{"at":"2026-10-28T00:02:30.432Z","ticker":"KXGOLD15M-26OCT272015-15","held":"down","prime":null,"action":"kept","why":"you traded it by hand"}
+{"at":"2026-10-28T00:15:16.890Z","ticker":"KXBTC15M-26OCT272030-30","held":"up","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T00:16:09.897Z","ticker":"KXGOLD15M-26OCT272030-30","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T00:30:17.725Z","ticker":"KXBTC15M-26OCT272045-45","held":"down","prime":null,"action":"closed","why":"no prime row"}
+{"at":"2026-10-28T00:30:19.350Z","ticker":"KXBTC15M-26OCT272045-45","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T00:30:31.609Z","ticker":"KXGOLD15M-26OCT272045-45","held":"up","prime":null,"action":"closed","why":"no prime row"}
+{"at":"2026-10-28T00:30:33.290Z","ticker":"KXGOLD15M-26OCT272045-45","held":"up","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T00:45:18.701Z","ticker":"KXBTC15M-26OCT272100-00","held":"down","prime":null,"action":"closed","why":"no prime row"}
+{"at":"2026-10-28T00:45:20.686Z","ticker":"KXBTC15M-26OCT272100-00","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T00:46:04.865Z","ticker":"KXGOLD15M-26OCT272100-00","held":"up","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T01:00:26.056Z","ticker":"KXGOLD15M-26OCT272115-15","held":"up","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T01:01:55.503Z","ticker":"KXBTC15M-26OCT272115-15","held":"up","prime":null,"action":"closed","why":"no prime row"}
+{"at":"2026-10-28T01:02:05.039Z","ticker":"KXBTC15M-26OCT272115-15","held":"up","prime":null,"action":"kept","why":"you traded it by hand"}
+{"at":"2026-10-28T01:15:33.853Z","ticker":"KXBTC15M-26OCT272130-30","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T01:16:02.158Z","ticker":"KXGOLD15M-26OCT272130-30","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T01:30:08.663Z","ticker":"KXGOLD15M-26OCT272145-45","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T01:30:19.227Z","ticker":"KXBTC15M-26OCT272145-45","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T01:45:20.874Z","ticker":"KXGOLD15M-26OCT272200-00","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T01:45:34.693Z","ticker":"KXBTC15M-26OCT272200-00","held":"down","prime":null,"action":"kept","why":"a live book opened it"}
+{"at":"2026-10-28T02:00:29.402Z","ticker":"KXBTC15M-26OCT272215-15","held":"down","prime":null,"action":"kept","why":"a live book opened it"}

@@ -1,136 +1,15 @@
 {
- "at": "2026-10-27T20:42:52.092Z",
- "markets": 268,
+ "at": "2026-10-28T02:02:26.174Z",
+ "markets": 914,
  "perSeries": {
-  "KXBTCD": 80,
-  "KXETHD": 40,
-  "KXSOLD": 75,
-  "KXXRPD": 40,
-  "KXDOGED": 33
+  "KXBTCD": 188,
+  "KXETHD": 300,
+  "KXSOLD": 300,
+  "KXXRPD": 75,
+  "KXDOGED": 51
  },
- "lastErr": "KXDOGED-26OCT2717: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXDOGED-26OCT2717&limit=1",
- "close": "2026-10-27T21:00:00.000Z",
- "lanes": {
-  "h1-15-floor": {
-   "hourMarkets": 268,
-   "eligible": 2640,
-   "picked": [
-    "KXBTCD:yes:0.83"
-   ],
-   "built": false
-  }
- },
- "minsLeft": 17.1,
- "series": {
-  "KXBTCD": {
-   "n": 80,
-   "eligible": 80,
-   "events": [
-    "KXBTCD-26OCT2717"
-   ],
-   "types": [
-    "greater"
-   ],
-   "sample": [
-    "80499.99:0.8300/0.1800:active",
-    "80749.99:0.0300/0.9800:active",
-    "89749.99:0.0100/1.0000:active",
-    "89499.99:0.0100/1.0000:active",
-    "89249.99:0.0100/1.0000:active",
-    "88999.99:0.0100/1.0000:active",
-    "88749.99:0.0100/1.0000:active",
-    "88499.99:0.0100/1.0000:active",
-    "88249.99:0.0100/1.0000:active",
-    "87999.99:0.0100/1.0000:active"
-   ]
-  },
-  "KXETHD": {
-   "n": 40,
-   "eligible": 40,
-   "events": [
-    "KXETHD-26OCT2717"
-   ],
-   "types": [
-    "greater"
-   ],
-   "sample": [
-    "2339.99:0.2400/0.7700:active",
-    "2899.99:0.0100/1.0000:active",
-    "2939.99:0.0100/1.0000:active",
-    "2979.99:0.0100/1.0000:active",
-    "2419.99:0.0100/1.0000:active",
-    "2779.99:0.0100/1.0000:active",
-    "2819.99:0.0100/1.0000:active",
-    "2699.99:0.0100/1.0000:active",
-    "3019.99:0.0100/1.0000:active",
-    "2379.99:0.0100/1.0000:active"
-   ]
-  },
-  "KXSOLD": {
-   "n": 75,
-   "eligible": 75,
-   "events": [
-    "KXSOLD-26OCT2717"
-   ],
-   "types": [
-    "greater"
-   ],
-   "sample": [
-    "100.9999:0.1200/0.9100:active",
-    "108.9999:0.0900/1.0000:active",
-    "109.9999:0.0900/1.0000:active",
-    "107.9999:0.0700/1.0000:active",
-    "106.9999:0.0600/1.0000:active",
-    "110.9999:0.0400/1.0000:active",
-    "101.9999:0.0200/1.0000:active",
-    "115.9999:0.0100/1.0000:active",
-    "135.9999:0.0100/1.0000:active",
-    "136.9999:0.0100/1.0000:active"
-   ]
-  },
-  "KXXRPD": {
-   "n": 40,
-   "eligible": 40,
-   "events": [
-    "KXXRPD-26OCT2717"
-   ],
-   "types": [
-    "greater"
-   ],
-   "sample": [
-    "1.3199:0.1300/0.8900:active",
-    "1.3399:0.0500/1.0000:active",
-    "1.4599:0.0300/1.0000:active",
-    "1.3599:0.0300/1.0000:active",
-    "1.4399:0.0200/1.0000:active",
-    "1.3999:0.0100/1.0000:active",
-    "1.4799:0.0100/1.0000:active",
-    "1.4999:0.0100/1.0000:active",
-    "1.5599:0.0100/1.0000:active",
-    "1.4199:0.0100/1.0000:active"
-   ]
-  },
-  "KXDOGED": {
-   "n": 33,
-   "eligible": 33,
-   "events": [
-    "KXDOGED-26OCT2717"
-   ],
-   "types": [
-    "custom"
-   ],
-   "sample": [
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active"
-   ]
-  }
- }
+ "lastErr": "KXDOGED-26OCT2722: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXDOGED-26OCT2722&limit=1",
+ "close": "2026-10-28T03:00:00.000Z",
+ "lanes": {},
+ "minsLeft": 57.6
 }

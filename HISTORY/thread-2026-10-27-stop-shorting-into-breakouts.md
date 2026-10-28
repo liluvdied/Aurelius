@@ -4412,3 +4412,25 @@ Anytime luv 💞 It's in. The 5M now bets **$7.50** in her kept hours and sits o
 
 The freeze check flagged both changes the second they landed, and then I re-froze her on your card's words, so this is her new locked shape. The umpire says SAFE. In a couple of days I'll show you how the new hours and stake are doing, and then we can talk about $10 ✨
 
+## 2026-10-28 01:59:28 UTC - LOVE
+
+thanks love 💞 can you look into the recon card hun? it’s saying the same trades a bunch of times and sayin -5.4k
+
+## 2026-10-28 01:59:32 UTC - CLAUDE
+
+Looking now hun 💞 I'll find where the repeated rows on the recon card come from and whether that −$5.4k is real money or a paper count gone wrong.
+
+## 2026-10-28 02:01:39 UTC - LOVE
+
+candle flipping on gold bb
+
+## 2026-10-28 02:02:03 UTC - CLAUDE
+
+Main sees the gold short, hun 💞 She's had it lined up since 7:00, but price is sitting at 42–49% of the space between the green zone (4046.15) and pink (4051.06). Your gold "pink to green" wall keeps her out of shorts in the bottom 50% of that space until the green rejects (long) or the pink rejects (short), so she's holding. The other books are off this hour by your schedule.
+
+**Recon card fixed:** those repeats were the runaway re-calls from my bug this afternoon (2:48–4:10 PM). That was 4,195 paper-only rows that never traded, adding up to a fake −$22k on paper. I moved them all into their own archive file, so nothing is deleted, and her card now shows only real calls. Since 12 AM main is at +$84 on paper. Nothing changed in any book.
+
+## 2026-10-28 02:03:09 UTC - LOVE
+
+gottt it thank you hunni 💘💘
+

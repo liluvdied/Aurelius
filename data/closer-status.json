@@ -1,5 +1,5 @@
 {
- "at": "2026-10-27T20:42:56.102Z",
+ "at": "2026-10-28T02:03:45.803Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -7,14 +7,14 @@
    "matched": 0
   },
   "NCAAF": {
-   "live": 0,
-   "late": 0,
-   "matched": 0
+   "live": 2,
+   "late": 1,
+   "matched": 1
   },
   "NBA": {
-   "live": 0,
-   "late": 0,
-   "matched": 0
+   "live": 3,
+   "late": 2,
+   "matched": 2
   },
   "WNBA": {
    "live": 0,
@@ -27,16 +27,83 @@
    "matched": 0
   },
   "NHL": {
-   "live": 0,
-   "late": 0,
-   "matched": 0
+   "live": 7,
+   "late": 3,
+   "matched": 3
   },
   "MLB": {
-   "live": 0,
+   "live": 1,
    "late": 0,
    "matched": 0
   }
  },
- "watching": [],
+ "watching": [
+  {
+   "league": "NCAAF",
+   "game": "Delaware 35 @ Western KY 21",
+   "period": 4,
+   "clock": "1:55",
+   "fav": "Delaware",
+   "wp": 1,
+   "ask": 1,
+   "ticker": "KXNCAAFGAME-26OCT27DELWKU-DEL",
+   "matched": true
+  },
+  {
+   "league": "NBA",
+   "game": "Nets 114 @ Celtics 117",
+   "period": 4,
+   "clock": "3.0",
+   "fav": "Celtics",
+   "wp": 0.98,
+   "ask": 0.99,
+   "ticker": "KXNBAGAME-26OCT27BKNBOS-BOS",
+   "matched": true
+  },
+  {
+   "league": "NBA",
+   "game": "Kings 88 @ Spurs 109",
+   "period": 4,
+   "clock": "9:32",
+   "fav": "Spurs",
+   "wp": 1,
+   "ask": 1,
+   "ticker": "KXNBAGAME-26OCT27SACSAS-SAS",
+   "matched": true
+  },
+  {
+   "league": "NHL",
+   "game": "Canadiens 1 @ Blues 0",
+   "period": 3,
+   "clock": "17:43",
+   "fav": "Canadiens",
+   "wp": null,
+   "ask": 0.88,
+   "ticker": "KXNHLGAME-26OCT27MTLSTL-MTL",
+   "matched": true
+  },
+  {
+   "league": "NHL",
+   "game": "Islanders 3 @ Predators 2",
+   "period": 3,
+   "clock": "17:14",
+   "fav": "Islanders",
+   "wp": null,
+   "ask": 0.78,
+   "ticker": "KXNHLGAME-26OCT27NYINSH-NYI",
+   "matched": true
+  },
+  {
+   "league": "NHL",
+   "game": "Devils 4 @ Stars 1",
+   "period": 3,
+   "clock": "17:53",
+   "fav": "Devils",
+   "wp": null,
+   "ask": 0.98,
+   "ticker": "KXNHLGAME-26OCT27NJDAL-NJ",
+   "matched": true
+  }
+ ],
  "errors": []
 }
