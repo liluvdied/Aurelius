@@ -1,5 +1,29 @@
 [
   {
+    "key": "pair|btc|held-KXBTC15M-26OCT272215-15|held-KXBTC15M-26OCT272200-00",
+    "at": "2026-10-28T02:15:28.055Z",
+    "kind": "pair",
+    "text": "btc lost two in a row. Not an entry error. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Not applied as a ban."
+  },
+  {
+    "key": "close|held-KXBTC15M-26OCT272215-15",
+    "at": "2026-10-28T02:15:27.650Z",
+    "kind": "closed",
+    "text": "Bitcoin short Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
+  },
+  {
+    "key": "close|held-KXGOLD15M-26OCT272215-15",
+    "at": "2026-10-28T02:15:27.581Z",
+    "kind": "closed",
+    "text": "Gold short Live hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
+    "key": "close|mvrh12m9-ebk7bw",
+    "at": "2026-10-28T02:13:14.892Z",
+    "kind": "closed",
+    "text": "Gold short Tap-reject at -2.5σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
     "key": "close|held-KXGOLD15M-26OCT272200-00",
     "at": "2026-10-28T02:00:32.781Z",
     "kind": "closed",
@@ -454,29 +478,5 @@
     "at": "2026-10-27T20:45:06.526Z",
     "kind": "forming",
     "text": "Bitcoin short Tap-reject at −0.5σ is forming, 15m left. This is a prime setup, 78-55. At 1pm that one is 9-7. price is on the wrong side of the VWAP. Note only."
-  },
-  {
-    "key": "close|held-KXGOLD15M-26OCT271630-30",
-    "at": "2026-10-27T20:30:42.457Z",
-    "kind": "closed",
-    "text": "Gold short Live hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "close|held-KXBTC15M-26OCT271630-30",
-    "at": "2026-10-27T20:30:21.366Z",
-    "kind": "closed",
-    "text": "Bitcoin short Live hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "KXBTC15M-26OCT271630-30|down|Tap-reject at -0.5σ",
-    "at": "2026-10-27T20:25:47.541Z",
-    "kind": "forming",
-    "text": "Bitcoin short Tap-reject at −0.5σ is forming, 4m left. This is a prime setup, 78-55. At 1pm that one is 9-7. price is on the wrong side of the VWAP. Note only."
-  },
-  {
-    "key": "KXBTC15M-26OCT271630-30|up|Tap-reject at -0.5σ",
-    "at": "2026-10-27T20:21:18.015Z",
-    "kind": "forming",
-    "text": "Bitcoin long Tap-reject at −0.5σ is forming, 9m left. This is a prime setup, 38-29. At 1pm that one is 5-0. clean so far. Note only."
   }
 ]

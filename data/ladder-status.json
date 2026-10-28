@@ -1,10 +1,10 @@
 {
- "at": "2026-10-28T01:57:06.344Z",
+ "at": "2026-10-28T02:17:08.297Z",
  "cities": [
   {
    "city": "NY",
    "station": "KNYC",
-   "hourLocal": 21,
+   "hourLocal": 22,
    "offset": 0.5799999999999983,
    "lessons": 15,
    "maxSoFar": 59,
@@ -20,9 +20,27 @@
    }
   },
   {
+   "city": "DEN",
+   "station": "KDEN",
+   "hourLocal": 20,
+   "offset": 0.09999999999999432,
+   "lessons": 17,
+   "maxSoFar": 64.4,
+   "mu": 64.5,
+   "sigma": 0.8,
+   "best": {
+    "buckets": [
+     "67° to 68°"
+    ],
+    "cost": 0.01,
+    "p": 0.01,
+    "edge": 0
+   }
+  },
+  {
    "city": "AUS",
    "station": "KAUS",
-   "hourLocal": 20,
+   "hourLocal": 21,
    "offset": 0.29999999999999716,
    "lessons": 17,
    "maxSoFar": 82.4,
@@ -38,27 +56,27 @@
    }
   },
   {
-   "city": "CHI",
-   "station": "KMDW",
-   "hourLocal": 20,
-   "offset": 0.09999999999999432,
-   "lessons": 16,
-   "maxSoFar": 69.8,
-   "mu": 69.9,
+   "city": "LAX",
+   "station": "KLAX",
+   "hourLocal": 19,
+   "offset": -0.30000000000001137,
+   "lessons": 17,
+   "maxSoFar": 75.2,
+   "mu": 74.9,
    "sigma": 0.8,
    "best": {
     "buckets": [
-     "72° to 73°"
+     "76° to 77°"
     ],
     "cost": 0.01,
-    "p": 0.02,
-    "edge": 0.01
+    "p": 0.23,
+    "edge": 0.22
    }
   },
   {
    "city": "PHIL",
    "station": "KPHL",
-   "hourLocal": 21,
+   "hourLocal": 22,
    "offset": -0.29999999999999716,
    "lessons": 17,
    "maxSoFar": 66.2,
@@ -77,7 +95,7 @@
   {
    "city": "MIA",
    "station": "KMIA",
-   "hourLocal": 21,
+   "hourLocal": 22,
    "offset": 0.29999999999999716,
    "lessons": 19,
    "maxSoFar": 82.4,
@@ -94,39 +112,21 @@
    }
   },
   {
-   "city": "DEN",
-   "station": "KDEN",
-   "hourLocal": 19,
+   "city": "CHI",
+   "station": "KMDW",
+   "hourLocal": 21,
    "offset": 0.09999999999999432,
-   "lessons": 17,
-   "maxSoFar": 64.4,
-   "mu": 64.5,
+   "lessons": 16,
+   "maxSoFar": 69.8,
+   "mu": 69.9,
    "sigma": 0.8,
    "best": {
     "buckets": [
-     "67° to 68°"
+     "72° to 73°"
     ],
     "cost": 0.01,
-    "p": 0.01,
-    "edge": 0
-   }
-  },
-  {
-   "city": "LAX",
-   "station": "KLAX",
-   "hourLocal": 18,
-   "offset": -0.30000000000001137,
-   "lessons": 17,
-   "maxSoFar": 75.2,
-   "mu": 74.9,
-   "sigma": 0.8,
-   "best": {
-    "buckets": [
-     "76° to 77°"
-    ],
-    "cost": 0.01,
-    "p": 0.23,
-    "edge": 0.22
+    "p": 0.02,
+    "edge": 0.01
    }
   }
  ],

@@ -43,6 +43,7 @@ def state():
     return L, req, ret
 def proof_ok(p):
     try:
+        if p.get("kind") == "code has": return p["text"] in open(p["file"], encoding="utf8").read()  # R044 shape
         if "code" in p:
             t = open(p["code"], encoding="utf8").read()
             return (p["has"] in t) if "has" in p else (p["lacks"] not in t)
@@ -88,7 +89,8 @@ def check():
         elif json.loads(open(q, encoding="utf8").read()) != e: bad.append(f"{os.path.basename(q)}: the book and its 1:1 copy differ - restore with: tools/requests.py restore")
     for e in req.values():
         if e["id"] in ret: continue
-        for p in e.get("proof", []):
+        pr = e.get("proof", []); pr = [pr] if isinstance(pr, dict) else pr  # R044 was written with one proof object (kind/file/text) instead of a list - read it as one
+        for p in pr:
             if not proof_ok(p): bad.append(f'{e["id"]} ({e["what"]}): proof missing {json.dumps(p, ensure_ascii=False)}')
     write_md()
     for b in bad: print("  ✗ " + b)

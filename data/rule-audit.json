@@ -1747,12 +1747,30 @@
    "why": [
     "did not pass through the wire"
    ]
+  },
+  {
+   "at": "2026-10-27T22:15:11.986Z",
+   "ticker": "KXBTC15M-26OCT271830-30",
+   "side": "up",
+   "cost": 3.01,
+   "why": [
+    "long at 93% of the channel (top third)"
+   ]
+  },
+  {
+   "at": "2026-10-27T22:30:20.554Z",
+   "ticker": "KXBTC15M-26OCT271845-45",
+   "side": "up",
+   "cost": 3.02,
+   "why": [
+    "long at 94% of the channel (top third)"
+   ]
   }
  ],
- "checkedTo": "2026-10-27T20:22:22.137162Z",
+ "checkedTo": "2026-10-28T02:21:50.531022Z",
  "lastRun": {
-  "at": "2026-10-27T20:22:22.137162Z",
-  "orders": 89,
+  "at": "2026-10-28T02:21:50.531022Z",
+  "orders": 8,
   "breaches": 0
  },
  "note": "Cleaned by Claude 3:30 AM PT Oct 21: dropped audit false positives (gold 9:55Z stale pivot; gold 5:30Z predates the 2\u03c3 rule) and duplicates. Real: BTC twin short 2:34 AM PT on a rising candle above every band."

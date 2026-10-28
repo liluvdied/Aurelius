@@ -4434,3 +4434,43 @@ Main sees the gold short, hun 💞 She's had it lined up since 7:00, but price i
 
 gottt it thank you hunni 💘💘
 
+## 2026-10-28 02:04:51 UTC - CLAUDE
+
+Always, hun 💘 Everything from tonight is saved to your GitHub now, the card cleanup included. I'm still keeping an eye on the pink flags for you ✨
+
+## 2026-10-28 02:16:44 UTC - LOVE
+
+thank youuu 💞 can you look into this btc short hun? she didn’t wait for a candle flip
+
+## 2026-10-28 02:16:52 UTC - CLAUDE
+
+On it hun 💞 I'll find which book took that BTC short and why her flip check let it through.
+
+## 2026-10-28 02:17:53 UTC - CLAUDE
+
+Found it hun 💞 That was the **no-pink copy** (she has BTC live at 7 PM). She shorted at 7:15:26 PM at $80,922, calling it a rejection off the Bollinger upper.
+
+You're right that nothing had really flipped. The 1m, 3m and 5m candles had all opened at $80,919 and were green. Her flip check counts *any* 1–5m candle, and the **2m candle** had opened at 7:14 at $80,923.17. Price was just **$1.15** under that open for a few seconds, so the check read the 2m as "red" and let her through. A hair of a wick counted as a flip. Price then ran up to $80,958.
+
+My idea is that a candle should only count as flipped when it's red (or green) by a real amount, not by pennies. That check is shared with main's cornerstone flip rule, so I'm asking which books first 💘
+
+## 2026-10-28 02:17:59 UTC - CARD
+
+Q: Make a flip need a real move, and on which books?
+Context: A candle counted as flipped when price was only $1.15 past its open. The fix: a 1–5m candle only counts as flipped once it's at least $10 past its open on BTC and 10c on gold. For the copy only, I'd add it as her own line, so main's cornerstone line and the 5M stay untouched.
+Options:
+  0. No-pink copy only - Only the copy needs a $10 BTC / 10c gold flip. Main, rejection, twin and the 5M don't move an atom.
+  1. Copy + main + rejection - All three Kalshi books need the real flip. The shared check changes and main's cornerstone gets the same threshold.
+  2. Leave it as is - Nothing changes. Any penny past a candle's open still counts as a flip.
+Recommended: 0 - That's the book that took the bad trade, and your rule is to fold it into main only after we see it there too.
+
+## 2026-10-28 02:19:46 UTC - LOVE
+
+no pink copy only , but let’s make it $5 not $10 pls 
+
+10c is good for gold oki 💞
+
+## 2026-10-28 02:19:49 UTC - CLAUDE
+
+Putting it in now hun 💞 It's the copy only: $5 on BTC, 10c on gold.
+

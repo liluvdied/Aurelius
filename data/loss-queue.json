@@ -1,5 +1,20 @@
 [
   {
+    "id": "KXBTC15M-26OCT272215-15|2026-10-28T02:15:27.650Z",
+    "at": "2026-10-28T02:15:27.650Z",
+    "ticker": "KXBTC15M-26OCT272215-15",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Live",
+    "spot": 80921.85,
+    "vwap": 80763.9754280606,
+    "stdev": 112.86034551164772,
+    "strike": 80924.04,
+    "profit": -7.77,
+    "reason": "settled",
+    "evaluated": false
+  },
+  {
     "id": "KXBTC15M-26OCT272200-00|2026-10-28T02:00:10.009Z",
     "at": "2026-10-28T02:00:10.009Z",
     "ticker": "KXBTC15M-26OCT272200-00",
@@ -581,21 +596,6 @@
     "stdev": 7.280847559291565,
     "strike": 4021.95,
     "profit": -2.16,
-    "reason": "settled",
-    "evaluated": false
-  },
-  {
-    "id": "KXBTC15M-26OCT270830-30|2026-10-27T12:30:14.129Z",
-    "at": "2026-10-27T12:30:14.129Z",
-    "ticker": "KXBTC15M-26OCT270830-30",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Live",
-    "spot": 80074.85,
-    "vwap": 79784.63604373786,
-    "stdev": 186.41919930979836,
-    "strike": null,
-    "profit": -2.06,
     "reason": "settled",
     "evaluated": false
   }

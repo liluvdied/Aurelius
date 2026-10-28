@@ -17,15 +17,15 @@
   },
   "held to the bell": {
     "win": 1239,
-    "loss": 2506
+    "loss": 2507
   },
   "1.4x to 2.2x": {
-    "win": 2983,
-    "loss": 1999
+    "win": 2985,
+    "loss": 2000
   },
   "7pm": {
-    "win": 145,
-    "loss": 116
+    "win": 147,
+    "loss": 117
   },
   "8pm": {
     "win": 157,
@@ -64,7 +64,7 @@
     "loss": 7
   },
   "already through the strike": {
-    "win": 1471,
+    "win": 1472,
     "loss": 965
   },
   "far from the strike": {
@@ -76,7 +76,7 @@
     "loss": 93
   },
   "closed before the bell": {
-    "win": 2133,
+    "win": 2135,
     "loss": 152
   },
   "Gold long Tap-reject at +1σ": {
@@ -120,7 +120,7 @@
     "loss": 78
   },
   "Gold short Live": {
-    "win": 326,
+    "win": 327,
     "loss": 266
   },
   "Bitcoin short Tap-reject at +1.5σ": {
@@ -156,7 +156,7 @@
     "loss": 16
   },
   "finished on the right side of the strike": {
-    "win": 415,
+    "win": 416,
     "loss": 0
   },
   "Bitcoin short Tap-reject at +0.5σ": {
@@ -177,7 +177,7 @@
   },
   "Bitcoin short Live": {
     "win": 337,
-    "loss": 352
+    "loss": 353
   },
   "Bitcoin long Tap-reject at -1.5σ": {
     "win": 32,
@@ -189,7 +189,7 @@
   },
   "went green, short of the watch": {
     "win": 839,
-    "loss": 1815
+    "loss": 1816
   },
   "2am": {
     "win": 167,
@@ -261,10 +261,10 @@
   },
   "Trail never reached the watch.": {
     "win": 836,
-    "loss": 1814
+    "loss": 1815
   },
   "cleared the arm": {
-    "win": 2426,
+    "win": 2428,
     "loss": 47
   },
   "Trail took it. High 60.2%, out at 58.5%.": {
@@ -372,7 +372,7 @@
     "loss": 29
   },
   "short below the VWAP": {
-    "win": 163,
+    "win": 164,
     "loss": 106
   },
   "Trail saw 33.3% and did not take it.": {
@@ -848,7 +848,7 @@
     "loss": 0
   },
   "Trail took it. High 46.8%, out at 46.8%.": {
-    "win": 6,
+    "win": 7,
     "loss": 0
   },
   "Trail took it. High 61.3%, out at 61.3%.": {
@@ -2540,7 +2540,7 @@
     "loss": 0
   },
   "Gold short Tap-reject at -2.5σ": {
-    "win": 2,
+    "win": 3,
     "loss": 4
   },
   "Trail saw 60% and did not take it.": {
@@ -4732,6 +4732,10 @@
     "loss": 0
   },
   "Trail took it. High 59.3%, out at 335.9%.": {
+    "win": 1,
+    "loss": 0
+  },
+  "Trail took it. High 63.3%, out at 52.8%.": {
     "win": 1,
     "loss": 0
   }

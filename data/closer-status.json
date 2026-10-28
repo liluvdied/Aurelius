@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T02:03:45.803Z",
+ "at": "2026-10-28T02:21:22.332Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -7,14 +7,14 @@
    "matched": 0
   },
   "NCAAF": {
-   "live": 2,
-   "late": 1,
-   "matched": 1
+   "live": 1,
+   "late": 0,
+   "matched": 0
   },
   "NBA": {
    "live": 3,
-   "late": 2,
-   "matched": 2
+   "late": 3,
+   "matched": 3
   },
   "WNBA": {
    "live": 0,
@@ -27,9 +27,9 @@
    "matched": 0
   },
   "NHL": {
-   "live": 7,
-   "late": 3,
-   "matched": 3
+   "live": 9,
+   "late": 6,
+   "matched": 6
   },
   "MLB": {
    "live": 1,
@@ -39,32 +39,32 @@
  },
  "watching": [
   {
-   "league": "NCAAF",
-   "game": "Delaware 35 @ Western KY 21",
+   "league": "NBA",
+   "game": "Nets 124 @ Celtics 123",
+   "period": 5,
+   "clock": "4.9",
+   "fav": "Nets",
+   "wp": 0.75,
+   "ask": 0.45,
+   "ticker": "KXNBAGAME-26OCT27BKNBOS-BKN",
+   "matched": true
+  },
+  {
+   "league": "NBA",
+   "game": "Pistons 67 @ Knicks 93",
    "period": 4,
-   "clock": "1:55",
-   "fav": "Delaware",
+   "clock": "9:42",
+   "fav": "Knicks",
    "wp": 1,
    "ask": 1,
-   "ticker": "KXNCAAFGAME-26OCT27DELWKU-DEL",
+   "ticker": "KXNBAGAME-26OCT27DETNYK-NYK",
    "matched": true
   },
   {
    "league": "NBA",
-   "game": "Nets 114 @ Celtics 117",
+   "game": "Kings 101 @ Spurs 126",
    "period": 4,
-   "clock": "3.0",
-   "fav": "Celtics",
-   "wp": 0.98,
-   "ask": 0.99,
-   "ticker": "KXNBAGAME-26OCT27BKNBOS-BOS",
-   "matched": true
-  },
-  {
-   "league": "NBA",
-   "game": "Kings 88 @ Spurs 109",
-   "period": 4,
-   "clock": "9:32",
+   "clock": "1:46",
    "fav": "Spurs",
    "wp": 1,
    "ask": 1,
@@ -73,35 +73,68 @@
   },
   {
    "league": "NHL",
-   "game": "Canadiens 1 @ Blues 0",
+   "game": "Bruins 1 @ Hurricanes 1",
    "period": 3,
-   "clock": "17:43",
+   "clock": "10:17",
+   "fav": "Hurricanes",
+   "wp": null,
+   "ask": 0.57,
+   "ticker": "KXNHLGAME-26OCT27BOSCAR-CAR",
+   "matched": true
+  },
+  {
+   "league": "NHL",
+   "game": "Kings 1 @ Blackhawks 2",
+   "period": 3,
+   "clock": "8:43",
+   "fav": "Blackhawks",
+   "wp": null,
+   "ask": 0.83,
+   "ticker": "KXNHLGAME-26OCT27LACHI-CHI",
+   "matched": true
+  },
+  {
+   "league": "NHL",
+   "game": "Canadiens 2 @ Blues 0",
+   "period": 3,
+   "clock": "9:48",
    "fav": "Canadiens",
    "wp": null,
-   "ask": 0.88,
+   "ask": 0.95,
    "ticker": "KXNHLGAME-26OCT27MTLSTL-MTL",
    "matched": true
   },
   {
    "league": "NHL",
-   "game": "Islanders 3 @ Predators 2",
+   "game": "Islanders 3 @ Predators 3",
    "period": 3,
-   "clock": "17:14",
-   "fav": "Islanders",
+   "clock": "8:53",
+   "fav": "Predators",
    "wp": null,
-   "ask": 0.78,
-   "ticker": "KXNHLGAME-26OCT27NYINSH-NYI",
+   "ask": 0.57,
+   "ticker": "KXNHLGAME-26OCT27NYINSH-NSH",
    "matched": true
   },
   {
    "league": "NHL",
    "game": "Devils 4 @ Stars 1",
    "period": 3,
-   "clock": "17:53",
+   "clock": "9:49",
    "fav": "Devils",
    "wp": null,
-   "ask": 0.98,
+   "ask": 1,
    "ticker": "KXNHLGAME-26OCT27NJDAL-NJ",
+   "matched": true
+  },
+  {
+   "league": "NHL",
+   "game": "Panthers 4 @ Jets 1",
+   "period": 3,
+   "clock": "11:49",
+   "fav": "Panthers",
+   "wp": null,
+   "ask": 0.99,
+   "ticker": "KXNHLGAME-26OCT27FLAWPG-FLA",
    "matched": true
   }
  ],

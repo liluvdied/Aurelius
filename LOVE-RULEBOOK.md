@@ -178,3 +178,5 @@ Love: "could you look into the records for the 5M book on poly and see which hou
 ## fix358 — the 5M at $7.50 (Oct 27 6:55 PM PT, R043)
 Love: "let's cut those hours and raise her stake to $10 on the other hours hunni 💞 better math on that" + card "$7.50 now".
 - Poly 5M $7.50 in her kept hours. Poly cap lifts to that for 5m markets only; Kalshi $5 cap untouched. Revisit $10 with more data.
+
+- **No-pink copy flip needs a real move (fix359, R044).** Love Oct 27 2026 7:19 PM PT: "no pink copy only , but let’s make it $5 not $10 pls / 10c is good for gold oki" (after the 7:15 PM BTC copy short at 80,922.02 passed HER FLIP because the 2m candle, opened 7:14 at 80,923.17, was $1.15 red while the 1m/3m/5m (open 80,919.31) were green). The copy's 1-5m flip only counts once price is $5 (BTC) / 10c (gold) past that candle's open. Copy only - main and rejection keep their flip as is.
