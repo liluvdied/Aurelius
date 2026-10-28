@@ -2950,5 +2950,65 @@
   "result": "win",
   "pnl": 4.8,
   "lane": "first"
+ },
+ {
+  "at": "2026-10-28T22:22:00+00:00",
+  "slot": "2026-10-28T22:20:00+00:00",
+  "side": "down",
+  "setup": "Rejected down off fresh -1\u03c3",
+  "ask": 0.66,
+  "left": 180,
+  "reaims": 2,
+  "result": "win",
+  "pnl": 2.58,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-28T22:22:00+00:00",
+  "slot": "2026-10-28T22:20:00+00:00",
+  "side": "down",
+  "setup": "Rejected down off fresh VWAP",
+  "ask": 0.66,
+  "left": 180,
+  "reaims": 0,
+  "result": "win",
+  "pnl": 2.58,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-28T22:52:00+00:00",
+  "slot": "2026-10-28T22:50:00+00:00",
+  "side": "down",
+  "setup": "Red candle falling from the top third",
+  "ask": 0.55,
+  "left": 180,
+  "reaims": 0,
+  "result": "win",
+  "pnl": 4.09,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-28T23:12:00+00:00",
+  "slot": "2026-10-28T23:10:00+00:00",
+  "side": "up",
+  "setup": "Rejected up off +1\u03c3",
+  "ask": 0.51,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-28T23:17:00+00:00",
+  "slot": "2026-10-28T23:15:00+00:00",
+  "side": "down",
+  "setup": "Rejected down off fresh +1\u03c3",
+  "ask": 0.32,
+  "left": 180,
+  "reaims": 0,
+  "result": "win",
+  "pnl": 10.62,
+  "lane": "first"
  }
 ]

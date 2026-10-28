@@ -1,9 +1,24 @@
-# Every decision Love has made - rebuilt 2026-10-28T23:15:15.613440+00:00
+# Every decision Love has made - rebuilt 2026-10-28T23:30:41.947623+00:00
 
-1258 decisions with Love's words or card picks, out of 1981 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1261 decisions with Love's words or card picks, out of 1985 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T23:30:03.193108+00:00  ·  diary line 2449
+- Love: “yes let’s do that hun / can we set it up for her to trade a candle flip at the 2nd bands for now ? / if price blows thru one and rejects and flips at the 2nd when bands are tight?”
+- Love: “Paper first”
+- Card pick: **Paper first**
+- Full entry: 2026-10-28T23:30:03.193108+00:00 THAW (Love Oct 28 2026 4:18 PM PT: "yes let’s do that hun / can we set it up for her to trade a candle flip at the 2nd bands for now ? / if price blows thru one and rejects and flips at the 2nd when bands are tight?" + 4:20 PM: "yess we’ll keep it paper for the next couple days :)" + card "Paper first")
+
+## 2026-10-28T23:20:00Z  ·  diary line 2448
+- Love: “when bands are this tight she can skip 1 and every 2 bands acts like 1”
+- Full entry: 2026-10-28T23:20:00Z 2-BAND STUDY (Love: "when bands are this tight she can skip 1 and every 2 bands acts like 1"): tight bands, once price hits the 1st band ahead it reaches the 2nd 71% BTC / 75% gold (normal 35%/44%). But paper trades into a close 1st band with the 2nd far: BTC 77 43% -$340, gold 23 48% +$55 -> not built. Blue VWAP in tight bands holds 48% BTC / 46% gold (sigma 47/49, pink 61/58, R/S 69/75). Scripts data/lab/tight403.py, vwhold.py.
+
+## 2026-10-28T23:15:00Z  ·  diary line 2447  ·  fix371, fix403
+- fix371 IN HER CODE
+- fix403 IN HER CODE
+- Full entry: 2026-10-28T23:15:00Z fix403 installed at boundary (engine 30632d9012810c9c): GOLD SLIDE UNDER PINK = slideHold403() - no pink touch needed, sticky (__slide403) until a 25c break up through pink; main/rej/copy gold longs on Kalshi. Love's fix371 words were "maybe in the event of this we should wait for a break" - the 30c touch + 30 min memory built it narrower than that. tools/slide-test.cjs (umpire) replays the 3:54 PM long and must hold it. R093. Umpire SAFE.
 
 ## 2026-10-28T23:15:03.167354+00:00  ·  diary line 2445
 - Love: “How should the gold downslope-under-pink hold work now?”

@@ -1,9 +1,9 @@
 {
  "rule": "a badge for Aurelius and Claude for every 24 h she stays on one spot - no unplanned change in code or settings, no execution slip",
  "chapter": {
-  "since": "2026-10-28T22:21:33.535342Z",
+  "since": "2026-10-28T23:21:33.772177Z",
   "reason": "after Love's revision",
-  "baselineSha": "b3022048f2f7d122",
+  "baselineSha": "ab9b3989fed8a890",
   "cfg": {
    "cooldownAfterLoss": "b5bea41b6c",
    "route": "9d53f79e71",
@@ -24,13 +24,13 @@
    "model": "80270e39ab",
    "autoExits": "b5bea41b6c",
    "tpHard": "b5bea41b6c",
-   "liveBook": "e13f989d61",
+   "liveBook": "98a4e41e2f",
    "tpOfMax": "69f59c273b",
    "netBelow": "4f53cda18c",
    "insurance": "7e56fa5011",
    "tpLadder": "b5bea41b6c",
    "polyTwin": "16806c301c",
-   "addOn": "19ecc7825f",
+   "addOn": "329286406a",
    "timeGate": "f698c8086d",
    "snipe": "08fadc84ae",
    "polyLive": "fcbcf16590",
@@ -149,7 +149,7 @@
    "assetDollarsOff": "8a3eed3ef7",
    "polyLiveNote": "40671f92fd",
    "dlyLiveNote": "0c40f78c42",
-   "offHourMain": "cea18e6914",
+   "offHourMain": "cdc637a6de",
    "bookSkipHoursByAsset": "9b3f566776",
    "fix313Prev": "c1e29a6fd6",
    "liveSkipHoursPrev315": "a7a12423e8",
@@ -158,15 +158,18 @@
    "fix321Prev": "1bfaae9ab3",
    "fix352Prev": "23d7ac15bf",
    "fix360Prev": "ac6d740e35",
-   "npLive": "042672a865",
+   "npLive": "c8133f3a28",
    "fix374Prev": "f6fa805c30",
    "fix380Prev": "9fa58145d8",
    "fix381Prev": "ef07c198b4",
    "fix383Prev": "2f15a497e5",
-   "sovLive": "b001760643",
+   "sovLive": "ab08f47c1e",
    "fix384Prev": "e34cc56df8",
    "fix388Prev": "6a35a83049",
-   "fix393Prev": "0332b02eaf"
+   "fix393Prev": "0332b02eaf",
+   "fix398Prev": "c722fa0f28",
+   "fix400Prev": "7dd8b0ae05",
+   "fix402Prev": "058afe6f24"
   },
   "badgesThisChapter": 0,
   "heartsThisChapter": 0
@@ -1061,6 +1064,13 @@
    "badgesThisChapter": 0,
    "ended": "2026-10-28T22:21:33.535342Z",
    "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T22:21:33.535342Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T23:21:33.772177Z",
+   "how": "Love's revision (baseline moved with her words)"
   }
  ],
  "breaks": [
@@ -1105,7 +1115,7 @@
    "streakHours": 1.0
   }
  ],
- "lastSeen": "2026-10-28T22:21:33.535342Z",
+ "lastSeen": "2026-10-28T23:21:33.772177Z",
  "drifting": false,
  "now": {
   "streakHours": 0.0,

@@ -1,44 +1,43 @@
-# Snipes & grades - week ending Wed Oct 28, 3:21 PM PT
+# Snipes & grades - week ending Wed Oct 28, 4:21 PM PT
 
-946 live Kalshi positions graded, 1061 settled windows read (bid path every ~10 s, so a 1-second snap can be a touch deeper than shown).
+946 live Kalshi positions graded, 1059 settled windows read (bid path every ~10 s, so a 1-second snap can be a touch deeper than shown).
 
 ## Grades
 
 | grade | what it means | trades | share | P&L |
 |---|---|---|---|---|
-| A | rejected and went our way at once | 151 | 16% | +$784.27 |
-| B | won with 10-40% heat, or was up 30%+ and lost | 324 | 34% | -$639.37 |
-| C | went 40%+ against us, came back | 186 | 20% | +$2,237.01 |
-| D | lost, never really in our favour | 285 | 30% | -$2,917.97 |
+| A | rejected and went our way at once | 152 | 16% | +$802.13 |
+| B | won with 10-40% heat, or was up 30%+ and lost | 324 | 34% | -$665.71 |
+| C | went 40%+ against us, came back | 185 | 20% | +$2,230.41 |
+| D | lost, never really in our favour | 285 | 30% | -$2,945.25 |
 
 ### By asset
 
 | asset | n | A | B | C | D | A+C share | P&L |
 |---|---|---|---|---|---|---|---|
-| gold | 355 | 54 | 128 | 73 | 100 | 36% | -$122.87 |
-| btc | 591 | 97 | 196 | 113 | 185 | 36% | -$413.19 |
+| gold | 355 | 54 | 128 | 74 | 99 | 36% | -$117.45 |
+| btc | 591 | 98 | 196 | 111 | 186 | 35% | -$460.97 |
 
 ### By book
 
 | book | n | A | B | C | D | A+C share | P&L |
 |---|---|---|---|---|---|---|---|
-| recon-tog | 170 | 29 | 63 | 38 | 40 | 39% | +$84.93 |
-| recon-np | 17 | 5 | 2 | 5 | 5 | 59% | -$7.40 |
+| recon-tog | 172 | 29 | 64 | 39 | 40 | 40% | +$73.19 |
 | recon-dly | 84 | 12 | 25 | 16 | 31 | 33% | -$26.46 |
-| recon-togp | 130 | 26 | 35 | 33 | 36 | 45% | -$92.40 |
+| recon-np | 18 | 5 | 2 | 5 | 6 | 56% | -$28.20 |
+| recon-togp | 132 | 26 | 36 | 33 | 37 | 45% | -$109.83 |
 | recon-rej | 119 | 23 | 35 | 24 | 37 | 39% | -$198.16 |
-| hand/other | 426 | 56 | 164 | 70 | 136 | 30% | -$296.57 |
+| hand/other | 421 | 57 | 162 | 68 | 134 | 30% | -$288.96 |
 
 ### By hour (PT)
 
 | hour (PT) | n | A | B | C | D | A+C share | P&L |
 |---|---|---|---|---|---|---|---|
-| 16 | 39 | 8 | 11 | 7 | 13 | 38% | +$74.61 |
+| 16 | 37 | 9 | 11 | 6 | 11 | 41% | +$97.12 |
 | 10 | 45 | 11 | 11 | 8 | 15 | 42% | +$68.84 |
 | 22 | 48 | 9 | 17 | 12 | 10 | 44% | +$55.57 |
 | 5 | 35 | 4 | 13 | 8 | 10 | 34% | +$46.63 |
 | 2 | 40 | 6 | 11 | 12 | 11 | 45% | +$44.41 |
-| 15 | 34 | 5 | 12 | 8 | 9 | 38% | +$23.05 |
 | 6 | 39 | 5 | 16 | 10 | 8 | 38% | +$15.99 |
 | 14 | 28 | 7 | 8 | 5 | 8 | 43% | +$4.17 |
 | 12 | 38 | 6 | 10 | 9 | 13 | 39% | -$3.35 |
@@ -48,6 +47,7 @@
 | 4 | 41 | 8 | 14 | 3 | 16 | 27% | -$23.89 |
 | 11 | 45 | 7 | 17 | 12 | 9 | 42% | -$25.34 |
 | 13 | 43 | 9 | 16 | 5 | 13 | 33% | -$37.80 |
+| 15 | 36 | 5 | 12 | 8 | 11 | 36% | -$41.82 |
 | 20 | 47 | 8 | 20 | 6 | 13 | 30% | -$51.58 |
 | 8 | 30 | 5 | 11 | 5 | 9 | 33% | -$56.11 |
 | 9 | 36 | 1 | 14 | 7 | 14 | 22% | -$61.50 |
@@ -62,8 +62,8 @@
 
 | day | n | A | B | C | D | A+C share | P&L |
 |---|---|---|---|---|---|---|---|
-| Wed | 155 | 23 | 47 | 35 | 50 | 37% | -$1.56 |
 | Sat | 78 | 19 | 20 | 12 | 27 | 40% | -$42.46 |
+| Wed | 155 | 24 | 47 | 34 | 50 | 37% | -$43.92 |
 | Sun | 118 | 26 | 37 | 22 | 33 | 41% | -$45.65 |
 | Mon | 152 | 19 | 54 | 38 | 41 | 38% | -$76.58 |
 | Tue | 154 | 24 | 52 | 32 | 46 | 36% | -$93.90 |
@@ -110,13 +110,14 @@
 | Rejected down off -1σ | 10 | 3 | 3 | 1 | 3 | 40% | -$29.34 |
 | Failed break above session VWAP - rejected down | 4 | 0 | 3 | 0 | 1 | 0% | -$37.77 |
 | Failed break below -1σ - rejected up | 5 | 0 | 2 | 0 | 3 | 0% | -$46.78 |
+| Rejected up off fresh VWAP | 3 | 0 | 0 | 0 | 3 | 0% | -$47.14 |
 | Touch of BB lower - the next band after the initial move | 7 | 0 | 0 | 1 | 6 | 14% | -$48.70 |
 | Break above 5m PP | 6 | 1 | 2 | 0 | 3 | 17% | -$55.82 |
 | Rejected up off Bollinger lower | 9 | 2 | 2 | 2 | 3 | 44% | -$65.74 |
 | Turned down after the initial move | 12 | 2 | 6 | 0 | 4 | 17% | -$69.36 |
-| Rejected up off 5m PP | 19 | 1 | 10 | 4 | 4 | 26% | -$81.10 |
+| Rejected up off 5m PP | 20 | 1 | 11 | 4 | 4 | 25% | -$77.64 |
 | Candle falling from the top third | 29 | 2 | 6 | 6 | 15 | 28% | -$132.31 |
-| Live | 398 | 53 | 151 | 66 | 128 | 30% | -$308.13 |
+| Live | 393 | 54 | 149 | 64 | 126 | 30% | -$300.52 |
 
 ## How often the big multiples came back
 
@@ -124,15 +125,15 @@ First time a side reached the multiple with 90 s+ left, and whether that side wo
 
 | asset | multiple | times reached | came back | rate | EV per $1 | at a band: reached / came back |
 |---|---|---|---|---|---|---|
-| BTC | 4x+ | 773 | 164 | 21% | -0.04 | 652 / 138 |
+| BTC | 4x+ | 771 | 163 | 21% | -0.04 | 650 / 137 |
 | BTC | 8x+ | 601 | 56 | 9% | -0.09 | 500 / 51 |
 | BTC | 15x+ | 499 | 24 | 5% | -0.13 | 414 / 21 |
 | BTC | 25x+ | 446 | 12 | 3% | -0.17 | 370 / 10 |
-| BTC | 50x+ | 384 | 4 | 1% | -0.38 | 319 / 4 |
-| GOLD | 4x+ | 470 | 101 | 21% | -0.04 | 313 / 69 |
-| GOLD | 8x+ | 342 | 22 | 6% | -0.40 | 228 / 14 |
-| GOLD | 15x+ | 297 | 9 | 3% | -0.47 | 199 / 7 |
-| GOLD | 25x+ | 251 | 5 | 2% | -0.34 | 172 / 5 |
+| BTC | 50x+ | 384 | 4 | 1% | -0.38 | 320 / 4 |
+| GOLD | 4x+ | 469 | 102 | 22% | -0.03 | 311 / 69 |
+| GOLD | 8x+ | 342 | 23 | 7% | -0.38 | 228 / 14 |
+| GOLD | 15x+ | 296 | 9 | 3% | -0.47 | 198 / 7 |
+| GOLD | 25x+ | 250 | 5 | 2% | -0.34 | 171 / 5 |
 | GOLD | 50x+ | 196 | 2 | 1% | -0.27 | 130 / 2 |
 
 ### The come-backs at 15x+ (33)
@@ -181,15 +182,15 @@ Every tap of a line (BTC $10, gold $0.30), how far price rejected back in 60 s. 
 |---|---|---|---|---|---|
 | BTC | R2/S2 | 100 | 66% | +21.83 | 19% |
 | BTC | outer σ (2-3σ) | 456 | 63% | +13.35 | 7% |
-| BTC | red/green zone | 1236 | 62% | +12.54 | 5% |
-| BTC | Bollinger | 1027 | 61% | +9.95 | 5% |
-| BTC | inner session (VWAP/±1σ) | 1472 | 62% | +9.55 | 5% |
-| BTC | pink | 2336 | 63% | +8.97 | 3% |
-| GOLD | R2/S2 | 61 | 67% | +0.55 | 11% |
-| GOLD | Bollinger | 698 | 57% | +0.21 | 2% |
-| GOLD | inner session (VWAP/±1σ) | 1060 | 56% | +0.16 | 2% |
-| GOLD | pink | 1339 | 56% | +0.16 | 2% |
-| GOLD | red/green zone | 905 | 56% | +0.16 | 2% |
+| BTC | red/green zone | 1239 | 62% | +12.50 | 5% |
+| BTC | Bollinger | 1029 | 61% | +9.95 | 5% |
+| BTC | inner session (VWAP/±1σ) | 1498 | 62% | +9.42 | 4% |
+| BTC | pink | 2350 | 63% | +8.96 | 3% |
+| GOLD | R2/S2 | 62 | 68% | +0.55 | 11% |
+| GOLD | Bollinger | 700 | 57% | +0.21 | 2% |
+| GOLD | pink | 1344 | 56% | +0.16 | 2% |
+| GOLD | inner session (VWAP/±1σ) | 1070 | 56% | +0.16 | 2% |
+| GOLD | red/green zone | 916 | 56% | +0.15 | 2% |
 | GOLD | outer σ (2-3σ) | 355 | 55% | +0.13 | 3% |
 
 ## Add-ons
@@ -198,72 +199,72 @@ If she had added the first time her own position's side reached each multiple (9
 
 | asset | multiple | positions that got there | won | EV per $1 |
 |---|---|---|---|---|
-| BTC | 2.8x | 423 | 125 (30%) | -0.17 (floor) |
-| BTC | 3.8x | 374 | 83 (22%) | -0.16 (floor) |
-| BTC | 4.5x | 355 | 69 (19%) | -0.13 (floor) |
-| BTC | 8x | 292 | 32 (11%) | -0.12 (floor) |
-| BTC | 15x | 250 | 14 (6%) | -0.16 (floor) |
+| BTC | 2.8x | 422 | 123 (29%) | -0.18 (floor) |
+| BTC | 3.8x | 374 | 82 (22%) | -0.17 (floor) |
+| BTC | 4.5x | 356 | 69 (19%) | -0.13 (floor) |
+| BTC | 8x | 293 | 32 (11%) | -0.13 (floor) |
+| BTC | 15x | 251 | 14 (6%) | -0.16 (floor) |
 | BTC | 25x | 221 | 3 (1%) | -0.66 (floor) |
-| GOLD | 2.8x | 245 | 62 (25%) | -0.29 (floor) |
-| GOLD | 3.8x | 213 | 41 (19%) | -0.27 (floor) |
-| GOLD | 4.5x | 195 | 27 (14%) | -0.38 (floor) |
-| GOLD | 8x | 153 | 8 (5%) | -0.58 (floor) |
-| GOLD | 15x | 122 | 3 (2%) | -0.63 (floor) |
-| GOLD | 25x | 96 | 1 (1%) | -0.74 (floor) |
+| GOLD | 2.8x | 244 | 62 (25%) | -0.29 (floor) |
+| GOLD | 3.8x | 212 | 41 (19%) | -0.27 (floor) |
+| GOLD | 4.5x | 194 | 27 (14%) | -0.37 (floor) |
+| GOLD | 8x | 152 | 8 (5%) | -0.58 (floor) |
+| GOLD | 15x | 121 | 3 (2%) | -0.63 (floor) |
+| GOLD | 25x | 95 | 1 (1%) | -0.74 (floor) |
 
 Her real add-ons (addon-log, all time in the archive):
 
 | asset | book | adds | won | cost | paid | net |
 |---|---|---|---|---|---|---|
-| BTC | main | 102 | 20 | $266.74 | $198.48 | -$68.26 |
-| BTC | twin | 248 | 59 | $1,076.44 | $938.62 | -$137.82 |
+| BTC | main | 103 | 20 | $272.34 | $198.48 | -$73.86 |
+| BTC | twin | 249 | 59 | $1,081.44 | $938.62 | -$142.82 |
 | GOLD | main | 45 | 11 | $131.50 | $129.61 | -$1.89 |
-| GOLD | twin | 110 | 23 | $499.25 | $386.28 | -$112.97 |
+| GOLD | twin | 111 | 23 | $504.41 | $386.28 | -$118.13 |
 
 ### Add-ons by trigger (this week)
 
 | trigger | adds | won | win rate | net |
 |---|---|---|---|---|
-| other | 15 | 6 | 40% | +$13.72 |
+| other | 14 | 5 | 36% | +$8.12 |
 | flip near band | 32 | 10 | 31% | +$6.06 |
 | armed earlier | 32 | 7 | 22% | -$22.09 |
-| touch | 347 | 83 | 24% | -$221.37 |
+| touch | 350 | 83 | 24% | -$237.13 |
 
 ### Add-ons by line (this week)
 
 | line | adds | won | win rate | net |
 |---|---|---|---|---|
-| session band | 159 | 44 | 28% | +$4.79 |
+| session band | 161 | 44 | 27% | -$5.37 |
 | green zone | 29 | 7 | 24% | -$5.74 |
 | Bollinger | 46 | 10 | 22% | -$42.25 |
 | red zone | 40 | 7 | 18% | -$71.42 |
-| pink | 152 | 38 | 25% | -$109.06 |
+| pink | 152 | 37 | 24% | -$120.26 |
 
 ### Add-ons by multiple (this week)
 
 | multiple | adds | won | win rate | net |
 |---|---|---|---|---|
 | 4.5-8x | 63 | 12 | 19% | -$25.45 |
-| <3x | 100 | 34 | 34% | -$27.69 |
+| <3x | 102 | 34 | 33% | -$38.29 |
 | 8x+ | 12 | 0 | 0% | -$50.40 |
-| 3-4.5x | 251 | 60 | 24% | -$120.14 |
+| 3-4.5x | 251 | 59 | 24% | -$130.90 |
 
 ### Add-ons by time left (this week)
 
 | time left | adds | won | win rate | net |
 |---|---|---|---|---|
-| 10+ min | 156 | 50 | 32% | +$104.74 |
-| 5-10 min | 190 | 43 | 23% | -$152.98 |
-| <5 min | 80 | 13 | 16% | -$175.44 |
+| 10+ min | 159 | 50 | 31% | +$88.71 |
+| 5-10 min | 190 | 42 | 22% | -$164.18 |
+| <5 min | 79 | 13 | 16% | -$169.57 |
 
 ### Add-ons by asset + book (this week)
 
 | asset + book | adds | won | win rate | net |
 |---|---|---|---|---|
 | GOLD main | 24 | 8 | 33% | +$14.55 |
-| BTC main | 44 | 16 | 36% | +$12.58 |
-| GOLD twin | 110 | 23 | 21% | -$113.00 |
-| BTC twin | 248 | 59 | 24% | -$137.81 |
+| BTC main | 44 | 15 | 34% | +$1.38 |
+| GOLD twin | 111 | 23 | 21% | -$118.16 |
+| BTC twin | 249 | 59 | 24% | -$142.81 |
 
 ### Add-ons by hour (PT) (this week)
 
@@ -273,13 +274,13 @@ Her real add-ons (addon-log, all time in the archive):
 | 2 | 22 | 9 | 41% | +$41.98 |
 | 10 | 18 | 7 | 39% | +$38.31 |
 | 22 | 19 | 6 | 32% | +$8.62 |
-| 15 | 11 | 4 | 36% | +$8.07 |
 | 5 | 17 | 3 | 18% | +$2.61 |
 | 12 | 25 | 6 | 24% | +$2.52 |
 | 11 | 20 | 6 | 30% | +$0.85 |
 | 19 | 20 | 5 | 25% | -$10.53 |
 | 4 | 18 | 4 | 22% | -$10.67 |
 | 20 | 15 | 4 | 27% | -$12.68 |
+| 15 | 13 | 3 | 23% | -$13.29 |
 | 7 | 29 | 7 | 24% | -$19.05 |
 | 17 | 18 | 4 | 22% | -$20.21 |
 | 0 | 16 | 3 | 19% | -$21.01 |
@@ -296,13 +297,13 @@ Her real add-ons (addon-log, all time in the archive):
 
 ## Cut / double down (n >= 10)
 
-- **Weakest** setup Live: 398 trades, 32% D, -$308.13
-- **Weakest** book hand/other: 426 trades, 32% D, -$296.57
+- **Weakest** setup Live: 393 trades, 32% D, -$300.52
+- **Weakest** book hand/other: 421 trades, 32% D, -$288.96
 - **Weakest** book recon-rej: 119 trades, 31% D, -$198.16
 - **Weakest** setup Candle falling from the top third: 29 trades, 52% D, -$132.31
 - **Weakest** hour 21: 42 trades, 29% D, -$130.10
 - **Strongest** setup Touch of 5m PP - the next band after the initial move: 15 trades, 53% A+C, +$115.65
-- **Strongest** book recon-tog: 170 trades, 39% A+C, +$84.93
-- **Strongest** hour 16: 39 trades, 38% A+C, +$74.61
+- **Strongest** hour 16: 37 trades, 41% A+C, +$97.12
+- **Strongest** book recon-tog: 172 trades, 40% A+C, +$73.19
 - **Strongest** hour 10: 45 trades, 42% A+C, +$68.84
 - **Strongest** hour 22: 48 trades, 44% A+C, +$55.57

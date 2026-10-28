@@ -1,4 +1,4 @@
-# Week tracker - week of Sat Oct 24 (updated Wed 03:21 PM PT)
+# Week tracker - week of Sat Oct 24 (updated Wed 04:21 PM PT)
 
 Paper = $20 a trade per book. Live = what the desk actually did that window.
 
@@ -6,10 +6,10 @@ Paper = $20 a trade per book. Live = what the desk actually did that window.
 
 | Book | Paper trades | Paper P&L | Live filled | Not its hour | Held by a wall | Price cap / unfilled | Price floor |
 |---|---|---|---|---|---|---|---|
-| main book | 1969 | -$12,013.22 | 170 | 14 | 2 | 1 | 0 |
-| rejection model | 3394 | -$16,534.17 | 119 | 23 | 0 | 0 | 0 |
+| main book | 1969 | -$12,013.22 | 170 | 8 | 2 | 1 | 0 |
+| rejection model | 3394 | -$16,534.17 | 119 | 13 | 0 | 0 | 0 |
 | rejection twin +BB/zones (paper) | 633 | +$497.03 | 0 | 0 | 0 | 0 | 0 |
-| delayed twin | 696 | -$839.80 | 84 | 18 | 0 | 2 | 0 |
+| delayed twin | 696 | -$839.80 | 84 | 10 | 0 | 2 | 0 |
 | twin add-on (paper $5) | 199 | +$207.58 | 0 | 0 | 0 | 0 | 0 |
 
 Live fills vs paper price: average +1.8c over 373 fills (positive = live paid more).
@@ -557,15 +557,23 @@ Net for her: positive = the wall saved more than it cost on paper; negative = it
 | Wed 10-28 03:00 AM | btc | up | 0 | 0 | $5.40 | -$16.05 | unknown |
 | Wed 10-28 03:00 PM | btc | down | 1 | 17.7 | $7.99 | +$2.19 | unknown |
 | Wed 10-28 03:15 AM | btc | up | 0 | 0 | $5.79 | +$2.62 | unknown |
-| Wed 10-28 03:16 PM | btc | up | 0 | 0 | $9.92 | open | unknown |
-| Wed 10-28 03:21 PM | gold | up | 1 | 63.03 | $4.64 | open | unknown |
+| Wed 10-28 03:16 PM | btc | up | 0 | 0 | $9.92 | -$20.80 | unknown |
+| Wed 10-28 03:21 PM | gold | up | 1 | 63.03 | $4.64 | -$4.94 | unknown |
 | Wed 10-28 03:30 AM | btc | up | 0 | 0 | $5.09 | +$20.27 | unknown |
+| Wed 10-28 03:31 PM | btc | up | 0 | 0 | $11.00 | +$3.46 | unknown |
+| Wed 10-28 03:40 PM | gold | up | 0 | 0 | $9.67 | +$3.96 | unknown |
 | Wed 10-28 03:41 AM | gold | down | 0 | 0 | $5.55 | -$15.98 | unknown |
 | Wed 10-28 03:45 AM | gold | down | 0 | 0 | $5.17 | +$3.45 | unknown |
 | Wed 10-28 03:45 AM | btc | up | 0 | 0 | $5.00 | -$12.52 | unknown |
+| Wed 10-28 03:45 PM | btc | up | 0 | 0 | $10.15 | -$20.89 | unknown |
+| Wed 10-28 03:54 PM | gold | up | 0 | 0 | $8.60 | -$15.70 | unknown |
+| Wed 10-28 04:01 PM | btc | up | 1 | 31.46 | $4.72 | +$17.86 | unknown |
 | Wed 10-28 04:02 AM | gold | up | 0 | 0 | $2.51 | +$19.56 | unknown |
 | Wed 10-28 04:05 AM | btc | up | 0 | 0 | $2.04 | -$7.80 | unknown |
+| Wed 10-28 04:09 PM | gold | down | 2 | 188.96 | $4.35 | -$5.60 | unknown |
 | Wed 10-28 04:17 AM | gold | up | 0 | 0 | $2.50 | +$17.02 | unknown |
+| Wed 10-28 04:18 PM | btc | up | 1 | 12.61 | $4.79 | open | unknown |
+| Wed 10-28 04:18 PM | gold | down | 1 | 8.43 | $2.87 | open | unknown |
 | Wed 10-28 04:22 AM | btc | down | 0 | 0 | $2.61 | -$7.66 | unknown |
 | Wed 10-28 04:31 AM | gold | down | 0 | 0 | $2.50 | -$7.80 | unknown |
 | Wed 10-28 04:33 AM | btc | down | 0 | 0 | $2.59 | +$6.15 | unknown |

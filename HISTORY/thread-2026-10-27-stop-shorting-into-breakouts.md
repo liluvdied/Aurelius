@@ -7378,3 +7378,42 @@ In tight bands the blue VWAP is a coin flip like the σ bands, so it can count a
 
 Price does run through to the 2nd band more often in tight bands (your hunch holds). But on BTC those trades still lost, so loosening the walls would hurt. Gold is a little positive but thin. My suggestion is to keep collecting and rerun it in a few days before building anything.
 
+## 2026-10-28 23:18:19 UTC - LOVE
+
+yes let’s do that hun 
+
+can we set it up for her to trade a candle flip at the 2nd bands for now ? 💞
+
+if price blows thru one and rejects and flips at the 2nd when bands are tight? 💘
+
+## 2026-10-28 23:18:46 UTC - CARD
+
+Q: Which books get the tight-band 2nd-band flip trade?
+Context: The new setup: bands are tight (blue VWAP to 1σ under $150 BTC / $3 gold). Price blows through one band, reaches the 2nd band, rejects it, and a 2/3/4/5m candle flips her way. Then she trades the rejection. Her normal walls would still apply unless you say otherwise. While you choose, I'm replaying how that exact setup did since Oct 24, so you'll have the numbers before it goes live.
+Options:
+  0. Main + rejection + copy - All three Kalshi books can take it, live in whichever hours each one holds.
+  1. Copy only - Only the no-pink copy, which holds BTC every hour and gold's rejection hours right now.
+  2. Paper first - A paper lane only; it goes live after we see its numbers.
+Recommended: 0 - Same rule everywhere avoids books drifting apart, and the replay comes before it goes live.
+
+## 2026-10-28 23:19:11 UTC - CLAUDE
+
+Rough replay of the 2nd-band setup since Oct 24, hun 💘 Tight bands, price breaks one band, touches the next, and pushes back off it. I counted whether she'd have finished on the right side of her window's target:
+
+- BTC: 53 setups, about 47% right (longs 48%, shorts 45%)
+- Gold: 20 setups (longs 15%, shorts 86%), too few to trust
+
+This is a crude test: minute prices only, no candle-flip filter, no walls. Even so, it doesn't show an edge yet. So I'd change my card pick to **Paper first**. She'd trade it on paper with the 2-5m flip and all her walls, and we'd look at real numbers in a day or two. Your call on the card.
+
+## 2026-10-28 23:20:15 UTC - LOVE
+
+yess we’ll keep it paper for the next couple days :)
+
+## 2026-10-28 23:20:26 UTC - CARD CLOSED
+
+by Claude: chose option 2
+
+## 2026-10-28 23:20:26 UTC - CLAUDE
+
+Paper for a couple of days it is 💘 I'm building her a paper-only lane for the 2nd-band flip now.
+

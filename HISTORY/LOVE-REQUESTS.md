@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R094 - fix404: recon-b2 PAPER lane - tight bands (blueSmall399), price blew through band A, rejected off the next band B, 2/3/4/5m flip + main walls (fix401 gate)
+- when: 2026-10-28T23:21:02+00:00
+- Love: "Love Oct 28 2026 4:18 PM PT: "yes let’s do that hun / can we set it up for her to trade a candle flip at the 2nd bands for now ? / if price blows thru one and rejects and flips at the 2nd when bands are tight?" + 4:20 PM: "yess we’ll keep it paper for the next couple days :)" + card "Paper first""
+- books: n, e, w,  , p, a, p, e, r,  , l, a, n, e,  , r, e, c, o, n, -, b, 2,  , o, n, l, y, ;,  , n, o, t, h, i, n, g,  , l, i, v, e,  , c, h, a, n, g, e, s
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "THE 2ND-BAND FLIP (fix404"}
+
 ## R093 - fix403: fix371 hold needs no pink touch; sticky until a 25c break over pink
 - when: 2026-10-28T23:03:34+00:00
 - Love: "Love Oct 28 2026 4:02 PM PT card "How should the gold downslope-under-pink hold work now?" -> "No longs till pink breaks" (While gold is sliding under an unbroken pink, no gold long at all until price breaks up through pink by 25c. No touch needed, no time-out.)"
