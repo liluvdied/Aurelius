@@ -1,9 +1,9 @@
 {
  "rule": "a badge for Aurelius and Claude for every 24 h she stays on one spot - no unplanned change in code or settings, no execution slip",
  "chapter": {
-  "since": "2026-10-28T06:21:55.071666Z",
+  "since": "2026-10-28T07:22:17.125936Z",
   "reason": "after Love's revision",
-  "baselineSha": "19537caaed501035",
+  "baselineSha": "03a25093d585c6fd",
   "cfg": {
    "cooldownAfterLoss": "b5bea41b6c",
    "route": "9d53f79e71",
@@ -998,6 +998,13 @@
    "badgesThisChapter": 0,
    "ended": "2026-10-28T06:21:55.071666Z",
    "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T06:21:55.071666Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T07:22:17.125936Z",
+   "how": "Love's revision (baseline moved with her words)"
   }
  ],
  "breaks": [
@@ -1042,7 +1049,7 @@
    "streakHours": 1.0
   }
  ],
- "lastSeen": "2026-10-28T06:21:55.071666Z",
+ "lastSeen": "2026-10-28T07:22:17.125936Z",
  "drifting": false,
  "now": {
   "streakHours": 0.0,

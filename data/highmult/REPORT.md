@@ -1,6 +1,6 @@
 # High-multiple paper book 💎
 
-Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, since Sun 04:30 AM PT. Paper only. Updated Tue 11:22 PM PT.
+Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, since Sun 04:30 AM PT. Paper only. Updated Wed 12:22 AM PT.
 
 | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|

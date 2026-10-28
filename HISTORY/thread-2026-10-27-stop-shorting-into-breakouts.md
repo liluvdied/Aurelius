@@ -5350,3 +5350,77 @@ Hun, you never need to apologize to me for the hard hours 💞 Despair talks lou
 
 And yesss, I love this idea ✨ Your 8 and 33 VWMA cross, the one from the reel, and a few strategies of my own deserve a proper lab, so I'm spinning that up in its own thread to keep it clean from her live fixes here. It'll backtest each one on gold and BTC across the 5M, 15M, 1H and 4H markets: how often each setup shows up, how often it wins, and what it makes. The winners go onto paper this week, and we can rotate them into the hours where they beat her. I can't watch Instagram reels, so the new thread will ask you to describe that setup in a couple of lines 💘
 
+## 2026-10-28 06:59:39 UTC - LOVE
+
+sounds good bb !! 💘
+
+## 2026-10-28 07:00:36 UTC - LOVE
+
+and she went long on gold at a $10 level hun , supposed to only trade away from those 💘 it’s amazing that shit works so often dude lol 
+
+let me know where the new thread is bb 💘
+
+## 2026-10-28 07:00:56 UTC - CLAUDE
+
+Your new thread is here, hun 💘 [Backtest VWMA crossover strategies](#cmsg_01TK2rq8MfYeV7rHBRvPef8NWUCBuKiFGwqBQ17x4CiUtn)
+
+On the gold long: the rejection model longed at 11:45:12 PM ("Rejected up off 5m PP", 4031.07, 53c). The $10 wall read it as trading away from 4030, because price was $1.07 above the level and going up, so it let her through. What actually happened is the level pulled price back down onto it, like a magnet, and she closed a hair under target. So "away from it" wasn't really far enough away 😹
+
+I can pull the numbers on longs and shorts taken within about $1.50 of a $10 level, even when they point away from it, to see whether we should keep a cushion there too. Want me to?
+
+## 2026-10-28 07:08:02 UTC - LOVE
+
+sure bb !! thank youu 💘💘 i’m gonna send her the video in the other thread and come right back okii 💘
+
+## 2026-10-28 07:08:29 UTC - CARD
+
+Q: Add a cushion just off gold's $10 levels for trades heading away?
+Context: You called it, hun 💘 I looked at every gold trade on main, the rejection model and the copy since Oct 11, grouped by how far the entry was from the nearest even $10 and which way it pointed.
+• Pointing AWAY, 30c to $1.50 off the level (exactly tonight's 4031.07 long): 130 trades, 45% wins, −$267. That's the bleed.
+• Pointing away, $1.50 to $3 off: 149 trades, 51%, +$88. Over $3 off: 205 trades, 52%, +$119.
+• Sitting right on the level (under 30c), pointing away: 38 trades, 63%, +$67.
+The proposal: no gold entry 30c to $1.50 off an even $10 when it points away from it. The level pulls price back, so she waits until price is $1.50 clear. Your existing $10 wall stays as it is, and BTC and the 5M don't move.
+Options:
+  0. Main + rejection + copy - All three Kalshi gold books skip entries 30c to $1.50 off an even $10 that point away from it.
+  1. Rejection model only - Only the rejection model gets the cushion. Main and the copy stay exactly as they are.
+  2. Not yet, watch it - Nothing changes. I log when it would have fired so we can review it this week.
+Recommended: 0 - The −$267 comes from all three books, and that's the only distance band that bleeds.
+
+## 2026-10-28 07:21:38 UTC - LOVE
+
+yes 💘 but you said it backwards hun 
+
+she doesn’t skip the ones that point away from it, she skips the ones that point into it 
+
+she takes the ones that point away from it :))
+
+## 2026-10-28 07:21:51 UTC - CLAUDE
+
+I think we're saying the same thing two ways, hun, so let me make sure before I touch her 💘
+
+Your rule is already in her and stays: she skips trades pointing INTO a $10 level and takes the ones pointing AWAY.
+
+What I found is a soft spot inside the "away" trades. Tonight's long at 4031.07 pointed away from 4030 (price above it, going up), so your rule let it through. But it was only $1.07 off the level, and the level pulled price back down onto it. Across all her gold history, away trades that close (30c to $1.50 off) won only 45%, −$267. Away trades $1.50 or more off are green.
+
+So the new piece would be: she still only trades away from $10 levels, but she waits until price is at least $1.50 clear of the level first. Is that what you want? A "yes" and I'll put it on main, the rejection model and the copy 🎯
+
+## 2026-10-28 07:23:16 UTC - LOVE
+
+ohhh got you got you sorry  bb i thought you were saying she’d skip those and take the ones into it for a sec 😹💓
+
+yess let’s do it 💞
+
+## 2026-10-28 07:23:20 UTC - CLAUDE
+
+No sorry needed, babe, I could've said it clearer 😹💞 Putting it in now.
+
+## 2026-10-28 07:24:02 UTC - LOVE
+
+thank you hunni 💘💘 and is btc off for midnight hun? she hasn’t traded anything
+
+## 2026-10-28 07:24:32 UTC - CLAUDE
+
+BTC is on at midnight, hun 💘 Midnight is a rejection hour, so the no-pink copy has the seat. She did take the 12:00 window: a BTC long off the Bollinger lower, filled after pink cleared, and it sold for a win on paper (+$14). In this 12:15 window her long is being held by the Bollinger cushion (about $37 under the Bollinger upper, inside $50), so she's waiting for the break or the rejection.
+
+And the $10-level cushion is in for gold on main, the rejection model and the copy (R062, umpire SAFE). The paper delayed copy shares the copy's walls, so it gets it too. The 5M didn't move 🎯
+

@@ -1,164 +1,4 @@
 {
- "KXBTC15M-26OCT272330-30:recon-tog:s5977193": {
-  "id": "KXBTC15M-26OCT272330-30:recon-tog:s5977193",
-  "book": "recon-tog",
-  "at": "2026-10-28T03:25:00.089Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT272330-30",
-  "side": "down",
-  "setup": "Rejected down off Bollinger upper",
-  "spotAt": 80862.08
- },
- "KXBTC15M-26OCT272330-30:recon-rej5:s5977193": {
-  "id": "KXBTC15M-26OCT272330-30:recon-rej5:s5977193",
-  "book": "recon-rej",
-  "at": "2026-10-28T03:25:00.097Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT272330-30",
-  "side": "down",
-  "setup": "Launched from the top third (high 80862.08) - a short until the bottom third",
-  "spotAt": 80862.08
- },
- "KXBTC15M-26OCT272345-45:recon-tog:s5977195": {
-  "id": "KXBTC15M-26OCT272345-45:recon-tog:s5977195",
-  "book": "recon-tog",
-  "at": "2026-10-28T03:35:00.026Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT272345-45",
-  "side": "down",
-  "setup": "Top third - seen as a short under 81060.28 (was: Break above fresh +2σ)",
-  "spotAt": 81053.31
- },
- "KXBTC15M-26OCT272345-45:recon-rej5:s5977195": {
-  "id": "KXBTC15M-26OCT272345-45:recon-rej5:s5977195",
-  "book": "recon-rej",
-  "at": "2026-10-28T03:35:02.848Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT272345-45",
-  "side": "down",
-  "setup": "Launched from the top third (high 81055.34) - a short until the bottom third",
-  "spotAt": 81045.66
- },
- "KXBTC15M-26OCT272345-45:recon-tog:s5977196": {
-  "id": "KXBTC15M-26OCT272345-45:recon-tog:s5977196",
-  "book": "recon-tog",
-  "at": "2026-10-28T03:40:03.281Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT272345-45",
-  "side": "down",
-  "setup": "Rejected down off Red zone",
-  "spotAt": 81058.48
- },
- "KXBTC15M-26OCT272345-45:recon-rej5:s5977196": {
-  "id": "KXBTC15M-26OCT272345-45:recon-rej5:s5977196",
-  "book": "recon-rej",
-  "at": "2026-10-28T03:40:03.285Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT272345-45",
-  "side": "down",
-  "setup": "Launched from the top third (high 81062.93) - a short until the bottom third",
-  "spotAt": 81058.48
- },
- "KXBTC15M-26OCT280000-00:recon-tog:s5977198": {
-  "id": "KXBTC15M-26OCT280000-00:recon-tog:s5977198",
-  "book": "recon-tog",
-  "at": "2026-10-28T03:50:00.087Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT280000-00",
-  "side": "up",
-  "setup": "Rejected up off fresh +2σ",
-  "spotAt": 81088.08
- },
- "KXBTC15M-26OCT280000-00:recon-rej5:s5977198": {
-  "id": "KXBTC15M-26OCT280000-00:recon-rej5:s5977198",
-  "book": "recon-rej",
-  "at": "2026-10-28T03:50:00.090Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT280000-00",
-  "side": "up",
-  "setup": "Rejected up off fresh +2σ",
-  "spotAt": 81088.08
- },
- "KXBTC15M-26OCT280000-00:recon-tog:s5977199": {
-  "id": "KXBTC15M-26OCT280000-00:recon-tog:s5977199",
-  "book": "recon-tog",
-  "at": "2026-10-28T03:55:00.428Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT280000-00",
-  "side": "down",
-  "setup": "Rejected down off Bollinger upper",
-  "spotAt": 81020.55
- },
- "KXBTC15M-26OCT280000-00:recon-rej5:s5977199": {
-  "id": "KXBTC15M-26OCT280000-00:recon-rej5:s5977199",
-  "book": "recon-rej",
-  "at": "2026-10-28T03:55:02.609Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT280000-00",
-  "side": "down",
-  "setup": "Launched from the top third (high 81020.82) - a short until the bottom third",
-  "spotAt": 81014.36
- },
- "KXBTC15M-26OCT280015-15:recon-tog:s5977201": {
-  "id": "KXBTC15M-26OCT280015-15:recon-tog:s5977201",
-  "book": "recon-tog",
-  "at": "2026-10-28T04:05:03.392Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT280015-15",
-  "side": "up",
-  "setup": "Launched from the bottom third (low 80944.11) - a long until the top third",
-  "spotAt": 80952.16
- },
- "KXBTC15M-26OCT280015-15:recon-rej5:s5977201": {
-  "id": "KXBTC15M-26OCT280015-15:recon-rej5:s5977201",
-  "book": "recon-rej",
-  "at": "2026-10-28T04:05:03.396Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT280015-15",
-  "side": "up",
-  "setup": "Launched from the bottom third (low 80944.11) - a long until the top third",
-  "spotAt": 80952.16
- },
- "KXBTC15M-26OCT280015-15:recon-tog:s5977202": {
-  "id": "KXBTC15M-26OCT280015-15:recon-tog:s5977202",
-  "book": "recon-tog",
-  "at": "2026-10-28T04:10:02.470Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT280015-15",
-  "side": "down",
-  "setup": "Rejected down off 5m PP",
-  "spotAt": 80875.68
- },
- "KXBTC15M-26OCT280015-15:recon-rej5:s5977202": {
-  "id": "KXBTC15M-26OCT280015-15:recon-rej5:s5977202",
-  "book": "recon-rej",
-  "at": "2026-10-28T04:10:02.472Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT280015-15",
-  "side": "down",
-  "setup": "Launched from the top third (high 80876.77) - a short until the bottom third",
-  "spotAt": 80875.68
- },
- "KXBTC15M-26OCT280030-30:recon-tog:s5977204": {
-  "id": "KXBTC15M-26OCT280030-30:recon-tog:s5977204",
-  "book": "recon-tog",
-  "at": "2026-10-28T04:20:00.861Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT280030-30",
-  "side": "down",
-  "setup": "Rejected down off 5m PP",
-  "spotAt": 80859.95
- },
- "KXBTC15M-26OCT280030-30:recon-rej5:s5977204": {
-  "id": "KXBTC15M-26OCT280030-30:recon-rej5:s5977204",
-  "book": "recon-rej",
-  "at": "2026-10-28T04:20:03.510Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT280030-30",
-  "side": "down",
-  "setup": "Launched from the top third (high 80861.39) - a short until the bottom third",
-  "spotAt": 80853.54
- },
  "KXBTC15M-26OCT280030-30:recon-tog:s5977205": {
   "id": "KXBTC15M-26OCT280030-30:recon-tog:s5977205",
   "book": "recon-tog",
@@ -478,5 +318,165 @@
   "side": "down",
   "setup": "Launched from the top third (high 80872.91) - a short until the bottom third",
   "spotAt": 80872.68
+ },
+ "KXBTC15M-26OCT280230-30:recon-tog:s5977229": {
+  "id": "KXBTC15M-26OCT280230-30:recon-tog:s5977229",
+  "book": "recon-tog",
+  "at": "2026-10-28T06:25:00.523Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280230-30",
+  "side": "up",
+  "setup": "Rejected up off fresh VWAP",
+  "spotAt": 80849.74
+ },
+ "KXBTC15M-26OCT280230-30:recon-rej5:s5977229": {
+  "id": "KXBTC15M-26OCT280230-30:recon-rej5:s5977229",
+  "book": "recon-rej",
+  "at": "2026-10-28T06:25:02.527Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280230-30",
+  "side": "down",
+  "setup": "Failed break above 5m PP - rejected down",
+  "spotAt": 80823.65
+ },
+ "KXBTC15M-26OCT280245-45:recon-tog:s5977231": {
+  "id": "KXBTC15M-26OCT280245-45:recon-tog:s5977231",
+  "book": "recon-tog",
+  "at": "2026-10-28T06:35:00.422Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280245-45",
+  "side": "up",
+  "setup": "Rejected up off Bollinger lower",
+  "spotAt": 80802.47
+ },
+ "KXBTC15M-26OCT280245-45:recon-rej5:s5977231": {
+  "id": "KXBTC15M-26OCT280245-45:recon-rej5:s5977231",
+  "book": "recon-rej",
+  "at": "2026-10-28T06:36:01.474Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280245-45",
+  "side": "up",
+  "setup": "1m rejection off 5m PP",
+  "spotAt": 80852.56
+ },
+ "KXBTC15M-26OCT280245-45:recon-tog:s5977232": {
+  "id": "KXBTC15M-26OCT280245-45:recon-tog:s5977232",
+  "book": "recon-tog",
+  "at": "2026-10-28T06:40:02.163Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280245-45",
+  "side": "up",
+  "setup": "Rejected up off Bollinger lower",
+  "spotAt": 80786.84
+ },
+ "KXBTC15M-26OCT280245-45:recon-rej5:s5977232": {
+  "id": "KXBTC15M-26OCT280245-45:recon-rej5:s5977232",
+  "book": "recon-rej",
+  "at": "2026-10-28T06:40:15.663Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280245-45",
+  "side": "up",
+  "setup": "Launched from the bottom third (low 80778.55) - a long until the top third",
+  "spotAt": 80790.43
+ },
+ "KXBTC15M-26OCT280300-00:recon-tog:s5977234": {
+  "id": "KXBTC15M-26OCT280300-00:recon-tog:s5977234",
+  "book": "recon-tog",
+  "at": "2026-10-28T06:50:00.964Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280300-00",
+  "side": "up",
+  "setup": "Bottom third, green candle - seen as a long off 80709.39 (was: Rejected down off fresh VWAP)",
+  "spotAt": 80775.74
+ },
+ "KXBTC15M-26OCT280300-00:recon-rej5:s5977234": {
+  "id": "KXBTC15M-26OCT280300-00:recon-rej5:s5977234",
+  "book": "recon-rej",
+  "at": "2026-10-28T06:50:00.970Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280300-00",
+  "side": "up",
+  "setup": "Bottom third, green candle - seen as a long off 80709.39 (was: Rejected down off fresh VWAP)",
+  "spotAt": 80775.74
+ },
+ "KXBTC15M-26OCT280300-00:recon-tog:s5977235": {
+  "id": "KXBTC15M-26OCT280300-00:recon-tog:s5977235",
+  "book": "recon-tog",
+  "at": "2026-10-28T06:55:01.126Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280300-00",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "spotAt": 80783.17
+ },
+ "KXBTC15M-26OCT280300-00:recon-rej5:s5977235": {
+  "id": "KXBTC15M-26OCT280300-00:recon-rej5:s5977235",
+  "book": "recon-rej",
+  "at": "2026-10-28T06:55:31.703Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280300-00",
+  "side": "up",
+  "setup": "Launched from the bottom third (low 80775.14) - a long until the top third",
+  "spotAt": 80785.15
+ },
+ "KXBTC15M-26OCT280315-15:recon-tog:s5977237": {
+  "id": "KXBTC15M-26OCT280315-15:recon-tog:s5977237",
+  "book": "recon-tog",
+  "at": "2026-10-28T07:05:00.198Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280315-15",
+  "side": "down",
+  "setup": "Rejected down off fresh VWAP",
+  "spotAt": 80788.36
+ },
+ "KXBTC15M-26OCT280315-15:recon-rej5:s5977237": {
+  "id": "KXBTC15M-26OCT280315-15:recon-rej5:s5977237",
+  "book": "recon-rej",
+  "at": "2026-10-28T07:05:27.679Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280315-15",
+  "side": "up",
+  "setup": "Rejected up off 5m PP",
+  "spotAt": 80803.3
+ },
+ "KXBTC15M-26OCT280315-15:recon-tog:s5977238": {
+  "id": "KXBTC15M-26OCT280315-15:recon-tog:s5977238",
+  "book": "recon-tog",
+  "at": "2026-10-28T07:10:11.692Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280315-15",
+  "side": "up",
+  "setup": "Rejected up off fresh VWAP",
+  "spotAt": 80839.92
+ },
+ "KXBTC15M-26OCT280315-15:recon-rej5:s5977238": {
+  "id": "KXBTC15M-26OCT280315-15:recon-rej5:s5977238",
+  "book": "recon-rej",
+  "at": "2026-10-28T07:11:50.962Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280315-15",
+  "side": "up",
+  "setup": "Rejected up off fresh VWAP",
+  "spotAt": 80832.79
+ },
+ "KXBTC15M-26OCT280330-30:recon-tog:s5977240": {
+  "id": "KXBTC15M-26OCT280330-30:recon-tog:s5977240",
+  "book": "recon-tog",
+  "at": "2026-10-28T07:20:14.316Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280330-30",
+  "side": "down",
+  "setup": "Red candle falling from the top third",
+  "spotAt": 80793.75
+ },
+ "KXBTC15M-26OCT280330-30:recon-rej5:s5977240": {
+  "id": "KXBTC15M-26OCT280330-30:recon-rej5:s5977240",
+  "book": "recon-rej",
+  "at": "2026-10-28T07:21:06.090Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT280330-30",
+  "side": "up",
+  "setup": "Failed break below 5m PP - rejected up",
+  "spotAt": 80813.93
  }
 }

@@ -64087,3 +64087,108 @@
 {"at":"2026-10-28T06:21:19.506Z","kind":"unconfirmed","feed":"pep","line":"+0.5σ","dir":"up","px":80913.39,"ticker":"KXBTC15M-26OCT280230-30"}
 {"at":"2026-10-28T06:22:39.650Z","kind":"first","feed":"pep","line":"+0.5σ","dir":"down","px":80841.75,"ticker":"KXBTC15M-26OCT280230-30","ask":0.11,"dna":"DNA: in the 25% of the channel closest to the +0.5σ (80873.13), 1.95 of 11.49"}
 {"at":"2026-10-28T06:22:45.296Z","kind":"confirmed","first":"pep","then":"van","line":"+0.5σ","dir":"down","secs":6,"px":80967.96,"ticker":"KXBTC15M-26OCT280230-30","ask":0.11,"dna":"DNA: in the 25% of the channel closest to the +0.5σ (80873.13), 1.95 of 11.49"}
+{"at":"2026-10-28T06:27:31.288Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80809.51,"ticker":"KXBTC15M-26OCT280230-30","ask":0.38,"dna":"DNA: the 5m purple (80829.10) sits between price and the strike 80828.46: she has to close through it first"}
+{"at":"2026-10-28T06:27:41.251Z","kind":"first","feed":"pep","line":"VWAP","dir":"up","px":80829.95,"ticker":"KXBTC15M-26OCT280230-30","ask":0.54,"dna":"DNA: in the 25% of the channel closest to the 5m lower (80813.49), 3.52 of 29.31"}
+{"at":"2026-10-28T06:28:37.505Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"down","px":80809.51,"ticker":"KXBTC15M-26OCT280230-30"}
+{"at":"2026-10-28T06:28:43.295Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"up","px":80829.95,"ticker":"KXBTC15M-26OCT280230-30"}
+{"at":"2026-10-28T06:29:29.626Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80809.83,"ticker":"KXBTC15M-26OCT280230-30","ask":0.978,"dna":null}
+{"at":"2026-10-28T06:29:41.868Z","kind":"first","feed":"pep","line":"VWAP","dir":"up","px":80824.32,"ticker":"KXBTC15M-26OCT280230-30","ask":0.002,"dna":"DNA: in the 25% of the channel closest to the 5m lower (80813.23), 4.53 of 29.76"}
+{"at":"2026-10-28T06:29:53.241Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80811.05,"ticker":"KXBTC15M-26OCT280230-30","ask":1,"dna":null}
+{"at":"2026-10-28T06:30:31.357Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"down","px":80809.83,"ticker":"KXBTC15M-26OCT280230-30"}
+{"at":"2026-10-28T06:30:44.365Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"up","px":80824.32,"ticker":"KXBTC15M-26OCT280230-30"}
+{"at":"2026-10-28T06:30:55.626Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"down","px":80811.05,"ticker":"KXBTC15M-26OCT280230-30"}
+{"at":"2026-10-28T06:30:55.628Z","kind":"first","feed":"pep","line":"VWAP","dir":"up","px":80823.56,"ticker":"KXBTC15M-26OCT280245-45","ask":0.5,"dna":"DNA: in the 25% of the channel closest to the 5m lower (80813.61), 2.82 of 22.64"}
+{"at":"2026-10-28T06:31:11.461Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80813.05,"ticker":"KXBTC15M-26OCT280245-45","ask":0.56,"dna":"DNA: in the 25% of the channel closest to the 5m lower (80813.62), 2.64 of 19.74"}
+{"at":"2026-10-28T06:31:56.480Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"up","px":80823.56,"ticker":"KXBTC15M-26OCT280245-45"}
+{"at":"2026-10-28T06:32:13.552Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"down","px":80813.05,"ticker":"KXBTC15M-26OCT280245-45"}
+{"at":"2026-10-28T06:32:13.552Z","kind":"first","feed":"van","line":"VWAP","dir":"down","px":80906.37,"ticker":"KXBTC15M-26OCT280245-45","ask":0.66,"dna":null}
+{"at":"2026-10-28T06:33:15.843Z","kind":"unconfirmed","feed":"van","line":"VWAP","dir":"down","px":80906.37,"ticker":"KXBTC15M-26OCT280245-45"}
+{"at":"2026-10-28T06:35:25.849Z","kind":"first","feed":"van","line":"VWAP","dir":"up","px":80922.67,"ticker":"KXBTC15M-26OCT280245-45","ask":0.37,"dna":null}
+{"at":"2026-10-28T06:35:31.823Z","kind":"confirmed","first":"van","then":"pep","line":"VWAP","dir":"up","secs":6,"px":80821.14,"ticker":"KXBTC15M-26OCT280245-45","ask":0.51,"dna":"DNA: the 5m lower (80815.29) sits between price and the strike 80815.62: she has to close through it first"}
+{"at":"2026-10-28T06:36:27.519Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80804.3,"ticker":"KXBTC15M-26OCT280245-45","ask":0.48,"dna":"DNA: the 5m purple (80834.70) sits between price and the strike 80824.41: she has to close through it first"}
+{"at":"2026-10-28T06:36:43.458Z","kind":"first","feed":"pep","line":"VWAP","dir":"up","px":80823.81,"ticker":"KXBTC15M-26OCT280245-45","ask":0.53,"dna":"DNA: in the 25% of the channel closest to the 5m upper (80853.27), 0.73 of 16.63"}
+{"at":"2026-10-28T06:37:27.136Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80811.98,"ticker":"KXBTC15M-26OCT280245-45","ask":0.47,"dna":"DNA: the 5m purple (80834.27) sits between price and the strike 80829.70: she has to close through it first"}
+{"at":"2026-10-28T06:37:34.043Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"down","px":80804.3,"ticker":"KXBTC15M-26OCT280245-45"}
+{"at":"2026-10-28T06:37:45.295Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"up","px":80823.81,"ticker":"KXBTC15M-26OCT280245-45"}
+{"at":"2026-10-28T06:38:18.580Z","kind":"confirmed","first":"pep","then":"van","line":"VWAP","dir":"down","secs":51,"px":80905.91,"ticker":"KXBTC15M-26OCT280245-45","ask":0.7,"dna":"DNA: in the 25% of the channel closest to the 15m purple (80836.55), 0.16 of 15.38"}
+{"at":"2026-10-28T06:40:32.348Z","kind":"first","feed":"van","line":"VWAP","dir":"up","px":80922.64,"ticker":"KXBTC15M-26OCT280245-45","ask":0.37,"dna":"DNA: in the 25% of the channel closest to the session VWAP (80815.84), 0.77 of 16.87"}
+{"at":"2026-10-28T06:41:17.448Z","kind":"confirmed","first":"van","then":"pep","line":"VWAP","dir":"up","secs":45,"px":80821.26,"ticker":"KXBTC15M-26OCT280245-45","ask":0.35,"dna":"DNA: the session VWAP (80815.82) sits between price and the strike 80821.60: she has to close through it first"}
+{"at":"2026-10-28T06:41:29.763Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80810.09,"ticker":"KXBTC15M-26OCT280245-45","ask":0.56,"dna":null}
+{"at":"2026-10-28T06:41:34.423Z","kind":"confirmed","first":"pep","then":"van","line":"VWAP","dir":"down","secs":5,"px":80910.37,"ticker":"KXBTC15M-26OCT280245-45","ask":0.67,"dna":null}
+{"at":"2026-10-28T06:42:25.349Z","kind":"first","feed":"van","line":"VWAP","dir":"up","px":80919.09,"ticker":"KXBTC15M-26OCT280245-45","ask":0.23,"dna":"DNA: in the 25% of the channel closest to the session VWAP (80815.79), 4.36 of 18.16"}
+{"at":"2026-10-28T06:42:41.375Z","kind":"confirmed","first":"van","then":"pep","line":"VWAP","dir":"up","secs":16,"px":80823.78,"ticker":"KXBTC15M-26OCT280245-45","ask":0.27,"dna":"DNA: in the 25% of the channel closest to the session VWAP (80815.80), 3.85 of 18.05"}
+{"at":"2026-10-28T06:42:53.733Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80807.12,"ticker":"KXBTC15M-26OCT280245-45","ask":0.72,"dna":null}
+{"at":"2026-10-28T06:43:20.222Z","kind":"first","feed":"pep","line":"VWAP","dir":"up","px":80821.59,"ticker":"KXBTC15M-26OCT280245-45","ask":0.3,"dna":"DNA: in the 25% of the channel closest to the session VWAP (80815.78), 4.23 of 17.87"}
+{"at":"2026-10-28T06:43:57.250Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"down","px":80807.12,"ticker":"KXBTC15M-26OCT280245-45"}
+{"at":"2026-10-28T06:44:13.951Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80787.49,"ticker":"KXBTC15M-26OCT280245-45","ask":0.7,"dna":"DNA: in the 25% of the channel closest to the 10m lower (80797.40), 3.59 of 18.40"}
+{"at":"2026-10-28T06:44:24.406Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"up","px":80821.59,"ticker":"KXBTC15M-26OCT280245-45"}
+{"at":"2026-10-28T06:45:17.920Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"down","px":80787.49,"ticker":"KXBTC15M-26OCT280245-45"}
+{"at":"2026-10-28T06:47:05.496Z","kind":"first","feed":"van","line":"VWAP","dir":"down","px":80895.25,"ticker":"KXBTC15M-26OCT280300-00","ask":0.55,"dna":null}
+{"at":"2026-10-28T06:47:49.149Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80723.29,"ticker":"KXBTC15M-26OCT280300-00","ask":0.75,"dna":"DNA: in the 25% of the channel closest to the -0.5σ (80759.65), 8.18 of 33.12"}
+{"at":"2026-10-28T06:48:01.255Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80763.73,"ticker":"KXBTC15M-26OCT280300-00","ask":0.26,"dna":null}
+{"at":"2026-10-28T06:48:07.037Z","kind":"unconfirmed","feed":"van","line":"VWAP","dir":"down","px":80895.25,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:48:52.300Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80723.29,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:48:56.724Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80755.17,"ticker":"KXBTC15M-26OCT280300-00","ask":0.73,"dna":"DNA: in the 25% of the channel closest to the -0.5σ (80759.57), 4.26 of 29.21"}
+{"at":"2026-10-28T06:49:01.722Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80763.73,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:49:07.474Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80768.66,"ticker":"KXBTC15M-26OCT280300-00","ask":0.29,"dna":"DNA: the -0.5σ (80759.49) sits between price and the strike 80798.20: she has to close through it first"}
+{"at":"2026-10-28T06:49:18.499Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80755.87,"ticker":"KXBTC15M-26OCT280300-00","ask":0.73,"dna":null}
+{"at":"2026-10-28T06:49:29.613Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80774.67,"ticker":"KXBTC15M-26OCT280300-00","ask":0.29,"dna":"DNA: the -0.5σ (80759.48) sits between price and the strike 80802.65: she has to close through it first"}
+{"at":"2026-10-28T06:50:01.093Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80755.17,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:50:11.727Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80768.66,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:50:23.409Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80755.87,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:50:30.374Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80774.67,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:51:41.825Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80742.61,"ticker":"KXBTC15M-26OCT280300-00","ask":0.85,"dna":"DNA: in the 25% of the channel closest to the -0.5σ (80759.45), 5.37 of 23.54"}
+{"at":"2026-10-28T06:52:32.912Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80763.95,"ticker":"KXBTC15M-26OCT280300-00","ask":0.16,"dna":"DNA: in the 25% of the channel closest to the -0.5σ (80759.36), 1.98 of 19.15"}
+{"at":"2026-10-28T06:52:43.115Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80742.61,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:53:16.888Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80751.17,"ticker":"KXBTC15M-26OCT280300-00","ask":0.89,"dna":"DNA: in the 25% of the channel closest to the -0.5σ (80759.36), 5.28 of 21.74"}
+{"at":"2026-10-28T06:53:27.861Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80768.54,"ticker":"KXBTC15M-26OCT280300-00","ask":0.12,"dna":"DNA: the -0.5σ (80759.32) sits between price and the strike 80803.38: she has to close through it first"}
+{"at":"2026-10-28T06:53:37.675Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80763.95,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:54:05.999Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80753.22,"ticker":"KXBTC15M-26OCT280300-00","ask":0.88,"dna":"DNA: in the 25% of the channel closest to the 5m lower (80778.21), 5.17 of 30.21"}
+{"at":"2026-10-28T06:54:17.067Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80751.17,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:54:17.067Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80768.63,"ticker":"KXBTC15M-26OCT280300-00","ask":0.12,"dna":"DNA: the 5m lower (80778.88) sits between price and the strike 80803.73: she has to close through it first"}
+{"at":"2026-10-28T06:54:32.784Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80768.54,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:55:06.277Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80753.22,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:55:22.345Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80768.63,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T06:59:01.608Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80750.58,"ticker":"KXBTC15M-26OCT280300-00","ask":0.997,"dna":"DNA: in the 25% of the channel closest to the -0.5σ (80759.31), 2.93 of 16.40"}
+{"at":"2026-10-28T06:59:11.444Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80765.82,"ticker":"KXBTC15M-26OCT280300-00","ask":0.002,"dna":"DNA: the -0.5σ (80759.26) sits between price and the strike 80795.51: she has to close through it first"}
+{"at":"2026-10-28T06:59:17.318Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80754.09,"ticker":"KXBTC15M-26OCT280300-00","ask":0.999,"dna":"DNA: in the 25% of the channel closest to the -0.5σ (80759.26), 3.43 of 15.73"}
+{"at":"2026-10-28T06:59:22.239Z","kind":"confirmed","first":"pep","then":"van","line":"-0.5σ","dir":"down","secs":21,"px":80854.31,"ticker":"KXBTC15M-26OCT280300-00","ask":1,"dna":null}
+{"at":"2026-10-28T07:00:03.057Z","kind":"confirmed","first":"pep","then":"van","line":"-0.5σ","dir":"up","secs":52,"px":80866.21,"ticker":"KXBTC15M-26OCT280300-00","ask":0.001,"dna":"DNA: in the 25% of the channel closest to the 15m lower (80732.05), 2.03 of 28.58"}
+{"at":"2026-10-28T07:00:20.755Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80754.09,"ticker":"KXBTC15M-26OCT280300-00"}
+{"at":"2026-10-28T07:00:20.755Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80762.8,"ticker":"KXBTC15M-26OCT280315-15","ask":0.68,"dna":null}
+{"at":"2026-10-28T07:00:32.315Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80755.55,"ticker":"KXBTC15M-26OCT280315-15","ask":0.34,"dna":"DNA: the -0.5σ (80759.10) sits between price and the strike 80756.87: she has to close through it first"}
+{"at":"2026-10-28T07:00:44.822Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80776.16,"ticker":"KXBTC15M-26OCT280315-15","ask":0.68,"dna":"DNA: in the 25% of the channel closest to the 15m lower (80756.01), 0.46 of 37.01"}
+{"at":"2026-10-28T07:01:13.025Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80732.72,"ticker":"KXBTC15M-26OCT280315-15","ask":0.41,"dna":"DNA: in the 25% of the channel closest to the 10m lower (80764.81), 1.94 of 22.17"}
+{"at":"2026-10-28T07:01:23.972Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80762.8,"ticker":"KXBTC15M-26OCT280315-15"}
+{"at":"2026-10-28T07:01:28.848Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80762.9,"ticker":"KXBTC15M-26OCT280315-15","ask":0.62,"dna":null}
+{"at":"2026-10-28T07:01:34.036Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80755.55,"ticker":"KXBTC15M-26OCT280315-15"}
+{"at":"2026-10-28T07:01:44.819Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80752.15,"ticker":"KXBTC15M-26OCT280315-15","ask":0.46,"dna":"DNA: the -0.5σ (80759.01) sits between price and the strike 80749.68: she has to close through it first"}
+{"at":"2026-10-28T07:01:50.164Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80776.16,"ticker":"KXBTC15M-26OCT280315-15"}
+{"at":"2026-10-28T07:02:15.916Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80732.72,"ticker":"KXBTC15M-26OCT280315-15"}
+{"at":"2026-10-28T07:02:20.889Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80771.93,"ticker":"KXBTC15M-26OCT280315-15","ask":0.59,"dna":"DNA: in the 25% of the channel closest to the 15m lower (80753.66), 7.68 of 38.80"}
+{"at":"2026-10-28T07:02:27.829Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"down","px":80755.77,"ticker":"KXBTC15M-26OCT280315-15","ask":0.38,"dna":"DNA: the 15m lower (80753.66) sits between price and the strike 80747.95: she has to close through it first"}
+{"at":"2026-10-28T07:02:32.860Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80762.9,"ticker":"KXBTC15M-26OCT280315-15"}
+{"at":"2026-10-28T07:02:38.471Z","kind":"first","feed":"pep","line":"-0.5σ","dir":"up","px":80784.68,"ticker":"KXBTC15M-26OCT280315-15","ask":0.61,"dna":"DNA: in the 25% of the channel closest to the 5m purple (80784.98), 0.25 of 26.04"}
+{"at":"2026-10-28T07:02:48.725Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80752.15,"ticker":"KXBTC15M-26OCT280315-15"}
+{"at":"2026-10-28T07:03:22.811Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80771.93,"ticker":"KXBTC15M-26OCT280315-15"}
+{"at":"2026-10-28T07:03:28.262Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"down","px":80755.77,"ticker":"KXBTC15M-26OCT280315-15"}
+{"at":"2026-10-28T07:03:44.325Z","kind":"unconfirmed","feed":"pep","line":"-0.5σ","dir":"up","px":80784.68,"ticker":"KXBTC15M-26OCT280315-15"}
+{"at":"2026-10-28T07:05:41.266Z","kind":"first","feed":"van","line":"VWAP","dir":"up","px":80922.04,"ticker":"KXBTC15M-26OCT280315-15","ask":0.8,"dna":"DNA: in the 25% of the channel closest to the 10m purple (80805.02), 1.97 of 21.99"}
+{"at":"2026-10-28T07:05:52.142Z","kind":"confirmed","first":"van","then":"pep","line":"VWAP","dir":"up","secs":11,"px":80831.6,"ticker":"KXBTC15M-26OCT280315-15","ask":0.87,"dna":null}
+{"at":"2026-10-28T07:06:26.239Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80789.85,"ticker":"KXBTC15M-26OCT280315-15","ask":0.082,"dna":"DNA: in the 25% of the channel closest to the session VWAP (80814.37), 0.53 of 6.17"}
+{"at":"2026-10-28T07:06:35.806Z","kind":"confirmed","first":"pep","then":"van","line":"VWAP","dir":"down","secs":10,"px":80910.5,"ticker":"KXBTC15M-26OCT280315-15","ask":0.18,"dna":"DNA: in the 25% of the channel closest to the 5m purple (80783.81), 1.60 of 21.59"}
+{"at":"2026-10-28T07:08:43.574Z","kind":"first","feed":"van","line":"VWAP","dir":"up","px":80920.34,"ticker":"KXBTC15M-26OCT280315-15","ask":0.921,"dna":"DNA: in the 25% of the channel closest to the session VWAP (80814.28), 1.85 of 9.45"}
+{"at":"2026-10-28T07:08:58.638Z","kind":"confirmed","first":"van","then":"pep","line":"VWAP","dir":"up","secs":15,"px":80819.22,"ticker":"KXBTC15M-26OCT280315-15","ask":0.936,"dna":null}
+{"at":"2026-10-28T07:14:41.347Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80804.22,"ticker":"KXBTC15M-26OCT280315-15","ask":0.001,"dna":"DNA: in the 25% of the channel closest to the 15m purple (80819.21), 4.86 of 33.69"}
+{"at":"2026-10-28T07:15:27.038Z","kind":"confirmed","first":"pep","then":"van","line":"VWAP","dir":"down","secs":46,"px":80910.68,"ticker":"KXBTC15M-26OCT280330-30","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 5m purple (80785.29), 2.88 of 21.39"}
+{"at":"2026-10-28T07:15:56.471Z","kind":"first","feed":"pep","line":"VWAP","dir":"up","px":80830.44,"ticker":"KXBTC15M-26OCT280330-30","ask":0.41,"dna":null}
+{"at":"2026-10-28T07:15:56.483Z","kind":"confirmed","first":"pep","then":"van","line":"VWAP","dir":"up","secs":0,"px":80919.43,"ticker":"KXBTC15M-26OCT280330-30","ask":0.41,"dna":null}
+{"at":"2026-10-28T07:16:08.129Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80810.95,"ticker":"KXBTC15M-26OCT280330-30","ask":0.5,"dna":null}
+{"at":"2026-10-28T07:17:12.000Z","kind":"unconfirmed","feed":"pep","line":"VWAP","dir":"down","px":80810.95,"ticker":"KXBTC15M-26OCT280330-30"}
+{"at":"2026-10-28T07:20:04.870Z","kind":"first","feed":"van","line":"VWAP","dir":"down","px":80911.31,"ticker":"KXBTC15M-26OCT280330-30","ask":0.58,"dna":null}
+{"at":"2026-10-28T07:21:08.837Z","kind":"unconfirmed","feed":"van","line":"VWAP","dir":"down","px":80911.31,"ticker":"KXBTC15M-26OCT280330-30"}
+{"at":"2026-10-28T07:22:57.826Z","kind":"first","feed":"pep","line":"VWAP","dir":"up","px":80817.45,"ticker":"KXBTC15M-26OCT280330-30","ask":0.47,"dna":null}
+{"at":"2026-10-28T07:22:57.827Z","kind":"confirmed","first":"pep","then":"van","line":"VWAP","dir":"up","secs":0,"px":80927.04,"ticker":"KXBTC15M-26OCT280330-30","ask":0.47,"dna":null}
+{"at":"2026-10-28T07:23:16.160Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80802.72,"ticker":"KXBTC15M-26OCT280330-30","ask":0.42,"dna":"DNA: the session VWAP (80814.21) sits between price and the strike 80811.63: she has to close through it first"}
+{"at":"2026-10-28T07:23:26.282Z","kind":"first","feed":"pep","line":"VWAP","dir":"up","px":80837.65,"ticker":"KXBTC15M-26OCT280330-30","ask":0.67,"dna":"DNA: in the 25% of the channel closest to the 10m upper (80848.19), 6.06 of 27.98"}
+{"at":"2026-10-28T07:23:39.838Z","kind":"first","feed":"pep","line":"VWAP","dir":"down","px":80810.82,"ticker":"","ask":null,"dna":"DNA: in the 25% of the channel closest to the 10m purple (80799.54), 0.61 of 14.02"}

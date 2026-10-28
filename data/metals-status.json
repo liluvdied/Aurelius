@@ -1,51 +1,40 @@
 {
- "at": "2026-10-28T06:22:58.041Z",
+ "at": "2026-10-28T07:23:56.072Z",
  "platinum": {
-  "ticker": "KXPLATINUM15M-26OCT280230-30",
-  "spot": 1532.4,
-  "target": 1532.733,
-  "kStrike": 1533.535,
-  "yesAsk": 0.71,
-  "noAsk": 0.32,
-  "left": 422,
-  "vwap": 1531.1313411320268,
-  "sd": 1.2158847906242134,
-  "z": 1.04
+  "ticker": "KXPLATINUM15M-26OCT280330-30",
+  "spot": 1533.268,
+  "target": 1534.128,
+  "kStrike": 1534.37,
+  "yesAsk": 0.31,
+  "noAsk": 0.72,
+  "left": 364,
+  "vwap": 1533.8117458898532,
+  "sd": 1.2965190588646751,
+  "z": -0.42
  },
  "palladium": {
-  "ticker": "KXPALLADIUM15M-26OCT280230-30",
-  "spot": 1028.174,
-  "target": 1027.754,
-  "kStrike": 1029.527,
-  "yesAsk": 0.66,
-  "noAsk": 0.39,
-  "left": 421,
-  "vwap": 1028.6175015015017,
-  "sd": 0.9763634179640295,
-  "z": -0.45
+  "ticker": "KXPALLADIUM15M-26OCT280330-30",
+  "spot": 1026.374,
+  "target": 1026.444,
+  "kStrike": 1029,
+  "yesAsk": 0.65,
+  "noAsk": 0.42,
+  "left": 362,
+  "vwap": 1027.7944489311167,
+  "sd": 1.3660543156627143,
+  "z": -1.04
  },
  "msilver": {
-  "ticker": "KXSILVER15M-26OCT280230-30",
-  "spot": 53.911,
-  "target": 53.8689,
-  "kStrike": 53.887,
-  "yesAsk": 0.71,
-  "noAsk": 0.3,
-  "left": 421,
-  "vwap": 53.87578340556476,
-  "sd": 0.0372358127808366,
-  "z": 0.95
+  "ticker": "KXSILVER15M-26OCT280330-30",
+  "spot": 53.84,
+  "target": 53.8465,
+  "kStrike": 53.856,
+  "yesAsk": 0.36,
+  "noAsk": 0.66,
+  "left": 362,
+  "vwap": 53.803245871742284,
+  "sd": 0.055565711212986015,
+  "z": 0.66
  },
- "mgold": {
-  "ticker": "KXGOLD15M-26OCT280230-30",
-  "spot": 4031.437,
-  "target": 4030.42,
-  "kStrike": 4030.79,
-  "yesAsk": 0.72,
-  "noAsk": 0.29,
-  "left": 421,
-  "vwap": 4032.719188966831,
-  "sd": 2.1991931271892384,
-  "z": -0.58
- }
+ "mgold": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXGOLD15M&status=open&li"
 }

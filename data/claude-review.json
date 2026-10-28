@@ -82634,5 +82634,236 @@
   "lessons": [
    "The rejection shadow went the other way (short off -1.5σ)."
   ]
+ },
+ "KXBTC15M-26OCT280230-30": {
+  "ticker": "KXBTC15M-26OCT280230-30",
+  "at": "2026-10-28T06:30:22.469Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "unknown",
+  "multiple": 6.25,
+  "profit": 30.21,
+  "result": "win",
+  "entry": null,
+  "peakPct": 368.8,
+  "maxPct": 525,
+  "takeProfitPct": 393.8,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, won at the bell.",
+   "No entry snapshot for this one (it filled before the snapshot logger, or through another path).",
+   "The rejection shadow agreed (short off +0.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT280230-30": {
+  "ticker": "KXGOLD15M-26OCT280230-30",
+  "at": "2026-10-28T06:30:44.893Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Candle rising from the bottom third",
+  "multiple": 1.56,
+  "profit": -2.85,
+  "result": "loss",
+  "entry": {
+   "spot": 4030.952,
+   "band": "-2σ",
+   "distSigma": 0.23,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": true,
+   "minuteIn": 5.6
+  },
+  "peakPct": 7.8,
+  "maxPct": 56.3,
+  "takeProfitPct": 50,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "The rejection shadow agreed (long off -2σ)."
+  ]
+ },
+ "KXBTC15M-26OCT280245-45": {
+  "ticker": "KXBTC15M-26OCT280245-45",
+  "at": "2026-10-28T06:45:20.796Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "Rejected down off fresh VWAP",
+  "multiple": 1.75,
+  "profit": 3.74,
+  "result": "win",
+  "entry": {
+   "spot": 80823.56,
+   "band": "VWAP",
+   "distSigma": 0.07,
+   "rightSide": false,
+   "bandAhead": false,
+   "throughTarget": false,
+   "minuteIn": 0.9
+  },
+  "peakPct": 73.7,
+  "maxPct": 75.4,
+  "takeProfitPct": 56.6,
+  "exit": "mirrored RECON-REJ paper out: half at 75% (94c) + trail from 90%: best +61%, sold at 99c",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of VWAP: short just over it."
+  ],
+  "lessons": [
+   "The rejection shadow agreed (short off VWAP)."
+  ]
+ },
+ "KXGOLD15M-26OCT280245-45": {
+  "ticker": "KXGOLD15M-26OCT280245-45",
+  "at": "2026-10-28T06:45:42.447Z",
+  "asset": "gold",
+  "side": "down",
+  "setup": "Rejected down off Red zone",
+  "multiple": 1.92,
+  "profit": 4.04,
+  "result": "win",
+  "entry": {
+   "spot": 4032.54,
+   "band": "-1.5σ",
+   "distSigma": 0.04,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": true,
+   "minuteIn": 1.1
+  },
+  "peakPct": 86.5,
+  "maxPct": 92.3,
+  "takeProfitPct": 69.2,
+  "exit": "mirrored RECON-REJ paper out: half at 75% (87c) + trail from 90%: best +116%, sold at 97c",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, sold on plan.",
+   "The rejection shadow agreed (short off -1.5σ)."
+  ]
+ },
+ "KXBTC15M-26OCT280300-00": {
+  "ticker": "KXBTC15M-26OCT280300-00",
+  "at": "2026-10-28T07:00:21.484Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Bottom third, green candle - seen as a long off 80709.39 (was: Rejected down off fresh VWAP)",
+  "multiple": 3.57,
+  "profit": -13.66,
+  "result": "loss",
+  "entry": {
+   "spot": 80775.79,
+   "band": "-0.5σ",
+   "distSigma": 0.15,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": false,
+   "minuteIn": 5
+  },
+  "peakPct": 35.7,
+  "maxPct": 257.1,
+  "takeProfitPct": 192.8,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "The rejection shadow went the other way (short off VWAP)."
+  ]
+ },
+ "KXGOLD15M-26OCT280300-00": {
+  "ticker": "KXGOLD15M-26OCT280300-00",
+  "at": "2026-10-28T07:00:42.128Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Rejected up off 5m PP",
+  "multiple": 1.89,
+  "profit": -14.13,
+  "result": "loss",
+  "entry": {
+   "spot": 4030.732,
+   "band": "-1.5σ",
+   "distSigma": 0.1,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": null,
+   "minuteIn": 0.2
+  },
+  "peakPct": -3.8,
+  "maxPct": 88.7,
+  "takeProfitPct": 66.5,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of -1.5σ: long just under it.",
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "Never went green. The entry itself was wrong, not the exit.",
+   "The rejection shadow went the other way (short off -1.5σ)."
+  ]
+ },
+ "KXBTC15M-26OCT280315-15": {
+  "ticker": "KXBTC15M-26OCT280315-15",
+  "at": "2026-10-28T07:15:16.416Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Rejected up off Bollinger lower",
+  "multiple": 1.64,
+  "profit": 2.48,
+  "result": "win",
+  "entry": {
+   "spot": 80755.52,
+   "band": "-0.5σ",
+   "distSigma": 0.03,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": true,
+   "minuteIn": 2.6
+  },
+  "peakPct": 54.1,
+  "maxPct": 63.9,
+  "takeProfitPct": 50,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of -0.5σ: long just under it.",
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "The rejection shadow agreed (long off -0.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT280315-15": {
+  "ticker": "KXGOLD15M-26OCT280315-15",
+  "at": "2026-10-28T07:15:39.632Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Green candle rising from the bottom third",
+  "multiple": 1.75,
+  "profit": 1.09,
+  "result": "win",
+  "entry": {
+   "spot": 4030.297,
+   "band": "-1.5σ",
+   "distSigma": 0.03,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": false,
+   "minuteIn": 3
+  },
+  "peakPct": 66.7,
+  "maxPct": 75.4,
+  "takeProfitPct": 56.6,
+  "exit": "mirrored RECON-TOGP paper out: half at 75% (90c) + trail from 90%: best +90%, sold at 94c",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of -1.5σ: long just under it.",
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "The rejection shadow went the other way (short off -1.5σ)."
+  ]
  }
 }

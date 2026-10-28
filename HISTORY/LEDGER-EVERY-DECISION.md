@@ -1,9 +1,14 @@
-# Every decision Love has made - rebuilt 2026-10-28T06:22:53.968086+00:00
+# Every decision Love has made - rebuilt 2026-10-28T07:24:08.520876+00:00
 
-1226 decisions with Love's words or card picks, out of 1906 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1227 decisions with Love's words or card picks, out of 1909 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T07:23:56Z  ·  diary line 2374  ·  fix376
+- Love: “ohhh got you got you sorry  bb i thought you were saying she’d skip those and take the ones into it for a sec 😹💓 / yess let’s do it 💞 (to: she still only trades away from $10 levels, but waits until price is at least $1.50 clear of the level first; main + rejection + copy)”
+- fix376 IN HER CODE
+- Full entry: 2026-10-28T07:23:56Z fix376 (Oct 28 12:23 AM PT, Love: "ohhh got you got you sorry  bb i thought you were saying she’d skip those and take the ones into it for a sec 😹💓 / yess let’s do it 💞 (to: she still only trades away from $10 levels, but waits until price is at least $1.50 clear of the level first; main + rejection + copy)"): gold CLEAR OF THE $10 LEVEL for main/rej/copy - away trades 30c-$1.50 off the nearest even $10 wait (study 130 trades 45% -$267). INTO wall unchanged; BTC, twin, pure no-pink, 5M untouched.
 
 ## 2026-10-28T06:22:42Z  ·  diary line 2371  ·  fix374, fix375
 - Love: “yesss pls 💘 (to:”

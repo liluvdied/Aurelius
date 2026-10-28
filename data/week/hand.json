@@ -1,23 +1,110 @@
 [
  {
+  "ticker": "KXGOLD15M-26OCT280315-15",
+  "asset": "gold",
+  "side": "up",
+  "profit": 1.09,
+  "peak": 0.95,
+  "atPT": "Wed 10-28 12:03 AM",
+  "stake": 5.08,
+  "ask": 0.57,
+  "buys": 1,
+  "contracts": 152.77,
+  "heldToSettle": "won"
+ },
+ {
+  "ticker": "KXGOLD15M-26OCT280330-30",
+  "asset": "gold",
+  "side": "down",
+  "atPT": "Wed 10-28 12:15 AM",
+  "stake": 5.66,
+  "ask": 0.5,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXBTC15M-26OCT280315-15",
+  "asset": "btc",
+  "side": "up",
+  "profit": 2.48,
+  "peak": 0.94,
+  "atPT": "Wed 10-28 12:02 AM",
+  "stake": 5.01,
+  "ask": 0.61,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXGOLD15M-26OCT280300-00",
+  "asset": "gold",
+  "side": "up",
+  "profit": -14.13,
+  "peak": 0.51,
+  "atPT": "Tue 10-27 11:45 PM",
+  "stake": 5.48,
+  "ask": 0.53,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXBTC15M-26OCT280300-00",
+  "asset": "btc",
+  "side": "up",
+  "profit": -13.66,
+  "peak": 0.38,
+  "atPT": "Tue 10-27 11:50 PM",
+  "stake": 5.01,
+  "ask": 0.28,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXGOLD15M-26OCT280245-45",
+  "asset": "gold",
+  "side": "down",
+  "profit": 4.04,
+  "peak": 0.97,
+  "atPT": "Tue 10-27 11:31 PM",
+  "stake": 5,
+  "ask": 0.52,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXBTC15M-26OCT280245-45",
+  "asset": "btc",
+  "side": "down",
+  "profit": 3.74,
+  "peak": 0.99,
+  "atPT": "Tue 10-27 11:30 PM",
+  "stake": 5.59,
+  "ask": 0.57,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
   "ticker": "KXGOLD15M-26OCT280230-30",
   "asset": "gold",
   "side": "up",
+  "profit": -2.85,
+  "peak": 0.69,
   "atPT": "Tue 10-27 11:20 PM",
   "stake": 5.02,
   "ask": 0.64,
-  "buys": 0,
-  "contracts": 0
+  "buys": 1,
+  "contracts": 8.68
  },
  {
   "ticker": "KXBTC15M-26OCT280230-30",
   "asset": "btc",
   "side": "down",
+  "profit": 30.21,
+  "peak": 0.75,
   "atPT": "Tue 10-27 11:20 PM",
   "stake": 4.45,
   "ask": 0.16,
-  "buys": 1,
-  "contracts": 27.79
+  "buys": 2,
+  "contracts": 48.0
  },
  {
   "ticker": "KXGOLD15M-26OCT280200-00",

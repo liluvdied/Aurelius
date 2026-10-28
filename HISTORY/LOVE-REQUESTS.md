@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R062 - fix376: gold, main/rej/copy (and the paper delayed copy that shares copy walls): a trade pointing away from the nearest even $10 waits until price is $1.50 clear (30c-$1.50 blocked). INTO wall unchanged.
+- when: 2026-10-28T07:23:56+00:00
+- Love: "ohhh got you got you sorry  bb i thought you were saying she’d skip those and take the ones into it for a sec 😹💓 / yess let’s do it 💞 (to: she still only trades away from $10 levels, but waits until price is at least $1.50 clear of the level first; main + rejection + copy)"
+- books: recon-tog, recon-rej, recon-togp, recon-dlyk (paper)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "CLEAR OF THE $10 LEVEL"}
+
 ## R061 - fix375: Kalshi copier - a call never tried on Kalshi and older than 90 s is skipped (stale), never sent. recon-dly and fix371 holds exempt.
 - when: 2026-10-28T06:22:42+00:00
 - Love: "yesss pls 💘 (to: "Want me to add a guard so a call that is over a minute old can never fire right after a seat opens?")"

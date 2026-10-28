@@ -205,3 +205,5 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 - fix374 (Oct 27 11:20 PM PT, Love: "how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)"): 11 PM PT = the rejection model trades live (rejSeatHours [23]); the Oct 8 11 PM sit-out is lifted.
 
 - fix375 (Oct 27 11:25 PM PT, Love: "yesss pls 💘 (to: "Want me to add a guard so a call that is over a minute old can never fire right after a seat opens?")"): stale call guard - a never-tried call over 90 s old never goes to Kalshi.
+
+- fix376 (Oct 28 12:23 AM PT, Love: "ohhh got you got you sorry  bb i thought you were saying she’d skip those and take the ones into it for a sec 😹💓 / yess let’s do it 💞 (to: she still only trades away from $10 levels, but waits until price is at least $1.50 clear of the level first; main + rejection + copy)"): gold main/rej/copy - trading away from a $10 level needs price $1.50 clear of it.

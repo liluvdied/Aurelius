@@ -2575,6 +2575,11 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
       if (Math.abs(tgt10 - L10) <= 1 && Math.abs(tick - L10) >= 0.3 && (side === "up") !== (tick > L10))
         why = `THE $10 LEVEL: ${side === "up" ? "long up into" : "short down into"} ${L10.toFixed(0)} - the target ${tgt10.toFixed(2)} sits within $1 of that even $10 level and gold reverses there; only trade away from it.`; }
   }
+  // CLEAR OF THE $10 LEVEL (fix376, Oct 28 2026 12:23 AM PT, Love: "yess let's do it" to "she still only trades away from $10 levels, but she waits until price is at least $1.50 clear of the level first" - gold since Oct 11,
+  // main/rejection/copy trades pointing AWAY from the nearest even $10 but only 30c-$1.50 off it: 130 trades 45% -$267 (the level pulls price back); $1.50+ off is green): MAIN, REJECTION MODEL, NO-PINK COPY, gold -
+  // a trade heading away from the nearest $10 level waits until price is $1.50 clear of it. Under 30c (on the level) is not judged. Her INTO-the-level wall above stays.
+  if (!why && asset === "gold" && (flipRule || (togpLoose && !npPink)) && (side === "up" || side === "down")) { const L376 = Math.round(tick / 10) * 10, d376 = tick - L376;
+    if (Math.abs(d376) >= 0.3 && Math.abs(d376) < 1.5 && ((side === "up" && d376 > 0) || (side === "down" && d376 < 0))) why = `CLEAR OF THE $10 LEVEL: ${side === "up" ? "long" : "short"} only $${Math.abs(d376).toFixed(2)} ${d376 > 0 ? "over" : "under"} ${L376} - the level pulls price back; she waits until price is $1.50 clear (fix376).`; }
   // BOLLINGER BOUNCE IN HER CANDLE (Oct 22 ~7:23 AM PT, Love: "btc rejected at the bollinger of the candle she entered in / if the candle she entered in rejected at a
   // bollinger she shouldn't short" + card "Within $75"): BTC only - no short while this 5m candle's low came within $75 of the Bollinger lower and price has bounced
   // back up off it; no long while its high came within $75 of the Bollinger upper and price has dropped back off it.

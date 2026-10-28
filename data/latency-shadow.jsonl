@@ -143040,3 +143040,807 @@
 {"at":"2026-10-28T06:23:01.228Z","asset":"gold","kind":"close","minute":"2026-10-28T06:22:00.000Z","tickCandleAtMs":172,"tvCandleAtMs":1228,"tick":{"o":4031.71,"h":4031.88,"l":4030.84,"c":4030.98},"tv":{"o":4031.71,"h":4031.92,"l":4030.3,"c":4031.04},"dC":-0.06,"dH":-0.04,"dL":0.54}
 {"at":"2026-10-28T06:23:07.340Z","asset":"btc","kind":"pink","sec":7,"desk":80841.46,"live":80841.76,"diff":0.31,"tick":80861,"tvLastBar":"this minute"}
 {"at":"2026-10-28T06:23:07.365Z","asset":"gold","kind":"pink","sec":7,"desk":4031,"live":4031.02,"diff":0.02,"tick":4031.27,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:23:18.006Z","asset":"btc","kind":"pink","sec":18,"desk":80841.46,"live":80840.64,"diff":-0.82,"tick":80847.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:23:18.036Z","asset":"gold","kind":"pink","sec":18,"desk":4031,"live":4031.02,"diff":0.01,"tick":4031.251,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:23:28.683Z","asset":"btc","kind":"pink","sec":29,"desk":80841.46,"live":80840.5,"diff":-0.95,"tick":80845.9,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:23:28.711Z","asset":"gold","kind":"pink","sec":29,"desk":4031,"live":4031.01,"diff":0.01,"tick":4031.14,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:23:39.448Z","asset":"btc","kind":"pink","sec":39,"desk":80841.46,"live":80840.87,"diff":-0.59,"tick":80850.25,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:23:39.471Z","asset":"gold","kind":"pink","sec":39,"desk":4031,"live":4031.04,"diff":0.04,"tick":4031.56,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:23:50.121Z","asset":"btc","kind":"pink","sec":50,"desk":80841.46,"live":80840.15,"diff":-1.31,"tick":80841.61,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:23:50.217Z","asset":"gold","kind":"pink","sec":50,"desk":4031,"live":4031,"diff":0,"tick":4031.063,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:24:00.692Z","asset":"btc","kind":"pink","sec":1,"desk":80841.46,"live":80839.86,"diff":-1.6,"tick":80838.18,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:24:00.739Z","asset":"gold","kind":"pink","sec":1,"desk":4031,"live":4031,"diff":0,"tick":4031.041,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:24:01.681Z","asset":"btc","kind":"close","minute":"2026-10-28T06:23:00.000Z","tickCandleAtMs":692,"tvCandleAtMs":1681,"tick":{"o":80857.34,"h":80861.23,"l":80834.38,"c":80838.41},"tv":{"o":80857.34,"h":80862.88,"l":80833.89,"c":80838.18},"dC":0.23,"dH":-1.65,"dL":0.49}
+{"at":"2026-10-28T06:24:01.706Z","asset":"gold","kind":"close","minute":"2026-10-28T06:23:00.000Z","tickCandleAtMs":739,"tvCandleAtMs":1706,"tick":{"o":4031.08,"h":4031.58,"l":4030.86,"c":4031.04},"tv":{"o":4031.08,"h":4031.6,"l":4030.2,"c":4031.09},"dC":-0.05,"dH":-0.02,"dL":0.66}
+{"at":"2026-10-28T06:24:11.044Z","asset":"btc","kind":"pink","sec":11,"desk":80839.78,"live":80839.95,"diff":0.17,"tick":80839.23,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:24:11.081Z","asset":"gold","kind":"pink","sec":11,"desk":4031,"live":4030.99,"diff":0,"tick":4030.991,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:24:21.133Z","asset":"btc","kind":"pink","sec":21,"desk":80839.78,"live":80840.94,"diff":1.16,"tick":80851.17,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:24:21.164Z","asset":"gold","kind":"pink","sec":21,"desk":4031,"live":4030.98,"diff":-0.02,"tick":4030.788,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:24:31.647Z","asset":"btc","kind":"pink","sec":32,"desk":80839.78,"live":80840.8,"diff":1.02,"tick":80849.48,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:24:31.678Z","asset":"gold","kind":"pink","sec":32,"desk":4031,"live":4030.99,"diff":0,"tick":4030.988,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:24:42.066Z","asset":"btc","kind":"pink","sec":42,"desk":80839.78,"live":80841.09,"diff":1.31,"tick":80852.98,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:24:42.092Z","asset":"gold","kind":"pink","sec":42,"desk":4031,"live":4030.97,"diff":-0.03,"tick":4030.651,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:24:52.499Z","asset":"btc","kind":"pink","sec":52,"desk":80839.78,"live":80841.04,"diff":1.26,"tick":80852.39,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:24:52.534Z","asset":"gold","kind":"pink","sec":53,"desk":4031,"live":4030.97,"diff":-0.03,"tick":4030.698,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:01.557Z","asset":"gold","kind":"close","minute":"2026-10-28T06:24:00.000Z","tickCandleAtMs":557,"tvCandleAtMs":1557,"tick":{"o":4030.99,"h":4031.09,"l":4030.31,"c":4030.72},"tv":{"o":4030.99,"h":4031.09,"l":4029.7,"c":4030.58},"dC":0.14,"dH":0,"dL":0.61}
+{"at":"2026-10-28T06:25:02.522Z","asset":"btc","kind":"pink","sec":3,"desk":80838.18,"live":80837.77,"diff":-0.41,"tick":80823.65,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:02.522Z","asset":"btc","kind":"close","minute":"2026-10-28T06:24:00.000Z","tickCandleAtMs":521,"tvCandleAtMs":2522,"tick":{"o":80838.24,"h":80853.44,"l":80836.98,"c":80849.34},"tv":{"o":80838.24,"h":80858.26,"l":80834.75,"c":80834.75},"dC":14.59,"dH":-4.82,"dL":2.23}
+{"at":"2026-10-28T06:25:02.555Z","asset":"gold","kind":"pink","sec":3,"desk":4030.89,"live":4030.89,"diff":0,"tick":4030.73,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:13.340Z","asset":"btc","kind":"pink","sec":13,"desk":80838.18,"live":80842.44,"diff":4.26,"tick":80862.91,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:13.368Z","asset":"gold","kind":"pink","sec":13,"desk":4030.89,"live":4030.96,"diff":0.07,"tick":4031.121,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:23.416Z","asset":"btc","kind":"pink","sec":23,"desk":80838.18,"live":80840.92,"diff":2.75,"tick":80844.74,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:23.443Z","asset":"gold","kind":"pink","sec":23,"desk":4030.89,"live":4031,"diff":0.12,"tick":4031.34,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:33.455Z","asset":"btc","kind":"pink","sec":33,"desk":80838.18,"live":80839.52,"diff":1.34,"tick":80827.86,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:33.486Z","asset":"gold","kind":"pink","sec":33,"desk":4030.89,"live":4031.09,"diff":0.2,"tick":4031.95,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:43.928Z","asset":"btc","kind":"pink","sec":44,"desk":80838.18,"live":80839.79,"diff":1.62,"tick":80831.16,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:43.960Z","asset":"gold","kind":"pink","sec":44,"desk":4030.89,"live":4031.13,"diff":0.25,"tick":4032.061,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:53.990Z","asset":"btc","kind":"pink","sec":54,"desk":80838.18,"live":80839.84,"diff":1.66,"tick":80831.68,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:25:54.018Z","asset":"gold","kind":"pink","sec":54,"desk":4030.89,"live":4031.15,"diff":0.26,"tick":4032.25,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:01.256Z","asset":"btc","kind":"close","minute":"2026-10-28T06:25:00.000Z","tickCandleAtMs":243,"tvCandleAtMs":1256,"tick":{"o":80834.82,"h":80866.72,"l":80823.46,"c":80849.14},"tv":{"o":80834.82,"h":80871.65,"l":80821.85,"c":80866.09},"dC":-16.95,"dH":-4.93,"dL":1.61}
+{"at":"2026-10-28T06:26:01.287Z","asset":"gold","kind":"close","minute":"2026-10-28T06:25:00.000Z","tickCandleAtMs":272,"tvCandleAtMs":1287,"tick":{"o":4030.7,"h":4032.51,"l":4030.52,"c":4032.51},"tv":{"o":4030.7,"h":4032.66,"l":4030.1,"c":4032.62},"dC":-0.11,"dH":-0.15,"dL":0.42}
+{"at":"2026-10-28T06:26:04.665Z","asset":"btc","kind":"pink","sec":5,"desk":80842.98,"live":80843.07,"diff":0.09,"tick":80867.13,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:04.693Z","asset":"gold","kind":"pink","sec":5,"desk":4031.17,"live":4031.14,"diff":-0.03,"tick":4032.32,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:15.167Z","asset":"btc","kind":"pink","sec":15,"desk":80842.98,"live":80842.57,"diff":-0.41,"tick":80861.16,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:15.194Z","asset":"gold","kind":"pink","sec":15,"desk":4031.17,"live":4031.16,"diff":-0.01,"tick":4032.531,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:25.823Z","asset":"btc","kind":"pink","sec":26,"desk":80842.98,"live":80842.57,"diff":-0.41,"tick":80861.16,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:25.854Z","asset":"gold","kind":"pink","sec":26,"desk":4031.17,"live":4031.17,"diff":0,"tick":4032.64,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:36.236Z","asset":"btc","kind":"pink","sec":36,"desk":80842.98,"live":80842.47,"diff":-0.5,"tick":80860.03,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:36.273Z","asset":"gold","kind":"pink","sec":36,"desk":4031.17,"live":4031.21,"diff":0.03,"tick":4032.68,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:47.427Z","asset":"btc","kind":"pink","sec":47,"desk":80842.98,"live":80841.63,"diff":-1.35,"tick":80849.87,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:47.456Z","asset":"gold","kind":"pink","sec":47,"desk":4031.17,"live":4031.29,"diff":0.12,"tick":4033.397,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:58.034Z","asset":"btc","kind":"pink","sec":58,"desk":80842.98,"live":80841.62,"diff":-1.36,"tick":80849.76,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:26:58.066Z","asset":"gold","kind":"pink","sec":58,"desk":4031.17,"live":4031.29,"diff":0.12,"tick":4033.27,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:27:01.058Z","asset":"btc","kind":"close","minute":"2026-10-28T06:26:00.000Z","tickCandleAtMs":44,"tvCandleAtMs":1057,"tick":{"o":80866.06,"h":80870.88,"l":80840.39,"c":80840.39},"tv":{"o":80866.06,"h":80867.18,"l":80839.53,"c":80840.05},"dC":0.34,"dH":3.7,"dL":0.86}
+{"at":"2026-10-28T06:27:01.122Z","asset":"gold","kind":"close","minute":"2026-10-28T06:26:00.000Z","tickCandleAtMs":99,"tvCandleAtMs":1121,"tick":{"o":4032.67,"h":4033.49,"l":4032.17,"c":4033.16},"tv":{"o":4032.67,"h":4033.55,"l":4031.6,"c":4033.22},"dC":-0.06,"dH":-0.06,"dL":0.57}
+{"at":"2026-10-28T06:27:08.580Z","asset":"btc","kind":"pink","sec":9,"desk":80840.81,"live":80840.99,"diff":0.19,"tick":80842.27,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:27:08.614Z","asset":"gold","kind":"pink","sec":9,"desk":4031.29,"live":4031.26,"diff":-0.04,"tick":4032.78,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:27:18.699Z","asset":"btc","kind":"pink","sec":19,"desk":80840.81,"live":80839.44,"diff":-1.37,"tick":80823.92,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:27:18.729Z","asset":"gold","kind":"pink","sec":19,"desk":4031.29,"live":4031.28,"diff":-0.01,"tick":4033.108,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:27:29.023Z","asset":"btc","kind":"pink","sec":29,"desk":80840.81,"live":80837.12,"diff":-3.69,"tick":80808.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:27:29.060Z","asset":"gold","kind":"pink","sec":29,"desk":4031.29,"live":4031.27,"diff":-0.02,"tick":4032.941,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:27:39.047Z","asset":"btc","kind":"pink","sec":39,"desk":80840.81,"live":80839.26,"diff":-1.54,"tick":80834.54,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:27:39.069Z","asset":"gold","kind":"pink","sec":39,"desk":4031.29,"live":4031.25,"diff":-0.04,"tick":4032.755,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:27:49.555Z","asset":"btc","kind":"pink","sec":50,"desk":80840.81,"live":80838.93,"diff":-1.88,"tick":80830.55,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:27:49.587Z","asset":"gold","kind":"pink","sec":50,"desk":4031.29,"live":4031.27,"diff":-0.02,"tick":4032.95,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:28:00.248Z","asset":"btc","kind":"pink","sec":0,"desk":80840.81,"live":80839.06,"diff":-1.75,"tick":80832.06,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:28:00.283Z","asset":"gold","kind":"pink","sec":0,"desk":4031.29,"live":4031.31,"diff":0.02,"tick":4033.44,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:28:01.240Z","asset":"btc","kind":"close","minute":"2026-10-28T06:27:00.000Z","tickCandleAtMs":248,"tvCandleAtMs":1240,"tick":{"o":80840.02,"h":80842.89,"l":80808.81,"c":80832.06},"tv":{"o":80840.02,"h":80843.03,"l":80807.24,"c":80833.77},"dC":-1.71,"dH":-0.14,"dL":1.57}
+{"at":"2026-10-28T06:28:01.268Z","asset":"gold","kind":"close","minute":"2026-10-28T06:27:00.000Z","tickCandleAtMs":283,"tvCandleAtMs":1268,"tick":{"o":4033.2,"h":4033.3,"l":4032.64,"c":4033.23},"tv":{"o":4033.2,"h":4033.52,"l":4031.5,"c":4033.29},"dC":-0.06,"dH":-0.21,"dL":1.14}
+{"at":"2026-10-28T06:28:10.727Z","asset":"btc","kind":"pink","sec":11,"desk":80839.06,"live":80839.98,"diff":0.92,"tick":80844.73,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:28:10.734Z","asset":"gold","kind":"pink","sec":11,"desk":4031.31,"live":4031.33,"diff":0.02,"tick":4033.53,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:28:20.908Z","asset":"btc","kind":"pink","sec":21,"desk":80839.06,"live":80838.57,"diff":-0.49,"tick":80827.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:28:20.915Z","asset":"gold","kind":"pink","sec":21,"desk":4031.31,"live":4031.36,"diff":0.06,"tick":4033.71,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:28:31.293Z","asset":"btc","kind":"pink","sec":31,"desk":80839.06,"live":80839.41,"diff":0.34,"tick":80837.82,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:28:31.300Z","asset":"gold","kind":"pink","sec":31,"desk":4031.31,"live":4031.4,"diff":0.09,"tick":4034.04,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:28:41.729Z","asset":"btc","kind":"pink","sec":42,"desk":80839.06,"live":80839.23,"diff":0.16,"tick":80835.66,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:28:41.738Z","asset":"gold","kind":"pink","sec":42,"desk":4031.31,"live":4031.41,"diff":0.1,"tick":4034.06,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:28:52.282Z","asset":"btc","kind":"pink","sec":52,"desk":80839.06,"live":80838.17,"diff":-0.9,"tick":80822.95,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:28:52.287Z","asset":"gold","kind":"pink","sec":52,"desk":4031.31,"live":4031.47,"diff":0.16,"tick":4034.39,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:29:01.829Z","asset":"btc","kind":"close","minute":"2026-10-28T06:28:00.000Z","tickCandleAtMs":830,"tvCandleAtMs":1829,"tick":{"o":80833.72,"h":80846.65,"l":80822.93,"c":80826.21},"tv":{"o":80833.72,"h":80847.72,"l":80822.58,"c":80826.31},"dC":-0.1,"dH":-1.07,"dL":0.35}
+{"at":"2026-10-28T06:29:01.833Z","asset":"gold","kind":"close","minute":"2026-10-28T06:28:00.000Z","tickCandleAtMs":836,"tvCandleAtMs":1833,"tick":{"o":4033.42,"h":4034.51,"l":4033.35,"c":4034.06},"tv":{"o":4033.42,"h":4034.54,"l":4032.7,"c":4034.06},"dC":0,"dH":-0.03,"dL":0.64}
+{"at":"2026-10-28T06:29:02.866Z","asset":"btc","kind":"pink","sec":3,"desk":80838.45,"live":80838.46,"diff":0.01,"tick":80826.45,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:29:02.881Z","asset":"gold","kind":"pink","sec":3,"desk":4031.44,"live":4031.44,"diff":0,"tick":4034.06,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:29:13.021Z","asset":"btc","kind":"pink","sec":13,"desk":80838.45,"live":80838.58,"diff":0.13,"tick":80827.92,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:29:13.025Z","asset":"gold","kind":"pink","sec":13,"desk":4031.44,"live":4031.43,"diff":-0.01,"tick":4033.91,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:29:23.663Z","asset":"btc","kind":"pink","sec":24,"desk":80838.45,"live":80838.44,"diff":-0.01,"tick":80826.22,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:29:23.671Z","asset":"gold","kind":"pink","sec":24,"desk":4031.44,"live":4031.38,"diff":-0.06,"tick":4033.29,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:29:34.102Z","asset":"btc","kind":"pink","sec":34,"desk":80838.45,"live":80836.82,"diff":-1.63,"tick":80808.03,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:29:34.112Z","asset":"gold","kind":"pink","sec":34,"desk":4031.44,"live":4031.33,"diff":-0.11,"tick":4032.68,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:29:44.673Z","asset":"btc","kind":"pink","sec":45,"desk":80838.45,"live":80838.25,"diff":-0.2,"tick":80825.2,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:29:44.681Z","asset":"gold","kind":"pink","sec":45,"desk":4031.44,"live":4031.37,"diff":-0.07,"tick":4033.21,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:04.283Z","asset":"btc","kind":"pink","sec":4,"desk":80830.2,"live":80830.29,"diff":0.08,"tick":80810.67,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:04.316Z","asset":"gold","kind":"pink","sec":4,"desk":4031.64,"live":4031.62,"diff":-0.01,"tick":4032.47,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:14.963Z","asset":"btc","kind":"pink","sec":15,"desk":80830.2,"live":80828.43,"diff":-1.78,"tick":80799.06,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:14.993Z","asset":"gold","kind":"pink","sec":15,"desk":4031.64,"live":4031.73,"diff":0.1,"tick":4033.14,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:25.351Z","asset":"btc","kind":"pink","sec":25,"desk":80830.2,"live":80829.39,"diff":-0.82,"tick":80809.44,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:25.386Z","asset":"gold","kind":"pink","sec":25,"desk":4031.64,"live":4031.73,"diff":0.09,"tick":4033.04,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:35.969Z","asset":"btc","kind":"pink","sec":36,"desk":80830.2,"live":80829.34,"diff":-0.87,"tick":80808.85,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:35.997Z","asset":"gold","kind":"pink","sec":36,"desk":4031.64,"live":4031.76,"diff":0.13,"tick":4033.431,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:46.010Z","asset":"btc","kind":"pink","sec":46,"desk":80830.2,"live":80830.58,"diff":0.38,"tick":80806.34,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:46.050Z","asset":"gold","kind":"pink","sec":46,"desk":4031.64,"live":4031.76,"diff":0.12,"tick":4033.21,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:56.714Z","asset":"btc","kind":"pink","sec":57,"desk":80830.2,"live":80831.19,"diff":0.98,"tick":80813.6,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:30:56.752Z","asset":"gold","kind":"pink","sec":57,"desk":4031.64,"live":4031.72,"diff":0.08,"tick":4032.8,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:01.769Z","asset":"btc","kind":"close","minute":"2026-10-28T06:30:00.000Z","tickCandleAtMs":532,"tvCandleAtMs":1769,"tick":{"o":80810.13,"h":80829.51,"l":80799.06,"c":80817.67},"tv":{"o":80810.13,"h":80835.04,"l":80796.65,"c":80817.67},"dC":0,"dH":-5.53,"dL":2.41}
+{"at":"2026-10-28T06:31:01.792Z","asset":"gold","kind":"close","minute":"2026-10-28T06:30:00.000Z","tickCandleAtMs":561,"tvCandleAtMs":1792,"tick":{"o":4032.6,"h":4033.56,"l":4032.36,"c":4032.79},"tv":{"o":4032.6,"h":4033.64,"l":4032.06,"c":4032.77},"dC":0.02,"dH":-0.08,"dL":0.3}
+{"at":"2026-10-28T06:31:07.237Z","asset":"btc","kind":"pink","sec":7,"desk":80831.74,"live":80831.69,"diff":-0.05,"tick":80816.55,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:07.268Z","asset":"gold","kind":"pink","sec":7,"desk":4031.7,"live":4031.68,"diff":-0.02,"tick":4032.52,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:17.522Z","asset":"btc","kind":"pink","sec":18,"desk":80831.74,"live":80831.51,"diff":-0.23,"tick":80814.36,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:17.546Z","asset":"gold","kind":"pink","sec":18,"desk":4031.7,"live":4031.58,"diff":-0.12,"tick":4031.928,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:28.089Z","asset":"btc","kind":"pink","sec":28,"desk":80831.74,"live":80831.55,"diff":-0.19,"tick":80814.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:28.121Z","asset":"gold","kind":"pink","sec":28,"desk":4031.7,"live":4031.56,"diff":-0.14,"tick":4031.71,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:38.916Z","asset":"btc","kind":"pink","sec":39,"desk":80831.74,"live":80831.5,"diff":-0.24,"tick":80814.3,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:38.937Z","asset":"gold","kind":"pink","sec":39,"desk":4031.7,"live":4031.52,"diff":-0.18,"tick":4031.34,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:49.494Z","asset":"btc","kind":"pink","sec":49,"desk":80831.74,"live":80831.03,"diff":-0.71,"tick":80808.64,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:49.525Z","asset":"gold","kind":"pink","sec":50,"desk":4031.7,"live":4031.56,"diff":-0.14,"tick":4031.822,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:59.942Z","asset":"btc","kind":"pink","sec":60,"desk":80831.74,"live":80830.78,"diff":-0.96,"tick":80805.62,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:31:59.971Z","asset":"gold","kind":"pink","sec":60,"desk":4031.7,"live":4031.56,"diff":-0.14,"tick":4031.82,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:32:00.972Z","asset":"btc","kind":"close","minute":"2026-10-28T06:31:00.000Z","tickCandleAtMs":192,"tvCandleAtMs":972,"tick":{"o":80817.13,"h":80817.46,"l":80805.61,"c":80805.62},"tv":{"o":80817.13,"h":80818.3,"l":80805.6,"c":80805.63},"dC":-0.01,"dH":-0.84,"dL":0.01}
+{"at":"2026-10-28T06:32:00.998Z","asset":"gold","kind":"close","minute":"2026-10-28T06:31:00.000Z","tickCandleAtMs":217,"tvCandleAtMs":998,"tick":{"o":4032.78,"h":4032.99,"l":4031.32,"c":4031.82},"tv":{"o":4032.78,"h":4033.09,"l":4030.6,"c":4031.57},"dC":0.25,"dH":-0.1,"dL":0.72}
+{"at":"2026-10-28T06:32:09.948Z","asset":"btc","kind":"pink","sec":10,"desk":80830.78,"live":80830.36,"diff":-0.43,"tick":80800.53,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:32:09.974Z","asset":"gold","kind":"pink","sec":10,"desk":4031.5,"live":4031.43,"diff":-0.07,"tick":4031.008,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:32:20.912Z","asset":"btc","kind":"pink","sec":21,"desk":80830.78,"live":80830,"diff":-0.78,"tick":80796.46,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:32:20.935Z","asset":"gold","kind":"pink","sec":21,"desk":4031.5,"live":4031.42,"diff":-0.07,"tick":4030.901,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:32:31.132Z","asset":"btc","kind":"pink","sec":31,"desk":80830.78,"live":80829.74,"diff":-1.05,"tick":80795.05,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:32:31.167Z","asset":"gold","kind":"pink","sec":31,"desk":4031.5,"live":4031.42,"diff":-0.07,"tick":4030.922,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:32:41.165Z","asset":"btc","kind":"pink","sec":41,"desk":80830.78,"live":80829.63,"diff":-1.15,"tick":80794.58,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:32:41.191Z","asset":"gold","kind":"pink","sec":41,"desk":4031.5,"live":4031.32,"diff":-0.17,"tick":4030.16,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:32:51.956Z","asset":"btc","kind":"pink","sec":52,"desk":80830.78,"live":80825.73,"diff":-5.06,"tick":80770.82,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:32:51.985Z","asset":"gold","kind":"pink","sec":52,"desk":4031.5,"live":4031.34,"diff":-0.15,"tick":4030.401,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:01.153Z","asset":"btc","kind":"close","minute":"2026-10-28T06:32:00.000Z","tickCandleAtMs":166,"tvCandleAtMs":1153,"tick":{"o":80805.64,"h":80814.02,"l":80770.82,"c":80814.02},"tv":{"o":80805.64,"h":80814.02,"l":80770.82,"c":80814.02},"dC":0,"dH":0,"dL":0}
+{"at":"2026-10-28T06:33:01.175Z","asset":"gold","kind":"close","minute":"2026-10-28T06:32:00.000Z","tickCandleAtMs":195,"tvCandleAtMs":1175,"tick":{"o":4031.79,"h":4031.79,"l":4030.06,"c":4030.53},"tv":{"o":4031.79,"h":4031.83,"l":4029.3,"c":4030.52},"dC":0.01,"dH":-0.03,"dL":0.76}
+{"at":"2026-10-28T06:33:02.170Z","asset":"btc","kind":"pink","sec":2,"desk":80829.33,"live":80828.71,"diff":-0.62,"tick":80806.62,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:33:02.206Z","asset":"gold","kind":"pink","sec":2,"desk":4031.27,"live":4031.28,"diff":0.01,"tick":4030.53,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:13.243Z","asset":"btc","kind":"pink","sec":13,"desk":80828.71,"live":80828.91,"diff":0.2,"tick":80808.97,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:13.267Z","asset":"gold","kind":"pink","sec":13,"desk":4031.27,"live":4031.24,"diff":-0.03,"tick":4030.02,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:23.683Z","asset":"btc","kind":"pink","sec":24,"desk":80828.71,"live":80827.77,"diff":-0.94,"tick":80795.29,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:23.708Z","asset":"gold","kind":"pink","sec":24,"desk":4031.27,"live":4031.2,"diff":-0.07,"tick":4029.527,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:33.708Z","asset":"btc","kind":"pink","sec":34,"desk":80828.71,"live":80827.27,"diff":-1.44,"tick":80789.29,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:33.738Z","asset":"gold","kind":"pink","sec":34,"desk":4031.27,"live":4031.23,"diff":-0.05,"tick":4029.877,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:43.914Z","asset":"btc","kind":"pink","sec":44,"desk":80828.71,"live":80826.7,"diff":-2.01,"tick":80782.47,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:43.944Z","asset":"gold","kind":"pink","sec":44,"desk":4031.27,"live":4031.25,"diff":-0.02,"tick":4030.172,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:54.384Z","asset":"btc","kind":"pink","sec":54,"desk":80828.71,"live":80827.9,"diff":-0.82,"tick":80796.82,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:33:54.412Z","asset":"gold","kind":"pink","sec":54,"desk":4031.27,"live":4031.28,"diff":0.01,"tick":4030.592,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:01.710Z","asset":"btc","kind":"close","minute":"2026-10-28T06:33:00.000Z","tickCandleAtMs":694,"tvCandleAtMs":1710,"tick":{"o":80809.47,"h":80814.02,"l":80779.56,"c":80798.64},"tv":{"o":80809.47,"h":80810.22,"l":80777.45,"c":80798.33},"dC":0.31,"dH":3.8,"dL":2.11}
+{"at":"2026-10-28T06:34:01.751Z","asset":"gold","kind":"close","minute":"2026-10-28T06:33:00.000Z","tickCandleAtMs":729,"tvCandleAtMs":1750,"tick":{"o":4030.37,"h":4031.09,"l":4029.25,"c":4030.48},"tv":{"o":4030.37,"h":4031.14,"l":4028.7,"c":4030.44},"dC":0.04,"dH":-0.05,"dL":0.55}
+{"at":"2026-10-28T06:34:05.271Z","asset":"btc","kind":"pink","sec":5,"desk":80828.02,"live":80828.03,"diff":0.01,"tick":80798.42,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:05.292Z","asset":"gold","kind":"pink","sec":5,"desk":4031.24,"live":4031.24,"diff":0.01,"tick":4030.611,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:15.769Z","asset":"btc","kind":"pink","sec":16,"desk":80828.02,"live":80828.8,"diff":0.78,"tick":80807.7,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:15.799Z","asset":"gold","kind":"pink","sec":16,"desk":4031.24,"live":4031.26,"diff":0.03,"tick":4030.851,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:26.333Z","asset":"btc","kind":"pink","sec":26,"desk":80828.02,"live":80828.7,"diff":0.68,"tick":80806.45,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:26.363Z","asset":"gold","kind":"pink","sec":26,"desk":4031.24,"live":4031.25,"diff":0.01,"tick":4030.681,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:36.373Z","asset":"btc","kind":"pink","sec":36,"desk":80828.02,"live":80828.45,"diff":0.43,"tick":80803.48,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:36.405Z","asset":"gold","kind":"pink","sec":36,"desk":4031.24,"live":4031.25,"diff":0.01,"tick":4030.698,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:46.493Z","asset":"btc","kind":"pink","sec":46,"desk":80828.02,"live":80828.35,"diff":0.33,"tick":80802.32,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:46.531Z","asset":"gold","kind":"pink","sec":47,"desk":4031.24,"live":4031.23,"diff":-0.01,"tick":4030.472,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:57.396Z","asset":"btc","kind":"pink","sec":57,"desk":80828.02,"live":80828.38,"diff":0.36,"tick":80802.6,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:34:57.425Z","asset":"gold","kind":"pink","sec":57,"desk":4031.24,"live":4031.27,"diff":0.04,"tick":4030.99,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:35:01.413Z","asset":"btc","kind":"close","minute":"2026-10-28T06:34:00.000Z","tickCandleAtMs":420,"tvCandleAtMs":1413,"tick":{"o":80798.34,"h":80810.85,"l":80793.7,"c":80802.47},"tv":{"o":80798.34,"h":80811.41,"l":80793.44,"c":80803.92},"dC":-1.45,"dH":-0.56,"dL":0.26}
+{"at":"2026-10-28T06:35:01.438Z","asset":"gold","kind":"close","minute":"2026-10-28T06:34:00.000Z","tickCandleAtMs":459,"tvCandleAtMs":1438,"tick":{"o":4030.44,"h":4031.28,"l":4030.3,"c":4030.88},"tv":{"o":4030.44,"h":4031.31,"l":4029.6,"c":4030.76},"dC":0.12,"dH":-0.03,"dL":0.7}
+{"at":"2026-10-28T06:35:08.175Z","asset":"btc","kind":"pink","sec":8,"desk":80822.35,"live":80819.88,"diff":-2.47,"tick":80790.77,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:35:08.202Z","asset":"gold","kind":"pink","sec":8,"desk":4031.16,"live":4031.14,"diff":-0.02,"tick":4030.941,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:35:18.602Z","asset":"btc","kind":"pink","sec":19,"desk":80822.35,"live":80821.41,"diff":-0.95,"tick":80806.54,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:35:18.638Z","asset":"gold","kind":"pink","sec":19,"desk":4031.16,"live":4031.12,"diff":-0.04,"tick":4030.66,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:35:29.294Z","asset":"btc","kind":"pink","sec":29,"desk":80822.35,"live":80821.08,"diff":-1.27,"tick":80802.59,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:35:29.330Z","asset":"gold","kind":"pink","sec":29,"desk":4031.16,"live":4031.15,"diff":-0.01,"tick":4031,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:35:40.112Z","asset":"btc","kind":"pink","sec":40,"desk":80822.35,"live":80823.87,"diff":1.51,"tick":80820.83,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:35:40.147Z","asset":"gold","kind":"pink","sec":40,"desk":4031.16,"live":4031.14,"diff":-0.02,"tick":4030.752,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:35:50.665Z","asset":"btc","kind":"pink","sec":51,"desk":80822.35,"live":80826.47,"diff":4.12,"tick":80836.95,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:35:50.700Z","asset":"gold","kind":"pink","sec":51,"desk":4031.16,"live":4031.11,"diff":-0.04,"tick":4030.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:01.468Z","asset":"btc","kind":"pink","sec":1,"desk":80829.34,"live":80829.38,"diff":0.04,"tick":80852.56,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:01.471Z","asset":"btc","kind":"close","minute":"2026-10-28T06:35:00.000Z","tickCandleAtMs":479,"tvCandleAtMs":1468,"tick":{"o":80803.95,"h":80856.23,"l":80787.41,"c":80854.89},"tv":{"o":80803.95,"h":80856.23,"l":80787.41,"c":80852.54},"dC":2.35,"dH":0,"dL":0}
+{"at":"2026-10-28T06:36:01.503Z","asset":"gold","kind":"pink","sec":2,"desk":4031.09,"live":4031.09,"diff":0,"tick":4030.77,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:01.503Z","asset":"gold","kind":"close","minute":"2026-10-28T06:35:00.000Z","tickCandleAtMs":521,"tvCandleAtMs":1502,"tick":{"o":4030.87,"h":4031.16,"l":4029.8,"c":4030.76},"tv":{"o":4030.87,"h":4031.19,"l":4029.8,"c":4030.83},"dC":-0.07,"dH":-0.03,"dL":0}
+{"at":"2026-10-28T06:36:11.640Z","asset":"btc","kind":"pink","sec":12,"desk":80829.34,"live":80826.92,"diff":-2.41,"tick":80823.06,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:11.668Z","asset":"gold","kind":"pink","sec":12,"desk":4031.09,"live":4031.05,"diff":-0.04,"tick":4030.339,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:22.157Z","asset":"btc","kind":"pink","sec":22,"desk":80829.34,"live":80826.81,"diff":-2.53,"tick":80821.65,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:22.184Z","asset":"gold","kind":"pink","sec":22,"desk":4031.09,"live":4031.06,"diff":-0.02,"tick":4030.51,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:32.592Z","asset":"btc","kind":"pink","sec":33,"desk":80829.34,"live":80825.57,"diff":-3.77,"tick":80806.76,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:32.618Z","asset":"gold","kind":"pink","sec":33,"desk":4031.09,"live":4031.04,"diff":-0.05,"tick":4030.161,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:43.118Z","asset":"btc","kind":"pink","sec":43,"desk":80829.34,"live":80826.99,"diff":-2.35,"tick":80823.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:43.148Z","asset":"gold","kind":"pink","sec":43,"desk":4031.09,"live":4031.04,"diff":-0.05,"tick":4030.212,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:53.564Z","asset":"btc","kind":"pink","sec":54,"desk":80829.34,"live":80828.06,"diff":-1.27,"tick":80836.75,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:36:53.605Z","asset":"gold","kind":"pink","sec":54,"desk":4031.09,"live":4031.03,"diff":-0.06,"tick":4030.08,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:01.121Z","asset":"btc","kind":"close","minute":"2026-10-28T06:36:00.000Z","tickCandleAtMs":115,"tvCandleAtMs":1121,"tick":{"o":80852.03,"h":80852.58,"l":80801.61,"c":80839.72},"tv":{"o":80852.03,"h":80852.03,"l":80801.58,"c":80836.71},"dC":3.01,"dH":0.55,"dL":0.03}
+{"at":"2026-10-28T06:37:01.154Z","asset":"gold","kind":"close","minute":"2026-10-28T06:36:00.000Z","tickCandleAtMs":140,"tvCandleAtMs":1154,"tick":{"o":4030.8,"h":4030.8,"l":4029.87,"c":4029.87},"tv":{"o":4030.8,"h":4030.86,"l":4028.8,"c":4029.92},"dC":-0.05,"dH":-0.06,"dL":1.07}
+{"at":"2026-10-28T06:37:04.579Z","asset":"btc","kind":"pink","sec":5,"desk":80828.09,"live":80828.1,"diff":0.01,"tick":80837.16,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:04.599Z","asset":"gold","kind":"pink","sec":5,"desk":4030.93,"live":4030.89,"diff":-0.04,"tick":4029.432,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:15.125Z","asset":"btc","kind":"pink","sec":15,"desk":80828.09,"live":80826.93,"diff":-1.15,"tick":80823.19,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:15.161Z","asset":"gold","kind":"pink","sec":15,"desk":4030.93,"live":4030.85,"diff":-0.08,"tick":4029.231,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:25.536Z","asset":"btc","kind":"pink","sec":26,"desk":80828.09,"live":80826.72,"diff":-1.37,"tick":80820.57,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:25.567Z","asset":"gold","kind":"pink","sec":26,"desk":4030.93,"live":4030.82,"diff":-0.11,"tick":4028.881,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:36.022Z","asset":"btc","kind":"pink","sec":36,"desk":80828.09,"live":80825.96,"diff":-2.13,"tick":80811.52,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:36.057Z","asset":"gold","kind":"pink","sec":36,"desk":4030.93,"live":4030.83,"diff":-0.1,"tick":4029.01,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:46.947Z","asset":"btc","kind":"pink","sec":47,"desk":80828.09,"live":80826.02,"diff":-2.07,"tick":80812.25,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:46.969Z","asset":"gold","kind":"pink","sec":47,"desk":4030.93,"live":4030.77,"diff":-0.16,"tick":4028.37,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:57.646Z","asset":"btc","kind":"pink","sec":58,"desk":80828.09,"live":80825.46,"diff":-2.63,"tick":80805.49,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:37:57.671Z","asset":"gold","kind":"pink","sec":58,"desk":4030.93,"live":4030.77,"diff":-0.16,"tick":4028.38,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:38:01.653Z","asset":"btc","kind":"close","minute":"2026-10-28T06:37:00.000Z","tickCandleAtMs":665,"tvCandleAtMs":1653,"tick":{"o":80836.82,"h":80837.74,"l":80804.57,"c":80807.84},"tv":{"o":80836.82,"h":80837.74,"l":80804.16,"c":80808.02},"dC":-0.18,"dH":0,"dL":0.41}
+{"at":"2026-10-28T06:38:01.676Z","asset":"gold","kind":"close","minute":"2026-10-28T06:37:00.000Z","tickCandleAtMs":790,"tvCandleAtMs":1676,"tick":{"o":4029.9,"h":4029.94,"l":4028.37,"c":4028.77},"tv":{"o":4029.9,"h":4029.94,"l":4027.6,"c":4028.78},"dC":-0.01,"dH":0,"dL":0.77}
+{"at":"2026-10-28T06:38:08.285Z","asset":"btc","kind":"pink","sec":8,"desk":80825.64,"live":80825.75,"diff":0.11,"tick":80808.97,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:38:08.322Z","asset":"gold","kind":"pink","sec":8,"desk":4030.74,"live":4030.76,"diff":0.02,"tick":4029.092,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:38:18.729Z","asset":"btc","kind":"pink","sec":19,"desk":80825.64,"live":80824.95,"diff":-0.7,"tick":80799.32,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:38:18.765Z","asset":"gold","kind":"pink","sec":19,"desk":4030.74,"live":4030.75,"diff":0.01,"tick":4028.888,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:38:29.624Z","asset":"btc","kind":"pink","sec":30,"desk":80825.64,"live":80823.08,"diff":-2.56,"tick":80783.04,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:38:29.648Z","asset":"gold","kind":"pink","sec":30,"desk":4030.74,"live":4030.72,"diff":-0.02,"tick":4028.622,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:38:40.175Z","asset":"btc","kind":"pink","sec":40,"desk":80825.64,"live":80824.33,"diff":-1.31,"tick":80798.03,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:38:40.209Z","asset":"gold","kind":"pink","sec":40,"desk":4030.74,"live":4030.73,"diff":-0.01,"tick":4028.705,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:38:50.622Z","asset":"btc","kind":"pink","sec":51,"desk":80825.64,"live":80824.92,"diff":-0.73,"tick":80805.08,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:38:50.655Z","asset":"gold","kind":"pink","sec":51,"desk":4030.74,"live":4030.71,"diff":-0.03,"tick":4028.407,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:01.243Z","asset":"btc","kind":"pink","sec":1,"desk":80824.82,"live":80824.87,"diff":0.05,"tick":80804.55,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:01.243Z","asset":"btc","kind":"close","minute":"2026-10-28T06:38:00.000Z","tickCandleAtMs":258,"tvCandleAtMs":1243,"tick":{"o":80807.67,"h":80811.26,"l":80781.29,"c":80803.7},"tv":{"o":80807.67,"h":80811.29,"l":80781.29,"c":80803.92},"dC":-0.22,"dH":-0.03,"dL":0}
+{"at":"2026-10-28T06:39:01.272Z","asset":"gold","kind":"pink","sec":1,"desk":4030.74,"live":4030.71,"diff":-0.03,"tick":4028.51,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:39:02.282Z","asset":"gold","kind":"close","minute":"2026-10-28T06:38:00.000Z","tickCandleAtMs":294,"tvCandleAtMs":2282,"tick":{"o":4028.82,"h":4029.14,"l":4028.25,"c":4028.25},"tv":{"o":4028.82,"h":4029.19,"l":4027.5,"c":4028.4},"dC":-0.15,"dH":-0.05,"dL":0.75}
+{"at":"2026-10-28T06:39:11.261Z","asset":"btc","kind":"pink","sec":11,"desk":80824.82,"live":80821.86,"diff":-2.96,"tick":80774.86,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:11.290Z","asset":"gold","kind":"pink","sec":11,"desk":4030.7,"live":4030.71,"diff":0.01,"tick":4028.51,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:21.840Z","asset":"btc","kind":"pink","sec":22,"desk":80824.82,"live":80823.38,"diff":-1.43,"tick":80793.14,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:21.862Z","asset":"gold","kind":"pink","sec":22,"desk":4030.7,"live":4030.71,"diff":0.01,"tick":4028.58,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:32.411Z","asset":"btc","kind":"pink","sec":32,"desk":80824.82,"live":80822.21,"diff":-2.61,"tick":80779.07,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:32.441Z","asset":"gold","kind":"pink","sec":32,"desk":4030.7,"live":4030.71,"diff":0.01,"tick":4028.55,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:43.201Z","asset":"btc","kind":"pink","sec":43,"desk":80824.82,"live":80823.41,"diff":-1.41,"tick":80793.47,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:43.235Z","asset":"gold","kind":"pink","sec":43,"desk":4030.7,"live":4030.72,"diff":0.02,"tick":4028.661,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:53.486Z","asset":"btc","kind":"pink","sec":53,"desk":80824.82,"live":80822.26,"diff":-2.56,"tick":80779.59,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:39:53.516Z","asset":"gold","kind":"pink","sec":54,"desk":4030.7,"live":4030.7,"diff":0,"tick":4028.44,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:02.162Z","asset":"btc","kind":"close","minute":"2026-10-28T06:39:00.000Z","tickCandleAtMs":917,"tvCandleAtMs":2162,"tick":{"o":80803.91,"h":80804.55,"l":80774.86,"c":80786.65},"tv":{"o":80803.91,"h":80804.24,"l":80773.66,"c":80786.75},"dC":-0.1,"dH":0.31,"dL":1.2}
+{"at":"2026-10-28T06:40:04.362Z","asset":"btc","kind":"pink","sec":4,"desk":80813.77,"live":80813.63,"diff":-0.14,"tick":80785.95,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:04.382Z","asset":"gold","kind":"pink","sec":4,"desk":4030.15,"live":4030.16,"diff":0,"tick":4028.416,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:04.382Z","asset":"gold","kind":"close","minute":"2026-10-28T06:39:00.000Z","tickCandleAtMs":940,"tvCandleAtMs":4382,"tick":{"o":4028.4,"h":4028.91,"l":4028.15,"c":4028.69},"tv":{"o":4028.4,"h":4028.91,"l":4027.4,"c":4028.7},"dC":-0.01,"dH":0,"dL":0.75}
+{"at":"2026-10-28T06:40:14.563Z","asset":"btc","kind":"pink","sec":15,"desk":80813.77,"live":80814.29,"diff":0.52,"tick":80790.37,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:14.584Z","asset":"gold","kind":"pink","sec":15,"desk":4030.15,"live":4030.14,"diff":-0.01,"tick":4028.322,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:25.348Z","asset":"btc","kind":"pink","sec":25,"desk":80813.77,"live":80816.91,"diff":3.15,"tick":80809.83,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:25.369Z","asset":"gold","kind":"pink","sec":25,"desk":4030.15,"live":4030.17,"diff":0.02,"tick":4028.692,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:35.789Z","asset":"btc","kind":"pink","sec":36,"desk":80813.77,"live":80817.55,"diff":3.78,"tick":80812.06,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:35.816Z","asset":"gold","kind":"pink","sec":36,"desk":4030.15,"live":4030.18,"diff":0.03,"tick":4028.82,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:46.407Z","asset":"btc","kind":"pink","sec":46,"desk":80813.77,"live":80817.42,"diff":3.65,"tick":80810.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:46.430Z","asset":"gold","kind":"pink","sec":46,"desk":4030.15,"live":4030.23,"diff":0.08,"tick":4029.14,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:57.003Z","asset":"btc","kind":"pink","sec":57,"desk":80813.77,"live":80817.03,"diff":3.26,"tick":80805.82,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:40:57.032Z","asset":"gold","kind":"pink","sec":57,"desk":4030.15,"live":4030.15,"diff":0,"tick":4028.197,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:41:01.049Z","asset":"btc","kind":"close","minute":"2026-10-28T06:40:00.000Z","tickCandleAtMs":57,"tvCandleAtMs":1049,"tick":{"o":80786.77,"h":80815.24,"l":80778.55,"c":80804.11},"tv":{"o":80786.77,"h":80815.24,"l":80775.45,"c":80807.33},"dC":-3.22,"dH":0,"dL":3.1}
+{"at":"2026-10-28T06:41:03.425Z","asset":"gold","kind":"close","minute":"2026-10-28T06:40:00.000Z","tickCandleAtMs":113,"tvCandleAtMs":3425,"tick":{"o":4028.71,"h":4029.14,"l":4028.09,"c":4028.44},"tv":{"o":4028.71,"h":4029.22,"l":4027.3,"c":4028.4},"dC":0.04,"dH":-0.08,"dL":0.79}
+{"at":"2026-10-28T06:41:07.800Z","asset":"btc","kind":"pink","sec":8,"desk":80816.87,"live":80816.69,"diff":-0.18,"tick":80804.8,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:41:07.822Z","asset":"gold","kind":"pink","sec":8,"desk":4030.13,"live":4030.12,"diff":-0.01,"tick":4028.49,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:41:18.081Z","asset":"btc","kind":"pink","sec":18,"desk":80816.87,"live":80818.54,"diff":1.67,"tick":80820.98,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:41:18.132Z","asset":"gold","kind":"pink","sec":18,"desk":4030.13,"live":4030.15,"diff":0.02,"tick":4028.891,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:41:28.888Z","asset":"btc","kind":"pink","sec":29,"desk":80816.87,"live":80817.55,"diff":0.69,"tick":80809.17,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:41:28.913Z","asset":"gold","kind":"pink","sec":29,"desk":4030.13,"live":4030.25,"diff":0.12,"tick":4029.641,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:41:39.463Z","asset":"btc","kind":"pink","sec":39,"desk":80816.87,"live":80815.73,"diff":-1.14,"tick":80787.25,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:41:39.485Z","asset":"gold","kind":"pink","sec":39,"desk":4030.13,"live":4030.23,"diff":0.1,"tick":4029.37,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:41:50.191Z","asset":"btc","kind":"pink","sec":50,"desk":80816.87,"live":80816.04,"diff":-0.83,"tick":80790.97,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:41:50.217Z","asset":"gold","kind":"pink","sec":50,"desk":4030.13,"live":4030.2,"diff":0.08,"tick":4029.09,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:42:00.398Z","asset":"btc","kind":"pink","sec":0,"desk":80816.87,"live":80816.03,"diff":-0.83,"tick":80790.94,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:42:00.425Z","asset":"gold","kind":"pink","sec":0,"desk":4030.13,"live":4030.24,"diff":0.11,"tick":4029.46,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:42:01.460Z","asset":"btc","kind":"close","minute":"2026-10-28T06:41:00.000Z","tickCandleAtMs":397,"tvCandleAtMs":1460,"tick":{"o":80807.65,"h":80821.26,"l":80783.8,"c":80790.94},"tv":{"o":80807.65,"h":80821.74,"l":80779.47,"c":80791.02},"dC":-0.08,"dH":-0.48,"dL":4.33}
+{"at":"2026-10-28T06:42:01.481Z","asset":"gold","kind":"close","minute":"2026-10-28T06:41:00.000Z","tickCandleAtMs":425,"tvCandleAtMs":1481,"tick":{"o":4028.28,"h":4029.64,"l":4027.6,"c":4029.46},"tv":{"o":4028.28,"h":4029.72,"l":4027.6,"c":4029.33},"dC":0.13,"dH":-0.08,"dL":0}
+{"at":"2026-10-28T06:42:11.354Z","asset":"btc","kind":"pink","sec":11,"desk":80816.08,"live":80816.16,"diff":0.08,"tick":80792,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:42:11.382Z","asset":"gold","kind":"pink","sec":11,"desk":4030.24,"live":4030.32,"diff":0.08,"tick":4030.041,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:42:21.885Z","asset":"btc","kind":"pink","sec":22,"desk":80816.08,"live":80817.78,"diff":1.69,"tick":80811.37,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:42:21.914Z","asset":"gold","kind":"pink","sec":22,"desk":4030.24,"live":4030.36,"diff":0.12,"tick":4030.27,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:42:32.637Z","asset":"btc","kind":"pink","sec":33,"desk":80816.08,"live":80817.83,"diff":1.74,"tick":80811.99,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:42:32.676Z","asset":"gold","kind":"pink","sec":33,"desk":4030.24,"live":4030.33,"diff":0.09,"tick":4029.92,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:42:42.906Z","asset":"btc","kind":"pink","sec":43,"desk":80816.08,"live":80819.29,"diff":3.2,"tick":80824.01,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:42:42.935Z","asset":"gold","kind":"pink","sec":43,"desk":4030.24,"live":4030.34,"diff":0.1,"tick":4030.03,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:42:53.797Z","asset":"btc","kind":"pink","sec":54,"desk":80816.08,"live":80817.88,"diff":1.79,"tick":80807.12,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:42:53.819Z","asset":"gold","kind":"pink","sec":54,"desk":4030.24,"live":4030.33,"diff":0.1,"tick":4029.93,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:02.271Z","asset":"btc","kind":"close","minute":"2026-10-28T06:42:00.000Z","tickCandleAtMs":906,"tvCandleAtMs":2271,"tick":{"o":80791.05,"h":80827.21,"l":80791.01,"c":80800.75},"tv":{"o":80791.05,"h":80827.23,"l":80791.05,"c":80800.99},"dC":-0.24,"dH":-0.02,"dL":-0.04}
+{"at":"2026-10-28T06:43:02.275Z","asset":"gold","kind":"close","minute":"2026-10-28T06:42:00.000Z","tickCandleAtMs":911,"tvCandleAtMs":2275,"tick":{"o":4029.41,"h":4030.34,"l":4029.41,"c":4029.96},"tv":{"o":4029.41,"h":4030.55,"l":4028.8,"c":4029.96},"dC":0,"dH":-0.21,"dL":0.61}
+{"at":"2026-10-28T06:43:04.287Z","asset":"btc","kind":"pink","sec":4,"desk":80817.37,"live":80817.43,"diff":0.06,"tick":80801.68,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:04.291Z","asset":"gold","kind":"pink","sec":4,"desk":4030.35,"live":4030.34,"diff":-0.01,"tick":4029.781,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:15.229Z","asset":"btc","kind":"pink","sec":15,"desk":80817.37,"live":80818.02,"diff":0.65,"tick":80808.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:15.232Z","asset":"gold","kind":"pink","sec":15,"desk":4030.35,"live":4030.36,"diff":0.02,"tick":4030.092,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:25.280Z","asset":"btc","kind":"pink","sec":25,"desk":80817.37,"live":80819.06,"diff":1.69,"tick":80821.22,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:25.285Z","asset":"gold","kind":"pink","sec":25,"desk":4030.35,"live":4030.36,"diff":0.02,"tick":4030.099,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:36.178Z","asset":"btc","kind":"pink","sec":36,"desk":80817.37,"live":80819.26,"diff":1.89,"tick":80823.64,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:36.183Z","asset":"gold","kind":"pink","sec":36,"desk":4030.35,"live":4030.34,"diff":-0.01,"tick":4029.83,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:46.733Z","asset":"btc","kind":"pink","sec":47,"desk":80817.37,"live":80819.08,"diff":1.71,"tick":80821.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:46.738Z","asset":"gold","kind":"pink","sec":47,"desk":4030.35,"live":4030.38,"diff":0.04,"tick":4030.341,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:57.302Z","asset":"btc","kind":"pink","sec":57,"desk":80817.37,"live":80819.21,"diff":1.84,"tick":80823.03,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:43:57.310Z","asset":"gold","kind":"pink","sec":57,"desk":4030.35,"live":4030.39,"diff":0.04,"tick":4030.432,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:44:01.310Z","asset":"btc","kind":"close","minute":"2026-10-28T06:43:00.000Z","tickCandleAtMs":306,"tvCandleAtMs":1310,"tick":{"o":80800.97,"h":80825.39,"l":80800.89,"c":80819.82},"tv":{"o":80800.97,"h":80826.39,"l":80800.33,"c":80819.82},"dC":0,"dH":-1,"dL":0.56}
+{"at":"2026-10-28T06:44:01.317Z","asset":"gold","kind":"close","minute":"2026-10-28T06:43:00.000Z","tickCandleAtMs":317,"tvCandleAtMs":1316,"tick":{"o":4029.98,"h":4030.43,"l":4029.5,"c":4030.39},"tv":{"o":4029.98,"h":4030.58,"l":4029.1,"c":4030.18},"dC":0.21,"dH":-0.15,"dL":0.4}
+{"at":"2026-10-28T06:44:07.316Z","asset":"btc","kind":"pink","sec":7,"desk":80818.92,"live":80821.3,"diff":2.38,"tick":80837.7,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:44:07.327Z","asset":"gold","kind":"pink","sec":7,"desk":4030.39,"live":4030.38,"diff":-0.01,"tick":4030.291,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:44:17.405Z","asset":"btc","kind":"pink","sec":17,"desk":80818.92,"live":80818.76,"diff":-0.17,"tick":80807.15,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:44:17.412Z","asset":"gold","kind":"pink","sec":17,"desk":4030.39,"live":4030.41,"diff":0.02,"tick":4030.52,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:44:27.865Z","asset":"btc","kind":"pink","sec":28,"desk":80818.92,"live":80819.1,"diff":0.17,"tick":80811.23,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:44:27.875Z","asset":"gold","kind":"pink","sec":28,"desk":4030.39,"live":4030.4,"diff":0.01,"tick":4030.458,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:44:38.055Z","asset":"btc","kind":"pink","sec":38,"desk":80818.92,"live":80818.77,"diff":-0.16,"tick":80807.27,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:44:38.060Z","asset":"gold","kind":"pink","sec":38,"desk":4030.39,"live":4030.4,"diff":0.01,"tick":4030.495,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:04.560Z","asset":"btc","kind":"pink","sec":5,"desk":80817.96,"live":80817.92,"diff":-0.04,"tick":80813.38,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:04.590Z","asset":"gold","kind":"pink","sec":5,"desk":4030.52,"live":4030.53,"diff":0,"tick":4030.643,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:15.068Z","asset":"btc","kind":"pink","sec":15,"desk":80817.96,"live":80817.73,"diff":-0.23,"tick":80812.24,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:15.105Z","asset":"gold","kind":"pink","sec":15,"desk":4030.52,"live":4030.55,"diff":0.02,"tick":4030.83,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:25.312Z","asset":"btc","kind":"pink","sec":25,"desk":80817.96,"live":80813.12,"diff":-4.84,"tick":80786.24,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:25.334Z","asset":"gold","kind":"pink","sec":25,"desk":4030.52,"live":4030.55,"diff":0.03,"tick":4030.93,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:35.677Z","asset":"btc","kind":"pink","sec":36,"desk":80817.96,"live":80813.93,"diff":-4.03,"tick":80800.65,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:35.722Z","asset":"gold","kind":"pink","sec":36,"desk":4030.52,"live":4030.54,"diff":0.01,"tick":4030.74,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:45.982Z","asset":"btc","kind":"pink","sec":46,"desk":80817.96,"live":80814.24,"diff":-3.72,"tick":80804.41,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:46.007Z","asset":"gold","kind":"pink","sec":46,"desk":4030.52,"live":4030.55,"diff":0.02,"tick":4030.861,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:56.368Z","asset":"btc","kind":"pink","sec":56,"desk":80817.96,"live":80815.56,"diff":-2.4,"tick":80816.28,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:45:56.405Z","asset":"gold","kind":"pink","sec":56,"desk":4030.52,"live":4030.57,"diff":0.05,"tick":4031.06,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:01.488Z","asset":"btc","kind":"close","minute":"2026-10-28T06:45:00.000Z","tickCandleAtMs":500,"tvCandleAtMs":1488,"tick":{"o":80812.97,"h":80819.52,"l":80777.79,"c":80786.92},"tv":{"o":80812.97,"h":80819.53,"l":80777.79,"c":80786.95},"dC":-0.03,"dH":-0.01,"dL":0}
+{"at":"2026-10-28T06:46:02.143Z","asset":"gold","kind":"close","minute":"2026-10-28T06:45:00.000Z","tickCandleAtMs":542,"tvCandleAtMs":2143,"tick":{"o":4030.74,"h":4031.14,"l":4030.57,"c":4030.9},"tv":{"o":4030.74,"h":4031.21,"l":4029.8,"c":4030.85},"dC":0.05,"dH":-0.07,"dL":0.77}
+{"at":"2026-10-28T06:46:06.822Z","asset":"btc","kind":"pink","sec":7,"desk":80813.36,"live":80813.36,"diff":0,"tick":80789.84,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:06.848Z","asset":"gold","kind":"pink","sec":7,"desk":4030.48,"live":4030.42,"diff":-0.06,"tick":4029.93,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:17.182Z","asset":"btc","kind":"pink","sec":17,"desk":80813.36,"live":80814.55,"diff":1.19,"tick":80804.16,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:17.204Z","asset":"gold","kind":"pink","sec":17,"desk":4030.48,"live":4030.44,"diff":-0.04,"tick":4030.23,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:27.458Z","asset":"btc","kind":"pink","sec":27,"desk":80813.36,"live":80814.28,"diff":0.92,"tick":80800.88,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:27.493Z","asset":"gold","kind":"pink","sec":27,"desk":4030.48,"live":4030.43,"diff":-0.05,"tick":4030.08,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:37.502Z","asset":"btc","kind":"pink","sec":38,"desk":80813.36,"live":80814.32,"diff":0.96,"tick":80801.35,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:37.525Z","asset":"gold","kind":"pink","sec":38,"desk":4030.48,"live":4030.42,"diff":-0.06,"tick":4029.98,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:48.397Z","asset":"btc","kind":"pink","sec":48,"desk":80813.36,"live":80814.56,"diff":1.2,"tick":80804.26,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:48.441Z","asset":"gold","kind":"pink","sec":48,"desk":4030.48,"live":4030.44,"diff":-0.04,"tick":4030.15,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:58.726Z","asset":"btc","kind":"pink","sec":59,"desk":80813.36,"live":80814.49,"diff":1.13,"tick":80803.4,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:46:58.764Z","asset":"gold","kind":"pink","sec":59,"desk":4030.48,"live":4030.36,"diff":-0.12,"tick":4029.54,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:47:01.739Z","asset":"gold","kind":"close","minute":"2026-10-28T06:46:00.000Z","tickCandleAtMs":958,"tvCandleAtMs":1739,"tick":{"o":4030.83,"h":4030.93,"l":4029.54,"c":4029.92},"tv":{"o":4030.83,"h":4030.93,"l":4028.9,"c":4029.79},"dC":0.13,"dH":0,"dL":0.64}
+{"at":"2026-10-28T06:47:01.914Z","asset":"btc","kind":"close","minute":"2026-10-28T06:46:00.000Z","tickCandleAtMs":918,"tvCandleAtMs":1914,"tick":{"o":80789.95,"h":80804.34,"l":80786.92,"c":80803.34},"tv":{"o":80789.95,"h":80804.38,"l":80789.38,"c":80803.22},"dC":0.12,"dH":-0.04,"dL":-2.46}
+{"at":"2026-10-28T06:47:09.151Z","asset":"btc","kind":"pink","sec":9,"desk":80814.47,"live":80811.89,"diff":-2.58,"tick":80776.93,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:47:09.187Z","asset":"gold","kind":"pink","sec":9,"desk":4030.34,"live":4030.32,"diff":-0.02,"tick":4029.67,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:47:19.267Z","asset":"btc","kind":"pink","sec":19,"desk":80814.47,"live":80811.97,"diff":-2.5,"tick":80777.91,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:47:19.321Z","asset":"gold","kind":"pink","sec":19,"desk":4030.34,"live":4030.27,"diff":-0.06,"tick":4029.108,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:47:29.813Z","asset":"btc","kind":"pink","sec":30,"desk":80814.47,"live":80810.7,"diff":-3.77,"tick":80767.86,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:47:29.850Z","asset":"gold","kind":"pink","sec":30,"desk":4030.34,"live":4030.28,"diff":-0.06,"tick":4029.12,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:47:40.736Z","asset":"btc","kind":"pink","sec":41,"desk":80814.47,"live":80811.18,"diff":-3.29,"tick":80773.67,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:47:40.757Z","asset":"gold","kind":"pink","sec":41,"desk":4030.34,"live":4030.3,"diff":-0.04,"tick":4029.39,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:47:51.008Z","asset":"btc","kind":"pink","sec":51,"desk":80814.47,"live":80803.46,"diff":-11.01,"tick":80727.96,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:47:51.044Z","asset":"gold","kind":"pink","sec":51,"desk":4030.34,"live":4030.3,"diff":-0.04,"tick":4029.392,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:01.666Z","asset":"btc","kind":"pink","sec":2,"desk":80806.43,"live":80806.44,"diff":0,"tick":80763.84,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:48:01.666Z","asset":"btc","kind":"close","minute":"2026-10-28T06:47:00.000Z","tickCandleAtMs":634,"tvCandleAtMs":1666,"tick":{"o":80803.2,"h":80803.25,"l":80720.82,"c":80763.66},"tv":{"o":80803.2,"h":80803.2,"l":80720.75,"c":80763.78},"dC":-0.12,"dH":0.05,"dL":0.07}
+{"at":"2026-10-28T06:48:01.695Z","asset":"gold","kind":"pink","sec":2,"desk":4030.26,"live":4030.26,"diff":0,"tick":4029.448,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:01.695Z","asset":"gold","kind":"close","minute":"2026-10-28T06:47:00.000Z","tickCandleAtMs":673,"tvCandleAtMs":1695,"tick":{"o":4029.78,"h":4029.89,"l":4029,"c":4029.45},"tv":{"o":4029.78,"h":4029.89,"l":4028.4,"c":4029.38},"dC":0.07,"dH":0,"dL":0.6}
+{"at":"2026-10-28T06:48:11.756Z","asset":"btc","kind":"pink","sec":12,"desk":80807.61,"live":80806.7,"diff":-0.91,"tick":80767.02,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:11.785Z","asset":"gold","kind":"pink","sec":12,"desk":4030.26,"live":4030.21,"diff":-0.04,"tick":4028.86,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:22.189Z","asset":"btc","kind":"pink","sec":22,"desk":80807.61,"live":80808.5,"diff":0.89,"tick":80788.56,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:22.211Z","asset":"gold","kind":"pink","sec":22,"desk":4030.26,"live":4030.27,"diff":0.01,"tick":4029.548,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:32.678Z","asset":"btc","kind":"pink","sec":33,"desk":80807.61,"live":80806.84,"diff":-0.78,"tick":80768.59,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:32.714Z","asset":"gold","kind":"pink","sec":33,"desk":4030.26,"live":4030.28,"diff":0.02,"tick":4029.667,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:43.261Z","asset":"btc","kind":"pink","sec":43,"desk":80807.61,"live":80808.2,"diff":0.59,"tick":80785.02,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:43.299Z","asset":"gold","kind":"pink","sec":43,"desk":4030.26,"live":4030.25,"diff":0,"tick":4029.36,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:53.687Z","asset":"btc","kind":"pink","sec":54,"desk":80807.61,"live":80808.44,"diff":0.82,"tick":80787.8,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:48:53.718Z","asset":"gold","kind":"pink","sec":54,"desk":4030.26,"live":4030.26,"diff":0.01,"tick":4029.47,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:01.053Z","asset":"btc","kind":"close","minute":"2026-10-28T06:48:00.000Z","tickCandleAtMs":38,"tvCandleAtMs":1053,"tick":{"o":80763.84,"h":80793.39,"l":80748.7,"c":80754.56},"tv":{"o":80763.84,"h":80793.4,"l":80748.69,"c":80755.5},"dC":-0.94,"dH":-0.01,"dL":0.01}
+{"at":"2026-10-28T06:49:01.078Z","asset":"gold","kind":"close","minute":"2026-10-28T06:48:00.000Z","tickCandleAtMs":64,"tvCandleAtMs":1078,"tick":{"o":4029.37,"h":4029.74,"l":4028.72,"c":4029.37},"tv":{"o":4029.37,"h":4029.78,"l":4028.1,"c":4029.45},"dC":-0.08,"dH":-0.04,"dL":0.62}
+{"at":"2026-10-28T06:49:03.840Z","asset":"btc","kind":"pink","sec":4,"desk":80805.75,"live":80805.69,"diff":-0.06,"tick":80754.82,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:03.876Z","asset":"gold","kind":"pink","sec":4,"desk":4030.22,"live":4030.22,"diff":0,"tick":4029.257,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:14.797Z","asset":"btc","kind":"pink","sec":15,"desk":80805.75,"live":80805.73,"diff":-0.01,"tick":80755.35,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:14.834Z","asset":"gold","kind":"pink","sec":15,"desk":4030.22,"live":4030.21,"diff":-0.01,"tick":4029.13,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:25.021Z","asset":"btc","kind":"pink","sec":25,"desk":80805.75,"live":80807.01,"diff":1.26,"tick":80770.64,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:25.046Z","asset":"gold","kind":"pink","sec":25,"desk":4030.22,"live":4030.24,"diff":0.02,"tick":4029.48,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:35.653Z","asset":"btc","kind":"pink","sec":36,"desk":80805.75,"live":80809.25,"diff":3.5,"tick":80797.56,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:35.678Z","asset":"gold","kind":"pink","sec":36,"desk":4030.22,"live":4030.27,"diff":0.05,"tick":4029.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:46.318Z","asset":"btc","kind":"pink","sec":46,"desk":80805.75,"live":80807.52,"diff":1.78,"tick":80776.82,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:46.338Z","asset":"gold","kind":"pink","sec":46,"desk":4030.22,"live":4030.28,"diff":0.06,"tick":4029.95,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:56.840Z","asset":"btc","kind":"pink","sec":57,"desk":80805.75,"live":80807.45,"diff":1.7,"tick":80775.93,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:49:56.868Z","asset":"gold","kind":"pink","sec":57,"desk":4030.22,"live":4030.25,"diff":0.03,"tick":4029.62,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:01.968Z","asset":"btc","kind":"close","minute":"2026-10-28T06:49:00.000Z","tickCandleAtMs":963,"tvCandleAtMs":1968,"tick":{"o":80755.51,"h":80801.99,"l":80752.43,"c":80775.79},"tv":{"o":80755.51,"h":80803.48,"l":80752.43,"c":80775.29},"dC":0.5,"dH":-1.49,"dL":0}
+{"at":"2026-10-28T06:50:01.990Z","asset":"gold","kind":"close","minute":"2026-10-28T06:49:00.000Z","tickCandleAtMs":997,"tvCandleAtMs":1990,"tick":{"o":4029.24,"h":4030.24,"l":4028.85,"c":4029.8},"tv":{"o":4029.24,"h":4030.3,"l":4028.3,"c":4029.78},"dC":0.02,"dH":-0.06,"dL":0.55}
+{"at":"2026-10-28T06:50:07.309Z","asset":"btc","kind":"pink","sec":7,"desk":80799.31,"live":80799.01,"diff":-0.3,"tick":80772.9,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:07.330Z","asset":"gold","kind":"pink","sec":7,"desk":4030.12,"live":4030.11,"diff":-0.01,"tick":4029.59,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:17.779Z","asset":"btc","kind":"pink","sec":18,"desk":80799.31,"live":80798.97,"diff":-0.34,"tick":80772.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:17.808Z","asset":"gold","kind":"pink","sec":18,"desk":4030.12,"live":4030.13,"diff":0.01,"tick":4029.71,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:28.712Z","asset":"btc","kind":"pink","sec":29,"desk":80799.31,"live":80798.84,"diff":-0.47,"tick":80771.88,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:28.731Z","asset":"gold","kind":"pink","sec":29,"desk":4030.12,"live":4030.13,"diff":0.01,"tick":4029.78,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:38.946Z","asset":"btc","kind":"pink","sec":39,"desk":80799.31,"live":80796.79,"diff":-2.52,"tick":80759.59,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:38.967Z","asset":"gold","kind":"pink","sec":39,"desk":4030.12,"live":4030.02,"diff":-0.09,"tick":4029.18,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:49.036Z","asset":"btc","kind":"pink","sec":49,"desk":80799.31,"live":80796.99,"diff":-2.32,"tick":80761.99,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:49.063Z","asset":"gold","kind":"pink","sec":49,"desk":4030.12,"live":4030.09,"diff":-0.03,"tick":4029.9,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:59.486Z","asset":"btc","kind":"pink","sec":59,"desk":80799.31,"live":80797.17,"diff":-2.14,"tick":80764.12,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:50:59.512Z","asset":"gold","kind":"pink","sec":60,"desk":4030.12,"live":4030.09,"diff":-0.02,"tick":4029.89,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:51:01.478Z","asset":"btc","kind":"close","minute":"2026-10-28T06:50:00.000Z","tickCandleAtMs":489,"tvCandleAtMs":1478,"tick":{"o":80775.04,"h":80775.74,"l":80759.59,"c":80764.43},"tv":{"o":80775.04,"h":80775.76,"l":80758.97,"c":80764.82},"dC":-0.39,"dH":-0.02,"dL":0.62}
+{"at":"2026-10-28T06:51:01.497Z","asset":"gold","kind":"close","minute":"2026-10-28T06:50:00.000Z","tickCandleAtMs":519,"tvCandleAtMs":1497,"tick":{"o":4029.7,"h":4030,"l":4028.87,"c":4029.91},"tv":{"o":4029.7,"h":4030.05,"l":4028.8,"c":4029.88},"dC":0.03,"dH":-0.05,"dL":0.07}
+{"at":"2026-10-28T06:51:09.589Z","asset":"btc","kind":"pink","sec":10,"desk":80797.18,"live":80797.24,"diff":0.06,"tick":80765.63,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:51:09.611Z","asset":"gold","kind":"pink","sec":10,"desk":4030.08,"live":4030.07,"diff":-0.01,"tick":4029.508,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:51:20.000Z","asset":"btc","kind":"pink","sec":20,"desk":80797.18,"live":80797.32,"diff":0.14,"tick":80766.54,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:51:20.023Z","asset":"gold","kind":"pink","sec":20,"desk":4030.08,"live":4030.07,"diff":-0.01,"tick":4029.48,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:51:30.583Z","asset":"btc","kind":"pink","sec":31,"desk":80797.18,"live":80796.85,"diff":-0.33,"tick":80760.96,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:51:30.610Z","asset":"gold","kind":"pink","sec":31,"desk":4030.08,"live":4030.08,"diff":0,"tick":4029.625,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:51:40.971Z","asset":"btc","kind":"pink","sec":41,"desk":80797.18,"live":80793.96,"diff":-3.22,"tick":80742.6,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:51:40.998Z","asset":"gold","kind":"pink","sec":41,"desk":4030.08,"live":4030.08,"diff":0,"tick":4029.62,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:51:51.489Z","asset":"btc","kind":"pink","sec":51,"desk":80797.18,"live":80795.24,"diff":-1.94,"tick":80758.22,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:51:51.519Z","asset":"gold","kind":"pink","sec":52,"desk":4030.08,"live":4030.12,"diff":0.04,"tick":4030.093,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:00.987Z","asset":"gold","kind":"close","minute":"2026-10-28T06:51:00.000Z","tickCandleAtMs":202,"tvCandleAtMs":987,"tick":{"o":4029.72,"h":4030.19,"l":4029.41,"c":4029.67},"tv":{"o":4029.72,"h":4030.19,"l":4028.3,"c":4029.83},"dC":-0.16,"dH":0,"dL":1.11}
+{"at":"2026-10-28T06:52:02.541Z","asset":"btc","kind":"pink","sec":3,"desk":80795.17,"live":80795.16,"diff":0,"tick":80757.36,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:02.541Z","asset":"btc","kind":"close","minute":"2026-10-28T06:51:00.000Z","tickCandleAtMs":174,"tvCandleAtMs":2540,"tick":{"o":80764.87,"h":80766.77,"l":80742.32,"c":80757.49},"tv":{"o":80764.87,"h":80766.93,"l":80742.31,"c":80757.38},"dC":0.11,"dH":-0.16,"dL":0.01}
+{"at":"2026-10-28T06:52:02.566Z","asset":"gold","kind":"pink","sec":3,"desk":4030.05,"live":4030.06,"diff":0,"tick":4029.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:13.026Z","asset":"btc","kind":"pink","sec":13,"desk":80795.17,"live":80795.32,"diff":0.15,"tick":80759.22,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:13.051Z","asset":"gold","kind":"pink","sec":13,"desk":4030.05,"live":4030.03,"diff":-0.03,"tick":4029.472,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:23.607Z","asset":"btc","kind":"pink","sec":24,"desk":80795.17,"live":80794.21,"diff":-0.96,"tick":80745.88,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:23.636Z","asset":"gold","kind":"pink","sec":24,"desk":4030.05,"live":4030.04,"diff":-0.01,"tick":4029.63,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:34.084Z","asset":"btc","kind":"pink","sec":34,"desk":80795.17,"live":80795.79,"diff":0.62,"tick":80764.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:34.117Z","asset":"gold","kind":"pink","sec":34,"desk":4030.05,"live":4030.06,"diff":0,"tick":4029.803,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:44.993Z","asset":"btc","kind":"pink","sec":45,"desk":80795.17,"live":80795.84,"diff":0.67,"tick":80765.43,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:45.014Z","asset":"gold","kind":"pink","sec":45,"desk":4030.05,"live":4030.04,"diff":-0.01,"tick":4029.661,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:55.454Z","asset":"btc","kind":"pink","sec":55,"desk":80795.17,"live":80796.28,"diff":1.11,"tick":80765.4,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:52:55.490Z","asset":"gold","kind":"pink","sec":55,"desk":4030.05,"live":4030.03,"diff":-0.02,"tick":4029.54,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:01.870Z","asset":"btc","kind":"close","minute":"2026-10-28T06:52:00.000Z","tickCandleAtMs":464,"tvCandleAtMs":1870,"tick":{"o":80757.37,"h":80781.07,"l":80744.35,"c":80764.29},"tv":{"o":80757.37,"h":80783.35,"l":80743.4,"c":80764.71},"dC":-0.42,"dH":-2.28,"dL":0.95}
+{"at":"2026-10-28T06:53:01.890Z","asset":"gold","kind":"close","minute":"2026-10-28T06:52:00.000Z","tickCandleAtMs":502,"tvCandleAtMs":1890,"tick":{"o":4029.79,"h":4029.84,"l":4029.32,"c":4029.74},"tv":{"o":4029.79,"h":4029.92,"l":4028.6,"c":4029.72},"dC":0.02,"dH":-0.08,"dL":0.72}
+{"at":"2026-10-28T06:53:05.896Z","asset":"btc","kind":"pink","sec":6,"desk":80796.41,"live":80796.36,"diff":-0.04,"tick":80764.17,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:05.926Z","asset":"gold","kind":"pink","sec":6,"desk":4030.03,"live":4030.02,"diff":-0.01,"tick":4029.42,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:16.372Z","asset":"btc","kind":"pink","sec":16,"desk":80796.41,"live":80795.28,"diff":-1.12,"tick":80751.17,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:16.406Z","asset":"gold","kind":"pink","sec":16,"desk":4030.03,"live":4030.05,"diff":0.01,"tick":4029.701,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:27.370Z","asset":"btc","kind":"pink","sec":27,"desk":80796.41,"live":80796.86,"diff":0.46,"tick":80770.16,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:27.391Z","asset":"gold","kind":"pink","sec":27,"desk":4030.03,"live":4030.05,"diff":0.01,"tick":4029.72,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:37.824Z","asset":"btc","kind":"pink","sec":38,"desk":80796.41,"live":80796.79,"diff":0.38,"tick":80769.29,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:37.855Z","asset":"gold","kind":"pink","sec":38,"desk":4030.03,"live":4030.04,"diff":0.01,"tick":4029.66,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:48.285Z","asset":"btc","kind":"pink","sec":48,"desk":80796.41,"live":80796.76,"diff":0.35,"tick":80768.93,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:48.306Z","asset":"gold","kind":"pink","sec":48,"desk":4030.03,"live":4030.09,"diff":0.05,"tick":4030.16,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:58.977Z","asset":"btc","kind":"pink","sec":59,"desk":80796.41,"live":80797.96,"diff":1.55,"tick":80783.28,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:53:58.999Z","asset":"gold","kind":"pink","sec":59,"desk":4030.03,"live":4030.06,"diff":0.03,"tick":4029.87,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:54:01.478Z","asset":"gold","kind":"close","minute":"2026-10-28T06:53:00.000Z","tickCandleAtMs":78,"tvCandleAtMs":1478,"tick":{"o":4029.55,"h":4030.19,"l":4029.39,"c":4029.91},"tv":{"o":4029.55,"h":4030.22,"l":4028.5,"c":4029.99},"dC":-0.08,"dH":-0.03,"dL":0.89}
+{"at":"2026-10-28T06:54:02.460Z","asset":"btc","kind":"close","minute":"2026-10-28T06:53:00.000Z","tickCandleAtMs":1455,"tvCandleAtMs":2460,"tick":{"o":80764.21,"h":80783.38,"l":80748.82,"c":80782.89},"tv":{"o":80764.21,"h":80786.4,"l":80748.5,"c":80783.19},"dC":-0.3,"dH":-3.02,"dL":0.32}
+{"at":"2026-10-28T06:54:09.871Z","asset":"btc","kind":"pink","sec":10,"desk":80798.19,"live":80795.72,"diff":-2.48,"tick":80753.35,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:54:09.893Z","asset":"gold","kind":"pink","sec":10,"desk":4030.07,"live":4030.09,"diff":0.03,"tick":4030.22,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:54:20.348Z","asset":"btc","kind":"pink","sec":20,"desk":80798.19,"live":80796.99,"diff":-1.2,"tick":80768.65,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:54:20.369Z","asset":"gold","kind":"pink","sec":20,"desk":4030.07,"live":4030.1,"diff":0.03,"tick":4030.213,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:54:30.870Z","asset":"btc","kind":"pink","sec":31,"desk":80798.19,"live":80796.99,"diff":-1.2,"tick":80768.62,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:54:30.900Z","asset":"gold","kind":"pink","sec":31,"desk":4030.07,"live":4030.07,"diff":0,"tick":4029.83,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:54:41.282Z","asset":"btc","kind":"pink","sec":41,"desk":80798.19,"live":80798.28,"diff":0.09,"tick":80782.3,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:54:41.310Z","asset":"gold","kind":"pink","sec":41,"desk":4030.07,"live":4030.1,"diff":0.03,"tick":4030.2,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:54:51.859Z","asset":"btc","kind":"pink","sec":52,"desk":80798.19,"live":80798.3,"diff":0.11,"tick":80782.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:54:51.893Z","asset":"gold","kind":"pink","sec":52,"desk":4030.07,"live":4030.09,"diff":0.02,"tick":4030.06,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:02.130Z","asset":"btc","kind":"pink","sec":2,"desk":80794.81,"live":80794.82,"diff":0,"tick":80782.58,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:02.131Z","asset":"btc","kind":"close","minute":"2026-10-28T06:54:00.000Z","tickCandleAtMs":1125,"tvCandleAtMs":2130,"tick":{"o":80783.18,"h":80788.26,"l":80753.09,"c":80782.49},"tv":{"o":80783.18,"h":80793.92,"l":80752.73,"c":80783.16},"dC":-0.67,"dH":-5.66,"dL":0.36}
+{"at":"2026-10-28T06:55:02.168Z","asset":"gold","kind":"pink","sec":2,"desk":4030.03,"live":4030.04,"diff":0,"tick":4029.91,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:02.168Z","asset":"gold","kind":"close","minute":"2026-10-28T06:54:00.000Z","tickCandleAtMs":1153,"tvCandleAtMs":2168,"tick":{"o":4029.92,"h":4030.31,"l":4029.69,"c":4030.04},"tv":{"o":4029.92,"h":4030.36,"l":4029.1,"c":4029.98},"dC":0.06,"dH":-0.05,"dL":0.59}
+{"at":"2026-10-28T06:55:12.674Z","asset":"btc","kind":"pink","sec":13,"desk":80794.81,"live":80795.01,"diff":0.2,"tick":80783.75,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:12.700Z","asset":"gold","kind":"pink","sec":13,"desk":4030.03,"live":4030.03,"diff":-0.01,"tick":4029.95,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:23.228Z","asset":"btc","kind":"pink","sec":23,"desk":80794.81,"live":80795.13,"diff":0.31,"tick":80785.01,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:23.254Z","asset":"gold","kind":"pink","sec":23,"desk":4030.03,"live":4029.94,"diff":-0.1,"tick":4029.52,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:33.753Z","asset":"btc","kind":"pink","sec":34,"desk":80794.81,"live":80794.49,"diff":-0.33,"tick":80783.25,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:33.787Z","asset":"gold","kind":"pink","sec":34,"desk":4030.03,"live":4029.95,"diff":-0.08,"tick":4029.72,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:44.710Z","asset":"btc","kind":"pink","sec":45,"desk":80794.81,"live":80797.37,"diff":2.55,"tick":80800.11,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:44.753Z","asset":"gold","kind":"pink","sec":45,"desk":4030.03,"live":4029.95,"diff":-0.09,"tick":4029.68,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:55.152Z","asset":"btc","kind":"pink","sec":55,"desk":80794.81,"live":80799.51,"diff":4.7,"tick":80814.49,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:55:55.184Z","asset":"gold","kind":"pink","sec":55,"desk":4030.03,"live":4029.97,"diff":-0.06,"tick":4029.922,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:01.581Z","asset":"btc","kind":"close","minute":"2026-10-28T06:55:00.000Z","tickCandleAtMs":582,"tvCandleAtMs":1581,"tick":{"o":80783.15,"h":80815.09,"l":80775.14,"c":80808.27},"tv":{"o":80783.15,"h":80819.44,"l":80771.78,"c":80808.22},"dC":0.05,"dH":-4.35,"dL":3.36}
+{"at":"2026-10-28T06:56:01.606Z","asset":"gold","kind":"close","minute":"2026-10-28T06:55:00.000Z","tickCandleAtMs":609,"tvCandleAtMs":1606,"tick":{"o":4030.06,"h":4030.11,"l":4028.9,"c":4029.89},"tv":{"o":4030.06,"h":4030.11,"l":4028.9,"c":4029.93},"dC":-0.04,"dH":0,"dL":0}
+{"at":"2026-10-28T06:56:05.626Z","asset":"btc","kind":"pink","sec":6,"desk":80799.09,"live":80797.89,"diff":-1.19,"tick":80794.06,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:05.656Z","asset":"gold","kind":"pink","sec":6,"desk":4029.97,"live":4029.97,"diff":-0.01,"tick":4029.82,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:16.145Z","asset":"btc","kind":"pink","sec":16,"desk":80799.09,"live":80796.46,"diff":-2.62,"tick":80778.42,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:16.169Z","asset":"gold","kind":"pink","sec":16,"desk":4029.97,"live":4029.95,"diff":-0.02,"tick":4029.68,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:27.135Z","asset":"btc","kind":"pink","sec":27,"desk":80799.09,"live":80796.39,"diff":-2.7,"tick":80777.53,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:27.174Z","asset":"gold","kind":"pink","sec":27,"desk":4029.97,"live":4029.96,"diff":-0.01,"tick":4029.8,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:37.844Z","asset":"btc","kind":"pink","sec":38,"desk":80799.09,"live":80796.34,"diff":-2.75,"tick":80776.87,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:37.877Z","asset":"gold","kind":"pink","sec":38,"desk":4029.97,"live":4029.93,"diff":-0.04,"tick":4029.392,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:47.909Z","asset":"btc","kind":"pink","sec":48,"desk":80799.09,"live":80793.68,"diff":-5.41,"tick":80759.78,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:47.935Z","asset":"gold","kind":"pink","sec":48,"desk":4029.97,"live":4029.92,"diff":-0.06,"tick":4029.223,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:58.319Z","asset":"btc","kind":"pink","sec":58,"desk":80799.09,"live":80794.61,"diff":-4.48,"tick":80770.97,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:56:58.341Z","asset":"gold","kind":"pink","sec":58,"desk":4029.97,"live":4029.91,"diff":-0.06,"tick":4029.14,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:57:01.779Z","asset":"btc","kind":"close","minute":"2026-10-28T06:56:00.000Z","tickCandleAtMs":760,"tvCandleAtMs":1779,"tick":{"o":80808.39,"h":80808.39,"l":80755.43,"c":80773.9},"tv":{"o":80808.39,"h":80808.39,"l":80752.53,"c":80773.89},"dC":0.01,"dH":0,"dL":2.9}
+{"at":"2026-10-28T06:57:01.810Z","asset":"gold","kind":"close","minute":"2026-10-28T06:56:00.000Z","tickCandleAtMs":781,"tvCandleAtMs":1810,"tick":{"o":4029.94,"h":4030,"l":4029.01,"c":4029.09},"tv":{"o":4029.94,"h":4030.03,"l":4028.3,"c":4029.2},"dC":-0.11,"dH":-0.03,"dL":0.71}
+{"at":"2026-10-28T06:57:09.270Z","asset":"btc","kind":"pink","sec":9,"desk":80794.61,"live":80794.71,"diff":0.1,"tick":80775.07,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:57:09.294Z","asset":"gold","kind":"pink","sec":9,"desk":4029.86,"live":4029.87,"diff":0.01,"tick":4029.22,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:57:19.746Z","asset":"btc","kind":"pink","sec":20,"desk":80794.61,"live":80794.27,"diff":-0.34,"tick":80769.84,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:57:19.777Z","asset":"gold","kind":"pink","sec":20,"desk":4029.86,"live":4029.89,"diff":0.03,"tick":4029.471,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:57:30.189Z","asset":"btc","kind":"pink","sec":30,"desk":80794.61,"live":80793.2,"diff":-1.41,"tick":80757.02,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:57:30.216Z","asset":"gold","kind":"pink","sec":30,"desk":4029.86,"live":4029.91,"diff":0.06,"tick":4029.807,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:57:40.685Z","asset":"btc","kind":"pink","sec":41,"desk":80794.61,"live":80794.2,"diff":-0.41,"tick":80769,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:57:40.713Z","asset":"gold","kind":"pink","sec":41,"desk":4029.86,"live":4029.9,"diff":0.04,"tick":4029.661,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:57:51.568Z","asset":"btc","kind":"pink","sec":52,"desk":80794.61,"live":80794.2,"diff":-0.41,"tick":80769.03,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:57:51.591Z","asset":"gold","kind":"pink","sec":52,"desk":4029.86,"live":4029.92,"diff":0.06,"tick":4029.828,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:58:01.029Z","asset":"btc","kind":"close","minute":"2026-10-28T06:57:00.000Z","tickCandleAtMs":21,"tvCandleAtMs":1029,"tick":{"o":80773.93,"h":80775.07,"l":80754.97,"c":80771.15},"tv":{"o":80773.93,"h":80775.23,"l":80754.23,"c":80768.83},"dC":2.32,"dH":-0.16,"dL":0.74}
+{"at":"2026-10-28T06:58:01.060Z","asset":"gold","kind":"close","minute":"2026-10-28T06:57:00.000Z","tickCandleAtMs":53,"tvCandleAtMs":1060,"tick":{"o":4029.17,"h":4029.94,"l":4028.98,"c":4029.74},"tv":{"o":4029.17,"h":4029.98,"l":4028.7,"c":4029.82},"dC":-0.08,"dH":-0.04,"dL":0.28}
+{"at":"2026-10-28T06:58:02.041Z","asset":"btc","kind":"pink","sec":2,"desk":80794.19,"live":80794.35,"diff":0.17,"tick":80770.83,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:58:02.071Z","asset":"gold","kind":"pink","sec":2,"desk":4029.92,"live":4029.89,"diff":-0.02,"tick":4029.555,"tvLastBar":"last minute"}
+{"at":"2026-10-28T06:58:12.531Z","asset":"btc","kind":"pink","sec":13,"desk":80794.35,"live":80794.34,"diff":-0.01,"tick":80770.66,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:58:12.538Z","asset":"gold","kind":"pink","sec":13,"desk":4029.89,"live":4029.92,"diff":0.03,"tick":4029.901,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:58:22.990Z","asset":"btc","kind":"pink","sec":23,"desk":80794.35,"live":80794.05,"diff":-0.31,"tick":80767.14,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:58:22.998Z","asset":"gold","kind":"pink","sec":23,"desk":4029.89,"live":4029.99,"diff":0.1,"tick":4030.42,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:58:33.489Z","asset":"btc","kind":"pink","sec":33,"desk":80794.35,"live":80794.25,"diff":-0.1,"tick":80769.6,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:58:33.493Z","asset":"gold","kind":"pink","sec":33,"desk":4029.89,"live":4030.03,"diff":0.14,"tick":4030.573,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:58:43.554Z","asset":"btc","kind":"pink","sec":44,"desk":80794.35,"live":80794.12,"diff":-0.23,"tick":80768.02,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:58:43.558Z","asset":"gold","kind":"pink","sec":44,"desk":4029.89,"live":4030.03,"diff":0.13,"tick":4030.54,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:58:54.875Z","asset":"btc","kind":"pink","sec":55,"desk":80794.35,"live":80793.68,"diff":-0.68,"tick":80762.73,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:58:55.385Z","asset":"gold","kind":"pink","sec":55,"desk":4029.89,"live":4030.04,"diff":0.15,"tick":4030.74,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:59:01.502Z","asset":"btc","kind":"close","minute":"2026-10-28T06:58:00.000Z","tickCandleAtMs":511,"tvCandleAtMs":1501,"tick":{"o":80771.04,"h":80771.11,"l":80761.59,"c":80762.24},"tv":{"o":80771.04,"h":80771.72,"l":80747.58,"c":80750.58},"dC":11.66,"dH":-0.61,"dL":14.01}
+{"at":"2026-10-28T06:59:01.507Z","asset":"gold","kind":"close","minute":"2026-10-28T06:58:00.000Z","tickCandleAtMs":519,"tvCandleAtMs":1507,"tick":{"o":4029.73,"h":4030.74,"l":4029.32,"c":4030.55},"tv":{"o":4029.73,"h":4030.79,"l":4029,"c":4030.5},"dC":0.06,"dH":-0.05,"dL":0.32}
+{"at":"2026-10-28T06:59:05.506Z","asset":"btc","kind":"pink","sec":6,"desk":80792.19,"live":80792.2,"diff":0.02,"tick":80749.98,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:59:05.511Z","asset":"gold","kind":"pink","sec":6,"desk":4030.02,"live":4030.03,"diff":0.01,"tick":4030.51,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:59:16.354Z","asset":"btc","kind":"pink","sec":16,"desk":80792.19,"live":80792.51,"diff":0.32,"tick":80753.66,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:59:16.359Z","asset":"gold","kind":"pink","sec":16,"desk":4030.02,"live":4030.05,"diff":0.03,"tick":4030.692,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:59:26.847Z","asset":"btc","kind":"pink","sec":27,"desk":80792.19,"live":80791.07,"diff":-1.12,"tick":80749.28,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:59:26.855Z","asset":"gold","kind":"pink","sec":27,"desk":4030.02,"live":4030.01,"diff":0,"tick":4030.32,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:59:37.352Z","asset":"btc","kind":"pink","sec":37,"desk":80792.19,"live":80789.61,"diff":-2.58,"tick":80733.43,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:59:37.359Z","asset":"gold","kind":"pink","sec":37,"desk":4030.02,"live":4030.03,"diff":0.02,"tick":4030.55,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:59:47.369Z","asset":"btc","kind":"pink","sec":47,"desk":80792.19,"live":80790.38,"diff":-1.8,"tick":80742.74,"tvLastBar":"this minute"}
+{"at":"2026-10-28T06:59:47.376Z","asset":"gold","kind":"pink","sec":47,"desk":4030.02,"live":4030.03,"diff":0.02,"tick":4030.537,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:04.977Z","asset":"btc","kind":"pink","sec":5,"desk":80777.15,"live":80777.69,"diff":0.54,"tick":80744.83,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:05.034Z","asset":"gold","kind":"pink","sec":5,"desk":4030.2,"live":4030.07,"diff":-0.13,"tick":4029.881,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:16.306Z","asset":"btc","kind":"pink","sec":16,"desk":80777.15,"live":80782.01,"diff":4.86,"tick":80761.64,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:16.399Z","asset":"gold","kind":"pink","sec":16,"desk":4030.2,"live":4029.91,"diff":-0.28,"tick":4029.092,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:26.705Z","asset":"btc","kind":"pink","sec":27,"desk":80777.15,"live":80783.48,"diff":6.33,"tick":80779.26,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:26.730Z","asset":"gold","kind":"pink","sec":27,"desk":4030.2,"live":4029.93,"diff":-0.27,"tick":4029.272,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:37.174Z","asset":"btc","kind":"pink","sec":37,"desk":80777.15,"live":80782.04,"diff":4.89,"tick":80761.98,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:37.215Z","asset":"gold","kind":"pink","sec":37,"desk":4030.2,"live":4029.89,"diff":-0.31,"tick":4028.841,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:47.617Z","asset":"btc","kind":"pink","sec":48,"desk":80777.15,"live":80782.96,"diff":5.81,"tick":80772.99,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:47.651Z","asset":"gold","kind":"pink","sec":48,"desk":4030.2,"live":4029.91,"diff":-0.28,"tick":4029.23,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:58.124Z","asset":"btc","kind":"pink","sec":58,"desk":80777.15,"live":80782.81,"diff":5.66,"tick":80771.23,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:00:58.157Z","asset":"gold","kind":"pink","sec":58,"desk":4030.2,"live":4029.84,"diff":-0.36,"tick":4028.541,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:01:01.840Z","asset":"btc","kind":"close","minute":"2026-10-28T07:00:00.000Z","tickCandleAtMs":791,"tvCandleAtMs":1839,"tick":{"o":80741.07,"h":80779.93,"l":80739.98,"c":80771.62},"tv":{"o":80741.07,"h":80779.93,"l":80735.77,"c":80769.46},"dC":2.16,"dH":0,"dL":4.21}
+{"at":"2026-10-28T07:01:01.905Z","asset":"gold","kind":"close","minute":"2026-10-28T07:00:00.000Z","tickCandleAtMs":815,"tvCandleAtMs":1905,"tick":{"o":4030.66,"h":4030.66,"l":4028.47,"c":4028.56},"tv":{"o":4030.66,"h":4030.66,"l":4027.9,"c":4028.73},"dC":-0.18,"dH":0,"dL":0.57}
+{"at":"2026-10-28T07:01:09.261Z","asset":"btc","kind":"pink","sec":9,"desk":80782.33,"live":80780.92,"diff":-1.4,"tick":80752.72,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:01:09.282Z","asset":"gold","kind":"pink","sec":9,"desk":4029.79,"live":4029.77,"diff":-0.02,"tick":4028.292,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:01:19.868Z","asset":"btc","kind":"pink","sec":20,"desk":80782.33,"live":80779.81,"diff":-2.52,"tick":80744.97,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:01:19.891Z","asset":"gold","kind":"pink","sec":20,"desk":4029.79,"live":4029.76,"diff":-0.02,"tick":4028.21,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:01:30.284Z","asset":"btc","kind":"pink","sec":30,"desk":80782.33,"live":80780.29,"diff":-2.03,"tick":80750.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:01:30.314Z","asset":"gold","kind":"pink","sec":30,"desk":4029.79,"live":4029.79,"diff":0,"tick":4028.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:01:40.857Z","asset":"btc","kind":"pink","sec":41,"desk":80782.33,"live":80780.93,"diff":-1.39,"tick":80758.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:01:40.888Z","asset":"gold","kind":"pink","sec":41,"desk":4029.79,"live":4029.82,"diff":0.03,"tick":4028.877,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:01:51.668Z","asset":"btc","kind":"pink","sec":52,"desk":80782.33,"live":80780.47,"diff":-1.85,"tick":80752.98,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:01:51.694Z","asset":"gold","kind":"pink","sec":52,"desk":4029.79,"live":4029.83,"diff":0.04,"tick":4029.03,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:01.801Z","asset":"btc","kind":"pink","sec":2,"desk":80780.32,"live":80780.22,"diff":-0.1,"tick":80750.26,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:01.802Z","asset":"btc","kind":"close","minute":"2026-10-28T07:01:00.000Z","tickCandleAtMs":788,"tvCandleAtMs":1801,"tick":{"o":80769.58,"h":80770.72,"l":80730.15,"c":80751.56},"tv":{"o":80769.58,"h":80770.1,"l":80729.77,"c":80750.26},"dC":1.3,"dH":0.62,"dL":0.38}
+{"at":"2026-10-28T07:02:01.828Z","asset":"gold","kind":"pink","sec":2,"desk":4029.82,"live":4029.81,"diff":-0.01,"tick":4029.02,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:01.828Z","asset":"gold","kind":"close","minute":"2026-10-28T07:01:00.000Z","tickCandleAtMs":832,"tvCandleAtMs":1828,"tick":{"o":4028.77,"h":4029.39,"l":4027.8,"c":4029.09},"tv":{"o":4028.77,"h":4029.45,"l":4027.6,"c":4029.02},"dC":0.07,"dH":-0.06,"dL":0.2}
+{"at":"2026-10-28T07:02:12.240Z","asset":"btc","kind":"pink","sec":12,"desk":80780.32,"live":80779.7,"diff":-0.62,"tick":80744.08,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:12.261Z","asset":"gold","kind":"pink","sec":12,"desk":4029.82,"live":4029.86,"diff":0.05,"tick":4029.73,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:22.408Z","asset":"btc","kind":"pink","sec":22,"desk":80780.32,"live":80782,"diff":1.68,"tick":80771.63,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:22.444Z","asset":"gold","kind":"pink","sec":22,"desk":4029.82,"live":4029.9,"diff":0.08,"tick":4030.161,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:32.445Z","asset":"btc","kind":"pink","sec":32,"desk":80780.32,"live":80783.58,"diff":3.26,"tick":80785.28,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:32.468Z","asset":"gold","kind":"pink","sec":32,"desk":4029.82,"live":4029.88,"diff":0.06,"tick":4029.9,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:43.084Z","asset":"btc","kind":"pink","sec":43,"desk":80780.32,"live":80783.62,"diff":3.3,"tick":80785.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:43.108Z","asset":"gold","kind":"pink","sec":43,"desk":4029.82,"live":4029.91,"diff":0.1,"tick":4030.3,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:53.561Z","asset":"btc","kind":"pink","sec":54,"desk":80780.32,"live":80783.43,"diff":3.11,"tick":80783.21,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:02:53.584Z","asset":"gold","kind":"pink","sec":54,"desk":4029.82,"live":4029.9,"diff":0.08,"tick":4030.17,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:01.044Z","asset":"btc","kind":"close","minute":"2026-10-28T07:02:00.000Z","tickCandleAtMs":43,"tvCandleAtMs":1044,"tick":{"o":80751.52,"h":80785.55,"l":80737.42,"c":80769.19},"tv":{"o":80751.52,"h":80785.69,"l":80734.01,"c":80770.48},"dC":-1.29,"dH":-0.14,"dL":3.41}
+{"at":"2026-10-28T07:03:01.072Z","asset":"gold","kind":"close","minute":"2026-10-28T07:02:00.000Z","tickCandleAtMs":73,"tvCandleAtMs":1072,"tick":{"o":4029.18,"h":4030.87,"l":4029.02,"c":4030.87},"tv":{"o":4029.18,"h":4031.08,"l":4029,"c":4030.98},"dC":-0.11,"dH":-0.21,"dL":0.02}
+{"at":"2026-10-28T07:03:04.051Z","asset":"btc","kind":"pink","sec":4,"desk":80782.4,"live":80783.34,"diff":0.94,"tick":80781.95,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:04.076Z","asset":"gold","kind":"pink","sec":4,"desk":4030,"live":4030.13,"diff":0.13,"tick":4031.79,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:14.425Z","asset":"btc","kind":"pink","sec":14,"desk":80782.4,"live":80787.32,"diff":4.92,"tick":80806.55,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:14.454Z","asset":"gold","kind":"pink","sec":14,"desk":4030,"live":4030.1,"diff":0.09,"tick":4031.392,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:24.919Z","asset":"btc","kind":"pink","sec":25,"desk":80782.4,"live":80787.07,"diff":4.67,"tick":80803.55,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:24.948Z","asset":"gold","kind":"pink","sec":25,"desk":4030,"live":4030.12,"diff":0.12,"tick":4031.67,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:35.447Z","asset":"btc","kind":"pink","sec":35,"desk":80782.4,"live":80785.52,"diff":3.12,"tick":80784.97,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:35.475Z","asset":"gold","kind":"pink","sec":35,"desk":4030,"live":4030.11,"diff":0.11,"tick":4031.56,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:45.734Z","asset":"btc","kind":"pink","sec":46,"desk":80782.4,"live":80785.47,"diff":3.08,"tick":80784.42,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:45.767Z","asset":"gold","kind":"pink","sec":46,"desk":4030,"live":4030.11,"diff":0.1,"tick":4031.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:56.426Z","asset":"btc","kind":"pink","sec":56,"desk":80782.4,"live":80786.1,"diff":3.7,"tick":80791.93,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:03:56.455Z","asset":"gold","kind":"pink","sec":56,"desk":4030,"live":4030.09,"diff":0.09,"tick":4031.331,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:01.757Z","asset":"btc","kind":"close","minute":"2026-10-28T07:03:00.000Z","tickCandleAtMs":765,"tvCandleAtMs":1757,"tick":{"o":80770.68,"h":80808.86,"l":80770.44,"c":80791.29},"tv":{"o":80770.68,"h":80808.86,"l":80768.57,"c":80791.2},"dC":0.09,"dH":0,"dL":1.87}
+{"at":"2026-10-28T07:04:01.793Z","asset":"gold","kind":"close","minute":"2026-10-28T07:03:00.000Z","tickCandleAtMs":801,"tvCandleAtMs":1792,"tick":{"o":4030.98,"h":4031.79,"l":4030.76,"c":4031.25},"tv":{"o":4030.98,"h":4031.84,"l":4030.4,"c":4031.51},"dC":-0.26,"dH":-0.05,"dL":0.36}
+{"at":"2026-10-28T07:04:06.781Z","asset":"btc","kind":"pink","sec":7,"desk":80786.04,"live":80786.07,"diff":0.03,"tick":80791.59,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:06.817Z","asset":"gold","kind":"pink","sec":7,"desk":4030.11,"live":4030.1,"diff":-0.01,"tick":4031.381,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:16.921Z","asset":"btc","kind":"pink","sec":17,"desk":80786.04,"live":80787.4,"diff":1.36,"tick":80806.62,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:16.946Z","asset":"gold","kind":"pink","sec":17,"desk":4030.11,"live":4030.1,"diff":-0.01,"tick":4031.408,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:27.581Z","asset":"btc","kind":"pink","sec":28,"desk":80786.04,"live":80787.29,"diff":1.25,"tick":80805.3,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:27.612Z","asset":"gold","kind":"pink","sec":28,"desk":4030.11,"live":4030.09,"diff":-0.02,"tick":4031.201,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:37.967Z","asset":"btc","kind":"pink","sec":38,"desk":80786.04,"live":80786.03,"diff":-0.01,"tick":80790.16,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:37.994Z","asset":"gold","kind":"pink","sec":38,"desk":4030.11,"live":4030.1,"diff":-0.01,"tick":4031.4,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:48.492Z","asset":"btc","kind":"pink","sec":48,"desk":80786.04,"live":80785.97,"diff":-0.07,"tick":80789.43,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:48.517Z","asset":"gold","kind":"pink","sec":49,"desk":4030.11,"live":4030.1,"diff":-0.01,"tick":4031.35,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:59.175Z","asset":"btc","kind":"pink","sec":59,"desk":80786.04,"live":80785.89,"diff":-0.14,"tick":80788.54,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:04:59.203Z","asset":"gold","kind":"pink","sec":59,"desk":4030.11,"live":4030.11,"diff":0,"tick":4031.47,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:05:02.189Z","asset":"btc","kind":"close","minute":"2026-10-28T07:04:00.000Z","tickCandleAtMs":196,"tvCandleAtMs":2189,"tick":{"o":80791.19,"h":80809.79,"l":80788.36,"c":80788.36},"tv":{"o":80791.19,"h":80809.81,"l":80788.26,"c":80788.26},"dC":0.1,"dH":-0.02,"dL":0.1}
+{"at":"2026-10-28T07:05:02.232Z","asset":"gold","kind":"close","minute":"2026-10-28T07:04:00.000Z","tickCandleAtMs":241,"tvCandleAtMs":2232,"tick":{"o":4031.49,"h":4031.7,"l":4031.11,"c":4031.35},"tv":{"o":4031.49,"h":4031.95,"l":4030.2,"c":4031.47},"dC":-0.12,"dH":-0.25,"dL":0.91}
+{"at":"2026-10-28T07:05:09.751Z","asset":"btc","kind":"pink","sec":10,"desk":80786.46,"live":80786.35,"diff":-0.11,"tick":80787.52,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:05:09.787Z","asset":"gold","kind":"pink","sec":10,"desk":4030.48,"live":4030.54,"diff":0.06,"tick":4032.07,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:05:20.265Z","asset":"btc","kind":"pink","sec":20,"desk":80786.46,"live":80786.38,"diff":-0.08,"tick":80788.08,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:05:20.287Z","asset":"gold","kind":"pink","sec":20,"desk":4030.48,"live":4030.65,"diff":0.17,"tick":4032.588,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:05:30.944Z","asset":"btc","kind":"pink","sec":31,"desk":80786.46,"live":80788.92,"diff":2.46,"tick":80803.35,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:05:30.978Z","asset":"gold","kind":"pink","sec":31,"desk":4030.48,"live":4030.69,"diff":0.2,"tick":4032.877,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:05:40.977Z","asset":"btc","kind":"pink","sec":41,"desk":80786.46,"live":80787.76,"diff":1.31,"tick":80789.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:05:41.005Z","asset":"gold","kind":"pink","sec":41,"desk":4030.48,"live":4030.7,"diff":0.22,"tick":4033.032,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:05:51.472Z","asset":"btc","kind":"pink","sec":51,"desk":80786.46,"live":80793.85,"diff":7.4,"tick":80831.6,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:05:51.514Z","asset":"gold","kind":"pink","sec":52,"desk":4030.48,"live":4030.73,"diff":0.24,"tick":4032.901,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:01.544Z","asset":"btc","kind":"pink","sec":2,"desk":80793.77,"live":80793.76,"diff":-0.01,"tick":80830.22,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:01.545Z","asset":"btc","kind":"close","minute":"2026-10-28T07:05:00.000Z","tickCandleAtMs":549,"tvCandleAtMs":1544,"tick":{"o":80788.22,"h":80834.43,"l":80787.37,"c":80830.62},"tv":{"o":80788.22,"h":80834.82,"l":80787.26,"c":80830.3},"dC":0.32,"dH":-0.39,"dL":0.11}
+{"at":"2026-10-28T07:06:01.581Z","asset":"gold","kind":"pink","sec":2,"desk":4030.71,"live":4030.72,"diff":0.02,"tick":4032.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:01.581Z","asset":"gold","kind":"close","minute":"2026-10-28T07:05:00.000Z","tickCandleAtMs":590,"tvCandleAtMs":1581,"tick":{"o":4031.62,"h":4033.42,"l":4031.34,"c":4032.79},"tv":{"o":4031.62,"h":4033.46,"l":4031.34,"c":4032.62},"dC":0.17,"dH":-0.04,"dL":0}
+{"at":"2026-10-28T07:06:11.810Z","asset":"btc","kind":"pink","sec":12,"desk":80793.77,"live":80792.56,"diff":-1.21,"tick":80815.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:11.850Z","asset":"gold","kind":"pink","sec":12,"desk":4030.71,"live":4030.7,"diff":-0.01,"tick":4032.531,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:22.277Z","asset":"btc","kind":"pink","sec":22,"desk":80793.77,"live":80791.46,"diff":-2.31,"tick":80802.62,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:22.313Z","asset":"gold","kind":"pink","sec":22,"desk":4030.71,"live":4030.69,"diff":-0.02,"tick":4032.392,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:32.397Z","asset":"btc","kind":"pink","sec":32,"desk":80793.77,"live":80790.67,"diff":-3.1,"tick":80793.05,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:32.421Z","asset":"gold","kind":"pink","sec":32,"desk":4030.71,"live":4030.65,"diff":-0.06,"tick":4031.921,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:42.946Z","asset":"btc","kind":"pink","sec":43,"desk":80793.77,"live":80789.3,"diff":-4.46,"tick":80784.79,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:42.969Z","asset":"gold","kind":"pink","sec":43,"desk":4030.71,"live":4030.66,"diff":-0.05,"tick":4032.046,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:53.378Z","asset":"btc","kind":"pink","sec":53,"desk":80793.77,"live":80789.26,"diff":-4.51,"tick":80784.25,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:06:53.398Z","asset":"gold","kind":"pink","sec":53,"desk":4030.71,"live":4030.62,"diff":-0.09,"tick":4031.79,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:01.973Z","asset":"btc","kind":"close","minute":"2026-10-28T07:06:00.000Z","tickCandleAtMs":828,"tvCandleAtMs":1973,"tick":{"o":80830.28,"h":80830.39,"l":80779.19,"c":80783.56},"tv":{"o":80830.28,"h":80830.52,"l":80766.46,"c":80766.46},"dC":17.1,"dH":-0.13,"dL":12.73}
+{"at":"2026-10-28T07:07:02.010Z","asset":"gold","kind":"close","minute":"2026-10-28T07:06:00.000Z","tickCandleAtMs":854,"tvCandleAtMs":2010,"tick":{"o":4032.62,"h":4032.87,"l":4030.97,"c":4031.05},"tv":{"o":4032.62,"h":4032.92,"l":4030.84,"c":4031.07},"dC":-0.02,"dH":-0.05,"dL":0.13}
+{"at":"2026-10-28T07:07:03.972Z","asset":"btc","kind":"pink","sec":4,"desk":80787.17,"live":80787.27,"diff":0.1,"tick":80773.11,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:04.007Z","asset":"gold","kind":"pink","sec":4,"desk":4030.53,"live":4030.51,"diff":-0.02,"tick":4030.8,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:14.237Z","asset":"btc","kind":"pink","sec":14,"desk":80787.17,"live":80787.19,"diff":0.02,"tick":80772.18,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:14.261Z","asset":"gold","kind":"pink","sec":14,"desk":4030.53,"live":4030.5,"diff":-0.03,"tick":4030.77,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:25.006Z","asset":"btc","kind":"pink","sec":25,"desk":80787.17,"live":80786.99,"diff":-0.18,"tick":80769.8,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:25.042Z","asset":"gold","kind":"pink","sec":25,"desk":4030.53,"live":4030.6,"diff":0.07,"tick":4031.99,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:35.556Z","asset":"btc","kind":"pink","sec":36,"desk":80787.17,"live":80787.09,"diff":-0.08,"tick":80770.95,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:35.680Z","asset":"gold","kind":"pink","sec":36,"desk":4030.53,"live":4030.6,"diff":0.07,"tick":4031.992,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:46.046Z","asset":"btc","kind":"pink","sec":46,"desk":80787.17,"live":80787.01,"diff":-0.16,"tick":80769.98,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:46.078Z","asset":"gold","kind":"pink","sec":46,"desk":4030.53,"live":4030.61,"diff":0.08,"tick":4032.121,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:56.890Z","asset":"btc","kind":"pink","sec":57,"desk":80787.17,"live":80786.84,"diff":-0.33,"tick":80767.95,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:07:56.923Z","asset":"gold","kind":"pink","sec":57,"desk":4030.53,"live":4030.63,"diff":0.1,"tick":4032.29,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:01.947Z","asset":"btc","kind":"close","minute":"2026-10-28T07:07:00.000Z","tickCandleAtMs":910,"tvCandleAtMs":1946,"tick":{"o":80771.94,"h":80786.21,"l":80766.73,"c":80786.21},"tv":{"o":80771.94,"h":80795.88,"l":80766.73,"c":80794.08},"dC":-7.87,"dH":-9.67,"dL":0}
+{"at":"2026-10-28T07:08:01.974Z","asset":"gold","kind":"close","minute":"2026-10-28T07:07:00.000Z","tickCandleAtMs":949,"tvCandleAtMs":1973,"tick":{"o":4031.06,"h":4032.59,"l":4030.73,"c":4032.49},"tv":{"o":4031.06,"h":4032.65,"l":4030,"c":4032.53},"dC":-0.04,"dH":-0.06,"dL":0.73}
+{"at":"2026-10-28T07:08:07.417Z","asset":"btc","kind":"pink","sec":7,"desk":80789.03,"live":80790.24,"diff":1.21,"tick":80808.72,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:07.451Z","asset":"gold","kind":"pink","sec":7,"desk":4030.59,"live":4030.58,"diff":-0.01,"tick":4032.431,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:17.858Z","asset":"btc","kind":"pink","sec":18,"desk":80789.03,"live":80788.64,"diff":-0.4,"tick":80789.49,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:17.887Z","asset":"gold","kind":"pink","sec":18,"desk":4030.59,"live":4030.6,"diff":0.02,"tick":4032.72,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:28.395Z","asset":"btc","kind":"pink","sec":28,"desk":80789.03,"live":80788.81,"diff":-0.22,"tick":80791.57,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:28.430Z","asset":"gold","kind":"pink","sec":28,"desk":4030.59,"live":4030.65,"diff":0.06,"tick":4033.3,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:38.728Z","asset":"btc","kind":"pink","sec":39,"desk":80789.03,"live":80788.71,"diff":-0.32,"tick":80790.43,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:38.756Z","asset":"gold","kind":"pink","sec":39,"desk":4030.59,"live":4030.72,"diff":0.14,"tick":4033.807,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:49.657Z","asset":"btc","kind":"pink","sec":50,"desk":80789.03,"live":80790.71,"diff":1.68,"tick":80814.39,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:49.681Z","asset":"gold","kind":"pink","sec":50,"desk":4030.59,"live":4030.78,"diff":0.19,"tick":4034.021,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:59.955Z","asset":"btc","kind":"pink","sec":60,"desk":80789.03,"live":80791.36,"diff":2.33,"tick":80822.17,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:08:59.982Z","asset":"gold","kind":"pink","sec":60,"desk":4030.59,"live":4030.77,"diff":0.18,"tick":4033.848,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:09:01.966Z","asset":"btc","kind":"close","minute":"2026-10-28T07:08:00.000Z","tickCandleAtMs":956,"tvCandleAtMs":1966,"tick":{"o":80793.7,"h":80823.75,"l":80789.17,"c":80822.17},"tv":{"o":80793.7,"h":80824.18,"l":80789.17,"c":80819.08},"dC":3.09,"dH":-0.43,"dL":0}
+{"at":"2026-10-28T07:09:02.009Z","asset":"gold","kind":"close","minute":"2026-10-28T07:08:00.000Z","tickCandleAtMs":994,"tvCandleAtMs":2009,"tick":{"o":4032.53,"h":4034.31,"l":4032.41,"c":4033.85},"tv":{"o":4032.53,"h":4034.31,"l":4032.33,"c":4033.84},"dC":0.01,"dH":0,"dL":0.08}
+{"at":"2026-10-28T07:09:10.032Z","asset":"btc","kind":"pink","sec":10,"desk":80791.1,"live":80791.16,"diff":0.06,"tick":80819.76,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:09:10.057Z","asset":"gold","kind":"pink","sec":10,"desk":4030.76,"live":4030.78,"diff":0.01,"tick":4033.971,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:09:20.320Z","asset":"btc","kind":"pink","sec":20,"desk":80791.1,"live":80791.13,"diff":0.02,"tick":80819.37,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:09:20.353Z","asset":"gold","kind":"pink","sec":20,"desk":4030.76,"live":4030.74,"diff":-0.02,"tick":4033.57,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:09:31.088Z","asset":"btc","kind":"pink","sec":31,"desk":80791.1,"live":80790.71,"diff":-0.4,"tick":80814.33,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:09:31.116Z","asset":"gold","kind":"pink","sec":31,"desk":4030.76,"live":4030.81,"diff":0.05,"tick":4034.36,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:09:41.929Z","asset":"btc","kind":"pink","sec":42,"desk":80791.1,"live":80790.76,"diff":-0.34,"tick":80815.04,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:09:41.959Z","asset":"gold","kind":"pink","sec":42,"desk":4030.76,"live":4030.81,"diff":0.04,"tick":4034.286,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:09:52.330Z","asset":"btc","kind":"pink","sec":52,"desk":80791.1,"live":80792.19,"diff":1.09,"tick":80831.87,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:09:52.362Z","asset":"gold","kind":"pink","sec":52,"desk":4030.76,"live":4030.82,"diff":0.05,"tick":4034.372,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:02.104Z","asset":"btc","kind":"close","minute":"2026-10-28T07:09:00.000Z","tickCandleAtMs":103,"tvCandleAtMs":2104,"tick":{"o":80819.09,"h":80835.12,"l":80812,"c":80833.76},"tv":{"o":80819.09,"h":80835.15,"l":80811.99,"c":80818.92},"dC":14.84,"dH":-0.03,"dL":0.01}
+{"at":"2026-10-28T07:10:02.139Z","asset":"gold","kind":"close","minute":"2026-10-28T07:09:00.000Z","tickCandleAtMs":143,"tvCandleAtMs":2139,"tick":{"o":4033.75,"h":4034.39,"l":4033.45,"c":4034.37},"tv":{"o":4033.75,"h":4034.57,"l":4033,"c":4034.31},"dC":0.06,"dH":-0.18,"dL":0.45}
+{"at":"2026-10-28T07:10:03.094Z","asset":"btc","kind":"pink","sec":3,"desk":80798.09,"live":80798.11,"diff":0.03,"tick":80819.21,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:03.123Z","asset":"gold","kind":"pink","sec":3,"desk":4031.76,"live":4031.77,"diff":0,"tick":4034.59,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:13.179Z","asset":"btc","kind":"pink","sec":13,"desk":80798.09,"live":80801.32,"diff":3.24,"tick":80837,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:13.214Z","asset":"gold","kind":"pink","sec":13,"desk":4031.76,"live":4031.76,"diff":-0.01,"tick":4034.481,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:23.219Z","asset":"btc","kind":"pink","sec":23,"desk":80798.09,"live":80800.11,"diff":2.02,"tick":80822.39,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:23.243Z","asset":"gold","kind":"pink","sec":23,"desk":4031.76,"live":4031.76,"diff":-0.01,"tick":4034.579,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:33.457Z","asset":"btc","kind":"pink","sec":33,"desk":80798.09,"live":80800.23,"diff":2.15,"tick":80823.92,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:33.494Z","asset":"gold","kind":"pink","sec":33,"desk":4031.76,"live":4031.8,"diff":0.03,"tick":4034.911,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:44.041Z","asset":"btc","kind":"pink","sec":44,"desk":80798.09,"live":80800.18,"diff":2.09,"tick":80823.29,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:44.076Z","asset":"gold","kind":"pink","sec":44,"desk":4031.76,"live":4031.79,"diff":0.03,"tick":4034.728,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:54.118Z","asset":"btc","kind":"pink","sec":54,"desk":80798.09,"live":80801.62,"diff":3.53,"tick":80838.61,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:10:54.145Z","asset":"gold","kind":"pink","sec":54,"desk":4031.76,"live":4031.77,"diff":0.01,"tick":4034.531,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:01.304Z","asset":"btc","kind":"close","minute":"2026-10-28T07:10:00.000Z","tickCandleAtMs":307,"tvCandleAtMs":1304,"tick":{"o":80819,"h":80841.87,"l":80818.92,"c":80838.49},"tv":{"o":80819,"h":80842.14,"l":80819,"c":80838.92},"dC":-0.43,"dH":-0.27,"dL":-0.08}
+{"at":"2026-10-28T07:11:01.344Z","asset":"gold","kind":"close","minute":"2026-10-28T07:10:00.000Z","tickCandleAtMs":344,"tvCandleAtMs":1344,"tick":{"o":4034.38,"h":4035.02,"l":4034.29,"c":4034.58},"tv":{"o":4034.38,"h":4035.12,"l":4033.5,"c":4034.49},"dC":0.09,"dH":-0.1,"dL":0.79}
+{"at":"2026-10-28T07:11:04.292Z","asset":"btc","kind":"pink","sec":4,"desk":80801.66,"live":80801.35,"diff":-0.31,"tick":80834.98,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:04.316Z","asset":"gold","kind":"pink","sec":4,"desk":4031.71,"live":4031.69,"diff":-0.01,"tick":4034.261,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:14.797Z","asset":"btc","kind":"pink","sec":15,"desk":80801.66,"live":80801.38,"diff":-0.28,"tick":80835.43,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:14.822Z","asset":"gold","kind":"pink","sec":15,"desk":4031.71,"live":4031.67,"diff":-0.04,"tick":4033.96,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:25.002Z","asset":"btc","kind":"pink","sec":25,"desk":80801.66,"live":80801.15,"diff":-0.51,"tick":80832.68,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:25.032Z","asset":"gold","kind":"pink","sec":25,"desk":4031.71,"live":4031.64,"diff":-0.06,"tick":4033.66,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:35.460Z","asset":"btc","kind":"pink","sec":35,"desk":80801.66,"live":80799.5,"diff":-2.16,"tick":80815.91,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:35.482Z","asset":"gold","kind":"pink","sec":35,"desk":4031.71,"live":4031.64,"diff":-0.06,"tick":4033.64,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:45.945Z","asset":"btc","kind":"pink","sec":46,"desk":80801.66,"live":80799.43,"diff":-2.23,"tick":80816.49,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:45.981Z","asset":"gold","kind":"pink","sec":46,"desk":4031.71,"live":4031.65,"diff":-0.06,"tick":4033.74,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:56.111Z","asset":"btc","kind":"pink","sec":56,"desk":80801.66,"live":80800.76,"diff":-0.9,"tick":80832.44,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:11:56.136Z","asset":"gold","kind":"pink","sec":56,"desk":4031.71,"live":4031.6,"diff":-0.11,"tick":4033.34,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:01.146Z","asset":"btc","kind":"close","minute":"2026-10-28T07:11:00.000Z","tickCandleAtMs":139,"tvCandleAtMs":1146,"tick":{"o":80838.75,"h":80838.93,"l":80814.5,"c":80832.98},"tv":{"o":80838.75,"h":80838.75,"l":80814.4,"c":80833.12},"dC":-0.14,"dH":0.18,"dL":0.1}
+{"at":"2026-10-28T07:12:01.181Z","asset":"gold","kind":"close","minute":"2026-10-28T07:11:00.000Z","tickCandleAtMs":189,"tvCandleAtMs":1181,"tick":{"o":4034.41,"h":4034.45,"l":4033.28,"c":4033.4},"tv":{"o":4034.41,"h":4034.57,"l":4032.6,"c":4033.4},"dC":0,"dH":-0.12,"dL":0.68}
+{"at":"2026-10-28T07:12:06.699Z","asset":"btc","kind":"pink","sec":7,"desk":80801.01,"live":80803.14,"diff":2.13,"tick":80849.66,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:06.728Z","asset":"gold","kind":"pink","sec":7,"desk":4031.56,"live":4031.58,"diff":0.02,"tick":4033.761,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:17.153Z","asset":"btc","kind":"pink","sec":17,"desk":80801.01,"live":80800.89,"diff":-0.11,"tick":80822.75,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:17.193Z","asset":"gold","kind":"pink","sec":17,"desk":4031.56,"live":4031.58,"diff":0.02,"tick":4033.801,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:27.666Z","asset":"btc","kind":"pink","sec":28,"desk":80801.01,"live":80800.7,"diff":-0.31,"tick":80820.4,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:27.707Z","asset":"gold","kind":"pink","sec":28,"desk":4031.56,"live":4031.6,"diff":0.04,"tick":4034.08,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:38.600Z","asset":"btc","kind":"pink","sec":39,"desk":80801.01,"live":80800.61,"diff":-0.4,"tick":80819.31,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:38.623Z","asset":"gold","kind":"pink","sec":39,"desk":4031.56,"live":4031.63,"diff":0.07,"tick":4034.39,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:49.072Z","asset":"btc","kind":"pink","sec":49,"desk":80801.01,"live":80801.08,"diff":0.08,"tick":80825.05,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:49.104Z","asset":"gold","kind":"pink","sec":49,"desk":4031.56,"live":4031.67,"diff":0.11,"tick":4034.837,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:59.516Z","asset":"btc","kind":"pink","sec":60,"desk":80801.01,"live":80801.11,"diff":0.1,"tick":80825.35,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:12:59.547Z","asset":"gold","kind":"pink","sec":60,"desk":4031.56,"live":4031.67,"diff":0.11,"tick":4034.84,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:13:01.519Z","asset":"btc","kind":"close","minute":"2026-10-28T07:12:00.000Z","tickCandleAtMs":521,"tvCandleAtMs":1519,"tick":{"o":80833.14,"h":80853.53,"l":80817.26,"c":80825.3},"tv":{"o":80833.14,"h":80853.53,"l":80817.26,"c":80825.2},"dC":0.1,"dH":0,"dL":0}
+{"at":"2026-10-28T07:13:02.527Z","asset":"gold","kind":"close","minute":"2026-10-28T07:12:00.000Z","tickCandleAtMs":560,"tvCandleAtMs":2527,"tick":{"o":4033.57,"h":4035.03,"l":4033.34,"c":4034.81},"tv":{"o":4033.57,"h":4035.07,"l":4032.8,"c":4034.73},"dC":0.08,"dH":-0.04,"dL":0.54}
+{"at":"2026-10-28T07:13:09.573Z","asset":"btc","kind":"pink","sec":10,"desk":80801.1,"live":80800.98,"diff":-0.12,"tick":80823.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:13:09.579Z","asset":"gold","kind":"pink","sec":10,"desk":4031.67,"live":4031.7,"diff":0.03,"tick":4035.17,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:13:19.858Z","asset":"btc","kind":"pink","sec":20,"desk":80801.1,"live":80800.54,"diff":-0.56,"tick":80818.48,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:13:19.866Z","asset":"gold","kind":"pink","sec":20,"desk":4031.67,"live":4031.68,"diff":0.01,"tick":4034.941,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:13:30.520Z","asset":"btc","kind":"pink","sec":31,"desk":80801.1,"live":80800.12,"diff":-0.98,"tick":80814.02,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:13:30.524Z","asset":"gold","kind":"pink","sec":31,"desk":4031.67,"live":4031.68,"diff":0.01,"tick":4034.885,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:13:40.983Z","asset":"btc","kind":"pink","sec":41,"desk":80801.1,"live":80800.25,"diff":-0.85,"tick":80815.52,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:13:40.990Z","asset":"gold","kind":"pink","sec":41,"desk":4031.67,"live":4031.66,"diff":-0.01,"tick":4034.717,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:13:51.388Z","asset":"btc","kind":"pink","sec":51,"desk":80801.1,"live":80800.02,"diff":-1.08,"tick":80815.12,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:13:51.395Z","asset":"gold","kind":"pink","sec":51,"desk":4031.67,"live":4031.66,"diff":0,"tick":4034.748,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:14:01.268Z","asset":"btc","kind":"close","minute":"2026-10-28T07:13:00.000Z","tickCandleAtMs":266,"tvCandleAtMs":1268,"tick":{"o":80825.21,"h":80825.41,"l":80810.55,"c":80810.55},"tv":{"o":80825.21,"h":80825.33,"l":80810.55,"c":80810.55},"dC":0,"dH":0.08,"dL":0}
+{"at":"2026-10-28T07:14:01.277Z","asset":"gold","kind":"close","minute":"2026-10-28T07:13:00.000Z","tickCandleAtMs":272,"tvCandleAtMs":1276,"tick":{"o":4034.85,"h":4035.17,"l":4034.49,"c":4034.62},"tv":{"o":4034.85,"h":4035.24,"l":4033.8,"c":4034.46},"dC":0.16,"dH":-0.07,"dL":0.69}
+{"at":"2026-10-28T07:14:02.269Z","asset":"btc","kind":"pink","sec":2,"desk":80799.56,"live":80799.72,"diff":0.16,"tick":80812.51,"tvLastBar":"last minute"}
+{"at":"2026-10-28T07:14:02.276Z","asset":"gold","kind":"pink","sec":2,"desk":4031.66,"live":4031.67,"diff":0.01,"tick":4034.701,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:14:12.977Z","asset":"btc","kind":"pink","sec":13,"desk":80799.71,"live":80799.75,"diff":0.04,"tick":80813.02,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:14:12.984Z","asset":"gold","kind":"pink","sec":13,"desk":4031.66,"live":4031.66,"diff":0,"tick":4034.648,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:14:23.039Z","asset":"btc","kind":"pink","sec":23,"desk":80799.71,"live":80799.65,"diff":-0.06,"tick":80811.74,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:14:23.045Z","asset":"gold","kind":"pink","sec":23,"desk":4031.66,"live":4031.68,"diff":0.02,"tick":4034.85,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:14:33.120Z","asset":"btc","kind":"pink","sec":33,"desk":80799.71,"live":80800.68,"diff":0.97,"tick":80824.1,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:14:33.127Z","asset":"gold","kind":"pink","sec":33,"desk":4031.66,"live":4031.68,"diff":0.02,"tick":4034.918,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:14:43.881Z","asset":"btc","kind":"pink","sec":44,"desk":80799.71,"live":80798.1,"diff":-1.61,"tick":80802.4,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:14:43.888Z","asset":"gold","kind":"pink","sec":44,"desk":4031.66,"live":4031.63,"diff":-0.03,"tick":4034.29,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:05.152Z","asset":"btc","kind":"pink","sec":5,"desk":80800.69,"live":80799.48,"diff":-1.22,"tick":80798.56,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:05.207Z","asset":"gold","kind":"pink","sec":5,"desk":4032.36,"live":4032.41,"diff":0.05,"tick":4034.801,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:16.089Z","asset":"btc","kind":"pink","sec":16,"desk":80800.69,"live":80796.55,"diff":-4.14,"tick":80783.45,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:16.117Z","asset":"gold","kind":"pink","sec":16,"desk":4032.36,"live":4032.43,"diff":0.06,"tick":4034.86,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:26.228Z","asset":"btc","kind":"pink","sec":26,"desk":80800.69,"live":80797.26,"diff":-3.43,"tick":80792.01,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:26.260Z","asset":"gold","kind":"pink","sec":26,"desk":4032.36,"live":4032.39,"diff":0.03,"tick":4034.43,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:36.662Z","asset":"btc","kind":"pink","sec":37,"desk":80800.69,"live":80797,"diff":-3.69,"tick":80788.91,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:36.689Z","asset":"gold","kind":"pink","sec":37,"desk":4032.36,"live":4032.39,"diff":0.03,"tick":4034.672,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:47.459Z","asset":"btc","kind":"pink","sec":47,"desk":80800.69,"live":80797.3,"diff":-3.39,"tick":80792.46,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:47.486Z","asset":"gold","kind":"pink","sec":47,"desk":4032.36,"live":4032.37,"diff":0,"tick":4034.35,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:57.701Z","asset":"btc","kind":"pink","sec":58,"desk":80800.69,"live":80801.95,"diff":1.25,"tick":80826.68,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:15:57.728Z","asset":"gold","kind":"pink","sec":58,"desk":4032.36,"live":4032.38,"diff":0.01,"tick":4034.455,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:16:02.109Z","asset":"btc","kind":"close","minute":"2026-10-28T07:15:00.000Z","tickCandleAtMs":1019,"tvCandleAtMs":2109,"tick":{"o":80808.8,"h":80830.44,"l":80778.53,"c":80827.09},"tv":{"o":80808.8,"h":80830.54,"l":80778.51,"c":80827.32},"dC":-0.23,"dH":-0.1,"dL":0.02}
+{"at":"2026-10-28T07:16:02.130Z","asset":"gold","kind":"close","minute":"2026-10-28T07:15:00.000Z","tickCandleAtMs":1047,"tvCandleAtMs":2130,"tick":{"o":4034.52,"h":4035.01,"l":4034.25,"c":4034.47},"tv":{"o":4034.52,"h":4035.07,"l":4033.6,"c":4034.28},"dC":0.19,"dH":-0.06,"dL":0.65}
+{"at":"2026-10-28T07:16:08.725Z","asset":"btc","kind":"pink","sec":9,"desk":80802.01,"live":80800.64,"diff":-1.37,"tick":80810.93,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:16:08.749Z","asset":"gold","kind":"pink","sec":9,"desk":4032.3,"live":4032.35,"diff":0.05,"tick":4034.721,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:16:18.816Z","asset":"btc","kind":"pink","sec":19,"desk":80802.01,"live":80799.34,"diff":-2.67,"tick":80795.28,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:16:18.856Z","asset":"gold","kind":"pink","sec":19,"desk":4032.3,"live":4032.34,"diff":0.03,"tick":4034.561,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:16:29.032Z","asset":"btc","kind":"pink","sec":29,"desk":80802.01,"live":80800.6,"diff":-1.41,"tick":80810.39,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:16:29.058Z","asset":"gold","kind":"pink","sec":29,"desk":4032.3,"live":4032.32,"diff":0.01,"tick":4034.31,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:16:39.399Z","asset":"btc","kind":"pink","sec":39,"desk":80802.01,"live":80800.35,"diff":-1.66,"tick":80807.45,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:16:39.424Z","asset":"gold","kind":"pink","sec":39,"desk":4032.3,"live":4032.31,"diff":0.01,"tick":4034.304,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:16:49.879Z","asset":"btc","kind":"pink","sec":50,"desk":80802.01,"live":80800.1,"diff":-1.91,"tick":80804.4,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:16:49.925Z","asset":"gold","kind":"pink","sec":50,"desk":4032.3,"live":4032.29,"diff":-0.01,"tick":4034.04,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:17:00.317Z","asset":"btc","kind":"pink","sec":0,"desk":80802.01,"live":80799.84,"diff":-2.17,"tick":80801.31,"tvLastBar":"last minute"}
+{"at":"2026-10-28T07:17:00.354Z","asset":"gold","kind":"pink","sec":0,"desk":4032.3,"live":4032.2,"diff":-0.1,"tick":4033.31,"tvLastBar":"last minute"}
+{"at":"2026-10-28T07:17:01.604Z","asset":"btc","kind":"close","minute":"2026-10-28T07:16:00.000Z","tickCandleAtMs":317,"tvCandleAtMs":1604,"tick":{"o":80827.34,"h":80827.34,"l":80795.02,"c":80801.31},"tv":{"o":80827.34,"h":80827.37,"l":80794.96,"c":80800.31},"dC":1,"dH":-0.03,"dL":0.06}
+{"at":"2026-10-28T07:17:01.623Z","asset":"gold","kind":"close","minute":"2026-10-28T07:16:00.000Z","tickCandleAtMs":354,"tvCandleAtMs":1623,"tick":{"o":4034.34,"h":4034.73,"l":4033.26,"c":4033.31},"tv":{"o":4034.34,"h":4034.81,"l":4033.13,"c":4033.26},"dC":0.05,"dH":-0.07,"dL":0.13}
+{"at":"2026-10-28T07:17:11.313Z","asset":"btc","kind":"pink","sec":11,"desk":80799.83,"live":80799.88,"diff":0.06,"tick":80801.84,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:17:11.358Z","asset":"gold","kind":"pink","sec":11,"desk":4032.2,"live":4032.19,"diff":-0.01,"tick":4033.23,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:17:21.956Z","asset":"btc","kind":"pink","sec":22,"desk":80799.83,"live":80799.84,"diff":0.02,"tick":80801.34,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:17:21.977Z","asset":"gold","kind":"pink","sec":22,"desk":4032.2,"live":4032.17,"diff":-0.03,"tick":4033.39,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:17:32.380Z","asset":"btc","kind":"pink","sec":32,"desk":80799.83,"live":80800.07,"diff":0.25,"tick":80804.1,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:17:32.400Z","asset":"gold","kind":"pink","sec":32,"desk":4032.2,"live":4032.22,"diff":0.02,"tick":4033.98,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:17:42.469Z","asset":"btc","kind":"pink","sec":42,"desk":80799.83,"live":80800.22,"diff":0.39,"tick":80805.86,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:17:42.490Z","asset":"gold","kind":"pink","sec":42,"desk":4032.2,"live":4032.25,"diff":0.05,"tick":4034.387,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:17:52.584Z","asset":"btc","kind":"pink","sec":53,"desk":80799.83,"live":80799.95,"diff":0.12,"tick":80802.64,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:17:52.627Z","asset":"gold","kind":"pink","sec":53,"desk":4032.2,"live":4032.25,"diff":0.05,"tick":4034.401,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:02.083Z","asset":"btc","kind":"close","minute":"2026-10-28T07:17:00.000Z","tickCandleAtMs":116,"tvCandleAtMs":2083,"tick":{"o":80801.15,"h":80805.86,"l":80800.36,"c":80804.91},"tv":{"o":80801.15,"h":80806.09,"l":80800.29,"c":80804.75},"dC":0.16,"dH":-0.23,"dL":0.07}
+{"at":"2026-10-28T07:18:02.117Z","asset":"gold","kind":"close","minute":"2026-10-28T07:17:00.000Z","tickCandleAtMs":142,"tvCandleAtMs":2117,"tick":{"o":4033.41,"h":4034.51,"l":4032.76,"c":4034.37},"tv":{"o":4033.41,"h":4034.56,"l":4032,"c":4034.27},"dC":0.1,"dH":-0.04,"dL":0.76}
+{"at":"2026-10-28T07:18:03.448Z","asset":"btc","kind":"pink","sec":3,"desk":80800.12,"live":80800.07,"diff":-0.06,"tick":80804.05,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:03.471Z","asset":"gold","kind":"pink","sec":3,"desk":4032.18,"live":4032.18,"diff":0,"tick":4034.25,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:13.925Z","asset":"btc","kind":"pink","sec":14,"desk":80800.12,"live":80798.19,"diff":-1.93,"tick":80781.51,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:13.988Z","asset":"gold","kind":"pink","sec":14,"desk":4032.18,"live":4032.15,"diff":-0.02,"tick":4033.97,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:24.803Z","asset":"btc","kind":"pink","sec":25,"desk":80800.12,"live":80800.89,"diff":0.76,"tick":80813.87,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:24.826Z","asset":"gold","kind":"pink","sec":25,"desk":4032.18,"live":4032.17,"diff":-0.01,"tick":4034.14,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:35.342Z","asset":"btc","kind":"pink","sec":35,"desk":80800.12,"live":80800.96,"diff":0.83,"tick":80814.74,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:35.368Z","asset":"gold","kind":"pink","sec":35,"desk":4032.18,"live":4032.2,"diff":0.03,"tick":4034.581,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:46.101Z","asset":"btc","kind":"pink","sec":46,"desk":80800.12,"live":80799.93,"diff":-0.2,"tick":80802.36,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:46.121Z","asset":"gold","kind":"pink","sec":46,"desk":4032.18,"live":4032.23,"diff":0.05,"tick":4034.84,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:56.788Z","asset":"btc","kind":"pink","sec":57,"desk":80800.12,"live":80800.68,"diff":0.56,"tick":80811.45,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:18:56.815Z","asset":"gold","kind":"pink","sec":57,"desk":4032.18,"live":4032.15,"diff":-0.02,"tick":4033.97,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:01.939Z","asset":"btc","kind":"close","minute":"2026-10-28T07:18:00.000Z","tickCandleAtMs":942,"tvCandleAtMs":1939,"tick":{"o":80804.73,"h":80815.1,"l":80778.75,"c":80811.65},"tv":{"o":80804.73,"h":80815.14,"l":80778.73,"c":80811.85},"dC":-0.2,"dH":-0.04,"dL":0.02}
+{"at":"2026-10-28T07:19:01.964Z","asset":"gold","kind":"close","minute":"2026-10-28T07:18:00.000Z","tickCandleAtMs":971,"tvCandleAtMs":1964,"tick":{"o":4034.29,"h":4034.84,"l":4033.6,"c":4033.6},"tv":{"o":4034.29,"h":4034.92,"l":4033.3,"c":4033.54},"dC":0.06,"dH":-0.08,"dL":0.3}
+{"at":"2026-10-28T07:19:07.218Z","asset":"btc","kind":"pink","sec":7,"desk":80800.72,"live":80800.76,"diff":0.04,"tick":80812.31,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:07.242Z","asset":"gold","kind":"pink","sec":7,"desk":4032.13,"live":4032.12,"diff":-0.01,"tick":4033.56,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:17.878Z","asset":"btc","kind":"pink","sec":18,"desk":80800.72,"live":80800.86,"diff":0.14,"tick":80813.57,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:17.902Z","asset":"gold","kind":"pink","sec":18,"desk":4032.13,"live":4032.12,"diff":-0.01,"tick":4033.57,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:28.702Z","asset":"btc","kind":"pink","sec":29,"desk":80800.72,"live":80800.95,"diff":0.23,"tick":80814.61,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:28.725Z","asset":"gold","kind":"pink","sec":29,"desk":4032.13,"live":4032.17,"diff":0.03,"tick":4034.13,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:38.736Z","asset":"btc","kind":"pink","sec":39,"desk":80800.72,"live":80799.71,"diff":-1.01,"tick":80799.71,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:38.756Z","asset":"gold","kind":"pink","sec":39,"desk":4032.13,"live":4032.16,"diff":0.02,"tick":4034.004,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:48.970Z","asset":"btc","kind":"pink","sec":49,"desk":80800.72,"live":80799.99,"diff":-0.73,"tick":80803.18,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:48.991Z","asset":"gold","kind":"pink","sec":49,"desk":4032.13,"live":4032.16,"diff":0.02,"tick":4034.016,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:59.814Z","asset":"btc","kind":"pink","sec":60,"desk":80800.72,"live":80799.98,"diff":-0.74,"tick":80802.97,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:19:59.839Z","asset":"gold","kind":"pink","sec":60,"desk":4032.13,"live":4032.15,"diff":0.02,"tick":4033.91,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:20:01.860Z","asset":"btc","kind":"close","minute":"2026-10-28T07:19:00.000Z","tickCandleAtMs":828,"tvCandleAtMs":1859,"tick":{"o":80811.88,"h":80815.97,"l":80799.34,"c":80802.97},"tv":{"o":80811.88,"h":80816,"l":80798.97,"c":80802.93},"dC":0.04,"dH":-0.03,"dL":0.37}
+{"at":"2026-10-28T07:20:01.883Z","asset":"gold","kind":"close","minute":"2026-10-28T07:19:00.000Z","tickCandleAtMs":847,"tvCandleAtMs":1883,"tick":{"o":4033.62,"h":4034.13,"l":4033.51,"c":4033.58},"tv":{"o":4033.62,"h":4034.14,"l":4032.8,"c":4033.64},"dC":-0.06,"dH":-0.01,"dL":0.71}
+{"at":"2026-10-28T07:20:10.013Z","asset":"btc","kind":"pink","sec":10,"desk":80800.72,"live":80800.86,"diff":0.14,"tick":80803.37,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:20:10.035Z","asset":"gold","kind":"pink","sec":10,"desk":4032.51,"live":4032.56,"diff":0.05,"tick":4033.961,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:20:20.739Z","asset":"btc","kind":"pink","sec":21,"desk":80800.72,"live":80799.13,"diff":-1.59,"tick":80792.78,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:20:20.762Z","asset":"gold","kind":"pink","sec":21,"desk":4032.51,"live":4032.59,"diff":0.08,"tick":4034.21,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:20:31.255Z","asset":"btc","kind":"pink","sec":31,"desk":80800.72,"live":80799.46,"diff":-1.25,"tick":80796.91,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:20:31.278Z","asset":"gold","kind":"pink","sec":31,"desk":4032.51,"live":4032.56,"diff":0.06,"tick":4033.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:20:41.743Z","asset":"btc","kind":"pink","sec":42,"desk":80800.72,"live":80799.5,"diff":-1.22,"tick":80797.33,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:20:41.770Z","asset":"gold","kind":"pink","sec":42,"desk":4032.51,"live":4032.53,"diff":0.03,"tick":4033.55,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:20:52.174Z","asset":"btc","kind":"pink","sec":52,"desk":80800.72,"live":80799.44,"diff":-1.28,"tick":80796.61,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:20:52.199Z","asset":"gold","kind":"pink","sec":52,"desk":4032.51,"live":4032.5,"diff":0,"tick":4033.312,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:02.038Z","asset":"btc","kind":"close","minute":"2026-10-28T07:20:00.000Z","tickCandleAtMs":656,"tvCandleAtMs":2038,"tick":{"o":80802.94,"h":80804.23,"l":80792.67,"c":80796.48},"tv":{"o":80802.94,"h":80804.35,"l":80792.67,"c":80796.45},"dC":0.03,"dH":-0.12,"dL":0}
+{"at":"2026-10-28T07:21:02.059Z","asset":"gold","kind":"close","minute":"2026-10-28T07:20:00.000Z","tickCandleAtMs":682,"tvCandleAtMs":2059,"tick":{"o":4033.72,"h":4034.29,"l":4033.31,"c":4033.48},"tv":{"o":4033.72,"h":4034.31,"l":4032.4,"c":4033.51},"dC":-0.03,"dH":-0.02,"dL":0.91}
+{"at":"2026-10-28T07:21:03.080Z","asset":"btc","kind":"pink","sec":3,"desk":80799.44,"live":80799.47,"diff":0.03,"tick":80796.81,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:03.106Z","asset":"gold","kind":"pink","sec":3,"desk":4032.45,"live":4032.46,"diff":0.01,"tick":4033.65,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:13.551Z","asset":"btc","kind":"pink","sec":14,"desk":80799.44,"live":80797.34,"diff":-2.1,"tick":80786.45,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:13.578Z","asset":"gold","kind":"pink","sec":14,"desk":4032.45,"live":4032.44,"diff":0,"tick":4033.49,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:24.146Z","asset":"btc","kind":"pink","sec":24,"desk":80799.44,"live":80798.87,"diff":-0.57,"tick":80804.84,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:24.175Z","asset":"gold","kind":"pink","sec":24,"desk":4032.45,"live":4032.45,"diff":0.01,"tick":4033.601,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:34.525Z","asset":"btc","kind":"pink","sec":35,"desk":80799.44,"live":80798.91,"diff":-0.53,"tick":80805.31,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:34.550Z","asset":"gold","kind":"pink","sec":35,"desk":4032.45,"live":4032.44,"diff":-0.01,"tick":4033.41,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:45.424Z","asset":"btc","kind":"pink","sec":45,"desk":80799.44,"live":80798.8,"diff":-0.64,"tick":80804.01,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:45.459Z","asset":"gold","kind":"pink","sec":45,"desk":4032.45,"live":4032.43,"diff":-0.01,"tick":4033.351,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:55.921Z","asset":"btc","kind":"pink","sec":56,"desk":80799.44,"live":80798.66,"diff":-0.78,"tick":80802.28,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:21:55.954Z","asset":"gold","kind":"pink","sec":56,"desk":4032.45,"live":4032.43,"diff":-0.02,"tick":4033.312,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:01.365Z","asset":"btc","kind":"close","minute":"2026-10-28T07:21:00.000Z","tickCandleAtMs":135,"tvCandleAtMs":1365,"tick":{"o":80796.44,"h":80813.93,"l":80767.9,"c":80801.61},"tv":{"o":80796.44,"h":80813.93,"l":80764.83,"c":80801.54},"dC":0.07,"dH":0,"dL":3.07}
+{"at":"2026-10-28T07:22:01.384Z","asset":"gold","kind":"close","minute":"2026-10-28T07:21:00.000Z","tickCandleAtMs":170,"tvCandleAtMs":1384,"tick":{"o":4033.61,"h":4033.74,"l":4033.18,"c":4033.53},"tv":{"o":4033.61,"h":4033.76,"l":4032.3,"c":4033.33},"dC":0.19,"dH":-0.02,"dL":0.88}
+{"at":"2026-10-28T07:22:06.400Z","asset":"btc","kind":"pink","sec":6,"desk":80798.33,"live":80798.29,"diff":-0.04,"tick":80800.98,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:06.438Z","asset":"gold","kind":"pink","sec":6,"desk":4032.42,"live":4032.43,"diff":0,"tick":4033.36,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:16.867Z","asset":"btc","kind":"pink","sec":17,"desk":80798.33,"live":80798,"diff":-0.33,"tick":80797.5,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:16.894Z","asset":"gold","kind":"pink","sec":17,"desk":4032.42,"live":4032.43,"diff":0.01,"tick":4033.415,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:27.303Z","asset":"btc","kind":"pink","sec":27,"desk":80798.33,"live":80798.02,"diff":-0.31,"tick":80797.72,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:27.328Z","asset":"gold","kind":"pink","sec":27,"desk":4032.42,"live":4032.45,"diff":0.02,"tick":4033.62,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:37.975Z","asset":"btc","kind":"pink","sec":38,"desk":80798.33,"live":80798.14,"diff":-0.2,"tick":80799.12,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:38.007Z","asset":"gold","kind":"pink","sec":38,"desk":4032.42,"live":4032.47,"diff":0.05,"tick":4033.88,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:48.440Z","asset":"btc","kind":"pink","sec":48,"desk":80798.33,"live":80798.8,"diff":0.47,"tick":80807.11,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:48.472Z","asset":"gold","kind":"pink","sec":48,"desk":4032.42,"live":4032.48,"diff":0.06,"tick":4034.019,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:58.957Z","asset":"btc","kind":"pink","sec":59,"desk":80798.33,"live":80800.01,"diff":1.67,"tick":80817.4,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:22:58.982Z","asset":"gold","kind":"pink","sec":59,"desk":4032.42,"live":4032.55,"diff":0.12,"tick":4034.48,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:23:01.311Z","asset":"btc","kind":"close","minute":"2026-10-28T07:22:00.000Z","tickCandleAtMs":268,"tvCandleAtMs":1311,"tick":{"o":80801.57,"h":80818.09,"l":80797.25,"c":80817.91},"tv":{"o":80801.57,"h":80818.33,"l":80797.24,"c":80817.43},"dC":0.48,"dH":-0.24,"dL":0.01}
+{"at":"2026-10-28T07:23:01.337Z","asset":"gold","kind":"close","minute":"2026-10-28T07:22:00.000Z","tickCandleAtMs":308,"tvCandleAtMs":1337,"tick":{"o":4033.32,"h":4034.65,"l":4033.27,"c":4034.52},"tv":{"o":4033.32,"h":4034.66,"l":4032.4,"c":4034.52},"dC":0,"dH":-0.01,"dL":0.87}
+{"at":"2026-10-28T07:23:09.386Z","asset":"btc","kind":"pink","sec":9,"desk":80800.06,"live":80799.86,"diff":-0.2,"tick":80815.37,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:23:09.411Z","asset":"gold","kind":"pink","sec":9,"desk":4032.55,"live":4032.58,"diff":0.03,"tick":4034.768,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:23:19.824Z","asset":"btc","kind":"pink","sec":20,"desk":80800.06,"live":80799.22,"diff":-0.84,"tick":80807.68,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:23:19.845Z","asset":"gold","kind":"pink","sec":20,"desk":4032.55,"live":4032.61,"diff":0.06,"tick":4034.924,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:23:30.500Z","asset":"btc","kind":"pink","sec":31,"desk":80800.06,"live":80803.67,"diff":3.61,"tick":80837.27,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:23:30.535Z","asset":"gold","kind":"pink","sec":31,"desk":4032.55,"live":4032.56,"diff":0.01,"tick":4034.37,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:23:41.157Z","asset":"btc","kind":"pink","sec":41,"desk":80800.06,"live":80801.44,"diff":1.38,"tick":80810.51,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:23:41.183Z","asset":"gold","kind":"pink","sec":41,"desk":4032.55,"live":4032.57,"diff":0.02,"tick":4034.54,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:23:51.212Z","asset":"btc","kind":"pink","sec":51,"desk":80800.06,"live":80801.41,"diff":1.36,"tick":80810.25,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:23:51.253Z","asset":"gold","kind":"pink","sec":51,"desk":4032.55,"live":4032.58,"diff":0.03,"tick":4034.65,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:24:01.966Z","asset":"btc","kind":"pink","sec":2,"desk":80800.06,"live":80801.56,"diff":1.51,"tick":80812.04,"tvLastBar":"last minute"}
+{"at":"2026-10-28T07:24:01.987Z","asset":"gold","kind":"pink","sec":2,"desk":4032.62,"live":4032.62,"diff":0,"tick":4034.961,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:24:01.987Z","asset":"gold","kind":"close","minute":"2026-10-28T07:23:00.000Z","tickCandleAtMs":609,"tvCandleAtMs":1987,"tick":{"o":4034.52,"h":4035.04,"l":4034.37,"c":4035.04},"tv":{"o":4034.52,"h":4035.06,"l":4033.7,"c":4034.97},"dC":0.07,"dH":-0.02,"dL":0.67}
+{"at":"2026-10-28T07:24:02.984Z","asset":"btc","kind":"close","minute":"2026-10-28T07:23:00.000Z","tickCandleAtMs":585,"tvCandleAtMs":2984,"tick":{"o":80817.74,"h":80842.13,"l":80800.3,"c":80811.5},"tv":{"o":80817.74,"h":80842.13,"l":80800.15,"c":80812.04},"dC":-0.54,"dH":0,"dL":0.15}
+{"at":"2026-10-28T07:24:12.567Z","asset":"btc","kind":"pink","sec":13,"desk":80801.98,"live":80804.34,"diff":2.36,"tick":80843.73,"tvLastBar":"this minute"}
+{"at":"2026-10-28T07:24:12.591Z","asset":"gold","kind":"pink","sec":13,"desk":4032.62,"live":4032.61,"diff":-0.01,"tick":4034.851,"tvLastBar":"this minute"}
