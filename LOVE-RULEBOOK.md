@@ -122,3 +122,8 @@ Love 5:32 PM: "thanks love ya did the main book lose her pink tolerance somehow?
 - No-pink copy, both assets: pink is a wall inside BTC $25 (channel <= $100), $50 or 10% above; gold 10% or $2. A 1-5m candle flipped her way, or the pink broken, lets her go.
 - The stacked-only pink (fix332, 12:17 PM rule) now applies to the rejection model only. BTC $33 flip-or-break (fix346b) stays.
 - Main had NOT lost her pink tolerance: both flags on main were the watcher reading minute data; main held PINK 10% and shorted after the pink broke.
+
+## fix348 — gold 33c pink barrier for the copy (Oct 27 5:37 PM PT, R032)
+Love: "and gold needs a minimum 33c  barrier between pink and longing into it at this scale / and needs a candle flip / we can open it up to normal when the bands are bigger but for rn yes"
+- No-pink copy, gold longs, channel under $10: never within 33c under an unbroken pink, flip or not. Beyond 33c (inside 10% or $2) she still needs a 1-5m flip or the break (fix347).
+- "Bigger bands" taken as $10+ for now; Love can name the width. Shorts over pink not changed (offered).

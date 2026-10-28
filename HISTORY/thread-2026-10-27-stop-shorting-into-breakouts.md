@@ -4002,3 +4002,12 @@ and needs a candle flip
 
 we can open it up to normal when the bands are bigger but for rn yes
 
+## 2026-10-28 00:38:34 UTC - CLAUDE
+
+Both are in and live, and the umpire says SAFE 💓 They only touch the no-pink copy.
+
+• **Sliding scale (your card):** the copy now reads pink like main on both assets. That's BTC $25 at channels of $100 or less and $50 or 10% above, and gold 10% or $2. Inside that, she needs a 1–5m flip her way or the pink broken. Your BTC $33 rule stays on top.
+• **Gold 33c:** she can never long within 33c under an unbroken pink, flip or not. Past 33c she still needs her flip. I read "at this scale" as channels under $10, so it opens back up once bands are $10 or wider. Tell me a different width if you'd like. Shorts over pink weren't changed. Say the word if you want those mirrored.
+
+**The BTC short (copy, 5:30 PM):** she booked it at 5:30:14 while price was still about $26 over the new 5m open, so the candle was green and hadn't flipped. Three seconds later the order went through, and by then price was $9 under the open. The copy was never given your flip rule, because fix325 went on main and the rejection model only. Do you want me to give the copy the same 1–5m flip rule as main?
+
