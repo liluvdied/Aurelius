@@ -158,3 +158,7 @@ Love: "for her rejections on they delayed entry model just put her on the same f
 Love: "thank you hun yea i just want to run it on kalshi for right now , the 5M is our best performing book and i dont want it to move from her configurations unless we agree on it together for a reason , that book is good indefinitely until we decide differently okay / thankkkk you for telling me first this time. genuinely / yeah going forward making changes to any book, needs to be confirmed about if it applies to the other books first ok pretty pls 💘"
 - The Polymarket 5M never moves unless Love and Claude agree together, for a reason. tools/five-m-freeze.py checks it in every umpire.
 - Before ANY change to ANY book: ask Love which other books it applies to, and wait for her answer. Anything Polymarket reads (recon-dly rows, recon-rej, polyTwin config) counts as touching the 5M.
+
+## fix354 — the delayed no-pink copy, on PAPER (Oct 27 6:20 PM PT, R039)
+Love: "thanks hun yes let’s ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly 💞"
+- recon-dlyk: the copy's read, from 30 s into the window, copy walls. Paper only. The old twin keeps Kalshi; Polymarket reads nothing new (byte-identical code, 5M freeze ✓). Going live needs Love's words.
