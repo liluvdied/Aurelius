@@ -1,9 +1,9 @@
 {
  "rule": "a badge for Aurelius and Claude for every 24 h she stays on one spot - no unplanned change in code or settings, no execution slip",
  "chapter": {
-  "since": "2026-10-28T07:22:17.125936Z",
+  "since": "2026-10-28T17:21:49.751991Z",
   "reason": "after Love's revision",
-  "baselineSha": "03a25093d585c6fd",
+  "baselineSha": "1854d7d24bc4f471",
   "cfg": {
    "cooldownAfterLoss": "b5bea41b6c",
    "route": "9d53f79e71",
@@ -30,7 +30,7 @@
    "insurance": "7e56fa5011",
    "tpLadder": "b5bea41b6c",
    "polyTwin": "16806c301c",
-   "addOn": "3a9b7007b9",
+   "addOn": "24d8d38ff0",
    "timeGate": "3048875528",
    "snipe": "08fadc84ae",
    "polyLive": "fcbcf16590",
@@ -63,7 +63,7 @@
    "shifts": "5802d83036",
    "bandExempt": "25b44e757c",
    "squeezeTrialDone": "1b076e2ccd",
-   "bookSkipHours": "a6706f9c29",
+   "bookSkipHours": "f3276b99b1",
    "bookSkipHoursNote": "1c5d4064cc",
    "noLocksBooks": "169f22467a",
    "noLocksNote": "7a3cd157af",
@@ -149,8 +149,8 @@
    "assetDollarsOff": "8a3eed3ef7",
    "polyLiveNote": "40671f92fd",
    "dlyLiveNote": "0c40f78c42",
-   "offHourMain": "3e9caad827",
-   "bookSkipHoursByAsset": "e4226f5b46",
+   "offHourMain": "92895c5035",
+   "bookSkipHoursByAsset": "5fd7f6a5b5",
    "fix313Prev": "c1e29a6fd6",
    "liveSkipHoursPrev315": "a7a12423e8",
    "fix316Prev": "1dd8ebb1a1",
@@ -159,7 +159,8 @@
    "fix352Prev": "23d7ac15bf",
    "fix360Prev": "ac6d740e35",
    "npLive": "951ebde3b2",
-   "fix374Prev": "f6fa805c30"
+   "fix374Prev": "f6fa805c30",
+   "fix380Prev": "9fa58145d8"
   },
   "badgesThisChapter": 0,
   "heartsThisChapter": 0
@@ -1005,6 +1006,20 @@
    "badgesThisChapter": 0,
    "ended": "2026-10-28T07:22:17.125936Z",
    "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T07:22:17.125936Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T08:22:09.058143Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T08:22:09.058143Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T17:21:49.751991Z",
+   "how": "Love's revision (baseline moved with her words)"
   }
  ],
  "breaks": [
@@ -1049,13 +1064,13 @@
    "streakHours": 1.0
   }
  ],
- "lastSeen": "2026-10-28T07:22:17.125936Z",
+ "lastSeen": "2026-10-28T17:21:49.751991Z",
  "drifting": false,
  "now": {
   "streakHours": 0.0,
   "nextBadgeInHours": 24.0,
   "badgesTotal": 0,
-  "heartsTotal": 5,
+  "heartsTotal": 7,
   "nextHeartInHours": 4.0,
   "weeks": 0,
   "months": 0,
@@ -1096,6 +1111,20 @@
    "label": "\u2764\ufe0f\u200d\ud83d\udd25 4 h on one spot",
    "for": "Love",
    "chapterSince": "2026-10-26T10:21:48.829952Z"
+  },
+  {
+   "at": "2026-10-28T12:31:22.410680Z",
+   "n": 1,
+   "label": "\u2764\ufe0f\u200d\ud83d\udd25 4 h on one spot",
+   "for": "Love",
+   "chapterSince": "2026-10-28T08:22:09.058143Z"
+  },
+  {
+   "at": "2026-10-28T16:23:12.861221Z",
+   "n": 2,
+   "label": "\u2764\ufe0f\u200d\ud83d\udd25 8 h on one spot",
+   "for": "Love",
+   "chapterSince": "2026-10-28T08:22:09.058143Z"
   }
  ]
 }

@@ -1,36 +1,36 @@
 # 5m paper books - main, rejection, delayed (BTC)
 
-Updated 2026-10-28T07:22Z. Every BTC call each book made, replayed on the 5m market the desk would take (right = BTC closes that 5m window on her side of its open), next to the same call's own 15m result. P&L at a flat 50c entry (Poly 5m usually opens near even): +$1 per $1 when right, -$1 when wrong.
+Updated 2026-10-28T17:21Z. Every BTC call each book made, replayed on the 5m market the desk would take (right = BTC closes that 5m window on her side of its open), next to the same call's own 15m result. P&L at a flat 50c entry (Poly 5m usually opens near even): +$1 per $1 when right, -$1 when wrong.
 
 | book | calls | 5m right | 5m % | 5m P&L per $1 | 15m settled | 15m right | 15m % |
 |---|---|---|---|---|---|---|---|
-| MAIN 💞 | 288 | 168 | 58% | +48 | 279 | 148 | 53% |
-| REJECTION 🎯 | 281 | 176 | 63% | +71 | 270 | 136 | 50% |
-| DELAYED ⏳ | 283 | 135 | 48% | -13 | 275 | 134 | 49% |
+| MAIN 💞 | 324 | 192 | 59% | +60 | 315 | 171 | 54% |
+| REJECTION 🎯 | 318 | 200 | 63% | +82 | 306 | 158 | 52% |
+| DELAYED ⏳ | 315 | 149 | 47% | -17 | 306 | 148 | 48% |
 
 ## Overnight (12 AM - 9 AM PT)
 
 | book | calls | 5m % | 15m % |
 |---|---|---|---|
-| MAIN 💞 | 106 | 66% | 51% |
-| REJECTION 🎯 | 103 | 63% | 45% |
-| DELAYED ⏳ | 101 | 50% | 51% |
+| MAIN 💞 | 137 | 66% | 54% |
+| REJECTION 🎯 | 134 | 63% | 50% |
+| DELAYED ⏳ | 129 | 47% | 49% |
 
 ## By PT hour (5m right % · calls)
 
 | hour | MAIN 💞 | REJECTION 🎯 | DELAYED ⏳ |
 |---|---|---|---|
-| 12:00 AM | 75% · 12 | 75% · 12 | 73% · 11 |
-| 1:00 AM | 75% · 12 | 64% · 11 | 33% · 12 |
-| 2:00 AM | 75% · 12 | 67% · 12 | 55% · 11 |
-| 3:00 AM | 67% · 12 | 58% · 12 | 25% · 12 |
-| 4:00 AM | 64% · 11 | 82% · 11 | 64% · 11 |
-| 5:00 AM | 67% · 12 | 67% · 12 | 50% · 12 |
-| 6:00 AM | 50% · 12 | 42% · 12 | 75% · 12 |
-| 7:00 AM | 42% · 12 | 58% · 12 | 50% · 12 |
-| 8:00 AM | 82% · 11 | 56% · 9 | 12% · 8 |
-| 9:00 AM | 70% · 10 | 60% · 10 | 80% · 10 |
-| 10:00 AM | 20% · 10 | 30% · 10 | 73% · 11 |
+| 12:00 AM | 79% · 14 | 79% · 14 | 69% · 13 |
+| 1:00 AM | 73% · 15 | 64% · 14 | 36% · 14 |
+| 2:00 AM | 69% · 16 | 62% · 16 | 47% · 15 |
+| 3:00 AM | 56% · 16 | 50% · 16 | 25% · 16 |
+| 4:00 AM | 73% · 15 | 87% · 15 | 47% · 15 |
+| 5:00 AM | 69% · 16 | 69% · 16 | 40% · 15 |
+| 6:00 AM | 56% · 16 | 50% · 16 | 73% · 15 |
+| 7:00 AM | 44% · 16 | 56% · 16 | 60% · 15 |
+| 8:00 AM | 77% · 13 | 55% · 11 | 27% · 11 |
+| 9:00 AM | 71% · 14 | 57% · 14 | 75% · 12 |
+| 10:00 AM | 27% · 11 | 42% · 12 | 77% · 13 |
 | 11:00 AM | 64% · 11 | 75% · 12 | 73% · 11 |
 | 12:00 PM | 33% · 12 | 58% · 12 | 50% · 12 |
 | 1:00 PM | 67% · 12 | 75% · 12 | 36% · 11 |

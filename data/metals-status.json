@@ -1,18 +1,51 @@
 {
- "at": "2026-10-28T08:17:05.791Z",
- "platinum": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXPLATINUM15M&status=ope",
- "palladium": {
-  "ticker": "KXPALLADIUM15M-26OCT280430-30",
-  "spot": 1026.754,
-  "target": 1025.725,
-  "kStrike": 1028.56,
-  "yesAsk": 0.72,
-  "noAsk": 0.29,
-  "left": 774,
-  "vwap": 1026.651506545821,
-  "sd": 1.033027613973969,
-  "z": 0.1
+ "at": "2026-10-28T17:35:29.343Z",
+ "platinum": {
+  "ticker": "KXPLATINUM15M-26OCT281345-45",
+  "spot": 1535.573,
+  "target": 1534.073,
+  "kStrike": 1534.977,
+  "yesAsk": 0.79,
+  "noAsk": 0.22,
+  "left": 570,
+  "vwap": 1536.9915624482553,
+  "sd": 2.2169571098261165,
+  "z": -0.64
  },
- "msilver": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXSILVER15M&status=open&",
- "mgold": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXGOLD15M&status=open&li"
+ "palladium": {
+  "ticker": "KXPALLADIUM15M-26OCT281345-45",
+  "spot": 1016.356,
+  "target": 1015.397,
+  "kStrike": 1017.208,
+  "yesAsk": 0.83,
+  "noAsk": 0.2,
+  "left": 570,
+  "vwap": 1015.9479312132731,
+  "sd": 0.6557707863741273,
+  "z": 0.62
+ },
+ "msilver": {
+  "ticker": "KXSILVER15M-26OCT281345-45",
+  "spot": 53.591,
+  "target": 53.564,
+  "kStrike": 53.573,
+  "yesAsk": 0.83,
+  "noAsk": 0.18,
+  "left": 570,
+  "vwap": 53.660657087904774,
+  "sd": 0.06415421193134212,
+  "z": -1.09
+ },
+ "mgold": {
+  "ticker": "KXGOLD15M-26OCT281345-45",
+  "spot": 4040.792,
+  "target": 4038.42,
+  "kStrike": 4038.62,
+  "yesAsk": 0.84,
+  "noAsk": 0.17,
+  "left": 570,
+  "vwap": 4040.763132992473,
+  "sd": 1.6860896451678369,
+  "z": 0.02
+ }
 }

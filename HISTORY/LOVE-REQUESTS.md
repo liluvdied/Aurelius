@@ -2,6 +2,21 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R069 - fix382: Poly 5M walls (bandlock5m.ts) = bandlock.ts as of 4:57 AM PT Oct 27 (her 65% stretch, with fixes 295-315), timers stripped; her calls (recon-rej5), $7.50 and skip hours unchanged. fix339 set kept in data/bandlock5m.ts.fix339.bak. 5M re-frozen on Love card words.
+- when: 2026-10-28T17:34:39+00:00
+- Love: "can you look into the poly 5M book hun? she's been losing way more than she was / did she shift by accident somehow? it's okay if she did bb let's just get her back where she was oki + let's put her back where she was first + card Put the 5M back on her Tuesday 4:57 AM walls? -> Yes, 4:57 AM walls, live now"
+- books: Poly 5M (recon-rej-5m, recon-tog-5m)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock5m.ts", "has": "THE 5M BOOK'S OWN WALLS - FROZEN (fix382"}
+
+## R068 - fix381: recon-np (pure no-pink) holds the Kalshi BTC seat every hour main/rejection/copy held (npLive.hoursByAsset.btc 0-23, yieldToTwin: the DELAYED twin keeps its BTC hours); gold stays main/rej/copy, recon-np gold only 9 PM; $3 + $5. Switched on at 10:30:00 AM PT boundary.
+- when: 2026-10-28T17:31:16+00:00
+- Love: "i'm sold lol pure no pink it is now bb + card How should the pure no-pink take over live? -> BTC every hour, gold stays"
+- books: recon-np, recon-tog, recon-rej, recon-togp
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "npLive.hoursByAsset - BTC every hour"}
+- proof: {"config": "data/live-switch.json", "key": "npLive.yieldToTwin", "equals": true}
+
 ## R067 - fix380: main/rej/copy - entry $5 (unchanged), first add-on $7 (was $8; addOn.dollars, offHourMain.addOn.dollars), then ONE $3 second add-on at the next different band with a 1-5m candle flip her way (anyFlipMinNow), any multiple up to 72c (addOn.second). Twin, pure no-pink, Poly 5M unchanged. Supersedes R045 add-on size.
 - when: 2026-10-28T08:16:52+00:00
 - Love: "we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters / same entry logic, we had some issues last time getting those to go thru correctly at a rejection so we made it just a default entry / but let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on / can we do that bb? + card Main + rejection + copy"

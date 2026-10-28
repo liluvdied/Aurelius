@@ -1,8 +1,8 @@
 {
- "at": "2026-10-28T08:17:21.480Z",
- "spot": 81052.37,
- "market": null,
- "strike": null,
+ "at": "2026-10-28T17:35:38.377Z",
+ "spot": 80576.02,
+ "market": "KXBTCD-26OCT2814-T80599.99",
+ "strike": 80599.99,
  "signal": null,
- "verdict": "no hourly market with 10+ minutes left"
+ "verdict": "no 5m rejection or break at a 1-hour line"
 }

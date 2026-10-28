@@ -1,70 +1,100 @@
 {
- "at": "2026-10-28T08:17:15.832Z",
+ "at": "2026-10-28T17:35:36.003Z",
  "series": [
-  "KXXRP15M",
-  "KXSOL15M",
-  "KXDOGE15M",
-  "KXZEC15M",
   "KXHYPE15M",
   "KXBNB15M",
-  "KXBCH15M",
+  "KXZEC15M",
   "KXADA15M",
-  "KXTON15M",
-  "KXBTC15M",
   "KXNEAR15M",
+  "KXBTC15M",
   "KXETH15M",
-  "KXWTI15M",
+  "KXBCH15M",
+  "KXTON15M",
+  "KXXRP15M",
+  "KXDOGE15M",
+  "KXSOL15M",
   "KXGOLD15M",
+  "KXNATGAS15M",
+  "KXCOPPER15M",
   "KXSILVER15M",
   "KXBRENT15M",
-  "KXCOPPER15M",
-  "KXNATGAS15M"
+  "KXWTI15M"
  ],
  "comm": [
-  "KXWTI15M",
   "KXGOLD15M",
+  "KXNATGAS15M",
+  "KXCOPPER15M",
   "KXSILVER15M",
   "KXBRENT15M",
-  "KXCOPPER15M",
-  "KXNATGAS15M"
+  "KXWTI15M"
  ],
- "toClose": 775,
+ "toClose": 571,
  "markets": [
   {
-   "t": "KXETH15M-26OCT280430-30",
-   "close": "2026-10-28T08:30:00Z",
-   "ya": "0.5300",
-   "na": "0.4800"
+   "t": "KXHYPE15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.5200",
+   "na": "0.5100"
   },
   {
-   "t": "KXGOLD15M-26OCT280430-30",
-   "close": "2026-10-28T08:30:00Z",
-   "ya": "0.7500",
-   "na": "0.2600"
+   "t": "KXBNB15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.8800",
+   "na": "0.1300"
   },
   {
-   "t": "KXSILVER15M-26OCT280430-30",
-   "close": "2026-10-28T08:30:00Z",
-   "ya": "0.7400",
-   "na": "0.2800"
+   "t": "KXZEC15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.9760",
+   "na": "0.0270"
   },
   {
-   "t": "KXBRENT15M-26OCT280430-30",
-   "close": "2026-10-28T08:30:00Z",
-   "ya": "0.5500",
-   "na": "0.5200"
+   "t": "KXNEAR15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.9250",
+   "na": "0.0760"
   },
   {
-   "t": "KXCOPPER15M-26OCT280430-30",
-   "close": "2026-10-28T08:30:00Z",
-   "ya": "0.5700",
-   "na": "0.4400"
+   "t": "KXBTC15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.9000",
+   "na": "0.1100"
   },
   {
-   "t": "KXNATGAS15M-26OCT280430-30",
-   "close": "2026-10-28T08:30:00Z",
-   "ya": "0.8000",
-   "na": "0.2100"
+   "t": "KXETH15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.8800",
+   "na": "0.1300"
+  },
+  {
+   "t": "KXGOLD15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.8400",
+   "na": "0.1700"
+  },
+  {
+   "t": "KXCOPPER15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.9600",
+   "na": "0.0600"
+  },
+  {
+   "t": "KXSILVER15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.7600",
+   "na": "0.2500"
+  },
+  {
+   "t": "KXBRENT15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.2500",
+   "na": "0.7900"
+  },
+  {
+   "t": "KXWTI15M-26OCT281345-45",
+   "close": "2026-10-28T17:45:00Z",
+   "ya": "0.2900",
+   "na": "0.7200"
   }
  ]
 }

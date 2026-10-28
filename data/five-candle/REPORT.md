@@ -1,11 +1,11 @@
 # 5m candle paper books 🎴
 
-2m and 3m candle flips on the Polymarket BTC 5m board (main + rejection calls), 3+ minutes left, her side 30-70c, $5 paper. Since Sun 02:00 PM PT. Updated Wed 12:22 AM PT.
+2m and 3m candle flips on the Polymarket BTC 5m board (main + rejection calls), 3+ minutes left, her side 30-70c, $5 paper. Since Sun 02:00 PM PT. Updated Wed 10:21 AM PT.
 
 | Lane | Trades | Won | Lost | Open | Win rate | P&L |
 |---|---|---|---|---|---|---|
-| 2m candles | 33 | 19 | 11 | 3 | 63% | $+21.66 |
-| 3m candles | 34 | 21 | 11 | 2 | 66% | $+47.08 |
+| 2m candles | 45 | 25 | 14 | 6 | 64% | $+25.95 |
+| 3m candles | 40 | 25 | 12 | 3 | 68% | $+59.94 |
 
 Replay before launch (Oct 25 4:50 AM - 1:15 PM PT, quotes on file, main + rejection): 2m flip with 3+ min left 22/25 = 88% (+63%/trade); 3m flip with 3+ min left 9/11 = 82% (+47%/trade); 1m flip with 4+ min left 29/42 = 69% (+27%/trade). Small samples.
 
@@ -78,3 +78,21 @@ Replay before launch (Oct 25 4:50 AM - 1:15 PM PT, quotes on file, main + reject
 | Tue 10:02 PM | 2m | REJECTION 🎯 | down | 0.64 | 180s | win | $+2.81 |
 | Tue 11:36 PM | 2m | MAIN 💞 | up | 0.68 | 240s | loss | $-5.00 |
 | Tue 11:51 PM | 3m | MAIN 💞 | up | 0.5 | 240s | win | $+5.00 |
+| Wed 12:26 AM | 2m | MAIN 💞 | up | 0.52 | 240s | win | $+4.62 |
+| Wed 12:27 AM | 3m | MAIN 💞 | up | 0.53 | 180s | win | $+4.43 |
+| Wed 01:26 AM | 2m | REJECTION 🎯 | down | 0.48 | 240s | open | $+0.00 |
+| Wed 02:32 AM | 2m | MAIN 💞 | up | 0.4 | 180s | loss | $-5.00 |
+| Wed 03:32 AM | 2m | MAIN 💞 | up | 0.55 | 180s | win | $+4.09 |
+| Wed 04:21 AM | 3m | MAIN 💞 | up | 0.43 | 240s | win | $+6.63 |
+| Wed 04:32 AM | 2m | MAIN 💞 | up | 0.69 | 180s | win | $+2.25 |
+| Wed 05:21 AM | 3m | MAIN 💞 | down | 0.59 | 240s | win | $+3.47 |
+| Wed 06:06 AM | 2m | MAIN 💞 | up | 0.6 | 240s | loss | $-5.00 |
+| Wed 06:06 AM | 3m | MAIN 💞 | up | 0.6 | 240s | loss | $-5.00 |
+| Wed 06:32 AM | 2m | MAIN 💞 | up | 0.66 | 180s | win | $+2.58 |
+| Wed 08:40 AM | 2m | MAIN 💞 | up | 0.66 | 300s | open | $+0.00 |
+| Wed 08:52 AM | 2m | MAIN 💞 | up | 0.46 | 180s | loss | $-5.00 |
+| Wed 09:06 AM | 2m | MAIN 💞 | down | 0.63 | 240s | win | $+2.94 |
+| Wed 09:32 AM | 2m | MAIN 💞 | up | 0.64 | 180s | win | $+2.81 |
+| Wed 09:51 AM | 3m | MAIN 💞 | up | 0.6 | 240s | win | $+3.33 |
+| Wed 10:20 AM | 2m | REJECTION 🎯 | down | 0.64 | 300s | open | $+0.00 |
+| Wed 10:21 AM | 3m | REJECTION 🎯 | down | 0.48 | 240s | open | $+0.00 |

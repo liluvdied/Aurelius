@@ -1,7 +1,8 @@
-// THE 5M BOOK'S OWN WALLS - FROZEN (fix339, Oct 27 2026 ~1:55 PM PT). Love Oct 27 1:49 PM PT: "hun, i specifically asked that the changes made are on ONE - BOOK. and not to be applied to ANY book without me expressly asking. please ensure she is on the same framework that she was when she was doing her best. i didn't want anything to change outside of the book we were expressly working on. / yes. put it back where it was." (to: split the 5M off - judged by the rejection model walls exactly as they were at 6:29 AM, before fix319; the rejection model keeps every fix)
-// This is bandlock.ts exactly as it stood at 6:29 AM PT Oct 27 (data/bandlock.ts.pre-fix319.bak), used ONLY by the Polymarket 5m lane's wall checks
-// (engine.ts polyTwin 5m: recon-rej-5m and recon-tog-5m). Its timers and global hooks are commented out - the live ones in bandlock.ts keep running.
+// THE 5M BOOK'S OWN WALLS - FROZEN (fix382, Oct 28 2026 PT; was fix339). Love Oct 28 10:16 AM PT: "can you look into the poly 5M book hun? she's been losing way more than she was / did she shift by accident somehow? it's okay if she did bb let's just get her back where she was oki" + "let's put her back where she was first".
+// This is bandlock.ts exactly as it stood at 4:57 AM PT Oct 27 (data/SNAPSHOT-TODAY-2026-10-27-0457am/src/lib/desk/bandlock.ts - the walls of her 65% stretch), used ONLY by the
+// Polymarket 5m lane's wall checks (engine.ts polyTwin 5m). Its timers and global hooks are commented out - the live ones in bandlock.ts keep running. The 6:29 AM set (fix339) is kept in data/bandlock5m.ts.fix339.bak.
 // No later fix reaches the 5M book through this file unless Love names the 5M book.
+// PREVIOUSLY (kept, her one-book rule): THE 5M BOOK'S OWN WALLS - FROZEN (fix339, Oct 27 2026 ~1:55 PM PT). Love Oct 27 1:49 PM PT: "hun, i specifically asked that the changes made are on ONE - BOOK. and not to be applied to ANY book without me expressly asking. please ensure she is on the same framework that she was when she was doing her best. i didn't want anything to change outside of the book we were expressly working on. / yes. put it back where it was." (to: split the 5M off - judged by the rejection model walls exactly as they were at 6:29 AM, before fix319; the rejection model keeps every fix)
 // BAND LOCK (Oct 16 ~1:05 PM PT, Love: "i need you to make sure this sticks and doesn't fire again backwards in an hour. or the
 // next window... please make sure that it is a physical impossibility to ever occur again").
 // The last gate before a twin order reaches Kalshi, separate from goldlaw.ts / pivotbooks.ts / engine.ts so a change in any of
@@ -706,8 +707,8 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
     // + HER 33% CHANNEL RULE (Oct 19 ~6:33 PM PT, Love) - the one addition to the Oct 12 door.
     const lbR = G.__lawBands?.[asset];
     if (!lbR || !Array.isArray(lbR.L) || !lbR.L.length || Date.now() - Number(lbR.at) > 15000) return deny("can't verify the channel right now (band list not fresh)");
-    if (book === "recon-dly" && dlyFreeNow(asset)) { const gwR = dlyKeeps(impossibleGeo(asset, lbR.L, qR.c, side, true).why, asset); return gwR ? deny(gwR, { tick: qR.c }) : { ok: true }; } // THE DELAYED BOOK in her off hours (Love, Oct 21 ~10:59 AM PT) - free but for her 33% + top/bottom line (11:21 AM)
-    const imR = impossibleGeo(asset, lbR.L, qR.c, side, false, book === "recon-dly", book === "recon-togp", book === "recon-rej", book === "recon-rej" || book === "recon-tog").why; // fix272: twin pink-free every hour // THE IMPOSSIBILITY at her door too (Oct 20 ~2:37 PM PT, Love) - same function as the wire
+    if (book === "recon-dly" && dlyFreeNow(asset)) { const gwR = dlyThirds(asset, lbR.L, qR.c, side); /* fix307 */ return gwR ? deny(gwR, { tick: qR.c }) : { ok: true }; } // THE DELAYED BOOK in her off hours (Love, Oct 21 ~10:59 AM PT) - free but for her 33% + top/bottom line (11:21 AM)
+    const imR = impossibleGeo(asset, lbR.L, qR.c, side, false, book === "recon-dly", book === "recon-togp").why; // fix272: twin pink-free every hour // THE IMPOSSIBILITY at her door too (Oct 20 ~2:37 PM PT, Love) - same function as the wire
     if (imR) return deny(imR, { tick: qR.c });
     { const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side) return deny(`the candle is ${tmR === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }
     const chR = channelOnly(asset, lbR.L, qR.c, side, refreshBroken(asset, lbR.L, qR.c)); // REJECTION OVERRIDE REMOVED (Oct 19 ~9:18 PM PT, Love: "let's remove the pink band rejection override... she shorted here and it would have been rejected for being in the bottom 33% on gold" - the wall rules over rejections again)
@@ -1096,8 +1097,8 @@ export function paperBandFilter<T>(rows: T[], tag: string): T[] {
       let whyR = "";
       if (!lbR || !Array.isArray(lbR.L) || !lbR.L.length || now - Number(lbR.at) > 15000) whyR = "can't verify the channel (band list not fresh)";
       else if (!qR || !(qR.c > 0) || now - qR.at > 3000) whyR = "can't verify (no fresh price)";
-      else if (String(r.lane ?? r.book ?? "") === "recon-dly" && dlyFreeNow(a1)) whyR = dlyKeeps(impossibleGeo(a1, lbR.L, qR.c, side, true).why, a1); // THE DELAYED BOOK in her off hours (Love, Oct 21 ~10:59 AM PT) - free but for her 33% + top/bottom line (11:21 AM)
-      else whyR = impossibleGeo(a1, lbR.L, qR.c, side, false, String(r.lane ?? r.book ?? "") === "recon-dly", String(r.lane ?? r.book ?? "") === "recon-togp", String(r.lane ?? r.book ?? "") === "recon-rej", String(r.lane ?? r.book ?? "") === "recon-rej" || String(r.lane ?? r.book ?? "") === "recon-tog").why || channelOnly(a1, lbR.L, qR.c, side, refreshBroken(a1, lbR.L, qR.c)) || candleDirOnly(a1, lbR.L, qR.c, side) || reconZoneGate(a1, qR.c, side) || reconThirdAgainst(a1, lbR.L, qR.c, side, refreshBroken(a1, lbR.L, qR.c)) || thirdWallAbsolute(a1, lbR.L, qR.c, side, refreshBroken(a1, lbR.L, qR.c)); // zones 12:22 AM; third wall 1:32 AM; THE WALL 8:05 AM ("make it impossible. no excuses")
+      else if (String(r.lane ?? r.book ?? "") === "recon-dly" && dlyFreeNow(a1)) whyR = dlyThirds(a1, lbR.L, qR.c, side); /* fix307 */ // THE DELAYED BOOK in her off hours (Love, Oct 21 ~10:59 AM PT) - free but for her 33% + top/bottom line (11:21 AM)
+      else whyR = impossibleGeo(a1, lbR.L, qR.c, side, false, String(r.lane ?? r.book ?? "") === "recon-dly", String(r.lane ?? r.book ?? "") === "recon-togp").why || channelOnly(a1, lbR.L, qR.c, side, refreshBroken(a1, lbR.L, qR.c)) || candleDirOnly(a1, lbR.L, qR.c, side) || reconZoneGate(a1, qR.c, side) || reconThirdAgainst(a1, lbR.L, qR.c, side, refreshBroken(a1, lbR.L, qR.c)) || thirdWallAbsolute(a1, lbR.L, qR.c, side, refreshBroken(a1, lbR.L, qR.c)); // zones 12:22 AM; third wall 1:32 AM; THE WALL 8:05 AM ("make it impossible. no excuses")
       if (!whyR) { seen.set(id, side); out.push(r0); continue; }
       seen.set(id, side);
       try { appendFileSync(D("band-lock.jsonl"), JSON.stringify({ at: new Date().toISOString(), paper: "recon", id, book: String(r.lane ?? r.book ?? ""), asset: a1, side, reason: whyR, tick: qR?.c ?? null }) + "\n"); } catch {}
@@ -1584,7 +1585,7 @@ export function zoneGate(asset: string, L: Line[], tick: number, side: string, o
 // within 1 s of each other (INDEX ticks slower), paired via her quote trail (Vantage tick nearest the INDEX tick, within 2 s), smoothed. No strike for this window / no gap sample in 2 min = can't verify.
 // Gold: unchanged (her chart's price at the window open) - this was asked for BTC.
 export const INDEX_BIAS: Record<string, number> = { btc: 30 };
-// [fix339 frozen copy: side effect lives in bandlock.ts] G.__indexBias = INDEX_BIAS; // kalshi.ts chartStrike reads the same bias
+// [fix382 frozen copy: side effect lives in bandlock.ts] G.__indexBias = INDEX_BIAS; // kalshi.ts chartStrike reads the same bias
 export function chartTarget(strike: number, gap: number, bias: number): number { return strike + gap + bias; }
 function sampleGap(): void {
   try {
@@ -1603,16 +1604,16 @@ function sampleGap(): void {
     K.gap = K.at && Date.now() - K.at < 120000 ? K.gap * 0.8 + gp * 0.2 : gp; K.at = Date.now(); K.vAt = v.at;
   } catch {}
 }
-// [fix339 frozen copy: side effect lives in bandlock.ts] if (G.__kGapTimer) clearInterval(G.__kGapTimer);
-// [fix339 frozen copy: live timer lives in bandlock.ts] G.__kGapTimer = setInterval(() => {
-// [fix339 frozen copy: live timer lives in bandlock.ts]   sampleGap();
-// [fix339 frozen copy: live timer lives in bandlock.ts]   try { for (const a of ["btc", "gold"]) { const lb = G.__lawBands?.[a], q = quoteTick(a); if (lb && Array.isArray(lb.L) && q && q.c > 0 && Date.now() - q.at < 3000) rejUpdate(a, lb.L, q.c, fiveHLNow(a), ((G.__rejMem ||= {})[a] ||= {})); } } catch {}
-// [fix339 frozen copy: live timer lives in bandlock.ts]   try { // read-out only (data/kalshi-target.json): what the last gate sees as Kalshi's line on her chart
-// [fix339 frozen copy: live timer lives in bandlock.ts]     const n = Date.now(); if (n - (G.__kGapOut || 0) < 3000) return; G.__kGapOut = n;
-// [fix339 frozen copy: live timer lives in bandlock.ts]     const v = quoteTick("btc_v"), q = quoteTick("btc");
-// [fix339 frozen copy: live timer lives in bandlock.ts]     writeFileSync(D("kalshi-target.json"), JSON.stringify({ at: new Date(n).toISOString(), strike: G.__kStrike?.btc ?? null, gap: G.__kGap ?? null, gapAgeS: G.__kGap?.at ? Math.round((n - G.__kGap.at) / 1000) : null, index: v ? { c: v.c, ageMs: n - v.at } : null, vantage: q ? { c: q.c, ageMs: n - q.at } : null, target: targetNow("btc", n) }));
-// [fix339 frozen copy: live timer lives in bandlock.ts]   } catch {}
-// [fix339 frozen copy: live timer lives in bandlock.ts] }, 250);
+// [fix382 frozen copy: side effect lives in bandlock.ts] if (G.__kGapTimer) clearInterval(G.__kGapTimer);
+// [fix382 frozen copy: live timer lives in bandlock.ts] G.__kGapTimer = setInterval(() => {
+// [fix382 frozen copy: live timer lives in bandlock.ts]   sampleGap();
+// [fix382 frozen copy: live timer lives in bandlock.ts]   try { for (const a of ["btc", "gold"]) { const lb = G.__lawBands?.[a], q = quoteTick(a); if (lb && Array.isArray(lb.L) && q && q.c > 0 && Date.now() - q.at < 3000) rejUpdate(a, lb.L, q.c, fiveHLNow(a), ((G.__rejMem ||= {})[a] ||= {})); } } catch {}
+// [fix382 frozen copy: live timer lives in bandlock.ts]   try { // read-out only (data/kalshi-target.json): what the last gate sees as Kalshi's line on her chart
+// [fix382 frozen copy: live timer lives in bandlock.ts]     const n = Date.now(); if (n - (G.__kGapOut || 0) < 3000) return; G.__kGapOut = n;
+// [fix382 frozen copy: live timer lives in bandlock.ts]     const v = quoteTick("btc_v"), q = quoteTick("btc");
+// [fix382 frozen copy: live timer lives in bandlock.ts]     writeFileSync(D("kalshi-target.json"), JSON.stringify({ at: new Date(n).toISOString(), strike: G.__kStrike?.btc ?? null, gap: G.__kGap ?? null, gapAgeS: G.__kGap?.at ? Math.round((n - G.__kGap.at) / 1000) : null, index: v ? { c: v.c, ageMs: n - v.at } : null, vantage: q ? { c: q.c, ageMs: n - q.at } : null, target: targetNow("btc", n) }));
+// [fix382 frozen copy: live timer lives in bandlock.ts]   } catch {}
+// [fix382 frozen copy: live timer lives in bandlock.ts] }, 250);
 export function targetNow(asset: string, now = Date.now()): number {
   try {
     if (asset === "btc") {
@@ -2071,7 +2072,7 @@ function sealDrift(): string {
 }
 // SEAL KEPT WARM (Oct 20 ~2:52 PM PT, Love: "remove any shackles make sure she's free to sprint"): the seal re-hashes every desk file on a 7 s
 // clock, so an order at the wire always finds a check under 15 s old and never waits on the hashing. The seal itself is unchanged and still fails closed.
-// [fix339 frozen copy: side effect lives in bandlock.ts] { const GW = G as any; if (GW.__sealWarm) clearInterval(GW.__sealWarm); GW.__sealWarm = setInterval(() => { try { wireSeal.at = 0; sealDrift(); } catch {} }, 7000); }
+// [fix382 frozen copy: side effect lives in bandlock.ts] { const GW = G as any; if (GW.__sealWarm) clearInterval(GW.__sealWarm); GW.__sealWarm = setInterval(() => { try { wireSeal.at = 0; sealDrift(); } catch {} }, 7000); }
 // Same text as Python's json.dumps(v, sort_keys=True), which is how golden-baseline.json hashes her config.
 function pyDumps(v: any): string {
   if (Array.isArray(v)) return "[" + v.map(pyDumps).join(", ") + "]";
@@ -2099,6 +2100,26 @@ export const dlyKeeps = (why: string, asset = ""): string => {
   if (asset === "btc") { const m = /^(THE IMPOSSIBILITY|ONLY IN HER THIRD): (long|short) at (\d+)% of /.exec(why); if (m) { const p = Number(m[3]) / 100; if (m[2] === "long" ? p < 1 - DLY_BTC_EDGE : p > DLY_BTC_EDGE) return ""; } }
   return why;
 };
+// THE TWIN AT THE BAND (fix307, Oct 27 2026 ~1:26 AM PT, Love: "she doesn't need to be blocked by a green zone or a bollinger on the delayed book hun ... she just
+// shorts or longs at a band when she interacts with one luv, no holds other than the 20/33 band tolerances"): in her hours the DELAYED twin is judged only by her
+// thirds (lockPctFor: the 20%/33% share next to the unbroken band, same numbers as THE IMPOSSIBILITY; BTC keeps her 5% edge, Love 1:36 AM "yes 5% band tolerances") and the whole channel's TOP/BOTTOM LINE
+// (Oct 21 ~11:22 AM PT, Love "keep 33% + top/bottom line"). Bands that can't be read / just jumped still refuse (safety, not a wall). Every other wall is hers to pass.
+export function dlyThirds(asset: string, L: Line[], tick: number, side: string): string {
+  const g = impossibleGeo(asset, L, tick, side, true, true);
+  if (/^THE IMPOSSIBILITY: her (bands can't be read|session bands just jumped)/.test(g.why)) return g.why;
+  const sqzE = squeezedPinkOf(L);
+  const edges = chanL(asset, L).filter((l: Line) => isChanBand(asset, l) && !sqzE(l)).map((l: Line) => Number(l.price)).filter((x: number) => x > 0).sort((x: number, y: number) => x - y);
+  if (!(tick > 0) || edges.length < 2) return "THE IMPOSSIBILITY: her bands can't be read - no opening order";
+  const topL = edges[edges.length - 1], botL = edges[0];
+  if (side === "up" && tick > topL) return `THE TOP LINE: long at ${tick.toFixed(2)} over the top of her whole channel (${topL.toFixed(2)}) - never trade its break; a rejection back under it is a short.`;
+  if (side === "down" && tick < botL) return `THE BOTTOM LINE: short at ${tick.toFixed(2)} under the bottom of her whole channel (${botL.toFixed(2)}) - never trade its break; a rejection back over it is a long.`;
+  const below = edges.filter((x: number) => x <= tick).pop(), above = edges.find((x: number) => x > tick);
+  if (below === undefined || above === undefined || !(above > below)) return "";
+  const pos = (tick - below) / (above - below), TH = asset === "btc" ? DLY_BTC_EDGE /* fix307: Love 1:36 AM "yes 5% band tolerances" - BTC keeps her 5% edge */ : lockPctFor(asset, above - below), thTxt = Math.round(TH * 100);
+  if (side === "up" && pos >= 1 - TH) return `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${thTxt}%, into the unbroken band above. never.`;
+  if (side === "down" && pos <= TH) return `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${thTxt}%, into the unbroken band below. never.`;
+  return "";
+}
 // UNDER ALL HER RULES (Oct 21 ~11:23 AM PT, Love: "when i said anywhere i meant she could trade under our rules. anywhere. not abandon them entirely"):
 // the off-hours freedom above is withdrawn - the DELAYED book passes every wall, door and the wire exactly like the main book. DLY_FREE stays false.
 // AT THE TOUCH (Oct 21 ~6:20 PM PT, Love picked "Yes, skip only the candle rule"): the twin enters on the touch of the next band, while price is still
@@ -2111,31 +2132,17 @@ export function dlyFreeNow(asset = ""): boolean { // fix278: asset picks its own
     // HOURS BY KALSHI'S LABEL (Oct 22 ~4:30 PM PT, Love picked "Follow Kalshi labels"): an hour owns the windows Kalshi labels :00, :15, :30 and :45 by their
     // close time, so the hour is read off the running window's CLOSE (the 3:45-4:00 PM window, labelled 4:00, belongs to the 4 PM book). Four full windows each.
     const mA = asset ? sw?.bookSkipHoursByAsset?.[String(asset).toLowerCase()]?.["recon-tog"] : null; const hrs = Array.isArray(mA) ? mA : sw?.bookSkipHours?.["recon-tog"]; const h = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24;
-    return Array.isArray(hrs) && hrs.map(Number).includes(h);
+    if (Array.isArray(hrs) && hrs.map(Number).includes(h)) return true;
+    // fix306 (Oct 27 2026, Love card "All her twin-hour freedoms" + "she doesn't need to wait for a candle close"): her freedoms also follow her OWN
+    // live hours (an hour not in recon-dly's skip list), so 1 AM and 5 AM - twin hours main doesn't sit out - get them too.
+    const dA = asset ? sw?.bookSkipHoursByAsset?.[String(asset).toLowerCase()]?.["recon-dly"] : null; const dh = Array.isArray(dA) ? dA : sw?.bookSkipHours?.["recon-dly"];
+    return Array.isArray(dh) && !dh.map(Number).includes(h);
   } catch { return false; }
 }
 function dlyOrderAtWire(t: string, side: string): boolean {
   try {
     const doc = G.__doneDoc?.v ?? JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); // the copier's cached parse when it has one (2 MB file)
     for (const [k, v] of Object.entries(doc) as [string, any][]) if (k.startsWith(t + ":recon-dly") && v && String(v.side) === side && !(v.status === "filled" || v.status === "partial") && v.final !== true) return true;
-  } catch {}
-  return false;
-}
-// fix318 (Oct 27 2026 ~5:41 AM PT, Love: "she shouldn't be waiting for price to cross a bollinger back down before entering. she was mad late on that short ... toss that too please"
-// + card "Rejection model and main"): for the REJECTION model and the MAIN book (recon-tog) the Bollinger no longer counts in TARGET PAST A BAND; session bands and pink there unchanged.
-function togOrderAtWire(t: string, side: string): boolean {
-  try {
-    const doc = G.__doneDoc?.v ?? JSON.parse(readFileSync(D("live-book-done.json"), "utf8"));
-    for (const [k, v] of Object.entries(doc) as [string, any][]) if (k.startsWith(t + ":recon-tog:") && v && String(v.side) === side && !(v.status === "filled" || v.status === "partial") && v.final !== true) return true;
-  } catch {}
-  return false;
-}
-// fix317 (Oct 27 2026 ~5:16 AM PT, Love: "i need you to stop letting shit i did not ask for get thru" - she never made fix238's gold "zone ahead before the next band" rule;
-// her rule is fix242, the zone right behind/over the band): an opening order of the REJECTION model (recon-rej) at the wire skips the zone-ahead branch. Main and every other book unchanged.
-function rejOrderAtWire(t: string, side: string): boolean {
-  try {
-    const doc = G.__doneDoc?.v ?? JSON.parse(readFileSync(D("live-book-done.json"), "utf8"));
-    for (const [k, v] of Object.entries(doc) as [string, any][]) if (k.startsWith(t + ":recon-rej:") && v && String(v.side) === side && !(v.status === "filled" || v.status === "partial") && v.final !== true) return true;
   } catch {}
   return false;
 }
@@ -2165,8 +2172,8 @@ export function wireWall(ticker: string, side: "up" | "down"): string {
   // fixed numbers, no config, no exemptions, no broken-band memory. The channel is the gap between the band just under price and the band
   // just over it (session VWAP, the sigma bands, the pink 5m PP). Price is between them, so both are unbroken right now.
   const dlyFree = dlyFreeNow(asset) && dlyOrderAtWire(t, side);
-  const geo = impossibleGeo(asset, lb.L, q.c, side, dlyFree, false, !dlyFree && tpOrderAtWire(t, side), !dlyFree && rejOrderAtWire(t, side), !dlyFree && (rejOrderAtWire(t, side) || togOrderAtWire(t, side))); // fix286 // fix317 // fix318
-  { const gw = dlyFree ? dlyKeeps(geo.why, asset) : geo.why; if (gw) return deny(gw, { tick: q.c }); } // the twin keeps her 33% + top/bottom line (Oct 21 ~11:21 AM PT, Love)
+  const geo = impossibleGeo(asset, lb.L, q.c, side, dlyFree, false, !dlyFree && tpOrderAtWire(t, side)); // fix286
+  { const gw = dlyFree ? dlyThirds(asset, lb.L, q.c, side) /* fix307 */ : geo.why; if (gw) return deny(gw, { tick: q.c }); } // the twin keeps her 33% + top/bottom line (Oct 21 ~11:21 AM PT, Love)
   // NEVER AGAINST THE THIRDS AT THE WIRE (Love, Oct 20 ~5:07 PM PT: "again she did it / she shorted a candle rising in the bottom 33% of the channel on gold / can you fix it hun?"): 5:01:44 PM her 5:00:10 "break below the pink" short was still
   // being retried while the candle had already turned and was rising off its low - it went out against the rise. Whatever called it and whenever:
   // a candle rising from the bottom third is a long, so no short leaves; falling from the top third is a short, so no long leaves.
@@ -2214,7 +2221,7 @@ export function launchSide(asset: string, L: Line[], tick: number, o: number, hl
 export function turnNow(asset: string, L: Line[], tick: number): "up" | "down" | "" {
   try { return thirdsMove(asset, L, tick, fiveOpenNow(asset), fiveHLNow(asset)); } catch { return ""; }
 }
-// [fix339 frozen copy: side effect lives in bandlock.ts] (globalThis as any).__turnNow = turnNow; // the DELAYED twin reads her thirds turn from recon (Oct 21 ~6:18 PM PT, Love: near the band counts too)
+// [fix382 frozen copy: side effect lives in bandlock.ts] (globalThis as any).__turnNow = turnNow; // the DELAYED twin reads her thirds turn from recon (Oct 21 ~6:18 PM PT, Love: near the band counts too)
 export function thirdsMove(asset: string, L: Line[], tick: number, o: number, hl: { h: number; l: number } | null | undefined): "up" | "down" | "" {
   const tap = PINK_TAP[asset] ?? 0;
   if (!(tick > 0) || !hl || !(hl.l > 0) || !(hl.h > 0) || !(tap > 0)) return "";
@@ -2233,7 +2240,7 @@ export function thirdsMove(asset: string, L: Line[], tick: number, o: number, hl
 // or the pink that 2+ of the last 10 closed 5m candles poked over and closed back under is a ceiling. When price pokes over it again (this 5m candle, or the last
 // 1m) and a red 1m candle closes back under it, that is her short - the pink below doesn't hold her, and her 5m candle colour doesn't either (the red 1m close is
 // the proof). Mirror for a floor (long). Recon books it; impossibleGeo waives PINK 10%, the pink in TARGET PAST A BAND and HER CANDLE for it.
-export function fakeOutTurnNow(asset: string, L: Line[], tick: number): { side: "up" | "down"; name: string; p: number } | null {
+export function fakeOutTurnNow(asset: string, L: Line[], tick: number, loose = false /* fix311: the no-pink copy */): { side: "up" | "down"; name: string; p: number } | null {
   if ((asset !== "gold" && asset !== "btc") || !(tick > 0)) return null; // fix141 (Oct 23 ~1:04 PM PT, Love: "she's clear to enter the other way when that happens for btc too")
   try {
     const fz5 = Math.floor(Date.now() / 300000) * 300, m0 = Math.floor(Date.now() / 60000) * 60;
@@ -2250,13 +2257,17 @@ export function fakeOutTurnNow(asset: string, L: Line[], tick: number): { side: 
     const fD25 = Number(G.__pinkCap5) > 0 ? Infinity /* fix266: the Poly 5m board counts pokes as it did Sun Oct 25 3:45-10:32 PM PT (Love Oct 26 9:09 AM PT: "please go back over our last messages yesterday and rebuild a twin EXACTLY. from that configuration, nothing different whatsoever") */ : Number.isFinite(abT) && Number.isFinite(beT) && abT > beT ? 0.25 * (abT - beT) : Infinity; // fix252: 25% of her channel (Love Oct 22 / Oct 26)
     for (const B of FB) {
       const fT = asset === "btc" ? 10 : 0.3; /* fix180 (Oct 24 ~11:14 PM PT, Love: "it did break a session band and fakeout thru them" - the 10:45/10:50 PM BTC candles opened and closed within $3-7 of -1σ and wicked $60-90 under, so the strict open-over/close-over count missed them): a poke counts when the candle opens and closes no further than her tap past the band ($10 BTC / 30c gold) and its wick runs past that tap */ const upF = c5.filter((k) => k.o < B.p + fT && k.h > B.p + fT && k.c < B.p + fT && k.h - Math.max(k.o, k.c) >= fT && k.h - B.p <= fD25).length, dnF = c5.filter((k) => k.o > B.p - fT && k.l < B.p - fT && k.c > B.p - fT && Math.min(k.o, k.c) - k.l >= fT && B.p - k.l <= fD25).length;
-      if (upF >= 2 && hiF > B.p && tick < B.p && Number(k1.c) < B.p && Number(k1.c) < Number(k1.o)) return { side: "down", name: B.n, p: B.p };
-      if (dnF >= 2 && loF < B.p && tick > B.p && Number(k1.c) > B.p && Number(k1.c) > Number(k1.o)) return { side: "up", name: B.n, p: B.p };
+      // NO FINISHED 1m CLOSE FOR THE COPY (fix311, Oct 27 2026 ~2:21 AM PT, Love: "just a 1M , 2M , 3M , or 5M candle rejecting a band and pushing off of it and she's clear"
+      // + card): for the no-pink copy the proof can also be price back across the band by her poke tolerance with the forming 1m, 2m, 3m or 5m candle turned her way.
+      const nowS1 = Date.now() / 1000, opn = (tf: number) => { const st = Math.floor(nowS1 / tf) * tf; const b0 = bars.find((x: any) => Number(x.t) >= st); return b0 ? Number(b0.o) : Number(k1.c); };
+      const turnDn = loose && tick <= B.p - fT && [60, 120, 180, 300].some((tf) => tick < opn(tf)), turnUp = loose && tick >= B.p + fT && [60, 120, 180, 300].some((tf) => tick > opn(tf));
+      if (upF >= 2 && hiF > B.p && tick < B.p && ((Number(k1.c) < B.p && Number(k1.c) < Number(k1.o)) || turnDn)) return { side: "down", name: B.n, p: B.p };
+      if (dnF >= 2 && loF < B.p && tick > B.p && ((Number(k1.c) > B.p && Number(k1.c) > Number(k1.o)) || turnUp)) return { side: "up", name: B.n, p: B.p };
     }
   } catch {}
   return null;
 }
-// [fix339 frozen copy: side effect lives in bandlock.ts] (globalThis as any).__fakeOutTurn = fakeOutTurnNow;
+// [fix382 frozen copy: side effect lives in bandlock.ts] (globalThis as any).__fakeOutTurn = fakeOutTurnNow;
 // ADD-ONS OBEY THE PINK (fix182, Oct 24 ~11:22 PM PT, Love: "she just shorted into the pink band again? it hasn't broken through" - the 11:20 PM free add-on shorted
 // $19 over the unbroken pink): a free add-on still skips the other walls, but not the pink cushion - no short add-on over an unbroken pink within the cushion
 // (BTC $50 minimum, else 15% of the session channel under $1k, 10% from $1k; gold 10%), no long add-on under one. Same numbers as the PINK 10% wall.
@@ -2268,7 +2279,7 @@ export function pinkAddOnWall(asset: string, side: string): string {
     const sb = L.filter((l: Line) => /σ$|^session VWAP$/.test(String(l.name)) && Number(l.price) > 0).map((l: Line) => Number(l.price));
     const below = Math.max(...sb.filter((p) => p < tick), -Infinity), above = Math.min(...sb.filter((p) => p > tick), Infinity);
     if (!Number.isFinite(below) || !Number.isFinite(above)) return "";
-    const wc = above - below, cush = asset === "btc" ? (wc < 100 ? 25 /* fix293 (Oct 26 3:30 PM PT, Love: "set the standard if no trades into pink within $25 if band channel width is under $100 so we don't need to keep adjusting day to day"): BTC channel under $100 -> $25 pink cushion, every book */ : Math.max(50, (wc >= 1000 ? 0.10 : 0.15) * wc)) : 0.1 * wc, pbd = asset === "btc" ? 3 : (BREAK_DIST[asset] ?? 0);
+    const wc = above - below, cush = asset === "btc" ? (wc <= 100 ? 25 /* fix293 (Oct 26 3:30 PM PT, Love: "set the standard if no trades into pink within $25 if band channel width is under $100 so we don't need to keep adjusting day to day"): BTC channel under $100 -> $25 pink cushion, every book */ : Math.max(50, 0.10 * wc) /* fix298 (Oct 26 ~10:22 PM PT, Love: "btc is $50 at band widths of $180 + hun / $50 or 10% / whichever comes first / pls reinforce that / $25 only stands at $100 and under bb"): BTC $25 at $100 and under, else max($50, 10%) */) : 0.1 * wc, pbd = asset === "btc" ? 3 : (BREAK_DIST[asset] ?? 0);
     for (const pl of L.filter((l: Line) => String(l.name) === "5m PP" && Number(l.price) > 0)) {
       const pp = Number(pl.price);
       if (side === "up" && pp > tick - pbd && pp - tick <= cush) return `PINK HOLDS THE ADD-ON: long $${(pp - tick).toFixed(2)} under the unbroken pink (${pp.toFixed(2)}), cushion $${cush.toFixed(2)}`;
@@ -2277,7 +2288,7 @@ export function pinkAddOnWall(asset: string, side: string): string {
   } catch {}
   return "";
 }
-export function impossibleGeo(asset: string, L: Line[], tick: number, side: string, twinFade = false, twinPinkAll = false, togpLoose = false /* fix286: the no-pink copy */, rejNoAhead = false /* fix317: the rejection model */, noBBTarget = false /* fix318: rejection model + main */): { why: string; below: number | null; above: number | null; pos: number | null; lock: number | null } {
+export function impossibleGeo(asset: string, L: Line[], tick: number, side: string, twinFade = false, twinPinkAll = false, togpLoose = false /* fix286: the no-pink copy */): { why: string; below: number | null; above: number | null; pos: number | null; lock: number | null } {
   const sqzE = squeezedPinkOf(L);
   const edges = chanL(asset, L).filter((l: Line) => isChanBand(asset, l) && !sqzE(l)).map((l: Line) => Number(l.price)).filter((x: number) => x > 0).sort((x: number, y: number) => x - y);
   if (!(tick > 0) || edges.length < 2) return { why: "THE IMPOSSIBILITY: her bands can't be read - no opening order", below: null, above: null, pos: null, lock: null };
@@ -2287,6 +2298,11 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
     if (vwJ > 0 && sdJ > 0) { const GJ = ((G.__sdGood ||= {}) as Record<string, { sd: number; t: number }>), gj = GJ[asset];
       if (gj && Date.now() - gj.t < 600000 && sdJ > 3 * gj.sd) return { why: `THE IMPOSSIBILITY: her session bands just jumped (sigma ${sdJ.toFixed(2)} vs ${gj.sd.toFixed(2)} a moment ago) - can't be read, no opening order`, below: null, above: null, pos: null, lock: null };
       GJ[asset] = { sd: sdJ, t: Date.now() }; } } catch {} }
+  // NO SHORTS IN THE BOTTOM RUNG (fix296, Oct 26 ~10:07 PM PT, Love: "yes let's cut shorts in the bottom wrung pls bb / just those for rn oki / she can continue to
+  // trade the longs up afterwards" - BTC main/rejection/copy shorts under session -2σ since Oct 20: 23 trades 30% win -$133, live 1 of 7): on BTC no short opens
+  // while price sits under the session -2σ (the -2σ -> -3σ rung and past it). Longs there stay hers.
+  if (asset === "btc" && side === "down") { const d2 = Number((L || []).find((l: Line) => String(l.name) === "-2σ")?.price) || 0;
+    if (d2 > 0 && tick < d2) return { why: `NO SHORTS IN THE BOTTOM RUNG: btc short at ${tick.toFixed(2)} is under the session -2σ (${d2.toFixed(2)}) - longs only down here.`, below: null, above: null, pos: null, lock: null }; }
   // NO CHASE PAST 2σ - DROPPED (Oct 21 ~11:12 AM PT, Love picked "Drop the 2σ rule": on this morning's trend BTC rode 2-2.1σ for hours and every call
   // became a short). Longs past 2σ (shorts past -2σ) open again under her thirds and HER CANDLE.
   // THE WHOLE CHANNEL'S TOP AND BOTTOM LINES (Oct 21 ~11:15 AM PT, Love: "the TOP line, of the whole channel, and the BOTTOM line. of the whole channel. she can't
@@ -2301,7 +2317,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // its far edge), so ONLY IN HER THIRD (with the launch waiver) and HER CANDLE still hold. No unbroken band lies past price, so THE IMPOSSIBILITY doesn't apply.
   const beyond = below0 === undefined || above0 === undefined;
   const below = beyond ? (above0 === undefined ? edges[edges.length - 2] : edges[0]) : below0!, above = beyond ? (above0 === undefined ? edges[edges.length - 1] : edges[1]) : above0!;
-  const foTurn = ((): boolean => { try { const f = fakeOutTurnNow(asset, L, tick); return !!f && f.side === side; } catch { return false; } })(); // fix139
+  const foTurn = ((): boolean => { try { const f = fakeOutTurnNow(asset, L, tick, false /* fix312: same as main */ && togpLoose /* fix311 */); return !!f && f.side === side; } catch { return false; } })(); // fix139
   if (!(above > below)) return { why: "", below: below0 ?? null, above: above0 ?? null, pos: null, lock: null };
   const pos = (tick - below) / (above - below);
   const IMPOSSIBLE = lockPctFor(asset, above - below);
@@ -2321,13 +2337,13 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
     if (o5Z > 0 && r1Z > 0 && r2Z > 0 && s1Z > 0 && s2Z > 0) {
       if (side === "up") { const brZ = sessZ.filter((b: number) => o5Z < b && b < tick).sort((x: number, y: number) => y - x)[0], nxZ = Math.min(...sessZ.filter((b: number) => b > tick), Infinity);
         if (brZ && tick >= r1Z && tick < r2Z) why = `BREAK INTO A ZONE: long broke ${brZ.toFixed(2)} and landed inside the red zone (${r1Z.toFixed(2)}-${r2Z.toFixed(2)}) - those reverse; no long here.`;
-        else if (brZ && asset === "gold" && tick < r1Z && r1Z < nxZ && !rejNoAhead /* fix317 */) why = `BREAK INTO A ZONE: gold long broke ${brZ.toFixed(2)} with the red zone (${r1Z.toFixed(2)}) ahead before the next band - those reverse; no long here.`;
+        else if (brZ && asset === "gold" && tick < r1Z && r1Z < nxZ && r1Z - tick < 3 /* fix310: Love Oct 27 2:15 AM "we can make that $3 hun" - $3 clearance */) why = `BREAK INTO A ZONE: gold long broke ${brZ.toFixed(2)} with the red zone (${r1Z.toFixed(2)}) ahead before the next band - those reverse; no long here.`;
         // RED ZONE OVER A BAND (fix242, Oct 25 10:11 PM PT, card "Any red zone over a band" + 10:13 PM "half one zone height is good hun"): gold's 10 PM long sat in the red zone right over +2σ it had broken a candle earlier.
         if (!why && tick >= r1Z && tick < r2Z) { const bZ = sessZ.filter((b: number) => b < tick && b >= r1Z - (r2Z - r1Z) / 2).sort((x: number, y: number) => y - x)[0];
           if (bZ) why = `RED ZONE OVER A BAND: long inside the red zone (${r1Z.toFixed(2)}-${r2Z.toFixed(2)}) sitting right over the band ${bZ.toFixed(2)} - those reverse; no long here.`; } }
       else { const brZ = sessZ.filter((b: number) => tick < b && b < o5Z).sort((x: number, y: number) => x - y)[0], nxZ = Math.max(...sessZ.filter((b: number) => b < tick), -Infinity);
         if (brZ && tick <= s1Z && tick > s2Z) why = `BREAK INTO A ZONE: short broke ${brZ.toFixed(2)} and landed inside the green zone (${s2Z.toFixed(2)}-${s1Z.toFixed(2)}) - those reverse; no short here.`;
-        else if (brZ && asset === "gold" && tick > s1Z && s1Z > nxZ && !rejNoAhead /* fix317 */) why = `BREAK INTO A ZONE: gold short broke ${brZ.toFixed(2)} with the green zone (${s1Z.toFixed(2)}) ahead before the next band - those reverse; no short here.`;
+        else if (brZ && asset === "gold" && tick > s1Z && s1Z > nxZ && tick - s1Z < 3 /* fix310: $3 clearance */) why = `BREAK INTO A ZONE: gold short broke ${brZ.toFixed(2)} with the green zone (${s1Z.toFixed(2)}) ahead before the next band - those reverse; no short here.`;
         if (!why && tick <= s1Z && tick > s2Z) { const bZ = sessZ.filter((b: number) => b > tick && b <= s1Z + (s1Z - s2Z) / 2).sort((x: number, y: number) => x - y)[0];
           if (bZ) why = `GREEN ZONE UNDER A BAND: short inside the green zone (${s2Z.toFixed(2)}-${s1Z.toFixed(2)}) sitting right under the band ${bZ.toFixed(2)} - those reverse; no short here.`; } }
     }
@@ -2358,7 +2374,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // width of $500"): on BTC, no long with the unbroken pink above price within 10% of the channel width, no short with it below within 10%. Once it breaks, she's clear.
   if (!why && !beyond) {
     const w10b = (asset === "gold" ? 0.1 : 0.10 /* fix157 (Oct 23 ~7:05 PM PT, Love: "we can make it 10% temporarily hun"): BTC back to 10% */ /* fix136 (Oct 23 ~1:40 AM PT, Love card): BTC pink cushion 15% */ /* gold 10% (Oct 22 ~11:18 AM PT, Love: "for right now let's do 10%, she can long with $2.50+ of room on the next ones", to move with the scale later) */ /* gold back to 15% (Oct 22 ~9:22 AM PT, Love: "if we are waiting for a rejection or a break through we should bring it as close as possible / let's bring back to 15%") */) * (above - below); const w10f = asset === "btc" ? Math.max(50, (above - below) >= 1000 ? 0.05 * (above - below) : (above - below) >= 500 ? 0.10 * (above - below) : 0) : w10b; /* fix179 (Oct 24 ~10:53 PM PT, Love: "let's just make it the $500 @ 10% & 1k at 5%, for the bollinger cushion, not to short or long into, and a minimum of $50 under that"): BTC Bollinger cushion = 10% of channel from $500, 5% from $1k, never under $50 */ /* fix161 (Oct 24 ~7:59 AM PT, Love card "Pink cushion floor $50 on BTC"): BTC never within $50 of an unbroken pink */ // fix70 (Oct 22 ~7:05 AM PT, Love: "she was right under the pink band ... may need to tighten that up a bit" + card: gold 20%%) // fix65 (Oct 22 ~6:10 AM PT, Love: "the 15% rule for the pink band was for gold , we can keep btc at the 10%")
-    const w10 = asset === "btc" ? ((above - below) < 100 ? 25 /* fix293 (Oct 26 3:30 PM PT, Love: "set the standard if no trades into pink within $25 if band channel width is under $100 so we don't need to keep adjusting day to day"): BTC channel under $100 -> $25 pink cushion, every book */ : Math.max(50, ((above - below) >= 1000 ? 0.10 : 0.15) * (above - below))) /* fix182 (Oct 24 ~11:23 PM PT, Love: "let's make that $50 minimum and the rest of the scale up from there") */ : w10b; // fix179 (Oct 24 ~10:53 PM PT, Love: "for pink we will have it at a solid 15% at bands $200 and under/over and 15% at $500, 10% at 1k"): BTC pink cushion 15% of channel under $1k, 10% from $1k; gold unchanged. Was fix174 (Oct 24 ~9:41 PM PT, Love: "let's go ahead and bring that back to 10% of the channel width for the moment hun i didn't realize the whole channel was still $200 rn"): the pink cushion is plain 10% again on BTC (no $50 floor); the Bollinger cushion keeps its $50 baseline (w10f)
+    const w10 = asset === "btc" ? ((above - below) <= 100 ? 25 /* fix293 (Oct 26 3:30 PM PT, Love: "set the standard if no trades into pink within $25 if band channel width is under $100 so we don't need to keep adjusting day to day"): BTC channel under $100 -> $25 pink cushion, every book */ : Math.max(50, 0.10 * (above - below)) /* fix298 (Oct 26 ~10:22 PM PT, Love: "btc is $50 at band widths of $180 + hun / $50 or 10% / whichever comes first / pls reinforce that / $25 only stands at $100 and under bb") */) /* fix182 (Oct 24 ~11:23 PM PT, Love: "let's make that $50 minimum and the rest of the scale up from there") */ : w10b; // fix179 (Oct 24 ~10:53 PM PT, Love: "for pink we will have it at a solid 15% at bands $200 and under/over and 15% at $500, 10% at 1k"): BTC pink cushion 15% of channel under $1k, 10% from $1k; gold unchanged. Was fix174 (Oct 24 ~9:41 PM PT, Love: "let's go ahead and bring that back to 10% of the channel width for the moment hun i didn't realize the whole channel was still $200 rn"): the pink cushion is plain 10% again on BTC (no $50 floor); the Bollinger cushion keeps its $50 baseline (w10f)
     // GOLD: MEASURE FROM THE BAND SHE REJECTED (Oct 22 ~1:20 PM PT, Love: "the rejection started at 4021 hun, the distance should be measured as the distance
     // between the green zone and the pink line / if that distance is over $3 she is clear to engage at the rejection at her current scale"): on gold, when the
     // last two 5m candles' low came within $0.50 of the nearest band under price (zone, session band, Bollinger) and that band sits more than $3 under the pink,
@@ -2387,7 +2403,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
       const pbd = asset === "btc" ? 3 /* fix166 (Oct 24 ~5:09 PM PT, Love: "we can lower it from $5 to $3") */ : (BREAK_DIST[asset] ?? 0); // fix162 (Oct 24 ~10:17 AM PT, Love: "make it a break of $5 bb"; gold keeps its 33c): the pink counts as broken only once price is past it by her break distance - a tick through is still unbroken
       // THE 5M PINK CUSHION (fix199, Oct 25 ~3:50 AM PT, Love: "let's loosen it to $25 on there bb"): on Polymarket's 5m board the BTC pink cushion is $25 at most.
       let w10e = asset === "btc" && Number(G.__pinkCap5) > 0 ? Math.min(w10, Number(G.__pinkCap5)) : asset === "gold" ? Math.max(w10, 2) : w10; // fix262 (Oct 26 ~2:50 AM PT, Love: "its 10% or $2. whichever comes first" - 2:46 AM gold short $1.18 over the unbroken pink passed the $1.05 10%): gold pink cushion = 10% of the channel, never under $2 (her fix89 "$2 of the pink")
-      if (togpLoose && asset === "btc") w10e = Math.min(w10e, 25); // fix292 (Oct 26 ~3:24 PM PT, Love card "Pink cushion $25 for the copy"): the no-pink copy's BTC PINK 10% cushion is $25 at most (3:16 PM: $50 cushion in a $68 channel held her long); main and gold unchanged
+      if (togpLoose) w10e = asset === "gold" ? 1.5 : w10e; /* fix312 (Oct 27 ~2:54 AM PT, Love: "please make an exact copy of the main book again, and exclude pink trades, no trades within $1.50 of pink. that's it. same everything. nothing else different please") */ if (false && togpLoose && asset === "btc" && (above - below) <= 100 /* fix298: the copy's $25 only at $100 and under (Love Oct 26 10:22 PM) */) w10e = Math.min(w10e, 25); // fix292 (Oct 26 ~3:24 PM PT, Love card "Pink cushion $25 for the copy"): the no-pink copy's BTC PINK 10% cushion is $25 at most (3:16 PM: $50 cushion in a $68 channel held her long); main and gold unchanged
       if (!why && side === "up" && pp > tick - pbd && pp - tick <= w10e) why = `PINK 10%: long $${(pp - tick).toFixed(2)} under the unbroken pink (${pp.toFixed(2)}) - inside ${asset === "gold" ? 10 : 10}% ($${w10e.toFixed(2)}) of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel. wait for pink to break up.`;
       if (!why && side === "down" && pp < tick + pbd && tick - pp <= w10e) why = `PINK 10%: short $${(tick - pp).toFixed(2)} over the unbroken pink (${pp.toFixed(2)}) - inside ${asset === "gold" ? 10 : 10}% ($${w10e.toFixed(2)}) of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel. wait for pink to break down.`;
     }
@@ -2400,7 +2416,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
       if (zC && Date.now() - Number(zC.at) <= 20000) {
         const w10g = asset === "gold" ? Math.min(1, Math.max(0.5, w10f)) /* fix226 (Oct 25 ~6:36 PM PT, Love: "i want to keep the bollinger cushion at 50c - $1"): gold Bollinger cushion held between 50c and $1 */ : asset === "btc" && Number(G.__pinkCap5) > 0 ? Math.min(w10f, Number(G.__pinkCap5)) : w10f; // fix201 (Love 4:36 AM, yes to "cap the Bollinger cushion at $25 on the 5m board"): $25 on Polymarket's 5m board
         // fix286 (Oct 26 ~2:27 PM PT, Love card "Drop BB cushion + fake-out floor" + "we will drop it to $25 hun not completely"): the no-pink copy's BTC Bollinger cushion is $25.
-        const w10g286 = togpLoose && asset === "btc" ? Math.min(w10g, 25) : w10g;
+        const w10g286 = false /* fix312: same as main */ && togpLoose && asset === "btc" && (above - below) <= 100 /* fix302 (Oct 26 ~10:49 PM PT, Love card "Match pink ($25 only <=$100)" - 10:45 PM BTC copy long $27 under the Bollinger upper in a $184 channel): the copy's $25 Bollinger cushion only at $100 and under, else the same cushion as main */ ? Math.min(w10g, 25) : w10g;
         if (!why && side === "up" && bUC > tick && bUC - tick <= w10g286) why = `BOLLINGER CUSHION: long $${(bUC - tick).toFixed(2)} under the Bollinger upper (${bUC.toFixed(2)}) - inside the $${w10g286.toFixed(2)} cushion. Wait for the break or the rejection.`;
         if (!why && side === "down" && bLC > 0 && bLC < tick && tick - bLC <= w10g286) why = `BOLLINGER CUSHION: short $${(tick - bLC).toFixed(2)} over the Bollinger lower (${bLC.toFixed(2)}) - inside the $${w10g286.toFixed(2)} cushion. Wait for the break or the rejection.`;
         // BOLLINGER BROKEN ONLY ON A 1M CLOSE (fix225, Oct 25 ~6:18 PM PT, Love card "1m close past it" + "gold just longed directly into an unbroken bollinger and
@@ -2462,7 +2478,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
       // + THE BOLLINGER (Oct 22 ~1:52 PM PT, Love: "on gold this window the target was within $1 of a bollinger, let's put the $1.50 til in place for those as well,
       // only away from them just as before"): gold's 5m Bollinger upper/lower count here too.
       const TB = [...(L || []).filter((l: Line) => (isSessBand(l) || String(l.name) === "5m PP") && Number(l.price) > 0), ...bbLines("gold").filter((l) => !(L || []).some((x: Line) => String(x.name) === String(l.name)))];
-      const hit = TB.filter((l: Line) => !((twinFade || twinPinkAll || foTurn) && String(l.name) === "5m PP")).filter((l: Line) => !(noBBTarget && /^BB |BBSR|Bollinger/i.test(String(l.name)))) /* fix318 */.filter((l: Line) => { const P = Number(l.price); return side === "up" ? P > tick && P <= tgt + 1.5 : P < tick && P >= tgt - 1.5; }).sort((x: Line, y: Line) => Math.abs(Number(x.price) - tick) - Math.abs(Number(y.price) - tick))[0];
+      const hit = TB.filter((l: Line) => !((twinFade || twinPinkAll || foTurn) && String(l.name) === "5m PP")).filter((l: Line) => { const P = Number(l.price); return side === "up" ? P > tick && P <= tgt + 1.5 : P < tick && P >= tgt - 1.5; }).sort((x: Line, y: Line) => Math.abs(Number(x.price) - tick) - Math.abs(Number(y.price) - tick))[0];
       if (hit) { const P = Number(hit.price), nm = String(hit.name) === "5m PP" ? "the pink" : /BBSR upper/.test(String(hit.name)) ? "the Bollinger upper" : /BBSR lower/.test(String(hit.name)) ? "the Bollinger lower" : String(hit.name);
         why = `TARGET PAST A BAND: ${side === "up" ? "long" : "short"} at ${tick.toFixed(2)} with ${nm} (${P.toFixed(2)}) ${side === "up" ? "above" : "below"} her, ${Math.abs(P - tgt) <= 1.5 ? `within $1.50 of the target ${tgt.toFixed(2)}` : `between her and the target ${tgt.toFixed(2)}`} - only trade away from it.`; }
     }
@@ -2540,7 +2556,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
             // fix139 (Love 9:55 AM "actually no let's make it shorts there anyways"): the target exemption is gone - under a faking-out ceiling it is shorts only.
             if (!why && side === "up" && upF >= 2 && tick <= B.p && Math.abs(B.p - above) < (asset === "btc" ? 5 : 0.25) && foOuter(B.p - tick)) why = `UNDER THE CEILING: ${upF} of the last 10 ${asset} 5m candles poked over ${B.n} (${B.p.toFixed(2)}) and closed back under - no long into it; its rejection is the short.`;
             if (!why && side === "down" && dnF >= 2 && tick >= B.p && Math.abs(B.p - below) < (asset === "btc" ? 5 : 0.25) && foOuter(tick - B.p)) why = `OVER THE FLOOR: ${dnF} of the last 10 ${asset} 5m candles poked under ${B.n} (${B.p.toFixed(2)}) and closed back over - no short into it; its rejection is the long.`;
-            if (!why && !togpLoose /* fix286: the no-pink copy skips the fake-out floor (Love card Oct 26 ~2:27 PM PT) */ && side === "down" && dnF >= 2 && tick < B.p && B.p - tick <= (asset === "btc" ? 33 : 1.5)) why = `FAKE-OUT FLOOR: ${dnF} of the last 10 ${asset} 5m candles poked under ${B.n} (${B.p.toFixed(2)}) and closed back over - it is a floor, no short off it ($${(B.p - tick).toFixed(2)} under).`;
+            if (!why && (true /* fix312: same as main */ || !togpLoose) /* fix286: the no-pink copy skips the fake-out floor (Love card Oct 26 ~2:27 PM PT) */ && side === "down" && dnF >= 2 && tick < B.p && B.p - tick <= (asset === "btc" ? 33 : 1.5)) why = `FAKE-OUT FLOOR: ${dnF} of the last 10 ${asset} 5m candles poked under ${B.n} (${B.p.toFixed(2)}) and closed back over - it is a floor, no short off it ($${(B.p - tick).toFixed(2)} under).`;
           }
         } catch {} }
         // THE LAST CHANNEL (fix107, Oct 22 ~7:36 PM PT, Love card "Also breaks into the last channel": "no longs at the last band of the top of the channel / no shorts
@@ -2567,8 +2583,8 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
         const D5 = B1.filter((x: any) => Number(x.t) >= f0 - 300 && Number(x.t) < f0);
         if (!why && D5.length >= 4) { const o = Number(D5[0].o), c = Number(D5[D5.length - 1].c), hh = Math.max(...D5.map((x: any) => Number(x.h))), ll = Math.min(...D5.map((x: any) => Number(x.l)));
           const trD = trendOf(B1.filter((x: any) => Number(x.t) >= f0 - 300 - 1860 && Number(x.t) < f0));
-          if (trD && hh > ll && Math.abs(c - o) <= DOJI_BODY * (hh - ll) && c !== o) { const dS = c > o ? "up" : "down";
-            if (side !== dS) why = `DOJI AFTER THE TREND: a ${dS === "up" ? "green" : "red"} doji closed at ${new Date(f0 * 1000).toISOString().slice(11, 16)}Z after a ${trD} trend through the bands - this candle trades ${dS === "up" ? "long" : "short"} only.`; } }
+          if (trD && hh > ll && Math.abs(c - o) <= DOJI_BODY * (hh - ll) && c !== o) { const o5D = fiveOpenNow(asset); const dS = o5D > 0 && tick < o5D ? "down" : o5D > 0 && tick > o5D ? "up" : ""; /* fix315 (Oct 27 ~3:57 AM PT, Love: "it is SHORT ONLY when a doji is followed by a candle falling, it is a continuation of the candle after the doji"): the candle AFTER the doji decides - falling = short only, rising = long only (was: the doji's own colour) */
+            if (dS && side !== dS) why = `DOJI AFTER THE TREND: a doji closed at ${new Date(f0 * 1000).toISOString().slice(11, 16)}Z after a ${trD} trend through the bands and the candle after it is ${dS === "up" ? "rising - long" : "falling - short"} only.`; } }
         const vw = Number((L || []).find((l: Line) => String(l.name) === "session VWAP")?.price) || 0, u1 = Number((L || []).find((l: Line) => String(l.name) === "+1σ")?.price) || 0, sd1 = Math.abs(u1 - vw);
         if (vw > 0 && sd1 > 0) { const VH = ((G.__vwH ||= {})[asset] ||= []) as { t: number; v: number; sd: number }[]; const lst = VH[VH.length - 1];
           if (lst && Math.abs(vw - lst.v) > 0.3 * sd1 && nowS - lst.t < 120) VH.length = 0; // session reset jump - start the slope fresh
@@ -2625,6 +2641,12 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
     if (hlB && side === "up" && Number(hlB.l) < below && tick - below < 10) why = `BACK OVER BY $10: this 5m candle dipped under ${below.toFixed(2)} and price is only $${(tick - below).toFixed(2)} back over it - a long needs $10+ over the band.`;
     if (hlB && side === "down" && Number(hlB.h) > above && above - tick < 10) why = `BACK UNDER BY $10: this 5m candle poked over ${above.toFixed(2)} and price is only $${(above - tick).toFixed(2)} back under it - a short needs $10+ under the band.`;
   } catch {} }
+  // EARN THE COLOUR (fix295, Oct 26 ~9:50 PM PT, Love: "is there any way we can remediate that without hurting her" - the 9:30 PM BTC long bought 17 s into a
+  // new 5m candle $1 over its open; paper since Oct 20: first-30-s entries -$1,356, later entries ~+$2,000): in a 5m candle's first 30 s she enters only once
+  // price is $10 (BTC) / 30c (gold) past the candle's open in her direction.
+  if (!why) { try { const o5e = fiveOpenNow(asset), sec5 = Math.floor(Date.now() / 1000) % 300, need = asset === "btc" ? 2 /* fix300 (Oct 26 ~10:36 PM PT, Love: "i like how she did it before fix295 / if it was cents causing her decisions on fresh candles like that let's just make it the bare minimum for her to not do that"): BTC $2 / gold 10c - just past the $1 / 0c entries */ /* fix299 (Oct 26 ~10:35 PM PT, Love: "if the fix we just did is causing that let's lower it to $5 at least and see if that helps pls"): BTC $10 -> $5 */ : asset === "gold" ? 0.1 : 0;
+    if (need > 0 && o5e > 0 && sec5 < 30) { const mv = side === "up" ? tick - o5e : o5e - tick;
+      if (mv < need) why = `HER CANDLE: ${sec5} s into a new 5m candle, price is only ${asset === "btc" ? "$" + mv.toFixed(2) : (mv * 100).toFixed(0) + "c"} ${side === "up" ? "over" : "under"} its open - wait for ${asset === "btc" ? "$2" : "10c"} her way.`; } } catch {} }
   if (!why && side === "up" && cdl === "down") why = `HER CANDLE: the 5m candle is falling - a short or nothing, never a long.`;
   if (!why && side === "down" && cdl === "up") why = `HER CANDLE: the 5m candle is rising - a long or nothing, never a short.`;
   if (beyond) return { why, below: below0 ?? null, above: above0 ?? null, pos: Math.round(pos * 1000) / 1000, lock: null };

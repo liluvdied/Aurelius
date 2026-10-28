@@ -1,6 +1,6 @@
 {
  "fp": {
-  "src/lib/desk/bandlock5m.ts": "b95f88628fc1fa4c",
+  "src/lib/desk/bandlock5m.ts": "32f10e313e3cd90a",
   "src/lib/desk/poly-live.server.ts": "35b30f988a3a8703",
   "engine.ts polyTwin()": "1aac1856dfc93340",
   "live-switch polyTwin": "16806c301c9822ab",
@@ -20,6 +20,10 @@
   {
    "at": "2026-10-28T01:55:43.415752Z",
    "words": "card \"$7.50 now\" (Oct 27 6:55 PM PT): 5M $7.50 in kept hours, Poly cap for 5m only"
+  },
+  {
+   "at": "2026-10-28T17:34:25.914830Z",
+   "words": "Love Oct 28 2026 10:34 AM PT card 'Put the 5M back on her Tuesday 4:57 AM walls?' -> 'Yes, 4:57 AM walls, live now' (fix382: bandlock5m.ts = 4:57 AM Oct 27 walls)"
   }
  ]
 }

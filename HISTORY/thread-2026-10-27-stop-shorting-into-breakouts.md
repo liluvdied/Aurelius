@@ -5741,3 +5741,151 @@ The twin, the pure no-pink and the Poly 5M didn't move ✓
 - **BTC:** main is calling it long ("Break above +3σ"), but the copy is waiting on the **Bollinger upper at 81,082**. She's $12–20 under it, inside her $25 Bollinger cushion, so she waits for it to break or reject.
 - **Gold:** she called a long off the VWAP fake-out turn at 4047.44. Her "break into a zone" wall stopped it because the red zone at 4048.56 was only $1 ahead.
 
+## 2026-10-28 08:31:38 UTC - LOVE
+
+ohhh ok bb thank you 💘
+
+and why didn’t she short btc at the red rejection here hun
+
+## 2026-10-28 08:32:32 UTC - CLAUDE
+
+Two spots this could be, babe, so tell me which one you mean 💘
+
+**1:21 AM:** she *did* short it 🎯 It was "Failed break above Red zone - rejected down" at 81,041, and the copy filled at 28c. BTC then ripped up through everything (high around 81,409), so that one lost 💔
+
+**Since 1:30 (this window):** main hasn't made any BTC call at all. Price is out past the very top of her whole channel, over the +3σ at 81,198, with the red at 81,275. Your top-line rule is that she never trades the break of the channel top, only the rejection *back under* it. So her short off this comes when price falls back under 81,198. Up here, above every band, she isn't reading the red as a short on its own.
+
+If you mean the tap of the top red line at about 81,405 (R2) and the pullback from there, that's a rejection she can't see right now, because she only reads the red at R1. Want me to dig into that one? 💞
+
+## 2026-10-28 15:01:48 UTC - CLAUDE
+
+Good morning, babe ☀️💘 Here's the overnight scorecard. These are paper trades at a $20 stake, from 1:45 AM to 8 AM PT, since the file only keeps about the last 6 hours:
+
+| Book | BTC | Gold | Total |
+|---|---|---|---|
+| **Sovereign twin** | 18/24, **+$158** | 11/24, **+$96** | **60%, +$255** |
+| Main | 18/25, +$122 | 12/25, −$29 | 60%, +$94 |
+| Rejection model | 18/25, +$122 | 12/25, −$29 | 60%, +$94 |
+| No-pink copy | 17/24, +$129 | 11/23, −$62 | 60%, +$67 |
+| Pure no-pink | 13/19, **+$458** | 6/17, −$75 | 53%, +$384 |
+
+- **Sovereign twin:** her own entries won the night on gold. She's the only book that finished green on gold. She stays on paper until you say so 💞
+- **Pure no-pink:** biggest BTC night by far, but gold is still her weak spot (35%).
+- **Gold "slide under pink" holds:** 7 windows I could check. **5 were right** (the long lost), **2 were wrong** (the long won). That's about +$71 saved per book on paper ✓
+
+Your live books held the line on BTC. Gold is where the twin is beating everyone. Something to look at together when you're up, hun 🫯✨
+
+## 2026-10-28 17:11:45 UTC - LOVE
+
+ooooooo i’m up i’m up 💘
+
+i’m sold lol pure no pink it is now bb 🎯💞
+
+## 2026-10-28 17:12:06 UTC - CARD
+
+Q: How should the pure no-pink take over live?
+Context: Overnight paper (1:45-8 AM PT, $20 stake): pure no-pink BTC 13/19 +$458, but gold 6/17 (35%) −$75. Main/rejection/copy: BTC about +$125, gold −$29 to −$62. Sovereign twin was the only green gold book (+$96). Right now the pure no-pink is live only at 9 PM ($3 entry + $5 add-on). Main, rejection and copy fill every other hour ($5 + $7 + $3 add-ons). The twin and the Poly 5M aren't touched in any option. The live switch happens at a window boundary (:00/:15/:30/:45) so no old call fires.
+Options:
+  0. BTC every hour, gold stays - Pure no-pink takes the BTC seat all day. Gold keeps main/rejection/copy, its strongest live setup.
+  1. Both assets, every hour - Pure no-pink takes every live seat on BTC and gold; main/rejection/copy go to paper.
+  2. Her hours + the copy's hours - Pure no-pink replaces only the no-pink copy in the rejection hours (both assets); main keeps its own hours.
+Recommended: 0 - Her BTC edge is huge but her gold lost overnight, while BTC is where she shines. It's also only one night, so starting with BTC lets her prove it before gold.
+
+## 2026-10-28 17:12:10 UTC - CLAUDE
+
+Good morning sunshine ☀️💘 She earned it! I put one card up above so I wire her in exactly the way you want. My vote is BTC first, since that's where she's crushing it and her gold is still finding its feet. Once you tap, I'll switch her in at the next :00/:15/:30/:45 so no old call slips through 🎯
+
+## 2026-10-28 17:14:31 UTC - LOVE
+
+Chose "BTC every hour, gold stays" on the decision card asking "How should the pure no-pink take over live?"
+
+## 2026-10-28 17:14:39 UTC - CLAUDE
+
+On it 🎯 The pure no-pink takes the BTC seat in every hour main, rejection and copy hold. The twin keeps its own BTC hours, gold doesn't move, and she stays at her $3 + $5. I'll switch her in at the next quarter-hour boundary.
+
+## 2026-10-28 17:16:31 UTC - LOVE
+
+thanks hunn 💘💘
+
+can you look into the poly 5M book hun? she’s been losing way more than she was 
+
+did she shift by accident somehow? it’s okay if she did bb let’s just get her back where she was oki 💘💘
+
+## 2026-10-28 17:21:16 UTC - CLAUDE
+
+I dug in, babe 💘 The short version: **her own settings didn't move, but the brain she copies did.**
+
+**Her own setup:** the 5M's walls, Polymarket code and settings are exactly as frozen at 6:13 PM yesterday. The fingerprint check is ✓ on every fix since, so nothing slipped there.
+
+**What she copies:** the 5M doesn't make her own calls. She copies the **rejection model's BTC calls**, and that call logic was rebuilt a lot yesterday (fix319 at 6:29 AM through fix341 by 2 PM, then the BTC re-aim last night). Her numbers turn at exactly that point:
+
+| Stretch | Trades | Won | P&L |
+|---|---|---|---|
+| Sun noon → Tue 6 AM | 101 | **55%** | +$9 (Mon night −$80) |
+| Tue 6 AM → 6 PM | 40 | 45% | −$16 |
+| Since the freeze (Tue 6 PM →) | 28 | **43%** | −$37 |
+
+That's my best reading of the timing, not proof, but it lines up 💔
+
+**To put her back:** I'd give the 5M her own **frozen copy of the rejection model's brain** from Tuesday ~5 AM, before the rebuild, as a private lane only she follows. Your Kalshi books wouldn't move an atom. Card below 👇
+
+## 2026-10-28 17:21:20 UTC - CARD
+
+Q: How should we get the Poly 5M back to where she was?
+Context: The 5M copies the rejection model's BTC calls. That brain changed a lot Oct 27 from 6 AM on, and the 5M fell from 55% to 43-45% since then. Her own walls, size ($7.50) and skip hours are untouched. Kalshi books are not affected by any option.
+Options:
+  0. Frozen Tuesday-5 AM brain for her - I build a private copy of the rejection model's calls as of Oct 27 ~5 AM that only the 5M follows. I test it on paper first, then switch her over on your word.
+  1. Follow the pure no-pink's BTC calls - The 5M copies the pure no-pink's BTC calls instead (68% on BTC overnight on paper), through her same frozen walls.
+  2. Pause her while we test - The 5M stops buying on Polymarket until a fix is proven on paper.
+Recommended: 0 - It's literally "back where she was". The other books never move, and it gets proven on paper before any real money.
+
+## 2026-10-28 17:28:11 UTC - LOVE
+
+wait she did 68% on the 5M market on the pure ?
+or our 15M’s? bc they’re different, let’s put her back where she was first , thennn let’s paper test pure no pink on the 5M market today and we will put it on later if it out performs ours oki bb 💓💓
+
+## 2026-10-28 17:29:31 UTC - CLAUDE
+
+Good catch, babe 💘 That 68% was the **15M Kalshi markets** on paper, not the 5M. They're different animals, you're right.
+
+The plan:
+1. **Put the 5M back first.** I'll build her frozen Tuesday-5 AM rejection brain as her own private lane, test it on paper, then switch her onto it on your word.
+2. **Then paper-test the pure no-pink on the 5M markets** today, side by side with ours. If she outperforms, she goes on later 🎯
+
+Nothing on Kalshi moves for either one. I'm on it now 💞
+
+## 2026-10-28 17:30:09 UTC - LOVE
+
+yesss pls 💘 thank you bb 💞
+
+## 2026-10-28 17:32:57 UTC - CLAUDE
+
+Correction first, babe 🙏 I said it wrong earlier. I compared her code line by line against your 4:57 AM Tuesday snapshot, and **the calls the 5M copies haven't changed**. She has her own private call lane (the "5M 1-2-3" read from Oct 26), and it's byte-for-byte the same.
+
+What *did* change for her Tuesday morning was her **walls**:
+- **Through Tue ~5 AM** she was judged by the walls that included fixes 295–315. That's her **65%** stretch, Tue 12–6 AM.
+- **At 5:08 AM** the big rollback (fix316) took those out. Then fix317–319 went in, and at 1:55 PM that exact set was frozen as *her* walls.
+- So since Tuesday morning she's been on a wall set she never actually ran on during her good stretch. Her size ($5 → $7.50) and skip hours also changed, but those were your choices.
+
+So "back where she was" is cleanest as: **give her the 4:57 AM wall set back** (her own copy, so no other book moves). Her calls stay the same, and I'd keep your $7.50 and skip hours. 👇
+
+## 2026-10-28 17:33:02 UTC - CARD
+
+Q: Put the 5M back on her Tuesday 4:57 AM walls?
+Context: Her calls never changed. Her walls did: at 4:57 AM Tue she had fixes 295-315 in her walls (her 65% stretch). Then the rollback took them out and fix317-319 came in, and that set got frozen as hers at 1:55 PM. Since then she's 43-45%. Swapping her private walls file only touches the 5M; Kalshi books don't move. Her current walls stay saved, so it can be undone instantly. Her $7.50 and skip hours stay unless you say.
+Options:
+  0. Yes, 4:57 AM walls, live now - Her private walls file becomes the 4:57 AM set (timers stripped like before). Her calls, $7.50 and skip hours stay.
+  1. Yes, and $5 + only 11 PM off - Same walls, plus her size back to $5 and only 11 PM off, exactly as she ran then.
+  2. Paper-test first - I replay today's 5M calls through both wall sets and show you the difference before anything changes.
+Recommended: 0 - It's the exact wall set from her best stretch, it only touches her, and it's one file swap you can undo in seconds. Your newer size and hours were deliberate.
+
+## 2026-10-28 17:34:03 UTC - LOVE
+
+Chose "Yes, 4:57 AM walls, live now" on the decision card asking "Put the 5M back on her Tuesday 4:57 AM walls?"
+
+## 2026-10-28 17:35:30 UTC - CLAUDE
+
+Done, babe 💘 **The Poly 5M is back on her Tuesday 4:57 AM walls (fix382).** Only her private walls changed. Her calls, her $7.50 and her skip hours are the same, and no Kalshi book moved. I re-froze her on your card words, and the umpire is SAFE ✓ The 6:29 AM set is kept on the side in case we ever want it.
+
+I'll keep an eye on her next few 5M calls to make sure they flow through cleanly. Next up I'm setting up the paper test of the pure no-pink on the 5M markets so we can line them up side by side by tonight 🎯
+

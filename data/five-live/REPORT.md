@@ -1,11 +1,11 @@
 # 5M books ledger ✨ clean slate
 
-Live Polymarket 5m trades on the flip + 4 minutes rule at $5, since Sun 02:12 AM PT. Updated Wed 12:22 AM PT.
+Live Polymarket 5m trades on the flip + 4 minutes rule at $5, since Sun 02:12 AM PT. Updated Wed 10:21 AM PT.
 
 | Book | Trades | Won | Lost | Open | Win rate | P&L |
 |---|---|---|---|---|---|---|
-| MAIN 💞 | 12 | 4 | 6 | 2 | 40% | $-8.87 |
-| REJECTION 🎯 | 161 | 90 | 39 | 32 | 70% | $+211.14 |
+| MAIN 💞 | 13 | 5 | 6 | 2 | 45% | $-3.66 |
+| REJECTION 🎯 | 179 | 100 | 45 | 34 | 69% | $+246.75 |
 
 | When (PT) | Book | Side | Paid | Stake | Result | P&L |
 |---|---|---|---|---|---|---|
@@ -28,8 +28,8 @@ Live Polymarket 5m trades on the flip + 4 minutes rule at $5, since Sun 02:12 AM
 | Sun 07:26 AM | REJECTION 🎯 | down | 0.5 | $4.63 | win | $+4.21 |
 | Sun 07:32 AM | REJECTION 🎯 | down | 0.19 | $4.13 | loss | $-4.13 |
 | Sun 07:47 AM | REJECTION 🎯 | up | 0.24 | $4.28 | win | $+13.03 |
-| Sun 07:57 AM | REJECTION 🎯 | down | 0.09 | $3 | open |  |
-| Sun 08:07 AM | REJECTION 🎯 | up | 0.16 | $4 | loss | $-4.00 |
+| Sun 07:57 AM | REJECTION 🎯 | down | 0.06 | $1.2 | open |  |
+| Sun 08:07 AM | REJECTION 🎯 | up | 0.17 | $0.85 | loss | $-0.85 |
 | Sun 08:20 AM | REJECTION 🎯 | up | 0.59 | $4.4 | loss | $-4.40 |
 | Sun 08:40 AM | REJECTION 🎯 | up | 0.55 | $4.66 | open |  |
 | Sun 03:45 PM | REJECTION 🎯 | down | 0.45 | $4.16 | win | $+4.45 |
@@ -182,3 +182,22 @@ Live Polymarket 5m trades on the flip + 4 minutes rule at $5, since Sun 02:12 AM
 | Wed 12:01 AM | REJECTION 🎯 | up | 0.62 | $7.04 | win | $+3.87 |
 | Wed 12:07 AM | MAIN 💞 | down | 0.69 | $7.18 | loss | $-7.18 |
 | Wed 12:16 AM | REJECTION 🎯 | up | 0.55 | $7.36 | loss | $-7.36 |
+| Wed 12:27 AM | MAIN 💞 | up | 0.51 | $5.97 | win | $+5.21 |
+| Wed 01:26 AM | REJECTION 🎯 | up | 0.53 | $7.1 | win | $+5.89 |
+| Wed 02:06 AM | REJECTION 🎯 | down | 0.37 | $6.94 | win | $+11.82 |
+| Wed 02:36 AM | REJECTION 🎯 | down | 0.59 | $7.02 | loss | $-7.02 |
+| Wed 02:52 AM | REJECTION 🎯 | up | 0.46 | $6.38 | loss | $-6.38 |
+| Wed 02:57 AM | REJECTION 🎯 | up | 0.69 | $7.09 | win | $+2.76 |
+| Wed 06:06 AM | REJECTION 🎯 | down | 0.45 | $7.5 | win | $+7.33 |
+| Wed 06:21 AM | REJECTION 🎯 | down | 0.52 | $7.36 | win | $+5.95 |
+| Wed 06:26 AM | REJECTION 🎯 | up | 0.42 | $6.43 | open |  |
+| Wed 07:06 AM | REJECTION 🎯 | up | 0.58 | $6.21 | loss | $-6.21 |
+| Wed 07:36 AM | REJECTION 🎯 | up | 0.43 | $7.16 | win | $+9.49 |
+| Wed 07:46 AM | REJECTION 🎯 | up | 0.62 | $6.83 | win | $+3.84 |
+| Wed 08:06 AM | REJECTION 🎯 | down | 0.29 | $6.21 | win | $+15.20 |
+| Wed 08:36 AM | REJECTION 🎯 | down | 0.66 | $7.07 | loss | $-7.07 |
+| Wed 08:46 AM | REJECTION 🎯 | down | 0.41 | $5.49 | win | $+7.03 |
+| Wed 08:51 AM | REJECTION 🎯 | up | 0.62 | $7.15 | loss | $-7.15 |
+| Wed 09:06 AM | REJECTION 🎯 | down | 0.62 | $7.04 | win | $+4.31 |
+| Wed 09:11 AM | REJECTION 🎯 | down | 0.69 | $7.18 | open |  |
+| Wed 09:16 AM | REJECTION 🎯 | up | 0.44 | $7.33 | loss | $-7.33 |

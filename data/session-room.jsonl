@@ -105411,3 +105411,385 @@
 {"at":"2026-10-28T08:15:17.553Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280430-30","side":"up","label":"Break above +3σ","spot":81075.32,"band":"+3σ","bandPx":81060.28,"away":15.04}
 {"at":"2026-10-28T08:15:17.554Z","lane":"sp15","ticker":"KXBTC15M-26OCT280430-30","side":"up","label":"Break above +3σ","spot":81075.32,"band":"+3σ","bandPx":81060.28,"away":15.04}
 {"at":"2026-10-28T08:15:17.554Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280430-30","side":"up","label":"Break above +3σ","spot":81075.32,"band":"+3σ","bandPx":81060.28,"away":15.04}
+{"at":"2026-10-28T10:17:36.226Z","lane":"sp10","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Falling away from 10m PP, red 5m (was: On 10m PP)","spot":81382.66,"band":"+2σ","bandPx":81372.96,"away":9.7}
+{"at":"2026-10-28T10:17:36.226Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Falling away from 10m PP, red 5m (was: On 10m PP)","spot":81382.66,"band":"+2σ","bandPx":81372.96,"away":9.7}
+{"at":"2026-10-28T10:17:37.261Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Broke down through 5m PP by $13.11 (break = trade the break)","spot":81389.4,"band":"+2σ","bandPx":81372.96,"away":16.44}
+{"at":"2026-10-28T10:17:37.273Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Broke down through 5m PP by $13.11 (break = trade the break)","spot":81389.4,"band":"+2σ","bandPx":81372.96,"away":16.44}
+{"at":"2026-10-28T10:17:37.273Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Broke down through 5m PP by $13.11 (break = trade the break)","spot":81389.4,"band":"+2σ","bandPx":81372.96,"away":16.44}
+{"at":"2026-10-28T10:17:37.274Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Broke down through 5m PP by $13.11 (break = trade the break)","spot":81389.4,"band":"+2σ","bandPx":81372.96,"away":16.44}
+{"at":"2026-10-28T10:17:41.289Z","lane":"sp10","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Break below 10m PP (live push)","spot":81373.87,"band":"+2σ","bandPx":81372.96,"away":0.91}
+{"at":"2026-10-28T10:17:41.289Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Break below 10m PP (live push)","spot":81373.87,"band":"+2σ","bandPx":81372.96,"away":0.91}
+{"at":"2026-10-28T10:17:41.290Z","lane":"sp15","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Falling away from +2σ, red 5m (was: On +2σ)","spot":81373.87,"band":"+2σ","bandPx":81372.96,"away":0.91}
+{"at":"2026-10-28T10:17:41.290Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Falling away from +2σ, red 5m (was: On +2σ)","spot":81373.87,"band":"+2σ","bandPx":81372.96,"away":0.91}
+{"at":"2026-10-28T10:17:49.811Z","lane":"sp10","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Break below 10m PP (live push)","spot":81374.75,"band":"+2σ","bandPx":81373.15,"away":1.6}
+{"at":"2026-10-28T10:17:49.812Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Break below 10m PP (live push)","spot":81374.75,"band":"+2σ","bandPx":81373.15,"away":1.6}
+{"at":"2026-10-28T10:17:49.813Z","lane":"sp15","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Falling away from +2σ, red 5m (was: On +2σ)","spot":81374.75,"band":"+2σ","bandPx":81373.15,"away":1.6}
+{"at":"2026-10-28T10:17:49.813Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Falling away from +2σ, red 5m (was: On +2σ)","spot":81374.75,"band":"+2σ","bandPx":81373.15,"away":1.6}
+{"at":"2026-10-28T10:17:50.810Z","lane":"sp10","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Break below 10m PP (live push)","spot":81375.55,"band":"+2σ","bandPx":81373.15,"away":2.4}
+{"at":"2026-10-28T10:17:50.810Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Break below 10m PP (live push)","spot":81375.55,"band":"+2σ","bandPx":81373.15,"away":2.4}
+{"at":"2026-10-28T10:17:51.072Z","lane":"sp10","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Break below 10m PP (live push)","spot":81375.55,"band":"+2σ","bandPx":81373.15,"away":2.4}
+{"at":"2026-10-28T10:17:51.072Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280630-30","side":"down","label":"Break below 10m PP (live push)","spot":81375.55,"band":"+2σ","bandPx":81373.15,"away":2.4}
+{"at":"2026-10-28T10:18:02.360Z","lane":"sp2","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81388.35,"band":"+2σ","bandPx":81373.51,"away":14.84}
+{"at":"2026-10-28T10:18:02.361Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81388.35,"band":"+2σ","bandPx":81373.51,"away":14.84}
+{"at":"2026-10-28T10:18:02.362Z","lane":"sp5","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81388.35,"band":"+2σ","bandPx":81373.51,"away":14.84}
+{"at":"2026-10-28T10:18:03.357Z","lane":"sp2","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81384.17,"band":"+2σ","bandPx":81373.51,"away":10.66}
+{"at":"2026-10-28T10:18:03.357Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81384.17,"band":"+2σ","bandPx":81373.51,"away":10.66}
+{"at":"2026-10-28T10:18:03.360Z","lane":"sp5","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81384.17,"band":"+2σ","bandPx":81373.51,"away":10.66}
+{"at":"2026-10-28T10:18:12.558Z","lane":"sp2","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81379.74,"band":"+2σ","bandPx":81373.65,"away":6.09}
+{"at":"2026-10-28T10:18:12.558Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81379.74,"band":"+2σ","bandPx":81373.65,"away":6.09}
+{"at":"2026-10-28T10:18:12.561Z","lane":"sp5","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81379.74,"band":"+2σ","bandPx":81373.65,"away":6.09}
+{"at":"2026-10-28T10:18:14.563Z","lane":"sp5","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81396.2,"band":"+2σ","bandPx":81373.65,"away":22.55}
+{"at":"2026-10-28T10:18:14.836Z","lane":"sp5","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81396.2,"band":"+2σ","bandPx":81374.05,"away":22.15}
+{"at":"2026-10-28T10:18:15.548Z","lane":"sp2","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81390.61,"band":"+2σ","bandPx":81374.05,"away":16.56}
+{"at":"2026-10-28T10:18:15.548Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81390.61,"band":"+2σ","bandPx":81374.05,"away":16.56}
+{"at":"2026-10-28T10:18:15.549Z","lane":"sp5","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81390.61,"band":"+2σ","bandPx":81374.05,"away":16.56}
+{"at":"2026-10-28T10:18:16.872Z","lane":"sp2","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81391.21,"band":"+2σ","bandPx":81374.05,"away":17.16}
+{"at":"2026-10-28T10:18:16.872Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81391.21,"band":"+2σ","bandPx":81374.05,"away":17.16}
+{"at":"2026-10-28T10:18:16.873Z","lane":"sp5","ticker":"KXBTC15M-26OCT280630-30","side":"up","label":"Bounce off +2σ","spot":81391.21,"band":"+2σ","bandPx":81374.05,"away":17.16}
+{"at":"2026-10-28T12:18:35.464Z","lane":"sp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80956.63,"band":"session VWAP","bandPx":80952.77,"away":3.86}
+{"at":"2026-10-28T12:18:35.465Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80956.63,"band":"session VWAP","bandPx":80952.77,"away":3.86}
+{"at":"2026-10-28T12:18:35.467Z","lane":"sp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80956.63,"band":"session VWAP","bandPx":80952.77,"away":3.86}
+{"at":"2026-10-28T12:18:35.467Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80956.63,"band":"session VWAP","bandPx":80952.77,"away":3.86}
+{"at":"2026-10-28T12:18:35.484Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80956.63,"band":"session VWAP","bandPx":80952.77,"away":3.86}
+{"at":"2026-10-28T12:18:35.484Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80956.63,"band":"session VWAP","bandPx":80952.77,"away":3.86}
+{"at":"2026-10-28T12:18:35.484Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80956.63,"band":"session VWAP","bandPx":80952.77,"away":3.86}
+{"at":"2026-10-28T12:18:37.294Z","lane":"sp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.295Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.296Z","lane":"sp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.296Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.305Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.305Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.305Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.453Z","lane":"sp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.454Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.455Z","lane":"sp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.455Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.465Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.468Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:37.468Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.22,"band":"session VWAP","bandPx":80952.77,"away":1.45}
+{"at":"2026-10-28T12:18:38.471Z","lane":"sp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80954.58,"band":"session VWAP","bandPx":80952.77,"away":1.81}
+{"at":"2026-10-28T12:18:38.472Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80954.58,"band":"session VWAP","bandPx":80952.77,"away":1.81}
+{"at":"2026-10-28T12:18:38.473Z","lane":"sp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.58,"band":"session VWAP","bandPx":80952.77,"away":1.81}
+{"at":"2026-10-28T12:18:38.473Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.58,"band":"session VWAP","bandPx":80952.77,"away":1.81}
+{"at":"2026-10-28T12:18:38.485Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.58,"band":"session VWAP","bandPx":80952.77,"away":1.81}
+{"at":"2026-10-28T12:18:38.485Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.58,"band":"session VWAP","bandPx":80952.77,"away":1.81}
+{"at":"2026-10-28T12:18:38.485Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.58,"band":"session VWAP","bandPx":80952.77,"away":1.81}
+{"at":"2026-10-28T12:18:39.476Z","lane":"sp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80954.69,"band":"session VWAP","bandPx":80952.77,"away":1.92}
+{"at":"2026-10-28T12:18:39.476Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80954.69,"band":"session VWAP","bandPx":80952.77,"away":1.92}
+{"at":"2026-10-28T12:18:39.478Z","lane":"sp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.69,"band":"session VWAP","bandPx":80952.77,"away":1.92}
+{"at":"2026-10-28T12:18:39.479Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.69,"band":"session VWAP","bandPx":80952.77,"away":1.92}
+{"at":"2026-10-28T12:18:39.493Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.69,"band":"session VWAP","bandPx":80952.77,"away":1.92}
+{"at":"2026-10-28T12:18:39.494Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.69,"band":"session VWAP","bandPx":80952.77,"away":1.92}
+{"at":"2026-10-28T12:18:39.494Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80954.69,"band":"session VWAP","bandPx":80952.77,"away":1.92}
+{"at":"2026-10-28T12:18:40.477Z","lane":"sp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Break above session VWAP","spot":80965.11,"band":"session VWAP","bandPx":80952.77,"away":12.34}
+{"at":"2026-10-28T12:18:40.478Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Break above session VWAP","spot":80965.11,"band":"session VWAP","bandPx":80952.77,"away":12.34}
+{"at":"2026-10-28T12:18:40.479Z","lane":"sp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Break above session VWAP","spot":80965.11,"band":"session VWAP","bandPx":80952.77,"away":12.34}
+{"at":"2026-10-28T12:18:40.480Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Break above session VWAP","spot":80965.11,"band":"session VWAP","bandPx":80952.77,"away":12.34}
+{"at":"2026-10-28T12:18:40.497Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Break above session VWAP","spot":80965.11,"band":"session VWAP","bandPx":80952.77,"away":12.34}
+{"at":"2026-10-28T12:18:40.498Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Break above session VWAP","spot":80965.11,"band":"session VWAP","bandPx":80952.77,"away":12.34}
+{"at":"2026-10-28T12:18:40.498Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Break above session VWAP","spot":80965.11,"band":"session VWAP","bandPx":80952.77,"away":12.34}
+{"at":"2026-10-28T12:18:41.317Z","lane":"sp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.318Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.319Z","lane":"sp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.319Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.328Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.328Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.328Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.469Z","lane":"sp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.469Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 2m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.471Z","lane":"sp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.471Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.481Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.481Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:18:41.481Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280830-30","side":"up","label":"Bounce off 5m S1","spot":80957.96,"band":"session VWAP","bandPx":80952.78,"away":5.18}
+{"at":"2026-10-28T12:45:14.887Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:14.888Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:14.890Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:14.891Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:14.919Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:14.920Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:14.920Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:14.940Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:14.940Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:14.942Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:14.942Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80680.96,"band":"-1σ","bandPx":80693.3,"away":12.34}
+{"at":"2026-10-28T12:45:15.464Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:15.464Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:15.465Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:15.466Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:15.474Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:15.475Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:15.475Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:15.480Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:15.480Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:15.482Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:15.482Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.865Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.865Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.866Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.866Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.873Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.874Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.874Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.878Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.878Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.879Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:16.879Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80682.04,"band":"-1σ","bandPx":80693.3,"away":11.26}
+{"at":"2026-10-28T12:45:17.888Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:17.889Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:17.890Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:17.891Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:17.898Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:17.899Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:17.899Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:17.906Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:17.906Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:17.908Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:17.908Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.88,"band":"-1σ","bandPx":80693.3,"away":13.42}
+{"at":"2026-10-28T12:45:18.892Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:18.892Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:18.894Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:18.895Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:18.902Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:18.902Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:18.903Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:18.909Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:18.909Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:18.910Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:18.910Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.68,"band":"-1σ","bandPx":80693.3,"away":9.62}
+{"at":"2026-10-28T12:45:19.082Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.082Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.083Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.083Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.093Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.093Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.094Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.098Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.098Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.099Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.099Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.892Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.893Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.894Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.895Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.909Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.909Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.910Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.915Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.915Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.917Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:19.917Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.17,"band":"-1σ","bandPx":80693.27,"away":9.1}
+{"at":"2026-10-28T12:45:20.891Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:20.891Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:20.892Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:20.893Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:20.902Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:20.903Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:20.903Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:20.910Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:20.911Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:20.912Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:20.913Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.11,"band":"-1σ","bandPx":80693.27,"away":9.16}
+{"at":"2026-10-28T12:45:21.892Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:21.892Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:21.893Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:21.893Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:21.901Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:21.901Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:21.901Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:21.907Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:21.908Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:21.909Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:21.909Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80683.8,"band":"-1σ","bandPx":80693.27,"away":9.47}
+{"at":"2026-10-28T12:45:22.168Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.169Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.170Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.170Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.180Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.180Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.180Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.185Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.185Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.186Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.186Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.915Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.916Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.917Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.917Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.923Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.923Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.923Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.927Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.927Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.928Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:22.928Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.66,"band":"-1σ","bandPx":80693.24,"away":6.58}
+{"at":"2026-10-28T12:45:23.923Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:23.924Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:23.925Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:23.926Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:23.934Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:23.934Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:23.934Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:23.939Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:23.939Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:23.941Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:23.941Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80684.48,"band":"-1σ","bandPx":80693.24,"away":8.76}
+{"at":"2026-10-28T12:45:25.464Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.464Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.465Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.466Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.479Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.479Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.479Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.484Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.484Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.486Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.486Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.621Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.621Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.622Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.623Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.631Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.631Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.631Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.635Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.635Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.636Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:25.636Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.05,"band":"-1σ","bandPx":80693.24,"away":7.19}
+{"at":"2026-10-28T12:45:26.486Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:26.486Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:26.487Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:26.488Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:26.497Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:26.497Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:26.497Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:26.502Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:26.502Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:26.503Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:26.503Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.52,"band":"-1σ","bandPx":80693.24,"away":6.72}
+{"at":"2026-10-28T12:45:27.468Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:27.469Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:27.470Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:27.471Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:27.477Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:27.477Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:27.477Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:27.482Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:27.482Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:27.483Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:27.483Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80686.51,"band":"-1σ","bandPx":80693.24,"away":6.73}
+{"at":"2026-10-28T12:45:34.989Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:34.989Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:34.991Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:34.991Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:35.002Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:35.002Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:35.002Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:35.009Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:35.009Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:35.010Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:35.010Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80670.49,"band":"-1σ","bandPx":80693.19,"away":22.7}
+{"at":"2026-10-28T12:45:35.993Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:35.994Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:35.995Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:35.995Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.005Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.005Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.005Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.012Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.013Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.014Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.014Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.192Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.192Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.193Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.194Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.199Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.199Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.200Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.204Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.204Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.205Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.205Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80679.17,"band":"-1σ","bandPx":80693.19,"away":14.02}
+{"at":"2026-10-28T12:45:36.988Z","lane":"sp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T12:45:36.988Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T12:45:36.990Z","lane":"sp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T12:45:36.990Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T12:45:37.000Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T12:45:37.000Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T12:45:37.001Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T12:45:37.007Z","lane":"sp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T12:45:37.007Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T12:45:37.008Z","lane":"sp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T12:45:37.009Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280900-00","side":"down","label":"Break below -1σ","spot":80677.81,"band":"-1σ","bandPx":80693.19,"away":15.38}
+{"at":"2026-10-28T13:30:14.424Z","lane":"sp2","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 2m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.424Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 2m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.427Z","lane":"sp5","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.427Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.443Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.443Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.443Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.455Z","lane":"sp10","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 10m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.455Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 10m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.457Z","lane":"sp15","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 15m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.457Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 15m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.898Z","lane":"sp2","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 2m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.898Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 2m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.900Z","lane":"sp5","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.900Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.920Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.921Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.921Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.933Z","lane":"sp10","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 10m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.933Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 10m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.935Z","lane":"sp15","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 15m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:14.935Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 15m S1","spot":80412.69,"band":"-2σ","bandPx":80414.94,"away":2.25}
+{"at":"2026-10-28T13:30:15.414Z","lane":"sp2","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 2m S1","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T13:30:15.414Z","lane":"ogp2","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below -2σ","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T13:30:15.416Z","lane":"sp5","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 5m S1","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T13:30:15.416Z","lane":"ogp5","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below -2σ","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T13:30:15.435Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below -2σ","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T13:30:15.435Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below -2σ","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T13:30:15.436Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below -2σ","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T13:30:15.458Z","lane":"sp10","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 10m S1","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T13:30:15.458Z","lane":"ogp10","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below -2σ","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T13:30:15.459Z","lane":"sp15","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below 15m S1","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T13:30:15.460Z","lane":"ogp15","ticker":"KXBTC15M-26OCT280945-45","side":"down","label":"Break below -2σ","spot":80393.83,"band":"-2σ","bandPx":80414.94,"away":21.11}
+{"at":"2026-10-28T15:30:14.636Z","lane":"sp2","ticker":"KXBTC15M-26OCT281145-45","side":"up","label":"On 2m PP","spot":80595.74,"band":"-1σ","bandPx":80606.33,"away":10.59}
+{"at":"2026-10-28T15:30:14.639Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281145-45","side":"up","label":"On 2m PP","spot":80595.74,"band":"-1σ","bandPx":80606.33,"away":10.59}
+{"at":"2026-10-28T17:33:49.699Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80555.82,"band":"-1σ","bandPx":80545.49,"away":10.33}
+{"at":"2026-10-28T17:33:49.700Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80555.82,"band":"-1σ","bandPx":80545.49,"away":10.33}
+{"at":"2026-10-28T17:33:50.743Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80550,"band":"-1σ","bandPx":80545.44,"away":4.56}
+{"at":"2026-10-28T17:33:50.743Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80550,"band":"-1σ","bandPx":80545.44,"away":4.56}
+{"at":"2026-10-28T17:33:51.684Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80551.13,"band":"-1σ","bandPx":80545.44,"away":5.69}
+{"at":"2026-10-28T17:33:51.684Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80551.13,"band":"-1σ","bandPx":80545.44,"away":5.69}
+{"at":"2026-10-28T17:33:52.240Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80551.13,"band":"-1σ","bandPx":80545.44,"away":5.69}
+{"at":"2026-10-28T17:33:52.240Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80551.13,"band":"-1σ","bandPx":80545.44,"away":5.69}
+{"at":"2026-10-28T17:33:52.667Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80556.52,"band":"-1σ","bandPx":80545.44,"away":11.08}
+{"at":"2026-10-28T17:33:52.668Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80556.52,"band":"-1σ","bandPx":80545.44,"away":11.08}
+{"at":"2026-10-28T17:33:53.785Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80556.52,"band":"-1σ","bandPx":80545.44,"away":11.08}
+{"at":"2026-10-28T17:33:53.786Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80556.52,"band":"-1σ","bandPx":80545.44,"away":11.08}
+{"at":"2026-10-28T17:33:54.792Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80549.22,"band":"-1σ","bandPx":80545.5,"away":3.72}
+{"at":"2026-10-28T17:33:54.792Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80549.22,"band":"-1σ","bandPx":80545.5,"away":3.72}
+{"at":"2026-10-28T17:33:56.075Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80549.16,"band":"-1σ","bandPx":80545.5,"away":3.66}
+{"at":"2026-10-28T17:33:56.075Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80549.16,"band":"-1σ","bandPx":80545.5,"away":3.66}
+{"at":"2026-10-28T17:33:56.211Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80549.16,"band":"-1σ","bandPx":80545.5,"away":3.66}
+{"at":"2026-10-28T17:33:56.211Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80549.16,"band":"-1σ","bandPx":80545.5,"away":3.66}
+{"at":"2026-10-28T17:33:57.215Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80548.64,"band":"-1σ","bandPx":80545.5,"away":3.14}
+{"at":"2026-10-28T17:33:57.215Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80548.64,"band":"-1σ","bandPx":80545.5,"away":3.14}
+{"at":"2026-10-28T17:33:58.220Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80547.37,"band":"-1σ","bandPx":80545.5,"away":1.87}
+{"at":"2026-10-28T17:33:58.220Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP","spot":80547.37,"band":"-1σ","bandPx":80545.5,"away":1.87}
+{"at":"2026-10-28T17:34:20.386Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80552.66,"band":"-1σ","bandPx":80545.39,"away":7.27}
+{"at":"2026-10-28T17:34:20.386Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80552.66,"band":"-1σ","bandPx":80545.39,"away":7.27}
+{"at":"2026-10-28T17:34:20.660Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80552.66,"band":"-1σ","bandPx":80545.37,"away":7.29}
+{"at":"2026-10-28T17:34:20.660Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80552.66,"band":"-1σ","bandPx":80545.37,"away":7.29}
+{"at":"2026-10-28T17:34:21.328Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80550.96,"band":"-1σ","bandPx":80545.37,"away":5.59}
+{"at":"2026-10-28T17:34:21.328Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80550.96,"band":"-1σ","bandPx":80545.37,"away":5.59}
+{"at":"2026-10-28T17:34:22.339Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80550.92,"band":"-1σ","bandPx":80545.37,"away":5.55}
+{"at":"2026-10-28T17:34:22.339Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80550.92,"band":"-1σ","bandPx":80545.37,"away":5.55}
+{"at":"2026-10-28T17:34:23.324Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80550.92,"band":"-1σ","bandPx":80545.37,"away":5.55}
+{"at":"2026-10-28T17:34:23.325Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80550.92,"band":"-1σ","bandPx":80545.37,"away":5.55}
+{"at":"2026-10-28T17:34:23.668Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80550.93,"band":"-1σ","bandPx":80545.37,"away":5.56}
+{"at":"2026-10-28T17:34:23.669Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80550.93,"band":"-1σ","bandPx":80545.37,"away":5.56}
+{"at":"2026-10-28T17:34:24.343Z","lane":"sp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80550.93,"band":"-1σ","bandPx":80545.37,"away":5.56}
+{"at":"2026-10-28T17:34:24.343Z","lane":"ogp2","ticker":"KXBTC15M-26OCT281345-45","side":"up","label":"Break above 2m PP (2 min ago)","spot":80550.93,"band":"-1σ","bandPx":80545.37,"away":5.56}

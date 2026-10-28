@@ -1,9 +1,22 @@
-# Every decision Love has made - rebuilt 2026-10-28T08:17:04.473359+00:00
+# Every decision Love has made - rebuilt 2026-10-28T17:34:51.043475+00:00
 
-1234 decisions with Love's words or card picks, out of 1924 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1236 decisions with Love's words or card picks, out of 1932 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T17:34:39Z  ·  diary line 2397  ·  fix316, fix317, fix339, fix382  ·  books: 5m book, rejection
+- Love: “can you look into the poly 5M book hun? she's been losing way more than she was / did she shift by accident somehow? it's okay if she did bb let's just get her back where she was oki + let's put her back where she was first + card Put the 5M back on her Tuesday 4:57 AM walls? -> Yes, 4:57 AM walls, live now”
+- fix316 taken back / replaced (see its entries)
+- fix317 IN HER CODE
+- fix339 IN HER CODE
+- fix382 IN HER CODE
+- Full entry: 2026-10-28T17:34:39Z fix382 (Oct 28 10:34 AM PT, Love: "can you look into the poly 5M book hun? she's been losing way more than she was / did she shift by accident somehow? it's okay if she did bb let's just get her back where she was oki + let's put her back where she was first + card Put the 5M back on her Tuesday 4:57 AM walls? -> Yes, 4:57 AM walls, live now"): Poly 5M walls back to the Oct 27 4:57 AM bandlock.ts (SNAPSHOT-TODAY-2026-10-27-0457am), hooks stripped like fix339; her calls unchanged (recon-rej5 identical to 4:57 AM); $7.50 + skip hours kept. 5M re-frozen. Diagnosis: 5M 55% Sun noon-Tue 6 AM, 43-45% since the fix316 rollback/fix317-319 wall set.
+
+## 2026-10-28T17:31:16Z  ·  diary line 2392  ·  fix381
+- Love: “i'm sold lol pure no pink it is now bb + card How should the pure no-pink take over live? -> BTC every hour, gold stays”
+- fix381 IN HER CODE
+- Full entry: 2026-10-28T17:31:16Z fix381 (Oct 28 10:14 AM PT, Love: "i'm sold lol pure no pink it is now bb + card How should the pure no-pink take over live? -> BTC every hour, gold stays"): recon-np takes the Kalshi BTC seat every hour (twin keeps its hours), gold unchanged, $3+$5; config at 10:30:00 boundary. fix381Prev saved.
 
 ## 2026-10-28T08:16:52Z  ·  diary line 2389  ·  fix380
 - Love: “we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters / same entry logic, we had some issues last time getting those to go thru correctly at a rejection so we made it just a default entry / but let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on / can we do that bb? + card Main + rejection + copy”
@@ -578,13 +591,13 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-27T19:18:33.877398+00:00  ·  diary line 2206  ·  fix312, fix319, fix332  ·  books: main, no-pink copy
 - Love: “hun i justttttt want her to not take trades when pink and a session band are stacked at the same top/bottom 10% of the channel and NOTHING. ELSE. i just told you this minutes ago.”
-- fix312 taken back / replaced (see its entries)
+- fix312 IN HER CODE
 - fix319 IN HER CODE
 - fix332 IN HER CODE
 - Full entry: 2026-10-27T19:18:33.877398+00:00 THAW (fix332 NO-PINK COPY (recon-togp) ONLY: the pink holds her only when pink sits stacked with a session band in the top/bottom 10% of the channel (PINK 10% wall + pink in TARGET PAST A BAND), same as the rejection model's fix319; no $1.50 (fix312 not restored). Main, rejection, twin untouched. Love Oct 27 12:17 PM PT: "hun i justttttt want her to not take trades when pink and a session band are stacked at the same top/bottom 10% of the channel and NOTHING. ELSE. i just told you this minutes ago." (answer to: copy gold pink $1.50 back?))
 
 ## 2026-10-27T19:10:35Z  ·  diary line 2205  ·  fix312, fix316
-- fix312 taken back / replaced (see its entries)
+- fix312 IN HER CODE
 - fix316 taken back / replaced (see its entries)
 - Full entry: [2026-10-27T19:10:35Z] FULL DIARY AUDIT (no code change): 289 fix tags; every code rule present (umpire SAFE) except copy gold pink flat $1.50 (fix312, removed by fix316 rollback; rulebook says kept) - asked Love yes/no for the copy only. Non-coded fixes = hours/sizes superseded by her latest settings, or taken back on her words.
 
@@ -729,7 +742,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-27T12:08:30.098058+00:00  ·  diary line 2157  ·  fix295, fix301, fix316  ·  books: main, rejection
 - Love: “you're gonna put this model back where she was before fix295 precisely nothing else”
-- fix295 taken back / replaced (see its entries)
+- fix295 IN HER CODE
 - fix301 IN HER CODE
 - fix316 taken back / replaced (see its entries)
 - Full entry: 2026-10-27T12:08:30.098058+00:00 THAW (fix316 RESTORE PRE-FIX295: bandlock/recon/engine taken back to Monday Oct 26 ~9:30 PM PT (before fix295) - fixes 295/296/297/298/299/300/302/306/307/308/309/310/311/312/315 undone (fix301/304/305 speed/lab only kept); config back to pre-295 (liveSkipHours gold [4,9,13] btc [8,18], gold 10 PM back to main); live lineup main (recon-tog) on BTC + rejection model (recon-rej) on gold, every size $1. Today's whole desk saved in data/SNAPSHOT-TODAY-2026-10-27-0457am to add fixes back on her word): Love Oct 27 4:51 AM PT: "you're gonna put this model back where she was before fix295 precisely nothing else" + 5:04 AM: "okay bring the whole desk back where it was , and keep those changes on file so we can do them again later ... bring her back where she was prior to fix 295, keep all of these on file and something we can add back in at a moments notice. put her live at the pre fix295 model now at $1 on the rejection model ... make sure my main book doesn't. move. an. ATOM." + 5:06 AM: "no put one on the main book and one on rejection , no preference. i need to make sure they are both the same now. never change a book without asking me again please hun."
@@ -753,14 +766,14 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-27T11:01:03.962363+00:00  ·  diary line 2150  ·  fix312, fix314
 - Love: “again no long on btc or gold.”
-- fix312 taken back / replaced (see its entries)
+- fix312 IN HER CODE
 - fix314 taken back / replaced (see its entries)
 - Full entry: 2026-10-27T11:01:03.962363+00:00 UNDO fix314 (recon back to the fix312 copy: main's read minus pink, thirds calls included again - fix314 had wrongly dropped her own 'rising from the bottom 33% = long / falling from the top 33% = short' rule): Love Oct 27 4:00 AM PT: "again no long on btc or gold." (4:00 AM main called 'Launched from the bottom third' longs on both; the copy skipped them under fix314)
 
 ## 2026-10-27T11:00:25.836871+00:00  ·  diary line 2148  ·  fix104, fix315
 - Love: “dude do you understand what a doji candle is????????????????? it is SHORT ONLY when a doji is followed by a candle falling, it is a continuation of the candle after the doji. the literal opposite of what you jjust said”
 - fix104 IN HER CODE
-- fix315 in her code without its number (see her words in the code comments)
+- fix315 IN HER CODE
 - Full entry: 2026-10-27T11:00:25.836871+00:00 THAW (fix315 DOJI AFTER THE TREND reads the candle after the doji: falling = short only, rising = long only (fix104 had used the doji's own colour); every book): Love Oct 27 3:57 AM PT: "dude do you understand what a doji candle is????????????????? it is SHORT ONLY when a doji is followed by a candle falling, it is a continuation of the candle after the doji. the literal opposite of what you jjust said" (3:54 AM gold short '1m rejection off Red zone' held by the green-doji long-only read)
 
 ## 2026-10-27T10:49:40.597798+00:00  ·  diary line 2146  ·  fix314  ·  books: main, no-pink copy
@@ -774,7 +787,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-27T10:19:09.254898+00:00  ·  diary line 2144  ·  fix312, fix313  ·  books: main, no-pink copy
 - Love: “all i want is a working copy of the main book. identical. 1;1. just without trading pink breaks, or rejections, she just trades the session band rejections , and the green/red pivot zones and the bollingers, she sits out pink trades and waits for price to hit the extremes, and then she enters the same exact way our main book does, no difference whatsover. mirro her identically without pink pls ... and place her on live at $1 until we can confirm she is working again”
-- fix312 taken back / replaced (see its entries)
+- fix312 IN HER CODE
 - fix313 taken back / replaced (see its entries)
 - Full entry: 2026-10-27T10:19:09.254898+00:00 fix313 NO-PINK COPY ALONE LIVE AT $1 (config only, no code thawed): Love Oct 27 3:14 AM PT: "all i want is a working copy of the main book. identical. 1;1. just without trading pink breaks, or rejections, she just trades the session band rejections , and the green/red pivot zones and the bollingers, she sits out pink trades and waits for price to hit the extremes, and then she enters the same exact way our main book does, no difference whatsover. mirro her identically without pink pls ... and place her on live at $1 until we can confirm she is working again" -> live true; liveBook.books = [recon-togp] only (main, rejection, twin paper); copy live every hour except her Kalshi off hours (offHourMain.rejHoursByAsset all hours); every live size $1 (maxDollars, liveBook.dollars, offHourMain.dollars + add-on, addOn). Copy logic unchanged = fix312 (main's read minus 5m PP/pink calls, gold $1.50 pink cushion). Undo values in live-switch fix313Prev; backup live-switch.json.pre-fix313.bak
 
@@ -782,26 +795,26 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Love: “please make an exact copy of the main book again, and exclude pink trades, no trades within $1.50 of pink. that's it. same everything. nothing else different please”
 - fix283 IN HER CODE
 - fix286 IN HER CODE
-- fix311 a setting (hours/sizes follow her latest pick)
-- fix312 taken back / replaced (see its entries)
+- fix311 IN HER CODE
+- fix312 IN HER CODE
 - Full entry: 2026-10-27T09:58:01.953853+00:00 THAW (fix312 COPY = MAIN 1:1 MINUS PINK: no-pink copy (recon-togp) gold pink cushion flat $1.50 (BTC pink = main); copy back to main for BTC Bollinger cushion (fix286/302 off), fake-out floor (fix286 skip off), fake-out turn close wait (fix311 loose off), stacked pinks (fix283 off). Main, twin, sizes unchanged): Love Oct 27 2:54-2:56 AM PT: "please make an exact copy of the main book again, and exclude pink trades, no trades within $1.50 of pink. that's it. same everything. nothing else different please" + (to: main 1:1 with no pink trades and your $1.50, gold pink $1.50, BTC Bollinger cushion/fake-out floor/fix311/stacked pinks back to main) "but yes"
 
 ## 2026-10-27T09:53:13.431276+00:00  ·  diary line 2139  ·  fix312
-- fix312 taken back / replaced (see its entries)
+- fix312 IN HER CODE
 - Full entry: 2026-10-27T09:53:13.431276+00:00 UNDO fix312 (Love 2:51 AM "i want to keep the pink band"): bandlock back to 5d3bbe1091b2c3d6
 
 ## (no time)  ·  diary line 2138  ·  fix311, fix312  ·  books: main, no-pink copy
 - Love: “i literally just want the main book - copied 1:1 - with pink trades excluded. that is it. same engine, same execution, same everything. just doesn't trade pink”
 - Love: “yes that's what i was trying to say love”
-- fix311 a setting (hours/sizes follow her latest pick)
-- fix312 taken back / replaced (see its entries)
+- fix311 IN HER CODE
+- fix312 IN HER CODE
 - Full entry: LIVE back on after fix311 2026-10-27T09:33:27.843765+00:002026-10-27T09:53:00.870747+00:00 THAW (fix312 COPY PINK-FREE: the no-pink copy (recon-togp) is never held by the pink - impossibleGeo sets twinPinkAll when togpLoose (PINK 10% + pink in TARGET PAST A BAND skip), both assets; every other wall, main and twin unchanged): Love Oct 27 2:47-2:48 AM PT: "i literally just want the main book - copied 1:1 - with pink trades excluded. that is it. same engine, same execution, same everything. just doesn't trade pink" + "yes that's what i was trying to say love"
 
 ## 2026-10-27T09:33:00.021019+00:00  ·  diary line 2137  ·  fix311  ·  books: main, no-pink copy
 - Love: “yes pls thank you hun / just a 1M , 2M , 3M , or 5M candle rejecting a band and pushing off of it and she's clear bb”
 - Love: “Fake-out turn, no close wait”
 - Card pick: **Fake-out turn, no close wait**
-- fix311 in her code without its number (see her words in the code comments)
+- fix311 IN HER CODE
 - Full entry: 2026-10-27T09:33:00.021019+00:00 THAW (fix311 COPY NO 1m CLOSE: no-pink copy (recon-togp) takes the fake-out turn on a forming 1m/2m/3m/5m candle back across the band by her poke tolerance (fakeOutTurnNow loose; impossibleGeo foTurn uses togpLoose); no new entry type): Love Oct 27 2:21 AM PT: "yes pls thank you hun / just a 1M , 2M , 3M , or 5M candle rejecting a band and pushing off of it and she's clear bb" + card "Fake-out turn, no close wait"
 
 ## 2026-10-27T09:18:00.932405+00:00  ·  diary line 2135  ·  fix310
@@ -871,13 +884,13 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-27T05:43:00.215381+00:00  ·  diary line 2111  ·  fix295, fix300
 - Love: “i'm not diggin it i like how she did it before fix295 / if it was cents causing her decisions on fresh candles like that let's just make it the bare minimum for her to not do that bc she was better before”
-- fix295 taken back / replaced (see its entries)
-- fix300 a setting (hours/sizes follow her latest pick)
+- fix295 IN HER CODE
+- fix300 IN HER CODE
 - Full entry: 2026-10-27T05:43:00.215381+00:00 THAW (fix300 EARN THE COLOUR bare minimum: first 30 s of a 5m candle needs BTC $2 / gold 10c past the open her way (was $5 / 30c)): Love Oct 26 10:36 PM PT: "i'm not diggin it i like how she did it before fix295 / if it was cents causing her decisions on fresh candles like that let's just make it the bare minimum for her to not do that bc she was better before"
 
 ## 2026-10-27T05:38:00.064517+00:00  ·  diary line 2108  ·  fix299
 - Love: “honestly if the fix we just did is causing that let's lower it to $5 at least and see if that helps pls”
-- fix299 a setting (hours/sizes follow her latest pick)
+- fix299 IN HER CODE
 - Full entry: 2026-10-27T05:38:00.064517+00:00 THAW (fix299 EARN THE COLOUR on BTC lowered $10 -> $5 (first 30 s of a 5m candle); gold stays 30c): Love Oct 26 10:34 PM PT: "honestly if the fix we just did is causing that let's lower it to $5 at least and see if that helps pls"
 
 ## 2026-10-27T05:28:00.764112+00:00  ·  diary line 2105  ·  fix298
@@ -899,7 +912,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 ## 2026-10-27T04:53:00.325689+00:00  ·  diary line 2096  ·  fix295
 - Love: “is there any way we can remediate that without hurting her here hun?”
 - Love: “would that still allow her to get in early on the move ... if so , run it bb”
-- fix295 taken back / replaced (see its entries)
+- fix295 IN HER CODE
 - Full entry: 2026-10-27T04:53:00.325689+00:00 THAW (fix295 EARN THE COLOUR: in a 5m candle's first 30 s she enters only once price is $10 (BTC) / 30c (gold) past the candle's open in her direction (HER CANDLE family, twin/off-hour waivers unchanged)): Love Oct 26 9:45-9:49 PM PT: "is there any way we can remediate that without hurting her here hun?" + "would that still allow her to get in early on the move ... if so , run it bb"
 
 ## 2026-10-26T23:38:13.258808+00:00  ·  diary line 2093  ·  fix294

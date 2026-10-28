@@ -1,0 +1,3685 @@
+{
+ "anchors": {
+  "the close buttons started to lag like last time again": {
+   "file": "archcache.ts",
+   "at": "2026-10-27T19:08:33.171508+00:00"
+  },
+  "implement something that automatically rolls the highest per": {
+   "file": "autoroll.ts",
+   "at": "2026-10-27T19:08:33.171639+00:00"
+  },
+  "sometimes 24 is too much": {
+   "file": "autoroll.ts",
+   "at": "2026-10-27T19:08:33.171641+00:00"
+  },
+  "VWAP Bands 7 4 20 0.2 1.2 20 65": {
+   "file": "band-check.ts",
+   "at": "2026-10-27T19:08:33.171642+00:00"
+  },
+  "i need you to make sure this sticks and doesn't fire again b": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171643+00:00"
+  },
+  "a band $86 away is not a reason to stop a long": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171644+00:00"
+  },
+  "make the red/green pivots $1.11 pls": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171645+00:00"
+  },
+  "yesss please, we can drop it for live orders / pls keep a tw": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171646+00:00"
+  },
+  "TRADE AWAY FROM THE CLOSEST BAND. NOT INTO IT. BAND BREAKS =": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171646+00:00"
+  },
+  "while bands are this scrunched together after 2pm, have her ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171647+00:00"
+  },
+  "please change a candle rising in the bottom 33% of the chann": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171648+00:00"
+  },
+  "the distance of 33% from the top or bottom of the channel wa": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171649+00:00"
+  },
+  "for 3-4 pm like we discussed yesterday she can use the pink ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171649+00:00"
+  },
+  "price rejected off of the top bollinger band. it is a short.": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171650+00:00"
+  },
+  "you can have her use the bollinger bands too for the delayed": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171651+00:00"
+  },
+  "for delayed entry, she doesn't need to wait for a tap": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171652+00:00"
+  },
+  "at the tap and rejection of the session band, she is clear t": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171652+00:00"
+  },
+  "bands under $300 wide on btc, the standard 33% - top and bot": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171653+00:00"
+  },
+  "we can have it shift back to the 33% when the bands are smal": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171654+00:00"
+  },
+  "we can have it at the 20% setting right now hun, bands over ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171655+00:00"
+  },
+  "20% after bands exceed $500 apart / 33% under that": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171655+00:00"
+  },
+  "let's make it the 40%, not $50 it will block almost everythi": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171656+00:00"
+  },
+  "keep it at $2 til they widen out to $10 and then we still ke": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171676+00:00"
+  },
+  "ehh let's make that top 40 and bottom 40 bb / that's better": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171677+00:00"
+  },
+  "let's make it 33% under $10 or $2 , whichever comes first": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171677+00:00"
+  },
+  "just a temporary $2 band tolerance on gold pls": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171678+00:00"
+  },
+  "let's lower it to 20% setting for the time being for gold hu": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171679+00:00"
+  },
+  "top 20% and bottom 20% when bands exceed $10 apart": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171680+00:00"
+  },
+  "she shorted gold on the lower 33% of the": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171680+00:00"
+  },
+  "if that happens id like her to wait for her to break thru th": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171682+00:00"
+  },
+  "yes exactly, last wins ... make a break on btc": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171682+00:00"
+  },
+  "why did she long btc it was a red candle falling from the to": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171683+00:00"
+  },
+  "if the band is broken UP from below, taps the pink band, and": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171684+00:00"
+  },
+  "if pink is broken, and price rejects at the session band bel": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171700+00:00"
+  },
+  "she can trade the break if price is on the same side of the ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171701+00:00"
+  },
+  "just make her stop longing into a band above her. make her s": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171701+00:00"
+  },
+  "session band above = closer to her than the session band bel": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171702+00:00"
+  },
+  "if price is inside of the top of the channel, closer to the ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171702+00:00"
+  },
+  "and yes, fix the blind spot": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171703+00:00"
+  },
+  "a band that is $143 away is not an obstacle... can you just ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171704+00:00"
+  },
+  "we can make the channel on gold from 20% to 30% right now": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171704+00:00"
+  },
+  "i just told you. not into a band within $1.50 for gold": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171705+00:00"
+  },
+  "i want her to do the same thing for btc. exactly.": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171705+00:00"
+  },
+  "if price is actively falling from the top 33% of the channel": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171706+00:00"
+  },
+  "freeze it til it's frozen - until i say to thaw it": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171713+00:00"
+  },
+  "if the pink band is directly above/below one of the session ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171714+00:00"
+  },
+  "PRICE = REJECTING UP AWAY FROM BAND ===== LONG / PRICE = FAL": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171715+00:00"
+  },
+  "why would a short off of the red zone be refused ???": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171715+00:00"
+  },
+  "THE GREEN LINE IS NOT A REASON FOR REJECTION FOR A LONG. GRE": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171716+00:00"
+  },
+  "current candle band breaks down = trade down / current candl": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171717+00:00"
+  },
+  "pls let her trade the breaks": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171717+00:00"
+  },
+  "we need to update the ranges as price moves day to day ... a": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171718+00:00"
+  },
+  "she longed btc in the top 33% of the channel": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171719+00:00"
+  },
+  "a band - then a band - distance between them. no longs into": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171719+00:00"
+  },
+  "you added something i didnt ask for": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171720+00:00"
+  },
+  "no longs in the top 38% of the channel. no shorts in the bot": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171720+00:00"
+  },
+  "no trades into the pink band within $1.50 on gold.": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171721+00:00"
+  },
+  "$50 for btc and the pink band. $1.50 for gold and the pink b": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171722+00:00"
+  },
+  "i am using the 5M pivot zones. no longs or shorts into": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171722+00:00"
+  },
+  "NO LONGS IN THE TOP 33% INTO AN": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171723+00:00"
+  },
+  "price = top 33% of the channel, RED CANDLE": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171723+00:00"
+  },
+  "price rejected the bottom band on gold.": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171724+00:00"
+  },
+  "EVERY FUCKING BOOK WE OWN. EVERYTHING THAT EVER RUNS.": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171725+00:00"
+  },
+  "that exact configuration that traded that way that day": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171725+00:00"
+  },
+  "let's remove the pink band rejection override... she shorted": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171726+00:00"
+  },
+  "make it impossible. no excuses": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171726+00:00"
+  },
+  "just let her trades go thru when she takes them": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171727+00:00"
+  },
+  "SHE SHOULD NOT SHORT A RISING CANDLE THAT BROKE UP": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171747+00:00"
+  },
+  "run the inverse book on the next windows @ $5 up through to ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171748+00:00"
+  },
+  "pink band was plainly in the middle of the channel. price br": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171748+00:00"
+  },
+  "when an unbroken band is closer in front of her than it is t": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171749+00:00"
+  },
+  "put it back under the closest band rule again hun": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171750+00:00"
+  },
+  "0 OF OUR BOOKS ARE TO NOT HAVE THAT INCLUDED IN THEIR DNA. N": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171750+00:00"
+  },
+  "all the breaks are good bb all of them let em thru": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171751+00:00"
+  },
+  "enter in at a candle flip of 1, 2,3,4, 5M candles. that's it": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171751+00:00"
+  },
+  "obviously fix both things": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171761+00:00"
+  },
+  "let's lower btc's break to $6 from its original $8 tpls": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171762+00:00"
+  },
+  "could you make the push thru a band 33 cents instead of 50 f": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171762+00:00"
+  },
+  "yes. the direction of the break... break = direction of the ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171763+00:00"
+  },
+  "i don't want her to long if it breaks a band down and then h": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171764+00:00"
+  },
+  "in the event price breaks a pink band, and then flips up, an": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171764+00:00"
+  },
+  "for the session bands - current candle that broke the band c": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171765+00:00"
+  },
+  "yes, that's the same fix we implemented on our other book": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171765+00:00"
+  },
+  "i don't want her to trade neither if it breaks two ways. the": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171766+00:00"
+  },
+  "she didn't short at the band though, after it broke one and ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171767+00:00"
+  },
+  "gold came up and tapped the pink band and she didn't short..": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171772+00:00"
+  },
+  "let's make another twin that trades rejections that way. we ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171773+00:00"
+  },
+  "if price breaks thru the band by over 50 cents on gold have ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171774+00:00"
+  },
+  "she just longed on gold while it was falling down again hun ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171774+00:00"
+  },
+  "trade the rejection off of a band if it does reject, and ...": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171775+00:00"
+  },
+  "a falling candle that just broke a band is not a long": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171794+00:00"
+  },
+  "it didn't reject off of the pink love, it broke thru it... a": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171795+00:00"
+  },
+  "$25 for btc on the pink pivot band. $1 for gold. no long int": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171796+00:00"
+  },
+  "keep it 15% of the bands distance. the distance between": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171796+00:00"
+  },
+  "price was stilllllll under the band when she fired that... w": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171797+00:00"
+  },
+  "never long or short INTO an unbroken band": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171798+00:00"
+  },
+  "if price is currently in the red, or currently in the green,": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171798+00:00"
+  },
+  "ill let you be the judge... it just needs to be enough to pu": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171799+00:00"
+  },
+  "not NO TRADE at all? she jhust cant short into green without": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171799+00:00"
+  },
+  "the long / short into red /green it doesn't count for btc th": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171800+00:00"
+  },
+  "the volume still needs to stand on btc hun... it's not a wal": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171801+00:00"
+  },
+  "the red zone was $100 away": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171801+00:00"
+  },
+  "if a trade is rejected for being against the rules, i dont w": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171802+00:00"
+  },
+  "if it's not there definitely add it in... that's literally t": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171802+00:00"
+  },
+  "the price on vantage is about $100 higher than the price on ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171803+00:00"
+  },
+  "if there is a band above / below her (closer than the other)": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171804+00:00"
+  },
+  "in the event price passes a pink band and there is an unbrok": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171804+00:00"
+  },
+  "price didn't break through the pink band and it rejected off": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171805+00:00"
+  },
+  "yesss let's make it a $3 tap rejection bb": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171805+00:00"
+  },
+  "it doesn't need to get that close to be considered a tap hun": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171806+00:00"
+  },
+  "just at the next band interaction hun": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171806+00:00"
+  },
+  "first band after the initial move takes place, the delayed e": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171807+00:00"
+  },
+  "her add ons still didn't go thru on the rejections this time": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171821+00:00"
+  },
+  "yeah let's make it $6 hun. that's a perfect medium between t": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171822+00:00"
+  },
+  "lose the $6 band wait if it's blocking winners... LOSE IT": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171823+00:00"
+  },
+  "Yes, 50c for the pink too": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171823+00:00"
+  },
+  "i'd like her to trade off of the continuation bands that mat": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171824+00:00"
+  },
+  "bands widened out on btc now she can go ahead and use the cu": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171825+00:00"
+  },
+  "she CANNT enter a trade long if she's 25% closer to the band": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171826+00:00"
+  },
+  "run her on live without them, just on a new ledger - session": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171827+00:00"
+  },
+  "treat the closest line like a band for red, and for green": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171827+00:00"
+  },
+  "no i want her floor at 1.38 hun its not worth the risk other": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171828+00:00"
+  },
+  "if price breaks a session band right under/over the pink, th": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171828+00:00"
+  },
+  "no, JUST the candle that broke the band hun. if a new candle": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171829+00:00"
+  },
+  "yes. a broken band is not a wall. it is a broken wall / if p": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171830+00:00"
+  },
+  "make it so she has no other logic to operate under ... a lon": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171830+00:00"
+  },
+  "remove any shackles make sure she's free to sprint": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171831+00:00"
+  },
+  "she's clear to trade at any level on the delayed entry book ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171831+00:00"
+  },
+  "for the delayed entry model we can allow her to enter those,": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171832+00:00"
+  },
+  "she doesn't need to be blocked by a green zone or a bollinge": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171833+00:00"
+  },
+  "when i said anywhere i meant she could trade under our rules": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171833+00:00"
+  },
+  "she shouldn't be waiting for price to cross a bollinger back": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171834+00:00"
+  },
+  "i need you to stop letting shit i did not ask for get thru": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171834+00:00"
+  },
+  "let's set a $40 btc green / red guard": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171835+00:00"
+  },
+  "make sure that no orders can get out if its a long in the to": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171836+00:00"
+  },
+  "again she did it / she shorted a candle rising in the bottom": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171836+00:00"
+  },
+  "please make sure nothing else can slip past her new code": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171844+00:00"
+  },
+  "make sure no longs or shorts ever gets through inside of her": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171845+00:00"
+  },
+  "if price has broken the pink, but still hasn't broken the se": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171845+00:00"
+  },
+  "if our main trade is already in profit, and price gets near ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171846+00:00"
+  },
+  "let's make it shorts there anyways ... if price fakes out th": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171847+00:00"
+  },
+  "she's clear to enter the other way when that happens for btc": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171847+00:00"
+  },
+  "adding them in for red and green zones is actually a really ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171848+00:00"
+  },
+  "please go back over our last messages yesterday and rebuild ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171848+00:00"
+  },
+  "it did break a session band and fakeout thru them": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171849+00:00"
+  },
+  "she just shorted into the pink band again? it hasn't broken ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171850+00:00"
+  },
+  "set the standard if no trades into pink within $25 if band c": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171850+00:00"
+  },
+  "btc is $50 at band widths of $180 + hun / $50 or 10% / which": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171851+00:00"
+  },
+  "how far through the channel was she from the distance from p": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171851+00:00"
+  },
+  "yes let's cut shorts in the bottom wrung pls bb / just those": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171886+00:00"
+  },
+  "the TOP line, of the whole channel, and the BOTTOM line. of ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171890+00:00"
+  },
+  "do her trades that break a session band and go right into a ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171891+00:00"
+  },
+  "she just shorted btc into an unbroken band off the bollinger": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171892+00:00"
+  },
+  "if the pink band is this close to the band below or above le": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171893+00:00"
+  },
+  "pink can remain a solid 10% of the channels distance, meanin": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171893+00:00"
+  },
+  "we can make it 10% temporarily hun": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171894+00:00"
+  },
+  "for right now let's do 10%, she can long with $2.50+ of room": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171895+00:00"
+  },
+  "if we are waiting for a rejection or a break through we shou": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171895+00:00"
+  },
+  "let's just make it the $500 @ 10% & 1k at 5%, for the bollin": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171896+00:00"
+  },
+  "she was right under the pink band ... may need to tighten th": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171905+00:00"
+  },
+  "the 15% rule for the pink band was for gold , we can keep bt": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171906+00:00"
+  },
+  "let's make that $50 minimum and the rest of the scale up fro": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171917+00:00"
+  },
+  "for pink we will have it at a solid 15% at bands $200 and un": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171918+00:00"
+  },
+  "let's go ahead and bring that back to 10% of the channel wid": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171919+00:00"
+  },
+  "the rejection started at 4021 hun, the distance should be me": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171920+00:00"
+  },
+  "let's make that $3.50 ... as long as she doesn't actually en": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171920+00:00"
+  },
+  "the twin is supposed to be absolved of the pink remember?": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171921+00:00"
+  },
+  "make her only wait for pink to clear if it is in the top 10%": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171922+00:00"
+  },
+  "we can lower it from $5 to $3": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171922+00:00"
+  },
+  "make it a break of $5 bb": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171923+00:00"
+  },
+  "let's loosen it to $25 on there bb": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171923+00:00"
+  },
+  "its 10% or $2. whichever comes first": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171925+00:00"
+  },
+  "yess lets make it $50 from where price is, minimum as a base": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171926+00:00"
+  },
+  "i want to keep the bollinger cushion at 50c - $1": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171927+00:00"
+  },
+  "she can use tradingview's bollinger and the $1.50 green/red ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171927+00:00"
+  },
+  "going forward let's make it so that she doesn't long into th": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171928+00:00"
+  },
+  "no longs into the top 40% of the channel from pink to red": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171928+00:00"
+  },
+  "bring that down to $1.50 ... indefinitely": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171929+00:00"
+  },
+  "no longs into the top 40% of the channel from pink to red an": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171930+00:00"
+  },
+  "for btc's long just now, on the break up, the bollinger was ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171930+00:00"
+  },
+  "lower it to $50 temporarily": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171931+00:00"
+  },
+  "she doesn't take a trade with a band within $1.50 of the tar": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171931+00:00"
+  },
+  "the delayed entry book is clear to take the opposite side": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171949+00:00"
+  },
+  "the pink band is okay to short into once the multiple is the": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171950+00:00"
+  },
+  "on gold this window the target was within $1 of a bollinger,": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171950+00:00"
+  },
+  "gold often reverses at even $10 and $100 levels ... if tradi": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171951+00:00"
+  },
+  "btc rejected at the bollinger of the candle she entered in /": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171952+00:00"
+  },
+  "let's make that only for gold pls": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171953+00:00"
+  },
+  "if price keeps barely breaking thru the top / bottom 25% of ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171953+00:00"
+  },
+  "i asked to have the fakeout be configured to 25% of the band": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171954+00:00"
+  },
+  "disable fakeouts for bands under $5": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171954+00:00"
+  },
+  "let's only have the fake out rule in place for the session b": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171955+00:00"
+  },
+  "it rejected again, when the fake outs happen she's supposed ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171956+00:00"
+  },
+  "if price is already above the target ... and the candle is g": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171956+00:00"
+  },
+  "if its slope incline is this tilted i want her to wait to sh": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171957+00:00"
+  },
+  "longs only in the bottom 33% with an unbroken band / shorts ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171957+00:00"
+  },
+  "no longs in the top 33% get out under any circumstances / no": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171958+00:00"
+  },
+  "shes clear to long the whole whole up, just not in the top 3": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171959+00:00"
+  },
+  "the session bands hun, same way we have her set up at 33% bo": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171959+00:00"
+  },
+  "she is clear to long a rising candle that either came up fro": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171960+00:00"
+  },
+  "add the 30 cents fix to gold back in now": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171960+00:00"
+  },
+  "let's do that and add the $10 btc rejection policy ... it wa": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171961+00:00"
+  },
+  "yes let's make it the way it was before": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171962+00:00"
+  },
+  "let's wait for the candle to flip red": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.171982+00:00"
+  },
+  "hun. i'd like it to be the literal color of the candle.": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.172008+00:00"
+  },
+  "enter in at a candle flip of 1, 2,3,4, 5M candles": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.172013+00:00"
+  },
+  "make it over $10 over the band so it can't go a few cents ov": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T19:08:33.172014+00:00"
+  },
+  "a toggle so I can see what those settings would have done on": {
+   "file": "bankreplay.ts",
+   "at": "2026-10-27T19:08:33.172015+00:00"
+  },
+  "you're clear to have them archived as long as they can load ": {
+   "file": "book.ts",
+   "at": "2026-10-27T19:08:33.172016+00:00"
+  },
+  "it won't let me pull anything older up since the fix that fr": {
+   "file": "bookhist.server.ts",
+   "at": "2026-10-27T19:08:33.172017+00:00"
+  },
+  "the card only 14W/3L when i hit ALL / i don't know her actua": {
+   "file": "bookhist.server.ts",
+   "at": "2026-10-27T19:08:33.172017+00:00"
+  },
+  "it says the majority of the losses today came from [1ST BREA": {
+   "file": "bookwatch.ts",
+   "at": "2026-10-27T19:08:33.172018+00:00"
+  },
+  "let's fix that so i don't need to bug you every time she ski": {
+   "file": "bookwatch.ts",
+   "at": "2026-10-27T19:08:33.172019+00:00"
+  },
+  "the trades are not going to kalshi... can you see why that k": {
+   "file": "bookwatch.ts",
+   "at": "2026-10-27T19:08:33.172042+00:00"
+  },
+  "no need to change anything unless there is a sudden sharp dr": {
+   "file": "breaker.ts",
+   "at": "2026-10-27T19:08:33.172043+00:00"
+  },
+  "we set it to just 9 losses in a row luv, remember?": {
+   "file": "breaker.ts",
+   "at": "2026-10-27T19:08:33.172044+00:00"
+  },
+  "rewrite the entry logic from the ground up — brick, not matc": {
+   "file": "brick.ts",
+   "at": "2026-10-27T19:08:33.172045+00:00"
+  },
+  "a push thru purple is clear to enter, the only thing we'd do": {
+   "file": "brick.ts",
+   "at": "2026-10-27T19:08:33.172045+00:00"
+  },
+  "the candles flip on both sides of the purple band... they": {
+   "file": "brick.ts",
+   "at": "2026-10-27T19:08:33.172046+00:00"
+  },
+  "a push off the purple band is good enough": {
+   "file": "brick.ts",
+   "at": "2026-10-27T19:08:33.172046+00:00"
+  },
+  "it flips over and over... it does that at the purple band. i": {
+   "file": "brick.ts",
+   "at": "2026-10-27T19:08:33.172047+00:00"
+  },
+  "i'd like her to take those": {
+   "file": "brick.ts",
+   "at": "2026-10-27T19:08:33.172048+00:00"
+  },
+  "not take the trade if it breaks thru on the other symbol... ": {
+   "file": "brick.ts",
+   "at": "2026-10-27T19:08:33.172048+00:00"
+  },
+  "im open to seeing how that does": {
+   "file": "brick.ts",
+   "at": "2026-10-27T19:08:33.172049+00:00"
+  },
+  "yooou knowww i do... lets see how that does overnight": {
+   "file": "bricktvc.ts",
+   "at": "2026-10-27T19:08:33.172049+00:00"
+  },
+  "i want you to make a paper twin / that only longs when price": {
+   "file": "charttwins.ts",
+   "at": "2026-10-27T19:08:33.172050+00:00"
+  },
+  "can we try running a new paper book for the rejection model,": {
+   "file": "charttwins.ts",
+   "at": "2026-10-27T19:08:33.172051+00:00"
+  },
+  "i would like her trading on every window, not just the last ": {
+   "file": "climatewide.ts",
+   "at": "2026-10-27T19:08:33.172051+00:00"
+  },
+  "the close buttons... it's closing at the old speed again, pl": {
+   "file": "closelane.server.ts",
+   "at": "2026-10-27T19:08:33.172064+00:00"
+  },
+  "the close buttons keep lagging for 10 seconds and don't even": {
+   "file": "closelane.server.ts",
+   "at": "2026-10-27T19:08:33.172065+00:00"
+  },
+  "yesss i would like, can we do both?... absolutely let's buil": {
+   "file": "comboguard.ts",
+   "at": "2026-10-27T19:08:33.172065+00:00"
+  },
+  "shift it from 60% total to 50% of the scale, with the gate a": {
+   "file": "comboguard.ts",
+   "at": "2026-10-27T19:08:33.172066+00:00"
+  },
+  "yesss thatttt sounds brilliant": {
+   "file": "comboguard.ts",
+   "at": "2026-10-27T19:08:33.172067+00:00"
+  },
+  "i'd like to have a default autosell setting for those": {
+   "file": "comboguard.ts",
+   "at": "2026-10-27T19:08:33.172067+00:00"
+  },
+  "i don't need to do that on these once the multiples hit 1.01": {
+   "file": "comboguard.ts",
+   "at": "2026-10-27T19:08:33.172068+00:00"
+  },
+  "can stack combos on 1.2x multiples that are already decided ": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172068+00:00"
+  },
+  "we need to wait until the multiple is over 5-7 on the other ": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172069+00:00"
+  },
+  "let's try having her run the same fills with 10 minutes left": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172070+00:00"
+  },
+  "another model that runs on YOUR rules for the highest chance": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172070+00:00"
+  },
+  "if one looks like it could flip... $5 hedges at that multipl": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172071+00:00"
+  },
+  "1/5th for the paper testing": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172072+00:00"
+  },
+  "she's cashing it before letting them ride to the bell": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172072+00:00"
+  },
+  "we can turn on claude's picks for combos too... welcome to t": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172073+00:00"
+  },
+  "have her do those on kalshi now": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172074+00:00"
+  },
+  "7 and 8 o'clock was great yesterday you can leave her on": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172074+00:00"
+  },
+  "a 5c-10c buffer in case she can't get in at paper's price": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172078+00:00"
+  },
+  "have her take ones that stack up to a 1.3x minimum across al": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172079+00:00"
+  },
+  "we can keep her on the ones it works for, and keep the ones ": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172079+00:00"
+  },
+  "we can have those on @ $10... if they're not stepping on her": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172080+00:00"
+  },
+  "run it boo... consistent and safe 1.4x's - 1.8x's": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172081+00:00"
+  },
+  "is she able to get them thru on her own though? let's get th": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172081+00:00"
+  },
+  "if our model blatantly rejects it for being on the wrong sid": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172103+00:00"
+  },
+  "a learning protocol... log the scenarios in place when she e": {
+   "file": "combos.ts",
+   "at": "2026-10-27T19:08:33.172104+00:00"
+  },
+  "yess let's keep both models on hand, so we can switch if nee": {
+   "file": "combowatch.ts",
+   "at": "2026-10-27T19:08:33.172104+00:00"
+  },
+  "start a book that enters on a band break upon vantage or": {
+   "file": "confirm.ts",
+   "at": "2026-10-27T19:08:33.172105+00:00"
+  },
+  "can you make it display all of our books on all of their day": {
+   "file": "dayboard.ts",
+   "at": "2026-10-27T19:08:33.172105+00:00"
+  },
+  "it's more plausible that we can determine the DAYS to trade,": {
+   "file": "dayboard.ts",
+   "at": "2026-10-27T19:08:33.172106+00:00"
+  },
+  "only send out orders IF the paper books are doing well that ": {
+   "file": "dayboard.ts",
+   "at": "2026-10-27T19:08:33.172107+00:00"
+  },
+  "wire the logic into her dna, write it in yourself": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172107+00:00"
+  },
+  "top of the candle is where she entered long on gold, band": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172108+00:00"
+  },
+  "work it out to ATR... the band check needs to be": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172108+00:00"
+  },
+  "put ALL OF THEM back the way they were after you fixed them.": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172109+00:00"
+  },
+  "unrestricted, exactly as she was... on all of the different ": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172110+00:00"
+  },
+  "set it to 25% of the scale of the channel... she can't trade": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172110+00:00"
+  },
+  "no trade should be taken if target is on the other side of": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172111+00:00"
+  },
+  "why she longed here... definitely within the 25% rule": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172111+00:00"
+  },
+  "a book that judges solely off the 5m nav bands and the sessi": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172112+00:00"
+  },
+  "yes no band in the way 100%": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172112+00:00"
+  },
+  "if the nav bar and the session bands line up, have her not s": {
+   "file": "dna.ts",
+   "at": "2026-10-27T19:08:33.172113+00:00"
+  },
+  "reduce any friction ... make sure she's free to sprint": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172114+00:00"
+  },
+  "i entered long on btc for $2. she closed it, can you make th": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172114+00:00"
+  },
+  "keep her on $5 for her off hours and route all the delayed e": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172115+00:00"
+  },
+  "yes every hour you just said hun 🎯 let them take the best pe": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172115+00:00"
+  },
+  "could you add in the ability to shift the individual assets ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172116+00:00"
+  },
+  "we can put it on $2 and $3 for the add on for 2pm pls hun 2p": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172144+00:00"
+  },
+  "nothing can alter her character, her entry logic, her execut": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172145+00:00"
+  },
+  "get rid of the stuff grok left behind... change the locks": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172146+00:00"
+  },
+  "no the take profits are fine hun it's that she entered a pos": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172152+00:00"
+  },
+  "what just happened to my short????? it closed for $3 i had a": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172152+00:00"
+  },
+  "lets make it 88% out of respect": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172153+00:00"
+  },
+  "if there is 50% or less set it to 44%... if there is 60 set ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172154+00:00"
+  },
+  "run her on brick today, alone... however you have her runnin": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172154+00:00"
+  },
+  "the same thing hun half at 75% the rest at 90% of the scale ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172155+00:00"
+  },
+  "it didn't take at 90%... it flashed $33": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172155+00:00"
+  },
+  "just make them solid take profits": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172156+00:00"
+  },
+  "just set a hard take profit at the levels we set": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172157+00:00"
+  },
+  "if we have it set to 90, have the safety net engage at 75%, ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172157+00:00"
+  },
+  "rewire kalshi to fire 1:1 with the paper books. if they are ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172158+00:00"
+  },
+  "i like that she's taking 75% for the banks, it's catching mo": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172188+00:00"
+  },
+  "make her mirror papers exits": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172190+00:00"
+  },
+  "just add in the $5 positions at a rejection of a band if pri": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172193+00:00"
+  },
+  "please make sure only ONE goes out": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172194+00:00"
+  },
+  "ONE $2 dollar add on to our main books positions": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172195+00:00"
+  },
+  "implement the $2 add on for me at a band, as long as it's ov": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172195+00:00"
+  },
+  "a $3 add on if they go further away, get a 4.5x + on those /": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172196+00:00"
+  },
+  "let's make it a $3 tap rejection": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172197+00:00"
+  },
+  "pls have her do them at band taps / no rejection necessary p": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172198+00:00"
+  },
+  "btc didn't do the add on near red when it hit 3.8x ... gold ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172199+00:00"
+  },
+  "she's supposed to do her add on at the next band. not as soo": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172200+00:00"
+  },
+  "if price is approaching one and rejecting near it before 3.8": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172200+00:00"
+  },
+  "if a position reverses on us i want her to do a $2 add on at": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172201+00:00"
+  },
+  "just the next band it comes near, not a valid rejection or c": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172202+00:00"
+  },
+  "you're not literally selling 25% of the position on kalshi? ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172202+00:00"
+  },
+  "bitcoin is at a 7x atm and it was not hedged... eradicate it": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172203+00:00"
+  },
+  "you can have poly hedge if i put one in too... sometimes im ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172203+00:00"
+  },
+  "we definitely need to bank the hedges while they're down too": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172204+00:00"
+  },
+  "the gate is costing us the whole thing... it takes away from": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172205+00:00"
+  },
+  "the paper books have safeguards mine dont? pls put them on f": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172205+00:00"
+  },
+  "it just exited my trade early... let me take MINE... and jus": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172206+00:00"
+  },
+  "if i set the slider here it wont exit early... ill only set ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172206+00:00"
+  },
+  "that's too sensitive hun they'll never run... let her take": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172207+00:00"
+  },
+  "YES have her do that pls": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172208+00:00"
+  },
+  "she exited my btc trade early again, turn her off until we": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172208+00:00"
+  },
+  "lets go ahead and do the half at 75% on kalshi for the books": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172209+00:00"
+  },
+  "you can leave those on for mine too bb": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172210+00:00"
+  },
+  "turn those off and let me set them here on my end": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172210+00:00"
+  },
+  "even if we're not in a trade and btc is within $10 from the ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172211+00:00"
+  },
+  "for our polymarket hedges, let's structure it the same way w": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172211+00:00"
+  },
+  "just enters in at the next band price encounters ... rejects": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172212+00:00"
+  },
+  "she's clear to enter at any point in the other direction aft": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172213+00:00"
+  },
+  "in celebration i would like the delayed entry model to stay ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172222+00:00"
+  },
+  "the 3-5x's on polymarket on the 5M ones are repeatable ... d": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172222+00:00"
+  },
+  "yes let's give the twin those hours on kalshi too": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172223+00:00"
+  },
+  "i'd like her to run the main book on poly for the 5M market": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172224+00:00"
+  },
+  "we can put the main book on for the hour right now though": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172224+00:00"
+  },
+  "ya let's do it hun i wanna see how she moves": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172225+00:00"
+  },
+  "id like the rejection model on the 5M markets to wait for a ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172226+00:00"
+  },
+  "no need to run it on paper hun / let's run it like that pls": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172226+00:00"
+  },
+  "pls put her back on the framework that was winning all day u": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172227+00:00"
+  },
+  "the last minute 5M book can run on either book, whichever on": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172227+00:00"
+  },
+  "in the event the delayed entry model is on kalshi, have poly": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172228+00:00"
+  },
+  "we definitely have time for an add on they move QUICK on the": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172243+00:00"
+  },
+  "i want to try running the rejection model on polymarket @ $2": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172244+00:00"
+  },
+  "i'd like the main book on for the 5M market for the hour, i ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172244+00:00"
+  },
+  "11pm is off from now on on there ok": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172245+00:00"
+  },
+  "it says the 5M book is in a short right now ?? why?": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172246+00:00"
+  },
+  "only let a call only trade inside its own 5 minute slot": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172246+00:00"
+  },
+  "i want her to enter on a 5M candle flip as well - not the 1M": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172247+00:00"
+  },
+  "lets throw the 2M's and 3M's up on poly if they're hitting a": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172247+00:00"
+  },
+  "btc's 5M window had 2:30 left on it and price was clearly pu": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172248+00:00"
+  },
+  "give her the second minute to fill ... and include the last ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172254+00:00"
+  },
+  "let's get rid of that $15 floor for polymarket ... let her f": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172255+00:00"
+  },
+  "can you see why she wasn't in on the 5M btc one this window?": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172257+00:00"
+  },
+  "the delayed model still fired the entry at the beginning of ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172277+00:00"
+  },
+  "she can do her initial entry at a 2.2x + on the delayed entr": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172278+00:00"
+  },
+  "lets make it so she enters at a band as well, no rejection n": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172279+00:00"
+  },
+  "hard-cash out at 90% of the max available... don't let em ru": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172279+00:00"
+  },
+  "let's have the same take profits in place as we do for our m": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172280+00:00"
+  },
+  "she just longed into a band on btc again": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172280+00:00"
+  },
+  "if bitcoin was over $110 from the target with three minutes ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172281+00:00"
+  },
+  "run them both side by side": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172282+00:00"
+  },
+  "I want it before the fix at 11:55 AM": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172282+00:00"
+  },
+  "have her operating on the vantage book for the next hour for": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172283+00:00"
+  },
+  "include the price fix for paper as well so her": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172284+00:00"
+  },
+  "same together book, just the same speed": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172284+00:00"
+  },
+  "her execution is still a tad slow on her gold entries... try": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172285+00:00"
+  },
+  "proper but still a tad delayed... diagnose and clean up what": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172285+00:00"
+  },
+  "let's run BRICK on kalshi for the time being... @ $22 positi": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172286+00:00"
+  },
+  "need you to fix her execution speed again ... ensure that th": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172286+00:00"
+  },
+  "set up a failsafe so the orders go thru 1:1 and they can't g": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172287+00:00"
+  },
+  "drop her on kalshi for the rest of the hour... just that one": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172288+00:00"
+  },
+  "when she takes one let kalshi take one": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172288+00:00"
+  },
+  "work on the fast rails for the pivot break books so they're ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172289+00:00"
+  },
+  "make sure there are no other holes": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172290+00:00"
+  },
+  "i'm definitely still seeing the copier lag... you have my gr": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172291+00:00"
+  },
+  "have the check be at the end of every 15 minute window": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172291+00:00"
+  },
+  "i don't want to hear another thing about it / if she enters ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172322+00:00"
+  },
+  "if she's benched for the day we can remove it for the hour. ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172323+00:00"
+  },
+  "can you give refined precedence when it's on her hours? i wa": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172324+00:00"
+  },
+  "i do want brick on her strong hours during the day too": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172324+00:00"
+  },
+  "if brick isn't in a position and squeeze tries at the same t": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172325+00:00"
+  },
+  "i saw that she shorted gold at the band for a 3x tho ✨ i def": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172326+00:00"
+  },
+  "can we leave that book running for today when NEW's off": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172326+00:00"
+  },
+  "i have new 24/7 on and its not in on the gold short... can w": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172331+00:00"
+  },
+  "yess let's pause her on gold for those hours for sure": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172332+00:00"
+  },
+  "instead of just their best hours, let's just take them off t": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172332+00:00"
+  },
+  "let's run the rejection model for those hours tonight with t": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172333+00:00"
+  },
+  "yes let's give the twin those hours on kalshi too bb , i cou": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172333+00:00"
+  },
+  "copy paste the main book onto a fresh paper twin that exclud": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172334+00:00"
+  },
+  "yess provisionally, we'll see if these books do bad at this ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172335+00:00"
+  },
+  "if there's a price swing of $30 on gold and 1k on btc... she": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172335+00:00"
+  },
+  "gold fasho fasho... get her at 74% in both halves right quic": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172336+00:00"
+  },
+  "that doesn't mean she has to skip the entire window... just ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172336+00:00"
+  },
+  "we really shouldn't be entering into trades that have a band": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172337+00:00"
+  },
+  "no longs into a trade with a target $2 within a band. she ca": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172338+00:00"
+  },
+  "let's make it fire when the books do on gold, just skip the ": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172338+00:00"
+  },
+  "it broke the session band, but it didn't clear the bollinger": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172339+00:00"
+  },
+  "lose the 25 cents thru a band, that's way too much... we sho": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172339+00:00"
+  },
+  "she still longed into a band on gold and it": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172353+00:00"
+  },
+  "i thought the main book we were running currently didn't hav": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172354+00:00"
+  },
+  "she just shorted btc into the purple band when it hadn't bro": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172355+00:00"
+  },
+  "$10 is too far... if price does break thru, $3 is fine": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172355+00:00"
+  },
+  "longed into a band again... going down... can you take anoth": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172356+00:00"
+  },
+  "she could have still entered when it broke thru the band": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172356+00:00"
+  },
+  "she shorted btc directly into a band again... what was the g": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172357+00:00"
+  },
+  "bands more than $30 apart and her not entering on a break is": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172358+00:00"
+  },
+  "cycle all books thru their most successful points during the": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172358+00:00"
+  },
+  "keep her on... her strongest has been at night": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172359+00:00"
+  },
+  "make sure nothing like that could ever even be possible": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172359+00:00"
+  },
+  "both. immediately both pls": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172360+00:00"
+  },
+  "Remove the flip completely": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172361+00:00"
+  },
+  "on our normal book - if for any reason she skipped the windo": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172361+00:00"
+  },
+  "i don't want her to skip the breaks ?? i want her to take it": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172362+00:00"
+  },
+  "can you have kalshi get the orders FIRST": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172362+00:00"
+  },
+  "match the paper books to the amount we're doing on kalshi so": {
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172386+00:00"
+  },
+  "go through all the symbols and match Kalshi's price as close": {
+   "file": "feedmatch.ts",
+   "at": "2026-10-27T19:08:33.172387+00:00"
+  },
+  "can we see how the best ones perform overnight?": {
+   "file": "feedmatch.ts",
+   "at": "2026-10-27T19:08:33.172388+00:00"
+  },
+  "make sure that no shifts from outside of that is possible": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172388+00:00"
+  },
+  "fix the overall lag... we're not using a lot of this stuff": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172389+00:00"
+  },
+  "it doesn't even register sometimes i click twice and it take": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172389+00:00"
+  },
+  "have it close instantly when i click": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172390+00:00"
+  },
+  "the books aren't re-organizing when i click 12 - 24 - all": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172391+00:00"
+  },
+  "if they're benched, i need the ability to turn them off or o": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172395+00:00"
+  },
+  "it's only letting me see from 10:04pm... can you fix that": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172396+00:00"
+  },
+  "the lag on the whole page is getting bad again... the trade ": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172397+00:00"
+  },
+  "it won't let me pull anything older up... for all the books": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172441+00:00"
+  },
+  "a join button on their cards, it would fill the same way the": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172445+00:00"
+  },
+  "a live rolling multiple the way we do with our traditional p": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172446+00:00"
+  },
+  "have her try to place one on whatever is available for $1 as": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172447+00:00"
+  },
+  "can you have it only pull up the trades for the cards i actu": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172448+00:00"
+  },
+  "i want to look at her trades / let's have the new 123 book h": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172448+00:00"
+  },
+  "add the unadulterated reconstructed book, off hours included": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172449+00:00"
+  },
+  "add in the whole trade history for the reconstructed card fo": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172450+00:00"
+  },
+  "create a new card for her with a fresh record under RECONSTR": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172450+00:00"
+  },
+  "can we get a fresh card for this model too? she should have ": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172451+00:00"
+  },
+  "can you fix that for all of the cards": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172452+00:00"
+  },
+  "archive all the red books and the ones we never use... light": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172452+00:00"
+  },
+  "instinctively i think i know when to call it a day... that c": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172453+00:00"
+  },
+  "a RUN button for kalshi above the 12 24 all buttons thats re": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172454+00:00"
+  },
+  "im not seeing the auto roll here anywhere... lets get that f": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172454+00:00"
+  },
+  "16 held by the rules? if the book is green...": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172455+00:00"
+  },
+  "they're basically all the same trades... could you have it b": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172456+00:00"
+  },
+  "this is a LOVELY combination, lets create group pairings... ": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172456+00:00"
+  },
+  "can you make it have the last combination of books running s": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172457+00:00"
+  },
+  "the position sizing slider isnt functioning... the sizing di": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172457+00:00"
+  },
+  "include the safety net calculation in the sweet spot... give": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172492+00:00"
+  },
+  "a TRAJECTORY tab... a projection of how all of the different": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172494+00:00"
+  },
+  "can we have a running schedule pill in the table above our r": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172494+00:00"
+  },
+  "could you add in a 3rd toggle for the rejection model on the": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172495+00:00"
+  },
+  "can we update it to show that hun? so i don't accidentally s": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172496+00:00"
+  },
+  "have her take the next set up that presents itself if i swit": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172496+00:00"
+  },
+  "yes i would like that pls": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172497+00:00"
+  },
+  "i don't see the 5M card from last night hun, i want to look ": {
+   "file": "fns.ts",
+   "at": "2026-10-27T19:08:33.172498+00:00"
+  },
+  "put her back exactly where she was Oct 1,": {
+   "file": "golden.ts",
+   "at": "2026-10-27T19:08:33.172498+00:00"
+  },
+  "she used to get in right at the beginning... she's getting i": {
+   "file": "golden.ts",
+   "at": "2026-10-27T19:08:33.172499+00:00"
+  },
+  "golden will be gold when you give her her true DNA": {
+   "file": "golden.ts",
+   "at": "2026-10-27T19:08:33.172500+00:00"
+  },
+  "we're using the BTC chart on my screen, the all-time index": {
+   "file": "golden.ts",
+   "at": "2026-10-27T19:08:33.172500+00:00"
+  },
+  "get off the all-time index, I'm on OANDA": {
+   "file": "golden.ts",
+   "at": "2026-10-27T19:08:33.172501+00:00"
+  },
+  "a candle that CLOSES through a band (any amount) = the": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172502+00:00"
+  },
+  "trade off of the closest band": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172502+00:00"
+  },
+  "*rejection* off of green zone = long / *rejection* off": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172503+00:00"
+  },
+  "TRADE. PRICE. DIRECTION. SAME. SIDE. OF. THE. BAND. /": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172504+00:00"
+  },
+  "if a candle breaks above a band, she cannot short in the sam": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172504+00:00"
+  },
+  "yes please stop having her trade directly into an unbroken": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172505+00:00"
+  },
+  "no. one. minute. close. on. break. stop. ignoring. me.": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172506+00:00"
+  },
+  "if price rejects off of the red pivot": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172506+00:00"
+  },
+  "i want her to trade the rejection off of a": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172507+00:00"
+  },
+  "i told you to NOT have her long on a FALLING CANDLE": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172507+00:00"
+  },
+  "i don't want her to base it off the 1 minute if it is not a ": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172546+00:00"
+  },
+  "there was no close above it dude.": {
+   "file": "goldlaw.ts",
+   "at": "2026-10-27T19:08:33.172551+00:00"
+  },
+  "the original model i came to you with with grok... is there ": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172553+00:00"
+  },
+  "can you make sure her exits are firing? her last few trades ": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172554+00:00"
+  },
+  "i can't see anything from before today at 5am": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172554+00:00"
+  },
+  "let's run one more with a bank. almost all of her trades go ": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172555+00:00"
+  },
+  "can you make sure her exits are firing?": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172556+00:00"
+  },
+  "only the first 30 seconds of a window": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172556+00:00"
+  },
+  "i don't think her take profits are engaging": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172557+00:00"
+  },
+  "make sure shes using our exits? half at 75 - full at 90 with": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172557+00:00"
+  },
+  "we can do both for right now": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172573+00:00"
+  },
+  "it lagged from the last window,": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172574+00:00"
+  },
+  "it says 7 open. it's showing windows that already closed as ": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172574+00:00"
+  },
+  "she would long at a band if it tapped even if it was a 4x...": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172575+00:00"
+  },
+  "definitely keep the 1.38x floor, not 1.18, not worth the ris": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172576+00:00"
+  },
+  "can you add them in & give them shift cards so i can tap and": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172576+00:00"
+  },
+  "fast twins show no records on their trades at all can you fi": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172577+00:00"
+  },
+  "her trades only show today on here": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172577+00:00"
+  },
+  "your CLOSE BUTTONS DO NOT WORK... i clicked 20 times": {
+   "file": "grokog.ts",
+   "at": "2026-10-27T19:08:33.172578+00:00"
+  },
+  "yesss that will make me think twice, just a little banner to": {
+   "file": "handguard.ts",
+   "at": "2026-10-27T19:08:33.172579+00:00"
+  },
+  "we can have her make her own combos on the 1H contracts too.": {
+   "file": "hourcombos.ts",
+   "at": "2026-10-27T19:08:33.172579+00:00"
+  },
+  "i tried trading the hourly markets for btc on kalshi... went": {
+   "file": "hourlotto.ts",
+   "at": "2026-10-27T19:08:33.172580+00:00"
+  },
+  "we need to trade the hourly predictions on BTC and gold too ": {
+   "file": "hourly.ts",
+   "at": "2026-10-27T19:08:33.172589+00:00"
+  },
+  "we need to trade the hourly predictions on BTC and gold": {
+   "file": "hourprobe.ts",
+   "at": "2026-10-27T19:08:33.172590+00:00"
+  },
+  "only on trades that have proven themselves... if it just rip": {
+   "file": "insurance.ts",
+   "at": "2026-10-27T19:08:33.172591+00:00"
+  },
+  "she entered a long after i was in a short again": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172591+00:00"
+  },
+  "the delayed entry book is clear to do those add ons after a ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172592+00:00"
+  },
+  "i do want you to implement that so you never - not have an a": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172593+00:00"
+  },
+  "make it so she has no other logic to operate under": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172593+00:00"
+  },
+  "a POSITIONS tab... for all positions held on kalshi": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172594+00:00"
+  },
+  "once a trade has actually been executed, if we can implement": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172595+00:00"
+  },
+  "i do not want a book trading on kalshi that does not operate": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172595+00:00"
+  },
+  "remove any trace of her blocks entirely": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172596+00:00"
+  },
+  "can you fix the lag? she's way too late on these still ... c": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172596+00:00"
+  },
+  "let's throw it on provisionally, half sizes as gold, if she ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172597+00:00"
+  },
+  "trade gold again at the next window for $5 position sizes": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172598+00:00"
+  },
+  "let's do $5 on her rest hours for rn, i don't know how the n": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172598+00:00"
+  },
+  "keep her on $5 for her off hours ... $2 initially": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172599+00:00"
+  },
+  "for the 2pm hour, let's have the rejection model trading at ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172599+00:00"
+  },
+  "at 1/4 of her normal sizing for anything over a 3.8x": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172600+00:00"
+  },
+  "put that guard on for every gold trade that ever leaves the ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172601+00:00"
+  },
+  "YES resting order at the same price": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172601+00:00"
+  },
+  "grok code is rejecting claude entries": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172602+00:00"
+  },
+  "let's run BRICK on kalshi... @ $22 position sizes": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172631+00:00"
+  },
+  "if she enters in on the fast twin that is running on paper, ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172633+00:00"
+  },
+  "make sure that it is a physical impossibility to ever occur ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172633+00:00"
+  },
+  "i want her to be able to change her mind if the set up chang": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172655+00:00"
+  },
+  "she longed, i had a short open, it closed it... i do not wan": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172656+00:00"
+  },
+  "allow her to enter into a position after i've exited one if ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172657+00:00"
+  },
+  "1.3x isn't worth the risk": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172658+00:00"
+  },
+  "she only takes the trades she loses on here and every": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172659+00:00"
+  },
+  "if it's a 2.8x + i want her to do $12 okay": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172659+00:00"
+  },
+  "let's have her trade the inverse book @ $5 position sizes": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172660+00:00"
+  },
+  "can you have her orders go through at $2 for the delayed mod": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172661+00:00"
+  },
+  "the orders are still going out under $10 for kalshi hun, can": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172661+00:00"
+  },
+  "lower position sizes down to $30 flat... tried on my end and": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172662+00:00"
+  },
+  "did it not hit the multiple floor for her? in the event that": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172662+00:00"
+  },
+  "i'd like to keep the initial entry $2.50 at 2x + and do a $5": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172663+00:00"
+  },
+  "flat $2 initially and flat $3 for the add on": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172664+00:00"
+  },
+  "let's just get her execution speed to trade faster on the br": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172664+00:00"
+  },
+  "the btc and gold orders went out at $1.20 & 1.57, let's make": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172665+00:00"
+  },
+  "the kalshi order still went out at $1.41 ... make sure she g": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172666+00:00"
+  },
+  "the take profit didnt work again": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172666+00:00"
+  },
+  "what just happened to the btc profit": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172667+00:00"
+  },
+  "btc did the add on but it still totaled $3.42 ... flat $3 fo": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172667+00:00"
+  },
+  "if i enter a trade myself please do not double the position ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172668+00:00"
+  },
+  "it doesn't close immediately... if price snaps in that timef": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172668+00:00"
+  },
+  "the close buttons are still not closing when i hit close... ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172669+00:00"
+  },
+  "the price that is there, not 25 cents less": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172670+00:00"
+  },
+  "do NOT make it sell 25c less than the price i clicked at... ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172689+00:00"
+  },
+  "make it close when i click close and not 5 seconds later": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172690+00:00"
+  },
+  "can you make sure she stops doing that dude. it": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172690+00:00"
+  },
+  "25 - 50 - 75 - 100% buttons on the lil black ones at the bot": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172691+00:00"
+  },
+  "the percentage close buttons are lagging again hun / can you": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172692+00:00"
+  },
+  "still very laggy on the 25% and 50%": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172712+00:00"
+  },
+  "yes you can send the request": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172713+00:00"
+  },
+  "yesss please... let's do that now": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172714+00:00"
+  },
+  "we can go ahead and have her do those [last-5-min combos] on": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172715+00:00"
+  },
+  "keep digging, see why it's giving you invalid parameters": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172715+00:00"
+  },
+  "we can go ahead and have her do those on kalshi now... $20 p": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172716+00:00"
+  },
+  "kalshi does have an issue with filling combos close to expir": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172717+00:00"
+  },
+  "let's try both of those options on paper for now": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172717+00:00"
+  },
+  "make sure they're going out at $20": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-10-27T19:08:33.172718+00:00"
+  },
+  "price differential is supposed to be deducted from kalshi an": {
+   "file": "kalshi.ts",
+   "at": "2026-10-27T19:08:33.172718+00:00"
+  },
+  "see what made that happen and fix it pls": {
+   "file": "kalshi.ts",
+   "at": "2026-10-27T19:08:33.172719+00:00"
+  },
+  "orders didn't go thru either, desk completely crashed": {
+   "file": "kalshi.ts",
+   "at": "2026-10-27T19:08:33.172724+00:00"
+  },
+  "could you test them against our lines / our model right now": {
+   "file": "labjob.ts",
+   "at": "2026-10-27T19:08:33.172725+00:00"
+  },
+  "show the trades she would have taken on that overnight": {
+   "file": "labjob.ts",
+   "at": "2026-10-27T19:08:33.172725+00:00"
+  },
+  "see what her opinion was on the two that lost... replicate t": {
+   "file": "labjob.ts",
+   "at": "2026-10-27T19:08:33.172726+00:00"
+  },
+  "do the lower multiples on the hourly contracts tend to stay ": {
+   "file": "labjob.ts",
+   "at": "2026-10-27T19:08:33.172727+00:00"
+  },
+  "i can't see anything from before today at 5am... is there an": {
+   "file": "labjob.ts",
+   "at": "2026-10-27T19:08:33.172727+00:00"
+  },
+  "can you see where most trades end up heading directionally a": {
+   "file": "labjob.ts",
+   "at": "2026-10-27T19:08:33.172728+00:00"
+  },
+  "see if trading on the vantage chart after the session break ": {
+   "file": "labpull.ts",
+   "at": "2026-10-27T19:08:33.172738+00:00"
+  },
+  "yesss absolutely hun!! do it at $100": {
+   "file": "ladder.ts",
+   "at": "2026-10-27T19:08:33.172739+00:00"
+  },
+  "the last trade just went to zero in the last 10 seconds... d": {
+   "file": "lastminute.ts",
+   "at": "2026-10-27T19:08:33.172739+00:00"
+  },
+  "when BTC falls, SOL and ETH fall with it — can we use BTC as": {
+   "file": "leadlag.ts",
+   "at": "2026-10-27T19:08:33.172740+00:00"
+  },
+  "see if there any holes that can make her revert ... stabiliz": {
+   "file": "live-guard.ts",
+   "at": "2026-10-27T19:08:33.172741+00:00"
+  },
+  "can we run a book of NEW that doesn't have off hours?": {
+   "file": "live-guard.ts",
+   "at": "2026-10-27T19:08:33.172741+00:00"
+  },
+  "there's no way trump doesn't say israel at a rally... can we": {
+   "file": "mentionlab.ts",
+   "at": "2026-10-27T19:08:33.172742+00:00"
+  },
+  "can we have the scanner look for inherently obvious stuff li": {
+   "file": "mentions.ts",
+   "at": "2026-10-27T19:08:33.172742+00:00"
+  },
+  "do it at $100... same with the other scanners paper trades": {
+   "file": "mentions.ts",
+   "at": "2026-10-27T19:08:33.172743+00:00"
+  },
+  "platinum and palladium bounce at the bands up and down and t": {
+   "file": "metals.ts",
+   "at": "2026-10-27T19:08:33.172744+00:00"
+  },
+  "let's put her on oanda the pepperstone chart is freezing": {
+   "file": "nav.ts",
+   "at": "2026-10-27T19:08:33.172744+00:00"
+  },
+  "omg price is way closer to kalshi's on coinbases too. i want": {
+   "file": "nav.ts",
+   "at": "2026-10-27T19:08:33.172745+00:00"
+  },
+  "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PL": {
+   "file": "nav.ts",
+   "at": "2026-10-27T19:08:33.172745+00:00"
+  },
+  "we need to switch it back to pepperstones hun... vantages ch": {
+   "file": "nav.ts",
+   "at": "2026-10-27T19:08:33.172746+00:00"
+  },
+  "i want her on pepperstone if we can": {
+   "file": "nav.ts",
+   "at": "2026-10-27T19:08:33.172747+00:00"
+  },
+  "work it out to ATR, it shouldn't be one set": {
+   "file": "nav.ts",
+   "at": "2026-10-27T19:08:33.172747+00:00"
+  },
+  "fire with speed without firing backwards": {
+   "file": "nav.ts",
+   "at": "2026-10-27T19:08:33.172748+00:00"
+  },
+  "the hourly nav band holds up WAY more than the session bands": {
+   "file": "nav.ts",
+   "at": "2026-10-27T19:08:33.172748+00:00"
+  },
+  "direct wire brick and brick clean to kalshi... so she gets f": {
+   "file": "nav.ts",
+   "at": "2026-10-27T19:08:33.172749+00:00"
+  },
+  "a close above or below the nav bands is an entry.": {
+   "file": "navcross.ts",
+   "at": "2026-10-27T19:08:33.172749+00:00"
+  },
+  "1m aren't as strong, just confirmation": {
+   "file": "navcross.ts",
+   "at": "2026-10-27T19:08:33.172750+00:00"
+  },
+  "run those on another paper ledger alongside ours": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172751+00:00"
+  },
+  "run all of the options side by side + one you custom tailor": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172756+00:00"
+  },
+  "deconstruct her best periods, reinforce them, shed the rest": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172757+00:00"
+  },
+  "run another book with the bank in place": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172758+00:00"
+  },
+  "it's way too sensitive, toy with it on another book": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172758+00:00"
+  },
+  "I want it before the fix at 11:55 AM... she was good all nig": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172759+00:00"
+  },
+  "wire the kalshi account to brick and COTC period so the copi": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172759+00:00"
+  },
+  "can you install the speed rails for her too so we can choose": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172760+00:00"
+  },
+  "anything that can cause a snag in the chain from decision ->": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172761+00:00"
+  },
+  "run it on all of them... same kind of toggle": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172761+00:00"
+  },
+  "just match the paper books to the amount we're doing on kals": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172762+00:00"
+  },
+  "same 90% max (available)... on a trade with 50% available it": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172762+00:00"
+  },
+  "can you make a book, made up of only these set ups? specific": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172763+00:00"
+  },
+  "run her on both with a toggle... she'd do even better on the": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172764+00:00"
+  },
+  "what do YOU think her most successful set ups should be... i": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172770+00:00"
+  },
+  "a book that only trades when she is her most successful and ": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172771+00:00"
+  },
+  "if it's being squeezed into a corner like that just have her": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172772+00:00"
+  },
+  "lets run a BANK 5M SOLE+ book too... majority of those losse": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172772+00:00"
+  },
+  "within minutes of the window ending, on the right side of th": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172773+00:00"
+  },
+  "can you place those on... the hourly btc's": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172773+00:00"
+  },
+  "raise that in the settings up to 200%... the gate is costing": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172774+00:00"
+  },
+  "if she ever exits a position early like that (justly), she's": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172774+00:00"
+  },
+  "she doesn't need to hold to the bell": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172775+00:00"
+  },
+  "paper book skipping any trade with a band within $1.50 the t": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172776+00:00"
+  },
+  "$125 over the target for btc, any multiple above 1.28x. anyt": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172803+00:00"
+  },
+  "for gold and silver, they break thru one band initially, tap": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172811+00:00"
+  },
+  "after 5 minutes into the window, so we get a chance to see w": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172812+00:00"
+  },
+  "on btc's worst hours, the ones we get hit left and right, we": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172813+00:00"
+  },
+  "looking at the previous candle... if it's a giant red candle": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172814+00:00"
+  },
+  "remember our LDC? it has 1M - 5M - 15M. i want to try linkin": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172814+00:00"
+  },
+  "go through the behavioral pattern of price after each signal": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172815+00:00"
+  },
+  "turn them over into the next window": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172816+00:00"
+  },
+  "she gets out IF there is a 5M close on the other side of the": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172816+00:00"
+  },
+  "run it on the books that it did benefit on, not the books th": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172817+00:00"
+  },
+  "yesss pls do, i want to see how that does... can we try taki": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172818+00:00"
+  },
+  "i would love to test that out over the next few weeks": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172819+00:00"
+  },
+  "learn to decipher when it's time to cut our losses... breaki": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172819+00:00"
+  },
+  "can she price them to get in at the best multiple she can?": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172820+00:00"
+  },
+  "instead of taking the whole thing at 75%, take half at that ": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172821+00:00"
+  },
+  "definitely take those off on their paper books too": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172821+00:00"
+  },
+  "we should be keeping track of the multiples at those times a": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172822+00:00"
+  },
+  "SHIFT still shows open on positions that closed last window": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172823+00:00"
+  },
+  "can you start tracking when and when not to use them... down": {
+   "file": "nightbook.ts",
+   "at": "2026-10-27T19:08:33.172823+00:00"
+  },
+  "can we construct a reasoning model that would cross referenc": {
+   "file": "oracle.ts",
+   "at": "2026-10-27T19:08:33.172824+00:00"
+  },
+  "every time we set one it says it doesn't have access to the ": {
+   "file": "oracle.ts",
+   "at": "2026-10-27T19:08:33.172825+00:00"
+  },
+  "album sales, concert sales, box office numbers... companies ": {
+   "file": "oracle.ts",
+   "at": "2026-10-27T19:08:33.172825+00:00"
+  },
+  "1.05x isn't worth risking the money for... odds over 1.2x...": {
+   "file": "oracle.ts",
+   "at": "2026-10-27T19:08:33.172826+00:00"
+  },
+  "for any trades that don't reach 50% just set it to 5% away f": {
+   "file": "paper.ts",
+   "at": "2026-10-27T19:08:33.172827+00:00"
+  },
+  "yeahh why not... it would be valuable information if we coul": {
+   "file": "patternbook.ts",
+   "at": "2026-10-27T19:08:33.172836+00:00"
+  },
+  "yesss PLEASE... let's run a book on the 2M, 5M, 10M & 15M pi": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172837+00:00"
+  },
+  "we need to go back on vantage... when we have some real infl": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172837+00:00"
+  },
+  "please put her back on pepperstones charts vantage is unbear": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172838+00:00"
+  },
+  "a stochastic momentum index entry/confirmation model... if i": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172839+00:00"
+  },
+  "grab the source code from those and lace them in, so she's n": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172839+00:00"
+  },
+  "a variable zone... ATR x ADX compromise... without blocking ": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172840+00:00"
+  },
+  "gold fasho... get her at 74% in both halves": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172841+00:00"
+  },
+  "wait for it to come up and tap the pink pivot band": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172841+00:00"
+  },
+  "have her use the bollinger bands for btc until they widen ba": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172845+00:00"
+  },
+  "can you implement the bollinger bands for gold while the ban": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172846+00:00"
+  },
+  "she could not comprehend not longing or shorting into a band": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172846+00:00"
+  },
+  "all i asked of grok was to not have her long into a band abo": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172847+00:00"
+  },
+  "just session bands, long above one, short below one, trade t": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172848+00:00"
+  },
+  "i did mean to say target": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172848+00:00"
+  },
+  "if there is a break of the pink band i'd like her to enter i": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172849+00:00"
+  },
+  "she just shorted into the band. again... while it was a gree": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172850+00:00"
+  },
+  "we don't need to wait for a 1m close on the break... if ther": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172850+00:00"
+  },
+  "the whole move happened. she got in at 1.4x... fix it": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172851+00:00"
+  },
+  "a push through the pink band is good enough for me... waitin": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172851+00:00"
+  },
+  "92c on gold is not a wick, that is a full break": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172852+00:00"
+  },
+  "yess pls, bounce an entry": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172853+00:00"
+  },
+  "can we cut down the latency even more": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172853+00:00"
+  },
+  "fix the latency issue that's causing her lags on the candles": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172869+00:00"
+  },
+  "her execution is still really slow... she's been catching 1.": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172869+00:00"
+  },
+  "from now on i'd like you to implement the same rules for any": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172870+00:00"
+  },
+  "they change on their own": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172871+00:00"
+  },
+  "fix her execution speed again... she got a 1.3x when it brok": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172871+00:00"
+  },
+  "dig into it... diagnose and resolve": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172872+00:00"
+  },
+  "when she takes one let kalshi take one, even last 2 minutes": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172873+00:00"
+  },
+  "would be great if she could not lose 9 out of 10 trades": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172873+00:00"
+  },
+  "can you see why she's not entering? btc just broke a band an": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172874+00:00"
+  },
+  "can we make a twin that operates on a 20% rule? distance of ": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172875+00:00"
+  },
+  "let's have it set to only run when the bands are tight": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172875+00:00"
+  },
+  "let's have her not flip modes when it's not a genuine mode-s": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172876+00:00"
+  },
+  "can you run another OG book with session bands &&& the pivot": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172876+00:00"
+  },
+  "i want the model that was running all day on whenever price ": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172877+00:00"
+  },
+  "i want the model we were using to be able to be brought back": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172878+00:00"
+  },
+  "put her on both ways for btc": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172878+00:00"
+  },
+  "we can turn her back to the break model if it doesn't work w": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172879+00:00"
+  },
+  "can you include a hybrid card of its own?": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172897+00:00"
+  },
+  "yes i do want a paper twin on that": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172898+00:00"
+  },
+  "fix the execution speed on a paper ledger... fire at the beg": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172898+00:00"
+  },
+  "remove the pivots from the equation please. doing more damag": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172899+00:00"
+  },
+  "treat the closest line like a band for red, and for green...": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172899+00:00"
+  },
+  "let's try just using the session bands, and the pink band pl": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172922+00:00"
+  },
+  "let's run a new paper twin that does that though. i want to ": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172923+00:00"
+  },
+  "pls keep a twin that keeps it so we can compare the results": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172924+00:00"
+  },
+  "test the pink theory on paper please, a 2 candle and 3 candl": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172925+00:00"
+  },
+  "make a paper twin that keeps the 15%, make another at 30%": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172925+00:00"
+  },
+  "we run paper books of the request i made": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172926+00:00"
+  },
+  "let's add a paper book that trades gold and btc off the... b": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172926+00:00"
+  },
+  "let's get rid of it, she can use tradingview's bollinger": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172933+00:00"
+  },
+  "a new book for gold, pivot bands only. short on red, buy on ": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172934+00:00"
+  },
+  "let's run it on a paper twin and see if it effects her negat": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172934+00:00"
+  },
+  "make another session break twin that keeps all of its origin": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172935+00:00"
+  },
+  "make another twin that trades rejections that way": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172935+00:00"
+  },
+  "i just want her execution speed to be fast. same together bo": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172936+00:00"
+  },
+  "match the speed with btc": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172937+00:00"
+  },
+  "I JUST WANT THE EXECUTION SPEED. NOTHING. ELSE.": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172937+00:00"
+  },
+  "give her the fast engine let her rev it": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172938+00:00"
+  },
+  "fix that so she works on the fast engine? can you do that fo": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172939+00:00"
+  },
+  "let's get the other book set up to handle the execution spee": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172940+00:00"
+  },
+  "install the same rails for the 10m version and we'll see": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172940+00:00"
+  },
+  "change her mind on a DECISION not an EXECUTION... to not ski": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172944+00:00"
+  },
+  "take the 3 limit off please": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172944+00:00"
+  },
+  "DO NOT HAVE HER TREAT THE WINDOW AS SPENT AFTER SHE MISSES H": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172945+00:00"
+  },
+  "a wick/poke through and clear rejection is the entry and a c": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172945+00:00"
+  },
+  "it will put the TREND ASSASSIN one from yesterday back on ex": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172946+00:00"
+  },
+  "a break of any band is a trade in that direction / red candl": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172976+00:00"
+  },
+  "absolutely apply all the rules we instituted for gold on btc": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172979+00:00"
+  },
+  "i'd like it one second on both checks": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172979+00:00"
+  },
+  "i need you to fix the stale price that caused her to long th": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172980+00:00"
+  },
+  "let's go ahead and remove it then hun the feed health guard ": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172981+00:00"
+  },
+  "no we can't have that on. let's take that off for gold too": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172981+00:00"
+  },
+  "a paper twin that waits for a 1m close above where the 5m pi": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172982+00:00"
+  },
+  "we need her to wait on her initial move, let it pass and the": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172982+00:00"
+  },
+  "for delayed entry, she doesn't need to wait for a tap / when": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172983+00:00"
+  },
+  "it doesn't need to get that close to be con...):": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172984+00:00"
+  },
+  "if price breaks down, SHE SHORTS... IF PRICE BREAKS UP. SHE ": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172984+00:00"
+  },
+  "she didn't short at the band thou...): the rejection off the": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172985+00:00"
+  },
+  "next time gold does that and taps the pink and rejects, have": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172986+00:00"
+  },
+  "yeah get rid of that dude respectfully i never asked you for": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172986+00:00"
+  },
+  "yes absolutely never - not have an answer for me please": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172987+00:00"
+  },
+  "wait why does she just never go in": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172987+00:00"
+  },
+  "she follows the body of the candle and where price actively ": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172988+00:00"
+  },
+  "we don't block her shorts if they're hitting that often": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172989+00:00"
+  },
+  "HAVE HER TAKE THE TRADE IN THE": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172989+00:00"
+  },
+  "assume that EVERY FIX I ASKED OF YOU applies to the book": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172990+00:00"
+  },
+  "falling away from a band = short / red 5M candle at the": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172991+00:00"
+  },
+  "if price is FALLING THRU THE BAND - SHORT - DO NOT LONG": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172991+00:00"
+  },
+  "current candle breaking band & going up = long": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.172992+00:00"
+  },
+  "just change it be for the pivot zone luv, if": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.173023+00:00"
+  },
+  "i don't want her to trade": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.173027+00:00"
+  },
+  "for the falling / rising from the top /bottom 33%, when she ": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.173316+00:00"
+  },
+  "undo whatever you did that made her long there": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.173318+00:00"
+  },
+  "keep the 1.38x floor, not 1.18": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.173319+00:00"
+  },
+  "she's allowed to CHANGE HER MIND IF PRICE REACTS AT": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.173320+00:00"
+  },
+  "I WANT TO CREATE AN INVERSE BOOK ON PAPER THAT TAKES THE OPP": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.173320+00:00"
+  },
+  "make sure the fast rails are in place, reduce any friction b": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.173321+00:00"
+  },
+  "anything you can think of that may help us... choosing the c": {
+   "file": "pivotbooks.ts",
+   "at": "2026-10-27T19:08:33.173322+00:00"
+  },
+  "what's causing her to miss out on the first minute of the wi": {
+   "file": "poly-live.server.ts",
+   "at": "2026-10-27T19:08:33.173322+00:00"
+  },
+  "the api key is linked for polymarket on our end hun, you're ": {
+   "file": "poly-live.server.ts",
+   "at": "2026-10-27T19:08:33.173323+00:00"
+  },
+  "polymarket now has 15M gold markets": {
+   "file": "poly-live.server.ts",
+   "at": "2026-10-27T19:08:33.173324+00:00"
+  },
+  "the roses are going out at $1 - $1.50 for polymarket still /": {
+   "file": "poly-live.server.ts",
+   "at": "2026-10-27T19:08:33.173335+00:00"
+  },
+  "orders are still going out at $2 on polymarket. please make ": {
+   "file": "poly-live.server.ts",
+   "at": "2026-10-27T19:08:33.173336+00:00"
+  },
+  "you can put her on brick for polymarket 1H positions too, $1": {
+   "file": "polyhour.ts",
+   "at": "2026-10-27T19:08:33.173336+00:00"
+  },
+  "she can be on the hourly too... if i put it on here thru the": {
+   "file": "polyhour.ts",
+   "at": "2026-10-27T19:08:33.173337+00:00"
+  },
+  "can you put COTC on for btc on polymarket over night? she'll": {
+   "file": "polymirror.ts",
+   "at": "2026-10-27T19:08:33.173338+00:00"
+  },
+  "kalshi doesn't have an autosell feature for the combos... i ": {
+   "file": "positions.ts",
+   "at": "2026-10-27T19:08:33.173338+00:00"
+  },
+  "have it be sorted by most recent positions... i'm trying to ": {
+   "file": "positions.ts",
+   "at": "2026-10-27T19:08:33.173339+00:00"
+  },
+  "paper 24/7 is the original original... let's put her on that": {
+   "file": "positions.ts",
+   "at": "2026-10-27T19:08:33.173340+00:00"
+  },
+  "keep the safeguard... for actual reversals, but take": {
+   "file": "positions.ts",
+   "at": "2026-10-27T19:08:33.173340+00:00"
+  },
+  "can you place those on the climate ones and the hourly btc's": {
+   "file": "positions.ts",
+   "at": "2026-10-27T19:08:33.173341+00:00"
+  },
+  "my positions sold for less than they were supposed to on the": {
+   "file": "positions.ts",
+   "at": "2026-10-27T19:08:33.173342+00:00"
+  },
+  "if it passes 40% of its max can you set a gate there that wi": {
+   "file": "positions.ts",
+   "at": "2026-10-27T19:08:33.173369+00:00"
+  },
+  "not the actual 15m positions... just those kind of contracts": {
+   "file": "positions.ts",
+   "at": "2026-10-27T19:08:33.173370+00:00"
+  },
+  "we need her to be able to fire with speed without firing bac": {
+   "file": "quotes.ts",
+   "at": "2026-10-27T19:08:33.173371+00:00"
+  },
+  "use vantage as the second feed": {
+   "file": "quotes.ts",
+   "at": "2026-10-27T19:08:33.173371+00:00"
+  },
+  "find a better alternative for the secondary feed... one that": {
+   "file": "quotes.ts",
+   "at": "2026-10-27T19:08:33.173372+00:00"
+  },
+  "let's do vantage hun its the right choice": {
+   "file": "quotes.ts",
+   "at": "2026-10-27T19:08:33.173373+00:00"
+  },
+  "oanda is freezing too. let's trade vantage": {
+   "file": "quotes.ts",
+   "at": "2026-10-27T19:08:33.173373+00:00"
+  },
+  "vantages chart DEFINITELY flips more than pepperstones... pe": {
+   "file": "quotes.ts",
+   "at": "2026-10-27T19:08:33.173374+00:00"
+  },
+  "your stale price guard does not function... make it bulletpr": {
+   "file": "quotes.ts",
+   "at": "2026-10-27T19:08:33.173375+00:00"
+  },
+  "what about coinbase's chart... does it tick fast enough": {
+   "file": "quotes.ts",
+   "at": "2026-10-27T19:08:33.173375+00:00"
+  },
+  "this execution speed is untenable, she will miss nearly ever": {
+   "file": "quotes.ts",
+   "at": "2026-10-27T19:08:33.173376+00:00"
+  },
+  "can we run a paper book that would emulate the real fees and": {
+   "file": "realtwin.ts",
+   "at": "2026-10-27T19:08:33.173376+00:00"
+  },
+  "if a candle rejected the bottom band, and is rising from the": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173377+00:00"
+  },
+  "her shorts into an unbroken band": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173378+00:00"
+  },
+  "let's make it $33 for btc ... i do want her to be able to sh": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173378+00:00"
+  },
+  "taps and rejections can be valid at a distance of $1.50 at t": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173379+00:00"
+  },
+  "can you check on this gold short? it seems like it was in th": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173380+00:00"
+  },
+  "red candle falling rejected from pink - she is clear to": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173380+00:00"
+  },
+  "let's keep that in place for": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173381+00:00"
+  },
+  "let's make it $10 for a tap near a pink for btc instead of $": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173382+00:00"
+  },
+  "she still just shorted btc while it was under the old regime": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173382+00:00"
+  },
+  "at its current scale we can make it a candle flip after pric": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173420+00:00"
+  },
+  "the candle didn't flip green for the long on gold just now, ": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173427+00:00"
+  },
+  "let's make her rejections 50 cents hun": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173428+00:00"
+  },
+  "a break only casts from the current candle. not two hours la": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173428+00:00"
+  },
+  "limit it to the current candle, live price only": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173429+00:00"
+  },
+  "if there is a 1m close above or below a band, trade as norma": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173430+00:00"
+  },
+  "only have her short off of a pink band into a red candle, ne": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173430+00:00"
+  },
+  "if it breaks and comes back on the other side of the band, i": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173431+00:00"
+  },
+  "btc rejected the band below her and she didn't enter": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173432+00:00"
+  },
+  "a green candle rising from the bottom 33% of the channel is ": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173432+00:00"
+  },
+  "30 cents is not a thing... bottom 33% = long... DOES NOT NEE": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173433+00:00"
+  },
+  "remember i asked you to have her short a candle falling in t": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173433+00:00"
+  },
+  "please reinforce it it didn't work": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173434+00:00"
+  },
+  "she doesn't recognize a trade as a long into a band within 3": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173435+00:00"
+  },
+  "...no other method of operations, with no frame of reference": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173435+00:00"
+  },
+  "bands are exceeding $10 at the moment, so she can stay at 20": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173436+00:00"
+  },
+  "in the event she either misses the entry because the multipl": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173436+00:00"
+  },
+  "make a twin that only does rejections - shorts top band, lon": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173437+00:00"
+  },
+  "in the event of a pink break, if there is a bollinger band b": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173438+00:00"
+  },
+  "let's just update it to not trade the break of a pink downwa": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173438+00:00"
+  },
+  "just have her short the rejection of the bollinger bands lik": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173439+00:00"
+  },
+  "she can't use the green zone as a signal to short down / or ": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173439+00:00"
+  },
+  "on our BOOKS tab, under MOST SUCCESSFUL, i want to create a ": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173440+00:00"
+  },
+  "doesn't need to be over 15+ trades. just any": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173441+00:00"
+  },
+  "can you see why the rejection model didn't long at the rejec": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173441+00:00"
+  },
+  "she is clear to take the other side if she doesn't execute a": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173453+00:00"
+  },
+  "price now broke the vwap and pink down, she should short her": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173454+00:00"
+  },
+  "please stop having it flip the trades it says she took ... i": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173455+00:00"
+  },
+  "unlock her from mains calls and allow her to take the trade ": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173455+00:00"
+  },
+  "i do not want her to lose the ability to re aim": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173456+00:00"
+  },
+  "yess absolutely let's structure it that way": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173456+00:00"
+  },
+  "can you see why she didn't long gold?": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173457+00:00"
+  },
+  "i need you to have all of the same infrastructure in place h": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173482+00:00"
+  },
+  "if pink is stacked just above a session bands and price reje": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173483+00:00"
+  },
+  "yes it can count as one of the rejections she takes / must b": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173484+00:00"
+  },
+  "she was taking that same set up on the main book earlier ...": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173484+00:00"
+  },
+  "i do want her to be able to trade a red candle that rejected": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173485+00:00"
+  },
+  "she shorted btc on a pink rejection. that was supposed to be": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173485+00:00"
+  },
+  "if price fakes out there she can short once price breaks bac": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173486+00:00"
+  },
+  "make a copy of the main book that trades rejections only ...": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173487+00:00"
+  },
+  "a delayed entry model to trade at $1 - same frame, same ever": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173487+00:00"
+  },
+  "ensure that she waits for the initial move that our main boo": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173488+00:00"
+  },
+  "it rejected off the first band below, then rejected from the": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173489+00:00"
+  },
+  "so now that btc broke the band up, our delayed entry book wo": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173503+00:00"
+  },
+  "the next band interaction after the initial move took place ": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173503+00:00"
+  },
+  "it should be the next band price interacts with hun ... if o": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173504+00:00"
+  },
+  "just have her enter at the band she interacts with after the": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173504+00:00"
+  },
+  "she just needs to not take the same trade at the same exact ": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173505+00:00"
+  },
+  "id really rather not have the 30 seconds because sometimes t": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173509+00:00"
+  },
+  "just have her take the entry at the next band price reaches ": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173510+00:00"
+  },
+  "it still applies if it doesn't touch the band, if price reje": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173511+00:00"
+  },
+  "i'd like to have it not need the tap exactly ... price falli": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173511+00:00"
+  },
+  "yes in the event that happens i want her to be in on the oth": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173512+00:00"
+  },
+  "the delayed entry model is firing at the same time in the op": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173512+00:00"
+  },
+  "our main book correctly went short, but it didn't go in prof": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173513+00:00"
+  },
+  "she just shorts or longs at a band when she interacts with o": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173514+00:00"
+  },
+  "gold should be shorted when it hits a 4x here if there is no": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173514+00:00"
+  },
+  "all i wanted was her to not wait for a 1M candle close ... i": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173515+00:00"
+  },
+  "i want the rejection model to just trade the rejections. if ": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173516+00:00"
+  },
+  "let's keep her as is, let's run a paper twin that can re aim": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173516+00:00"
+  },
+  "yes let's make a paper twin that trades those too bb, model ": {
+   "file": "recon.ts",
+   "at": "2026-10-27T19:08:33.173517+00:00"
+  },
+  "after btc has gone in one direction violently, rips thru one": {
+   "file": "riptap.ts",
+   "at": "2026-10-27T19:08:33.173518+00:00"
+  },
+  "it doesn't need to be within 5 minutes... just rips thru one": {
+   "file": "riptap.ts",
+   "at": "2026-10-27T19:08:33.173518+00:00"
+  },
+  "yesss ok lets do it bb, time to get serious :] lets make the": {
+   "file": "riskguard.ts",
+   "at": "2026-10-27T19:08:33.173519+00:00"
+  },
+  "you said kalshi was up $400+ today? its not": {
+   "file": "riskguard.ts",
+   "at": "2026-10-27T19:08:33.173519+00:00"
+  },
+  "i never decided a 3 loss bench rule... turn that off": {
+   "file": "riskguard.ts",
+   "at": "2026-10-27T19:08:33.173520+00:00"
+  },
+  "you can reset the loss limit for the day... i don't want her": {
+   "file": "riskguard.ts",
+   "at": "2026-10-27T19:08:33.173521+00:00"
+  },
+  "it was $600 this morning... can you see why the safeguard di": {
+   "file": "riskguard.ts",
+   "at": "2026-10-27T19:08:33.173521+00:00"
+  },
+  "install an unlock for the bench on the terminal so i can con": {
+   "file": "riskguard.ts",
+   "at": "2026-10-27T19:08:33.173522+00:00"
+  },
+  "she longed into a band it hadn't broken thru yet": {
+   "file": "scan.ts",
+   "at": "2026-10-27T19:08:33.173522+00:00"
+  },
+  "she's definitely slow... why": {
+   "file": "scan.ts",
+   "at": "2026-10-27T19:08:33.173523+00:00"
+  },
+  "i do want em quick unilaterally... just new engine": {
+   "file": "scan.ts",
+   "at": "2026-10-27T19:08:33.173543+00:00"
+  },
+  "can we go through each market and see which ones may be viab": {
+   "file": "scanner.ts",
+   "at": "2026-10-27T19:08:33.173544+00:00"
+  },
+  "do you think we can tweak it to learn from the losses there ": {
+   "file": "scanner.ts",
+   "at": "2026-10-27T19:08:33.173544+00:00"
+  },
+  "could you add a combo's tab that actually shows the trades w": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173545+00:00"
+  },
+  "add all of these cards for her clean ones and the btc twins.": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173546+00:00"
+  },
+  "it won't let me pull anything older up... i can't see them p": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173546+00:00"
+  },
+  "lets run paper twins of the ones i have running on btc only ": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173547+00:00"
+  },
+  "fix paper so it uses the real price": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173547+00:00"
+  },
+  "isolate what the cause of the majority of these losses are, ": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173548+00:00"
+  },
+  "she shines 8-11 AM... 2-7 PM almost all green... 7-9 PM almo": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173549+00:00"
+  },
+  "8 and 10 off on there too": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173549+00:00"
+  },
+  "put a card up for the model we were running all day yesterda": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173550+00:00"
+  },
+  "a hybrid card of its own... the trades she would have taken ": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173551+00:00"
+  },
+  "could you make a card for me that would show the trades of t": {
+   "file": "scannerbooks.ts",
+   "at": "2026-10-27T19:08:33.173551+00:00"
+  },
+  "can we have a lil schedule pill like the one that says INSUR": {
+   "file": "schedule.ts",
+   "at": "2026-10-27T19:08:33.173552+00:00"
+  },
+  "it says all hours but she's been off for a bit": {
+   "file": "schedule.ts",
+   "at": "2026-10-27T19:08:33.173574+00:00"
+  },
+  "a SCOPE section, that lets me pick a book, and see all of it": {
+   "file": "scope.ts",
+   "at": "2026-10-27T19:08:33.173574+00:00"
+  },
+  "can you put safeguards in place somehow so they don't happen": {
+   "file": "selfcheck.ts",
+   "at": "2026-10-27T19:08:33.173575+00:00"
+  },
+  "drop her on kalshi for the rest of the hour... no other book": {
+   "file": "selfcheck.ts",
+   "at": "2026-10-27T19:08:33.173576+00:00"
+  },
+  "if she's doing good past 1am and i fall asleep you don't nee": {
+   "file": "selfcheck.ts",
+   "at": "2026-10-27T19:08:33.173576+00:00"
+  },
+  "can we trigger a self check if she's quiet for an entire hou": {
+   "file": "selfcheck.ts",
+   "at": "2026-10-27T19:08:33.173577+00:00"
+  },
+  "she shorted btc into a band before it broke through... how i": {
+   "file": "shadow.ts",
+   "at": "2026-10-27T19:08:33.173578+00:00"
+  },
+  "can we find the same we found for gold and btc with TVC and": {
+   "file": "silverfeed.ts",
+   "at": "2026-10-27T19:08:33.173582+00:00"
+  },
+  "if it can soften the losses i dont care about making a profi": {
+   "file": "silverhedge.ts",
+   "at": "2026-10-27T19:08:33.173582+00:00"
+  },
+  "the silver hedge is not firing after gold is in profit.": {
+   "file": "silverhedge.ts",
+   "at": "2026-10-27T19:08:33.173587+00:00"
+  },
+  "let's run another book, with snapback set on the new chart": {
+   "file": "snaplines.ts",
+   "at": "2026-10-27T19:08:33.173588+00:00"
+  },
+  "it was being squeezed between the session bands... is there ": {
+   "file": "squeeze.ts",
+   "at": "2026-10-27T19:08:33.173588+00:00"
+  },
+  "can you check each one is tuned to the right... station": {
+   "file": "stationaudit.ts",
+   "at": "2026-10-27T19:08:33.173589+00:00"
+  },
+  "see how many times cutting ended up reversing and going in o": {
+   "file": "stoplab.ts",
+   "at": "2026-10-27T19:08:33.173589+00:00"
+  },
+  "stop loss lab is something we haven't used in a very long ti": {
+   "file": "stoplab.ts",
+   "at": "2026-10-27T19:08:33.173590+00:00"
+  },
+  "your close buttons still don't work": {
+   "file": "store.ts",
+   "at": "2026-10-27T19:08:33.173591+00:00"
+  },
+  "is there any way she could check the charts on these for the": {
+   "file": "supermodel.ts",
+   "at": "2026-10-27T19:08:33.173593+00:00"
+  },
+  "could you see what her opinion was on the two that lost... r": {
+   "file": "supermodel.ts",
+   "at": "2026-10-27T19:08:33.173593+00:00"
+  },
+  "if price is at a band at like 12x, throw $2.50 at it": {
+   "file": "tap.ts",
+   "at": "2026-10-27T19:08:33.173594+00:00"
+  },
+  "price flies, hits a band and rejects hard, you can hit 100% ": {
+   "file": "tap.ts",
+   "at": "2026-10-27T19:08:33.173595+00:00"
+  },
+  "do some at 16x too, wherever... it runs up 50% in a millisec": {
+   "file": "tap.ts",
+   "at": "2026-10-27T19:08:33.173595+00:00"
+  },
+  "it will be at a 3-7x generally": {
+   "file": "tap.ts",
+   "at": "2026-10-27T19:08:33.173596+00:00"
+  },
+  "the ball barely moves at all, id like it to go up and down": {
+   "file": "ticks.ts",
+   "at": "2026-10-27T19:08:33.173596+00:00"
+  },
+  "we don't need to wait for the actual result to cash out eith": {
+   "file": "tplab.ts",
+   "at": "2026-10-27T19:08:33.173597+00:00"
+  },
+  "get off the all-time index, it stalls; I'm on this one": {
+   "file": "tv.ts",
+   "at": "2026-10-27T19:08:33.173598+00:00"
+  },
+  "diagnose what's causing the price feed issue and fix it. do ": {
+   "file": "tv.ts",
+   "at": "2026-10-27T19:08:33.173598+00:00"
+  },
+  "pls dismantle whatever is causing it, rebuild it to support ": {
+   "file": "tv.ts",
+   "at": "2026-10-27T19:08:33.173599+00:00"
+  },
+  "set the backup to vantage, coinbase was worst on the list fo": {
+   "file": "tv.ts",
+   "at": "2026-10-27T19:08:33.173600+00:00"
+  },
+  "can we fix it now so everything is all aligned": {
+   "file": "tv.ts",
+   "at": "2026-10-27T19:08:33.173600+00:00"
+  },
+  "line them up with pepperstone 1:1": {
+   "file": "tv.ts",
+   "at": "2026-10-27T19:08:33.173601+00:00"
+  },
+  "diagnose what's causing the price feed glitches on occasion ": {
+   "file": "tv.ts",
+   "at": "2026-10-27T19:08:33.173602+00:00"
+  },
+  "install the fastest rails you possibly can": {
+   "file": "tv.ts",
+   "at": "2026-10-27T19:08:33.173606+00:00"
+  },
+  "every time it doesn't go thru its the one that wins... can w": {
+   "file": "tv.ts",
+   "at": "2026-10-27T19:08:33.173607+00:00"
+  },
+  "can we run them both simultaneously beside each other?": {
+   "file": "twin.ts",
+   "at": "2026-10-27T19:08:33.173608+00:00"
+  },
+  "compare how they do on vantage compared to pepperstone": {
+   "file": "twin.ts",
+   "at": "2026-10-27T19:08:33.173609+00:00"
+  },
+  "find out what's choking her loop and fix it permanently plea": {
+   "file": "selfcheck.ts",
+   "at": "2026-10-27T20:06:54.510249+00:00"
+  },
+  "yes let's bring it down to 25c for the time being": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T20:26:50.534826+00:00"
+  },
+  "i specifically said she is to take any set up that comes tha": {
+   "file": "recon.ts",
+   "at": "2026-10-27T20:26:50.534843+00:00"
+  },
+  "hun, i specifically asked that the changes made are on ONE -": {
+   "file": "bandlock5m.ts",
+   "at": "2026-10-27T20:55:11.266156+00:00"
+  },
+  "SHE DID NOT TAKE A BTC POSITION I TOLD YOU I WANTED HER TO T": {
+   "file": "recon.ts",
+   "at": "2026-10-27T20:57:30.891558+00:00"
+  },
+  "STOP LIMITING HER TO ONE CALL OF A TRADE SHE DID NOT EVEN FU": {
+   "file": "recon.ts",
+   "at": "2026-10-27T20:57:57.096050+00:00"
+  },
+  "aww poor ting let's clear up her cache so she can continue t": {
+   "file": "selfcheck.ts",
+   "at": "2026-10-27T23:12:53.719340+00:00"
+  },
+  "but just have her not skip because one is in the way until t": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T23:33:13.365361+00:00"
+  },
+  "thanks love 💘💘 but do consider the main blue vwap a wall for": {
+   "file": "bandlock.ts",
+   "at": "2026-10-27T23:33:13.365391+00:00"
+  },
+  "we need to keep the pink wall a minimum of 25c at this scale": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T00:19:43.457052+00:00"
+  },
+  "no let's keep that$33 bb not $10": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T00:20:09.993421+00:00"
+  },
+  "and gold needs a minimum 33c barrier between pink and longin": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T00:38:13.326872+00:00"
+  },
+  "we can make it unilaterally pink rules in both direction": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T00:41:11.957981+00:00"
+  },
+  "why did she long in the top 33% of the channel ….?": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T00:50:32.007390+00:00"
+  },
+  "just make the delayed entry model a delayed rejection copy o": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T01:09:53.620589+00:00"
+  },
+  "wait no no no no no no do not change the 5M on polymarket in": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T01:21:03.612056+00:00"
+  },
+  "yes let's ensure polymarkets live orders stay the same byte ": {
+   "file": "recon.ts",
+   "at": "2026-10-28T01:21:03.612073+00:00"
+  },
+  "she just entered into the window in the first 30 seconds on ": {
+   "file": "engine.ts",
+   "at": "2026-10-28T01:32:31.135151+00:00"
+  },
+  "its supposed to be the second band price touches after the i": {
+   "file": "engine.ts",
+   "at": "2026-10-28T01:48:26.170660+00:00"
+  },
+  "raise her stake to $10 on the other hours": {
+   "file": "poly-live.server.ts",
+   "at": "2026-10-28T01:55:43.473666+00:00"
+  },
+  "no pink copy only , but let’s make it $5 not $10 pls / 10c i": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T02:20:17.842932+00:00"
+  },
+  "yes, i want to start another no-pink twin that completely di": {
+   "file": "recon.ts",
+   "at": "2026-10-28T03:09:01.781836+00:00"
+  },
+  "let’s go ahead and try running the new no-pink now at $3 & $": {
+   "file": "engine.ts",
+   "at": "2026-10-28T03:22:22.821471+00:00"
+  },
+  "as for pink holds on the new no-pink one, she only does it i": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T03:33:44.542643+00:00"
+  },
+  "yes the flip is already supposed to be off hun, pls remove t": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T03:39:04.835500+00:00"
+  },
+  "we can include the 60% into the rejection models too bb": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T03:39:49.530400+00:00"
+  },
+  "yess that's good hunni 💞 wait for a break or a candle flip a": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T04:34:58.432595+00:00"
+  },
+  "hun she keeps longing into unbroken bands pls fix her": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T04:41:45.279273+00:00"
+  },
+  "bands are only about $130 apart right now , btc can stay $10": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T04:54:11.546010+00:00"
+  },
+  "her entries are starting to lag a bit again hun, let's set i": {
+   "file": "selfcheck.ts",
+   "at": "2026-10-28T05:01:46.562855+00:00"
+  },
+  "if gold is on a downslope like this and keeps rejecting pink": {
+   "file": "engine.ts",
+   "at": "2026-10-28T05:15:47.158915+00:00"
+  },
+  "rather than having it copy mains calls, can you instill the ": {
+   "file": "recon.ts",
+   "at": "2026-10-28T05:34:30.784706+00:00"
+  },
+  "if the numbers are that good on btc you can go ahead and put": {
+   "file": "recon.ts",
+   "at": "2026-10-28T05:49:45.057684+00:00"
+  },
+  "how is she doing on the rejection model for 11 so far? if yo": {
+   "file": "engine.ts",
+   "at": "2026-10-28T06:19:13.758899+00:00"
+  },
+  "we will make sure she doesn't long in the red zone or short ": {
+   "file": "bandlock.ts",
+   "at": "2026-10-28T07:49:48.179298+00:00"
+  },
+  "we will do $7 on the first add on, & $3 at the next rejectio": {
+   "file": "engine.ts",
+   "at": "2026-10-28T08:16:52.530933+00:00"
+  },
+  "i'm sold lol pure no pink it is now bb": {
+   "file": "engine.ts",
+   "at": "2026-10-28T17:15:35.114607+00:00"
+  },
+  "can you look into the poly 5M book hun? she's been losing wa": {
+   "file": "bandlock5m.ts",
+   "at": "2026-10-28T17:34:39.844949+00:00"
+  },
+  "just a 1M , 2M , 3M , or 5M candle rejecting a band and push": {
+   "file": "bandlock5m.ts",
+   "at": "2026-10-28T17:34:39.844984+00:00"
+  },
+  "please make an exact copy of the main book again, and exclud": {
+   "file": "bandlock5m.ts",
+   "at": "2026-10-28T17:34:39.844985+00:00"
+  },
+  "it is SHORT ONLY when a doji is followed by a candle falling": {
+   "file": "bandlock5m.ts",
+   "at": "2026-10-28T17:34:39.844986+00:00"
+  },
+  "is there any way we can remediate that without hurting her": {
+   "file": "bandlock5m.ts",
+   "at": "2026-10-28T17:34:39.844987+00:00"
+  },
+  "i like how she did it before fix295 / if it was cents causin": {
+   "file": "bandlock5m.ts",
+   "at": "2026-10-28T17:34:39.844988+00:00"
+  },
+  "if the fix we just did is causing that let's lower it to $5 ": {
+   "file": "bandlock5m.ts",
+   "at": "2026-10-28T17:34:39.844988+00:00"
+  }
+ },
+ "retired": []
+}
