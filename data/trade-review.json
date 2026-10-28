@@ -1,5 +1,41 @@
 [
   {
+    "id": "mvrk8e5t-rz87m5",
+    "at": "2026-10-28T03:40:09.624Z",
+    "result": "win",
+    "profit": 14.48,
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Tap-reject at -1.5σ",
+    "multiple": 1.72,
+    "hour": "8pm",
+    "minutesLeft": null,
+    "windowOpen": null,
+    "entrySpot": 4044.61,
+    "target": 4045.19,
+    "vwap": null,
+    "nearestBand": "",
+    "bandBetween": false,
+    "peakPct": 57.9,
+    "exitPct": 57.9,
+    "giveback": 0,
+    "trail": "Trail took it. High 57.9%, out at 57.9%.",
+    "points": 3,
+    "better": "Nothing to change. Same entry next time.",
+    "elements": [
+      "Gold short",
+      "Tap-reject at -1.5σ",
+      "1.4x to 2.2x",
+      "already through the strike",
+      "tight to the strike",
+      "cleared the arm",
+      "8pm",
+      "closed before the bell",
+      "Trail took it. High 57.9%, out at 57.9%."
+    ],
+    "note": "Gold short Tap-reject at -1.5σ won +$14.48 (8pm). 1.4x to 2.2x. already through the strike. tight to the strike. cleared the arm. closed before the bell. Trail took it. High 57.9%, out at 57.9%.. Max 72.4%, saw 57.9%, closed at 57.9%. Trail took it. High 57.9%, out at 57.9%. Nothing to change. Same entry next time."
+  },
+  {
     "id": "held-KXBTC15M-26OCT272330-30",
     "at": "2026-10-28T03:30:17.751Z",
     "result": "win",
@@ -14076,41 +14112,5 @@
       "finished on the wrong side of the strike"
     ],
     "note": "Bitcoin long Tap-reject at +2σ lost −$25.00 (8am). 1.4x to 2.2x. long above the VWAP. already through the strike. tight to the strike. went green, short of the watch. held to the bell. Trail never reached the watch.. finished on the wrong side of the strike. Max 66.7%, saw 6.7%. Trail never reached the watch. The entry was the book. Nothing in the entry to change. Leave the setup on."
-  },
-  {
-    "id": "mvpfnst1-40qw6k",
-    "at": "2026-10-26T15:59:48.372Z",
-    "result": "win",
-    "profit": 14.37,
-    "asset": "gold",
-    "side": "down",
-    "pattern": "Tap-reject at +1σ",
-    "multiple": 1.59,
-    "hour": "8am",
-    "minutesLeft": null,
-    "windowOpen": null,
-    "entrySpot": 4015.91,
-    "target": 4016.99,
-    "vwap": 4006.9867069457923,
-    "nearestBand": "",
-    "bandBetween": false,
-    "peakPct": 57.5,
-    "exitPct": 57.5,
-    "giveback": 0,
-    "trail": "Trail took it. High 57.5%, out at 57.5%.",
-    "points": 2,
-    "better": "Nothing to change. Same entry next time.",
-    "elements": [
-      "Gold short",
-      "Tap-reject at +1σ",
-      "1.4x to 2.2x",
-      "short above the VWAP",
-      "already through the strike",
-      "cleared the arm",
-      "8am",
-      "closed before the bell",
-      "Trail took it. High 57.5%, out at 57.5%."
-    ],
-    "note": "Gold short Tap-reject at +1σ won +$14.37 (8am). 1.4x to 2.2x. short above the VWAP. already through the strike. cleared the arm. closed before the bell. Trail took it. High 57.5%, out at 57.5%.. Max 58.7%, saw 57.5%, closed at 57.5%. Trail took it. High 57.5%, out at 57.5%. Nothing to change. Same entry next time."
   }
 ]

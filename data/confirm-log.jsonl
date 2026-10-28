@@ -63731,3 +63731,11 @@
 {"at":"2026-10-28T03:35:14.960Z","kind":"confirmed","first":"pep","then":"van","line":"+2.5σ","dir":"down","secs":18,"px":81164.29,"ticker":"KXBTC15M-26OCT272345-45","ask":0.12,"dna":"DNA: the +1.5σ (80956.04) sits between price and the strike 80948.30: she has to close through it first"}
 {"at":"2026-10-28T03:36:01.198Z","kind":"first","feed":"pep","line":"+2σ","dir":"down","px":81008.94,"ticker":"KXBTC15M-26OCT272345-45","ask":0.11,"dna":"DNA: in the 25% of the channel closest to the +2σ (81014.18), 12.95 of 56.92"}
 {"at":"2026-10-28T03:36:12.248Z","kind":"first","feed":"pep","line":"+2σ","dir":"up","px":81033.53,"ticker":"KXBTC15M-26OCT272345-45","ask":0.85,"dna":"DNA: in the 25% of the channel closest to the +2.5σ (81071.43), 1.38 of 56.96"}
+{"at":"2026-10-28T03:37:04.830Z","kind":"unconfirmed","feed":"pep","line":"+2σ","dir":"down","px":81008.94,"ticker":"KXBTC15M-26OCT272345-45"}
+{"at":"2026-10-28T03:37:16.585Z","kind":"unconfirmed","feed":"pep","line":"+2σ","dir":"up","px":81033.53,"ticker":"KXBTC15M-26OCT272345-45"}
+{"at":"2026-10-28T03:39:04.256Z","kind":"first","feed":"van","line":"+2.5σ","dir":"up","px":81195.21,"ticker":"KXBTC15M-26OCT272345-45","ask":0.978,"dna":null}
+{"at":"2026-10-28T03:39:09.097Z","kind":"confirmed","first":"van","then":"pep","line":"+2.5σ","dir":"up","secs":5,"px":81088.31,"ticker":"KXBTC15M-26OCT272345-45","ask":0.978,"dna":null}
+{"at":"2026-10-28T03:39:15.418Z","kind":"first","feed":"van","line":"+2.5σ","dir":"down","px":81175.08,"ticker":"KXBTC15M-26OCT272345-45","ask":0.044,"dna":"DNA: in the 25% of the channel closest to the 15m upper (81107.56), 4.72 of 29.26"}
+{"at":"2026-10-28T03:39:26.081Z","kind":"confirmed","first":"van","then":"pep","line":"+2.5σ","dir":"down","secs":11,"px":81076.14,"ticker":"KXBTC15M-26OCT272345-45","ask":0.042,"dna":"DNA: in the 25% of the channel closest to the 15m upper (81107.56), 4.72 of 30.57"}
+{"at":"2026-10-28T03:40:09.683Z","kind":"first","feed":"van","line":"+2.5σ","dir":"up","px":81194.24,"ticker":"KXBTC15M-26OCT272345-45","ask":0.977,"dna":null}
+{"at":"2026-10-28T03:40:20.269Z","kind":"confirmed","first":"van","then":"pep","line":"+2.5σ","dir":"up","secs":11,"px":81086.58,"ticker":"KXBTC15M-26OCT272345-45","ask":0.989,"dna":"DNA: in the 25% of the channel closest to the +2.5σ (81081.30), 9.51 of 58.38"}

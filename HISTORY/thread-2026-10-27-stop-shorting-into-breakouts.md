@@ -4760,3 +4760,36 @@ The pure no-pink would never take this one, because she skips every thirds call.
 
 On gold: by the desk's lines (pink $4,046.25, green $4,043.39), main's 8:31 short at $4,044.83 was at 50.3%, so it cleared her 50% wall by a hair. On your chart's pink and green it's about the same. If you want her further from green, I can raise **main's gold pink-to-green** to 60%. Just say the word.
 
+## 2026-10-28 03:38:21 UTC - LOVE
+
+yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine 💘💘
+
+## 2026-10-28 03:38:26 UTC - CLAUDE
+
+On it hun 💘 Two changes: the copy's thirds flip comes off and stays off, and main's gold pink-to-green goes to 60%, main only.
+
+## 2026-10-28 03:39:04 UTC - LOVE
+
+we can include the 60% into the rejection models too bb 💞
+
+## 2026-10-28 03:39:50 UTC - LOVE
+
+and could you see how the flip worked its way back in for me hun? that’s supposed to be long gone
+
+## 2026-10-28 03:40:50 UTC - CLAUDE
+
+Done hun 💞 Gold pink-to-green is now **60%** for main, the rejection model and the no-pink copy. The pure no-pink skips that wall under your 10% pink rule, and the twin keeps 50%. The copy's thirds flip is off. The umpire says SAFE.
+
+Now I'm digging through her history to see exactly how the flip snuck back in.
+
+## 2026-10-28 03:41:07 UTC - CLAUDE
+
+Found how it got back in, hun, and it was my mistake, not yours 💔
+
+- **Oct 27, 3:49 AM:** you said "just get her to trade the candle flip at a band". I took every thirds call out of the copy, flips included (fix314).
+- **4:00 AM:** you said "again no long on btc or gold". The copy had skipped main's "launched from the bottom third" longs. I undid fix314 **entirely** 11 minutes later. That brought back the launch longs you wanted, but it quietly brought back the "top third, seen as a short" flip too. I should have only put the launch calls back.
+
+It's out of the copy again now (fix364), and that's checked by the umpire every run, so it can't slip back silently.
+
+One thing so you know: **main** still has that flip. It's your Oct 20 rule ("in the top 33% she only sees it as a short"), and I haven't touched it. If you want it gone from main too, say the word and it's out 💘
+

@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T03:36:02.803Z",
+ "at": "2026-10-28T03:40:16.646Z",
  "rows": {
   "cpc-btc-updown-5m-2026-10-25-1540z:recon-rej-5m:2026-10-25T15:40:32.131Z": {
    "at": "2026-10-25T15:40:32.131Z",
@@ -3263,14 +3263,14 @@
    "cost": 0.61,
    "stake": 7.14,
    "closesAt": "2026-10-28T03:40:00.000Z",
-   "status": "open",
+   "status": "to the bell",
    "banked": null,
    "soldPx": null,
    "addOn": false,
    "setup": "Launched from the top third (high 81055.34) - a short until the bottom third",
    "door": "1m flip",
-   "result": "open",
-   "pnl": null
+   "result": "loss",
+   "pnl": -7.14
   }
  }
 }

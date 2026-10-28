@@ -1,28 +1,4 @@
 {
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n510:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 19,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n509:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 19,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
  "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n512:5m": {
   "book": "recon-tog-5m",
   "asset": "btc",
@@ -4912,11 +4888,11 @@
   "side": "down",
   "ticker": "KXBTC15M-26OCT272345-45",
   "setup": "Top third - seen as a short under 81060.28 (was: Break above fresh +2σ)",
-  "lastTry": 1793158587173,
-  "tries": 21,
-  "wallOk": true,
-  "status": "waiting",
-  "reason": "late door only (the other book holds the 5m)"
+  "lastTry": 1793158743518,
+  "tries": 57,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
  },
  "KXBTC15M-26OCT272345-45:recon-rej5:s5977195:5m": {
   "book": "recon-rej-5m",
@@ -4937,5 +4913,29 @@
   "tops": 0,
   "orderId": "DC5NC8Z011R3",
   "closesAt": "2026-10-28T03:40:00.000Z"
+ },
+ "KXBTC15M-26OCT272345-45:recon-tog:s5977196:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT272345-45",
+  "setup": "Rejected down off Red zone",
+  "lastTry": 1793158875610,
+  "tries": 18,
+  "wallOk": true,
+  "status": "waiting",
+  "reason": "late door only (the other book holds the 5m)"
+ },
+ "KXBTC15M-26OCT272345-45:recon-rej5:s5977196:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT272345-45",
+  "setup": "Launched from the top third (high 81062.93) - a short until the bottom third",
+  "lastTry": 1793158875610,
+  "tries": 18,
+  "wallOk": true,
+  "status": "waiting",
+  "reason": "waiting for a 1m candle to close red (her 5m flip)"
  }
 }
