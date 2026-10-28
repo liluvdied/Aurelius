@@ -1,5 +1,28 @@
 [
  {
+  "id": "KXBTC15M-26OCT281800-00:up",
+  "at": "2026-10-28T21:49:01.504Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281800-00",
+  "side": "up",
+  "band": "VWAP",
+  "level": 81237.61,
+  "close": 81240.75,
+  "low": 81240.75,
+  "high": 81298.7,
+  "vwap": 81237.61,
+  "stdev": 88.07,
+  "target": 81155.11,
+  "ask": 0.81,
+  "multiple": 1.23,
+  "tpPct": 18.5,
+  "peakBid": 0.962,
+  "tpHit": true,
+  "result": "win",
+  "bellProfit": 2.35,
+  "tpProfit": 1.88
+ },
+ {
   "id": "KXBTC15M-26OCT281715-15:down",
   "at": "2026-10-28T21:04:00.857Z",
   "asset": "btc",
@@ -11475,28 +11498,5 @@
   "result": "win",
   "bellProfit": 8.87,
   "tpProfit": 6.79
- },
- {
-  "id": "KXBTC15M-26OCT231600-00:down",
-  "at": "2026-10-23T19:50:03.462Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT231600-00",
-  "side": "down",
-  "band": "-1.5σ",
-  "level": 81242.01,
-  "close": 81225.7,
-  "low": 81195.63,
-  "high": 81242.73,
-  "vwap": 81524.52,
-  "stdev": 188.34,
-  "target": 81222.92,
-  "ask": 0.37,
-  "multiple": 2.7,
-  "tpPct": 127.7,
-  "peakBid": 0.85,
-  "tpHit": true,
-  "result": "win",
-  "bellProfit": 17.03,
-  "tpProfit": 12.97
  }
 ]

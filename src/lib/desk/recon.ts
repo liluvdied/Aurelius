@@ -683,9 +683,12 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   try { if (rejLB && rejReach > 0 && cur && cur.l > 0 && cur.h > 0) { const nr95 = id === "btc" ? 10 : 0.5, bk95 = BREAK[id] ?? 0, tp95 = TAP[id] ?? 0;
     const LB95 = rejLB.filter((l) => /σ|VWAP|Bollinger|Green zone|Red zone/i.test(String(l.name)) && !/PP|pink|purple|nav|R1|R2|S1|S2/i.test(String(l.name)) && Number(l.price) > 0);
     let t95: { side: "up" | "down"; label: string; d: number; p: number } | null = null;
+    // fix396 (Love Oct 28 2026 2:46 PM PT card "Make pure's own taps fire only near the band she tapped?" -> "Yes, nearer half only"; 2:45 PM: "dude she just longed btc into a band"):
+    // her own tap fires only while price is in the half of the channel nearest the band she tapped - halfway to the next band her way (any line on her board, pink included).
+    const half96 = (p: number, sd: string): boolean => { const nx = (rejLB || []).map((l) => Number(l.price)).filter((x) => x > 0 && (sd === "up" ? x > p + tp95 : x < p - tp95)); if (!nx.length) return true; const n = sd === "up" ? Math.min(...nx) : Math.max(...nx); return sd === "up" ? spot - p <= (n - p) / 2 : p - spot <= (p - n) / 2; };
     for (const l of LB95) { const p = Number(l.price), nm = String(l.name);
-      if (!/Red zone/i.test(nm) && spot > p && cur.l <= p + nr95 && cur.l > p - bk95 && spot >= cur.l + tp95 && (() => { try { return anyFlipNow(id, "up", spot); } catch { return false; } })()) { const d = spot - p; if (!t95 || d < t95.d) t95 = { side: "up", label: `Tap-reject at ${nm}`, d, p }; }
-      if (!/Green zone/i.test(nm) && spot < p && cur.h >= p - nr95 && cur.h < p + bk95 && spot <= cur.h - tp95 && (() => { try { return anyFlipNow(id, "down", spot); } catch { return false; } })()) { const d = p - spot; if (!t95 || d < t95.d) t95 = { side: "down", label: `Tap-reject at ${nm}`, d, p }; } }
+      if (!/Red zone/i.test(nm) && spot > p && cur.l <= p + nr95 && cur.l > p - bk95 && spot >= cur.l + tp95 && half96(p, "up") && (() => { try { return anyFlipNow(id, "up", spot); } catch { return false; } })()) { const d = spot - p; if (!t95 || d < t95.d) t95 = { side: "up", label: `Tap-reject at ${nm}`, d, p }; }
+      if (!/Green zone/i.test(nm) && spot < p && cur.h >= p - nr95 && cur.h < p + bk95 && spot <= cur.h - tp95 && half96(p, "down") && (() => { try { return anyFlipNow(id, "down", spot); } catch { return false; } })()) { const d = p - spot; if (!t95 || d < t95.d) t95 = { side: "down", label: `Tap-reject at ${nm}`, d, p }; } }
     if (t95) { const pp95 = npPink; let pink95 = false;
       if (pp95 > 0) { const ses95 = npL.filter((l) => /σ|VWAP/.test(l.name) && l.price > 0).map((l) => l.price), u95 = Math.min(...ses95.filter((x) => x > spot)), d95 = Math.max(...ses95.filter((x) => x <= spot)), w95 = u95 - d95;
         const st95 = Number.isFinite(w95) && w95 > 0 && pp95 > d95 && pp95 < u95 && ((pp95 - d95) / w95 <= 0.10 || (u95 - pp95) / w95 <= 0.10);

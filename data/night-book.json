@@ -79,7 +79,22 @@
   "soldAt": "2026-10-28T21:44:31.438Z",
   "exitMult": 1.01,
   "exitCushion": 1.36,
-  "exitLeft": 29
+  "exitLeft": 29,
+  "bell": "yes",
+  "notes": {
+   "worked": [
+    "Had the -2σ + -1.5σ + 10m purple under her as a floor.",
+    "Take profit banked +29.52 of the 30 it paid at the bell."
+   ],
+   "better": [
+    "Entered with the -1σ + -0.5σ + session VWAP + 5m purple + 15m purple right above her. Her DNA blocks this now."
+   ],
+   "keep": [
+    "Take profit + trail did its job."
+   ],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXBTC15M-26OCT281745-45:bank5p",
@@ -161,7 +176,22 @@
   "soldAt": "2026-10-28T21:44:31.438Z",
   "exitMult": 1.01,
   "exitCushion": 1.36,
-  "exitLeft": 29
+  "exitLeft": 29,
+  "bell": "yes",
+  "notes": {
+   "worked": [
+    "Had the -2σ + -1.5σ + 10m purple under her as a floor.",
+    "Take profit banked +29.52 of the 30 it paid at the bell."
+   ],
+   "better": [
+    "Entered with the -1σ + -0.5σ + session VWAP + 5m purple + 15m purple right above her. Her DNA blocks this now."
+   ],
+   "keep": [
+    "Take profit + trail did its job."
+   ],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXBTC15M-26OCT281745-45:sole5p",
@@ -243,7 +273,22 @@
   "soldAt": "2026-10-28T21:44:31.438Z",
   "exitMult": 1.01,
   "exitCushion": 1.36,
-  "exitLeft": 29
+  "exitLeft": 29,
+  "bell": "yes",
+  "notes": {
+   "worked": [
+    "Had the -2σ + -1.5σ + 10m purple under her as a floor.",
+    "Take profit banked +29.52 of the 30 it paid at the bell."
+   ],
+   "better": [
+    "Entered with the -1σ + -0.5σ + session VWAP + 5m purple + 15m purple right above her. Her DNA blocks this now."
+   ],
+   "keep": [
+    "Take profit + trail did its job."
+   ],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXBTC15M-26OCT281745-45:brk1",
@@ -274,7 +319,20 @@
   "soldAt": "2026-10-28T21:39:13.561Z",
   "exitMult": 1.3,
   "exitCushion": 78.72,
-  "exitLeft": 347
+  "exitLeft": 347,
+  "bell": "yes",
+  "notes": {
+   "worked": [
+    "Clean entry: no band right below the short.",
+    "Exit saved it: it lost at the bell, she banked +22.5 instead of -30."
+   ],
+   "better": [],
+   "keep": [
+    "Do more of exactly this."
+   ],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXBTC15M-26OCT281745-45:sole5v",
@@ -289,15 +347,25 @@
   "stake": 30,
   "tpPct": 90,
   "peakPct": 58,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": null,
   "spot": null,
   "event": null,
   "hourPT": 14,
-  "troughPct": -98.6
+  "troughPct": -98.6,
+  "bell": "yes",
+  "notes": {
+   "worked": [],
+   "better": [
+    "Was up +58% and still lost: a gate/lock with a reason should bank these."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXBTC15M-26OCT281730-30:sole5v",

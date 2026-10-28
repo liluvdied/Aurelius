@@ -2221,6 +2221,13 @@ export function wireWall(ticker: string, side: "up" | "down"): string {
   if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > 15000) return deny("THE WALL AT THE WIRE: her band list is not fresh - can't verify, no opening order");
   const q = quoteTick(asset);
   if (!q || !(q.c > 0) || Date.now() - q.at > 3000) return deny("THE WALL AT THE WIRE: no fresh price - can't verify, no opening order");
+  // THE BLUE VWAP WALL (fix397, Love Oct 28 2026 2:46 PM PT: "we need to keep the blue vwap a wall on all books when bands are small" + card "All Kalshi books, 5M frozen"):
+  // every Kalshi opening order, every book. When the bands are small (session VWAP to +1σ under $150 BTC / $3 gold), no long under the unbroken VWAP within half that width,
+  // no short over it within half. Price across the VWAP frees her. The Polymarket 5M (bandlock5m.ts) and the Poly twin (polyTwinWall) never come through here.
+  { const vw397 = Number(lb.L.find((l: Line) => String(l.name) === "session VWAP")?.price) || 0, u397 = Number(lb.L.find((l: Line) => String(l.name) === "+1σ")?.price) || 0, w397 = vw397 > 0 && u397 > 0 ? Math.abs(u397 - vw397) : 0;
+    if (vw397 > 0 && w397 > 0 && w397 < (asset === "btc" ? 150 : 3)) { const c397 = w397 / 2;
+      if (side === "up" && q.c < vw397 && vw397 - q.c <= c397) return deny(`THE BLUE VWAP WALL: long $${(vw397 - q.c).toFixed(2)} under the unbroken session VWAP ${vw397.toFixed(2)} - bands are small (VWAP to 1σ $${w397.toFixed(2)}), no long within half of that ($${c397.toFixed(2)}). Wait for price over the VWAP.`, { tick: q.c });
+      if (side === "down" && q.c > vw397 && q.c - vw397 <= c397) return deny(`THE BLUE VWAP WALL: short $${(q.c - vw397).toFixed(2)} over the unbroken session VWAP ${vw397.toFixed(2)} - bands are small (VWAP to 1σ $${w397.toFixed(2)}), no short within half of that ($${c397.toFixed(2)}). Wait for price under the VWAP.`, { tick: q.c }); } }
   // THE IMPOSSIBILITY (Oct 20 ~12:53 PM PT, Love: "make sure that no orders can get out if its a long in the top 33% and no shorts into an
   // unbroken band in the bottom 33% ... just a straight up impossibility please. immutably - no way for her to change."): plain geometry,
   // fixed numbers, no config, no exemptions, no broken-band memory. The channel is the gap between the band just under price and the band

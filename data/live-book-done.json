@@ -8588,5 +8588,65 @@
   "final": false,
   "paid": 0.67,
   "orderId": "01a18479-8980-7f80-b5ff-6123d9a60e6e"
+ },
+ "KXBTC15M-26OCT281800-00:recon-togp:KXBTC15M-26OCT281800-00:recon-togp": {
+  "at": "2026-10-28T21:50:03.340Z",
+  "ticker": "KXBTC15M-26OCT281800-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT281800-00:recon-dly:KXBTC15M-26OCT281800-00:recon-dly": {
+  "at": "2026-10-28T21:53:38.595Z",
+  "status": "skipped",
+  "final": true,
+  "reason": "paper closed it (half at 75% (92c) + trail from 90%: best +49%, sold at 97c) before the copy filled"
+ },
+ "KXBTC15M-26OCT281815-15:recon-rej:KXBTC15M-26OCT281815-15:recon-rej": {
+  "at": "2026-10-28T22:00:24.686Z",
+  "ticker": "KXBTC15M-26OCT281815-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT281815-15:recon-togp:KXBTC15M-26OCT281815-15:recon-togp": {
+  "at": "2026-10-28T22:00:24.687Z",
+  "ticker": "KXBTC15M-26OCT281815-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT281815-15:recon-np:KXBTC15M-26OCT281815-15:recon-np": {
+  "at": "2026-10-28T22:00:26.999Z",
+  "ticker": "KXBTC15M-26OCT281815-15",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "BACK UNDER BY $10: this 5m candle poked over 81245.15 and price is only $4.33 back under it - a short needs $10+ under the band.",
+  "firstTryAt": "2026-10-28T22:00:24.702Z",
+  "bookedAt": "2026-10-28T22:00:24.376Z",
+  "tries": 2,
+  "final": false,
+  "paid": 0.5757,
+  "orderId": "01a18487-58a8-7116-b163-49faa7058643"
+ },
+ "KXBTC15M-26OCT281815-15:recon-sov:KXBTC15M-26OCT281815-15:recon-sov": {
+  "at": "2026-10-28T22:00:24.704Z",
+  "ticker": "KXBTC15M-26OCT281815-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT281815-15:recon-tog:KXBTC15M-26OCT281815-15:recon-tog": {
+  "at": "2026-10-28T22:00:24.705Z",
+  "ticker": "KXBTC15M-26OCT281815-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
  }
 }

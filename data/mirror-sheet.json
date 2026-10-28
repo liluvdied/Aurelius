@@ -1,12 +1,72 @@
 [
   {
+    "id": "KXBTC15M-26OCT281800-00:prime:down:Tap-reject at +1σ",
+    "at": "2026-10-28T21:50:39.589Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at +1σ",
+    "kind": "prime",
+    "result": "no",
+    "ticker": "KXBTC15M-26OCT281800-00"
+  },
+  {
+    "id": "KXBTC15M-26OCT281800-00:other-way:up:Tap-reject at +1σ",
+    "at": "2026-10-28T21:50:39.589Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at +1σ",
+    "kind": "other-way",
+    "result": "yes",
+    "ticker": "KXBTC15M-26OCT281800-00"
+  },
+  {
+    "id": "KXBTC15M-26OCT281800-00:prime:up:Tap-reject at -0.5σ",
+    "at": "2026-10-28T21:47:39.341Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at -0.5σ",
+    "kind": "prime",
+    "result": "yes",
+    "ticker": "KXBTC15M-26OCT281800-00"
+  },
+  {
+    "id": "KXBTC15M-26OCT281800-00:other-way:down:Tap-reject at -0.5σ",
+    "at": "2026-10-28T21:47:39.341Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at -0.5σ",
+    "kind": "other-way",
+    "result": "no",
+    "ticker": "KXBTC15M-26OCT281800-00"
+  },
+  {
+    "id": "KXBTC15M-26OCT281800-00:prime:down:Tap-reject at +0.5σ",
+    "at": "2026-10-28T21:47:25.078Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at +0.5σ",
+    "kind": "prime",
+    "result": "no",
+    "ticker": "KXBTC15M-26OCT281800-00"
+  },
+  {
+    "id": "KXBTC15M-26OCT281800-00:other-way:up:Tap-reject at +0.5σ",
+    "at": "2026-10-28T21:47:25.078Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at +0.5σ",
+    "kind": "other-way",
+    "result": "yes",
+    "ticker": "KXBTC15M-26OCT281800-00"
+  },
+  {
     "id": "KXBTC15M-26OCT281800-00:prime:down:Tap-reject at -0.5σ",
     "at": "2026-10-28T21:45:27.885Z",
     "asset": "btc",
     "side": "down",
     "pattern": "Tap-reject at -0.5σ",
     "kind": "prime",
-    "result": "open",
+    "result": "no",
     "ticker": "KXBTC15M-26OCT281800-00"
   },
   {
@@ -16,7 +76,7 @@
     "side": "up",
     "pattern": "Tap-reject at -0.5σ",
     "kind": "other-way",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXBTC15M-26OCT281800-00"
   },
   {
@@ -7935,66 +7995,6 @@
     "asset": "silver",
     "side": "down",
     "pattern": "Tap-reject at −1.5σ",
-    "kind": "other-way",
-    "result": "no",
-    "ticker": "KXSILVER15M-26OCT281300-00"
-  },
-  {
-    "id": "KXSILVER15M-26OCT281300-00:prime:up:Tap-reject at +1σ",
-    "at": "2026-10-28T16:46:31.201Z",
-    "asset": "silver",
-    "side": "up",
-    "pattern": "Tap-reject at +1σ",
-    "kind": "prime",
-    "result": "yes",
-    "ticker": "KXSILVER15M-26OCT281300-00"
-  },
-  {
-    "id": "KXSILVER15M-26OCT281300-00:other-way:down:Tap-reject at +1σ",
-    "at": "2026-10-28T16:46:31.201Z",
-    "asset": "silver",
-    "side": "down",
-    "pattern": "Tap-reject at +1σ",
-    "kind": "other-way",
-    "result": "no",
-    "ticker": "KXSILVER15M-26OCT281300-00"
-  },
-  {
-    "id": "KXBTC15M-26OCT281300-00:prime:down:Tap-reject at -1.5σ",
-    "at": "2026-10-28T16:45:42.721Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at −1.5σ",
-    "kind": "prime",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT281300-00"
-  },
-  {
-    "id": "KXBTC15M-26OCT281300-00:other-way:up:Tap-reject at -1.5σ",
-    "at": "2026-10-28T16:45:42.721Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at −1.5σ",
-    "kind": "other-way",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT281300-00"
-  },
-  {
-    "id": "KXSILVER15M-26OCT281300-00:prime:up:Tap-reject at +1.5σ",
-    "at": "2026-10-28T16:45:25.881Z",
-    "asset": "silver",
-    "side": "up",
-    "pattern": "Tap-reject at +1.5σ",
-    "kind": "prime",
-    "result": "yes",
-    "ticker": "KXSILVER15M-26OCT281300-00"
-  },
-  {
-    "id": "KXSILVER15M-26OCT281300-00:other-way:down:Tap-reject at +1.5σ",
-    "at": "2026-10-28T16:45:25.881Z",
-    "asset": "silver",
-    "side": "down",
-    "pattern": "Tap-reject at +1.5σ",
     "kind": "other-way",
     "result": "no",
     "ticker": "KXSILVER15M-26OCT281300-00"

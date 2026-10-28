@@ -2,6 +2,20 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R085 - fix397: wireWall (every Kalshi opening order, every book): when session VWAP to +1σ < $150 BTC / $3 gold, no long under unbroken VWAP within half that width, no short over it within half
+- when: 2026-10-28T21:49:32+00:00
+- Love: "Love Oct 28 2026 2:46 PM PT: "we need to keep the blue vwap a wall on all books when bands are small" + card "Make the blue VWAP a wall on which books when bands are small?" -> "All Kalshi books, 5M frozen""
+- books: a, l, l,  , K, a, l, s, h, i,  , b, o, o, k, s,  , (, m, a, i, n, ,,  , r, e, j, e, c, t, i, o, n, ,,  , c, o, p, y, ,,  , s, o, v, e, r, e, i, g, n, ,,  , p, u, r, e,  , n, o, -, p, i, n, k, ,,  , d, e, l, a, y, e, d,  , t, w, i, n, ), ;,  , P, o, l, y,  , 5, M,  , +,  , P, o, l, y,  , t, w, i, n,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "THE BLUE VWAP WALL (fix397"}
+
+## R084 - fix396: pure no-pink own taps (fix395) fire only while price is within half the distance from the tapped band to the next line her way
+- when: 2026-10-28T21:47:31+00:00
+- Love: "Love Oct 28 2026 2:45 PM PT: "dude she just longed btc into a band" + 2:46 PM card "Make pure's own taps fire only near the band she tapped?" -> "Yes, nearer half only""
+- books: p, u, r, e,  , n, o, -, p, i, n, k,  , o, n, l, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const half96"}
+
 ## R083 - fix395: pure no-pink HER OWN TAPS - recon.ts block after fix389b: price taps one of her bands (σ/VWAP/Bollinger/green zone longs/red zone shorts) within BTC $10 / gold 50c this 5m candle, not broken through, pushes off her tap, any 1-5m flip her way -> her own Tap-reject call (recon-np live + recon-npo paper); 5m open irrelevant; pink stacked check; main walls still apply
 - when: 2026-10-28T21:37:47+00:00
 - Love: "Love Oct 28 2026 2:36 PM PT: "hun i’ve asked several times now, i want her to be able to take her own calls." + 2:37 PM PT: "hun i’ve asked for this several times now, i want pure to be able to take her own taps""

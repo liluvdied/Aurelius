@@ -1,5 +1,39 @@
 [
   {
+    "id": "held-KXBTC15M-26OCT281800-00",
+    "at": "2026-10-28T22:00:25.658Z",
+    "result": "win",
+    "profit": 2.32,
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at -0.5σ",
+    "multiple": 1.49,
+    "hour": "2pm",
+    "minutesLeft": null,
+    "windowOpen": null,
+    "entrySpot": null,
+    "target": null,
+    "vwap": null,
+    "nearestBand": "",
+    "bandBetween": false,
+    "peakPct": 26.9,
+    "exitPct": 25,
+    "giveback": 1.9,
+    "trail": "Trail never reached the watch.",
+    "points": 3,
+    "better": "Nothing to change. Same entry next time.",
+    "elements": [
+      "Bitcoin long",
+      "Tap-reject at -0.5σ",
+      "1.4x to 2.2x",
+      "went green, short of the watch",
+      "2pm",
+      "held to the bell",
+      "Trail never reached the watch."
+    ],
+    "note": "Bitcoin long Tap-reject at -0.5σ won +$2.32 (2pm). 1.4x to 2.2x. went green, short of the watch. held to the bell. Trail never reached the watch.. Max 49.3%, saw 26.9%, closed at 25%, gave back 1.9. Trail never reached the watch. Nothing to change. Same entry next time."
+  },
+  {
     "id": "held-KXBTC15M-26OCT281745-45",
     "at": "2026-10-28T21:45:17.348Z",
     "result": "win",
@@ -14134,40 +14168,5 @@
       "Trail never reached the watch."
     ],
     "note": "Gold short Live lost −$2.14 (5am). 1.4x to 2.2x. went green, short of the watch. after midnight. held to the bell. Trail never reached the watch.. Max 69.5%, saw 5.1%. Trail never reached the watch. This hour has been the violent one. Size is already $10 after midnight. Same entry."
-  },
-  {
-    "id": "mvqohn4t-peybuu",
-    "at": "2026-10-27T13:00:26.154Z",
-    "result": "loss",
-    "profit": -25,
-    "asset": "silver",
-    "side": "down",
-    "pattern": "Tap-reject at +0.5σ",
-    "multiple": 1.72,
-    "hour": "5am",
-    "minutesLeft": null,
-    "windowOpen": null,
-    "entrySpot": 53.6115,
-    "target": null,
-    "vwap": null,
-    "nearestBand": "",
-    "bandBetween": false,
-    "peakPct": 10.3,
-    "exitPct": null,
-    "giveback": null,
-    "trail": "Trail never reached the watch.",
-    "points": 0,
-    "better": "This hour has been the violent one. Size is already $10 after midnight. Same entry.",
-    "elements": [
-      "Silver short",
-      "Tap-reject at +0.5σ",
-      "1.4x to 2.2x",
-      "went green, short of the watch",
-      "5am",
-      "after midnight",
-      "held to the bell",
-      "Trail never reached the watch."
-    ],
-    "note": "Silver short Tap-reject at +0.5σ lost −$25.00 (5am). 1.4x to 2.2x. went green, short of the watch. after midnight. held to the bell. Trail never reached the watch.. Max 72.4%, saw 10.3%. Trail never reached the watch. This hour has been the violent one. Size is already $10 after midnight. Same entry."
   }
 ]

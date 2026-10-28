@@ -8550,5 +8550,57 @@
   "final": false,
   "paid": 0.42,
   "orderId": "01a18471-09b8-7eb7-a4ee-8b5f88b16a33"
+ },
+ "KXBTC15M-26OCT281800-00:recon-rej:KXBTC15M-26OCT281800-00:recon-rej": {
+  "at": "2026-10-28T21:45:12.588Z",
+  "ticker": "KXBTC15M-26OCT281800-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT281800-00:recon-sov:KXBTC15M-26OCT281800-00:recon-sov": {
+  "at": "2026-10-28T21:45:12.590Z",
+  "ticker": "KXBTC15M-26OCT281800-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT281800-00:recon-tog:KXBTC15M-26OCT281800-00:recon-tog": {
+  "at": "2026-10-28T21:45:12.591Z",
+  "ticker": "KXBTC15M-26OCT281800-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT281800-00:recon-np:KXBTC15M-26OCT281800-00:recon-np": {
+  "at": "2026-10-28T21:45:21.692Z",
+  "ticker": "KXBTC15M-26OCT281800-00",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "PINK 10%: long $16.39 under the unbroken pink (81180.52) - inside 10% ($25.00) of the 81162.63 -> 81237.70 channel. wait for pink to break up.",
+  "firstTryAt": "2026-10-28T21:45:15.564Z",
+  "bookedAt": "2026-10-28T21:45:15.413Z",
+  "tries": 23,
+  "final": false,
+  "paid": 0.67,
+  "orderId": "01a18479-8980-7f80-b5ff-6123d9a60e6e"
+ },
+ "KXBTC15M-26OCT281800-00:recon-togp:KXBTC15M-26OCT281800-00:recon-togp": {
+  "at": "2026-10-28T21:50:03.340Z",
+  "ticker": "KXBTC15M-26OCT281800-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT281800-00:recon-dly:KXBTC15M-26OCT281800-00:recon-dly": {
+  "at": "2026-10-28T21:53:38.595Z",
+  "status": "skipped",
+  "final": true,
+  "reason": "paper closed it (half at 75% (92c) + trail from 90%: best +49%, sold at 97c) before the copy filled"
  }
 }

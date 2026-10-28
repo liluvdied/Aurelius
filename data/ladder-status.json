@@ -1,42 +1,6 @@
 {
- "at": "2026-10-28T21:38:27.962Z",
+ "at": "2026-10-28T21:58:30.971Z",
  "cities": [
-  {
-   "city": "MIA",
-   "station": "KMIA",
-   "hourLocal": 17,
-   "offset": 0.539999999999992,
-   "lessons": 20,
-   "maxSoFar": 87.8,
-   "mu": 88.3,
-   "sigma": 0.8,
-   "best": {
-    "buckets": [
-     "90° or above"
-    ],
-    "cost": 0.01,
-    "p": 0.07,
-    "edge": 0.06
-   }
-  },
-  {
-   "city": "NY",
-   "station": "KNYC",
-   "hourLocal": 17,
-   "offset": 1.5,
-   "lessons": 16,
-   "maxSoFar": 61,
-   "mu": 62.5,
-   "sigma": 0.8,
-   "best": {
-    "buckets": [
-     "64° to 65°"
-    ],
-    "cost": 0.01,
-    "p": 0.11,
-    "edge": 0.09
-   }
-  },
   {
    "city": "LAX",
    "station": "KLAX",
@@ -57,21 +21,40 @@
    }
   },
   {
-   "city": "AUS",
-   "station": "KAUS",
-   "hourLocal": 16,
-   "offset": 0.29999999999999716,
-   "lessons": 18,
-   "maxSoFar": 81,
-   "mu": 83.3,
+   "city": "DEN",
+   "station": "KDEN",
+   "hourLocal": 15,
+   "offset": 0.09999999999999432,
+   "lessons": 17,
+   "maxSoFar": 66.2,
+   "mu": 66.3,
+   "sigma": 1.0999999999999999,
+   "best": {
+    "buckets": [
+     "67° to 68°",
+     "69° to 70°"
+    ],
+    "cost": 0.07,
+    "p": 0.43,
+    "edge": 0.35
+   }
+  },
+  {
+   "city": "MIA",
+   "station": "KMIA",
+   "hourLocal": 17,
+   "offset": 0.539999999999992,
+   "lessons": 20,
+   "maxSoFar": 87.8,
+   "mu": 88.3,
    "sigma": 0.8,
    "best": {
     "buckets": [
-     "84° to 85°"
+     "90° or above"
     ],
     "cost": 0.01,
-    "p": 0.4,
-    "edge": 0.39
+    "p": 0.07,
+    "edge": 0.06
    }
   },
   {
@@ -94,44 +77,63 @@
    }
   },
   {
-   "city": "DEN",
-   "station": "KDEN",
-   "hourLocal": 15,
-   "offset": 0.09999999999999432,
-   "lessons": 17,
-   "maxSoFar": 66.2,
-   "mu": 66.3,
-   "sigma": 1.0999999999999999,
+   "city": "AUS",
+   "station": "KAUS",
+   "hourLocal": 16,
+   "offset": 0.29999999999999716,
+   "lessons": 18,
+   "maxSoFar": 81,
+   "mu": 83.3,
+   "sigma": 0.8,
    "best": {
     "buckets": [
-     "67° to 68°",
-     "69° to 70°"
+     "84° to 85°"
     ],
-    "cost": 0.04,
-    "p": 0.43,
+    "cost": 0.01,
+    "p": 0.4,
     "edge": 0.39
    }
   },
   {
    "city": "PHIL",
    "station": "KPHL",
-   "hourLocal": 17,
+   "hourLocal": 18,
    "offset": 0.29999999999999716,
    "lessons": 18,
    "maxSoFar": 66.9,
-   "mu": 68.3,
+   "mu": 67.2,
    "sigma": 0.8,
    "best": {
     "buckets": [
      "69° to 70°"
     ],
     "cost": 0.01,
-    "p": 0.4,
-    "edge": 0.39
+    "p": 0.05,
+    "edge": 0.04
+   }
+  },
+  {
+   "city": "NY",
+   "station": "KNYC",
+   "hourLocal": 18,
+   "offset": 1.5,
+   "lessons": 16,
+   "maxSoFar": 61,
+   "mu": 62.5,
+   "sigma": 0.8,
+   "best": {
+    "buckets": [
+     "64° to 65°"
+    ],
+    "cost": 0.01,
+    "p": 0.1,
+    "edge": 0.09
    }
   }
  ],
- "errors": [],
+ "errors": [
+  "KXHIGHUS: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHUS&status=open&lim"
+ ],
  "book": {
   "n": 117,
   "w": 6,

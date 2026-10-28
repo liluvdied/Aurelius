@@ -1,9 +1,9 @@
 {
-  "id": "held-KXBTC15M-26OCT281745-45",
-  "at": "2026-10-28T21:45:17.348Z",
+  "id": "held-KXBTC15M-26OCT281800-00",
+  "at": "2026-10-28T22:00:25.658Z",
   "asset": "btc",
-  "side": "down",
-  "pattern": "Live",
+  "side": "up",
+  "pattern": "Tap-reject at -0.5σ",
   "rule": "none",
   "better": "Nothing to change. Same entry next time.",
   "spent": true

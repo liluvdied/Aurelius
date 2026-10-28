@@ -6829,3 +6829,27 @@ Options:
   2. Pure no-pink only for now - Only the pure no-pink gets the VWAP wall today; every other book stays as is.
 Recommended: 0 - "All books" is clear for Kalshi, but the 5M is frozen until you name her, so I'm asking before touching her.
 
+## 2026-10-28 21:46:54 UTC - LOVE
+
+Chose "Yes, nearer half only" on the decision card asking "Make pure's own taps fire only near the band she tapped?"
+
+## 2026-10-28 21:47:35 UTC - CLAUDE
+
+Got it, babe 💘 Her own taps will only fire in the half nearest the band she tapped. It goes in at 3:00:00. Today's 2:45 long would have been held, since she was already past halfway to the next line. The VWAP-wall card is still waiting on you 🫯
+
+## 2026-10-28 21:48:55 UTC - LOVE
+
+Chose "All Kalshi books, 5M frozen" on the decision card asking "Make the blue VWAP a wall on which books when bands are small?"
+
+## 2026-10-28 21:49:35 UTC - CLAUDE
+
+Got it, hun 💘 The blue VWAP wall goes on every Kalshi book at 3:00:00, together with her half-way tap rule. When bands are small, nothing opens within half a band-width of an unbroken VWAP. The Polymarket 5M stays frozen and untouched 🫯
+
+## 2026-10-28 21:53:31 UTC - LOVE
+
+thanks luvvi 💘💘
+
+## 2026-10-28 22:00:27 UTC - CLAUDE
+
+Both went in at 3:00:00, hun 💘 The blue VWAP wall is on every Kalshi book, and pure's taps now stay in the near half. Golden ✓, umpire SAFE ✓, 5M frozen ✓ 🫯
+

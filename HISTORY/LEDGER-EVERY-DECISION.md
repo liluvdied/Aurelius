@@ -1,9 +1,19 @@
-# Every decision Love has made - rebuilt 2026-10-28T21:45:22.642416+00:00
+# Every decision Love has made - rebuilt 2026-10-28T22:00:15.278608+00:00
 
-1251 decisions with Love's words or card picks, out of 1966 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1252 decisions with Love's words or card picks, out of 1968 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T22:00:02.432304+00:00  ·  diary line 2432  ·  fix396, fix397
+- Love: “Yes, nearer half only”
+- Love: “we need to keep the blue vwap a wall on all books when bands are small”
+- Love: “All Kalshi books, 5M frozen”
+- Card pick: **Yes, nearer half only**
+- Card pick: **All Kalshi books, 5M frozen**
+- fix396 IN HER CODE
+- fix397 IN HER CODE
+- Full entry: 2026-10-28T22:00:02.432304+00:00 THAW (fix396 PURE NO-PINK own taps nearer half only (Love 2:46 PM PT card "Yes, nearer half only") + fix397 THE BLUE VWAP WALL at the Kalshi wire, all Kalshi books (Love 2:46 PM PT: "we need to keep the blue vwap a wall on all books when bands are small" + card "All Kalshi books, 5M frozen"))
 
 ## 2026-10-28T21:45:02Z  ·  diary line 2431  ·  fix394, fix395
 - fix394 IN HER CODE
