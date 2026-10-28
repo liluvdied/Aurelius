@@ -1,9 +1,23 @@
-# Every decision Love has made - rebuilt 2026-10-28T05:01:58.100886+00:00
+# Every decision Love has made - rebuilt 2026-10-28T05:15:58.783440+00:00
 
-1217 decisions with Love's words or card picks, out of 1884 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1220 decisions with Love's words or card picks, out of 1889 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T05:15:47Z  ·  diary line 2354  ·  fix371
+- Love: “if gold is on a downslope like this and keeps rejecting pink and reversing like this, do longs into those lose more than they win? ... maybe in the event of this we should wait for a break”
+- Card pick: **Should gold longs wait for the pink break when gold slides under rejecting pink?**
+- fix371 IN HER CODE
+- Full entry: 2026-10-28T05:15:47Z fix371 (Oct 27 ~10:15 PM PT, Rejection + main + copy (card: "Should gold longs wait for the pink break when gold slides under rejecting pink?"; Love 10:12 PM PT: "if gold is on a downslope like this and keeps rejecting pink and reversing like this, do longs into those lose more than they win? ... maybe in the event of this we should wait for a break")): engine copier - main/rej/copy gold longs wait for the pink break when gold slides >$2 in 30 min under a pink that rejected it. Study since Oct 11: rej longs there 52 27% -$447, main 49 27% -$535, copy 8 12% -$128. Shorts, BTC, twin, pure no-pink, Poly untouched. Holds logged to data/slide-pink.jsonl.
+
+## 2026-10-28T05:05:33Z  ·  diary line 2351
+- Love: “yesss pls 💘”
+- Full entry: 2026-10-28T05:05:33Z LOG ROTATION 2 (Love Oct 27 10:05 PM PT: "yesss pls 💘"): other-side.jsonl (1.5 GB) + gold-law.jsonl (686 MB) moved whole to data/archive/*-upto-2026-10-27-1005PM-PT.jsonl, nothing deleted; fresh files started.
+
+## 2026-10-28T05:04:38Z  ·  diary line 2350
+- Love: “yes let’s rotate those into the archive too bb , light speed ⚡️💘”
+- Full entry: 2026-10-28T05:04:38Z LOG ROTATION (Love Oct 27 10:04 PM PT: "yes let’s rotate those into the archive too bb , light speed ⚡️💘"): band-lock.jsonl + copy-timing.jsonl moved whole to data/archive/*-upto-2026-10-27-1005PM-PT.jsonl (nothing deleted); fresh files started. No code reads them (append only; tools/what-happened.py reads band-lock for recent history).
 
 ## 2026-10-28T05:01:46Z  ·  diary line 2349  ·  fix343, fix370
 - Love: “her entries are starting to lag a bit again hun, let’s set it up to clear her cache every hour instead of every 4 pls it gets slower hour by hour , we’ll have her do it each hour okay”

@@ -9346,3 +9346,11 @@
 {"at":"2026-10-28T05:00:10.662Z","lane":"recon-top","ticker":"KXBTC15M-26OCT280115-15","side":"down","label":"Break below 5m PP","ask":0,"why":"setup is 45% over 44 settled (needs 70%+)"}
 {"at":"2026-10-28T05:00:17.200Z","lane":"recon-top","ticker":"KXBTC15M-26OCT280115-15","side":"down","label":"Launched from the top third (high 80913.11) - a short until the bottom third","ask":0,"why":"setup has no settled record yet"}
 {"at":"2026-10-28T05:02:01.700Z","lane":"recon-top","ticker":"KXBTC15M-26OCT280115-15","side":"down","label":"Break below fresh VWAP","ask":0,"why":"setup is 62% over 47 settled (needs 70%+)"}
+{"at":"2026-10-28T05:15:05.586Z","lane":"recon-tog","ticker":"KXBTC15M-26OCT280130-30","side":"down","label":"Rejected down off 5m PP","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T05:15:05.590Z","lane":"recon-togr","ticker":"KXBTC15M-26OCT280130-30","side":"down","label":"Rejected down off 5m PP","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T05:15:05.595Z","lane":"recon-rej","ticker":"KXBTC15M-26OCT280130-30","side":"down","label":"Rejected down off 5m PP","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-28T05:15:10.800Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT280130-30","side":"up","label":"Candle rising from the bottom third","ask":0,"why":"setup is 0% over 6 settled (needs 70%+)"}
+{"at":"2026-10-28T05:15:15.359Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT280130-30","side":"up","label":"Launched from the bottom third (low 4036.62) - a long until the top third","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-28T05:15:21.715Z","lane":"recon-top","ticker":"KXBTC15M-26OCT280130-30","side":"down","label":"Launched from the top third (high 80868.02) - a short until the bottom third","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-28T05:15:38.620Z","lane":"recon-top","ticker":"KXBTC15M-26OCT280130-30","side":"down","label":"Rejected down off 5m PP","ask":0,"why":"setup is 65% over 54 settled (needs 70%+)"}
+{"at":"2026-10-28T05:15:40.621Z","lane":"recon-top","ticker":"KXBTC15M-26OCT280130-30","side":"down","label":"Break below fresh VWAP","ask":0,"why":"setup is 65% over 51 settled (needs 70%+)"}

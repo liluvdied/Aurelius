@@ -13,16 +13,22 @@
   "secondsLeft": 649,
   "ask": 0.33,
   "multiple": 3.03,
-  "peakBid": 0.52,
-  "peakPct": 58,
+  "peakBid": 0.958,
+  "peakPct": 190,
   "exits": {
    "+50": 0.52,
-   "+100": null,
+   "+100": 0.914,
    "+200": null,
    "+300": null
   },
-  "result": "open",
-  "profits": null
+  "result": "win",
+  "profits": {
+   "hold": 10.15,
+   "+50": 2.88,
+   "+100": 8.85,
+   "+200": 10.15,
+   "+300": 10.15
+  }
  },
  {
   "id": "KXGOLD15M-26OCT280100-00:up",
@@ -23576,12 +23582,4 @@
    "+300": null
   },
   "result": "loss",
-  "profits": {
-   "hold": -5,
-   "+50": 2.5,
-   "+100": -5,
-   "+200": -5,
-   "+300": -5
-  }
- }
-]
+  "profits"

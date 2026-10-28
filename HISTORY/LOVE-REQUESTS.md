@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R057 - fix371: main + rejection + no-pink copy, gold longs, Kalshi only: when gold is >$2 lower than 30 min ago, pink rejected price down in that time and has not broken up by 25c since, the long waits for the pink break.
+- when: 2026-10-28T05:15:47+00:00
+- Love: "Rejection + main + copy (card: "Should gold longs wait for the pink break when gold slides under rejecting pink?"; Love 10:12 PM PT: "if gold is on a downslope like this and keeps rejecting pink and reversing like this, do longs into those lose more than they win? ... maybe in the event of this we should wait for a break")"
+- books: recon-tog, recon-rej, recon-togp
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "GOLD SLIDE UNDER PINK: gold"}
+
 ## R056 - fix370: selfcheck auto-clear every 1 hour (was 4); 3.5 h age line unchanged.
 - when: 2026-10-28T05:01:46+00:00
 - Love: "her entries are starting to lag a bit again hun, let’s set it up to clear her cache every hour instead of every 4 pls it gets slower hour by hour , we’ll have her do it each hour okay"

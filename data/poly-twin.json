@@ -1,64 +1,4 @@
 {
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n521:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 18,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n525:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 17,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n524:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 17,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n523:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 17,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n527:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 17,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
  "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n526:5m": {
   "book": "recon-tog-5m",
   "asset": "btc",
@@ -4932,10 +4872,70 @@
   "side": "down",
   "ticker": "KXBTC15M-26OCT280115-15",
   "setup": "Rejected down off 5m PP",
-  "lastTry": 1793163956324,
-  "tries": 12,
+  "lastTry": 1793164143594,
+  "tries": 55,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280115-15:recon-rej5:s5977213:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT280115-15",
+  "setup": "Candle rising from the bottom third",
+  "lastTry": 1793164143594,
+  "tries": 42,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280115-15:recon-tog:s5977214:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT280115-15",
+  "setup": "Top third - seen as a short under 80935.63 (was: Rejected up off Green zone)",
+  "lastTry": 1793164442703,
+  "tries": 56,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280115-15:recon-rej5:s5977214:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT280115-15",
+  "setup": "Launched from the top third (high 80878.36) - a short until the bottom third",
+  "lastTry": 1793164442703,
+  "tries": 56,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280130-30:recon-tog:KXBTC15M-26OCT280130-30:recon-tog:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT280130-30",
+  "setup": "Green candle rising from the bottom third",
+  "lastTry": 1793164571800,
+  "tries": 13,
   "wallOk": true,
   "status": "waiting",
   "reason": "late door only (the other book holds the 5m)"
+ },
+ "KXBTC15M-26OCT280130-30:recon-rej5:KXBTC15M-26OCT280130-30:recon-rej5:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT280130-30",
+  "setup": "Launched from the top third (high 80868.02) - a short until the bottom third",
+  "lastTry": 1793164571800,
+  "tries": 11,
+  "wallOk": true,
+  "status": "no fill",
+  "reason": "Polymarket down at 0.83 is outside 0.3-0.68"
  }
 }

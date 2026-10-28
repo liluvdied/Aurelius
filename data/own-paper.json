@@ -1,14 +1,38 @@
 [
   {
+    "id": "KXBTC15M-26OCT280130-30:down:Tap-reject at -0.5σ:own",
+    "at": "2026-10-28T05:15:10.192Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at −0.5σ",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT280130-30",
+    "hits": 77,
+    "multiple": 1.89
+  },
+  {
+    "id": "KXGOLD15M-26OCT280130-30:up:Tap-reject at -2σ:own",
+    "at": "2026-10-28T05:15:05.391Z",
+    "asset": "gold",
+    "side": "up",
+    "pattern": "Tap-reject at −2σ",
+    "result": "open",
+    "ticker": "KXGOLD15M-26OCT280130-30",
+    "hits": 0,
+    "multiple": 1.82
+  },
+  {
     "id": "KXBTC15M-26OCT280115-15:down:Tap-reject at +0.5σ:own",
     "at": "2026-10-28T05:00:16.759Z",
     "asset": "btc",
     "side": "down",
     "pattern": "Tap-reject at +0.5σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXBTC15M-26OCT280115-15",
     "hits": 0,
-    "multiple": 1.85
+    "multiple": 1.85,
+    "profit": 21.25,
+    "live": "missed"
   },
   {
     "id": "KXGOLD15M-26OCT280115-15:up:Tap-reject at -2σ:own",
@@ -16,10 +40,12 @@
     "asset": "gold",
     "side": "up",
     "pattern": "Tap-reject at −2σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXGOLD15M-26OCT280115-15",
     "hits": 0,
-    "multiple": 1.96
+    "multiple": 1.96,
+    "profit": 24,
+    "live": "missed"
   },
   {
     "id": "KXBTC15M-26OCT280100-00:down:Tap-reject at +0.5σ:own",
@@ -2567,32 +2593,6 @@
     "hits": 0,
     "multiple": 1.61,
     "profit": 15.25,
-    "live": "missed"
-  },
-  {
-    "id": "KXGOLD15M-26OCT270330-30:up:Tap-reject at -1σ:own",
-    "at": "2026-10-27T07:22:11.702Z",
-    "asset": "gold",
-    "side": "up",
-    "pattern": "Tap-reject at -1σ",
-    "result": "yes",
-    "ticker": "KXGOLD15M-26OCT270330-30",
-    "hits": 0,
-    "multiple": 1.69,
-    "profit": 17.25,
-    "live": "missed"
-  },
-  {
-    "id": "KXSILVER15M-26OCT270330-30:up:Tap-reject at -2σ:own",
-    "at": "2026-10-27T07:15:18.784Z",
-    "asset": "silver",
-    "side": "up",
-    "pattern": "Tap-reject at −2σ",
-    "result": "yes",
-    "ticker": "KXSILVER15M-26OCT270330-30",
-    "hits": 0,
-    "multiple": 2.22,
-    "profit": 30.5,
     "live": "missed"
   }
 ]
