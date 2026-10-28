@@ -1,9 +1,14 @@
-# Every decision Love has made - rebuilt 2026-10-28T04:41:56.809234+00:00
+# Every decision Love has made - rebuilt 2026-10-28T04:54:23.182332+00:00
 
-1215 decisions with Love's words or card picks, out of 1878 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1216 decisions with Love's words or card picks, out of 1881 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T04:54:11Z  ·  diary line 2346  ·  fix369
+- Love: “bands are only about $130 apart right now , btc can stay $10 at bands under $150 , gold can stay $1 / every time band width doubles (eg 300) triple the tolerance / so $30 at $300 , / basically just 10% lol / $10 under $180 is okay for rn though”
+- fix369 IN HER CODE
+- Full entry: 2026-10-28T04:54:11Z fix369 (Oct 27 9:53 PM PT, Love: "bands are only about $130 apart right now , btc can stay $10 at bands under $150 , gold can stay $1 / every time band width doubles (eg 300) triple the tolerance / so $30 at $300 , / basically just 10% lol / $10 under $180 is okay for rn though"): PURE NO-PINK any-band cushion BTC $10 under $180 band width, 10% at $180+; gold $1. Other books untouched. Love: this week we build a sliding scale for all conditions.
 
 ## 2026-10-28T04:41:45Z  ·  diary line 2343  ·  fix368
 - Love: “hun she keeps longing into unbroken bands pls fix her”

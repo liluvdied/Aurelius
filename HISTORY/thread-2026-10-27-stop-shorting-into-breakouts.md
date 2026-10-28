@@ -4957,3 +4957,79 @@ Chose "$1 gold / $25 BTC, any band" on the decision card asking "How should the 
 
 Putting the $1 gold / $25 BTC any-band wall on the pure no-pink now hun 💞 I'll tell you when the umpire says she's safe.
 
+## 2026-10-28 04:44:07 UTC - CLAUDE
+
+Done hun, she's fixed 💞 The pure no-pink won't long within $1 (gold) or $25 (BTC) under ANY unbroken band now: pink, purple, the session bands, VWAP, Bollinger, and the red/green zones too. Shorts get the mirror. Tonight's 9:35 gold long (50 to 70c under the purple and pink) would have been refused. She waits for the band to break, then trades the next band's rejection 🕯️
+
+Umpire says SAFE, 5M still frozen, and nothing else moved. It's saved as R054 and pushed to GitHub.
+
+One honest note: live went off for about 2 minutes again during the install, because my install script hit a snag. I changed the script so it checks every edit before it ever touches live, so that won't happen again.
+
+## 2026-10-28 04:47:52 UTC - LOVE
+
+thanks hun 💘💘 , no more breaks , just rejections pls 💘 like the og one was , 
+ 
+btc flipped hun
+
+## 2026-10-28 04:48:09 UTC - CLAUDE
+
+Yes hun, rejections only 💞 She never trades a break. When a band breaks, it only stops being in her way, and she still needs a rejection of the next band to get in. Same as the og one.
+
+On BTC, she called the short right at the flip (9:45, "Rejected down off fresh +1σ" at 80,885). The new cushion is holding her though. The 5m purple sits at 80,884, only about $17 under price and unbroken, so inside $25 she waits for it to break first. If you'd rather the purple not count for that wall, just say so and I'll take it out 🕯️
+
+## 2026-10-28 04:48:15 UTC - LOVE
+
+hun her entry was so late on that one it was at the green
+
+## 2026-10-28 04:48:49 UTC - CARD
+
+Q: Should I loosen the new band cushion so she gets in on time?
+Context: You're right hun, she was late, and the new cushion did it 💞 She called the BTC short right at the flip (9:45:08, "Rejected down off fresh +1σ" at about 80,885). But pink (about 80,904) and the 5m purple (about 80,884) were both sitting within $25 under price, so the $25 any-band wall held her for almost 3 minutes. She only got in at 9:47:56, after price had come back down. On gold, pink is just 15 to 25c over her long call, so she's still being held there. Whatever you pick changes the pure no-pink only.
+Options:
+  0. $10 BTC / 50c gold, any band - Same any-band wall, but tighter. Tonight's BTC short would have gone through as soon as price was $10 clear of the purple.
+  1. Keep $25 / $1, drop purple - Distances stay the same, but the purple (nav) bands stop counting. Pink, session bands, Bollinger and the zones still hold her.
+  2. Keep it exactly as is - She stays at $25 BTC / $1 gold under any unbroken band. She'll keep coming in late or not at all when bands are stacked close.
+Recommended: 0 - At $25, three bands stacked within $20 trap almost every rejection. $10 / 50c still blocks the true 'longing into a band' entries, like the 9:35 gold one.
+
+## 2026-10-28 04:48:55 UTC - CLAUDE
+
+One correction on that card, hun: at 50c gold, tonight's 9:35 gold long would only just have slipped through. The purple was about 52c over her and pink about 70c. So if you want that one blocked too, 75c gold with $10 BTC would catch it. Just tell me and I'll use that 💞
+
+## 2026-10-28 04:53:44 UTC - LOVE
+
+bands are only about $130 apart right now , btc can stay $10 at bands under $150 , gold can stay $1 
+
+every time band width doubles (eg 300) triple the tolerance 
+
+so $30 at $300 , 
+
+basically just 10% lol 
+
+$10 under $180 is okay for rn though 😹💞
+
+we’ll adjust if we need to , this week we will focus on developing a sliding scale that works in all conditions so we don’t need to keep changing her ok 💓
+
+## 2026-10-28 04:53:53 UTC - CLAUDE
+
+Got it hun 💞 Setting BTC to $10 while the bands are under $180 apart and 10% of the width above that, with gold staying at $1. I'll tell you when she's safe.
+
+## 2026-10-28 04:54:25 UTC - LOVE
+
+gold rejecting band
+
+## 2026-10-28 04:54:40 UTC - CLAUDE
+
+She sees it hun, she's just being held 💞 Her gold call this window is still the long ("Rejected up off Green zone"). Price dropped to about 4037.87, right on the -2σ, but the Bollinger lower sits 23c above her at 4038.10 and hasn't broken. Under the $1 gold cushion she won't long into it until price gets up through it. If gold's $1 feels too wide while it's this tight, we can fold it into the sliding scale this week 🕯️
+
+## 2026-10-28 04:55:08 UTC - LOVE
+
+it broke thru it hun
+
+## 2026-10-28 04:55:19 UTC - CLAUDE
+
+Yes, it cleared the Bollinger, so the cushion let her go 💞 But an older gold wall caught her next: "THE $10 LEVEL". Her long's target (the green zone at about 4040.56) sits within $1 of the round 4040, and that rule says gold reverses at even $10 levels, so she only trades away from them. That wall is on every book, not just hers. Want the pure no-pink to skip the $10 level wall? I won't touch it unless you say so 🕯️
+
+## 2026-10-28 04:56:09 UTC - LOVE
+
+OPE no she’s right to , she can short the rejection 💓💓 we trade away from $10 targets, not into them 💘💘
+

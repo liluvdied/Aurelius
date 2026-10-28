@@ -7019,13 +7019,18 @@
   "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
  },
  "KXGOLD15M-26OCT280030-30:recon-np:KXGOLD15M-26OCT280030-30:recon-np": {
-  "at": "2026-10-28T04:27:51.953Z",
+  "at": "2026-10-28T04:28:07.978Z",
   "ticker": "KXGOLD15M-26OCT280030-30",
   "side": "up",
-  "status": "skipped",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "HER FLIP: no 1/2/3/4/5m candle is green by 10c - a long needs one flipped her way for real (fix359).",
+  "firstTryAt": "2026-10-28T04:28:04.097Z",
+  "bookedAt": "2026-10-28T04:24:16.115Z",
+  "tries": 9,
   "final": false,
-  "bandWait": true,
-  "reason": "band at the target: the 10m purple (4043.63) sits within $2 of the strike 4042.38 and price hasn't broken through it"
+  "paid": 0.28,
+  "orderId": "01a180c3-ebf0-7053-91f2-c222ce4211ce"
  },
  "KXBTC15M-26OCT280030-30:recon-np:KXBTC15M-26OCT280030-30:recon-np": {
   "at": "2026-10-28T04:25:19.055Z",
@@ -7040,5 +7045,97 @@
   "final": false,
   "paid": 0.19,
   "orderId": "01a180c1-5bb0-7749-a775-4578ee1ba9a4"
+ },
+ "KXGOLD15M-26OCT280045-45:recon-rej:KXGOLD15M-26OCT280045-45:recon-rej": {
+  "at": "2026-10-28T04:30:10.881Z",
+  "ticker": "KXGOLD15M-26OCT280045-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280045-45:recon-tog:KXGOLD15M-26OCT280045-45:recon-tog": {
+  "at": "2026-10-28T04:30:10.882Z",
+  "ticker": "KXGOLD15M-26OCT280045-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280045-45:recon-togp:KXGOLD15M-26OCT280045-45:recon-togp": {
+  "at": "2026-10-28T04:30:10.883Z",
+  "ticker": "KXGOLD15M-26OCT280045-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT280045-45:recon-rej:KXBTC15M-26OCT280045-45:recon-rej": {
+  "at": "2026-10-28T04:30:11.907Z",
+  "ticker": "KXBTC15M-26OCT280045-45",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT280045-45:recon-tog:KXBTC15M-26OCT280045-45:recon-tog": {
+  "at": "2026-10-28T04:30:11.908Z",
+  "ticker": "KXBTC15M-26OCT280045-45",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT280045-45:recon-togp:KXBTC15M-26OCT280045-45:recon-togp": {
+  "at": "2026-10-28T04:30:28.166Z",
+  "ticker": "KXBTC15M-26OCT280045-45",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280045-45:recon-dly:KXGOLD15M-26OCT280045-45:recon-dly": {
+  "at": "2026-10-28T04:31:13.345Z",
+  "ticker": "KXGOLD15M-26OCT280045-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXBTC15M-26OCT280045-45:recon-dly:KXBTC15M-26OCT280045-45:recon-dly": {
+  "at": "2026-10-28T04:31:34.028Z",
+  "ticker": "KXBTC15M-26OCT280045-45",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXGOLD15M-26OCT280045-45:recon-np:KXGOLD15M-26OCT280045-45:recon-np": {
+  "at": "2026-10-28T04:35:59.735Z",
+  "ticker": "KXGOLD15M-26OCT280045-45",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "HER FLIP: no 1/2/3/4/5m candle is green by 10c - a long needs one flipped her way for real (fix359).",
+  "firstTryAt": "2026-10-28T04:35:01.130Z",
+  "bookedAt": "2026-10-28T04:35:00.997Z",
+  "tries": 242,
+  "final": false,
+  "paid": 0.6,
+  "orderId": "01a180cb-2398-714e-8303-1a8cc995ea45"
+ },
+ "KXBTC15M-26OCT280045-45:recon-np:KXBTC15M-26OCT280045-45:recon-np": {
+  "at": "2026-10-28T04:43:02.399Z",
+  "ticker": "KXBTC15M-26OCT280045-45",
+  "side": "down",
+  "status": "blocked",
+  "reason": "ANY BAND CUSHION (pure no-pink): short 6.86 over the unbroken 5m purple (80879.43) - inside $25 she waits for it to break, then the next band (fix368).",
+  "firstReason": "your hand traded this window - it stays yours",
+  "firstTryAt": "2026-10-28T04:41:13.160Z",
+  "bookedAt": "2026-10-28T04:41:12.940Z",
+  "tries": 433,
+  "final": false,
+  "paid": null,
+  "orderId": null
  }
 }

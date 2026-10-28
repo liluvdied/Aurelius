@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T04:42:29.102Z",
+ "at": "2026-10-28T04:54:37.567Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -27,9 +27,9 @@
    "matched": 0
   },
   "NHL": {
-   "live": 3,
-   "late": 2,
-   "matched": 0
+   "live": 1,
+   "late": 1,
+   "matched": 1
   },
   "MLB": {
    "live": 0,
@@ -40,33 +40,15 @@
  "watching": [
   {
    "league": "NHL",
-   "game": "Senators 1 @ Golden Knights 4",
+   "game": "Sabres 1 @ Sharks 0",
    "period": 3,
-   "clock": "0:00",
-   "fav": null,
+   "clock": "15:44",
+   "fav": "Sabres",
    "wp": null,
-   "ask": null,
-   "ticker": null,
-   "matched": false
-  },
-  {
-   "league": "NHL",
-   "game": "Canucks 5 @ Ducks 5",
-   "period": 4,
-   "clock": "4:55",
-   "fav": null,
-   "wp": null,
-   "ask": null,
-   "ticker": null,
-   "matched": false
+   "ask": 0.81,
+   "ticker": "KXNHLGAME-26OCT27BUFSJ-SJ (NO)",
+   "matched": true
   }
  ],
- "errors": [
-  "longshot NBA: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNBAG",
-  "longshot NHL: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNHLG",
-  "KXNHLGAME: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNHLG",
-  "longshot NHL: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNHLG",
-  "KXNHLGAME: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNHLG",
-  "longshot NHL: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNHLG"
- ]
+ "errors": []
 }

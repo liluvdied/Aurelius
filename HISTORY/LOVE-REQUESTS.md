@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R055 - fix369: pure no-pink any-band cushion BTC = $10 while session band width (+1 sigma - VWAP) < $180, 10% of the width at $180+; gold stays $1.
+- when: 2026-10-28T04:54:11+00:00
+- Love: "bands are only about $130 apart right now , btc can stay $10 at bands under $150 , gold can stay $1 / every time band width doubles (eg 300) triple the tolerance / so $30 at $300 , / basically just 10% lol / $10 under $180 is okay for rn though"
+- books: recon-np
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "w369 >= 180 ? 0.10 * w369 : 10"}
+
 ## R054 - fix368: pure no-pink (recon-np) only - no long with any unbroken band (pink, purple m5/m10/m15, session sigma/VWAP, Bollinger, red/green zone) within $1 gold / $25 BTC above; mirror for shorts.
 - when: 2026-10-28T04:41:45+00:00
 - Love: "hun she keeps longing into unbroken bands pls fix her + card "How should the pure no-pink treat unbroken bands above a long?" -> "$1 gold / $25 BTC, any band""

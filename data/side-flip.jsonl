@@ -9446,3 +9446,460 @@
 {"at":"2026-10-27T20:08:07.147Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271615-15","band":"2m PP","bandPx":4060.54,"tick":4060.183,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
 {"at":"2026-10-27T20:37:37.602Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271645-45","band":"10m PP","bandPx":4059.76,"tick":4059.57,"was":{"side":"up","label":"On 10m PP"},"now":"down"}
 {"at":"2026-10-27T20:37:37.603Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271645-45","band":"10m PP","bandPx":4059.76,"tick":4059.57,"was":{"side":"up","label":"On 10m PP"},"now":"down"}
+{"at":"2026-10-27T21:35:16.462Z","lane":"sp15","ticker":"KXBTC15M-26OCT271745-45","band":"15m R2","bandPx":81126.49,"tick":81114.83,"was":{"side":"up","label":"Bounce off 15m R2"},"now":"down"}
+{"at":"2026-10-27T21:35:16.463Z","lane":"ogp15","ticker":"KXBTC15M-26OCT271745-45","band":"15m R2","bandPx":81126.49,"tick":81114.83,"was":{"side":"up","label":"Bounce off 15m R2"},"now":"down"}
+{"at":"2026-10-27T21:39:01.045Z","lane":"sp2","ticker":"KXBTC15M-26OCT271745-45","band":"+2σ","bandPx":81141.34,"tick":81120.94,"was":{"side":"up","label":"Close above +2σ"},"now":"down"}
+{"at":"2026-10-27T21:39:01.046Z","lane":"ogp2","ticker":"KXBTC15M-26OCT271745-45","band":"+2σ","bandPx":81141.34,"tick":81120.94,"was":{"side":"up","label":"Close above +2σ"},"now":"down"}
+{"at":"2026-10-27T21:39:01.047Z","lane":"sp5","ticker":"KXBTC15M-26OCT271745-45","band":"+2σ","bandPx":81141.34,"tick":81120.94,"was":{"side":"up","label":"Close above +2σ"},"now":"down"}
+{"at":"2026-10-27T21:39:01.048Z","lane":"ogp5","ticker":"KXBTC15M-26OCT271745-45","band":"+2σ","bandPx":81141.34,"tick":81120.94,"was":{"side":"up","label":"Close above +2σ"},"now":"down"}
+{"at":"2026-10-27T21:39:01.059Z","lane":"ogp5-hold","ticker":"KXBTC15M-26OCT271745-45","band":"+2σ","bandPx":81141.34,"tick":81120.94,"was":{"side":"up","label":"Close above +2σ"},"now":"down"}
+{"at":"2026-10-27T21:39:01.060Z","lane":"ogp5-pk2","ticker":"KXBTC15M-26OCT271745-45","band":"+2σ","bandPx":81141.34,"tick":81120.94,"was":{"side":"up","label":"Close above +2σ"},"now":"down"}
+{"at":"2026-10-27T21:39:01.060Z","lane":"ogp5-pk3","ticker":"KXBTC15M-26OCT271745-45","band":"+2σ","bandPx":81141.34,"tick":81120.94,"was":{"side":"up","label":"Close above +2σ"},"now":"down"}
+{"at":"2026-10-27T21:39:01.063Z","lane":"ogp5-btco","ticker":"KXBTC15M-26OCT271745-45","band":"+2σ","bandPx":81141.34,"tick":81120.94,"was":{"side":"up","label":"Close above +2σ"},"now":"down"}
+{"at":"2026-10-27T21:39:01.068Z","lane":"ogp10","ticker":"KXBTC15M-26OCT271745-45","band":"+2σ","bandPx":81141.34,"tick":81120.94,"was":{"side":"up","label":"Close above +2σ"},"now":"down"}
+{"at":"2026-10-27T21:39:01.069Z","lane":"sp15","ticker":"KXBTC15M-26OCT271745-45","band":"15m R2","bandPx":81128.42,"tick":81120.94,"was":{"side":"up","label":"Close above 15m R2"},"now":"down"}
+{"at":"2026-10-27T21:39:01.070Z","lane":"ogp15","ticker":"KXBTC15M-26OCT271745-45","band":"+2σ","bandPx":81141.34,"tick":81120.94,"was":{"side":"up","label":"Close above +2σ"},"now":"down"}
+{"at":"2026-10-27T22:40:25.567Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.569Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.584Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.585Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.586Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.586Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.822Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.823Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.834Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.834Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.835Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:40:25.835Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271845-45","band":"fresh +1σ","bandPx":4062.35,"tick":4062.56,"was":{"side":"down","label":"On fresh +1σ"},"now":"up"}
+{"at":"2026-10-27T22:42:04.865Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271845-45","band":"2m R1","bandPx":4063.83,"tick":4063.63,"was":{"side":"up","label":"Close above 2m R1"},"now":"down"}
+{"at":"2026-10-27T22:42:04.867Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271845-45","band":"5m R1","bandPx":4063.88,"tick":4063.63,"was":{"side":"up","label":"Close above 5m R1"},"now":"down"}
+{"at":"2026-10-27T22:42:05.895Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271845-45","band":"2m R1","bandPx":4063.83,"tick":4063.55,"was":{"side":"up","label":"Close above 2m R1"},"now":"down"}
+{"at":"2026-10-27T22:42:05.897Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271845-45","band":"5m R1","bandPx":4063.88,"tick":4063.55,"was":{"side":"up","label":"Close above 5m R1"},"now":"down"}
+{"at":"2026-10-27T22:42:08.964Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271845-45","band":"2m R1","bandPx":4063.83,"tick":4063.63,"was":{"side":"up","label":"Close above 2m R1"},"now":"down"}
+{"at":"2026-10-27T22:42:08.965Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271845-45","band":"5m R1","bandPx":4063.88,"tick":4063.63,"was":{"side":"up","label":"Close above 5m R1"},"now":"down"}
+{"at":"2026-10-27T22:42:09.966Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271845-45","band":"2m R1","bandPx":4063.83,"tick":4063.657,"was":{"side":"up","label":"Close above 2m R1"},"now":"down"}
+{"at":"2026-10-27T22:42:09.967Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271845-45","band":"5m R1","bandPx":4063.88,"tick":4063.657,"was":{"side":"up","label":"Close above 5m R1"},"now":"down"}
+{"at":"2026-10-27T22:42:10.695Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271845-45","band":"2m R1","bandPx":4063.83,"tick":4063.657,"was":{"side":"up","label":"Close above 2m R1"},"now":"down"}
+{"at":"2026-10-27T22:42:10.696Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271845-45","band":"5m R1","bandPx":4063.88,"tick":4063.657,"was":{"side":"up","label":"Close above 5m R1"},"now":"down"}
+{"at":"2026-10-27T22:47:54.004Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.005Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.005Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.006Z","lane":"ogp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.014Z","lane":"ogp5-hold","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.014Z","lane":"ogp5-pk2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.015Z","lane":"ogp5-pk3","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.019Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.020Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.021Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.021Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.94,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.690Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.690Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.691Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.692Z","lane":"ogp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.702Z","lane":"ogp5-hold","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.703Z","lane":"ogp5-pk2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.703Z","lane":"ogp5-pk3","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.708Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.708Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.709Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:54.709Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.857,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.726Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.726Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.727Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.728Z","lane":"ogp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.735Z","lane":"ogp5-hold","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.736Z","lane":"ogp5-pk2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.736Z","lane":"ogp5-pk3","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.740Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.741Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.742Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:55.742Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.913,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.719Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.719Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.720Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.721Z","lane":"ogp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.732Z","lane":"ogp5-hold","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.732Z","lane":"ogp5-pk2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.733Z","lane":"ogp5-pk3","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.737Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.737Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.738Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:56.738Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.88,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.726Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.726Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.727Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.727Z","lane":"ogp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.734Z","lane":"ogp5-hold","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.734Z","lane":"ogp5-pk2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.735Z","lane":"ogp5-pk3","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.741Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.742Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.743Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:57.743Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.042Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.042Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.043Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.044Z","lane":"ogp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.053Z","lane":"ogp5-hold","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.054Z","lane":"ogp5-pk2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.054Z","lane":"ogp5-pk3","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.058Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.058Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.059Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.059Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.690Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.690Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.691Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.692Z","lane":"ogp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.699Z","lane":"ogp5-hold","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.699Z","lane":"ogp5-pk2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.700Z","lane":"ogp5-pk3","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.703Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.703Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.704Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:58.704Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.83,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.725Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.725Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.726Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.727Z","lane":"ogp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.734Z","lane":"ogp5-hold","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.734Z","lane":"ogp5-pk2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.734Z","lane":"ogp5-pk3","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.741Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.741Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.742Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:47:59.743Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.67,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.719Z","lane":"sp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.719Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.720Z","lane":"sp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.721Z","lane":"ogp5","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.728Z","lane":"ogp5-hold","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.729Z","lane":"ogp5-pk2","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.729Z","lane":"ogp5-pk3","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.736Z","lane":"sp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.737Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.738Z","lane":"sp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T22:48:00.738Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT271900-00","band":"fresh +2σ","bandPx":4064.11,"tick":4063.64,"was":{"side":"up","label":"Close above fresh +2σ"},"now":"down"}
+{"at":"2026-10-27T23:03:40.352Z","lane":"sp15","ticker":"KXBTC15M-26OCT271915-15","band":"fresh VWAP","bandPx":80813.3,"tick":80800.14,"was":{"side":"up","label":"Break above fresh VWAP"},"now":"down"}
+{"at":"2026-10-27T23:03:40.353Z","lane":"ogp15","ticker":"KXBTC15M-26OCT271915-15","band":"fresh VWAP","bandPx":80813.3,"tick":80800.14,"was":{"side":"up","label":"Break above fresh VWAP"},"now":"down"}
+{"at":"2026-10-28T00:00:18.277Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:00:18.280Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:00:18.282Z","lane":"sp5","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:00:18.283Z","lane":"ogp5","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:00:18.303Z","lane":"ogp5-hold","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:00:18.303Z","lane":"ogp5-pk2","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:00:18.304Z","lane":"ogp5-pk3","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:00:18.309Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:00:18.310Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:00:18.311Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:00:18.312Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"fresh +1σ","bandPx":4063.07,"tick":4062.82,"was":{"side":"up","label":"On fresh +1σ"},"now":"down"}
+{"at":"2026-10-28T00:06:01.839Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.44,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:01.843Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.44,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:01.844Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.44,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:01.845Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.44,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:03.123Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.31,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:03.123Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.31,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:03.125Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.31,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:03.126Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.31,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:04.217Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:04.218Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:04.223Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:04.224Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:04.790Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:04.791Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:04.793Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:04.794Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:05.611Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.28,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:05.612Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.28,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:05.616Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.28,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:05.617Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.28,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:06.565Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.35,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:06.566Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.35,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:06.569Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.35,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:06.570Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.35,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:15.739Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.412,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:15.740Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.412,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:15.742Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.412,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:15.742Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.412,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:16.714Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.19,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:16.715Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.19,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:16.719Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.19,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:16.720Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.19,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:17.045Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.23,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:17.046Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.23,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:17.048Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.23,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:17.049Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.23,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:17.940Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.23,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:17.940Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.23,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:17.944Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.23,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:17.945Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.23,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:18.976Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:18.977Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:18.979Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:18.980Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.38,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:19.948Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.2,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:19.949Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.2,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:19.951Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.2,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:19.951Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.2,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:20.292Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.08,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:20.292Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.08,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:20.295Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.08,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:20.295Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.08,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:20.980Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.08,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:20.981Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.08,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:20.983Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.08,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:20.984Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.08,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:21.992Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4064.94,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:21.993Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4064.94,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:21.995Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4064.94,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:21.996Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4064.94,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:22.980Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.117,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:22.981Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.117,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:22.985Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.117,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:22.986Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.117,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:23.354Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.06,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:23.355Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.06,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:23.356Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.06,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:23.357Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.06,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:24.044Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.06,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:24.045Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.06,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:24.047Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.06,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:24.048Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.06,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:25.021Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:25.022Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:25.023Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:25.024Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:26.435Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.45,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:26.437Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.45,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:26.438Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.45,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:26.439Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.45,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:27.434Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.388,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:27.435Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.388,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:27.436Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.388,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:27.437Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.388,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:27.660Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:27.661Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:27.662Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:27.663Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:28.393Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:28.394Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:28.395Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:28.396Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.34,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:29.452Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.237,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:29.453Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.237,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:29.455Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.237,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:29.455Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.237,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:30.462Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.221,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:30.463Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.221,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:30.465Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.221,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:30.466Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.221,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:30.780Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.221,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:30.780Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.221,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:30.782Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.221,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:30.783Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.221,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:31.452Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.15,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:31.452Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.15,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:31.454Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.15,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:31.455Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.15,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:32.473Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.15,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:32.476Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.15,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:32.479Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.15,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:32.479Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.15,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:33.501Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.09,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:33.502Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.09,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:33.503Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.09,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:33.504Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.09,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:33.869Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.09,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:33.869Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.09,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:33.871Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.09,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:33.872Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.09,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:34.754Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.228,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:34.755Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.228,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:34.756Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.228,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:34.757Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.228,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:35.755Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.17,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:35.756Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.17,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:35.758Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.17,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:35.758Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.17,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:36.759Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:36.760Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:36.761Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:36.762Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:37.129Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.25,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:37.130Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.25,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:37.132Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.25,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:37.132Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.25,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:37.752Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.25,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:37.753Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.25,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:37.754Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.25,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:37.755Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.25,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:38.771Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.317,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:38.771Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.317,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:38.773Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.317,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:38.773Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.317,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:39.764Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.179,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:39.765Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.179,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:39.766Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.179,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:39.767Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.179,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:40.780Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.17,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:40.781Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.17,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:40.783Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.17,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:40.783Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.17,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:41.777Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:41.778Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:41.780Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:41.780Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:42.230Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:42.232Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:42.234Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:42.235Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.14,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:42.808Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.148,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:42.809Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.148,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:42.812Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.148,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:42.813Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.148,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:44.038Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.05,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:44.039Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.05,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:44.042Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.05,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:44.042Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.05,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:45.052Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.13,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:45.055Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.13,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:45.057Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.13,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:45.057Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.13,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:45.357Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.188,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:45.358Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.188,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:45.360Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.188,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:45.360Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.188,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:46.103Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.188,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:46.103Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.63,"tick":4065.188,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:46.105Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.188,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:06:46.106Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.63,"tick":4065.188,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:05.875Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.62,"tick":4065.42,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:05.879Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.62,"tick":4065.42,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:06.550Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.62,"tick":4065.42,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:06.554Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.62,"tick":4065.42,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:22.477Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.62,"tick":4065.4,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:22.481Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.62,"tick":4065.4,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:22.862Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.62,"tick":4065.4,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:22.870Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.62,"tick":4065.4,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:23.560Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.62,"tick":4065.4,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:23.565Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.62,"tick":4065.4,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:25.919Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.62,"tick":4065.43,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:25.922Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.62,"tick":4065.43,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:27.001Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.62,"tick":4065.43,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:27.004Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.62,"tick":4065.43,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:36.463Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.62,"tick":4065.46,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:36.467Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.62,"tick":4065.46,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:36.817Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.62,"tick":4065.44,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:36.820Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.62,"tick":4065.44,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:37.554Z","lane":"sp10","ticker":"KXGOLD15M-26OCT272015-15","band":"10m R1","bandPx":4065.62,"tick":4065.44,"was":{"side":"up","label":"Close above 10m R1"},"now":"down"}
+{"at":"2026-10-28T00:08:37.560Z","lane":"sp15","ticker":"KXGOLD15M-26OCT272015-15","band":"15m R1","bandPx":4065.62,"tick":4065.44,"was":{"side":"up","label":"Close above 15m R1"},"now":"down"}
+{"at":"2026-10-28T01:16:34.991Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.11,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:34.992Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.11,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:35.743Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.11,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:35.744Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.11,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:37.023Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.091,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:37.024Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.091,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:37.768Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.091,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:37.768Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.091,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:38.011Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:38.012Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:41.354Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4057.977,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:41.355Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4057.977,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:41.696Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4057.977,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:41.696Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4057.977,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:42.350Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.14,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:42.352Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.14,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:43.375Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.02,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:43.375Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.02,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:44.355Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.1,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:44.356Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.1,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:45.365Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4057.988,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:45.366Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4057.988,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:45.692Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4057.988,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:45.693Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4057.988,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:46.358Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.001,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:46.359Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.001,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:55.557Z","lane":"sp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.32,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T01:16:55.558Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT272130-30","band":"2m PP","bandPx":4058.47,"tick":4058.32,"was":{"side":"up","label":"Close above 2m PP"},"now":"down"}
+{"at":"2026-10-28T04:45:36.267Z","lane":"sp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.979,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:36.268Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.979,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:37.285Z","lane":"sp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.979,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:37.286Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.979,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:39.268Z","lane":"sp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.97,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:39.269Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.97,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:42.360Z","lane":"sp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.97,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:42.361Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.97,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:44.365Z","lane":"sp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.982,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:44.366Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.982,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:47.403Z","lane":"sp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.987,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:47.404Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.987,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:48.396Z","lane":"sp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.981,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:48.397Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.981,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:49.383Z","lane":"sp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.992,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:49.383Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.992,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:49.677Z","lane":"sp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.992,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:49.678Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.992,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:51.471Z","lane":"sp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.97,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:45:51.472Z","lane":"ogp2","ticker":"KXGOLD15M-26OCT280100-00","band":"2m PP","bandPx":4040.81,"tick":4040.97,"was":{"side":"down","label":"Close below 2m PP"},"now":"up"}
+{"at":"2026-10-28T04:52:09.124Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.07,"tick":4037.55,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:10.125Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.44,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:11.071Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.352,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:11.186Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.352,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:12.190Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.41,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:13.198Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.44,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:14.257Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.44,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:15.043Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.462,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:15.264Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.462,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:16.596Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.435,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:17.622Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.372,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:18.119Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.372,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:18.629Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.369,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:19.622Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.369,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:20.627Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.481,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:21.619Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.422,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:22.106Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.401,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:22.618Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.401,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:23.627Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.42,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:25.167Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.34,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:25.593Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.34,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:26.189Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.36,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:27.193Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.06,"tick":4037.36,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:32.245Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.31,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:32.422Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.31,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:33.645Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.32,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:34.656Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.48,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:35.682Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.48,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:35.839Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.441,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:36.679Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.441,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:37.683Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.45,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:38.690Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.452,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:38.862Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.452,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:39.692Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.67,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:39.694Z","lane":"sp15","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.67,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:39.694Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.67,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:40.690Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.67,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:40.692Z","lane":"sp15","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.67,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:40.692Z","lane":"ogp15","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.67,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:42.118Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.501,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:42.282Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.501,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:43.146Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.03,"tick":4037.492,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:45.147Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.518,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:45.315Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.518,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:46.145Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.501,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:47.156Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.54,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:48.160Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.501,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:48.329Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.501,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:49.202Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.513,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:50.696Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.481,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:51.704Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.537,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:51.879Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.537,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:52.761Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.537,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:53.783Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.561,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:54.782Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.561,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:54.947Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.561,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:55.781Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.561,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:56.791Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.565,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:57.783Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.57,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:57.965Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.57,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:52:59.158Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.59,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}
+{"at":"2026-10-28T04:53:00.188Z","lane":"ogp10","ticker":"KXGOLD15M-26OCT280100-00","band":"-2σ","bandPx":4037.01,"tick":4037.56,"was":{"side":"down","label":"Close below -2σ"},"now":"up"}

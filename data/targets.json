@@ -1,5 +1,66 @@
 [
   {
+    "id": "mvrmw4d2-sldr27",
+    "at": "2026-10-28T04:48:19.478Z",
+    "asset": "gold",
+    "ticker": "KXGOLD15M-26OCT280100-00",
+    "side": "down",
+    "pattern": "Tap-reject at -1.5σ",
+    "venue": "paper",
+    "spot": 4040.048,
+    "target": 4040.74,
+    "vwap": 4053.7654051732015,
+    "multiple": 1.5625,
+    "profit": 12.5,
+    "result": "win",
+    "closedAt": "2026-10-28T04:52:32.795Z"
+  },
+  {
+    "id": "held-KXBTC15M-26OCT280100-00",
+    "at": "2026-10-28T04:47:58.397Z",
+    "asset": "btc",
+    "ticker": "KXBTC15M-26OCT280100-00",
+    "side": "down",
+    "pattern": "Live",
+    "venue": "kalshi",
+    "spot": null,
+    "target": null,
+    "vwap": null,
+    "multiple": 1.89,
+    "profit": null,
+    "result": "open"
+  },
+  {
+    "id": "mvrmv8mu-lo0bp3",
+    "at": "2026-10-28T04:47:38.358Z",
+    "asset": "gold",
+    "ticker": "KXGOLD15M-26OCT280100-00",
+    "side": "down",
+    "pattern": "Tap-reject at -1.5σ",
+    "venue": "paper",
+    "spot": 4040.257,
+    "target": 4040.74,
+    "vwap": null,
+    "multiple": 1.7241379310344829,
+    "profit": null,
+    "result": "open"
+  },
+  {
+    "id": "mvrmsbba-m4rr6d",
+    "at": "2026-10-28T04:45:21.862Z",
+    "asset": "silver",
+    "ticker": "KXSILVER15M-26OCT280100-00",
+    "side": "up",
+    "pattern": "Tap-reject at −1σ",
+    "venue": "paper",
+    "spot": 53.966,
+    "target": 53.963,
+    "vwap": null,
+    "multiple": 1.7241379310344829,
+    "profit": null,
+    "result": "open"
+  },
+  {
     "id": "mvrmiylk-xhwnvm",
     "at": "2026-10-28T04:38:05.480Z",
     "asset": "silver",
@@ -26,8 +87,9 @@
     "target": null,
     "vwap": null,
     "multiple": 1.67,
-    "profit": null,
-    "result": "open"
+    "profit": 0.92,
+    "result": "win",
+    "closedAt": "2026-10-28T04:45:38.369Z"
   },
   {
     "id": "held-KXBTC15M-26OCT280045-45",
@@ -41,8 +103,9 @@
     "target": null,
     "vwap": null,
     "multiple": 10,
-    "profit": null,
-    "result": "open"
+    "profit": -6,
+    "result": "loss",
+    "closedAt": "2026-10-28T04:45:17.473Z"
   },
   {
     "id": "mvrmafsg-3vhy9l",
@@ -71,8 +134,9 @@
     "target": 4040.99,
     "vwap": null,
     "multiple": 1.6666666666666667,
-    "profit": null,
-    "result": "open"
+    "profit": 16.5,
+    "result": "win",
+    "closedAt": "2026-10-28T04:45:00.075Z"
   },
   {
     "id": "held-KXGOLD15M-26OCT280030-30",
@@ -7891,69 +7955,5 @@
     "profit": -25,
     "result": "loss",
     "closedAt": "2026-10-26T12:45:04.058Z"
-  },
-  {
-    "id": "mvp8im6d-u3qrhm",
-    "at": "2026-10-26T12:30:22.405Z",
-    "asset": "gold",
-    "ticker": "KXGOLD15M-26OCT260845-45",
-    "side": "down",
-    "pattern": "Tap-reject at +1.5σ",
-    "venue": "paper",
-    "spot": 4019.64,
-    "target": 4021.21,
-    "vwap": null,
-    "multiple": 1.6666666666666667,
-    "profit": 12.63,
-    "result": "win",
-    "closedAt": "2026-10-26T12:41:11.036Z"
-  },
-  {
-    "id": "held-KXGOLD15M-26OCT260830-30",
-    "at": "2026-10-26T12:20:12.995Z",
-    "asset": "gold",
-    "ticker": "KXGOLD15M-26OCT260830-30",
-    "side": "up",
-    "pattern": "Live",
-    "venue": "kalshi",
-    "spot": null,
-    "target": null,
-    "vwap": null,
-    "multiple": 2.5,
-    "profit": 3.27,
-    "result": "win",
-    "closedAt": "2026-10-26T12:30:46.860Z"
-  },
-  {
-    "id": "held-KXBTC15M-26OCT260830-30",
-    "at": "2026-10-26T12:20:05.707Z",
-    "asset": "btc",
-    "ticker": "KXBTC15M-26OCT260830-30",
-    "side": "up",
-    "pattern": "Tap-reject at −0.5σ",
-    "venue": "kalshi",
-    "spot": null,
-    "target": null,
-    "vwap": null,
-    "multiple": 10,
-    "profit": 46.53,
-    "result": "win",
-    "closedAt": "2026-10-26T12:30:20.644Z"
-  },
-  {
-    "id": "mvp84opf-4s15ie",
-    "at": "2026-10-26T12:19:32.499Z",
-    "asset": "gold",
-    "ticker": "KXGOLD15M-26OCT260830-30",
-    "side": "down",
-    "pattern": "Tap-reject at +1σ",
-    "venue": "paper",
-    "spot": 4015.43,
-    "target": 4017.46,
-    "vwap": null,
-    "multiple": 1.4285714285714286,
-    "profit": -25,
-    "result": "loss",
-    "closedAt": "2026-10-26T12:30:10.078Z"
   }
 ]

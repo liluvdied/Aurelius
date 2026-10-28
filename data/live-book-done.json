@@ -7125,17 +7125,109 @@
   "orderId": "01a180cb-2398-714e-8303-1a8cc995ea45"
  },
  "KXBTC15M-26OCT280045-45:recon-np:KXBTC15M-26OCT280045-45:recon-np": {
-  "at": "2026-10-28T04:42:26.188Z",
+  "at": "2026-10-28T04:44:31.029Z",
   "ticker": "KXBTC15M-26OCT280045-45",
   "side": "down",
-  "status": "blocked",
-  "reason": "ANY BAND CUSHION (pure no-pink): short 1.09 over the unbroken 5m PP (80903.43) - inside $25 she waits for it to break, then the next band (fix368).",
+  "status": "missed",
+  "reason": "window ended before it filled (last: ANY BAND CUSHION (pure no-pink): short 8.70 over the unbroken 5m purple (80879.78) - inside $25 she waits for it to break, then the next band (fix368).)",
   "firstReason": "your hand traded this window - it stays yours",
   "firstTryAt": "2026-10-28T04:41:13.160Z",
   "bookedAt": "2026-10-28T04:41:12.940Z",
-  "tries": 287,
+  "tries": 721,
+  "final": true,
+  "paid": null,
+  "orderId": null
+ },
+ "KXBTC15M-26OCT280100-00:recon-tog:KXBTC15M-26OCT280100-00:recon-tog": {
+  "at": "2026-10-28T04:45:08.901Z",
+  "ticker": "KXBTC15M-26OCT280100-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT280100-00:recon-togp:KXBTC15M-26OCT280100-00:recon-togp": {
+  "at": "2026-10-28T04:45:08.905Z",
+  "ticker": "KXBTC15M-26OCT280100-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT280100-00:recon-np:KXBTC15M-26OCT280100-00:recon-np": {
+  "at": "2026-10-28T04:47:56.538Z",
+  "ticker": "KXBTC15M-26OCT280100-00",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "ANY BAND CUSHION (pure no-pink): short 3.77 over the unbroken 5m purple (80881.74) - inside $25 she waits for it to break, then the next band (fix368).",
+  "firstTryAt": "2026-10-28T04:45:08.925Z",
+  "bookedAt": "2026-10-28T04:45:08.457Z",
+  "tries": 752,
+  "final": false,
+  "paid": 0.53,
+  "orderId": "01a180d6-1460-799c-94bf-6618e4b70b39"
+ },
+ "KXBTC15M-26OCT280100-00:recon-rej:KXBTC15M-26OCT280100-00:recon-rej": {
+  "at": "2026-10-28T04:45:08.929Z",
+  "ticker": "KXBTC15M-26OCT280100-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280100-00:recon-tog:KXGOLD15M-26OCT280100-00:recon-tog": {
+  "at": "2026-10-28T04:45:12.935Z",
+  "ticker": "KXGOLD15M-26OCT280100-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280100-00:recon-togp:KXGOLD15M-26OCT280100-00:recon-togp": {
+  "at": "2026-10-28T04:45:12.936Z",
+  "ticker": "KXGOLD15M-26OCT280100-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280100-00:recon-np:KXGOLD15M-26OCT280100-00:recon-np": {
+  "at": "2026-10-28T04:54:56.976Z",
+  "ticker": "KXGOLD15M-26OCT280100-00",
+  "side": "up",
+  "status": "blocked",
+  "reason": "ANY BAND CUSHION (pure no-pink): long 0.06 under the unbroken Bollinger lower (4038.10) - inside $1 she waits for it to break, then the next band (fix368/369).",
+  "firstReason": "ANY BAND CUSHION (pure no-pink): long 0.07 under the unbroken 5m S1 (4037.67) - inside $1 she waits for it to break, then the next band (fix368/369).",
+  "firstTryAt": "2026-10-28T04:54:02.716Z",
+  "bookedAt": "2026-10-28T04:45:12.827Z",
+  "tries": 241,
   "final": false,
   "paid": null,
   "orderId": null
+ },
+ "KXGOLD15M-26OCT280100-00:recon-rej:KXGOLD15M-26OCT280100-00:recon-rej": {
+  "at": "2026-10-28T04:45:12.962Z",
+  "ticker": "KXGOLD15M-26OCT280100-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT280100-00:recon-dly:KXBTC15M-26OCT280100-00:recon-dly": {
+  "at": "2026-10-28T04:45:30.355Z",
+  "ticker": "KXBTC15M-26OCT280100-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXGOLD15M-26OCT280100-00:recon-dly:KXGOLD15M-26OCT280100-00:recon-dly": {
+  "at": "2026-10-28T04:47:33.414Z",
+  "ticker": "KXGOLD15M-26OCT280100-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
  }
 }
