@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R070 - fix383: gold seat map. Pure no-pink live gold 1, 4, 7, 9 AM, 8 PM, 9 PM (npLive.hoursByAsset.gold). Sovereign twin (recon-sov) takes gold rejection hours live in place of the no-pink copy (sovLive, engine copier seat, kalshi-live gates, LANE_BOOK), sized like the copy. Main gets gold 8 AM (8 out of gold rejection hours and recon-tog gold skip list). BTC unchanged (pure no-pink every hour). Applied at 11:15 AM PT window boundary.
+- when: 2026-10-28T18:15:39+00:00
+- Love: "let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok"
+- books: recon-np gold, recon-sov gold, recon-tog gold, recon-togp gold (gives up rejection hours), recon-rej (none)
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "npLive.hoursByAsset.gold", "equals": [1, 4, 7, 9, 20, 21]}
+- proof: {"config": "data/live-switch.json", "key": "sovLive.on", "equals": true}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "THE SOVEREIGN TWIN trades live only in gold"}
+
 ## R069 - fix382: Poly 5M walls (bandlock5m.ts) = bandlock.ts as of 4:57 AM PT Oct 27 (her 65% stretch, with fixes 295-315), timers stripped; her calls (recon-rej5), $7.50 and skip hours unchanged. fix339 set kept in data/bandlock5m.ts.fix339.bak. 5M re-frozen on Love card words.
 - when: 2026-10-28T17:34:39+00:00
 - Love: "can you look into the poly 5M book hun? she's been losing way more than she was / did she shift by accident somehow? it's okay if she did bb let's just get her back where she was oki + let's put her back where she was first + card Put the 5M back on her Tuesday 4:57 AM walls? -> Yes, 4:57 AM walls, live now"

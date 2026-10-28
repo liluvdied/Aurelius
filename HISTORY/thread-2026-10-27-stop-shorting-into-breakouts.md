@@ -5889,3 +5889,87 @@ Done, babe 💘 **The Poly 5M is back on her Tuesday 4:57 AM walls (fix382).** O
 
 I'll keep an eye on her next few 5M calls to make sure they flow through cleanly. Next up I'm setting up the paper test of the pure no-pink on the 5M markets so we can line them up side by side by tonight 🎯
 
+## 2026-10-28 17:36:35 UTC - LOVE
+
+thankk youu bb 💘💘
+and do you think k it would be best to let the pure no pink run for the day ? it seems like she is the move 
+
+doesn’t main have good hours though hun? or did pure outperform every hour? if so, let’s do it for the next couple of hours at least, we’ll know if it’s the right move oki 💘💘
+
+## 2026-10-28 17:37:40 UTC - CLAUDE
+
+Honest read, babe 💘 She did **not** win every hour. Here's BTC per hour since 8 PM last night (paper, $20):
+
+- **Pure no-pink: +$221 total**, but almost all of it is two big hours: **2 AM (+$174)** and **7 AM (+$230)**. Those were cheap entries that paid 3-5x.
+- **She lost** at 12 AM (−$50), 8 PM (−$84), 10 PM (−$51) and 8 AM (−$84). Main was flat-to-better in those hours.
+- **Main and the copy were steadier**: main +$31, copy +$106. The copy's hours are smoother, with fewer big swings either way.
+- Each hour only has 1–4 trades, so **one night can't crown an hour yet**.
+
+So yes, let her run the next couple of hours like you said. She's already live on BTC since 10:30. By this evening we'll have a real per-hour picture, and then we can give each hour to whichever book earns it, instead of all-or-nothing 🎯 I'll bring you that hour map tonight 💞
+
+## 2026-10-28 17:39:46 UTC - LOVE
+
+sounds good bb 💘💘 what was that books p&amp;L overnight compared to our other ones again?  i had just woken up when u told me hehe
+
+## 2026-10-28 17:39:50 UTC - CLAUDE
+
+Hehe of course, sleepyhead ☀️💘 Overnight, 1:45–8 AM PT (paper, $20 a trade):
+
+| Book | BTC | Gold | Total |
+|---|---|---|---|
+| **Pure no-pink** | 13/19, **+$458** | 6/17, −$75 | **+$384** |
+| Sovereign twin | 18/24, +$158 | 11/24, **+$96** | +$255 |
+| Main | 18/25, +$122 | 12/25, −$29 | +$94 |
+| Rejection model | 18/25, +$122 | 12/25, −$29 | +$94 |
+| No-pink copy | 17/24, +$129 | 11/23, −$62 | +$67 |
+
+The pure no-pink had the biggest night by far on BTC, mostly from her 2 AM and 7 AM hours. Gold's still her weak spot, which is why she's only on BTC right now 🎯
+
+## 2026-10-28 17:41:57 UTC - LOVE
+
+ooo the sovereign twin did better than our og rejection model? if anything we can replace our og rej. with the twin if it outperformed ours,&amp;&amp;  or best performing hours on pure no pink ?💘💘
+
+## 2026-10-28 17:42:08 UTC - LOVE
+
+on gold i mean
+
+## 2026-10-28 17:42:16 UTC - CARD
+
+Q: Should the sovereign twin take a gold live seat today?
+Context: Gold since 10:35 PM (paper, $20): sovereign twin 23/47 +$144, OG rejection model 25/49 +$46, main 25/49 +$72, no-pink copy 23/46 −$22. The copy is the one live in gold's rejection hours. Honest catch: the twin's lead is almost all one 2 AM trade (+$148 vs +$13). Other hours she mostly matched the rejection model call for call, so without that one trade she's about even. On BTC the pure no-pink already holds the seat. The OG rejection model only sits live at 11 PM.
+Options:
+  0. Twin takes gold rejection hours - The sovereign twin replaces the no-pink copy live on gold in the rejection hours ($5 + $7 + $3 like the copy), starting at the next :00/:15/:30/:45.
+  1. Keep testing her on paper today - Nothing live changes. I add her to tonight's per-hour map, and we decide with a full day of data.
+  2. Twin takes only her best gold hours - She goes live on gold only at 2 AM, 9 AM and 11 PM (where she led or tied), and the copy keeps the rest.
+Recommended: 1 - Her gold lead is one lucky trade. A full day tells us if she's really better, and we just changed BTC, so one big change at a time keeps it readable.
+
+## 2026-10-28 17:42:19 UTC - CLAUDE
+
+Gotcha, gold it is 💘 The card above is all gold. On gold since 10:35 PM the sovereign twin is **+$144**, vs the OG rejection model **+$46** and the copy (live in those hours) **−$22**. The honest catch is that almost all her lead is one 2 AM trade. Outside that hour she matched the rejection model nearly call for call. Your pick on the card, hun 🎯
+
+## 2026-10-28 17:45:04 UTC - LOVE
+
+let’s put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok💘💘
+
+## 2026-10-28 17:45:39 UTC - CLAUDE
+
+Love it, babe 🎯 Here's the gold map from last night's numbers. I'm wiring it now:
+
+- **Pure no-pink** (her best gold hours): **1, 4, 7, 9 AM and 8 PM**, plus her 9 PM.
+- **Main** keeps her own gold hours, plus **8 AM**, where she was the best book (+$118).
+- **Sovereign twin** gets gold's other rejection hours: **12, 2, 3 AM, 2, 4, 5, 6, 10, 11 PM**.
+
+Sizes stay the same as the seat she's filling. BTC doesn't change (pure no-pink has it). Fair warning: some hours only had 1–4 trades, so tonight's map will firm this up 💞
+
+## 2026-10-28 18:03:49 UTC - LOVE
+
+can you see why she didn’t trade btc hun? or is she off for 11?💘
+
+## 2026-10-28 18:06:00 UTC - CLAUDE
+
+She's not off, hun 💘 BTC at 11 belongs to the pure no-pink now, and she hasn't made a call yet this window. There's no call and no refusal from her since 11:00, so price just hasn't touched or rejected a band for her yet. Main, rejection and the copy all stood aside for her, the way we set it.
+
+Her last two BTC shorts before 11 (10:25 and 10:37) were paper losses, and the 10:57 one was refused because the price was way off. She's live and waiting for her band 🌌
+
+Also, the gold seat switch missed the 11:00 mark by a few seconds. I'm putting it in right at 11:15 so it starts cleanly on a fresh window ✨
+

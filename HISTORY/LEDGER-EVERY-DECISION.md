@@ -1,9 +1,14 @@
-# Every decision Love has made - rebuilt 2026-10-28T17:34:51.043475+00:00
+# Every decision Love has made - rebuilt 2026-10-28T18:15:51.182873+00:00
 
-1236 decisions with Love's words or card picks, out of 1932 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1237 decisions with Love's words or card picks, out of 1935 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T18:15:39+00:00  ·  diary line 2400  ·  fix383
+- Love: “let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok”
+- fix383 IN HER CODE
+- Full entry: 2026-10-28T18:15:39+00:00 fix383 CONFIG applied at 11:15:00 AM PT window boundary (11:00 missed by seconds). Gold seats: pure no-pink 1,4,7,9 AM + 8 PM + 9 PM; sovereign twin gold rejection hours (0,2,3,14,16,17,18,22; 23 stays rejection seat); main gets 8 AM. BTC unchanged. fix383Prev saved. Love: "let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok"
 
 ## 2026-10-28T17:34:39Z  ·  diary line 2397  ·  fix316, fix317, fix339, fix382  ·  books: 5m book, rejection
 - Love: “can you look into the poly 5M book hun? she's been losing way more than she was / did she shift by accident somehow? it's okay if she did bb let's just get her back where she was oki + let's put her back where she was first + card Put the 5M back on her Tuesday 4:57 AM walls? -> Yes, 4:57 AM walls, live now”

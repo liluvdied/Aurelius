@@ -219,3 +219,5 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 - fix381 (Oct 28 2026 10:30 AM PT, Love: "i'm sold lol pure no pink it is now bb + card How should the pure no-pink take over live? -> BTC every hour, gold stays"): the PURE NO-PINK holds the Kalshi BTC seat every hour (the delayed twin keeps its own BTC hours); gold stays main/rejection/copy, pure no-pink gold only 9 PM; $3 entry + $5 add-on.
 
 - fix382 (Oct 28 2026 10:34 AM PT, Love card "Yes, 4:57 AM walls, live now"): the Polymarket 5M judges with her own walls exactly as they stood at 4:57 AM Oct 27 (her best stretch). Her calls, $7.50 and skip hours unchanged.
+
+- fix383 (Oct 28 2026 11:15 AM PT, Love: "let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok"): gold seat map - pure no-pink live gold 1, 4, 7, 9 AM, 8 PM, 9 PM; the sovereign twin takes gold's other rejection hours live (in place of the no-pink copy, same $5 + $7 + $3 sizing); main gets gold 8 AM. BTC stays pure no-pink every hour.

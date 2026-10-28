@@ -1,19 +1,19 @@
 {
-  "at": "2026-10-28T17:35:41.816Z",
+  "at": "2026-10-28T18:16:12.659Z",
   "gen": 417,
-  "hour": "2026-10-28T10",
-  "net": 1.65,
+  "hour": "2026-10-28T11",
+  "net": 9.9,
   "n": 1,
   "red": false,
-  "diagnosed": "2026-10-28T09",
+  "diagnosed": "2026-10-28T10",
   "closed": {
-    "hour": "2026-10-28T09",
-    "net": 4.64,
+    "hour": "2026-10-28T10",
+    "net": 3.66,
     "n": 2,
     "red": false,
     "cause": "Hour was green.",
     "fix": "none",
-    "at": "2026-10-28T17:00:00.111Z"
+    "at": "2026-10-28T18:00:00.058Z"
   },
   "note": "Checked from the live loop. A red hour is diagnosed when the hour closes. The model is not changed."
 }

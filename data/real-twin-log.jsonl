@@ -2234,3 +2234,8 @@
 {"at":"2026-10-28T17:14:24.694Z","id":"KXGOLD15M-26OCT281315-15:b11","kind":"exit","parentExit":"take profit: peaked +63%, 1% trail","sold":30.54,"proceeds":30.14,"fee":0.03,"pnl":12.78}
 {"at":"2026-10-28T17:17:25.541Z","id":"KXBTC15M-26OCT281330-30:brick","kind":"fill","paperAsk":0.66,"limit":0.72,"got":30.55,"avg":0.63,"cost":19.25,"fee":0.5}
 {"at":"2026-10-28T17:24:25.630Z","id":"KXBTC15M-26OCT281330-30:b11","kind":"exit","parentExit":"take profit: peaked +48%, 1% trail","sold":30.55,"proceeds":29.85,"fee":0.05,"pnl":10.05}
+{"at":"2026-10-28T17:41:37.074Z","id":"KXGOLD15M-26OCT281345-45:brick","kind":"fill","paperAsk":0.4,"limit":0.48,"got":45.83,"avg":0.39,"cost":17.87,"fee":0.77}
+{"at":"2026-10-28T17:44:13.778Z","id":"KXGOLD15M-26OCT281345-45:b11","kind":"exit","parentExit":"take-profit gate +90% (peaked +92.5%)","sold":45.82,"proceeds":32.53,"fee":0.67,"pnl":13.22}
+{"at":"2026-10-28T17:45:34.888Z","id":"KXGOLD15M-26OCT281400-00:brick","kind":"fill","paperAsk":0.61,"limit":0.72,"got":30.55,"avg":0.55,"cost":16.8,"fee":0.53}
+{"at":"2026-10-28T17:46:15.331Z","id":"KXBTC15M-26OCT281400-00:brick","kind":"fill","paperAsk":0.56,"limit":0.67,"got":32.83,"avg":0.54,"cost":17.73,"fee":0.58}
+{"at":"2026-10-28T17:53:27.960Z","id":"KXBTC15M-26OCT281400-00:b11","kind":"exit","parentExit":"take profit: peaked +74%, 1% trail","sold":32.83,"proceeds":31.98,"fee":0.06,"pnl":13.61}
