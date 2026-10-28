@@ -1,8 +1,8 @@
 {
-  "at": "2026-10-28T05:16:16.521Z",
+  "at": "2026-10-28T05:35:11.166Z",
   "note": {
-    "btc": "up Tap-reject at −2.5σ, neither book\ndown Close below VWAP, neither book\nup Close above VWAP, neither book\nup Tap-reject at VWAP, neither book\nup Open VWAP, neither book",
-    "gold": "up Tap-reject at −2σ, prime book, paper book\ndown Tap-reject at −1.5σ, prime book, paper book\ndown Close below -1.5σ, neither book\nup Open -2σ, neither book",
-    "silver": "up Tap-reject at −1.5σ, prime book, paper book, blocked by the band\nup Tap-reject at +0.5σ, prime book, paper book, blocked by the band\nup Open -1.5σ, neither book, blocked by the band"
+    "btc": "down Tap-reject at −2σ, prime book, paper book\ndown Close below VWAP, neither book\ndown Tap-reject at VWAP, neither book\ndown Open VWAP, neither book",
+    "gold": "up Tap-reject at −2σ, prime book, paper book\nup Watching -1.5σ, neither book\ndown Close below -1.5σ, neither book\nup Open -2σ, neither book",
+    "silver": "up Watching -1.5σ, neither book, blocked by the band\nup Open -1.5σ, neither book, blocked by the band"
   }
 }

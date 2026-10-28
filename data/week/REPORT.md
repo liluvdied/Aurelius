@@ -1,4 +1,4 @@
-# Week tracker - week of Sat Oct 24 (updated Tue 09:22 PM PT)
+# Week tracker - week of Sat Oct 24 (updated Tue 10:22 PM PT)
 
 Paper = $20 a trade per book. Live = what the desk actually did that window.
 
@@ -6,11 +6,11 @@ Paper = $20 a trade per book. Live = what the desk actually did that window.
 
 | Book | Paper trades | Paper P&L | Live filled | Not its hour | Held by a wall | Price cap / unfilled | Price floor |
 |---|---|---|---|---|---|---|---|
-| main book | 1826 | -$11,901.10 | 153 | 28 | 2 | 0 | 0 |
-| rejection model | 3252 | -$16,392.71 | 114 | 36 | 0 | 0 | 0 |
-| rejection twin +BB/zones (paper) | 496 | +$456.84 | 0 | 0 | 0 | 0 | 0 |
-| delayed twin | 572 | -$291.97 | 65 | 30 | 1 | 1 | 0 |
-| twin add-on (paper $5) | 152 | +$274.56 | 0 | 0 | 0 | 0 | 0 |
+| main book | 1834 | -$11,928.95 | 153 | 20 | 2 | 0 | 0 |
+| rejection model | 3260 | -$16,406.97 | 114 | 28 | 0 | 0 | 0 |
+| rejection twin +BB/zones (paper) | 504 | +$449.42 | 0 | 0 | 0 | 0 | 0 |
+| delayed twin | 580 | -$372.59 | 65 | 25 | 1 | 1 | 0 |
+| twin add-on (paper $5) | 154 | +$263.96 | 0 | 0 | 0 | 0 | 0 |
 
 Live fills vs paper price: average +1.8c over 332 fills (positive = live paid more).
 
@@ -481,12 +481,20 @@ Net for her: positive = the wall saved more than it cost on paper; negative = it
 | Tue 10-27 08:51 PM | btc | up | 0 | 0 | $5.00 | -$13.58 | unknown |
 | Tue 10-27 09:00 AM | btc | up | 0 | 0 | $0.88 | -$1.87 | unknown |
 | Tue 10-27 09:00 PM | btc | down | 0 | 0 | $2.71 | +$11.17 | unknown |
+| Tue 10-27 09:25 PM | btc | up | 0 | 0 | $3.00 | -$8.43 | unknown |
+| Tue 10-27 09:28 PM | gold | up | 0 | 0 | $2.23 | +$0.47 | unknown |
 | Tue 10-27 09:30 AM | btc | up | 0 | 0 | $0.89 | +$0.40 | unknown |
+| Tue 10-27 09:33 PM | btc | down | 3 | 66.57 | $2.82 | -$6.00 | lost |
+| Tue 10-27 09:36 PM | gold | up | 0 | 0 | $3.00 | +$0.92 | unknown |
 | Tue 10-27 09:45 AM | btc | up | 0 | 0 | $1.02 | +$3.89 | unknown |
+| Tue 10-27 09:47 PM | btc | down | 0 | 0 | $3.02 | +$2.34 | unknown |
 | Tue 10-27 10:00 AM | btc | up | 0 | 0 | $1.01 | -$0.77 | unknown |
+| Tue 10-27 10:00 PM | btc | down | 0 | 0 | $5.53 | +$3.40 | unknown |
 | Tue 10-27 10:01 AM | gold | up | 0 | 0 | $1.05 | +$2.34 | unknown |
+| Tue 10-27 10:04 PM | gold | up | 0 | 0 | $5.08 | +$14.66 | unknown |
 | Tue 10-27 10:15 AM | gold | up | 0 | 0 | $1.05 | +$0.55 | unknown |
 | Tue 10-27 10:15 AM | btc | up | 0 | 0 | $1.01 | +$0.87 | unknown |
+| Tue 10-27 10:15 PM | btc | up | 0 | 0 | $5.07 | open | unknown |
 | Tue 10-27 10:30 AM | gold | up | 0 | 0 | $0.97 | +$0.92 | unknown |
 | Tue 10-27 10:32 AM | btc | down | 0 | 0 | $0.86 | +$1.01 | unknown |
 | Tue 10-27 10:45 AM | btc | up | 2 | 123.95 | $0.91 | -$8.13 | lost |
@@ -538,19 +546,19 @@ Net for her: positive = the wall saved more than it cost on paper; negative = it
 | 6 PM | 10-17 -$198.40 | 12-15 +$37.11 | 13-11 +$125.59 | 14-13 +$19.18 | 1-2 +$11.81 |
 | 7 PM | 14-13 -$21.31 | 15-12 +$21.73 | 14-11 +$33.62 | 16-11 +$58.64 | 3-6 +$31.57 |
 | 8 PM | 17-12 +$37.71 | 16-12 +$568.63 | 16-12 +$289.46 | 13-15 -$114.71 | 3-5 +$35.40 |
-| 9 PM | 9-13 -$79.98 | 10-12 -$54.86 | 10-12 -$50.65 | 11-10 -$11.29 | 2-4 +$28.27 |
-| 10 PM | 13-7 +$90.34 | 13-7 +$110.64 | 13-7 +$82.15 | 8-12 -$84.12 | 1-5 -$8.58 |
+| 9 PM | 10-18 -$152.70 | 11-17 -$113.99 | 12-16 -$102.94 | 12-15 -$101.57 | 2-6 +$17.67 |
+| 10 PM | 15-7 +$135.21 | 15-7 +$155.51 | 15-7 +$127.02 | 9-13 -$74.46 | 1-5 -$8.58 |
 | 11 PM | 9-11 -$35.07 | 4-15 -$175.18 | 4-16 -$181.53 | 5-15 -$188.50 | 1-9 -$30.64 |
 
 ## 5. Carried vs fresh session bands (paper P&L)
 
-- main book, carried bands: 284-143, +$571.08
-- main book, fresh bands: 406-918, -$12,348.43
-- rejection model, carried bands: 795-933, -$4,026.06
-- rejection model, fresh bands: 460-995, -$12,477.42
-- rejection twin +BB/zones (paper), carried bands: 57-69, -$122.33
-- rejection twin +BB/zones (paper), fresh bands: 194-176, +$579.17
-- delayed twin, carried bands: 60-67, -$3.84
-- delayed twin, fresh bands: 171-200, -$255.62
-- twin add-on (paper $5), carried bands: 9-19, +$121.12
+- main book, carried bands: 286-145, +$575.22
+- main book, fresh bands: 407-921, -$12,380.42
+- rejection model, carried bands: 797-935, -$4,009.11
+- rejection model, fresh bands: 461-998, -$12,508.63
+- rejection twin +BB/zones (paper), carried bands: 60-70, -$98.36
+- rejection twin +BB/zones (paper), fresh bands: 195-179, +$547.78
+- delayed twin, carried bands: 61-70, -$52.93
+- delayed twin, fresh bands: 172-203, -$287.15
+- twin add-on (paper $5), carried bands: 9-21, +$110.52
 - twin add-on (paper $5), fresh bands: 32-92, +$153.44

@@ -1,9 +1,14 @@
-# Every decision Love has made - rebuilt 2026-10-28T05:15:58.783440+00:00
+# Every decision Love has made - rebuilt 2026-10-28T05:34:42.407820+00:00
 
-1220 decisions with Love's words or card picks, out of 1889 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1221 decisions with Love's words or card picks, out of 1892 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T05:34:30Z  ·  diary line 2357  ·  fix372
+- Love: “rather than having it copy mains calls, can you instill the engine and entry logic and give her sovereign reign to make her own trades aside from main? 💓 / bring me the numbers first, and rather than changing her we can make a twin and test it over night before going live”
+- fix372 IN HER CODE
+- Full entry: 2026-10-28T05:34:30Z fix372 (Oct 27 ~10:35 PM PT, Love: "rather than having it copy mains calls, can you instill the engine and entry logic and give her sovereign reign to make her own trades aside from main? 💓 / bring me the numbers first, and rather than changing her we can make a twin and test it over night before going live"): recon-sov SOVEREIGN PAPER twin - her own engine read (bonesDecide, rejections only, on session bands + pink + zones + Bollinger), books on a 1-5m flip her way, re-aims unfilled calls. Not in any live list. Re-aim numbers: gold refused-long -> pink-rejection short 24 trades 38% -$149; btc 38 trades 71% +$222.
 
 ## 2026-10-28T05:15:47Z  ·  diary line 2354  ·  fix371
 - Love: “if gold is on a downslope like this and keeps rejecting pink and reversing like this, do longs into those lose more than they win? ... maybe in the event of this we should wait for a break”

@@ -638,5 +638,15 @@
   "left": 240,
   "result": "loss",
   "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T05:02:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.64,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.81
  }
 ]

@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R058 - fix372: recon-sov = SOVEREIGN paper twin: own bonesDecide read on the rejection board (session, pink, zones, Bollinger) rejections-only + 1-5m flip; re-aims unfilled calls; paper only, overnight test.
+- when: 2026-10-28T05:34:30+00:00
+- Love: "rather than having it copy mains calls, can you instill the engine and entry logic and give her sovereign reign to make her own trades aside from main? 💓 / bring me the numbers first, and rather than changing her we can make a twin and test it over night before going live"
+- books: recon-sov (new, paper)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "book(\"recon-sov\""}
+
 ## R057 - fix371: main + rejection + no-pink copy, gold longs, Kalshi only: when gold is >$2 lower than 30 min ago, pink rejected price down in that time and has not broken up by 25c since, the long waits for the pink break.
 - when: 2026-10-28T05:15:47+00:00
 - Love: "Rejection + main + copy (card: "Should gold longs wait for the pink break when gold slides under rejecting pink?"; Love 10:12 PM PT: "if gold is on a downslope like this and keeps rejecting pink and reversing like this, do longs into those lose more than they win? ... maybe in the event of this we should wait for a break")"
