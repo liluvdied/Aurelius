@@ -1,0 +1,2242 @@
+import { createServerFn } from "@tanstack/react-start";
+import { appendFileSync, closeSync, mkdirSync, openSync, readFileSync, readSync, renameSync, statSync, writeFileSync } from "node:fs";
+
+// ATOMIC CONFIG WRITES (Oct 20 ~1:39 AM PT, Love: "make sure that no shifts from outside of that is possible"): every write to a
+// config file lands as tmp + rename, so no reader ever catches a torn half-written file and falls back to defaults mid-read.
+function atomicWriteFs(p: string, s: string) { const t = p + ".tmp"; writeFileSync(t, s); renameSync(t, p); }
+import { join } from "node:path";
+import { readBook, writeBook } from "./book";
+import { ensureEngine, sendKalshi, sendLive } from "./engine";
+import { readAudit, type AuditRow } from "./audit";
+import { readPolyLedger, type PolyLedger } from "./poly-ledger";
+import { reasonSetup, type GrokBriefing } from "./grok";
+import { scanDesk } from "./scan";
+import { fetchLiveSpots, type LiveSpots } from "./ticker";
+import { altBoards, type AltBoard } from "./candles";
+import { readFillLog, type FillEvent } from "./fill-log";
+import { readOutside, liveDollars, writeLiveDollars, type OutsideOrder } from "./kalshi-live.server";
+import { listDecidedPaper, listFuelPaper, listHalfPaper, listLeanPaper, listPrimePaper, listSymbolLab, readHourCheck, readPrimeBook, readPrimeWatch, primeScore, type HourCheck, type LabRow, type LeanPaper, type PrimePaper, type PrimeRow } from "./prime-book";
+import { listMirror, type MirrorRow } from "./mirror";
+import { askForHelp, readWatch, writeHelp, type WatchStatus } from "./watchdog";
+import { newId, clampTrail, screenBid, smallTicket } from "./paper";
+import { readSwitch, writeSwitch, type LiveSwitch } from "./live-guard";
+import { listShadow, type ShadowTrade } from "./shadow";
+import { listLotto, type LottoTicket } from "./lotto";
+import { listTruth, type TruthRow } from "./truth";
+import { listNight, type NightRow } from "./nightbook";
+import { readMonitor } from "./monitor";
+import { primeRecords } from "./prime-book";
+import { DEFAULT_SETTINGS, type AssetSnapshot, type DeskSettings, type DeskSnapshot, type GrokCall, type Setup, type Trade } from "./types";
+
+export const getDeskSnapshot = createServerFn({ method: "POST" })
+  .validator((input: { settings?: DeskSettings } | undefined) => input ?? {})
+  .handler(async ({ data }): Promise<DeskSnapshot> => {
+    ensureEngine();
+    const snap = await scanDesk(data.settings ?? readBook().settings ?? DEFAULT_SETTINGS);
+    try {
+      const live = await import("./kalshi-live.server");
+      const poly = await import("./poly-live.server");
+      return {
+        ...snap,
+        sideLocks: live.allLocks(),
+        ...(live.kalshiArmed() ? { kalshi: { armed: true, cash: await live.kalshiCash() } } : {}),
+        ...(poly.polymarketArmed() ? { polymarket: { armed: true, cash: await poly.polymarketCash() } } : {}),
+      };
+    } catch {
+      // paper keeps scanning if a key is unreadable
+    }
+    return snap;
+  });
+
+export const getLiveSpots = createServerFn({ method: "GET" }).handler(
+  async (): Promise<LiveSpots> => {
+    ensureEngine();
+    return fetchLiveSpots();
+  },
+);
+
+export const getAltBoards = createServerFn({ method: "GET" }).handler(async (): Promise<AltBoard[]> => {
+  ensureEngine();
+  return altBoards();
+});
+
+export const pullBook = createServerFn({ method: "GET" }).handler(async (): Promise<Trade[]> => {
+  ensureEngine();
+  // LIGHTER PAGE (Oct 14 ~3:55 AM PT, Love: "fix the overall lag... we're not using a lot of this stuff"): the page got all
+  // 4,300 paper trades (2.9 MB) every 12 s. Now the last 4 days plus anything still open (~0.6 MB). Nothing is deleted.
+  const cut = Date.now() - 4 * 86400000;
+  return readBook().trades.filter((t: any) => t?.result === "open" || Date.parse(t?.openedAt || "") >= cut);
+});
+
+export const getAudit = createServerFn({ method: "GET" }).handler(async (): Promise<AuditRow[]> => {
+  ensureEngine();
+  return readAudit();
+});
+
+export const getKalshiCash = createServerFn({ method: "GET" }).handler(async () => {
+  ensureEngine();
+  const live = await import("./kalshi-live.server");
+  return live.refreshKalshiCash();
+});
+
+export const getPolyLedger = createServerFn({ method: "GET" }).handler(async (): Promise<PolyLedger> => {
+  ensureEngine();
+  return readPolyLedger();
+});
+
+export const getPrimeBook = createServerFn({ method: "GET" }).handler(async (): Promise<PrimeRow[]> => {
+  ensureEngine();
+  return readPrimeBook();
+});
+
+export const getPrimeScore = createServerFn({ method: "GET" }).handler(async (): Promise<{ yes: number; no: number; open: number; allYes: number; allNo: number }> => {
+  ensureEngine();
+  return primeScore();
+});
+
+export const getPrimeRows = createServerFn({ method: "GET" }).handler(async (): Promise<PrimePaper[]> => {
+  ensureEngine();
+  return listPrimePaper();
+});
+
+export const getSetupBoard = createServerFn({ method: "GET" }).handler(async (): Promise<{ asset: string; side: string; setup: string; yes: number; no: number; net: number }[]> => {
+  const map = new Map<string, { asset: string; side: string; setup: string; yes: number; no: number; net: number }>();
+  const take = (file: string) => {
+    try {
+      const parsed = JSON.parse(readFileSync(file, "utf8")) as { counts?: Record<string, { yes?: number; no?: number }> };
+      const counts = parsed?.counts;
+      if (!counts) return;
+      for (const [key, count] of Object.entries(counts)) {
+        const [setup, side, asset] = key.split("|");
+        if (!setup || !side || !asset) continue;
+        const id = `${asset}|${side}|${setup}`;
+        const cur = map.get(id) ?? { asset, side, setup, yes: 0, no: 0, net: 0 };
+        cur.yes = Math.max(cur.yes, Number(count?.yes) || 0);
+        cur.no = Math.max(cur.no, Number(count?.no) || 0);
+        map.set(id, cur);
+      }
+    } catch {
+      // a missing score file just leaves the others
+    }
+  };
+  take(join(process.cwd(), "data", "archive", "hit-book.json"));
+  take(join(process.cwd(), "data", "hit-book.json"));
+  try {
+    const rows = JSON.parse(readFileSync(join(process.cwd(), "data", "prime-paper.json"), "utf8")) as { asset?: string; side?: string; pattern?: string; result?: string; profit?: number }[];
+    if (Array.isArray(rows)) {
+      const seen = new Map<string, { yes: number; no: number; net: number }>();
+      for (const row of rows) {
+        if (!row.asset || !row.side || !row.pattern) continue;
+        if (row.result !== "yes" && row.result !== "no") continue;
+        const id = `${row.asset}|${row.side}|${row.pattern}`;
+        const cur = seen.get(id) ?? { yes: 0, no: 0, net: 0 };
+        if (row.result === "yes") cur.yes += 1;
+        else cur.no += 1;
+        if (typeof row.profit === "number") cur.net += row.profit;
+        seen.set(id, cur);
+      }
+      for (const [id, extra] of seen) {
+        const [asset, side, setup] = id.split("|");
+        const cur = map.get(id) ?? { asset, side, setup, yes: 0, no: 0, net: 0 };
+        cur.yes = Math.max(cur.yes, extra.yes);
+        cur.no = Math.max(cur.no, extra.no);
+        cur.net += extra.net;
+        map.set(id, cur);
+      }
+    }
+  } catch {
+    // prime paper is optional on top of the saved scores
+  }
+  return [...map.values()].filter((row) => row.yes + row.no > 0);
+});
+
+export const getComboRows = createServerFn({ method: "GET" }).handler(async (): Promise<{ id: string; at: string; asset: string; side: string; pattern: string; ticker: string; route: string; dollars: number; result: string }[]> => {
+  ensureEngine();
+  let rows: { id: string; at: string; asset: string; side: string; pattern: string; ticker: string; route: string; dollars: number; result?: string }[] = [];
+  try {
+    const parsed = JSON.parse(readFileSync(join(process.cwd(), "data", "combo-ledger.json"), "utf8"));
+    if (Array.isArray(parsed)) rows = parsed;
+  } catch {
+    rows = [];
+  }
+  const paper = readBook().trades;
+  const prime = listPrimePaper();
+  return rows.slice(0, 40).map((row) => {
+    if (row.result === "yes" || row.result === "no") return { ...row, result: row.result };
+    const hit = row.route === "prime"
+      ? prime.find((item) => item.ticker === row.ticker && item.side === row.side && item.result !== "open")
+      : paper.find((item) => item.ticker === row.ticker && item.side === row.side && item.source !== "live" && item.result !== "open");
+    const result = hit?.result === "win" || hit?.result === "yes" ? "yes" : hit?.result === "loss" || hit?.result === "no" ? "no" : "open";
+    return { ...row, result };
+  });
+});
+
+export const getHalfRows = createServerFn({ method: "GET" }).handler(async (): Promise<PrimePaper[]> => {
+  ensureEngine();
+  return listHalfPaper();
+});
+
+export const getDecidedRows = createServerFn({ method: "GET" }).handler(async (): Promise<PrimePaper[]> => {
+  ensureEngine();
+  return listDecidedPaper();
+});
+
+export const getPrimeWatch = createServerFn({ method: "GET" }).handler(async (): Promise<{ at: string; note: Record<string, string> }> => {
+  ensureEngine();
+  return readPrimeWatch();
+});
+
+export const getLeanRows = createServerFn({ method: "GET" }).handler(async (): Promise<LeanPaper[]> => {
+  ensureEngine();
+  return listLeanPaper();
+});
+
+export const getFuelRows = createServerFn({ method: "GET" }).handler(async (): Promise<PrimePaper[]> => {
+  ensureEngine();
+  return listFuelPaper();
+});
+
+export const getSymbolLab = createServerFn({ method: "GET" }).handler(async (): Promise<{ rows: LabRow[]; check: HourCheck }> => {
+  ensureEngine();
+  return { rows: listSymbolLab(), check: readHourCheck() };
+});
+
+export const getMirrorSheet = createServerFn({ method: "GET" }).handler(async (): Promise<MirrorRow[]> => {
+  ensureEngine();
+  return listMirror();
+});
+
+export const getOutside = createServerFn({ method: "GET" }).handler(async (): Promise<OutsideOrder[]> => {
+  ensureEngine();
+  return readOutside();
+});
+
+// entries on, page armed
+export const getWatch = createServerFn({ method: "GET" }).handler(async (): Promise<WatchStatus> => {
+  ensureEngine();
+  return readWatch();
+});
+
+export const getBookMode = createServerFn({ method: "GET" }).handler(async (): Promise<{ only: "paper" | "prime" | "both" }> => {
+  ensureEngine();
+  // The MODE tab shows the route the engine actually trades on (live-switch.json),
+  // so the tab can never say one model while the desk runs another.
+  return { only: readSwitch().route };
+});
+
+export const setBookMode = createServerFn({ method: "POST" })
+  .validator((input: { only: "paper" | "prime" | "both" }) => {
+    if (input.only !== "paper" && input.only !== "prime" && input.only !== "both") throw new Error("mode");
+    return input;
+  })
+  .handler(async ({ data }): Promise<{ only: "paper" | "prime" | "both" }> => {
+    ensureEngine();
+    // SUBMIT on the MODE tab is the one way to move the route. Nothing else writes it.
+    writeSwitch({ route: data.only, note: `Route set to ${data.only} from the MODE tab` });
+    const file = join(process.cwd(), "data", "book-mode.json");
+    let prev: { size?: number } = {};
+    try {
+      prev = JSON.parse(readFileSync(file, "utf8"));
+    } catch {
+      prev = {};
+    }
+    const books = data.only === "both" ? ["paper", "prime"] : [data.only];
+    atomicWriteFs(file, JSON.stringify({
+      mode: data.only,
+      only: data.only,
+      version: data.only,
+      size: prev.size ?? 15,
+      books,
+      at: new Date().toISOString(),
+    }, null, 2));
+    return { only: data.only };
+  });
+
+export const setEntries = createServerFn({ method: "POST" })
+  .validator((input: { on: boolean }) => input)
+  .handler(async ({ data }): Promise<{ on: boolean }> => {
+    ensureEngine();
+    const at = new Date().toISOString();
+    if (data.on) {
+      writeFileSync(
+        join(process.cwd(), "data", "halt.json"),
+        JSON.stringify({ off: false, at, since: at, reason: "", losses: [] }),
+      );
+      let equity: number | null = null;
+      try {
+        equity = JSON.parse(readFileSync(join(process.cwd(), "data", "kalshi-cash.json"), "utf8")).cash ?? null;
+      } catch {
+        equity = null;
+      }
+      writeFileSync(
+        join(process.cwd(), "data", "pace.json"),
+        JSON.stringify({ from: at, at, paused: false, wins: 0, n: 0, net: 0, equity, peak: equity }),
+      );
+    } else {
+      writeFileSync(
+        join(process.cwd(), "data", "halt.json"),
+        JSON.stringify({ off: true, at, since: at, reason: "You turned entries off. Open trades can still cash.", losses: [] }),
+      );
+      try {
+        const pace = JSON.parse(readFileSync(join(process.cwd(), "data", "pace.json"), "utf8"));
+        writeFileSync(join(process.cwd(), "data", "pace.json"), JSON.stringify({ ...pace, paused: true, at }));
+      } catch {
+        // the halt file is enough
+      }
+    }
+    return { on: data.on };
+  });
+
+export const getTrail = createServerFn({ method: "GET" }).handler(async (): Promise<{ pct: number }> => {
+  ensureEngine();
+  try {
+    const n = Number(JSON.parse(readFileSync(join(process.cwd(), "data", "trail-floor.json"), "utf8")).pct);
+    return { pct: clampTrail(n) };
+  } catch {
+    return { pct: 45 };
+  }
+});
+
+export const setTrailFloor = createServerFn({ method: "POST" })
+  .validator((input: { pct: number }) => input)
+  .handler(async ({ data }): Promise<{ pct: number }> => {
+    ensureEngine();
+    const pct = clampTrail(data.pct);
+    writeFileSync(join(process.cwd(), "data", "trail-floor.json"), JSON.stringify({ pct }));
+    return { pct };
+  });
+
+export const getScale75 = createServerFn({ method: "GET" }).handler(async (): Promise<{ on: boolean }> => {
+  ensureEngine();
+  try {
+    const on = JSON.parse(readFileSync(join(process.cwd(), "data", "scale75.json"), "utf8")).on;
+    return { on: on !== false };
+  } catch {
+    return { on: true };
+  }
+});
+
+export const setScale75 = createServerFn({ method: "POST" })
+  .validator((input: { on: boolean }) => input)
+  .handler(async ({ data }): Promise<{ on: boolean }> => {
+    ensureEngine();
+    const on = data.on !== false;
+    writeFileSync(join(process.cwd(), "data", "scale75.json"), JSON.stringify({ on }));
+    return { on };
+  });
+
+export const setPinSale = createServerFn({ method: "POST" })
+  .validator((input: { ticker: string; ask: number; pct: number }) => input)
+  .handler(async ({ data }): Promise<{ ok: true }> => {
+    ensureEngine();
+    const file = join(process.cwd(), "data", "pin-sale.json");
+    let map: Record<string, { ask: number; pct: number; at: string }> = {};
+    try {
+      const parsed = JSON.parse(readFileSync(file, "utf8")) as typeof map;
+      if (parsed && typeof parsed === "object") map = parsed;
+    } catch {
+      map = {};
+    }
+    map[data.ticker] = { ask: data.ask, pct: data.pct, at: new Date().toISOString() };
+    atomicWriteFs(file, JSON.stringify(map));
+    return { ok: true };
+  });
+
+export const armNear = createServerFn({ method: "POST" })
+  .validator((input: { ticker: string; room: number }) => input)
+  .handler(async ({ data }): Promise<{ ok: true; room: number }> => {
+    ensureEngine();
+    const file = join(process.cwd(), "data", "near-top.json");
+    let map: Record<string, { room: number; at: string }> = {};
+    try {
+      const parsed = JSON.parse(readFileSync(file, "utf8")) as typeof map;
+      if (parsed && typeof parsed === "object") map = parsed;
+    } catch {
+      map = {};
+    }
+    const room = data.room === 5 || data.room === 10 ? data.room : 0;
+    if (!room) delete map[data.ticker];
+    else map[data.ticker] = { room, at: new Date().toISOString() };
+    atomicWriteFs(file, JSON.stringify(map));
+    return { ok: true, room };
+  });
+
+// ONE ORDER CHAIN PER TICKER (Oct 15, Love: "it doesn't even register sometimes i click twice and it takes two of the
+// worst quotes"): while a close / part-sell for a ticker is in flight, any further click JOINS the same attempt and gets
+// its answer - it never fires a second order chain. Tonight 02:44:49: two flattens 65 ms apart on the same gold ticker.
+// CLOSE LAG METER (Oct 15, Love: "the close buttons started to lag like last time again"): the server-side sell measured
+// 70-170 ms, so the wait is somewhere else. This samples the server's event loop every 100 ms and writes the worst stall
+// of each 10 s to data/loop-lag.jsonl; closeNow logs how long her click took to REACH the server (recvMs). Record only.
+// STALE-PRICE GUARD helper (Oct 16 ~9:55 AM PT, Love): marks when a freeze of 1 s+ ends, so pivotbooks can refuse prices that sat queued through it.
+if (typeof window === "undefined") { const G = globalThis as any; if (!G.__stallMeter) { G.__stallMeter = true; let last = Date.now(); setInterval(() => { const now = Date.now(); if (now - last - 100 > 1000) G.__stallEndAt = now; last = now; }, 100); } }
+if (typeof window === "undefined") void (async () => { const { appendFileSync } = await import("node:fs"); const { join } = await import("node:path"); const G = globalThis as any; if (!G.__lagMeter) { G.__lagMeter = true; let last = Date.now(), worst = 0, since = Date.now(); setInterval(() => { const now = Date.now(); const lag = now - last - 100; if (lag > worst) worst = lag; last = now; if (now - since >= 10000) { try { appendFileSync(join(process.cwd(), "data", "loop-lag.jsonl"), JSON.stringify({ at: new Date().toISOString(), worstMs: Math.max(0, worst) }) + "\n"); } catch {} worst = 0; since = now; } }, 100); } })();
+// CPU PROFILE ON REQUEST (Oct 21 ~11:50 AM PT, Love picked "Unfreeze her engine" - record only): when data/cpu-profile.req appears, the server records a
+// 30 s CPU profile to data/cpu-<time>.cpuprofile and renames the request to .done - to find what holds her event loop besides the big JSON files.
+if (typeof window === "undefined") { const G = globalThis as any; if (!G.__cpuProf) { G.__cpuProf = true; setInterval(async () => { if (G.__cpuProfOn) return; try { const fs = await import("node:fs"); const { join } = await import("node:path"); const req = join(process.cwd(), "data", "cpu-profile.req"); if (!fs.existsSync(req)) return; fs.renameSync(req, req + ".done"); G.__cpuProfOn = true; const { Session } = await import("node:inspector"); const s = new Session(); s.connect(); s.post("Profiler.enable", () => s.post("Profiler.start", () => setTimeout(() => s.post("Profiler.stop", (e: any, r: any) => { try { if (!e && r?.profile) fs.writeFileSync(join(process.cwd(), "data", `cpu-${Date.now()}.cpuprofile`), JSON.stringify(r.profile)); } catch {} try { s.disconnect(); } catch {} G.__cpuProfOn = false; }), 30000))); } catch { G.__cpuProfOn = false; } }, 5000); } }
+// SLOW-OP FINDER (Oct 15, close lag hunt - record only): time spent in JSON.parse / JSON.stringify of 100 KB+ is summed per
+// calling code location and the top spenders of every 10 s go to data/slow-ops.jsonl.
+if (typeof window === "undefined") void (async () => { const { appendFileSync } = await import("node:fs"); const { join } = await import("node:path"); const G = globalThis as any; if (!G.__slowOps3) { G.__slowOps3 = true; G.__slowOps2 = true;
+  const S0 = JSON.stringify, P0 = G.__jsonP0 || JSON.parse, S1 = G.__jsonS0 || JSON.stringify; G.__jsonP0 = P0; G.__jsonS0 = S1;
+  const acc: Record<string, { ms: number; n: number; kb: number }> = {};
+  const where = () => { const st = (new Error().stack || "").split("\n").slice(3, 8).map((x) => x.trim().replace(/^at /, "").replace(/ \(eval at.*$/, "").replace(/\(.*\/src\//, "(src/").replace(/\?[^:)]*/, "")).join(" < "); return st.slice(0, 300); };
+  const add = (op: string, ms: number, size: number) => { const k = `${op} ${where()}`; const a = (acc[k] ||= { ms: 0, n: 0, kb: 0 }); a.ms += ms; a.n += 1; a.kb = Math.max(a.kb, Math.round(size / 1024)); };
+  (JSON as any).parse = function (t: any, r?: any) { const big = typeof t === "string" && t.length > 100000; const t0 = big ? performance.now() : 0; const out = P0(t, r); if (big) add("parse", performance.now() - t0, t.length); return out; };
+  (JSON as any).stringify = function (v: any, r?: any, sp?: any) { const t0 = performance.now(); const out = S1(v, r, sp); const ms = performance.now() - t0; if (typeof out === "string" && out.length > 100000) add("stringify", ms, out.length); return out; };
+  setInterval(() => { const top = Object.entries(acc).sort((x, y) => y[1].ms - x[1].ms).slice(0, 6).map(([k, v]) => ({ k, ms: Math.round(v.ms), n: v.n, kb: v.kb })); for (const k of Object.keys(acc)) delete acc[k]; if (top.length) { try { appendFileSync(join(process.cwd(), "data", "slow-ops.jsonl"), S1({ at: new Date().toISOString(), top }) + "\n"); } catch {} } }, 10000);
+} })();
+const closeLocks: Map<string, Promise<any>> = ((globalThis as any).__closeLocks ||= new Map());
+async function withCloseLock<T>(ticker: string, run: () => Promise<T>): Promise<T> {
+  const inFlight = closeLocks.get(ticker);
+  if (inFlight) return inFlight as Promise<T>;
+  const p = run().finally(() => closeLocks.delete(ticker));
+  closeLocks.set(ticker, p);
+  return p;
+}
+export const closeNow = createServerFn({ method: "POST" })
+  .validator((input: { ticker?: string; clickAt?: number } | undefined) => input ?? {})
+  .handler(async ({ data }): Promise<{ line: string }> => {
+    ensureEngine();
+    if (data.ticker) return (await import("./closelane.server")).closeTicker(data.ticker, data.clickAt);
+    const live = await import("./kalshi-live.server");
+    const rows = await live.heldFifteens();
+    const notes: string[] = [];
+    for (const row of rows) {
+      const payout = await live.flattenTicker(row.ticker, true);
+      const note = live.closeResult(row.ticker);
+      const name = row.ticker.includes("BTC") ? "BTC" : row.ticker.includes("GOLD") ? "GOLD" : row.ticker.includes("ETH") ? "ETH" : row.ticker.includes("SOL") ? "SOL" : "SILVER";
+      if (payout == null) {
+        notes.push(`${name} is still open. It was not sold.`);
+        continue;
+      }
+      const profit = note && typeof note.profit === "number" ? note.profit : null;
+      if (profit == null) {
+        notes.push(`${name} closed. $${payout.toFixed(2)} back.`);
+        continue;
+      }
+      const sign = profit > 0.005 ? "+" : profit < -0.005 ? "−" : "";
+      notes.push(`${name} closed ${sign}$${Math.abs(profit).toFixed(2)}.`);
+    }
+    const line = notes.join(" ");
+    writeHelp(line, ["help"]);
+    return { line };
+  });
+
+export const askHelp = createServerFn({ method: "POST" }).handler(async () => {
+  ensureEngine();
+  const live = await import("./kalshi-live.server");
+  const held = await live.heldFifteens();
+  const notes: string[] = [];
+  for (const row of held) {
+    const res = await fetch(`https://external-api.kalshi.com/trade-api/v2/markets/${row.ticker}`, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) continue;
+    const data = (await res.json()) as { market?: { yes_bid_dollars?: string; no_bid_dollars?: string } };
+    const yesBid = Number.parseFloat(data.market?.yes_bid_dollars ?? "0");
+    const noBid = Number.parseFloat(data.market?.no_bid_dollars ?? "0");
+    const bid = row.pos > 0 ? yesBid : noBid;
+    const value = Math.abs(row.pos) * (Number.isFinite(bid) ? bid : 0);
+    if (!(value > row.cost + 0.25)) continue;
+    const name = row.ticker.includes("BTC") ? "BTC" : row.ticker.includes("GOLD") ? "GOLD" : row.ticker;
+    notes.push(`${name} is green. It stays open until you close it.`);
+  }
+  if (notes.length) {
+    const line = notes.join(" ");
+    writeHelp(line, ["help"]);
+    return { at: new Date().toISOString(), line, flags: ["help"] };
+  }
+  const names = held.map((row) => (row.ticker.includes("BTC") ? "Bitcoin" : row.ticker.includes("GOLD") ? "Gold" : row.ticker));
+  return askForHelp(names);
+});
+
+export type HeldOrder = {
+  ticker: string;
+  name: string;
+  side: "up" | "down";
+  contracts: number;
+  cost: number;
+  value: number;
+  profit: number;
+  pct: number;
+  target: number | null;
+  spot: number | null;
+  near: number;
+  /** When this quote was read from Kalshi. */
+  at?: string;
+  /** True when Kalshi could not be reached and the last known value is shown. */
+  stale?: boolean;
+};
+
+function bookName(ticker: string): string {
+  if (ticker.includes("SILVER")) return "SILVER";
+  if (ticker.includes("GOLD")) return "GOLD";
+  if (ticker.includes("BTC")) return "BTC";
+  if (ticker.includes("ETH")) return "ETH";
+  if (ticker.includes("SOL")) return "SOL";
+  const hit = ticker.match(/^KX([A-Z]+?)15M/);
+  return hit?.[1] ?? ticker.slice(0, 10);
+}
+
+function marketStrike(market?: { floor_strike?: number | string | null; yes_sub_title?: string }): number | null {
+  const strike = market?.floor_strike;
+  if (typeof strike === "number" && Number.isFinite(strike) && strike > 0) return strike;
+  if (typeof strike === "string") {
+    const n = Number.parseFloat(strike.replace(/,/g, ""));
+    if (Number.isFinite(n) && n > 0) return n;
+  }
+  const sub = market?.yes_sub_title ?? "";
+  const hit = sub.match(/([\d,]+(?:\.\d+)?)/);
+  if (!hit) return null;
+  const n = Number.parseFloat(hit[1].replace(/,/g, ""));
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+function parkHeld(rows: HeldOrder[]): HeldOrder[] {
+  const file = join(process.cwd(), "data", "held-order.json");
+  let prev: string[] = [];
+  try {
+    const parsed = JSON.parse(readFileSync(file, "utf8"));
+    if (Array.isArray(parsed)) prev = parsed.filter((ticker) => typeof ticker === "string");
+  } catch {
+    prev = [];
+  }
+  const live = new Set(rows.map((row) => row.ticker));
+  const next = prev.filter((ticker) => live.has(ticker));
+  for (const row of rows) if (!next.includes(row.ticker)) next.push(row.ticker);
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    atomicWriteFs(file, JSON.stringify(next));
+  } catch {
+    // the list still returns in the same order for this pass
+  }
+  const by = new Map(rows.map((row) => [row.ticker, row]));
+  return next.map((ticker) => by.get(ticker)).filter((row): row is HeldOrder => Boolean(row));
+}
+
+const heldView: { rows: HeldOrder[]; at: number; empty: number } = { rows: [], at: 0, empty: 0 };
+const quoteMem = new Map<string, { value: number; target: number | null; at?: string }>();
+
+export const getHeldOrders = createServerFn({ method: "GET" }).handler(async (): Promise<HeldOrder[]> => {
+  ensureEngine();
+  const live = await import("./kalshi-live.server");
+  const held = await live.heldFifteens();
+  if (!held.length) {
+    heldView.empty += 1;
+    if (heldView.empty < 2 && heldView.rows.length) return heldView.rows.map((r) => ({ ...r, stale: true }));
+  } else {
+    heldView.empty = 0;
+  }
+  const out: HeldOrder[] = [];
+  for (const row of held) {
+    // Claude: a slow or failed quote used to throw and freeze the whole tab on old numbers.
+    // Now one bad quote only marks that row stale; everything else keeps updating.
+    const res = await fetch(`https://external-api.kalshi.com/trade-api/v2/markets/${row.ticker}`, { signal: AbortSignal.timeout(3000) }).catch(() => null);
+    const prev = quoteMem.get(row.ticker);
+    if (!res || !res.ok) {
+      const contracts = Math.abs(row.pos);
+      const cost = Math.round(row.cost * 100) / 100;
+      const value = prev?.value ?? cost;
+      const profit = Math.round((value - cost) * 100) / 100;
+      out.push({
+        ticker: row.ticker,
+        name: bookName(row.ticker),
+        side: row.pos > 0 ? "up" : "down",
+        contracts,
+        cost,
+        value,
+        profit,
+        pct: cost > 0 ? profit / cost : 0,
+        target: prev?.target ?? null,
+        spot: null,
+        near: 0,
+        at: prev?.at ?? new Date(0).toISOString(),
+        stale: true,
+      });
+      continue;
+    }
+    const data = (await res.json()) as {
+      market?: {
+        yes_bid_dollars?: string;
+        yes_ask_dollars?: string;
+        no_bid_dollars?: string;
+        no_ask_dollars?: string;
+        floor_strike?: number | string | null;
+        yes_sub_title?: string;
+      };
+    };
+    const yesBid = Number.parseFloat(data.market?.yes_bid_dollars ?? "0");
+    const yesAsk = Number.parseFloat(data.market?.yes_ask_dollars ?? "0");
+    const noBid = Number.parseFloat(data.market?.no_bid_dollars ?? "0");
+    const noAsk = Number.parseFloat(data.market?.no_ask_dollars ?? "0");
+    const side = row.pos > 0 ? "up" : "down";
+    const rawBid = side === "up" ? yesBid : noBid;
+    const shown = rawBid > 0.01 && rawBid < 1 ? rawBid : screenBid(row.pos, yesBid, yesAsk, noBid, noAsk);
+    const bid = shown;
+    const contracts = Math.abs(row.pos);
+    const value = Math.round(contracts * (Number.isFinite(bid) ? bid : 0) * 100) / 100;
+    const cost = Math.round(row.cost * 100) / 100;
+    const profit = Math.round((value - cost) * 100) / 100;
+    const target = marketStrike(data.market);
+    const readAt = new Date().toISOString();
+    quoteMem.set(row.ticker, { value, target, at: readAt });
+    // INSTANT CLOSE cache (Oct 15 ~4:15 PM PT, Love: "have it close instantly when i click"): this 4 s poll is the
+    // freshest view the desk has of her position + the quote; the manual close paths in kalshi-live fire their first
+    // reduce-only order straight from it instead of re-reading Kalshi first.
+    try { const gH = globalThis as any; (gH.__hotClose ||= { pos: {}, mk: {} }); gH.__hotClose.pos[row.ticker] = { at: Date.now(), pos: row.pos, cost: row.cost }; gH.__hotClose.mk[row.ticker] = { at: Date.now(), market: data.market }; } catch {}
+    out.push({
+      ticker: row.ticker,
+      name: bookName(row.ticker),
+      side,
+      contracts,
+      cost,
+      value,
+      profit,
+      pct: cost > 0 ? profit / cost : 0,
+      target,
+      spot: null,
+      near: 0,
+      at: readAt,
+      stale: false,
+    });
+  }
+  const parked = await live.restingFifteens();
+  for (const row of parked) {
+    if (out.some((heldRow) => heldRow.ticker === row.ticker)) continue;
+    out.push({
+      ticker: row.ticker,
+      name: bookName(row.ticker),
+      side: row.side === "down" ? "down" : "up",
+      contracts: row.contracts,
+      cost: row.cost,
+      value: row.cost,
+      profit: 0,
+      pct: 0,
+      target: null,
+      spot: null,
+      near: 0,
+    });
+  }
+  heldView.rows = parkHeld(out);
+  heldView.at = Date.now();
+  try {
+    const armed = JSON.parse(readFileSync(join(process.cwd(), "data", "near-top.json"), "utf8")) as Record<string, { room?: number }>;
+    for (const row of out) {
+      const room = armed?.[row.ticker]?.room;
+      row.near = room === 5 || room === 10 ? room : 0;
+    }
+  } catch {
+    for (const row of out) row.near = 0;
+  }
+  return out;
+});
+
+export const halfNow = createServerFn({ method: "POST" })
+  .validator((input: { ticker: string }) => input)
+  .handler(async ({ data }) => {
+    ensureEngine();
+    const live = await import("./kalshi-live.server");
+    return live.halfLive(data.ticker);
+  });
+
+export const trimNow = createServerFn({ method: "POST" })
+  .validator((input: { ticker: string; dollars: number }) => input)
+  .handler(async ({ data }) => {
+    ensureEngine();
+    const live = await import("./kalshi-live.server");
+    return live.trimLive(data.ticker, data.dollars);
+  });
+
+export const halfLiveOrder = createServerFn({ method: "POST" })
+  .validator((input: { id: string }) => input)
+  .handler(async ({ data }): Promise<{ payout: number; profit: number; left: number } | null> => {
+    const book = readBook();
+    const trade = book.trades.find((t) => t.id === data.id && t.source === "live" && t.venue !== "polymarket" && t.result === "open");
+    if (!trade || !(trade.contracts > 0)) return null;
+    const live = await import("./kalshi-live.server");
+    const cut = await live.halfLive(trade.ticker);
+    if (!cut) return null;
+    const part = Math.min(0.95, cut.filled / trade.contracts);
+    const stake = Math.round(trade.stake * part * 100) / 100;
+    const leftStake = Math.round((trade.stake - stake) * 100) / 100;
+    const slice: Trade = {
+      ...trade,
+      id: newId(),
+      setupId: `${trade.setupId}:half:${Date.now()}`,
+      closedAt: new Date().toISOString(),
+      stake,
+      contracts: cut.filled,
+      result: "exited",
+      payout: cut.payout,
+      profit: Math.round((cut.payout - stake) * 100) / 100,
+      notes: "Half closed from the desk. The rest is still open.",
+    };
+    const next: Trade = {
+      ...trade,
+      stake: leftStake,
+      contracts: Math.max(0.01, Math.round((trade.contracts - cut.filled) * 100) / 100),
+      runner: true,
+      notes: "Half is banked. This half is still running.",
+    };
+    writeBook([slice, ...book.trades.map((t) => (t.id === trade.id ? next : t))]);
+    return { payout: cut.payout, profit: slice.profit ?? 0, left: leftStake };
+  });
+// halt reload
+
+export type ExitNote = {
+  at?: string;
+  ticker?: string;
+  asset?: string;
+  side?: string;
+  reason?: string;
+  bidPct?: number;
+  targetPct?: number;
+  profit?: number | null;
+  stake?: number;
+  secondsLeft?: number;
+  spot?: number;
+  strike?: number;
+  multiple?: number;
+  yesBid?: number;
+  highBid?: number;
+  entry?: string;
+};
+
+export const getExitLog = createServerFn({ method: "GET" }).handler(async (): Promise<ExitNote[]> => {
+  const { readExitLog } = await import("./engine");
+  return readExitLog();
+});
+
+export const getFillLog = createServerFn({ method: "GET" }).handler(async (): Promise<FillEvent[]> => {
+  // LIGHTER PAGE (Oct 14): last 4 days of fills (was all 8,000, ~2.9 MB every 20 s).
+  const cutF = Date.now() - 4 * 86400000;
+  const rows = readFillLog().filter((e: any) => !(Date.parse(String(e?.at || "")) < cutF));
+  let peaks: Record<string, number> = {};
+  try {
+    const { readFileSync } = await import("node:fs");
+    const { join } = await import("node:path");
+    const parsed = JSON.parse(readFileSync(join(process.cwd(), "data", "gate-high.json"), "utf8")) as Record<string, number>;
+    if (parsed && typeof parsed === "object") peaks = parsed;
+  } catch {
+    peaks = {};
+  }
+  return rows.map((row) => ({ ...row, peak: peaks[row.ticker] > 0 ? peaks[row.ticker] : row.peak ?? null }));
+});
+
+export const pushBook = createServerFn({ method: "POST" })
+  .validator((input: { trades?: Trade[]; settings?: DeskSettings } | undefined) => input ?? {})
+  .handler(async ({ data }): Promise<Trade[]> => {
+    ensureEngine();
+    // LIGHTER PAGE (Oct 14): the book is merged server-side (nothing the page leaves out is lost); send back only what the
+    // page shows (last 4 days + open) instead of all 2.9 MB after every push.
+    const cutP = Date.now() - 4 * 86400000;
+    return writeBook(data.trades ?? [], data.settings).trades.filter((t: any) => t?.result === "open" || Date.parse(t?.openedAt || "") >= cutP);
+  });
+
+export const getRules = createServerFn({ method: "GET" }).handler(async () => {
+  try {
+    const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+    return { lockWin: sw.lockWin ?? { on: false, arm: 20, floor: 10 }, channelRule: sw.channelRule !== false, channelEdge: Number(sw.channelEdge ?? 0.25), blockedSetups: sw.blockedSetups ?? [], blockedAssets: Array.isArray(sw.blockedAssets) ? sw.blockedAssets : [], tpGates: sw.tpGates?.on !== false, model: sw.model === "original" ? "original" : "new" };
+  } catch {
+    return { lockWin: { on: false, arm: 20, floor: 10 }, channelRule: true, channelEdge: 0.25, blockedSetups: [], blockedAssets: [] as string[], tpGates: true, model: "new" };
+  }
+});
+
+export const setRule = createServerFn({ method: "POST" })
+  .validator((input: { lockOn?: boolean; channelOn?: boolean; gatesOn?: boolean; asset?: "btc" | "gold" | "silver"; assetOn?: boolean; model?: "original" | "new" }) => input)
+  .handler(async ({ data }) => {
+    const file = join(process.cwd(), "data", "live-switch.json");
+    const sw = JSON.parse(readFileSync(file, "utf8"));
+    if (typeof data.lockOn === "boolean") sw.lockWin = { arm: 20, floor: 10, ...(sw.lockWin ?? {}), on: data.lockOn };
+    if (typeof data.channelOn === "boolean") sw.channelRule = data.channelOn;
+    // Love's model profiles (data/profiles/*.json): ORIGINAL baseline or NEW. Switching away from NEW
+    // saves the current NEW settings first, so coming back restores exactly what she had.
+    if (data.model === "original" || data.model === "new") {
+      const dir = join(process.cwd(), "data", "profiles");
+      const keys = ["navSkip", "pathSkip", "skipHours", "navCross", "tpGates", "lockWin", "channelRule", "tpMode"];
+      if (data.model === "original" && sw.model !== "original") {
+        const keepNew: Record<string, unknown> = { _about: `NEW, saved when switching to ORIGINAL at ${new Date().toISOString()}` };
+        for (const k of keys) keepNew[k] = sw[k] ?? (k === "tpMode" ? "new" : null);
+        writeFileSync(join(dir, "new.json"), JSON.stringify(keepNew, null, 2));
+      }
+      const prof = JSON.parse(readFileSync(join(dir, `${data.model}.json`), "utf8"));
+      for (const k of keys) if (k in prof && prof[k] != null) sw[k] = prof[k];
+      sw.model = data.model;
+      sw.note = `Model switched to ${data.model.toUpperCase()} from the SHIFT tab (Love).`;
+    }
+    if (typeof data.gatesOn === "boolean") sw.tpGates = { under165: [0.4], over165: [0.55, 0.6], ...(sw.tpGates ?? {}), on: data.gatesOn };
+    // Love's symbol switches: turning a symbol OFF adds it to blockedAssets (no new Kalshi or paper
+    // entries on it; open trades can still be sold). ON removes it.
+    if (data.asset && ["btc", "gold", "silver"].includes(data.asset) && typeof data.assetOn === "boolean") {
+      const set = new Set<string>(Array.isArray(sw.blockedAssets) ? sw.blockedAssets : []);
+      if (data.assetOn) set.delete(data.asset);
+      else set.add(data.asset);
+      sw.blockedAssets = [...set].sort();
+      sw.note = `${data.asset.toUpperCase()} turned ${data.assetOn ? "ON" : "OFF"} from the SHIFT tab (Love).`;
+    }
+    sw.at = new Date().toISOString();
+    atomicWriteFs(file, JSON.stringify(sw, null, 2));
+    return { ok: true };
+  });
+
+export const getPrimeRecords = createServerFn({ method: "GET" }).handler(async () => {
+  return primeRecords();
+});
+
+export const setFortyRule = createServerFn({ method: "POST" })
+  .validator((input: { on: boolean }) => input)
+  .handler(async ({ data }) => {
+    writeSwitch({ primeFortyRule: data.on === true });
+    return primeRecords();
+  });
+
+export const getMonitor = createServerFn({ method: "GET" }).handler(async () => {
+  return readMonitor();
+});
+
+export const getShadow = createServerFn({ method: "GET" }).handler(async (): Promise<ShadowTrade[]> => {
+  return listShadow();
+});
+
+export const getLotto = createServerFn({ method: "GET" }).handler(async (): Promise<LottoTicket[]> => {
+  return listLotto();
+});
+
+// NIGHT HISTORY (Love, Oct 5: "the books aren't re-organizing when i click 12 - 24 - all"). night-book.json only holds the
+// last 2000 rows (~15 hours with 45 books), so 24H and ALL were the same window. The cards now also count every settled row
+// from data/exit-ledger.jsonl that already rolled out of the night book: [book, atMs, pnl].
+// DAY BOARD (Oct 7, Love): every book on every day, best / worst hours, Kalshi itself, Combined · Prime. dayboard.ts.
+// BENCH CARD (Oct 9, Love): see who the breaker benched, lift a bench, or turn the breaker off / on.
+export const getBench = createServerFn({ method: "GET" }).handler(async () => {
+  const { riskNow } = await import("./riskguard");
+  const r = riskNow();
+  let sw: any = {};
+  try {
+    sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+  } catch {
+  }
+  return { benched: r.benched, breaker: r.breaker, stopped: r.stopped, why: r.why, todayPnl: r.todayPnl, timeGate: { on: sw?.timeGate?.on !== false, exempt: (sw?.timeGate?.exempt ?? []) as string[], minWin: Number(sw?.timeGate?.minWin ?? 0.62), hours: Number(sw?.timeGate?.hours ?? 4) }, running: (sw?.liveBook?.books ?? []) as string[] };
+});
+export const setBench = createServerFn({ method: "POST" })
+  .validator((input: { book?: string; until?: string; breakerOn?: boolean; timeGateOn?: boolean; exemptBook?: string; exemptOn?: boolean }) => input)
+  .handler(async ({ data }) => {
+    const file = join(process.cwd(), "data", "live-switch.json");
+    const raw = JSON.parse(readFileSync(file, "utf8"));
+    if (data.book && data.until) {
+      raw.benchUnlock = { ...(raw.benchUnlock || {}), [String(data.book)]: String(data.until) };
+      appendFileSync(join(process.cwd(), "data", "overnight-fixes.log"), `${new Date().toISOString()} BENCH CARD (Love): lifted ${String(data.book).toUpperCase()}'s bench (was until ${data.until})\n`);
+    }
+    if (typeof data.breakerOn === "boolean") {
+      raw.benchBreaker = { ...(raw.benchBreaker || {}), on: data.breakerOn }; // Oct 14: own key (was sharing breaker.ts's)
+      appendFileSync(join(process.cwd(), "data", "overnight-fixes.log"), `${new Date().toISOString()} BENCH CARD (Love): breaker ${data.breakerOn ? "ON" : "OFF"}\n`);
+    }
+    // TIME GATE controls (Love, Oct 9 ~4:15 AM PT: "if they're benched, i need the ability to turn them off or on here"):
+    // the gate that sits a book out of a 4-hour block where it has won under 62% (NEW sat out 0-4 AM PT on 8/16).
+    if (typeof data.timeGateOn === "boolean") {
+      raw.timeGate = { ...(raw.timeGate || {}), on: data.timeGateOn };
+      appendFileSync(join(process.cwd(), "data", "overnight-fixes.log"), `${new Date().toISOString()} BENCH CARD (Love): time gate ${data.timeGateOn ? "ON" : "OFF"}\n`);
+    }
+    if (data.exemptBook && typeof data.exemptOn === "boolean") {
+      const ex = new Set<string>((raw.timeGate?.exempt ?? []).map(String));
+      if (data.exemptOn) ex.add(String(data.exemptBook));
+      else ex.delete(String(data.exemptBook));
+      raw.timeGate = { ...(raw.timeGate || {}), exempt: [...ex] };
+      appendFileSync(join(process.cwd(), "data", "overnight-fixes.log"), `${new Date().toISOString()} BENCH CARD (Love): ${String(data.exemptBook).toUpperCase()} ${data.exemptOn ? "trades all hours" : "sits out weak hours again"}\n`);
+    }
+    atomicWriteFs(file, JSON.stringify(raw, null, 2));
+    const { riskRefresh } = await import("./riskguard");
+    const r = riskRefresh();
+    return { benched: r.benched, breaker: r.breaker, stopped: r.stopped, why: r.why, todayPnl: r.todayPnl, timeGate: { on: raw?.timeGate?.on !== false, exempt: (raw?.timeGate?.exempt ?? []) as string[], minWin: Number(raw?.timeGate?.minWin ?? 0.62), hours: Number(raw?.timeGate?.hours ?? 4) }, running: (raw?.liveBook?.books ?? []) as string[] };
+  });
+// MENTIONS · BASE RATES (Oct 9, Love): paper book on Kalshi's "what will X say" markets vs the speaker's record.
+// ORACLE (Oct 9, Love): scheduled Claude forecasts vs the market, paper only.
+// LOVE'S CALLS (Oct 9, Love): her own hand trades with her reason, scored against the price she paid.
+export const getLoveCalls = createServerFn({ method: "GET" }).handler(async () => {
+  const { loveCalls } = await import("./lovecalls");
+  return loveCalls();
+});
+export const addLoveCall = createServerFn({ method: "POST" })
+  .validator((input: { ticker: string; side: "yes" | "no"; entry: number; stake: number; reason: string; conviction?: number | null; title?: string }) => input)
+  .handler(async ({ data }) => {
+    const { addCall, loveCalls } = await import("./lovecalls");
+    await addCall(data);
+    return loveCalls();
+  });
+export const editLoveCall = createServerFn({ method: "POST" })
+  .validator((input: { id: string; sell?: number; remove?: boolean }) => input)
+  .handler(async ({ data }) => {
+    const { sellCall, removeCall, loveCalls } = await import("./lovecalls");
+    if (data.remove) removeCall(data.id);
+    else if (Number(data.sell) > 0) sellCall(data.id, Number(data.sell));
+    return loveCalls();
+  });
+export const getOracle = createServerFn({ method: "GET" }).handler(async () => {
+  const { oracle } = await import("./oracle");
+  return oracle();
+});
+export const getMentions = createServerFn({ method: "GET" }).handler(async () => {
+  const { mentions } = await import("./mentions");
+  return mentions();
+});
+export const getHourLotto = createServerFn({ method: "GET" }).handler(async () => {
+  const { hourLotto } = await import("./hourlotto");
+  return hourLotto();
+});
+// POSITIONS tab (Oct 9, Love): every Kalshi position, autosell rules, sell now.
+export const getPositions = createServerFn({ method: "GET" }).handler(async () => {
+  const { listPositions, readRules } = await import("./positions");
+  return { rows: await listPositions(), rules: readRules() };
+});
+export const setAutosell = createServerFn({ method: "POST" })
+  .validator((input: { ticker: string; mode?: "pct" | "price"; value?: number; clear?: boolean }) => input)
+  .handler(async ({ data }) => {
+    const { setRule, listPositions } = await import("./positions");
+    const v = Number(data.value);
+    setRule(String(data.ticker), data.clear || !(v > 0) ? null : { mode: data.mode === "price" ? "price" : "pct", value: data.mode === "price" ? Math.min(0.99, v > 1 ? v / 100 : v) : v });
+    return { rows: await listPositions(true) };
+  });
+export const sellPosition = createServerFn({ method: "POST" })
+  .validator((input: { ticker: string }) => input)
+  .handler(async ({ data }) => {
+    const { sellNow, listPositions } = await import("./positions");
+    const cash = await sellNow(String(data.ticker), "sold from the POSITIONS tab");
+    return { cash, rows: await listPositions(true) };
+  });
+// SCANNER (Oct 8, Love): weather lock-ins + hourly near-the-bell, cross-checked with NWS station data; paper only.
+export const getScanner = createServerFn({ method: "GET" }).handler(async () => {
+  const { scanner } = await import("./scanner");
+  return scanner();
+});
+// Oct 10 ~5:30 PM PT: CLIMATE WIDE + CLIMATE LADDER + take-profit lab for the SCANNER tab (read only).
+export const getClimate = createServerFn({ method: "GET" }).handler(async () => {
+  const { readFileSync, existsSync } = await import("node:fs");
+  const { join } = await import("node:path");
+  const rd = (f: string, d: any) => { try { const p = join(process.cwd(), "data", f); return existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : d; } catch { return d; } };
+  const wide: any[] = rd("climate-wide.json", []);
+  const { ladder } = await import("./ladder");
+  const { tpLab } = await import("./tplab");
+  return { summary: rd("climate-wide-summary.json", null), status: rd("climate-wide-status.json", null), recent: wide.slice(0, 15), openN: wide.filter((r) => r.result === "open").length, ladder: ladder(), tp: tpLab() };
+});
+// Oct 11 ~5:35 AM PT: COMBO tracker for the SCANNER tab (read only).
+export const getCombos = createServerFn({ method: "GET" }).handler(async () => {
+  const { combos } = await import("./combos");
+  return combos();
+});
+// Oct 13 ~12:45 AM PT: 1H COMBOS paper book (read only).
+export const getHourCombos = createServerFn({ method: "GET" }).handler(async () => {
+  const { hourCombos } = await import("./hourcombos");
+  return hourCombos();
+});
+// Oct 11 ~7:20 PM PT: COMBO LESSONS (read only).
+export const getComboLessons = createServerFn({ method: "GET" }).handler(async () => {
+  const { comboLessons } = await import("./combos");
+  return comboLessons();
+});
+// Oct 11 ~7 PM PT: every SCANNER paper book as trade lists (read only).
+export const getScannerBooks = createServerFn({ method: "GET" }).handler(async () => {
+  const { scannerBooks } = await import("./scannerbooks");
+  return scannerBooks();
+});
+// Oct 11 ~7:30 AM PT: LAST-MINUTE LOCK lab for the SCANNER tab (read only).
+export const getLastMinute = createServerFn({ method: "GET" }).handler(async () => {
+  const { lastMinute } = await import("./lastminute");
+  return lastMinute();
+});
+// Oct 11 ~2:45 AM PT: GROK OG + OG reconstructed paper lanes (read only).
+export const getGrokOg = createServerFn({ method: "GET" }).handler(async () => {
+  const { grokLanes } = await import("./grokog");
+  return grokLanes();
+});
+// Oct 10 ~7:20 PM PT: CLOSER late-game paper book for the SCANNER tab (read only).
+export const getCloser = createServerFn({ method: "GET" }).handler(async () => {
+  const { closer } = await import("./closer");
+  return closer();
+});
+// Oct 10 ~1:15 AM PT: schedule pill (read only).
+export const getSchedule = createServerFn({ method: "GET" }).handler(async () => {
+  const { schedule } = await import("./schedule");
+  return schedule();
+});
+// Oct 9 ~10:50 PM PT: hand-trade guard toast (read only).
+export const getHandGuard = createServerFn({ method: "GET" }).handler(async () => {
+  const { handGuard } = await import("./handguard");
+  return handGuard();
+});
+export const getBookWatch = createServerFn({ method: "GET" }).handler(async () => {
+  const { bookWatch } = await import("./bookwatch");
+  return bookWatch();
+});
+export const getDayBoard = createServerFn({ method: "GET" }).handler(async () => {
+  const { dayBoard } = await import("./dayboard");
+  return dayBoard();
+});
+// SCOPE (Oct 16 ~3:05 AM PT, Love): one book, one Pacific time window, 3D / 7D / 1M / ALL. Read-only (scope.ts).
+export const getScopeBooks = createServerFn({ method: "GET" }).handler(async () => {
+  const { scopeBooks } = await import("./scope");
+  return scopeBooks();
+});
+export const getScope = createServerFn({ method: "GET" })
+  .validator((input: { book: string; from: number; to: number; days: number }) => input)
+  .handler(async ({ data }) => {
+    const { scope } = await import("./scope");
+    return scope(String(data.book || ""), Math.max(0, Math.min(1439, Number(data.from) || 0)), Math.max(0, Math.min(1440, Number(data.to) || 0)), Math.max(0, Number(data.days) || 0));
+  });
+export const getBoardTrades = createServerFn({ method: "GET" })
+  .validator((input: { key: string }) => input)
+  .handler(async ({ data }) => {
+    const { boardTrades } = await import("./dayboard");
+    return boardTrades(String(data.key || "all"));
+  });
+
+// BOOK HISTORY (Love, Oct 9 ~2:35 AM PT: "it's only letting me see from 10:04pm... can you fix that"): the night book only
+// keeps the last 2,000 rows across every book (~5 hours), older ones roll into data/exit-ledger.jsonl. Picking a book on
+// SHIFT now pulls that book's older trades from the ledger too (newest first, up to 1,500).
+
+// LEDGER READERS (Oct 15 ~3:50 PM PT, Love: "the lag on the whole page is getting bad again... the trade cards and the
+// 4-12-24-all buttons take up to 10 seconds"). Both paths re-read and re-parsed the whole exit-ledger (24 MB+) on every
+// click, blocking everything else while they did. Now: the 4H/12H/24H/ALL counts keep an incremental cache that only
+// parses bytes appended since the last look, and a card's inline history reads just the newest few MB of the ledger.
+const gL = globalThis as unknown as { __ledTail?: { size: number; mtime: number; max: number; lines: string[] }; __ledHist?: { size: number; rem: string; seen: Set<string>; rows: [string, string, number, number][] } };
+// (ledgerTailLines retired Oct 19 ~1:15 PM PT: the whole-record history reads bookhist.server.ts. An unused helper here kept node:fs in the page bundle.)
+function ledgerHistRows(): [string, string, number, number][] {
+  try {
+    const file = join(process.cwd(), "data", "exit-ledger.jsonl");
+    const st = statSync(file);
+    let c = gL.__ledHist;
+    if (!c || st.size < c.size) c = gL.__ledHist = { size: 0, rem: "", seen: new Set<string>(), rows: [] };
+    if (st.size > c.size) {
+      const fd = openSync(file, "r");
+      const buf = Buffer.alloc(st.size - c.size);
+      readSync(fd, buf, 0, buf.length, c.size);
+      closeSync(fd);
+      const txt = c.rem + buf.toString("utf8");
+      const parts = txt.split("\n");
+      c.rem = parts.pop() ?? "";
+      for (const line of parts) {
+        if (!line.trim()) continue;
+        try {
+          const e = JSON.parse(line);
+          if (!e.id || !e.book || e.stale || c.seen.has(e.id) || typeof e.pnl !== "number") continue;
+          c.seen.add(e.id);
+          c.rows.push([String(e.id), String(e.book), Date.parse(e.at || ""), Number(e.pnl)]);
+        } catch {}
+      }
+      c.size = st.size;
+    }
+    return c.rows;
+  } catch { return []; }
+}
+export const getBookHistory = createServerFn({ method: "GET" })
+  .validator((input: { book: string }) => input)
+  .handler(async ({ data }) => {
+    // WHOLE RECORD ON TAP (Oct 19 ~1:00 PM PT, Love: "for all the books"): the whole ledger + the lane books' archive, read in bookhist.server.ts
+    try {
+      const { wholeBookHistory } = await import("./bookhist.server");
+      return await wholeBookHistory(String(data.book || ""), new Set(listNight().map((r) => r.id)));
+    } catch {
+      return [];
+    }
+  });
+// Oct 19 ~1:00 PM PT (Love: "it won't let me pull anything older up... for all the books"): one SCANNER book's whole record, on request (read only).
+export const getLaneHistory = createServerFn({ method: "POST" })
+  .validator((input: { id: string }) => ({ id: String(input?.id || "") }))
+  .handler(async ({ data }) => {
+    const { bookHistory } = await import("./scannerbooks");
+    return bookHistory(data.id);
+  });
+export const getNightHist = createServerFn({ method: "GET" }).handler(async (): Promise<[string, number, number][]> => {
+  try {
+    const live = new Set(listNight().map((r) => r.id));
+    const out: [string, number, number][] = [];
+    for (const [id, book, atMs, pnl] of ledgerHistRows()) {
+      if (live.has(id)) continue;
+      out.push([book, atMs, pnl]);
+    }
+    return out;
+  } catch {
+    return [];
+  }
+});
+
+export const getArchived = createServerFn({ method: "GET" }).handler(async (): Promise<string[]> => {
+  try { return JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.archivedBooks ?? []; } catch { return []; }
+});
+// JOIN $10 (Oct 12 ~10:20 PM PT, Love: "a join button on their cards, it would fill the same way the $1 test just filled,
+// just @ $10. last resort if they're giving her a hard time"). Her tap only: buys that open paper combo's exact legs for $10
+// at the best real maker price (up to 95c), skipping legs Kalshi isn't offering. One join per combo. Logged in
+// data/combo-joins.json (kept apart from combos.json so it never races the combo tick) and data/combo-live.jsonl.
+export const getOpenCombos = createServerFn({ method: "GET" }).handler(async (): Promise<any[]> => {
+  let rows: any[] = [];
+  try { rows = JSON.parse(readFileSync(join(process.cwd(), "data", "combos.json"), "utf8")); } catch {}
+  let joins: any = {};
+  try { joins = JSON.parse(readFileSync(join(process.cwd(), "data", "combo-joins.json"), "utf8")); } catch {}
+  // ROLLING MULTIPLE (Oct 12 ~10:45 PM PT, Love: "a live rolling multiple the way we do with our traditional positions"):
+  // Kalshi only prices a combo when makers answer an RFQ, so this is an ESTIMATE that rolls with the legs: paper now = the
+  // product of each leg's live ask (combos-status.json, every combo tick); then the makers' markup seen at entry is kept in
+  // proportion on the losing side: est = 1 - (1 - paperNow) * (1 - realAtEntry) / (1 - paperAtEntry). Both go to 1 together.
+  let mk: Record<string, any> = {};
+  try { for (const m of JSON.parse(readFileSync(join(process.cwd(), "data", "combos-status.json"), "utf8"))?.markets ?? []) mk[m.t] = m; } catch {}
+  const now = Date.now();
+  const roll = (c: any) => {
+    let p = 1;
+    for (const l of c.legs ?? []) { const m = mk[l.ticker]; const a = m ? Number(l.side === "yes" ? m.ya : m.na) : NaN; if (!(a > 0)) return { paperNow: null, estNow: null }; p *= Math.min(1, a); }
+    const r0 = Number(c.quote?.ask), p0 = Number(c.cost);
+    const est = r0 > 0 && p0 > 0 && p0 < 1 && r0 < 1 ? 1 - (1 - p) * ((1 - r0) / (1 - p0)) : null;
+    return { paperNow: Math.round(p * 1000) / 1000, estNow: est != null ? Math.round(Math.min(0.999, Math.max(p, est)) * 1000) / 1000 : null };
+  };
+  return rows
+    .filter((c: any) => c.result === "open" && Date.parse(c.window) - now > 45000 && !/-sm$/.test(String(c.lane || "")))
+    .slice(-12)
+    .reverse()
+    .map((c: any) => ({
+      id: c.id, lane: c.ctx?.lane ?? "crypto-late", window: c.window, cost: c.cost, left: Math.round((Date.parse(c.window) - now) / 1000),
+      legs: (c.legs ?? []).map((l: any) => `${String(l.series).replace(/^KX|15M$/g, "")} ${String(l.side).toUpperCase()}`),
+      real: c.quote?.ask ?? null, live: c.live?.result ?? null, liveBought: !!c.live?.bought, joined: joins[c.id] ?? null, ...roll(c),
+    }));
+});
+// First tap: a fresh real Kalshi price for that combo (shadow RFQ, nothing bought), shown as price + multiple.
+export const quoteCombo = createServerFn({ method: "POST" })
+  .validator((input: { id: string }) => input)
+  .handler(async ({ data }): Promise<any> => {
+    let rows: any[] = [];
+    try { rows = JSON.parse(readFileSync(join(process.cwd(), "data", "combos.json"), "utf8")); } catch {}
+    const c = rows.find((x: any) => x.id === data.id);
+    if (!c) return { err: "combo not found" };
+    if (c.result !== "open" || Date.parse(c.window) - Date.now() < 45000) return { err: "window is closing" };
+    const legs = (c.legs ?? []).map((l: any) => ({ market_ticker: l.ticker, event_ticker: String(l.ticker).replace(/-[^-]+$/, ""), side: l.side, ask: l.ask }));
+    const live: any = await import("./kalshi-live.server");
+    const r: any = await live.comboBuyQuote(legs, 10, c.cost);
+    const px = r.bestYesAsk ?? null;
+    return { px, mult: px ? Math.round((1 / px) * 100) / 100 : null, n: r.quotes?.length ?? 0, dropped: r.dropped ?? [], err: px ? null : r.result || "no maker price came back" };
+  });
+export const joinCombo = createServerFn({ method: "POST" })
+  .validator((input: { id: string; seen?: number }) => input)
+  .handler(async ({ data }): Promise<any> => {
+    const g: any = globalThis as any;
+    const lock: Record<string, number> = (g.__cbJoin ||= {});
+    if (lock[data.id] && Date.now() - lock[data.id] < 90000) return { result: "already asking Kalshi for this one" };
+    const jf = join(process.cwd(), "data", "combo-joins.json");
+    let joins: any = {};
+    try { joins = JSON.parse(readFileSync(jf, "utf8")); } catch {}
+    if (/^bought/.test(String(joins[data.id]?.result || ""))) return joins[data.id];
+    let rows: any[] = [];
+    try { rows = JSON.parse(readFileSync(join(process.cwd(), "data", "combos.json"), "utf8")); } catch {}
+    const c = rows.find((x: any) => x.id === data.id);
+    if (!c) return { result: "combo not found" };
+    if (c.result !== "open" || Date.parse(c.window) - Date.now() < 45000) return { result: "window is closing, too late to join" };
+    if (c.live?.bought) return { result: "she already bought this one" };
+    lock[data.id] = Date.now();
+    try {
+      const legs = (c.legs ?? []).map((l: any) => ({ market_ticker: l.ticker, event_ticker: String(l.ticker).replace(/-[^-]+$/, ""), side: l.side, ask: l.ask }));
+      const live: any = await import("./kalshi-live.server");
+      // Ceiling = the price she was just shown + 3c (never above 95c); sized at that price so it spends about $10.
+      const seen = Number(data.seen) > 0.05 ? Number(data.seen) : 0;
+      const cap = seen ? Math.min(0.95, seen + 0.03) : 0.95;
+      const r: any = await live.comboBuy(legs, 10, cap, { cap, tag: "join", sizePx: seen || undefined });
+      const rec = { at: r.at, result: r.result, px: r.quote?.px ?? null, n: Number.isFinite(r.after - r.before) ? Math.round((r.after - r.before) * 100) / 100 : null, ticker: r.ticker ?? null, dropped: r.dropped ?? [], bestAny: r.bestAny ?? null, paper: c.cost };
+      try { joins = JSON.parse(readFileSync(jf, "utf8")); } catch { joins = {}; }
+      joins[data.id] = rec;
+      writeFileSync(jf, JSON.stringify(joins, null, 1));
+      return rec;
+    } finally { delete lock[data.id]; }
+  });
+// COMBO TEST · $1 (Oct 12 ~9:55 PM PT, Love: "have her try to place one on whatever is available for $1 as a test").
+// Her tap only. One real combo, about $1, best maker price up to 95c. Result lands in data/combo-live.jsonl too.
+export const runComboTest = createServerFn({ method: "POST" }).handler(async (): Promise<any> => {
+  const g: any = globalThis as any;
+  if (g.__cbTestAt && Date.now() - g.__cbTestAt < 60000) return { result: "a test just ran, give it a minute" };
+  g.__cbTestAt = Date.now();
+  const live: any = await import("./kalshi-live.server");
+  const r = await live.comboTest(1);
+  return { at: r.at, result: r.result, ticker: r.ticker ?? null, legs: r.legTickers ?? null, px: r.quote?.px ?? null, bestAny: r.bestAny ?? null, paperEst: r.paperEst ?? null, dropped: r.dropped ?? [] };
+});
+// LINEUP MODE (Oct 13 ~3:25 AM PT, Love): hybrid (default) / allday (the model that ran all day) / both (both ways always).
+export const getLineupMode = createServerFn({ method: "GET" }).handler(async (): Promise<string> => {
+  try { const r = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")); return `${r?.lineupMode || "hybrid"}|${r?.bounceRules === false ? "off" : "on"}`; } catch { return "hybrid|on"; }
+});
+export const setLineupMode = createServerFn({ method: "POST" })
+  .validator((input: { mode: string }) => input)
+  .handler(async ({ data }): Promise<string> => {
+    const file = join(process.cwd(), "data", "live-switch.json");
+    const raw = JSON.parse(readFileSync(file, "utf8"));
+    // "bounce:on" / "bounce:off" flips the rejection + bounce rules (Oct 13); anything else sets the model mode.
+    if (/^bounce:(on|off)$/.test(data.mode)) {
+      raw.bounceRules = data.mode === "bounce:on";
+      atomicWriteFs(file, JSON.stringify(raw, null, 2));
+      try { appendFileSync(join(process.cwd(), "data", "overnight-fixes.log"), `[${new Date().toISOString()}] bounceRules -> ${raw.bounceRules} (Love's tap on SHIFT)\n`); } catch {}
+      return `${raw.lineupMode || "hybrid"}|${raw.bounceRules ? "on" : "off"}`;
+    }
+    const mode = ["hybrid", "hybridc", "allday", "both"].includes(data.mode) ? data.mode : "hybrid";
+    raw.lineupMode = mode;
+    atomicWriteFs(file, JSON.stringify(raw, null, 2));
+    try { appendFileSync(join(process.cwd(), "data", "overnight-fixes.log"), `[${new Date().toISOString()}] lineupMode -> ${mode} (Love's tap on SHIFT)\n`); } catch {}
+    return mode;
+  });
+export const setArchived = createServerFn({ method: "POST" })
+  .validator((input: { book: string; archived: boolean }) => input)
+  .handler(async ({ data }): Promise<string[]> => {
+    const file = join(process.cwd(), "data", "live-switch.json");
+    const raw = JSON.parse(readFileSync(file, "utf8"));
+    const set = new Set<string>(raw.archivedBooks ?? []);
+    if (data.archived) set.add(String(data.book)); else set.delete(String(data.book));
+    raw.archivedBooks = [...set].sort();
+    atomicWriteFs(file, JSON.stringify(raw, null, 2));
+    return raw.archivedBooks;
+  });
+// LIGHTER SHIFT (Oct 16 ~4:05 AM PT, Love: "Lighten the desk page" - after a close tap waited ~8 s on a page busy redrawing).
+// SHIFT pulled every book's whole trade list (~4 MB, 8,600 rows) every 30 s. Now the page asks for the settled history older
+// than a cut once (refreshed every 10 min) and only the recent + open rows every 30 s, and joins them - the same rows, so
+// every card number stays the same; ~95% less to download and decode every 30 s. No input = everything, as before.
+export const getNight = createServerFn({ method: "GET" })
+  .validator((input: { part?: "old" | "recent"; cut?: string } | undefined) => input ?? {})
+  .handler(async ({ data }): Promise<NightRow[]> => {
+  const all = await nightAll();
+  const cut = Date.parse(String(data?.cut || ""));
+  if (!data?.part || !Number.isFinite(cut)) return all;
+  const isOld = (r: any) => r.result !== "open" && Date.parse(r.at) < cut;
+  return data.part === "old" ? all.filter(isOld) : all.filter((r) => !isOld(r));
+});
+// LIGHT SHIFT (Oct 17 ~6:30 PM PT, Love: "can you have it only pull up the trades for the cards i actually click on? not load
+// everything else... and be able to draw it from a file and loaddd it, if i want the trade history... lighting the load"):
+// every card's numbers are counted here once (the same math the page used to run on every row, every refresh), and the
+// page only downloads the trades of the card she opens. Cached 8 s so the summary and a card's trades share one read.
+type SpanStat = { n: number; open: number; pnl: number; wins: number; losses: number };
+type KStat = { live: number; held: number; why: Record<string, { n: number; p: number }>; pnl: number; wins: number; losses: number };
+type OStat = { n: number; pnl: number; wins: number; losses: number };
+export type ShiftSummary = {
+  at: string;
+  books: Record<string, { s: Record<string, SpanStat>; k: Record<string, KStat>; rec: OStat & { from: string }; cnt: number }>;
+  red: string[];
+  orig: { clean: OStat; errs: OStat; allO: OStat };
+  counts: { all: number; origClean: number; diamond25: number; taps: number };
+  tod: { book: string; b: { n: number; w: number; p: number }[]; total: number }[];
+};
+const gS = globalThis as unknown as { __shiftLight?: { at: number; rows: NightRow[] }; __shiftSum?: { at: number; out: ShiftSummary } };
+async function nightLightCached(): Promise<NightRow[]> {
+  const c = gS.__shiftLight;
+  if (c && Date.now() - c.at < 8000) return c.rows;
+  const all = await nightAll(true);
+  // Same join the page always did: rows are keyed by id (a lane can list the same trade twice), settled history first,
+  // recent + open rows win - so every card counts exactly what it counted before.
+  const cut = Date.now() - 2 * 3600000;
+  const isOld = (r: any) => r.result !== "open" && Date.parse(r.at) < cut;
+  const m = new Map<string, NightRow>();
+  for (const r of all) if (isOld(r)) m.set((r as any).id, r);
+  for (const r of all) if (!isOld(r)) m.set((r as any).id, r);
+  const rows = [...m.values()];
+  // FIVEY + 1-2-3 BOOK (fix212, Oct 25 ~2:20 PM PT, Love: "i want to look at her trades / let's have the new 123 book have its own card with its own ledger"): her live Polymarket 5m trades as two cards
+  try { for (const r of fiveNightRows()) rows.push(r as NightRow); } catch {}
+  gS.__shiftLight = { at: Date.now(), rows };
+  return rows;
+}
+// DELAYED FRESH SLATE (Oct 21 ~10:36 AM PT, Love: "yes pls" to a fresh record for the delayed book from her 10:30 AM rules - the second band interaction):
+// recon-dly rows and history before 10:30 AM PT Oct 21 drop off her card.
+const DLY_START = "2026-10-21T17:30:00.000Z", DLY_MS = Date.parse(DLY_START);
+// LIVE HOURS ONLY (Oct 21 ~10:45 AM PT, Love picked "Live hours only" - "i want to keep her record clean and only for the main book ... need to get an accurate
+// read of her performance"): TOGETHER's calls in the PT hours she sits out live (live-switch bookSkipHours["recon-tog"]), since those off hours began 9:44 PM PT
+// Oct 20, were paper only - they drop off her TOGETHER and FRESH SLATE cards. Her rules and trading are untouched. OPEN CALLS STAY (~10:47 AM PT, Love: "still keep
+// the open orders there on the main book hun i need to see which trades she's taking now"): only settled off-hours calls drop off.
+const OFFH_MS = Date.parse("2026-10-21T04:44:00.000Z");
+const LABEL_HRS_MS = Date.parse("2026-10-22T23:30:35Z");
+const LABEL_END_MS = Date.parse("2026-10-23T01:50:53Z"); // fix101: real clock again
+let offHrsC = { at: 0, hrs: [] as number[] };
+const ptHour = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", hourCycle: "h23" });
+function togOffAt(book: string, atMs: number): boolean {
+  if (book !== "recon-tog" || !(atMs >= OFFH_MS)) return false;
+  if (Date.now() - offHrsC.at > 10000) { let hrs: number[] = []; try { hrs = (JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.bookSkipHours?.["recon-tog"] ?? []).map(Number); } catch { hrs = offHrsC.hrs; } offHrsC = { at: Date.now(), hrs }; }
+  // label hours from the switch (Love picked "Follow Kalshi labels"); calls before it keep the open-time hour they were sat out by
+  return offHrsC.hrs.includes(Number(ptHour.format(new Date(atMs >= LABEL_HRS_MS && atMs < LABEL_END_MS ? Math.floor(atMs / 900000) * 900000 + 900000 : atMs))) % 24);
+}
+export const getShiftRows = createServerFn({ method: "GET" })
+  .validator((input: { books: string[] }) => input)
+  .handler(async ({ data }): Promise<NightRow[]> => {
+    const want = new Set((data?.books ?? []).map(String));
+    if (!want.size) return [];
+    const lightR = (await nightLightCached()) as any[];
+    const out = lightR.filter((r: any) => want.has(String(r.book)) && !(r.book === "recon-dly" && r.at < DLY_START) && !(r.result !== "open" && togOffAt(String(r.book), Date.parse(r.at))));
+    // ALL HOURS (Oct 21 ~4:25 PM PT, Love: "add the unadulterated reconstructed book, off hours included"): every TOGETHER call, live or paper hour, on its own card.
+    if (want.has("recon-all")) for (const r of lightR) if (r.book === "recon-tog") out.push({ ...r, id: `${r.id}:recon-all`, book: "recon-all" });
+    // + HER WHOLE HISTORY (Oct 21 ~4:41 PM PT, Love: "add in the whole trade history for the reconstructed card for all hours? it stops at noon today"): TOGETHER's
+    // rows that rolled into grok-og-archive.jsonl, back to her first call Oct 19, newest copy of each. Display only.
+    if (want.has("recon-all")) {
+      try {
+        const gk = await import("./grokog"); const { archiveRows } = await import("./archcache");
+        const have = new Set(out.filter((r: any) => r.book === "recon-all").map((r: any) => String(r.id)));
+        const byId = new Map<string, any>();
+        for (const a of archiveRows() as any[]) if (a && a.lane === "recon-tog" && a.id) byId.set(String(a.id), a);
+        for (const r of gk.asNightRows([...byId.values()]) as any[]) { const id = `${r.id}:recon-all`; if (!have.has(id)) { have.add(id); out.push({ ...r, id, book: "recon-all" }); } }
+      } catch {}
+    }
+    return out;
+  });
+export const getShiftSummary = createServerFn({ method: "GET" }).handler(async (): Promise<ShiftSummary> => {
+  const c0 = gS.__shiftSum;
+  if (c0 && Date.now() - c0.at < 8000) return c0.out;
+  const TAPS = new Set(["tap3x", "taphold", "rescue", "snap50", "snap100", "snap200", "snap300", "snaphold", "x16_50", "x16_100", "x16_200", "x16_300", "x16hold"]);
+  const SN_START = "2026-10-17T05:00:00.000Z", SN_MS = Date.parse(SN_START);
+  // FRESH SLATE (Oct 20 ~2:37 PM PT, Love: "create a new card for her with a fresh record under RECONSTRUCTION ... just start since your fix"):
+  // TOGETHER's own rows from 12:59 PM PT Oct 20 (THE WALL AT THE WIRE went in), nothing before it.
+  const RF_START = "2026-10-20T19:59:00.000Z", RF_MS = Date.parse(RF_START);
+  const TPF_START = "2026-10-26T21:30:00.000Z", TPF_MS = Date.parse(TPF_START); // fix288 (Oct 26 ~2:31 PM PT, Love: "can we get a fresh card for this model too? she should have a clean record"): the no-pink copy since 2:30 PM PT
+  const since = "2026-10-02T17:15:00.000Z", sinceMs = Date.parse(since);
+  const base = ((await nightLightCached()) as any[]).filter((r) => !(r.book === "recon-dly" && r.at < DLY_START) && !(r.result !== "open" && togOffAt(String(r.book), Date.parse(r.at))));
+  // ALL HOURS (Oct 21 ~4:25 PM PT, Love): TOGETHER unfiltered - her off-hours paper calls included - on its own card. Her TOGETHER card stays live hours only.
+  const allTog = ((await nightLightCached()) as any[]).filter((r) => r.book === "recon-tog").map((r) => ({ ...r, id: `${r.id}:recon-all`, book: "recon-all" }));
+  const rowsAll = [...base, ...base.filter((r) => r.book === "ogp5-fast" && r.at >= SN_START).map((r) => ({ ...r, id: `${r.id}:supernova`, book: "supernova" })), ...base.filter((r) => r.book === "recon-tog" && r.at >= RF_START).map((r) => ({ ...r, id: `${r.id}:recon-fresh`, book: "recon-fresh" })), ...base.filter((r) => r.book === "recon-togp" && r.at >= TPF_START).map((r) => ({ ...r, id: `${r.id}:recon-togp-fresh`, book: "recon-togp-fresh" })), ...allTog].filter((r) => TAPS.has(r.book) || !r.dnaMode);
+  const rows = rowsAll.filter((r) => !r.stale);
+  const hist: [string, number, number][] = [];
+  try { const live = new Set(listNight().map((r) => r.id)); for (const [id, book, atMs, pnl] of ledgerHistRows()) if (!live.has(id)) hist.push([book, atMs, pnl]); } catch {}
+  // + every lane book's archived trades, so ALL on a card is her whole record (Oct 19 ~1:55 PM PT, Love: "can you fix that for all of the cards")
+  try { const { laneArchiveHist } = await import("./bookhist.server"); for (const h of await laneArchiveHist(new Set(rowsAll.map((r) => String(r.id))))) hist.push(h); } catch {}
+  const cm = liveCopyMapNow();
+  const liveKS = new Set(rows.filter((r) => cm[r.id] === "live").map((r) => `${r.ticker}:${r.side}`));
+  const isLive = (r: any) => cm[r.id] === "live" || liveKS.has(`${r.ticker}:${r.side}`);
+  const fin = (r: any) => r.result !== "open" && r.pnl != null;
+  const P = (r: any) => r.pnl ?? 0;
+  const now = Date.now();
+  const SPANS: [string, number][] = [["4h", now - 4 * 3600000], ["12h", now - 12 * 3600000], ["24h", now - 24 * 3600000], ["all", 0]];
+  const byBook = new Map<string, any[]>();
+  for (const r of rows) { let a = byBook.get(r.book); if (!a) byBook.set(r.book, (a = [])); a.push(r); }
+  const hBy = new Map<string, [string, number, number][]>();
+  const hAll: [string, number, number][] = [];
+  for (const h of hist) { if (h[0] === "recon-tog") hAll.push(h); if ((h[0] === "recon-dly" && h[1] < DLY_MS) || togOffAt(h[0], h[1])) continue; let a = hBy.get(h[0]); if (!a) hBy.set(h[0], (a = [])); a.push(h); }
+  const books: ShiftSummary["books"] = {};
+  for (const book of new Set([...byBook.keys(), ...hBy.keys(), "supernova", "recon-fresh", "recon-togp-fresh", "recon-all"])) {
+    const rs = byBook.get(book) ?? [];
+    const hs = (hBy.get(book) ?? []).concat(book === "supernova" ? (hBy.get("ogp5-fast") ?? []).filter((h) => h[1] >= SN_MS) : []).concat(book === "recon-fresh" ? (hBy.get("recon-tog") ?? []).filter((h) => h[1] >= RF_MS) : []).concat(book === "recon-togp-fresh" ? (hBy.get("recon-togp") ?? []).filter((h) => h[1] >= TPF_MS) : []).concat(book === "recon-all" ? hAll : []);
+    const s: Record<string, SpanStat> = {}, k: Record<string, KStat> = {};
+    for (const [nm, from] of SPANS) {
+      const xs = rs.filter((r) => r.at >= since && (!from || Date.parse(r.at) >= from));
+      const done = xs.filter(fin);
+      const hx = hs.filter(([, t]) => t >= sinceMs && (!from || t >= from));
+      s[nm] = {
+        n: xs.length + hx.length,
+        open: xs.filter((r) => r.result === "open" && (cm[r.id] == null || cm[r.id] === "live" || liveKS.has(`${r.ticker}:${r.side}`))).length,
+        pnl: done.reduce((t, r) => t + P(r), 0) + hx.reduce((t, h) => t + h[2], 0),
+        wins: done.filter((r) => P(r) > 0.05).length + hx.filter((h) => h[2] > 0.05).length,
+        losses: done.filter((r) => P(r) < -0.05).length + hx.filter((h) => h[2] < -0.05).length,
+      };
+      const kx = xs.filter((r) => cm[r.id] || isLive(r));
+      const lv = kx.filter(isLive);
+      const kd = lv.filter(fin);
+      const why: Record<string, { n: number; p: number }> = {};
+      for (const r of kx) {
+        const kk = cm[r.id];
+        if (kk === "live" || isLive(r)) continue;
+        const w = (why[kk] ||= { n: 0, p: 0 });
+        w.n++;
+        if (fin(r)) w.p += r.pnl;
+      }
+      k[nm] = { live: lv.length, held: kx.length - lv.length, why, pnl: kd.reduce((t, r) => t + P(r), 0), wins: kd.filter((r) => P(r) > 0.05).length, losses: kd.filter((r) => P(r) < -0.05).length };
+    }
+    const dn = rs.filter(fin);
+    books[book] = {
+      s, k,
+      rec: { n: dn.length, pnl: dn.reduce((t, r) => t + P(r), 0), wins: dn.filter((r) => P(r) > 0.05).length, losses: dn.filter((r) => P(r) < -0.05).length, from: rs.reduce((m, r) => (r.at < m ? r.at : m), "9999") },
+      cnt: rs.length + (hBy.get(book) ?? []).length,
+    };
+  }
+  // ALWAYS RED (Oct 11 rule, unchanged): red overall AND red on 60%+ of the Pacific days it traded (2+ days). The page leaves out books on RUN.
+  const fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "America/Los_Angeles" });
+  const hrFmt = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" });
+  const dayC = new Map<number, string>(), hrC = new Map<number, number>();
+  const day = (t: number) => { const h = Math.floor(t / 3600000); let v = dayC.get(h); if (v === undefined) { v = fmt.format(new Date(h * 3600000)); dayC.set(h, v); } return v; };
+  const hourPT = (t: number) => { const h = Math.floor(t / 3600000); let v = hrC.get(h); if (v === undefined) { v = Number(hrFmt.format(new Date(h * 3600000))) % 24; hrC.set(h, v); } return v; };
+  const by: Record<string, Record<string, number>> = {};
+  for (const r of rows) { if (!fin(r)) continue; const d = (by[r.book] ||= {}); const kd = day(Date.parse(r.at)); d[kd] = (d[kd] ?? 0) + r.pnl; }
+  for (const [b, t, p] of hist) { const d = (by[b] ||= {}); const kd = day(t); d[kd] = (d[kd] ?? 0) + p; }
+  const red: string[] = [];
+  for (const [b, d] of Object.entries(by)) { const vals = Object.values(d); const tot = vals.reduce((x, y) => x + y, 0); const nr = vals.filter((v) => v < -0.05).length; if (vals.length >= 2 && tot < 0 && nr / vals.length >= 0.6) red.push(b); }
+  const bandErr = (r: any) => (r.notes?.better ?? []).some((t: string) => /right (above|below) her/.test(t));
+  const statOf = (xs: any[]): OStat => ({ n: xs.length, pnl: xs.reduce((t, r) => t + P(r), 0), wins: xs.filter((r) => P(r) > 0.05).length, losses: xs.filter((r) => P(r) < -0.05).length });
+  const origDone = rows.filter((r) => r.book === "original" && fin(r));
+  const tm = new Map<string, { n: number; w: number; p: number }[]>();
+  for (const r of rowsAll) {
+    if (r.stale || !fin(r) || TAPS.has(r.book)) continue;
+    let b = tm.get(r.book); if (!b) tm.set(r.book, (b = [0, 1, 2, 3, 4, 5].map(() => ({ n: 0, w: 0, p: 0 }))));
+    const cell = b[Math.floor(hourPT(Date.parse(r.at)) / 4)];
+    cell.n += 1; if (P(r) > 0) cell.w += 1; cell.p += P(r);
+  }
+  const out: ShiftSummary = {
+    at: new Date().toISOString(),
+    books, red,
+    orig: { clean: statOf(origDone.filter((r) => !bandErr(r))), errs: statOf(origDone.filter(bandErr)), allO: statOf(origDone) },
+    counts: { all: rows.filter((r) => !TAPS.has(r.book)).length, origClean: rows.filter((r) => r.book === "original" && !bandErr(r)).length, diamond25: rows.filter((r) => r.book === "diamond25").length, taps: rows.filter((r) => TAPS.has(r.book)).length },
+    tod: [...tm.entries()].map(([book, b]) => ({ book, b, total: b.reduce((t, x) => t + x.p, 0) })).sort((a, b) => b.total - a.total),
+  };
+  gS.__shiftSum = { at: Date.now(), out };
+  return out;
+});
+async function nightAll(light = false): Promise<NightRow[]> {
+  // + OG / PIVOT / PAPER-twin lanes as their own SHIFT cards (Oct 11, Love), read only.
+  let extra: NightRow[] = [];
+  try {
+    extra = (await import("./grokog")).asNightRows() as NightRow[];
+  } catch {
+    extra = [];
+  }
+  try { extra = [...extra, ...((await import("./scannerbooks")).lineupTwinRows() as NightRow[])]; } catch {}
+  try { extra = [...extra, ...((await import("./grokog")).archiveNightRows() as NightRow[])]; } catch {}
+  // LIGHTER LOAD (Oct 12, Love: "archive all the red books and the ones we never use... lighten her load"): books in
+  // live-switch archivedBooks (never a running one) are left out, and the heavy band snapshots each row carried (never
+  // shown on the page) are dropped. This list went out every 15 s at ~4.6 MB.
+  let arch = new Set<string>();
+  try { const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")); const run = new Set<string>(sw?.liveBook?.books ?? []); arch = new Set<string>((sw?.archivedBooks ?? []).filter((b: string) => !run.has(b))); } catch {}
+  const rows0 = [...listNight(), ...extra].filter((r: any) => !arch.has(String(r.book))).map((r: any) => { if (!r.bands && !r.nav) return r; const { bands, nav, ...rest } = r; return rest; }) as NightRow[];
+  const { lonePurple } = await import("./nightbook");
+  // 2 FEEDS: Vantage's verdict on the same window + side (first one logged), from data/feed-twin.jsonl.
+  const van = new Map<string, boolean>();
+  try {
+    for (const line of readFileSync(join(process.cwd(), "data", "feed-twin.jsonl"), "utf8").split("\n")) {
+      if (!line.trim()) continue;
+      const e = JSON.parse(line) as { ticker?: string; side?: string; vanChan?: string | null };
+      if (!e.ticker || !("vanChan" in e)) continue;
+      const k = `${e.ticker}:${e.side}`;
+      if (!van.has(k)) van.set(k, Boolean(e.vanChan));
+    }
+  } catch {
+  }
+  const rows = rows0.map((r) => {
+    const vb = van.get(`${r.ticker}:${r.side}`);
+    const x = lonePurple(r) ? { ...r, lonePurple: true } : r;
+    return vb === undefined ? x : { ...x, vanBlock: vb };
+  }) as NightRow[];
+  // LIGHT SHIFT (Oct 17): the BANK / INSURANCE view toggles are gone from SHIFT, so the light read skips both replays.
+  if (light) return rows;
+  // Love's toggle: what BANK's exits would have done on every trade (bankreplay.ts, read only).
+  try {
+    const { bankReplay } = await import("./bankreplay");
+    const bank = bankReplay(rows);
+    let ins: Record<string, { insPnl: number; insNote: string }> = {};
+    try {
+      ins = (await import("./insurance")).insuranceReplay(rows);
+    } catch {
+      ins = {};
+    }
+    return rows.map((r) => {
+      const x = bank[r.id] ? { ...r, bankPnl: bank[r.id].pnl, bankExit: bank[r.id].exit } : r;
+      return ins[r.id] ? { ...x, insPnl: ins[r.id].insPnl, insNote: ins[r.id].insNote } : x;
+    }) as NightRow[];
+  } catch {
+    return rows;
+  }
+}
+
+// CLAUDE BACKTEST (read only): data/claude-backtest.json, rebuilt by scripts/claude-backtest.py.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type BtJson = { at: string; night: Record<string, any>[]; week: Record<string, any>[] };
+export const getClaudeBacktest = createServerFn({ method: "GET" }).handler(async (): Promise<BtJson | null> => {
+  try {
+    return JSON.parse(readFileSync(join(process.cwd(), "data", "claude-backtest.json"), "utf8"));
+  } catch {
+    return null;
+  }
+});
+
+export const getTruth = createServerFn({ method: "GET" }).handler(async (): Promise<{ at: string | null; rows: TruthRow[]; open: string[] }> => {
+  return listTruth();
+});
+
+export const getLiveSwitch = createServerFn({ method: "GET" }).handler(async (): Promise<LiveSwitch> => {
+  return readSwitch();
+});
+
+export const setLiveSwitch = createServerFn({ method: "POST" })
+  .validator((input: { live: boolean }) => input)
+  .handler(async ({ data }): Promise<LiveSwitch> => {
+    const out = writeSwitch({ live: data.live === true, note: data.live === true ? "Turned on from the desk" : "Turned off from the desk" });
+    // Turning Kalshi LIVE on starts the copy fresh (Oct 5): rows the books booked while LIVE was off are not sent late
+    // and do not raise false REDs. Only rows booked after this moment go to Kalshi.
+    if (data.live === true) {
+      try {
+        const file = join(process.cwd(), "data", "live-switch.json");
+        const raw = JSON.parse(readFileSync(file, "utf8"));
+        if (raw.liveBook) {
+          raw.liveBook.since = new Date().toISOString();
+          atomicWriteFs(file, JSON.stringify(raw, null, 2));
+        }
+      } catch {
+      }
+    }
+    return out;
+  });
+
+// STEP OUT (Love, Oct 8 ~2:35 AM PT: "instinctively i think i know when to call it a day... that chasing feeling... next time
+// i feel like it's time to step out, i'll step out" / "ooooo yesss add it add it"). One tap: Kalshi LIVE goes off (open
+// trades keep their exits, paper keeps booking) and the call is written to data/step-out.jsonl. STEP BACK IN turns LIVE
+// on fresh (rows booked while she was out are never sent late). The DAY tab's YOUR CALLS card scores each call against
+// what the RUN books did on paper while she was out.
+export const stepOut = createServerFn({ method: "POST" })
+  .validator((input: { out: boolean }) => input)
+  .handler(async ({ data }): Promise<{ live: boolean; stepped: boolean }> => {
+    const out = writeSwitch({ live: !data.out, note: data.out ? "Love stepped out (her call)" : "Love stepped back in" });
+    const file = join(process.cwd(), "data", "live-switch.json");
+    if (!data.out) {
+      try {
+        const raw = JSON.parse(readFileSync(file, "utf8"));
+        if (raw.liveBook) {
+          raw.liveBook.since = new Date().toISOString();
+          atomicWriteFs(file, JSON.stringify(raw, null, 2));
+        }
+      } catch {
+      }
+    }
+    let todayPnl: number | null = null;
+    try {
+      todayPnl = (await import("./riskguard")).riskNow().todayPnl;
+    } catch {
+      todayPnl = null;
+    }
+    try {
+      appendFileSync(join(process.cwd(), "data", "step-out.jsonl"), JSON.stringify({ at: new Date().toISOString(), action: data.out ? "out" : "in", todayPnl }) + "\n");
+    } catch {
+    }
+    return { live: out.live === true, stepped: data.out };
+  });
+
+// RUN BUTTONS (Love, Oct 5 ~night: "a RUN button for kalshi above the 12 24 all buttons thats red when its off and green
+// when its on ... if multiple are chosen whichever is first goes"). Each SHIFT book card adds/removes its book from
+// live-switch liveBook.books. The engine already takes one live trade per window: the first book to fire owns it.
+// RUN never turns Kalshi LIVE on; the master switch still decides whether anything is sent.
+export const getRunBooks = createServerFn({ method: "GET" }).handler(async (): Promise<{ live: boolean; books: string[]; auto?: string | null; autoOn?: boolean; autoHours?: number; risk?: { todayPnl: number; limit: number; stopped: boolean; benched: Record<string, { until: string; losses: number }> } | null; presets?: { name: string; books: string[]; savedAt?: string }[]; stepped?: boolean }> => {
+  try {
+    const raw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+    const lb = raw?.liveBook;
+    const books = lb ? (Array.isArray(lb.books) ? lb.books : lb.book ? [lb.book] : []) : [];
+    let risk = null;
+    try {
+      const rk = (await import("./riskguard")).riskNow();
+      risk = { todayPnl: rk.todayPnl, limit: rk.limit, stopped: rk.stopped, benched: rk.benched };
+    } catch {
+      risk = null;
+    }
+    let stepped = false;
+    try {
+      const lines = readFileSync(join(process.cwd(), "data", "step-out.jsonl"), "utf8").trim().split("\n");
+      stepped = raw?.live !== true && JSON.parse(lines[lines.length - 1]).action === "out";
+    } catch {
+      stepped = false;
+    }
+    return { live: raw?.live === true, books: books.map(String), auto: raw?.autoRoll?.on ? raw.autoRoll.current ?? null : null, autoOn: raw?.autoRoll?.on === true, autoHours: Number(raw?.autoRoll?.hours) || 4, risk, presets: Array.isArray(raw?.presets) ? raw.presets : [], stepped };
+  } catch {
+    return { live: false, books: [] };
+  }
+});
+
+// AUTO ROLL switch on the SHIFT tab (Love, Oct 5: "im not seeing the auto roll here anywhere... lets get that fixed so i can
+// see it too"). Off = the AUTO book (if any) comes off Kalshi; her own RUN picks are never touched.
+export const setAutoRoll = createServerFn({ method: "POST" })
+  .validator((input: { on: boolean }) => input)
+  .handler(async ({ data }): Promise<{ on: boolean }> => {
+    const file = join(process.cwd(), "data", "live-switch.json");
+    const raw = JSON.parse(readFileSync(file, "utf8"));
+    const ar = raw.autoRoll || { minN: 12, minWin: 0.6, hours: 4 };
+    if (!data.on && ar.current && raw.liveBook && Array.isArray(raw.liveBook.books)) raw.liveBook.books = raw.liveBook.books.filter((b: string) => b !== ar.current);
+    raw.autoRoll = { ...ar, on: data.on === true, current: data.on ? ar.current ?? null : null };
+    atomicWriteFs(file, JSON.stringify(raw, null, 2));
+    return { on: raw.autoRoll.on };
+  });
+
+// LIVE LINE on each RUN card (Love, Oct 5: "yesss plsss"): what each book actually made on Kalshi, from the real fills
+// (kalshi-audit.json, last 1000 fills) and each window's result. A window belongs to the book that fired it first
+// (live-book-done.json). Love's own trades in that same window are counted in with it.
+// KALSHI-TRUE (Love, Oct 9 ~1:50 AM PT: "yes pls, kalshi true"): for every paper row a RUN book took, whether its copy
+// actually went to Kalshi ("live") or was held ("held": a band rule, the breaker, the stop, or the price ran first).
+// Rows booked while the book was off RUN are left out. The cards add up only the "live" rows.
+export const getLiveCopyMap = createServerFn({ method: "GET" }).handler(async (): Promise<Record<string, string>> => liveCopyMapNow());
+function liveCopyMapNow(): Record<string, string> {
+  // Oct 9 (Love: "16 held by the rules? if the book is green..."): say WHICH rule held it, so the stop, the bench, the
+  // band rules and the price running away aren't lumped together.
+  const kind = (r: string) =>
+    /daily stop/.test(r) ? "stop" : /breaker/.test(r) ? "bench" : /paper closed it|resting|window ended|unfilled|never broke/.test(r) ? "ran" : /already|other side|one book/.test(r) ? "taken" : /headroom|band|purple|wall|σ|session|nav|target|front|DNA/i.test(r) ? "band" : "other";
+  const out: Record<string, string> = {};
+  try {
+    const done = JSON.parse(readFileSync(join(process.cwd(), "data", "live-book-done.json"), "utf8")) as Record<string, { status?: string; reason?: string; final?: boolean }>;
+    for (const [id, d] of Object.entries(done)) {
+      if (/booked before RUN/.test(String(d?.reason || ""))) continue;
+      if (d?.status === "filled" || d?.status === "partial") out[id] = "live";
+      else if (d?.status === "skipped" || d?.status === "blocked" || d?.status === "missed" || d?.status === "resting") out[id] = d?.status === "resting" ? "ran" : kind(String(d?.reason || ""));
+    }
+  } catch {
+  }
+  return out;
+}
+export const getLiveByBook = createServerFn({ method: "GET" }).handler(async (): Promise<Record<string, { today: number; todayN: number; all: number; allN: number }>> => {
+  // Oct 7: one count for the cards and the daily stop (riskguard.liveTrades: Kalshi settlements for results, NO fills
+  // priced as NO). The old count dropped losing trades once the night book forgot their window and read NO buys as YES.
+  const out: Record<string, { today: number; todayN: number; all: number; allN: number }> = {};
+  try {
+    const { liveTrades } = await import("./riskguard");
+    const todayPT = new Date().toLocaleDateString("en-US", { timeZone: "America/Los_Angeles" });
+    // SHARED CREDIT (Love, Oct 12: "they're basically all the same trades... could you have it be congruent"). The desk
+    // holds one Kalshi position per window, so the book that happened to fire first used to get the whole result and its
+    // twins got nothing. Now every book whose own paper call matched that Kalshi trade (same window, same side) is
+    // credited with it, and "__lineup" counts each real trade once.
+    const sideOf = new Map<string, string>();
+    try {
+      const done = JSON.parse(readFileSync(join(process.cwd(), "data", "live-book-done.json"), "utf8")) as Record<string, any>;
+      for (const v of Object.values(done)) if (v && (v.status === "filled" || v.status === "partial") && v.ticker && v.side && !sideOf.has(v.ticker)) sideOf.set(String(v.ticker), String(v.side));
+    } catch {}
+    let lineupSince = "";
+    try { lineupSince = String(JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.liveBook?.since || ""); } catch {}
+    const agree = new Map<string, Set<string>>();
+    const vote = (book: string, ticker: string, side: string) => { if (sideOf.get(ticker) !== side) return; let st = agree.get(ticker); if (!st) agree.set(ticker, (st = new Set())); st.add(book); };
+    try { for (const r of (await import("./grokog")).asNightRows()) vote(String(r.book), String(r.ticker), String(r.side)); } catch {}
+    try { const nb = JSON.parse(readFileSync(join(process.cwd(), "data", "night-book.json"), "utf8")); for (const r of Array.isArray(nb) ? nb : []) if (r?.book && !r.stale && !r.dnaMode) vote(String(r.book), String(r.ticker), String(r.side)); } catch {}
+    const credit = (book: string, t: { pnl: number; first: string }, today: boolean) => {
+      const o = (out[book] ||= { today: 0, todayN: 0, all: 0, allN: 0 });
+      o.all += t.pnl;
+      o.allN += 1;
+      if (today) { o.today += t.pnl; o.todayN += 1; }
+    };
+    for (const t of liveTrades()) {
+      const today = new Date(t.first).toLocaleDateString("en-US", { timeZone: "America/Los_Angeles" }) === todayPT;
+      const books = new Set<string>(agree.get(t.ticker) ?? []);
+      books.add(t.book);
+      for (const b of books) credit(b, t, today);
+      if (t.first >= lineupSince) credit("__lineup", t, today);
+    }
+    for (const o of Object.values(out)) {
+      o.today = Math.round(o.today * 100) / 100;
+      o.all = Math.round(o.all * 100) / 100;
+    }
+  } catch {
+  }
+  return out;
+});
+
+// SAVED SETS (Love, Oct 7 ~6 PM PT: "this is a LOVELY combination, lets create group pairings... one we should bookmark and
+// be able to come back to. 4 Leaf Clover"). live-switch "presets": [{ name, books, savedAt }]. Saving keeps the books on
+// RUN right now under a name; applying one puts exactly those books on RUN (rows a newly added book booked earlier are
+// written down as skipped, never sent late), the same way the RUN pills do.
+export const saveRunPreset = createServerFn({ method: "POST" })
+  .validator((input: { name: string }) => input)
+  .handler(async ({ data }): Promise<{ presets: { name: string; books: string[]; savedAt?: string }[] }> => {
+    const name = String(data.name || "").trim().slice(0, 40);
+    if (!name) throw new Error("name the set");
+    const file = join(process.cwd(), "data", "live-switch.json");
+    const raw = JSON.parse(readFileSync(file, "utf8"));
+    const lb = raw.liveBook || { books: [] };
+    const books: string[] = Array.isArray(lb.books) ? lb.books.map(String) : [];
+    const presets = (Array.isArray(raw.presets) ? raw.presets : []).filter((p: { name: string }) => p.name !== name);
+    presets.push({ name, books, savedAt: new Date().toISOString() });
+    raw.presets = presets;
+    atomicWriteFs(file, JSON.stringify(raw, null, 2));
+    return { presets };
+  });
+// LAST LINEUP (Love, Oct 11 ~6:10 AM PT: "can you make it have the last combination of books running saved to be brought
+// back on my own if i want to switch her out for the other books?"). Every time RUN changes (a card's RUN or a saved set),
+// the lineup that was running is saved as the preset "⏮ LAST LINEUP", so one tap on that set brings it back.
+function rememberLast(raw: { presets?: { name: string; books: string[]; savedAt?: string }[] }, before: string[], next: string[]) {
+  if (!before.length || JSON.stringify([...before].sort()) === JSON.stringify([...next].sort())) return;
+  const name = "⏮ LAST LINEUP";
+  const presets = (Array.isArray(raw.presets) ? raw.presets : []).filter((x) => x.name !== name);
+  presets.unshift({ name, books: before, savedAt: new Date().toISOString() });
+  raw.presets = presets;
+}
+export const applyRunPreset = createServerFn({ method: "POST" })
+  .validator((input: { name: string }) => input)
+  .handler(async ({ data }): Promise<{ live: boolean; books: string[] }> => {
+    const dir = join(process.cwd(), "data");
+    const file = join(dir, "live-switch.json");
+    const rawText = readFileSync(file, "utf8");
+    const raw = JSON.parse(rawText);
+    const p = (Array.isArray(raw.presets) ? raw.presets : []).find((x: { name: string }) => x.name === data.name);
+    if (!p) throw new Error("no such set");
+    mkdirSync(join(dir, "backups"), { recursive: true });
+    writeFileSync(join(dir, "backups", "live-switch.json.pre-preset-last"), rawText);
+    const lb = raw.liveBook || { books: [], dollars: 20 };
+    const before: string[] = Array.isArray(lb.books) ? lb.books.map(String) : [];
+    const next: string[] = p.books.map(String);
+    const added = next.filter((b) => !before.includes(b));
+    if (added.length) {
+      try {
+        const doneFile = join(dir, "live-book-done.json");
+        let done: Record<string, Record<string, unknown>> = {};
+        try {
+          done = JSON.parse(readFileSync(doneFile, "utf8"));
+        } catch {
+          done = {};
+        }
+        const now = new Date().toISOString();
+        for (const r of listNight()) {
+          if (!added.includes(r.book) || Date.parse(r.at) < Date.now() - 4 * 3600 * 1000) continue;
+          const d = done[r.id] as { status?: string; final?: boolean } | undefined;
+          if (d && (d.status === "filled" || d.final === true)) continue;
+          done[r.id] = { ...(d || {}), at: now, ticker: r.ticker, side: r.side, status: "skipped", final: true, reason: "booked before RUN was turned on" };
+        }
+        writeFileSync(doneFile, JSON.stringify(done));
+      } catch {
+      }
+      for (const b of added) lb[`${b}RunSince`] = new Date().toISOString();
+    }
+    lb.prevBooks = before;
+    rememberLast(raw, before, next);
+    lb.books = next;
+    raw.liveBook = lb;
+    atomicWriteFs(file, JSON.stringify(raw, null, 2));
+    try {
+      const { appendFileSync } = await import("node:fs");
+      appendFileSync(join(dir, "run-book-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), preset: p.name, books: next }) + "\n");
+    } catch {
+    }
+    return { live: raw.live === true, books: next };
+  });
+
+export const setRunBook = createServerFn({ method: "POST" })
+  .validator((input: { book: string; on: boolean }) => input)
+  .handler(async ({ data }): Promise<{ live: boolean; books: string[] }> => {
+    const book = String(data.book || "");
+    if (!/^[a-z0-9_]{2,24}$/i.test(book)) throw new Error("bad book name");
+    const dir = join(process.cwd(), "data");
+    const file = join(dir, "live-switch.json");
+    const rawText = readFileSync(file, "utf8");
+    const raw = JSON.parse(rawText);
+    mkdirSync(join(dir, "backups"), { recursive: true });
+    writeFileSync(join(dir, "backups", "live-switch.json.pre-runbtn-last"), rawText);
+    const lb = raw.liveBook || { books: [], dollars: 20 };
+    const books: string[] = Array.isArray(lb.books) ? lb.books.map(String) : lb.book ? [String(lb.book)] : [];
+    const had = books.includes(book);
+    let next = books;
+    if (data.on && !had) {
+      next = [...books, book];
+      // Rows this book booked before RUN are written down as skipped, never sent late and never a false RED.
+      try {
+        const doneFile = join(dir, "live-book-done.json");
+        let done: Record<string, Record<string, unknown>> = {};
+        try {
+          done = JSON.parse(readFileSync(doneFile, "utf8"));
+        } catch {
+          done = {};
+        }
+        const now = new Date().toISOString();
+        let n = 0;
+        for (const r of listNight()) {
+          if (r.book !== book || Date.parse(r.at) < Date.now() - 4 * 3600 * 1000) continue;
+          const d = done[r.id] as { status?: string; final?: boolean } | undefined;
+          if (d && (d.status === "filled" || d.final === true)) continue;
+          done[r.id] = { ...(d || {}), at: now, ticker: r.ticker, side: r.side, status: "skipped", final: true, reason: "booked before RUN was turned on" };
+          n++;
+        }
+        if (n) writeFileSync(doneFile, JSON.stringify(done));
+      } catch {
+      }
+      lb[`${book}RunSince`] = new Date().toISOString();
+    } else if (!data.on && had) {
+      next = books.filter((b) => b !== book);
+    }
+    // AUTO ROLL: tapping the AUTO book off keeps it off for 24h; tapping it on makes it one of hers.
+    if (raw.autoRoll && raw.autoRoll.current === book) {
+      if (!data.on) raw.autoRoll.snoozed = { ...(raw.autoRoll.snoozed || {}), [book]: new Date(Date.now() + 24 * 3600 * 1000).toISOString() };
+      raw.autoRoll.current = null;
+    }
+    if (next.length) lb.prevBooks = books;
+    rememberLast(raw, books, next);
+    lb.books = next;
+    delete lb.book;
+    raw.liveBook = lb;
+    atomicWriteFs(file, JSON.stringify(raw, null, 2));
+    try {
+      const { appendFileSync } = await import("node:fs");
+      appendFileSync(join(dir, "run-book-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), book, on: data.on === true, books: next }) + "\n");
+    } catch {
+    }
+    return { live: raw.live === true, books: next };
+  });
+
+export const getLiveSize = createServerFn({ method: "GET" }).handler(async (): Promise<{ dollars: number }> => {
+  return { dollars: liveDollars() };
+});
+
+export const setLiveSize = createServerFn({ method: "POST" })
+  .validator((input: { dollars: number }) => input)
+  .handler(async ({ data }): Promise<{ dollars: number }> => {
+    const n = Math.max(1, Math.min(100, Math.round(data.dollars)));
+    writeLiveDollars(n);
+    // Oct 6 (Love: "the position sizing slider isnt functioning... the sizing didnt update for gold... make em both equal"):
+    // the slider is the one size now: BTC and gold the same (no separate gold size), and the live books + hard cap follow it.
+    try {
+      const sp = join(process.cwd(), "data", "live-size.json");
+      const sz = JSON.parse(readFileSync(sp, "utf8"));
+      delete sz.goldBook;
+      sz.gold = n;
+      writeFileSync(sp, JSON.stringify(sz));
+      const wp = join(process.cwd(), "data", "live-switch.json");
+      const sw = JSON.parse(readFileSync(wp, "utf8"));
+      sw.maxDollars = n;
+      if (sw.liveBook) sw.liveBook.dollars = n;
+      writeFileSync(wp, JSON.stringify(sw, null, 2));
+    } catch {
+    }
+    return { dollars: liveDollars() };
+  });
+
+export const armLiveNow = createServerFn({ method: "POST" })
+  .validator((input: { setup: Setup; asset: AssetSnapshot }) => input)
+  .handler(async ({ data }): Promise<Trade | null> => {
+    ensureEngine();
+    const book = readBook();
+    const kalshi = await sendKalshi(data.setup, data.asset, book.trades);
+    const poly = await sendLive(data.setup, data.asset, book.trades);
+    const made = [kalshi, poly].filter((row): row is Trade => row != null);
+    if (!made.length) return null;
+    writeBook([...made, ...book.trades]);
+    return kalshi ?? poly;
+  });
+
+export const exitLiveOrder = createServerFn({ method: "POST" })
+  .validator((input: { id: string; yesBid: number; yesAsk: number; noBid?: number }) => input)
+  .handler(async ({ data }): Promise<Trade | null> => {
+    const book = readBook();
+    const trade = book.trades.find((t) => t.id === data.id && t.source === "live" && t.venue !== "polymarket");
+    if (!trade || smallTicket(trade)) return null;
+    const live = await import("./kalshi-live.server");
+    const payout = await live.flattenLive(trade, data.yesBid, data.yesAsk, data.noBid);
+    if (payout == null) return null;
+    const closed: Trade = {
+      ...trade,
+      result: "exited",
+      payout,
+      profit: payout - trade.stake,
+      closedAt: new Date().toISOString(),
+    };
+    writeBook(book.trades.map((t) => (t.id === trade.id ? closed : t)));
+    return closed;
+  });
+
+export const killKalshi = createServerFn({ method: "POST" })
+  .validator((input: { ticker?: string } | undefined) => input ?? {})
+  .handler(async ({ data }): Promise<{ ticker: string; payout: number | null }[]> => {
+    const live = await import("./kalshi-live.server");
+    const book = readBook();
+    const shown = new Set(
+      book.trades.filter((t) => t.source === "live" && t.venue !== "polymarket" && t.result === "open").map((t) => t.ticker),
+    );
+    const held = await live.heldFifteens();
+    const targets = data.ticker ? held.filter((row) => row.ticker === data.ticker) : held.filter((row) => !shown.has(row.ticker));
+    const out: { ticker: string; payout: number | null }[] = [];
+    for (const row of targets) {
+      const payout = await live.flattenTicker(row.ticker);
+      out.push({ ticker: row.ticker, payout });
+      if (payout != null) {
+        writeBook(
+          book.trades.map((t) =>
+            t.ticker === row.ticker && t.source === "live" && t.result === "open"
+              ? { ...t, result: "exited" as const, payout, profit: Math.round((payout - t.stake) * 100) / 100, closedAt: new Date().toISOString() }
+              : t,
+          ),
+        );
+      }
+    }
+    return out;
+  });
+
+export const resizeLiveOrder = createServerFn({ method: "POST" })
+  .validator((input: { id: string; dollars: number; yesBid: number; yesAsk: number }) => input)
+  .handler(async ({ data }): Promise<{ trade: Trade; slice: Trade | null } | null> => {
+    const book = readBook();
+    const trade = book.trades.find((t) => t.id === data.id && t.source === "live" && t.venue !== "polymarket" && t.result === "open");
+    if (!trade) return null;
+    const live = await import("./kalshi-live.server");
+    const resized = await live.resizeLive(trade, data.dollars, data.yesBid, data.yesAsk);
+    if (!resized) return null;
+    const next: Trade = { ...trade, stake: resized.stake, contracts: resized.contracts };
+    const slice: Trade | null = resized.slice
+      ? {
+          ...trade,
+          id: newId(),
+          setupId: `${trade.setupId}:trim:${Date.now()}`,
+          openedAt: trade.openedAt,
+          closedAt: new Date().toISOString(),
+          stake: resized.slice.stake,
+          contracts: Math.max(0.01, trade.contracts - resized.contracts),
+          result: "exited",
+          payout: resized.slice.payout,
+          profit: resized.slice.profit,
+          notes: "Trimmed from the desk.",
+        }
+      : null;
+    writeBook(slice ? [slice, ...book.trades.map((t) => (t.id === trade.id ? next : t))] : book.trades.map((t) => (t.id === trade.id ? next : t)));
+    return { trade: next, slice };
+  });
+
+export const askDeskGrok = createServerFn({ method: "POST" })
+  .validator((input: GrokBriefing) => input)
+  .handler(
+    async ({
+      data,
+    }): Promise<
+      { ok: true; call: GrokCall; cached: boolean } | { ok: false; error: string }
+    > => {
+      return reasonSetup(data);
+    },
+  );
+
+
+// PAPER TAKE PROFIT (Love, Oct 3): one hard take profit for every paper book, set from SHIFT. null = each book's own.
+export const getPaperTp = createServerFn({ method: "GET" }).handler(async (): Promise<number | null> => {
+  try {
+    const v = Number(JSON.parse(readFileSync(join(process.cwd(), "data", "paper-exit.json"), "utf8")).tpPct);
+    return v > 0 ? v : null;
+  } catch {
+    return null;
+  }
+});
+export const setPaperTp = createServerFn({ method: "POST" })
+  .validator((input: { pct: number | null }) => input)
+  .handler(async ({ data }): Promise<number | null> => {
+    const v = Number(data.pct);
+    const pct = v >= 10 && v <= 500 ? Math.round(v) : null;
+    writeFileSync(join(process.cwd(), "data", "paper-exit.json"), JSON.stringify({ tpPct: pct, at: new Date().toISOString(), note: "set from SHIFT" }));
+    return pct;
+  });
+
+
+// PART SELL from the bottom dock (Love, Oct 3): 25 / 50 / 75% of an open Kalshi position. 100% uses closeNow.
+export const partNow = createServerFn({ method: "POST" })
+  .validator((input: { ticker: string; pct: number }) => input)
+  .handler(async ({ data }) => {
+    ensureEngine();
+    return withCloseLock(data.ticker, async () => {
+    const live = await import("./kalshi-live.server");
+    const out = await live.partLive(data.ticker, data.pct);
+    return out
+      ? { ok: true, line: `Sold ${Math.round(data.pct)}%: ${out.filled} contracts for $${out.payout.toFixed(2)}. ${out.left} left.` }
+      : { ok: false, line: `Couldn't sell ${Math.round(data.pct)}% right now. Press it again.` };
+    });
+  });
+
+// REAL-PATH EXITS (Love, Oct 3 ~5:40 PM PT: "include the safety net calculation in the sweet spot... gives up x on
+// winners with safety net and without"). Replays each trade on the real Kalshi bid path the desk recorded
+// (data/bid-paths.json, every ~12 s), so whipsaws count: a trade that pokes past a step and dips back IS sold there.
+// Net steps come from live-switch "netBelow" (line minus those points of the max), or line-15 / line-10 if none is set.
+type PathLevel = { t: number; none: { total: number; gaveUp: number }; net: { total: number; gaveUp: number; saved: number; soldW: number; soldL: number } };
+export const getPathExits = createServerFn({ method: "POST" })
+  .validator((input: { ids: string[]; ofMax: boolean; levels: number[] }) => input)
+  .handler(async ({ data }): Promise<{ n: number; netBelow: number[]; netLive: boolean; levels: PathLevel[] }> => {
+    const read = <T,>(f: string, d: T): T => {
+      try {
+        return JSON.parse(readFileSync(join(process.cwd(), "data", f), "utf8")) as T;
+      } catch {
+        return d;
+      }
+    };
+    const rows = read<NightRow[]>("night-book.json", []);
+    const paths = read<Record<string, [number, number, number, number][]>>("bid-paths.json", {});
+    const sw = read<{ netBelow?: number[] }>("live-switch.json", {});
+    const live = Array.isArray(sw.netBelow) ? sw.netBelow.map(Number).filter((n) => n > 0 && n < 100) : [];
+    const netBelow = live.length ? live : [15, 10];
+    const want = new Set((data.ids ?? []).slice(0, 5000));
+    type R = { stake: number; ask: number; up: boolean; won: boolean; t0: number; path: [number, number, number, number][] };
+    const use: R[] = [];
+    for (const r of rows) {
+      if (!want.has(r.id)) continue;
+      const path = r.ticker ? paths[r.ticker] : undefined;
+      const ask = Number(r.ask);
+      if (!path?.length || !(ask > 0.02 && ask < 0.99) || (r.bell !== "yes" && r.bell !== "no")) continue;
+      use.push({ stake: Number(r.stake) || 0, ask, up: r.side === "up", won: (r.bell === "yes") === (r.side === "up"), t0: Date.parse(r.at) / 1000, path });
+    }
+    const sim = (r: R, lineOm: number, steps: number[]): { pnl: number; byNet: boolean } => {
+      const mx = (1 / r.ask - 1) * 100;
+      let peak = -1e9;
+      let armed = 0;
+      for (const p of r.path) {
+        if (p[0] < r.t0) continue;
+        const bid = r.up ? p[1] : p[2];
+        if (!(bid > 0)) continue;
+        const prof = (bid / r.ask - 1) * 100;
+        const om = (prof / mx) * 100;
+        if (lineOm < 100 && om >= lineOm) return { pnl: (r.stake * prof) / 100, byNet: false };
+        peak = Math.max(peak, om);
+        for (const s of steps) if (s > 0 && peak >= s + 0.5 && s > armed) armed = s;
+        if (armed && om <= armed && bid > 0.02) return { pnl: (r.stake * prof) / 100, byNet: true };
+      }
+      return { pnl: r.won ? (r.stake * mx) / 100 : -r.stake, byNet: false };
+    };
+    const levels: PathLevel[] = (data.levels ?? []).slice(0, 60).map((t) => {
+      const out: PathLevel = { t, none: { total: 0, gaveUp: 0 }, net: { total: 0, gaveUp: 0, saved: 0, soldW: 0, soldL: 0 } };
+      for (const r of use) {
+        const mx = (1 / r.ask - 1) * 100;
+        const lineOm = data.ofMax ? Math.min(100, t) : Math.min(100, (t / mx) * 100);
+        const full = (r.stake * mx) / 100;
+        const a = sim(r, lineOm, []);
+        out.none.total += a.pnl;
+        if (r.won) out.none.gaveUp += full - a.pnl;
+        const b = sim(r, lineOm, netBelow.map((n) => lineOm - n));
+        out.net.total += b.pnl;
+        if (r.won) out.net.gaveUp += full - b.pnl;
+        if (b.byNet) {
+          if (r.won) out.net.soldW += 1;
+          else {
+            out.net.soldL += 1;
+            out.net.saved += b.pnl + r.stake;
+          }
+        }
+      }
+      return out;
+    });
+    return { n: use.length, netBelow, netLive: live.length > 0, levels };
+  });
+
+// TRAJECTORY (Love, Oct 4 ~5 AM PT: "a TRAJECTORY tab... a projection of how all of the different books would perform at their
+// current rate, with a window for error over a week / month / year... a box for prices i can set... click thru the books").
+// Per book: every settled trade's return on its stake, its entry price, and how often it trades. LIVE = Kalshi's own fills and
+// settlements for the windows the desk traded (so it is the real money, fees included).
+export type TrajBook = { book: string; n: number; wins: number; rets: number[]; asks: number[]; perDay: number; from: string | null; to: string | null; live?: boolean };
+export const getTrajectory = createServerFn({ method: "GET" }).handler(async (): Promise<TrajBook[]> => {
+  const out: TrajBook[] = [];
+  const rows = listNight().filter((r) => !r.dnaMode && !(r as { stale?: boolean }).stale && r.result !== "open" && r.pnl != null && r.stake > 0 && r.ask > 0);
+  const by = new Map<string, NightRow[]>();
+  for (const r of rows) {
+    const a = by.get(r.book) || [];
+    a.push(r);
+    by.set(r.book, a);
+  }
+  for (const [book, rs] of by) {
+    rs.sort((a, b) => (a.at < b.at ? -1 : 1));
+    const from = rs[0].at;
+    const to = rs[rs.length - 1].at;
+    const days = Math.max(0.5, (Date.parse(to) - Date.parse(from)) / 86400000);
+    out.push({ book, n: rs.length, wins: rs.filter((r) => (r.pnl ?? 0) > 0).length, rets: rs.map((r) => Math.round(((r.pnl as number) / r.stake) * 10000) / 10000), asks: rs.map((r) => r.ask), perDay: Math.round((rs.length / days) * 10) / 10, from, to });
+  }
+  try {
+    const audit = JSON.parse(readFileSync(join(process.cwd(), "data", "kalshi-audit.json"), "utf8")) as { fills?: Record<string, string | boolean>[]; settlements?: Record<string, string | number>[] };
+    const done = JSON.parse(readFileSync(join(process.cwd(), "data", "live-book-done.json"), "utf8")) as Record<string, { status?: string; ticker?: string }>;
+    const desk = new Set<string>();
+    for (const [k, v] of Object.entries(done)) if (v && (v.status === "filled" || v.status === "resting")) desk.add(v.ticker || k.split(":")[0]);
+    const fills = new Map<string, Record<string, string | boolean>[]>();
+    for (const f of audit.fills || []) {
+      const t = String(f.ticker);
+      const a = fills.get(t) || [];
+      a.push(f);
+      fills.set(t, a);
+    }
+    const rets: number[] = [];
+    const asks: number[] = [];
+    const times: string[] = [];
+    let wins = 0;
+    for (const s of audit.settlements || []) {
+      const tk = String(s.ticker);
+      if (!desk.has(tk) || !fills.has(tk) || String(s.t) < "2026-10-03T21:00") continue;
+      const fs = fills.get(tk)!.slice().sort((a, b) => (String(a.t) < String(b.t) ? -1 : 1));
+      let buys = 0;
+      let sells = 0;
+      let cash = 0;
+      let fee = Number(s.fee) || 0;
+      for (const f of fs) {
+        const c = Number(f.count);
+        const y = Number(f.yes);
+        if (f.action === "buy") {
+          buys += c;
+          cash -= c * y;
+        } else {
+          sells += c;
+          cash += c * y;
+        }
+        fee += Number(f.fee) || 0;
+      }
+      const pnl = cash + (buys - sells) * (Number(s.value) / 100) - fee;
+      // Stake = the whole opening order (Kalshi splits one order into several fills; the first piece can be 0.15 contracts).
+      const f0 = fs[0];
+      const px = f0.action === "buy" ? Number(f0.yes) : 1 - Number(f0.yes);
+      const stake = fs.filter((f) => f.order === f0.order).reduce((sum, f) => sum + Number(f.count) * (f.action === "buy" ? Number(f.yes) : 1 - Number(f.yes)), 0);
+      if (!(stake > 0) || !(px > 0)) continue;
+      rets.push(Math.round((pnl / stake) * 10000) / 10000);
+      asks.push(Math.round(px * 100) / 100);
+      times.push(String(s.t));
+      if (pnl > 0) wins += 1;
+    }
+    if (rets.length) {
+      times.sort();
+      const days = Math.max(0.5, (Date.parse(times[times.length - 1]) - Date.parse(times[0])) / 86400000);
+      out.unshift({ book: "live", live: true, n: rets.length, wins, rets, asks, perDay: Math.round((rets.length / days) * 10) / 10, from: times[0], to: times[times.length - 1] });
+    }
+  } catch {
+  }
+  return out;
+});
+
+// HOURS BY HAND (Oct 22 ~12:41 PM PT, Love: "can we have a running schedule pill in the table above our running books that can show me the current schedule
+// with tick boxes that can allow me to add or drop hours on there myself"): each Pacific hour belongs to the MAIN book (recon-tog) or the DELAYED twin
+// (recon-dly). live-switch bookSkipHours holds it; a tap moves one hour, writes her log line, and moves the golden baseline with it (her change, not drift).
+const pyJson = (x: any): string => Array.isArray(x) ? "[" + x.map(pyJson).join(", ") + "]" : x && typeof x === "object" ? "{" + Object.keys(x).sort().map((k) => JSON.stringify(k) + ": " + pyJson(x[k])).join(", ") + "}" : JSON.stringify(x);
+// HOURS BY KALSHI'S LABEL (Oct 22 ~4:30 PM PT, Love picked "Follow Kalshi labels"): an hour owns the windows Kalshi labels :00, :15, :30 and :45 by their
+// close time, so the hour is read off the running window's CLOSE (the 3:45-4:00 PM window, labelled 4:00, belongs to the 4 PM book). Four full windows each.
+// BACK TO THE REAL CLOCK (fix101, Oct 22 ~6:50 PM PT, Love picked "Real clock"): hour H = H:00 to H:59 real time; fix93's label hours retired.
+const ptHourNow = () => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+export const getBookHours = createServerFn({ method: "GET" }).handler(async () => {
+  const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+  const tog: number[] = sw?.bookSkipHours?.["recon-tog"] ?? [], dly: number[] = sw?.bookSkipHours?.["recon-dly"] ?? [];
+  // THE REJECTION MODEL'S HOURS TOO (fix184, Oct 24 ~11:55 PM PT, Love: "could you add in a 3rd toggle for the rejection model on the schedule so i can see which
+  // hours she has?"): live-switch offHourMain.rejHours - in those hours the rejection model (recon-rej) trades Kalshi and the main book sits out.
+  const rej: number[] = Array.isArray(sw?.offHourMain?.rejHours) ? sw.offHourMain.rejHours.map(Number) : [];
+  // GOLD AND BTC APART (fix244, Oct 25 ~10:32 PM PT, Love: "can we update it to show that hun? so i don't accidentally switch one?"): each hour also carries
+  // btc / gold rows from offHourMain.rejHoursByAsset (fix243); the twin's hours stay shared by both assets.
+  const byA = (a: string): number[] => { const m = sw?.offHourMain?.rejHoursByAsset?.[a]; return Array.isArray(m) ? m.map(Number) : rej; };
+  // fix278: each asset row reads its own main / twin hours (bookSkipHoursByAsset), falling back to the shared lists.
+  const skA = (a: string, b: string): number[] => { const m = sw?.bookSkipHoursByAsset?.[a]?.[b]; return Array.isArray(m) ? m.map(Number) : (sw?.bookSkipHours?.[b] ?? []).map(Number); };
+  const rowA = (h: number, rj: number[], a: string) => { const tA = skA(a, "recon-tog"), dA = skA(a, "recon-dly"); return { main: !tA.includes(h) && !rj.includes(h) && dA.includes(h), twin: !dA.includes(h), rej: rj.includes(h) && dA.includes(h) }; };
+  const rB = byA("btc"), rG = byA("gold");
+  return { hours: Array.from({ length: 24 }, (_, h) => ({ h, main: !tog.includes(h) && !rej.includes(h), twin: !dly.includes(h), rej: rej.includes(h), btc: rowA(h, rB, "btc"), gold: rowA(h, rG, "gold") })), now: ptHourNow() };
+});
+export const setBookHour = createServerFn({ method: "POST" })
+  .validator((input: { hour: number; to: "main" | "twin" | "rej"; asset?: "btc" | "gold" }) => input)
+  .handler(async ({ data }) => {
+    const h = Math.floor(Number(data.hour));
+    if (!(h >= 0 && h <= 23) || !["main", "twin", "rej"].includes(data.to)) throw new Error("bad hour");
+    const fs = await import("node:fs");
+    const swFile = join(process.cwd(), "data", "live-switch.json");
+    const sw = JSON.parse(readFileSync(swFile, "utf8"));
+    const bh = sw.bookSkipHours || (sw.bookSkipHours = {});
+    const put = (book: string, skip: boolean) => { const s = new Set<number>(bh[book] ?? []); if (skip) s.add(h); else s.delete(h); bh[book] = [...s].sort((a, b) => a - b); };
+    // fix244: a main or rejection tap on one asset's row moves that asset only (offHourMain.rejHoursByAsset); the main book stays open for the other asset,
+    // which trades main unless that hour is in its own rejection list. The twin box still moves the hour for both assets.
+    const oneA = (data.asset === "btc" || data.asset === "gold") && data.to !== "twin" && sw.offHourMain?.rejHoursByAsset && typeof sw.offHourMain.rejHoursByAsset === "object" ? data.asset : "";
+    const omWas = JSON.stringify(sw.offHourMain ?? null);
+    const om = sw.offHourMain && typeof sw.offHourMain === "object" ? sw.offHourMain : null;
+    const rejWas = om && Array.isArray(om.rejHours) ? JSON.stringify(om.rejHours) : "";
+    // HOURS PER ASSET (fix278, Oct 26 ~12:25 PM PT, Love: "could you add in the ability to shift the individual assets to individual books on the schedule? ... i tried to only change gold, and it changed both books"): a tap on one asset's row moves that asset's
+    // main / twin / rejection hour only (bookSkipHoursByAsset + offHourMain.rejHoursByAsset); the shared bookSkipHours keep an hour skipped only when every asset skips it.
+    const AS = ["btc", "gold"]; const twA = (data.asset === "btc" || data.asset === "gold") ? data.asset : "";
+    const bA = sw.bookSkipHoursByAsset && typeof sw.bookSkipHoursByAsset === "object" ? sw.bookSkipHoursByAsset : (sw.bookSkipHoursByAsset = {});
+    for (const a of AS) { bA[a] = bA[a] && typeof bA[a] === "object" ? bA[a] : {}; for (const bk of ["recon-tog", "recon-dly"]) if (!Array.isArray(bA[a][bk])) bA[a][bk] = [...(bh[bk] ?? [])].map(Number); }
+    const putA = (a: string, book: string, skip: boolean) => { const s = new Set<number>(bA[a][book].map(Number)); if (skip) s.add(h); else s.delete(h); bA[a][book] = [...s].sort((x, y) => x - y); };
+    const syncAll = () => { for (const bk of ["recon-tog", "recon-dly"]) bh[bk] = Array.from({ length: 24 }, (_, x) => x).filter((x) => AS.every((a) => bA[a][bk].map(Number).includes(x))); };
+    if (twA) {
+      putA(twA, "recon-tog", data.to !== "main");
+      putA(twA, "recon-dly", data.to !== "twin");
+      syncAll();
+      if (sw.offHourMain?.rejHoursByAsset && typeof sw.offHourMain.rejHoursByAsset === "object") {
+        const ob = sw.offHourMain.rejHoursByAsset; const ra = new Set<number>((Array.isArray(ob[twA]) ? ob[twA] : []).map(Number)); if (data.to === "rej") ra.add(h); else ra.delete(h); ob[twA] = [...ra].sort((a, b) => a - b);
+        const ks = Object.keys(ob); sw.offHourMain.rejHours = Array.from({ length: 24 }, (_, x) => x).filter((x) => ks.every((k) => Array.isArray(ob[k]) && ob[k].map(Number).includes(x)));
+      }
+    } else if (oneA) {
+      put("recon-tog", false);
+      put("recon-dly", true);
+      const ob = sw.offHourMain.rejHoursByAsset; const ra = new Set<number>((Array.isArray(ob[oneA]) ? ob[oneA] : []).map(Number)); if (data.to === "rej") ra.add(h); else ra.delete(h); ob[oneA] = [...ra].sort((a, b) => a - b);
+      const ks = Object.keys(ob); sw.offHourMain.rejHours = Array.from({ length: 24 }, (_, x) => x).filter((x) => ks.every((k) => Array.isArray(ob[k]) && ob[k].map(Number).includes(x))); // both assets on rejection
+    } else {
+    put("recon-tog", data.to !== "main");
+    put("recon-dly", data.to !== "twin");
+    for (const a of AS) { putA(a, "recon-tog", data.to !== "main"); putA(a, "recon-dly", data.to !== "twin"); } // fix278: a shared tap moves both assets' own lists too
+    // fix184: the rejection model's box moves the hour in or out of offHourMain.rejHours (main and twin sit out it; a main or twin tap takes it back).
+    if (om && !oneA) { const rs = new Set<number>((om.rejHours ?? []).map(Number)); if (data.to === "rej") rs.add(h); else rs.delete(h); om.rejHours = [...rs].sort((a, b) => a - b);
+      // fix243: a tap moves the hour for both assets in offHourMain.rejHoursByAsset too
+      if (om.rejHoursByAsset && typeof om.rejHoursByAsset === "object") for (const ak of Object.keys(om.rejHoursByAsset)) { const ra = new Set<number>((Array.isArray(om.rejHoursByAsset[ak]) ? om.rejHoursByAsset[ak] : []).map(Number)); if (data.to === "rej") ra.add(h); else ra.delete(h); om.rejHoursByAsset[ak] = [...ra].sort((a, b) => a - b); } }
+    }
+    const rejMoved = om ? JSON.stringify(om.rejHours) !== rejWas || JSON.stringify(sw.offHourMain ?? null) !== omWas : false;
+    const tmp = swFile + ".tmp-hours";
+    writeFileSync(tmp, JSON.stringify(sw, null, 2));
+    renameSync(tmp, swFile);
+    const at = new Date().toISOString();
+    const lbl = `${h % 12 === 0 ? 12 : h % 12} ${h < 12 ? "AM" : "PM"}`;
+    try {
+      const gFile = join(process.cwd(), "data", "golden-baseline.json");
+      const mode = fs.statSync(gFile).mode & 0o777;
+      fs.chmodSync(gFile, 0o644);
+      const g = JSON.parse(readFileSync(gFile, "utf8"));
+      const { createHash } = await import("node:crypto");
+      g.config.bookSkipHours = createHash("sha256").update(pyJson(bh)).digest("hex").slice(0, (g.config.bookSkipHours || "").length || 10);
+      g.config.bookSkipHoursByAsset = createHash("sha256").update(pyJson(sw.bookSkipHoursByAsset)).digest("hex").slice(0, 10); // fix278
+      // fix184: python json.dumps escapes every non-ASCII character (ensure_ascii) - the offHourMain notes carry some, so match it before hashing.
+      if (rejMoved) g.config.offHourMain = createHash("sha256").update(pyJson(sw.offHourMain).replace(/[\u0080-\uffff]/g, (c) => "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0"))).digest("hex").slice(0, (g.config.offHourMain || "").length || 10);
+      writeFileSync(gFile, JSON.stringify(g, null, 2));
+      fs.chmodSync(gFile, mode);
+    } catch {}
+    // HANDED OVER MID-WINDOW (Oct 22 ~1:12 PM PT, Love: "have her take the next set up that presents itself if i switch books and she hasn't entered a live
+    // position yet"): if she flips the hour that is running now, the new book's calls this window that were sat out for the hour open back up (status
+    // "blocked", not final) - unless any recon book already holds a live position in that market. A blocked call re-aims to her next passing call.
+    if (h === ptHourNow()) {
+      try {
+        const dFile = join(process.cwd(), "data", "live-book-done.json");
+        const dn = JSON.parse(readFileSync(dFile, "utf8"));
+        const winStart = Math.floor(Date.now() / 900000) * 900000;
+        // fix294 (Oct 26 ~4:37 PM PT, Love: "yes i would like that pls" - a schedule tap hands the running window to the new owner right away): the new owner is
+        // main (recon-tog), the twin (recon-dly) or, for a rejection tap, the no-pink copy when it is on her live books (else recon-rej); every one of its calls this
+        // window that sat out for the hour's owner opens back up, only for the asset she tapped (both on a shared tap).
+        const lb294 = JSON.parse(readFileSync(swFile, "utf8"))?.liveBook?.books;
+        const book = data.to === "main" ? "recon-tog" : data.to === "twin" ? "recon-dly" : Array.isArray(lb294) && lb294.includes("recon-togp") ? "recon-togp" : "recon-rej";
+        const tk294 = (twA || oneA) === "gold" ? "KXGOLD" : (twA || oneA) === "btc" ? "KXBTC" : "";
+        const held = new Set(Object.values(dn).filter((v: any) => v && ["filled", "partial"].includes(String(v.status)) && Date.parse(String(v.at)) >= winStart).map((v: any) => String(v.ticker)));
+        let n = 0;
+        for (const [k, v] of Object.entries(dn) as [string, any][]) {
+          if (!v || !k.includes(":" + book + ":") || v.status !== "skipped" || !/sits out her worst hour|takes this hour live|takes the rejection hours live|trades live only in Love's rejection hours/.test(String(v.reason)) || Date.parse(String(v.at)) < winStart || held.has(String(v.ticker)) || (tk294 && !String(v.ticker).startsWith(tk294))) continue; // fix294: every hour-owner skip, her tapped asset only
+          dn[k] = { ...v, at, status: "blocked", final: false, reason: "hour handed over by Love - her next passing setup books" };
+          n += 1;
+        }
+        if (n) { const tmpD = dFile + ".tmp-hours"; writeFileSync(tmpD, JSON.stringify(dn)); renameSync(tmpD, dFile); }
+      } catch {}
+    }
+    try { appendFileSync(join(process.cwd(), "data", "overnight-fixes.log"), `${at} HOURS (Love, in-app schedule pill): ${lbl} PT -> ${data.to === "main" ? "MAIN book" : data.to === "rej" ? "REJECTION model" : "DELAYED twin"}${oneA ? " (" + oneA.toUpperCase() + " only)" : ""}\n`); } catch {}
+    try { appendFileSync(join(process.cwd(), "data", "schedule-changes.jsonl"), JSON.stringify({ at, hour: h, to: data.to, asset: oneA || "both", tog: bh["recon-tog"], dly: bh["recon-dly"], rej: om?.rejHours, rejByAsset: om?.rejHoursByAsset }) + "\n"); } catch {}
+    return { ok: true, hour: h, to: data.to };
+  });
+
+// FIVEY'S CARDS (Oct 25 ~2:20 PM PT, Love: "i don't see the 5M card from last night hun, i want to look at her trades / and let's have the new 123 book have
+// its own card with its own ledger"). Lives here in fns.ts (server-only; src/lib/desk takes no new files), read-only on the desk: every live Polymarket BTC 5m trade (hedges.json kind "rej5m" - mains, top-ups and
+// $2 add-ons, each its own row) is copied into data/five-book.json the moment it shows, so rows that roll out of hedges.json (it keeps 200) stay on her record.
+// Settled once: a sale = its banked profit; held to the bell = the 5m window from the desk's own 1m bars (open of its first minute vs close of its last), or
+// the recorded Polymarket quote at the close. FIVEY shows them all; the 1-2-3 BOOK shows only trades from 2:08 PM PT Oct 25 (fix210: 1m/2m/3m flip doors).
+
+const G5 = globalThis as any;
+const D5 = (f: string) => join(process.cwd(), "data", f);
+const FIVE123_START = "2026-10-25T21:08:00.000Z";
+type Five5 = { at: string; book: string; slug: string; side: "up" | "down"; cost: number; stake: number; closesAt: string; status: string; banked: number | null; soldPx: number | null; addOn: boolean; setup: string; door: string; result: "open" | "win" | "loss"; pnl: number | null; by?: string };
+const readJ5 = (f: string, d: any) => { try { return JSON.parse(readFileSync(D5(f), "utf8")); } catch { return d; } };
+function quotesTail5(): Map<string, number> {
+  const out = new Map<string, number>();
+  try {
+    const f = D5("poly5-quotes.jsonl"), size = statSync(f).size, n = Math.min(size, 3_000_000), fd = openSync(f, "r");
+    const buf = Buffer.alloc(n); try { readSync(fd, buf, 0, n, size - n); } finally { closeSync(fd); }
+    for (const l of buf.toString("utf8").split("\n")) {
+      try { const q = JSON.parse(l), end = Date.parse(q.closes) / 1000; if (q.bid != null && q.t >= end - 15 && q.t <= end + 60) out.set(String(q.slug), Number(q.bid)); } catch {}
+    }
+  } catch {}
+  return out;
+}
+function refresh5(): Record<string, Five5> {
+  const c = G5.__fiveBook as { at: number; rows: Record<string, Five5> } | undefined;
+  if (c && Date.now() - c.at < 20000) return c.rows;
+  const file = readJ5("five-book.json", { rows: {} });
+  const rows: Record<string, Five5> = file.rows ?? {};
+  let changed = false;
+  const meta = new Map<string, any>();
+  for (const [k, v] of Object.entries(readJ5("poly-twin.json", {}) as Record<string, any>)) if (k.endsWith(":5m") && v?.slug && (!meta.has(`${v.slug}|${v.book}`) || v.status === "filled" || v.status === "partial")) meta.set(`${v.slug}|${v.book}`, v); // fix224: the trade's own call, not a later skipped one
+  const bars = ((G5.__pivBars?.btc?.bars ?? []) as any[]);
+  const bar = (t: number) => bars.find((x: any) => Number(x.t) === t);
+  let q5: Map<string, number> | null = null;
+  const now = Date.now();
+  for (const h of (readJ5("hedges.json", []) as any[])) {
+    if (h?.kind !== "rej5m" || !h.slug || !h.at) continue;
+    const key = `${h.slug}:${h.book}:${h.at}`;
+    const old = rows[key];
+    if (old && old.result !== "open") continue;
+    const m = meta.get(`${h.slug}|${h.book}`) ?? {};
+    const x: Five5 = { at: h.at, book: String(h.book), slug: h.slug, side: h.side, cost: Number(h.cost) || 0, stake: Number(h.stake) || 0, closesAt: h.closesAt, status: String(h.status ?? ""), banked: h.banked ?? null, soldPx: h.soldPx ?? null, addOn: !!h.addOn, setup: String(m.setup ?? old?.setup ?? ""), door: String(m.door ?? old?.door ?? (m.late ? "late door" : "1m flip")), result: "open", pnl: null };
+    if (x.status === "banked" && x.banked != null) { x.pnl = Math.round(Number(x.banked) * 100) / 100; x.result = x.pnl > 0 ? "win" : "loss"; }
+    else if (Date.parse(x.closesAt) <= now) {
+      const end = Date.parse(x.closesAt) / 1000, o = bar(end - 300), cl = bar(end - 60);
+      let up: boolean | null = null;
+      if (o && cl) up = Number(cl.c) >= Number(o.o);
+      else { q5 ??= quotesTail5(); const b = q5.get(x.slug); if (b != null && (b >= 0.9 || b <= 0.1)) { up = b >= 0.9; x.by = "poly quote"; } }
+      if (up != null) { const won = up === (x.side === "up"); x.pnl = won && x.cost > 0 ? Math.round((x.stake / x.cost - x.stake) * 100) / 100 : -x.stake; x.result = won ? "win" : "loss"; }
+    }
+    if (JSON.stringify(old) !== JSON.stringify(x)) { rows[key] = x; changed = true; }
+  }
+  if (changed) { try { const t = D5("five-book.json.tmp"); writeFileSync(t, JSON.stringify({ at: new Date().toISOString(), rows }, null, 1)); renameSync(t, D5("five-book.json")); } catch {} }
+  G5.__fiveBook = { at: Date.now(), rows };
+  return rows;
+}
+const ptH5 = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", hourCycle: "h23" });
+/** FIVEY + 1-2-3 BOOK rows, shaped like the paper books' rows so they sit on the SHIFT cards. */
+function fiveNightRows(): any[] {
+  let rows: Five5[] = [];
+  try { rows = Object.values(refresh5()).sort((a, b) => (a.at < b.at ? -1 : 1)); } catch { return []; }
+  const seen = new Set<string>(), out: any[] = [];
+  for (const r of rows) {
+    const k = `${r.slug}|${r.book}`, kind = r.addOn ? "$2 add-on" : seen.has(k) ? "top-up" : "entry"; seen.add(k);
+    const lane = r.book.startsWith("recon-rej") ? "REJECTION" : "MAIN";
+    const bell = r.result === "open" || r.status === "banked" ? null : (r.result === "win") === (r.side === "up") ? "yes" : "no";
+    const base = { at: r.at, asset: "btc", ticker: r.slug, side: r.side, setup: `${lane} · ${r.door} · ${kind}${r.setup ? ` · ${r.setup}` : ""}`, ask: r.cost, multiple: r.cost > 0 ? Math.round((1 / r.cost) * 100) / 100 : 0, stake: r.stake, tpPct: 0, peakPct: 0, exit: r.status === "banked" ? `sold at ${Math.round(Number(r.soldPx ?? 0) * 100)}c` : r.result === "open" ? null : "to the bell", sellBid: r.soldPx, result: r.result, pnl: r.pnl, bell, hourPT: Number(ptH5.format(new Date(r.at))) % 24 };
+    out.push({ ...base, id: `five:${r.slug}:${r.book}:${r.at}`, book: "fivey" });
+    if (r.at >= FIVE123_START) out.push({ ...base, id: `five123:${r.slug}:${r.book}:${r.at}`, book: "fivey123" });
+  }
+  return out;
+}
