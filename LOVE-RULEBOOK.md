@@ -170,3 +170,7 @@ Love: "hey hun , she just entered into the window in the first 30 seconds on btc
 ## fix356 — the twin trades the SECOND band touch on Kalshi (Oct 27 6:47 PM PT, R041)
 Love: "also, she just shorted btc / its supposed to be the second band price touches after the initial move still hun , not just 30 seconds / so if price is falling from the band it came from at the beginning of the window, she waits until it comes into contact with the second band / can you configure it that way pls? the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes 💞"
 - Kalshi twin: no live order until price touches the second band after the initial move; she takes that touch's side only. Re-aimed calls before it never go live. Paper + Polymarket unchanged.
+
+## fix357 — the 5M sits out her bleeding hours (Oct 27 6:53 PM PT, R042)
+Love: "could you look into the records for the 5M book on poly and see which hours she bleeds at? we can cut those" + card "Cut those hours instead" (keeps the $5 minimum).
+- Poly 5M off at 3, 4, 5 AM, 1 PM, 9 PM and 11 PM PT. Every other hour, $5, unchanged. Re-frozen.
