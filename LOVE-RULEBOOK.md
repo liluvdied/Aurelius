@@ -132,3 +132,9 @@ Love: "and gold needs a minimum 33c  barrier between pink and longing into it at
 Love: "yes pls pls , and we can make it unilaterally pink rules in both direction to answer your question. thank you for confirming"
 - No-pink copy: every entry needs a live 1/2/3/4/5m candle flipped her way (literal colour), same as main (fix325).
 - Gold 33c pink barrier is both directions for the copy: no long within 33c under, no short within 33c over, an unbroken pink (channels under $10).
+
+## fix350 — near pink, a flip means across the pink (Oct 27 5:48 PM PT, R034)
+Love: "hun what are you talking about a flip ???? it was on the under side of the band ????? a flip would be short. it would need to be above the band for a flip to be a long. ????"
+- Near an unbroken pink, a LONG flips only once price is ABOVE the pink; under it the only flip is a SHORT (mirror for shorts). Candle colour never waives pink.
+- No-pink copy: sliding scale (fix347) and BTC $33 (fix346b) are break-only. Gold 33c barrier (fix348/349) stays.
+- NEVER again read "flip" near a band as candle colour alone.

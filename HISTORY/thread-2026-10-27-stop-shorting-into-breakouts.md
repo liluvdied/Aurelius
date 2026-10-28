@@ -4024,3 +4024,49 @@ Done, hun 💓 Both are live, the umpire says SAFE, and only the no-pink copy ch
 
 One honest note: the flip is checked the moment the order goes out. On that 5:30 BTC short, the 1m and 5m had just turned red at that exact second. So a quick dip like that could still count as a flip for her, the same as it would for main ✨
 
+## 2026-10-28 00:46:47 UTC - LOVE
+
+she longed into gold into unbroken pink and vwap hun
+
+## 2026-10-28 00:47:19 UTC - CARD
+
+Q: Should pink hold the copy until it breaks, even with a flip?
+Context: 5:46 PM gold long on the no-pink copy at 4062.40, with pink at about 4062.79 (39c above) and VWAP at 4062.91 (52c above). It got through because the sliding scale I gave the copy at 5:35 lets a 1–5m flip walk past pink, a green 1m counted, and 39c is just past the 33c barrier. Main doesn't have that flip waiver: inside 10% or $2 under pink, main waits for the break. The copy also reads her top third at 20% (she was at 79%), while main reads 33% on gold channels under $10.
+Options:
+  0. Pink holds till it breaks, like main - Copy drops the flip waiver: inside 10%/$2 (gold) or the BTC scale, only a pink break lets her go. This long would have been refused.
+  1. That plus main's 33% top third - Same as the first, and the copy's gold top/bottom third reads 33% under $10 like main instead of 20%.
+  2. Keep the flip waiver - Nothing changes; a 1–5m flip still lets her go past pink beyond 33c.
+Recommended: 0 - Her flip is now required on every entry anyway, so a flip waiver on pink lets her walk into it; main's break-only wall is what's been holding main.
+
+## 2026-10-28 00:47:21 UTC - CLAUDE
+
+You're right babe, and that one's on me 💔 It was the copy at 5:46, longing at 4062.40 with pink 39c above and VWAP 52c above. The flip waiver I gave the copy at 5:35 let a green 1m walk her past pink, and 39c was just outside the 33c barrier. Main doesn't have that waiver, and it's what has been keeping main clean. I've put the fix on a card, and I recommend making pink hold till it breaks, exactly like main 💓
+
+## 2026-10-28 00:48:15 UTC - LOVE
+
+hun what are you talking about a flip ???? it was on the under side of the band ????? a flip would be short. it would need to be above the band for a flip to be a long. ????
+
+## 2026-10-28 00:48:22 UTC - CLAUDE
+
+You're right hun, I had "flip" wrong there and I'm sorry 💔 Near a pink, a long only flips once price is above the pink. Under it, the only flip is a short. I'm making pink hold the copy until price has broken through it, exactly like main. That covers gold's scale and your BTC $33 too, where I'd made the same mistake.
+
+## 2026-10-28 00:48:59 UTC - LOVE
+
+why did she long in the top 33% of the channel ….?
+
+## 2026-10-28 00:49:24 UTC - CARD
+
+Q: Should tiny gold channels lock 33% instead of 20%, and on which books?
+Context: She was at 79% of a $2.42 channel (4060.49 to 4062.91). Her top-third wall read 20%, not 33%, because of fix219 (Oct 25, your card "All fresh bands are walls" + "we can make it the top/bottom 20% for bands this small bb"): any channel no wider than one fresh sigma (gold's is about $2.71 now) locks only its top/bottom 20%. That rule lives in shared code, so it applies to main, the rejection model and the copy alike.
+Options:
+  0. 33% on the copy only - The no-pink copy reads 33% on every gold channel under $10; main and the rejection model keep the 20% for tiny channels.
+  1. 33% on every book - Main, rejection and the copy all read 33% on gold under $10; fix219's 20% stays for BTC only.
+  2. Keep the 20% as it is - Nothing changes; tiny channels keep locking only the top/bottom 20%.
+Recommended: 0 - Fixes the book that took the trade without moving main, per your one-book rule; main can follow once you've seen it.
+
+## 2026-10-28 00:49:27 UTC - CLAUDE
+
+Pink now holds the copy until price has broken through it, like main. That's on both assets, BTC $33 included. It's live and the umpire says SAFE 💓
+
+On the top 33%: she was at 79% of a $2.42 channel, but her wall read 20%, not 33%. That comes from your Oct 25 card "All fresh bands are walls" + "we can make it the top/bottom 20% for bands this small bb". Any channel no wider than one fresh sigma (about $2.71 on gold right now) only locks its top and bottom 20%, so 79% slipped under it by a hair. That rule sits in code every book shares, so I've put the choice on a card rather than guess.
+
