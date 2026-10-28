@@ -4011,3 +4011,16 @@ Both are in and live, and the umpire says SAFE 💓 They only touch the no-pink 
 
 **The BTC short (copy, 5:30 PM):** she booked it at 5:30:14 while price was still about $26 over the new 5m open, so the candle was green and hadn't flipped. Three seconds later the order went through, and by then price was $9 under the open. The copy was never given your flip rule, because fix325 went on main and the rejection model only. Do you want me to give the copy the same 1–5m flip rule as main?
 
+## 2026-10-28 00:40:42 UTC - LOVE
+
+yes pls pls , and we can make it unilaterally pink rules in both direction to answer your question. thank you for confirming
+
+## 2026-10-28 00:42:52 UTC - CLAUDE
+
+Done, hun 💓 Both are live, the umpire says SAFE, and only the no-pink copy changed.
+
+• **Her flip:** the copy now uses main's exact rule. No entry unless a live 1, 2, 3, 4 or 5m candle has literally flipped her colour.
+• **Gold 33c both ways:** no long within 33c under an unbroken pink, and no short within 33c over one, flip or not. This holds on channels under $10.
+
+One honest note: the flip is checked the moment the order goes out. On that 5:30 BTC short, the 1m and 5m had just turned red at that exact second. So a quick dip like that could still count as a flip for her, the same as it would for main ✨
+

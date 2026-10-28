@@ -127,3 +127,8 @@ Love 5:32 PM: "thanks love ya did the main book lose her pink tolerance somehow?
 Love: "and gold needs a minimum 33c  barrier between pink and longing into it at this scale / and needs a candle flip / we can open it up to normal when the bands are bigger but for rn yes"
 - No-pink copy, gold longs, channel under $10: never within 33c under an unbroken pink, flip or not. Beyond 33c (inside 10% or $2) she still needs a 1-5m flip or the break (fix347).
 - "Bigger bands" taken as $10+ for now; Love can name the width. Shorts over pink not changed (offered).
+
+## fix349 — the copy gets HER FLIP; gold 33c both ways (Oct 27 5:40 PM PT, R033)
+Love: "yes pls pls , and we can make it unilaterally pink rules in both direction to answer your question. thank you for confirming"
+- No-pink copy: every entry needs a live 1/2/3/4/5m candle flipped her way (literal colour), same as main (fix325).
+- Gold 33c pink barrier is both directions for the copy: no long within 33c under, no short within 33c over, an unbroken pink (channels under $10).
