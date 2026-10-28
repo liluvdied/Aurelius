@@ -1,9 +1,22 @@
-# Every decision Love has made - rebuilt 2026-10-28T23:01:45.833994+00:00
+# Every decision Love has made - rebuilt 2026-10-28T23:15:15.613440+00:00
 
-1255 decisions with Love's words or card picks, out of 1976 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1258 decisions with Love's words or card picks, out of 1981 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T23:15:03.167354+00:00  ·  diary line 2445
+- Love: “How should the gold downslope-under-pink hold work now?”
+- Card pick: **How should the gold downslope-under-pink hold work now?**
+- Full entry: 2026-10-28T23:15:03.167354+00:00 THAW (Love Oct 28 2026 4:02 PM PT card "How should the gold downslope-under-pink hold work now?" -> "No longs till pink breaks" (While gold is sliding under an unbroken pink, no gold long at all until price breaks up through pink by 25c. No touch needed, no time-out.))
+
+## 2026-10-28T23:05:00Z  ·  diary line 2444  ·  fix371
+- fix371 IN HER CODE
+- Full entry: 2026-10-28T23:05:00Z GOLD LONG 3:54:47 PM PT (main, 37c): $2.04 under unbroken pink 4055.44 - PINK 10% floor is $2 (blocked 80+ times at $1.38-1.69); fix371 hold released 3:34 PM (last pink touch within 30c ~3:05 PM aged out of 30 min). Card to Love: no longs till pink breaks vs wider touch/60 min.
+
+## 2026-10-28T23:00:00Z  ·  diary line 2443  ·  fix402
+- fix402 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-28T23:00:00Z fix402 CONFIG at boundary: liveBook.dollars 5, offHourMain.dollars 5, live-size 5, addOn $5 (first, 2.8x), addOn.second.on false. R091/R092; R074 retired on Love's words. Umpire SAFE, 5M frozen.
 
 ## 2026-10-28T23:00:02.354257+00:00  ·  diary line 2440
 - Love: “hun she’s supposed to be on 20% when bands are this small , and can you put a no trades that have to cross the blue vwap to get to the target when bands are this small? the btc long would have been blocked”

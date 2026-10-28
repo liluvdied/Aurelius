@@ -13,16 +13,22 @@
   "secondsLeft": 848,
   "ask": 0.18,
   "multiple": 5.56,
-  "peakBid": 0.18,
-  "peakPct": 0,
+  "peakBid": 0.999,
+  "peakPct": 455,
   "exits": {
-   "+50": null,
-   "+100": null,
-   "+200": null,
-   "+300": null
+   "+50": 0.29,
+   "+100": 0.4,
+   "+200": 0.56,
+   "+300": 0.73
   },
-  "result": "open",
-  "profits": null
+  "result": "win",
+  "profits": {
+   "hold": 22.78,
+   "+50": 3.06,
+   "+100": 6.11,
+   "+200": 10.56,
+   "+300": 15.28
+  }
  },
  {
   "id": "KXBTC15M-26OCT281745-45:up",

@@ -12733,3 +12733,20 @@
 {"at":"2026-10-28T23:01:34.025Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:KXBTC15M-26OCT281915-15:recon-rej5:5m","status":"blocked","reason":"THE IMPOSSIBILITY: short at 5% of the 81082.60 -> 81152.40 channel - the bottom 20%, into the unbroken band below. never."}
 {"at":"2026-10-28T23:01:39.184Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:KXBTC15M-26OCT281915-15:recon-rej5:5m","status":"no fill","reason":"Polymarket down at 0.93 is outside 0.3-0.68"}
 {"at":"2026-10-28T23:02:01.154Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:KXBTC15M-26OCT281915-15:recon-rej5:5m","status":"waiting","reason":"waiting for her flip with 4+ minutes left in the 5m window"}
+{"at":"2026-10-28T23:04:03.297Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:KXBTC15M-26OCT281915-15:recon-rej5:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-28T23:04:03.297Z","id":"KXBTC15M-26OCT281915-15:recon-tog:KXBTC15M-26OCT281915-15:recon-tog:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-28T23:06:24.023Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:s5977429:5m","status":"waiting","reason":"waiting for a 1m candle to close red (her 5m flip)"}
+{"at":"2026-10-28T23:06:59.454Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:s5977429:5m","status":"waiting","reason":"waiting for her flip with 4+ minutes left in the 5m window"}
+{"at":"2026-10-28T23:07:03.327Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:s5977429:5m","status":"waiting","reason":"waiting for a 1m candle to close red (her 5m flip)"}
+{"at":"2026-10-28T23:09:04.839Z","id":"KXBTC15M-26OCT281915-15:recon-tog:s5977429:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-28T23:09:04.840Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:s5977429:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-28T23:11:05.053Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:s5977430:5m","status":"waiting","reason":"waiting for a 1m candle to close red (her 5m flip)"}
+{"at":"2026-10-28T23:13:01.839Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:s5977430:5m","status":"waiting","reason":"waiting for her flip with 4+ minutes left in the 5m window"}
+{"at":"2026-10-28T23:14:03.580Z","id":"KXBTC15M-26OCT281915-15:recon-tog:s5977430:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-28T23:14:03.581Z","id":"KXBTC15M-26OCT281915-15:recon-rej5:s5977430:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-28T23:15:08.613Z","id":"KXBTC15M-26OCT281930-30:recon-rej5:KXBTC15M-26OCT281930-30:recon-rej5:5m","status":"waiting","reason":"waiting for a 1m candle to close red (her 5m flip)"}
+{"at":"2026-10-28T23:16:04.455Z","id":"KXBTC15M-26OCT281930-30:recon-rej5:KXBTC15M-26OCT281930-30:recon-rej5:5m","status":"blocked","reason":"HER CANDLE: the 5m candle is rising - a long or nothing, never a short."}
+{"at":"2026-10-28T23:16:09.469Z","id":"KXBTC15M-26OCT281930-30:recon-rej5:KXBTC15M-26OCT281930-30:recon-rej5:5m","status":"blocked","reason":"PINK 10%: short $15.49 over the unbroken pink (81226.35) - inside 10% ($25.00) of the 81221.97 -> 81287.72 channel. wait for pink to break down."}
+{"at":"2026-10-28T23:16:13.456Z","id":"KXBTC15M-26OCT281930-30:recon-rej5:KXBTC15M-26OCT281930-30:recon-rej5:5m","status":"blocked","reason":"HER CANDLE: the 5m candle is rising - a long or nothing, never a short."}
+{"at":"2026-10-28T23:16:17.629Z","id":"KXBTC15M-26OCT281930-30:recon-rej5:KXBTC15M-26OCT281930-30:recon-rej5:5m","status":"waiting","reason":"waiting for a 1m candle to close green (her 5m flip)"}
+{"at":"2026-10-28T23:16:50.652Z","id":"KXBTC15M-26OCT281930-30:recon-rej5:KXBTC15M-26OCT281930-30:recon-rej5:5m","status":"waiting","reason":"waiting for a 1m candle to close red (her 5m flip)"}

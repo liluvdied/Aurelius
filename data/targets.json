@@ -1,5 +1,37 @@
 [
   {
+    "id": "mvsq8y6f-ejftra",
+    "at": "2026-10-28T23:10:03.015Z",
+    "asset": "btc",
+    "ticker": "KXBTC15M-26OCT281915-15",
+    "side": "up",
+    "pattern": "Tap-reject at +0.5σ",
+    "venue": "paper",
+    "spot": 81232.21,
+    "target": 81210.64,
+    "vwap": null,
+    "multiple": 1.5384615384615383,
+    "profit": 12.88,
+    "result": "win",
+    "closedAt": "2026-10-28T23:13:44.025Z"
+  },
+  {
+    "id": "held-KXGOLD15M-26OCT281915-15",
+    "at": "2026-10-28T23:09:09.234Z",
+    "asset": "gold",
+    "ticker": "KXGOLD15M-26OCT281915-15",
+    "side": "down",
+    "pattern": "Live",
+    "venue": "kalshi",
+    "spot": null,
+    "target": null,
+    "vwap": null,
+    "multiple": 8.33,
+    "profit": -5.6,
+    "result": "loss",
+    "closedAt": "2026-10-28T23:15:38.462Z"
+  },
+  {
     "id": "held-KXBTC15M-26OCT281915-15",
     "at": "2026-10-28T23:01:13.561Z",
     "asset": "btc",
@@ -11,8 +43,9 @@
     "target": null,
     "vwap": null,
     "multiple": 6.67,
-    "profit": null,
-    "result": "open"
+    "profit": 17.86,
+    "result": "win",
+    "closedAt": "2026-10-28T23:15:17.020Z"
   },
   {
     "id": "held-KXGOLD15M-26OCT281900-00",
@@ -7932,37 +7965,5 @@
     "profit": -0.49,
     "result": "loss",
     "closedAt": "2026-10-27T08:45:39.836Z"
-  },
-  {
-    "id": "mvqfe0j7-0edegk",
-    "at": "2026-10-27T08:30:31.219Z",
-    "asset": "silver",
-    "ticker": "KXSILVER15M-26OCT270445-45",
-    "side": "up",
-    "pattern": "Tap-reject at -1.5σ",
-    "venue": "paper",
-    "spot": 52.9025,
-    "target": 52.875,
-    "vwap": null,
-    "multiple": 1.6949152542372883,
-    "profit": -25,
-    "result": "loss",
-    "closedAt": "2026-10-27T08:45:00.236Z"
-  },
-  {
-    "id": "held-KXBTC15M-26OCT270445-45",
-    "at": "2026-10-27T08:30:30.651Z",
-    "asset": "btc",
-    "ticker": "KXBTC15M-26OCT270445-45",
-    "side": "down",
-    "pattern": "Tap-reject at −0.5σ",
-    "venue": "kalshi",
-    "spot": null,
-    "target": null,
-    "vwap": null,
-    "multiple": 3.7,
-    "profit": 20.88,
-    "result": "win",
-    "closedAt": "2026-10-27T08:45:16.551Z"
   }
 ]

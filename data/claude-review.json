@@ -85630,5 +85630,49 @@
   "lessons": [
    "The rejection shadow agreed (long off -1σ)."
   ]
+ },
+ "KXBTC15M-26OCT281915-15": {
+  "ticker": "KXBTC15M-26OCT281915-15",
+  "at": "2026-10-28T23:15:17.020Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "unknown",
+  "multiple": 6.67,
+  "profit": 17.86,
+  "result": "win",
+  "entry": null,
+  "peakPct": 440,
+  "maxPct": 566.7,
+  "takeProfitPct": 425,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, won at the bell.",
+   "No entry snapshot for this one (it filled before the snapshot logger, or through another path).",
+   "The rejection shadow agreed (long off -0.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT281915-15": {
+  "ticker": "KXGOLD15M-26OCT281915-15",
+  "at": "2026-10-28T23:15:38.462Z",
+  "asset": "gold",
+  "side": "down",
+  "setup": "unknown",
+  "multiple": 8.33,
+  "profit": -5.6,
+  "result": "loss",
+  "entry": null,
+  "peakPct": 0,
+  "maxPct": 733.3,
+  "takeProfitPct": 550,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "No entry snapshot for this one (it filled before the snapshot logger, or through another path).",
+   "Never went green. The entry itself was wrong, not the exit.",
+   "The rejection shadow agreed (short off -1σ)."
+  ]
  }
 }

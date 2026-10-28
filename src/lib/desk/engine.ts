@@ -4966,9 +4966,7 @@ async function copyLiveBook(assets, lane = "") {
     // MAIN, REJECTION MODEL and NO-PINK COPY, gold LONGS, Kalshi only - when gold is sliding (more than $2 lower than 30 min ago), pink rejected price down in that time
     // (touched within 30c from below, then pushed 50c off) and price hasn't broken back up through pink by 25c since, the long waits (no record written, tried again)
     // until pink breaks. Shorts, BTC, the twin, the pure no-pink, Polymarket untouched. Needs 20 min of samples after a restart before it judges.
-    if (row.asset === "gold" && row.side === "up" && ["recon-rej", "recon-tog", "recon-togp"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let hold371 = ""; try { const sm = ((globalThis as any).__slide371?.s || []) as { t: number; p: number; pp: number }[]; const last = sm[sm.length - 1];
-      if (last && sm.length > 10 && Date.now() - sm[0].t >= 1200000 && Date.now() - last.t < 30000 && last.p < last.pp + 0.25 && last.p < sm[0].p - 2) { let touch = -1, pushed = false, broke = false; for (let i = 0; i < sm.length; i++) { const x = sm[i]; if (x.p > x.pp + 0.25) { touch = -1; pushed = false; broke = true; continue; } if (x.p >= x.pp - 0.30 && x.p <= x.pp + 0.25) { touch = i; broke = false; } else if (touch >= 0 && x.p <= x.pp - 0.50) pushed = true; }
-        if (touch >= 0 && pushed && !broke) hold371 = `GOLD SLIDE UNDER PINK: gold ${last.p.toFixed(2)} is $${(sm[0].p - last.p).toFixed(2)} lower than 30 min ago and pink (${last.pp.toFixed(2)}) rejected it - no long until price breaks up through pink (fix371).`; } } catch {}
+    if (row.asset === "gold" && row.side === "up" && ["recon-rej", "recon-tog", "recon-togp"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let hold371 = ""; try { hold371 = slideHold403(((globalThis as any).__slide371?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide403 ||= { on: false }), Date.now()); /* fix403: no touch needed, sticky until pink breaks */ } catch {}
       if (hold371) { try { const GL = ((globalThis as any).__slide371Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, why: hold371 }) + "\n"); } } catch {} continue; } }
     // LIVE SIT-OUT HOURS (Love, Oct 8 ~12:45 AM PT: "yess let's pause her on gold for those hours for sure"). Gold's 6 PM PT
     // hour (the session open, bands bunched) lost on paper (-$5,092, 41%) and live (31% of 13). live-switch
@@ -5707,3 +5705,19 @@ export {
   sendKalshi,
   sendLive
 };
+
+/** fix403 (Oct 28 2026 4:03 PM PT, Love card "How should the gold downslope-under-pink hold work now?" -> "No longs till pink breaks" (While gold is sliding under an unbroken pink, no gold long at all until price breaks up through pink by 25c. No touch needed, no time-out.)
+ *  + Love 4:04 PM: "that was already how we structured that downslope rule hun / can you make sure everything stays when we make a rule?"; fix371 words (Oct 27 10:12 PM PT): "maybe in the event of this we should wait for a break").
+ *  sm = 5 s samples of gold price + 5m pink for the last 30 min (__slide371 sampler). Sliding = more than $2 lower than 30 min ago while under pink (pink + 25c).
+ *  No pink touch needed. Once on, the hold stays on (S.on, no time-out) until price breaks up through pink by 25c. Tested by tools/slide-test.js (umpire). */
+export function slideHold403(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
+  const last = sm[sm.length - 1];
+  if (!last || now - last.t >= 30000) return "";
+  if (last.p > last.pp + 0.25) { S.on = false; return ""; }
+  let broke = false;
+  for (const x of sm) { if (x.p > x.pp + 0.25) broke = true; else if (x.p >= x.pp - 0.30) broke = false; }
+  if (broke) { S.on = false; return ""; }
+  if (sm.length > 10 && now - sm[0].t >= 1200000 && last.p < sm[0].p - 2) { S.on = true; return `GOLD SLIDE UNDER PINK: gold ${last.p.toFixed(2)} is $${(sm[0].p - last.p).toFixed(2)} lower than 30 min ago under the unbroken pink (${last.pp.toFixed(2)}) - no long until price breaks up through pink by 25c (fix371/fix403).`; }
+  if (S.on) return `GOLD SLIDE UNDER PINK: gold ${last.p.toFixed(2)} is still under the unbroken pink (${last.pp.toFixed(2)}) since the slide - no long until price breaks up through pink by 25c (fix403).`;
+  return "";
+}

@@ -1,5 +1,29 @@
 [
   {
+    "key": "pair|gold|held-KXGOLD15M-26OCT281915-15|held-KXGOLD15M-26OCT281900-00",
+    "at": "2026-10-28T23:15:39.111Z",
+    "kind": "pair",
+    "text": "gold lost two in a row. Not an entry error. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Not applied as a ban."
+  },
+  {
+    "key": "close|held-KXGOLD15M-26OCT281915-15",
+    "at": "2026-10-28T23:15:38.462Z",
+    "kind": "closed",
+    "text": "Gold short Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
+  },
+  {
+    "key": "close|held-KXBTC15M-26OCT281915-15",
+    "at": "2026-10-28T23:15:17.020Z",
+    "kind": "closed",
+    "text": "Bitcoin long Live hit. It hit, and she gave back 61.5 points after it was green. The gate stays. Don't sell it any earlier than that. Not applied."
+  },
+  {
+    "key": "close|mvsq8y6f-ejftra",
+    "at": "2026-10-28T23:13:44.025Z",
+    "kind": "closed",
+    "text": "Bitcoin long Tap-reject at +0.5σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
     "key": "close|held-KXGOLD15M-26OCT281900-00",
     "at": "2026-10-28T23:00:33.866Z",
     "kind": "closed",
@@ -454,29 +478,5 @@
     "at": "2026-10-28T18:30:30.866Z",
     "kind": "pair",
     "text": "gold lost two in a row. Not an entry error. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Tap-reject at -1.5σ lost. Nothing on the entry to change. It stays. Not applied as a ban."
-  },
-  {
-    "key": "close|held-KXGOLD15M-26OCT281430-30",
-    "at": "2026-10-28T18:30:30.025Z",
-    "kind": "closed",
-    "text": "Gold short Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
-  },
-  {
-    "key": "pair|gold|mvsfyyt0-qmc99c|held-KXGOLD15M-26OCT281415-15",
-    "at": "2026-10-28T18:30:02.421Z",
-    "kind": "pair",
-    "text": "gold lost two in a row. Not an entry error. Tap-reject at -1.5σ lost. Nothing on the entry to change. It stays. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Not applied as a ban."
-  },
-  {
-    "key": "close|mvsfyyt0-qmc99c",
-    "at": "2026-10-28T18:30:01.777Z",
-    "kind": "closed",
-    "text": "Gold short Tap-reject at -1.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
-  },
-  {
-    "key": "pair|silver|mvsfz1eq-32lu70|mvsendi1-j5vfre",
-    "at": "2026-10-28T18:30:02.411Z",
-    "kind": "pair",
-    "text": "silver lost two in a row. Not an entry error. Tap-reject at −1σ lost. Nothing on the entry to change. It stays. Tap-reject at −1.5σ lost. Nothing on the entry to change. It stays. Not applied as a ban."
   }
 ]

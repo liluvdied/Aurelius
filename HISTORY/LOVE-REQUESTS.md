@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R093 - fix403: fix371 hold needs no pink touch; sticky until a 25c break over pink
+- when: 2026-10-28T23:03:34+00:00
+- Love: "Love Oct 28 2026 4:02 PM PT card "How should the gold downslope-under-pink hold work now?" -> "No longs till pink breaks" (While gold is sliding under an unbroken pink, no gold long at all until price breaks up through pink by 25c. No touch needed, no time-out.)"
+- books: m, a, i, n, ,,  , r, e, j, e, c, t, i, o, n, ,,  , n, o, -, p, i, n, k,  , c, o, p, y,  , g, o, l, d,  , l, o, n, g, s,  , o, n,  , K, a, l, s, h, i,  , o, n, l, y, ;,  , B, T, C, ,,  , t, w, i, n, ,,  , p, u, r, e, ,,  , s, o, v, e, r, e, i, g, n, ,,  , 5, M,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix403: no touch needed"}
+
 ## R092 - fix402: one $5 add-on only - addOn.second.on false (first add-on $5 at 2.8x stays)
 - when: 2026-10-28T22:57:36+00:00
 - Love: "Love Oct 28 2026 3:57 PM PT: "no 1 $5 add on pls""
