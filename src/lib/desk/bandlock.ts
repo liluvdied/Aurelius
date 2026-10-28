@@ -2359,7 +2359,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   const foTurn = ((): boolean => { try { const f = fakeOutTurnNow(asset, L, tick); return !!f && f.side === side; } catch { return false; } })(); // fix139
   if (!(above > below)) return { why: "", below: below0 ?? null, above: above0 ?? null, pos: null, lock: null };
   const pos = (tick - below) / (above - below);
-  const IMPOSSIBLE = lockPctFor(asset, above - below);
+  const IMPOSSIBLE = togpLoose && asset === "gold" && above - below < 10 ? 0.33 /* fix351 (Oct 27 2026 5:50 PM PT, Love: "why did she long in the top 33% of the channel ….?" + card "Should tiny gold channels lock 33% instead of 20%, and on which books?" -> "33% on the copy only"): the no-pink copy's gold thirds are 33% under $10, fix219's 20% for one-sigma channels stands down for her only */ : lockPctFor(asset, above - below);
   const pctTxt = Math.round(IMPOSSIBLE * 100);
   // GOLD 3-5 PM, TIGHT BANDS (fix344, Oct 27 2026 4:31 PM PT, Love: "but just have her not skip because one is in the way until they reach a width of $2 or more /
   // have her trade the pinks green red and bollingers and she'll be good bb" + card "Which walls step aside on gold 3-5 PM while session bands are under $2 apart?" ->

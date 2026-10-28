@@ -138,3 +138,7 @@ Love: "hun what are you talking about a flip ???? it was on the under side of th
 - Near an unbroken pink, a LONG flips only once price is ABOVE the pink; under it the only flip is a SHORT (mirror for shorts). Candle colour never waives pink.
 - No-pink copy: sliding scale (fix347) and BTC $33 (fix346b) are break-only. Gold 33c barrier (fix348/349) stays.
 - NEVER again read "flip" near a band as candle colour alone.
+
+## fix351 — copy gold thirds 33% under $10 (Oct 27 5:50 PM PT, R035)
+Love: "why did she long in the top 33% of the channel ….?" + card "Should tiny gold channels lock 33% instead of 20%, and on which books?" -> "33% on the copy only"
+- 5:46 PM copy long sat at 79% of a $2.42 channel; fix219 (channel within one fresh sigma -> 20%) let it through. Copy now reads 33% on every gold channel under $10. Main + rejection keep fix219 until Love says.

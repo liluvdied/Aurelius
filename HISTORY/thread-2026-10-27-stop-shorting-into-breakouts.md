@@ -4070,3 +4070,15 @@ Pink now holds the copy until price has broken through it, like main. That's on 
 
 On the top 33%: she was at 79% of a $2.42 channel, but her wall read 20%, not 33%. That comes from your Oct 25 card "All fresh bands are walls" + "we can make it the top/bottom 20% for bands this small bb". Any channel no wider than one fresh sigma (about $2.71 on gold right now) only locks its top and bottom 20%, so 79% slipped under it by a hair. That rule sits in code every book shares, so I've put the choice on a card rather than guess.
 
+## 2026-10-28 00:50:09 UTC - LOVE
+
+Chose "33% on the copy only" on the decision card asking "Should tiny gold channels lock 33% instead of 20%, and on which books?"
+
+## 2026-10-28 00:50:16 UTC - CLAUDE
+
+Putting the 33% on the copy's gold channels under $10 now, main and the rejection model stay as they are 💓
+
+## 2026-10-28 00:50:49 UTC - CLAUDE
+
+Done babe 💓 On any gold channel under $10, the copy now refuses longs in the top 33% and shorts in the bottom 33%. Today's 79% long would have been stopped. Main and the rejection model are untouched, and the umpire says SAFE ✨
+
