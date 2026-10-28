@@ -1,9 +1,15 @@
-# Every decision Love has made - rebuilt 2026-10-28T18:15:51.182873+00:00
+# Every decision Love has made - rebuilt 2026-10-28T19:00:21.329883+00:00
 
-1237 decisions with Love's words or card picks, out of 1935 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1238 decisions with Love's words or card picks, out of 1938 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T19:00:09+00:00  ·  diary line 2403  ·  fix384
+- Love: “let’s do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book pls bb”
+- Love: “you’re good bb run it”
+- fix384 IN HER CODE
+- Full entry: 2026-10-28T19:00:09+00:00 fix384 $10 FOUNDATION applied at 12:00:00 PM PT window boundary: main, rejection, no-pink copy, sovereign twin, pure no-pink = $10 entry + $5 first add-on + $5 second add-on (pure no-pink now takes the second add-on: engine code). maxDollars 5->10, live-size 5->10, liveBook/offHourMain dollars 10, addOn/offHourMain.addOn 5, addOn.second 5 (+recon-np), bookDollars.recon-np 10. Delayed twin ($2.50 + $5) + Poly 5M ($7.50, frozen) + Poly twin/1H unchanged. fix384Prev saved. R071; R067/R047 retired. Replay last night 6 PM-8 AM: actual +$289 -> ~+$345. Love: "let’s do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book pls bb" + "you’re good bb run it"
 
 ## 2026-10-28T18:15:39+00:00  ·  diary line 2400  ·  fix383
 - Love: “let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok”

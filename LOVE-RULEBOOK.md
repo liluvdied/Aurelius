@@ -221,3 +221,5 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 - fix382 (Oct 28 2026 10:34 AM PT, Love card "Yes, 4:57 AM walls, live now"): the Polymarket 5M judges with her own walls exactly as they stood at 4:57 AM Oct 27 (her best stretch). Her calls, $7.50 and skip hours unchanged.
 
 - fix383 (Oct 28 2026 11:15 AM PT, Love: "let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok"): gold seat map - pure no-pink live gold 1, 4, 7, 9 AM, 8 PM, 9 PM; the sovereign twin takes gold's other rejection hours live (in place of the no-pink copy, same $5 + $7 + $3 sizing); main gets gold 8 AM. BTC stays pure no-pink every hour.
+
+- fix384 (Oct 28 2026 12:00 PM PT, Love: "let’s do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book pls bb" + "you’re good bb run it"): $10 entry, $5 first add-on, $5 second add-on on main, rejection, no-pink copy, sovereign twin and pure no-pink. The delayed twin ($2.50 + $5) and the Poly 5M ($7.50, frozen) stay as they are.

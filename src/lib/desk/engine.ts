@@ -2268,7 +2268,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         // let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on" + card "Main + rejection + copy"):
         // MAIN, REJECTION MODEL, NO-PINK COPY - once her first add-on has filled, ONE more (addOn.second.dollars, $3) on the same side when price is at a band (any band her add-on reads)
         // that is NOT the first add-on's band and a 1/2/3/4/5m candle has flipped her way there (anyFlipMinNow: $5 BTC / 10c gold past its open). Any multiple up to her entry ceiling
-        // (addOn.second.maxAsk, 72c = 1.37x). Once per position, kept across a restart (addon-log.jsonl rows with add2). The twin, the pure no-pink and Polymarket never take it.
+        // (addOn.second.maxAsk, 72c = 1.37x). Once per position, kept across a restart (addon-log.jsonl rows with add2). The twin and Polymarket never take it; the pure no-pink takes it since fix384 (addOn.second.books).
         try {
           const ao2 = (ao as any)?.second;
           const own2 = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] || "";
@@ -2282,7 +2282,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           const try2 = g.__aureliusAdd2Try || (g.__aureliusAdd2Try = {});
           if (addReg[row.ticker] && !(row.ticker in w1) && !(Date.now() - (try2["w:" + row.ticker] || 0) < 5000)) { try2["w:" + row.ticker] = Date.now(); try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.ticker === row.ticker && !x.add2) w1[row.ticker] = String(x.why || ""); } catch {} } } catch {} }
           const cap2 = Number(ao2?.maxAsk) > 0 && Number(ao2.maxAsk) < 1 ? Number(ao2.maxAsk) : 0.72;
-          if (ao2?.on === true && ao?.on && !aoTwin && !aoNp && bk2.includes(own2) && (id === "btc" || id === "gold") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try2[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap2 && aoLeft >= (Number(ao2.minLeft) || Number(ao.minLeft) || 2)) {
+          if (ao2?.on === true && ao?.on && !aoTwin && (!aoNp || bk2.includes("recon-np")) /* fix384 (Oct 28 2026 11:56 AM PT, Love: "let's do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book"): the pure no-pink takes the second add-on when addOn.second.books names her */ && bk2.includes(own2) && (id === "btc" || id === "gold") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try2[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap2 && aoLeft >= (Number(ao2.minLeft) || Number(ao.minLeft) || 2)) {
             const blm3 = await import("./bandlock");
             const t2 = blm3.addOnTouchNow(id);
             const bnd = (w: string) => { const m = /^(?:touched |came within \$[\d.]+ of )(.+?) \(/.exec(String(w || "")); return m ? m[1] : ""; };

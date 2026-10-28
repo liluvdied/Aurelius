@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R071 - fix384: $10 entry, $5 first add-on, $5 second add-on for main, rejection, no-pink copy, sovereign twin and pure no-pink (Kalshi). Delayed twin ($2.50 + $5) and Poly 5M ($7.50, frozen) unchanged. Config: maxDollars 10, live-size dollars 10, liveBook.dollars 10, offHourMain.dollars 10, addOn.dollars 5, offHourMain.addOn.dollars 5, addOn.second.dollars 5 (+recon-np), bookDollars.recon-np 10. Code: engine second add-on no longer hard-excludes the pure no-pink (addOn.second.books decides).
+- when: 2026-10-28T18:57:48+00:00
+- Love: "yeah she’s no longer operating on an unsafe framework so i would be comfortable bringing her up to a steady baseline / let’s do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book pls bb"
+- books: recon-tog, recon-rej, recon-togp, recon-sov, recon-np
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 10}
+- proof: {"config": "data/live-switch.json", "key": "addOn.second.dollars", "equals": 5}
+- proof: {"config": "data/live-switch.json", "key": "bookDollars.recon-np", "equals": 10}
+
 ## R070 - fix383: gold seat map. Pure no-pink live gold 1, 4, 7, 9 AM, 8 PM, 9 PM (npLive.hoursByAsset.gold). Sovereign twin (recon-sov) takes gold rejection hours live in place of the no-pink copy (sovLive, engine copier seat, kalshi-live gates, LANE_BOOK), sized like the copy. Main gets gold 8 AM (8 out of gold rejection hours and recon-tog gold skip list). BTC unchanged (pure no-pink every hour). Applied at 11:15 AM PT window boundary.
 - when: 2026-10-28T18:15:39+00:00
 - Love: "let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok"
@@ -30,7 +39,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-28T08:16:52+00:00
 - Love: "we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters / same entry logic, we had some issues last time getting those to go thru correctly at a rejection so we made it just a default entry / but let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on / can we do that bb? + card Main + rejection + copy"
 - books: recon-tog, recon-rej, recon-togp
-- status: ACTIVE
+- status: RETIRED - Love: "let’s do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book pls bb"
 - proof: {"code": "src/lib/desk/engine.ts", "has": "THE SECOND ADD-ON (fix380"}
 - proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 5}
 - proof: {"config": "data/live-switch.json", "key": "offHourMain.dollars", "equals": 5}
@@ -179,7 +188,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-28T03:22:22+00:00
 - Love: "let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls + card "New one at 9 PM only""
 - books: r, e, c, o, n, -, n, p,  , l, i, v, e,  , 9,  , P, M, ;,  , r, e, c, o, n, -, t, o, g, /, r, e, j, /, t, o, g, p,  , s, i, t,  , o, u, t,  , 9,  , P, M
-- status: ACTIVE
+- status: RETIRED - Love: "let’s do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book pls bb (pure no-pink $3 -> $10; her live hours are now R068/R070)"
 - proof: {"config": "data/live-switch.json", "key": "npLive.on", "equals": true}
 - proof: {"config": "data/live-switch.json", "key": "npLive.hours", "equals": [21]}
 - proof: {"config": "data/live-switch.json", "key": "bookDollars.recon-np", "equals": 3}

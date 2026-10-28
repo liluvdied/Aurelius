@@ -2794,5 +2794,29 @@
   "result": "win",
   "pnl": 7.5,
   "lane": "first"
+ },
+ {
+  "at": "2026-10-28T18:12:00+00:00",
+  "slot": "2026-10-28T18:10:00+00:00",
+  "side": "up",
+  "setup": "Launched from the bottom third (low 80626.64) - a long until the top third",
+  "ask": 0.51,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-28T18:12:00+00:00",
+  "slot": "2026-10-28T18:10:00+00:00",
+  "side": "up",
+  "setup": "Launched from the bottom third (low 80626.64) - a long until the top third",
+  "ask": 0.51,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "first"
  }
 ]

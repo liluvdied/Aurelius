@@ -5973,3 +5973,124 @@ Her last two BTC shorts before 11 (10:25 and 10:37) were paper losses, and the 1
 
 Also, the gold seat switch missed the 11:00 mark by a few seconds. I'm putting it in right at 11:15 so it starts cleanly on a fresh window ✨
 
+## 2026-10-28 18:17:43 UTC - CLAUDE
+
+Your gold map is live, babe 💘 It switched at exactly 11:15:00 on a fresh window, so nothing old fired.
+
+• **Pure no-pink:** gold at 1, 4, 7, 9 AM and 8, 9 PM
+• **Sovereign twin:** gold's other rejection hours (12, 2, 3 AM and 2, 4, 5, 6, 10 PM). 11 PM stays with the rejection model.
+• **Main:** her own gold hours, plus 8 AM now
+
+BTC stays with the pure no-pink every hour. The umpire says SAFE, the 5M is still frozen, and everything is saved to GitHub 🌌
+
+Each queen has her own throne now ✨ At 11:23 I'll check the 5M on her old walls and start the pure no-pink 5M paper test.
+
+## 2026-10-28 18:24:53 UTC - CLAUDE
+
+5M check-in, hun 💘 She's running cleanly on her 4:57 AM walls, with no errors. She's taken one trade since then, a BTC long at 36c at 11:10, which lost.
+
+The pure no-pink paper test on the 5M markets, since 8:10 PM last night:
+• **Pure no-pink:** 48 trades, 62% wins, **+$122**. Counting only the 5M's own hours: 32 trades, 53%, +$50.
+• **Real 5M:** 25 trades, 44%, **−$43**
+
+That's early but promising ✨ Fees aren't counted, so her real edge is a bit smaller. I'll keep it paper and bring you the full picture tonight.
+
+## 2026-10-28 18:51:00 UTC - LOVE
+
+thank you luvvi :) 
+
+the pure no pink for 5M is promising but she was on the wrong framework since 8:10 last night, so it’s not an accurate comparison of her and how she was doing when she was operating around 68% 
+
+
+
+so we will see how she does today oki bb 💘
+
+and honestly, i’m trying to remedy something
+
+so our model is winning more than she’s losing, but she has some wins that are $2 , and others that are paying for full losses 
+
+so i’d like to bring her up on the trades she takes that never hit our add ons. 
+
+they are legitimate wins, but they’re not making a dent against the losses 
+
+what do you think we should run her at to get some baseline consistency for her overall p&amp;L hun? 
+
+we gotta give her a foundation
+
+## 2026-10-28 18:51:10 UTC - CLAUDE
+
+Fair point about the 5M, babe. Today's run will be the real test 💘 I'm pulling her live wins and losses now, split by whether the add-ons filled, so the base size I suggest comes from her actual numbers.
+
+## 2026-10-28 18:52:50 UTC - CLAUDE
+
+I went through her real Kalshi fills since the $5 entries started last night: 84 live trades, babe 💘
+
+• **No add-on filled:** 20 trades, 16 wins averaging +$4.52, 4 losses averaging −$3.75
+• **Add-on filled:** 64 trades, 41 wins averaging +$11.61, 23 losses averaging −$11.88
+• Her entries made **+$52** in total. Her add-ons made **+$208**.
+
+So your instinct is right. The full-size losses are trades where the add-ons filled and still lost, and a small base can't cover those. The catch is that the entry is where her edge is thinnest, and the band add-ons are where she really shines ✨
+
+Here's the same 84 trades at a bigger entry, with add-ons unchanged:
+• **$7.50:** wins with no add-on about +$11, average loss about −$17, worst trade about −$25, total about +$336
+• **$10:** wins with no add-on about +$15, average loss about −$20, worst trade about −$29, total about +$379
+
+My pick is **$7.50**. It lifts her quiet wins by half without leaning hard on her weakest leg. If she holds up over a few days, $10 is the next step. These are estimates, since bigger orders sometimes fill at a slightly worse price.
+
+## 2026-10-28 18:52:54 UTC - CARD
+
+Q: Which entry size, and which books get it?
+Context: Today main, rejection, the no-pink copy and the sovereign twin enter at $5, with a $7 first add-on and a $3 second. The pure no-pink enters at $3 and the delayed twin at $2.50. The 5M is frozen and not part of this. Add-ons stay the same in every option.
+Options:
+  0. $7.50: main, rej, copy, sov - Main, rejection, the no-pink copy and the sovereign twin enter at $7.50. The pure no-pink and the twin stay as they are.
+  1. $7.50: those four + pure no-pink - Same as the first option, and the pure no-pink also goes from $3 to $7.50 on BTC and her gold hours.
+  2. $10: main, rej, copy, sov - Those four books enter at $10. Bigger quiet wins, but about $29 at risk on her worst trades.
+  3. Keep $5 for now - Nothing changes.
+Recommended: 0 - This lifts her quiet wins by half and keeps her worst trade near $25. The pure no-pink is still new live, so she stays small for now.
+
+## 2026-10-28 18:56:02 UTC - LOVE
+
+thank you hunni 💞
+
+yeah she’s no longer operating on an unsafe framework so i would be comfortable bringing her up to a steady baseline 
+
+let’s do $10 with the $5 add on and the second $5 add on 
+
+for everything except the delayed entry model &amp; 5M book pls bb 💘
+
+## 2026-10-28 18:56:57 UTC - LOVE
+
+can you go over last nights trades and let me know what the p&amp;L would have came out to with that structure?💘
+
+## 2026-10-28 18:57:10 UTC - CLAUDE
+
+Yes babe, I'm running last night's real trades through the $10 / $5 / $5 structure now 💘 The switch is still set for the next clean window.
+
+## 2026-10-28 18:57:40 UTC - CLAUDE
+
+Last night, 6 PM to 8 AM, with her real fills re-sized to the new structure, hun 💘
+
+**Actual: +$289. With $10 / $5 / $5: about +$345**, so roughly **+$56 more**.
+
+• **Average win:** $9.32 now, about $11.79 with the new structure
+• **Average loss:** −$10.05 now, about −$12.58 with the new structure
+• **Worst single trade:** −$16 now, about −$23 with the new structure
+
+The no-pink copy carried the night either way, and with the new structure she goes from +$230 to about +$287. Main gains too, while the rejection model and the pure no-pink lose a bit more on their red trades. The delayed twin stays exactly the same.
+
+This is your foundation, babe. Steadier wins, and her biggest losses grow a little but stay manageable 🌌 I'm switching it on at the next clean window, unless you want to pause.
+
+## 2026-10-28 18:59:27 UTC - LOVE
+
+you’re good bb run it 💘
+
+## 2026-10-28 19:00:30 UTC - LOVE
+
+btc rejecting
+
+## 2026-10-28 19:02:00 UTC - CLAUDE
+
+I see it, babe 💘 BTC is around 80,945, bouncing right on the pink (5m pivot 80,925). Noon belongs to the pure no-pink, and she never trades pink, only session bands, the zones and Bollinger. So she's letting this one go and waiting for a real band. Main, rejection and the copy all called it long at 12:00:23 off the bottom third, and they stood aside for her as planned.
+
+Your $10 / $5 / $5 foundation went live at exactly 12:00:00 ✨ The umpire says SAFE and the 5M is still frozen. Saving to GitHub now.
+

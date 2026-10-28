@@ -84825,5 +84825,96 @@
    "Sold at +278%, but it ran to +304.3%. This setup may deserve a higher line.",
    "The rejection shadow agreed (short off VWAP)."
   ]
+ },
+ "KXGOLD15M-26OCT281430-30": {
+  "ticker": "KXGOLD15M-26OCT281430-30",
+  "at": "2026-10-28T18:30:30.025Z",
+  "asset": "gold",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "multiple": 1.72,
+  "profit": -11.97,
+  "result": "loss",
+  "entry": {
+   "spot": 4032.932,
+   "band": "-1.5σ",
+   "distSigma": 0.05,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": true,
+   "minuteIn": 5.1
+  },
+  "peakPct": 43.1,
+  "maxPct": 72.4,
+  "takeProfitPct": 54.3,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Ran to +43.1% before turning. Selling around +34% would have banked about $1.39 instead of −$11.97.",
+   "The rejection shadow went the other way (long off -1.5σ)."
+  ]
+ },
+ "KXBTC15M-26OCT281445-45": {
+  "ticker": "KXBTC15M-26OCT281445-45",
+  "at": "2026-10-28T18:45:20.951Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "Failed break above session VWAP - rejected down",
+  "multiple": 2.17,
+  "profit": -8.38,
+  "result": "loss",
+  "entry": {
+   "spot": 80846.38,
+   "band": "VWAP",
+   "distSigma": 0.04,
+   "rightSide": false,
+   "bandAhead": false,
+   "throughTarget": false,
+   "minuteIn": 1.8
+  },
+  "peakPct": 82.6,
+  "maxPct": 117.4,
+  "takeProfitPct": 88.1,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of VWAP: short just over it."
+  ],
+  "lessons": [
+   "Ran to +82.6% before turning. Selling around +66% would have banked about $1.99 instead of −$8.38.",
+   "The rejection shadow agreed (short off +0.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT281445-45": {
+  "ticker": "KXGOLD15M-26OCT281445-45",
+  "at": "2026-10-28T18:45:43.283Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Break above -1σ",
+  "multiple": 1.64,
+  "profit": 20.78,
+  "result": "win",
+  "entry": {
+   "spot": 4037.528,
+   "band": "-1σ",
+   "distSigma": 0,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": true,
+   "minuteIn": 0.4
+  },
+  "peakPct": 21.3,
+  "maxPct": 63.9,
+  "takeProfitPct": 50,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of -1σ: long just under it.",
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "The rejection shadow went the other way (short off VWAP)."
+  ]
  }
 }

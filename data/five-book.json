@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T18:15:06.839Z",
+ "at": "2026-10-28T18:44:11.598Z",
  "rows": {
   "cpc-btc-updown-5m-2026-10-25-1540z:recon-rej-5m:2026-10-25T15:40:32.131Z": {
    "at": "2026-10-25T15:40:32.131Z",
@@ -3662,6 +3662,23 @@
    "door": "1m flip",
    "result": "win",
    "pnl": 11.16
+  },
+  "cpc-btc-updown-5m-2026-10-28-1840z:recon-rej-5m:2026-10-28T18:41:03.365Z": {
+   "at": "2026-10-28T18:41:03.365Z",
+   "book": "recon-rej-5m",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1840z",
+   "side": "up",
+   "cost": 0.6,
+   "stake": 6.43,
+   "closesAt": "2026-10-28T18:45:00.000Z",
+   "status": "banked",
+   "banked": 3.63,
+   "soldPx": 0.98,
+   "addOn": false,
+   "setup": "Candle rising from the bottom third",
+   "door": "1m flip",
+   "result": "win",
+   "pnl": 3.63
   }
  }
 }

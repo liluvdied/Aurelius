@@ -836,8 +836,8 @@
   "side": "down",
   "ask": 0.64,
   "left": 300,
-  "result": "open",
-  "pnl": 0.0
+  "result": "loss",
+  "pnl": -5.0
  },
  {
   "lane": "3m",
@@ -846,7 +846,7 @@
   "side": "down",
   "ask": 0.48,
   "left": 240,
-  "result": "open",
-  "pnl": 0.0
+  "result": "loss",
+  "pnl": -5.0
  }
 ]

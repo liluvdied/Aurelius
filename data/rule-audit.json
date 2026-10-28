@@ -1785,10 +1785,10 @@
    ]
   }
  ],
- "checkedTo": "2026-10-28T17:21:49.954979Z",
+ "checkedTo": "2026-10-28T18:22:07.892174Z",
  "lastRun": {
-  "at": "2026-10-28T17:21:49.954979Z",
-  "orders": 5,
+  "at": "2026-10-28T18:22:07.892174Z",
+  "orders": 8,
   "breaches": 0
  },
  "note": "Cleaned by Claude 3:30 AM PT Oct 21: dropped audit false positives (gold 9:55Z stale pivot; gold 5:30Z predates the 2\u03c3 rule) and duplicates. Real: BTC twin short 2:34 AM PT on a rising candle above every band."
