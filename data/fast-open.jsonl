@@ -54519,3 +54519,7 @@
 {"at":"2026-10-28T05:02:21.989Z","lane":"brk15","asset":"btc","ticker":"KXBTC15M-26OCT280115-15","side":"up","label":"Break above fresh VWAP","into":141,"spot":80853.58,"tick":80853.58,"tickAgeMs":418,"push3s":2.66}
 {"at":"2026-10-28T05:02:31.501Z","lane":"brk10","asset":"gold","ticker":"KXGOLD15M-26OCT280115-15","side":"up","label":"Break above -2σ","into":150,"spot":4036.59,"tick":4036.59,"tickAgeMs":607,"push3s":0.33}
 {"at":"2026-10-28T05:02:31.508Z","lane":"brk15","asset":"gold","ticker":"KXGOLD15M-26OCT280115-15","side":"up","label":"Break above -2σ","into":150,"spot":4036.59,"tick":4036.59,"tickAgeMs":614,"push3s":0.33}
+{"at":"2026-10-28T05:02:58.596Z","lane":"brk10","asset":"btc","ticker":"KXBTC15M-26OCT280115-15","side":"up","label":"Break above fresh VWAP","into":177,"spot":80823.34,"tick":80823.34,"tickAgeMs":909,"push3s":3.01}
+{"at":"2026-10-28T05:02:58.599Z","lane":"brk15","asset":"btc","ticker":"KXBTC15M-26OCT280115-15","side":"up","label":"Break above fresh VWAP","into":177,"spot":80823.34,"tick":80823.34,"tickAgeMs":912,"push3s":3.01}
+{"at":"2026-10-28T05:03:04.632Z","lane":"brk10","asset":"btc","ticker":"KXBTC15M-26OCT280115-15","side":"down","label":"Break below fresh VWAP","into":182,"spot":80806.35,"tick":80806.35,"tickAgeMs":647,"push3s":-15.64}
+{"at":"2026-10-28T05:03:04.637Z","lane":"brk15","asset":"btc","ticker":"KXBTC15M-26OCT280115-15","side":"down","label":"Break below fresh VWAP","into":182,"spot":80806.35,"tick":80806.35,"tickAgeMs":652,"push3s":-15.64}

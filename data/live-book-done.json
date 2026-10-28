@@ -6813,18 +6813,18 @@
   "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
  },
  "KXGOLD15M-26OCT280115-15:recon-togp:KXGOLD15M-26OCT280115-15:recon-togp": {
-  "at": "2026-10-28T05:02:40.017Z",
+  "at": "2026-10-28T05:04:50.991Z",
   "ticker": "KXGOLD15M-26OCT280115-15",
-  "side": "down",
-  "status": "blocked",
-  "reason": "THE IMPOSSIBILITY: short at 1% of the 4036.09 -> 4044.67 channel - the bottom 33%, into the unbroken band below. never.",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
   "firstReason": "TARGET PAST A BAND: long at 4036.49 with the Bollinger lower (4036.55) above her, within $1.50 of the target 4036.69 - only trade away from it.",
   "firstTryAt": "2026-10-28T05:00:08.294Z",
-  "bookedAt": "2026-10-28T05:00:34.423Z",
-  "tries": 643,
+  "bookedAt": "2026-10-28T05:04:31.505Z",
+  "tries": 1207,
   "final": false,
-  "paid": null,
-  "orderId": null
+  "paid": 0.5,
+  "orderId": "01a180e5-8d50-72e9-afa9-225970c16156"
  },
  "KXGOLD15M-26OCT280115-15:recon-np:KXGOLD15M-26OCT280115-15:recon-np": {
   "at": "2026-10-28T05:00:08.295Z",
