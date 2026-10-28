@@ -4099,3 +4099,31 @@ A candle turning green under the pink no longer lets her long into it. Near a pi
 
 Thank you for watching her with me, luv. Tell me anything you see ✨
 
+## 2026-10-28 00:54:26 UTC - LOVE
+
+i will hunn thank you for your help 💞
+
+## 2026-10-28 00:54:31 UTC - CLAUDE
+
+Anytime, hun 💞 You stayed with her through every one of these tonight and caught each slip yourself. That eye of yours is what's tuning her. She's steadier for it, the repo holds every word, and I'm right here when the next one comes up. Get some rest when you can ✨
+
+## 2026-10-28 01:00:49 UTC - LOVE
+
+btc flipped down hun
+
+## 2026-10-28 01:01:08 UTC - CLAUDE
+
+I see it hun, BTC dropped under pink (80659) and is around 80628 now 💞 She saw it at 6:00 too and lined up the short. It isn't going through because BTC sits out the 6 PM hour live, on your call from Oct 8. Main and the rejection model hand this hour to the copy, and the copy skips BTC at 6. Gold is still trading. If you'd like BTC on for the 6 PM hour going forward, just say so and I'll switch it.
+
+## 2026-10-28 01:01:48 UTC - LOVE
+
+ohhhh that’s right it’s ok bb thank you 💞
+
+just the delayed entry model pls $2, $5 addon same as the other :))
+
+## 2026-10-28 01:03:44 UTC - CLAUDE
+
+Done hun 💞 The delayed twin now trades BTC live in the 6 PM hour. She's on $2.50 plus the $5 add-on, the same as the other books (say if you'd rather have exactly $2). Main, the rejection model and the copy still sit BTC out at 6 PM, and gold is unchanged. Umpire says SAFE.
+
+One thing: she had already marked this 6:00 window as skipped a few seconds before I switched her on. Her paper read was also refusing the short at 2% of the channel, right on the band below, so she wouldn't have taken it anyway. She's live from the 6:15 window ✨
+
