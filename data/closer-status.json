@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T05:34:29.366Z",
+ "at": "2026-10-28T05:49:20.821Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -14,7 +14,7 @@
   "NBA": {
    "live": 1,
    "late": 1,
-   "matched": 0
+   "matched": 1
   },
   "WNBA": {
    "live": 0,
@@ -40,18 +40,15 @@
  "watching": [
   {
    "league": "NBA",
-   "game": "Trail Blazers 114 @ Lakers 112",
+   "game": "Trail Blazers 130 @ Lakers 127",
    "period": 4,
-   "clock": "6:44",
-   "fav": null,
-   "wp": null,
-   "ask": null,
-   "ticker": null,
-   "matched": false
+   "clock": "1:33",
+   "fav": "Trail Blazers",
+   "wp": 0.91,
+   "ask": 0.77,
+   "ticker": "KXNBAGAME-26OCT27PORLAL-POR",
+   "matched": true
   }
  ],
- "errors": [
-  "longshot NBA: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNBAG",
-  "KXNBAGAME: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNBAG"
- ]
+ "errors": []
 }

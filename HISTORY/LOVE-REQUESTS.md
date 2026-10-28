@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R059 - fix373: BTC only - main/rej/copy unfilled long refused by a PINK wall re-aims to the short when the engine reads a rejection down off the pink with a 1-5m red flip; sticks for the window.
+- when: 2026-10-28T05:49:45+00:00
+- Love: "if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok 🎯 + card "Which books get the BTC pink-rejection re-aim?" -> "Main + rejection + copy""
+- books: recon-tog, recon-rej, recon-togp
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "re-aimed off the pink rejection (fix373)"}
+
 ## R058 - fix372: recon-sov = SOVEREIGN paper twin: own bonesDecide read on the rejection board (session, pink, zones, Bollinger) rejections-only + 1-5m flip; re-aims unfilled calls; paper only, overnight test.
 - when: 2026-10-28T05:34:30+00:00
 - Love: "rather than having it copy mains calls, can you instill the engine and entry logic and give her sovereign reign to make her own trades aside from main? 💓 / bring me the numbers first, and rather than changing her we can make a twin and test it over night before going live"

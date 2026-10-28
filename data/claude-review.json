@@ -82513,5 +82513,64 @@
   "lessons": [
    "No entry snapshot for this one (it filled before the snapshot logger, or through another path)."
   ]
+ },
+ "KXBTC15M-26OCT280145-45": {
+  "ticker": "KXBTC15M-26OCT280145-45",
+  "at": "2026-10-28T05:45:20.998Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Failed break below fresh VWAP - rejected up",
+  "multiple": 2.04,
+  "profit": 18.45,
+  "result": "win",
+  "entry": {
+   "spot": 80843.17,
+   "band": "VWAP",
+   "distSigma": 0.24,
+   "rightSide": true,
+   "bandAhead": true,
+   "throughTarget": true,
+   "minuteIn": 0.1
+  },
+  "peakPct": 73.5,
+  "maxPct": 104.1,
+  "takeProfitPct": 78.1,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "The rejection shadow went the other way (short off +0.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT280145-45": {
+  "ticker": "KXGOLD15M-26OCT280145-45",
+  "at": "2026-10-28T05:45:42.196Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Failed break below Green zone - rejected up",
+  "multiple": 1.85,
+  "profit": 2.91,
+  "result": "win",
+  "entry": {
+   "spot": 4033.4,
+   "band": "-2σ",
+   "distSigma": 0,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": false,
+   "minuteIn": 1.2
+  },
+  "peakPct": 68.5,
+  "maxPct": 85.2,
+  "takeProfitPct": 63.9,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, won at the bell.",
+   "The rejection shadow agreed (long off -2σ)."
+  ]
  }
 }

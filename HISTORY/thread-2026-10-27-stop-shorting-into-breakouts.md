@@ -5203,3 +5203,33 @@ So re-aiming to the pink short is strong on BTC but not on gold. The samples are
 
 Her sovereign twin is running now, paper only 💘 She doesn't copy main anymore. She runs the engine's own read on her whole board herself (session bands, pink, green/red zones, Bollinger), takes rejections only, and enters only on a 1 to 5m flip her way. If a call never fills, she re-aims to her newest read. Her first calls already came in at 10:33. Main, the rejection model, the copy, the twin and the 5M didn't move (R058, umpire SAFE). I'll bring you her overnight scorecard next to the others in the morning ✨
 
+## 2026-10-28 05:38:07 UTC - LOVE
+
+beautiful work hun 💘💘
+
+if the numbers are that good on btc you can go ahead and put that in bb 💞
+
+we are stopping bleeds this week ok 🎯
+
+## 2026-10-28 05:38:20 UTC - CARD
+
+Q: Which books get the BTC pink-rejection re-aim?
+Context: Stopping bleeds 🎯 Here's the rule: on BTC, when her long gets refused under an unbroken pink and price then rejects down off that pink (with a 1 to 5m flip her way), the unfilled long re-aims to the short. In the study that short won 27 of 38 (+$222), where the refused long would have lost about $204. Gold stays as is, since the numbers there said no. A filled trade never re-aims, and the 5M stays frozen.
+Options:
+  0. Main + rejection + copy - All three Kalshi books that got the refused BTC longs in the study get the re-aim.
+  1. Rejection model only - Only the rejection model re-aims. Main and the copy stay exactly as they are.
+  2. Main + rejection - The no-pink copy stays as is, and main plus the rejection model re-aim.
+Recommended: 0 - The +$222 came from refused calls across all three books.
+
+## 2026-10-28 05:48:41 UTC - LOVE
+
+Chose "Main + rejection + copy" on the decision card asking "Which books get the BTC pink-rejection re-aim?"
+
+## 2026-10-28 05:48:51 UTC - CLAUDE
+
+Putting the BTC pink-rejection re-aim on main, the rejection model and the copy now 🎯
+
+## 2026-10-28 05:50:16 UTC - CLAUDE
+
+It's in hun 🎯 On BTC now, when main, the rejection model or the copy has a long that pink refused and never filled, she re-aims to the short once price rejects down off that pink with a red 1 to 5m flip. Once she's re-aimed, she stays short for that window and doesn't flip back to main's old long read. A filled trade never re-aims. Gold, the twin, the pure no-pink and the 5M didn't move (R059, umpire SAFE). Every re-aim gets logged so we can check each one together 💘
+

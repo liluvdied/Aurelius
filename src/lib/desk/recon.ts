@@ -475,6 +475,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       // NOT JUST ONCE (Oct 20 ~7:51 PM PT, Love: "price now broke the vwap and pink down, she should short here" - gold's 7:45 call had already been re-aimed
       // long once and could not turn again): her law is one EXECUTED direction per window, so an unfilled call follows her bones as often as they turn.
       if (prior.side === look.side) return false;
+      try { if (((globalThis as any).__reaim373 || {})[m.ticker + ":" + lane] && prior.side === "down" && look.side === "up") return false; } catch {} // fix373: a pink-rejection re-aim sticks - main's old long read never turns her back
       // ONE CALL, NEVER RE-AIMED (Oct 21 ~11:42 AM PT, Love: "please stop having it flip the trades it says she took ... i need it to stay the one trade she
       // would have taken at the beginning of the window and stay there / and then wait for price to interact with the next band from the main books entry, and
       // then enter in on the delayed model"): the MAIN book (TOGETHER) and the DELAYED book keep their first call of the window - on paper and on Kalshi.
@@ -660,6 +661,15 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // Paper only - never in any live list; Love decides after the overnight test.
   try { if (rejLB && rejReach > 0) { const sv = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach);
     if (sv && (sv.side === "up" || sv.side === "down") && !/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(String(sv.label)) && (() => { try { return anyFlipNow(id, sv.side, spot); } catch { return false; } })() && book("recon-sov", { side: sv.side, label: String(sv.label) } as any)) changed = true; } } catch {}
+  // BTC PINK-REJECTION RE-AIM (fix373, Love Oct 27 2026 10:38 PM PT: "if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok" + card "Which books get the BTC pink-rejection re-aim?" -> "Main + rejection + copy"; study since Oct 11: BTC longs refused under pink, the pink-rejection short won 27 of 38 +$222 while the refused long lost ~$204):
+  // BTC only, MAIN / REJECTION MODEL / NO-PINK COPY - when her open call this window is a LONG that never filled and a PINK wall refused it, and the engine now reads a
+  // rejection DOWN off the pink (bonesDecide, rejections only) with a 1-5m candle flipped red, the unfilled long re-aims to that short (book() re-aims; a fill locks the window). Gold untouched.
+  try { if (id === "btc" && rejLB && rejReach > 0) { const lanes373 = ["recon-tog", "recon-rej", "recon-togp"].filter((ln) => rows.some((r) => r.ticker === m.ticker && r.lane === ln && r.side === "up" && r.result === "open"));
+    if (lanes373.length) { const sv3 = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach);
+      if (sv3 && sv3.side === "down" && /5m PP/.test(String(sv3.label)) && (() => { try { return anyFlipNow(id, "down", spot); } catch { return false; } })()) {
+        let d3: Record<string, any> = {}; try { d3 = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); } catch {}
+        for (const ln of lanes373) { let pinkNo = false, filled = false; for (const k3 of Object.keys(d3)) { if (!k3.startsWith(m.ticker + ":" + ln)) continue; const v3 = d3[k3]; if (v3?.status === "filled" || v3?.status === "partial") filled = true; if (v3?.side === "up" && (/^PINK/.test(String(v3?.firstReason || "")) || /^PINK/.test(String(v3?.reason || "")))) pinkNo = true; }
+          if (pinkNo && !filled && (((globalThis as any).__reaim373 ||= {})[m.ticker + ":" + ln] = 1) && book(ln, { side: "down", label: `${sv3.label} - re-aimed off the pink rejection (fix373)` } as any)) { changed = true; try { appendFileSync(D("pink-reaim.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: m.ticker, lane: ln, label: sv3.label, spot }) + "\n"); } catch {} } } } } } } catch {}
   // 6) DELAYED (Oct 20 ~9:38 PM PT, Love: "a delayed entry model to trade at $1 - same frame, same everything, just waits out the initial move, and enters on the
   // other side of the window than she would have been in had she got in initially when the opportunity presents itself ... her trades go in profit and reverse,
   // so we implement the delayed entry model to be on the other side of it - the right side of it"): TOGETHER's first call in the window is the initial move; this

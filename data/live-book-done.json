@@ -7069,5 +7069,73 @@
   "status": "skipped",
   "final": true,
   "reason": "RECON-DLY sits out her worst hour (10 PM PT) live"
+ },
+ "KXGOLD15M-26OCT280200-00:recon-tog:KXGOLD15M-26OCT280200-00:recon-tog": {
+  "at": "2026-10-28T05:45:13.653Z",
+  "ticker": "KXGOLD15M-26OCT280200-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
+ },
+ "KXGOLD15M-26OCT280200-00:recon-rej:KXGOLD15M-26OCT280200-00:recon-rej": {
+  "at": "2026-10-28T05:45:13.654Z",
+  "ticker": "KXGOLD15M-26OCT280200-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
+ },
+ "KXBTC15M-26OCT280200-00:recon-rej:KXBTC15M-26OCT280200-00:recon-rej": {
+  "at": "2026-10-28T05:45:37.720Z",
+  "ticker": "KXBTC15M-26OCT280200-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
+ },
+ "KXBTC15M-26OCT280200-00:recon-tog:KXBTC15M-26OCT280200-00:recon-tog": {
+  "at": "2026-10-28T05:45:37.721Z",
+  "ticker": "KXBTC15M-26OCT280200-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
+ },
+ "KXBTC15M-26OCT280200-00:recon-togp:KXBTC15M-26OCT280200-00:recon-togp": {
+  "at": "2026-10-28T05:45:54.842Z",
+  "ticker": "KXBTC15M-26OCT280200-00",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "HER FLIP: no 1/2/3/4/5m candle is green by $5 - a long needs one flipped her way for real (fix359).",
+  "firstTryAt": "2026-10-28T05:45:37.735Z",
+  "bookedAt": "2026-10-28T05:45:37.555Z",
+  "tries": 70,
+  "final": false,
+  "paid": 0.64,
+  "orderId": "01a1810b-2650-7dce-b0e8-2783b7a688f0"
+ },
+ "KXBTC15M-26OCT280200-00:recon-np:KXBTC15M-26OCT280200-00:recon-np": {
+  "at": "2026-10-28T05:45:37.736Z",
+  "ticker": "KXBTC15M-26OCT280200-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "THE PURE NO-PINK trades live only in her hour (9 PM, Love)"
+ },
+ "KXGOLD15M-26OCT280200-00:recon-togp:KXGOLD15M-26OCT280200-00:recon-togp": {
+  "at": "2026-10-28T05:48:39.999Z",
+  "ticker": "KXGOLD15M-26OCT280200-00",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "THE IMPOSSIBILITY: short at 30% of the 4031.54 -> 4041.41 channel - the bottom 33%, into the unbroken band below. never.",
+  "firstTryAt": "2026-10-28T05:48:19.585Z",
+  "bookedAt": "2026-10-28T05:48:36.947Z",
+  "tries": 76,
+  "final": false,
+  "paid": 0.53,
+  "orderId": "01a1810d-aad8-77e3-a24b-d20218ed2f52"
  }
 }

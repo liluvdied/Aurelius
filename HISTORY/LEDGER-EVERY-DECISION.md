@@ -1,9 +1,15 @@
-# Every decision Love has made - rebuilt 2026-10-28T05:34:42.407820+00:00
+# Every decision Love has made - rebuilt 2026-10-28T05:49:56.587575+00:00
 
-1221 decisions with Love's words or card picks, out of 1892 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1222 decisions with Love's words or card picks, out of 1897 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T05:49:45Z  ·  diary line 2362  ·  fix373
+- Love: “if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok 🎯 + card”
+- Card pick: **Which books get the BTC pink-rejection re-aim?**
+- fix373 IN HER CODE
+- Full entry: 2026-10-28T05:49:45Z fix373/373b (Oct 27 ~10:50 PM PT, Love: "if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok 🎯 + card "Which books get the BTC pink-rejection re-aim?" -> "Main + rejection + copy""): BTC pink-rejection re-aim for main/rej/copy; re-aim sticks (no turning back to main's long read). Logged to data/pink-reaim.jsonl. Gold untouched.
 
 ## 2026-10-28T05:34:30Z  ·  diary line 2357  ·  fix372
 - Love: “rather than having it copy mains calls, can you instill the engine and entry logic and give her sovereign reign to make her own trades aside from main? 💓 / bring me the numbers first, and rather than changing her we can make a twin and test it over night before going live”
