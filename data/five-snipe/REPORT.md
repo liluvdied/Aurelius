@@ -1,19 +1,16 @@
 # 5m snipe paper book 🎯
 
-Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Wed 12:22 PM PT.
+Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Wed 02:22 PM PT.
 
 | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|
-| cash at 3x | 47 | 12 | 26% | $+669.17 |
-| cash at 5x | 47 | 11 | 23% | $+759.17 |
-| cash at 7.5x | 47 | 10 | 21% | $+834.17 |
-| cash at 10x | 47 | 10 | 21% | $+936.09 |
+| cash at 3x | 48 | 13 | 27% | $+689.17 |
+| cash at 5x | 48 | 11 | 23% | $+749.17 |
+| cash at 7.5x | 48 | 10 | 21% | $+824.17 |
+| cash at 10x | 48 | 10 | 21% | $+926.09 |
 
 | When (PT) | Book | Side | Paid | Peak bid | 3x | 5x | 7.5x | 10x |
 |---|---|---|---|---|---|---|---|---|
-| Sun 04:37 PM | recon-tog | down | 0.13 | 0.11 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
-| Sun 04:44 PM | recon-tog | up | 0.01 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
-| Sun 05:13 PM | recon-tog | down | 0.07 | 0.05 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Sun 05:28 PM | recon-tog | down | 0.06 | 0.02 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Sun 06:22 PM | recon-tog | down | 0.08 | 0.07 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Sun 07:07 PM | recon-tog | down | 0.11 | 0.05 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
@@ -91,3 +88,6 @@ Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her s
 | Wed 11:24 AM | recon-tog | down | 0.09 | 0.07 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed 11:28 AM | recon-tog | down | 0.04 | 0.03 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Wed 12:08 PM | recon-tog | up | 0.13 | 0.21 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Wed 12:59 PM | recon-tog | down | 0.03 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
+| Wed 01:58 PM | recon-tog | down | 0.02 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
+| Wed 02:18 PM | recon-tog | down | 0.09 | 0.38 | cashed 3x +20.00 | lost -10.00 | lost -10.00 | lost -10.00 |

@@ -1,5 +1,30 @@
 [
  {
+  "id": "KXBTC15M-26OCT281745-45:up",
+  "at": "2026-10-28T21:38:47.685Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281745-45",
+  "side": "up",
+  "sigma": -2.18,
+  "spot": 81056.84,
+  "vwap": 81251.58,
+  "stdev": 89.31,
+  "target": 81150.51,
+  "secondsLeft": 373,
+  "ask": 0.31,
+  "multiple": 3.23,
+  "peakBid": 0.999,
+  "peakPct": 222,
+  "exits": {
+   "+50": 0.51,
+   "+100": 0.73,
+   "+200": 0.949,
+   "+300": null
+  },
+  "result": "open",
+  "profits": null
+ },
+ {
   "id": "KXBTC15M-26OCT281615-15:down",
   "at": "2026-10-28T20:00:23.026Z",
   "asset": "btc",

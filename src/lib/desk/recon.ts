@@ -134,7 +134,7 @@ function rejFlipAtBand(asset: string, L: Line[], spot: number, cur: { o: number;
 }
 /** fix326: her flip (any 1/2/3/4/5m candle literally her colour). */
 function pfFlipOk(asset: string, side: string, spot: number): boolean { try { return anyFlipNow(asset, side, spot); } catch { return false; } }
-export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar | undefined, cur: { o: number; h: number; l: number }, prev?: { h: number; l: number } | null, bars?: Bar[], rejOnly = false, reach = 0, pinkFlip = false /* fix326 */): { side: "up" | "down"; label: string } | null {
+export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar | undefined, cur: { o: number; h: number; l: number }, prev?: { h: number; l: number } | null, bars?: Bar[], rejOnly = false, reach = 0, pinkFlip = false /* fix326 */, zoneFlip = false /* fix394 (Love Oct 28 2026 2:35 PM PT card "Let green/red zone rejections fire on any 1-5m candle flip?" -> "Pure no-pink + main"; 2:34 PM: "and the candle flipped from green bb"): main + pure no-pink zone reads take a 1-5m flip */): { side: "up" | "down"; label: string } | null {
   const brk = BREAK[asset] ?? 0, tap = TAP[asset] ?? 0;
   // fix326 PINK REJECTION ON HER FLIP (Oct 27 ~11:51 AM PT, main + rejection model only; Love Oct 21 9:12 PM PT: "red candle falling rejected from pink - she is clear to
   // short anywhere in the channel, except the bottom 33%" + Oct 27 11:47 AM: "the second it flipped before she was in" + card "Main + rejection model"): a pink rejection
@@ -341,7 +341,7 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
   // fix297 (Oct 26 ~10:20 PM PT, Love: "she can't use the green zone as a signal to short down / or for the red zone / that is rejection only for gold / she can only
   // use the session bands the bollingers and the pink band for that"): a "Failed break above Green zone - rejected down" label ends in " - rejected down", so the
   // fix67 filter below missed it and the 10:16 PM gold main short got through. The zone is now matched anywhere in the label.
-  cands2 = cands2.filter((c) => { const lb = String(c.label); if (!/(Green|Red) zone( - |$)/.test(lb)) return true; if (/^(Break|Close) /.test(lb)) return false; return /Green zone( - |$)/.test(lb) ? c.side === "up" && spot > cur.o : c.side === "down" && spot < cur.o; });
+  cands2 = cands2.filter((c) => { const lb = String(c.label); if (!/(Green|Red) zone( - |$)/.test(lb)) return true; if (/^(Break|Close) /.test(lb)) return false; return /Green zone( - |$)/.test(lb) ? c.side === "up" && (spot > cur.o || (zoneFlip && (() => { try { return anyFlipNow(asset, "up", spot); } catch { return false; } })())) : c.side === "down" && (spot < cur.o || (zoneFlip && (() => { try { return anyFlipNow(asset, "down", spot); } catch { return false; } })())); }); /* fix394 (Love Oct 28 2026 2:35 PM PT card "Let green/red zone rejections fire on any 1-5m candle flip?" -> "Pure no-pink + main"; 2:34 PM: "and the candle flipped from green bb"): with zoneFlip a 1/2/3/4/5m candle flipped her way counts, not only the 5m */
   let seenC = cands2;
   try { if (perspective) seenC = perspective(cands2); } catch {}
   const pool = rejOnly ? seenC.filter((c) => c.rank >= 1) : seenC;
@@ -585,7 +585,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     // 5m candle rejecting up off the green = long, a red 5m candle rejecting down off the red = short. Named apart from "5m S1/R1" so no older rule reads them.
     try { if (!quietR() && p && Number(p.s1) > 0 && Number(p.r1) > 0) LB.push({ name: "Green zone", price: Number(p.s1), unit: Number(L[0]?.unit) || 0 }, { name: "Red zone", price: Number(p.r1), unit: Number(L[0]?.unit) || 0 }); } catch {}
     try { const zB = (globalThis as any).__bbsr?.[id]; if (!quietR() && zB && Number(zB.bbU) > 0 && Number(zB.bbL) > 0 && Date.now() - Number(zB.at) <= 20000) LB.push({ name: "Bollinger upper", price: Number(zB.bbU), unit: Number(L[0]?.unit) || 0 }, { name: "Bollinger lower", price: Number(zB.bbL), unit: Number(L[0]?.unit) || 0 }); } catch {}
-    lookT = reachT > 0 ? bonesDecide(id, LB, spot, last1m, cur, prev, b, false, reachT) : look5;
+    lookT = reachT > 0 ? bonesDecide(id, LB, spot, last1m, cur, prev, b, false, reachT, false, true /* fix394: main */) : look5;
     rejLB = LB; rejReach = reachT; rejL = L; // fix246
     try { if (reachT > 0) { const pf0 = bonesDecide(id, LB, spot, last1m, cur, prev, b, false, reachT, true); if (pf0 && /5m PP/.test(String(pf0.label)) && (pf0.side === "up" ? pfFlipOk(id, "up", spot) : pfFlipOk(id, "down", spot))) tgPF = pf0; } } catch {} // fix326
     // HER 5M CANDLE OFF THE BOLLINGER (Oct 22 ~2:09 AM PT, Love: "she was taking that same set up on the main book earlier ... she's good to do that on the delayed
@@ -666,7 +666,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // sigmas, the red/green zone and the Bollinger bands, never the pink, pivots, purples or nav - and books what she reads when a 1-5m candle has flipped her way. The pure
   // no-pink's pink check rides with her (pink stacked with a session band in the outer 10% and sitting between price and her band = wait). Paper only; recon-np's live seat is untouched.
   try { if (rejLB && rejReach > 0) { const LB9 = rejLB.filter((l) => /σ|VWAP|Bollinger|Green zone|Red zone/i.test(String(l.name)) && !/PP|pink|purple|nav|R1|R2|S1|S2/i.test(String(l.name)));
-    const s9 = LB9.length ? bonesDecide(id, LB9, spot, last1m, cur, prev, b, true, rejReach) : null; const lb9 = String(s9?.label || "");
+    const s9 = LB9.length ? bonesDecide(id, LB9, spot, last1m, cur, prev, b, true, rejReach, false, true /* fix394: pure no-pink */) : null; const lb9 = String(s9?.label || "");
     if (s9 && (s9.side === "up" || s9.side === "down") && !/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(lb9) && !/third/i.test(lb9) /* fix391 (Love Oct 28 2026 1:42 PM PT, card "Stop the pure no-pink from taking thirds reads?" -> "Yes, band reads only"): her own eyes take band taps/rejections/failed breaks only, never a thirds read (Candle rising/falling, Launched from the top/bottom third) - pure no-pink (recon-np live + recon-npo paper) only */ && (() => { try { return anyFlipNow(id, s9.side, spot); } catch { return false; } })()) {
       const band9 = LB9.filter((l) => l.price > 0 && lb9.includes(l.name)).sort((x, y) => y.name.length - x.name.length)[0]; const pp9 = npPink; let pink9 = false;
       if (pp9 > 0) { const ses9 = npL.filter((l) => /σ|VWAP/.test(l.name) && l.price > 0).map((l) => l.price), u9 = Math.min(...ses9.filter((x) => x > spot)), d9 = Math.max(...ses9.filter((x) => x <= spot)), w9 = u9 - d9;
@@ -676,6 +676,22 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       // fix389b (Love Oct 28 2026 1:05 PM PT: "and you can put her on that now, we will put her back where she is is she doesn’t do well on it okay :)) would have worked this short too so let’s give her the ability to do that okay bb"):
       // the LIVE pure no-pink (recon-np) reads with her own eyes too - whichever read speaks first in a window is her call, main's wording or her own band read. Undo = delete this line.
       if (!pink9 && book("recon-np", { side: s9.side, label: lb9 } as any)) changed = true; } } } catch {}
+  // HER OWN TAPS (fix395, Love Oct 28 2026 2:37 PM PT: "hun i’ve asked for this several times now, i want pure to be able to take her own taps" + 2:36 PM: "i want her to be able to take her own calls."):
+  // PURE NO-PINK only (recon-np live + recon-npo paper). Price taps one of her bands this 5m candle (σ/VWAP, Bollinger, green/red zone - within BTC $10 / gold 50c, never broken
+  // through: BTC $6 / gold 33c) and pushes off it her tap (BTC $3 / gold 30c) with a 1/2/3/4/5m candle flipped her way -> her own "Tap-reject at <band>" call. Green zone = longs only,
+  // red zone = shorts only (fix67/fix297). The 5m candle's open does not matter. Same pink check as her own eyes; main's walls still judge her at the door and the wire (fix390).
+  try { if (rejLB && rejReach > 0 && cur && cur.l > 0 && cur.h > 0) { const nr95 = id === "btc" ? 10 : 0.5, bk95 = BREAK[id] ?? 0, tp95 = TAP[id] ?? 0;
+    const LB95 = rejLB.filter((l) => /σ|VWAP|Bollinger|Green zone|Red zone/i.test(String(l.name)) && !/PP|pink|purple|nav|R1|R2|S1|S2/i.test(String(l.name)) && Number(l.price) > 0);
+    let t95: { side: "up" | "down"; label: string; d: number; p: number } | null = null;
+    for (const l of LB95) { const p = Number(l.price), nm = String(l.name);
+      if (!/Red zone/i.test(nm) && spot > p && cur.l <= p + nr95 && cur.l > p - bk95 && spot >= cur.l + tp95 && (() => { try { return anyFlipNow(id, "up", spot); } catch { return false; } })()) { const d = spot - p; if (!t95 || d < t95.d) t95 = { side: "up", label: `Tap-reject at ${nm}`, d, p }; }
+      if (!/Green zone/i.test(nm) && spot < p && cur.h >= p - nr95 && cur.h < p + bk95 && spot <= cur.h - tp95 && (() => { try { return anyFlipNow(id, "down", spot); } catch { return false; } })()) { const d = p - spot; if (!t95 || d < t95.d) t95 = { side: "down", label: `Tap-reject at ${nm}`, d, p }; } }
+    if (t95) { const pp95 = npPink; let pink95 = false;
+      if (pp95 > 0) { const ses95 = npL.filter((l) => /σ|VWAP/.test(l.name) && l.price > 0).map((l) => l.price), u95 = Math.min(...ses95.filter((x) => x > spot)), d95 = Math.max(...ses95.filter((x) => x <= spot)), w95 = u95 - d95;
+        const st95 = Number.isFinite(w95) && w95 > 0 && pp95 > d95 && pp95 < u95 && ((pp95 - d95) / w95 <= 0.10 || (u95 - pp95) / w95 <= 0.10);
+        if (st95) pink95 = t95.side === "down" ? pp95 > spot && pp95 < t95.p : pp95 < spot && pp95 > t95.p; }
+      if (!pink95 && book("recon-npo", { side: t95.side, label: t95.label } as any)) changed = true;
+      if (!pink95 && book("recon-np", { side: t95.side, label: t95.label } as any)) changed = true; } } } catch {}
   // BTC PINK-REJECTION RE-AIM (fix373, Love Oct 27 2026 10:38 PM PT: "if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok" + card "Which books get the BTC pink-rejection re-aim?" -> "Main + rejection + copy"; study since Oct 11: BTC longs refused under pink, the pink-rejection short won 27 of 38 +$222 while the refused long lost ~$204):
   // BTC only, MAIN / REJECTION MODEL / NO-PINK COPY - when her open call this window is a LONG that never filled and a PINK wall refused it, and the engine now reads a
   // rejection DOWN off the pink (bonesDecide, rejections only) with a 1-5m candle flipped red, the unfilled long re-aims to that short (book() re-aims; a fill locks the window). Gold untouched.

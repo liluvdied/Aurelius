@@ -1,5 +1,338 @@
 [
  {
+  "id": "KXBTC15M-26OCT281745-45:bank5p:x5",
+  "book": "bank5px",
+  "at": "2026-10-28T21:38:01.626Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281745-45",
+  "side": "up",
+  "setup": "BRICK rejection up off the 15m lower (BRICK signal) (SOLE+ entry, BANK exit)",
+  "ask": 0.5,
+  "multiple": 2,
+  "stake": 30,
+  "tpPct": 90,
+  "peakPct": 98.4,
+  "exit": "take profit: peaked +98%, 1% trail",
+  "sellBid": 0.992,
+  "result": "sold",
+  "pnl": 29.52,
+  "bands": {
+   "nav": {
+    "m1": {
+     "c": 81111.558,
+     "up": 81210.233,
+     "dn": 81012.883
+    },
+    "m5": {
+     "c": 81251.145,
+     "up": 81494.197,
+     "dn": 81008.093
+    },
+    "m10": {
+     "c": 81152.19,
+     "up": 81328.751,
+     "dn": 80975.629
+    },
+    "m15": {
+     "c": 81191.075,
+     "up": 81303.448,
+     "dn": 81078.702
+    },
+    "m60": {
+     "c": 80892.328,
+     "up": 81290.511,
+     "dn": 80494.145
+    },
+    "close1m": 81153.83,
+    "prev1m": 81153.52,
+    "close1mAt": 1793223360,
+    "close5m": 81129.12,
+    "prev5m": 81139.37,
+    "close5mAt": 1793223000,
+    "bar5m": {
+     "o": 81139.31,
+     "h": 81139.31,
+     "l": 81044.7,
+     "c": 81129.12
+    },
+    "atr5m": 160.53,
+    "live1m": {
+     "t": 1793223420,
+     "h": 81188.91,
+     "l": 81117.44,
+     "c": 81161.78
+    }
+   },
+   "spot": 81161.34,
+   "vwap": 81257.22,
+   "sd": 83.32,
+   "up1": 81340.54,
+   "up2": 81423.85,
+   "up3": 81507.17,
+   "dn1": 81173.9,
+   "dn2": 81090.58
+  },
+  "spot": 81161.34,
+  "event": null,
+  "hourPT": 14,
+  "troughPct": -60,
+  "soldAt": "2026-10-28T21:44:31.438Z",
+  "exitMult": 1.01,
+  "exitCushion": 1.36,
+  "exitLeft": 29
+ },
+ {
+  "id": "KXBTC15M-26OCT281745-45:bank5p",
+  "book": "bank5p",
+  "at": "2026-10-28T21:38:01.626Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281745-45",
+  "side": "up",
+  "setup": "BRICK rejection up off the 15m lower (BRICK signal) (SOLE+ entry, BANK exit)",
+  "ask": 0.5,
+  "multiple": 2,
+  "stake": 30,
+  "tpPct": 90,
+  "peakPct": 98.4,
+  "exit": "take profit: peaked +98%, 1% trail",
+  "sellBid": 0.992,
+  "result": "sold",
+  "pnl": 29.52,
+  "bands": {
+   "nav": {
+    "m1": {
+     "c": 81111.558,
+     "up": 81210.233,
+     "dn": 81012.883
+    },
+    "m5": {
+     "c": 81251.145,
+     "up": 81494.197,
+     "dn": 81008.093
+    },
+    "m10": {
+     "c": 81152.19,
+     "up": 81328.751,
+     "dn": 80975.629
+    },
+    "m15": {
+     "c": 81191.075,
+     "up": 81303.448,
+     "dn": 81078.702
+    },
+    "m60": {
+     "c": 80892.328,
+     "up": 81290.511,
+     "dn": 80494.145
+    },
+    "close1m": 81153.83,
+    "prev1m": 81153.52,
+    "close1mAt": 1793223360,
+    "close5m": 81129.12,
+    "prev5m": 81139.37,
+    "close5mAt": 1793223000,
+    "bar5m": {
+     "o": 81139.31,
+     "h": 81139.31,
+     "l": 81044.7,
+     "c": 81129.12
+    },
+    "atr5m": 160.53,
+    "live1m": {
+     "t": 1793223420,
+     "h": 81188.91,
+     "l": 81117.44,
+     "c": 81161.78
+    }
+   },
+   "spot": 81161.34,
+   "vwap": 81257.22,
+   "sd": 83.32,
+   "up1": 81340.54,
+   "up2": 81423.85,
+   "up3": 81507.17,
+   "dn1": 81173.9,
+   "dn2": 81090.58
+  },
+  "spot": 81161.34,
+  "event": null,
+  "hourPT": 14,
+  "troughPct": -60,
+  "soldAt": "2026-10-28T21:44:31.438Z",
+  "exitMult": 1.01,
+  "exitCushion": 1.36,
+  "exitLeft": 29
+ },
+ {
+  "id": "KXBTC15M-26OCT281745-45:sole5p",
+  "book": "sole5p",
+  "at": "2026-10-28T21:38:01.626Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281745-45",
+  "side": "up",
+  "setup": "BRICK rejection up off the 15m lower (BRICK signal)",
+  "ask": 0.5,
+  "multiple": 2,
+  "stake": 30,
+  "tpPct": 90,
+  "peakPct": 98.4,
+  "exit": "take profit: peaked +98%, 1% trail",
+  "sellBid": 0.992,
+  "result": "sold",
+  "pnl": 29.52,
+  "bands": {
+   "nav": {
+    "m1": {
+     "c": 81111.558,
+     "up": 81210.233,
+     "dn": 81012.883
+    },
+    "m5": {
+     "c": 81251.145,
+     "up": 81494.197,
+     "dn": 81008.093
+    },
+    "m10": {
+     "c": 81152.19,
+     "up": 81328.751,
+     "dn": 80975.629
+    },
+    "m15": {
+     "c": 81191.075,
+     "up": 81303.448,
+     "dn": 81078.702
+    },
+    "m60": {
+     "c": 80892.328,
+     "up": 81290.511,
+     "dn": 80494.145
+    },
+    "close1m": 81153.83,
+    "prev1m": 81153.52,
+    "close1mAt": 1793223360,
+    "close5m": 81129.12,
+    "prev5m": 81139.37,
+    "close5mAt": 1793223000,
+    "bar5m": {
+     "o": 81139.31,
+     "h": 81139.31,
+     "l": 81044.7,
+     "c": 81129.12
+    },
+    "atr5m": 160.53,
+    "live1m": {
+     "t": 1793223420,
+     "h": 81188.91,
+     "l": 81117.44,
+     "c": 81161.78
+    }
+   },
+   "spot": 81161.34,
+   "vwap": 81257.22,
+   "sd": 83.32,
+   "up1": 81340.54,
+   "up2": 81423.85,
+   "up3": 81507.17,
+   "dn1": 81173.9,
+   "dn2": 81090.58
+  },
+  "spot": 81161.34,
+  "event": null,
+  "hourPT": 14,
+  "troughPct": -60,
+  "soldAt": "2026-10-28T21:44:31.438Z",
+  "exitMult": 1.01,
+  "exitCushion": 1.36,
+  "exitLeft": 29
+ },
+ {
+  "id": "KXBTC15M-26OCT281745-45:brk1",
+  "book": "brk1",
+  "at": "2026-10-28T21:35:39.338Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281745-45",
+  "side": "down",
+  "setup": "FIRST BREAK: Pepperstone broke the -1.5σ down",
+  "ask": 0.44,
+  "multiple": 2.27,
+  "stake": 30,
+  "tpPct": 114.55,
+  "peakPct": 79.55,
+  "exit": "take-profit gate +76.2% (peaked +79.55%)",
+  "sellBid": 0.77,
+  "result": "sold",
+  "pnl": 22.5,
+  "bands": {
+   "spot": 81125.8,
+   "line": "-1.5σ",
+   "feed": "Pepperstone"
+  },
+  "spot": 81125.8,
+  "event": null,
+  "hourPT": 14,
+  "troughPct": -22.73,
+  "soldAt": "2026-10-28T21:39:13.561Z",
+  "exitMult": 1.3,
+  "exitCushion": 78.72,
+  "exitLeft": 347
+ },
+ {
+  "id": "KXBTC15M-26OCT281745-45:sole5v",
+  "book": "sole5v",
+  "at": "2026-10-28T21:30:07.335Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281745-45",
+  "side": "down",
+  "setup": "Close below 15m nav purple (Vantage lines)",
+  "ask": 0.5,
+  "multiple": 2,
+  "stake": 30,
+  "tpPct": 90,
+  "peakPct": 58,
+  "exit": null,
+  "sellBid": null,
+  "result": "open",
+  "pnl": null,
+  "bands": null,
+  "spot": null,
+  "event": null,
+  "hourPT": 14,
+  "troughPct": -98.6
+ },
+ {
+  "id": "KXBTC15M-26OCT281730-30:sole5v",
+  "book": "sole5v",
+  "at": "2026-10-28T21:20:08.445Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281730-30",
+  "side": "up",
+  "setup": "Close above 10m nav upper band (Vantage lines)",
+  "ask": 0.58,
+  "multiple": 1.72,
+  "stake": 30,
+  "tpPct": 65.17,
+  "peakPct": 29.31,
+  "exit": "held to the bell",
+  "sellBid": null,
+  "result": "loss",
+  "pnl": -30,
+  "bands": null,
+  "spot": null,
+  "event": null,
+  "hourPT": 14,
+  "troughPct": -99.66,
+  "bell": "no",
+  "notes": {
+   "worked": [],
+   "better": [
+    "Was up +29% and still lost: a gate/lock with a reason should bank these."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
+ },
+ {
   "id": "KXBTC15M-26OCT281715-15:sole5v",
   "book": "sole5v",
   "at": "2026-10-28T21:05:49.737Z",
@@ -51,11 +384,11 @@
   "multiple": 1.39,
   "stake": 30,
   "tpPct": 35,
-  "peakPct": 16.67,
-  "exit": null,
-  "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "peakPct": 36.11,
+  "exit": "take profit: peaked +36%, 1% trail",
+  "sellBid": 0.98,
+  "result": "sold",
+  "pnl": 10.83,
   "bands": {
    "nav": {
     "m1": {
@@ -114,7 +447,9 @@
   },
   "spot": 81354.32,
   "event": null,
-  "hourPT": 14
+  "hourPT": 14,
+  "tpArmed": true,
+  "soldAt": "2026-10-28T21:38:09.174Z"
  },
  {
   "id": "KXBTC15M-26OCT281715-15:bank5p:x5",
@@ -172680,548 +173015,6 @@
    "keep": [],
    "v": 2
   },
-  "arch": true
- },
- {
-  "id": "KXGOLD15M-26OCT280815-15:new24",
-  "book": "new24",
-  "at": "2026-10-28T12:00:19.921Z",
-  "asset": "gold",
-  "ticker": "KXGOLD15M-26OCT280815-15",
-  "side": "down",
-  "setup": "Close below 10m nav purple",
-  "ask": 0.55,
-  "multiple": 1.82,
-  "stake": 30,
-  "tpPct": 73.64,
-  "peakPct": 9.09,
-  "exit": "held to the bell",
-  "sellBid": null,
-  "result": "loss",
-  "pnl": -30,
-  "bands": {
-   "nav": {
-    "m1": {
-     "c": 4045.612,
-     "up": 4046.186,
-     "dn": 4045.038
-    },
-    "m5": {
-     "c": 4046.956,
-     "up": 4048.944,
-     "dn": 4044.967
-    },
-    "m10": {
-     "c": 4045.791,
-     "up": 4049.973,
-     "dn": 4041.609
-    },
-    "m15": {
-     "c": 4046.35,
-     "up": 4053.819,
-     "dn": 4038.882
-    },
-    "m60": {
-     "c": 4043.175,
-     "up": 4053.255,
-     "dn": 4033.095
-    },
-    "close1m": 4045.441,
-    "prev1m": 4046.45,
-    "close1mAt": 1793188740,
-    "close5m": 4045.441,
-    "prev5m": 4045.94,
-    "close5mAt": 1793188500,
-    "bar5m": {
-     "o": 4046.032,
-     "h": 4046.781,
-     "l": 4044.2,
-     "c": 4045.441
-    },
-    "atr5m": 3.25,
-    "live1m": {
-     "t": 1793188800,
-     "h": 4045.734,
-     "l": 4045.2,
-     "c": 4045.348
-    }
-   },
-   "spot": 4045.35,
-   "vwap": 4047.77,
-   "sd": 9.91,
-   "up1": 4057.69,
-   "up2": 4067.6,
-   "up3": 4077.51,
-   "dn1": 4037.86,
-   "dn2": 4027.95
-  },
-  "spot": 4045.35,
-  "event": null,
-  "hourPT": 5,
-  "troughPct": -99.82,
-  "bell": "yes",
-  "notes": {
-   "worked": [
-    "Clean entry: no band right below the short.",
-    "Had the session VWAP + 5m purple + 10m purple + 15m purple over her as a ceiling."
-   ],
-   "better": [
-    "Never went green: the setup didn't follow through."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXGOLD15M-26OCT280815-15:optB",
-  "book": "optB",
-  "at": "2026-10-28T12:00:19.921Z",
-  "asset": "gold",
-  "ticker": "KXGOLD15M-26OCT280815-15",
-  "side": "down",
-  "setup": "Close below 10m nav purple",
-  "ask": 0.55,
-  "multiple": 1.82,
-  "stake": 30,
-  "tpPct": 73.64,
-  "peakPct": 9.09,
-  "exit": "held to the bell",
-  "sellBid": null,
-  "result": "loss",
-  "pnl": -30,
-  "bands": {
-   "nav": {
-    "m1": {
-     "c": 4045.612,
-     "up": 4046.186,
-     "dn": 4045.038
-    },
-    "m5": {
-     "c": 4046.956,
-     "up": 4048.944,
-     "dn": 4044.967
-    },
-    "m10": {
-     "c": 4045.791,
-     "up": 4049.973,
-     "dn": 4041.609
-    },
-    "m15": {
-     "c": 4046.35,
-     "up": 4053.819,
-     "dn": 4038.882
-    },
-    "m60": {
-     "c": 4043.175,
-     "up": 4053.255,
-     "dn": 4033.095
-    },
-    "close1m": 4045.441,
-    "prev1m": 4046.45,
-    "close1mAt": 1793188740,
-    "close5m": 4045.441,
-    "prev5m": 4045.94,
-    "close5mAt": 1793188500,
-    "bar5m": {
-     "o": 4046.032,
-     "h": 4046.781,
-     "l": 4044.2,
-     "c": 4045.441
-    },
-    "atr5m": 3.25,
-    "live1m": {
-     "t": 1793188800,
-     "h": 4045.734,
-     "l": 4045.2,
-     "c": 4045.348
-    }
-   },
-   "spot": 4045.35,
-   "vwap": 4047.77,
-   "sd": 9.91,
-   "up1": 4057.69,
-   "up2": 4067.6,
-   "up3": 4077.51,
-   "dn1": 4037.86,
-   "dn2": 4027.95
-  },
-  "spot": 4045.35,
-  "event": null,
-  "hourPT": 5,
-  "troughPct": -99.82,
-  "bell": "yes",
-  "notes": {
-   "worked": [
-    "Clean entry: no band right below the short.",
-    "Had the session VWAP + 5m purple + 10m purple + 15m purple over her as a ceiling."
-   ],
-   "better": [
-    "Never went green: the setup didn't follow through."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXGOLD15M-26OCT280815-15:optA",
-  "book": "optA",
-  "at": "2026-10-28T12:00:19.921Z",
-  "asset": "gold",
-  "ticker": "KXGOLD15M-26OCT280815-15",
-  "side": "down",
-  "setup": "Close below 10m nav purple",
-  "ask": 0.55,
-  "multiple": 1.82,
-  "stake": 30,
-  "tpPct": 73.64,
-  "peakPct": 9.09,
-  "exit": "held to the bell",
-  "sellBid": null,
-  "result": "loss",
-  "pnl": -30,
-  "bands": {
-   "nav": {
-    "m1": {
-     "c": 4045.612,
-     "up": 4046.186,
-     "dn": 4045.038
-    },
-    "m5": {
-     "c": 4046.956,
-     "up": 4048.944,
-     "dn": 4044.967
-    },
-    "m10": {
-     "c": 4045.791,
-     "up": 4049.973,
-     "dn": 4041.609
-    },
-    "m15": {
-     "c": 4046.35,
-     "up": 4053.819,
-     "dn": 4038.882
-    },
-    "m60": {
-     "c": 4043.175,
-     "up": 4053.255,
-     "dn": 4033.095
-    },
-    "close1m": 4045.441,
-    "prev1m": 4046.45,
-    "close1mAt": 1793188740,
-    "close5m": 4045.441,
-    "prev5m": 4045.94,
-    "close5mAt": 1793188500,
-    "bar5m": {
-     "o": 4046.032,
-     "h": 4046.781,
-     "l": 4044.2,
-     "c": 4045.441
-    },
-    "atr5m": 3.25,
-    "live1m": {
-     "t": 1793188800,
-     "h": 4045.734,
-     "l": 4045.2,
-     "c": 4045.348
-    }
-   },
-   "spot": 4045.35,
-   "vwap": 4047.77,
-   "sd": 9.91,
-   "up1": 4057.69,
-   "up2": 4067.6,
-   "up3": 4077.51,
-   "dn1": 4037.86,
-   "dn2": 4027.95
-  },
-  "spot": 4045.35,
-  "event": null,
-  "hourPT": 5,
-  "troughPct": -99.82,
-  "bell": "yes",
-  "notes": {
-   "worked": [
-    "Clean entry: no band right below the short.",
-    "Had the session VWAP + 5m purple + 10m purple + 15m purple over her as a ceiling."
-   ],
-   "better": [
-    "Never went green: the setup didn't follow through."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXGOLD15M-26OCT280815-15:refined",
-  "book": "refined",
-  "at": "2026-10-28T12:00:19.921Z",
-  "asset": "gold",
-  "ticker": "KXGOLD15M-26OCT280815-15",
-  "side": "down",
-  "setup": "Close below 10m nav purple",
-  "ask": 0.55,
-  "multiple": 1.82,
-  "stake": 30,
-  "tpPct": 73.64,
-  "peakPct": 9.09,
-  "exit": "held to the bell",
-  "sellBid": null,
-  "result": "loss",
-  "pnl": -30,
-  "bands": {
-   "nav": {
-    "m1": {
-     "c": 4045.612,
-     "up": 4046.186,
-     "dn": 4045.038
-    },
-    "m5": {
-     "c": 4046.956,
-     "up": 4048.944,
-     "dn": 4044.967
-    },
-    "m10": {
-     "c": 4045.791,
-     "up": 4049.973,
-     "dn": 4041.609
-    },
-    "m15": {
-     "c": 4046.35,
-     "up": 4053.819,
-     "dn": 4038.882
-    },
-    "m60": {
-     "c": 4043.175,
-     "up": 4053.255,
-     "dn": 4033.095
-    },
-    "close1m": 4045.441,
-    "prev1m": 4046.45,
-    "close1mAt": 1793188740,
-    "close5m": 4045.441,
-    "prev5m": 4045.94,
-    "close5mAt": 1793188500,
-    "bar5m": {
-     "o": 4046.032,
-     "h": 4046.781,
-     "l": 4044.2,
-     "c": 4045.441
-    },
-    "atr5m": 3.25,
-    "live1m": {
-     "t": 1793188800,
-     "h": 4045.734,
-     "l": 4045.2,
-     "c": 4045.348
-    }
-   },
-   "spot": 4045.35,
-   "vwap": 4047.77,
-   "sd": 9.91,
-   "up1": 4057.69,
-   "up2": 4067.6,
-   "up3": 4077.51,
-   "dn1": 4037.86,
-   "dn2": 4027.95
-  },
-  "spot": 4045.35,
-  "event": null,
-  "hourPT": 5,
-  "troughPct": -99.82,
-  "bell": "yes",
-  "notes": {
-   "worked": [
-    "Clean entry: no band right below the short.",
-    "Had the session VWAP + 5m purple + 10m purple + 15m purple over her as a ceiling."
-   ],
-   "better": [
-    "Never went green: the setup didn't follow through."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXGOLD15M-26OCT280815-15:new",
-  "book": "new",
-  "at": "2026-10-28T12:00:19.920Z",
-  "asset": "gold",
-  "ticker": "KXGOLD15M-26OCT280815-15",
-  "side": "down",
-  "setup": "Close below 10m nav purple",
-  "ask": 0.55,
-  "multiple": 1.82,
-  "stake": 30,
-  "tpPct": 73.64,
-  "peakPct": 9.09,
-  "exit": "held to the bell",
-  "sellBid": null,
-  "result": "loss",
-  "pnl": -30,
-  "bands": {
-   "nav": {
-    "m1": {
-     "c": 4045.612,
-     "up": 4046.186,
-     "dn": 4045.038
-    },
-    "m5": {
-     "c": 4046.956,
-     "up": 4048.944,
-     "dn": 4044.967
-    },
-    "m10": {
-     "c": 4045.791,
-     "up": 4049.973,
-     "dn": 4041.609
-    },
-    "m15": {
-     "c": 4046.35,
-     "up": 4053.819,
-     "dn": 4038.882
-    },
-    "m60": {
-     "c": 4043.175,
-     "up": 4053.255,
-     "dn": 4033.095
-    },
-    "close1m": 4045.441,
-    "prev1m": 4046.45,
-    "close1mAt": 1793188740,
-    "close5m": 4045.441,
-    "prev5m": 4045.94,
-    "close5mAt": 1793188500,
-    "bar5m": {
-     "o": 4046.032,
-     "h": 4046.781,
-     "l": 4044.2,
-     "c": 4045.441
-    },
-    "atr5m": 3.25,
-    "live1m": {
-     "t": 1793188800,
-     "h": 4045.734,
-     "l": 4045.2,
-     "c": 4045.348
-    }
-   },
-   "spot": 4045.35,
-   "vwap": 4047.77,
-   "sd": 9.91,
-   "up1": 4057.69,
-   "up2": 4067.6,
-   "up3": 4077.51,
-   "dn1": 4037.86,
-   "dn2": 4027.95
-  },
-  "spot": 4045.35,
-  "event": null,
-  "hourPT": 5,
-  "troughPct": -99.82,
-  "bell": "yes",
-  "notes": {
-   "worked": [
-    "Clean entry: no band right below the short.",
-    "Had the session VWAP + 5m purple + 10m purple + 15m purple over her as a ceiling."
-   ],
-   "better": [
-    "Never went green: the setup didn't follow through."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXGOLD15M-26OCT280815-15:b11",
-  "book": "b11",
-  "at": "2026-10-28T12:00:19.735Z",
-  "asset": "gold",
-  "ticker": "KXGOLD15M-26OCT280815-15",
-  "side": "down",
-  "setup": "BRICK 1:1 · REAL: 33.33 @ 55c (paper 55c, limit 66c) · fee $0.58 · BRICK rejection down off the 15m purple",
-  "ask": 0.55,
-  "multiple": 1.82,
-  "stake": 18.33,
-  "tpPct": 73.64,
-  "peakPct": 9.09,
-  "exit": "held to the bell",
-  "sellBid": null,
-  "result": "loss",
-  "pnl": -18.91,
-  "bands": {
-   "spot": 4045.441,
-   "vwap": 4047.7705240212636,
-   "sd": 9.911155390987906,
-   "nav": {
-    "m1": {
-     "c": 4045.584,
-     "up": 4046.186,
-     "dn": 4044.983
-    },
-    "m5": {
-     "c": 4046.94,
-     "up": 4048.923,
-     "dn": 4044.956
-    },
-    "m10": {
-     "c": 4045.915,
-     "up": 4048.058,
-     "dn": 4043.772
-    },
-    "m15": {
-     "c": 4046.153,
-     "up": 4052.857,
-     "dn": 4039.449
-    },
-    "m60": {
-     "c": 4044.908,
-     "up": 4051.11,
-     "dn": 4038.706
-    },
-    "close1m": 4045.441,
-    "prev1m": 4046.45,
-    "close1mAt": 1793188740,
-    "close5m": 4045.441,
-    "prev5m": 4045.94,
-    "close5mAt": 1793188500,
-    "bar5m": {
-     "o": 4046.032,
-     "h": 4046.781,
-     "l": 4044.2,
-     "c": 4045.441
-    },
-    "atr5m": 3.25,
-    "live1m": {
-     "t": 1793188800,
-     "h": 4045.734,
-     "l": 4044.3,
-     "c": 4045.037
-    }
-   },
-   "target": 4045.51
-  },
-  "spot": 4045.441,
-  "event": null,
-  "hourPT": 5,
-  "entryFee": 0.58,
-  "notes": {
-   "worked": [
-    "Clean entry: no band right below the short.",
-    "Had the session VWAP + 5m purple + 10m purple + 15m purple over her as a ceiling."
-   ],
-   "better": [
-    "Never went green: the setup didn't follow through."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "bell": "yes",
   "arch": true
  }
 ]

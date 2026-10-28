@@ -858,5 +858,35 @@
   "left": 180,
   "result": "loss",
   "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T19:27:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.47,
+  "left": 180,
+  "result": "open",
+  "pnl": 0.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T21:06:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.51,
+  "left": 240,
+  "result": "win",
+  "pnl": 4.8
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T21:20:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.56,
+  "left": 300,
+  "result": "open",
+  "pnl": 0.0
  }
 ]

@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T21:16:05.934Z",
+ "at": "2026-10-28T21:45:43.521Z",
  "ver": 30,
  "connected": true,
  "sockets": [
@@ -7,24 +7,24 @@
   true
  ],
  "btc": {
-  "c": 81315.8,
-  "ageMs": 0,
-  "exAgeMs": 1934
+  "c": 81232.99,
+  "ageMs": 1,
+  "exAgeMs": 1521
  },
  "gold": {
   "c": 4067.31,
-  "ageMs": 924447,
-  "exAgeMs": 966934
+  "ageMs": 1456507,
+  "exAgeMs": 2744521
  },
  "btc_v": {
-  "c": 81320.58,
-  "ageMs": 1053
+  "c": 81225.03,
+  "ageMs": 557
  },
  "gold_v": {
   "c": 4067.29,
-  "ageMs": 924447
+  "ageMs": 1457430
  },
  "signedIn": false,
- "signNote": "no auth token - free stream | home: TypeError: fetch failed | chart: TypeError: fetch failed",
+ "signNote": "no auth token - free stream | home: http 200, 1246 KB, auth_token text 0x, escaped no, username yes, cloudflare no | chart: http 200, 70 KB, auth_token text 0x, escaped no, username yes, cloudflare no",
  "note": ""
 }

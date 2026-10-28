@@ -83,7 +83,7 @@
     "probe.ts": "9c0674e13b6c4516",
     "quotes.ts": "9b203164a757ba83",
     "realtwin.ts": "c74ff01ef7e1b5ea",
-    "recon.ts": "03fc10f71652060b",
+    "recon.ts": "8b68e692606ed8a0",
     "research.ts": "cd5d69f9cb3ff595",
     "review.ts": "ed486d1c8a4113c0",
     "riptap.ts": "1c967350e6259666",
@@ -148,7 +148,7 @@
     "insurance": "7e56fa5011",
     "tpLadder": "b5bea41b6c",
     "polyTwin": "16806c301c",
-    "addOn": "210973f36d",
+    "addOn": "19ecc7825f",
     "timeGate": "f698c8086d",
     "snipe": "08fadc84ae",
     "polyLive": "fcbcf16590",
@@ -283,13 +283,14 @@
     "sovLive": "b001760643",
     "fix383Prev": "2f15a497e5",
     "fix384Prev": "e34cc56df8",
-    "fix388Prev": "6a35a83049"
+    "fix388Prev": "6a35a83049",
+    "fix393Prev": "0332b02eaf"
   },
   "configFiles": {
-    "data/spine-lock.json": "a5a958cffa82bd61",
+    "data/spine-lock.json": "4554acf5e4dc7231",
     "data/FROZEN.json": "96bf1e60e4b50fe3",
     "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-    "data/live-switch.json": "c3e575393fcff9ce"
+    "data/live-switch.json": "3c9fb76c3fe20920"
   },
   "sealLiveBook": "e13f989d61",
   "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

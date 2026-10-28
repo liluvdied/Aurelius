@@ -49,8 +49,8 @@ def proof_ok(p):
             return (p["has"] in t) if "has" in p else (p["lacks"] not in t)
         if "config" in p:
             v = json.load(open(p["config"], encoding="utf8"))
-            for k in p["key"].split("."): v = v[k]
-            if "equals" in p: return v == p["equals"]
+            for k in (p.get("key") or p.get("path")).split("."): v = v[k]  # R081 shape: "path"/"eq"
+            if "equals" in p or "eq" in p: return v == p.get("equals", p.get("eq"))
             if "has" in p: return p["has"] in v
             if "lacks" in p: return p["lacks"] not in v
         if "test" in p: return subprocess.run([sys.executable, p["test"]], capture_output=True).returncode == 0

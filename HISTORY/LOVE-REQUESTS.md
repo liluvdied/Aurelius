@@ -2,6 +2,27 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R083 - fix395: pure no-pink HER OWN TAPS - recon.ts block after fix389b: price taps one of her bands (σ/VWAP/Bollinger/green zone longs/red zone shorts) within BTC $10 / gold 50c this 5m candle, not broken through, pushes off her tap, any 1-5m flip her way -> her own Tap-reject call (recon-np live + recon-npo paper); 5m open irrelevant; pink stacked check; main walls still apply
+- when: 2026-10-28T21:37:47+00:00
+- Love: "Love Oct 28 2026 2:36 PM PT: "hun i’ve asked several times now, i want her to be able to take her own calls." + 2:37 PM PT: "hun i’ve asked for this several times now, i want pure to be able to take her own taps""
+- books: p, u, r, e,  , n, o, -, p, i, n, k,  , o, n, l, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "HER OWN TAPS (fix395"}
+
+## R082 - fix394: bonesDecide zoneFlip param - green zone long / red zone short read passes on any 1-5m candle flipped her way (anyFlipNow), not only the 5m candle; on for main lookT (recon.ts 588) and the pure no-pink own-eyes read (669). Copy/twin follow main calls; rejection + sov own reads unchanged
+- when: 2026-10-28T21:35:48+00:00
+- Love: "Love Oct 28 2026 2:34 PM PT: "and the candle flipped from green bb" + 2:34 PM "why didn’t she get in hun?" + 2:35 PM card "Let green/red zone rejections fire on any 1-5m candle flip?" -> "Pure no-pink + main""
+- books: m, a, i, n,  , +,  , p, u, r, e,  , n, o, -, p, i, n, k,  , (, c, o, p, y,  , r, e, a, d, s,  , m, a, i, n,  , c, a, l, l, s, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix394: main"}
+
+## R081 - fix393: live-switch addOn.maxAsk 0.263 -> 0.357 (first add-on at first band touch at 2.8x+) for main, rejection, copy, sovereign, pure no-pink; delayed twin (addOn.twin) and Polymarket/5M untouched
+- when: 2026-10-28T21:29:02+00:00
+- Love: "Love Oct 28 2026 2:26 PM PT: "well she is supposed to do her default 2.8x hun, and thennn catch the other at a band rejection ... if not we can bring that back , btc ended up coming our way and she didn’t add on" + 2:28 PM card "Lower the first add-on to 2.8x+ for which books?" -> "All $10 books""
+- books: m, a, i, n, ,,  , r, e, j, e, c, t, i, o, n, ,,  , n, o, -, p, i, n, k,  , c, o, p, y, ,,  , s, o, v, e, r, e, i, g, n, ,,  , p, u, r, e,  , n, o, -, p, i, n, k
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "path": "addOn.maxAsk", "eq": 0.357}
+
 ## R080 - fix392: pure no-pink BTC PINK TO GREEN / PINK TO RED zoneGuard 0.5 (no short in bottom 50% green->pink, no long in top 50% pink->red); main + rejection stay 0.4
 - when: 2026-10-28T20:54:48+00:00
 - Love: "Love Oct 28 2026 1:53 PM PT: "and again hun she shorted btc closer to the green than the pink" + 1:54 PM PT card "Make BTC's no-short zone the bottom 50% from green to pink?" -> "Pure no-pink only, 50%""

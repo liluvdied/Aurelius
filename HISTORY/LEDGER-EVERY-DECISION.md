@@ -1,9 +1,37 @@
-# Every decision Love has made - rebuilt 2026-10-28T21:15:22.062202+00:00
+# Every decision Love has made - rebuilt 2026-10-28T21:45:22.642416+00:00
 
-1247 decisions with Love's words or card picks, out of 1961 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1251 decisions with Love's words or card picks, out of 1966 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T21:45:02Z  ·  diary line 2431  ·  fix394, fix395
+- fix394 IN HER CODE
+- fix395 IN HER CODE
+- Full entry: 2026-10-28T21:45:02Z fix394+fix395 installed at 21:45:00Z boundary (recon.ts 8b68e692606ed8a0). R082 + R083. fix394: bonesDecide zoneFlip (main lookT + pure own eyes). fix395: pure no-pink HER OWN TAPS. Flip replay data/lab/flips.py (455 live entries): 1m only 9/44%/+$10, 2-3m (no 5m) 44/61%/+$73, 5m 272/54%/-$80, no flip 115/41%/-$51 - shown to Love, nothing changed.
+
+## 2026-10-28T21:45:02.439911+00:00  ·  diary line 2429  ·  fix394, fix395
+- Love: “Pure no-pink + main”
+- Love: “hun i’ve asked for this several times now, i want pure to be able to take her own taps”
+- Card pick: **Pure no-pink + main**
+- fix394 IN HER CODE
+- fix395 IN HER CODE
+- Full entry: 2026-10-28T21:45:02.439911+00:00 THAW (fix394 MAIN + PURE NO-PINK zone reads take any 1-5m flip (Love 2:35 PM PT card "Pure no-pink + main") + fix395 PURE NO-PINK HER OWN TAPS (Love 2:37 PM PT: "hun i’ve asked for this several times now, i want pure to be able to take her own taps"))
+
+## 2026-10-28T21:37:00Z  ·  diary line 2428  ·  fix67, fix389, fix390, fix394
+- Love: “hun i’ve asked several times now, i want her to be able to take her own calls.”
+- fix67 IN HER CODE
+- fix389 IN HER CODE
+- fix390 IN HER CODE
+- fix394 IN HER CODE
+- Full entry: 2026-10-28T21:37:00Z Love 2:36 PM PT: "hun i’ve asked several times now, i want her to be able to take her own calls." - pure no-pink already reads with her own eyes (fix389/389b); the only thing still holding her own zone calls was the fix67 5m-candle-colour filter inside bonesDecide (recon.ts l.344) - fix394 (R082, 2:45 PM PT) lets her own read take any 1-5m flip off the zones. Her calls still meet main's walls per fix390 (Love 1:11 PM). Asked Love if she also wants her own calls free of main's walls.
+
+## 2026-10-28T21:30:00Z  ·  diary line 2427  ·  fix393
+- Love: “well she is supposed to do her default 2.8x hun, and thennn catch the other at a band rejection”
+- Love: “All $10 books”
+- Card pick: **All $10 books**
+- fix393 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-28T21:30:00Z fix393 CONFIG (r393 at 21:30:00Z boundary): live-switch addOn.maxAsk 0.263 -> 0.357 - first add-on at the first band touch at 2.8x+ for main/rej/copy/sov/np (twin addOn.twin 0.263 + Poly untouched; offHourMain.addOn already 0.357). Love 2:26 PM PT: "well she is supposed to do her default 2.8x hun, and thennn catch the other at a band rejection" + card "All $10 books" + 2:29 PM: "yess a default of 2.8x / and then the second add on at the next band price encounters and rejects with the flip from there , whatever multiple that is". fix393Prev saved. R081 (requests.py proof_ok now also reads path/eq).
 
 ## 2026-10-28T21:15:03Z  ·  diary line 2426  ·  fix392  ·  books: main, rejection
 - Love: “Pure no-pink only, 50%”

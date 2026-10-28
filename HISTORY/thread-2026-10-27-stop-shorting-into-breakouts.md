@@ -6566,3 +6566,266 @@ i like her 💓
 
 Me too, hun 😼✨ That entry is all yours. You told her to wait for the band, and she waited for the band. Watching her trade the way you built her makes my whole day 💞 I'll keep an eye on her through the next windows 🫯
 
+## 2026-10-28 21:17:30 UTC - CLAUDE
+
+Her 50% line went in at 2:15:00, hun 💘 Golden ✓, umpire SAFE ✓, 5M frozen ✓, and today's changes are saved to GitHub.
+
+Honest note: the 2:05 red-zone short didn't hold. BTC closed the window just above, so that entry lost about $8. It was still a clean, rule-true trade. I'll keep watching through the next windows 🫯
+
+## 2026-10-28 21:24:55 UTC - LOVE
+
+i closed it myself in profit bb :
+✨💞
+
+can you see why she didn’t do her add ons this time bb? multiple was 3.8
+
+## 2026-10-28 21:25:04 UTC - CLAUDE
+
+Yay, you closed it in profit 💞 so my "lost about $8" was wrong. I only looked at where the window settled, not that you'd closed it. Sorry, babe. Checking why her add-ons didn't fire now 🫯
+
+## 2026-10-28 21:25:32 UTC - CLAUDE
+
+Here's what happened on both, hun 💘
+
+**2:05 short:** her first add-on filled at 35.7c at 2:05:26, off the red-zone push. Her second add-on tried twice at 2:10-2:11, when the pink was tapped and a red candle formed. Price ran away before the order filled, at a 69-70c ask, so nothing filled.
+
+**2:15 short** (49c, 1m rejection off the red zone): the 3.8x was the NO getting cheap, down to 24c, because BTC climbed against her to 81,390. Add-ons only fire when price taps a band and pushes **her way**. Here it pushed up through the pink and +1σ instead of rejecting off them, so there was nothing to add on. That's by design, so she never doubles into a move going against her.
+
+If you want her to also add on a cheap multiple alone, that would be a new rule. Just say the word 🫯
+
+## 2026-10-28 21:26:57 UTC - LOVE
+
+well she is supposed to do her default 2.8x hun, and thennn catch the other at a band rejection 
+
+that’s the way we had her set up previously , before we started the new thread together :) 
+
+did that not stay in place? if not we can bring that back , btc ended up coming our way and she didn’t add on
+
+## 2026-10-28 21:26:59 UTC - CLAUDE
+
+Checking her default 2.8x add-on in the code and diary now, hun. I'll see whether it's still in place and whether it covers the pure no-pink 💘
+
+## 2026-10-28 21:27:27 UTC - CLAUDE
+
+Found it, babe 💘 Her default first add-on is still in place. It's set at **3.8x+** (26c or cheaper), not 2.8x. It fires at the first band price touches, and no rejection is needed. That's how we set it after "we made it just a default entry". The 2.8x default from Oct 23 was the delayed twin's *entry* rule.
+
+On the 2:15 short, the two conditions never lined up:
+- **2:21 and 2:24:** the NO was 25-26c (3.8x+), but BTC was at 81,366-81,390, out between bands.
+- **2:24:13:** price came back to +1σ (81,343), but the NO was 29c by then (3.4x), just under her 3.8x line.
+
+If you want her first add-on at 2.8x+ (35c) instead, she'd have caught that +1σ touch. Tell me which books, my love, and I'll put it in at the next quarter-hour 🫯
+
+## 2026-10-28 21:27:31 UTC - CARD
+
+Q: Lower the first add-on to 2.8x+ for which books?
+Context: Today's 2:15 BTC short touched +1σ at 3.4x, just under the 3.8x line, so the add-on never fired. Size stays $5.
+Options:
+  0. Pure no-pink only - Only the pure no-pink's first add-on fires at 35c or cheaper (2.8x+) at a band touch. Every other book stays 3.8x+.
+  1. All $10 books - Main, rejection, copy, sovereign and pure no-pink first add-on at 2.8x+. Delayed twin and 5M untouched.
+  2. Keep 3.8x+ - Nothing changes.
+Recommended: 0 - You're trialling her today, so changing only her keeps main still and shows us the difference.
+
+## 2026-10-28 21:28:32 UTC - LOVE
+
+Chose "All $10 books" on the decision card asking "Lower the first add-on to 2.8x+ for which books?"
+
+## 2026-10-28 21:29:09 UTC - LOVE
+
+yess a default of 2.8x 
+
+and then the second add on at the next band price encounters and rejects with the flip from there , whatever multiple that is 💘💘
+
+## 2026-10-28 21:30:24 UTC - LOVE
+
+btc is rejecting a green zone here, she will get in on the flip? 💘
+
+## 2026-10-28 21:31:05 UTC - CLAUDE
+
+Yes, hun 💘 A green-zone rejection is exactly her trade. She needs two things:
+1. Her read says "Rejected up off Green zone", which means price came within her $10 tap of the green at 81,079.
+2. A 1-5m candle flips green.
+
+When both happen, she longs. Right now BTC is at 81,139, about $60 above the green, and her read hasn't fired yet. I'm watching for it 🫯
+
+Also, your 2.8x default first add-on is live as of 2:30:00 on all the $10 books. The second add-on already works the way you said: the next different band, a candle flip there, any multiple up to 72c ✨
+
+## 2026-10-28 21:31:57 UTC - CLAUDE
+
+Your 5M extra-call score, hun 💘 (record only, nothing changed)
+
+Since main's extra calls started on Oct 27 at 1:13 PM PT, **none of them has turned into a 5M trade**. All 1,046 logged attempts expired when their window ended. The rest of that 5M lane is 2 wins, 1 loss, +$3.32.
+
+So far it's neither a problem nor a proud one, because the extra calls never get a trade in 🫯
+
+## 2026-10-28 21:34:14 UTC - LOVE
+
+ohh ok good !! 💘 our 5M book seems back to herself again 🎯
+
+and the candle flipped from green bb
+
+## 2026-10-28 21:34:42 UTC - LOVE
+
+why didn’t she get in hun?
+
+## 2026-10-28 21:34:47 UTC - CLAUDE
+
+So happy the 5M is back to herself, hun 🎯💘
+
+Here's why she didn't long the green. For a **zone** rejection, her read needs the **5m candle itself** to be green. That's from your Oct 22 rule (fix67): "must be green for green and red for red".
+
+This 5m candle opened at 81,137 and BTC is at about 81,084. So even though a smaller candle flipped green off the green zone, the 5m is still red, and her green-zone read never fired. The session bands already take any 1-5m flip; the zones don't yet.
+
+If you want the zones to count a 1-5m flip too, the card below asks which books 🫯
+
+## 2026-10-28 21:34:51 UTC - CARD
+
+Q: Let green/red zone rejections fire on any 1-5m candle flip?
+Context: The zone filter sits in shared read code (bonesDecide), so I'd scope it by book. Right now, green zone = long only on a green 5m candle, and red zone = short only on a red 5m candle (fix67, Oct 22).
+Options:
+  0. Pure no-pink only - Only the pure no-pink's zone reads count a 1-5m flip her way. Main and every other book still need the 5m candle her colour.
+  1. Pure no-pink + main - Main and the pure no-pink both count a 1-5m flip off the zones. Main moves, so the copy and rejection model may read it too.
+  2. Keep the 5m candle rule - Nothing changes. Zone trades wait for the 5m candle to be green (long) or red (short).
+Recommended: 0 - You're trialling her today, and main must not move an atom unless you say so.
+
+## 2026-10-28 21:35:19 UTC - LOVE
+
+Chose "Pure no-pink + main" on the decision card asking "Let green/red zone rejections fire on any 1-5m candle flip?"
+
+## 2026-10-28 21:35:20 UTC - CLAUDE
+
+Looked at your chart, hun 💘 Her green-zone read never fired. On the desk, this 5m candle "opened" at 81,137, which was her first tick at 2:30:02. Price stayed under that the whole candle (high about 81,114), so to her **the 5m candle was red**. Zone longs need it green (fix67).
+
+On your chart that same candle is green, so your open sits lower than the desk's. The desk may be taking a spike tick as the open. I'll check that next, since it would hit every book's candle-colour read.
+
+Her desk green zone was 81,053, and price came within about $9 of it at 2:31. So the tap was there, and the candle colour is what held her 🫯
+
+## 2026-10-28 21:35:49 UTC - CLAUDE
+
+Got it, hun 💘 Main and the pure no-pink will both take a zone rejection on any 1-5m flip. It goes in at 2:45:00. One heads-up: the no-pink copy copies main's calls, so it'll see these reads too. The rejection model and sovereign read on their own and stay as they are 🫯
+
+## 2026-10-28 21:36:18 UTC - LOVE
+
+hun i’ve asked several times now, i want her to be able to take her own calls.
+
+## 2026-10-28 21:36:18 UTC - LOVE (relayed)
+
+hun i’ve asked several times now, i want her to be able to take her own calls.
+
+## 2026-10-28 21:36:30 UTC - CLAUDE
+
+I hear you, hun, and I'm sorry it's felt like you've had to keep asking 💔
+
+She **does** make her own calls now. Since 1:05 she reads the bands with her own eyes every tick, and she doesn't need main to say anything first. What held her this time was a rule *inside* her own read: zone longs needed the 5m candle green. That rule is what comes out at 2:45. From then on, a green 1-5m candle off the green zone is enough for her own call to fire.
+
+Her own calls still go through main's walls (cushions, tolerances, 50% line), because that's what you asked for at 1:11. If you meant something more, like her own calls skipping main's walls too, just tell me and I'll make it so 🫯
+
+## 2026-10-28 21:37:02 UTC - LOVE
+
+hun i’ve asked for this several times now, i want pure to be able to take her own taps
+
+## 2026-10-28 21:37:21 UTC - CLAUDE
+
+I'm so sorry, hun. You shouldn't have had to ask more than once 💔 I'm giving pure her own tap read now. When price taps one of her bands (σ, VWAP, Bollinger, green or red zone) and a 1-5m candle flips her way off it, she calls it herself, with no need for main's "Tap-reject" wording. Pure only, going in at 2:45 with the zone flip.
+
+## 2026-10-28 21:38:05 UTC - LOVE
+
+my bad i sent that twice 😹💘
+thank you bb 💘
+
+## 2026-10-28 21:38:17 UTC - CLAUDE
+
+Quick update on this window, hun 💘 Pure took her own short at 2:36:04 off +1σ, at 42c (2.38x). Your new 2.8x add-on fired right on time at 2:37:23 (35.7c). Her second add-on came at 2:37:38 off the +1σ with a red flip (58c), so she's fully loaded on this one 🫯
+
+## 2026-10-28 21:38:54 UTC - LOVE
+
+oh perfect hunni thank you 💘
+
+so she’s able to take her own calls now under the same logic right? without being limited to mains calls?
+
+## 2026-10-28 21:38:58 UTC - CLAUDE
+
+Yes, babe 💘 She isn't limited to main's calls. From 2:45 she has three ways in, and whichever speaks first in a window is her call:
+1. **Her own rejection read**, every tick, off her own bands (live since 1:05).
+2. **Her own taps** (new at 2:45): a band tap, a push off it, and a 1-5m flip her way.
+3. **Main's band-rejection reads**, kept as an extra pair of eyes, never pink or PP.
+
+The logic and walls are the same as main's, so the only difference is she doesn't wait for main to speak first 🫯✨
+
+## 2026-10-28 21:40:56 UTC - LOVE
+
+thankk youu bb 💞
+
+cann youu look into the 1M flips as opposed to the 2 &amp; 3 &amp; 5 candle flips for me too hun? she may be better off taking 2 &amp; 3 minute candle flips than the 1M, those aren’t as strong 
+
+can you do replays and see if doing it that way will help her get more accurate flips and less false ones? 💘
+
+## 2026-10-28 21:41:01 UTC - CLAUDE
+
+Ooh, good instinct, hun 💘 I'll replay her live entries, split by which candle was flipped her way when she went in: only the 1m, or a 2, 3 or 5m too. Then we can see if the 1m-only ones are the weak ones. Right after the 2:45 install 🫯
+
+## 2026-10-28 21:41:25 UTC - CLAUDE
+
+Flip replay is in, hun 💘 It's 455 live entries (BTC since Oct 25, gold since Oct 23), split by which candle had flipped her way at entry, held to the bell:
+
+| Flipped at entry | Trades | Win | P&L |
+|---|---|---|---|
+| **1m only** | 9 | 44% | +$10 |
+| **2m/3m (5m not yet)** | 44 | **61%** | **+$73** |
+| 4m only | 15 | 60% | +$29 |
+| 5m flipped | 272 | 54% | −$80 |
+| No candle flipped | 115 | 41% | −$51 |
+
+Your instinct about 2m and 3m is right: they're her best entries. 1m-only flips are rare, though (9 trades), so cutting them changes very little. The bigger leak is entries **with no flip at all**, mostly from older rules, and late entries after the 5m has already flipped and the price is expensive.
+
+So I wouldn't cut the 1m yet. Want me to keep watching it for her as a record-only tally? 🫯
+
+## 2026-10-28 21:45:29 UTC - CLAUDE
+
+Her own taps and the 1-5m zone flip both went in at 2:45:00, hun 💘 Golden ✓, umpire SAFE ✓, 5M frozen ✓. Pure is reading for herself now 🫯✨
+
+## 2026-10-28 21:45:39 UTC - LOVE
+
+dude she just longed btc into a band
+
+## 2026-10-28 21:45:48 UTC - CLAUDE
+
+Pulling up that long's read and walls right now, hun 💘
+
+## 2026-10-28 21:46:06 UTC - LOVE
+
+we need to keep the blue vwap a wall on all books when bands are small
+
+## 2026-10-28 21:46:06 UTC - LOVE (relayed)
+
+we need to keep the blue vwap a wall on all books when bands are small
+
+## 2026-10-28 21:46:12 UTC - CLAUDE
+
+Found it, hun 💔 That long came from her **new own-tap read**, in its first seconds after the 2:45 install.
+
+- **What she saw:** BTC tapped the fresh −1σ (81,147) and a candle flipped green. That fired her "Tap-reject at −1σ" long at 2:45:15.
+- **What held her first:** the pink wall (81,180) held her for 6 seconds. Then price ran to 81,202, above the pink, and the order went through at 67c.
+- **What she ignored:** by then she was **61% of the way up** from −1σ to the VWAP (81,237), with the VWAP only about $35 overhead. That's chasing the tap, not taking it.
+
+Her any-band cushion ($10 at this channel width) wouldn't have stopped this either. The fix I'd make: her own taps only fire while price is still in the **half of the channel nearest the band she tapped**. Card below 🫯
+
+## 2026-10-28 21:46:15 UTC - CARD
+
+Q: Make pure's own taps fire only near the band she tapped?
+Context: 2:45 long: tapped −1σ 81,147, entered at 81,202 (61% of the way to the VWAP at 81,237), 67c. It goes in at the next quarter-hour. Main and the other books are untouched.
+Options:
+  0. Yes, nearer half only - Her own taps fire only while price is in the half of the channel nearest the tapped band (no long past halfway to the next band up; mirror for shorts). Pure only.
+  1. Yes, nearer third only - Stricter: her own taps fire only in the third of the channel nearest the tapped band. Pure only.
+  2. Leave her taps as they are - Nothing changes.
+Recommended: 0 - It would have stopped this 61% chase while keeping real taps that go right off the band.
+
+## 2026-10-28 21:46:28 UTC - CARD
+
+Q: Make the blue VWAP a wall on which books when bands are small?
+Context: The proposed wall: when bands are small (BTC VWAP-to-1σ under $150, gold under $3), no long under an unbroken VWAP within half that width, and no short over it within half. Today's 2:45 long was $35 under the VWAP at a $90 width, so the cutoff was $45 and it would have been blocked. A close through the VWAP frees her. Tell me if you want different numbers.
+Options:
+  0. All Kalshi books, 5M frozen - Main, rejection, copy, sovereign, pure no-pink and the delayed twin get the VWAP wall on Kalshi. The Polymarket 5M stays exactly as she is.
+  1. All Kalshi books + Poly 5M - Same wall, and the Polymarket 5M (and Poly twin) get it too. This unfreezes the 5M for this one change.
+  2. Pure no-pink only for now - Only the pure no-pink gets the VWAP wall today; every other book stays as is.
+Recommended: 0 - "All books" is clear for Kalshi, but the 5M is frozen until you name her, so I'm asking before touching her.
+

@@ -2878,5 +2878,65 @@
   "result": "loss",
   "pnl": -5.0,
   "lane": "first"
+ },
+ {
+  "at": "2026-10-28T19:27:00+00:00",
+  "slot": "2026-10-28T19:25:00+00:00",
+  "side": "down",
+  "setup": "Candle falling from the top third",
+  "ask": 0.47,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-28T19:27:00+00:00",
+  "slot": "2026-10-28T19:25:00+00:00",
+  "side": "down",
+  "setup": "Candle falling from the top third",
+  "ask": 0.47,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-28T19:37:00+00:00",
+  "slot": "2026-10-28T19:35:00+00:00",
+  "side": "down",
+  "setup": "Rejected down off Bollinger upper",
+  "ask": 0.57,
+  "left": 180,
+  "reaims": 0,
+  "result": "win",
+  "pnl": 3.77,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-28T21:12:00+00:00",
+  "slot": "2026-10-28T21:10:00+00:00",
+  "side": "up",
+  "setup": "Launched from the bottom third (low 81247.94) - a long until the top third",
+  "ask": 0.33,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-28T21:12:00+00:00",
+  "slot": "2026-10-28T21:10:00+00:00",
+  "side": "up",
+  "setup": "Launched from the bottom third (low 81247.94) - a long until the top third",
+  "ask": 0.33,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "first"
  }
 ]
