@@ -115,3 +115,4 @@ Love: "we need to keep the pink wall a minimum of 25c at this scale ok bb 💘" 
 - Main, rejection model, twin and 5m untouched. The rejection model's pink wall was never removed (it refused the 5:15 PM long: "PINK 10%: long $24.65 under the unbroken pink").
 - Love 5:19 PM: "it immediately tapped pink and reversed , that should have been short - for next time ok 💘"
 - fix346b (5:19 PM, R030): Love: "no let’s keep that$33 bb not $10" -> the wall is $33. Today's $24.65 long would now wait for a flip or the pink break.
+- PINK FLAG watch (5:23 PM): Love: "no other changes necessary at the moment to any other books , if one of the other books takes a trade like that and loses flag it for me and let me know and we’ll incorporate it into the main book too oki" -> tools/pink-flag.py (record-only, in the umpire). Flag + ask; never install on main without Love.

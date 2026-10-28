@@ -21,6 +21,8 @@ for tool in ("tools/verify-golden.py", "tools/cornerstones.py", "tools/rule-anch
     if r.returncode != 0: ok = False; print(r.stdout)
 r9 = subprocess.run([sys.executable, "tools/extra-call-5m.py"], capture_output=True, text=True)  # record only (Love Oct 27 2:25 PM PT: "track and log those")
 print("INFO   tools/extra-call-5m.py  " + ((r9.stdout.strip().split("\n") or [""])[0]))
+r10 = subprocess.run([sys.executable, "tools/pink-flag.py"], capture_output=True, text=True)  # record only (Love Oct 27 5:23 PM PT: "if one of the other books takes a trade like that and loses flag it for me")
+for ln10 in (r10.stdout.strip().split("\n") or [""]): print("INFO   tools/pink-flag.py  " + ln10)
 saves = sorted(glob.glob("data/SAVES/*"), key=os.path.getmtime)
 fresh = saves and time.time() - os.path.getmtime(saves[-1]) < 900
 print(("SAFE   " if fresh else "CHECK  ") + "latest save: " + (saves[-1] if saves else "none"))
