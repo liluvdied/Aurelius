@@ -4539,3 +4539,34 @@ Your $5 order cap didn't change and every wall is the same. The umpire says SAFE
 
 One gentle note: a window with an add-on is now up to $13 per asset, so let's watch how the next few days land before we size any higher 💞
 
+## 2026-10-28 02:50:48 UTC - LOVE
+
+yess that sounds good hunni 💞
+
+her initial order on btc went out at $2.50 this window &amp; the add on successfully came on at $8 💓 could be that she entered into this window before the size change, if so all good bb 💓💓
+
+## 2026-10-28 02:50:54 UTC - LOVE
+
+gold flipped
+
+## 2026-10-28 02:50:57 UTC - CLAUDE
+
+Yep, you read it right hun 💞 Her BTC entry went out at 7:45:21 PM and the new sizes landed at 7:46:24 PM, about a minute later. So the entry was still on $2.50, and the add-on came after the change at the new $8. From the 8:00 window on, her entries go out at $5 ✨
+
+## 2026-10-28 02:51:08 UTC - CLAUDE
+
+Main sees the gold short hun 💞 Right now two of your walls are holding her:
+
+- Price is sitting right on the −1σ (4050.36), just 2c under it. A second earlier it was still above, in the bottom 33% of the channel up there.
+- Now that it's slipped under, the pink is only **$1.98** below at 4048.36. That's inside her pink cushion (10% of the channel = $2.00), so she waits for pink to break down before shorting.
+
+The other books are off this hour by your schedule.
+
+## 2026-10-28 02:55:59 UTC - LOVE
+
+perfect hun 💘 she’s perfect again 🎯 pls keep a snapshot of both configurations here, checkpoint reached 🎯
+
+## 2026-10-28 02:56:10 UTC - CLAUDE
+
+Checkpoint coming right up hun 🎯 I'm saving main and the no-pink copy exactly as they are now.
+
