@@ -1,9 +1,20 @@
-# Every decision Love has made - rebuilt 2026-10-28T05:49:56.587575+00:00
+# Every decision Love has made - rebuilt 2026-10-28T06:19:25.385840+00:00
 
-1222 decisions with Love's words or card picks, out of 1897 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1225 decisions with Love's words or card picks, out of 1902 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T06:19:13Z  ·  diary line 2367  ·  fix374
+- Love: “how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)”
+- fix374 IN HER CODE
+- Full entry: 2026-10-28T06:19:13Z fix374 (Oct 27 11:20 PM PT, Love: "how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)"): 11 PM PT the rejection model trades live (offHourMain.rejSeatHours [23]; liveSkipHours gold/btc 23 lifted, prev saved in fix374Prev). History at 11 PM: rej btc 50 trades 50% +$103, gold 35 51% +$72. Tonight 11:00: btc short -$21, gold long +$50.
+
+## 2026-10-28T06:17:44.943Z  ·  diary line 2364
+- Full entry: 2026-10-28T06:17:44.943Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (GOLD only)
+
+## 2026-10-28T06:14:58.998Z  ·  diary line 2363
+- Full entry: 2026-10-28T06:14:58.998Z HOURS (Love, in-app schedule pill): 11 PM PT -> MAIN book (GOLD only)
 
 ## 2026-10-28T05:49:45Z  ·  diary line 2362  ·  fix373
 - Love: “if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok 🎯 + card”

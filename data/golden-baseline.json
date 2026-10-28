@@ -27,7 +27,7 @@
     "confirm.ts": "9d4790dfd4a9e8ed",
     "dayboard.ts": "85ba614c44331637",
     "dna.ts": "7e15f742d137607e",
-    "engine.ts": "1fc08c9ede106124",
+    "engine.ts": "8a48764731c76ef9",
     "feedmatch.ts": "8908213d26d0f9fc",
     "fees.ts": "b31480529d0d4c44",
     "fill-log.ts": "1e136cd46cbbbe7f",
@@ -164,7 +164,7 @@
     "breaker": "de26f74578",
     "presets": "8ee40259f0",
     "halfAt75": "b5bea41b6c",
-    "liveSkipHours": "b9335c6b9d",
+    "liveSkipHours": "ae07373da0",
     "brokenBy": "5676444012",
     "followPaperExit": "b5bea41b6c",
     "btcHeadroomSession": "624b60c58c",
@@ -181,7 +181,7 @@
     "shifts": "5802d83036",
     "bandExempt": "25b44e757c",
     "squeezeTrialDone": "1b076e2ccd",
-    "bookSkipHours": "e108e9004c",
+    "bookSkipHours": "a6706f9c29",
     "bookSkipHoursNote": "1c5d4064cc",
     "noLocksBooks": "169f22467a",
     "noLocksNote": "7a3cd157af",
@@ -267,7 +267,7 @@
     "assetDollarsOff": "8a3eed3ef7",
     "polyLiveNote": "40671f92fd",
     "dlyLiveNote": "0c40f78c42",
-    "offHourMain": "7d06ad6b5e",
+    "offHourMain": "3e9caad827",
     "bookSkipHoursByAsset": "e4226f5b46",
     "fix313Prev": "c1e29a6fd6",
     "liveSkipHoursPrev315": "a7a12423e8",
@@ -276,12 +276,14 @@
     "fix321Prev": "1bfaae9ab3",
     "fix352Prev": "23d7ac15bf",
     "fix360Prev": "ac6d740e35",
-    "npLive": "951ebde3b2"
+    "npLive": "951ebde3b2",
+    "fix374Prev": "f6fa805c30"
   },
   "configFiles": {
     "data/spine-lock.json": "073593da79c367e8",
     "data/FROZEN.json": "96bf1e60e4b50fe3",
-    "data/freeze-2026-10-12.json": "304dbd7b7f576480"
+    "data/freeze-2026-10-12.json": "304dbd7b7f576480",
+    "data/live-switch.json": "c6e404079a677c50"
   },
   "sealLiveBook": "e13f989d61",
   "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

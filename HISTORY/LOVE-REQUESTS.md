@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R060 - fix374: 11 PM PT the REJECTION MODEL takes the live seat (offHourMain.rejSeatHours [23]); Oct 8 11 PM sit-out lifted from liveSkipHours gold+btc (prev in fix374Prev). Copy, main, twin, pure no-pink sit 11 PM out.
+- when: 2026-10-28T06:19:13+00:00
+- Love: "how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)"
+- books: recon-rej
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "omR.rejSeatHours.map(Number).includes(hNow)"}
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejSeatHours", "equals": [23]}
+
 ## R059 - fix373: BTC only - main/rej/copy unfilled long refused by a PINK wall re-aims to the short when the engine reads a rejection down off the pink with a 1-5m red flip; sticks for the window.
 - when: 2026-10-28T05:49:45+00:00
 - Love: "if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok 🎯 + card "Which books get the BTC pink-rejection re-aim?" -> "Main + rejection + copy""

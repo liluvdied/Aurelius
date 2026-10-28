@@ -5697,46 +5697,6 @@
   "paid": 0.38,
   "orderId": "01a18021-2410-7aec-8c89-3bbb74651db3"
  },
- "KXBTC15M-26OCT272200-00:recon-rej:KXBTC15M-26OCT272200-00:recon-rej": {
-  "at": "2026-10-28T01:45:02.727Z",
-  "ticker": "KXBTC15M-26OCT272200-00",
-  "side": "up",
-  "status": "skipped",
-  "final": true,
-  "reason": "the DELAYED twin takes this hour live (Love, Oct 23)"
- },
- "KXBTC15M-26OCT272200-00:recon-togp:KXBTC15M-26OCT272200-00:recon-togp": {
-  "at": "2026-10-28T01:45:02.729Z",
-  "ticker": "KXBTC15M-26OCT272200-00",
-  "side": "up",
-  "status": "skipped",
-  "final": true,
-  "reason": "the DELAYED twin takes this hour live (Love, Oct 23)"
- },
- "KXBTC15M-26OCT272200-00:recon-tog:KXBTC15M-26OCT272200-00:recon-tog": {
-  "at": "2026-10-28T01:45:02.730Z",
-  "ticker": "KXBTC15M-26OCT272200-00",
-  "side": "up",
-  "status": "skipped",
-  "final": true,
-  "reason": "the DELAYED twin takes this hour live (Love, Oct 23)"
- },
- "KXGOLD15M-26OCT272200-00:recon-rej:KXGOLD15M-26OCT272200-00:recon-rej": {
-  "at": "2026-10-28T01:45:08.569Z",
-  "ticker": "KXGOLD15M-26OCT272200-00",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
- },
- "KXGOLD15M-26OCT272200-00:recon-tog:KXGOLD15M-26OCT272200-00:recon-tog": {
-  "at": "2026-10-28T01:45:08.571Z",
-  "ticker": "KXGOLD15M-26OCT272200-00",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
- },
  "KXGOLD15M-26OCT272200-00:recon-togp:KXGOLD15M-26OCT272200-00:recon-togp": {
   "at": "2026-10-28T01:45:20.350Z",
   "ticker": "KXGOLD15M-26OCT272200-00",
@@ -5765,22 +5725,6 @@
   "paid": 0.5,
   "orderId": "01a1802f-1660-7f77-b8f1-1dc134e9a2d8"
  },
- "KXGOLD15M-26OCT272200-00:recon-dly:KXGOLD15M-26OCT272200-00:recon-dly": {
-  "at": "2026-10-28T01:45:41.988Z",
-  "ticker": "KXGOLD15M-26OCT272200-00",
-  "side": "up",
-  "status": "skipped",
-  "final": true,
-  "reason": "RECON-DLY sits out her worst hour (6 PM PT) live"
- },
- "KXGOLD15M-26OCT272215-15:recon-rej:KXGOLD15M-26OCT272215-15:recon-rej": {
-  "at": "2026-10-28T02:00:09.039Z",
-  "ticker": "KXGOLD15M-26OCT272215-15",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "REJECTION trades live only in Love's rejection hours"
- },
  "KXGOLD15M-26OCT272215-15:recon-tog:KXGOLD15M-26OCT272215-15:recon-tog": {
   "at": "2026-10-28T02:07:15.795Z",
   "ticker": "KXGOLD15M-26OCT272215-15",
@@ -5794,30 +5738,6 @@
   "final": false,
   "paid": 0.6,
   "orderId": "01a18042-f838-720d-b912-62c3d00cdcc4"
- },
- "KXGOLD15M-26OCT272215-15:recon-togp:KXGOLD15M-26OCT272215-15:recon-togp": {
-  "at": "2026-10-28T02:00:09.057Z",
-  "ticker": "KXGOLD15M-26OCT272215-15",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "THE NO-PINK COPY trades live only in Love's rejection hours"
- },
- "KXBTC15M-26OCT272215-15:recon-rej:KXBTC15M-26OCT272215-15:recon-rej": {
-  "at": "2026-10-28T02:00:16.055Z",
-  "ticker": "KXBTC15M-26OCT272215-15",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
- },
- "KXBTC15M-26OCT272215-15:recon-tog:KXBTC15M-26OCT272215-15:recon-tog": {
-  "at": "2026-10-28T02:00:16.057Z",
-  "ticker": "KXBTC15M-26OCT272215-15",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
  },
  "KXBTC15M-26OCT272215-15:recon-togp:KXBTC15M-26OCT272215-15:recon-togp": {
   "at": "2026-10-28T02:00:28.980Z",
@@ -5833,22 +5753,6 @@
   "paid": 0.5,
   "orderId": "01a1803c-c260-7213-b23b-bae594f08de5"
  },
- "KXGOLD15M-26OCT272215-15:recon-dly:KXGOLD15M-26OCT272215-15:recon-dly": {
-  "at": "2026-10-28T02:00:30.292Z",
-  "ticker": "KXGOLD15M-26OCT272215-15",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "RECON-DLY sits out her worst hour (7 PM PT) live"
- },
- "KXBTC15M-26OCT272215-15:recon-dly:KXBTC15M-26OCT272215-15:recon-dly": {
-  "at": "2026-10-28T02:03:41.183Z",
-  "ticker": "KXBTC15M-26OCT272215-15",
-  "side": "up",
-  "status": "skipped",
-  "final": true,
-  "reason": "RECON-DLY sits out her worst hour (7 PM PT) live"
- },
  "KXGOLD15M-26OCT272230-30:recon-tog:KXGOLD15M-26OCT272230-30:recon-tog": {
   "at": "2026-10-28T02:27:02.225Z",
   "ticker": "KXGOLD15M-26OCT272230-30",
@@ -5862,38 +5766,6 @@
   "final": false,
   "paid": 0.32,
   "orderId": "01a18055-1108-7c3d-aeac-15998b57a5e4"
- },
- "KXGOLD15M-26OCT272230-30:recon-togp:KXGOLD15M-26OCT272230-30:recon-togp": {
-  "at": "2026-10-28T02:15:09.002Z",
-  "ticker": "KXGOLD15M-26OCT272230-30",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "THE NO-PINK COPY trades live only in Love's rejection hours"
- },
- "KXGOLD15M-26OCT272230-30:recon-rej:KXGOLD15M-26OCT272230-30:recon-rej": {
-  "at": "2026-10-28T02:15:09.003Z",
-  "ticker": "KXGOLD15M-26OCT272230-30",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "REJECTION trades live only in Love's rejection hours"
- },
- "KXBTC15M-26OCT272230-30:recon-tog:KXBTC15M-26OCT272230-30:recon-tog": {
-  "at": "2026-10-28T02:15:12.054Z",
-  "ticker": "KXBTC15M-26OCT272230-30",
-  "side": "up",
-  "status": "skipped",
-  "final": true,
-  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
- },
- "KXBTC15M-26OCT272230-30:recon-rej:KXBTC15M-26OCT272230-30:recon-rej": {
-  "at": "2026-10-28T02:15:12.071Z",
-  "ticker": "KXBTC15M-26OCT272230-30",
-  "side": "up",
-  "status": "skipped",
-  "final": true,
-  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
  },
  "KXBTC15M-26OCT272230-30:recon-togp:KXBTC15M-26OCT272230-30:recon-togp": {
   "at": "2026-10-28T02:15:29.202Z",
@@ -5909,30 +5781,6 @@
   "paid": 0.45,
   "orderId": "01a1804a-7e00-7aff-9642-b2217931c8af"
  },
- "KXBTC15M-26OCT272230-30:recon-dly:KXBTC15M-26OCT272230-30:recon-dly": {
-  "at": "2026-10-28T02:16:17.308Z",
-  "ticker": "KXBTC15M-26OCT272230-30",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "RECON-DLY sits out her worst hour (7 PM PT) live"
- },
- "KXGOLD15M-26OCT272230-30:recon-dly:KXGOLD15M-26OCT272230-30:recon-dly": {
-  "at": "2026-10-28T02:17:48.322Z",
-  "ticker": "KXGOLD15M-26OCT272230-30",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "RECON-DLY sits out her worst hour (7 PM PT) live"
- },
- "KXGOLD15M-26OCT272245-45:recon-rej:KXGOLD15M-26OCT272245-45:recon-rej": {
-  "at": "2026-10-28T02:30:06.738Z",
-  "ticker": "KXGOLD15M-26OCT272245-45",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "REJECTION trades live only in Love's rejection hours"
- },
  "KXGOLD15M-26OCT272245-45:recon-tog:KXGOLD15M-26OCT272245-45:recon-tog": {
   "at": "2026-10-28T02:30:28.541Z",
   "ticker": "KXGOLD15M-26OCT272245-45",
@@ -5947,30 +5795,6 @@
   "paid": 0.69,
   "orderId": "01a18058-39a0-7f66-ac6b-984079b12010"
  },
- "KXGOLD15M-26OCT272245-45:recon-togp:KXGOLD15M-26OCT272245-45:recon-togp": {
-  "at": "2026-10-28T02:30:06.750Z",
-  "ticker": "KXGOLD15M-26OCT272245-45",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "THE NO-PINK COPY trades live only in Love's rejection hours"
- },
- "KXBTC15M-26OCT272245-45:recon-tog:KXBTC15M-26OCT272245-45:recon-tog": {
-  "at": "2026-10-28T02:30:09.833Z",
-  "ticker": "KXBTC15M-26OCT272245-45",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
- },
- "KXBTC15M-26OCT272245-45:recon-rej:KXBTC15M-26OCT272245-45:recon-rej": {
-  "at": "2026-10-28T02:30:09.834Z",
-  "ticker": "KXBTC15M-26OCT272245-45",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
- },
  "KXBTC15M-26OCT272245-45:recon-togp:KXBTC15M-26OCT272245-45:recon-togp": {
   "at": "2026-10-28T02:30:12.123Z",
   "ticker": "KXBTC15M-26OCT272245-45",
@@ -5984,14 +5808,6 @@
   "final": false,
   "paid": 0.61,
   "orderId": "01a18057-f738-7ae6-b9b0-d5ba2c8c7e04"
- },
- "KXBTC15M-26OCT272245-45:recon-dly:KXBTC15M-26OCT272245-45:recon-dly": {
-  "at": "2026-10-28T02:30:37.322Z",
-  "ticker": "KXBTC15M-26OCT272245-45",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "RECON-DLY sits out her worst hour (7 PM PT) live"
  },
  "KXGOLD15M-26OCT272245-45:recon-dly:KXGOLD15M-26OCT272245-45:recon-dly": {
   "at": "2026-10-28T02:41:35.985Z",
@@ -7123,5 +6939,147 @@
   "status": "skipped",
   "final": true,
   "reason": "THE PURE NO-PINK trades live only in her hour (9 PM, Love)"
+ },
+ "KXGOLD15M-26OCT280200-00:recon-togp:KXGOLD15M-26OCT280200-00:recon-togp": {
+  "at": "2026-10-28T05:48:39.999Z",
+  "ticker": "KXGOLD15M-26OCT280200-00",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "THE IMPOSSIBILITY: short at 30% of the 4031.54 -> 4041.41 channel - the bottom 33%, into the unbroken band below. never.",
+  "firstTryAt": "2026-10-28T05:48:19.585Z",
+  "bookedAt": "2026-10-28T05:48:36.947Z",
+  "tries": 76,
+  "final": false,
+  "paid": 0.53,
+  "orderId": "01a1810d-aad8-77e3-a24b-d20218ed2f52"
+ },
+ "KXBTC15M-26OCT280200-00:recon-dly:KXBTC15M-26OCT280200-00:recon-dly": {
+  "at": "2026-10-28T05:51:20.923Z",
+  "ticker": "KXBTC15M-26OCT280200-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (10 PM PT) live"
+ },
+ "KXGOLD15M-26OCT280200-00:recon-np:KXGOLD15M-26OCT280200-00:recon-np": {
+  "at": "2026-10-28T05:55:00.518Z",
+  "ticker": "KXGOLD15M-26OCT280200-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "THE PURE NO-PINK trades live only in her hour (9 PM, Love)"
+ },
+ "KXGOLD15M-26OCT280200-00:recon-dly:KXGOLD15M-26OCT280200-00:recon-dly": {
+  "at": "2026-10-28T05:55:36.539Z",
+  "ticker": "KXGOLD15M-26OCT280200-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (10 PM PT) live"
+ },
+ "KXBTC15M-26OCT280215-15:recon-rej:KXBTC15M-26OCT280215-15:recon-rej": {
+  "at": "2026-10-28T06:00:14.178Z",
+  "ticker": "KXBTC15M-26OCT280215-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
+ },
+ "KXBTC15M-26OCT280215-15:recon-togp:KXBTC15M-26OCT280215-15:recon-togp": {
+  "at": "2026-10-28T06:00:14.180Z",
+  "ticker": "KXBTC15M-26OCT280215-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "BTC sits out the 11 PM PT hour live (Love's call, Oct 8)"
+ },
+ "KXBTC15M-26OCT280215-15:recon-np:KXBTC15M-26OCT280215-15:recon-np": {
+  "at": "2026-10-28T06:00:14.182Z",
+  "ticker": "KXBTC15M-26OCT280215-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "THE PURE NO-PINK trades live only in her hour (9 PM, Love)"
+ },
+ "KXBTC15M-26OCT280215-15:recon-tog:KXBTC15M-26OCT280215-15:recon-tog": {
+  "at": "2026-10-28T06:00:14.184Z",
+  "ticker": "KXBTC15M-26OCT280215-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
+ },
+ "KXGOLD15M-26OCT280215-15:recon-dly:KXGOLD15M-26OCT280215-15:recon-dly": {
+  "at": "2026-10-28T06:00:30.180Z",
+  "ticker": "KXGOLD15M-26OCT280215-15",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (11 PM PT) live"
+ },
+ "KXGOLD15M-26OCT280215-15:recon-rej:KXGOLD15M-26OCT280215-15:recon-rej": {
+  "at": "2026-10-28T06:00:42.961Z",
+  "ticker": "KXGOLD15M-26OCT280215-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
+ },
+ "KXGOLD15M-26OCT280215-15:recon-np:KXGOLD15M-26OCT280215-15:recon-np": {
+  "at": "2026-10-28T06:00:42.962Z",
+  "ticker": "KXGOLD15M-26OCT280215-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "THE PURE NO-PINK trades live only in her hour (9 PM, Love)"
+ },
+ "KXGOLD15M-26OCT280215-15:recon-togp:KXGOLD15M-26OCT280215-15:recon-togp": {
+  "at": "2026-10-28T06:00:42.963Z",
+  "ticker": "KXGOLD15M-26OCT280215-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "GOLD sits out the 11 PM PT hour live (Love's call, Oct 8)"
+ },
+ "KXGOLD15M-26OCT280215-15:recon-tog:KXGOLD15M-26OCT280215-15:recon-tog": {
+  "at": "2026-10-28T06:14:59.656Z",
+  "ticker": "KXGOLD15M-26OCT280215-15",
+  "side": "down",
+  "status": "missed",
+  "final": true,
+  "reason": "window ended before it filled (last: hour handed over by Love - her next passing setup books)"
+ },
+ "KXBTC15M-26OCT280215-15:recon-dly:KXBTC15M-26OCT280215-15:recon-dly": {
+  "at": "2026-10-28T06:01:19.864Z",
+  "ticker": "KXBTC15M-26OCT280215-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (11 PM PT) live"
+ },
+ "KXBTC15M-26OCT280230-30:recon-rej:KXBTC15M-26OCT280230-30:recon-rej": {
+  "at": "2026-10-28T06:15:05.223Z",
+  "ticker": "KXBTC15M-26OCT280230-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)"
+ },
+ "KXBTC15M-26OCT280230-30:recon-tog:KXBTC15M-26OCT280230-30:recon-tog": {
+  "at": "2026-10-28T06:15:05.227Z",
+  "ticker": "KXBTC15M-26OCT280230-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
+ },
+ "KXBTC15M-26OCT280230-30:recon-togp:KXBTC15M-26OCT280230-30:recon-togp": {
+  "at": "2026-10-28T06:15:05.228Z",
+  "ticker": "KXBTC15M-26OCT280230-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "BTC sits out the 11 PM PT hour live (Love's call, Oct 8)"
  }
 }

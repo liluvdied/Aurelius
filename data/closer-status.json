@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T05:49:20.821Z",
+ "at": "2026-10-28T06:19:04.716Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -12,9 +12,9 @@
    "matched": 0
   },
   "NBA": {
-   "live": 1,
-   "late": 1,
-   "matched": 1
+   "live": 0,
+   "late": 0,
+   "matched": 0
   },
   "WNBA": {
    "live": 0,
@@ -37,18 +37,6 @@
    "matched": 0
   }
  },
- "watching": [
-  {
-   "league": "NBA",
-   "game": "Trail Blazers 130 @ Lakers 127",
-   "period": 4,
-   "clock": "1:33",
-   "fav": "Trail Blazers",
-   "wp": 0.91,
-   "ask": 0.77,
-   "ticker": "KXNBAGAME-26OCT27PORLAL-POR",
-   "matched": true
-  }
- ],
+ "watching": [],
  "errors": []
 }
