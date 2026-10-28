@@ -44,7 +44,7 @@ type Piv = { pp: number; r1: number; s1: number; r2: number; s2: number; a: numb
 type Line = { name: string; price: number; unit: number; center?: boolean };
 export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-dly", "recon-rejx", "recon-togr", "recon-rej5", "recon-togp"] as const; /* fix281 recon-togp */ /* fix261 recon-rej5 */ /* fix250 recon-togr */ /* fix171 recon-rejx */ // + MOST SUCCESSFUL 70%+ (Oct 19 ~9:02 PM PT, Love) + REJECTIONS ONLY twin (Oct 20 ~7:39 AM PT, Love)
 export const RECON = new Set<string>(RECON_LANES);
-const DLY_AS_COPY = true; // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): the DELAYED twin is the no-pink copy with a delayed entry
+const DLY_AS_COPY = false; /* fix353 PAUSED (Love 6:11 PM PT: "wait no no no no no no do not change the 5M on polymarket in any way nooo"): the twin is exactly as before everywhere */ // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): the DELAYED twin is the no-pink copy with a delayed entry
 
 function resample(b: Bar[], mins: number): Bar[] {
   const out: Bar[] = [];

@@ -2135,7 +2135,7 @@ export function dlyThirds(asset: string, L: Line[], tick: number, side: string):
 // AT THE TOUCH (Oct 21 ~6:20 PM PT, Love picked "Yes, skip only the candle rule"): the twin enters on the touch of the next band, while price is still
 // moving into it, so her off hours waive HER CANDLE again - THE IMPOSSIBILITY, ONLY IN HER THIRD and THE TOP/BOTTOM LINE still refuse her (dlyKeeps).
 const DLY_FREE = true;
-const DLY_AS_COPY = true; // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): recon-dly meets the no-pink copy's walls (togpLoose), not the twin's
+const DLY_AS_COPY = false; /* fix353 PAUSED (Love 6:11 PM PT: "wait no no no no no no do not change the 5M on polymarket in any way nooo"): the twin is exactly as before everywhere */ // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): recon-dly meets the no-pink copy's walls (togpLoose), not the twin's
 export function dlyFreeNow(asset = ""): boolean { // fix278: asset picks its own hours (bookSkipHoursByAsset)
   if (!DLY_FREE || DLY_AS_COPY /* fix353: no twin-hour freedoms - she is the copy now */) return false;
   try {

@@ -152,3 +152,4 @@ Love: "for her rejections on they delayed entry model just put her on the same f
 - recon-dly books exactly the copy's read, never before 30 s into the window, and meets every copy wall (pink scale break-only, HER FLIP, gold 33c, gold 33% thirds).
 - Her old twin entries (initial move, next-band touch, re-aims) and twin-hour freedoms are switched off (DLY_AS_COPY in recon.ts + bandlock.ts; flip to false to restore, only on Love's words).
 - Kept: her hours, $2.50 + $5 add-on, 50c price cap. The Polymarket twin copies her calls, so it follows the new model.
+- fix353 PAUSED 6:12 PM (Love: "do not change the 5M on polymarket in any way"). The twin is exactly as before everywhere. NEVER touch anything Polymarket reads without Love naming it.
