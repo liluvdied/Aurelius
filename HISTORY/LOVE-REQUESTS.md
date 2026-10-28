@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R054 - fix368: pure no-pink (recon-np) only - no long with any unbroken band (pink, purple m5/m10/m15, session sigma/VWAP, Bollinger, red/green zone) within $1 gold / $25 BTC above; mirror for shorts.
+- when: 2026-10-28T04:41:45+00:00
+- Love: "hun she keeps longing into unbroken bands pls fix her + card "How should the pure no-pink treat unbroken bands above a long?" -> "$1 gold / $25 BTC, any band""
+- books: recon-np
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "ANY BAND CUSHION (pure no-pink)"}
+
 ## R053 - fix367: pure no-pink (recon-np) only - no long within 50c gold / $25 BTC under an unbroken pink, mirror for shorts; goes once price breaks through (25c gold / $3 BTC). Other pink still blows through.
 - when: 2026-10-28T04:34:58+00:00
 - Love: "yess that's good hunni 💞 wait for a break or a candle flip as normal"

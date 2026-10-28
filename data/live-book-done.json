@@ -7111,15 +7111,29 @@
   "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
  },
  "KXGOLD15M-26OCT280045-45:recon-np:KXGOLD15M-26OCT280045-45:recon-np": {
-  "at": "2026-10-28T04:35:29.290Z",
+  "at": "2026-10-28T04:35:59.735Z",
   "ticker": "KXGOLD15M-26OCT280045-45",
   "side": "up",
-  "status": "blocked",
-  "reason": "PINK CUSHION (pure no-pink): long 0.42 under the unbroken pink (4041.76) - inside 50c she waits for price to break up through the pink first (fix367).",
+  "status": "filled",
+  "reason": "",
   "firstReason": "HER FLIP: no 1/2/3/4/5m candle is green by 10c - a long needs one flipped her way for real (fix359).",
   "firstTryAt": "2026-10-28T04:35:01.130Z",
   "bookedAt": "2026-10-28T04:35:00.997Z",
-  "tries": 116,
+  "tries": 242,
+  "final": false,
+  "paid": 0.6,
+  "orderId": "01a180cb-2398-714e-8303-1a8cc995ea45"
+ },
+ "KXBTC15M-26OCT280045-45:recon-np:KXBTC15M-26OCT280045-45:recon-np": {
+  "at": "2026-10-28T04:42:26.188Z",
+  "ticker": "KXBTC15M-26OCT280045-45",
+  "side": "down",
+  "status": "blocked",
+  "reason": "ANY BAND CUSHION (pure no-pink): short 1.09 over the unbroken 5m PP (80903.43) - inside $25 she waits for it to break, then the next band (fix368).",
+  "firstReason": "your hand traded this window - it stays yours",
+  "firstTryAt": "2026-10-28T04:41:13.160Z",
+  "bookedAt": "2026-10-28T04:41:12.940Z",
+  "tries": 287,
   "final": false,
   "paid": null,
   "orderId": null

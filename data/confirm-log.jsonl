@@ -63884,3 +63884,10 @@
 {"at":"2026-10-28T04:35:23.472Z","kind":"unconfirmed","feed":"pep","line":"+1.5σ","dir":"up","px":81005.95,"ticker":"KXBTC15M-26OCT280045-45"}
 {"at":"2026-10-28T04:35:27.891Z","kind":"first","feed":"pep","line":"+1σ","dir":"up","px":80941.97,"ticker":"KXBTC15M-26OCT280045-45","ask":0.84,"dna":"DNA: in the 25% of the channel closest to the +1σ (80934.31), 9.35 of 62.67"}
 {"at":"2026-10-28T04:35:32.940Z","kind":"first","feed":"pep","line":"+1σ","dir":"down","px":80920.16,"ticker":"KXBTC15M-26OCT280045-45","ask":0.17,"dna":"DNA: the +0.5σ (80871.64) sits between price and the strike 80865.53: she has to close through it first"}
+{"at":"2026-10-28T04:35:38.085Z","kind":"unconfirmed","feed":"pep","line":"+1.5σ","dir":"down","px":80982.03,"ticker":"KXBTC15M-26OCT280045-45"}
+{"at":"2026-10-28T04:36:31.129Z","kind":"unconfirmed","feed":"pep","line":"+1σ","dir":"up","px":80941.97,"ticker":"KXBTC15M-26OCT280045-45"}
+{"at":"2026-10-28T04:36:36.687Z","kind":"unconfirmed","feed":"pep","line":"+1σ","dir":"down","px":80920.16,"ticker":"KXBTC15M-26OCT280045-45"}
+{"at":"2026-10-28T04:36:41.879Z","kind":"first","feed":"van","line":"+1σ","dir":"up","px":81046.86,"ticker":"KXBTC15M-26OCT280045-45","ask":0.9,"dna":"DNA: in the 25% of the channel closest to the +1σ (80934.55), 5.67 of 56.50"}
+{"at":"2026-10-28T04:36:57.502Z","kind":"confirmed","first":"van","then":"pep","line":"+1σ","dir":"up","secs":16,"px":80937.67,"ticker":"KXBTC15M-26OCT280045-45","ask":0.922,"dna":"DNA: in the 25% of the channel closest to the +1σ (80934.61), 5.73 of 55.83"}
+{"at":"2026-10-28T04:37:03.619Z","kind":"first","feed":"pep","line":"+1σ","dir":"down","px":80926.95,"ticker":"KXBTC15M-26OCT280045-45","ask":0.079,"dna":"DNA: the +0.5σ (80872.04) sits between price and the strike 80865.09: she has to close through it first"}
+{"at":"2026-10-28T04:37:20.135Z","kind":"confirmed","first":"pep","then":"van","line":"+1σ","dir":"down","secs":17,"px":81022.85,"ticker":"KXBTC15M-26OCT280045-45","ask":0.15,"dna":"DNA: the +0.5σ (80872.07) sits between price and the strike 80857.11: she has to close through it first"}

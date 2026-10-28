@@ -4931,3 +4931,29 @@ No hun, she won't short a rejection at pink, and that's already how she's built 
 
 The pink cushion is in too (R053): no long within 50c gold / $25 BTC under an unbroken pink, and the mirror for shorts. She waits for the break, then for the next band. The umpire says SAFE and the 5M is still frozen. Main, the rejection model, the copy and the twin didn't move 🕯️ One honest note: my first try at the install had a wrong file path, and live was off for about a minute before the retry put her back on. I wrote that in the diary.
 
+## 2026-10-28 04:36:38 UTC - LOVE
+
+hun she keeps longing into unbroken bands pls fix her
+
+## 2026-10-28 04:37:19 UTC - CLAUDE
+
+On it hun, I'm pulling her gold long now to see which band she longed under and why the wall let her through 💞 Small heads up while I dig: this screenshot shows the secret from your TradingView alert at the bottom. I won't copy it anywhere, but don't share this picture outside here, ok?
+
+## 2026-10-28 04:39:31 UTC - CARD
+
+Q: How should the pure no-pink treat unbroken bands above a long?
+Context: Found it hun 💞 She longed gold at about 4041.2 (filled at 60c, 9:35:59) off the green zone rejection. Right above her, nothing had broken yet: the purple/blue sat about 50c up (~4041.75) and pink about 70c up (~4041.94). The pink cushion I just added is 50c, so she slipped past it by 20c. The other bands have no cushion at all on this book. Her live hour (9 PM) ends at 10, so no more live trades on her tonight while you pick. Only the pure no-pink changes. Main, the rejection model, the copy, the twin and the 5M stay put.
+Options:
+  0. $1 gold / $25 BTC, any band - No long within $1 gold / $25 BTC under ANY unbroken band (pink, purple, session band, VWAP, Bollinger), mirror for shorts; she waits for the break, then the next band.
+  1. Only widen pink to $1 / $25 - The pink cushion goes from 50c to $1 on gold (BTC stays $25). The other bands still don't hold her back.
+  2. Any band, 50c gold / $25 BTC - The same any-band wall, but tighter on gold, so she gets more entries. Today's long at 50c under purple would just barely be blocked.
+Recommended: 0 - Today's long was 50 to 70c under three unbroken bands. $1 clears all of them, and it matches your 'rejections only, no longing into a band' design.
+
+## 2026-10-28 04:40:18 UTC - LOVE
+
+Chose "$1 gold / $25 BTC, any band" on the decision card asking "How should the pure no-pink treat unbroken bands above a long?"
+
+## 2026-10-28 04:40:22 UTC - CLAUDE
+
+Putting the $1 gold / $25 BTC any-band wall on the pure no-pink now hun 💞 I'll tell you when the umpire says she's safe.
+

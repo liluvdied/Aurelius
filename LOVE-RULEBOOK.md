@@ -189,3 +189,5 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 - **Pure no-pink pink rule (fix363, R048).** Love Oct 27 8:32 PM PT: "as for pink holds on the new no-pink one, she only does it if the pink band and the session occupy the same bottom/top 10% of the channel pls / otherwise the rejections should blow right thru".
 
 - fix367 (Oct 27 ~9:35 PM PT, Love: "yess that's good hunni 💞 wait for a break or a candle flip as normal"): PURE NO-PINK only - no long within 50c gold / $25 BTC under an unbroken pink (mirror for shorts); she goes on the break through it. Other pink blows through (fix363).
+
+- fix368 (Oct 27 ~9:45 PM PT, Love: "hun she keeps longing into unbroken bands pls fix her" + card "How should the pure no-pink treat unbroken bands above a long?" -> "$1 gold / $25 BTC, any band"): PURE NO-PINK only - no long within $1 gold / $25 BTC under ANY unbroken band (pink, purple, session sigma/VWAP, Bollinger, red/green zone); mirror for shorts. She waits for the break, then the next band.

@@ -9287,3 +9287,7 @@
 {"at":"2026-10-28T04:32:01.618Z","lane":"recon-rejx","ticker":"KXBTC15M-26OCT280045-45","side":"up","label":"1m rejection off fresh +1σ","ask":0.81,"why":"wanted to flip the unfilled call, but it is under her 1.38x floor (1.23x)"}
 {"at":"2026-10-28T04:32:03.553Z","lane":"recon-togr","ticker":"KXBTC15M-26OCT280045-45","side":"up","label":"Green candle rising from the bottom third","ask":0.81,"why":"wanted to flip the unfilled call, but it is under her 1.38x floor (1.23x)"}
 {"at":"2026-10-28T04:35:27.232Z","lane":"recon-rej","ticker":"KXBTC15M-26OCT280045-45","side":"up","label":"Green candle rising from the bottom third","ask":0.84,"why":"wanted to flip the unfilled call, but it is under her 1.38x floor (1.19x)"}
+{"at":"2026-10-28T04:36:13.323Z","lane":"recon-top","ticker":"KXBTC15M-26OCT280045-45","side":"down","label":"1m rejection off fresh +1σ","ask":0,"why":"setup is 0% over 1 settled (needs 70%+)"}
+{"at":"2026-10-28T04:36:45.434Z","lane":"recon-top","ticker":"KXBTC15M-26OCT280045-45","side":"up","label":"Break above 5m PP","ask":0.9,"why":"wanted to flip the unfilled call, but it is under her 1.38x floor (1.11x)"}
+{"at":"2026-10-28T04:38:02.231Z","lane":"recon-top","ticker":"KXBTC15M-26OCT280045-45","side":"down","label":"Break below 5m PP","ask":0,"why":"setup is 48% over 42 settled (needs 70%+)"}
+{"at":"2026-10-28T04:39:08.488Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT280045-45","side":"down","label":"Tap-reject at -1.5σ","ask":0,"why":"setup is 60% over 40 settled (needs 70%+)"}

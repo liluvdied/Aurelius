@@ -1,7 +1,7 @@
 {
- "at": "2026-10-28T04:01:55.936Z",
- "events": 161,
- "checked": 1263,
+ "at": "2026-10-28T04:31:56.824Z",
+ "events": 158,
+ "checked": 1173,
  "live": [
   "KXEARNINGSMENTIONPSKY-26NOV09",
   "KXEARNINGSMENTIONINTC-26OCT22",
@@ -23,6 +23,7 @@
   "KXEARNINGSMENTIONLEVI-27JAN27",
   "KXEARNINGSMENTIONFIG-26NOV04",
   "KXEARNINGSMENTIONC-27JAN14",
+  "KXEARNINGSMENTIONRACE-26NOV03",
   "KXEARNINGSMENTIONGIS-26DEC16",
   "KXEARNINGSMENTIONON-26NOV02",
   "KXTRUMPMENTION-26NOV01",
@@ -46,8 +47,10 @@
   "KXEARNINGSMENTIONACI-27JAN13",
   "KXEARNINGSMENTIONBB-26DEC17",
   "KXEARNINGSMENTIONZETA-26NOV03",
+  "KXEARNINGSMENTIONDKNG-26NOV06",
   "KXEARNINGSMENTIONUAL-27JAN20",
   "KXEARNINGSMENTIONCMG-26OCT28",
+  "KXEARNINGSMENTIONZM-26NOV23",
   "KXTRUMPSAYCOMPANY-26NOV01",
   "KXEARNINGSMENTIONDPZ-27MAR01",
   "KXEARNINGSMENTIONLLY-26OCT29",
@@ -115,7 +118,7 @@
    "word": "Working Class / Middle Class",
    "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
    "side": "no",
-   "ask": 0.65,
+   "ask": 0.67,
    "rate": 0.22,
    "n": 9,
    "basis": "2 of 9 events"
@@ -159,7 +162,7 @@
    "word": "America First",
    "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
    "side": "no",
-   "ask": 0.7,
+   "ask": 0.69,
    "rate": 0.09,
    "n": 11,
    "basis": "1 of 11 events"
@@ -177,6 +180,10 @@
   }
  ],
  "errors": [
+  "Error: 429",
+  "Error: 429",
+  "Error: 429",
+  "Error: 429",
   "Error: 429",
   "Error: 429",
   "Error: 429"

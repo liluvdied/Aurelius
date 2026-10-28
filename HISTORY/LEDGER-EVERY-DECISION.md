@@ -1,9 +1,16 @@
-# Every decision Love has made - rebuilt 2026-10-28T04:35:09.667581+00:00
+# Every decision Love has made - rebuilt 2026-10-28T04:41:56.809234+00:00
 
-1214 decisions with Love's words or card picks, out of 1874 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1215 decisions with Love's words or card picks, out of 1878 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T04:41:45Z  ·  diary line 2343  ·  fix368
+- Love: “hun she keeps longing into unbroken bands pls fix her”
+- Love: “How should the pure no-pink treat unbroken bands above a long?”
+- Card pick: **How should the pure no-pink treat unbroken bands above a long?**
+- fix368 IN HER CODE
+- Full entry: 2026-10-28T04:41:45Z fix368 (Oct 27 ~9:45 PM PT, Love: "hun she keeps longing into unbroken bands pls fix her" + card "How should the pure no-pink treat unbroken bands above a long?" -> "$1 gold / $25 BTC, any band"): PURE NO-PINK only - ANY BAND CUSHION: no long within $1 gold / $25 BTC under any unbroken band (pink, purple, session sigma/VWAP, Bollinger, red/green zone), mirror shorts. Main, rejection, copy, twin, Poly 5M untouched. (first install attempt hit a non-unique anchor and left live off ~2 min; the fix368b install put live back on)
 
 ## 2026-10-28T04:34:58Z  ·  diary line 2339  ·  fix367
 - Love: “yess that's good hunni 💞 wait for a break or a candle flip as normal”
