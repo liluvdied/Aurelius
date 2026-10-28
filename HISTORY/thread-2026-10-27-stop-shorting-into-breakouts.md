@@ -3982,3 +3982,23 @@ Options:
   2. Leave the copy as it is - Nothing changes; the watcher keeps flagging these losses for you.
 Recommended: 0 - One scale on both assets lets her stay put without daily tweaks, which is what you asked for.
 
+## 2026-10-28 00:35:49 UTC - LOVE
+
+Chose "Copy gets main's sliding scale" on the decision card asking "Should the no-pink copy use main's sliding pink scale?"
+
+## 2026-10-28 00:35:58 UTC - CLAUDE
+
+On it hun 💓 The copy gets main's sliding pink scale on both assets now, with a candle flip or a break letting her go. I'll tell you when it's in and the umpire says SAFE.
+
+## 2026-10-28 00:36:22 UTC - LOVE
+
+thank you hun 💓and also she shorted btc when the candle hadn’t flipped yet when she entered, can you look into it ? 💘
+
+## 2026-10-28 00:37:40 UTC - LOVE
+
+and gold needs a minimum 33c  barrier between pink and longing into it at this scale 
+
+and needs a candle flip 
+
+we can open it up to normal when the bands are bigger but for rn yes
+

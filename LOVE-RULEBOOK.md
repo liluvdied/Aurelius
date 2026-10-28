@@ -116,3 +116,9 @@ Love: "we need to keep the pink wall a minimum of 25c at this scale ok bb 💘" 
 - Love 5:19 PM: "it immediately tapped pink and reversed , that should have been short - for next time ok 💘"
 - fix346b (5:19 PM, R030): Love: "no let’s keep that$33 bb not $10" -> the wall is $33. Today's $24.65 long would now wait for a flip or the pink break.
 - PINK FLAG watch (5:23 PM): Love: "no other changes necessary at the moment to any other books , if one of the other books takes a trade like that and loses flag it for me and let me know and we’ll incorporate it into the main book too oki" -> tools/pink-flag.py (record-only, in the umpire). Flag + ask; never install on main without Love.
+
+## fix347 — the copy gets main's sliding pink scale (Oct 27 5:35 PM PT, R031)
+Love 5:32 PM: "thanks love ya did the main book lose her pink tolerance somehow? ... we need to come up with a sliding scale again hun ... i want to do that so we can let her stay put ok 💓" / "and she longed into gold into an unbroken pink this time too hun" / card "Should the no-pink copy use main's sliding pink scale?" -> "Copy gets main's sliding scale".
+- No-pink copy, both assets: pink is a wall inside BTC $25 (channel <= $100), $50 or 10% above; gold 10% or $2. A 1-5m candle flipped her way, or the pink broken, lets her go.
+- The stacked-only pink (fix332, 12:17 PM rule) now applies to the rejection model only. BTC $33 flip-or-break (fix346b) stays.
+- Main had NOT lost her pink tolerance: both flags on main were the watcher reading minute data; main held PINK 10% and shorted after the pink broke.
