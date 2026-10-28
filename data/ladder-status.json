@@ -1,22 +1,22 @@
 {
- "at": "2026-10-28T04:17:14.260Z",
+ "at": "2026-10-28T04:27:14.994Z",
  "cities": [
   {
-   "city": "AUS",
-   "station": "KAUS",
+   "city": "CHI",
+   "station": "KMDW",
    "hourLocal": 23,
-   "offset": 0.29999999999999716,
-   "lessons": 17,
-   "maxSoFar": 82.4,
-   "mu": 82.7,
+   "offset": 0.09999999999999432,
+   "lessons": 16,
+   "maxSoFar": 69.8,
+   "mu": 69.9,
    "sigma": 0.8,
    "best": {
     "buckets": [
-     "84° to 85°"
+     "72° to 73°"
     ],
     "cost": 0.01,
-    "p": 0.16,
-    "edge": 0.15
+    "p": 0.02,
+    "edge": 0.01
    }
   },
   {
@@ -59,21 +59,21 @@
    }
   },
   {
-   "city": "CHI",
-   "station": "KMDW",
+   "city": "AUS",
+   "station": "KAUS",
    "hourLocal": 23,
-   "offset": 0.09999999999999432,
-   "lessons": 16,
-   "maxSoFar": 69.8,
-   "mu": 69.9,
+   "offset": 0.29999999999999716,
+   "lessons": 17,
+   "maxSoFar": 82.4,
+   "mu": 82.7,
    "sigma": 0.8,
    "best": {
     "buckets": [
-     "72° to 73°"
+     "84° to 85°"
     ],
     "cost": 0.01,
-    "p": 0.02,
-    "edge": 0.01
+    "p": 0.16,
+    "edge": 0.15
    }
   },
   {

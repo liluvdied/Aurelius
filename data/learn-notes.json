@@ -1,5 +1,11 @@
 [
   {
+    "key": "close|mvrm294s-4ty0k8",
+    "at": "2026-10-28T04:28:06.681Z",
+    "kind": "closed",
+    "text": "Silver short Tap-reject at −1σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
     "key": "close|held-KXBTC15M-26OCT280015-15",
     "at": "2026-10-28T04:15:26.855Z",
     "kind": "closed",
@@ -472,11 +478,5 @@
     "at": "2026-10-28T00:00:11.602Z",
     "kind": "closed",
     "text": "Bitcoin short Live hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "close|mvrc32sc-wwmnpy",
-    "at": "2026-10-28T00:00:02.148Z",
-    "kind": "closed",
-    "text": "Bitcoin long Tap-reject at +0.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
   }
 ]

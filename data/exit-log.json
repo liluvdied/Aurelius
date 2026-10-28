@@ -1,5 +1,24 @@
 [
   {
+    "at": "2026-10-28T04:28:12.878Z",
+    "ticker": "KXGOLD15M-26OCT280030-30",
+    "asset": "gold",
+    "side": "up",
+    "stake": 2.6572,
+    "multiple": 3.57,
+    "bidPct": 4,
+    "targetPct": 20,
+    "payout": 3.42,
+    "profit": 0.76,
+    "reason": "locked the win: was up +82%, fell back to +4% (only -0.36 past the target)",
+    "short": false,
+    "yesBid": 0.29,
+    "yesAsk": 0.3,
+    "secondsLeft": null,
+    "spot": 4042.02,
+    "strike": 4042.38
+  },
+  {
     "at": "2026-10-28T03:56:47.883Z",
     "ticker": "KXGOLD15M-26OCT280000-00",
     "asset": "gold",
@@ -1499,24 +1518,5 @@
     "secondsLeft": null,
     "spot": 4017.335,
     "strike": 4018.97
-  },
-  {
-    "at": "2026-10-26T09:14:50.603Z",
-    "ticker": "KXBTC15M-26OCT260515-15",
-    "asset": "btc",
-    "side": "down",
-    "stake": 11.983618,
-    "multiple": 2.24,
-    "bidPct": 122,
-    "targetPct": 110.85,
-    "payout": 26.83,
-    "profit": 14.85,
-    "reason": "mirrored RECON-REJ paper out: half at 75% (97c) + trail from 90%: best +60%, sold at 99c",
-    "short": true,
-    "yesBid": 0.002,
-    "yesAsk": 0.003,
-    "secondsLeft": null,
-    "spot": 80131.73,
-    "strike": 80135.25
   }
 ]

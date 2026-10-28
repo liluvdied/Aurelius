@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T04:25:24.921Z",
+ "at": "2026-10-28T04:29:12.506Z",
  "markets": 914,
  "perSeries": {
   "KXBTCD": 188,
@@ -8,40 +8,20 @@
   "KXXRPD": 75,
   "KXDOGED": 51
  },
- "lastErr": "KXDOGED-26OCT2800: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXDOGED-26OCT2800&limit=1",
+ "lastErr": "KXSOLD-26OCT2801: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXSOLD-26OCT2801&limit=10",
  "close": "2026-10-28T05:00:00.000Z",
  "lanes": {
-  "h1-30-mixed": {
-   "hourMarkets": 914,
-   "eligible": 2714,
-   "picked": [
-    "KXBTCD:yes:0.87",
-    "KXETHD:no:0.82",
-    "KXSOLD:yes:0.82"
-   ],
-   "built": true
-  },
   "h1-30-floor": {
    "hourMarkets": 914,
    "eligible": 2714,
    "picked": [
-    "KXBTCD:yes:0.87",
-    "KXETHD:yes:0.88",
-    "KXSOLD:yes:0.82"
-   ],
-   "built": false
-  },
-  "h1-30-ceiling": {
-   "hourMarkets": 914,
-   "eligible": 2714,
-   "picked": [
-    "KXBTCD:no:0.74",
-    "KXETHD:no:0.82"
+    "KXBTCD:yes:0.89",
+    "KXSOLD:yes:0.77"
    ],
    "built": false
   }
  },
- "minsLeft": 34.6,
+ "minsLeft": 30.8,
  "series": {
   "KXBTCD": {
    "n": 188,
@@ -53,12 +33,12 @@
     "greater"
    ],
    "sample": [
-    "80799.99:0.6300/0.3800:active",
-    "80899.99:0.2700/0.7400:active",
-    "80699.99:0.8700/0.1400:active",
-    "80999.99:0.0900/0.9200:active",
-    "80599.99:0.9600/0.0500:active",
-    "81099.99:0.0300/0.9800:active",
+    "80799.99:0.6000/0.4100:active",
+    "80899.99:0.2300/0.7800:active",
+    "80699.99:0.8900/0.1200:active",
+    "80999.99:0.0700/0.9400:active",
+    "81099.99:0.0400/0.9700:active",
+    "80599.99:0.9700/0.0400:active",
     "81199.99:0.0200/0.9900:active",
     "88799.99:0.0100/1.0000:active",
     "88699.99:0.0100/1.0000:active",
@@ -75,16 +55,16 @@
     "greater"
    ],
    "sample": [
-    "2509.99:0.4400/1.0000:active",
-    "2514.99:0.4400/1.0000:active",
-    "2519.99:0.4400/1.0000:active",
+    "2474.99:0.4400/1.0000:active",
     "2464.99:0.4400/1.0000:active",
-    "2349.99:0.5600/0.4600:active",
-    "2484.99:0.4300/1.0000:active",
-    "2489.99:0.4300/1.0000:active",
-    "2404.99:0.4300/1.0000:active",
-    "2444.99:0.4300/1.0000:active",
-    "2474.99:0.4300/1.0000:active"
+    "2524.99:0.4400/1.0000:active",
+    "2489.99:0.4400/1.0000:active",
+    "2484.99:0.4400/1.0000:active",
+    "2514.99:0.4400/1.0000:active",
+    "2509.99:0.4400/1.0000:active",
+    "2494.99:0.4400/1.0000:active",
+    "2519.99:0.4300/1.0000:active",
+    "2504.99:0.4300/1.0000:active"
    ]
   },
   "KXSOLD": {
@@ -119,10 +99,10 @@
     "greater"
    ],
    "sample": [
-    "1.3399:0.1700/0.9800:active",
+    "1.3399:0.2100/0.9800:active",
     "1.4599:0.0300/1.0000:active",
     "1.3599:0.0300/1.0000:active",
-    "1.3199:0.9800/0.0400:active",
+    "1.3199:0.9800/0.0300:active",
     "1.4799:0.0100/1.0000:active",
     "1.7399:0.0100/1.0000:active",
     "1.5599:0.0100/1.0000:active",
@@ -141,7 +121,7 @@
     "custom"
    ],
    "sample": [
-    "undefined:0.0300/0.9900:active",
+    "undefined:0.0300/1.0000:active",
     "undefined:0.0100/1.0000:active",
     "undefined:0.0100/1.0000:active",
     "undefined:0.0100/1.0000:active",

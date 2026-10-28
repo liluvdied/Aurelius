@@ -6922,13 +6922,13 @@
   "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
  },
  "KXGOLD15M-26OCT280015-15:recon-np:KXGOLD15M-26OCT280015-15:recon-np": {
-  "at": "2026-10-28T04:12:41.276Z",
+  "at": "2026-10-28T04:14:31.730Z",
   "ticker": "KXGOLD15M-26OCT280015-15",
   "side": "up",
   "status": "skipped",
-  "final": false,
+  "final": true,
   "bandWait": true,
-  "reason": "band at the target: the -1.5σ (4043.07) sits within $2 of the strike 4042.93 and price hasn't broken through it"
+  "reason": "band never broke before the window closed (last: band at the target: the -1.5σ (4042.97) sits within $2 of the strike 4042.93 and price hasn't broken through it)"
  },
  "KXGOLD15M-26OCT280015-15:recon-rej:KXGOLD15M-26OCT280015-15:recon-rej": {
   "at": "2026-10-28T04:00:16.161Z",
@@ -6953,5 +6953,92 @@
   "status": "skipped",
   "final": true,
   "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXBTC15M-26OCT280030-30:recon-rej:KXBTC15M-26OCT280030-30:recon-rej": {
+  "at": "2026-10-28T04:15:04.024Z",
+  "ticker": "KXBTC15M-26OCT280030-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT280030-30:recon-tog:KXBTC15M-26OCT280030-30:recon-tog": {
+  "at": "2026-10-28T04:15:04.025Z",
+  "ticker": "KXBTC15M-26OCT280030-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT280030-30:recon-togp:KXBTC15M-26OCT280030-30:recon-togp": {
+  "at": "2026-10-28T04:15:04.026Z",
+  "ticker": "KXBTC15M-26OCT280030-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280030-30:recon-rej:KXGOLD15M-26OCT280030-30:recon-rej": {
+  "at": "2026-10-28T04:15:12.610Z",
+  "ticker": "KXGOLD15M-26OCT280030-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280030-30:recon-tog:KXGOLD15M-26OCT280030-30:recon-tog": {
+  "at": "2026-10-28T04:15:12.611Z",
+  "ticker": "KXGOLD15M-26OCT280030-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280030-30:recon-togp:KXGOLD15M-26OCT280030-30:recon-togp": {
+  "at": "2026-10-28T04:19:02.522Z",
+  "ticker": "KXGOLD15M-26OCT280030-30",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280030-30:recon-dly:KXGOLD15M-26OCT280030-30:recon-dly": {
+  "at": "2026-10-28T04:19:36.573Z",
+  "ticker": "KXGOLD15M-26OCT280030-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXBTC15M-26OCT280030-30:recon-dly:KXBTC15M-26OCT280030-30:recon-dly": {
+  "at": "2026-10-28T04:23:05.108Z",
+  "ticker": "KXBTC15M-26OCT280030-30",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXGOLD15M-26OCT280030-30:recon-np:KXGOLD15M-26OCT280030-30:recon-np": {
+  "at": "2026-10-28T04:27:51.953Z",
+  "ticker": "KXGOLD15M-26OCT280030-30",
+  "side": "up",
+  "status": "skipped",
+  "final": false,
+  "bandWait": true,
+  "reason": "band at the target: the 10m purple (4043.63) sits within $2 of the strike 4042.38 and price hasn't broken through it"
+ },
+ "KXBTC15M-26OCT280030-30:recon-np:KXBTC15M-26OCT280030-30:recon-np": {
+  "at": "2026-10-28T04:25:19.055Z",
+  "ticker": "KXBTC15M-26OCT280030-30",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "HER FLIP: no 1/2/3/4/5m candle is green by $5 - a long needs one flipped her way for real (fix359).",
+  "firstTryAt": "2026-10-28T04:25:14.318Z",
+  "bookedAt": "2026-10-28T04:25:14.216Z",
+  "tries": 7,
+  "final": false,
+  "paid": 0.19,
+  "orderId": "01a180c1-5bb0-7749-a775-4578ee1ba9a4"
  }
 }

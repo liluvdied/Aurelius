@@ -4861,3 +4861,33 @@ So live is off to a lovely start, but paper says it's still early. Let's let her
 
 **Gold:** she sees the same green-zone rejection long, but your gold target rule is holding her. The −1.5σ ($4,042.47) sits only 9c from the window's strike ($4,042.38), and price hasn't broken through it yet. That rule says no long with a band right at the target until it breaks. Main is reading a short there anyway, and it sits out this hour.
 
+## 2026-10-28 04:26:21 UTC - LOVE
+
+she entered right after 💞 
+
+gold broke pink up , no entry?
+
+## 2026-10-28 04:26:40 UTC - CLAUDE
+
+Yay, the BTC one went in 💞
+
+On gold, two things are holding her. First, a pink break is a pink trade, and the pure no-pink never takes those, she only goes off band and zone rejections. Second, her green-zone long is still held by your gold target rule. Now it's the 10m purple ($4,043.66) sitting within $2 of the strike ($4,042.38), and price ($4,042.74) hasn't broken up through it yet. Once it clears the purple, she's free to go.
+
+## 2026-10-28 04:27:38 UTC - LOVE
+
+purple band ??? the nav band??? is she using that on this model bb ?
+
+## 2026-10-28 04:28:11 UTC - LOVE
+
+and if she was just trading rejections can you see why she didn’t enter in at the rejection of green? 💘
+
+## 2026-10-28 04:28:38 UTC - CLAUDE
+
+Found it, and fixed hun 💘 She **was** calling the green rejection long from 9:24:16. What held her was an old gold rule from Oct 6: no gold trade while any session band or **nav purple** sits within $2 of the strike. Every other recon book is exempt from that rule, but when I wired her up I missed adding her to the list. First the −1.5σ held her, then the 10m purple.
+
+She's on the exempt list now, same as her sisters, and she **filled the gold long at 9:28:07 PM** right after, once a candle went 10c green. The umpire says SAFE.
+
+## 2026-10-28 04:29:21 UTC - CLAUDE
+
+After that miss, I checked every list her sister (the copy) is on, so nothing else catches her out. She was missing from four more: the time-gate exemption, the no-locks list, follow-paper exits, and paper-fires. She's on all of them now, so she executes exactly like the copy. Polymarket and the 5M didn't move (freeze check ✓), and the umpire says SAFE 💞
+
