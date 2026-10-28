@@ -84975,5 +84975,87 @@
   "lessons": [
    "The rejection shadow agreed (short off +0.5σ)."
   ]
+ },
+ "KXBTC15M-26OCT281515-15": {
+  "ticker": "KXBTC15M-26OCT281515-15",
+  "at": "2026-10-28T19:15:20.198Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "unknown",
+  "multiple": 4,
+  "profit": 9.68,
+  "result": "win",
+  "entry": null,
+  "peakPct": 156,
+  "maxPct": 300,
+  "takeProfitPct": 225,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, won at the bell.",
+   "No entry snapshot for this one (it filled before the snapshot logger, or through another path).",
+   "The rejection shadow agreed (short off +0.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT281515-15": {
+  "ticker": "KXGOLD15M-26OCT281515-15",
+  "at": "2026-10-28T19:15:42.468Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Rejected up off -2σ",
+  "multiple": 2.13,
+  "profit": 9.27,
+  "result": "win",
+  "entry": {
+   "spot": 4030.86,
+   "band": "-2σ",
+   "distSigma": 0.22,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": false,
+   "minuteIn": 1
+  },
+  "peakPct": 102.1,
+  "maxPct": 112.8,
+  "takeProfitPct": 84.6,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, won at the bell.",
+   "The rejection shadow agreed (long off -1.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT281530-30": {
+  "ticker": "KXGOLD15M-26OCT281530-30",
+  "at": "2026-10-28T19:30:42.219Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Green candle rising from the bottom third",
+  "multiple": 1.92,
+  "profit": 19.73,
+  "result": "win",
+  "entry": {
+   "spot": 4049.608,
+   "band": "+0.5σ",
+   "distSigma": 0.14,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": false,
+   "minuteIn": 0.7
+  },
+  "peakPct": 32.7,
+  "maxPct": 92.3,
+  "takeProfitPct": 69.2,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of +0.5σ: long just under it.",
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "The rejection shadow went the other way (short off +0.5σ)."
+  ]
  }
 }

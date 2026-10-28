@@ -1654,6 +1654,9 @@
         1,
         2,
         3,
+        4,
+        5,
+        6,
         7,
         8,
         9,
@@ -1663,7 +1666,9 @@
         13,
         14,
         15,
+        16,
         17,
+        18,
         19,
         20,
         21,
@@ -2682,5 +2687,29 @@
     },
     "live-size.dollars": 5,
     "note": "fix384 Oct 28 2026 ~12:15 PM PT: copy back to undo"
+  },
+  "fix388Prev": {
+    "bookSkipHoursByAsset.btc.recon-dly": [
+      0,
+      1,
+      2,
+      3,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "note": "fix388 Oct 28 2026 12:30 PM PT: copy back to undo"
   }
 }

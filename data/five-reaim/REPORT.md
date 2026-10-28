@@ -1,19 +1,14 @@
 # 5m re-aim paper twin vs first-read-only
 
-Slots with reads: 772 · updated Oct 28 06:22 PM
+Slots with reads: 784 · updated Oct 28 07:22 PM
 
 | Lane | Trades | Wins | Win rate | P&L ($5) | Trades after a re-aim |
 |---|---|---|---|---|---|
-| re-aim | 68 | 42 | 62% | +80.75 | 11 |
-| first | 97 | 58 | 60% | +112.49 | 0 |
+| re-aim | 70 | 43 | 61% | +81.39 | 11 |
+| first | 100 | 59 | 59% | +108.13 | 0 |
 
 | Slot | Lane | Side | Ask | Left | Re-aims | Result | P&L |
 |---|---|---|---|---|---|---|---|
-| 10:30Z | re-aim | up | 0.55 | 180s | 0 | win | +4.09 |
-| 10:30Z | first | up | 0.55 | 180s | 0 | win | +4.09 |
-| 10:40Z | first | up | 0.59 | 180s | 0 | open | +0.00 |
-| 10:55Z | first | down | 0.53 | 180s | 0 | open | +0.00 |
-| 11:00Z | re-aim | down | 0.63 | 180s | 0 | win | +2.94 |
 | 11:00Z | first | down | 0.63 | 180s | 0 | win | +2.94 |
 | 11:10Z | re-aim | up | 0.33 | 180s | 0 | open | +0.00 |
 | 11:10Z | first | up | 0.33 | 180s | 0 | open | +0.00 |
@@ -49,3 +44,8 @@ Slots with reads: 772 · updated Oct 28 06:22 PM
 | 17:15Z | first | down | 0.4 | 180s | 0 | win | +7.50 |
 | 18:10Z | re-aim | up | 0.51 | 180s | 0 | open | +0.00 |
 | 18:10Z | first | up | 0.51 | 180s | 0 | open | +0.00 |
+| 18:50Z | re-aim | down | 0.67 | 180s | 0 | loss | -5.00 |
+| 18:50Z | first | down | 0.67 | 180s | 0 | loss | -5.00 |
+| 19:00Z | re-aim | up | 0.47 | 180s | 0 | win | +5.64 |
+| 19:00Z | first | up | 0.47 | 180s | 0 | win | +5.64 |
+| 19:15Z | first | down | 0.32 | 180s | 0 | loss | -5.00 |

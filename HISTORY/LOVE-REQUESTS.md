@@ -2,11 +2,43 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R074 - fix384 stays: $10 entry + $5 + $5 add-ons on main, rejection, copy, sovereign, pure no-pink (delayed twin + 5M unchanged). Lower entry / bigger add-ons ($2.50/$7/$5) only if she underperforms on the new schedule, on Love words.
+- when: 2026-10-28T19:20:27+00:00
+- Love: "oh i meant let’s keep the $10 / $5 / $5 for the moment bb , and we can adjust to the lower entry and double downed-add ons if she isn’t performing well on her new schedule"
+- books: recon-tog, recon-rej, recon-togp, recon-sov, recon-np
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 10}
+- proof: {"config": "data/live-switch.json", "key": "addOn.second.dollars", "equals": 5}
+- proof: {"config": "data/live-switch.json", "key": "bookDollars.recon-np", "equals": 10}
+
+## R075 - fix388: pure no-pink holds the Kalshi BTC seat every hour - the delayed twin sits out all BTC hours live on Kalshi (bookSkipHoursByAsset.btc.recon-dly = 0-23). Polymarket untouched (polyTwin reads the combined bookSkipHours).
+- when: 2026-10-28T19:20:27+00:00
+- Love: "and yes, pure no pink for btc always pls"
+- books: recon-np btc, recon-dly btc (Kalshi only)
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "bookSkipHoursByAsset.btc.recon-dly", "equals": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}
+
+## R072 - fix386: $2.50 entry, $7 first add-on, $5 second add-on for main, rejection, no-pink copy, sovereign twin, pure no-pink (Kalshi). Delayed twin + Poly 5M unchanged. Supersedes fix384 $10/$5/$5.
+- when: 2026-10-28T19:17:23+00:00
+- Love: "we will run it at this configuration for a bit, and adjust if we need to / i had that thought too / to double down on the add ons / and keep her initial entries small + card -> $2.50 / $7 / $5"
+- books: recon-tog, recon-rej, recon-togp, recon-sov, recon-np
+- status: RETIRED - Love: "oh i meant let’s keep the $10 / $5 / $5 for the moment bb , and we can adjust to the lower entry and double downed-add ons if she isn’t performing well on her new schedule"
+- proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 2.5}
+- proof: {"config": "data/live-switch.json", "key": "addOn.dollars", "equals": 7}
+- proof: {"config": "data/live-switch.json", "key": "addOn.second.dollars", "equals": 5}
+
+## R073 - fix387: pure no-pink (recon-np) also takes main reads worded Tap-reject at <session band / red or green zone / Bollinger>; her other rules unchanged. Her book only.
+- when: 2026-10-28T19:17:23+00:00
+- Love: "yesss pls let her take tap rejects on her own bb"
+- books: recon-np
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix387"}
+
 ## R071 - fix384: $10 entry, $5 first add-on, $5 second add-on for main, rejection, no-pink copy, sovereign twin and pure no-pink (Kalshi). Delayed twin ($2.50 + $5) and Poly 5M ($7.50, frozen) unchanged. Config: maxDollars 10, live-size dollars 10, liveBook.dollars 10, offHourMain.dollars 10, addOn.dollars 5, offHourMain.addOn.dollars 5, addOn.second.dollars 5 (+recon-np), bookDollars.recon-np 10. Code: engine second add-on no longer hard-excludes the pure no-pink (addOn.second.books decides).
 - when: 2026-10-28T18:57:48+00:00
 - Love: "yeah she’s no longer operating on an unsafe framework so i would be comfortable bringing her up to a steady baseline / let’s do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book pls bb"
 - books: recon-tog, recon-rej, recon-togp, recon-sov, recon-np
-- status: ACTIVE
+- status: RETIRED - Love: "we will run it at this configuration for a bit, and adjust if we need to / i had that thought too / to double down on the add ons / and keep her initial entries small + card -> $2.50 / $7 / $5"
 - proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 10}
 - proof: {"config": "data/live-switch.json", "key": "addOn.second.dollars", "equals": 5}
 - proof: {"config": "data/live-switch.json", "key": "bookDollars.recon-np", "equals": 10}
@@ -281,7 +313,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-28T01:02:21+00:00
 - Love: "just the delayed entry model pls $2, $5 addon same as the other :))"
 - books: d, e, l, a, y, e, d,  , t, w, i, n
-- status: ACTIVE
+- status: RETIRED - Love: "and yes, pure no pink for btc always pls (fix388: the pure no-pink holds BTC 6 PM too)"
 - proof: {"config": "data/live-switch.json", "key": "liveSkipExempt.btc", "has": "recon-dly"}
 - proof: {"config": "data/live-switch.json", "key": "bookSkipHoursByAsset.btc.recon-dly", "lacks": 18}
 

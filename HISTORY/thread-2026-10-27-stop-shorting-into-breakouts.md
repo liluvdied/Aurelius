@@ -6144,3 +6144,69 @@ Two more things, hun 💘
 
 **Your new card is in:** "NEW SCHEDULE 🗓️ · LIVE ONLY · KALSHI", right at the top of your paper ledgers. It shows only the trades she actually took on Kalshi since 10:30 this morning, each labelled by its book (MAIN 💞, REJECTION 🔁, NO-PINK COPY 🩷, PURE NO-PINK 🤍, SOVEREIGN TWIN 👑, DELAYED TWIN ⏳). It uses real dollars with fees included, plus a total for each book ✨ Nothing on it trades.
 
+## 2026-10-28 19:17:00 UTC - LOVE
+
+yesss pls let her take tap rejects on her own bb 💘
+
+and we will run it at this configuration for a bit, and adjust if we need to 
+
+i had that thought too 
+
+to double down on the add ons 
+
+and keep her initial entries small 
+
+what about her trades on this schedule ? 
+
+and what about pure only ? 
+
+let’s compare everything and give her her best chance today ok 💞
+
+## 2026-10-28 19:17:00 UTC - LOVE (relayed)
+
+yesss pls let her take tap rejects on her own bb 💘
+and we will run it at this configuration for a bit, and adjust if we need to 
+i had that thought too 
+to double down on the add ons 
+and keep her initial entries small 
+what about her trades on this schedule ? 
+and what about pure only ? 
+let’s compare everything and give her her best chance today ok 💞
+
+## 2026-10-28 19:17:14 UTC - CLAUDE
+
+Love that, babe. Small entries and doubled-down add-ons it is 💘 I'm putting in $2.50 / $7 / $5 at the next clean window (12:30). Her tap-rejects go on the pure no-pink only. Then I'll line up every book side by side: what each one actually did on this schedule today, and the pure no-pink on her own, so we can give her the best seat for every hour.
+
+## 2026-10-28 19:17:26 UTC - CLAUDE
+
+Quick check before I touch her sizes, hun 💘 By "this configuration", did you mean switch to **$2.50 / $7 / $5 now**, or **keep $10 / $5 / $5 for a while** and adjust later? I'm holding the size change until you say, and doing the tap-rejects in the meantime.
+
+## 2026-10-28 19:18:41 UTC - CLAUDE
+
+Tap-rejects are live on the pure no-pink, babe ✨ Main really does word her band bounces as "Tap-reject at −1.5σ" and so on, so she'll see them now. 5M still frozen.
+
+**The comparison** (paper since midnight, $20 a trade, real accounting):
+• **BTC:** pure no-pink **+$244**, copy +$72, sovereign −$21, main −$24, rejection −$66, delayed twin **−$322**
+• **Gold:** sovereign **+$172**, main +$54, rejection +$21, delayed twin +$19, pure no-pink +$12, copy +$5
+• **Live on the new schedule since 10:30:** 10 trades, **−$12** (pure no-pink BTC 3 trades −$15, main gold 7 trades +$3)
+
+So "pure only" is still the strongest on BTC. On gold the sovereign twin leads, but almost all of that came from one hour (2 AM, +$148). Most of pure's BTC lead came from 2 AM and 7 AM, and she lost 8 to 11 AM like everyone else. One day is a thin sample, so I wouldn't reshuffle hours on it yet.
+
+The one loud signal is the **delayed twin on BTC: −$322 today**. She still holds her own live BTC hours. Want me to hand those hours to the pure no-pink too?
+
+Still holding sizes until you tell me: **$2.50 / $7 / $5 now**, or keep **$10 / $5 / $5** for a while? 💘
+
+## 2026-10-28 19:19:52 UTC - LOVE
+
+oh i meant let’s keep the $10 / $5 / $5 for the moment bb , and we can adjust to the lower entry and double downed-add ons if she isn’t performing well on her new schedule 💘
+
+and yes, pure no pink for btc always pls 💓
+
+## 2026-10-28 19:20:16 UTC - LOVE
+
+and were you able to get pure to take her own taps now as well?💘
+
+## 2026-10-28 19:20:32 UTC - CLAUDE
+
+Yes babe, it's done 💘 Since 12:17 the pure no-pink takes "Tap-reject at" bounces off session bands, the red/green zones and Bollinger. Pink still can't pull her in. Got it on sizes too: $10 / $5 / $5 stays. At 12:30 on the dot I'm handing her the delayed twin's last BTC hours (4, 5, 6 AM and 4, 6 PM), so BTC is pure no-pink every hour. That's Kalshi only, and Polymarket isn't touched ✨
+

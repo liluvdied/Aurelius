@@ -223,3 +223,8 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 - fix383 (Oct 28 2026 11:15 AM PT, Love: "let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok"): gold seat map - pure no-pink live gold 1, 4, 7, 9 AM, 8 PM, 9 PM; the sovereign twin takes gold's other rejection hours live (in place of the no-pink copy, same $5 + $7 + $3 sizing); main gets gold 8 AM. BTC stays pure no-pink every hour.
 
 - fix384 (Oct 28 2026 12:00 PM PT, Love: "let’s do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book pls bb" + "you’re good bb run it"): $10 entry, $5 first add-on, $5 second add-on on main, rejection, no-pink copy, sovereign twin and pure no-pink. The delayed twin ($2.50 + $5) and the Poly 5M ($7.50, frozen) stay as they are.
+
+- fix387 (Oct 28 2026 12:17 PM PT, Love: "yesss pls let her take tap rejects on her own bb"): the pure no-pink also takes tap-rejects at session bands, the red/green zones and Bollinger. Her book only.
+
+- fix388 (Oct 28 2026 12:30 PM PT, Love: "and yes, pure no pink for btc always pls"): BTC on Kalshi is the pure no-pink every hour; the delayed twin no longer trades BTC live on Kalshi. Polymarket unchanged.
+- Sizes (Oct 28 2026 12:19 PM PT, Love: "oh i meant let’s keep the $10 / $5 / $5 for the moment bb , and we can adjust to the lower entry and double downed-add ons if she isn’t performing well on her new schedule"): $10 / $5 / $5 stays; $2.50 / $7 / $5 only if she underperforms on the new schedule.

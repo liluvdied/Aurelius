@@ -58432,3 +58432,11 @@
 {"at":"2026-10-28T19:00:28.181Z","lane":"brk15","asset":"gold","ticker":"KXGOLD15M-26OCT281515-15","side":"down","label":"Close below -1σ","into":23,"spot":4032.34,"tick":4032.337,"tickAgeMs":803,"push3s":-0.84}
 {"at":"2026-10-28T19:04:08.859Z","lane":"brk10","asset":"btc","ticker":"KXBTC15M-26OCT281515-15","side":"up","label":"Break above +1σ","into":247,"spot":81130.35,"tick":81130.35,"tickAgeMs":174,"push3s":29.82}
 {"at":"2026-10-28T19:04:08.867Z","lane":"brk15","asset":"btc","ticker":"KXBTC15M-26OCT281515-15","side":"up","label":"Break above +1σ","into":247,"spot":81130.35,"tick":81130.35,"tickAgeMs":182,"push3s":29.82}
+{"at":"2026-10-28T19:16:24.962Z","lane":"brk10","asset":"btc","ticker":"KXBTC15M-26OCT281530-30","side":"up","label":"Break above +1σ","into":84,"spot":81136.37,"tick":81136.37,"tickAgeMs":628,"push3s":22.14}
+{"at":"2026-10-28T19:16:24.967Z","lane":"brk15","asset":"btc","ticker":"KXBTC15M-26OCT281530-30","side":"up","label":"Break above +1σ","into":84,"spot":81136.37,"tick":81136.37,"tickAgeMs":633,"push3s":22.14}
+{"at":"2026-10-28T19:17:01.755Z","lane":"brk10","asset":"gold","ticker":"KXGOLD15M-26OCT281530-30","side":"down","label":"Break below session VWAP","into":121,"spot":4046.14,"tick":4046.137,"tickAgeMs":184,"push3s":-1.69}
+{"at":"2026-10-28T19:17:01.760Z","lane":"brk15","asset":"gold","ticker":"KXGOLD15M-26OCT281530-30","side":"down","label":"Break below session VWAP","into":121,"spot":4046.14,"tick":4046.137,"tickAgeMs":189,"push3s":-1.69}
+{"at":"2026-10-28T19:30:52.422Z","lane":"brk10","asset":"gold","ticker":"KXGOLD15M-26OCT281545-45","side":"up","label":"Break above +1σ","into":52,"spot":4055.61,"tick":4055.608,"tickAgeMs":447,"push3s":0.67}
+{"at":"2026-10-28T19:30:52.427Z","lane":"brk15","asset":"gold","ticker":"KXGOLD15M-26OCT281545-45","side":"up","label":"Break above +1σ","into":52,"spot":4055.61,"tick":4055.608,"tickAgeMs":452,"push3s":0.67}
+{"at":"2026-10-28T19:30:55.563Z","lane":"brk10","asset":"btc","ticker":"KXBTC15M-26OCT281545-45","side":"up","label":"Break above +1σ","into":54,"spot":81135.57,"tick":81135.57,"tickAgeMs":771,"push3s":9.35}
+{"at":"2026-10-28T19:30:55.568Z","lane":"brk15","asset":"btc","ticker":"KXBTC15M-26OCT281545-45","side":"up","label":"Break above +1σ","into":54,"spot":81135.57,"tick":81135.57,"tickAgeMs":776,"push3s":9.35}

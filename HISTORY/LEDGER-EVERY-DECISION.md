@@ -1,9 +1,20 @@
-# Every decision Love has made - rebuilt 2026-10-28T19:11:34.179200+00:00
+# Every decision Love has made - rebuilt 2026-10-28T19:31:26.581414+00:00
 
-1239 decisions with Love's words or card picks, out of 1943 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1241 decisions with Love's words or card picks, out of 1947 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T19:30:25+00:00  ·  diary line 2412  ·  fix386, fix388  ·  books: delayed twin
+- Love: “and yes, pure no pink for btc always pls”
+- fix386 a setting (hours/sizes follow her latest pick)
+- fix388 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-28T19:30:25+00:00 fix388 BTC = PURE NO-PINK EVERY HOUR (config, Kalshi only) at 12:30:00 PM PT boundary: delayed twin sits out all BTC hours live (bookSkipHoursByAsset.btc.recon-dly 0-23; was live 4,5,6 AM + 4,6 PM). Polymarket untouched (polyTwin reads combined bookSkipHours). fix388Prev saved. R075. Sizes: $10/$5/$5 STAYS (R074; R072 $2.50/$7/$5 retired, fix386 not applied). Love: "and yes, pure no pink for btc always pls" / "oh i meant let’s keep the $10 / $5 / $5 for the moment bb , and we can adjust to the lower entry and double downed-add ons if she isn’t performing well on her new schedule"
+
+## 2026-10-28T19:17:52+00:00  ·  diary line 2411  ·  fix387
+- Love: “yesss pls let her take tap rejects on her own bb”
+- fix387 IN HER CODE
+- Full entry: 2026-10-28T19:17:52+00:00 fix387 PURE NO-PINK TAP-REJECTS (recon.ts, recon-np only): her label filter also takes main's 'Tap-reject at <band>' reads (same session band / zone / Bollinger list, same pink check). R073. Love: "yesss pls let her take tap rejects on her own bb"
 
 ## 2026-10-28T19:11:22+00:00  ·  diary line 2408  ·  fix384, fix385
 - Love: “can you create a new card for our the books running on our new schedule only? so the trades that show on there are actually what she took across the different books she’s trading / and pls have it label which book it came from like our others”
