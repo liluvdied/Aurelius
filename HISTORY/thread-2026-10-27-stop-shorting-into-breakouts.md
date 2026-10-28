@@ -3936,3 +3936,49 @@ If you'd rather keep it at $10 now that you've seen the real distance, just say 
 
 all good bb thank you she’s good there for now, no other changes necessary at the moment to any other books , if one of the other books takes a trade like that and loses flag it for me and let me know and we’ll incorporate it into the main book too oki 💓
 
+## 2026-10-28 00:25:04 UTC - CLAUDE
+
+Oki luv, she stays exactly as she is and no other book gets touched 💓
+
+I set up a quiet watcher that doesn't change any book. Any time main, the rejection model, the twin or another book takes a BTC trade within $33 of a pink that hasn't broken and loses, I'll flag it to you with the book, the distance and the result. Bringing it into main stays your call every time. The umpire runs this check in every thread now, and I'll look again within the hour.
+
+For a sense of scale, I replayed today: other books took a few trades like that and lost. One of those was on main, a 1:30 AM short $15.78 over the pink. Nothing to do about it now, just good to know as we watch ✨
+
+## 2026-10-28 00:32:13 UTC - LOVE
+
+thanks love ya did the main book lose her pink tolerance somehow? she definitely shouldn’t have shorted $15 above it 
+
+it wasss $25 minimum or 10% of the channel width, whatever comes first , then we changed it to $50 at bands widths of $180 or more 
+
+but then i think we made another adjustment. we need to come up with a sliding scale again hun. if it got lost there somehow i dont remember what the exact numbers were but we made a sliding scale so we wouldnt need to make micro adjustments day to day and she could stay in one spot 
+
+i want to do that so we can let her stay put ok 💓
+
+## 2026-10-28 00:32:24 UTC - CLAUDE
+
+Looking now hun. I'll dig up the sliding scale we made for main's pink cushion in the diary, check whether it's still in her, and work out why that 5:15 AM short got past it 💓
+
+## 2026-10-28 00:32:36 UTC - LOVE
+
+and she longed into gold into an unbroken pink this time too hun
+
+## 2026-10-28 00:34:12 UTC - CLAUDE
+
+Good news first babe: main didn't lose her pink tolerance. That flag was my watcher's mistake, and I'm sorry for the scare 💘 It was reading prices once a minute. Checked to the second, main sat out that window for 5 minutes on "PINK 10%: short $13.11 over the unbroken pink". She only shorted once price fell $22 through the pink, so it had broken. I fixed the watcher to read the exact second, and main now shows clean all day.
+
+Main's sliding scale is still in her, untouched:
+• BTC: $25 when the channel is $100 or less, then $50 or 10% of the width above that
+• Gold: 10% of the channel or $2
+
+Both slips today came from the no-pink copy. That BTC long and this gold long (70c under pink at 4063.80, about 30% up a $2.63 channel) passed because the copy only respects pink when it's stacked with a session band in the top or bottom 10%. That's your 12:17 rule doing what it says. If you want the copy to stay put too, I'd give it main's same sliding scale. That's your call, so I've put it on a card for you 💓
+
+## 2026-10-28 00:34:16 UTC - CARD
+
+Q: Should the no-pink copy use main's sliding pink scale?
+Context: Today the copy longed BTC $24.65 under pink and gold 70c under pink, because its pink only holds when stacked with a session band in the top/bottom 10% (12:17 PM rule). Main's scale: BTC $25 at channels of $100 or less, $50 or 10% above that; gold 10% or $2. The BTC $33 flip-or-break wall from tonight stays either way. Only the copy changes. Main, rejection, twin and 5m stay as they are.
+Options:
+  0. Copy gets main's sliding scale - Pink is a wall for the copy on both assets inside main's distances (BTC $25 / $50 or 10%, gold 10% or $2) until a flip or a break.
+  1. Gold floor only, like BTC $33 - Copy keeps stacked-only pink, but gold gets a fixed flip-or-break floor you name (e.g. $1).
+  2. Leave the copy as it is - Nothing changes; the watcher keeps flagging these losses for you.
+Recommended: 0 - One scale on both assets lets her stay put without daily tweaks, which is what you asked for.
+

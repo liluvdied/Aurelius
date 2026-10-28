@@ -23,6 +23,14 @@ if fills:
             except Exception: continue
             if ts(r["at"]) >= t0: rows.append(r)
 times = [ts(r["at"]) for r in rows]
+wp = {}  # the tick the wire saw the moment it passed her order (band-log is once a minute - too coarse for a break)
+if fills:
+    with open(os.path.join(D, "wire-pass.jsonl")) as f:
+        for ln in f:
+            if '"btc"' not in ln: continue
+            try: r = json.loads(ln)
+            except Exception: continue
+            if ts(r["at"]) >= t0: wp.setdefault((r.get("ticker"), r.get("side")), []).append((ts(r["at"]), float(r["tick"])))
 fp = os.path.join(D, "pink-flags.jsonl")
 seen = set()
 if os.path.exists(fp):
@@ -31,9 +39,11 @@ if os.path.exists(fp):
         except Exception: pass
 new, watch = [], 0
 for k, v in fills:
-    t = ts(v.get("firstTryAt") or v["at"]); i = bisect.bisect_right(times, t) - 1
+    t = ts(v["at"]); i = bisect.bisect_right(times, t) - 1  # the fill moment, not her first try
     if i < 0: continue
-    r = rows[i]; tick = float(r["tick"]); pp = next((float(p) for n, p in r["L"] if n == "5m PP"), 0)
+    r = rows[i]; tick = float(r["tick"]); near_wp = [x for x in wp.get((v["ticker"], v.get("side")), []) if t - 5 <= x[0] <= t]
+    if near_wp: tick = near_wp[-1][1]
+    pp = next((float(p) for n, p in r["L"] if n == "5m PP"), 0)
     side = v.get("side"); d = (pp - tick) if side == "up" else (tick - pp)
     near = pp > 0 and ((side == "up" and pp > tick - BRK and pp - tick <= WALL) or (side == "down" and pp < tick + BRK and tick - pp <= WALL))
     if not near: continue
