@@ -174,3 +174,7 @@ Love: "also, she just shorted btc / its supposed to be the second band price tou
 ## fix357 — the 5M sits out her bleeding hours (Oct 27 6:53 PM PT, R042)
 Love: "could you look into the records for the 5M book on poly and see which hours she bleeds at? we can cut those" + card "Cut those hours instead" (keeps the $5 minimum).
 - Poly 5M off at 3, 4, 5 AM, 1 PM, 9 PM and 11 PM PT. Every other hour, $5, unchanged. Re-frozen.
+
+## fix358 — the 5M at $7.50 (Oct 27 6:55 PM PT, R043)
+Love: "let's cut those hours and raise her stake to $10 on the other hours hunni 💞 better math on that" + card "$7.50 now".
+- Poly 5M $7.50 in her kept hours. Poly cap lifts to that for 5m markets only; Kalshi $5 cap untouched. Revisit $10 with more data.

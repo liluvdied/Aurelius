@@ -4394,3 +4394,21 @@ The hours are cut, hun 💞 On the $10, I want to look out for you first. Your m
 
 A small correction to the card, luv: I re-added it exactly. The kept hours made about **+$170 over 109 trades**, not $161 over ~100. Not all of those were at $5, either, because some early ones were smaller stakes. Same picture, just precise 💞
 
+## 2026-10-28 01:55:16 UTC - LOVE
+
+Chose "$7.50 now" on the decision card asking "Raise the 5M to $10 now, or let the new hours prove out first?"
+
+## 2026-10-28 01:55:22 UTC - CLAUDE
+
+$7.50 it is, hun 💞 Setting the 5M to $7.50 in her kept hours and lifting the Polymarket cap for the 5M only. Kalshi stays exactly as it is. I'll show you the proof.
+
+## 2026-10-28 01:55:43 UTC - LOVE
+
+thank you luvvi 💞
+
+## 2026-10-28 01:56:02 UTC - CLAUDE
+
+Anytime luv 💞 It's in. The 5M now bets **$7.50** in her kept hours and sits out 3, 4, 5 AM, 1 PM, 9 PM and 11 PM. Only 5M orders can go above your $5 cap. Your live cap is still $5, and every Kalshi book is untouched.
+
+The freeze check flagged both changes the second they landed, and then I re-froze her on your card's words, so this is her new locked shape. The umpire says SAFE. In a couple of days I'll show you how the new hours and stake are doing, and then we can talk about $10 ✨
+

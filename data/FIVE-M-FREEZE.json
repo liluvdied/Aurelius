@@ -1,9 +1,9 @@
 {
  "fp": {
   "src/lib/desk/bandlock5m.ts": "b95f88628fc1fa4c",
-  "src/lib/desk/poly-live.server.ts": "ea8c4ab5ec538a06",
+  "src/lib/desk/poly-live.server.ts": "35b30f988a3a8703",
   "engine.ts polyTwin()": "1aac1856dfc93340",
-  "live-switch polyTwin": "45876679f7f00f0a",
+  "live-switch polyTwin": "16806c301c9822ab",
   "live-switch polyLive": "fcbcf165908dd18a",
   "live-switch polyHour": "4c1855d3f2cc23a8",
   "live-switch polyMirror": "41bcbfd745f6b648"
@@ -16,6 +16,10 @@
   {
    "at": "2026-10-28T01:53:46.962089Z",
    "words": "card \"Cut those hours instead\" (Oct 27 6:53 PM PT): 5M off 3, 4, 5 AM, 1 PM, 9 PM + 11 PM"
+  },
+  {
+   "at": "2026-10-28T01:55:43.415752Z",
+   "words": "card \"$7.50 now\" (Oct 27 6:55 PM PT): 5M $7.50 in kept hours, Poly cap for 5m only"
   }
  ]
 }

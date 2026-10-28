@@ -64,7 +64,10 @@ function guardPolyOrder(method: string, path: string, body: unknown): { body?: u
   // $3 Down ticket at 5c as if it were $57.
   const px = /SHORT/i.test(String(order.intent || "")) ? 1 - yesPx : yesPx;
   const qty = Number(order.quantity);
-  const cap = maxDollars();
+  // fix358 (Oct 27 2026 6:55 PM PT, Love: "raise her stake to $10 on the other hours" + card "$7.50 now"): a Polymarket 5M order (5m market slug) may go up to
+  // polyTwin.rej5m.dollars; every other order keeps the live cap (maxDollars). Kalshi never reads this.
+  let cap = maxDollars();
+  try { if (/-5m-/.test(String(order.marketSlug || ""))) { const r5c = Number(JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.polyTwin?.rej5m?.dollars); if (r5c > cap) cap = r5c; } } catch {}
   if (px > 0 && qty > 0 && qty * px > cap + 1e-6) {
     const fixed = Math.floor((cap / px) * 100) / 100;
     noteBlock({ venue: "polymarket", ticker: order.marketSlug, reason: `Size cut from $${(qty * px).toFixed(2)} to the $${cap} cap` });
