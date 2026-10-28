@@ -2,6 +2,20 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R080 - fix392: pure no-pink BTC PINK TO GREEN / PINK TO RED zoneGuard 0.5 (no short in bottom 50% green->pink, no long in top 50% pink->red); main + rejection stay 0.4
+- when: 2026-10-28T20:54:48+00:00
+- Love: "Love Oct 28 2026 1:53 PM PT: "and again hun she shorted btc closer to the green than the pink" + 1:54 PM PT card "Make BTC's no-short zone the bottom 50% from green to pink?" -> "Pure no-pink only, 50%""
+- books: p, u, r, e,  , n, o, -, p, i, n, k,  , o, n, l, y,  , (, r, e, c, o, n, -, n, p, ), ;,  , m, a, i, n, ,,  , r, e, j, e, c, t, i, o, n, ,,  , c, o, p, y, ,,  , s, o, v, ,,  , t, w, i, n, ,,  , 5, M,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix392"}
+
+## R079 - fix391: the pure no-pink own-eyes read (fix389/389b) never books a thirds read (Candle rising/falling, Launched from the top/bottom third) - band taps/rejections/failed breaks only
+- when: 2026-10-28T20:51:31+00:00
+- Love: "Love Oct 28 2026 1:42 PM PT card "Stop the pure no-pink from taking thirds reads?" -> "Yes, band reads only" + 1:49 PM PT: "yes but can you do replays on the new taps and see how she does in comparison bb?""
+- books: p, u, r, e,  , n, o, -, p, i, n, k,  , o, n, l, y,  , (, r, e, c, o, n, -, n, p,  , l, i, v, e,  , +,  , r, e, c, o, n, -, n, p, o,  , p, a, p, e, r, ), ;,  , m, a, i, n, ,,  , r, e, j, e, c, t, i, o, n, ,,  , c, o, p, y, ,,  , s, o, v, ,,  , t, w, i, n, ,,  , 5, M,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "!/third/i.test(lb9)"}
+
 ## R078 - fix390: pure no-pink (recon-np) meets MAIN walls at the door, the paper sweep and the wire (impossibleGeo flags as main: flipRule, noBBTarget, zoneGuard 0.4; no copy/np-only walls, npPink false) - main sliding pink scale, cushions, tolerances. Her calls stay pure no-pink.
 - when: 2026-10-28T20:11:26+00:00
 - Love: "no just make her have the same cushions and band tolerances and everything and she should be good hun + card Give the pure no-pink main's pink cushion on BTC? -> Main's sliding scale for her"

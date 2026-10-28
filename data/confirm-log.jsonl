@@ -65800,3 +65800,245 @@
 {"at":"2026-10-28T20:11:57.708Z","kind":"unconfirmed","feed":"van","line":"+1.5σ","dir":"down","px":81413.82,"ticker":"KXBTC15M-26OCT281615-15"}
 {"at":"2026-10-28T20:12:07.287Z","kind":"unconfirmed","feed":"van","line":"+1.5σ","dir":"up","px":81429.28,"ticker":"KXBTC15M-26OCT281615-15"}
 {"at":"2026-10-28T20:12:23.435Z","kind":"first","feed":"van","line":"+1.5σ","dir":"down","px":81414.47,"ticker":"KXBTC15M-26OCT281615-15","ask":0.974,"dna":null}
+{"at":"2026-10-28T20:12:47.002Z","kind":"confirmed","first":"van","then":"pep","line":"+1.5σ","dir":"down","secs":24,"px":81264.19,"ticker":"KXBTC15M-26OCT281615-15","ask":0.998,"dna":"DNA: in the 25% of the channel closest to the +1.5σ (81304.34), 6.56 of 104.70"}
+{"at":"2026-10-28T20:15:12.958Z","kind":"first","feed":"van","line":"+1σ","dir":"down","px":81265.17,"ticker":"KXBTC15M-26OCT281630-30","ask":0.57,"dna":null}
+{"at":"2026-10-28T20:15:36.395Z","kind":"first","feed":"van","line":"+1σ","dir":"up","px":81281.45,"ticker":"KXBTC15M-26OCT281630-30","ask":0.44,"dna":null}
+{"at":"2026-10-28T20:15:43.160Z","kind":"first","feed":"van","line":"+1σ","dir":"down","px":81255.97,"ticker":"KXBTC15M-26OCT281630-30","ask":0.59,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81174.82), 13.77 of 91.94"}
+{"at":"2026-10-28T20:16:11.790Z","kind":"first","feed":"van","line":"+1σ","dir":"up","px":81277.2,"ticker":"KXBTC15M-26OCT281630-30","ask":0.37,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81175.00), 3.69 of 17.79"}
+{"at":"2026-10-28T20:16:16.667Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"down","px":81265.17,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:16:31.302Z","kind":"first","feed":"van","line":"+1σ","dir":"down","px":81252.9,"ticker":"KXBTC15M-26OCT281630-30","ask":0.61,"dna":null}
+{"at":"2026-10-28T20:16:42.228Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"up","px":81281.45,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:16:58.205Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"down","px":81255.97,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:16:58.206Z","kind":"first","feed":"van","line":"+1σ","dir":"up","px":81273.13,"ticker":"KXBTC15M-26OCT281630-30","ask":0.39,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81175.17), 3.86 of 17.72"}
+{"at":"2026-10-28T20:17:14.327Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"up","px":81277.2,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:17:39.433Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"down","px":81252.9,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:17:39.434Z","kind":"first","feed":"van","line":"+1σ","dir":"down","px":81255.43,"ticker":"KXBTC15M-26OCT281630-30","ask":0.59,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81175.48), 21.16 of 90.08"}
+{"at":"2026-10-28T20:18:05.146Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"up","px":81273.13,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:18:30.962Z","kind":"confirmed","first":"van","then":"pep","line":"+1σ","dir":"down","secs":52,"px":81153.91,"ticker":"KXBTC15M-26OCT281630-30","ask":0.74,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81175.37), 4.57 of 89.08"}
+{"at":"2026-10-28T20:18:35.941Z","kind":"first","feed":"pep","line":"+1σ","dir":"up","px":81164.91,"ticker":"KXBTC15M-26OCT281630-30","ask":0.27,"dna":"DNA: in the 25% of the channel closest to the +1σ (81157.94), 6.39 of 95.15"}
+{"at":"2026-10-28T20:19:03.191Z","kind":"first","feed":"pep","line":"+1σ","dir":"down","px":81130.71,"ticker":"KXBTC15M-26OCT281630-30","ask":0.79,"dna":null}
+{"at":"2026-10-28T20:19:37.070Z","kind":"unconfirmed","feed":"pep","line":"+1σ","dir":"up","px":81164.91,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:19:56.847Z","kind":"first","feed":"pep","line":"+1σ","dir":"up","px":81185.98,"ticker":"KXBTC15M-26OCT281630-30","ask":0.2,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81174.05), 1.19 of 15.86"}
+{"at":"2026-10-28T20:20:05.700Z","kind":"unconfirmed","feed":"pep","line":"+1σ","dir":"down","px":81130.71,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:20:25.550Z","kind":"first","feed":"pep","line":"+1σ","dir":"down","px":81136.38,"ticker":"KXBTC15M-26OCT281630-30","ask":0.8,"dna":"DNA: in the 25% of the channel closest to the 5m lower (81137.39), 0.19 of 20.95"}
+{"at":"2026-10-28T20:20:57.448Z","kind":"unconfirmed","feed":"pep","line":"+1σ","dir":"up","px":81185.98,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:21:13.341Z","kind":"first","feed":"pep","line":"+1σ","dir":"up","px":81170.33,"ticker":"KXBTC15M-26OCT281630-30","ask":0.23,"dna":"DNA: in the 25% of the channel closest to the 5m lower (81134.58), 15.04 of 124.19"}
+{"at":"2026-10-28T20:21:26.458Z","kind":"unconfirmed","feed":"pep","line":"+1σ","dir":"down","px":81136.38,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:22:16.340Z","kind":"unconfirmed","feed":"pep","line":"+1σ","dir":"up","px":81170.33,"ticker":"KXBTC15M-26OCT281630-30"}
+{"at":"2026-10-28T20:48:29.165Z","kind":"first","feed":"pep","line":"+0.5σ","dir":"down","px":80981.87,"ticker":"KXBTC15M-26OCT281700-00","ask":0.59,"dna":"DNA: in the 25% of the channel closest to the +1σ (81158.97), 25.17 of 134.45"}
+{"at":"2026-10-28T20:48:29.166Z","kind":"first","feed":"pep","line":"+1σ","dir":"down","px":80981.87,"ticker":"KXBTC15M-26OCT281700-00","ask":0.59,"dna":"DNA: in the 25% of the channel closest to the +1σ (81158.97), 25.17 of 134.45"}
+{"at":"2026-10-28T20:48:29.166Z","kind":"confirmed","first":"pep","then":"van","line":"+0.5σ","dir":"down","secs":0,"px":81053.15,"ticker":"KXBTC15M-26OCT281700-00","ask":0.59,"dna":"DNA: in the 25% of the channel closest to the +1σ (81158.97), 25.17 of 134.45"}
+{"at":"2026-10-28T20:49:32.776Z","kind":"unconfirmed","feed":"pep","line":"+1σ","dir":"down","px":80981.87,"ticker":"KXBTC15M-26OCT281700-00"}
+{"at":"2026-10-28T20:50:53.791Z","kind":"first","feed":"pep","line":"+0.5σ","dir":"up","px":81022.88,"ticker":"KXBTC15M-26OCT281700-00","ask":0.41,"dna":"DNA: in the 25% of the channel closest to the +0.5σ (81013.99), 18.62 of 147.20"}
+{"at":"2026-10-28T20:51:55.965Z","kind":"unconfirmed","feed":"pep","line":"+0.5σ","dir":"up","px":81022.88,"ticker":"KXBTC15M-26OCT281700-00"}
+{"at":"2026-10-28T20:52:01.345Z","kind":"first","feed":"van","line":"+0.5σ","dir":"up","px":81126.55,"ticker":"KXBTC15M-26OCT281700-00","ask":0.7,"dna":null}
+{"at":"2026-10-28T20:53:02.696Z","kind":"unconfirmed","feed":"van","line":"+0.5σ","dir":"up","px":81126.55,"ticker":"KXBTC15M-26OCT281700-00"}
+{"at":"2026-10-28T20:56:41.433Z","kind":"first","feed":"pep","line":"+1σ","dir":"up","px":81181.28,"ticker":"KXBTC15M-26OCT281700-00","ask":0.989,"dna":"DNA: in the 25% of the channel closest to the +1σ (81161.84), 20.29 of 114.38"}
+{"at":"2026-10-28T20:57:42.843Z","kind":"unconfirmed","feed":"pep","line":"+1σ","dir":"up","px":81181.28,"ticker":"KXBTC15M-26OCT281700-00"}
+{"at":"2026-10-28T20:57:59.549Z","kind":"first","feed":"van","line":"+1σ","dir":"up","px":81276.31,"ticker":"KXBTC15M-26OCT281700-00","ask":0.999,"dna":"DNA: in the 25% of the channel closest to the 10m purple (81213.84), 2.27 of 16.87"}
+{"at":"2026-10-28T20:59:05.340Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"up","px":81276.31,"ticker":"KXBTC15M-26OCT281700-00"}
+{"at":"2026-10-28T21:01:05.214Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"up","px":81316,"ticker":"KXBTC15M-26OCT281715-15","ask":0.53,"dna":"DNA: in the 25% of the channel closest to the 10m purple (81215.13), 0.49 of 17.39"}
+{"at":"2026-10-28T21:01:15.992Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"down","px":81263.87,"ticker":"KXBTC15M-26OCT281715-15","ask":0.44,"dna":"DNA: in the 25% of the channel closest to the 10m purple (81215.13), 8.29 of 94.63"}
+{"at":"2026-10-28T21:02:09.365Z","kind":"unconfirmed","feed":"pep","line":"+1.5σ","dir":"up","px":81316,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:02:14.756Z","kind":"first","feed":"van","line":"-3σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15","ask":0.57,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.60), 3.82 of 81.86"}
+{"at":"2026-10-28T21:02:14.756Z","kind":"first","feed":"van","line":"-2.5σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15","ask":0.57,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.60), 3.82 of 81.86"}
+{"at":"2026-10-28T21:02:14.756Z","kind":"first","feed":"van","line":"-2σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15","ask":0.57,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.60), 3.82 of 81.86"}
+{"at":"2026-10-28T21:02:14.756Z","kind":"first","feed":"van","line":"-1.5σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15","ask":0.57,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.60), 3.82 of 81.86"}
+{"at":"2026-10-28T21:02:14.756Z","kind":"first","feed":"van","line":"-1σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15","ask":0.57,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.60), 3.82 of 81.86"}
+{"at":"2026-10-28T21:02:14.756Z","kind":"first","feed":"van","line":"-0.5σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15","ask":0.57,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.60), 3.82 of 81.86"}
+{"at":"2026-10-28T21:02:14.757Z","kind":"first","feed":"van","line":"VWAP","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15","ask":0.57,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.60), 3.82 of 81.86"}
+{"at":"2026-10-28T21:02:14.757Z","kind":"first","feed":"van","line":"+0.5σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15","ask":0.57,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.60), 3.82 of 81.86"}
+{"at":"2026-10-28T21:02:14.757Z","kind":"first","feed":"van","line":"+1σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15","ask":0.57,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.60), 3.82 of 81.86"}
+{"at":"2026-10-28T21:02:19.290Z","kind":"unconfirmed","feed":"pep","line":"+1.5σ","dir":"down","px":81263.87,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:02:34.927Z","kind":"first","feed":"van","line":"-3σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:34.939Z","kind":"first","feed":"van","line":"-2.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:34.958Z","kind":"first","feed":"van","line":"-2σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:34.977Z","kind":"first","feed":"van","line":"-1.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:34.996Z","kind":"first","feed":"van","line":"-1σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:35.015Z","kind":"first","feed":"van","line":"-0.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:35.034Z","kind":"first","feed":"van","line":"VWAP","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:35.053Z","kind":"first","feed":"van","line":"+0.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:35.077Z","kind":"first","feed":"van","line":"+1σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:35.096Z","kind":"first","feed":"van","line":"+1.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:35.115Z","kind":"first","feed":"van","line":"+2σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:35.134Z","kind":"first","feed":"van","line":"+2.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:35.153Z","kind":"first","feed":"van","line":"+3σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":null}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"-3σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"-2.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"-2σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"-1.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"-1σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"-0.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"VWAP","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"+0.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"+1σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"+1.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.936Z","kind":"first","feed":"van","line":"+2σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.937Z","kind":"first","feed":"van","line":"+2.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:02:39.937Z","kind":"first","feed":"van","line":"+3σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15","ask":0.58,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.70), 15.59 of 81.70"}
+{"at":"2026-10-28T21:03:22.499Z","kind":"unconfirmed","feed":"van","line":"-3σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:22.501Z","kind":"unconfirmed","feed":"van","line":"-2.5σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:22.501Z","kind":"unconfirmed","feed":"van","line":"-2σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:22.501Z","kind":"unconfirmed","feed":"van","line":"-1.5σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:22.501Z","kind":"unconfirmed","feed":"van","line":"-1σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:22.501Z","kind":"unconfirmed","feed":"van","line":"-0.5σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:22.501Z","kind":"unconfirmed","feed":"van","line":"VWAP","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:22.501Z","kind":"unconfirmed","feed":"van","line":"+0.5σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:22.501Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"down","px":81289.95,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"-3σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"-2.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"-2σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"-1.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"-1σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"-0.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"VWAP","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"+0.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"+1σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"+1.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.431Z","kind":"first","feed":"van","line":"+2σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.432Z","kind":"first","feed":"van","line":"+2.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:27.432Z","kind":"first","feed":"van","line":"+3σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15","ask":0.48,"dna":"DNA: in the 25% of the channel closest to the 15m purple (81219.53), 1.41 of 40.76"}
+{"at":"2026-10-28T21:03:40.344Z","kind":"unconfirmed","feed":"van","line":"-3σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"-2.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"-2σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"-1.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"-1σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"-0.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"VWAP","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"+0.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"+1.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"+2.5σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"+3σ","dir":"up","px":81305.86,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"-3σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"-2.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"-2σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.346Z","kind":"unconfirmed","feed":"van","line":"-1.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.347Z","kind":"unconfirmed","feed":"van","line":"-1σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.347Z","kind":"unconfirmed","feed":"van","line":"-0.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.347Z","kind":"unconfirmed","feed":"van","line":"VWAP","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.347Z","kind":"unconfirmed","feed":"van","line":"+0.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.347Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.347Z","kind":"unconfirmed","feed":"van","line":"+1.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.347Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.347Z","kind":"unconfirmed","feed":"van","line":"+2.5σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:03:40.347Z","kind":"unconfirmed","feed":"van","line":"+3σ","dir":"down","px":81287.09,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:26.218Z","kind":"confirmed","first":"van","then":"pep","line":"+1.5σ","dir":"up","secs":59,"px":81354.32,"ticker":"KXBTC15M-26OCT281715-15","ask":0.63,"dna":"DNA: in the 25% of the channel closest to the 10m upper (81301.24), 10.80 of 81.03"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"-3σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"-2.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"-2σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"-1.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"-1σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"-0.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"VWAP","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"+0.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"+2.5σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:04:32.471Z","kind":"unconfirmed","feed":"van","line":"+3σ","dir":"up","px":81321.55,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:05:42.125Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"down","px":81303.94,"ticker":"KXBTC15M-26OCT281715-15","ask":0.34,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:05:47.035Z","kind":"first","feed":"van","line":"+3σ","dir":"down","px":81362.33,"ticker":"KXBTC15M-26OCT281715-15","ask":0.34,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:05:53.312Z","kind":"first","feed":"van","line":"+2σ","dir":"down","px":81351.29,"ticker":"KXBTC15M-26OCT281715-15","ask":0.43,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:05:53.313Z","kind":"first","feed":"van","line":"+2.5σ","dir":"down","px":81351.29,"ticker":"KXBTC15M-26OCT281715-15","ask":0.43,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:05:58.332Z","kind":"confirmed","first":"pep","then":"van","line":"+1.5σ","dir":"down","secs":16,"px":81350.77,"ticker":"KXBTC15M-26OCT281715-15","ask":0.43,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:09.128Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"up","px":81350.24,"ticker":"KXBTC15M-26OCT281715-15","ask":0.63,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:09.129Z","kind":"confirmed","first":"pep","then":"van","line":"+1.5σ","dir":"up","secs":0,"px":81366.15,"ticker":"KXBTC15M-26OCT281715-15","ask":0.63,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:09.129Z","kind":"first","feed":"van","line":"+2σ","dir":"up","px":81366.15,"ticker":"KXBTC15M-26OCT281715-15","ask":0.63,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:09.129Z","kind":"first","feed":"van","line":"+2.5σ","dir":"up","px":81366.15,"ticker":"KXBTC15M-26OCT281715-15","ask":0.63,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:09.129Z","kind":"first","feed":"van","line":"+3σ","dir":"up","px":81366.15,"ticker":"KXBTC15M-26OCT281715-15","ask":0.63,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:15.491Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"down","px":81305.37,"ticker":"KXBTC15M-26OCT281715-15","ask":0.33,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:19.919Z","kind":"first","feed":"van","line":"+2.5σ","dir":"down","px":81356.12,"ticker":"KXBTC15M-26OCT281715-15","ask":0.33,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:19.919Z","kind":"first","feed":"van","line":"+3σ","dir":"down","px":81356.12,"ticker":"KXBTC15M-26OCT281715-15","ask":0.33,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:30.410Z","kind":"first","feed":"van","line":"-2.5σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15","ask":0.36,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:30.411Z","kind":"first","feed":"van","line":"-2σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15","ask":0.36,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:30.412Z","kind":"first","feed":"van","line":"-1.5σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15","ask":0.36,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:30.412Z","kind":"first","feed":"van","line":"-1σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15","ask":0.36,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:30.412Z","kind":"first","feed":"van","line":"-0.5σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15","ask":0.36,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:30.413Z","kind":"first","feed":"van","line":"VWAP","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15","ask":0.36,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:30.413Z","kind":"first","feed":"van","line":"+0.5σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15","ask":0.36,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:30.413Z","kind":"first","feed":"van","line":"+1σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15","ask":0.36,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:30.413Z","kind":"confirmed","first":"pep","then":"van","line":"+1.5σ","dir":"down","secs":15,"px":81343.5,"ticker":"KXBTC15M-26OCT281715-15","ask":0.36,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:30.413Z","kind":"first","feed":"van","line":"+2σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15","ask":0.36,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:40.819Z","kind":"first","feed":"van","line":"-3σ","dir":"down","px":81344.58,"ticker":"KXBTC15M-26OCT281715-15","ask":0.4,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:06:50.435Z","kind":"unconfirmed","feed":"van","line":"+3σ","dir":"down","px":81362.33,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:06:57.678Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"down","px":81351.29,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:06:57.678Z","kind":"unconfirmed","feed":"van","line":"+2.5σ","dir":"down","px":81351.29,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:11.579Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"up","px":81366.15,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:11.579Z","kind":"unconfirmed","feed":"van","line":"+2.5σ","dir":"up","px":81366.15,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:11.579Z","kind":"unconfirmed","feed":"van","line":"+3σ","dir":"up","px":81366.15,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:22.020Z","kind":"unconfirmed","feed":"van","line":"+2.5σ","dir":"down","px":81356.12,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:22.023Z","kind":"unconfirmed","feed":"van","line":"+3σ","dir":"down","px":81356.12,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:32.044Z","kind":"unconfirmed","feed":"van","line":"-2.5σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:32.045Z","kind":"unconfirmed","feed":"van","line":"-2σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:32.045Z","kind":"unconfirmed","feed":"van","line":"-1.5σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:32.045Z","kind":"unconfirmed","feed":"van","line":"-1σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:32.045Z","kind":"unconfirmed","feed":"van","line":"-0.5σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:32.045Z","kind":"unconfirmed","feed":"van","line":"VWAP","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:32.045Z","kind":"unconfirmed","feed":"van","line":"+0.5σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:32.045Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:32.045Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"down","px":81343.5,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:07:44.233Z","kind":"unconfirmed","feed":"van","line":"-3σ","dir":"down","px":81344.58,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:08:22.336Z","kind":"first","feed":"van","line":"-3σ","dir":"up","px":81297.96,"ticker":"KXBTC15M-26OCT281715-15","ask":0.43,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:08:38.365Z","kind":"first","feed":"van","line":"-2.5σ","dir":"up","px":81313.73,"ticker":"KXBTC15M-26OCT281715-15","ask":0.45,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:08:50.136Z","kind":"first","feed":"van","line":"-2.5σ","dir":"down","px":81301.04,"ticker":"KXBTC15M-26OCT281715-15","ask":0.49,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:09:22.481Z","kind":"unconfirmed","feed":"van","line":"-3σ","dir":"up","px":81297.96,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:09:42.841Z","kind":"unconfirmed","feed":"van","line":"-2.5σ","dir":"up","px":81313.73,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:09:52.466Z","kind":"unconfirmed","feed":"van","line":"-2.5σ","dir":"down","px":81301.04,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:11:30.743Z","kind":"first","feed":"van","line":"-2.5σ","dir":"up","px":81278.03,"ticker":"KXBTC15M-26OCT281715-15","ask":0.17,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:11:58.997Z","kind":"first","feed":"van","line":"-2σ","dir":"up","px":81289.94,"ticker":"KXBTC15M-26OCT281715-15","ask":0.21,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:12:20.286Z","kind":"first","feed":"van","line":"-1.5σ","dir":"up","px":81301.77,"ticker":"KXBTC15M-26OCT281715-15","ask":0.28,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:12:30.390Z","kind":"first","feed":"van","line":"-1σ","dir":"up","px":81342.45,"ticker":"KXBTC15M-26OCT281715-15","ask":0.28,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:12:30.390Z","kind":"first","feed":"van","line":"-0.5σ","dir":"up","px":81342.45,"ticker":"KXBTC15M-26OCT281715-15","ask":0.28,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:12:30.390Z","kind":"first","feed":"van","line":"VWAP","dir":"up","px":81342.45,"ticker":"KXBTC15M-26OCT281715-15","ask":0.28,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:12:36.471Z","kind":"unconfirmed","feed":"van","line":"-2.5σ","dir":"up","px":81278.03,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:12:46.635Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"up","px":81334.66,"ticker":"KXBTC15M-26OCT281715-15","ask":0.83,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:12:46.636Z","kind":"first","feed":"van","line":"+0.5σ","dir":"up","px":81352.24,"ticker":"KXBTC15M-26OCT281715-15","ask":0.83,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:12:53.417Z","kind":"first","feed":"van","line":"+1σ","dir":"up","px":81355.42,"ticker":"KXBTC15M-26OCT281715-15","ask":0.83,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:12:57.298Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"down","px":81303.24,"ticker":"KXBTC15M-26OCT281715-15","ask":0.18,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:02.102Z","kind":"unconfirmed","feed":"van","line":"-2σ","dir":"up","px":81289.94,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:13:02.105Z","kind":"confirmed","first":"pep","then":"van","line":"+1.5σ","dir":"up","secs":15,"px":81371.19,"ticker":"KXBTC15M-26OCT281715-15","ask":0.903,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:02.105Z","kind":"first","feed":"van","line":"+2σ","dir":"up","px":81371.19,"ticker":"KXBTC15M-26OCT281715-15","ask":0.903,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:07.799Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"up","px":81316.6,"ticker":"KXBTC15M-26OCT281715-15","ask":0.903,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:07.799Z","kind":"first","feed":"van","line":"+2.5σ","dir":"up","px":81377.52,"ticker":"KXBTC15M-26OCT281715-15","ask":0.903,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:18.419Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"down","px":81293.22,"ticker":"KXBTC15M-26OCT281715-15","ask":0.03,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:18.420Z","kind":"confirmed","first":"pep","then":"van","line":"+1.5σ","dir":"down","secs":21,"px":81351.89,"ticker":"KXBTC15M-26OCT281715-15","ask":0.03,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:18.420Z","kind":"first","feed":"van","line":"+2σ","dir":"down","px":81351.89,"ticker":"KXBTC15M-26OCT281715-15","ask":0.03,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:18.420Z","kind":"first","feed":"van","line":"+2.5σ","dir":"down","px":81351.89,"ticker":"KXBTC15M-26OCT281715-15","ask":0.03,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:23.481Z","kind":"unconfirmed","feed":"van","line":"-1.5σ","dir":"up","px":81301.77,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:13:23.482Z","kind":"first","feed":"van","line":"+0.5σ","dir":"down","px":81337.25,"ticker":"KXBTC15M-26OCT281715-15","ask":0.099,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:23.482Z","kind":"first","feed":"van","line":"+1σ","dir":"down","px":81337.25,"ticker":"KXBTC15M-26OCT281715-15","ask":0.099,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:34.079Z","kind":"unconfirmed","feed":"van","line":"-1σ","dir":"up","px":81342.45,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:13:34.079Z","kind":"unconfirmed","feed":"van","line":"-0.5σ","dir":"up","px":81342.45,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:13:34.079Z","kind":"unconfirmed","feed":"van","line":"VWAP","dir":"up","px":81342.45,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:13:49.613Z","kind":"unconfirmed","feed":"van","line":"+0.5σ","dir":"up","px":81352.24,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:13:49.614Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"up","px":81329.61,"ticker":"KXBTC15M-26OCT281715-15","ask":0.961,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:49.614Z","kind":"first","feed":"van","line":"+0.5σ","dir":"up","px":81370.99,"ticker":"KXBTC15M-26OCT281715-15","ask":0.961,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:49.614Z","kind":"first","feed":"van","line":"+1σ","dir":"up","px":81370.99,"ticker":"KXBTC15M-26OCT281715-15","ask":0.961,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:49.614Z","kind":"confirmed","first":"pep","then":"van","line":"+1.5σ","dir":"up","secs":42,"px":81370.99,"ticker":"KXBTC15M-26OCT281715-15","ask":0.961,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:49.614Z","kind":"first","feed":"van","line":"+2σ","dir":"up","px":81370.99,"ticker":"KXBTC15M-26OCT281715-15","ask":0.961,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:13:54.632Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"up","px":81355.42,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:00.084Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"down","px":81304.05,"ticker":"KXBTC15M-26OCT281715-15","ask":0.008,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:14:05.611Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"up","px":81371.19,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:10.859Z","kind":"unconfirmed","feed":"van","line":"+2.5σ","dir":"up","px":81377.52,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:21.340Z","kind":"unconfirmed","feed":"pep","line":"+1.5σ","dir":"down","px":81293.22,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:21.340Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"down","px":81351.89,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:21.340Z","kind":"unconfirmed","feed":"van","line":"+2.5σ","dir":"down","px":81351.89,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:21.340Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"up","px":81315.23,"ticker":"KXBTC15M-26OCT281715-15","ask":0.999,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:14:21.340Z","kind":"first","feed":"van","line":"+2σ","dir":"down","px":81358.56,"ticker":"KXBTC15M-26OCT281715-15","ask":0.002,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:14:26.379Z","kind":"unconfirmed","feed":"van","line":"+0.5σ","dir":"down","px":81337.25,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:26.379Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"down","px":81337.25,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:37.659Z","kind":"first","feed":"van","line":"+2σ","dir":"up","px":81371.53,"ticker":"KXBTC15M-26OCT281715-15","ask":1,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:14:53.091Z","kind":"unconfirmed","feed":"pep","line":"+1.5σ","dir":"up","px":81329.61,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:53.091Z","kind":"unconfirmed","feed":"van","line":"+0.5σ","dir":"up","px":81370.99,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:53.091Z","kind":"unconfirmed","feed":"van","line":"+1σ","dir":"up","px":81370.99,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:14:53.091Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"up","px":81370.99,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:15:03.036Z","kind":"unconfirmed","feed":"pep","line":"+1.5σ","dir":"down","px":81304.05,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:15:15.426Z","kind":"first","feed":"van","line":"+2σ","dir":"down","px":81356.89,"ticker":"KXBTC15M-26OCT281730-30","ask":0.58,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:15:21.284Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"down","px":81288.96,"ticker":"KXBTC15M-26OCT281730-30","ask":0.58,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:15:27.179Z","kind":"unconfirmed","feed":"pep","line":"+1.5σ","dir":"up","px":81315.23,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:15:27.180Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"down","px":81358.56,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:15:33.182Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"up","px":81315.55,"ticker":"KXBTC15M-26OCT281730-30","ask":0.45,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:15:38.272Z","kind":"unconfirmed","feed":"van","line":"+2σ","dir":"up","px":81371.53,"ticker":"KXBTC15M-26OCT281715-15"}
+{"at":"2026-10-28T21:15:48.421Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"down","px":81298.77,"ticker":"KXBTC15M-26OCT281730-30","ask":0.53,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}
+{"at":"2026-10-28T21:16:01.489Z","kind":"first","feed":"pep","line":"+1.5σ","dir":"up","px":81319.04,"ticker":"KXBTC15M-26OCT281730-30","ask":0.47,"dna":"DNA: her 5m/10m/15m nav lines are missing (feed gap)"}

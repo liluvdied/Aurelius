@@ -1,9 +1,36 @@
-# Every decision Love has made - rebuilt 2026-10-28T20:12:29.753501+00:00
+# Every decision Love has made - rebuilt 2026-10-28T21:15:22.062202+00:00
 
-1243 decisions with Love's words or card picks, out of 1955 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1247 decisions with Love's words or card picks, out of 1961 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T21:15:03Z  ·  diary line 2426  ·  fix392  ·  books: main, rejection
+- Love: “Pure no-pink only, 50%”
+- Love: “Yes, 50% for her anyway”
+- Love: “yes for pure bc she shouldn’t be shorting anywhere near green anyways”
+- Card pick: **Pure no-pink only, 50%**
+- fix392 IN HER CODE
+- Full entry: 2026-10-28T21:15:03Z fix392 PURE NO-PINK ONLY: bandlock impossibleGeo zoneGuard 0.5 for recon-np (door, sweep, wire; wire only when no recon-tog/recon-rej order); main + rejection 0.4. Love card "Pure no-pink only, 50%" (1:54 PM PT) + "Yes, 50% for her anyway" (1:57 PM PT) + "yes for pure bc she shouldn’t be shorting anywhere near green anyways" (1:58 PM PT). R080. Installed 21:15:00Z boundary.
+
+## 2026-10-28T21:15:02.669711+00:00  ·  diary line 2424  ·  fix392
+- Love: “Make BTC's no-short zone the bottom 50% from green to pink?”
+- Card pick: **Make BTC's no-short zone the bottom 50% from green to pink?**
+- fix392 IN HER CODE
+- Full entry: 2026-10-28T21:15:02.669711+00:00 THAW (fix392 PURE NO-PINK ONLY (recon-np): BTC PINK TO GREEN / PINK TO RED line 50% (main + rejection stay 40%). Love Oct 28 2026 1:54 PM PT card "Make BTC's no-short zone the bottom 50% from green to pink?" -> "Pure no-pink only, 50%"; 1:57 PM card after replay -> "Yes, 50% for her anyway"; 1:58 PM: "yes for pure bc she shouldn’t be shorting anywhere near green anyways")
+
+## 2026-10-28T21:00:05Z  ·  diary line 2423  ·  fix389, fix391
+- Love: “Stop the pure no-pink from taking thirds reads?”
+- Card pick: **Stop the pure no-pink from taking thirds reads?**
+- fix389 IN HER CODE
+- fix391 IN HER CODE
+- Full entry: 2026-10-28T21:00:05Z fix391 PURE NO-PINK ONLY: own-eyes block (recon.ts fix389) skips any label with "third" - band reads only. Love 1:42 PM PT card "Stop the pure no-pink from taking thirds reads?" -> "Yes, band reads only"; 1:49 PM PT "yes but can you do replays on the new taps and see how she does in comparison bb?". Installed 21:00:00Z boundary. R079. Trigger: 1:15 PM PT live BTC long "Candle rising from the bottom third" (-$20.85 + add-on). Main/rej/copy/sov/twin/5M untouched.
+
+## 2026-10-28T21:00:04.651986+00:00  ·  diary line 2421  ·  fix391
+- Love: “Stop the pure no-pink from taking thirds reads?”
+- Card pick: **Stop the pure no-pink from taking thirds reads?**
+- fix391 IN HER CODE
+- Full entry: 2026-10-28T21:00:04.651986+00:00 THAW (fix391 PURE NO-PINK ONLY (recon-np live + recon-npo paper): her own-eyes read never books a thirds read. Love Oct 28 2026 1:42 PM PT card "Stop the pure no-pink from taking thirds reads?" -> "Yes, band reads only" + 1:49 PM PT: "yes but can you do replays on the new taps and see how she does in comparison bb?")
 
 ## 2026-10-28T20:11:39+00:00  ·  diary line 2420  ·  fix363, fix367, fix368, fix390
 - Love: “no just make her have the same cushions and band tolerances and everything and she should be good hun”

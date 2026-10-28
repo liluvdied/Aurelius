@@ -13,16 +13,22 @@
   "secondsLeft": 877,
   "ask": 0.3,
   "multiple": 3.33,
-  "peakBid": 0.991,
-  "peakPct": 230,
+  "peakBid": 0.999,
+  "peakPct": 233,
   "exits": {
    "+50": 0.45,
    "+100": 0.6,
    "+200": 0.908,
    "+300": null
   },
-  "result": "open",
-  "profits": null
+  "result": "win",
+  "profits": {
+   "hold": 11.67,
+   "+50": 2.5,
+   "+100": 5,
+   "+200": 10.13,
+   "+300": 11.67
+  }
  },
  {
   "id": "KXGOLD15M-26OCT281615-15:down",
@@ -38,16 +44,22 @@
   "secondsLeft": 890,
   "ask": 0.31,
   "multiple": 3.23,
-  "peakBid": 0.988,
-  "peakPct": 219,
+  "peakBid": 0.999,
+  "peakPct": 222,
   "exits": {
    "+50": 0.5,
    "+100": 0.63,
    "+200": 0.937,
    "+300": null
   },
-  "result": "open",
-  "profits": null
+  "result": "win",
+  "profits": {
+   "hold": 11.13,
+   "+50": 3.06,
+   "+100": 5.16,
+   "+200": 10.11,
+   "+300": 11.13
+  }
  },
  {
   "id": "KXBTC15M-26OCT281600-00:down",

@@ -1,5 +1,16 @@
 [
   {
+    "id": "KXBTC15M-26OCT281630-30:down:Tap-reject at -0.5σ",
+    "at": "2026-10-28T20:21:20.968Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at −0.5σ",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281630-30",
+    "hits": 78,
+    "multiple": 1.28
+  },
+  {
     "id": "KXBTC15M-26OCT281445-45:down:Tap-reject at -0.5σ",
     "at": "2026-10-28T18:33:10.591Z",
     "asset": "btc",
@@ -2386,17 +2397,5 @@
     "hits": 74,
     "multiple": 1.96,
     "profit": 24
-  },
-  {
-    "id": "KXBTC15M-26OCT240945-45:down:Tap-reject at -0.5σ",
-    "at": "2026-10-24T13:30:09.376Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at −0.5σ",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT240945-45",
-    "hits": 74,
-    "multiple": 2,
-    "profit": 25
   }
 ]
