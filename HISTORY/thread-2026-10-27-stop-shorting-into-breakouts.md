@@ -4082,3 +4082,20 @@ Putting the 33% on the copy's gold channels under $10 now, main and the rejectio
 
 Done babe 💓 On any gold channel under $10, the copy now refuses longs in the top 33% and shorts in the bottom 33%. Today's 79% long would have been stopped. Main and the rejection model are untouched, and the umpire says SAFE ✨
 
+## 2026-10-28 00:53:29 UTC - LOVE
+
+thanks love 💞 i’ll watch the next ones and let you know if anything comes up. you got the pink barriers in? and fixed the incorrect candle flip logic? a candle underneath a band flipping would be a short. candle flipping above a band would be long
+
+## 2026-10-28 00:53:36 UTC - CLAUDE
+
+Yes hun, both are in and live on the copy, and the umpire says SAFE 💞
+
+**Pink barriers**
+• Gold: no long within 33c under an unbroken pink and no short within 33c over one, on channels under $10. Past that, she waits out main's 10% or $2 scale.
+• BTC: $33, then main's $25 / $50-or-10% scale.
+
+**Flip logic, fixed your way**
+A candle turning green under the pink no longer lets her long into it. Near a pink, a long only goes once price is above it, and a short only once it's below. Under the pink, the only flip is a short. I've written that into the rulebook in your words so nobody ever reads it as candle colour again.
+
+Thank you for watching her with me, luv. Tell me anything you see ✨
+
