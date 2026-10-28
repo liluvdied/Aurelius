@@ -70,3 +70,99 @@ Options:
   2. Wait for the reel first - Nothing goes on the desk until the reel strategy is tested too.
 Recommended: 0 - They're paper only and read-only, so a week of real data costs nothing and tells us which hours each one owns.
 
+## 2026-10-28 07:18:11 UTC - LOVE
+
+Chose "Yes, all of them on paper" on the decision card asking "Start these as paper books on the desk this week?"
+
+## 2026-10-28 07:18:31 UTC - LOVE
+
+thankkk you luvvi💞 getting you the transcript for that video now 💘💘
+
+## 2026-10-28 07:18:49 UTC - LOVE
+
+EMA 9 + VWAP Trading Strategy — Reel Transcript
+
+Speaker 1 (00:00–00:43)
+
+“$84,000 yesterday using one strategy on [the] three-minute timeframe. Stick around for [the] next 60 seconds, and [I’m] gonna show you that strategy.
+
+You’re gonna add two indicators. First indicator is the VWAP. Second indicator, the EMA 9.
+
+Our entry: we’re entering right before or when the EMA 9 and the VWAP cross.
+
+Our stop loss: if a candle closes through the EMA 9 after the cross, or negative 25% to negative 30% stop loss.
+
+Right here, you can see that the VWAP and EMA 9 are about to cross to the upside. Buy calls, and you see the thing fucking runs.
+
+This [is where we] have our exit. As you can see, VWAP, EMA 9 about to cross to the upside.
+
+At this point, you have been well over 100%, and you can be risk-free [on] this trade.”
+
+Speaker 2 — RoboQuant (00:43–01:20)
+
+“[I] automated this strategy on RoboQuant, and just absolutely crazy how this performs.
+
+This [is] one of the [best?] strategies I ever tested, and trust me, I have [captions unclear] automated hundreds of influencer strategies.
+
+This is number one. This is a four-year backtest.
+
+And what’s crazier is that this strategy has a 79.9% probability of passing a firm challenge.
+
+Anyways, if you want to have [access] to this strategy here with code completely free, RoboQuant.
+
+You can find it on RoboQuant in the templates. It’s this one here.
+
+You can see we have tons and tons of strategies here, fully automated. You can [try] all of them.
+
+Peace out.”
+
+⸻
+
+Additional information visible in the Reel
+
+Strategy specifications
+
+* Chart timeframe: 3 minutes.
+* Indicators: VWAP and 9-period EMA.
+* Entry: Just before or when VWAP and EMA 9 cross.
+* Bullish example: Buy calls on an upward crossover.
+* Stop loss: A candle closing through EMA 9 after the crossover, or a 25–30% loss.
+* Exit: A subsequent VWAP/EMA crossover is discussed, but the exact mechanical exit rule is ambiguous.
+
+RoboQuant backtest displayed
+
+Strategy name: Daily Anchored VWAP Signal Strategy
+
+Metric&#x9;Displayed result
+Net return&#x9;+381.87%
+Net profit&#x9;+$95,467.63
+Total trades&#x9;396
+Win rate&#x9;56.6%
+Profit factor&#x9;1.92
+Maximum drawdown&#x9;24.2%
+Sharpe ratio&#x9;1.66
+Simulated prop-firm challenge pass probability&#x9;79.9%
+Historical challenge pass rate&#x9;78.3%
+
+The first speaker also displays a one-day P&amp;L screenshot of +$84,937.62.
+
+Important distinction: These are the creators’ displayed claims and simulation results, not independently verified trading results. The video does not establish that RoboQuant’s backtest implements every entry and exit rule described by the first speaker.
+
+## 2026-10-28 07:18:59 UTC - CLAUDE
+
+Got it, babe 💘 I'm backtesting the EMA 9 + VWAP cross now, on 5m candles (no 3m data here) and 1m where we have it. Then I'll connect to the desk and set up all the paper books 🫯
+
+## 2026-10-28 07:19:17 UTC - LOVE
+
+thanks bb 💞 no need for the stop loss on this one either
+
+## 2026-10-28 07:24:01 UTC - CLAUDE
+
+Thank you for the transcript, babe 💘 and no stop it is. I tested it on 5m, 15m and 1h candles, with two different VWAP day starts, through every window. **The reel has no edge on our markets.** It wins 44 to 56% depending on settings, and the same rule flips from winning to losing just by moving when the VWAP day starts. That's what luck looks like.
+
+Here's the deeper why, hun, and it connects your 8/33 too 🌌 Their 56.6% pays because a winning option runs 100%+ while the losers get cut at -25%. A Kalshi window pays the same whether price runs $1 or $100 past the line, so that run never gets paid. Your crosses are real on the chart. These markets just don't reward the distance ✨
+
+**Gold Snapback** is still the star. I'm putting all of them on paper now, the reel included so you get a real week of it. It's one read-only script that writes only to data/lab/ and touches no book. I've started a session on your Mac to log the request, save her first, install it every 15 minutes and run the umpire to SAFE. I'll tell you when it's in 🫯
+
+Report updated: [STRATEGY-LAB-REPORT.md](/mnt/project-files/aurelius/lab/STRATEGY-LAB-REPORT.md)
+
