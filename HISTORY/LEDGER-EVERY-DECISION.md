@@ -1,9 +1,23 @@
-# Every decision Love has made - rebuilt 2026-10-28T07:50:00.372148+00:00
+# Every decision Love has made - rebuilt 2026-10-28T08:07:23.332756+00:00
 
-1230 decisions with Love's words or card picks, out of 1916 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1233 decisions with Love's words or card picks, out of 1921 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T08:07:11Z  ·  diary line 2386  ·  fix219, fix379
+- Love: “How much room should BTC longs need under an unbroken session band?”
+- Love: “yes pls 💘 all of them for sure”
+- Card pick: **How much room should BTC longs need under an unbroken session band?**
+- fix219 IN HER CODE
+- fix379 IN HER CODE
+- Full entry: 2026-10-28T08:07:11Z fix379 (Oct 28 1:06 AM PT, Love card "How much room should BTC longs need under an unbroken session band?" -> "Top/bottom 33% instead of 20%" + "yes pls 💘 all of them for sure"): BTC THE IMPOSSIBILITY 33% on main/rej/copy for channels <= $500 (overrides fix219 20%). Cause: 1:01 AM copy long 81008.24 at 77% of 80925->81033. Golden configFiles hash for live-switch refreshed: Love's in-app schedule pill 1:01 AM set 1 AM -> rejection model (both assets).
+
+## 2026-10-28T08:01:03.738Z  ·  diary line 2383
+- Full entry: 2026-10-28T08:01:03.738Z HOURS (Love, in-app schedule pill): 1 AM PT -> REJECTION model (GOLD only)
+
+## 2026-10-28T08:01:02.810Z  ·  diary line 2382
+- Full entry: 2026-10-28T08:01:02.810Z HOURS (Love, in-app schedule pill): 1 AM PT -> REJECTION model (BTC only)
 
 ## 2026-10-28T07:49:48Z  ·  diary line 2381  ·  fix377, fix378
 - Love: “we will make sure she doesn't long in the red zone or short in the green zone pls, and keep the $1.50 tolerance from it in place too / yesss pls hunni / just gold bb”

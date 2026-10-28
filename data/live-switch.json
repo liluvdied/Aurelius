@@ -999,6 +999,7 @@
       23
     ],
     "recon-tog": [
+      1,
       2,
       4,
       6,
@@ -1011,6 +1012,7 @@
     ],
     "recon-dly": [
       0,
+      1,
       2,
       3,
       7,
@@ -1553,6 +1555,7 @@
     "note": "Oct 23 ~1:20 PM PT, Love: off hours (bookSkipHours recon-tog) the main book trades Kalshi at $2 + one $3 add-on at 2.8x+ (next band touch, or a flip near a band); the delayed twin trades Polymarket only (polyTwin), off Kalshi (fix142) | fix201 Oct 25 ~4:36 AM PT, Love: 'lets put the rejection model on at $5 and a $5 add on hun' - $5 + $5 add-on",
     "rejHours": [
       0,
+      1,
       2,
       3,
       4,
@@ -1568,6 +1571,7 @@
     "rejHoursByAsset": {
       "gold": [
         0,
+        1,
         2,
         3,
         4,
@@ -1584,6 +1588,7 @@
       ],
       "btc": [
         0,
+        1,
         2,
         3,
         4,
@@ -1611,6 +1616,7 @@
   "bookSkipHoursByAsset": {
     "btc": {
       "recon-tog": [
+        1,
         2,
         4,
         6,
@@ -1625,6 +1631,7 @@
       ],
       "recon-dly": [
         0,
+        1,
         2,
         3,
         7,
@@ -1646,6 +1653,7 @@
     },
     "gold": {
       "recon-tog": [
+        1,
         2,
         4,
         6,
@@ -1659,6 +1667,7 @@
       ],
       "recon-dly": [
         0,
+        1,
         2,
         3,
         7,

@@ -1,14 +1,15 @@
 {
- "at": "2026-10-28T07:50:34.535Z",
- "markets": 0,
+ "at": "2026-10-28T08:01:50.606Z",
+ "markets": 914,
  "perSeries": {
-  "KXBTCD": 0,
-  "KXETHD": 0,
-  "KXSOLD": 0,
-  "KXXRPD": 0,
-  "KXDOGED": 0
+  "KXBTCD": 188,
+  "KXETHD": 300,
+  "KXSOLD": 300,
+  "KXXRPD": 75,
+  "KXDOGED": 51
  },
  "lastErr": "KXSOLD-26OCT2804: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXSOLD-26OCT2804&limit=10",
- "close": null,
- "lanes": {}
+ "close": "2026-10-28T09:00:00.000Z",
+ "lanes": {},
+ "minsLeft": 58.2
 }

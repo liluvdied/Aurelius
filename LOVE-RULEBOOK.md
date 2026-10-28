@@ -211,3 +211,5 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 - fix377 (Oct 28 12:33 AM PT, Love: "yes pls bb 💘 (to: bring back just the inside-the-zone part - no long inside the red, no short inside the green - for main, the rejection model and the copy)"): gold main/rej/copy - no long inside the red zone, no short inside the green zone.
 
 - fix378 (Oct 28 2026 12:49 AM PT, Love: "we will make sure she doesn't long in the red zone or short in the green zone pls, and keep the $1.50 tolerance from it in place too / yesss pls hunni / just gold bb"): gold only, main + rejection + no-pink copy - no long within $1.50 under the red zone, no short within $1.50 over the green. BTC no zone wall ("no btc wall").
+
+- fix379 (Oct 28 2026 1:06 AM PT, card "Top/bottom 33% instead of 20%" + Love: "yes pls all of them for sure"): BTC, main + rejection + no-pink copy - no long in the top 33%, no short in the bottom 33% of a channel up to $500 wide (over $500 stays 20%).

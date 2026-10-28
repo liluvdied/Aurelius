@@ -82945,5 +82945,47 @@
    "Clean: right side of the band, nothing in front, won at the bell.",
    "The rejection shadow agreed (long off -1σ)."
   ]
+ },
+ "KXBTC15M-26OCT280400-00": {
+  "ticker": "KXBTC15M-26OCT280400-00",
+  "at": "2026-10-28T08:00:17.817Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "unknown",
+  "multiple": 6.67,
+  "profit": -11.85,
+  "result": "loss",
+  "entry": null,
+  "peakPct": 6.7,
+  "maxPct": 566.7,
+  "takeProfitPct": 425,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "No entry snapshot for this one (it filled before the snapshot logger, or through another path)."
+  ]
+ },
+ "KXGOLD15M-26OCT280400-00": {
+  "ticker": "KXGOLD15M-26OCT280400-00",
+  "at": "2026-10-28T08:00:38.935Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "unknown",
+  "multiple": 3.23,
+  "profit": 10.02,
+  "result": "win",
+  "entry": null,
+  "peakPct": 132.3,
+  "maxPct": 222.6,
+  "takeProfitPct": 167,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, won at the bell.",
+   "No entry snapshot for this one (it filled before the snapshot logger, or through another path).",
+   "The rejection shadow went the other way (short off -0.5σ)."
+  ]
  }
 }

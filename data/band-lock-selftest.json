@@ -1,7 +1,7 @@
 {
- "at": "2026-10-28T07:49:36.461Z",
+ "at": "2026-10-28T07:59:37.207Z",
  "scenarios": 2000,
- "calls": 1784,
+ "calls": 1775,
  "intoUnbrokenBand": 0,
  "ok": true,
  "zoneGate": "into-vs-away v2 (12 cases), gold only; BTC walls = session + pink; 1.28x road; break-in-charge this candle $25, no tap exception (6 cases); break depth $8 btc / $1 gold (4 cases); broken wall until a close back (5m pivots / 1m session), only in front of the break (7 cases); no band between price and the target (7 cases); target = Kalshi strike + live Vantage-INDEX gap + $30 (3 cases); at the session band within $8 btc / $1 gold = wait (7 cases); session band ahead of the pink closer than behind = wait (4 cases); no trade against a pink/session-band rejection this candle (8 cases); a pink break needs $6 btc / $0.75 gold (6 cases); red/green zone rule on BTC too + red/green rejections (3 cases); carry-over session bands to 50% sigma + never blind (4 cases); 25% rule replaces closest band, room only on the 15%/30% twins (6 cases); a big fast candle is a push (off with the zones); session-ahead wait retired; closest band back; rejection holds until price returns (3 cases); red/green zones back on, off only for the session-only book; no rejection hold on the session-only book; no $6 pink wait on BTC; add-on = $3 tap rejection",

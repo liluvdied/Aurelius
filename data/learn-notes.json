@@ -1,5 +1,29 @@
 [
   {
+    "key": "close|held-KXGOLD15M-26OCT280400-00",
+    "at": "2026-10-28T08:00:38.935Z",
+    "kind": "closed",
+    "text": "Gold long Live hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
+    "key": "close|mvrt7i9a-ksxr34",
+    "at": "2026-10-28T08:00:20.958Z",
+    "kind": "closed",
+    "text": "Gold short Tap-reject at -0.5σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
+    "key": "close|held-KXBTC15M-26OCT280400-00",
+    "at": "2026-10-28T08:00:17.817Z",
+    "kind": "closed",
+    "text": "Bitcoin short Live lost. This hour has been the violent one. Size is already $10 after midnight. Same entry. Not applied."
+  },
+  {
+    "key": "close|mvrtl4xo-ifyc83",
+    "at": "2026-10-28T07:57:37.109Z",
+    "kind": "closed",
+    "text": "Silver long Tap-reject at +0.5σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
     "key": "close|held-KXGOLD15M-26OCT280345-45",
     "at": "2026-10-28T07:45:39.039Z",
     "kind": "closed",
@@ -454,29 +478,5 @@
     "at": "2026-10-28T04:30:20.738Z",
     "kind": "closed",
     "text": "Bitcoin long Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
-  },
-  {
-    "key": "close|mvrlqctb-tchfjn",
-    "at": "2026-10-28T04:30:00.655Z",
-    "kind": "closed",
-    "text": "Bitcoin long Tap-reject at +0.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
-  },
-  {
-    "key": "close|mvrlz2lh-ojkc0t",
-    "at": "2026-10-28T04:29:30.894Z",
-    "kind": "closed",
-    "text": "Gold short Tap-reject at -1.5σ hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "close|mvrm294s-4ty0k8",
-    "at": "2026-10-28T04:28:06.681Z",
-    "kind": "closed",
-    "text": "Silver short Tap-reject at −1σ hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "close|held-KXBTC15M-26OCT280015-15",
-    "at": "2026-10-28T04:15:26.855Z",
-    "kind": "closed",
-    "text": "Bitcoin short Live hit. Nothing to change. Same entry next time. Not applied."
   }
 ]
