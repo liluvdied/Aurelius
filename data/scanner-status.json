@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T02:46:31.131Z",
+ "at": "2026-10-28T03:10:29.905Z",
  "scanned": 102,
  "picked": [
   "KXTEMPDCH",
@@ -9,18 +9,18 @@
   "KXTEMPLAXHS",
   "KXTEMPCHIHS",
   "KXTEMP",
-  "KXLOWTMIA",
-  "KXLOWAUS",
-  "KXHIGHMIA",
-  "KXHIGHTOKC",
-  "KXHIGHCHI",
-  "KXLOWMIA",
-  "KXLOWTBOS",
-  "KXLOWTNYC",
   "KXLOWNYC",
   "KXLOWTKSAN",
   "KXHIGHTHOU",
-  "KXLOWTDC"
+  "KXLOWTDC",
+  "KXLOWTOKC",
+  "KXLOWNY",
+  "KXHIGHTMIN",
+  "KXHIGHTLV",
+  "KXHIGHTSEA",
+  "KXHIGHTKSAN",
+  "KXHIGHOU",
+  "KXHIGHTATL"
  ],
  "stations": {
   "KXTEMPLAXHS": "KLAX",
@@ -72,31 +72,29 @@
  "rules": {},
  "flags": [],
  "errors": [
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPMON&status=open&li",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPNYCHS&status=settl",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTHOU&status=open&l",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTDC&status=open&lim"
+  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTSEA&status=open&l",
+  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTKSAN&status=open&"
  ],
  "cats": {
-  "Entertainment": 2595,
-  "Sports": 4062,
-  "Elections": 2333,
-  "Mentions": 464,
-  "Politics": 2287,
-  "Economics": 864,
-  "Crypto": 278,
-  "World": 137,
-  "Social": 48,
   "Financials": 1078,
-  "Transportation": 34,
-  "Science and Technology": 388,
+  "Sports": 4068,
+  "Politics": 2287,
+  "Entertainment": 2595,
   "Climate and Weather": 458,
-  "Exotics": 14,
-  "Health": 94,
+  "Elections": 2333,
+  "Crypto": 278,
   "Companies": 192,
   "Commodities": 102,
+  "Economics": 864,
+  "Social": 48,
+  "Mentions": 464,
+  "Science and Technology": 388,
+  "World": 137,
+  "Transportation": 34,
+  "Exotics": 14,
+  "Health": 94,
   "Culture": 2,
-  "Business": 1,
-  "Education": 1
+  "Education": 1,
+  "Business": 1
  }
 }

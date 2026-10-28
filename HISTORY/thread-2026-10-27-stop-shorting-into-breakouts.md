@@ -4623,3 +4623,35 @@ BTC 8 AM and 11 PM, and gold 4 AM and 11 PM, also lost, but they're already off.
 
 The strongest case is **BTC 12 AM, BTC 1 AM and gold 3 AM**: they lose clearly and more lately. The rest are small enough to be noise. One caveat: sizes changed during these days, so the dollar amounts are bigger earlier on. Want me to cut those three, all seven, or leave her as is? The twin keeps its own hours either way.
 
+## 2026-10-28 03:06:56 UTC - LOVE
+
+yes, i want to start another no-pink twin that completely disregards pink trades entirely 
+
+only trades band taps and rejections , sessions red green and bollingers 
+
+in this case she would have waited for it to reject the blue band and long 
+
+that’s why her trades and main are lining up with each other now
+
+## 2026-10-28 03:07:11 UTC - CLAUDE
+
+Love it hun 💞 I'll build her as a new book that only trades real taps and rejections of the session bands, red/green zones and Bollingers, and never pink. She starts on paper, same as we did with the delayed copy, and goes live only when you say. I'll show you what she's built from before anything is in.
+
+## 2026-10-28 03:07:57 UTC - LOVE
+
+thanks love 💘💘
+
+isn’t that what the og rejection model was doing that was outperforming main 3:1?
+
+## 2026-10-28 03:09:22 UTC - CLAUDE
+
+Close, hun, but not quite 💓 The OG rejection model only took rejections, never breaks. That's the part that made her strong. But she did take **pink** rejections too, and she still does today (7 of her last 41 calls were pink).
+
+The funny part is that at 3:14 AM today you described the no-pink copy as almost exactly this: session band rejections, red/green zones and Bollingers, sitting out pink. Over time she drifted. She takes main's calls minus anything *labelled* pink, so she also takes breaks, nav closes and thirds, and a stale band label after a pink tap slips through, like tonight's.
+
+So the new one is basically your OG rejection model with pink taken out completely. She's in now as **paper** ("recon-np"), and she skips any call where the pink sits between price and the band she's calling off. Main, the copy, rejection, the twin and the 5M didn't move. The umpire says SAFE. I'll check that her first paper calls are booking properly ✨
+
+## 2026-10-28 03:10:40 UTC - CLAUDE
+
+She's alive hun 🎯 Her very first paper call at 8:10 PM was **"Rejected up off fresh VWAP" – long on BTC**. That's exactly the blue band rejection long you said she'd wait for ✨
+

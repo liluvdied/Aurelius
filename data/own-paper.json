@@ -1,14 +1,39 @@
 [
   {
+    "id": "KXGOLD15M-26OCT272315-15:up:Tap-reject at -1.5σ:own",
+    "at": "2026-10-28T03:00:16.267Z",
+    "asset": "gold",
+    "side": "up",
+    "pattern": "Tap-reject at -1.5σ",
+    "result": "open",
+    "ticker": "KXGOLD15M-26OCT272315-15",
+    "hits": 0,
+    "multiple": 1.89
+  },
+  {
+    "id": "KXBTC15M-26OCT272315-15:down:Open +0.5σ:own",
+    "at": "2026-10-28T03:00:06.998Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Open +0.5σ",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT272315-15",
+    "hits": 0,
+    "multiple": 1.49,
+    "live": "missed"
+  },
+  {
     "id": "KXGOLD15M-26OCT272300-00:up:Tap-reject at -1.5σ:own",
     "at": "2026-10-28T02:45:13.788Z",
     "asset": "gold",
     "side": "up",
     "pattern": "Tap-reject at −1.5σ",
-    "result": "open",
+    "result": "no",
     "ticker": "KXGOLD15M-26OCT272300-00",
     "hits": 0,
-    "multiple": 2.33
+    "multiple": 2.33,
+    "profit": -25,
+    "live": "missed"
   },
   {
     "id": "KXBTC15M-26OCT272300-00:up:Open +0.5σ:own",
@@ -16,10 +41,12 @@
     "asset": "btc",
     "side": "up",
     "pattern": "Open +0.5σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXBTC15M-26OCT272300-00",
     "hits": 0,
-    "multiple": 1.67
+    "multiple": 1.67,
+    "profit": 16.75,
+    "live": "missed"
   },
   {
     "id": "KXGOLD15M-26OCT272245-45:up:Tap-reject at -2σ:own",
@@ -2567,32 +2594,6 @@
     "hits": 0,
     "multiple": 1.56,
     "profit": 14,
-    "live": "missed"
-  },
-  {
-    "id": "KXSILVER15M-26OCT270200-00:up:Tap-reject at -2σ:own",
-    "at": "2026-10-27T05:45:48.879Z",
-    "asset": "silver",
-    "side": "up",
-    "pattern": "Tap-reject at −2σ",
-    "result": "yes",
-    "ticker": "KXSILVER15M-26OCT270200-00",
-    "hits": 0,
-    "multiple": 1.89,
-    "profit": 22.25,
-    "live": "missed"
-  },
-  {
-    "id": "KXBTC15M-26OCT270200-00:up:Open -0.5σ:own",
-    "at": "2026-10-27T05:45:21.209Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Open -0.5σ",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT270200-00",
-    "hits": 0,
-    "multiple": 1.52,
-    "profit": 13,
     "live": "missed"
   }
 ]

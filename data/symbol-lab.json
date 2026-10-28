@@ -1,11 +1,81 @@
 [
   {
+    "id": "KXBTC15M-26OCT272315-15:up:Close above +0.5σ",
+    "at": "2026-10-28T03:06:45.110Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Close above +0.5σ",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT272315-15",
+    "hits": 6,
+    "multiple": 2.56,
+    "spotAt": 80835.3,
+    "vwap": 80777.28842768315,
+    "stdev": 110.47905058136597,
+    "vwap5": 80858.77792502436,
+    "stdev5": 49.566758285027056,
+    "target": 80858.58
+  },
+  {
+    "id": "KXBTC15M-26OCT272315-15:up:Tap-reject at +0.5σ",
+    "at": "2026-10-28T03:06:45.110Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at +0.5σ",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT272315-15",
+    "hits": 4,
+    "multiple": 2.56,
+    "spotAt": 80835.3,
+    "vwap": 80777.28842768315,
+    "stdev": 110.47905058136597,
+    "vwap5": 80858.77792502436,
+    "stdev5": 49.566758285027056,
+    "target": 80858.58
+  },
+  {
+    "id": "KXBTC15M-26OCT272315-15:up:Open +0.5σ",
+    "at": "2026-10-28T03:06:45.110Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Open +0.5σ",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT272315-15",
+    "hits": 4,
+    "multiple": 2.56,
+    "spotAt": 80835.3,
+    "vwap": 80777.28842768315,
+    "stdev": 110.47905058136597,
+    "vwap5": 80858.77792502436,
+    "stdev5": 49.566758285027056,
+    "target": 80858.58
+  },
+  {
+    "id": "KXGOLD15M-26OCT272300-00:down:Open -1σ",
+    "at": "2026-10-28T02:48:50.109Z",
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Open -1σ",
+    "result": "yes",
+    "ticker": "KXGOLD15M-26OCT272300-00",
+    "hits": 8,
+    "multiple": 2.13,
+    "spotAt": 4049.008,
+    "vwap": 4057.211970207639,
+    "stdev": 6.813054784799252,
+    "vwap5": 4056.0265990149505,
+    "stdev5": 7.0152809519881885,
+    "target": 4048.81,
+    "profit": 28.25,
+    "scored": true
+  },
+  {
     "id": "KXBTC15M-26OCT272300-00:up:Close above +0.5σ",
     "at": "2026-10-28T02:45:38.202Z",
     "asset": "btc",
     "side": "up",
     "pattern": "Close above +0.5σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXBTC15M-26OCT272300-00",
     "hits": 6,
     "multiple": 1.69,
@@ -14,7 +84,9 @@
     "stdev": 112.39593164231745,
     "vwap5": 80848.43148019901,
     "stdev5": 53.22238184465408,
-    "target": 80845.56
+    "target": 80845.56,
+    "profit": 17.25,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT272300-00:up:Tap-reject at +0.5σ",
@@ -22,7 +94,7 @@
     "asset": "btc",
     "side": "up",
     "pattern": "Tap-reject at +0.5σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXBTC15M-26OCT272300-00",
     "hits": 4,
     "multiple": 1.69,
@@ -31,7 +103,9 @@
     "stdev": 112.39593164231745,
     "vwap5": 80848.43148019901,
     "stdev5": 53.22238184465408,
-    "target": 80845.56
+    "target": 80845.56,
+    "profit": 17.25,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT272300-00:up:Open +0.5σ",
@@ -39,7 +113,7 @@
     "asset": "btc",
     "side": "up",
     "pattern": "Open +0.5σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXBTC15M-26OCT272300-00",
     "hits": 4,
     "multiple": 1.69,
@@ -48,7 +122,9 @@
     "stdev": 112.39593164231745,
     "vwap5": 80848.43148019901,
     "stdev5": 53.22238184465408,
-    "target": 80845.56
+    "target": 80845.56,
+    "profit": 17.25,
+    "scored": true
   },
   {
     "id": "KXGOLD15M-26OCT272245-45:up:Tap-reject at -1.5σ",
@@ -66,7 +142,8 @@
     "vwap5": 4057.0544007883937,
     "stdev5": 6.745416024594572,
     "target": 4045.41,
-    "profit": 6.25
+    "profit": 6.25,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT272245-45:up:Close above +0.5σ",
@@ -84,7 +161,8 @@
     "vwap5": 80846.58463849316,
     "stdev5": 55.39543960266124,
     "target": 80839.61,
-    "profit": -25
+    "profit": -25,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT272245-45:up:Tap-reject at +0.5σ",
@@ -102,7 +180,8 @@
     "vwap5": 80846.58463849316,
     "stdev5": 55.39543960266124,
     "target": 80839.61,
-    "profit": -25
+    "profit": -25,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT272245-45:up:Open +0.5σ",
@@ -120,7 +199,8 @@
     "vwap5": 80846.58463849316,
     "stdev5": 55.39543960266124,
     "target": 80839.61,
-    "profit": -25
+    "profit": -25,
+    "scored": true
   },
   {
     "id": "KXGOLD15M-26OCT272230-30:down:Tap-reject at -2σ",
@@ -138,7 +218,8 @@
     "vwap5": 4057.9993096130065,
     "stdev5": 6.0417471910029175,
     "target": 4046.48,
-    "profit": 20.5
+    "profit": 20.5,
+    "scored": true
   },
   {
     "id": "KXGOLD15M-26OCT272215-15:down:Tap-reject at -2σ",
@@ -156,7 +237,8 @@
     "vwap5": 4059.006375409978,
     "stdev5": 5.175654992264262,
     "target": 4048.61,
-    "profit": 18
+    "profit": 18,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT272215-15:up:Tap-reject at +0.5σ",
@@ -174,7 +256,8 @@
     "vwap5": 80715.1133157521,
     "stdev5": 105.67376108367776,
     "target": 80836.09,
-    "profit": 28.25
+    "profit": 28.25,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT272215-15:up:Close above +0.5σ",
@@ -192,7 +275,8 @@
     "vwap5": 80715.1133157521,
     "stdev5": 105.67376108367776,
     "target": 80836.09,
-    "profit": 28.25
+    "profit": 28.25,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT272215-15:up:Open +0.5σ",
@@ -210,7 +294,8 @@
     "vwap5": 80715.1133157521,
     "stdev5": 105.67376108367776,
     "target": 80836.09,
-    "profit": 28.25
+    "profit": 28.25,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT272200-00:down:Tap-reject at +1.5σ",
@@ -9405,82 +9490,6 @@
     "vwap5": 80180.40336553835,
     "stdev5": 97.7451996745306,
     "target": 80182.12,
-    "profit": -25,
-    "scored": true
-  },
-  {
-    "id": "KXBTC15M-26OCT250600-00:down:Close below -1.5σ",
-    "at": "2026-10-25T09:48:14.953Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Close below -1.5σ",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT250600-00",
-    "hits": 3,
-    "multiple": 3.85,
-    "spotAt": 80223.02,
-    "vwap": 80568.93509769367,
-    "stdev": 216.87136618063352,
-    "vwap5": 80180.40336553835,
-    "stdev5": 97.7451996745306,
-    "target": 80182.12,
-    "profit": -25,
-    "scored": true
-  },
-  {
-    "id": "KXBTC15M-26OCT250545-45:down:Tap-reject at -2σ",
-    "at": "2026-10-25T09:37:26.960Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at −2σ",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT250545-45",
-    "hits": 2,
-    "multiple": 4,
-    "spotAt": 80142.22,
-    "vwap": 80575.89425736252,
-    "stdev": 211.8178782348624,
-    "vwap5": 80205.43582419782,
-    "stdev5": 116.75021708763485,
-    "target": 80101.13,
-    "profit": -25,
-    "scored": true
-  },
-  {
-    "id": "KXBTC15M-26OCT250515-15:up:Tap-reject at -1.5σ",
-    "at": "2026-10-25T09:05:38.680Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at -1.5σ",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT250515-15",
-    "hits": 15,
-    "multiple": 1.47,
-    "spotAt": 80333.22,
-    "vwap": 80600.36669805771,
-    "stdev": 188.34946988416803,
-    "vwap5": 80367.13163747924,
-    "stdev5": 69.04451924122218,
-    "target": 80301.52,
-    "profit": -25,
-    "scored": true
-  },
-  {
-    "id": "KXBTC15M-26OCT250500-00:up:Tap-reject at -1.5σ",
-    "at": "2026-10-25T08:50:52.287Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at −1.5σ",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT250500-00",
-    "hits": 15,
-    "multiple": 4,
-    "spotAt": 80346.54,
-    "vwap": 80607.7584257209,
-    "stdev": 184.78334933965832,
-    "vwap5": 80432.68797922392,
-    "stdev5": 88.08644303127681,
-    "target": 80387.63,
     "profit": -25,
     "scored": true
   }

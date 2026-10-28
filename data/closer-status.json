@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T02:46:28.579Z",
+ "at": "2026-10-28T03:10:34.925Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -12,8 +12,8 @@
    "matched": 1
   },
   "NBA": {
-   "live": 1,
-   "late": 1,
+   "live": 0,
+   "late": 0,
    "matched": 0
   },
   "WNBA": {
@@ -28,7 +28,7 @@
   },
   "NHL": {
    "live": 4,
-   "late": 1,
+   "late": 0,
    "matched": 0
   },
   "MLB": {
@@ -40,56 +40,26 @@
  "watching": [
   {
    "league": "NCAAF",
-   "game": "Sam Houston 3 @ Missouri St 17",
+   "game": "Sam Houston 3 @ Missouri St 24",
    "period": 4,
-   "clock": "14:52",
+   "clock": "3:44",
    "fav": "Missouri St",
-   "wp": 0.96,
-   "ask": 0.96,
+   "wp": 1,
+   "ask": 1,
    "ticker": "KXNCAAFGAME-26OCT27SHSUMOSU-MOSU",
    "matched": true
   },
   {
-   "league": "NBA",
-   "game": "Pistons 95 @ Knicks 109",
-   "period": 4,
-   "clock": "1:43",
-   "fav": null,
-   "wp": null,
-   "ask": null,
-   "ticker": null,
-   "matched": false
-  },
-  {
-   "league": "NHL",
-   "game": "Islanders 3 @ Predators 3",
-   "period": 5,
-   "clock": "0:00",
-   "fav": null,
-   "wp": null,
-   "ask": null,
-   "ticker": null,
-   "matched": false
-  },
-  {
    "league": "MLB",
    "game": "Brewers 2 @ Rays 2",
-   "period": 8,
+   "period": 10,
    "clock": "0:00",
    "fav": "Brewers",
-   "wp": 0.51,
+   "wp": 0.53,
    "ask": 0.54,
    "ticker": "KXMLBGAME-26OCT272000MILTB-MIL",
    "matched": true
   }
  ],
- "errors": [
-  "longshot NBA: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNBAG",
-  "KXNBAGAME: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNBAG",
-  "longshot NHL: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNHLG",
-  "KXNHLGAME: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNHLG",
-  "longshot NHL: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNHLG",
-  "longshot NHL: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNHLG",
-  "longshot NHL: Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXNHLG"
- ]
+ "errors": []
 }

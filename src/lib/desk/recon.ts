@@ -42,7 +42,7 @@ const REACH_PCT = 0.2; // BTC $50 (Love picked "Reach $50 on BTC", Oct 21 ~9:05 
 type Bar = { t: number; o: number; h: number; l: number; c: number };
 type Piv = { pp: number; r1: number; s1: number; r2: number; s2: number; a: number };
 type Line = { name: string; price: number; unit: number; center?: boolean };
-export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-dly", "recon-rejx", "recon-togr", "recon-rej5", "recon-togp", "recon-dlyk"] as const; /* fix354 (Oct 27 2026 6:20 PM PT, Love: "yes let's ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly"): the delayed no-pink copy, PAPER only (never in liveBook, never read by Polymarket) */ /* fix281 recon-togp */ /* fix261 recon-rej5 */ /* fix250 recon-togr */ /* fix171 recon-rejx */ // + MOST SUCCESSFUL 70%+ (Oct 19 ~9:02 PM PT, Love) + REJECTIONS ONLY twin (Oct 20 ~7:39 AM PT, Love)
+export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-dly", "recon-rejx", "recon-togr", "recon-rej5", "recon-togp", "recon-dlyk", "recon-np"] as const; /* fix361 (Love Oct 27 2026 8:06 PM PT: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long"): recon-np = the PURE no-pink twin, PAPER only (never in liveBook, never read by Polymarket) */ /* fix354 (Oct 27 2026 6:20 PM PT, Love: "yes let's ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly"): the delayed no-pink copy, PAPER only (never in liveBook, never read by Polymarket) */ /* fix281 recon-togp */ /* fix261 recon-rej5 */ /* fix250 recon-togr */ /* fix171 recon-rejx */ // + MOST SUCCESSFUL 70%+ (Oct 19 ~9:02 PM PT, Love) + REJECTIONS ONLY twin (Oct 20 ~7:39 AM PT, Love)
 export const RECON = new Set<string>(RECON_LANES);
 const DLY_AS_COPY = false; /* fix353 PAUSED (Love 6:11 PM PT: "wait no no no no no no do not change the 5M on polymarket in any way nooo"): the twin is exactly as before everywhere */ // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): the DELAYED twin is the no-pink copy with a delayed entry
 
@@ -558,6 +558,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // reading (near-band reach, Bollinger + green/red zone rejection bands, the candle in her third, the fake-out turn) is kept here for the REJECTION model below.
   let rejCandleNow: { side: "up" | "down"; label: string } | null = null; // fix260
   let tpStack = false; // fix283
+  let npPink = 0, npL: { name: string; price: number }[] = []; // fix361: the pure no-pink twin reads the pink and her lines
   let tgPF: { side: "up" | "down"; label: string } | null = null, tgFO = false; // fix326
   let rejLB: Line[] | null = null, rejReach = 0, rejL: Line[] | null = null, rejCandle: { side: "up" | "down"; label: string } | null = null, rejFO: { side: "up" | "down"; label: string } | null = null;
   try {
@@ -573,6 +574,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     // other 80% of the channel ... and skip the pinks anywhere else outside of the channel"): the no-pink copy only. The pink counts as stacked when it sits inside
     // her session channel (the session bands around price) within 20% of its width from the bottom or top band.
     try { const ppS = Number(p?.pp) || 0, wS = sUp - sDn; tpStack = Number.isFinite(wS) && wS > 0 && ppS > sDn && ppS < sUp && (ppS - sDn <= 0.2 * wS || sUp - ppS <= 0.2 * wS); } catch { tpStack = false; }
+    try { npPink = Number(p?.pp) || 0; npL = L.map((l: any) => ({ name: String(l.name), price: Number(l.price) })); } catch {} // fix361
     // BOLLINGER REJECTIONS FOR THE MAIN BOOK (Oct 21 ~11:27 PM PT, Love: "just have her short the rejection of the bollinger bands like we talked about" - and
     // 11:07 PM "or at the rejection of the bollinger band like we talked about if it is in her clear zone and fits all her other rules"): her 5m Bollinger upper and
     // lower join TOGETHER's lines (both assets, her tap: BTC $10 / gold $0.30) as rejection-only bands. Not in her thirds; every wall still judges the call.
@@ -641,6 +643,15 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // booked for recon-dly only once the window is 30 seconds old; the copy's walls judge her at the door and the wire (bandlock fix353).
   try { const srcD: any = firstT;
     if (srcD && (srcD.side === "up" || srcD.side === "down") && 900 - left >= 30 /* fix354: books the PAPER lane recon-dlyk; recon-dly is untouched */ && (!/5m PP|pink/i.test(String(srcD.label)) || tpStack) && book("recon-dlyk", { side: srcD.side, label: String(srcD.label), copy353: true } as any, lookP && !lookT ? lookP.ask : undefined)) changed = true; } catch {}
+  // THE PURE NO-PINK TWIN (fix361, Love Oct 27 2026 8:06 PM PT: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long"): PAPER lane recon-np. She takes main's read this tick (firstT) only when it is a tap or rejection of a session band
+  // (VWAP / sigmas), the red or green zone or a Bollinger - never a pink, pivot, nav, thirds or break call - and never when the pink sits between price and the band she
+  // is calling off (then price already went through the pink and the move is a pink trade: she waits for the next band, e.g. the blue band rejection). A zone she
+  // cannot place needs the pink at least $33 (BTC) / $1 (gold) away. The no-pink copy's walls judge her at the door and the wire (bandlock fix361). Same book() rules.
+  try { const srcN: any = firstT, lbN = String(srcN?.label || "");
+    const okN = !!srcN && (srcN.side === "up" || srcN.side === "down") && /^(Rejected (up|down) off|Failed break (above|below)) /i.test(lbN) && /σ|VWAP|Bollinger|red zone|green zone/i.test(lbN) && !/5m PP|pink|PP|R1|R2|S1|S2|nav|purple|third/i.test(lbN);
+    if (okN) { const bandN = npL.filter((l) => l.price > 0 && lbN.includes(l.name)).sort((x, y) => y.name.length - x.name.length)[0]; const pp = npPink;
+      let pinkN = false; if (pp > 0) { if (bandN) pinkN = srcN.side === "down" ? pp > spot && pp < bandN.price : pp < spot && pp > bandN.price; else pinkN = Math.abs(spot - pp) < (id === "gold" ? 1 : 33); }
+      if (!pinkN && book("recon-np", { side: srcN.side, label: lbN } as any, lookP && !lookT ? lookP.ask : undefined)) changed = true; } } catch {}
   // 6) DELAYED (Oct 20 ~9:38 PM PT, Love: "a delayed entry model to trade at $1 - same frame, same everything, just waits out the initial move, and enters on the
   // other side of the window than she would have been in had she got in initially when the opportunity presents itself ... her trades go in profit and reverse,
   // so we implement the delayed entry model to be on the other side of it - the right side of it"): TOGETHER's first call in the window is the initial move; this
