@@ -166,3 +166,7 @@ Love: "thanks hun yes let’s ensure polymarkets live orders stay the same byte 
 ## fix355 — the twin waits 30 s on Kalshi (Oct 27 6:31 PM PT, R040)
 Love: "hey hun , she just entered into the window in the first 30 seconds on btc again , can you make sure she gets the 30 seconds on the delayed entry model?"
 - Delayed twin: no live Kalshi order in the first 30 seconds of any window. Paper and Polymarket unchanged.
+
+## fix356 — the twin trades the SECOND band touch on Kalshi (Oct 27 6:47 PM PT, R041)
+Love: "also, she just shorted btc / its supposed to be the second band price touches after the initial move still hun , not just 30 seconds / so if price is falling from the band it came from at the beginning of the window, she waits until it comes into contact with the second band / can you configure it that way pls? the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes 💞"
+- Kalshi twin: no live order until price touches the second band after the initial move; she takes that touch's side only. Re-aimed calls before it never go live. Paper + Polymarket unchanged.

@@ -753,6 +753,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
           // fix307 (Love ~1:26-1:33 AM PT: "she just shorts or longs at a band when she interacts with one" / "she came up to a band and rejected off of it .... this is
           // the whole point of her"): she trades what the band shows - came up to it from below = short, came down to it from above = long - not always main's other side.
           const side: "up" | "down" = z.hit!.from > 0 ? "up" : "down";
+          if (ln) { const T2 = ((globalThis as any).__twinTouch2 ||= {}); if (!T2[m.ticker]) T2[m.ticker] = { side, band: ln.name, at: Date.now() }; } // fix356 (Oct 27 2026 6:47 PM PT, Love: "its supposed to be the second band price touches after the initial move still hun , not just 30 seconds ... the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes"): marks the second-band touch for the Kalshi door only (paper rows unchanged)
           if (ln && !dlyHold && book("recon-dly", { side, label: `Touch of ${ln.name} - the next band after the initial move` })) { changed = true; ((globalThis as any).__twinTouchBand ||= {})[m.ticker] = ln.name; /* fix309: her entry band, so her add-on waits for the next one */ }
         }
       }

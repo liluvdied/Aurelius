@@ -4919,6 +4919,7 @@ async function copyLiveBook(assets, lane = "") {
     // THE TWIN'S 30 SECONDS ON KALSHI (fix355, Oct 27 2026 6:31 PM PT, Love: "she just entered into the window in the first 30 seconds on btc again , can you make sure she gets the 30 seconds on the delayed entry model?"):
     // no live Kalshi order for the DELAYED twin before the window is 30 s old - her call waits (no record written) and is tried again after, meeting every wall then. Paper rows and Polymarket unchanged.
     if (String(row.book) === "recon-dly" && Date.now() % 900000 < 30000 && done[row.id]?.status !== "partial") continue;
+    if (String(row.book) === "recon-dly" && done[row.id]?.status !== "partial") { const t2 = (globalThis as any).__twinTouch2?.[String(row.ticker)]; if (!t2 || t2.side !== row.side) continue; } // fix356 (Oct 27 2026 6:47 PM PT, Love: "its supposed to be the second band price touches after the initial move still hun , not just 30 seconds ... the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes"): the twin goes live on Kalshi only at the second band touched after the initial move, on that touch's side; her call waits until then
     // LIVE SIT-OUT HOURS (Love, Oct 8 ~12:45 AM PT: "yess let's pause her on gold for those hours for sure"). Gold's 6 PM PT
     // hour (the session open, bands bunched) lost on paper (-$5,092, 41%) and live (31% of 13). live-switch
     // "liveSkipHours": { gold: [18] } (Pacific hours). Live copies only; paper keeps booking so we keep measuring.
