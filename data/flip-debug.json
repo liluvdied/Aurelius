@@ -1,5 +1,18 @@
 [
  {
+  "at": "2026-10-28T19:02:08.933Z",
+  "fa": "btc",
+  "src": "paper-247",
+  "row": "mvshe55r-ebxqko:paper-247",
+  "side": "up",
+  "spot": 80983.63,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $116.83, ADX 45)",
+   "zone": 116.83205436845046
+  }
+ },
+ {
   "at": "2026-10-28T19:00:23.813Z",
   "fa": "gold",
   "src": "ogp5",
@@ -515,19 +528,6 @@
    "block": false,
    "why": "clear (zone $54.66, ADX 29)",
    "zone": 54.658332930759265
-  }
- },
- {
-  "at": "2026-10-28T15:47:09.072Z",
-  "fa": "gold",
-  "src": "paper-247",
-  "row": "mvsafc49-swohrw:paper-247",
-  "side": "down",
-  "spot": 4042.752,
-  "ck": {
-   "block": false,
-   "why": "clear (zone $1.10, ADX 23)",
-   "zone": 1.102009521506903
   }
  }
 ]

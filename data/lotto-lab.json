@@ -1,5 +1,30 @@
 [
  {
+  "id": "KXGOLD15M-26OCT281515-15:up",
+  "at": "2026-10-28T19:03:22.226Z",
+  "asset": "gold",
+  "ticker": "KXGOLD15M-26OCT281515-15",
+  "side": "up",
+  "sigma": -2.05,
+  "spot": 4028.4,
+  "vwap": 4046.44,
+  "stdev": 8.82,
+  "target": 4034.43,
+  "secondsLeft": 698,
+  "ask": 0.32,
+  "multiple": 3.13,
+  "peakBid": 0.974,
+  "peakPct": 204,
+  "exits": {
+   "+50": 0.6,
+   "+100": 0.7,
+   "+200": 0.966,
+   "+300": null
+  },
+  "result": "open",
+  "profits": null
+ },
+ {
   "id": "KXGOLD15M-26OCT281445-45:up",
   "at": "2026-10-28T18:33:04.389Z",
   "asset": "gold",

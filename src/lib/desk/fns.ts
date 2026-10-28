@@ -2240,3 +2240,50 @@ function fiveNightRows(): any[] {
   }
   return out;
 }
+
+// NEW SCHEDULE · LIVE ONLY (fix385, Love Oct 28 2026 12:04 PM PT: "can you create a new card for our the books running on our new schedule only? so the trades
+// that show on there are actually what she took across the different books she's trading / and pls have it label which book it came from like our others"):
+// read-only. Every Kalshi position the copier actually opened since the new schedule began (10:30 AM PT Oct 28, fix381: pure no-pink BTC every hour; fix383 gold map 11:15 AM;
+// fix384 $10 foundation 12:00 PM), labelled with the book that took it, real dollars from the fills (kalshi-audit + kalshi-history) and the bell. Nothing here trades.
+export const SCHEDULE_LIVE_START = "2026-10-28T17:30:00.000Z";
+export type ScheduleLiveTrade = { ticker: string; asset: string; book: string; side: string; at: string; cost: number; buys: number; pnl: number | null; open: boolean };
+export const getScheduleLive = createServerFn({ method: "GET" }).handler(async (): Promise<{ since: string; trades: ScheduleLiveTrade[] }> => {
+  const out: ScheduleLiveTrade[] = [];
+  try {
+    const D385 = (f: string) => join(process.cwd(), "data", f);
+    const BOOKS385 = new Set(["recon-tog", "recon-rej", "recon-togp", "recon-np", "recon-sov", "recon-dly"]);
+    const owner = new Map<string, { book: string; side: string; at: string }>();
+    const done = JSON.parse(readFileSync(D385("live-book-done.json"), "utf8")) as Record<string, any>;
+    for (const [k, v] of Object.entries(done)) {
+      if (!v || (v.status !== "filled" && v.status !== "partial")) continue;
+      const p = k.split(":"), tk = String(v.ticker || p[0]), bk = String(p[1] || "");
+      if (!BOOKS385.has(bk) || String(v.at || "") < SCHEDULE_LIVE_START) continue;
+      const o = owner.get(tk);
+      if (!o || String(v.at) < o.at) owner.set(tk, { book: bk, side: String(v.side || ""), at: String(v.at) });
+    }
+    const fills = new Map<string, any>(); const bell = new Map<string, string>();
+    const take = (a: any) => { for (const f of Array.isArray(a?.fills) ? a.fills : []) if (owner.has(f.ticker)) fills.set(`${String(f.t).slice(0, 19)}|${String(f.order || "").slice(0, 13)}|${f.ticker}|${f.action}|${f.side}|${f.count}`, f);
+      for (const s of Array.isArray(a?.settlements) ? a.settlements : []) if (owner.has(s.ticker) && (s.result === "yes" || s.result === "no")) bell.set(s.ticker, s.result); };
+    try { take(JSON.parse(readFileSync(D385("kalshi-history.json"), "utf8"))); } catch {}
+    try { take(JSON.parse(readFileSync(D385("kalshi-audit.json"), "utf8"))); } catch {}
+    const per = new Map<string, { cash: number; yes: number; no: number; cost: number; orders: Set<string> }>();
+    for (const f of fills.values()) {
+      const x = per.get(f.ticker) || { cash: 0, yes: 0, no: 0, cost: 0, orders: new Set<string>() };
+      // fix385b: the audit's own convention (riskguard.liveTrades): "sell no" at yes y = short YES at y (= a NO bought at 1 - y), "sell yes" = NO sold at 1 - y.
+      const c = Number(f.count) || 0, y = Number(f.yes) || 0, fee = Number(f.fee) || 0, o385 = String(f.order || "").slice(0, 13), dn385 = owner.get(f.ticker)?.side === "down";
+      x.cash -= fee;
+      if (f.action === "buy" && f.side === "no") { x.cash -= c * (1 - y); x.no += c; x.cost += c * (1 - y); x.orders.add(o385); }
+      else if (f.action === "sell" && f.side === "yes") { x.cash += c * (1 - y); x.no -= c; }
+      else if (f.action === "buy") { x.cash -= c * y; x.yes += c; x.cost += c * y; x.orders.add(o385); }
+      else { x.cash += c * y; x.yes -= c; if (dn385) { x.cost += c * (1 - y); x.orders.add(o385); } }
+      per.set(f.ticker, x);
+    }
+    for (const [tk, o] of owner) {
+      const x = per.get(tk); if (!x) continue;
+      const flat = Math.abs(x.yes) < 0.01 && Math.abs(x.no) < 0.01, b = bell.get(tk);
+      const pnl = flat ? x.cash : b ? x.cash + (b === "yes" ? x.yes : 0) + (b === "no" ? x.no : 0) : null;
+      out.push({ ticker: tk, asset: /GOLD/i.test(tk) ? "gold" : /BTC/i.test(tk) ? "btc" : "?", book: o.book, side: o.side, at: o.at, cost: Math.round(x.cost * 100) / 100, buys: x.orders.size, pnl: pnl == null ? null : Math.round(pnl * 100) / 100, open: pnl == null });
+    }
+  } catch {}
+  return { since: SCHEDULE_LIVE_START, trades: out.sort((a, b) => (a.at < b.at ? 1 : -1)) };
+});

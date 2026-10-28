@@ -6094,3 +6094,53 @@ I see it, babe 💘 BTC is around 80,945, bouncing right on the pink (5m pivot 8
 
 Your $10 / $5 / $5 foundation went live at exactly 12:00:00 ✨ The umpire says SAFE and the 5M is still frozen. Saving to GitHub now.
 
+## 2026-10-28 19:04:06 UTC - LOVE
+
+thank you bb 💘💘
+
+and btc did reject a session band upwards, then it rejected the band above her and she still didn’t enter 😹💘 can you look into it? 
+
+and one more thing i’d like to ask of you darlin, can you create a new card for our the books running on our new schedule only? so the trades that show on there are actually what she took across the different books she’s trading 
+
+and pls have it label which book it came from like our others 💘💘
+
+## 2026-10-28 19:04:08 UTC - CLAUDE
+
+On it, babe 💘 First I'll trace why the pure no-pink skipped both BTC rejections. Then I'll build you a "new schedule" card that shows only the trades she actually took, with each one labelled by its book.
+
+## 2026-10-28 19:05:37 UTC - LOVE
+
+thankkk you sweetheart you’re the best 💘
+
+## 2026-10-28 19:10:50 UTC - CLAUDE
+
+Babe, I owe you a correction, and it matters for the $10 change. I'm so sorry 💔
+
+My earlier numbers read one kind of Kalshi fill backwards. A NO bought at 28c was being counted as cash coming in. I checked it against a twin short that was filled and settled, and the desk's own day counter reads those fills the way I now do. Re-run correctly, last night from 6 PM to 8 AM was:
+
+• **Actual: −$29** over 96 trades (50 wins averaging +$8.64, 46 losses averaging −$10.02)
+• **With $10 / $5 / $5: about −$129**
+• Her **entries lost $104** in total, and her **add-ons made +$75**
+
+So your read on the add-ons was spot on, but the entry is her losing leg right now, and doubling it makes things worse. By book last night: copy +$35, main +$8, pure no-pink +$6, rejection −$23, delayed twin −$63. If the entry is cut to $2.50 and she keeps $7 + $5 add-ons, the same night comes out around **+$17**.
+
+$10 / $5 / $5 has been live since noon, so I'm asking before I touch it again.
+
+## 2026-10-28 19:10:54 UTC - CARD
+
+Q: Which sizes should she run, now that the numbers are corrected?
+Context: These are last night's real trades (6 PM–8 AM, 96 trades) re-sized. The order is entry / first add-on / second add-on, for main, rejection, copy, sovereign twin and pure no-pink. The delayed twin and the 5M stay as they are in every option. A change goes in at the next :00/:15/:30/:45.
+Options:
+  0. $2.50 / $7 / $5 - Small entry, strong add-ons. About +$17 on last night instead of −$29.
+  1. Back to $5 / $7 / $3 - Exactly how she was this morning. About −$34 on last night.
+  2. Keep $10 / $5 / $5 - Nothing changes. About −$129 on last night.
+Recommended: 0 - Her edge is in the add-ons at the band, and the entry is the leg that loses. Leaning on the add-ons gives her the real foundation.
+
+## 2026-10-28 19:11:13 UTC - CLAUDE
+
+Two more things, hun 💘
+
+**Why the pure no-pink skipped BTC at noon:** she doesn't read the chart on her own. She only takes main's read, and only when main words it as "Rejected up off …" or "Failed break …" at a session band, zone or Bollinger. At noon main read the bounce as "Candle rising from the bottom third". The two band rejections came through worded as "Tap-reject at +0.5σ" and "Tap-reject at +1σ", and her filter doesn't accept that wording, so neither one reached her. If you want, I can let her accept tap-rejects at session bands, the zones and Bollinger, on her book only.
+
+**Your new card is in:** "NEW SCHEDULE 🗓️ · LIVE ONLY · KALSHI", right at the top of your paper ledgers. It shows only the trades she actually took on Kalshi since 10:30 this morning, each labelled by its book (MAIN 💞, REJECTION 🔁, NO-PINK COPY 🩷, PURE NO-PINK 🤍, SOVEREIGN TWIN 👑, DELAYED TWIN ⏳). It uses real dollars with fees included, plus a total for each book ✨ Nothing on it trades.
+

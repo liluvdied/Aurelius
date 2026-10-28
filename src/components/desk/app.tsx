@@ -17,6 +17,7 @@ import { BenchCard } from "@/components/desk/bench";
 import { PositionsTab } from "@/components/desk/kalshi-positions";
 import { pointsFromFills, pointsFromPrime, TapeBook } from "@/components/desk/kalshi-tape";
 import { HedgeBook } from "@/components/desk/hedge-book";
+import { ScheduleLiveCard } from "@/components/desk/schedule-live";
 import { LookPanel } from "@/components/desk/look-panel";
 import { Positions } from "@/components/desk/positions";
 import { ScaleBook } from "@/components/desk/scale";
@@ -3910,6 +3911,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   );
   return (
     <section className="rounded-[22px] border border-white/25 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
+      <ScheduleLiveCard /> {/* fix385 (Love Oct 28 2026 12:04 PM PT): the new schedule, live trades only, labelled by book */}
       <div className="flex items-baseline justify-between gap-3">
         <div className="flex items-center justify-between gap-2">
           <p className="text-[10px] tracking-[0.28em] text-white/90">PAPER · {ranked.length} LEDGERS · RANKED{h2h ? ` · SINCE ${shiftClock(since)}` : ""}</p>

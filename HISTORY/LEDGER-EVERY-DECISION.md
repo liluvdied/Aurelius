@@ -1,9 +1,15 @@
-# Every decision Love has made - rebuilt 2026-10-28T19:00:21.329883+00:00
+# Every decision Love has made - rebuilt 2026-10-28T19:11:34.179200+00:00
 
-1238 decisions with Love's words or card picks, out of 1938 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1239 decisions with Love's words or card picks, out of 1943 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T19:11:22+00:00  ·  diary line 2408  ·  fix384, fix385
+- Love: “can you create a new card for our the books running on our new schedule only? so the trades that show on there are actually what she took across the different books she’s trading / and pls have it label which book it came from like our others”
+- fix384 IN HER CODE
+- fix385 IN HER CODE
+- Full entry: 2026-10-28T19:11:22+00:00 fix385/385b NEW SCHEDULE LIVE CARD (UI + read-only server fn, no book touched): fns.ts getScheduleLive + src/components/desk/schedule-live.tsx, top of PAPER LEDGERS in app.tsx. Love Oct 28 12:04 PM PT: "can you create a new card for our the books running on our new schedule only? so the trades that show on there are actually what she took across the different books she’s trading / and pls have it label which book it came from like our others". CORRECTION (Claude): fix384 sizing analysis read Kalshi 'sell no' fills backwards; correct (riskguard) accounting: last night 6 PM-8 AM -$29 (not +$289); $10/$5/$5 would be ~-$129, $2.50/$7/$5 ~+$17. Told Love, card asks sizes. Pure no-pink noon BTC skip: main's read was thirds/'Tap-reject at' wording, her label filter takes only 'Rejected ... off'/'Failed break'.
 
 ## 2026-10-28T19:00:09+00:00  ·  diary line 2403  ·  fix384
 - Love: “let’s do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book pls bb”

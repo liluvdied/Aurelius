@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-28T19:00:41.768Z",
+  "at": "2026-10-28T19:11:44.858Z",
   "gen": 417,
   "window": "2026-10-28T12:00",
   "ok": false,
@@ -9,16 +9,7 @@
       "side": "down",
       "ticker": "KXGOLD15M-26OCT281515-15",
       "pattern": "Tap-reject at −1.5σ",
-      "left": 858,
-      "same": true,
-      "stillOpen": true
-    },
-    {
-      "asset": "btc",
-      "side": "down",
-      "ticker": "KXBTC15M-26OCT281515-15",
-      "pattern": "Tap-reject at +0.5σ",
-      "left": 858,
+      "left": 197,
       "same": true,
       "stillOpen": true
     }
