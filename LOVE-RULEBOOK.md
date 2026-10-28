@@ -228,3 +228,5 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 
 - fix388 (Oct 28 2026 12:30 PM PT, Love: "and yes, pure no pink for btc always pls"): BTC on Kalshi is the pure no-pink every hour; the delayed twin no longer trades BTC live on Kalshi. Polymarket unchanged.
 - Sizes (Oct 28 2026 12:19 PM PT, Love: "oh i meant let’s keep the $10 / $5 / $5 for the moment bb , and we can adjust to the lower entry and double downed-add ons if she isn’t performing well on her new schedule"): $10 / $5 / $5 stays; $2.50 / $7 / $5 only if she underperforms on the new schedule.
+
+- fix389/389b (Oct 28 2026 1:05 PM PT, Love: "yess that’s what i was sayin earlier i want to give her her own taps ok :)" / "and you can put her on that now, we will put her back where she is is she doesn’t do well on it okay :)) would have worked this short too so let’s give her the ability to do that okay bb"): the pure no-pink reads the bands with her own eyes (session bands, red/green zone, Bollinger; rejections only, 1-5m flip, never pink) as well as main's reads, live. Her own-eyes read alone is kept on paper as recon-npo.

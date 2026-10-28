@@ -1,9 +1,14 @@
-# Every decision Love has made - rebuilt 2026-10-28T19:31:26.581414+00:00
+# Every decision Love has made - rebuilt 2026-10-28T20:07:06.322204+00:00
 
-1241 decisions with Love's words or card picks, out of 1947 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1242 decisions with Love's words or card picks, out of 1952 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T20:06:54+00:00  ·  diary line 2417  ·  fix389
+- Love: “yess that’s what i was sayin earlier i want to give her her own taps ok :)”
+- fix389 IN HER CODE
+- Full entry: 2026-10-28T20:06:54+00:00 fix389/389b PURE NO-PINK OWN EYES (recon.ts): recon-npo paper lane = bonesDecide rejections-only on session bands + red/green zone + Bollinger (no pink/pivots/purple/nav), 1-5m flip, np pink-stack check; fix389b: LIVE recon-np books that read too (first read in a window wins). First call 12:06 PM BTC short 1m rejection off Red zone 60c - live held by ANY BAND CUSHION (+2σ unbroken, $2.83). R076/R077. Undo = remove fix389b line. Love: "yess that’s what i was sayin earlier i want to give her her own taps ok :)" / "and you can put her on that now, we will put her back where she is is she doesn’t do well on it okay :)) would have worked this short too so let’s give her the ability to do that okay bb"
 
 ## 2026-10-28T19:30:25+00:00  ·  diary line 2412  ·  fix386, fix388  ·  books: delayed twin
 - Love: “and yes, pure no pink for btc always pls”

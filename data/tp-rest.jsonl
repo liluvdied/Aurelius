@@ -6116,3 +6116,8 @@
 {"at":"2026-10-28T19:27:41.898Z","ticker":"KXGOLD15M-26OCT281530-30","px":0.78,"qty":35.28,"bid":0.68,"had":null}
 {"at":"2026-10-28T19:28:12.716Z","ticker":"KXGOLD15M-26OCT281530-30","px":0.78,"qty":26.46,"bid":0.34,"had":{"id":null,"px":0.78,"qty":35.28,"failed":true}}
 {"at":"2026-10-28T19:28:25.365Z","ticker":"KXGOLD15M-26OCT281530-30","px":0.73,"qty":26.46,"bid":0.55,"had":{"id":"01a183fc-00c8-7f17-9d47-d9afc393841e","px":0.78,"qty":26.46,"failed":false}}
+{"at":"2026-10-28T19:49:45.470Z","ticker":"KXBTC15M-26OCT281600-00","px":0.91,"qty":17.61,"bid":0.26,"had":null}
+{"at":"2026-10-28T20:00:07.731Z","ticker":"KXBTC15M-26OCT281600-00","cancel":"position not in held list","heldCount":1}
+{"at":"2026-10-28T20:00:50.983Z","ticker":"KXGOLD15M-26OCT281615-15","px":0.93,"qty":11.44,"bid":0.39,"had":null}
+{"at":"2026-10-28T20:06:18.901Z","ticker":"KXGOLD15M-26OCT281615-15","px":0.82,"qty":11.44,"bid":0.76,"had":{"id":"01a18419-e138-7db0-a58a-0f2f689fa768","px":0.93,"qty":11.44,"failed":false}}
+{"at":"2026-10-28T20:06:28.765Z","ticker":"KXGOLD15M-26OCT281615-15","px":0.86,"qty":11.44,"bid":0.7,"had":{"id":"01a1841e-e278-713b-b431-3e1de65797b1","px":0.82,"qty":11.44,"failed":false}}

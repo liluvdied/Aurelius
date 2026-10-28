@@ -1051,3 +1051,4 @@ From main's extra calls: 0W 0L, $+0.00  |  rest of that 5M lane: 2W 1L, $+3.32  
 | 2026-10-28T13:59:00.997Z | KXBTC15M-26OCT281000-00 | 5m swing after main's extra call | expired |  | its own window is over - a call never trades the next window |
 | 2026-10-28T17:29:02.669Z | KXBTC15M-26OCT281330-30 | main's extra call itself | expired |  | its own window is over - a call never trades the next window |
 | 2026-10-28T17:59:01.890Z | KXBTC15M-26OCT281400-00 | main's extra call itself | expired |  | its own window is over - a call never trades the next window |
+| 2026-10-28T19:59:02.241Z | KXBTC15M-26OCT281600-00 | main's extra call itself | expired |  | its own window is over - a call never trades the next window |

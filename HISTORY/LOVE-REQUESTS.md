@@ -2,6 +2,20 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R077 - fix389b: LIVE pure no-pink (recon-np) also books her own band read (the recon-npo read: session bands, zones, Bollinger, rejections only, 1-5m flip, pink check) - first read in a window wins. Undo on Love words = remove the fix389b line. recon-npo stays as the paper record of her own eyes alone.
+- when: 2026-10-28T20:05:46+00:00
+- Love: "and you can put her on that now, we will put her back where she is is she doesn’t do well on it okay :)) would have worked this short too so let’s give her the ability to do that okay bb"
+- books: recon-np
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix389b"}
+
+## R076 - fix389: recon-npo = PURE NO-PINK WITH HER OWN EYES, PAPER: every tick she runs the engine read (bonesDecide, rejections only) on her own board - session VWAP/sigmas, red/green zone, Bollinger, never pink/pivots/purple/nav - with the pure no-pink pink-stack check and a 1-5m flip her way. Paper only; live seat (recon-np) untouched until Love says.
+- when: 2026-10-28T20:05:02+00:00
+- Love: "yess that’s what i was sayin earlier i want to give her her own taps ok :) + (to: let the pure no-pink read the bands herself every tick, the way the sovereign twin does: session bands, zones, Bollinger, never pink; paper-test first)"
+- books: recon-npo (new paper)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "recon-npo"}
+
 ## R074 - fix384 stays: $10 entry + $5 + $5 add-ons on main, rejection, copy, sovereign, pure no-pink (delayed twin + 5M unchanged). Lower entry / bigger add-ons ($2.50/$7/$5) only if she underperforms on the new schedule, on Love words.
 - when: 2026-10-28T19:20:27+00:00
 - Love: "oh i meant let’s keep the $10 / $5 / $5 for the moment bb , and we can adjust to the lower entry and double downed-add ons if she isn’t performing well on her new schedule"

@@ -1,5 +1,117 @@
 [
  {
+  "id": "KXBTC15M-26OCT281615-15:down",
+  "at": "2026-10-28T20:00:23.026Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281615-15",
+  "side": "down",
+  "sigma": 2.53,
+  "spot": 81589.74,
+  "vwap": 80853.8,
+  "stdev": 290.58,
+  "target": 81482.24,
+  "secondsLeft": 877,
+  "ask": 0.3,
+  "multiple": 3.33,
+  "peakBid": 0.65,
+  "peakPct": 117,
+  "exits": {
+   "+50": 0.45,
+   "+100": 0.6,
+   "+200": null,
+   "+300": null
+  },
+  "result": "open",
+  "profits": null
+ },
+ {
+  "id": "KXGOLD15M-26OCT281615-15:down",
+  "at": "2026-10-28T20:00:11.377Z",
+  "asset": "gold",
+  "ticker": "KXGOLD15M-26OCT281615-15",
+  "side": "down",
+  "sigma": 3.61,
+  "spot": 4079.22,
+  "vwap": 4047.06,
+  "stdev": 8.91,
+  "target": null,
+  "secondsLeft": 890,
+  "ask": 0.31,
+  "multiple": 3.23,
+  "peakBid": 0.82,
+  "peakPct": 165,
+  "exits": {
+   "+50": 0.5,
+   "+100": 0.63,
+   "+200": null,
+   "+300": null
+  },
+  "result": "open",
+  "profits": null
+ },
+ {
+  "id": "KXBTC15M-26OCT281600-00:down",
+  "at": "2026-10-28T19:51:11.108Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281600-00",
+  "side": "down",
+  "sigma": 2.04,
+  "spot": 81435.55,
+  "vwap": 80849.61,
+  "stdev": 287.36,
+  "target": 81282.8,
+  "secondsLeft": 529,
+  "ask": 0.13,
+  "multiple": 7.69,
+  "peakBid": 0.18,
+  "peakPct": 38,
+  "exits": {
+   "+50": null,
+   "+100": null,
+   "+200": null,
+   "+300": null
+  },
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": -5,
+   "+100": -5,
+   "+200": -5,
+   "+300": -5
+  }
+ },
+ {
+  "id": "KXGOLD15M-26OCT281600-00:down",
+  "at": "2026-10-28T19:51:00.946Z",
+  "asset": "gold",
+  "ticker": "KXGOLD15M-26OCT281600-00",
+  "side": "down",
+  "sigma": 2.02,
+  "spot": 4064.4,
+  "vwap": 4046.84,
+  "stdev": 8.69,
+  "target": 4060.12,
+  "secondsLeft": 540,
+  "ask": 0.3,
+  "multiple": 3.33,
+  "peakBid": 0.33,
+  "peakPct": 10,
+  "exits": {
+   "+50": null,
+   "+100": null,
+   "+200": null,
+   "+300": null
+  },
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": -5,
+   "+100": -5,
+   "+200": -5,
+   "+300": -5
+  }
+ },
+ {
   "id": "KXGOLD15M-26OCT281515-15:up",
   "at": "2026-10-28T19:03:22.226Z",
   "asset": "gold",
