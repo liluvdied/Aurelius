@@ -1,5 +1,165 @@
 [
   {
+    "id": "KXBTC15M-26OCT281945-45:prime:up:Tap-reject at +1σ",
+    "at": "2026-10-28T23:37:25.038Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at +1σ",
+    "kind": "prime",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281945-45"
+  },
+  {
+    "id": "KXBTC15M-26OCT281945-45:other-way:down:Tap-reject at +1σ",
+    "at": "2026-10-28T23:37:25.038Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at +1σ",
+    "kind": "other-way",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281945-45"
+  },
+  {
+    "id": "KXGOLD15M-26OCT281945-45:prime:down:Tap-reject at VWAP",
+    "at": "2026-10-28T23:36:14.800Z",
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Tap-reject at VWAP",
+    "kind": "prime",
+    "result": "open",
+    "ticker": "KXGOLD15M-26OCT281945-45"
+  },
+  {
+    "id": "KXGOLD15M-26OCT281945-45:other-way:up:Tap-reject at VWAP",
+    "at": "2026-10-28T23:36:14.800Z",
+    "asset": "gold",
+    "side": "up",
+    "pattern": "Tap-reject at VWAP",
+    "kind": "other-way",
+    "result": "open",
+    "ticker": "KXGOLD15M-26OCT281945-45"
+  },
+  {
+    "id": "KXGOLD15M-26OCT281945-45:prime:up:Tap-reject at -0.5σ",
+    "at": "2026-10-28T23:35:58.840Z",
+    "asset": "gold",
+    "side": "up",
+    "pattern": "Tap-reject at -0.5σ",
+    "kind": "prime",
+    "result": "open",
+    "ticker": "KXGOLD15M-26OCT281945-45"
+  },
+  {
+    "id": "KXGOLD15M-26OCT281945-45:other-way:down:Tap-reject at -0.5σ",
+    "at": "2026-10-28T23:35:58.840Z",
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Tap-reject at -0.5σ",
+    "kind": "other-way",
+    "result": "open",
+    "ticker": "KXGOLD15M-26OCT281945-45"
+  },
+  {
+    "id": "KXBTC15M-26OCT281945-45:prime:down:Tap-reject at +2.5σ",
+    "at": "2026-10-28T23:35:29.921Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at +2.5σ",
+    "kind": "prime",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281945-45"
+  },
+  {
+    "id": "KXBTC15M-26OCT281945-45:other-way:up:Tap-reject at +2.5σ",
+    "at": "2026-10-28T23:35:29.921Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at +2.5σ",
+    "kind": "other-way",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281945-45"
+  },
+  {
+    "id": "KXBTC15M-26OCT281945-45:prime:down:Tap-reject at +0.5σ",
+    "at": "2026-10-28T23:33:56.187Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at +0.5σ",
+    "kind": "prime",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281945-45"
+  },
+  {
+    "id": "KXBTC15M-26OCT281945-45:other-way:up:Tap-reject at +0.5σ",
+    "at": "2026-10-28T23:33:56.187Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at +0.5σ",
+    "kind": "other-way",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281945-45"
+  },
+  {
+    "id": "KXSILVER15M-26OCT281945-45:prime:up:Tap-reject at -1σ",
+    "at": "2026-10-28T23:33:26.840Z",
+    "asset": "silver",
+    "side": "up",
+    "pattern": "Tap-reject at −1σ",
+    "kind": "prime",
+    "result": "open",
+    "ticker": "KXSILVER15M-26OCT281945-45"
+  },
+  {
+    "id": "KXSILVER15M-26OCT281945-45:other-way:down:Tap-reject at -1σ",
+    "at": "2026-10-28T23:33:26.840Z",
+    "asset": "silver",
+    "side": "down",
+    "pattern": "Tap-reject at −1σ",
+    "kind": "other-way",
+    "result": "open",
+    "ticker": "KXSILVER15M-26OCT281945-45"
+  },
+  {
+    "id": "KXBTC15M-26OCT281945-45:prime:up:Tap-reject at -0.5σ",
+    "at": "2026-10-28T23:31:40.315Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at −0.5σ",
+    "kind": "prime",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281945-45"
+  },
+  {
+    "id": "KXBTC15M-26OCT281945-45:other-way:down:Tap-reject at -0.5σ",
+    "at": "2026-10-28T23:31:40.315Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at −0.5σ",
+    "kind": "other-way",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281945-45"
+  },
+  {
+    "id": "KXBTC15M-26OCT281945-45:prime:up:Tap-reject at +1.5σ",
+    "at": "2026-10-28T23:31:07.469Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at +1.5σ",
+    "kind": "prime",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281945-45"
+  },
+  {
+    "id": "KXBTC15M-26OCT281945-45:other-way:down:Tap-reject at +1.5σ",
+    "at": "2026-10-28T23:31:07.469Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at +1.5σ",
+    "kind": "other-way",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT281945-45"
+  },
+  {
     "id": "KXGOLD15M-26OCT281945-45:prime:up:Tap-reject at -1σ",
     "at": "2026-10-28T23:30:48.193Z",
     "asset": "gold",
@@ -7838,165 +7998,5 @@
     "kind": "other-way",
     "result": "no",
     "ticker": "KXSILVER15M-26OCT281415-15"
-  },
-  {
-    "id": "KXBTC15M-26OCT281415-15:prime:up:Tap-reject at +1σ",
-    "at": "2026-10-28T18:00:24.584Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at +1σ",
-    "kind": "prime",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT281415-15"
-  },
-  {
-    "id": "KXBTC15M-26OCT281415-15:other-way:down:Tap-reject at +1σ",
-    "at": "2026-10-28T18:00:24.584Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at +1σ",
-    "kind": "other-way",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT281415-15"
-  },
-  {
-    "id": "KXBTC15M-26OCT281415-15:prime:up:Tap-reject at -0.5σ",
-    "at": "2026-10-28T18:00:12.778Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at −0.5σ",
-    "kind": "prime",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT281415-15"
-  },
-  {
-    "id": "KXBTC15M-26OCT281415-15:other-way:down:Tap-reject at -0.5σ",
-    "at": "2026-10-28T18:00:12.778Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at −0.5σ",
-    "kind": "other-way",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT281415-15"
-  },
-  {
-    "id": "KXBTC15M-26OCT281415-15:prime:down:Tap-reject at +1.5σ",
-    "at": "2026-10-28T18:00:12.778Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at +1.5σ",
-    "kind": "prime",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT281415-15"
-  },
-  {
-    "id": "KXBTC15M-26OCT281415-15:other-way:up:Tap-reject at +1.5σ",
-    "at": "2026-10-28T18:00:12.778Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at +1.5σ",
-    "kind": "other-way",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT281415-15"
-  },
-  {
-    "id": "KXBTC15M-26OCT281415-15:prime:down:Tap-reject at -0.5σ",
-    "at": "2026-10-28T18:00:12.778Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at -0.5σ",
-    "kind": "prime",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT281415-15"
-  },
-  {
-    "id": "KXBTC15M-26OCT281415-15:other-way:up:Tap-reject at -0.5σ",
-    "at": "2026-10-28T18:00:12.778Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at -0.5σ",
-    "kind": "other-way",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT281415-15"
-  },
-  {
-    "id": "KXPLATINUM15M-26OCT281400-00:band:up:−0.5σ",
-    "at": "2026-10-28T17:58:25.312Z",
-    "asset": "platinum",
-    "side": "up",
-    "pattern": "Band reject −0.5σ",
-    "kind": "band",
-    "result": "open",
-    "ticker": "KXPLATINUM15M-26OCT281400-00"
-  },
-  {
-    "id": "KXPLATINUM15M-26OCT281400-00:other-way:down:−0.5σ",
-    "at": "2026-10-28T17:58:25.312Z",
-    "asset": "platinum",
-    "side": "down",
-    "pattern": "Band reject −0.5σ",
-    "kind": "other-way",
-    "result": "open",
-    "ticker": "KXPLATINUM15M-26OCT281400-00"
-  },
-  {
-    "id": "KXSILVER15M-26OCT281400-00:prime:down:Tap-reject at +1σ",
-    "at": "2026-10-28T17:58:17.992Z",
-    "asset": "silver",
-    "side": "down",
-    "pattern": "Tap-reject at +1σ",
-    "kind": "prime",
-    "result": "no",
-    "ticker": "KXSILVER15M-26OCT281400-00"
-  },
-  {
-    "id": "KXSILVER15M-26OCT281400-00:other-way:up:Tap-reject at +1σ",
-    "at": "2026-10-28T17:58:17.992Z",
-    "asset": "silver",
-    "side": "up",
-    "pattern": "Tap-reject at +1σ",
-    "kind": "other-way",
-    "result": "yes",
-    "ticker": "KXSILVER15M-26OCT281400-00"
-  },
-  {
-    "id": "KXSILVER15M-26OCT281400-00:prime:down:Tap-reject at +0.5σ",
-    "at": "2026-10-28T17:57:27.473Z",
-    "asset": "silver",
-    "side": "down",
-    "pattern": "Tap-reject at +0.5σ",
-    "kind": "prime",
-    "result": "no",
-    "ticker": "KXSILVER15M-26OCT281400-00"
-  },
-  {
-    "id": "KXSILVER15M-26OCT281400-00:other-way:up:Tap-reject at +0.5σ",
-    "at": "2026-10-28T17:57:27.473Z",
-    "asset": "silver",
-    "side": "up",
-    "pattern": "Tap-reject at +0.5σ",
-    "kind": "other-way",
-    "result": "yes",
-    "ticker": "KXSILVER15M-26OCT281400-00"
-  },
-  {
-    "id": "KXPALLADIUM15M-26OCT281400-00:band:down:+0.5σ",
-    "at": "2026-10-28T17:57:24.916Z",
-    "asset": "palladium",
-    "side": "down",
-    "pattern": "Band reject +0.5σ",
-    "kind": "band",
-    "result": "open",
-    "ticker": "KXPALLADIUM15M-26OCT281400-00"
-  },
-  {
-    "id": "KXPALLADIUM15M-26OCT281400-00:other-way:up:+0.5σ",
-    "at": "2026-10-28T17:57:24.916Z",
-    "asset": "palladium",
-    "side": "up",
-    "pattern": "Band reject +0.5σ",
-    "kind": "other-way",
-    "result": "open",
-    "ticker": "KXPALLADIUM15M-26OCT281400-00"
   }
 ]

@@ -1,18 +1,29 @@
 {
- "at": "2026-10-28T23:30:53.826Z",
+ "at": "2026-10-28T23:38:12.302Z",
  "platinum": {
   "ticker": "KXPLATINUM15M-26OCT281945-45",
-  "spot": 1540.4,
+  "spot": 1538.742,
   "target": 1541.012,
   "kStrike": 1542.086,
-  "yesAsk": 0.47,
-  "noAsk": 0.57,
-  "left": 846,
-  "vwap": 1539.0579038293545,
-  "sd": 1.9844069377557,
-  "z": 0.68
+  "yesAsk": 0.39,
+  "noAsk": 0.67,
+  "left": 407,
+  "vwap": 1539.5458976635389,
+  "sd": 1.8722023682338882,
+  "z": -0.43
  },
- "palladium": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXPALLADIUM15M&status=op",
+ "palladium": {
+  "ticker": "KXPALLADIUM15M-26OCT281945-45",
+  "spot": 1020.605,
+  "target": 1021.245,
+  "kStrike": 1024.36,
+  "yesAsk": 0.45,
+  "noAsk": 0.61,
+  "left": 407,
+  "vwap": 1019.5449177489174,
+  "sd": 2.37262049328153,
+  "z": 0.45
+ },
  "msilver": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXSILVER15M&status=open&",
  "mgold": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXGOLD15M&status=open&li"
 }

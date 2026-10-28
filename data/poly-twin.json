@@ -1,28 +1,4 @@
 {
- "KXBTC15M-26OCT272100-00:recon-tog:KXBTC15M-26OCT272100-00:recon-tog:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT272100-00",
-  "setup": "Candle falling from the top third",
-  "lastTry": 1793148540256,
-  "tries": 51,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT272100-00:recon-tog:s5977162:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT272100-00",
-  "setup": "Launched from the top third (high 80658.49) - a short until the bottom third",
-  "lastTry": 1793148841058,
-  "tries": 53,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
  "KXBTC15M-26OCT272100-00:recon-rej5:s5977162:5m": {
   "book": "recon-rej-5m",
   "asset": "btc",
@@ -5140,22 +5116,54 @@
   "side": "down",
   "ticker": "KXBTC15M-26OCT281945-45",
   "setup": "Rejected down off fresh +1σ",
-  "lastTry": 1793230256542,
-  "tries": 11,
+  "lastTry": 1793230265574,
+  "tries": 13,
   "wallOk": true,
-  "status": "waiting",
-  "reason": "waiting for a 1m candle to close red (her 5m flip)"
+  "status": "filled",
+  "final": true,
+  "late": false,
+  "slug": "cpc-btc-updown-5m-2026-10-28-2330z",
+  "contracts": 12.93,
+  "cost": 0.59,
+  "spent": 7.63,
+  "tops": 0,
+  "orderId": "DCPRE9BG11MQ",
+  "closesAt": "2026-10-28T23:35:00.000Z"
  },
  "KXBTC15M-26OCT281945-45:recon-tog:KXBTC15M-26OCT281945-45:recon-tog:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT281945-45",
+  "setup": "Green candle rising from the bottom third",
+  "lastTry": 1793230443747,
+  "tries": 51,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT281945-45:recon-tog:s5977435:5m": {
   "book": "recon-tog-5m",
   "asset": "btc",
   "side": "down",
   "ticker": "KXBTC15M-26OCT281945-45",
   "setup": "Rejected down off fresh +1σ",
-  "lastTry": 1793230256542,
-  "tries": 11,
-  "wallOk": true,
+  "lastTry": 1793230701806,
+  "tries": 44,
+  "wallOk": false,
   "status": "waiting",
   "reason": "late door only (the other book holds the 5m)"
+ },
+ "KXBTC15M-26OCT281945-45:recon-rej5:s5977435:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT281945-45",
+  "setup": "Rejected down off fresh +1σ",
+  "lastTry": 1793230701806,
+  "tries": 44,
+  "wallOk": false,
+  "status": "waiting",
+  "reason": "waiting for her flip with 4+ minutes left in the 5m window"
  }
 }

@@ -428,5 +428,25 @@
   "side": "down",
   "setup": "Failed break above fresh +1σ - rejected down",
   "spotAt": 81260.23
+ },
+ "KXBTC15M-26OCT281945-45:recon-tog:s5977435": {
+  "id": "KXBTC15M-26OCT281945-45:recon-tog:s5977435",
+  "book": "recon-tog",
+  "at": "2026-10-28T23:35:00.909Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281945-45",
+  "side": "down",
+  "setup": "Rejected down off fresh +1σ",
+  "spotAt": 81283.78
+ },
+ "KXBTC15M-26OCT281945-45:recon-rej5:s5977435": {
+  "id": "KXBTC15M-26OCT281945-45:recon-rej5:s5977435",
+  "book": "recon-rej",
+  "at": "2026-10-28T23:35:00.921Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT281945-45",
+  "side": "down",
+  "setup": "Rejected down off fresh +1σ",
+  "spotAt": 81283.78
  }
 }

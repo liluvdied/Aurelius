@@ -197,8 +197,7 @@
     "twrev5RunSince": "2026-10-19T19:14:48.108Z",
     "brkSesspkSince": "2026-10-19T19:45:00Z",
     "minDollars": 10,
-    "minNote": "fix177 Oct 24 ~10:05 PM PT, Love: main book Kalshi entries never under $10 (floor under the multiple cuts)",
-    "note402": "fix402 Oct 28 2026 3:57 PM PT, Love: \"dude please put her back on at $5 til we figure this out she has lost like 10 trades on blocked trades\": $5 entry for main/rejection/copy; + 3:57 PM: \"no 1 $5 add on pls\" -> ONE $5 add-on (addOn.second off)."
+    "minNote": "fix177 Oct 24 ~10:05 PM PT, Love: main book Kalshi entries never under $10 (floor under the multiple cuts)"
   },
   "tpOfMax": 90,
   "netBelow": [],
@@ -2761,5 +2760,6 @@
     "live-size.dollars": 10,
     "addOn.second.on": true,
     "note": "fix402 Oct 28 2026 4:00 PM PT: copy back to undo ($10 entries)"
-  }
+  },
+  "note402": "fix402 Oct 28 2026 3:57 PM PT, Love: \"dude please put her back on at $5 til we figure this out she has lost like 10 trades on blocked trades\": $5 entry for main/rejection/copy; + 3:57 PM: \"no 1 $5 add on pls\" -> ONE $5 add-on (addOn.second off)."
 }

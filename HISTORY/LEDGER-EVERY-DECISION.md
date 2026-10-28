@@ -1,9 +1,13 @@
-# Every decision Love has made - rebuilt 2026-10-28T23:30:41.947623+00:00
+# Every decision Love has made - rebuilt 2026-10-28T23:37:59.395502+00:00
 
-1261 decisions with Love's words or card picks, out of 1985 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1262 decisions with Love's words or card picks, out of 1987 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T23:37:03Z  ·  diary line 2452  ·  fix402
+- fix402 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-28T23:37:03Z fix402b: THE SEAL had been holding every opening order since 4:00 PM PT - fix402 added liveBook.note402, which changed the sealLiveBook hash (only dollars/note/at/since are excluded). Moved the note to top-level note402; seal hash back to e13f989d61 (Love's approved lineup). LESSON: never add keys inside liveBook.
 
 ## 2026-10-28T23:30:03.193108+00:00  ·  diary line 2449
 - Love: “yes let’s do that hun / can we set it up for her to trade a candle flip at the 2nd bands for now ? / if price blows thru one and rejects and flips at the 2nd when bands are tight?”

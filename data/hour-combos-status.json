@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T23:30:53.835Z",
+ "at": "2026-10-28T23:38:19.113Z",
  "markets": 914,
  "perSeries": {
   "KXBTCD": 188,
@@ -8,131 +8,8 @@
   "KXXRPD": 75,
   "KXDOGED": 51
  },
- "lastErr": "KXSOLD-26OCT2820: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXSOLD-26OCT2820&limit=10",
+ "lastErr": "KXETHD-26OCT2820: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXETHD-26OCT2820&limit=10",
  "close": "2026-10-29T00:00:00.000Z",
- "lanes": {
-  "h1-30-ceiling": {
-   "hourMarkets": 914,
-   "eligible": 3048,
-   "picked": [
-    "KXBTCD:no:0.86",
-    "KXETHD:no:0.9",
-    "KXSOLD:no:0.81"
-   ],
-   "built": false
-  }
- },
- "minsLeft": 29.1,
- "series": {
-  "KXBTCD": {
-   "n": 188,
-   "eligible": 188,
-   "events": [
-    "KXBTCD-26OCT2820"
-   ],
-   "types": [
-    "greater"
-   ],
-   "sample": [
-    "81299.99:0.3800/0.6400:active",
-    "81199.99:0.6900/0.3200:active",
-    "81399.99:0.1500/0.8600:active",
-    "81099.99:0.9100/0.1000:active",
-    "81499.99:0.0400/0.9700:active",
-    "80999.99:0.9700/0.0400:active",
-    "81599.99:0.0200/0.9900:active",
-    "88799.99:0.0100/1.0000:active",
-    "88699.99:0.0100/1.0000:active",
-    "88599.99:0.0100/1.0000:active"
-   ]
-  },
-  "KXETHD": {
-   "n": 300,
-   "eligible": 300,
-   "events": [
-    "KXETHD-26OCT2820"
-   ],
-   "types": [
-    "greater"
-   ],
-   "sample": [
-    "2359.99:0.4000/0.6100:active",
-    "2354.99:0.8000/0.2100:active",
-    "2364.99:0.1200/0.9000:active",
-    "2349.99:0.9500/0.0600:active",
-    "2544.99:0.0500/1.0000:active",
-    "2554.99:0.0500/1.0000:active",
-    "2549.99:0.0500/1.0000:active",
-    "2564.99:0.0300/1.0000:active",
-    "2559.99:0.0300/1.0000:active",
-    "2369.99:0.0300/0.9800:active"
-   ]
-  },
-  "KXSOLD": {
-   "n": 300,
-   "eligible": 300,
-   "events": [
-    "KXSOLD-26OCT2820"
-   ],
-   "types": [
-    "greater"
-   ],
-   "sample": [
-    "103.4999:0.6400/1.0000:active",
-    "102.4999:0.3400/0.7100:active",
-    "103.2499:0.3400/1.0000:active",
-    "102.2499:0.7900/0.2500:active",
-    "103.7499:0.8200/1.0000:active",
-    "103.9999:0.8300/1.0000:active",
-    "104.4999:0.8500/1.0000:active",
-    "104.2499:0.8500/1.0000:active",
-    "102.7499:0.0800/0.9400:active",
-    "101.9999:0.9400/0.0700:active"
-   ]
-  },
-  "KXXRPD": {
-   "n": 75,
-   "eligible": 75,
-   "events": [
-    "KXXRPD-26OCT2820"
-   ],
-   "types": [
-    "greater"
-   ],
-   "sample": [
-    "1.4599:0.0800/1.0000:active",
-    "1.3199:0.9700/0.0400:active",
-    "1.3599:0.0200/1.0000:active",
-    "1.5399:0.0100/1.0000:active",
-    "1.4999:0.0100/1.0000:active",
-    "1.5599:0.0100/1.0000:active",
-    "1.7399:0.0100/1.0000:active",
-    "1.5199:0.0100/1.0000:active",
-    "1.6399:0.0100/1.0000:active",
-    "1.6599:0.0100/1.0000:active"
-   ]
-  },
-  "KXDOGED": {
-   "n": 51,
-   "eligible": 51,
-   "events": [
-    "KXDOGED-26OCT2820"
-   ],
-   "types": [
-    "custom"
-   ],
-   "sample": [
-    "undefined:0.1500/0.8800:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active",
-    "undefined:0.0100/1.0000:active"
-   ]
-  }
- }
+ "lanes": {},
+ "minsLeft": 21.7
 }

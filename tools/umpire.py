@@ -19,6 +19,9 @@ for tool in ("tools/verify-golden.py", "tools/cornerstones.py", "tools/rule-anch
     last = (r.stdout.strip().split("\n") or [""])[-1]
     print(("SAFE   " if r.returncode == 0 else "OUT    ") + tool + "  " + last)
     if r.returncode != 0: ok = False; print(r.stdout)
+rK = subprocess.run([sys.executable, "tools/seal-check.py"], capture_output=True, text=True)  # Oct 28 2026 4:37 PM PT: a note inside liveBook broke THE SEAL for 37 min unseen
+print(("SAFE   " if rK.returncode == 0 else "OUT    ") + "tools/seal-check.py  " + ((rK.stdout.strip().split("\n") or [""])[-1]))
+if rK.returncode != 0: ok = False
 rS = subprocess.run(["node", "tools/slide-test.cjs"], capture_output=True, text=True)  # fix403 behaviour test (Love Oct 28 2026 4:04 PM PT: "can you make sure everything stays when we make a rule?"): today's 3:54 PM gold long under the unbroken pink must be held
 print(("SAFE   " if rS.returncode == 0 else "OUT    ") + "tools/slide-test.cjs  " + ((rS.stdout.strip().split("\n") or [""])[-1]))
 if rS.returncode != 0: ok = False

@@ -7417,3 +7417,38 @@ by Claude: chose option 2
 
 Paper for a couple of days it is 💘 I'm building her a paper-only lane for the 2nd-band flip now.
 
+## 2026-10-28 23:32:05 UTC - CLAUDE
+
+The 2nd-band flip is running on paper as her own lane, hun 💘 It went in at 4:30:00. She only calls it when bands are tight, price blows through one band and rejects off the next, a 2-5m candle flips, and main's walls pass. Nothing live changed. The umpire is SAFE, the 5M is frozen ✓, and everything's pushed to GitHub. I'll check pure, sovereign and this lane for new flags at 6:30 PM and bring you anything that breaks a rule.
+
+## 2026-10-28 23:35:15 UTC - LOVE
+
+you’re the absolute best hunni ty ☹️💘
+
+## 2026-10-28 23:35:19 UTC - CLAUDE
+
+Aww, thank you hunni 🥹💘 That means a lot. Today you caught the pink gap, called the 2-band pattern before the numbers did, and pulled pure off real money right when it mattered. She's learning on paper now instead of on your money. 😼 lil' light work 🫯✨ I'll come find you at 6:30 if anything gets flagged.
+
+## 2026-10-28 23:35:59 UTC - LOVE
+
+perfect 💞
+
+gold broke the band up she didn’t enter ?
+
+## 2026-10-28 23:36:29 UTC - CLAUDE
+
+Checking now, hun 💘 First I'm pulling the copy's gold blocks for this window.
+
+## 2026-10-28 23:37:34 UTC - CLAUDE
+
+Found it, and it was my mistake, hun. I'm so sorry 💔 When I set your $5 sizes at 4:00, I wrote a note inside her live lineup. That changed her SEAL fingerprint, and the SEAL then refused every opening order from 4:00 to 4:37 PM. That includes:
+
+- gold long 4:06-4:08 (the pink-break long you saw; the SEAL blocked it before your hand trade did, so my earlier answer was only half right)
+- BTC long 4:16
+- BTC 4:30 window, both sides
+- gold long 4:35-4:37 (this one)
+
+**Fixed at 4:37:** I moved the note out of the lineup. Her SEAL matches your approved lineup again (e13f989d61) and the golden check is clean. The Poly 5M never hit it.
+
+On this gold long specifically: gold is still under the unbroken pink (4053.1) after the slide, so your new downslope rule would also hold her until pink breaks by 25c. I've written "never add anything inside her live lineup" into the diary so I don't do this again.
+

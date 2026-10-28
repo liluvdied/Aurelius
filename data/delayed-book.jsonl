@@ -71202,3 +71202,5 @@
 {"at":"2026-10-28T23:30:51.502Z","ticker":"KXGOLD15M-26OCT281945-45","tick":4051.85,"broke":null,"wait":"no band broken yet this window"}
 {"at":"2026-10-28T23:30:56.373Z","ticker":"KXBTC15M-26OCT281945-45","tick":0,"broke":null,"wait":"no fresh price"}
 {"at":"2026-10-28T23:30:56.400Z","ticker":"KXGOLD15M-26OCT281945-45","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-28T23:31:07.348Z","ticker":"KXGOLD15M-26OCT281945-45","tick":4051.72,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-28T23:31:19.878Z","ticker":"KXGOLD15M-26OCT281945-45","tick":4051.23,"broke":{"dir":"down","name":"fresh -1σ","price":4051.6988344475662},"wait":"broke fresh -1σ down, watching session VWAP (3.09 away)"}
