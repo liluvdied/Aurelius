@@ -162,3 +162,7 @@ Love: "thank you hun yea i just want to run it on kalshi for right now , the 5M 
 ## fix354 — the delayed no-pink copy, on PAPER (Oct 27 6:20 PM PT, R039)
 Love: "thanks hun yes let’s ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly 💞"
 - recon-dlyk: the copy's read, from 30 s into the window, copy walls. Paper only. The old twin keeps Kalshi; Polymarket reads nothing new (byte-identical code, 5M freeze ✓). Going live needs Love's words.
+
+## fix355 — the twin waits 30 s on Kalshi (Oct 27 6:31 PM PT, R040)
+Love: "hey hun , she just entered into the window in the first 30 seconds on btc again , can you make sure she gets the 30 seconds on the delayed entry model?"
+- Delayed twin: no live Kalshi order in the first 30 seconds of any window. Paper and Polymarket unchanged.
