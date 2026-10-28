@@ -2122,5 +2122,41 @@
   "result": "win",
   "pnl": 2.81,
   "lane": "first"
+ },
+ {
+  "at": "2026-10-28T05:27:00+00:00",
+  "slot": "2026-10-28T05:25:00+00:00",
+  "side": "up",
+  "setup": "Failed break below fresh VWAP - rejected up",
+  "ask": 0.62,
+  "left": 180,
+  "reaims": 1,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-28T05:57:00+00:00",
+  "slot": "2026-10-28T05:55:00+00:00",
+  "side": "up",
+  "setup": "Rejected up off Bollinger lower",
+  "ask": 0.43,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-28T06:12:00+00:00",
+  "slot": "2026-10-28T06:10:00+00:00",
+  "side": "up",
+  "setup": "Rejected up off 5m PP",
+  "ask": 0.47,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "first"
  }
 ]

@@ -2365,3 +2365,7 @@ LIVE back on after fix373b 2026-10-28T05:49:33.697758+00:00 ({'recon.ts': '7d198
 2026-10-28T06:18:20.095435+00:00 THAW (if you think it’s safe to put on the rejection model for the hour i’m widdit bb)
 LIVE back on after fix374 2026-10-28T06:18:20.531497+00:00 ({'engine.ts': '8a48764731c76ef9'})
 2026-10-28T06:19:13Z fix374 (Oct 27 11:20 PM PT, Love: "how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)"): 11 PM PT the rejection model trades live (offHourMain.rejSeatHours [23]; liveSkipHours gold/btc 23 lifted, prev saved in fix374Prev). History at 11 PM: rej btc 50 trades 50% +$103, gold 35 51% +$72. Tonight 11:00: btc short -$21, gold long +$50.
+2026-10-28T06:22:15.646854+00:00 THAW (yesss pls (stale call guard))
+2026-10-28T06:22:33.508313+00:00 THAW (yesss pls (stale call guard))
+LIVE back on after fix375b 2026-10-28T06:22:34.006862+00:00 ({'engine.ts': '7eaaeb1b6b07ca98'})
+2026-10-28T06:22:42Z fix375 (Oct 27 11:25 PM PT, Love: "yesss pls 💘 (to: "Want me to add a guard so a call that is over a minute old can never fire right after a seat opens?")"): STALE CALL GUARD - copier never sends a never-tried call older than 90 s. Cause: fix374 switched the rejection seat on mid-window and her 11:15:11 gold long filled at 11:20:36 at 64c at the red (my mistake, owned to Love).

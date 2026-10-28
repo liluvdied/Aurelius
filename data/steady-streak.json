@@ -1,9 +1,9 @@
 {
  "rule": "a badge for Aurelius and Claude for every 24 h she stays on one spot - no unplanned change in code or settings, no execution slip",
  "chapter": {
-  "since": "2026-10-28T05:21:55.082904Z",
+  "since": "2026-10-28T06:21:55.071666Z",
   "reason": "after Love's revision",
-  "baselineSha": "df5637ae9b5d762f",
+  "baselineSha": "19537caaed501035",
   "cfg": {
    "cooldownAfterLoss": "b5bea41b6c",
    "route": "9d53f79e71",
@@ -46,7 +46,7 @@
    "breaker": "de26f74578",
    "presets": "8ee40259f0",
    "halfAt75": "b5bea41b6c",
-   "liveSkipHours": "b9335c6b9d",
+   "liveSkipHours": "ae07373da0",
    "brokenBy": "5676444012",
    "followPaperExit": "b5bea41b6c",
    "btcHeadroomSession": "624b60c58c",
@@ -63,7 +63,7 @@
    "shifts": "5802d83036",
    "bandExempt": "25b44e757c",
    "squeezeTrialDone": "1b076e2ccd",
-   "bookSkipHours": "e108e9004c",
+   "bookSkipHours": "a6706f9c29",
    "bookSkipHoursNote": "1c5d4064cc",
    "noLocksBooks": "169f22467a",
    "noLocksNote": "7a3cd157af",
@@ -149,7 +149,7 @@
    "assetDollarsOff": "8a3eed3ef7",
    "polyLiveNote": "40671f92fd",
    "dlyLiveNote": "0c40f78c42",
-   "offHourMain": "7d06ad6b5e",
+   "offHourMain": "3e9caad827",
    "bookSkipHoursByAsset": "e4226f5b46",
    "fix313Prev": "c1e29a6fd6",
    "liveSkipHoursPrev315": "a7a12423e8",
@@ -158,7 +158,8 @@
    "fix321Prev": "1bfaae9ab3",
    "fix352Prev": "23d7ac15bf",
    "fix360Prev": "ac6d740e35",
-   "npLive": "951ebde3b2"
+   "npLive": "951ebde3b2",
+   "fix374Prev": "f6fa805c30"
   },
   "badgesThisChapter": 0,
   "heartsThisChapter": 0
@@ -990,6 +991,13 @@
    "badgesThisChapter": 0,
    "ended": "2026-10-28T05:21:55.082904Z",
    "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T05:21:55.082904Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T06:21:55.071666Z",
+   "how": "Love's revision (baseline moved with her words)"
   }
  ],
  "breaks": [
@@ -1034,7 +1042,7 @@
    "streakHours": 1.0
   }
  ],
- "lastSeen": "2026-10-28T05:21:55.082904Z",
+ "lastSeen": "2026-10-28T06:21:55.071666Z",
  "drifting": false,
  "now": {
   "streakHours": 0.0,

@@ -1,9 +1,15 @@
-# Every decision Love has made - rebuilt 2026-10-28T06:19:25.385840+00:00
+# Every decision Love has made - rebuilt 2026-10-28T06:22:53.968086+00:00
 
-1225 decisions with Love's words or card picks, out of 1902 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1226 decisions with Love's words or card picks, out of 1906 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T06:22:42Z  ·  diary line 2371  ·  fix374, fix375
+- Love: “yesss pls 💘 (to:”
+- fix374 IN HER CODE
+- fix375 IN HER CODE
+- Full entry: 2026-10-28T06:22:42Z fix375 (Oct 27 11:25 PM PT, Love: "yesss pls 💘 (to: "Want me to add a guard so a call that is over a minute old can never fire right after a seat opens?")"): STALE CALL GUARD - copier never sends a never-tried call older than 90 s. Cause: fix374 switched the rejection seat on mid-window and her 11:15:11 gold long filled at 11:20:36 at 64c at the red (my mistake, owned to Love).
 
 ## 2026-10-28T06:19:13Z  ·  diary line 2367  ·  fix374
 - Love: “how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)”

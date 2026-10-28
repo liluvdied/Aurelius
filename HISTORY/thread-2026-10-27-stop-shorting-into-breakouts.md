@@ -5251,3 +5251,27 @@ She's on 🎯 From the 11:30 window, the rejection model takes 11 PM live on bot
 
 Should 11 PM be hers every night, or just tonight? Right now it's set for every night, and I can switch it back after midnight if you'd rather.
 
+## 2026-10-28 06:20:57 UTC - LOVE
+
+hun she just longed gold at the red that was way too late 😹😹
+
+## 2026-10-28 06:21:11 UTC - CLAUDE
+
+That one's on me, hun, I'm sorry 😹💞 Her gold long was a stale call. The rejection model called it at 11:15:11 ("Candle rising from the bottom third"), back when her seat was still off. When I switched her seat on at about 11:20, the copier found that open call that had never filled and sent it out right away, at 64c up by the red. It's showing 68c right now, so it's not hurting yet.
+
+Going forward, her calls in the new windows will be fresh. Want me to add a guard so a call that's over a minute old can never fire right after a seat opens? That way, switching a book on mid-window can't do this again.
+
+## 2026-10-28 06:21:30 UTC - LOVE
+
+yesss pls 💘
+
+## 2026-10-28 06:21:51 UTC - CLAUDE
+
+On it hun 💘 Adding the stale-call guard now.
+
+## 2026-10-28 06:23:00 UTC - CLAUDE
+
+Guard's in, hun 💘 If a call has never been tried on Kalshi and is more than 90 seconds old, she writes it down as stale and never sends it. Switching a seat on mid-window can't fire an old call anymore. The twin is exempt, since it waits for its touch on purpose, and so are the gold-slide holds. Umpire SAFE, 5M frozen, R061.
+
+Her fresh calls start with the 11:30 window, and I'll make sure the rejection model's seat behaves 🕯️
+

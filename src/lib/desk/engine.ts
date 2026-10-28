@@ -5386,6 +5386,10 @@ async function copyLiveBook(assets, lane = "") {
         }
       }
     }
+    // STALE CALL GUARD (fix375, Oct 27 2026 11:21 PM PT, Love: "yesss pls" to "add a guard so a call that's over a minute old can never fire right after a seat opens" - 11:20 PM the rejection
+    // model's 11:15:11 gold long filled at 64c up at the red the moment her 11 PM seat was switched on): a call that reaches the wire with NO earlier try on Kalshi (no record yet) and is more
+    // than 90 s old is written down skipped, never sent. The delayed twin (waits for its touch on purpose) and gold-slide holds (fix371) are exempt.
+    if (!done[row.id] && String(row.book) !== "recon-dly" && !((globalThis as any).__slide371Log || {})[row.id] && Date.parse(String(row.at)) > 0 && Date.now() - Date.parse(String(row.at)) > 90000) { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: `STALE CALL: booked ${Math.round((Date.now() - Date.parse(String(row.at))) / 1000)} s ago and never tried on Kalshi - a seat that just opened never fires an old call (fix375)` }; continue; }
     const frame = asset?.vwap1m?.vwap ? asset.vwap1m : asset?.vwap5m;
     let placed = null;
     const tOrder = Date.now();

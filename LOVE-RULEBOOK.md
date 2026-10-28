@@ -203,3 +203,5 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 - fix373 (Oct 27 ~10:50 PM PT, Love: "if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok 🎯 + card "Which books get the BTC pink-rejection re-aim?" -> "Main + rejection + copy""): BTC only - main/rejection/copy unfilled long refused under pink re-aims to the pink-rejection short (1-5m red flip); sticks for the window.
 
 - fix374 (Oct 27 11:20 PM PT, Love: "how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)"): 11 PM PT = the rejection model trades live (rejSeatHours [23]); the Oct 8 11 PM sit-out is lifted.
+
+- fix375 (Oct 27 11:25 PM PT, Love: "yesss pls 💘 (to: "Want me to add a guard so a call that is over a minute old can never fire right after a seat opens?")"): stale call guard - a never-tried call over 90 s old never goes to Kalshi.

@@ -1,5 +1,98 @@
 [
  {
+  "ticker": "KXGOLD15M-26OCT280230-30",
+  "asset": "gold",
+  "side": "up",
+  "atPT": "Tue 10-27 11:20 PM",
+  "stake": 5.02,
+  "ask": 0.64,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXBTC15M-26OCT280230-30",
+  "asset": "btc",
+  "side": "down",
+  "atPT": "Tue 10-27 11:20 PM",
+  "stake": 4.45,
+  "ask": 0.16,
+  "buys": 1,
+  "contracts": 27.79
+ },
+ {
+  "ticker": "KXGOLD15M-26OCT280200-00",
+  "asset": "gold",
+  "side": "up",
+  "profit": -12.26,
+  "peak": 0.59,
+  "atPT": "Tue 10-27 10:48 PM",
+  "stake": 4.08,
+  "ask": 0.53,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXBTC15M-26OCT280200-00",
+  "asset": "btc",
+  "side": "up",
+  "profit": -13.9,
+  "peak": 0.77,
+  "atPT": "Tue 10-27 10:45 PM",
+  "stake": 5.48,
+  "ask": 0.64,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXGOLD15M-26OCT280145-45",
+  "asset": "gold",
+  "side": "up",
+  "profit": 2.91,
+  "peak": 0.91,
+  "atPT": "Tue 10-27 10:31 PM",
+  "stake": 5.4,
+  "ask": 0.54,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXBTC15M-26OCT280145-45",
+  "asset": "btc",
+  "side": "up",
+  "profit": 18.45,
+  "peak": 0.85,
+  "atPT": "Tue 10-27 10:30 PM",
+  "stake": 5.21,
+  "ask": 0.49,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXGOLD15M-26OCT280130-30",
+  "asset": "gold",
+  "side": "up",
+  "profit": -3.97,
+  "peak": 0.06,
+  "atPT": "Tue 10-27 10:26 PM",
+  "stake": 1.87,
+  "ask": 0.03,
+  "buys": 2,
+  "contracts": 101.15,
+  "heldToSettle": "lost"
+ },
+ {
+  "ticker": "KXBTC15M-26OCT280130-30",
+  "asset": "btc",
+  "side": "up",
+  "profit": -13.52,
+  "peak": 0.57,
+  "atPT": "Tue 10-27 10:15 PM",
+  "stake": 5.07,
+  "ask": 0.49,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
   "ticker": "KXGOLD15M-26OCT280115-15",
   "asset": "gold",
   "side": "up",
@@ -8,16 +101,6 @@
   "atPT": "Tue 10-27 10:04 PM",
   "stake": 5.08,
   "ask": 0.5,
-  "buys": 0,
-  "contracts": 0
- },
- {
-  "ticker": "KXBTC15M-26OCT280130-30",
-  "asset": "btc",
-  "side": "up",
-  "atPT": "Tue 10-27 10:15 PM",
-  "stake": 5.07,
-  "ask": 0.49,
   "buys": 0,
   "contracts": 0
  },

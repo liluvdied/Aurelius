@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R061 - fix375: Kalshi copier - a call never tried on Kalshi and older than 90 s is skipped (stale), never sent. recon-dly and fix371 holds exempt.
+- when: 2026-10-28T06:22:42+00:00
+- Love: "yesss pls 💘 (to: "Want me to add a guard so a call that is over a minute old can never fire right after a seat opens?")"
+- books: all Kalshi copier books
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "a seat that just opened never fires an old call (fix375)"}
+
 ## R060 - fix374: 11 PM PT the REJECTION MODEL takes the live seat (offHourMain.rejSeatHours [23]); Oct 8 11 PM sit-out lifted from liveSkipHours gold+btc (prev in fix374Prev). Copy, main, twin, pure no-pink sit 11 PM out.
 - when: 2026-10-28T06:19:13+00:00
 - Love: "how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)"
