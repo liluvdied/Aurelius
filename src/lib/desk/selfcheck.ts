@@ -139,7 +139,7 @@ export function selfCheckTick() {
   // Fills and partials stay (the breaker and day board read them). The copier only looks at rows from the last 3 h, so nothing she still needs is moved.
   try {
     const G4 = globalThis as any;
-    if (!G4.__doneTrimAt || Date.now() - G4.__doneTrimAt >= 4 * 3600000) {
+    if (!G4.__doneTrimAt || Date.now() - G4.__doneTrimAt >= 1 * 3600000 /* fix370 (Oct 27 2026 10:01 PM PT, Love: "her entries are starting to lag a bit again hun, let's set it up to clear her cache every hour instead of every 4 pls it gets slower hour by hour , we'll have her do it each hour okay"): every hour (was 4 h); the 3.5 h age line stays so the copier (reads rows < 3 h) never loses a row */) {
       G4.__doneTrimAt = Date.now();
       const d0 = rd("live-book-done.json", null);
       if (d0 && typeof d0 === "object") {

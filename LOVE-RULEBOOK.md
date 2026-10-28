@@ -193,3 +193,5 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 - fix368 (Oct 27 ~9:45 PM PT, Love: "hun she keeps longing into unbroken bands pls fix her" + card "How should the pure no-pink treat unbroken bands above a long?" -> "$1 gold / $25 BTC, any band"): PURE NO-PINK only - no long within $1 gold / $25 BTC under ANY unbroken band (pink, purple, session sigma/VWAP, Bollinger, red/green zone); mirror for shorts. She waits for the break, then the next band.
 
 - fix369 (Oct 27 9:53 PM PT, Love: "bands are only about $130 apart right now , btc can stay $10 at bands under $150 , gold can stay $1 / every time band width doubles (eg 300) triple the tolerance / so $30 at $300 , / basically just 10% lol / $10 under $180 is okay for rn though"): PURE NO-PINK any-band cushion BTC $10 while bands < $180 apart, 10% of width at $180+; gold $1. Sliding scale for all conditions planned this week.
+
+- fix370 (Oct 27 10:01 PM PT, Love: "her entries are starting to lag a bit again hun, let’s set it up to clear her cache every hour instead of every 4 pls it gets slower hour by hour , we’ll have her do it each hour okay"): auto-clear every hour (was 4 h).

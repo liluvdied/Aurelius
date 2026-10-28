@@ -1,5 +1,28 @@
 [
  {
+  "id": "KXGOLD15M-26OCT280115-15:down",
+  "at": "2026-10-28T05:02:01.956Z",
+  "asset": "gold",
+  "ticker": "KXGOLD15M-26OCT280115-15",
+  "side": "down",
+  "band": "-2σ",
+  "level": 4036.15,
+  "close": 4035.83,
+  "low": 4035.56,
+  "high": 4036.43,
+  "vwap": 4053.27,
+  "stdev": 8.56,
+  "target": 4036.67,
+  "ask": 0.64,
+  "multiple": 1.56,
+  "tpPct": 50,
+  "peakBid": 0.63,
+  "tpHit": false,
+  "result": "open",
+  "bellProfit": null,
+  "tpProfit": null
+ },
+ {
   "id": "KXBTC15M-26OCT280100-00:down",
   "at": "2026-10-28T04:49:00.713Z",
   "asset": "btc",
@@ -16,11 +39,11 @@
   "ask": 0.66,
   "multiple": 1.52,
   "tpPct": 46.5,
-  "peakBid": 0.901,
-  "tpHit": false,
-  "result": "open",
-  "bellProfit": null,
-  "tpProfit": null
+  "peakBid": 0.983,
+  "tpHit": true,
+  "result": "win",
+  "bellProfit": 5.15,
+  "tpProfit": 4.89
  },
  {
   "id": "KXGOLD15M-26OCT280100-00:down",
@@ -41,8 +64,8 @@
   "tpPct": 88.1,
   "peakBid": 0.88,
   "tpHit": true,
-  "result": "open",
-  "bellProfit": null,
+  "result": "win",
+  "bellProfit": 11.74,
   "tpProfit": 9.13
  },
  {
@@ -11475,28 +11498,5 @@
   "result": "win",
   "bellProfit": 10.41,
   "tpProfit": 8.41
- },
- {
-  "id": "KXBTC15M-26OCT222345-45:up",
-  "at": "2026-10-23T03:33:01.425Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT222345-45",
-  "side": "up",
-  "band": "+1.5σ",
-  "level": 81671.27,
-  "close": 81676,
-  "low": 81674.31,
-  "high": 81723.34,
-  "vwap": 81373.26,
-  "stdev": 198.67,
-  "target": 81675.04,
-  "ask": 0.51,
-  "multiple": 1.96,
-  "tpPct": 72.1,
-  "peakBid": 0.88,
-  "tpHit": true,
-  "result": "win",
-  "bellProfit": 9.61,
-  "tpProfit": 7.25
  }
 ]

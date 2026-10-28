@@ -1,6 +1,6 @@
 {
- "at": "2026-10-28T04:53:52.277Z",
- "scanned": 126,
+ "at": "2026-10-28T05:00:54.341Z",
+ "scanned": 132,
  "picked": [
   "KXTEMPDCH",
   "KXTEMPMON",
@@ -9,18 +9,18 @@
   "KXTEMPLAXHS",
   "KXTEMPCHIHS",
   "KXTEMP",
-  "KXLOWLAX",
-  "KXHIGHTSFO",
-  "KXLOWTATL",
-  "KXLOWTDEN",
-  "KXHIGHUS",
-  "KXLOWTLV",
-  "KXHIGHTSAN",
-  "KXLOWTEWR",
-  "KXLOWTSAN",
-  "KXLOWCHI",
-  "KXHIGHTDAL",
-  "KXLOWTPHX"
+  "KXHIGHNY",
+  "KXLOWTAUS",
+  "KXLOWTSFO",
+  "KXHIGHTBOS",
+  "KXHIGHLAX",
+  "KXLOWTSEA",
+  "KXHIGHTSDF",
+  "KXHIGHAUS",
+  "KXLOWTTTN",
+  "KXLOWTHOU",
+  "KXHIGHTTTN",
+  "KXLOWTCHI"
  ],
  "stations": {
   "KXTEMPLAXHS": "KLAX",
@@ -72,9 +72,7 @@
  "rules": {},
  "flags": [],
  "errors": [
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPCHIHS&status=settl",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMP&status=open&limit",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTSFO&status=open&l"
+  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTCHI&status=open&li"
  ],
  "cats": {
   "Financials": 1078,

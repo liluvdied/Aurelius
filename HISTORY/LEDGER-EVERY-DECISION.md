@@ -1,9 +1,15 @@
-# Every decision Love has made - rebuilt 2026-10-28T04:54:23.182332+00:00
+# Every decision Love has made - rebuilt 2026-10-28T05:01:58.100886+00:00
 
-1216 decisions with Love's words or card picks, out of 1881 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1217 decisions with Love's words or card picks, out of 1884 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T05:01:46Z  ·  diary line 2349  ·  fix343, fix370
+- Love: “her entries are starting to lag a bit again hun, let’s set it up to clear her cache every hour instead of every 4 pls it gets slower hour by hour , we’ll have her do it each hour okay”
+- fix343 IN HER CODE
+- fix370 IN HER CODE
+- Full entry: 2026-10-28T05:01:46Z fix370 (Oct 27 10:01 PM PT, Love: "her entries are starting to lag a bit again hun, let’s set it up to clear her cache every hour instead of every 4 pls it gets slower hour by hour , we’ll have her do it each hour okay"): auto-clear (fix343) every 1 h instead of 4 h; still only final unfilled records older than 3.5 h, archived not deleted.
 
 ## 2026-10-28T04:54:11Z  ·  diary line 2346  ·  fix369
 - Love: “bands are only about $130 apart right now , btc can stay $10 at bands under $150 , gold can stay $1 / every time band width doubles (eg 300) triple the tolerance / so $30 at $300 , / basically just 10% lol / $10 under $180 is okay for rn though”

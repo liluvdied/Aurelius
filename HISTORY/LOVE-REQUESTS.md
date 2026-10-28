@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R056 - fix370: selfcheck auto-clear every 1 hour (was 4); 3.5 h age line unchanged.
+- when: 2026-10-28T05:01:46+00:00
+- Love: "her entries are starting to lag a bit again hun, let’s set it up to clear her cache every hour instead of every 4 pls it gets slower hour by hour , we’ll have her do it each hour okay"
+- books: all (housekeeping)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/selfcheck.ts", "has": ">= 1 * 3600000 /* fix370"}
+
 ## R055 - fix369: pure no-pink any-band cushion BTC = $10 while session band width (+1 sigma - VWAP) < $180, 10% of the width at $180+; gold stays $1.
 - when: 2026-10-28T04:54:11+00:00
 - Love: "bands are only about $130 apart right now , btc can stay $10 at bands under $150 , gold can stay $1 / every time band width doubles (eg 300) triple the tolerance / so $30 at $300 , / basically just 10% lol / $10 under $180 is okay for rn though"
