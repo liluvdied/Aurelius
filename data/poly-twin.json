@@ -1,76 +1,4 @@
 {
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n512:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 19,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n511:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 19,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n514:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 19,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n513:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 19,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n516:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 18,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n515:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT271815-15",
-  "setup": "Break below 5m PP",
-  "lastTry": 1793138942191,
-  "tries": 18,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
  "KXBTC15M-26OCT271815-15:recon-tog:KXBTC15M-26OCT271815-15:recon-tog:n518:5m": {
   "book": "recon-tog-5m",
   "asset": "btc",
@@ -4920,11 +4848,11 @@
   "side": "down",
   "ticker": "KXBTC15M-26OCT272345-45",
   "setup": "Rejected down off Red zone",
-  "lastTry": 1793158875610,
-  "tries": 18,
-  "wallOk": true,
-  "status": "waiting",
-  "reason": "late door only (the other book holds the 5m)"
+  "lastTry": 1793159040647,
+  "tries": 56,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
  },
  "KXBTC15M-26OCT272345-45:recon-rej5:s5977196:5m": {
   "book": "recon-rej-5m",
@@ -4932,10 +4860,82 @@
   "side": "down",
   "ticker": "KXBTC15M-26OCT272345-45",
   "setup": "Launched from the top third (high 81062.93) - a short until the bottom third",
-  "lastTry": 1793158875610,
-  "tries": 18,
-  "wallOk": true,
-  "status": "waiting",
-  "reason": "waiting for a 1m candle to close red (her 5m flip)"
+  "lastTry": 1793159040647,
+  "tries": 56,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280000-00:recon-tog:KXBTC15M-26OCT280000-00:recon-tog:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT280000-00",
+  "setup": "1m rejection off +3σ",
+  "lastTry": 1793159340520,
+  "tries": 51,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280000-00:recon-rej5:KXBTC15M-26OCT280000-00:recon-rej5:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT280000-00",
+  "setup": "Failed break below +3σ - rejected up",
+  "lastTry": 1793159340520,
+  "tries": 50,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280000-00:recon-tog:s5977198:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT280000-00",
+  "setup": "Rejected up off fresh +2σ",
+  "lastTry": 1793159641970,
+  "tries": 57,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280000-00:recon-rej5:s5977198:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT280000-00",
+  "setup": "Rejected up off fresh +2σ",
+  "lastTry": 1793159641970,
+  "tries": 57,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280000-00:recon-tog:s5977199:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT280000-00",
+  "setup": "Rejected down off Bollinger upper",
+  "lastTry": 1793159940368,
+  "tries": 57,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT280000-00:recon-rej5:s5977199:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT280000-00",
+  "setup": "Launched from the top third (high 81020.82) - a short until the bottom third",
+  "lastTry": 1793159940368,
+  "tries": 56,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
  }
 }

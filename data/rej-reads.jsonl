@@ -2822,3 +2822,55 @@
 {"at":"2026-10-28T03:40:08.171Z","s5":5977196,"side":"up","label":"Rejected up off +3σ","spot":81061.57}
 {"at":"2026-10-28T03:40:09.160Z","s5":5977196,"side":"down","label":"Rejected down off Red zone","spot":81045.96}
 {"at":"2026-10-28T03:40:10.167Z","s5":5977196,"side":"up","label":"Failed break below +3σ - rejected up","spot":81072.74}
+{"at":"2026-10-28T03:41:21.696Z","s5":5977196,"side":"down","label":"Failed break above Red zone - rejected down","spot":81056.77}
+{"at":"2026-10-28T03:41:26.801Z","s5":5977196,"side":"up","label":"Bottom third, green candle - seen as a long off 81060.28 (was: Failed break above Bollinger upper - rejected down)","spot":81066.93}
+{"at":"2026-10-28T03:45:15.991Z","s5":5977197,"side":"up","label":"Candle rising from the bottom third","spot":81106.9}
+{"at":"2026-10-28T03:45:57.445Z","s5":5977197,"side":"down","label":"Failed break above Bollinger upper - rejected down","spot":81060.08}
+{"at":"2026-10-28T03:46:06.951Z","s5":5977197,"side":"up","label":"Bottom third, green candle - seen as a long off 81060.28 (was: 1m rejection off Bollinger upper)","spot":81083.52}
+{"at":"2026-10-28T03:46:48.838Z","s5":5977197,"side":"down","label":"Red candle falling from the top third","spot":81070.3}
+{"at":"2026-10-28T03:46:55.866Z","s5":5977197,"side":"up","label":"Launched from the bottom third (low 81060.08) - a long until the top third","spot":81096.83}
+{"at":"2026-10-28T03:46:57.543Z","s5":5977197,"side":"down","label":"Red candle falling from the top third","spot":81073.42}
+{"at":"2026-10-28T03:47:02.800Z","s5":5977197,"side":"up","label":"Launched from the bottom third (low 81060.08) - a long until the top third","spot":81112.02}
+{"at":"2026-10-28T03:47:07.868Z","s5":5977197,"side":"down","label":"Red candle falling from the top third","spot":81079.25}
+{"at":"2026-10-28T03:47:09.889Z","s5":5977197,"side":"up","label":"Bottom third, green candle - seen as a long off 81060.28 (was: 1m rejection off Bollinger upper)","spot":81081.37}
+{"at":"2026-10-28T03:47:33.860Z","s5":5977197,"side":"down","label":"Red candle falling from the top third","spot":81074.74}
+{"at":"2026-10-28T03:47:39.119Z","s5":5977197,"side":"up","label":"Bottom third, green candle - seen as a long off 81060.28 (was: 1m rejection off Bollinger upper)","spot":81080.23}
+{"at":"2026-10-28T03:47:41.295Z","s5":5977197,"side":"down","label":"Red candle falling from the top third","spot":81078.84}
+{"at":"2026-10-28T03:48:07.106Z","s5":5977197,"side":"up","label":"Rejected up off +3σ","spot":81090.18}
+{"at":"2026-10-28T03:48:08.111Z","s5":5977197,"side":"down","label":"1m rejection off Bollinger upper","spot":81050.2}
+{"at":"2026-10-28T03:48:13.571Z","s5":5977197,"side":"up","label":"Bottom third, green candle - seen as a long off 81060.28 (was: 1m rejection off Bollinger upper)","spot":81088.62}
+{"at":"2026-10-28T03:48:14.562Z","s5":5977197,"side":"down","label":"1m rejection off Bollinger upper","spot":81049.62}
+{"at":"2026-10-28T03:48:52.973Z","s5":5977197,"side":"up","label":"1m rejection off +3σ","spot":81080.23}
+{"at":"2026-10-28T03:50:00.091Z","s5":5977198,"side":"up","label":"Rejected up off fresh +2σ","spot":81088.08}
+{"at":"2026-10-28T03:50:21.476Z","s5":5977198,"side":"down","label":"Red candle falling from the top third","spot":81050.34}
+{"at":"2026-10-28T03:50:38.431Z","s5":5977198,"side":"up","label":"Failed break below +3σ - rejected up","spot":81083.78}
+{"at":"2026-10-28T03:52:52.950Z","s5":5977198,"side":"down","label":"Top third - seen as a short under 81060.28 (was: Rejected up off fresh +2σ)","spot":81059.33}
+{"at":"2026-10-28T03:55:02.610Z","s5":5977199,"side":"down","label":"Rejected down off Bollinger upper","spot":81014.36}
+{"at":"2026-10-28T04:00:12.567Z","s5":5977200,"side":"down","label":"Rejected down off fresh +2σ","spot":81027.21}
+{"at":"2026-10-28T04:05:03.397Z","s5":5977201,"side":"up","label":"Launched from the bottom third (low 80944.11) - a long until the top third","spot":80952.16}
+{"at":"2026-10-28T04:05:38.808Z","s5":5977201,"side":"down","label":"Rejected down off 5m PP","spot":80919.84}
+{"at":"2026-10-28T04:05:40.879Z","s5":5977201,"side":"up","label":"Failed break below fresh +1σ - rejected up","spot":80959.96}
+{"at":"2026-10-28T04:05:41.897Z","s5":5977201,"side":"down","label":"Rejected down off 5m PP","spot":80925.06}
+{"at":"2026-10-28T04:05:44.599Z","s5":5977201,"side":"up","label":"Failed break below fresh +1σ - rejected up","spot":80964.43}
+{"at":"2026-10-28T04:05:45.596Z","s5":5977201,"side":"down","label":"Rejected down off 5m PP","spot":80925.64}
+{"at":"2026-10-28T04:05:47.587Z","s5":5977201,"side":"up","label":"Failed break below fresh +1σ - rejected up","spot":80956.01}
+{"at":"2026-10-28T04:05:48.604Z","s5":5977201,"side":"down","label":"Rejected down off 5m PP","spot":80926.12}
+{"at":"2026-10-28T04:05:49.597Z","s5":5977201,"side":"up","label":"Failed break below fresh +1σ - rejected up","spot":80956.83}
+{"at":"2026-10-28T04:05:58.904Z","s5":5977201,"side":"down","label":"Rejected down off 5m PP","spot":80916.8}
+{"at":"2026-10-28T04:06:13.434Z","s5":5977201,"side":"up","label":"Failed break below fresh +1σ - rejected up","spot":80956.15}
+{"at":"2026-10-28T04:06:19.676Z","s5":5977201,"side":"down","label":"1m rejection off fresh +1σ","spot":80926.54}
+{"at":"2026-10-28T04:10:02.474Z","s5":5977202,"side":"down","label":"Launched from the top third (high 80876.77) - a short until the bottom third","spot":80875.68}
+{"at":"2026-10-28T04:15:03.838Z","s5":5977203,"side":"down","label":"Launched from the top third (high 80863.66) - a short until the bottom third","spot":80861.57}
+{"at":"2026-10-28T04:16:51.536Z","s5":5977203,"side":"up","label":"Green candle rising from the bottom third","spot":80876.83}
+{"at":"2026-10-28T04:17:00.726Z","s5":5977203,"side":"down","label":"Launched from the top third (high 80893.51) - a short until the bottom third","spot":80860.99}
+{"at":"2026-10-28T04:17:11.037Z","s5":5977203,"side":"up","label":"Green candle rising from the bottom third","spot":80875.91}
+{"at":"2026-10-28T04:17:57.465Z","s5":5977203,"side":"down","label":"Launched from the top third (high 80893.51) - a short until the bottom third","spot":80856.44}
+{"at":"2026-10-28T04:18:59.130Z","s5":5977203,"side":"up","label":"Green candle rising from the bottom third","spot":80864.17}
+{"at":"2026-10-28T04:19:07.436Z","s5":5977203,"side":"down","label":"Candle falling from the top third","spot":80850.02}
+{"at":"2026-10-28T04:19:18.594Z","s5":5977203,"side":"up","label":"Green candle rising from the bottom third","spot":80869.13}
+{"at":"2026-10-28T04:19:32.452Z","s5":5977203,"side":"down","label":"Launched from the top third (high 80893.51) - a short until the bottom third","spot":80860.86}
+{"at":"2026-10-28T04:19:36.478Z","s5":5977203,"side":"up","label":"Green candle rising from the bottom third","spot":80863.94}
+{"at":"2026-10-28T04:19:59.740Z","s5":5977203,"side":"down","label":"Launched from the top third (high 80897.46) - a short until the bottom third","spot":80861.45}
+{"at":"2026-10-28T04:20:01.827Z","s5":5977204,"side":"down","label":"Top third - seen as a short under 80933.65 (was: Rejected up off Green zone)","spot":80861.39}
+{"at":"2026-10-28T04:25:00.093Z","s5":5977205,"side":"down","label":"Rejected down off 5m PP","spot":80820.69}
+{"at":"2026-10-28T04:25:14.220Z","s5":5977205,"side":"up","label":"Rejected up off Green zone","spot":80823.17}

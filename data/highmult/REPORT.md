@@ -1,12 +1,12 @@
 # High-multiple paper book 💎
 
-Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, since Sun 04:30 AM PT. Paper only. Updated Tue 08:21 PM PT.
+Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, since Sun 04:30 AM PT. Paper only. Updated Tue 09:22 PM PT.
 
 | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|
-| cash at 3x | 17 | 4 | 24% | $-50.00 |
-| cash at 5x | 17 | 3 | 18% | $-20.00 |
-| cash at 10x | 17 | 1 | 6% | $-70.00 |
+| cash at 3x | 18 | 4 | 22% | $-60.00 |
+| cash at 5x | 18 | 3 | 17% | $-30.00 |
+| cash at 10x | 18 | 1 | 6% | $-80.00 |
 
 | When (PT) | Asset | Side | Ask | Setup | Peak bid | 3x | 5x | 10x |
 |---|---|---|---|---|---|---|---|---|
@@ -27,5 +27,6 @@ Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, sinc
 | Tue 04:25 PM | gold | up | 0.04 | Rejected up off fresh -2σ | 0.067 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Tue 04:35 PM | gold | up | 0.06 | Bottom third, green candle - seen as a long off 40 | 0.2 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Tue 06:10 PM | btc | up | 0.06 | Break above fresh -2σ | 0.08 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue 08:26 PM | gold | up | 0.03 | Rejected up off Bollinger lower | 0.013 | lost -10.00 | lost -10.00 | lost -10.00 |
 
 Replay before launch (Oct 19-25, main calls at 10x+, n=16): cash 3x won 1/16 (-$8.12/trade), 5x 1/16 (-$6.88), 10x 0/16 (-$10).

@@ -1,13 +1,13 @@
 # 5m snipe paper book 🎯
 
-Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Tue 08:21 PM PT.
+Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Tue 09:22 PM PT.
 
 | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|
-| cash at 3x | 36 | 9 | 25% | $+449.17 |
-| cash at 5x | 36 | 8 | 22% | $+519.17 |
-| cash at 7.5x | 36 | 7 | 19% | $+569.17 |
-| cash at 10x | 36 | 7 | 19% | $+646.09 |
+| cash at 3x | 38 | 9 | 24% | $+429.17 |
+| cash at 5x | 38 | 8 | 21% | $+499.17 |
+| cash at 7.5x | 38 | 7 | 18% | $+549.17 |
+| cash at 10x | 38 | 7 | 18% | $+626.09 |
 
 | When (PT) | Book | Side | Paid | Peak bid | 3x | 5x | 7.5x | 10x |
 |---|---|---|---|---|---|---|---|---|
@@ -85,3 +85,6 @@ Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her s
 | Tue 05:07 PM | recon-tog | up | 0.15 | 0.14 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Tue 07:13 PM | recon-tog | down | 0.05 | 0.04 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Tue 07:53 PM | recon-tog | down | 0.04 | 0.11 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue 08:23 PM | recon-tog | down | 0.04 | 0.04 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Tue 08:44 PM | recon-tog | down | 0.04 | 0.03 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
+| Tue 09:07 PM | recon-tog | up | 0.05 | 0.04 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |

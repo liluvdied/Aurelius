@@ -4793,3 +4793,71 @@ It's out of the copy again now (fix364), and that's checked by the umpire every 
 
 One thing so you know: **main** still has that flip. It's your Oct 20 rule ("in the top 33% she only sees it as a short"), and I haven't touched it. If you want it gone from main too, say the word and it's out 💘
 
+## 2026-10-28 03:55:14 UTC - LOVE
+
+thanks love , hasn’t been a problem on main yet so we’ll keep her as is until it becomes one ok 😹💓
+
+and the btc long was right under a bollinger again hun
+
+## 2026-10-28 03:55:22 UTC - LOVE
+
+and it was a red candle
+
+## 2026-10-28 03:55:23 UTC - CLAUDE
+
+Deal hun, main keeps her flip until it's a problem 😹💓 Looking at the BTC long under the Bollinger now.
+
+## 2026-10-28 03:55:59 UTC - CLAUDE
+
+You're right on both, hun 💞 This was the **no-pink copy**, long at 8:51:03 PM at $81,065.82, called "Failed break below +3σ – rejected up" (session +3σ at $81,060).
+
+- **Red candle:** every 1–5m candle was red when she filled (the 1m opened at $81,083.61, so she was $18 under it). The flip check didn't stop her because this call counts as a **fake-out turn**, and fake-out turns are allowed to skip the flip. That's how she got in on red.
+- **Bollinger:** the upper Bollinger was at ~$81,116, so $50 overhead. Her "Bollinger over the band" wall only blocks when the Bollinger is within **$50** of the band she's over. It was $56, so she cleared it by $6.
+
+What I'd do, **copy only**:
+1. A fake-out turn no longer skips her flip, so she still needs a candle $5 her way.
+2. Raise her Bollinger wall from $50 to **$75**.
+
+Want both, just one, or a different number on the Bollinger? Main stays as it is either way 💘
+
+## 2026-10-28 03:59:41 UTC - CLAUDE
+
+Her 8 PM paper score before she goes live at 9, hun 💞 (paper at a flat $5, last call per window)
+
+- **Pure no-pink:** 1W 3L, about **−$10**. She lost a BTC long off the blue VWAP and two shorts off +1σ/+3σ, and won a gold long off the lower Bollinger.
+- **No-pink copy:** 3W 2L, about **+$3**.
+
+It's a tiny sample, just 4 calls, but you'd said "if she does well on paper this hour", and she didn't really. She's still set to go live at **9:00** at $3 + $5 per your card. If you'd rather keep her on paper another hour, just say "paper" and I'll turn her live seat off right away. Main and the copy are untouched either way 💘
+
+## 2026-10-28 04:23:20 UTC - LOVE
+
+yes, both bb 💞
+
+she seems to be doing alright on kalshi hunn, how’s she doing on paper now?
+
+## 2026-10-28 04:23:37 UTC - CLAUDE
+
+On it hun 💞 I'm putting both copy fixes in (fake-out turns still need her flip, Bollinger wall to $75) and pulling the pure no-pink's paper and Kalshi numbers.
+
+## 2026-10-28 04:25:17 UTC - LOVE
+
+gold rejected up hun 
+
+btc on a band rejecting up now too no entry?
+
+## 2026-10-28 04:25:18 UTC - CLAUDE
+
+Both copy fixes are in, hun 💞 A fake-out turn now needs her flip like everything else, and her Bollinger wall is $75 (main and the rest stay at $50). The umpire says SAFE.
+
+How the pure no-pink is doing:
+- **Live on Kalshi (9 PM):** one trade so far, a BTC short at 9:00 with $2.71 in plus her $5 add-on. She cashed out at 9:05–9:07 for about **+$11** ✨ On gold, her walls kept her out of both windows (band too close to the target).
+- **Paper since she started at 8:09 PM:** 2W 4L, about **−$6** at a flat $5, with 3 still open. The copy over the same stretch is 4W 2L, about **+$15**.
+
+So live is off to a lovely start, but paper says it's still early. Let's let her finish the hour and see 💘
+
+## 2026-10-28 04:25:32 UTC - CLAUDE
+
+**BTC:** she's in hun 💞 The pure no-pink called "rejected up off the green zone" at 9:25:14, waited about 4 seconds for a candle to turn $5 green, and filled the long live at 9:25:19.
+
+**Gold:** she sees the same green-zone rejection long, but your gold target rule is holding her. The −1.5σ ($4,042.47) sits only 9c from the window's strike ($4,042.38), and price hasn't broken through it yet. That rule says no long with a band right at the target until it breaks. Main is reading a short there anyway, and it sits out this hour.
+

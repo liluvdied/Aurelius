@@ -11335,9 +11335,9 @@
   "reason": "RECON-DLY sits out her worst hour (8 PM PT) live"
  },
  "KXGOLD15M-26OCT272330-30:recon-tog": {
-  "status": "blocked",
+  "status": "missed",
   "paid": null,
-  "reason": "unfilled"
+  "reason": "window ended before it filled (last: PINK 10%: long $1.47 under the unbroken pink (4046.73) - inside 10% ($2.00) of the 4041.56 -> 4048.73 channel. wait for pin"
  },
  "KXBTC15M-26OCT272330-30:recon-tog": {
   "status": "skipped",
@@ -11348,5 +11348,85 @@
   "status": "skipped",
   "paid": null,
   "reason": "RECON-DLY sits out her worst hour (8 PM PT) live"
+ },
+ "KXBTC15M-26OCT272330-30:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (8 PM PT) live"
+ },
+ "KXGOLD15M-26OCT272345-45:recon-tog": {
+  "status": "filled",
+  "paid": 0.55,
+  "reason": ""
+ },
+ "KXBTC15M-26OCT272345-45:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
+ },
+ "KXBTC15M-26OCT272345-45:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (8 PM PT) live"
+ },
+ "KXGOLD15M-26OCT272345-45:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (8 PM PT) live"
+ },
+ "KXBTC15M-26OCT280000-00:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the NO-PINK copy takes this hour live (Love, Oct 26)"
+ },
+ "KXBTC15M-26OCT280000-00:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (8 PM PT) live"
+ },
+ "KXGOLD15M-26OCT280000-00:recon-tog": {
+  "status": "filled",
+  "paid": 0.55,
+  "reason": ""
+ },
+ "KXGOLD15M-26OCT280000-00:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (8 PM PT) live"
+ },
+ "KXBTC15M-26OCT280015-15:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280015-15:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXBTC15M-26OCT280015-15:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXGOLD15M-26OCT280015-15:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXBTC15M-26OCT280030-30:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280030-30:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the PURE NO-PINK takes this hour live (Love, Oct 27)"
+ },
+ "KXGOLD15M-26OCT280030-30:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
  }
 }

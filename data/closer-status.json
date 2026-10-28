@@ -1,5 +1,5 @@
 {
- "at": "2026-10-28T03:40:20.811Z",
+ "at": "2026-10-28T04:24:48.004Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -27,9 +27,9 @@
    "matched": 0
   },
   "NHL": {
-   "live": 4,
-   "late": 1,
-   "matched": 1
+   "live": 3,
+   "late": 2,
+   "matched": 2
   },
   "MLB": {
    "live": 1,
@@ -40,23 +40,34 @@
  "watching": [
   {
    "league": "NHL",
-   "game": "Wild 3 @ Mammoth 0",
+   "game": "Senators 1 @ Golden Knights 2",
    "period": 3,
-   "clock": "5:38",
-   "fav": "Wild",
+   "clock": "9:12",
+   "fav": "Golden Knights",
    "wp": null,
-   "ask": 1,
-   "ticker": "KXNHLGAME-26OCT27MINUTA-MIN",
+   "ask": 0.83,
+   "ticker": "KXNHLGAME-26OCT27OTTVGK-VGK",
+   "matched": true
+  },
+  {
+   "league": "NHL",
+   "game": "Canucks 3 @ Ducks 5",
+   "period": 3,
+   "clock": "7:06",
+   "fav": "Ducks",
+   "wp": null,
+   "ask": 0.99,
+   "ticker": "KXNHLGAME-26OCT27VANANA-ANA",
    "matched": true
   },
   {
    "league": "MLB",
-   "game": "Brewers 2 @ Rays 2",
-   "period": 11,
+   "game": "Brewers 3 @ Rays 2",
+   "period": 12,
    "clock": "0:00",
    "fav": "Rays",
-   "wp": 0.53,
-   "ask": 0.55,
+   "wp": 0.6,
+   "ask": 0.8,
    "ticker": "KXMLBGAME-26OCT272000MILTB-TB",
    "matched": true
   }

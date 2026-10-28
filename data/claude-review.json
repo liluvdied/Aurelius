@@ -82108,5 +82108,153 @@
    "Clean: right side of the band, nothing in front, sold on plan.",
    "The rejection shadow agreed (long off +0.5σ)."
   ]
+ },
+ "KXBTC15M-26OCT272345-45": {
+  "ticker": "KXBTC15M-26OCT272345-45",
+  "at": "2026-10-28T03:45:07.276Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "Top third - seen as a short under 81060.28 (was: Break above fresh +2σ)",
+  "multiple": 8.33,
+  "profit": -14.02,
+  "result": "loss",
+  "entry": {
+   "spot": 81053.55,
+   "band": "+2.5σ",
+   "distSigma": 0.14,
+   "rightSide": true,
+   "bandAhead": true,
+   "throughTarget": false,
+   "minuteIn": 5
+  },
+  "peakPct": 33.3,
+  "maxPct": 733.3,
+  "takeProfitPct": 550,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "A band was directly in front of the short at entry."
+  ],
+  "lessons": []
+ },
+ "KXGOLD15M-26OCT272345-45": {
+  "ticker": "KXGOLD15M-26OCT272345-45",
+  "at": "2026-10-28T03:45:28.921Z",
+  "asset": "gold",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "multiple": 1.82,
+  "profit": -3.15,
+  "result": "loss",
+  "entry": {
+   "spot": 4044.67,
+   "band": "-1.5σ",
+   "distSigma": 0.05,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": true,
+   "minuteIn": 1.6
+  },
+  "peakPct": 67.3,
+  "maxPct": 81.8,
+  "takeProfitPct": 61.4,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Reached the take-profit (+67.3% vs +61.4%) and still lost. The sale was missed."
+  ],
+  "lessons": [
+   "The rejection shadow went the other way (long off -1.5σ)."
+  ]
+ },
+ "KXBTC15M-26OCT280000-00": {
+  "ticker": "KXBTC15M-26OCT280000-00",
+  "at": "2026-10-28T04:00:26.988Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Failed break below +3σ - rejected up",
+  "multiple": 2.17,
+  "profit": -13.58,
+  "result": "loss",
+  "entry": {
+   "spot": 81085.55,
+   "band": "+2.5σ",
+   "distSigma": 0.17,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": false,
+   "minuteIn": 6.1
+  },
+  "peakPct": 6.5,
+  "maxPct": 117.4,
+  "takeProfitPct": 88.1,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of +2.5σ: long just under it.",
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": []
+ },
+ "KXGOLD15M-26OCT280000-00": {
+  "ticker": "KXGOLD15M-26OCT280000-00",
+  "at": "2026-10-28T04:00:30.822Z",
+  "asset": "gold",
+  "side": "down",
+  "setup": "Launched from the top third (high 4046.80) - a short until the bottom third",
+  "multiple": 1.82,
+  "profit": 3.57,
+  "result": "win",
+  "entry": {
+   "spot": 4045.34,
+   "band": "-1.5σ",
+   "distSigma": 0.14,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": true,
+   "minuteIn": 1.8
+  },
+  "peakPct": 78.2,
+  "maxPct": 81.8,
+  "takeProfitPct": 61.4,
+  "exit": "mirrored RECON-TOG paper out: half at 75% (91c) + trail from 90%: best +111%, sold at 97c",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of -1.5σ: short just over it.",
+   "A band was directly in front of the short at entry."
+  ],
+  "lessons": [
+   "The rejection shadow went the other way (long off -1.5σ)."
+  ]
+ },
+ "KXBTC15M-26OCT280015-15": {
+  "ticker": "KXBTC15M-26OCT280015-15",
+  "at": "2026-10-28T04:15:26.855Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "Rejected down off fresh +2σ",
+  "multiple": 2.63,
+  "profit": 11.17,
+  "result": "win",
+  "entry": {
+   "spot": 81027.21,
+   "band": "+2σ",
+   "distSigma": 0.23,
+   "rightSide": true,
+   "bandAhead": true,
+   "throughTarget": false,
+   "minuteIn": 0.3
+  },
+  "peakPct": 139.5,
+  "maxPct": 163.2,
+  "takeProfitPct": 122.4,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "A band was directly in front of the short at entry."
+  ],
+  "lessons": [
+   "The rejection shadow went the other way (long off +1.5σ)."
+  ]
  }
 }
