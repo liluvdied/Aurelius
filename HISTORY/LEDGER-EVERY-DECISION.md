@@ -1,9 +1,309 @@
-# Every decision Love has made - rebuilt 2026-10-28T00:20:20.557261+00:00
+# Every decision Love has made - rebuilt 2026-10-28T04:35:09.667581+00:00
 
-1160 decisions with Love's words or card picks, out of 1792 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1214 decisions with Love's words or card picks, out of 1874 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-28T04:34:58Z  ·  diary line 2339  ·  fix367
+- Love: “yess that's good hunni 💞 wait for a break or a candle flip as normal”
+- fix367 IN HER CODE
+- Full entry: 2026-10-28T04:34:58Z fix367 (Oct 27 ~9:35 PM PT, Love: "yess that's good hunni 💞 wait for a break or a candle flip as normal"): PURE NO-PINK only - PINK CUSHION 50c gold / $25 BTC under/over an unbroken pink until price breaks through (25c / $3). Main, rejection, copy, twin, Poly 5M untouched. (first install attempt used a wrong path and briefly left live off ~1 min; restored by the fix367c install)
+
+## 2026-10-27 9:31  ·  diary line 2335
+- Love: “and if she was just trading rejections can you see why she didn’t enter in at the rejection of green?”
+- Full entry: 2026-10-27 9:31 PM PT fix362g - wiring audit for recon-np after the goldGateExempt miss (Love 9:28 PM PT: "and if she was just trading rejections can you see why she didn’t enter in at the rejection of green?"): every per-book list the no-pink copy is in now has recon-np too: ['timeGate.exempt', 'noLocksBooks', 'mirrorPaperBooks', 'paperFires']. liveBook.books left alone on purpose (Polymarket 1H follows it).
+
+## 2026-10-27 9:29  ·  diary line 2334
+- Love: “purple band ??? the nav band??? is she using that on this model bb ?”
+- Full entry: 2026-10-27 9:29 PM PT fix362f - Love 9:27 PM PT: "purple band ??? the nav band??? is she using that on this model bb ?" - the old Oct 6 gold band-at-the-target gate (session sigmas + 5/10/15m nav purple within $2/$1 of the strike) held recon-np; every other recon book is in goldGateExempt; my wiring missed her. goldGateExempt += recon-np (a nav band BETWEEN price and the strike still blocks, same as her siblings).
+
+## 2026-10-27 9:25  ·  diary line 2333  ·  fix366
+- Love: “yes, both bb”
+- fix366 IN HER CODE
+- Full entry: 2026-10-27 9:25 PM PT fix366 - Love 9:23 PM PT: "yes, both bb" (to my offer after the 8:51 PM BTC copy long at 81,065.82 on all-red candles, 'Failed break below +3σ - rejected up', Bollinger upper ~81,116 $56 over the band): copy only - fake-out turn no longer skips her flip; BTC Bollinger over/under the band wall $75 (others $50). R052.
+
+## 2026-10-28T04:24:10.457184+00:00  ·  diary line 2331  ·  fix366
+- Love: “yes, both bb”
+- fix366 IN HER CODE
+- Full entry: 2026-10-28T04:24:10.457184+00:00 THAW (fix366 copy: fake-out turn needs her flip; Bollinger-over-band $75. Love Oct 27 2026 9:23 PM PT: "yes, both bb" (to: copy only - a fake-out turn no longer skips her flip; her Bollinger-over-the-band wall $50 -> $75))
+
+## 2026-10-27 8:41  ·  diary line 2330  ·  fix363, fix365  ·  books: delayed twin
+- Love: “we can include the 60% into the rejection models too bb”
+- fix363 IN HER CODE
+- fix365 IN HER CODE
+- Full entry: 2026-10-27 8:41 PM PT fix365 - Love 8:39 PM PT: "we can include the 60% into the rejection models too bb". Gold PINK TO GREEN 60% for main, rejection model and no-pink copy (+ paper recon-dlyk via copy walls); twin 50%; pure no-pink skips the wall (fix363). R050.
+
+## 2026-10-28T03:39:49.099470+00:00  ·  diary line 2328  ·  fix365
+- Love: “we can include the 60% into the rejection models too bb”
+- fix365 IN HER CODE
+- Full entry: 2026-10-28T03:39:49.099470+00:00 THAW (fix365 gold PINK TO GREEN 60% for rejection model + no-pink copy too. Love Oct 27 2026 8:39 PM PT: "we can include the 60% into the rejection models too bb")
+
+## 2026-10-27 8:40  ·  diary line 2327  ·  fix364  ·  books: delayed twin
+- Love: “yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine”
+- fix364 IN HER CODE
+- Full entry: 2026-10-27 8:40 PM PT fix364 - Love 8:38 PM PT: "yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine" (answering: copy thirds flip off? + main gold pink-to-green 60%?). recon.ts: the no-pink copy skips main's read when it is a thirds flip (label " - seen as a short/long ", e.g. 8:35 PM BTC copy short at 81,052.70 "Top third - seen as a short under 81060.28 (was: Break above fresh +2σ)"). bandlock PINK TO GREEN: MAIN (flipRule && !rejNoAhead) 60%, all others 50%. Main's own flips, rejection, twin, recon-dlyk, recon-np, 5M unchanged. R049.
+
+## 2026-10-28T03:38:49.232874+00:00  ·  diary line 2325  ·  fix364
+- Love: “yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine”
+- fix364 IN HER CODE
+- Full entry: 2026-10-28T03:38:49.232874+00:00 THAW (fix364 copy: no thirds flips; MAIN gold pink-to-green 60%. Love Oct 27 2026 8:38 PM PT: "yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine")
+
+## 2026-10-27 8:38  ·  diary line 2324
+- Love: “New one at 9 PM only”
+- Card pick: **New one at 9 PM only**
+- Full entry: 2026-10-27 8:38 PM PT fix362d/362e - wiring for Love card "New one at 9 PM only": grokog LANE_BOOK gets recon-np (her rows reach the Kalshi copier) and shifts.anyHour btc+gold get recon-np (the old shift hour map skips any book not listed, like every other recon book). No other book changed.
+
+## 2026-10-28T03:34:20.898853+00:00  ·  diary line 2322
+- Love: “New one at 9 PM only”
+- Card pick: **New one at 9 PM only**
+- Full entry: 2026-10-28T03:34:20.898853+00:00 THAW (fix362d recon-np rows reach the Kalshi copier (LANE_BOOK). Love card "New one at 9 PM only")
+
+## 2026-10-27 8:34  ·  diary line 2321  ·  fix319, fix363
+- Love: “as for pink holds on the new no-pink one, she only does it if the pink band and the session occupy the same bottom/top 10% of the channel pls / otherwise the rejections should blow right thru”
+- fix319 IN HER CODE
+- fix363 IN HER CODE
+- Full entry: 2026-10-27 8:34 PM PT fix363 - Love 8:32 PM PT: "as for pink holds on the new no-pink one, she only does it if the pink band and the session occupy the same bottom/top 10% of the channel pls / otherwise the rejections should blow right thru". bandlock impossibleGeo npPink (door + wire for recon-np): pink only via the stacked-10% rule (fix319 style), no copy BTC $33 / gold 33c / gold pink-to-red/green walls; recon.ts recon-np pink skip only when stacked in the outer 10%. Main/copy/rej/twin/5M unchanged. R048. Also 8:31:37 PM main gold short at 4044.83 (Rejected down off 5m PP 4046.25): 50.3% of green 4043.39 -> pink space (wall is 50%), lower Bollinger 4044.01 $0.82 below - asked Love whether main should get a Bollinger wall.
+
+## 2026-10-28T03:33:33.837931+00:00  ·  diary line 2319  ·  fix363
+- Love: “as for pink holds on the new no-pink one, she only does it if the pink band and the session occupy the same bottom/top 10% of the channel pls / otherwise the rejections should blow right thru”
+- fix363 IN HER CODE
+- Full entry: 2026-10-28T03:33:33.837931+00:00 THAW (fix363 pure no-pink: pink holds only when stacked with a session band in the outer 10%; otherwise rejections blow through. Love Oct 27 2026 8:32 PM PT: "as for pink holds on the new no-pink one, she only does it if the pink band and the session occupy the same bottom/top 10% of the channel pls / otherwise the rejections should blow right thru")
+
+## 2026-10-27 8:24  ·  diary line 2318  ·  fix362
+- Love: “let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls”
+- Love: “New one at 9 PM only”
+- Card pick: **New one at 9 PM only**
+- fix362 IN HER CODE
+- Full entry: 2026-10-27 8:24 PM PT fix362/362b/362c - Love Oct 27 2026 8:17 PM PT: "let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls" + card "New one at 9 PM only". engine copier: npLive.on adds recon-np to the Kalshi copier (liveBook.books untouched, Polymarket 1H follows liveBook.books so it never sees her); recon-np live only in npLive.hours [21] (9 PM PT), main/rejection/copy skip 9 PM live; her add-on npLive.addOn $5; kalshi-live: recon-np flat bookDollars $3 and counts as a live book while npLive.on. Config: npLive {on,hours:[21],addOn:5}, bookDollars.recon-np 3. Twin, 5M, liveBook unchanged.
+
+## 2026-10-28T03:21:54.487205+00:00  ·  diary line 2316
+- Love: “New one at 9 PM only”
+- Card pick: **New one at 9 PM only**
+- Full entry: 2026-10-28T03:21:54.487205+00:00 THAW (fix362c recon-np counts as a live book while npLive.on (liveBook.books untouched). Love card "New one at 9 PM only")
+
+## 2026-10-28T03:21:13.779058+00:00  ·  diary line 2314
+- Love: “New one at 9 PM only”
+- Card pick: **New one at 9 PM only**
+- Full entry: 2026-10-28T03:21:13.779058+00:00 THAW (fix362b pure no-pink joins the Kalshi copier via npLive.on, liveBook.books untouched so Polymarket 1H never follows her. Love card "New one at 9 PM only")
+
+## 2026-10-28T03:20:44.411925+00:00  ·  diary line 2312  ·  fix362
+- Love: “let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls”
+- Love: “New one at 9 PM only”
+- Card pick: **New one at 9 PM only**
+- fix362 IN HER CODE
+- Full entry: 2026-10-28T03:20:44.411925+00:00 THAW (fix362 pure no-pink live 9 PM only $3 + $5 (code; config follows). Love Oct 27 2026 8:17 PM PT: "let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls" + card "New one at 9 PM only")
+
+## 2026-10-27 8:09  ·  diary line 2311  ·  fix361  ·  books: delayed twin
+- Love: “yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long”
+- Love: “isn’t that what the og rejection model was doing that was outperforming main 3:1?”
+- fix361 IN HER CODE
+- Full entry: 2026-10-27 8:09 PM PT fix361 - Love 8:06 PM PT: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long". New PAPER lane recon-np in recon.ts (RECON_LANES + booking after recon-dlyk) + bandlock togpLoose walls for recon-np. Paper only: not in liveBook, Polymarket untouched (5M freeze check passes). Main/copy/rej/twin unchanged. R046. Love asked 8:07 PM: "isn’t that what the og rejection model was doing that was outperforming main 3:1?"
+
+## 2026-10-28T03:08:49.574132+00:00  ·  diary line 2309  ·  fix361
+- Love: “yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long”
+- fix361 IN HER CODE
+- Full entry: 2026-10-28T03:08:49.574132+00:00 THAW (fix361 pure no-pink twin recon-np (paper). Love Oct 27 2026 8:06 PM PT: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long")
+
+## 2026-10-27 7:56  ·  diary line 2308  ·  fix359, fix360
+- Love: “perfect hun 💘 she’s perfect again 🎯 pls keep a snapshot of both configurations here, checkpoint reached 🎯”
+- fix359 IN HER CODE
+- fix360 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-27 7:56 PM PT CHECKPOINT (KNOWN-GOOD) - main + no-pink copy after fix359/fix360: data/SAVES/KNOWN-GOOD-2026-10-27-0756PM-PT-checkpoint-main-and-no-pink-copy-after-fix360. Love: "perfect hun 💘 she’s perfect again 🎯 pls keep a snapshot of both configurations here, checkpoint reached 🎯"
+
+## 2026-10-27 7:47  ·  diary line 2307  ·  fix360  ·  books: delayed twin, main, no-pink copy, rejection
+- Love: “hey hunn, we can put our main book and no pink rejection model(s) back on at $5 initial entry , $8 add on pls”
+- Love: “Main + copy + rejection”
+- Card pick: **Main + copy + rejection**
+- fix360 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-27 7:47 PM PT fix360 - Love Oct 27 2026 7:44 PM PT: "hey hunn, we can put our main book and no pink rejection model(s) back on at $5 initial entry , $8 add on pls" + card "Main + copy + rejection". live-switch: liveBook.dollars 2.5->5, offHourMain.dollars 2.5->5, addOn.dollars 5->8, offHourMain.addOn.dollars 5->8; live-size.json dollars 2.5->5. Books: recon-tog, recon-rej, recon-togp. Unchanged: recon-dly (bookDollars 2.5, addOn.twin $5), maxDollars $5, Polymarket 5M (rej5m $7.50, frozen), every wall. Prev values in fix360Prev.
+
+## 2026-10-28 2:23  ·  diary line 2305  ·  fix359
+- Love: “thank you hun she’s working properly again 💞 pls keep this as a safe save for this book, after you incorporate that fix okay”
+- fix359 IN HER CODE
+- Full entry: 2026-10-28 2:23 AM PT KNOWN-GOOD save of the no-pink copy after fix359 - Love: "thank you hun she’s working properly again 💞 pls keep this as a safe save for this book, after you incorporate that fix okay"
+
+## 2026-10-27 7:21  ·  diary line 2304  ·  fix325, fix349, fix359  ·  books: main, no-pink copy
+- Love: “no pink copy only , but let’s make it $5 not $10 pls / 10c is good for gold oki”
+- fix325 IN HER CODE
+- fix349 IN HER CODE
+- fix359 IN HER CODE
+- Full entry: 2026-10-27 7:21 PM PT fix359 - Love Oct 27 2026 7:19 PM PT: "no pink copy only , but let’s make it $5 not $10 pls / 10c is good for gold oki" (after the 7:15 PM BTC copy short at 80,922.02 passed HER FLIP because the 2m candle, opened 7:14 at 80,923.17, was $1.15 red while the 1m/3m/5m (open 80,919.31) were green). NO-PINK COPY (recon-togp) ONLY: new anyFlipMinNow in bandlock.ts; the copy's own HER FLIP line (fix349) now needs a 1/2/3/4/5m candle at least $5 (BTC) / 10c (gold) past its open. anyFlipNow (main fix325 cornerstone, rejection, recon pink flip) untouched; 5M/Poly untouched. R044. Also: tools/requests.py reads R044's single proof object (it was written as an object, not a list) - check only, no request changed. Umpire SAFE.
+
+## 2026-10-28T02:20:10.986403+00:00  ·  diary line 2302  ·  fix359
+- Love: “no pink copy only , but let’s make it $5 not $10 pls / 10c is good for gold oki”
+- fix359 IN HER CODE
+- Full entry: 2026-10-28T02:20:10.986403+00:00 THAW (fix359 no-pink copy flip needs $5 BTC / 10c gold past the candle open. Love: "no pink copy only , but let’s make it $5 not $10 pls / 10c is good for gold oki")
+
+## 2026-10-28T02:02:08Z  ·  diary line 2301  ·  fix341  ·  books: main, rejection
+- Love: “can you look into the recon card hun? it’s saying the same trades a bunch of times and sayin -5.4k”
+- fix341 IN HER CODE
+- Full entry: 2026-10-28T02:02:08Z RECON CARD CLEANUP (Love 6:59 PM PT: "can you look into the recon card hun? it’s saying the same trades a bunch of times and sayin -5.4k"): 4195 paper rows from the fix341 runaway (recon-tog/recon-rej :n ids, Oct 27 2:48-4:10 PM PT, never traded, paper -$22,289 + -$12,254 in archive) moved from grok-og.json (3590) and grok-og-archive.jsonl (605) into data/grok-og-runaway-archive.jsonl (kept, nothing deleted; archive copy also at grok-og-archive.jsonl.pre-runaway-cleanup). No code, no book changed.
+
+## 2026-10-28T01:55:43Z  ·  diary line 2300  ·  fix358
+- Love: “let's cut those hours and raise her stake to $10 on the other hours hunni 💞 better math on that”
+- Love: “$7.50 now”
+- Card pick: **$7.50 now**
+- fix358 IN HER CODE
+- Full entry: 2026-10-28T01:55:43Z fix358 (Love 6:54 PM PT: "let's cut those hours and raise her stake to $10 on the other hours hunni 💞 better math on that" + card "$7.50 now" after the 2-day sample caution): polyTwin.rej5m.dollars 5 -> 7.5; poly-live guard lets 5m-market orders go up to rej5m.dollars (other Poly orders keep maxDollars $5). Kalshi maxDollars and books unchanged. 5M re-frozen. R043.
+
+## 2026-10-28T01:55:43.107453+00:00  ·  diary line 2298  ·  fix358
+- Love: “$7.50 now”
+- Card pick: **$7.50 now**
+- fix358 IN HER CODE
+- Full entry: 2026-10-28T01:55:43.107453+00:00 THAW (fix358 5M $7.50, Poly cap lifts for 5m only. Love card "$7.50 now")
+
+## 2026-10-28T01:53:46Z  ·  diary line 2297  ·  fix273, fix357
+- Love: “could you look into the records for the 5M book on poly and see which hours she bleeds at? we can cut those , or lower her position sizing if anything but she seems really strong most of the day and there are a few hours at night and mid day that are really tough for her”
+- Love: “Half size in those hours”
+- Love: “Cut those hours instead”
+- Card pick: **Half size in those hours**
+- Card pick: **Cut those hours instead**
+- fix273 IN HER CODE
+- fix357 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-28T01:53:46Z fix357 (Love 6:50 PM PT: "could you look into the records for the 5M book on poly and see which hours she bleeds at? we can cut those , or lower her position sizing if anything but she seems really strong most of the day and there are a few hours at night and mid day that are really tough for her" + card "Half size in those hours" then, told it breaks her $5 minimum (fix273), card "Cut those hours instead"): polyTwin.rej5m.skipHours [23] -> [3,4,5,13,21,23]. $5 minimum kept. 5M re-frozen on these words. R042.
+
+## 2026-10-28T01:48:47Z  ·  diary line 2296  ·  fix356  ·  books: delayed twin
+- Love: “also, she just shorted btc / its supposed to be the second band price touches after the initial move still hun , not just 30 seconds / so if price is falling from the band it came from at the beginning of the window, she waits until it comes into contact with the second band / can you configure it that way pls? the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes 💞”
+- fix356 IN HER CODE
+- Full entry: 2026-10-28T01:48:47Z fix356 (Love 6:47 PM PT: "also, she just shorted btc / its supposed to be the second band price touches after the initial move still hun , not just 30 seconds / so if price is falling from the band it came from at the beginning of the window, she waits until it comes into contact with the second band / can you configure it that way pls? the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes 💞"): 6:45 PM BTC twin short filled at 31.7 s on a "Re-aimed (her call never filled): Top third" call, not a band touch; the real second-band touch (BB lower, long) came at 45:41. Now: recon.ts marks the first second-band touch per window (globalThis.__twinTouch2, no row change); engine Kalshi copier sends a recon-dly order only after that touch and only on its side. Paper rows + Polymarket untouched (5M freeze ✓). R041.
+
+## 2026-10-28T01:48:25.429934+00:00  ·  diary line 2294  ·  fix356
+- Love: “its supposed to be the second band price touches after the initial move still hun , not just 30 seconds ... the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes”
+- fix356 IN HER CODE
+- Full entry: 2026-10-28T01:48:25.429934+00:00 THAW (fix356 (Oct 27 2026 6:47 PM PT, Love: "its supposed to be the second band price touches after the initial move still hun , not just 30 seconds ... the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes"))
+
+## 2026-10-28T01:32:50Z  ·  diary line 2293  ·  fix355  ·  books: delayed twin
+- Love: “hey hun , she just entered into the window in the first 30 seconds on btc again , can you make sure she gets the 30 seconds on the delayed entry model?”
+- fix355 IN HER CODE
+- Full entry: 2026-10-28T01:32:50Z fix355 (Love 6:31 PM PT: "hey hun , she just entered into the window in the first 30 seconds on btc again , can you make sure she gets the 30 seconds on the delayed entry model?"): engine Kalshi copier - recon-dly places no live order before 30 s into the window (call held, retried after with every wall). 6:30 PM BTC twin short had filled at 19 s. Paper rows + Polymarket untouched (polyTwin() byte-identical, 5M freeze ✓). R040.
+
+## 2026-10-28T01:32:30.593069+00:00  ·  diary line 2291  ·  fix355
+- Love: “she just entered into the window in the first 30 seconds on btc again , can you make sure she gets the 30 seconds on the delayed entry model?”
+- fix355 IN HER CODE
+- Full entry: 2026-10-28T01:32:30.593069+00:00 THAW (fix355 twin waits 30 s on Kalshi. Love 6:31 PM PT: "she just entered into the window in the first 30 seconds on btc again , can you make sure she gets the 30 seconds on the delayed entry model?")
+
+## 2026-10-28T01:21:27Z  ·  diary line 2290  ·  fix353, fix354  ·  books: delayed twin
+- Love: “thanks hun yes let’s ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly 💞”
+- Love: “Build new one on paper beside her”
+- Card pick: **Build new one on paper beside her**
+- fix353 IN HER CODE
+- fix354 IN HER CODE
+- Full entry: 2026-10-28T01:21:27Z fix354 (Love 6:20 PM PT: "thanks hun yes let’s ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly 💞" + card "Build new one on paper beside her"): new PAPER lane recon-dlyk = no-pink copy read, booked from 30 s into the window, judged by the copy walls on paper. Not in liveBook, not in polyTwin.books. Old twin recon-dly untouched (fix353 stays off) and keeps her Kalshi seat. Proof: bandlock5m/engine/poly-live/kalshi-live/grokog/live-guard byte-identical to before-fix353; 5M freeze ✓. R039.
+
+## 2026-10-28T01:21:02.875299+00:00  ·  diary line 2288  ·  fix354
+- Love: “yes let's ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly”
+- fix354 IN HER CODE
+- Full entry: 2026-10-28T01:21:02.875299+00:00 THAW (fix354 (Oct 27 2026 6:20 PM PT, Love: "yes let's ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly"))
+
+## 2026-10-28T01:14:52Z  ·  diary line 2287
+- Love: “thank you hun yea i just want to run it on kalshi for right now , the 5M is our best performing book and i dont want it to move from her configurations unless we agree on it together for a reason , that book is good indefinitely until we decide differently okay / thankkkk you for telling me first this time. genuinely / yeah going forward making changes to any book, needs to be confirmed about if it applies to the other books first ok pretty pls 💘”
+- Full entry: 2026-10-28T01:14:52Z THE 5M IS FROZEN + CONFIRM BOOKS FIRST (Love 6:13 PM PT: "thank you hun yea i just want to run it on kalshi for right now , the 5M is our best performing book and i dont want it to move from her configurations unless we agree on it together for a reason , that book is good indefinitely until we decide differently okay / thankkkk you for telling me first this time. genuinely / yeah going forward making changes to any book, needs to be confirmed about if it applies to the other books first ok pretty pls 💘"): tools/five-m-freeze.py fingerprints bandlock5m.ts, poly-live.server.ts, engine polyTwin(), live-switch polyTwin/polyLive/polyHour/polyMirror into data/FIVE-M-FREEZE.json (444); R038 proof runs it in every umpire. Re-freeze only on Love's words.
+
+## 2026-10-28T01:12:21Z  ·  diary line 2286  ·  fix353  ·  books: rejection
+- Love: “wait no no no no no no do not change the 5M on polymarket in any way nooo”
+- fix353 IN HER CODE
+- Full entry: 2026-10-28T01:12:21Z fix353 PAUSED (Love 6:11 PM PT: "wait no no no no no no do not change the 5M on polymarket in any way nooo" / "no no no no no"): DLY_AS_COPY=false in recon.ts + bandlock.ts - the twin is exactly as before on Kalshi and Polymarket (old twin re-aim seen again 01:11:47Z). Proof: bandlock5m.ts, engine.ts, poly-live.server.ts, kalshi-live.server.ts, grokog.ts byte-identical to the before-fix353 save; polyTwin config untouched; poly-twin-log 6:09-6:12 PM shows only recon-rej-5m (no twin rows). Code kept on file, off. R037 stays recorded, not retired; ask Love before any re-try (needs a separate Kalshi-only lane).
+
+## 2026-10-28T01:11:33.060393+00:00  ·  diary line 2284  ·  fix353
+- Love: “wait no no no no no no do not change the 5M on polymarket in any way nooo”
+- fix353 IN HER CODE
+- Full entry: 2026-10-28T01:11:33.060393+00:00 THAW (fix353 paused: twin back exactly as before. Love 6:11 PM PT: "wait no no no no no no do not change the 5M on polymarket in any way nooo")
+
+## 2026-10-28T01:10:17Z  ·  diary line 2283  ·  fix346, fix353  ·  books: delayed twin
+- Love: “for her rejections on they delayed entry model just put her on the same framework we rebuilt for no pink / or better yet, just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good 💞”
+- fix346 IN HER CODE
+- fix353 IN HER CODE
+- Full entry: 2026-10-28T01:10:17Z fix353 (Love 6:08 PM PT: "for her rejections on they delayed entry model just put her on the same framework we rebuilt for no pink / or better yet, just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good 💞" + 6:09 PM "i forgot the delayed model needed to be retuned again and we got the no pink rejection back on point 🎯 so we will use that model with a delayed entry - after 30 seconds 💞"): DELAYED TWIN (recon-dly) = the no-pink copy, delayed. recon.ts: she books the copy read (firstT, pink out unless stacked) only once the window is 30 s old; her old twin calls (initial move/turn/touch/break/4x/re-aim) no longer book (DLY_AS_COPY). bandlock.ts: door + wire judge her with the copy walls (togpLoose: fix346-351 pink scale break-only, HER FLIP, gold 33c, gold 33% thirds); twin-hour freedoms (dlyFreeNow/dlyThirds, twinPinkAll) off. Unchanged: her hours, $2.50 + $5 twin add-on, TWIN 2x price cap (pays 50c or less). Poly twin copies her calls, so it follows too. Main, rejection, copy untouched. R037.
+
+## 2026-10-28T01:09:46.148719+00:00  ·  diary line 2281  ·  fix353
+- Love: “just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good”
+- fix353 IN HER CODE
+- Full entry: 2026-10-28T01:09:46.148719+00:00 THAW (fix353 delayed twin = no-pink copy, delayed 30 s. Love 6:08 PM PT: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + 6:09 PM "we will use that model with a delayed entry - after 30 seconds")
+
+## 2026-10-28T01:02:21Z  ·  diary line 2280  ·  fix352  ·  books: delayed twin
+- Love: “ohhhh that’s right it’s ok bb thank you 💞 / just the delayed entry model pls $2, $5 addon same as the other :))”
+- fix352 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-28T01:02:21Z fix352 (Love 6:01 PM PT: "ohhhh that’s right it’s ok bb thank you 💞 / just the delayed entry model pls $2, $5 addon same as the other :))"): BTC 6 PM PT - delayed twin live (liveSkipExempt.btc += recon-dly; 18 out of bookSkipHoursByAsset.btc.recon-dly), $2.50 + $5 add-on as the other books. Main, rejection, copy still sit BTC 6 PM out. Gold untouched. Prev in fix352Prev. R036.
+
+## 2026-10-28T00:50:32Z  ·  diary line 2279  ·  fix219, fix351
+- Love: “why did she long in the top 33% of the channel ….?”
+- Love: “Should tiny gold channels lock 33% instead of 20%, and on which books?”
+- Card pick: **Should tiny gold channels lock 33% instead of 20%, and on which books?**
+- fix219 IN HER CODE
+- fix351 IN HER CODE
+- Full entry: 2026-10-28T00:50:32Z fix351 (Love 5:48 PM PT: "why did she long in the top 33% of the channel ….?" + card "Should tiny gold channels lock 33% instead of 20%, and on which books?" -> "33% on the copy only"): NO-PINK COPY gold channels under $10 lock top/bottom 33% (THE IMPOSSIBILITY + ONLY IN HER THIRD). fix219 20% for one-sigma channels stays on main + rejection + 5m. R035.
+
+## 2026-10-28T00:50:31.468190+00:00  ·  diary line 2277  ·  fix351
+- Love: “Should tiny gold channels lock 33% instead of 20%, and on which books?”
+- Card pick: **Should tiny gold channels lock 33% instead of 20%, and on which books?**
+- fix351 IN HER CODE
+- Full entry: 2026-10-28T00:50:31.468190+00:00 THAW (fix351 no-pink copy gold thirds 33% under $10. Love card "Should tiny gold channels lock 33% instead of 20%, and on which books?" -> "33% on the copy only")
+
+## 2026-10-28T00:48:48Z  ·  diary line 2276  ·  fix347, fix349, fix350
+- Love: “hun what are you talking about a flip ???? it was on the under side of the band ????? a flip would be short. it would need to be above the band for a flip to be a long. ????”
+- fix347 IN HER CODE
+- fix349 IN HER CODE
+- fix350 IN HER CODE
+- Full entry: 2026-10-28T00:48:48Z fix350/350b (Love 5:48 PM PT: "hun what are you talking about a flip ???? it was on the under side of the band ????? a flip would be short. it would need to be above the band for a flip to be a long. ????"): NO-PINK COPY - near an unbroken pink only the break lets her go; candle colour no longer waives pink on the sliding scale (fix347) or BTC $33 (fix346b). My error: I read "flip" as candle colour. 5:46 PM gold copy long at 4062.40 under pink ~4062.79 + VWAP 4062.91 passed on a green 1m. R034. HER FLIP for every entry (fix349) stays.
+
+## 2026-10-28T00:48:48.132931+00:00  ·  diary line 2274
+- Love: “a flip would be short. it would need to be above the band for a flip to be a long”
+- Full entry: 2026-10-28T00:48:48.132931+00:00 THAW (fix350b: the $33 pink reason text says break-only. Love 5:48 PM PT: "a flip would be short. it would need to be above the band for a flip to be a long")
+
+## 2026-10-28T00:48:33.188885+00:00  ·  diary line 2272  ·  fix350
+- Love: “a flip would be short. it would need to be above the band for a flip to be a long”
+- fix350 IN HER CODE
+- Full entry: 2026-10-28T00:48:33.188885+00:00 THAW (fix350 no-pink copy: pink holds till it breaks, like main (no flip waiver). Love 5:48 PM PT: "a flip would be short. it would need to be above the band for a flip to be a long")
+
+## 2026-10-28T00:42:23.266086+00:00  ·  diary line 2269  ·  fix325
+- Love: “yes pls pls”
+- fix325 IN HER CODE
+- Full entry: 2026-10-28T00:42:23.266086+00:00 THAW (fix349b same HER FLIP for the copy, as its own line so main's fix325 line stays word for word (R002). Love 5:40 PM PT: "yes pls pls")
+
+## 2026-10-28T00:41:11Z  ·  diary line 2268  ·  fix325, fix349
+- Love: “yes pls pls , and we can make it unilaterally pink rules in both direction to answer your question. thank you for confirming”
+- fix325 IN HER CODE
+- fix349 IN HER CODE
+- Full entry: 2026-10-28T00:41:11Z fix349 (Love 5:40 PM PT: "yes pls pls , and we can make it unilaterally pink rules in both direction to answer your question. thank you for confirming"): NO-PINK COPY gets HER FLIP exactly like main (fix325: a live 1-5m candle flipped her way, literal colour; 5m-only HER CANDLE stands down as on main); gold 33c pink barrier now both ways (no short within 33c over an unbroken pink, channels under $10). R033. Main, rejection, twin, 5m untouched.
+
+## 2026-10-28T00:41:11.403225+00:00  ·  diary line 2266  ·  fix349
+- Love: “yes pls pls , and we can make it unilaterally pink rules in both direction to answer your question. thank you for confirming”
+- fix349 IN HER CODE
+- Full entry: 2026-10-28T00:41:11.403225+00:00 THAW (fix349 no-pink copy: HER FLIP like main + gold 33c pink barrier both directions. Love 5:40 PM PT: "yes pls pls , and we can make it unilaterally pink rules in both direction to answer your question. thank you for confirming")
+
+## 2026-10-28T00:38:13Z  ·  diary line 2265  ·  fix347, fix348
+- Love: “and gold needs a minimum 33c  barrier between pink and longing into it at this scale / and needs a candle flip / we can open it up to normal when the bands are bigger but for rn yes”
+- fix347 IN HER CODE
+- fix348 IN HER CODE
+- Full entry: 2026-10-28T00:38:13Z fix348 (Love 5:37 PM PT: "and gold needs a minimum 33c  barrier between pink and longing into it at this scale / and needs a candle flip / we can open it up to normal when the bands are bigger but for rn yes"): NO-PINK COPY gold longs, channel under $10 (my reading of "this scale"): no long within 33c under an unbroken pink, flip or not; past 33c fix347 still needs a 1-5m flip or the break. Shorts not changed (offered). R032.
+
+## 2026-10-28T00:38:12.877880+00:00  ·  diary line 2263  ·  fix348
+- Love: “and gold needs a minimum 33c  barrier between pink and longing into it at this scale / and needs a candle flip / we can open it up to normal when the bands are bigger but for rn yes”
+- fix348 IN HER CODE
+- Full entry: 2026-10-28T00:38:12.877880+00:00 THAW (fix348 no-pink copy gold: 33c hard barrier under unbroken pink for longs at channels under $10. Love 5:37 PM PT: "and gold needs a minimum 33c  barrier between pink and longing into it at this scale / and needs a candle flip / we can open it up to normal when the bands are bigger but for rn yes")
+
+## 2026-10-28T00:36:32Z  ·  diary line 2262  ·  fix332, fix347
+- Love: “Should the no-pink copy use main's sliding pink scale?”
+- Card pick: **Should the no-pink copy use main's sliding pink scale?**
+- fix332 IN HER CODE
+- fix347 IN HER CODE
+- Full entry: 2026-10-28T00:36:32Z fix347 (Love 5:35 PM PT card "Should the no-pink copy use main's sliding pink scale?" -> "Copy gets main's sliding scale"; 5:32 PM: "we need to come up with a sliding scale again hun ... so we can let her stay put ok"): NO-PINK COPY reads pink on main's sliding scale on both assets (BTC $25 at <=$100, $50 or 10% above; gold 10% or $2); a 1-5m flip her way or the break lets her go. Copy no longer skips unstacked pink (fix332 now rejection model only). fix346b $33 BTC stays. Main, rejection, twin, 5m untouched. R031.
+
+## 2026-10-28T00:36:16.767128+00:00  ·  diary line 2260  ·  fix347
+- Love: “Should the no-pink copy use main's sliding pink scale?”
+- Card pick: **Should the no-pink copy use main's sliding pink scale?**
+- fix347 IN HER CODE
+- Full entry: 2026-10-28T00:36:16.767128+00:00 THAW (fix347 no-pink copy: pink on main's sliding scale, flip or break to go. Love card "Should the no-pink copy use main's sliding pink scale?" -> "Copy gets main's sliding scale")
+
+## 2026-10-28T00:34:49Z  ·  diary line 2259  ·  fix293
+- Love: “we need to come up with a sliding scale again hun ... so we can let her stay put”
+- fix293 IN HER CODE
+- Full entry: 2026-10-28T00:34:49Z pink-flag.py fix: reads the fill moment and the wire-pass tick (to the second), not first try + minute band-log. False flags on main (8:30 AM ET + 3:15 PM ET windows) were the tool, not main: main held "PINK 10%" and shorted only after the pink broke ($22 through). Main pink scale intact (fix293/298 BTC $25 at <=$100, $50 or 10% above; gold 10% or $2). Card posted: copy gets main sliding pink scale? (Love 5:32 PM: "we need to come up with a sliding scale again hun ... so we can let her stay put")
+
+## 2026-10-28T00:24:33Z  ·  diary line 2258
+- Love: “all good bb thank you she’s good there for now, no other changes necessary at the moment to any other books , if one of the other books takes a trade like that and loses flag it for me and let me know and we’ll incorporate it into the main book too oki”
+- Full entry: 2026-10-28T00:24:33Z pink-flag watch (Love 5:23 PM PT Oct 27: "all good bb thank you she’s good there for now, no other changes necessary at the moment to any other books , if one of the other books takes a trade like that and loses flag it for me and let me know and we’ll incorporate it into the main book too oki"): tools/pink-flag.py, record-only, run by the umpire as INFO; flags any non-copy book BTC loss within $33 of an unbroken pink -> data/pink-flags.jsonl. No book changed.
 
 ## 2026-10-28T00:20:10Z  ·  diary line 2257  ·  fix346
 - Love: “no let’s keep that$33 bb not $10”

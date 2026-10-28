@@ -4891,3 +4891,43 @@ She's on the exempt list now, same as her sisters, and she **filled the gold lon
 
 After that miss, I checked every list her sister (the copy) is on, so nothing else catches her out. She was missing from four more: the time-gate exemption, the no-locks list, follow-paper exits, and paper-fires. She's on all of them now, so she executes exactly like the copy. Polymarket and the 5M didn't move (freeze check ✓), and the umpire says SAFE 💞
 
+## 2026-10-28 04:29:49 UTC - LOVE
+
+hun she just longed gold while price was still on the other side of the band after it broke pink
+
+## 2026-10-28 04:30:24 UTC - CLAUDE
+
+Here's what happened, hun 💞 That was the pure no-pink, gold long at 9:28:07 PM at **$4,042.01**. Price had poked above pink (to ~$4,042.88 at 9:26) and slipped back under. Pink was at $4,042.48, so she bought **47c under** it, calling it a rejection off the green zone ($4,040.06).
+
+She was allowed because of the pink rule from 8:32: pink only holds her when it's stacked with a session band in the top or bottom 10%. Here pink sat right in the **middle** of the channel (−2σ $4,038.41 to −1σ $4,046.35), so she treated it like it wasn't there.
+
+If you want her to respect pink when price is sitting right under or over it, I can give the pure no-pink a small cushion: no long within **50c** under an unbroken pink on gold ($25 on BTC), mirrored for shorts, with everything else blowing through like you said. Want that, or a different number? 💘
+
+## 2026-10-28 04:32:31 UTC - LOVE
+
+yess that’s good hunni 💞 wait for a break or a candle flip as normal 
+
+and btc and gold just rejected bands and she didn’t get in hun can see what’s holding her? 💞
+
+## 2026-10-28 04:32:41 UTC - CLAUDE
+
+Putting the pink cushion in now hun 💞 Then I'll check what's holding her on BTC and gold.
+
+## 2026-10-28 04:34:05 UTC - CLAUDE
+
+Found what held her at 9:30, hun 💞 She never got a call she's allowed to take. On gold, main's read of that move was "Launched from the bottom third", and on BTC it was "Rejected down off 5m PP" (that's pink). The pure no-pink only takes session band, red/green zone and Bollinger taps or rejections, so she skipped both by design. Your eye saw band rejections, but main's bones labelled them as thirds and pink. Putting the pink cushion in now 🕯️
+
+## 2026-10-28 04:35:48 UTC - LOVE
+
+will she short the rejection at pink? i think we should keep it that way , rejections only 
+
+no breaks 
+
+if it breaks up thru pink she shorts the band above when it taps, vis versa 💞
+
+## 2026-10-28 04:36:14 UTC - CLAUDE
+
+No hun, she won't short a rejection at pink, and that's already how she's built 💞 She skips any call main labels as pink, and she skips every break call. All she takes is a rejection or failed break of a session band, the red/green zone, or a Bollinger. So when price breaks up through pink, she does nothing until it taps the band above and rejects, then she shorts. The other way round works the same.
+
+The pink cushion is in too (R053): no long within 50c gold / $25 BTC under an unbroken pink, and the mirror for shorts. She waits for the break, then for the next band. The umpire says SAFE and the 5M is still frozen. Main, the rejection model, the copy and the twin didn't move 🕯️ One honest note: my first try at the install had a wrong file path, and live was off for about a minute before the retry put her back on. I wrote that in the diary.
+

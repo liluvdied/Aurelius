@@ -2,6 +2,188 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R053 - fix367: pure no-pink (recon-np) only - no long within 50c gold / $25 BTC under an unbroken pink, mirror for shorts; goes once price breaks through (25c gold / $3 BTC). Other pink still blows through.
+- when: 2026-10-28T04:34:58+00:00
+- Love: "yess that's good hunni 💞 wait for a break or a candle flip as normal"
+- books: recon-np
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "PINK CUSHION (pure no-pink)"}
+
+## R052 - No-pink copy only: a fake-out turn no longer skips her 1-5m flip; BTC Bollinger-over/under-the-band wall $75 for the copy (others $50) (fix366)
+- when: 2026-10-28T04:24:24+00:00
+- Love: "yes, both bb - to: copy only, fake-out turn no longer skips her flip + Bollinger wall $75"
+- books: r, e, c, o, n, -, t, o, g, p,  , (, +,  , p, a, p, e, r,  , r, e, c, o, n, -, d, l, y, k,  , v, i, a,  , c, o, p, y,  , w, a, l, l, s, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "!(foTurn && npPink) /* fix366"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "bU - below <= (togpLoose && !npPink ? 75 : 50)"}
+
+## R051 - No-pink copy never takes a thirds flip (" - seen as a short/long " labels) - the copy part of R049, kept as is (fix364)
+- when: 2026-10-28T03:40:29+00:00
+- Love: "yes the flip is already supposed to be off hun, pls remove that and keep it off"
+- books: r, e, c, o, n, -, t, o, g, p
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "!/ - seen as a (short|long) /.test(String(srcP.label))"}
+
+## R050 - Gold PINK TO GREEN 60% for main + rejection model + no-pink copy (and its paper delayed copy recon-dlyk, which shares the copy walls); pure no-pink skips the wall (fix363); twin keeps 50% (fix365)
+- when: 2026-10-28T03:39:49+00:00
+- Love: "we can include the 60% into the rejection models too bb"
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j, ,,  , r, e, c, o, n, -, t, o, g, p,  , (, +, r, e, c, o, n, -, d, l, y, k,  , p, a, p, e, r, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "(flipRule || togpLoose ? 0.60 : 0.50)"}
+
+## R049 - No-pink copy never takes a thirds flip ("- seen as a short/long" labels); MAIN gold PINK TO GREEN wall 60% (other books 50%) (fix364)
+- when: 2026-10-28T03:39:04+00:00
+- Love: "yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine"
+- books: r, e, c, o, n, -, t, o, g, p,  , (, f, l, i, p,  , o, f, f, ), ;,  , r, e, c, o, n, -, t, o, g,  , (, g, o, l, d,  , p, i, n, k, -, t, o, -, g, r, e, e, n,  , 6, 0, %, )
+- status: RETIRED - Love: "we can include the 60% into the rejection models too bb (Love Oct 27 8:39 PM PT - widened R049s main-only 60% to the rejection models; R049s copy-flip part re-recorded as R051)"
+- proof: {"code": "src/lib/desk/recon.ts", "has": "!/ - seen as a (short|long) /.test(String(srcP.label))"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "(flipRule && !rejNoAhead ? 0.60 : 0.50)"}
+
+## R048 - Pure no-pink (recon-np): pink holds her only when pink is stacked with a session band in the outer 10% of the channel; otherwise rejections go straight through (no copy $33 / 33c / pink-to-red/green walls for her). Door + wire + recon (fix363)
+- when: 2026-10-28T03:33:44+00:00
+- Love: "as for pink holds on the new no-pink one, she only does it if the pink band and the session occupy the same bottom/top 10% of the channel pls / otherwise the rejections should blow right thru"
+- books: r, e, c, o, n, -, n, p,  , o, n, l, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "npPink = false /* fix363"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const stackN ="}
+
+## R047 - Pure no-pink (recon-np) live on Kalshi only at 9 PM PT (BTC + gold), $3 entry + $5 add-on; main/rejection/copy sit 9 PM out live; liveBook.books + Polymarket untouched (fix362/362b/362c)
+- when: 2026-10-28T03:22:22+00:00
+- Love: "let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls + card "New one at 9 PM only""
+- books: r, e, c, o, n, -, n, p,  , l, i, v, e,  , 9,  , P, M, ;,  , r, e, c, o, n, -, t, o, g, /, r, e, j, /, t, o, g, p,  , s, i, t,  , o, u, t,  , 9,  , P, M
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "npLive.on", "equals": true}
+- proof: {"config": "data/live-switch.json", "key": "npLive.hours", "equals": [21]}
+- proof: {"config": "data/live-switch.json", "key": "bookDollars.recon-np", "equals": 3}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "the PURE NO-PINK takes this hour live"}
+
+## R046 - New PAPER book recon-np (pure no-pink twin): main read only when a tap/rejection of session bands, red/green zone or Bollinger; never pink/pivot/nav/thirds/break calls; skips when pink sits between price and the band; copy walls; never live, never Polymarket (fix361)
+- when: 2026-10-28T03:09:01+00:00
+- Love: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long"
+- books: n, e, w,  , r, e, c, o, n, -, n, p,  , o, n, l, y,  , (, p, a, p, e, r, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "book(\"recon-np\""}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "book === \"recon-np\" /* fix361 */"}
+
+## R045 - Main, rejection model and no-pink copy: $5 entry, $8 add-on (liveBook.dollars 5, offHourMain.dollars 5, addOn.dollars 8, offHourMain.addOn.dollars 8, live-size 5). Twin $2.50+$5 and Poly 5M unchanged (fix360)
+- when: 2026-10-28T02:46:31+00:00
+- Love: "hey hunn, we can put our main book and no pink rejection model(s) back on at $5 initial entry , $8 add on pls + card "Main + copy + rejection""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j, ,,  , r, e, c, o, n, -, t, o, g, p
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 5}
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.dollars", "equals": 5}
+- proof: {"config": "data/live-switch.json", "key": "addOn.dollars", "equals": 8}
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.addOn.dollars", "equals": 8}
+
+## R044 - No-pink copy: a 1-5m candle only counts as flipped once price is $5 (BTC) / 10c (gold) past its open (fix359). Main/rejection anyFlipNow untouched.
+- when: 2026-10-28T02:20:17+00:00
+- Love: "no pink copy only , but let’s make it $5 not $10 pls / 10c is good for gold oki"
+- books: r, e, c, o, n, -, t, o, g, p,  , o, n, l, y
+- status: ACTIVE
+- proof: "kind"
+- proof: "file"
+- proof: "text"
+
+## R043 - Polymarket 5M stake $7.50 in her kept hours (polyTwin.rej5m.dollars 7.5); the Poly order cap lifts to the 5M stake for 5m markets only; Kalshi maxDollars $5 and every Kalshi book unchanged (fix358)
+- when: 2026-10-28T01:55:41+00:00
+- Love: "let’s cut those hours and raise her stake to $10 on the other hours hunni 💞 better math on that + card "Raise the 5M to $10 now, or let the new hours prove out first?" -> "$7.50 now""
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M,  , o, n, l, y
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "polyTwin.rej5m.dollars", "equals": 7.5}
+- proof: {"code": "src/lib/desk/poly-live.server.ts", "has": "fix358"}
+
+## R042 - Polymarket 5M sits out 3, 4, 5 AM, 1 PM, 9 PM PT (plus 11 PM already off): polyTwin.rej5m.skipHours [3,4,5,13,21,23]; $5 minimum kept; every other hour unchanged (fix357)
+- when: 2026-10-28T01:53:46+00:00
+- Love: "could you look into the records for the 5M book on poly and see which hours she bleeds at? we can cut those , or lower her position sizing if anything ... + card "Half size would break your $5 minimum on the 5M. Which way?" -> "Cut those hours instead""
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M,  , o, n, l, y
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "polyTwin.rej5m.skipHours", "equals": [3, 4, 5, 13, 21, 23]}
+
+## R041 - Delayed twin on KALSHI: a live order only once price has touched the SECOND band after the initial move (the twin touch read), and only on that touch side; re-aimed or other calls before it never go live. Paper rows and Polymarket unchanged (fix356)
+- when: 2026-10-28T01:48:24+00:00
+- Love: "also, she just shorted btc / its supposed to be the second band price touches after the initial move still hun , not just 30 seconds / so if price is falling from the band it came from at the beginning of the window, she waits until it comes into contact with the second band / can you configure it that way pls? the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes 💞"
+- books: d, e, l, a, y, e, d,  , t, w, i, n, ,,  , K, a, l, s, h, i,  , o, n, l, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix356"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix356"}
+- proof: {"test": "tools/five-m-freeze.py"}
+
+## R040 - Delayed twin (recon-dly) on KALSHI: no live order in the first 30 s of any 15m window (held, then her call is re-tried with every wall). Paper rows and Polymarket untouched (fix355)
+- when: 2026-10-28T01:32:29+00:00
+- Love: "hey hun , she just entered into the window in the first 30 seconds on btc again , can you make sure she gets the 30 seconds on the delayed entry model?"
+- books: d, e, l, a, y, e, d,  , t, w, i, n, ,,  , K, a, l, s, h, i,  , o, n, l, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix355"}
+- proof: {"test": "tools/five-m-freeze.py"}
+
+## R039 - New PAPER-only book recon-dlyk = the no-pink copy with a delayed entry (copy read, from 30 s into the window, copy walls). Old twin (recon-dly) keeps her Kalshi seat unchanged; Polymarket live orders byte for byte the same (fix354)
+- when: 2026-10-28T01:21:01+00:00
+- Love: "thanks hun yes let’s ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly 💞"
+- books: n, e, w,  , p, a, p, e, r,  , b, o, o, k,  , o, n, l, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "\"recon-dlyk\""}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix354"}
+- proof: {"test": "tools/five-m-freeze.py"}
+
+## R038 - THE 5M IS FROZEN: the Polymarket 5M (bandlock5m, poly-live, engine polyTwin(), Poly settings) never moves unless Love and Claude agree together. AND: before any change to any book, confirm with Love which other books it applies to.
+- when: 2026-10-28T01:14:32+00:00
+- Love: "thank you hun yea i just want to run it on kalshi for right now , the 5M is our best performing book and i dont want it to move from her configurations unless we agree on it together for a reason , that book is good indefinitely until we decide differently okay / yeah going forward making changes to any book, needs to be confirmed about if it applies to the other books first ok pretty pls 💘"
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M, ;,  , e, v, e, r, y,  , b, o, o, k,  , (, c, o, n, f, i, r, m,  , r, u, l, e, )
+- status: ACTIVE
+- proof: {"test": "tools/five-m-freeze.py"}
+
+## R037 - Delayed twin (recon-dly) = the no-pink copy with a delayed entry: books the copy read (firstT, pink out unless stacked) only from 30 s into the window, and meets the copy walls (togpLoose: sliding pink, break-only, HER FLIP, gold 33c, 33% thirds); her old twin calls and twin-hour freedoms off (fix353)
+- when: 2026-10-28T01:09:44+00:00
+- Love: "for her rejections on they delayed entry model just put her on the same framework we rebuilt for no pink / or better yet, just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good 💞 + i forgot the delayed model needed to be retuned again and we got the no pink rejection back on point 🎯 so we will use that model with a delayed entry - after 30 seconds 💞"
+- books: d, e, l, a, y, e, d,  , t, w, i, n,  , (, K, a, l, s, h, i,  , +,  , P, o, l, y,  , t, w, i, n,  , t, h, a, t,  , c, o, p, i, e, s,  , h, e, r,  , c, a, l, l, s, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix353"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix353"}
+
+## R036 - BTC 6 PM PT hour: the delayed twin (recon-dly) trades live ($2.50 + $5 add-on, same as the other books); main/rejection/copy keep sitting out BTC at 6 PM (fix352)
+- when: 2026-10-28T01:02:21+00:00
+- Love: "just the delayed entry model pls $2, $5 addon same as the other :))"
+- books: d, e, l, a, y, e, d,  , t, w, i, n
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "liveSkipExempt.btc", "has": "recon-dly"}
+- proof: {"config": "data/live-switch.json", "key": "bookSkipHoursByAsset.btc.recon-dly", "lacks": 18}
+
+## R035 - No-pink copy, gold channels under $10: top/bottom 33% always (fix219 20% for channels within one fresh sigma no longer applies to the copy) (fix351). Main + rejection keep fix219.
+- when: 2026-10-28T00:50:29+00:00
+- Love: "card "Should tiny gold channels lock 33% instead of 20%, and on which books?" -> "33% on the copy only" (Love 5:48 PM: "why did she long in the top 33% of the channel ….?")"
+- books: n, o, -, p, i, n, k,  , c, o, p, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix351"}
+
+## R034 - No-pink copy: near an unbroken pink only the break lets her go (a long flips only once price is above the pink; under it a flip is a short). Candle colour no longer waives pink: sliding scale (fix347) and BTC $33 (fix346b) become break-only (fix350)
+- when: 2026-10-28T00:48:31+00:00
+- Love: "hun what are you talking about a flip ???? it was on the under side of the band ????? a flip would be short. it would need to be above the band for a flip to be a long. ????"
+- books: n, o, -, p, i, n, k,  , c, o, p, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix350"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "lacks": "&& !flp347 && side"}
+
+## R033 - No-pink copy gets HER FLIP like main (fix325: entry needs a live 1-5m candle flipped her way, literal colour) (fix349); gold 33c pink barrier mirrored for shorts over pink (fix349)
+- when: 2026-10-28T00:41:09+00:00
+- Love: "yes pls pls , and we can make it unilaterally pink rules in both direction to answer your question. thank you for confirming"
+- books: n, o, -, p, i, n, k,  , c, o, p, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix349"}
+
+## R032 - No-pink copy, gold, channel under $10: no long within 33c under an unbroken pink even with a flip (hard barrier); past 33c the sliding scale still needs a 1-5m flip or the break (fix348)
+- when: 2026-10-28T00:37:59+00:00
+- Love: "and gold needs a minimum 33c  barrier between pink and longing into it at this scale / and needs a candle flip / we can open it up to normal when the bands are bigger but for rn yes"
+- books: n, o, -, p, i, n, k,  , c, o, p, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix348"}
+
+## R031 - No-pink copy: pink is a wall on both assets inside main's sliding scale (BTC $25 at <=$100, $50 or 10% above; gold 10% or $2) until a 1-5m flip her way or the pink breaks; replaces the copy's stacked-only pink (fix347). Rejection model keeps stacked-only.
+- when: 2026-10-28T00:36:03+00:00
+- Love: "card "Should the no-pink copy use main's sliding pink scale?" -> "Copy gets main's sliding scale" (Love 5:32 PM: "we need to come up with a sliding scale again hun ... so we can let her stay put ok")"
+- books: n, o, -, p, i, n, k,  , c, o, p, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix347"}
+
 ## R030 - No-pink copy, BTC: the pink confirmation wall is $33, not $10 - within $33 of an unbroken pink she needs a 1-5m flip her way or the pink broken (fix346b, replaces R029 $10)
 - when: 2026-10-28T00:20:08+00:00
 - Love: "no let’s keep that$33 bb not $10"

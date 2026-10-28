@@ -187,3 +187,5 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 
 - **Copy: no thirds flips; main gold pink-to-green 60% (fix364, R049).** Love Oct 27 8:38 PM PT: "yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine". The no-pink copy never turns main's read into the opposite trade ("Top third - seen as a short", "Bottom third - seen as a long"). Main only: no gold short in the bottom 60% of the green -> pink space (other books 50%).
 - **Pure no-pink pink rule (fix363, R048).** Love Oct 27 8:32 PM PT: "as for pink holds on the new no-pink one, she only does it if the pink band and the session occupy the same bottom/top 10% of the channel pls / otherwise the rejections should blow right thru".
+
+- fix367 (Oct 27 ~9:35 PM PT, Love: "yess that's good hunni 💞 wait for a break or a candle flip as normal"): PURE NO-PINK only - no long within 50c gold / $25 BTC under an unbroken pink (mirror for shorts); she goes on the break through it. Other pink blows through (fix363).
