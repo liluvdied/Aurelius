@@ -13,3 +13,5 @@ data/gold-law.jsonl
 data/copy-timing.jsonl
 data/band-lock.jsonl
 data/grok-og-archive.jsonl
+# dna-blocks.jsonl is over 100 MB - its full copy lives in data/big-logs/ (Oct 29 2026, Love: nothing left out)
+data/dna-blocks.jsonl

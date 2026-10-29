@@ -8964,5 +8964,65 @@
   "status": "skipped",
   "final": true,
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26OCT291300-00:recon-rej:KXBTC15M-26OCT291300-00:recon-rej": {
+  "at": "2026-10-29T16:50:00.091Z",
+  "ticker": "KXBTC15M-26OCT291300-00",
+  "side": "down",
+  "status": "blocked",
+  "reason": "PINK TO GREEN (BTC): short at 19% of the green 81084.29 -> pink 81322.75 space - no short in the bottom 55%.",
+  "firstReason": "SESSION BAND AHEAD (fix413): +1σ (81048.57) unbroken 267.54 below, closer than +2σ 353.01 behind: waiting for a break or a rejection there",
+  "firstTryAt": "2026-10-29T16:45:20.166Z",
+  "bookedAt": "2026-10-29T16:45:20.025Z",
+  "tries": 1310,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXBTC15M-26OCT291300-00:recon-tog:KXBTC15M-26OCT291300-00:recon-tog": {
+  "at": "2026-10-29T16:45:20.168Z",
+  "ticker": "KXBTC15M-26OCT291300-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26OCT291300-00:recon-rej:KXGOLD15M-26OCT291300-00:recon-rej": {
+  "at": "2026-10-29T16:46:03.276Z",
+  "ticker": "KXGOLD15M-26OCT291300-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXGOLD15M-26OCT291300-00:recon-tog:KXGOLD15M-26OCT291300-00:recon-tog": {
+  "at": "2026-10-29T16:55:12.288Z",
+  "ticker": "KXGOLD15M-26OCT291300-00",
+  "side": "down",
+  "status": "blocked",
+  "reason": "PINK 10%: short $-0.12 over the unbroken pink (4015.45) - inside 10% ($2.00) of the 4009.70 -> 4021.83 channel. wait for pink to break down.",
+  "firstReason": "SESSION BAND AHEAD (fix413): -1σ (4022.02) unbroken 4.69 above, closer than -2σ 7.38 behind: waiting for a break or a rejection there",
+  "firstTryAt": "2026-10-29T16:46:03.293Z",
+  "bookedAt": "2026-10-29T16:51:01.911Z",
+  "tries": 2551,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXBTC15M-26OCT291300-00:recon-dly:KXBTC15M-26OCT291300-00:recon-dly": {
+  "at": "2026-10-29T16:48:49.828Z",
+  "ticker": "KXBTC15M-26OCT291300-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (9 AM PT) live"
+ },
+ "KXGOLD15M-26OCT291300-00:recon-dly:KXGOLD15M-26OCT291300-00:recon-dly": {
+  "at": "2026-10-29T16:50:53.044Z",
+  "ticker": "KXGOLD15M-26OCT291300-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (9 AM PT) live"
  }
 }

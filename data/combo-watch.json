@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T16:41:00.988Z",
+ "at": "2026-10-29T17:06:04.144Z",
  "activeGold": "diamond",
  "days": [
   "2026-10-23",
@@ -44,15 +44,15 @@
      "p": 10.83
     },
     "2026-10-29": {
-     "n": 20,
-     "w": 14,
-     "p": 16.75
+     "n": 22,
+     "w": 15,
+     "p": -4.69
     }
    },
    "week": {
-    "n": 165,
+    "n": 166,
     "w": 103,
-    "p": -122.24
+    "p": -161.16
    }
   },
   "diamond": {
@@ -88,15 +88,15 @@
      "p": 63.48
     },
     "2026-10-29": {
-     "n": 15,
+     "n": 16,
      "w": 10,
-     "p": 13.2
+     "p": -9.24
     }
    },
    "week": {
     "n": 146,
-    "w": 95,
-    "p": 58.96
+    "w": 94,
+    "p": 19.04
    }
   }
  },
@@ -280,6 +280,6 @@
    }
   }
  },
- "sigmaNow": 619.16,
+ "sigmaNow": 622.74,
  "note": "Live pricing: $22, asks <= 72c, Kalshi fees in and out. Gold = trades each hour map would have taken. BTC = RUN books' paper trades by session sigma at entry."
 }

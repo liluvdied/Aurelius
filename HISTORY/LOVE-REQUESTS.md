@@ -2,6 +2,30 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R166 - Standing rule: every performance number for any book is counted ONLY by the structure in place (her live take-profit structure + add-on, i.e. what she actually took). Never held-to-the-bell, never a different exit model.
+- when: 2026-10-29T17:05:04+00:00
+- Love: "Love Oct 29 2026 10:04 AM PT: "going forward if i ever ask you about a books performance, do not ever count it any other way than the strucutre we have in place. i have no idea why you would count it any differently" + 10:00 AM: "please do not count her wins or losses as ANYTHING OTHER THAN THE STRUCTURE WE HAVE IN PLACE.""
+- books: e, v, e, r, y,  , b, o, o, k, ,,  , e, v, e, r, y,  , r, e, p, o, r, t
+- status: ACTIVE
+- proof: {"process": "performance always counted by her live structure (Love Oct 29 10:04 AM)"}
+
+## R165 - fix454: the 3 PM rule (fix452) also allows pink (5m PP) calls and applies to whichever of main/rejection holds the 3 PM seat (BTC main, gold rejection). Session-band and other calls at 3 PM held. Test tools/three-pm-test-452.cjs updated.
+- when: 2026-10-29T17:00:17+00:00
+- Love: "Love Oct 29 2026 9:57 AM PT: "3pm - GOES TO Main (w pink, bollingers, red green zones only , same for gold sorry forgot to mention pink earlier 😹💓)""
+- books: r, e, c, o, n, -, t, o, g,  , (, b, t, c,  , 3,  , P, M, ), ,,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d,  , 3,  , P, M, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "/* fix454: pink too */"}
+- proof: {"test": "tools/three-pm-test-452.cjs"}
+
+## R164 - fix453 (config, BTC, 10:15 AM PT boundary): BTC rejection hours [0,2,3,4,7,10,19,20,22]; MAIN 5, 8, 9, 11 AM, 12, 1, 3 PM; DELAYED model live on Kalshi at 4, 5, 6, 11 PM ($2.50 entry, $5 add-on at 3.8x+ - bookDollars/addOn.twin already so); sit out 1, 6 AM, 2, 9 PM (liveSkipHours.btc [1,6,14,21]). Polymarket twin untouched (it reads bookSkipHours, not the per-asset list). 8 PM double sizing and the 3 PM pink/Bollinger/zone filter for main are separate (8 PM needs Love's answer on the $5 ceiling; 3 PM is a code change).
+- when: 2026-10-29T16:59:44+00:00
+- Love: "Love Oct 29 2026 9:57 AM PT: "BTC's CHOSEN REJCTION HOURS ::: 12am ✅✅ / 1Am ❌❌ cut (for both books) / 2am ✅✅ Rej. / 3am ✅ rej. / 4am. ✅ Rej. / 5am - GOES TO MAIN / 6am - cut ❌ / 7am ✅✅✅ REJECTION GETS LIT AT 7am / 8am - GOES TO MAIN / 9am - GOES TO MAIN / 10am ✅ Rej. / 11am - GOES TO MAIN / 12pm. - GOES TO MAIN / 1pm GOES TO MAIN / 2pm - Cut ❌❌ / 3pm - GOES TO Main (w pink, bollingers, red green zones only , same for gold sorry forgot to mention pink earlier) / 4-6 pm DELAYED ENTRY MODEL PLS / 7Pm - ✅✅ Rej. / 8pm ✅✅✅✅✅✅✅ REJ - GETS DOUBLE POSITION SIZING FOR THAT HOUR PLS / 9Pm - cut ❌ / 10pm ✅✅ Rej. / 11pm - Delayed entry model pls (2.50 initial entry $5 add on at 3.8x + , goes for all delayed entry model hours)""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j, ,,  , r, e, c, o, n, -, d, l, y,  , (, b, t, c, ,,  , K, a, l, s, h, i, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejHoursByAsset.btc", "equals": [0, 2, 3, 4, 7, 10, 19, 20, 22]}
+- proof: {"config": "data/live-switch.json", "key": "liveSkipHours.btc", "equals": [1, 6, 14, 21]}
+- proof: {"config": "data/live-switch.json", "key": "bookSkipHoursByAsset.btc.recon-dly", "equals": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19, 20, 21, 22]}
+
 ## R163 - fix452: in the 3 PM PT hour the rejection model (gold + BTC) takes only Bollinger and green/red zone calls; pink, session-band and other calls are held (not final). Walls still judge. Main and other hours unchanged. Test tools/three-pm-test-452.cjs.
 - when: 2026-10-29T16:44:07+00:00
 - Love: "Love Oct 29 2026 9:42 AM PT: "3pm ✅ (bollingers, green/red zones only) (for btc and gold pls)""

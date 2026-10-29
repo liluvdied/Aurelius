@@ -1,9 +1,18 @@
-# Every decision Love has made - rebuilt 2026-10-29T16:15:12.181819+00:00
+# Every decision Love has made - rebuilt 2026-10-29T17:00:11.811668+00:00
 
-1310 decisions with Love's words or card picks, out of 2052 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1312 decisions with Love's words or card picks, out of 2054 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T17:00:00.022908+00:00  ·  diary line 2521  ·  fix452
+- Love: “3pm ✅ (bollingers, green/red zones only) (for btc and gold pls)”
+- fix452 IN HER CODE
+- Full entry: 2026-10-29T17:00:00.022908+00:00 fix452 INSTALLED (Love Oct 29 2026 9:42 AM PT: "3pm ✅ (bollingers, green/red zones only) (for btc and gold pls)"): at 3 PM PT the rejection model takes only Bollinger and green/red zone calls, gold + BTC. R163. No-removal gate passed. {'engine.ts': '6cdba4b66cb42284'}.
+
+## 2026-10-29T16:45:00.014282+00:00  ·  diary line 2520  ·  fix451
+- fix451 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T16:45:00.014282+00:00 fix451 CONFIG (Love Oct 29 2026 9:42 AM PT: her GOLD schedule): rejection hours gold [0, 1, 2, 3, 4, 7, 9, 14, 16, 17, 18, 21, 22, 23] -> [0,1,2,3,8,10,12,13,14,15,16,17,18,21,23]; gold sit-out [4, 7, 9, 20, 23] -> [4,5,6,7]; main takes gold 9, 11 AM, 7, 8, 10 PM. 2 PM left as it was (rejection) pending Love. R162. No code change.
 
 ## 2026-10-29T16:15:00.043145+00:00  ·  diary line 2519  ·  fix450
 - Love: “she just longed btc closer to the red than the pink and if immediately reversed we need to nip that in the bud right now”

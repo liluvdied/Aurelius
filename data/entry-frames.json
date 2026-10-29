@@ -1,22 +1,4 @@
 {
-  "held-KXBTC15M-26OCT271845-45": {
-    "id": "held-KXBTC15M-26OCT271845-45",
-    "at": "2026-10-27T22:30:22.134Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Live",
-    "multiple": 2.08,
-    "ask": 0.48,
-    "stake": 2.5,
-    "spot": null,
-    "vwap": null,
-    "stdev": null,
-    "target": null,
-    "windowOpen": null,
-    "secondsLeft": null,
-    "hour": "3pm",
-    "bands": []
-  },
   "held-KXBTC15M-26OCT271900-00": {
     "id": "held-KXBTC15M-26OCT271900-00",
     "at": "2026-10-27T22:46:01.585Z",
@@ -8997,6 +8979,24 @@
     "windowOpen": null,
     "secondsLeft": null,
     "hour": "9am",
+    "bands": []
+  },
+  "held-KXGOLD15M-26OCT291315-15": {
+    "id": "held-KXGOLD15M-26OCT291315-15",
+    "at": "2026-10-29T17:06:05.395Z",
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Live",
+    "multiple": 3.33,
+    "ask": 0.3,
+    "stake": 5,
+    "spot": null,
+    "vwap": null,
+    "stdev": null,
+    "target": null,
+    "windowOpen": null,
+    "secondsLeft": null,
+    "hour": "10am",
     "bands": []
   }
 }

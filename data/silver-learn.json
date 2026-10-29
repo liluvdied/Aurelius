@@ -1,5 +1,17 @@
 [
   {
+    "id": "KXSILVER15M-26OCT291300-00:down:Tap-reject at -0.5σ",
+    "at": "2026-10-29T16:57:26.592Z",
+    "asset": "silver",
+    "side": "down",
+    "pattern": "Tap-reject at −0.5σ",
+    "result": "no",
+    "ticker": "KXSILVER15M-26OCT291300-00",
+    "hits": 12,
+    "multiple": 1.3,
+    "profit": -25
+  },
+  {
     "id": "KXSILVER15M-26OCT291115-15:down:Tap-reject at -0.5σ",
     "at": "2026-10-29T15:00:03.452Z",
     "asset": "silver",
@@ -2382,18 +2394,6 @@
     "ticker": "KXSILVER15M-26OCT141245-45",
     "hits": 12,
     "multiple": 1.85,
-    "profit": -25
-  },
-  {
-    "id": "KXSILVER15M-26OCT141230-30:down:Tap-reject at -0.5σ",
-    "at": "2026-10-14T16:23:01.257Z",
-    "asset": "silver",
-    "side": "down",
-    "pattern": "Tap-reject at −0.5σ",
-    "result": "no",
-    "ticker": "KXSILVER15M-26OCT141230-30",
-    "hits": 12,
-    "multiple": 2.04,
     "profit": -25
   }
 ]

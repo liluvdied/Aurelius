@@ -1,6 +1,6 @@
 {
- "at": "2026-10-29T16:43:52.842Z",
- "scanned": 104,
+ "at": "2026-10-29T17:04:26.055Z",
+ "scanned": 80,
  "picked": [
   "KXTEMPLAXHS",
   "KXTEMPMON",
@@ -9,6 +9,10 @@
   "KXTEMPCHIHS",
   "KXTEMPNYCHS",
   "KXTEMPDCH",
+  "KXHIGHTLV",
+  "KXHIGHTDAL",
+  "KXLOWTSEA",
+  "KXLOWTDAL",
   "KXLOWCHI",
   "KXLOWNYC",
   "KXHIGHUS",
@@ -16,11 +20,7 @@
   "KXLOWNY",
   "KXLOWTSDF",
   "KXLOWTNYC",
-  "KXHIGHTEMPDEN",
-  "KXLOWTLAX",
-  "KXLOWTDC",
-  "KXHIGHMIA",
-  "KXLOWTTTN"
+  "KXHIGHTEMPDEN"
  ],
  "stations": {
   "KXTEMPLAXHS": "KLAX",
@@ -72,11 +72,10 @@
  "rules": {},
  "flags": [],
  "errors": [
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPCHIMETROHS&status=",
   "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPNYCHS&status=open&",
   "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPDCH&status=open&li",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWCHI&status=open&lim",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWNYC&status=open&lim"
+  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTDAL&status=open&l",
+  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTDAL&status=open&li"
  ],
  "cats": {
   "Entertainment": 2595,

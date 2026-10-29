@@ -183,5 +183,30 @@
     "what": "liveSkipHours.gold",
     "R": "R162",
     "why": "fix451 Love's gold schedule"
+  },
+  {
+    "what": "offHourMain.rejHoursByAsset.btc",
+    "R": "R164",
+    "why": "fix453 Love's BTC schedule"
+  },
+  {
+    "what": "liveSkipHours.btc",
+    "R": "R164",
+    "why": "fix453 Love's BTC schedule"
+  },
+  {
+    "what": "bookSkipHoursByAsset.btc.recon-dly",
+    "R": "R164",
+    "why": "fix453 Love's BTC schedule"
+  },
+  {
+    "what": "if (String(row.book) === \"recon-rej\" && Number(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", hour: \"2-digit\", hourCycle: \"h23\" }).format(new Date())) % 24 === 15 && !/Bollinger|Green zone|Red zone/i.test(String(row.setup || row.label || \"\")) && !done[row.id]?.orderId && ![\"partial\", \"resting\", \"filled\", \"sent\"].includes(String(done[row.id]?.status || \"\"))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: \"blocked\", final: false, reason: `3 PM = BOLLINGERS AND ZONES ONLY (fix452): \"${String(row.setup || row.label).slice(0, 80)}\" is not a Bollinger or green/red zone call` }; continue; }",
+    "R": "R165",
+    "why": "fix454 edits the 3 PM rule (pink + main)"
+  },
+  {
+    "what": "- TP 10% or $2 whichever first. Polymarket min $5.",
+    "R": "R166",
+    "why": "stale TP line replaced by the live structure with Love's words"
   }
 ]

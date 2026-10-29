@@ -26,3 +26,6 @@ Love Oct 27 10:04-10:05 PM PT: "yes let's rotate those into the archive too bb" 
 | other-side-upto-2026-10-27-1005PM-PT.jsonl | 1,526,894,423 | 5,396,468 | a3d482c809eb94f6 |
 
 Restore: `cat <name>.zst.part-* | zstd -dc > <name>`
+
+## dna-blocks.jsonl (from Oct 29 2026 ~10:08 AM PT)
+Over 100 MB, so it lives here as 90 MB raw pieces: cat data/big-logs/dna-blocks.jsonl.part-* > data/dna-blocks.jsonl

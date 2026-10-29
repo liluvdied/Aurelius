@@ -1,5 +1,25 @@
 [
  {
+  "at": "2026-10-29T16:51:05.161Z",
+  "kind": "rej5m",
+  "book": "recon-rej-5m",
+  "slug": "cpc-btc-updown-5m-2026-10-29-1650z",
+  "side": "up",
+  "contracts": 0,
+  "cost": 0.48,
+  "stake": 4.61,
+  "kalshi": "KXBTC15M-26OCT291300-00",
+  "closesAt": "2026-10-29T16:55:00.000Z",
+  "status": "banked",
+  "peakBid": 0.98,
+  "banked": 4.49,
+  "halfDone": true,
+  "halfAt": "2026-10-29T16:53:34.341Z",
+  "halfPx": 0.92,
+  "soldAt": "2026-10-29T16:54:05.487Z",
+  "soldPx": 0.97
+ },
+ {
   "at": "2026-10-29T16:36:05.154Z",
   "kind": "rej5m",
   "book": "recon-rej-5m",
@@ -3330,18 +3350,5 @@
   "closesAt": "2026-10-26T03:15:00.000Z",
   "status": "to the bell",
   "peakBid": 0.85
- },
- {
-  "at": "2026-10-26T03:02:08.429Z",
-  "slug": "cpc-btc-updown-15m-2026-10-26-0300z",
-  "side": "down",
-  "contracts": 11.36,
-  "cost": 0.22,
-  "stake": 2.5,
-  "kalshi": "KXBTC15M-26OCT252315-15",
-  "closesAt": "2026-10-26T03:15:00Z",
-  "tier": 0.333,
-  "status": "to the bell",
-  "peakBid": 0.2
  }
 ]

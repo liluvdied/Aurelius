@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T16:45:23.580Z",
+ "at": "2026-10-29T17:05:29.127Z",
  "fills": [
   {
    "t": "2026-10-29T16:42:24.853395Z",
@@ -12004,6 +12004,19 @@
  ],
  "orders": [
   {
+   "t": "2026-10-29T17:03:24.411595Z",
+   "ticker": "KXGOLD15M-26OCT291315-15",
+   "action": "sell",
+   "side": "yes",
+   "status": "canceled",
+   "type": "limit",
+   "count": "0.00",
+   "initial": "11.53",
+   "yes": "0.4800",
+   "id": "01a1889d-c760",
+   "client": "067ee626-9189-4cb1-a77b-e0bbe1ff421d"
+  },
+  {
    "t": "2026-10-29T16:42:24.853395Z",
    "ticker": "KXBTC15M-26OCT291245-45",
    "action": "buy",
@@ -14589,19 +14602,6 @@
    "yes": "0.9400",
    "id": "01a18749-37c8",
    "client": "0c410685-650c-4ef7-8f47-df2b0c39df1c"
-  },
-  {
-   "t": "2026-10-29T10:51:22.813309Z",
-   "ticker": "KXBTC15M-26OCT290700-00",
-   "action": "sell",
-   "side": "yes",
-   "status": "executed",
-   "type": "limit",
-   "count": "13.95",
-   "initial": "13.95",
-   "yes": "0.9400",
-   "id": "01a18749-2c10",
-   "client": "8440bc75-56cc-412d-a5d4-7d638d3c12a6"
   }
  ],
  "settlements": [

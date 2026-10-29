@@ -58,6 +58,9 @@ if rBF.returncode != 0: ok = False
 rZP = subprocess.run(["node", "tools/zone-pickup-test-448.cjs"], capture_output=True, text=True)  # fix448 (Love Oct 28 2026 10:56 PM PT: "yes please fix that and add the log pls")
 print(("SAFE   " if rZP.returncode == 0 else "OUT    ") + "tools/zone-pickup-test-448.cjs  " + ((rZP.stdout.strip().split("\n") or [""])[-1]))
 if rZP.returncode != 0: ok = False
+r3P = subprocess.run(["node", "tools/three-pm-test-452.cjs"], capture_output=True, text=True)  # fix452 (Love Oct 29 2026 9:42 AM PT: "3pm ✅ (bollingers, green/red zones only)")
+print(("SAFE   " if r3P.returncode == 0 else "OUT    ") + "tools/three-pm-test-452.cjs  " + ((r3P.stdout.strip().split("\n") or [""])[-1]))
+if r3P.returncode != 0: ok = False
 r9 = subprocess.run([sys.executable, "tools/extra-call-5m.py"], capture_output=True, text=True)  # record only (Love Oct 27 2:25 PM PT: "track and log those")
 print("INFO   tools/extra-call-5m.py  " + ((r9.stdout.strip().split("\n") or [""])[0]))
 r10 = subprocess.run([sys.executable, "tools/pink-flag.py"], capture_output=True, text=True)  # record only (Love Oct 27 5:23 PM PT: "if one of the other books takes a trade like that and loses flag it for me")

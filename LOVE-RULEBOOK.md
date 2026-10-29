@@ -114,7 +114,7 @@ These are cornerstones for MAIN + REJECTION. tools/cornerstones.py fails if any 
 
 ## Money
 - One executed direction per window. Never two open on Kalshi. Never double her manual position.
-- TP 10% or $2 whichever first. Polymarket min $5.
+- TAKE PROFIT (live structure, Oct 29 2026): a quarter sells at 75% of max, the rest at 90% TP + trail, plus one $5 add-on (3.8x+; 2.8x in rejection hours / off hours). Every performance number is scored only by this structure (Love Oct 29 10:04 AM PT: "going forward if i ever ask you about a books performance, do not ever count it any other way than the strucutre we have in place"). [Replaces the stale line "TP 10% or $2 whichever first."] Polymarket min $5.
 
 ## Live state (Oct 27, 4:06 AM PT)
 - Only the no-pink copy is live, gold + BTC, $1 everything. Main/rejection/twin on paper.
