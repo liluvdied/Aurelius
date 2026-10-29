@@ -13188,5 +13188,75 @@
   "status": "skipped",
   "paid": null,
   "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXGOLD15M-26OCT290045-45:recon-tog": {
+  "status": "filled",
+  "paid": 0.53,
+  "reason": ""
+ },
+ "KXBTC15M-26OCT290045-45:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26OCT290045-45:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXGOLD15M-26OCT290045-45:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXBTC15M-26OCT290100-00:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26OCT290100-00:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "STALE CALL: booked 90 s ago and still unfilled after 534 tries - an old call never fires (fix431)"
+ },
+ "KXBTC15M-26OCT290100-00:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXGOLD15M-26OCT290100-00:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
+ },
+ "KXGOLD15M-26OCT290115-15:recon-tog": {
+  "status": "missed",
+  "paid": null,
+  "reason": "window ended before it filled (last: TARGET PAST A BAND: short at 4045.00 with the pink (4040.99) below her, between her and the target 4038.07 - only trade awa"
+ },
+ "KXGOLD15M-26OCT290115-15:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (10 PM PT) live"
+ },
+ "KXBTC15M-26OCT290115-15:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26OCT290130-30:recon-tog": {
+  "status": "filled",
+  "paid": 0.57,
+  "reason": ""
+ },
+ "KXBTC15M-26OCT290130-30:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26OCT290130-30:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (10 PM PT) live"
  }
 }

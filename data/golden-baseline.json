@@ -132,7 +132,7 @@
     "channelRule": "fcbcf16590",
     "channelEdge": "a30a043314",
     "blockedAssets": "5aa1d253cd",
-    "bigMultipleCap": "f4ba3b4df4",
+    "bigMultipleCap": "4a9c274743",
     "skipHours": "1bd9ca0ecc",
     "navSkip": "23481db946",
     "navCross": "2a3783d18c",
@@ -142,13 +142,13 @@
     "model": "80270e39ab",
     "autoExits": "b5bea41b6c",
     "tpHard": "b5bea41b6c",
-    "liveBook": "d37eecf029",
+    "liveBook": "00d9953bd0",
     "tpOfMax": "69f59c273b",
     "netBelow": "4f53cda18c",
     "insurance": "7e56fa5011",
     "tpLadder": "b5bea41b6c",
     "polyTwin": "3b9b7879cb",
-    "addOn": "7731293eb7",
+    "addOn": "ef4958e2f4",
     "timeGate": "3e5d05e3eb",
     "snipe": "08fadc84ae",
     "polyLive": "fcbcf16590",
@@ -267,7 +267,7 @@
     "assetDollarsOff": "8a3eed3ef7",
     "polyLiveNote": "40671f92fd",
     "dlyLiveNote": "0c40f78c42",
-    "offHourMain": "6033634f47",
+    "offHourMain": "80baec0633",
     "bookSkipHoursByAsset": "d913a1d9d9",
     "fix313Prev": "c1e29a6fd6",
     "liveSkipHoursPrev315": "a7a12423e8",
@@ -297,13 +297,14 @@
     "fix427Prev": "bb6db682f5",
     "fix428Prev": "7f74fa8c12",
     "fix436Prev": "b454bfa0f5",
-    "fix437Prev": "5458d7e3aa"
+    "fix437Prev": "5458d7e3aa",
+    "fix445Prev": "c1cef1e30a"
   },
   "configFiles": {
     "data/spine-lock.json": "8ef4b13f6f93b8be",
     "data/FROZEN.json": "96bf1e60e4b50fe3",
     "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-    "data/live-switch.json": "e630a465e2292d69"
+    "data/live-switch.json": "de65640d31a1d316"
   },
   "sealLiveBook": "c8cfbbf7f9",
   "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

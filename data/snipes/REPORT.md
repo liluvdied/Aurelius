@@ -1,33 +1,33 @@
-# Snipes & grades - week ending Wed Oct 28, 9:21 PM PT
+# Snipes & grades - week ending Wed Oct 28, 10:22 PM PT
 
-938 live Kalshi positions graded, 1059 settled windows read (bid path every ~10 s, so a 1-second snap can be a touch deeper than shown).
+935 live Kalshi positions graded, 1059 settled windows read (bid path every ~10 s, so a 1-second snap can be a touch deeper than shown).
 
 ## Grades
 
 | grade | what it means | trades | share | P&L |
 |---|---|---|---|---|
-| A | rejected and went our way at once | 147 | 16% | +$780.06 |
-| B | won with 10-40% heat, or was up 30%+ and lost | 322 | 34% | -$667.96 |
-| C | went 40%+ against us, came back | 186 | 20% | +$2,207.16 |
-| D | lost, never really in our favour | 283 | 30% | -$2,920.08 |
+| A | rejected and went our way at once | 146 | 16% | +$774.50 |
+| B | won with 10-40% heat, or was up 30%+ and lost | 321 | 34% | -$687.99 |
+| C | went 40%+ against us, came back | 184 | 20% | +$2,187.86 |
+| D | lost, never really in our favour | 284 | 30% | -$2,914.65 |
 
 ### By asset
 
 | asset | n | A | B | C | D | A+C share | P&L |
 |---|---|---|---|---|---|---|---|
-| gold | 351 | 51 | 128 | 73 | 99 | 35% | -$181.39 |
-| btc | 587 | 96 | 194 | 113 | 184 | 36% | -$419.43 |
+| gold | 349 | 51 | 128 | 71 | 99 | 35% | -$214.23 |
+| btc | 586 | 95 | 193 | 113 | 185 | 35% | -$426.05 |
 
 ### By book
 
 | book | n | A | B | C | D | A+C share | P&L |
 |---|---|---|---|---|---|---|---|
-| recon-tog | 175 | 29 | 65 | 39 | 42 | 39% | +$28.83 |
+| recon-tog | 177 | 29 | 67 | 39 | 42 | 38% | +$28.85 |
 | recon-dly | 84 | 12 | 25 | 16 | 31 | 33% | -$26.46 |
 | recon-np | 18 | 5 | 2 | 5 | 6 | 56% | -$28.20 |
 | recon-togp | 139 | 26 | 38 | 36 | 39 | 45% | -$108.20 |
-| recon-rej | 124 | 23 | 38 | 24 | 39 | 38% | -$213.36 |
-| hand/other | 398 | 52 | 154 | 66 | 126 | 30% | -$253.43 |
+| recon-rej | 127 | 23 | 38 | 24 | 42 | 37% | -$225.46 |
+| hand/other | 390 | 51 | 151 | 64 | 124 | 29% | -$280.81 |
 
 ### By hour (PT)
 
@@ -35,9 +35,9 @@
 |---|---|---|---|---|---|---|---|
 | 16 | 40 | 9 | 13 | 9 | 9 | 45% | +$168.75 |
 | 10 | 45 | 11 | 11 | 8 | 15 | 42% | +$68.84 |
-| 22 | 48 | 9 | 17 | 12 | 10 | 44% | +$55.57 |
 | 5 | 35 | 4 | 13 | 8 | 10 | 34% | +$46.63 |
 | 2 | 40 | 6 | 11 | 12 | 11 | 45% | +$44.41 |
+| 22 | 46 | 8 | 17 | 11 | 10 | 41% | +$31.55 |
 | 6 | 39 | 5 | 16 | 10 | 8 | 38% | +$15.99 |
 | 14 | 28 | 7 | 8 | 5 | 8 | 43% | +$4.17 |
 | 12 | 38 | 6 | 10 | 9 | 13 | 39% | -$3.35 |
@@ -56,7 +56,7 @@
 | 7 | 42 | 2 | 12 | 12 | 16 | 33% | -$86.74 |
 | 3 | 39 | 7 | 11 | 6 | 15 | 33% | -$95.36 |
 | 23 | 37 | 3 | 18 | 5 | 11 | 22% | -$118.46 |
-| 21 | 40 | 3 | 19 | 7 | 11 | 25% | -$122.31 |
+| 21 | 39 | 3 | 18 | 6 | 12 | 23% | -$137.75 |
 
 ### By day
 
@@ -64,9 +64,9 @@
 |---|---|---|---|---|---|---|---|
 | Sat | 78 | 19 | 20 | 12 | 27 | 40% | -$42.46 |
 | Sun | 118 | 26 | 37 | 22 | 33 | 41% | -$45.65 |
-| Wed | 147 | 19 | 45 | 35 | 48 | 37% | -$66.32 |
 | Mon | 152 | 19 | 54 | 38 | 41 | 38% | -$76.58 |
 | Tue | 154 | 24 | 52 | 32 | 46 | 36% | -$93.90 |
+| Wed | 144 | 18 | 44 | 33 | 49 | 35% | -$105.78 |
 | Fri | 130 | 17 | 57 | 20 | 36 | 28% | -$136.19 |
 | Thu | 159 | 23 | 57 | 27 | 52 | 31% | -$139.72 |
 
@@ -81,15 +81,15 @@
 | Fake-out turn under +1σ | 3 | 0 | 0 | 2 | 1 | 67% | +$46.16 |
 | Rejected down off +2σ | 6 | 2 | 0 | 3 | 1 | 83% | +$34.53 |
 | Touch of 5m S1 - the next band after the initial move | 4 | 2 | 1 | 1 | 0 | 75% | +$28.84 |
+| Tap-reject at −0.5σ | 19 | 3 | 9 | 3 | 4 | 32% | +$27.93 |
 | Break above -1σ | 4 | 0 | 0 | 2 | 2 | 50% | +$22.37 |
 | Rejected down off +1σ | 9 | 3 | 1 | 3 | 2 | 67% | +$21.52 |
 | Rejected down off fresh +1σ | 6 | 3 | 2 | 1 | 0 | 67% | +$20.51 |
-| Tap-reject at −0.5σ | 20 | 3 | 9 | 3 | 5 | 30% | +$18.69 |
 | 1m rejection off Red zone | 3 | 1 | 0 | 2 | 0 | 100% | +$17.80 |
-| Red candle falling from the top third | 8 | 1 | 4 | 3 | 0 | 50% | +$15.41 |
+| Red candle falling from the top third | 9 | 1 | 4 | 3 | 1 | 44% | +$14.42 |
 | Rejected down off fresh VWAP | 3 | 0 | 3 | 0 | 0 | 0% | +$11.74 |
-| Rejected down off Bollinger upper | 9 | 4 | 2 | 1 | 2 | 56% | +$10.42 |
 | Rejected down off session VWAP | 3 | 2 | 1 | 0 | 0 | 67% | +$5.75 |
+| Rejected down off Bollinger upper | 10 | 4 | 2 | 1 | 3 | 50% | +$5.38 |
 | Rejected down off fresh +2σ | 3 | 1 | 1 | 0 | 1 | 33% | +$1.88 |
 | Rejected up off +1σ | 4 | 0 | 1 | 2 | 1 | 50% | -$1.14 |
 | Candle rising from the bottom third | 27 | 7 | 7 | 7 | 6 | 52% | -$1.72 |
@@ -101,8 +101,8 @@
 | Rejected down off fresh -1σ | 3 | 1 | 1 | 1 | 0 | 67% | -$6.37 |
 | Rejected up off -1σ | 4 | 1 | 1 | 0 | 2 | 25% | -$6.62 |
 | Failed break below Green zone - rejected up | 4 | 0 | 3 | 1 | 0 | 25% | -$10.14 |
-| Rejected down off 5m PP | 17 | 3 | 6 | 3 | 5 | 35% | -$12.90 |
 | Tap-reject at -0.5σ | 5 | 0 | 2 | 0 | 3 | 0% | -$13.23 |
+| Rejected down off 5m PP | 18 | 3 | 7 | 3 | 5 | 33% | -$14.93 |
 | 1m rejection off 5m PP | 7 | 2 | 3 | 0 | 2 | 29% | -$17.55 |
 | Rejected up off fresh -1σ | 4 | 0 | 1 | 1 | 2 | 25% | -$17.80 |
 | Fake-out turn under session VWAP | 3 | 0 | 2 | 0 | 1 | 0% | -$18.73 |
@@ -117,8 +117,8 @@
 | Rejected up off Bollinger lower | 9 | 2 | 2 | 2 | 3 | 44% | -$65.74 |
 | Turned down after the initial move | 12 | 2 | 6 | 0 | 4 | 17% | -$69.36 |
 | Rejected up off 5m PP | 20 | 1 | 11 | 4 | 4 | 25% | -$77.64 |
-| Candle falling from the top third | 29 | 2 | 6 | 6 | 15 | 28% | -$132.31 |
-| Live | 373 | 49 | 143 | 63 | 118 | 30% | -$258.89 |
+| Candle falling from the top third | 30 | 2 | 6 | 6 | 16 | 27% | -$138.38 |
+| Live | 366 | 48 | 140 | 61 | 117 | 30% | -$295.51 |
 
 ## How often the big multiples came back
 
@@ -126,16 +126,16 @@ First time a side reached the multiple with 90 s+ left, and whether that side wo
 
 | asset | multiple | times reached | came back | rate | EV per $1 | at a band: reached / came back |
 |---|---|---|---|---|---|---|
-| BTC | 4x+ | 771 | 166 | 22% | -0.02 | 647 / 138 |
-| BTC | 8x+ | 600 | 58 | 10% | -0.05 | 498 / 52 |
-| BTC | 15x+ | 495 | 23 | 5% | -0.16 | 410 / 20 |
-| BTC | 25x+ | 443 | 12 | 3% | -0.17 | 365 / 10 |
-| BTC | 50x+ | 377 | 4 | 1% | -0.37 | 316 / 4 |
-| GOLD | 4x+ | 472 | 102 | 22% | -0.03 | 316 / 70 |
+| BTC | 4x+ | 771 | 166 | 22% | -0.02 | 648 / 138 |
+| BTC | 8x+ | 601 | 58 | 10% | -0.05 | 499 / 52 |
+| BTC | 15x+ | 496 | 23 | 5% | -0.16 | 412 / 20 |
+| BTC | 25x+ | 444 | 12 | 3% | -0.17 | 366 / 10 |
+| BTC | 50x+ | 377 | 4 | 1% | -0.37 | 315 / 4 |
+| GOLD | 4x+ | 473 | 103 | 22% | -0.02 | 318 / 71 |
 | GOLD | 8x+ | 342 | 22 | 6% | -0.40 | 232 / 14 |
-| GOLD | 15x+ | 295 | 7 | 2% | -0.57 | 197 / 6 |
-| GOLD | 25x+ | 248 | 4 | 2% | -0.53 | 170 / 4 |
-| GOLD | 50x+ | 196 | 1 | 1% | -0.73 | 128 / 1 |
+| GOLD | 15x+ | 296 | 7 | 2% | -0.57 | 198 / 6 |
+| GOLD | 25x+ | 251 | 4 | 2% | -0.53 | 173 / 4 |
+| GOLD | 50x+ | 199 | 1 | 1% | -0.74 | 131 / 1 |
 
 ### The come-backs at 15x+ (30)
 
@@ -178,17 +178,17 @@ Every tap of a line (BTC $10, gold $0.30), how far price rejected back in 60 s. 
 
 | asset | line | taps | rejected back | median 60 s | hard snaps |
 |---|---|---|---|---|---|
-| BTC | R2/S2 | 102 | 66% | +21.83 | 19% |
+| BTC | R2/S2 | 104 | 66% | +23.93 | 18% |
 | BTC | outer σ (2-3σ) | 459 | 63% | +13.35 | 7% |
-| BTC | red/green zone | 1270 | 63% | +12.93 | 5% |
-| BTC | Bollinger | 1057 | 61% | +9.95 | 5% |
-| BTC | inner session (VWAP/±1σ) | 1564 | 62% | +9.55 | 4% |
-| BTC | pink | 2388 | 63% | +8.96 | 3% |
+| BTC | red/green zone | 1285 | 63% | +12.93 | 5% |
+| BTC | Bollinger | 1069 | 61% | +9.95 | 5% |
+| BTC | inner session (VWAP/±1σ) | 1567 | 62% | +9.55 | 4% |
+| BTC | pink | 2391 | 63% | +8.97 | 3% |
 | GOLD | R2/S2 | 65 | 65% | +0.53 | 11% |
-| GOLD | Bollinger | 713 | 57% | +0.20 | 2% |
-| GOLD | pink | 1368 | 56% | +0.16 | 2% |
-| GOLD | inner session (VWAP/±1σ) | 1109 | 56% | +0.16 | 2% |
-| GOLD | red/green zone | 949 | 56% | +0.15 | 2% |
+| GOLD | Bollinger | 718 | 57% | +0.20 | 2% |
+| GOLD | pink | 1374 | 56% | +0.16 | 2% |
+| GOLD | inner session (VWAP/±1σ) | 1112 | 56% | +0.16 | 2% |
+| GOLD | red/green zone | 959 | 56% | +0.15 | 2% |
 | GOLD | outer σ (2-3σ) | 362 | 55% | +0.13 | 3% |
 
 ## Add-ons
@@ -197,18 +197,18 @@ If she had added the first time her own position's side reached each multiple (9
 
 | asset | multiple | positions that got there | won | EV per $1 |
 |---|---|---|---|---|
-| BTC | 2.8x | 420 | 123 (29%) | -0.18 (floor) |
-| BTC | 3.8x | 370 | 82 (22%) | -0.16 (floor) |
-| BTC | 4.5x | 352 | 69 (20%) | -0.12 (floor) |
-| BTC | 8x | 289 | 33 (11%) | -0.09 (floor) |
-| BTC | 15x | 246 | 13 (5%) | -0.21 (floor) |
-| BTC | 25x | 216 | 3 (1%) | -0.65 (floor) |
+| BTC | 2.8x | 421 | 123 (29%) | -0.18 (floor) |
+| BTC | 3.8x | 371 | 82 (22%) | -0.16 (floor) |
+| BTC | 4.5x | 353 | 69 (20%) | -0.12 (floor) |
+| BTC | 8x | 290 | 33 (11%) | -0.09 (floor) |
+| BTC | 15x | 247 | 13 (5%) | -0.21 (floor) |
+| BTC | 25x | 217 | 3 (1%) | -0.65 (floor) |
 | GOLD | 2.8x | 244 | 61 (25%) | -0.30 (floor) |
 | GOLD | 3.8x | 211 | 39 (18%) | -0.30 (floor) |
 | GOLD | 4.5x | 193 | 25 (13%) | -0.42 (floor) |
 | GOLD | 8x | 152 | 7 (5%) | -0.63 (floor) |
-| GOLD | 15x | 120 | 2 (2%) | -0.75 (floor) |
-| GOLD | 25x | 94 | 1 (1%) | -0.73 (floor) |
+| GOLD | 15x | 121 | 2 (2%) | -0.75 (floor) |
+| GOLD | 25x | 96 | 1 (1%) | -0.74 (floor) |
 
 Her real add-ons (addon-log, all time in the archive):
 
@@ -295,13 +295,13 @@ Her real add-ons (addon-log, all time in the archive):
 
 ## Cut / double down (n >= 10)
 
-- **Weakest** setup Live: 373 trades, 32% D, -$258.89
-- **Weakest** book hand/other: 398 trades, 32% D, -$253.43
-- **Weakest** book recon-rej: 124 trades, 31% D, -$213.36
-- **Weakest** setup Candle falling from the top third: 29 trades, 52% D, -$132.31
-- **Weakest** hour 21: 40 trades, 28% D, -$122.31
+- **Weakest** setup Live: 366 trades, 32% D, -$295.51
+- **Weakest** book hand/other: 390 trades, 32% D, -$280.81
+- **Weakest** book recon-rej: 127 trades, 33% D, -$225.46
+- **Weakest** setup Candle falling from the top third: 30 trades, 53% D, -$138.38
+- **Weakest** hour 21: 39 trades, 31% D, -$137.75
 - **Strongest** hour 16: 40 trades, 45% A+C, +$168.75
 - **Strongest** setup Touch of 5m PP - the next band after the initial move: 15 trades, 53% A+C, +$115.65
 - **Strongest** hour 10: 45 trades, 42% A+C, +$68.84
-- **Strongest** hour 22: 48 trades, 44% A+C, +$55.57
 - **Strongest** setup Rejected down off Red zone: 17 trades, 53% A+C, +$47.76
+- **Strongest** hour 5: 35 trades, 34% A+C, +$46.63

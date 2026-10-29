@@ -1,15 +1,15 @@
 {
   "gold": {
-    "key": "mvszmtpm-sfsvsk|mvszaksa-7mcn6k",
-    "at": "2026-10-29T03:45:02.291Z",
-    "cause": "market",
-    "note": "Tap-reject at -1σ lost. Nothing on the entry to change. It stays. Tap-reject at -1.5σ lost. Nothing on the entry to change. It stays."
-  },
-  "btc": {
-    "key": "held-KXBTC15M-26OCT290045-45|held-KXBTC15M-26OCT290030-30",
-    "at": "2026-10-29T04:45:10.814Z",
+    "key": "held-KXGOLD15M-26OCT290115-15|held-KXGOLD15M-26OCT290045-45",
+    "at": "2026-10-29T05:15:39.410Z",
     "cause": "market",
     "note": "Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked."
+  },
+  "btc": {
+    "key": "held-KXBTC15M-26OCT290115-15|held-KXBTC15M-26OCT290045-45",
+    "at": "2026-10-29T05:15:18.945Z",
+    "cause": "market",
+    "note": "Tap-reject at −0.5σ lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked."
   },
   "silver": {
     "key": "mvsx0noy-lelkp2|mvsvyuk1-bbfri9",

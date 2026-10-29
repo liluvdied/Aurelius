@@ -83,5 +83,40 @@
     "what": "// nothing filled, partial, resting or sent) is written down skipped, never sent. A call that already holds a fill keeps its record untouched. Slide holds (fix371) stay exempt.",
     "R": "R154",
     "why": "fix444 comment of the removed fix431 line"
+  },
+  {
+    "what": "liveBook.dollars",
+    "R": "R156",
+    "why": "fix445 back to $5 + $5 add-on (Love 10:21 PM)"
+  },
+  {
+    "what": "offHourMain.dollars",
+    "R": "R156",
+    "why": "fix445 back to $5 + $5 add-on (Love 10:21 PM)"
+  },
+  {
+    "what": "bigMultipleCap.on",
+    "R": "R156",
+    "why": "fix445 back to $5 + $5 add-on (Love 10:21 PM)"
+  },
+  {
+    "what": "bigMultipleCap.x",
+    "R": "R156",
+    "why": "fix445 back to $5 + $5 add-on (Love 10:21 PM)"
+  },
+  {
+    "what": "addOn.on",
+    "R": "R156",
+    "why": "fix445 back to $5 + $5 add-on (Love 10:21 PM)"
+  },
+  {
+    "what": "addOn.dollars",
+    "R": "R156",
+    "why": "fix445 back to $5 + $5 add-on (Love 10:21 PM)"
+  },
+  {
+    "what": "offHourMain.addOn.dollars",
+    "R": "R156",
+    "why": "fix445 back to $5 + $5 add-on (Love 10:21 PM)"
   }
 ]

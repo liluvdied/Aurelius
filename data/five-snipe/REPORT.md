@@ -1,18 +1,16 @@
 # 5m snipe paper book 🎯
 
-Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Wed 09:22 PM PT.
+Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Wed 10:22 PM PT.
 
 | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|
-| cash at 3x | 52 | 13 | 25% | $+699.17 |
-| cash at 5x | 52 | 12 | 23% | $+809.17 |
-| cash at 7.5x | 51 | 10 | 20% | $+844.17 |
-| cash at 10x | 51 | 10 | 20% | $+946.09 |
+| cash at 3x | 54 | 13 | 24% | $+679.17 |
+| cash at 5x | 54 | 12 | 22% | $+789.17 |
+| cash at 7.5x | 53 | 10 | 19% | $+824.17 |
+| cash at 10x | 53 | 10 | 19% | $+926.09 |
 
 | When (PT) | Book | Side | Paid | Peak bid | 3x | 5x | 7.5x | 10x |
 |---|---|---|---|---|---|---|---|---|
-| Sun 10:28 PM | recon-rej | down | 0.09 | 0.12 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
-| Mon 12:29 AM | recon-tog | up | 0.01 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Mon 12:59 AM | recon-tog | down | 0.01 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Mon 01:12 AM | recon-tog | up | 0.06 | 0.03 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Mon 02:07 AM | recon-rej | down | 0.13 | 0.25 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
@@ -91,3 +89,5 @@ Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her s
 | Wed 08:39 PM | recon-tog | up | 0.01 | 0.01 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed 08:59 PM | recon-tog | down | 0.15 | 0.14 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Wed 09:14 PM | recon-tog | down | 0.02 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
+| Wed 09:38 PM | recon-tog | down | 0.12 | 0.04 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Wed 10:07 PM | recon-tog | down | 0.1 | 0.09 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |

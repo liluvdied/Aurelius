@@ -2,6 +2,16 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R156 - fix445 (config, 10:30 PM PT boundary): main + rejection back to $5 with ONE $5 add-on - liveBook.dollars 1->5, offHourMain.dollars 1->5, data/live-size.json dollars 1->5, the $1 wire cap off again (bigMultipleCap back to its fix427Prev: on false, x 3), addOn.on false->true, addOn.dollars 8->5, offHourMain.addOn.dollars 8->5 (prev in fix445Prev). Second add-on stays off (R092). maxDollars 5, Polymarket, 5M, sit-out hours, seats untouched.
+- when: 2026-10-29T05:21:55+00:00
+- Love: "Love Oct 28 2026 10:21 PM PT: "shes good babez. You can put her back on at five dollars with the five dollar addon ok""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, K, a, l, s, h, i, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 5}
+- proof: {"config": "data/live-switch.json", "key": "addOn.on", "equals": true}
+- proof: {"config": "data/live-switch.json", "key": "addOn.dollars", "equals": 5}
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.addOn.dollars", "equals": 5}
+
 ## R155 - Her reach wall (fix429, main + rejection) as it stands after fix443: no trade into an unbroken session band or the pink within $1 gold (TEMPORARY, until the sliding scale) / $50 BTC; the pink's reach is at least 15% of the channel (fix430); a band only counts broken once price is 33c gold / $6 BTC through it; red/green zone reach $1 gold, BTC sliding. Replaces R124 (retired on Love's 9:52 PM words for the $1 change only).
 - when: 2026-10-29T05:01:02+00:00
 - Love: "Love Oct 28 2026 8:06 PM PT: "yes to all of them bb ... red green zone reach is 1.50 now, not 1.11" + 9:52 PM: "1.50 is too big rn. make it $1 teporarily pls. til we come up with the sliding scale""

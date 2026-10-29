@@ -3190,5 +3190,53 @@
   "result": "loss",
   "pnl": -5.0,
   "lane": "first"
+ },
+ {
+  "at": "2026-10-29T04:27:00+00:00",
+  "slot": "2026-10-29T04:25:00+00:00",
+  "side": "down",
+  "setup": "Launched from the top third (high 79848.54) - a short until the bottom third",
+  "ask": 0.51,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-29T04:27:00+00:00",
+  "slot": "2026-10-29T04:25:00+00:00",
+  "side": "down",
+  "setup": "Launched from the top third (high 79848.54) - a short until the bottom third",
+  "ask": 0.51,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-29T04:32:00+00:00",
+  "slot": "2026-10-29T04:30:00+00:00",
+  "side": "down",
+  "setup": "Launched from the top third (high 79810.47) - a short until the bottom third",
+  "ask": 0.6,
+  "left": 180,
+  "reaims": 0,
+  "result": "loss",
+  "pnl": -5.0,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-29T04:32:00+00:00",
+  "slot": "2026-10-29T04:30:00+00:00",
+  "side": "down",
+  "setup": "Launched from the top third (high 79810.47) - a short until the bottom third",
+  "ask": 0.6,
+  "left": 180,
+  "reaims": 0,
+  "result": "loss",
+  "pnl": -5.0,
+  "lane": "first"
  }
 ]

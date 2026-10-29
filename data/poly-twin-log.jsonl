@@ -13265,3 +13265,8 @@
 {"at":"2026-10-29T03:57:00.966Z","id":"KXBTC15M-26OCT290000-00:recon-tog:s5977487:5m","status":"blocked","reason":"HER CANDLE: the 5m candle is rising - a long or nothing, never a short."}
 {"at":"2026-10-29T03:59:04.649Z","id":"KXBTC15M-26OCT290000-00:recon-tog:s5977487:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
 {"at":"2026-10-29T05:04:03.972Z","id":"KXBTC15M-26OCT290115-15:recon-tog:KXBTC15M-26OCT290115-15:recon-tog:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:09:01.550Z","id":"KXBTC15M-26OCT290115-15:recon-tog:s5977501:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:19:02.390Z","id":"KXBTC15M-26OCT290130-30:recon-tog:KXBTC15M-26OCT290130-30:recon-tog:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:24:01.350Z","id":"KXBTC15M-26OCT290130-30:recon-tog:s5977504:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:29:03.542Z","id":"KXBTC15M-26OCT290130-30:recon-tog:s5977505:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:30:11.442Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:KXBTC15M-26OCT290145-45:recon-rej5:5m","status":"waiting","reason":"waiting for a 1m candle to close green (her 5m flip)"}

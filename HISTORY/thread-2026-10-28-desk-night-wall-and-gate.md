@@ -2466,3 +2466,47 @@ Love, I see it. She's calling that BTC rejection short, and it's waiting for a 2
 ### 2026-10-29T05:07:13Z - Love
 
 good entry on btc just now bb.thank you 💘
+
+### 2026-10-29T05:08:18.934Z - Claude
+
+That's her, Love 💘. She waited for the red candle at the rejection and took it, the way you built her. Everything from tonight, including the $1 change and the held-calls fix, is pushed to GitHub as commit `5dcc89e`, with this conversation saved word for word.
+
+### 2026-10-29T05:21:26Z - Love
+
+shes good babez. You can put her back on at five dollars with the five dollar addon ok
+
+### 2026-10-29T05:21:32.789Z - Claude
+
+Love says she's good: back to $5 with a $5 add-on. Logging your words and setting it for the 10:30 PM boundary.
+
+### 2026-10-29T05:22:07.574Z - Claude -> Love (project chat)
+
+Got it, Love 💘. She goes back to $5 with the $5 add-on at 10:30:00 PM (saved first, R156 with your words):
+- main + rejection entries $1 -> $5 (book size, off-hours/rejection size, slider)
+- the $1 cap at the wire comes off
+- add-on ON at $5 (one add-on; the second stays off)
+Nothing else changes: same seats (main gold, rejection BTC), same walls, same sit-out hours, Polymarket/5M untouched. I'll confirm right after 10:30.
+
+### 2026-10-29T05:22:11.795Z - Claude
+
+Got it, Love 💘. At 10:30:00 PM she goes back to $5 with a $5 add-on. I saved her first, and your words are logged as R156.
+- **Entries:** main and rejection go from $1 back to $5.
+- **The $1 cap:** comes off.
+- **Add-on:** one $5 add-on per trade. The second add-on stays off.
+
+Nothing else changes: main stays on gold and rejection on BTC, with the same walls and sit-out hours, and Polymarket and the 5M aren't touched. I'll confirm right after 10:30.
+
+### 2026-10-29T05:22:13.606Z - Coordinator (relayed note)
+
+Love (10:21 PM PT, typed): "shes good babez. You can put her back on at five dollars with the five dollar addon ok". This is Love's explicit request to install. Books: main (recon-tog) + rejection (recon-rej) ONLY. Copy stays off live, paper books stay paper, 5M/Polymarket and twin untouched, maxDollars stays 5 (do not change it).
+      Steps, in the Aurelius desk folder:
+      1) FIRST: python3 tools/save-her.py known-good-before-5-dollars --good (Love said "shes good"), and log it in the request book: python3 tools/requests.py add with words = Love's exact quote above, what = "live size $1 -&gt; $5 on main + rejection; $5 add-on back on (R092 one $5 add-on)", books = ["main","rejection"], proof = list.
+      2) Change ONLY the $1 sizing set at 8 PM tonight (R122): liveBook dollars, offHourMain dollars, live-size, wire cap -&gt; $5. Add-on: back to $5 (the R123 'off until she's working' condition is now met). The second add-on (fix380, $3 at the next rejection) stays OFF unless Love says so. Do not add keys inside liveBook; if the seal hash needs updating, update golden-baseline.json sealLiveBook in the same breath.
+      3) Check: does maxDollars=5 or the wire cap block a $5 entry + $5 add-on (total $10)? If it would, DO NOT raise maxDollars; report it to me instead so I can ask Love.
+      4) Run the no-removal gate + python3 tools/umpire.py; must be SAFE with nothing removed. Install at the 10:30 PM boundary (not between). If auto-mode refuses, write INSTALL-FIVE-DOLLARS.command on the desk and tell me.
+      5) After install: confirm live on, both seats (main gold every hour, rejection BTC every hour), sit-outs unchanged, and the first lines after 10:30. Push to GitHub (ff branch claude/project-thread-mj3rmw from main, push branch, never force; keep .secrets and node_modules out).
+      Report: before/after values for each setting, gate + umpire result, install time, push commit.
+
+### 2026-10-29T05:22:22.367Z - Claude
+
+That's a KNOWN-GOOD save, since Love said "shes good". On the $5 cap: it limits each single order, so a $5 entry plus a separate $5 add-on both fit under it, and `maxDollars` stays at 5. Waiting on the 10:30 change.

@@ -1,6 +1,6 @@
 # 5M books ledger ✨ clean slate
 
-Live Polymarket 5m trades on the flip + 4 minutes rule at $5, since Sun 02:12 AM PT. Updated Wed 09:21 PM PT.
+Live Polymarket 5m trades on the flip + 4 minutes rule at $5, since Sun 02:12 AM PT. Updated Wed 10:22 PM PT.
 
 | Book | Trades | Won | Lost | Open | Win rate | P&L |
 |---|---|---|---|---|---|---|
