@@ -97,6 +97,22 @@ const ic = run(["node", path.join(root, "tools/independent-calls-test-463.cjs"),
 add("Independent calls, no flips, one EXECUTED trade per window (fix463, no side)", ic, ic, "12:31:37 PM gold short");
 const ft = run(["python3", path.join(root, "tools/free-to-trade-test.py"), path.join(DIR, "recon.ts")]);
 add("Free to trade: a call she never took never holds her (R008, no side)", ft, ft);
+// MIRRORS (fix467, R213 - Love Oct 29 2026 1:40 PM PT: "ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS"): every book but the delayed book
+{ const top = BL.includes("NO LONGS IN THE TOP RUNG (fix467)") && BL.includes('if (asset === "btc" && side === "up" && !DLY465.has(String(G.__curBook465 || ""))'), bot = BL.includes("NO SHORTS IN THE BOTTOM RUNG: btc short");
+  add("BTC rungs: no long over the session +2σ (fix467) / no short under the -2σ (fix296)", top, bot);
+  const zf = BL.includes('if (asset === "btc" && !DLY465.has(String(G.__curBook465 || "")) && !twinFade && zoneGuard !== 0.55) zoneGuard = 0.55;'), zl = /side === "up" && zP > 0 && zR1 > zP && tick > zP && tick < zR1 && \(tick - zP\) \/ \(zR1 - zP\) >= 1 - zoneGuard\) return/.test(BL), zs = /side === "down" && zP > 0 && zS1 > 0 && zS1 < zP && tick > zS1 && tick < zP && \(tick - zS1\) \/ \(zP - zS1\) <= zoneGuard\) return/.test(BL);
+  const zt = (t, s) => { const zP = 80000, zS1 = 79600, zR1 = 80400, g = 0.55; return s === "up" ? (t > zP && t < zR1 && (t - zP) / (zR1 - zP) >= 1 - g) : (t > zS1 && t < zP && (t - zS1) / (zP - zS1) <= g); };
+  const zOk = zt(80300, "up") && !zt(80100, "up") && zt(79700, "down") && !zt(79900, "down");
+  add("BTC zones 55% every book but delayed: no long top 55% pink->red / no short bottom 55% green->pink (door, copier, wire)", zf && zl && zOk, zf && zs && zOk);
+  const bbS = RC.includes('if (c.side === "down" && asset === "btc" && bbL > 0) { const ppB = pB("5m PP"); if (ppB > 0 && bbL < ppB && ppB - bbL <= 100) return false; }'), bbLg = /if \(id === "btc" && lane !== "recon-dly" && lane !== "recon-dlyk" && look\.side === "up" && \/\^\(Break\|Close\) above 5m PP\$\/\.test/.test(RC) && RC.includes("bbU467 > Number(pv467.pp) && bbU467 - Number(pv467.pp) <= 100");
+  add("BTC Bollinger within $100 of the pink: no long breaking pink up (fix467) / no short breaking it down", bbLg, bbS, "R213 1:40 PM");
+  const ra3 = RC.includes("__reaim373 ||= {})[m.ticker") && RC.includes('__reaim373 || {})[m.ticker + ":" + lane] && prior.side === "down" && look.side === "up") return false;'), ra7 = RC.includes("__reaim467 ||= {})[m.ticker") && RC.includes('__reaim467 || {})[m.ticker + ":" + lane] && prior.side === "up" && look.side === "down") return false;');
+  add("BTC pink-rejection re-aim sticks (main + rejection): to a long (fix467) / to a short (fix373)", ra7, ra3);
+  const pbf = BL.includes("G.__curBook465 = String(r.lane ?? r.book ?? \"\"); // fix467") && BL.includes('G.__curBook465 = "recon-dly"; return dlyThirds');
+  add("DELAYED BOOK: its paper rows + delayed thirds keep its own shares (fix467 closes the fix465 leak)", pbf, pbf); }
+// FULL BOTH-SIDES REPLAYS (fix469, tests only - R210 Love Oct 29 2026 1:26 PM PT: "check every single line of code that it FUNCTIONS. BOTH. WAYS. FOR ALL. BOOKS."): her own lines replayed long and short
+{ const rp = (w, five) => { const r = spawnSync("node", [path.join(root, "tools/both-sides-replays-469.cjs"), w, DIR], { encoding: "utf8", env: { ...process.env, AUR_ROOT: root } }); return (r.stdout || "").trim().split("\n").filter(Boolean).map((l) => ({ lo: /long ✓/.test(l), sh: /short ✓/.test(l), what: l.replace(/^.*?short [✓✗]\s+/, "") })); };
+  for (const [w, five] of [["flip", 0], ["3pm", 0], ["zones", 0], ["flip5", 1]]) for (const x of rp(w)) add(/^5M: /.test(x.what) ? "5M: REPLAY " + x.what.slice(4) : "REPLAY " + x.what, x.lo, x.sh); }
 // print
 const rows2 = rows.filter((r) => (ONLY5 ? /^5M:/.test(r.rule) : NO5 ? !/^5M:/.test(r.rule) : true)); rows.length = 0; rows.push(...rows2);
 const bad = rows.filter((r) => !r.longOk || !r.shortOk);
@@ -105,6 +121,6 @@ console.log("\nCHECK HER RULES - main + rejection, LONG and SHORT, on " + (ARGS[
 if (bad.length) { console.log(red("✗ " + bad.length + " RULE(S) FAIL:")); for (const r of bad) console.log(red(`  ✗ ${r.rule}  (long ${r.longOk ? "✓" : "✗"} / short ${r.shortOk ? "✓" : "✗"})${r.miss ? " - " + r.miss : ""}`)); console.log(""); }
 console.log("RULE".padEnd(84) + " LONG  SHORT  TODAY'S REAL MISS");
 for (const r of rows) console.log(r.rule.slice(0, 83).padEnd(84) + " " + (r.longOk ? grn(" ✓ ") : red(" ✗ ")) + "   " + (r.shortOk ? grn(" ✓ ") : red(" ✗ ")) + "   " + (r.miss || ""));
-console.log("\nNOT YET TESTED HERE (no both-sides replay yet - next to close): the 55% pink-to-red / green-to-pink walls, the Bollinger cushion, the zone walls (inside red/green), HER FLIP 2-5m, the 3 PM rule.");
+console.log("\nNOT YET REPLAYED HERE as a full trade: the Bollinger cushion before the zone (Bollinger between price and green/red), the zone walls inside red/green. (Flip 2-5m, 3 PM, 55% zones: replayed both sides above.)");
 console.log(bad.length ? red("\n✗ NOT ALL OF HER RULES HOLD - tell Claude.") : grn("\n✓ EVERY RULE CHECKED HOLDS, LONG AND SHORT."));
 process.exit(bad.length ? 1 : 0);

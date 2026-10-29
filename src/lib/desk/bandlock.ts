@@ -1254,6 +1254,7 @@ function bandSelfTest0(goldLaw: (...a: any[]) => any, n = 2000): number {
  * (incl. micro gold) or BTC must be on the closest band's side right now, or it is not recorded - the book books again on a
  * later pass if it still wants to. Can't verify (no fresh price / band list) = not recorded. Drops -> data/band-lock.jsonl. */
 export function paperBandFilter<T>(rows: T[], tag: string): T[] {
+  if (!G.__inPBF467) { G.__inPBF467 = true; const prev467 = G.__curBook465; try { return paperBandFilter(rows, tag); } finally { G.__inPBF467 = false; G.__curBook465 = prev467; } } // fix467
   const seen: Map<string, string> = (G.__bandSeen ||= new Map());
   const now = Date.now();
   const out: T[] = [];
@@ -1264,6 +1265,7 @@ export function paperBandFilter<T>(rows: T[], tag: string): T[] {
     const open = r.result === undefined || r.result === null || r.result === "open";
     if (!id || !(side === "up" || side === "down") || !open || !(now - at < 120000) || seen.get(id) === side) { out.push(r0); continue; }
     if (RECON.has(String(r.lane ?? r.book ?? ""))) { // RECONSTRUCTED: the Oct 12 rules (recon.ts) + her 33% channel rule (Oct 19 ~6:33 PM PT), nothing else
+      G.__curBook465 = String(r.lane ?? r.book ?? ""); // fix467: each paper row is judged with its own book's share (the delayed book keeps its own)
       const a1 = String(r.asset ?? "").toLowerCase(); const lbR = G.__lawBands?.[a1]; const qR = quoteTick(a1);
       let whyR = "";
       if (!lbR || !Array.isArray(lbR.L) || !lbR.L.length || now - Number(lbR.at) > 15000) whyR = "can't verify the channel (band list not fresh)";
@@ -2365,6 +2367,7 @@ export const dlyKeeps = (why: string, asset = ""): string => {
 // thirds (lockPctFor: the 20%/33% share next to the unbroken band, same numbers as THE IMPOSSIBILITY; BTC keeps her 5% edge, Love 1:36 AM "yes 5% band tolerances") and the whole channel's TOP/BOTTOM LINE
 // (Oct 21 ~11:22 AM PT, Love "keep 33% + top/bottom line"). Bands that can't be read / just jumped still refuse (safety, not a wall). Every other wall is hers to pass.
 export function dlyThirds(asset: string, L: Line[], tick: number, side: string): string {
+  if (G.__curBook465 !== "recon-dly") { const prev467 = G.__curBook465; try { G.__curBook465 = "recon-dly"; return dlyThirds(asset, L, tick, side); } finally { G.__curBook465 = prev467; } } // fix467: the delayed book's thirds always read the delayed share, whoever asks
   const g = impossibleGeo(asset, L, tick, side, true, true);
   if (/^THE IMPOSSIBILITY: her (bands can't be read|session bands just jumped)/.test(g.why)) return g.why;
   const sqzE = squeezedPinkOf(L);
@@ -2590,6 +2593,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // BTC PINK TO GREEN / PINK TO RED (fix323, Oct 27 ~11:11 AM PT, Love: "how far through the channel was she from the distance from pink to green? we can set it up to be
   // the bottom 40% and the top 40% of that distance pls" + card "Main only" - 11:00 AM main BTC short "Failed break above Green zone"): gold's PINK TO GREEN / RED on BTC at 40%:
   // no short in the bottom 40% of the green (5m S1) -> pink (5m PP) space, no long in the top 40% of the pink -> red (5m R1) space.
+  if (asset === "btc" && !DLY465.has(String(G.__curBook465 || "")) && !twinFade && zoneGuard !== 0.55) zoneGuard = 0.55; // fix467 (R213, Love 1:40 PM PT: "ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS" + R177 same tolerances every book): BTC pink-to-red / green-to-pink is 55% at the door, the copier re-check AND the wire, for every book but the delayed book
   if (zoneGuard > 0 && asset === "btc") { const zP = Number((L || []).find((l: Line) => String(l.name) === "5m PP")?.price) || 0, zS1 = Number((L || []).find((l: Line) => String(l.name) === "5m S1")?.price) || 0, zR1 = Number((L || []).find((l: Line) => String(l.name) === "5m R1")?.price) || 0;
     if (side === "down" && zP > 0 && zS1 > 0 && zS1 < zP && tick > zS1 && tick < zP && (tick - zS1) / (zP - zS1) <= zoneGuard) return { why: `PINK TO GREEN (BTC): short at ${Math.round((tick - zS1) / (zP - zS1) * 100)}% of the green ${zS1.toFixed(2)} -> pink ${zP.toFixed(2)} space - no short in the bottom ${Math.round(zoneGuard * 100)}%.`, below: null, above: null, pos: null, lock: null };
     if (side === "up" && zP > 0 && zR1 > zP && tick > zP && tick < zR1 && (tick - zP) / (zR1 - zP) >= 1 - zoneGuard) return { why: `PINK TO RED (BTC): long at ${Math.round((tick - zP) / (zR1 - zP) * 100)}% of the pink ${zP.toFixed(2)} -> red ${zR1.toFixed(2)} space - no long in the top ${Math.round(zoneGuard * 100)}%.`, below: null, above: null, pos: null, lock: null }; }
@@ -2613,6 +2617,9 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // NO SHORTS IN THE BOTTOM RUNG (fix296, Oct 26 ~10:07 PM PT, Love: "yes let's cut shorts in the bottom wrung pls bb / just those for rn oki / she can continue to
   // trade the longs up afterwards" - BTC main/rejection/copy shorts under session -2σ since Oct 20: 23 trades 30% win -$133, live 1 of 7): on BTC no short opens
   // while price sits under the session -2σ (the -2σ -> -3σ rung and past it). Longs there stay hers.
+  // NO LONGS IN THE TOP RUNG - THE MIRROR (fix467, R213 - Love Oct 29 2026 1:40 PM PT: "oh my goddd bro. bollinger over pink NEEDS A LONG MIRROR. ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS" + 1:24 PM: "both sides ... all books. aside from delayed."): on BTC no long opens while price sits over the session +2σ (the +2σ -> +3σ rung and past it); every book but the delayed book.
+  if (asset === "btc" && side === "up" && !DLY465.has(String(G.__curBook465 || ""))) { const u2 = Number((L || []).find((l: Line) => String(l.name) === "+2σ")?.price) || 0;
+    if (u2 > 0 && tick > u2) return { why: `NO LONGS IN THE TOP RUNG (fix467): btc long at ${tick.toFixed(2)} is over the session +2σ (${u2.toFixed(2)}) - shorts only up here.`, below: null, above: null, pos: null, lock: null }; }
   if (asset === "btc" && side === "down") { const d2 = Number((L || []).find((l: Line) => String(l.name) === "-2σ")?.price) || 0;
     if (d2 > 0 && tick < d2) return { why: `NO SHORTS IN THE BOTTOM RUNG: btc short at ${tick.toFixed(2)} is under the session -2σ (${d2.toFixed(2)}) - longs only down here.`, below: null, above: null, pos: null, lock: null }; }
   // NO CHASE PAST 2σ - DROPPED (Oct 21 ~11:12 AM PT, Love picked "Drop the 2σ rule": on this morning's trend BTC rode 2-2.1σ for hours and every call

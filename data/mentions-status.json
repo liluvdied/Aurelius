@@ -1,7 +1,7 @@
 {
- "at": "2026-10-29T20:18:55.998Z",
- "events": 152,
- "checked": 1310,
+ "at": "2026-10-29T20:48:56.368Z",
+ "events": 153,
+ "checked": 1283,
  "live": [
   "KXEARNINGSMENTIONNVDA-26NOV18",
   "KXEARNINGSMENTIONFIG-26NOV04",
@@ -13,6 +13,7 @@
   "KXEARNINGSMENTIONUBER-26NOV04",
   "KXEARNINGSMENTIONBAC-27JAN15",
   "KXEARNINGSMENTIONWFC-27JAN14",
+  "KXEARNINGSMENTIONCOHR-26NOV04",
   "KXEARNINGSMENTIONDAL-27JAN13",
   "KXEARNINGSMENTIONBLK-27JAN14",
   "KXEARNINGSMENTIONLMT-27JAN28",
@@ -40,6 +41,7 @@
   "KXEARNINGSMENTIONSBUX-26OCT29",
   "KXEARNINGSMENTIONASTS-26NOV10",
   "KXEARNINGSMENTIONCALM-27JAN06",
+  "KXEARNINGSMENTIONUAL-27JAN20",
   "KXEARNINGSMENTIONOKLO-26NOV10",
   "KXEARNINGSMENTIONRACE-26NOV03",
   "KXEARNINGSMENTIONWEN-26NOV05",
@@ -61,6 +63,7 @@
   "KXEARNINGSMENTIONPGR-26NOV03",
   "KXEARNINGSMENTIONAMD-26NOV03",
   "KXEARNINGSMENTIONLEVI-27JAN27",
+  "KXEARNINGSMENTIONZETA-26NOV03",
   "KXEARNINGSMENTIONPLTR-26NOV02",
   "KXEARNINGSMENTIONTOST-26NOV03",
   "KXTRUMPMENTION-26OCT29",
@@ -77,6 +80,17 @@
    "rate": 0.46,
    "n": 13,
    "basis": "6 of 13 events"
+  },
+  {
+   "ticker": "KXVANCEMENTION-26OCT30-ILLE",
+   "event": "KXVANCEMENTION-26OCT30",
+   "word": "Illegal Alien",
+   "title": "What will JD Vance say during Fraud Task Force Press Conference in St. Cloud, Minnesota originally scheduled for October 30, 2026?",
+   "side": "yes",
+   "ask": 0.36,
+   "rate": 0.67,
+   "n": 9,
+   "basis": "6 of 9 events"
   },
   {
    "ticker": "KXVANCEMENTION-26OCT29-OIL",
@@ -99,6 +113,17 @@
    "rate": 0.41,
    "n": 17,
    "basis": "7 of 17 events"
+  },
+  {
+   "ticker": "KXVANCEMENTION-26OCT29-AI",
+   "event": "KXVANCEMENTION-26OCT29",
+   "word": "AI / Artificial Intelligence",
+   "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
+   "side": "no",
+   "ask": 0.44,
+   "rate": 0.33,
+   "n": 9,
+   "basis": "3 of 9 events"
   },
   {
    "ticker": "KXVANCEMENTION-26NOV18-WORK",
@@ -172,7 +197,7 @@
    "word": "Veteran",
    "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
    "side": "no",
-   "ask": 0.64,
+   "ask": 0.67,
    "rate": 0.13,
    "n": 8,
    "basis": "1 of 8 events"
@@ -183,7 +208,7 @@
    "word": "ICE",
    "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
    "side": "yes",
-   "ask": 0.33,
+   "ask": 0.32,
    "rate": 0.81,
    "n": 16,
    "basis": "13 of 16 rallies"
@@ -194,14 +219,13 @@
    "word": "America First",
    "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
    "side": "no",
-   "ask": 0.2,
+   "ask": 0.21,
    "rate": 0.52,
    "n": 27,
    "basis": "14 of 27 rallies"
   }
  ],
  "errors": [
-  "Error: 429",
   "Error: 429"
  ]
 }

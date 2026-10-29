@@ -278,5 +278,15 @@
   "side": "down",
   "setup": "Rejected down off -2σ",
   "spotAt": 78865.01
+ },
+ "KXBTC15M-26OCT291700-00:recon-tog:s5977691": {
+  "id": "KXBTC15M-26OCT291700-00:recon-tog:s5977691",
+  "book": "recon-tog",
+  "at": "2026-10-29T20:55:36.046Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT291700-00",
+  "side": "up",
+  "setup": "Tap-reject at -2.5σ",
+  "spotAt": 78971.28
  }
 }

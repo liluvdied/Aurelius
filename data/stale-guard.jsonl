@@ -32678,3 +32678,20 @@
 {"at":"2026-10-29T20:46:36.006Z","asset":"gold","lane":"ogp5-dly","tick":4024.068,"arrivedMsAgo":783,"exMsAgo":1006,"why":"arrived in the burst right after a freeze"}
 {"at":"2026-10-29T20:50:11.131Z","asset":"btc","lane":"ogp5-dly","tick":78987.42,"arrivedMsAgo":1204,"exMsAgo":null,"why":"arrived in the burst right after a freeze"}
 {"at":"2026-10-29T20:50:11.198Z","asset":"gold","lane":"ogp5-dly","tick":4019.848,"arrivedMsAgo":2287,"exMsAgo":3198,"why":"arrived in the burst right after a freeze"}
+{"at":"2026-10-29T20:53:45.102Z","asset":"btc","lane":"ogp5-dly","tick":79022.86,"arrivedMsAgo":1785,"exMsAgo":3102,"why":"arrived in the burst right after a freeze"}
+{"at":"2026-10-29T20:53:45.162Z","asset":"gold","lane":"ogp5-dly","tick":4020.068,"arrivedMsAgo":1710,"exMsAgo":2162,"why":"arrived in the burst right after a freeze"}
+{"at":"2026-10-29T20:56:37.003Z","asset":"gold","lane":"ogp5-dly","tick":4021.628,"arrivedMsAgo":821,"exMsAgo":1003,"why":"arrived in the burst right after a freeze"}
+{"at":"2026-10-29T21:00:37.146Z","asset":"btc","lane":"ogp5-fast","tick":78780.83,"arrivedMsAgo":259,"exMsAgo":98146,"why":"feed: feed came back 0 s ago - needs 5 s clean"}
+{"at":"2026-10-29T21:00:42.162Z","asset":"btc","lane":"ogp5-fast","tick":78780.83,"arrivedMsAgo":1986,"exMsAgo":103162,"why":"feed: price hasn't moved for 101 s (frozen)"}
+{"at":"2026-10-29T21:01:02.338Z","asset":"btc","lane":"ogp5-fast","tick":78766.61,"arrivedMsAgo":216,"exMsAgo":1338,"why":"feed: feed came back 1 s ago - needs 5 s clean"}
+{"at":"2026-10-29T21:01:07.350Z","asset":"btc","lane":"ogp5-fast","tick":78839.48,"arrivedMsAgo":57,"exMsAgo":1350,"why":"1m candles not current"}
+{"at":"2026-10-29T21:01:12.352Z","asset":"btc","lane":"ogp5-r15","tick":78815.1,"arrivedMsAgo":972,"exMsAgo":2352,"why":"1m candles not current"}
+{"at":"2026-10-29T21:01:17.353Z","asset":"btc","lane":"ogp5-r30","tick":78819.41,"arrivedMsAgo":902,"exMsAgo":2353,"why":"1m candles not current"}
+{"at":"2026-10-29T21:01:22.406Z","asset":"btc","lane":"ogp5-fast","tick":78822.6,"arrivedMsAgo":503,"exMsAgo":null,"why":"1m candles not current"}
+{"at":"2026-10-29T21:01:27.453Z","asset":"btc","lane":"ogp5-fast","tick":78885.61,"arrivedMsAgo":875,"exMsAgo":2453,"why":"1m candles not current"}
+{"at":"2026-10-29T21:01:32.478Z","asset":"btc","lane":"ogp5-fast","tick":78952.49,"arrivedMsAgo":827,"exMsAgo":2478,"why":"1m candles not current"}
+{"at":"2026-10-29T21:01:37.928Z","asset":"btc","lane":"ogp5-fast","tick":78894.6,"arrivedMsAgo":237,"exMsAgo":1928,"why":"arrived in the burst right after a freeze"}
+{"at":"2026-10-29T21:01:42.978Z","asset":"btc","lane":"ogp5-fast","tick":78922.16,"arrivedMsAgo":197,"exMsAgo":1978,"why":"1m candles not current"}
+{"at":"2026-10-29T21:01:48.327Z","asset":"btc","lane":"ogp5-fast","tick":78937.56,"arrivedMsAgo":499,"exMsAgo":2327,"why":"1m candles not current"}
+{"at":"2026-10-29T21:01:53.340Z","asset":"btc","lane":"ogp5-fast","tick":78922.33,"arrivedMsAgo":437,"exMsAgo":2340,"why":"1m candles not current"}
+{"at":"2026-10-29T21:01:59.330Z","asset":"btc","lane":"ogp5-fast","tick":78974.68,"arrivedMsAgo":379,"exMsAgo":2330,"why":"1m candles not current"}

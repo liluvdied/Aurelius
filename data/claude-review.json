@@ -88707,5 +88707,26 @@
   "lessons": [
    "The rejection shadow agreed (long off -0.5σ)."
   ]
+ },
+ "KXGOLD15M-26OCT291700-00": {
+  "ticker": "KXGOLD15M-26OCT291700-00",
+  "at": "2026-10-29T21:00:38.540Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "unknown",
+  "multiple": 12.5,
+  "profit": -3,
+  "result": "loss",
+  "entry": null,
+  "peakPct": 125,
+  "maxPct": 1150,
+  "takeProfitPct": 862.5,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "No entry snapshot for this one (it filled before the snapshot logger, or through another path).",
+   "The rejection shadow went the other way (short off -0.5σ)."
+  ]
  }
 }

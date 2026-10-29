@@ -5,10 +5,12 @@
     "asset": "btc",
     "side": "down",
     "pattern": "Tap-reject at −2σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXBTC15M-26OCT291700-00",
     "hits": 0,
-    "multiple": 1.72
+    "multiple": 1.72,
+    "profit": 18,
+    "live": "missed"
   },
   {
     "id": "KXSILVER15M-26OCT291700-00:down:Tap-reject at -1σ:own",
@@ -16,10 +18,12 @@
     "asset": "silver",
     "side": "down",
     "pattern": "Tap-reject at -1σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXSILVER15M-26OCT291700-00",
     "hits": 0,
-    "multiple": 1.92
+    "multiple": 1.92,
+    "profit": 23,
+    "live": "missed"
   },
   {
     "id": "KXBTC15M-26OCT291645-45:up:Tap-reject at -0.5σ:own",

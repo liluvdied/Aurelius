@@ -13,16 +13,22 @@
   "secondsLeft": 876,
   "ask": 0.28,
   "multiple": 3.57,
-  "peakBid": 0.84,
-  "peakPct": 200,
+  "peakBid": 0.926,
+  "peakPct": 231,
   "exits": {
    "+50": 0.55,
    "+100": 0.62,
-   "+200": null,
+   "+200": 0.86,
    "+300": null
   },
-  "result": "open",
-  "profits": null
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": 4.82,
+   "+100": 6.07,
+   "+200": 10.36,
+   "+300": -5
+  }
  },
  {
   "id": "KXGOLD15M-26OCT291430-30:up",

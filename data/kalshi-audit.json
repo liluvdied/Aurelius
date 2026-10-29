@@ -1,6 +1,30 @@
 {
- "at": "2026-10-29T20:50:39.132Z",
+ "at": "2026-10-29T21:00:42.554Z",
  "fills": [
+  {
+   "t": "2026-10-29T20:56:13.357735Z",
+   "ticker": "KXGOLD15M-26OCT291700-00",
+   "action": "buy",
+   "side": "yes",
+   "count": "13.26",
+   "yes": "0.0800",
+   "no": "0.9200",
+   "fee": "0.068400",
+   "order": "01a18972-edc8",
+   "taker": true
+  },
+  {
+   "t": "2026-10-29T20:56:13.357735Z",
+   "ticker": "KXGOLD15M-26OCT291700-00",
+   "action": "buy",
+   "side": "yes",
+   "count": "21.97",
+   "yes": "0.0800",
+   "no": "0.9200",
+   "fee": "0.113200",
+   "order": "01a18972-edc8",
+   "taker": true
+  },
   {
    "t": "2026-10-29T20:41:28.32766Z",
    "ticker": "KXGOLD15M-26OCT291645-45",
@@ -11976,33 +12000,35 @@
    "fee": "0.044980",
    "order": "01a1807e-d470",
    "taker": true
-  },
-  {
-   "t": "2026-10-28T03:11:39.166486Z",
-   "ticker": "KXBTC15M-26OCT272315-15",
-   "action": "buy",
-   "side": "yes",
-   "count": "5.86",
-   "yes": "0.0180",
-   "no": "0.9820",
-   "fee": "0.007320",
-   "order": "01a1807d-edf8",
-   "taker": true
-  },
-  {
-   "t": "2026-10-28T03:10:43.633935Z",
-   "ticker": "KXBTC15M-26OCT272315-15",
-   "action": "buy",
-   "side": "yes",
-   "count": "1.95",
-   "yes": "0.0830",
-   "no": "0.9170",
-   "fee": "0.010450",
-   "order": "01a1807d-1338",
-   "taker": true
   }
  ],
  "orders": [
+  {
+   "t": "2026-10-29T20:56:16.021473Z",
+   "ticker": "KXGOLD15M-26OCT291700-00",
+   "action": "sell",
+   "side": "yes",
+   "status": "canceled",
+   "type": "limit",
+   "count": "0.00",
+   "initial": "35.22",
+   "yes": "0.9000",
+   "id": "01a18972-f980",
+   "client": "ad552856-a584-44a2-b3dd-5fbdfe3686a7"
+  },
+  {
+   "t": "2026-10-29T20:56:13.357735Z",
+   "ticker": "KXGOLD15M-26OCT291700-00",
+   "action": "buy",
+   "side": "yes",
+   "status": "executed",
+   "type": "market",
+   "count": "35.23",
+   "initial": "35.23",
+   "yes": "0.9990",
+   "id": "01a18972-edc8",
+   "client": ""
+  },
   {
    "t": "2026-10-29T20:41:28.32766Z",
    "ticker": "KXGOLD15M-26OCT291645-45",
@@ -14576,35 +14602,19 @@
    "yes": "0.3300",
    "id": "01a1881f-44a8",
    "client": "49c4c5cd-96f8-47fc-ab63-c0abaeb5d09c"
-  },
-  {
-   "t": "2026-10-29T14:44:13.174551Z",
-   "ticker": "KXGOLD15M-26OCT291045-45",
-   "action": "sell",
-   "side": "yes",
-   "status": "executed",
-   "type": "limit",
-   "count": "7.49",
-   "initial": "7.49",
-   "yes": "0.9700",
-   "id": "01a1881e-5a48",
-   "client": "158b8e62-a5cd-4245-8864-3f420512c023"
-  },
-  {
-   "t": "2026-10-29T14:43:08.331158Z",
-   "ticker": "KXGOLD15M-26OCT291045-45",
-   "action": "sell",
-   "side": "yes",
-   "status": "executed",
-   "type": "limit",
-   "count": "2.49",
-   "initial": "2.49",
-   "yes": "0.0100",
-   "id": "01a1881d-5c60",
-   "client": "0a0aee81-c7f8-4ce3-9aec-c6f7ebf54624"
   }
  ],
  "settlements": [
+  {
+   "t": "2026-10-29T21:00:23.561506Z",
+   "ticker": "KXGOLD15M-26OCT291700-00",
+   "result": "no",
+   "value": 0,
+   "revenue": 0,
+   "fee": "0.181600",
+   "yesCount": "35.23",
+   "noCount": "0.00"
+  },
   {
    "t": "2026-10-29T20:45:23.564625Z",
    "ticker": "KXGOLD15M-26OCT291645-45",
@@ -16594,16 +16604,6 @@
    "fee": "0.483800",
    "yesCount": "0.00",
    "noCount": "29.85"
-  },
-  {
-   "t": "2026-10-28T08:30:24.997859Z",
-   "ticker": "KXGOLD15M-26OCT280430-30",
-   "result": "yes",
-   "value": 100,
-   "revenue": 0,
-   "fee": "0.503900",
-   "yesCount": "0.00",
-   "noCount": "47.17"
   }
  ]
 }

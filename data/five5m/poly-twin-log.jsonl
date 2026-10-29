@@ -64,3 +64,5 @@
 {"at":"2026-10-29T19:57:32.161Z","id":"KXBTC15M-26OCT291600-00:recon-rej5:s5977679:5m","status":"waiting","reason":"waiting for her flip - she tries until 3:00 is left in the 5m window (R174)"}
 {"at":"2026-10-29T19:59:02.983Z","id":"KXBTC15M-26OCT291600-00:recon-tog:s5977679:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
 {"at":"2026-10-29T19:59:02.983Z","id":"KXBTC15M-26OCT291600-00:recon-rej5:s5977679:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T21:00:00.179Z","id":"KXBTC15M-26OCT291700-00:recon-tog:KXBTC15M-26OCT291700-00:recon-tog:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T21:00:00.180Z","id":"KXBTC15M-26OCT291700-00:recon-tog:s5977691:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
