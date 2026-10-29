@@ -164,7 +164,7 @@
   "breaker": "de26f74578",
   "presets": "8ee40259f0",
   "halfAt75": "b5bea41b6c",
-  "liveSkipHours": "ae07373da0",
+  "liveSkipHours": "5b207d4e6c",
   "brokenBy": "5676444012",
   "followPaperExit": "b5bea41b6c",
   "btcHeadroomSession": "624b60c58c",
@@ -288,13 +288,15 @@
   "fix398Prev": "c722fa0f28",
   "fix400Prev": "7dd8b0ae05",
   "fix402Prev": "058afe6f24",
-  "note402": "0d8e7717b9"
+  "note402": "0d8e7717b9",
+  "fix405Prev": "d396e7b5bf",
+  "note405": "c152437af2"
  },
  "configFiles": {
   "data/spine-lock.json": "179c742bbc8d1c0f",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "f6fa7d086a177b85"
+  "data/live-switch.json": "7d60cbc1c81c9ac8"
  },
  "sealLiveBook": "e13f989d61",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

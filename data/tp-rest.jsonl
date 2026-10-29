@@ -6160,3 +6160,15 @@
 {"at":"2026-10-28T23:36:44.833Z","ticker":"KXBTC15M-26OCT281945-45","px":0.94,"qty":9.85,"bid":0.48,"had":null}
 {"at":"2026-10-28T23:37:19.087Z","ticker":"KXGOLD15M-26OCT281945-45","px":0.9,"qty":16.67,"bid":0.21,"had":null}
 {"at":"2026-10-28T23:37:26.379Z","ticker":"KXGOLD15M-26OCT281945-45","px":0.91,"qty":27.17,"bid":0.17,"had":{"id":"01a184e0-0f98-742f-9d9d-e01c4b1cf34f","px":0.9,"qty":16.67,"failed":false}}
+{"at":"2026-10-28T23:38:31.502Z","ticker":"KXGOLD15M-26OCT281945-45","px":0.73,"qty":27.17,"bid":0.33,"had":{"id":"01a184e0-2af0-7da9-9000-d46328c00f32","px":0.91,"qty":27.17,"failed":false}}
+{"at":"2026-10-28T23:38:33.661Z","ticker":"KXGOLD15M-26OCT281945-45","px":0.9,"qty":27.17,"bid":0.33,"had":{"id":"01a184e1-28d8-7f5f-bdbc-2b59ad354408","px":0.73,"qty":27.17,"failed":false}}
+{"at":"2026-10-28T23:38:49.550Z","ticker":"KXBTC15M-26OCT281945-45","px":0.92,"qty":17.45,"bid":0.24,"had":{"id":"01a184df-86e0-78d1-af19-d486fc5fd78c","px":0.94,"qty":9.85,"failed":false}}
+{"at":"2026-10-28T23:41:47.171Z","ticker":"KXBTC15M-26OCT281945-45","px":0.86,"qty":17.45,"bid":0.5,"had":{"id":"01a184e1-6f28-7cb3-8504-5f48c3bee794","px":0.92,"qty":17.45,"failed":false}}
+{"at":"2026-10-28T23:41:50.120Z","ticker":"KXBTC15M-26OCT281945-45","px":0.85,"qty":17.45,"bid":0.52,"had":{"id":"01a184e4-2678-72ae-a18f-6b915d634033","px":0.86,"qty":17.45,"failed":false}}
+{"at":"2026-10-28T23:43:08.316Z","ticker":"KXBTC15M-26OCT281945-45","cancel":"position not in held list","heldCount":1}
+{"at":"2026-10-28T23:44:56.501Z","ticker":"KXGOLD15M-26OCT281945-45","cancel":"position not in held list","heldCount":0}
+{"at":"2026-10-28T23:45:43.356Z","ticker":"KXBTC15M-26OCT282000-00","px":0.93,"qty":9.61,"bid":0.51,"had":null}
+{"at":"2026-10-28T23:55:27.718Z","ticker":"KXBTC15M-26OCT282000-00","px":0.88,"qty":29.03,"bid":0.39,"had":null}
+{"at":"2026-10-28T23:57:52.341Z","ticker":"KXBTC15M-26OCT282000-00","px":0.88,"qty":29.03,"bid":0.61,"had":null}
+{"at":"2026-10-28T23:57:54.492Z","ticker":"KXBTC15M-26OCT282000-00","cancel":"position not in held list","heldCount":0}
+{"at":"2026-10-29T00:01:05.053Z","ticker":"KXBTC15M-26OCT282015-15","px":0.96,"qty":8.33,"bid":0.59,"had":null}

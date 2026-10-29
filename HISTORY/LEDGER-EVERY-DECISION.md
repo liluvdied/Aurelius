@@ -1,6 +1,6 @@
-# Every decision Love has made - rebuilt 2026-10-28T23:37:59.395502+00:00
+# Every decision Love has made - rebuilt 2026-10-29T00:00:42.178156+00:00
 
-1262 decisions with Love's words or card picks, out of 1987 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1262 decisions with Love's words or card picks, out of 1988 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 

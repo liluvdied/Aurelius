@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R095 - fix405: liveSkipHours btc + [0,21,23], gold + [20] - every Kalshi book sits those hours out live (paper keeps measuring); Poly untouched
+- when: 2026-10-29T00:00:30+00:00
+- Love: "Love Oct 28 2026 4:59 PM PT: "yes let’s cut those hours bb" (BTC 11 PM, 9 PM, midnight; gold 8 PM - from my 4:52 PM message)"
+- books: a, l, l,  , K, a, l, s, h, i,  , l, i, v, e,  , b, o, o, k, s,  , f, o, r,  , t, h, o, s, e,  , a, s, s, e, t, -, h, o, u, r, s,  , (, i, n, c, l, .,  , r, e, c, o, n, -, r, e, j,  , 1, 1,  , P, M,  , s, e, a, t, ), ;,  , t, w, i, n,  , e, x, e, m, p, t,  , l, i, s, t,  , u, n, c, h, a, n, g, e, d, ;,  , P, o, l, y,  , 5, M,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "liveSkipHours.btc", "equals": [0, 8, 18, 21, 23]}
+- proof: {"config": "data/live-switch.json", "key": "liveSkipHours.gold", "equals": [4, 9, 20]}
+
 ## R094 - fix404: recon-b2 PAPER lane - tight bands (blueSmall399), price blew through band A, rejected off the next band B, 2/3/4/5m flip + main walls (fix401 gate)
 - when: 2026-10-28T23:21:02+00:00
 - Love: "Love Oct 28 2026 4:18 PM PT: "yes let’s do that hun / can we set it up for her to trade a candle flip at the 2nd bands for now ? / if price blows thru one and rejects and flips at the 2nd when bands are tight?" + 4:20 PM: "yess we’ll keep it paper for the next couple days :)" + card "Paper first""

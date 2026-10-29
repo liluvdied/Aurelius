@@ -85717,5 +85717,110 @@
    "Clean: right side of the band, nothing in front, won at the bell.",
    "No entry snapshot for this one (it filled before the snapshot logger, or through another path)."
   ]
+ },
+ "KXBTC15M-26OCT281945-45": {
+  "ticker": "KXBTC15M-26OCT281945-45",
+  "at": "2026-10-28T23:45:25.044Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "unknown",
+  "multiple": 2.04,
+  "profit": 7.83,
+  "result": "win",
+  "entry": null,
+  "peakPct": 63.3,
+  "maxPct": 104.1,
+  "takeProfitPct": 78.1,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, won at the bell.",
+   "No entry snapshot for this one (it filled before the snapshot logger, or through another path).",
+   "The rejection shadow went the other way (short off +0.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT281945-45": {
+  "ticker": "KXGOLD15M-26OCT281945-45",
+  "at": "2026-10-28T23:45:47.112Z",
+  "asset": "gold",
+  "side": "down",
+  "setup": "unknown",
+  "multiple": 5.88,
+  "profit": 19.46,
+  "result": "win",
+  "entry": null,
+  "peakPct": 329.4,
+  "maxPct": 488.2,
+  "takeProfitPct": 366.2,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, won at the bell.",
+   "No entry snapshot for this one (it filled before the snapshot logger, or through another path).",
+   "The rejection shadow went the other way (long off -1σ)."
+  ]
+ },
+ "KXBTC15M-26OCT282000-00": {
+  "ticker": "KXBTC15M-26OCT282000-00",
+  "at": "2026-10-29T00:00:10.655Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Break above fresh VWAP",
+  "multiple": 2.08,
+  "profit": 13.85,
+  "result": "win",
+  "entry": {
+   "spot": 81236.39,
+   "band": "VWAP",
+   "distSigma": 0.16,
+   "rightSide": true,
+   "bandAhead": true,
+   "throughTarget": false,
+   "minuteIn": 0.7
+  },
+  "peakPct": 41.7,
+  "maxPct": 108.3,
+  "takeProfitPct": 81.2,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "The rejection shadow went the other way (short off +0.5σ)."
+  ]
+ },
+ "KXGOLD15M-26OCT282000-00": {
+  "ticker": "KXGOLD15M-26OCT282000-00",
+  "at": "2026-10-29T00:00:31.448Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Rejected up off fresh -1σ",
+  "multiple": 1.64,
+  "profit": 3.07,
+  "result": "win",
+  "entry": {
+   "spot": 4052.715,
+   "band": "-0.5σ",
+   "distSigma": 0.18,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": null,
+   "minuteIn": 0.3
+  },
+  "peakPct": 59,
+  "maxPct": 63.9,
+  "takeProfitPct": 50,
+  "exit": "mirrored RECON-TOGP paper out: half at 75% (88c) + trail from 90%: best +87%, sold at 97c",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of -0.5σ: long just under it.",
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": [
+   "The rejection shadow agreed (long off -0.5σ)."
+  ]
  }
 }

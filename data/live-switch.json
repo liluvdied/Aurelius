@@ -490,11 +490,15 @@
   "liveSkipHours": {
     "gold": [
       4,
-      9
+      9,
+      20
     ],
     "btc": [
+      0,
       8,
-      18
+      18,
+      21,
+      23
     ]
   },
   "brokenBy": {
@@ -2761,5 +2765,19 @@
     "addOn.second.on": true,
     "note": "fix402 Oct 28 2026 4:00 PM PT: copy back to undo ($10 entries)"
   },
-  "note402": "fix402 Oct 28 2026 3:57 PM PT, Love: \"dude please put her back on at $5 til we figure this out she has lost like 10 trades on blocked trades\": $5 entry for main/rejection/copy; + 3:57 PM: \"no 1 $5 add on pls\" -> ONE $5 add-on (addOn.second off)."
+  "note402": "fix402 Oct 28 2026 3:57 PM PT, Love: \"dude please put her back on at $5 til we figure this out she has lost like 10 trades on blocked trades\": $5 entry for main/rejection/copy; + 3:57 PM: \"no 1 $5 add on pls\" -> ONE $5 add-on (addOn.second off).",
+  "fix405Prev": {
+    "liveSkipHours": {
+      "gold": [
+        4,
+        9
+      ],
+      "btc": [
+        8,
+        18
+      ]
+    },
+    "note": "fix405 Oct 28 2026 5:00 PM PT: copy back to undo the hour cuts"
+  },
+  "note405": "fix405 Oct 28 2026 5:00 PM PT, Love 4:59 PM: \"yes let's cut those hours bb\": Kalshi sits out BTC 12 AM, 9 PM, 11 PM and gold 8 PM live (real fills since Oct 25: BTC 11 PM 18% of 11 -$69, 9 PM 38% -$81, 12 AM 43% -$86; gold 8 PM 27% of 11 -$64). Paper keeps measuring. Poly untouched."
 }

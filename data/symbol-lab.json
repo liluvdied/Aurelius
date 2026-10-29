@@ -1,11 +1,47 @@
 [
   {
+    "id": "KXGOLD15M-26OCT282015-15:up:Open -0.5σ",
+    "at": "2026-10-29T00:00:28.989Z",
+    "asset": "gold",
+    "side": "up",
+    "pattern": "Open -0.5σ",
+    "result": "open",
+    "ticker": "KXGOLD15M-26OCT282015-15",
+    "hits": 15,
+    "multiple": 1.82,
+    "spotAt": 4054.13,
+    "vwap": 4055.5865815890684,
+    "stdev": 4.050857776603981,
+    "vwap5": 4055.56165071181,
+    "stdev5": 3.6344847946840306,
+    "target": 4054.55
+  },
+  {
+    "id": "KXGOLD15M-26OCT282000-00:up:Open -0.5σ",
+    "at": "2026-10-28T23:45:26.829Z",
+    "asset": "gold",
+    "side": "up",
+    "pattern": "Open -0.5σ",
+    "result": "yes",
+    "ticker": "KXGOLD15M-26OCT282000-00",
+    "hits": 15,
+    "multiple": 1.67,
+    "spotAt": 4053.897,
+    "vwap": 4055.7005684989704,
+    "stdev": 4.37343386979635,
+    "vwap5": 4055.6663159923182,
+    "stdev5": 3.9315294863624106,
+    "target": 4052.52,
+    "profit": 16.75,
+    "scored": true
+  },
+  {
     "id": "KXGOLD15M-26OCT281945-45:up:Open -0.5σ",
     "at": "2026-10-28T23:35:58.843Z",
     "asset": "gold",
     "side": "up",
     "pattern": "Open -0.5σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXGOLD15M-26OCT281945-45",
     "hits": 15,
     "multiple": 1.64,
@@ -14,7 +50,9 @@
     "stdev": 4.486908519145794,
     "vwap5": 0,
     "stdev5": 0,
-    "target": 4052.81
+    "target": 4052.81,
+    "profit": 16,
+    "scored": true
   },
   {
     "id": "KXGOLD15M-26OCT281945-45:up:Tap-reject at -1σ",
@@ -22,7 +60,7 @@
     "asset": "gold",
     "side": "up",
     "pattern": "Tap-reject at -1σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXGOLD15M-26OCT281945-45",
     "hits": 7,
     "multiple": 2.56,
@@ -31,7 +69,9 @@
     "stdev": 4.5146143536106145,
     "vwap5": 0,
     "stdev5": 0,
-    "target": 4052.81
+    "target": 4052.81,
+    "profit": 39,
+    "scored": true
   },
   {
     "id": "KXGOLD15M-26OCT281945-45:up:Open -1σ",
@@ -39,7 +79,7 @@
     "asset": "gold",
     "side": "up",
     "pattern": "Open -1σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXGOLD15M-26OCT281945-45",
     "hits": 8,
     "multiple": 2.22,
@@ -48,7 +88,9 @@
     "stdev": 4.514748345482932,
     "vwap5": 0,
     "stdev5": 0,
-    "target": 4052.81
+    "target": 4052.81,
+    "profit": 30.5,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT281930-30:down:Tap-reject at +0.5σ",
@@ -66,7 +108,8 @@
     "vwap5": 81213.44566067075,
     "stdev5": 50.31827929307432,
     "target": 81260.67,
-    "profit": -25
+    "profit": -25,
+    "scored": true
   },
   {
     "id": "KXGOLD15M-26OCT281930-30:up:Open -0.5σ",
@@ -84,7 +127,8 @@
     "vwap5": 0,
     "stdev5": 0,
     "target": 0,
-    "profit": -25
+    "profit": -25,
+    "scored": true
   },
   {
     "id": "KXBTC15M-26OCT281915-15:up:Open -0.5σ",
@@ -102,7 +146,8 @@
     "vwap5": 81203.7840664892,
     "stdev5": 51.15818622094938,
     "target": 81203.7,
-    "profit": 24
+    "profit": 24,
+    "scored": true
   },
   {
     "id": "KXGOLD15M-26OCT281915-15:down:Open -1σ",
@@ -120,7 +165,8 @@
     "vwap5": 0,
     "stdev5": 0,
     "target": 4051.99,
-    "profit": -25
+    "profit": -25,
+    "scored": true
   },
   {
     "id": "KXGOLD15M-26OCT281900-00:down:Open -1σ",
@@ -9441,44 +9487,6 @@
     "stdev5": 8.824741075117517,
     "target": 0,
     "profit": 20.5,
-    "scored": true
-  },
-  {
-    "id": "KXBTC15M-26OCT261145-45:down:Tap-reject at +1.5σ",
-    "at": "2026-10-26T15:30:09.935Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at +1.5σ",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT261145-45",
-    "hits": 10,
-    "multiple": 1.79,
-    "spotAt": 80437.24,
-    "vwap": 80018.50095065072,
-    "stdev": 290.976652829397,
-    "vwap5": 80224.93623234231,
-    "stdev5": 233.10730474805052,
-    "target": 80451.71,
-    "profit": -25,
-    "scored": true
-  },
-  {
-    "id": "KXGOLD15M-26OCT261130-30:up:Tap-reject at +1σ",
-    "at": "2026-10-26T15:18:45.495Z",
-    "asset": "gold",
-    "side": "up",
-    "pattern": "Tap-reject at +1σ",
-    "result": "no",
-    "ticker": "KXGOLD15M-26OCT261130-30",
-    "hits": 38,
-    "multiple": 1.67,
-    "spotAt": 4022.73,
-    "vwap": 4006.6007139367566,
-    "stdev": 10.704566628544665,
-    "vwap5": 4011.604872405041,
-    "stdev5": 8.991084608371871,
-    "target": 4022.28,
-    "profit": -25,
     "scored": true
   }
 ]
