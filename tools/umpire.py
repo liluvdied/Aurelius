@@ -25,6 +25,9 @@ if rK.returncode != 0: ok = False
 rS = subprocess.run(["node", "tools/slide-test.cjs"], capture_output=True, text=True)  # fix403 behaviour test (Love Oct 28 2026 4:04 PM PT: "can you make sure everything stays when we make a rule?"): today's 3:54 PM gold long under the unbroken pink must be held
 print(("SAFE   " if rS.returncode == 0 else "OUT    ") + "tools/slide-test.cjs  " + ((rS.stdout.strip().split("\n") or [""])[-1]))
 if rS.returncode != 0: ok = False
+rSB = subprocess.run(["node", "tools/slide-test-btc.cjs"], capture_output=True, text=True)  # fix423 behaviour test (Love Oct 28 2026 7:17 PM PT: "you see price on a downslope ?????"): the 7:15 PM BTC long under the unbroken pink must be held
+print(("SAFE   " if rSB.returncode == 0 else "OUT    ") + "tools/slide-test-btc.cjs  " + ((rSB.stdout.strip().split("\n") or [""])[-1]))
+if rSB.returncode != 0: ok = False
 r9 = subprocess.run([sys.executable, "tools/extra-call-5m.py"], capture_output=True, text=True)  # record only (Love Oct 27 2:25 PM PT: "track and log those")
 print("INFO   tools/extra-call-5m.py  " + ((r9.stdout.strip().split("\n") or [""])[0]))
 r10 = subprocess.run([sys.executable, "tools/pink-flag.py"], capture_output=True, text=True)  # record only (Love Oct 27 5:23 PM PT: "if one of the other books takes a trade like that and loses flag it for me")

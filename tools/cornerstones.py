@@ -9,8 +9,8 @@ def need(ok, what):
     print(("  ✓ " if ok else "  ✗ ") + what)
     if not ok: bad.append(what)
 print("HER CORNERSTONES")
-need("function anyFlipNow(" in B and ("for (const n of [2, 3, 4, 5] /* fix406" in B or "export function realFlipNow(" in B), "1. HER FLIP: the 2/3/4/5m candle reader exists (fix406, Love Oct 28 2026 5:07 PM PT: cut the 1m)")
-need("if (flipRule) { if (!why && !foTurn && !anyFlipNow(asset, side, tick))" in B, "1. HER FLIP: no candle her way = no entry")
+# retired by Love Oct 28 2026 7:08 PM PT ("not the fucking checkpoint version" - back to the exact checkpoint, 1-5m flip): need("function anyFlipNow(" in B and ("for (const n of [2, 3, 4, 5] /* fix406" in B or "export function realFlipNow(" in B), "1. HER FLIP: the 2/3/4/5m candle reader exists (fix406, Love Oct 28 2026 5:07 PM PT: cut the 1m)")
+need("if (flipRule) { if (!why && !foTurn && !anyFlip406Now(asset, side, tick, 0))" in B and 'if (flipRule && !why && !foTurn && !anyFlip406Now(asset, side, tick, asset === "gold" ? 0.1 : 5))' in B, "1. HER FLIP: no 2-5m candle her way (10c gold / $5 BTC past its open) = no entry, main + rejection (fix424)")
 door = re.search(r'const imR = impossibleGeo\([^\n]*', B); wire = re.search(r'const geo = impossibleGeo\([^\n]*', B); cop = re.search(r'else whyR = impossibleGeo\([^\n]*', B)
 for nm, m in (("door", door), ("copier", cop), ("wire", wire)):
     t = m.group(0) if m else ""
@@ -27,12 +27,25 @@ need(os.path.exists("tools/save-her.py"), "3. full save before every fix (tools/
 E = open("src/lib/desk/engine.ts", encoding="utf8").read(); ALL = B + R + E
 # CORNERSTONE (Oct 28 2026 6:21-6:31 PM PT, Love: "yes. we literallly did this 20 fuckin times bro yes. candle. flip. green -> red / red -> green" + "every single book dude yes / don't touch 5M and twin"
 # + "the 33% needs to be 1000000%  immutable." + "it is from session band to session band. not the distance from one zone/band to another. again, cornerstone"):
-need("export function realFlipNow(" in B and "!realFlipNow(asset, side, tick)) why = `HER FLIP: no 2/3/4/5m candle has turned" in B and "is not a flip (copy)." in B, "1. REAL FLIP: a candle that turned green -> red / red -> green, never one born that colour - main, rejection, copy, pure, paper (not 5M, not twin)")
+# retired by Love Oct 28 2026 7:08 PM PT: "this shit you just put on after i asked you to put them back on the checkpoint version is not the fucking checkpoint version": need("export function realFlipNow(" in B and "!realFlipNow(asset, side, tick)) why = `HER FLIP: no 2/3/4/5m candle has turned" in B and "is not a flip (copy)." in B, "1. REAL FLIP: a candle that turned green -> red / red -> green, never one born that colour - main, rejection, copy, pure, paper (not 5M, not twin)")
+# back (Love Oct 28 2026 7:29-7:30 PM PT: card "All protections back" + "Tonight's flip, exactly" + "a candle born red at a band and falling is still a short" + "do NOT EVERRRRRRR ... REMOVE THOSE AGAIN"):
 need("export const isChanBand = (asset: string, l: Line) => (false && quietHour() ? QUIET_EDGE.test(String(l.name)) : /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));" in B and "const edges = chanL(asset, L).filter((l: Line) => isChanBand(asset, l)" in B, "2. HER CHANNEL = SESSION BAND TO SESSION BAND (σ lines + VWAP), never a zone, pink or other band")
+# back (Love Oct 28 2026 7:29-7:30 PM PT: card "All protections back" + "Tonight's flip, exactly" + "a candle born red at a band and falling is still a short" + "do NOT EVERRRRRRR ... REMOVE THOSE AGAIN"):
 need('asset === "btc" && above - below <= 500 ? 0.33' in B and not re.search(r"IMPOSSIBLE = [^\n]*blueSmall399[^\n]*0\.2", B), "2. BTC 33% top/bottom at channels up to $500 - immutable (no 20%)")
 # CORNERSTONE (Oct 28 2026 6:32 PM PT, Love: "ok EVEN if price ticked 1 millimeter over it it was STILL underneath a band hun. there is 0 instance where that is okay" / "it ticked over PINK. not the session band."):
-need(("if (sa413) return deny(`SESSION BAND AHEAD (fix413)" in B or "if (sa418) return deny(`SESSION BAND AHEAD (fix418)" in B) and 'book === "recon-tog" || book === "recon-rej" || book === "recon-togp"' in B, "3. SESSION BAND AHEAD: past pink, an unbroken session band in front = wait for its break or rejection (main, rejection, copy, at the order door)")
+# back (Love Oct 28 2026 7:29-7:30 PM PT: card "All protections back" + "Tonight's flip, exactly" + "a candle born red at a band and falling is still a short" + "do NOT EVERRRRRRR ... REMOVE THOSE AGAIN"):
+need(("if (sa413) return deny(`SESSION BAND AHEAD (fix413)" in B or "if (sa418) return deny(`SESSION BAND AHEAD (fix418)" in B) and 'if (book === "recon-tog" || book === "recon-rej") { const sa413' in B, "3. SESSION BAND AHEAD: past pink, an unbroken session band in front = wait for its break or rejection (main + rejection, at the order door; fix424)")
 need("only (fix417)." in B and 'dc417 === "green" && ac417 === "red" ? "down" : dc417 === "red" && ac417 === "green" ? "up"' in B, "4. DOJI: green doji then red candle = SHORT only, red doji then green candle = LONG only (Love Oct 28 6:54 PM)")
+# CORNERSTONES (Love Oct 28 2026 7:39 PM PT: "please place EVERY. SINGLE ONE of these as cornerstones luv i can't go thru this again" + 7:30 PM "do NOT EVERRRRRRR ... REMOVE THOSE AGAIN"): main + rejection protections restored by fix423-426. Never retire without Love naming the rule.
+need('if (!why && asset === "gold" && flipRule && (side === "up" || side === "down")) { const L376' in B, "5. GOLD $10 LEVEL: a trade heading away from the $10 level waits until $1.50 clear (fix376, main + rejection)")
+need(B.count('if (!why && asset === "gold" && flipRule) { const zf') == 1, "6. GOLD ZONES: no long inside the red zone, no short inside the green (fix377, main + rejection)")
+need(B.count('if (!why && asset === "gold" && flipRule) { const zg') == 1, "7. GOLD $1.50 BEFORE THE ZONE: no long within $1.50 under R1, no short within $1.50 over S1 (fix378, main + rejection)")
+need("(flipRule ? 0.55" in B and "(flipRule ? 0.45 : 0.50)" in B, "8. GOLD PINK TOLERANCE 55%: pink-to-green no short bottom 55%, pink-to-red no long top 55% (fix409, main + rejection)")
+need(B.count("if (togOrderAtWire(t, side) || rejOrderAtWire(t, side)) { /* fix424") == 2 and "THE BLUE VWAP WALL: long" in B and "ACROSS THE BLUE VWAP: long" in B, "9. BLUE VWAP WALLS when bands are small (fix397/399, main + rejection orders)")
+need("BTC PINK-REJECTION RE-AIM (fix373" in R and '["recon-tog", "recon-rej"] /* fix424' in R, "10. BTC PINK RE-AIM: an unfilled long refused by pink re-aims to the short (fix373, main + rejection)")
+need("export function slideHold403(" in E and "export function slideHoldBtc423(" in E and 'hold423 = row.asset === "gold" ? slideHold403' in E, "11. DOWNSLOPE UNDER PINK: no long while price slides under an unbroken pink until it breaks (fix371/403/423, gold + BTC, main + rejection)")
+need("STALE CALL GUARD (fix375" in E, "12. STALE CALL GUARD: a call over 90 s old never fires when a seat opens (fix375/425)")
+need(os.path.exists("tools/slide-test.cjs") and os.path.exists("tools/slide-test-btc.cjs") and os.path.exists("tools/behaviour-umpire.cjs"), "13. BEHAVIOUR TESTS stay: behaviour umpire + gold/BTC slide replays")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "BTC pink cushion $50 or 10%, $25 only at $100 and under"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),
@@ -42,3 +55,4 @@ for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), 
     need(tag in ALL, f"{tag}: {what}")
 if bad: print("CORNERSTONE MISSING - tell Love before anything else:", "; ".join(bad)); sys.exit(1)
 print("CORNERSTONES ✓ - all in her.")
+

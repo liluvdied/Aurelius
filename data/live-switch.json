@@ -1,5 +1,5 @@
 {
-  "live": true,
+  "live": false,
   "maxDollars": 5,
   "cooldownAfterLoss": true,
   "route": "paper",
@@ -122,8 +122,7 @@
     "books": [
       "recon-tog",
       "recon-rej",
-      "recon-dly",
-      "recon-togp"
+      "recon-dly"
     ],
     "dollars": 5,
     "since": "2026-10-22T18:11:00.469Z",
@@ -2729,5 +2728,14 @@
       "recon-dly skip hours (twin)"
     ],
     "tonightSave": "data/SAVES/2026-10-28-0639PM-PT-tonight-revisions-fix361-416-before-checkpoint-restore"
-  }
+  },
+  "fix421Prev": {
+    "liveBook.books": [
+      "recon-tog",
+      "recon-rej",
+      "recon-dly",
+      "recon-togp"
+    ]
+  },
+  "note421": "fix421 Oct 28 2026 7:06 PM PT, Love: \"when i said the checkpoint, I meant the checkpoint for Maine and rejection that I had\" + \"the last checkpoint we had saved. for rejection. and main.\": the no-pink copy is off live (out of liveBook.books) - main + the rejection model (its rejection hours) trade live on the checkpoint. 5M + twin untouched."
 }

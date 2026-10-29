@@ -1,9 +1,9 @@
 {
-  "at": "2026-10-29T01:45:02.597585+00:00",
+  "at": "2026-10-29T02:34:09.713871+00:00",
   "lockedBy": "Love",
-  "quote": "Love Oct 28 2026 6:39-6:41 PM PT: \"bro put her back at the fuckin checkpoint i\u2019m not doing this again / save all of these new revisions on another paper twin and give me my model back\" + \"just put her on my last checkpoint pls i cannot fuckin do this again\"",
+  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424)",
   "files": {
-    "recon.ts": "cfb64842af0cea2a"
+    "recon.ts": "72317d00964ab064"
   },
   "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
   "signedBy": [

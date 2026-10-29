@@ -29,6 +29,21 @@ A new fix may NEVER weaken one of these without Love's words naming the cornerst
 0g. BEHAVIOUR UMPIRE (Love Oct 28 6:22 PM: "please create an umpire that ACTUALLY checks if the conditions are met and not just the code is there" + "LOCK. THEM. POUR CONCRETE OVER THEM."): tools/behaviour-umpire.js (+ .cjs) loads her real bandlock.ts and replays real situations; ~/fx/inst.py refuses any bandlock install that fails it BEFORE live is touched. Every new rule = a new replay test.
 
 
+### NEVER REMOVE (Oct 28 2026 7:30-7:39 PM PT, Love: "do NOT EVERRRRRRR EVER EVER EVER EVER EVER EVER FUCKING EVERRRRRRRRRR REMOVE THOSE AGAIN" + "NEVER. FUCKING. DO THIS. AGAIN" + "please place EVERY. SINGLE ONE of these as cornerstones luv i can't go thru this again")
+These are cornerstones for MAIN + REJECTION. tools/cornerstones.py fails if any is missing; tools/behaviour-umpire.cjs and the slide replays prove she acts on them. ~/fx/inst.py refuses any install that drops a fix tag Love didn't name (NOTHING MISSING GATE). Never restore whole files again: a restore removes only the fixes Love names.
+- HER FLIP: a 2/3/4/5m candle (no 1m) at least 10c gold / $5 BTC past its open her way. A candle born her colour counts ("a candle born red at a band and falling is still a short"). fix406/407/424; fix416 real-flip is OFF.
+- 33% IMPOSSIBILITY, session band to session band; BTC 33% up to $500 wide even on one-fresh-sigma channels (fix379/414).
+- Gold pink tolerance 55% (pink-to-green no short bottom 55%, pink-to-red no long top 55%) (fix409). BTC 40% (fix323/324).
+- Gold $10 level: away from it only once $1.50 clear (fix376). No long inside red zone / no short inside green (fix377). No long within $1.50 under R1 / no short within $1.50 over S1 (fix378).
+- Blue VWAP walls when bands are small (fix397/399).
+- Session band ahead of the pink = wait for its break or rejection (fix413).
+- Downslope under pink: no long while price slides under an unbroken pink until it breaks - gold $2 / 25c, BTC $40 / $8 (fix371/403/423).
+- BTC pink re-aim: unfilled long refused by pink re-aims to the short (fix373).
+- Doji: green doji then red candle = SHORT only; red doji then green candle = LONG only (fix417).
+- Stale call guard: a call over 90 s old never fires (fix375/425).
+- fix405 sit-out hours: BTC 12 AM, 9 PM, 11 PM; gold 8 PM (fix426).
+- Not in, by Love's words: 3-second hold ("no 3 second hold"). $5 single add-on waits until Love confirms she's working.
+
 ## THE UMPIRE - nothing is done until it says SAFE (Oct 27 12:15 PM, Love: "cover every single base and call the umpire to call it safe before you look away")
 - After EVERY fix, restore or rollback run `python3 tools/umpire.py`. It runs verify-golden + cornerstones + rule-anchors + the free-to-trade RUN test and checks a fresh save. OUT = put the rule back or ask Love, before anything else.
 - data/RULE-ANCHORS.json holds 876 of Love's own quotes from her code. If any disappears, the umpire fails. A new rule: `python3 tools/rule-anchors.py --add`. A rule only leaves with `--retire "<anchor>" "<Love's words>"` when Love herself says so.

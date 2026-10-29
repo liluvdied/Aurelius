@@ -8,7 +8,7 @@
   "auto.ts": "ec817b827977b355",
   "autoroll.ts": "78fb6514980c1219",
   "band-check.ts": "b237ae9c8845f659",
-  "bandlock.ts": "ea68d5f647432e91",
+  "bandlock.ts": "7ce4fffc2f88bac1",
   "bankreplay.ts": "5d765962480ec439",
   "book.ts": "cfce88a5fbb90eed",
   "bookhist.server.ts": "d59046a5705aeb65",
@@ -27,7 +27,7 @@
   "confirm.ts": "9d4790dfd4a9e8ed",
   "dayboard.ts": "85ba614c44331637",
   "dna.ts": "7e15f742d137607e",
-  "engine.ts": "550ab17326ff17ac",
+  "engine.ts": "bc53a722589b0ed4",
   "feedmatch.ts": "8908213d26d0f9fc",
   "fees.ts": "b31480529d0d4c44",
   "fill-log.ts": "1e136cd46cbbbe7f",
@@ -83,7 +83,7 @@
   "probe.ts": "9c0674e13b6c4516",
   "quotes.ts": "9b203164a757ba83",
   "realtwin.ts": "c74ff01ef7e1b5ea",
-  "recon.ts": "cfb64842af0cea2a",
+  "recon.ts": "72317d00964ab064",
   "research.ts": "cd5d69f9cb3ff595",
   "review.ts": "ed486d1c8a4113c0",
   "riptap.ts": "1c967350e6259666",
@@ -119,7 +119,7 @@
   "bandlock5m.ts": "32f10e313e3cd90a"
  },
  "config": {
-  "live": "b5bea41b6c",
+  "live": "fcbcf16590",
   "maxDollars": "ef2d127de3",
   "cooldownAfterLoss": "b5bea41b6c",
   "route": "9d53f79e71",
@@ -142,7 +142,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "0bc780402b",
+  "liveBook": "00d9953bd0",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -291,14 +291,16 @@
   "note405": "c152437af2",
   "fix412Prev": "cc2998e771",
   "note412": "ce19eee58c",
-  "checkpointRestore": "0d4581c4b2"
+  "checkpointRestore": "0d4581c4b2",
+  "fix421Prev": "99ed749af3",
+  "note421": "2eaea48549"
  },
  "configFiles": {
-  "data/spine-lock.json": "233528ced3f16e83",
+  "data/spine-lock.json": "e1fd48d7dabdd377",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "dd46833ff4146f59"
+  "data/live-switch.json": "5234556722fc64b6"
  },
- "sealLiveBook": "e13f989d61",
+ "sealLiveBook": "c8cfbbf7f9",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."
 }

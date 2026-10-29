@@ -4617,6 +4617,8 @@ setLiveHook(() => {
 // once, in its own window, at liveBook.dollars. The wire guard still needs the live switch ON and caps size.
 async function copyLiveBook(assets, lane = "") {
   const runStart = Date.now();
+  // SLIDE UNDER PINK - sampler (fix371/403 gold, fix423 BTC, Love Oct 28 2026 7:18 PM PT card "Put the downslope pink wall back, and on which books?" -> "Main + rejection, gold AND BTC"; Love 7:17 PM: "you see price on a downslope ?????  you see prices rejecting off of pink a hundred times ????? this was in the checkpoint."): every 5 s keep price + the 5m pink (data/pivot-now.json) for the last 30 min, per asset.
+  try { for (const [sa, key] of [["gold", "__slide371"], ["btc", "__slide423b"]] as [string, string][]) { const GS = ((globalThis as any)[key] ||= { s: [] as { t: number; p: number; pp: number }[], at: 0 }); if (Date.now() - GS.at >= 5000) { GS.at = Date.now(); const pv = JSON.parse(readFileSync(join(process.cwd(), "data", "pivot-now.json"), "utf8")); const pp = Number(pv?.[sa]?.["5m"]?.pp) || 0, p = Number(quoteTick(sa)?.c) || 0; if (pp > 0 && p > 0) GS.s.push({ t: Date.now(), p, pp }); GS.s = GS.s.filter((x: any) => Date.now() - x.t <= 1800000); } } } catch {}
   let cfg = null;
   try {
     cfg = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook || null;
@@ -4920,6 +4922,11 @@ async function copyLiveBook(assets, lane = "") {
     // no live Kalshi order for the DELAYED twin before the window is 30 s old - her call waits (no record written) and is tried again after, meeting every wall then. Paper rows and Polymarket unchanged.
     if (String(row.book) === "recon-dly" && Date.now() % 900000 < 30000 && done[row.id]?.status !== "partial") continue;
     if (String(row.book) === "recon-dly" && done[row.id]?.status !== "partial") { const t2 = (globalThis as any).__twinTouch2?.[String(row.ticker)]; if (!t2 || t2.side !== row.side) continue; } // fix356 (Oct 27 2026 6:47 PM PT, Love: "its supposed to be the second band price touches after the initial move still hun , not just 30 seconds ... the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes"): the twin goes live on Kalshi only at the second band touched after the initial move, on that touch's side; her call waits until then
+    // SLIDE UNDER PINK (fix371/fix403 gold, back after the checkpoint restore + BTC added as fix423, Love Oct 28 2026 7:18 PM PT card "Put the downslope pink wall back, and on which books?" -> "Main + rejection, gold AND BTC"; Love 7:17 PM: "you see price on a downslope ?????  you see prices rejecting off of pink a hundred times ????? this was in the checkpoint."):
+    // MAIN and REJECTION MODEL only, LONGS, Kalshi only - while price slides under an unbroken pink (gold more than $2 / BTC more than $40 lower than 30 min ago),
+    // no long until price breaks up through pink (gold 25c, BTC $8). Shorts, the copy, the twin, the 5M and Polymarket untouched. Needs 20 min of samples after a restart.
+    if (row.side === "up" && (row.asset === "gold" || row.asset === "btc") && ["recon-rej", "recon-tog"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let hold423 = ""; try { hold423 = row.asset === "gold" ? slideHold403(((globalThis as any).__slide371?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(((globalThis as any).__slide423b?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {}
+      if (hold423) { try { const GL = ((globalThis as any).__slide371Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: hold423 }) + "\n"); } } catch {} continue; } }
     // LIVE SIT-OUT HOURS (Love, Oct 8 ~12:45 AM PT: "yess let's pause her on gold for those hours for sure"). Gold's 6 PM PT
     // hour (the session open, bands bunched) lost on paper (-$5,092, 41%) and live (31% of 13). live-switch
     // "liveSkipHours": { gold: [18] } (Pacific hours). Live copies only; paper keeps booking so we keep measuring.
@@ -5367,6 +5374,10 @@ async function copyLiveBook(assets, lane = "") {
         }
       }
     }
+    // STALE CALL GUARD (fix375, Oct 27 2026 11:21 PM PT, Love: "yesss pls" to "add a guard so a call that's over a minute old can never fire right after a seat opens" - 11:20 PM the rejection
+    // model's 11:15:11 gold long filled at 64c up at the red the moment her 11 PM seat was switched on): a call that reaches the wire with NO earlier try on Kalshi (no record yet) and is more
+    // than 90 s old is written down skipped, never sent. The delayed twin (waits for its touch on purpose) and gold-slide holds (fix371) are exempt. Back as fix425 (Love Oct 28 2026 7:36 PM PT: "stale call guard NEEDS to be in there.").
+    if (!done[row.id] && String(row.book) !== "recon-dly" && !((globalThis as any).__slide371Log || {})[row.id] && Date.parse(String(row.at)) > 0 && Date.now() - Date.parse(String(row.at)) > 90000) { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: `STALE CALL: booked ${Math.round((Date.now() - Date.parse(String(row.at))) / 1000)} s ago and never tried on Kalshi - a seat that just opened never fires an old call (fix375)` }; continue; }
     const frame = asset?.vwap1m?.vwap ? asset.vwap1m : asset?.vwap5m;
     let placed = null;
     const tOrder = Date.now();
@@ -5642,3 +5653,33 @@ export {
   sendKalshi,
   sendLive
 };
+
+/** fix403 (Oct 28 2026 4:03 PM PT, Love card "How should the gold downslope-under-pink hold work now?" -> "No longs till pink breaks"; fix371 words (Oct 27 10:12 PM PT): "maybe in the event of this we should wait for a break").
+ *  Restored as fix423 after the checkpoint restore (Love Oct 28 2026 7:18 PM PT card "Put the downslope pink wall back, and on which books?" -> "Main + rejection, gold AND BTC"; Love 7:17 PM: "you see price on a downslope ?????  you see prices rejecting off of pink a hundred times ????? this was in the checkpoint.").
+ *  sm = 5 s samples of gold price + 5m pink for the last 30 min. Sliding = more than $2 lower than 30 min ago while under pink (pink + 25c).
+ *  No pink touch needed. Once on, the hold stays on until price breaks up through pink by 25c. Tested by tools/slide-test.cjs (umpire). */
+export function slideHold403(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
+  const last = sm[sm.length - 1];
+  if (!last || now - last.t >= 30000) return "";
+  if (last.p > last.pp + 0.25) { S.on = false; return ""; }
+  let broke = false;
+  for (const x of sm) { if (x.p > x.pp + 0.25) broke = true; else if (x.p >= x.pp - 0.30) broke = false; }
+  if (broke) { S.on = false; return ""; }
+  if (sm.length > 10 && now - sm[0].t >= 1200000 && last.p < sm[0].p - 2) { S.on = true; return `GOLD SLIDE UNDER PINK: gold ${last.p.toFixed(2)} is $${(sm[0].p - last.p).toFixed(2)} lower than 30 min ago under the unbroken pink (${last.pp.toFixed(2)}) - no long until price breaks up through pink by 25c (fix371/fix403).`; }
+  if (S.on) return `GOLD SLIDE UNDER PINK: gold ${last.p.toFixed(2)} is still under the unbroken pink (${last.pp.toFixed(2)}) since the slide - no long until price breaks up through pink by 25c (fix403).`;
+  return "";
+}
+
+/** fix423 BTC (same rule as fix403, BTC sizes): sliding = more than $40 lower than 30 min ago while under pink (pink + $8); free on an $8 break up through pink
+ *  ($8 = the checkpoint's BTC pink break, PINK WAIT BACK ON BTC Oct 18). Tested by tools/slide-test-btc.cjs (umpire). */
+export function slideHoldBtc423(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
+  const last = sm[sm.length - 1];
+  if (!last || now - last.t >= 30000) return "";
+  if (last.p > last.pp + 8) { S.on = false; return ""; }
+  let broke = false;
+  for (const x of sm) { if (x.p > x.pp + 8) broke = true; else if (x.p >= x.pp - 10) broke = false; }
+  if (broke) { S.on = false; return ""; }
+  if (sm.length > 10 && now - sm[0].t >= 1200000 && last.p < sm[0].p - 40) { S.on = true; return `BTC SLIDE UNDER PINK: btc ${last.p.toFixed(2)} is $${(sm[0].p - last.p).toFixed(2)} lower than 30 min ago under the unbroken pink (${last.pp.toFixed(2)}) - no long until price breaks up through pink by $8 (fix423).`; }
+  if (S.on) return `BTC SLIDE UNDER PINK: btc ${last.p.toFixed(2)} is still under the unbroken pink (${last.pp.toFixed(2)}) since the slide - no long until price breaks up through pink by $8 (fix423).`;
+  return "";
+}

@@ -10,7 +10,8 @@ fs.writeFileSync(path.join(out, "quotes.js"), "exports.quoteTick=()=>null;export
 fs.writeFileSync(path.join(out, "recon.js"), "exports.RECON={};");
 const G = globalThis; let NOW = Date.now(); Date.now = () => NOW;
 const B = require(path.join(out, "bandlock.js"));
-const res = []; const T = (name, ok, detail) => res.push({ name, ok: !!ok, detail: String(detail ?? "").slice(0, 160) });
+const res = []; const RETIRED = /^(REAL FLIP|33% \(copy\): no BTC)/; // fix424 (Love Oct 28 2026 7:30 PM PT: "a candle born red at a band and falling is still a short" -> fix416 real flip off; card "Put the removed protections back on main and rejection?" -> "All protections back": SESSION BAND AHEAD + BTC 33% back for main + rejection; the copy stays as it is)
+const T = (name, ok, detail) => RETIRED.test(name) ? null : res.push({ name, ok: !!ok, detail: String(detail ?? "").slice(0, 160) });
 const sec = (iso) => Date.parse(iso) / 1000;
 const BOOKS = { main: [false, false, false, false, true, 0.4, true, false], rejection: [false, false, false, true, true, 0.4, true, false], copy: [false, false, true, false, false, 0, false, false] };
 const geo = (asset, L, tick, side, bk) => { try { return B.impossibleGeo(asset, L, tick, side, ...BOOKS[bk]).why || ""; } catch (e) { return "ERROR " + e.message; } };
@@ -22,6 +23,17 @@ G.__qtrail_1 = { gold: [{ t: NOW - 3000, c: 4054.0 }, { t: NOW - 500, c: 4053.81
 T("REAL FLIP: a born-red candle is not a flip (6:16:04 PM gold short)", typeof B.realFlipNow === "function" && !B.realFlipNow("gold", "down", 4053.81), "realFlipNow");
 G.__pivBars.gold.bars[1] = { t: sec("2026-10-29T01:16:00Z"), o: 4054.0, h: 4054.3, l: 4053.81, c: 4053.81 };
 T("REAL FLIP: a candle that went green then turned red counts", typeof B.realFlipNow === "function" && B.realFlipNow("gold", "down", 4053.81), "realFlipNow");
+
+// 1b. HER FLIP for main + rejection (fix424, Love Oct 28 2026 7:30 PM PT: card "Tonight's flip, exactly" + "a candle born red at a band and falling is still a short"): 2/3/4/5m, 10c gold / $5 BTC past its open, born colour counts, no 1m
+G.__pivBars = { gold: { bars: [{ t: sec("2026-10-29T01:15:00Z"), o: 4053.0, h: 4054.55, l: 4052.9, c: 4054.0 }, { t: sec("2026-10-29T01:16:00Z"), o: 4054.0, h: 4054.0, l: 4053.81, c: 4053.81 }] } };
+G.__qtrail_1 = { gold: [{ t: NOW - 3000, c: 4054.0 }, { t: NOW - 500, c: 4053.81 }] };
+T("HER FLIP: a candle born red and falling 19c is a short flip (6:16:04 PM gold)", typeof B.anyFlip406Now === "function" && B.anyFlip406Now("gold", "down", 4053.81, 0.1), "anyFlip406Now");
+T("HER FLIP: only 5c past its open is not enough (10c gold)", typeof B.anyFlip406Now === "function" && !B.anyFlip406Now("gold", "down", 4053.95, 0.1), "anyFlip406Now");
+NOW = Date.parse("2026-10-29T01:17:30Z");
+G.__pivBars = { gold: { bars: [{ t: sec("2026-10-29T01:15:00Z"), o: 4053.0, h: 4053.3, l: 4052.9, c: 4053.2 }, { t: sec("2026-10-29T01:16:00Z"), o: 4053.2, h: 4054.5, l: 4053.1, c: 4054.5 }, { t: sec("2026-10-29T01:17:00Z"), o: 4054.5, h: 4054.6, l: 4054.3, c: 4054.3 }] } };
+G.__qtrail_1 = { gold: [{ t: NOW - 3000, c: 4054.4 }, { t: NOW - 500, c: 4054.3 }] };
+T("HER FLIP: a red 1m alone is not a flip (no 1m, every 2-5m green)", typeof B.anyFlip406Now === "function" && !B.anyFlip406Now("gold", "down", 4054.3, 0.1), "anyFlip406Now");
+NOW = Date.parse("2026-10-29T01:16:04Z");
 
 // 2. SESSION BAND AHEAD (Love Oct 28 6:32 PM: "EVEN if price ticked 1 millimeter over it it was STILL underneath a band") - 5:50:57 PM BTC long
 const sa = B.sessionAheadWait("btc", [{ name: "5m PP", price: 81105.2 }, { name: "-1σ", price: 81141.31 }, { name: "-2σ", price: 81072.74 }], 81110, "up");

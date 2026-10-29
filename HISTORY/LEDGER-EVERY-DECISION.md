@@ -1,9 +1,50 @@
-# Every decision Love has made - rebuilt 2026-10-29T01:32:28.702084+00:00
+# Every decision Love has made - rebuilt 2026-10-29T02:34:24.269505+00:00
 
-1276 decisions with Love's words or card picks, out of 2010 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1284 decisions with Love's words or card picks, out of 2023 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T02:34:08.824069+00:00  ·  diary line 2487
+- Love: “Put the removed protections back on main and rejection?”
+- Love: “Which candle flip goes back on main and rejection?”
+- Love: “ohhh my god bro. a candle born red at a band and falling is still a short”
+- Love: “do NOT EVERRRRRRR EVER EVER EVER EVER EVER EVER FUCKING EVERRRRRRRRRR REMOVE THOSE AGAIN”
+- Love: “NEVER. FUCKING. DO THIS. AGAIN”
+- Card pick: **Put the removed protections back on main and rejection?**
+- Card pick: **Which candle flip goes back on main and rejection?**
+- Full entry: 2026-10-29T02:34:08.824069+00:00 THAW (Love Oct 28 2026 7:29 PM PT card "Put the removed protections back on main and rejection?" -> "All protections back"; 7:30 PM card "Which candle flip goes back on main and rejection?" -> "Tonight's flip, exactly" + "ohhh my god bro. a candle born red at a band and falling is still a short" + "do NOT EVERRRRRRR EVER EVER EVER EVER EVER EVER FUCKING EVERRRRRRRRRR REMOVE THOSE AGAIN" + "NEVER. FUCKING. DO THIS. AGAIN")
+
+## 2026-10-29T02:23:38.582756+00:00  ·  diary line 2485
+- Love: “you see price on a downslope ?????  you see prices rejecting off of pink a hundred times ????? this was in the checkpoint.”
+- Full entry: 2026-10-29T02:23:38.582756+00:00 THAW (Love Oct 28 2026 7:17 PM PT: "you see price on a downslope ?????  you see prices rejecting off of pink a hundred times ????? this was in the checkpoint." + card 7:18 PM "Put the downslope pink wall back, and on which books?" -> "Main + rejection, gold AND BTC")
+
+## 2026-10-29T02:15:03Z  ·  diary line 2484  ·  fix421
+- Love: “when i said the checkpoint, I meant the checkpoint for Maine and rejection that I had”
+- Love: “the last checkpoint we had saved. for rejection. and main.”
+- fix421 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T02:15:03Z fix421 CONFIG at boundary: fix421 Oct 28 2026 7:06 PM PT, Love: "when i said the checkpoint, I meant the checkpoint for Maine and rejection that I had" + "the last checkpoint we had saved. for rejection. and main.": the no-pink copy is off live (out of liveBook.books) - main + the rejection model (its rejection hours) trade live on the checkpoint. 5M + twin untouched. seal c8cfbbf7f9
+
+## 2026-10-29T02:15:02.729886+00:00  ·  diary line 2482
+- Full entry: 2026-10-29T02:15:02.729886+00:00 THAW (no let’s see it on that exact checkpoint pls with the FIXED DOJI RULE. (7:01 PM) / yes. (7:01 PM, to: checkpoint plus only the doji) / because this shit you just put on after i asked you to put them back on the checkpoint version is not the fucking checkpoint version (Love Oct 28 2026 7:08 PM PT))
+
+## 2026-10-29T02:00:17.965516+00:00  ·  diary line 2480
+- Full entry: 2026-10-29T02:00:17.965516+00:00 THAW (yes. session band wait is THE FIRST FUCKING CORNERSTONE (Love Oct 28 2026 6:46 PM PT, to: put session band wait, real flip, 33%, doji back on top of the checkpoint for main/rejection/copy, then live on))
+
+## 2026-10-29T01:45:12Z  ·  diary line 2479
+- Love: “WHATTT ?????????? the session band wait isn’t there ?!?!??”
+- Full entry: 2026-10-29T01:45:12Z LIVE OFF after checkpoint restore - Love 6:43 PM PT: "WHATTT ?????????? the session band wait isn’t there ?!?!??" - holding live until Love says which of her cornerstones go back on top of the checkpoint.
+
+## 2026-10-29T01:45:02.527320+00:00  ·  diary line 2477  ·  fix360, fix361
+- Love: “bro put her back at the fuckin checkpoint i’m not doing this again / save all of these new revisions on another paper twin and give me my model back”
+- Love: “just put her on my last checkpoint pls i cannot fuckin do this again”
+- fix360 a setting (hours/sizes follow her latest pick)
+- fix361 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T01:45:02.527320+00:00 CHECKPOINT RESTORE (Love Oct 28 2026 6:39-6:41 PM PT: "bro put her back at the fuckin checkpoint i’m not doing this again / save all of these new revisions on another paper twin and give me my model back" + "just put her on my last checkpoint pls i cannot fuckin do this again"): src ['bandlock.ts', 'recon.ts', 'engine.ts', 'kalshi-live.server.ts', 'grokog.ts'] <- data/SAVES/KNOWN-GOOD-2026-10-27-0756PM-PT-checkpoint-main-and-no-pink-copy-after-fix360; live-switch <- checkpoint except Poly 5M (polyTwin) + delayed twin skip hours kept as now; bandlock5m.ts (5M frozen walls) untouched. Tonight saved in data/SAVES/2026-10-28-0639PM-PT-tonight-revisions-fix361-416-before-checkpoint-restore.
+
+## 2026-10-29T01:39:44Z  ·  diary line 2476
+- Love: “bro put her back at the fuckin checkpoint i’m not doing this again / save all of these new revisions on another paper twin and give me my model back”
+- Full entry: 2026-10-29T01:39:44Z LIVE OFF (Love Oct 28 2026 6:39 PM PT: "bro put her back at the fuckin checkpoint i’m not doing this again / save all of these new revisions on another paper twin and give me my model back") - live off before restoring the Oct 27 7:56 PM checkpoint.
 
 ## 2026-10-29T01:32:16Z  ·  diary line 2475  ·  fix416
 - Love: “yes. we literallly did this 20 fuckin times bro yes. candle. flip. green -> red / red -> green”
@@ -15,7 +56,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Full entry: 2026-10-29T01:30:03.458332+00:00 THAW (yes. we literallly did this 20 fuckin times bro yes. candle. flip. green -> red / red -> green (Love Oct 28 2026 6:21 PM PT, after: JUST. A. CANDLE. FLIP. IT WAS GREEN AND RISING.))
 
 ## 2026-10-29T01:16:49Z  ·  diary line 2472  ·  fix411, fix412
-- fix411 IN HER CODE
+- fix411 in her code without its number (see her words in the code comments)
 - fix412 in her code without its number (see her words in the code comments)
 - Full entry: 2026-10-29T01:16:49Z fix411+413+414 bandlock + fix412 seat installed 01:15:00Z, golden/cornerstones ✓, live True; golden note412 hash added; R043/R050/R060 retired on Love words (superseded by R100/R099/R102).
 
@@ -127,29 +168,29 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Love: “All Kalshi books, 5M frozen”
 - Card pick: **Yes, nearer half only**
 - Card pick: **All Kalshi books, 5M frozen**
-- fix396 IN HER CODE
+- fix396 in her code without its number (see her words in the code comments)
 - fix397 IN HER CODE
 - Full entry: 2026-10-28T22:00:02.432304+00:00 THAW (fix396 PURE NO-PINK own taps nearer half only (Love 2:46 PM PT card "Yes, nearer half only") + fix397 THE BLUE VWAP WALL at the Kalshi wire, all Kalshi books (Love 2:46 PM PT: "we need to keep the blue vwap a wall on all books when bands are small" + card "All Kalshi books, 5M frozen"))
 
 ## 2026-10-28T21:45:02Z  ·  diary line 2431  ·  fix394, fix395
-- fix394 IN HER CODE
-- fix395 IN HER CODE
+- fix394 a setting (hours/sizes follow her latest pick)
+- fix395 a setting (hours/sizes follow her latest pick)
 - Full entry: 2026-10-28T21:45:02Z fix394+fix395 installed at 21:45:00Z boundary (recon.ts 8b68e692606ed8a0). R082 + R083. fix394: bonesDecide zoneFlip (main lookT + pure own eyes). fix395: pure no-pink HER OWN TAPS. Flip replay data/lab/flips.py (455 live entries): 1m only 9/44%/+$10, 2-3m (no 5m) 44/61%/+$73, 5m 272/54%/-$80, no flip 115/41%/-$51 - shown to Love, nothing changed.
 
 ## 2026-10-28T21:45:02.439911+00:00  ·  diary line 2429  ·  fix394, fix395
 - Love: “Pure no-pink + main”
 - Love: “hun i’ve asked for this several times now, i want pure to be able to take her own taps”
 - Card pick: **Pure no-pink + main**
-- fix394 IN HER CODE
-- fix395 IN HER CODE
+- fix394 in her code without its number (see her words in the code comments)
+- fix395 in her code without its number (see her words in the code comments)
 - Full entry: 2026-10-28T21:45:02.439911+00:00 THAW (fix394 MAIN + PURE NO-PINK zone reads take any 1-5m flip (Love 2:35 PM PT card "Pure no-pink + main") + fix395 PURE NO-PINK HER OWN TAPS (Love 2:37 PM PT: "hun i’ve asked for this several times now, i want pure to be able to take her own taps"))
 
 ## 2026-10-28T21:37:00Z  ·  diary line 2428  ·  fix67, fix389, fix390, fix394
 - Love: “hun i’ve asked several times now, i want her to be able to take her own calls.”
 - fix67 IN HER CODE
-- fix389 IN HER CODE
+- fix389 taken back / replaced (see its entries)
 - fix390 IN HER CODE
-- fix394 IN HER CODE
+- fix394 in her code without its number (see her words in the code comments)
 - Full entry: 2026-10-28T21:37:00Z Love 2:36 PM PT: "hun i’ve asked several times now, i want her to be able to take her own calls." - pure no-pink already reads with her own eyes (fix389/389b); the only thing still holding her own zone calls was the fix67 5m-candle-colour filter inside bonesDecide (recon.ts l.344) - fix394 (R082, 2:45 PM PT) lets her own read take any 1-5m flip off the zones. Her calls still meet main's walls per fix390 (Love 1:11 PM). Asked Love if she also wants her own calls free of main's walls.
 
 ## 2026-10-28T21:30:00Z  ·  diary line 2427  ·  fix393
@@ -176,14 +217,14 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 ## 2026-10-28T21:00:05Z  ·  diary line 2423  ·  fix389, fix391
 - Love: “Stop the pure no-pink from taking thirds reads?”
 - Card pick: **Stop the pure no-pink from taking thirds reads?**
-- fix389 IN HER CODE
-- fix391 IN HER CODE
+- fix389 taken back / replaced (see its entries)
+- fix391 a setting (hours/sizes follow her latest pick)
 - Full entry: 2026-10-28T21:00:05Z fix391 PURE NO-PINK ONLY: own-eyes block (recon.ts fix389) skips any label with "third" - band reads only. Love 1:42 PM PT card "Stop the pure no-pink from taking thirds reads?" -> "Yes, band reads only"; 1:49 PM PT "yes but can you do replays on the new taps and see how she does in comparison bb?". Installed 21:00:00Z boundary. R079. Trigger: 1:15 PM PT live BTC long "Candle rising from the bottom third" (-$20.85 + add-on). Main/rej/copy/sov/twin/5M untouched.
 
 ## 2026-10-28T21:00:04.651986+00:00  ·  diary line 2421  ·  fix391
 - Love: “Stop the pure no-pink from taking thirds reads?”
 - Card pick: **Stop the pure no-pink from taking thirds reads?**
-- fix391 IN HER CODE
+- fix391 in her code without its number (see her words in the code comments)
 - Full entry: 2026-10-28T21:00:04.651986+00:00 THAW (fix391 PURE NO-PINK ONLY (recon-np live + recon-npo paper): her own-eyes read never books a thirds read. Love Oct 28 2026 1:42 PM PT card "Stop the pure no-pink from taking thirds reads?" -> "Yes, band reads only" + 1:49 PM PT: "yes but can you do replays on the new taps and see how she does in comparison bb?")
 
 ## 2026-10-28T20:11:39+00:00  ·  diary line 2420  ·  fix363, fix367, fix368, fix390
@@ -198,7 +239,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-28T20:06:54+00:00  ·  diary line 2417  ·  fix389
 - Love: “yess that’s what i was sayin earlier i want to give her her own taps ok :)”
-- fix389 IN HER CODE
+- fix389 taken back / replaced (see its entries)
 - Full entry: 2026-10-28T20:06:54+00:00 fix389/389b PURE NO-PINK OWN EYES (recon.ts): recon-npo paper lane = bonesDecide rejections-only on session bands + red/green zone + Bollinger (no pink/pivots/purple/nav), 1-5m flip, np pink-stack check; fix389b: LIVE recon-np books that read too (first read in a window wins). First call 12:06 PM BTC short 1m rejection off Red zone 60c - live held by ANY BAND CUSHION (+2σ unbroken, $2.83). R076/R077. Undo = remove fix389b line. Love: "yess that’s what i was sayin earlier i want to give her her own taps ok :)" / "and you can put her on that now, we will put her back where she is is she doesn’t do well on it okay :)) would have worked this short too so let’s give her the ability to do that okay bb"
 
 ## 2026-10-28T19:30:25+00:00  ·  diary line 2412  ·  fix386, fix388  ·  books: delayed twin
@@ -209,7 +250,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-28T19:17:52+00:00  ·  diary line 2411  ·  fix387
 - Love: “yesss pls let her take tap rejects on her own bb”
-- fix387 IN HER CODE
+- fix387 in her code without its number (see her words in the code comments)
 - Full entry: 2026-10-28T19:17:52+00:00 fix387 PURE NO-PINK TAP-REJECTS (recon.ts, recon-np only): her label filter also takes main's 'Tap-reject at <band>' reads (same session band / zone / Bollinger list, same pink check). R073. Love: "yesss pls let her take tap rejects on her own bb"
 
 ## 2026-10-28T19:11:22+00:00  ·  diary line 2408  ·  fix384, fix385
@@ -244,7 +285,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-28T08:16:52Z  ·  diary line 2389  ·  fix380
 - Love: “we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters / same entry logic, we had some issues last time getting those to go thru correctly at a rejection so we made it just a default entry / but let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on / can we do that bb? + card Main + rejection + copy”
-- fix380 IN HER CODE
+- fix380 a setting (hours/sizes follow her latest pick)
 - Full entry: 2026-10-28T08:16:52Z fix380 (Oct 28 1:16 AM PT, Love: "we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters / same entry logic, we had some issues last time getting those to go thru correctly at a rejection so we made it just a default entry / but let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on / can we do that bb? + card Main + rejection + copy"): first add-on $7 (was $8), second add-on $3 (addOn.second, engine after first add-on block) at the next different band + 1-5m candle flip her way, cap 72c, once per position; main/rej/copy only. R045 retired on Love's words ($7).
 
 ## 2026-10-28T08:07:11Z  ·  diary line 2386  ·  fix219, fix379
@@ -284,13 +325,13 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-28T06:22:42Z  ·  diary line 2371  ·  fix374, fix375
 - Love: “yesss pls 💘 (to:”
-- fix374 IN HER CODE
-- fix375 IN HER CODE
+- fix374 in her code without its number (see her words in the code comments)
+- fix375 in her code without its number (see her words in the code comments)
 - Full entry: 2026-10-28T06:22:42Z fix375 (Oct 27 11:25 PM PT, Love: "yesss pls 💘 (to: "Want me to add a guard so a call that is over a minute old can never fire right after a seat opens?")"): STALE CALL GUARD - copier never sends a never-tried call older than 90 s. Cause: fix374 switched the rejection seat on mid-window and her 11:15:11 gold long filled at 11:20:36 at 64c at the red (my mistake, owned to Love).
 
 ## 2026-10-28T06:19:13Z  ·  diary line 2367  ·  fix374
 - Love: “how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)”
-- fix374 IN HER CODE
+- fix374 a setting (hours/sizes follow her latest pick)
 - Full entry: 2026-10-28T06:19:13Z fix374 (Oct 27 11:20 PM PT, Love: "how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)"): 11 PM PT the rejection model trades live (offHourMain.rejSeatHours [23]; liveSkipHours gold/btc 23 lifted, prev saved in fix374Prev). History at 11 PM: rej btc 50 trades 50% +$103, gold 35 51% +$72. Tonight 11:00: btc short -$21, gold long +$50.
 
 ## 2026-10-28T06:17:44.943Z  ·  diary line 2364
@@ -307,7 +348,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-28T05:34:30Z  ·  diary line 2357  ·  fix372
 - Love: “rather than having it copy mains calls, can you instill the engine and entry logic and give her sovereign reign to make her own trades aside from main? 💓 / bring me the numbers first, and rather than changing her we can make a twin and test it over night before going live”
-- fix372 IN HER CODE
+- fix372 a setting (hours/sizes follow her latest pick)
 - Full entry: 2026-10-28T05:34:30Z fix372 (Oct 27 ~10:35 PM PT, Love: "rather than having it copy mains calls, can you instill the engine and entry logic and give her sovereign reign to make her own trades aside from main? 💓 / bring me the numbers first, and rather than changing her we can make a twin and test it over night before going live"): recon-sov SOVEREIGN PAPER twin - her own engine read (bonesDecide, rejections only, on session bands + pink + zones + Bollinger), books on a 1-5m flip her way, re-aims unfilled calls. Not in any live list. Re-aim numbers: gold refused-long -> pink-rejection short 24 trades 38% -$149; btc 38 trades 71% +$222.
 
 ## 2026-10-28T05:15:47Z  ·  diary line 2354  ·  fix371
@@ -411,7 +452,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Love: “let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls”
 - Love: “New one at 9 PM only”
 - Card pick: **New one at 9 PM only**
-- fix362 IN HER CODE
+- fix362 a setting (hours/sizes follow her latest pick)
 - Full entry: 2026-10-27 8:24 PM PT fix362/362b/362c - Love Oct 27 2026 8:17 PM PT: "let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls" + card "New one at 9 PM only". engine copier: npLive.on adds recon-np to the Kalshi copier (liveBook.books untouched, Polymarket 1H follows liveBook.books so it never sees her); recon-np live only in npLive.hours [21] (9 PM PT), main/rejection/copy skip 9 PM live; her add-on npLive.addOn $5; kalshi-live: recon-np flat bookDollars $3 and counts as a live book while npLive.on. Config: npLive {on,hours:[21],addOn:5}, bookDollars.recon-np 3. Twin, 5M, liveBook unchanged.
 
 ## 2026-10-28T03:21:54.487205+00:00  ·  diary line 2316
@@ -428,18 +469,18 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Love: “let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls”
 - Love: “New one at 9 PM only”
 - Card pick: **New one at 9 PM only**
-- fix362 IN HER CODE
+- fix362 a setting (hours/sizes follow her latest pick)
 - Full entry: 2026-10-28T03:20:44.411925+00:00 THAW (fix362 pure no-pink live 9 PM only $3 + $5 (code; config follows). Love Oct 27 2026 8:17 PM PT: "let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls" + card "New one at 9 PM only")
 
 ## 2026-10-27 8:09  ·  diary line 2311  ·  fix361  ·  books: delayed twin
 - Love: “yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long”
 - Love: “isn’t that what the og rejection model was doing that was outperforming main 3:1?”
-- fix361 IN HER CODE
+- fix361 a setting (hours/sizes follow her latest pick)
 - Full entry: 2026-10-27 8:09 PM PT fix361 - Love 8:06 PM PT: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long". New PAPER lane recon-np in recon.ts (RECON_LANES + booking after recon-dlyk) + bandlock togpLoose walls for recon-np. Paper only: not in liveBook, Polymarket untouched (5M freeze check passes). Main/copy/rej/twin unchanged. R046. Love asked 8:07 PM: "isn’t that what the og rejection model was doing that was outperforming main 3:1?"
 
 ## 2026-10-28T03:08:49.574132+00:00  ·  diary line 2309  ·  fix361
 - Love: “yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long”
-- fix361 IN HER CODE
+- fix361 in her code without its number (see her words in the code comments)
 - Full entry: 2026-10-28T03:08:49.574132+00:00 THAW (fix361 pure no-pink twin recon-np (paper). Love Oct 27 2026 8:06 PM PT: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long")
 
 ## 2026-10-27 7:56  ·  diary line 2308  ·  fix359, fix360
