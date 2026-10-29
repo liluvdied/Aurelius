@@ -3,7 +3,8 @@
 // every rule LONG and its mirror SHORT (prices reflected, zones swapped). Prints a table; any ✗ goes to the top in red. Usage: node tools/check-her-rules.cjs [desk folder]
 const fs = require("fs"), path = require("path");
 const root = process.env.AUR_ROOT || path.join(__dirname, "..");
-const DIR = process.argv[2] || path.join(root, "src/lib/desk");
+const ARGS = process.argv.slice(2).filter((a) => !a.startsWith("--")), ONLY5 = process.argv.includes("--only5m"), NO5 = process.argv.includes("--no5m");
+const DIR = ARGS[0] || path.join(root, "src/lib/desk");
 const ts = require(path.join(root, "node_modules/typescript"));
 const BL = fs.readFileSync(path.join(DIR, "bandlock.ts"), "utf8"), EN = fs.readFileSync(path.join(DIR, "engine.ts"), "utf8"), RC = fs.readFileSync(path.join(DIR, "recon.ts"), "utf8");
 const has = (src, h) => src.includes(h);
@@ -42,7 +43,34 @@ both("Never trade into an unbroken pink, inside 15% (fix432 + fix464)", (L, t, s
 both("...pink outside 15% lets her go (fix459 + fix464)", (L, t, s) => (s === "up" ? W.pinkLongWall432 : W.pinkShortWall464)?.("gold", L, t, s), [...G, { name: "5m PP", price: 4019.85 }], 4022.77, "down", false, {}, "1:02:06 PM pink at 22%");
 both("Her 33% session band to session band (fix434)", W.sameSide434 && ((L, t, s, x) => W.sameSide434("gold", L, t, s, x.o5)), G, 4029.5, "up", true, { o5: 4029.4 });
 both("Broke it this candle = only the break's direction (fix457)", W.brokeThisCandle457 && ((L, t, s, x) => W.brokeThisCandle457("gold", L, t, s, x.o5, x.hl)), [{ name: "-2σ", price: 4009.24 }, { name: "-1σ", price: 4021.47 }, { name: "-0.5σ", price: 4033.64 }, { name: "5m PP", price: 4019.97 }], 4021.877, "up", true, { o5: 4022.221, hl: { h: 4022.56, l: 4020.6 } }, "10:22:16 AM gold long");
-both("Her 33% for the candle's launch (fix464)", W.thirdsMove464 && ((L, t, s, x) => { const r = W.thirdsMove464("gold", L, t, x.o5, x.hl); return r && r !== s; }), [...G, { name: "5m PP", price: 4019.85 }], 4022.77, "down", true, { o5: 4022.788, hl: { h: 4024.58, l: 4021.23 } }, "1:02:06 PM gold short");
+const TMold = tp(["type Line = { name: string; price: number; unit?: number };", "const G = globalThis;", grab(BL, "export const DLY465") ? one(BL, "export const DLY465") : "", grab(BL, "export const PINK_TAP"),
+  "const isChanBand = (a, l) => /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)); function chanL(a, L) { return L; } function squeezedPinkOf(L) { return () => false; }", grab(BL, "export function lockPctFor("), grab(BL, "export function thirdsMove(")], ["thirdsMove", "lockPctFor"]);
+const launch = W.thirdsMove464 ? (L, t, s, x) => { const r = W.thirdsMove464("gold", L, t, x.o5, x.hl); return r && r !== s; } : TMold.thirdsMove ? (L, t, s, x) => { const r = TMold.thirdsMove("gold", L, t, x.o5, x.hl); return r && r !== s; } : null;
+both("Her 33% for the candle's launch (fix464 / fix465)", launch, [...G, { name: "5m PP", price: 4019.85 }], 4022.77, "down", true, { o5: 4022.788, hl: { h: 4024.58, l: 4021.23 } }, "1:02:06 PM gold short");
+// ---- PER BOOK: every book but the delayed book (main, rejection, the copies, the 5M) ----
+const lp = (book, w) => { globalThis.__curBook465 = book; try { return TMold.lockPctFor ? TMold.lockPctFor("gold", w) : 0; } finally { globalThis.__curBook465 = ""; } };
+const B5 = fs.existsSync(path.join(DIR, "bandlock5m27.ts")) ? fs.readFileSync(path.join(DIR, "bandlock5m27.ts"), "utf8") : "", R5 = fs.existsSync(path.join(DIR, "recon5m.ts")) ? fs.readFileSync(path.join(DIR, "recon5m.ts"), "utf8") : "", F5 = fs.existsSync(path.join(DIR, "five5m.ts")) ? fs.readFileSync(path.join(DIR, "five5m.ts"), "utf8") : "";
+const doorMR = ["reachWall429(asset, lbR.L", "pinkLongWall432(asset, lbR.L", "pinkShortWall464(asset, lbR.L", "sameSide434(asset, lbR.L"].every((k) => BL.includes('if (book === "recon-tog" || book === "recon-rej") { const ' + (k.startsWith("reach") ? "rw429 = " : k.startsWith("pinkLong") ? "pl432 = " : k.startsWith("pinkShort") ? "ps464 = " : "ss434 = ") + k));
+const readMR = RC.includes('if (lane === "recon-tog" || lane === "recon-rej") { try { if (thirdsRead463(') && RC.includes("pinkRead464(id, sessionLines(ax, id), spot, look.side");
+const doorOther = BL.includes('if (book !== "recon-tog" && book !== "recon-rej" && !DLY465.has(book))') && /reachWall429\(asset, lbR\.L, qR\.c, side\), pinkLongWall432\(asset, lbR\.L, qR\.c, side\), pinkShortWall464\(asset, lbR\.L, qR\.c, side\), sameSide434/.test(BL);
+const readOther = RC.includes('if (lane !== "recon-tog" && lane !== "recon-rej" && lane !== "recon-dly" && lane !== "recon-dlyk") { try { if (thirdsRead463(');
+const slopeMR = EN.includes('if (row.side === "down"') && EN.includes("climbHold464(") && EN.includes('["recon-rej", "recon-tog"].includes(String(row.book))');
+const door5 = /reachWall466\(asset, lbR\.L, qR\.c, side\), pinkLongWall466\(asset, lbR\.L, qR\.c, side\), pinkShortWall466\(asset, lbR\.L, qR\.c, side\), sameSide466/.test(B5) && B5.includes("thirdsMove466(asset, lbR.L");
+const lp5 = /export function lockPctFor\(asset: string, width: number\): number \{\n  return 0\.33; \/\/ fix466/.test(B5);
+const read5 = R5.includes("thirdsRead466(sessionLines(ax, id), spot, look.side)") && R5.includes("pinkRead466(id, sessionLines(ax, id), spot, look.side") && R5.includes("lockP466");
+const slope5 = F5.includes("slideHold466(S466.s") && F5.includes('climbHold466(S466.s');
+for (const [nm, bk] of [["MAIN", "recon-tog"], ["REJECTION", "recon-rej"], ["NO-PINK COPY", "recon-togp"], ["PURE NO-PINK", "recon-np"]]) {
+  const mr = bk === "recon-tog" || bk === "recon-rej";
+  const ok33 = Math.abs(lp(bk, 20) - 0.33) < 1e-9 && Math.abs(lp(bk, 600) - 0.33) < 1e-9;
+  add(`${nm}: hard 33% at every width (door)`, ok33, ok33);
+  add(`${nm}: pink 15/20 + never into an unbroken pink + her 33% at the door`, mr ? doorMR : doorOther, mr ? doorMR : doorOther);
+  add(`${nm}: her 33% + the pink in the READ`, mr ? readMR : readOther, mr ? readMR : readOther);
+  if (mr) add(`${nm}: pink slope holds (downslope long / upslope short) on her live orders`, slopeMR, slopeMR);
+}
+const dlyKeep = TMold.lockPctFor ? Math.abs(lp("recon-dly", 20) - 0.2) < 1e-9 : false;
+add("DELAYED BOOK: untouched - keeps her own shares (20% on a $20 gold channel, as before)", dlyKeep, dlyKeep);
+if (B5) { add("5M: hard 33% at every width (her walls)", lp5, lp5); add("5M: pink 15/20 + never into an unbroken pink + 33% at her door", door5, door5); add("5M: her 33% + the pink in her READ", read5, read5); add("5M: pink slope holds (long + short) on her buys", slope5, slope5); }
+
 const LB = [{ name: "session VWAP", price: 80470.81 }, { name: "+1σ", price: 81081.42 }, { name: "5m PP", price: 80754.62 }];
 const doorAhead = (L, t, s) => (W.aheadBeyond460 && W.aheadBeyond460(L, t, s) ? "" : W.sessionAheadWait ? W.sessionAheadWait("btc", L, t, s) : "x");
 both("Session band ahead only inside her thirds (fix413 + fix460)", (L, t, s) => doorAhead(L.map((l) => ({ ...l, price: (l.price - 80000) / 50 + 3980 })), (t - 80000) / 50 + 3980, s), LB, 80741.5, "down", false, {}, "11:23:32 AM BTC short");
@@ -70,9 +98,10 @@ add("Independent calls, no flips, one EXECUTED trade per window (fix463, no side
 const ft = run(["python3", path.join(root, "tools/free-to-trade-test.py"), path.join(DIR, "recon.ts")]);
 add("Free to trade: a call she never took never holds her (R008, no side)", ft, ft);
 // print
+const rows2 = rows.filter((r) => (ONLY5 ? /^5M:/.test(r.rule) : NO5 ? !/^5M:/.test(r.rule) : true)); rows.length = 0; rows.push(...rows2);
 const bad = rows.filter((r) => !r.longOk || !r.shortOk);
 const red = (s) => "\x1b[31m" + s + "\x1b[0m", grn = (s) => "\x1b[32m" + s + "\x1b[0m";
-console.log("\nCHECK HER RULES - main + rejection, LONG and SHORT, on " + (process.argv[2] ? process.argv[2] : "the code she is running now") + "\n");
+console.log("\nCHECK HER RULES - main + rejection, LONG and SHORT, on " + (ARGS[0] ? ARGS[0] : "the code she is running now") + "\n");
 if (bad.length) { console.log(red("✗ " + bad.length + " RULE(S) FAIL:")); for (const r of bad) console.log(red(`  ✗ ${r.rule}  (long ${r.longOk ? "✓" : "✗"} / short ${r.shortOk ? "✓" : "✗"})${r.miss ? " - " + r.miss : ""}`)); console.log(""); }
 console.log("RULE".padEnd(84) + " LONG  SHORT  TODAY'S REAL MISS");
 for (const r of rows) console.log(r.rule.slice(0, 83).padEnd(84) + " " + (r.longOk ? grn(" ✓ ") : red(" ✗ ")) + "   " + (r.shortOk ? grn(" ✓ ") : red(" ✗ ")) + "   " + (r.miss || ""));

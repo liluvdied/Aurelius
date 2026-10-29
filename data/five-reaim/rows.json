@@ -3790,5 +3790,53 @@
   "result": "loss",
   "pnl": -5.0,
   "lane": "first"
+ },
+ {
+  "at": "2026-10-29T20:17:00+00:00",
+  "slot": "2026-10-29T20:15:00+00:00",
+  "side": "down",
+  "setup": "Red candle falling from the top third",
+  "ask": 0.48,
+  "left": 180,
+  "reaims": 0,
+  "result": "win",
+  "pnl": 5.42,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-29T20:17:00+00:00",
+  "slot": "2026-10-29T20:15:00+00:00",
+  "side": "down",
+  "setup": "Red candle falling from the top third",
+  "ask": 0.48,
+  "left": 180,
+  "reaims": 0,
+  "result": "win",
+  "pnl": 5.42,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-29T20:22:00+00:00",
+  "slot": "2026-10-29T20:20:00+00:00",
+  "side": "down",
+  "setup": "Top third - seen as a short under 80486.15 (was: Rejected up off Green zone)",
+  "ask": 0.35,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-29T20:22:00+00:00",
+  "slot": "2026-10-29T20:20:00+00:00",
+  "side": "down",
+  "setup": "Top third - seen as a short under 80486.15 (was: Rejected up off Green zone)",
+  "ask": 0.35,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "first"
  }
 ]

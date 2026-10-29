@@ -1177,5 +1177,16 @@
 {"at": "2026-10-29T19:00:06.915Z", "book": "recon-rej", "side": "up", "label": "Rejected up off 5m PP", "win5": false, "win15": false, "o5": 80760.06, "c5": 80726.47, "hourPT": 12, "ask15": 0.51}
 {"at": "2026-10-29T19:00:06.915Z", "book": "recon-tog", "side": "up", "label": "Rejected up off 5m PP", "win5": false, "win15": false, "o5": 80760.06, "c5": 80726.47, "hourPT": 12, "ask15": 0.51}
 {"at": "2026-10-29T19:00:58.797Z", "book": "recon-dly", "side": "up", "label": "Touch of 5m PP - the next band after the initial move", "win5": false, "win15": false, "o5": 80760.06, "c5": 80726.47, "hourPT": 12, "ask15": 0.33}
-{"at": "2026-10-29T19:15:12.079Z", "book": "recon-tog", "side": "up", "label": "Break above 5m PP", "win5": true, "win15": null, "o5": 80688.65, "c5": 80723.62, "hourPT": 12, "ask15": 0.48}
-{"at": "2026-10-29T19:15:19.548Z", "book": "recon-rej", "side": "down", "label": "Failed break above 5m PP - rejected down", "win5": false, "win15": null, "o5": 80688.65, "c5": 80723.62, "hourPT": 12, "ask15": 0.44}
+{"at": "2026-10-29T19:15:12.079Z", "book": "recon-tog", "side": "up", "label": "Break above 5m PP", "win5": true, "win15": true, "o5": 80688.65, "c5": 80723.62, "hourPT": 12, "ask15": 0.48}
+{"at": "2026-10-29T19:15:19.548Z", "book": "recon-rej", "side": "down", "label": "Failed break above 5m PP - rejected down", "win5": false, "win15": false, "o5": 80688.65, "c5": 80723.62, "hourPT": 12, "ask15": 0.44}
+{"at": "2026-10-29T19:30:11.807Z", "book": "recon-tog", "side": "up", "label": "Break above 5m PP", "win5": true, "win15": true, "o5": 80723.55, "c5": 80804.52, "hourPT": 12, "ask15": 0.56}
+{"at": "2026-10-29T19:31:29.700Z", "book": "recon-rej", "side": "up", "label": "1m rejection off 5m PP", "win5": true, "win15": true, "o5": 80723.55, "c5": 80804.52, "hourPT": 12, "ask15": 0.69}
+{"at": "2026-10-29T19:32:50.593Z", "book": "recon-dly", "side": "down", "label": "Touch of BB upper - the next band after the initial move", "win5": false, "win15": false, "o5": 80723.55, "c5": 80804.52, "hourPT": 12, "ask15": 0.21}
+{"at": "2026-10-29T19:45:09.326Z", "book": "recon-tog", "side": "down", "label": "Rejected down off 5m PP", "win5": false, "win15": true, "o5": 80753.88, "c5": 80796.65, "hourPT": 12, "ask15": 0.64}
+{"at": "2026-10-29T19:45:09.327Z", "book": "recon-rej", "side": "down", "label": "Rejected down off 5m PP", "win5": false, "win15": true, "o5": 80753.88, "c5": 80796.65, "hourPT": 12, "ask15": 0.64}
+{"at": "2026-10-29T19:45:24.780Z", "book": "recon-dly", "side": "down", "label": "Touch of 5m PP - the next band after the initial move", "win5": false, "win15": true, "o5": 80753.88, "c5": 80796.65, "hourPT": 12, "ask15": 0.64}
+{"at": "2026-10-29T20:00:05.033Z", "book": "recon-tog", "side": "down", "label": "Rejected down off 5m PP", "win5": true, "win15": true, "o5": 80753.24, "c5": 80338.88, "hourPT": 13, "ask15": 0.5}
+{"at": "2026-10-29T20:00:05.034Z", "book": "recon-rej", "side": "down", "label": "Rejected down off 5m PP", "win5": true, "win15": true, "o5": 80753.24, "c5": 80338.88, "hourPT": 13, "ask15": 0.5}
+{"at": "2026-10-29T20:01:23.254Z", "book": "recon-dly", "side": "up", "label": "Touch of BB lower - the next band after the initial move", "win5": false, "win15": false, "o5": 80753.24, "c5": 80338.88, "hourPT": 13, "ask15": 0.2}
+{"at": "2026-10-29T20:18:12.031Z", "book": "recon-rej", "side": "down", "label": "Red candle falling from the top third", "win5": true, "win15": null, "o5": 80352.3, "c5": 80306.77, "hourPT": 13, "ask15": 0.66}
+{"at": "2026-10-29T20:18:12.226Z", "book": "recon-tog", "side": "up", "label": "Failed break below Green zone - rejected up", "win5": false, "win15": null, "o5": 80352.3, "c5": 80306.77, "hourPT": 13, "ask15": 0.35}

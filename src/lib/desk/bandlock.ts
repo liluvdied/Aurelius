@@ -615,6 +615,23 @@ export function pinkBeyond459(asset: string, L: Line[], tick: number, pink: numb
   if (!a || !b || !(a.price > b.price)) return false;
   return pink - tick > (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price);
 }
+// NEVER SHORT INTO AN UNBROKEN PINK - THE SHORT SIDE OF fix432/fix459 (fix464, R197/R198 - Love Oct 29 2026 1:06 PM PT: "there is zero instance where she is within 15% of an unbroken pink that she shorts" + "i told you 100 times it's for both sides. do what i say."): main + rejection. While price is over the unbroken pink (or less than her pink break
+// under it - gold 25c, BTC $8), no short while the pink below is within 15% (gold) / 20% (BTC) of the session-band channel, band to band. Exactly the long rule, mirrored.
+// No session bands readable = the hold stays (never blind).
+export function pinkShortWall464(asset: string, L: Line[], tick: number, side: string): string {
+  if (side !== "down" || !(tick > 0)) return "";
+  const pk = L.find((l) => String(l.name) === "5m PP" && Number(l.price) > 0);
+  const brk = PINK_BREAK432[asset] ?? 0;
+  if (!pk || !(brk > 0)) return "";
+  const P = Number(pk.price);
+  if (tick <= P - brk) return "";
+  if (tick > P) {
+    const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
+    const a = S.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];
+    if (a && b && a.price > b.price && tick - P > (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price)) return "";
+  }
+  return `NO SHORT OVER AN UNBROKEN PINK (fix464): 5m PP ${P.toFixed(2)} is ${tick > P ? `$${(tick - P).toFixed(2)} below` : `only $${(P - tick).toFixed(2)} broken, under her $${brk} break`} - no short until it breaks down`;
+}
 export function brokeThisCandle441(asset: string, L: Line[], tick: number, side: string, o5?: number, hl?: { h: number; l: number } | null): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
   const d = BREAK_DIST[asset] ?? 0, op = o5 === undefined ? fiveOpenNow(asset) : o5, x = hl === undefined ? fiveHLNow(asset) : hl;
@@ -828,6 +845,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
   // inverse included, any asset. An asset with no band feed can't be verified, so it can't open.
   void LAW_BOOKS;
   const deny = (reason: string, extra: Record<string, unknown> = {}) => {
+    if (G.__blQuiet464) return { ok: false as const, reason }; // fix464: her read asks the same walls quietly (no log line per tick)
     try { appendFileSync(D("band-lock.jsonl"), JSON.stringify({ at: new Date().toISOString(), book, asset, side, reason, ...extra }) + "\n"); } catch {}
     return { ok: false as const, reason };
   };
@@ -850,6 +868,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
     if (book === "recon-tog" || book === "recon-rej") { const sa413 = sessionAheadWait(asset, lbR.L, qR.c, side); if (sa413) return deny(`SESSION BAND AHEAD (fix413): ${sa413}`, { tick: qR.c }); }
     if (book === "recon-tog" || book === "recon-rej") { const rw429 = reachWall429(asset, lbR.L, qR.c, side); if (rw429) return deny(rw429, { tick: qR.c }); } // fix429: her $1.50 / $50 wall + zone reach, main + rejection only
     if (book === "recon-tog" || book === "recon-rej") { const pl432 = pinkLongWall432(asset, lbR.L, qR.c, side); if (pl432) return deny(pl432, { tick: qR.c }); } // fix432: never long into an unbroken pink, main + rejection
+    if (book === "recon-tog" || book === "recon-rej") { const ps464 = pinkShortWall464(asset, lbR.L, qR.c, side); if (ps464) return deny(ps464, { tick: qR.c }); } // fix464 (R197/R198): the short side of "never trade into an unbroken pink"
     if (book === "recon-tog" || book === "recon-rej") { const ss434 = sameSide434(asset, lbR.L, qR.c, side); if (ss434) return deny(ss434, { tick: qR.c }); } // fix434: on her side of the break, her 33%
     if (book === "recon-tog" || book === "recon-rej") { const bt441 = brokeThisCandle441(asset, lbR.L, qR.c, side); if (bt441) return deny(bt441, { tick: qR.c }); } // fix441: broke it this candle = her side now
     if (book === "recon-tog" || book === "recon-rej") { const bt457 = brokeThisCandle457(asset, lbR.L, qR.c, side); if (bt457) return deny(bt457, { tick: qR.c }); } // fix457 (R170, Love Oct 29 10:42 AM): band broke this candle = trade the break with price on its side; her 33% counted right

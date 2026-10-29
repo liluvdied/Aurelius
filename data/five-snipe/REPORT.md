@@ -1,6 +1,6 @@
 # 5m snipe paper book 🎯
 
-Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Thu 12:23 PM PT.
+Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Thu 01:22 PM PT.
 
 | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|

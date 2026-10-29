@@ -2,6 +2,55 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R211 - fix465 (INSTALL-33-PINK-ALL-BOOKS.command): lockPctFor a hard 33% for every book except the delayed book (recon-dly / recon-dlyk keep their shares byte for byte); every non-delayed recon book meets the pink (15/20, never into an unbroken pink both sides) and 33% walls at the door and in the read.
+- when: 2026-10-29T20:32:06+00:00
+- Love: "Love Oct 29 2026 1:22-1:26 PM PT: "no i'm keeping it a hard 33% for all books" + "not on the delayed book please. every single other one" + "including 5M. i'm assuming that's why she's losing so much now." + "both sides. not just longs. not just shorts. pink as well. both sides. all books. aside from delayed. do not ever use that as a loophole again." + "implement the 33% and pink tolerances BOTH SIDES. ON ALL BOOKS. ASIDE FROM DELAYED.""
+- books: e, v, e, r, y,  , b, o, o, k,  , e, x, c, e, p, t,  , r, e, c, o, n, -, d, l, y,  , /,  , r, e, c, o, n, -, d, l, y, k
+- status: ACTIVE
+- proof: {"test": "tools/check-her-rules.cjs"}
+
+## R212 - fix466 (INSTALL-5M-33-PINK.command): the walled-off 5M in her own files - hard 33% thirds (walls + read), her copies of the pink walls both sides (15/20, never into an unbroken pink), the 33% launch, and the downslope / upslope pink holds on her buys; 5M wall refrozen.
+- when: 2026-10-29T20:32:06+00:00
+- Love: "Love Oct 29 2026 1:22-1:26 PM PT: "no i'm keeping it a hard 33% for all books" + "not on the delayed book please. every single other one" + "including 5M. i'm assuming that's why she's losing so much now." + "both sides. not just longs. not just shorts. pink as well. both sides. all books. aside from delayed. do not ever use that as a loophole again." + "implement the 33% and pink tolerances BOTH SIDES. ON ALL BOOKS. ASIDE FROM DELAYED.""
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M,  , (, w, a, l, l, e, d,  , o, f, f, )
+- status: ACTIVE
+- proof: {"test": "tools/check-her-rules.cjs"}
+
+## R210 - Same scope as R209; commands handed over only when CHECK-HER-RULES runs every 33% + pink rule long and short for every book except delayed (main, rejection, each copy, the 5M) on staged code, all ✓; list every place a thirds share or pink tolerance is computed.
+- when: 2026-10-29T20:27:37+00:00
+- Love: "Love Oct 29 2026 1:26 PM PT: "implement the 33% and pink tolerances BOTH SIDES. ON ALL BOOKS. ASIDE FROM DELAYED. let me know when you have the command for me. after that we will implement the sliding scale. before then, check every single line of code that it FUNCTIONS. BOTH. WAYS. FOR ALL. BOOKS. NO MORE LOOPHOLES.""
+- books: e, v, e, r, y,  , b, o, o, k,  , e, x, c, e, p, t,  , d, e, l, a, y, e, d, ,,  , i, n, c, l, .,  , t, h, e,  , 5, M
+- status: ACTIVE
+- proof: {"process": "checking"}
+
+## R209 - Every book except the delayed book (recon-dly / recon-dlyk): hard 33% thirds both sides (door + read + launch) and every pink rule both sides (15% gold / 20% BTC reach, never into an unbroken pink, downslope + upslope holds, pink in the read). Two installers: INSTALL-33-PINK-ALL-BOOKS.command (Kalshi side) + INSTALL-5M-33-PINK.command (the walled-off 5M, her own files). Cornerstone: every rule both sides, every book except delayed.
+- when: 2026-10-29T20:25:04+00:00
+- Love: "Love Oct 29 2026 1:24 PM PT: "both sides. not just longs. not just shorts. pink as well. both sides. all books. aside from delayed. do not ever use that as a loophole again.""
+- books: e, v, e, r, y,  , b, o, o, k,  , e, x, c, e, p, t,  , r, e, c, o, n, -, d, l, y,  , /,  , r, e, c, o, n, -, d, l, y, k, ;,  , i, n, c, l, .,  , t, h, e,  , w, a, l, l, e, d, -, o, f, f,  , 5, M
+- status: ACTIVE
+- proof: {"process": "building"}
+
+## R208 - The walled-off 5M also gets the hard 33% thirds (Love names the 5M) - only her thirds shares, in her own files; separate INSTALL-5M-33.command; 5M wall refrozen on this R.
+- when: 2026-10-29T20:24:44+00:00
+- Love: "Love Oct 29 2026 1:23 PM PT: "including 5M. i'm assuming that's why she's losing so much now.""
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M,  , (, w, a, l, l, e, d, -, o, f, f, ),  , o, n, l, y
+- status: ACTIVE
+- proof: {"process": "building"}
+
+## R207 - INSTALL-33-ALL-BOOKS excludes the delayed book (recon-dly, recon-dlyk, dlyThirds) entirely; every other Kalshi book gets the hard 33%; the standalone 5M untouched.
+- when: 2026-10-29T20:24:01+00:00
+- Love: "Love Oct 29 2026 1:23 PM PT: "not on the delayed book please. every single other one""
+- books: e, v, e, r, y,  , K, a, l, s, h, i,  , b, o, o, k,  , e, x, c, e, p, t,  , t, h, e,  , d, e, l, a, y, e, d,  , b, o, o, k, ;,  , n, o, t,  , t, h, e,  , 5, M
+- status: ACTIVE
+- proof: {"process": "building after fix464 lands"}
+
+## R206 - A hard 33% for the thirds on EVERY Kalshi book (no long in the top 33%, no short in the bottom 33%, every share incl. the launch rule / lockPctFor / dlyThirds / impossibleGeo / thirdWallAbsolute); not the standalone 5M. KEEP20 not used.
+- when: 2026-10-29T20:23:22+00:00
+- Love: "Love Oct 29 2026 1:22 PM PT: "no i'm keeping it a hard 33% for all books so you can't get them confused and say one is for another book and not the other book or some other bullshit / you think these are loopholes for you they're not they're proof of your incompetence""
+- books: e, v, e, r, y,  , K, a, l, s, h, i,  , b, o, o, k,  , (, n, o, t,  , t, h, e,  , w, a, l, l, e, d, -, o, f, f,  , 5, M, )
+- status: ACTIVE
+- proof: {"process": "building on top of fix464"}
+
 ## R204 - Scope locked: finish fix464 (band tolerances / pink both sides, main + rejection) + CHECK-HER-RULES both sides; touch nothing else.
 - when: 2026-10-29T20:16:39+00:00
 - Love: "Love Oct 29 2026 1:15 PM PT: "this is ridiculous bro im not doing this with you anymore / finish the fix , give me the command / double check that every rule and cornerstone works on both sides, for main and rejection. DO NOT TOUCH 5M. DO NOT TOUCH ANYTHING ELSE. YOUVE DONE ENOUGH DAMAGE ALREADY. / ... fix those / ... do that / drop the commands / after that you're done here""

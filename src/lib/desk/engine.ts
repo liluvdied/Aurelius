@@ -4960,6 +4960,8 @@ async function copyLiveBook(assets, lane = "") {
     // SLIDE UNDER PINK (fix371/fix403 gold, back after the checkpoint restore + BTC added as fix423, Love Oct 28 2026 7:18 PM PT card "Put the downslope pink wall back, and on which books?" -> "Main + rejection, gold AND BTC"; Love 7:17 PM: "you see price on a downslope ?????  you see prices rejecting off of pink a hundred times ????? this was in the checkpoint."):
     // MAIN and REJECTION MODEL only, LONGS, Kalshi only - while price slides under an unbroken pink (gold more than $2 / BTC more than $40 lower than 30 min ago),
     // no long until price breaks up through pink (gold 25c, BTC $8). Shorts, the copy, the twin, the 5M and Polymarket untouched. Needs 20 min of samples after a restart.
+    if (row.side === "down" && (row.asset === "gold" || row.asset === "btc") && ["recon-rej", "recon-tog"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let hold464 = ""; try { hold464 = climbHold464((((globalThis as any)[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any)[row.asset === "gold" ? "__climb464g" : "__climb464b"] ||= { on: false }), Date.now(), String(row.asset)); } catch {}
+      if (hold464) { try { const GL = ((globalThis as any).__climb464Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: hold464 }) + "\n"); } } catch {} continue; } } // fix464 (R197/R198, Love Oct 29 1:06 PM PT: "it's for both sides"): the upslope pink - no short while price climbs over an unbroken pink
     if (row.side === "up" && (row.asset === "gold" || row.asset === "btc") && ["recon-rej", "recon-tog"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let hold423 = ""; try { hold423 = row.asset === "gold" ? slideHold403(((globalThis as any).__slide371?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(((globalThis as any).__slide423b?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {}
       if (hold423) { try { const GL = ((globalThis as any).__slide371Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: hold423 }) + "\n"); } } catch {} continue; } }
     // LIVE SIT-OUT HOURS (Love, Oct 8 ~12:45 AM PT: "yess let's pause her on gold for those hours for sure"). Gold's 6 PM PT
@@ -5703,6 +5705,21 @@ export {
  *  Restored as fix423 after the checkpoint restore (Love Oct 28 2026 7:18 PM PT card "Put the downslope pink wall back, and on which books?" -> "Main + rejection, gold AND BTC"; Love 7:17 PM: "you see price on a downslope ?????  you see prices rejecting off of pink a hundred times ????? this was in the checkpoint.").
  *  sm = 5 s samples of gold price + 5m pink for the last 30 min. Sliding = more than $2 lower than 30 min ago while under pink (pink + 25c).
  *  No pink touch needed. Once on, the hold stays on until price breaks up through pink by 25c. Tested by tools/slide-test.cjs (umpire). */
+// PRICE CLIMBING OVER AN UNBROKEN PINK = NO SHORT - THE SHORT SIDE OF THE DOWNSLOPE PINK RULE (fix464, R197/R198 - Love Oct 29 2026 1:06 PM PT: "there is zero instance where she is within 15% of an unbroken pink that she shorts" + "i told you 100 times it's for both sides. do what i say." + Love 11:18 AM PT: "the downslope pink rule where price keeps
+// recting off of pink on a downslope, no entries til pink breaks by 25c"): main + rejection. Mirror of fix371/403 (gold) and fix423 (BTC): price more than $2 (gold) / $40 (BTC) HIGHER than
+// 20+ minutes ago and still over the unbroken pink = no short until price breaks DOWN through pink by 25c / $8. 1:02:06 PM gold: 4022.77, ~$7 over 12:32, pink 4019.85 below - held.
+export function climbHold464(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number, asset: string): string {
+  const last = sm[sm.length - 1];
+  const brk = asset === "btc" ? 8 : 0.25, near = asset === "btc" ? 10 : 0.30, rise = asset === "btc" ? 40 : 2, nm = asset === "btc" ? "BTC" : "GOLD";
+  if (!last || now - last.t >= 30000) return "";
+  if (last.p < last.pp - brk) { S.on = false; return ""; }
+  let broke = false;
+  for (const x of sm) { if (x.p < x.pp - brk) broke = true; else if (x.p <= x.pp + near) broke = false; }
+  if (broke) { S.on = false; return ""; }
+  if (sm.length > 10 && now - sm[0].t >= 1200000 && last.p > sm[0].p + rise) { S.on = true; return `${nm} CLIMB OVER PINK: ${asset} ${last.p.toFixed(2)} is $${(last.p - sm[0].p).toFixed(2)} higher than 30 min ago over the unbroken pink (${last.pp.toFixed(2)}) - no short until price breaks down through pink by ${asset === "btc" ? "$8" : "25c"} (fix464).`; }
+  if (S.on) return `${nm} CLIMB OVER PINK: ${asset} ${last.p.toFixed(2)} is still over the unbroken pink (${last.pp.toFixed(2)}) since the climb - no short until price breaks down through pink by ${asset === "btc" ? "$8" : "25c"} (fix464).`;
+  return "";
+}
 export function slideHold403(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
   const last = sm[sm.length - 1];
   if (!last || now - last.t >= 30000) return "";

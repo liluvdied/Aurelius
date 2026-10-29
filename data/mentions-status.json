@@ -1,7 +1,7 @@
 {
- "at": "2026-10-29T19:48:55.927Z",
- "events": 149,
- "checked": 1239,
+ "at": "2026-10-29T20:18:55.998Z",
+ "events": 152,
+ "checked": 1310,
  "live": [
   "KXEARNINGSMENTIONNVDA-26NOV18",
   "KXEARNINGSMENTIONFIG-26NOV04",
@@ -11,8 +11,8 @@
   "KXEARNINGSMENTIONNBIS-26NOV10",
   "KXEARNINGSMENTIONYUM-26NOV03",
   "KXEARNINGSMENTIONUBER-26NOV04",
+  "KXEARNINGSMENTIONBAC-27JAN15",
   "KXEARNINGSMENTIONWFC-27JAN14",
-  "KXEARNINGSMENTIONCOHR-26NOV04",
   "KXEARNINGSMENTIONDAL-27JAN13",
   "KXEARNINGSMENTIONBLK-27JAN14",
   "KXEARNINGSMENTIONLMT-27JAN28",
@@ -40,7 +40,6 @@
   "KXEARNINGSMENTIONSBUX-26OCT29",
   "KXEARNINGSMENTIONASTS-26NOV10",
   "KXEARNINGSMENTIONCALM-27JAN06",
-  "KXEARNINGSMENTIONUAL-27JAN20",
   "KXEARNINGSMENTIONOKLO-26NOV10",
   "KXEARNINGSMENTIONRACE-26NOV03",
   "KXEARNINGSMENTIONWEN-26NOV05",
@@ -62,7 +61,6 @@
   "KXEARNINGSMENTIONPGR-26NOV03",
   "KXEARNINGSMENTIONAMD-26NOV03",
   "KXEARNINGSMENTIONLEVI-27JAN27",
-  "KXEARNINGSMENTIONZETA-26NOV03",
   "KXEARNINGSMENTIONPLTR-26NOV02",
   "KXEARNINGSMENTIONTOST-26NOV03",
   "KXTRUMPMENTION-26OCT29",
@@ -81,23 +79,12 @@
    "basis": "6 of 13 events"
   },
   {
-   "ticker": "KXVANCEMENTION-26OCT30-ILLE",
-   "event": "KXVANCEMENTION-26OCT30",
-   "word": "Illegal Alien",
-   "title": "What will JD Vance say during Fraud Task Force Press Conference in St. Cloud, Minnesota originally scheduled for October 30, 2026?",
-   "side": "yes",
-   "ask": 0.36,
-   "rate": 0.67,
-   "n": 9,
-   "basis": "6 of 9 events"
-  },
-  {
    "ticker": "KXVANCEMENTION-26OCT29-OIL",
    "event": "KXVANCEMENTION-26OCT29",
    "word": "Oil / Gas / Gasoline",
    "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
    "side": "no",
-   "ask": 0.27,
+   "ask": 0.17,
    "rate": 0.38,
    "n": 8,
    "basis": "3 of 8 events"
@@ -112,17 +99,6 @@
    "rate": 0.41,
    "n": 17,
    "basis": "7 of 17 events"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26OCT29-AMER",
-   "event": "KXVANCEMENTION-26OCT29",
-   "word": "America First",
-   "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
-   "side": "no",
-   "ask": 0.54,
-   "rate": 0.1,
-   "n": 10,
-   "basis": "1 of 10 events"
   },
   {
    "ticker": "KXVANCEMENTION-26NOV18-WORK",
@@ -152,7 +128,7 @@
    "word": "Fraud",
    "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
    "side": "yes",
-   "ask": 0.52,
+   "ask": 0.53,
    "rate": 1,
    "n": 9,
    "basis": "9 of 9 events"
@@ -196,7 +172,7 @@
    "word": "Veteran",
    "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
    "side": "no",
-   "ask": 0.66,
+   "ask": 0.64,
    "rate": 0.13,
    "n": 8,
    "basis": "1 of 8 events"
@@ -207,7 +183,7 @@
    "word": "ICE",
    "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
    "side": "yes",
-   "ask": 0.34,
+   "ask": 0.33,
    "rate": 0.81,
    "n": 16,
    "basis": "13 of 16 rallies"
@@ -225,9 +201,6 @@
   }
  ],
  "errors": [
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
   "Error: 429",
   "Error: 429"
  ]

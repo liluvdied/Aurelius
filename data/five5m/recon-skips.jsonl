@@ -25,3 +25,5 @@
 {"at":"2026-10-29T20:06:01.807Z","lane":"recon-rej5","ticker":"KXBTC15M-26OCT291615-15","side":"down","label":"Candle falling from the top third","ask":0.983,"why":"ask out of bounds"}
 {"at":"2026-10-29T20:06:23.223Z","lane":"recon-rej5","ticker":"KXBTC15M-26OCT291615-15","side":"down","label":"Candle falling from the top third","ask":0.979,"why":"under her 1.38x floor (1.02x at 98c)"}
 {"at":"2026-10-29T20:09:05.618Z","lane":"recon-rej5","ticker":"KXBTC15M-26OCT291615-15","side":"down","label":"Launched from the top third (high 80374.05) - a short until the bottom third","ask":0.975,"why":"under her 1.38x floor (1.03x at 98c)"}
+{"at":"2026-10-29T20:27:13.879Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291630-30","side":"down","label":"Candle falling from the top third","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-29T20:32:25.937Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291645-45","side":"down","label":"1m rejection off 5m PP","ask":0,"why":"setup has no settled record yet"}

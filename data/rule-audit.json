@@ -1,24 +1,6 @@
 {
  "breaches": [
   {
-   "at": "2026-10-20T23:21:05.580Z",
-   "ticker": "KXGOLD15M-26OCT201930-30",
-   "side": "up",
-   "cost": 2.0,
-   "why": [
-    "long on a falling 5m candle (4115.99 under its 4116.64 open)"
-   ]
-  },
-  {
-   "at": "2026-10-20T23:22:36.801Z",
-   "ticker": "KXBTC15M-26OCT201930-30",
-   "side": "up",
-   "cost": 2.0,
-   "why": [
-    "long on a falling 5m candle (82853.31 under its 82879.58 open)"
-   ]
-  },
-  {
    "at": "2026-10-20T23:30:43.431Z",
    "ticker": "KXBTC15M-26OCT201945-45",
    "side": "up",
@@ -1819,13 +1801,31 @@
    "why": [
     "long on a falling 5m candle (4011.21 under its 4012.07 open)"
    ]
+  },
+  {
+   "at": "2026-10-29T20:18:12.569Z",
+   "ticker": "KXBTC15M-26OCT291630-30",
+   "side": "up",
+   "cost": 5.0,
+   "why": [
+    "long on a falling 5m candle (80288.44 under its 80352.30 open)"
+   ]
+  },
+  {
+   "at": "2026-10-29T20:18:14.311Z",
+   "ticker": "KXBTC15M-26OCT291630-30",
+   "side": "up",
+   "cost": 5.0,
+   "why": [
+    "long on a falling 5m candle (80284.57 under its 80352.30 open)"
+   ]
   }
  ],
- "checkedTo": "2026-10-29T19:23:06.397762Z",
+ "checkedTo": "2026-10-29T20:21:39.609080Z",
  "lastRun": {
-  "at": "2026-10-29T19:23:06.397762Z",
-  "orders": 32,
-  "breaches": 1
+  "at": "2026-10-29T20:21:39.609080Z",
+  "orders": 7,
+  "breaches": 2
  },
  "note": "Cleaned by Claude 3:30 AM PT Oct 21: dropped audit false positives (gold 9:55Z stale pivot; gold 5:30Z predates the 2\u03c3 rule) and duplicates. Real: BTC twin short 2:34 AM PT on a rising candle above every band."
 }

@@ -1,8 +1,8 @@
 {
  "ok": true,
- "at": "2026-10-29T19:43:21.327294+00:00",
+ "at": "2026-10-29T20:22:58.740206+00:00",
  "why": "",
- "secs": 20.8,
+ "secs": 21.0,
  "reportOnly": [
   "tools/requests.py",
   "tools/rule-anchors.py"
@@ -14,7 +14,7 @@
   "auto5m27.ts": "8ca46834fdee4047",
   "autoroll.ts": "78fb6514980c1219",
   "band-check.ts": "b237ae9c8845f659",
-  "bandlock.ts": "5825a6529f296d8b",
+  "bandlock.ts": "85056a3909d0dbfe",
   "bandlock5m.ts": "32f10e313e3cd90a",
   "bandlock5m27.ts": "d747023cd7eb3867",
   "bankreplay.ts": "5d765962480ec439",
@@ -36,7 +36,7 @@
   "dayboard.ts": "85ba614c44331637",
   "dna.ts": "7e15f742d137607e",
   "dna5m27.ts": "0aaa1806f71406c1",
-  "engine.ts": "e7cd58074c58378f",
+  "engine.ts": "d5a9ec076587775a",
   "feedmatch.ts": "8908213d26d0f9fc",
   "fees.ts": "b31480529d0d4c44",
   "fill-log.ts": "1e136cd46cbbbe7f",
@@ -95,7 +95,7 @@
   "probe.ts": "9c0674e13b6c4516",
   "quotes.ts": "9b203164a757ba83",
   "realtwin.ts": "c74ff01ef7e1b5ea",
-  "recon.ts": "47bfca18339cdde7",
+  "recon.ts": "c7af9e1923ac0230",
   "recon5m.ts": "3319be9ebca694bf",
   "research.ts": "cd5d69f9cb3ff595",
   "review.ts": "ed486d1c8a4113c0",

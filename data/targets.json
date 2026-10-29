@@ -1,5 +1,20 @@
 [
   {
+    "id": "held-KXGOLD15M-26OCT291645-45",
+    "at": "2026-10-29T20:30:09.643Z",
+    "asset": "gold",
+    "ticker": "KXGOLD15M-26OCT291645-45",
+    "side": "up",
+    "pattern": "Live",
+    "venue": "kalshi",
+    "spot": null,
+    "target": null,
+    "vwap": null,
+    "multiple": 1.96,
+    "profit": null,
+    "result": "open"
+  },
+  {
     "id": "held-KXBTC15M-26OCT291630-30",
     "at": "2026-10-29T20:18:16.454Z",
     "asset": "btc",
@@ -11,8 +26,9 @@
     "target": null,
     "vwap": null,
     "multiple": 2.33,
-    "profit": null,
-    "result": "open"
+    "profit": -10.41,
+    "result": "loss",
+    "closedAt": "2026-10-29T20:30:17.521Z"
   },
   {
     "id": "mvtzg785-thxsv2",
@@ -26,8 +42,9 @@
     "target": 52.282,
     "vwap": null,
     "multiple": 1.7241379310344829,
-    "profit": null,
-    "result": "open"
+    "profit": -25,
+    "result": "loss",
+    "closedAt": "2026-10-29T20:30:03.511Z"
   },
   {
     "id": "held-KXGOLD15M-26OCT291630-30",
@@ -41,8 +58,9 @@
     "target": null,
     "vwap": null,
     "multiple": 2.04,
-    "profit": null,
-    "result": "open"
+    "profit": 0.36,
+    "result": "win",
+    "closedAt": "2026-10-29T20:30:38.464Z"
   },
   {
     "id": "held-KXGOLD15M-26OCT291615-15",
@@ -7940,21 +7958,5 @@
     "profit": 11.7,
     "result": "win",
     "closedAt": "2026-10-28T02:13:14.892Z"
-  },
-  {
-    "id": "held-KXBTC15M-26OCT272215-15",
-    "at": "2026-10-28T02:00:30.539Z",
-    "asset": "btc",
-    "ticker": "KXBTC15M-26OCT272215-15",
-    "side": "down",
-    "pattern": "Live",
-    "venue": "kalshi",
-    "spot": null,
-    "target": null,
-    "vwap": null,
-    "multiple": 2,
-    "profit": -7.77,
-    "result": "loss",
-    "closedAt": "2026-10-28T02:15:27.650Z"
   }
 ]

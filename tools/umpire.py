@@ -49,6 +49,9 @@ if rTL.returncode != 0: ok = False
 rB441 = subprocess.run(["node", "tools/broke-candle-test-441.cjs"], capture_output=True, text=True)  # fix441 (Love Oct 28 2026 9:20 PM PT: "she shorted it when it just broke pink upwards")
 print(("SAFE   " if rB441.returncode == 0 else "OUT    ") + "tools/broke-candle-test-441.cjs  " + ((rB441.stdout.strip().split("\n") or [""])[-1]))
 if rB441.returncode != 0: ok = False
+rP464 = subprocess.run(["node", "tools/pink-both-sides-test-464.cjs"], capture_output=True, text=True)  # fix464 (R197-R203, Love Oct 29 2026 1:06 PM PT: "i told you 100 times it's for both sides. do what i say.")
+print(("SAFE   " if rP464.returncode == 0 else "OUT    ") + "tools/pink-both-sides-test-464.cjs  " + ((rP464.stdout.strip().split("\n") or [""])[-1]))
+if rP464.returncode != 0: ok = False
 rI463 = subprocess.run(["node", "tools/independent-calls-test-463.cjs"], capture_output=True, text=True)  # fix463 (R191, Love Oct 29 2026 12:38 PM PT: "no flip. independent calls ... only once she has executed a trade")
 print(("SAFE   " if rI463.returncode == 0 else "OUT    ") + "tools/independent-calls-test-463.cjs  " + ((rI463.stdout.strip().split("\n") or [""])[-1]))
 if rI463.returncode != 0: ok = False
