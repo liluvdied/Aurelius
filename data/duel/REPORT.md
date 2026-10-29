@@ -1,5 +1,5 @@
 # Book duel - TOGETHER vs DELAYED
-Updated Oct 28 06:21 PM PT - 1442 settled windows. Paper P&L at $20 a trade, both books every window.
+Updated Oct 28 08:21 PM PT - 1458 settled windows. Paper P&L at $20 a trade, both books every window.
 
 ## By asset and hour (PT)
 | asset hour | windows | TOGETHER $ (win%) | DELAYED $ (win%) | main reversed | leader |
@@ -16,15 +16,15 @@ Updated Oct 28 06:21 PM PT - 1442 settled windows. Paper P&L at $20 a trade, bot
 | btc 9 AM | 36 | +45.65 (59%) | +51.61 (56%) | 39% | DELAYED |
 | btc 10 AM | 36 | +96.39 (62%) | -213.56 (36%) | 36% | TOGETHER |
 | btc 11 AM | 32 | +64.24 (65%) | -194.84 (34%) | 34% | TOGETHER |
-| btc 12 PM | 36 | -84.60 (50%) | -160.83 (38%) | 50% | TOGETHER |
+| btc 12 PM | 36 | -63.49 (51%) | -160.83 (38%) | 47% | TOGETHER |
 | btc 1 PM | 34 | +125.97 (60%) | -148.38 (40%) | 35% | TOGETHER |
 | btc 2 PM | 36 | -166.45 (44%) | +44.41 (55%) | 53% | DELAYED |
 | btc 3 PM | 36 | +324.90 (72%) | -28.23 (44%) | 28% | TOGETHER |
 | btc 4 PM | 35 | -149.13 (44%) | +226.79 (57%) | 51% | DELAYED |
 | btc 5 PM | 35 | -132.86 (47%) | -180.01 (37%) | 51% | TOGETHER |
-| btc 6 PM | 32 | -28.32 (48%) | -74.20 (46%) | 50% | TOGETHER |
-| btc 7 PM | 34 | -96.74 (45%) | +46.52 (56%) | 50% | DELAYED |
-| btc 8 PM | 34 | +48.23 (61%) | +115.36 (69%) | 38% | DELAYED |
+| btc 6 PM | 35 | -73.75 (44%) | -101.09 (44%) | 54% | TOGETHER |
+| btc 7 PM | 38 | -94.06 (46%) | +4.93 (52%) | 50% | DELAYED |
+| btc 8 PM | 35 | +27.71 (59%) | +94.79 (67%) | 40% | DELAYED |
 | btc 9 PM | 35 | -124.04 (42%) | -79.88 (48%) | 54% | DELAYED |
 | btc 10 PM | 35 | +164.56 (71%) | -217.37 (30%) | 26% | TOGETHER |
 | btc 11 PM | 34 | +27.47 (56%) | -249.61 (25%) | 41% | TOGETHER |
@@ -45,9 +45,9 @@ Updated Oct 28 06:21 PM PT - 1442 settled windows. Paper P&L at $20 a trade, bot
 | gold 3 PM | 21 | -8.96 (45%) | -71.97 (35%) | 52% | TOGETHER |
 | gold 4 PM | 27 | -123.72 (36%) | -92.50 (43%) | 59% | DELAYED |
 | gold 5 PM | 27 | +9.48 (52%) | +46.87 (50%) | 44% | DELAYED |
-| gold 6 PM | 27 | -108.22 (48%) | -9.40 (47%) | 52% | DELAYED |
-| gold 7 PM | 27 | +45.42 (58%) | +2.57 (53%) | 41% | TOGETHER |
-| gold 8 PM | 25 | +66.72 (68%) | -198.03 (22%) | 32% | TOGETHER |
+| gold 6 PM | 30 | -127.42 (47%) | -71.90 (40%) | 53% | DELAYED |
+| gold 7 PM | 31 | +20.38 (53%) | -60.28 (45%) | 45% | TOGETHER |
+| gold 8 PM | 26 | +62.11 (65%) | -219.00 (21%) | 35% | TOGETHER |
 | gold 9 PM | 27 | -157.28 (36%) | -180.16 (35%) | 59% | TOGETHER |
 | gold 10 PM | 27 | +69.76 (62%) | -96.41 (41%) | 37% | TOGETHER |
 | gold 11 PM | 26 | -8.07 (52%) | +127.73 (53%) | 46% | DELAYED |
@@ -57,9 +57,9 @@ Her trial week starts Thu Oct 22. swap-4 / swap-8 = leader over the last 4 / 8 s
 | asset period | windows | TOGETHER $ | DELAYED $ | swap-4 $ | swap-8 $ | swap-hour $ |
 |---|---|---|---|---|---|---|
 | btc before | 208 | -170.97 | +93.74 | +81.70 | +234.65 | -84.97 |
-| btc this week | 625 | +39.02 | -996.19 | +126.50 | +394.96 | +295.90 |
+| btc this week | 633 | -3.14 | -1085.24 | +22.58 | +308.53 | +209.42 |
 | gold before | 199 | -485.50 | -444.47 | -298.30 | -71.71 | -741.72 |
-| gold this week | 410 | -93.79 | -285.49 | +82.27 | -238.52 | -367.31 |
+| gold this week | 418 | -142.64 | -431.81 | -9.88 | -330.53 | -459.46 |
 
 | asset day | TOGETHER $ | DELAYED $ | swap-4 $ | swap-8 $ | swap-hour $ |
 |---|---|---|---|---|---|
@@ -72,7 +72,7 @@ Her trial week starts Thu Oct 22. swap-4 / swap-8 = leader over the last 4 / 8 s
 | btc 2026-10-25 | +57.08 | -272.97 | +4.87 | +118.95 | +109.94 |
 | btc 2026-10-26 | -81.25 | -147.52 | +79.46 | -91.27 | -61.24 |
 | btc 2026-10-27 | +18.50 | +151.65 | +126.10 | +212.40 | +239.87 |
-| btc 2026-10-28 | +16.28 | -460.49 | -231.43 | -37.68 | -273.66 |
+| btc 2026-10-28 | -25.88 | -549.54 | -335.35 | -124.11 | -360.14 |
 | gold 2026-10-19 | -107.39 | +0.00 | -48.95 | -14.40 | -107.39 |
 | gold 2026-10-20 | -344.09 | +42.80 | -59.21 | +44.76 | -458.77 |
 | gold 2026-10-21 | -34.02 | -487.27 | -190.14 | -102.07 | -175.56 |
@@ -81,7 +81,7 @@ Her trial week starts Thu Oct 22. swap-4 / swap-8 = leader over the last 4 / 8 s
 | gold 2026-10-25 | -133.28 | +96.79 | +107.12 | +42.83 | -25.56 |
 | gold 2026-10-26 | +77.60 | +28.53 | -74.16 | -115.51 | +230.99 |
 | gold 2026-10-27 | +200.24 | -219.55 | +168.15 | -18.69 | +195.21 |
-| gold 2026-10-28 | +46.12 | -60.50 | +103.00 | +24.24 | -130.85 |
+| gold 2026-10-28 | -2.73 | -206.82 | +10.85 | -67.77 | -223.00 |
 
 ## Which book won each hour, counted by days
 | hour | TOGETHER days | DELAYED days | even |
@@ -104,9 +104,9 @@ Her trial week starts Thu Oct 22. swap-4 / swap-8 = leader over the last 4 / 8 s
 | 3 PM | 7 | 2 | 0 |
 | 4 PM | 2 | 7 | 0 |
 | 5 PM | 7 | 2 | 0 |
-| 6 PM | 4 | 6 | 0 |
-| 7 PM | 5 | 4 | 0 |
-| 8 PM | 5 | 4 | 0 |
+| 6 PM | 5 | 5 | 0 |
+| 7 PM | 6 | 4 | 0 |
+| 8 PM | 6 | 4 | 0 |
 | 9 PM | 4 | 5 | 0 |
 | 10 PM | 7 | 2 | 0 |
 | 11 PM | 4 | 5 | 0 |
@@ -123,7 +123,7 @@ Her trial week starts Thu Oct 22. swap-4 / swap-8 = leader over the last 4 / 8 s
 | btc 2026-10-25 | 96 | +57.08 | -272.97 | TOGETHER |
 | btc 2026-10-26 | 86 | -81.25 | -147.52 | TOGETHER |
 | btc 2026-10-27 | 94 | +18.50 | +151.65 | DELAYED |
-| btc 2026-10-28 | 71 | +16.28 | -460.49 | TOGETHER |
+| btc 2026-10-28 | 79 | -25.88 | -549.54 | TOGETHER |
 | gold 2026-10-19 | 22 | -107.39 | +0.00 | DELAYED |
 | gold 2026-10-20 | 86 | -344.09 | +42.80 | DELAYED |
 | gold 2026-10-21 | 91 | -34.02 | -487.27 | TOGETHER |
@@ -132,19 +132,19 @@ Her trial week starts Thu Oct 22. swap-4 / swap-8 = leader over the last 4 / 8 s
 | gold 2026-10-25 | 35 | -133.28 | +96.79 | DELAYED |
 | gold 2026-10-26 | 80 | +77.60 | +28.53 | TOGETHER |
 | gold 2026-10-27 | 89 | +200.24 | -219.55 | TOGETHER |
-| gold 2026-10-28 | 67 | +46.12 | -60.50 | TOGETHER |
+| gold 2026-10-28 | 75 | -2.73 | -206.82 | TOGETHER |
 
 ## By market mood at the main book's entry (candle range vs her sigma)
 | asset mood | windows | TOGETHER $ | DELAYED $ | leader |
 |---|---|---|---|---|
-| btc ? | 62 | -74.25 | +9.06 | DELAYED |
-| btc normal | 392 | -97.86 | -814.80 | TOGETHER |
-| btc quiet | 211 | +21.01 | -503.57 | TOGETHER |
-| btc wild | 168 | +19.15 | +406.86 | DELAYED |
+| btc ? | 63 | -74.25 | -11.94 | DELAYED |
+| btc normal | 394 | -101.51 | -799.72 | TOGETHER |
+| btc quiet | 214 | +24.02 | -545.19 | TOGETHER |
+| btc wild | 170 | -22.37 | +365.35 | DELAYED |
 | gold ? | 44 | +58.39 | -328.07 | TOGETHER |
-| gold normal | 321 | -511.08 | +134.91 | DELAYED |
+| gold normal | 327 | -535.69 | +30.38 | DELAYED |
 | gold quiet | 99 | +159.38 | -311.13 | TOGETHER |
-| gold wild | 145 | -285.98 | -225.67 | DELAYED |
+| gold wild | 147 | -310.22 | -267.46 | DELAYED |
 
 ## DELAYED by twin rule version (recon sha)
 | version | windows | TOGETHER $ | DELAYED $ |
@@ -203,7 +203,7 @@ Her trial week starts Thu Oct 22. swap-4 / swap-8 = leader over the last 4 / 8 s
 | cbe6896bb29ee90a | 18 | -39.16 | -48.88 |
 | d0c15c49955622bc | 6 | +15.77 | -99.33 |
 | d2d8a8297edcea93 | 2 | +16.56 | -8.87 |
-| d5d88462185b0098 | 285 | +140.53 | -690.28 |
+| d5d88462185b0098 | 298 | +54.16 | -925.65 |
 | ded08f1007d8a0b6 | 5 | +0.07 | -33.62 |
 | ded1d3104e939413 | 3 | +47.28 | -26.00 |
 | e0eeed7d9f8fc5cc | 3 | -1.74 | +21.04 |
@@ -215,4 +215,4 @@ Her trial week starts Thu Oct 22. swap-4 / swap-8 = leader over the last 4 / 8 s
 | f4feeb957bee0d08 | 2 | -10.32 | -41.70 |
 | f68ba6a6cbfc87bb | 2 | +0.00 | -42.09 |
 | f7fe490bd904e67a | 79 | -129.37 | +11.44 |
-| no twin entry | 304 | -648.52 | +0.00 |
+| no twin entry | 307 | -653.16 | +0.00 |

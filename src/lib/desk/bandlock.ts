@@ -529,6 +529,58 @@ export function zoneReachSlide(asset: string, Z: Zones): number {
 // REACH RETIRED (Oct 20 ~9:20 PM PT, Love picked "Retire both reach walls" - "no other method of operations"): her only limits are the top/bottom 33% of the
 // channel (gold's R1/R2/S1/S2 are channel edges) and her candle. The fixed $50 / $1.50 band + pink reach and the red/green zone reach stand down.
 const REACH_RETIRED = true;
+// HER REACH WALL BACK - MAIN + REJECTION (fix429, Love Oct 28 2026 8:06 PM PT: "yes to all of them bb , why did alllll of this get removed without my permission? i nevvvvvver ever
+// said to take these out hun ... red green zone reach is 1.50 now, not 1.11" - to: the $1.50 gold / $50 BTC session + pink wall and the red/green zone wall back for main + rejection;
+// the 7:40:54 PM gold long went in 18c over an unbroken -1σ with the pink $3.29 above). REACH_RETIRED stays as it is for every other book. A session band or the pink in
+// front of the trade within her reach refuses it; a band only counts as broken once price is her break distance through it (gold 33c, BTC $6) - a poke is not a break.
+// A band price sits just past counts as a poke only when this 5m candle opened on the other side of it (came through it, not off it).
+// Red/green zones: gold $1.50 (Love), BTC its sliding zone reach. Can't read the zones = can't verify = no order.
+export const REACH429: Record<string, number> = { gold: 1.5, btc: 50 };
+// PINK TOLERANCE 15% (fix430, Love Oct 28 2026 8:07 PM PT: "make the pink tolerance a minimum of 15% of the channel width please"): the pink's reach is the larger of
+// her fixed reach ($1.50 gold / $50 BTC) and 15% of the session-band channel price sits in (session band below to session band above).
+export const PINK_PCT429 = 0.15;
+export function reachWall429(asset: string, L: Line[], tick: number, side: string, Z?: Zones | null, open5?: number): string {
+  if (!(tick > 0) || !(side === "up" || side === "down")) return "";
+  const reach = REACH429[asset] ?? 0, d = BREAK_DIST[asset] ?? 0;
+  if (!(reach > 0)) return "";
+  const up = side === "up";
+  const o5 = open5 === undefined ? fiveOpenNow(asset) : open5;
+  const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
+  const sA = S.filter((l) => l.price > tick).sort((a, b) => a.price - b.price)[0], sB = S.filter((l) => l.price < tick).sort((a, b) => b.price - a.price)[0];
+  const pinkReach = Math.max(reach, sA && sB && PINK_PCT429 > 0 ? Math.round((sA.price - sB.price) * PINK_PCT429 * 100) / 100 : 0);
+  for (const b of L.filter((l) => Number(l.price) > 0 && (isSessBand(l) || String(l.name) === "5m PP"))) {
+    const P = Number(b.price), pink = String(b.name) === "5m PP", r = pink ? pinkReach : reach;
+    if (up ? tick >= P + d : tick <= P - d) continue; // broken her way by her break distance - behind her
+    if ((up ? tick > P : tick < P) && o5 > 0 && (up ? o5 > P : o5 < P)) continue; // this 5m candle opened past it on her side - a bounce off it, not a poke through it
+    const dist = up ? P - tick : tick - P;
+    if (dist <= r) return `HER WALL (fix429): ${b.name} (${P.toFixed(2)}) is unbroken ${dist >= 0 ? `$${dist.toFixed(2)} ${up ? "above" : "below"}` : `- price only $${(-dist).toFixed(2)} through it, under her $${d} break`} - no ${up ? "long" : "short"} into it (her $${r} reach)`;
+  }
+  const z = Z === undefined ? zonesNow(asset) : Z;
+  if (!z || !(z.r1 > 0) || !(z.s1 > 0)) return "can't verify the red/green zones right now (fix429)";
+  const ZR = asset === "gold" ? 1.5 : zoneReachSlide(asset, z);
+  if (up) {
+    if (tick >= z.r1 && tick < z.r2) return `HER WALL (fix429): inside the red zone (${z.r1.toFixed(2)}-${z.r2.toFixed(2)}) - no long`;
+    const nxt = Math.min(z.r1 > tick ? z.r1 : Infinity, z.s2 > tick ? z.s2 : Infinity);
+    if (nxt < Infinity && nxt - tick <= ZR) return `HER WALL (fix429): ${nxt === z.r1 ? "red" : "green"} zone $${(nxt - tick).toFixed(2)} above - no long into it (her $${ZR} zone reach)`;
+  } else {
+    if (tick <= z.s1 && tick > z.s2) return `HER WALL (fix429): inside the green zone (${z.s2.toFixed(2)}-${z.s1.toFixed(2)}) - no short`;
+    const nxt = Math.max(z.s1 < tick ? z.s1 : -Infinity, z.r2 < tick ? z.r2 : -Infinity);
+    if (nxt > -Infinity && tick - nxt <= ZR) return `HER WALL (fix429): ${nxt === z.s1 ? "green" : "red"} zone $${(tick - nxt).toFixed(2)} below - no short into it (her $${ZR} zone reach)`;
+  }
+  return "";
+}
+// NEVER LONG INTO AN UNBROKEN PINK (fix432, Love Oct 28 2026 7:43 PM PT: "NO SHES NOT SUPPOSED TO LONG INTO AN UNBROKEN PINK EVER" + 8:06 PM "yes to all of them bb" to
+// "Never long into an unbroken pink"): main + rejection, longs only (the short mirror waits for Love) - while price is under the pink, or less than her pink break through it
+// (gold 25c, BTC $8), no long at any distance. Can't read the pink = no verdict here (the other walls still judge).
+export const PINK_BREAK432: Record<string, number> = { gold: 0.25, btc: 8 };
+export function pinkLongWall432(asset: string, L: Line[], tick: number, side: string): string {
+  if (side !== "up" || !(tick > 0)) return "";
+  const pk = L.find((l) => String(l.name) === "5m PP" && Number(l.price) > 0);
+  const brk = PINK_BREAK432[asset] ?? 0;
+  if (!pk || !(brk > 0)) return "";
+  if (tick >= Number(pk.price) + brk) return "";
+  return `NO LONG UNDER AN UNBROKEN PINK (fix432): 5m PP ${Number(pk.price).toFixed(2)} is ${tick < pk.price ? `$${(pk.price - tick).toFixed(2)} above` : `only $${(tick - pk.price).toFixed(2)} broken, under her $${brk} break`} - no long until it breaks up`;
+}
 export function reconZoneGate(asset: string, tick: number, side: string): string {
   if (REACH_RETIRED) return "";
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
@@ -715,6 +767,8 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
     // session band above her, still need her to either wait for a break or a rejection there / going into an unbroken band is a losing recipe"): when the pink is her closest line and the session band in
     // front is closer than the one behind, no trade into it - wait for its break or rejection. 5:50 PM BTC: pink 81,105 just broken, -1σ 81,141 $31 ahead vs -2σ 81,072 $38 behind.
     if (book === "recon-tog" || book === "recon-rej") { const sa413 = sessionAheadWait(asset, lbR.L, qR.c, side); if (sa413) return deny(`SESSION BAND AHEAD (fix413): ${sa413}`, { tick: qR.c }); }
+    if (book === "recon-tog" || book === "recon-rej") { const rw429 = reachWall429(asset, lbR.L, qR.c, side); if (rw429) return deny(rw429, { tick: qR.c }); } // fix429: her $1.50 / $50 wall + zone reach, main + rejection only
+    if (book === "recon-tog" || book === "recon-rej") { const pl432 = pinkLongWall432(asset, lbR.L, qR.c, side); if (pl432) return deny(pl432, { tick: qR.c }); } // fix432: never long into an unbroken pink, main + rejection
     { const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side) return deny(`the candle is ${tmR === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }
     const chR = channelOnly(asset, lbR.L, qR.c, side, refreshBroken(asset, lbR.L, qR.c)); // REJECTION OVERRIDE REMOVED (Oct 19 ~9:18 PM PT, Love: "let's remove the pink band rejection override... she shorted here and it would have been rejected for being in the bottom 33% on gold" - the wall rules over rejections again)
     if (chR) return deny(chR, { tick: qR.c });

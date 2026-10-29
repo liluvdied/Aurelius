@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T02:01:15.249Z",
+ "at": "2026-10-29T03:50:35.206Z",
  "markets": 914,
  "perSeries": {
   "KXBTCD": 188,
@@ -8,8 +8,8 @@
   "KXXRPD": 75,
   "KXDOGED": 51
  },
- "lastErr": "KXXRPD-26OCT2822: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXXRPD-26OCT2822&limit=10",
- "close": "2026-10-29T03:00:00.000Z",
+ "lastErr": "KXETHD-26OCT2900: Error: kalshi 429 /trade-api/v2/markets?event_ticker=KXETHD-26OCT2900&limit=10",
+ "close": "2026-10-29T04:00:00.000Z",
  "lanes": {},
- "minsLeft": 58.7
+ "minsLeft": 9.4
 }

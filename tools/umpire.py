@@ -28,6 +28,15 @@ if rS.returncode != 0: ok = False
 rSB = subprocess.run(["node", "tools/slide-test-btc.cjs"], capture_output=True, text=True)  # fix423 behaviour test (Love Oct 28 2026 7:17 PM PT: "you see price on a downslope ?????"): the 7:15 PM BTC long under the unbroken pink must be held
 print(("SAFE   " if rSB.returncode == 0 else "OUT    ") + "tools/slide-test-btc.cjs  " + ((rSB.stdout.strip().split("\n") or [""])[-1]))
 if rSB.returncode != 0: ok = False
+rR = subprocess.run(["node", "tools/reach-test-429.cjs"], capture_output=True, text=True)  # fix429 behaviour test (Love Oct 28 2026 8:06 PM PT: "yes to all of them bb"): the 7:40 PM gold long into the unbroken -1σ must be refused
+print(("SAFE   " if rR.returncode == 0 else "OUT    ") + "tools/reach-test-429.cjs  " + ((rR.stdout.strip().split("\n") or [""])[-1]))
+if rR.returncode != 0: ok = False
+rT = subprocess.run(["node", "tools/stale-pink-test-431.cjs"], capture_output=True, text=True)  # fix431/432 behaviour test (Love Oct 28 2026 8:06 PM PT: "yes to all of them bb"): the 7:40 PM gold long must be skipped as stale and refused under the unbroken pink
+print(("SAFE   " if rT.returncode == 0 else "OUT    ") + "tools/stale-pink-test-431.cjs  " + ((rT.stdout.strip().split("\n") or [""])[-1]))
+if rT.returncode != 0: ok = False
+rG = subprocess.run([sys.executable, "tools/no-removal-gate.py"], capture_output=True, text=True)  # cornerstone 0h (Love Oct 28 2026 8:17 PM PT: "DO NOT LET ANYTHING. ANYYYYYYTHINGGGGGGGGG. EVER ... GET REMOVED WITHOUT ME TELLLLLLLLING YOU TO REMOVE IT"): nothing of hers gone since the last save
+print(("SAFE   " if rG.returncode == 0 else "OUT    ") + "tools/no-removal-gate.py  " + ((rG.stdout.strip().split("\n") or [""])[0]))
+if rG.returncode != 0: ok = False; print(rG.stdout)
 r9 = subprocess.run([sys.executable, "tools/extra-call-5m.py"], capture_output=True, text=True)  # record only (Love Oct 27 2:25 PM PT: "track and log those")
 print("INFO   tools/extra-call-5m.py  " + ((r9.stdout.strip().split("\n") or [""])[0]))
 r10 = subprocess.run([sys.executable, "tools/pink-flag.py"], capture_output=True, text=True)  # record only (Love Oct 27 5:23 PM PT: "if one of the other books takes a trade like that and loses flag it for me")

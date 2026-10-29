@@ -1,5 +1,5 @@
 {
-  "live": false,
+  "live": true,
   "maxDollars": 5,
   "cooldownAfterLoss": true,
   "route": "paper",
@@ -10,7 +10,7 @@
   ],
   "shiftStart": "2026-10-02T01:58:00.000Z",
   "blockedSetups": [
-    "Tap-reject at -0.5\u03c3|down|gold"
+    "Tap-reject at -0.5σ|down|gold"
   ],
   "lockWin": {
     "arm": 30,
@@ -27,10 +27,11 @@
     "silver"
   ],
   "bigMultipleCap": {
-    "on": false,
-    "x": 3,
+    "on": true,
+    "x": 1,
     "dollars": 1,
-    "offNote": "Oct 17 ~12:16 AM PT: replaced by 1/4 size over 3.8x (Love)"
+    "offNote": "Oct 17 ~12:16 AM PT: replaced by 1/4 size over 3.8x (Love)",
+    "note427": "fix427 Oct 28 2026 8:00 PM PT, Love 7:55 PM: \"pls put her on at $1\" - every Kalshi opening order (main + rejection entries and add-ons) cut to $1 at the wire; exits untouched."
   },
   "skipHours": {
     "btc": [
@@ -124,7 +125,7 @@
       "recon-rej",
       "recon-dly"
     ],
-    "dollars": 5,
+    "dollars": 1,
     "since": "2026-10-22T18:11:00.469Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
@@ -253,7 +254,7 @@
         "btc"
       ],
       "until": "2099-01-01T00:00:00Z",
-      "note": "fix170, Oct 24 ~7:00 PM PT, Love: rejection model on Polymarket BTC 5m markets at $2 for the next hour (trial, ends 8:10 PM PT) | Oct 24 ~7:21 PM PT, Love: 'just have it be a 24 hour trial' -> until Sun Oct 25 7:15 PM PT | fix171 Oct 24 ~7:34 PM PT, Love: main book on the 5m for the hour (mainUntil 8:45 PM PT), then the rejection model resumes | fix185 Oct 25 ~12:19 AM PT, Love: main book on the 5m overnight (till 9 AM PT) except her rejection hours; 12 AM hour to the main book too (mainAllUntil 1 AM PT) | fix190 Oct 25 ~2:09 AM PT, Love: 'we can run the 5M books on the new flip-infrastructure @ $5 overnight' -> $5 | fix227 Oct 25 ~6:39 PM PT, Love: 'let's up the position sizing on the 5M book to $7 pls ... we'll let her run for the night there' -> $7, until Mon Oct 26 9 AM PT | fix228 Oct 25 ~6:39 PM PT, Love: 'oh no the trial is done hun she's staying on polymarket exactly how she's been on okay' -> no end date (2099) | fix236 Oct 25 ~9:16 PM PT, Love card 'Stop 15m, 5m to $10' -> $10 | fix265 Oct 26 ~9:00 AM PT, Love: 'i didn't want that model on at $15, just put it on at $5 ... until she makes some back' -> $5 | fix358 Oct 27 ~6:55 PM PT, Love: \"let's cut those hours and raise her stake to $10 on the other hours hunni \ud83d\udc9e better math on that\" + card \"$7.50 now\": 5M $7.50 in her kept hours (Poly cap lifts for 5m markets only). | fix410 Oct 28 2026 5:41 PM PT, Love: \"let's bring the 5M back to $5 for a bit too hun , let's let her get stable again\" -> $5 (was $7.50).",
+      "note": "fix170, Oct 24 ~7:00 PM PT, Love: rejection model on Polymarket BTC 5m markets at $2 for the next hour (trial, ends 8:10 PM PT) | Oct 24 ~7:21 PM PT, Love: 'just have it be a 24 hour trial' -> until Sun Oct 25 7:15 PM PT | fix171 Oct 24 ~7:34 PM PT, Love: main book on the 5m for the hour (mainUntil 8:45 PM PT), then the rejection model resumes | fix185 Oct 25 ~12:19 AM PT, Love: main book on the 5m overnight (till 9 AM PT) except her rejection hours; 12 AM hour to the main book too (mainAllUntil 1 AM PT) | fix190 Oct 25 ~2:09 AM PT, Love: 'we can run the 5M books on the new flip-infrastructure @ $5 overnight' -> $5 | fix227 Oct 25 ~6:39 PM PT, Love: 'let's up the position sizing on the 5M book to $7 pls ... we'll let her run for the night there' -> $7, until Mon Oct 26 9 AM PT | fix228 Oct 25 ~6:39 PM PT, Love: 'oh no the trial is done hun she's staying on polymarket exactly how she's been on okay' -> no end date (2099) | fix236 Oct 25 ~9:16 PM PT, Love card 'Stop 15m, 5m to $10' -> $10 | fix265 Oct 26 ~9:00 AM PT, Love: 'i didn't want that model on at $15, just put it on at $5 ... until she makes some back' -> $5 | fix358 Oct 27 ~6:55 PM PT, Love: \"let's cut those hours and raise her stake to $10 on the other hours hunni 💞 better math on that\" + card \"$7.50 now\": 5M $7.50 in her kept hours (Poly cap lifts for 5m markets only). | fix410 Oct 28 2026 5:41 PM PT, Love: \"let's bring the 5M back to $5 for a bit too hun , let's let her get stable again\" -> $5 (was $7.50).",
       "mainUntil": "2026-10-25T16:00:00Z",
       "mainAllUntil": "2026-10-25T11:00:00Z",
       "extraRej": {
@@ -289,7 +290,7 @@
       "maxAsk": 0.263,
       "note": "fix175 Oct 24 ~9:48 PM PT, Love: DELAYED twin Kalshi add-on $4 (was $3) | fix190 Oct 25 ~2:09 AM PT, Love: 'then we can raise her add on to $5, those are working as intended' -> $5"
     },
-    "on": true,
+    "on": false,
     "dollars": 8,
     "maxAsk": 0.263,
     "minLeft": 2,
@@ -433,7 +434,7 @@
   },
   "presets": [
     {
-      "name": "\u23ee LAST LINEUP",
+      "name": "⏮ LAST LINEUP",
       "books": [
         "brk-sess",
         "twlive",
@@ -442,7 +443,7 @@
       "savedAt": "2026-10-19T19:14:48.108Z"
     },
     {
-      "name": "\ud83c\udf19 MAIN LINEUP",
+      "name": "🌙 MAIN LINEUP",
       "books": [
         "refined",
         "cotc",
@@ -456,7 +457,7 @@
       "note": "The schedule lineup (Oct 11): REFINED, COTC, DECIDED, DIAMOND, BRICK, SQUEEZE, BRICK CLEAN."
     },
     {
-      "name": "4 Leaf Clover \ud83c\udf40",
+      "name": "4 Leaf Clover 🍀",
       "books": [
         "hour",
         "cotc",
@@ -475,11 +476,14 @@
     "gold": [
       4,
       9,
+      20,
       23
     ],
     "btc": [
+      0,
       8,
       18,
+      21,
       23
     ]
   },
@@ -1497,7 +1501,7 @@
   "ticketBackNote": "Oct 19 ~1:25 AM PT ON (was false since Oct 14). Love: \"DO NOT HAVE HER TREAT THE WINDOW AS SPENT AFTER SHE MISSES HER FIRST OPPORTUNITY\" + \"take the 3 limit off please\". A row Kalshi never executed leaves the window open; no cap. Kalshi still one position per window.",
   "dlyHoursNote": "Oct 19 ~10:57 AM PT: 10 and 11 AM pulled (Love: \"pull it. just have her trade her normal hours\") - the delayed book went 0/4 at 10 AM.",
   "elevenAmTestNote": "Oct 19 ~10:59 AM PT: ogp5 trades the 11 AM hour at $1 (Love: \"let her trade 11 at $1 position sizes hun want to see if the fixes worked\"). Restore at 11:59 AM: ogp5 skips 11 again, sizes back to $5.",
-  "brkSessLiveNote": "Oct 19 ~11:23 AM PT, Love: \"the break book is hitting at 90%... just turn that one on\" -> BREAK BOOK \u00b7 SESSION BANDS ONLY (brk-sess) live INSTEAD of her books, $10. Her books (ogp5-inv, pap247, ogp5, ogp5-dly, ogp5-bbsr) back to paper; liveBook.prevBooks holds them.",
+  "brkSessLiveNote": "Oct 19 ~11:23 AM PT, Love: \"the break book is hitting at 90%... just turn that one on\" -> BREAK BOOK · SESSION BANDS ONLY (brk-sess) live INSTEAD of her books, $10. Her books (ogp5-inv, pap247, ogp5, ogp5-dly, ogp5-bbsr) back to paper; liveBook.prevBooks holds them.",
   "brkSesspkNote": "Oct 19 ~12:38 PM PT, Love: \"make another session break twin that keeps all of its original trades, but also trades the pink too? and then put that one on for the day\" -> brk-sesspk live today (alongside), $10; off at 11:59 PM PT. | Oct 19 ~12:54 PM PT back to PAPER (Love: \"let's run the new pink session twin on paper alongside it pls / keep her on the one with the 90% hit rate\"). | Oct 19 ~1:10 PM PT LIVE again alongside brk-sess, pink trades only on Kalshi (Love: \"keep the session + pink on bb... it will just take the trades the pink band brings up alongside it\"). | Oct 19 ~2:01 PM PT LIVE with every trade (pink-only filter removed) + the last 2 minutes (Love: \"let's put the session + pink break book on im loving her trades / when she takes one let kalshi take one, even last 2 minutes\").",
   "brkSessOnlyNote": "Oct 19 ~12:57 PM PT, Love: \"i want only that one on for the day okay? whichever hours it runs as normally, only that book pls\" -> liveBook.books = [brk-sess] (was [\"brk-sess\", \"twlive\", \"piv15\", \"twrev5\"]), $10, its normal hours (no sit-outs).",
   "together1pmNote": "Oct 19 ~1:31 PM PT, Love: \"can we run that book for the rest of the hour? want to see her entries\" -> TOGETHER (ogp5 + pap247) live alongside the break books at $10 until 2 PM, then off (break books stay on overnight).",
@@ -1538,7 +1542,7 @@
   "dlyLiveNote": "Oct 20 ~9:43 PM PT, Love: delayed entry model live at $1 in her off hours, picked 'Her old rest hours' (2, 4, 6, 7, 9, 10, 11 AM, 6, 8, 9 PM PT): recon-dly live those hours at $1 (bookDollars), recon-tog sits them out (bookSkipHours); TOGETHER trades every other hour at the slider. | Oct 20 ~9:44 PM PT, Love: \"add 2pm & 4pm too\" -> off hours 2, 4, 6, 7, 9, 10, 11 AM, 2, 4, 6, 8, 9 PM PT. | Oct 20 9:54 PM PT Love: \"we can go ahead and do $2 for her off hours hun\" - delayed twin $2.",
   "offHourMain": {
     "on": true,
-    "dollars": 5,
+    "dollars": 1,
     "addOn": {
       "dollars": 8,
       "maxAsk": 0.357,
@@ -1984,7 +1988,7 @@
         21
       ],
       "addOn": 5,
-      "note": "fix362 Love Oct 27 2026 8:17 PM PT: \"let\u2019s go ahead and try running the new no-pink now at $3 & $5 add ons pls\" + card \"New one at 9 PM only\" - recon-np live on Kalshi only at 9 PM PT (BTC + gold), $3 entry (bookDollars) + $5 add-on; main/rejection/copy sit 9 PM out live. NOT in liveBook.books so Polymarket 1H never follows her."
+      "note": "fix362 Love Oct 27 2026 8:17 PM PT: \"let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls\" + card \"New one at 9 PM only\" - recon-np live on Kalshi only at 9 PM PT (BTC + gold), $3 entry (bookDollars) + $5 add-on; main/rejection/copy sit 9 PM out live. NOT in liveBook.books so Polymarket 1H never follows her."
     }
   },
   "fix383Prev": {
@@ -1994,7 +1998,7 @@
         21
       ],
       "addOn": 5,
-      "note": "fix362 Love Oct 27 2026 8:17 PM PT: \"let\u2019s go ahead and try running the new no-pink now at $3 & $5 add ons pls\" + card \"New one at 9 PM only\" - recon-np live on Kalshi only at 9 PM PT (BTC + gold), $3 entry (bookDollars) + $5 add-on; main/rejection/copy sit 9 PM out live. NOT in liveBook.books so Polymarket 1H never follows her.",
+      "note": "fix362 Love Oct 27 2026 8:17 PM PT: \"let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls\" + card \"New one at 9 PM only\" - recon-np live on Kalshi only at 9 PM PT (BTC + gold), $3 entry (bookDollars) + $5 add-on; main/rejection/copy sit 9 PM out live. NOT in liveBook.books so Polymarket 1H never follows her.",
       "hoursByAsset": {
         "btc": [
           0,
@@ -2721,7 +2725,7 @@
   "note412": "fix412 Oct 28 2026 6:03 PM PT, Love: \"do not run this model bro i'm not retraining a model again\" + \"put her on the rejection model\": recon-rej takes the live seat in every rejection hour, both assets; the no-pink copy is off live.",
   "checkpointRestore": {
     "at": "2026-10-29T01:45:02.530124+00:00",
-    "words": "Love Oct 28 2026 6:39-6:41 PM PT: \"bro put her back at the fuckin checkpoint i\u2019m not doing this again / save all of these new revisions on another paper twin and give me my model back\" + \"just put her on my last checkpoint pls i cannot fuckin do this again\"",
+    "words": "Love Oct 28 2026 6:39-6:41 PM PT: \"bro put her back at the fuckin checkpoint i’m not doing this again / save all of these new revisions on another paper twin and give me my model back\" + \"just put her on my last checkpoint pls i cannot fuckin do this again\"",
     "from": "data/SAVES/KNOWN-GOOD-2026-10-27-0756PM-PT-checkpoint-main-and-no-pink-copy-after-fix360",
     "kept": [
       "polyTwin (5M)",
@@ -2737,5 +2741,35 @@
       "recon-togp"
     ]
   },
-  "note421": "fix421 Oct 28 2026 7:06 PM PT, Love: \"when i said the checkpoint, I meant the checkpoint for Maine and rejection that I had\" + \"the last checkpoint we had saved. for rejection. and main.\": the no-pink copy is off live (out of liveBook.books) - main + the rejection model (its rejection hours) trade live on the checkpoint. 5M + twin untouched."
+  "note421": "fix421 Oct 28 2026 7:06 PM PT, Love: \"when i said the checkpoint, I meant the checkpoint for Maine and rejection that I had\" + \"the last checkpoint we had saved. for rejection. and main.\": the no-pink copy is off live (out of liveBook.books) - main + the rejection model (its rejection hours) trade live on the checkpoint. 5M + twin untouched.",
+  "fix427Prev": {
+    "live": false,
+    "bigMultipleCap": {
+      "on": false,
+      "x": 3,
+      "dollars": 1,
+      "offNote": "Oct 17 ~12:16 AM PT: replaced by 1/4 size over 3.8x (Love)"
+    },
+    "sizes": {
+      "liveBook.dollars": 5,
+      "offHourMain.dollars": 5,
+      "live-size.dollars": 5,
+      "live-size.goldBook": null
+    }
+  },
+  "fix428Prev": {
+    "addOn.on": true,
+    "liveSkipHours": {
+      "gold": [
+        4,
+        9,
+        23
+      ],
+      "btc": [
+        8,
+        18,
+        23
+      ]
+    }
+  }
 }

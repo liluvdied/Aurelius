@@ -45,6 +45,13 @@ need(B.count("if (togOrderAtWire(t, side) || rejOrderAtWire(t, side)) { /* fix42
 need("BTC PINK-REJECTION RE-AIM (fix373" in R and '["recon-tog", "recon-rej"] /* fix424' in R, "10. BTC PINK RE-AIM: an unfilled long refused by pink re-aims to the short (fix373, main + rejection)")
 need("export function slideHold403(" in E and "export function slideHoldBtc423(" in E and 'hold423 = row.asset === "gold" ? slideHold403' in E, "11. DOWNSLOPE UNDER PINK: no long while price slides under an unbroken pink until it breaks (fix371/403/423, gold + BTC, main + rejection)")
 need("STALE CALL GUARD (fix375" in E, "12. STALE CALL GUARD: a call over 90 s old never fires when a seat opens (fix375/425)")
+# CORNERSTONE (Oct 28 2026 8:06 PM PT, Love: "yes to all of them bb , why did alllll of this get removed without my permission? i nevvvvvver ever said to take these out hun. i never would have. red green zone reach is 1.50 now, not 1.11"):
+need("export function reachWall429(" in B and "const rw429 = reachWall429(asset, lbR.L, qR.c, side)" in B and "export const REACH429: Record<string, number> = { gold: 1.5, btc: 50 };" in B and 'const ZR = asset === "gold" ? 1.5 : zoneReachSlide(asset, z);' in B and os.path.exists("tools/reach-test-429.cjs"), "14. HER REACH WALL: no trade into an unbroken session band or the pink within $1.50 gold / $50 BTC, red/green zone $1.50 gold; a poke under the break distance is not a break (fix429, main + rejection)")
+# CORNERSTONE (Oct 28 2026 8:07 PM PT, Love: "make the pink tolerance a minimum of 15% of the channel width please"):
+need("export const PINK_PCT429 = 0.15;" in B and "const pinkReach = Math.max(reach," in B, "15. PINK TOLERANCE: the pink's reach is at least 15% of the session-band channel width (fix430, main + rejection)")
+# CORNERSTONES (Oct 28 2026 7:43 PM PT, Love: "NO SHES NOT SUPPOSED TO LONG INTO AN UNBROKEN PINK EVER" + 8:06 PM "yes to all of them bb"):
+need("export function pinkLongWall432(" in B and "const pl432 = pinkLongWall432(asset, lbR.L, qR.c, side)" in B and os.path.exists("tools/stale-pink-test-431.cjs"), "16. NEVER LONG INTO AN UNBROKEN PINK: no long under the pink until it breaks up 25c gold / $8 BTC (fix432, main + rejection)")
+need("an old call never fires (fix431)" in E, "17. STALE EVEN WHILE RETRYING: a main/rejection call over 90 s old with nothing on Kalshi never fires (fix431)")
 need(os.path.exists("tools/slide-test.cjs") and os.path.exists("tools/slide-test-btc.cjs") and os.path.exists("tools/behaviour-umpire.cjs"), "13. BEHAVIOUR TESTS stay: behaviour umpire + gold/BTC slide replays")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),

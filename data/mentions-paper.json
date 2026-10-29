@@ -1,5 +1,73 @@
 [
  {
+  "ticker": "KXVANCEMENTION-26NOV18-INFL",
+  "event": "KXVANCEMENTION-26NOV18",
+  "word": "Inflation",
+  "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
+  "side": "no",
+  "ask": 0.44,
+  "rate": 0.41,
+  "n": 17,
+  "basis": "7 of 17 events",
+  "id": "KXVANCEMENTION-26NOV18-INFL:no",
+  "at": "2026-10-29T03:22:17.002Z",
+  "stake": 100,
+  "fee": 3.92,
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "ticker": "KXLASTWORDMENTION-26OCT28-CORR",
+  "event": "KXLASTWORDMENTION-26OCT28",
+  "word": "Corrupt / Corruption",
+  "title": "What will Jon Ossoff say during The Last Word with Lawrence O'Donnell originally scheduled for October 28, 2026?",
+  "side": "no",
+  "ask": 0.53,
+  "rate": 0.5,
+  "n": 10,
+  "basis": "5 of 10 events",
+  "id": "KXLASTWORDMENTION-26OCT28-CORR:no",
+  "at": "2026-10-29T02:23:56.467Z",
+  "stake": 100,
+  "fee": 3.29,
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "ticker": "KXLASTWORDMENTION-26OCT28-REPU",
+  "event": "KXLASTWORDMENTION-26OCT28",
+  "word": "Republican",
+  "title": "What will Jon Ossoff say during The Last Word with Lawrence O'Donnell originally scheduled for October 28, 2026?",
+  "side": "no",
+  "ask": 0.81,
+  "rate": 0.47,
+  "n": 15,
+  "basis": "7 of 15 events",
+  "id": "KXLASTWORDMENTION-26OCT28-REPU:no",
+  "at": "2026-10-29T02:23:56.467Z",
+  "stake": 100,
+  "fee": 1.33,
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "ticker": "KXLASTWORDMENTION-26OCT28-TRUM",
+  "event": "KXLASTWORDMENTION-26OCT28",
+  "word": "Trump (3+ times)",
+  "title": "What will Jon Ossoff say during The Last Word with Lawrence O'Donnell originally scheduled for October 28, 2026?",
+  "side": "no",
+  "ask": 0.52,
+  "rate": 0.4,
+  "n": 10,
+  "basis": "4 of 10 events",
+  "id": "KXLASTWORDMENTION-26OCT28-TRUM:no",
+  "at": "2026-10-29T02:23:56.467Z",
+  "stake": 100,
+  "fee": 3.36,
+  "result": "open",
+  "pnl": null
+ },
+ {
   "ticker": "KXVANCEMENTION-26OCT29-INFL",
   "event": "KXVANCEMENTION-26OCT29",
   "word": "Inflation",
@@ -132,8 +200,8 @@
   "at": "2026-10-27T06:34:17.530Z",
   "stake": 100,
   "fee": 2.73,
-  "result": "open",
-  "pnl": null
+  "result": "loss",
+  "pnl": -102.73
  },
  {
   "ticker": "KXVANCEMENTION-26OCT29-DEMO",
@@ -200,8 +268,8 @@
   "at": "2026-10-27T04:33:59.833Z",
   "stake": 100,
   "fee": 2.03,
-  "result": "open",
-  "pnl": null
+  "result": "loss",
+  "pnl": -102.03
  },
  {
   "ticker": "KXTRUMPMENTION-26OCT28-SPAC",
@@ -217,8 +285,8 @@
   "at": "2026-10-27T04:33:59.833Z",
   "stake": 100,
   "fee": 5.67,
-  "result": "open",
-  "pnl": null
+  "result": "loss",
+  "pnl": -105.67
  },
  {
   "ticker": "KXVANCEMENTION-26OCT27-CAMP",
@@ -268,8 +336,8 @@
   "at": "2026-10-27T04:04:18.778Z",
   "stake": 100,
   "fee": 4.41,
-  "result": "open",
-  "pnl": null
+  "result": "loss",
+  "pnl": -104.41
  },
  {
   "ticker": "KXTRUMPMENTION-26OCT30-AMER",

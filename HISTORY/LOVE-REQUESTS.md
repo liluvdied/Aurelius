@@ -2,6 +2,172 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R140 - fix434: ON HER SIDE OF THE BREAK, her 33% - main + rejection: her 33% channel runs session band to session band, and a band only counts as passed when price is NOW 33c gold / $6 BTC through it (or bouncing off it); long in the top 33% / short in the bottom 33% = refused. No hold, no timer. Behaviour test tools/side-test-434.cjs. Installs with fix433 once this Mac lets installs run.
+- when: 2026-10-29T03:46:58+00:00
+- Love: "Love Oct 28 2026 8:46 PM PT: "ohhhh my god dude lol okay. price on the same side of the break stays.  33% NEVER. EVER. LEAVES. UNDER. ANY. CIRCUM. STANCES. capiche? 😂 basically starting from scratch for all intents and purposes . or atleast severely brought back to the stone age . yes - download it and keep the downloaded libraries out , keys out""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d,  , +,  , B, T, C, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "const ss434 = sameSide434(asset, lbR.L, qR.c, side)"}
+- proof: {"test": "tools/side-test-434.cjs"}
+
+## R141 - CORNERSTONE: her 33% NEVER leaves under any circumstances - THE WALL 33% (channelPct / channelPctTop 0.33, bandlock thirdWallAbsolute) and fix434's 33%, session band to session band. Only Love's typed words can ever change it.
+- when: 2026-10-29T03:46:58+00:00
+- Love: "Love Oct 28 2026 8:46 PM PT: "ohhhh my god dude lol okay. price on the same side of the break stays.  33% NEVER. EVER. LEAVES. UNDER. ANY. CIRCUM. STANCES. capiche? 😂 basically starting from scratch for all intents and purposes . or atleast severely brought back to the stone age . yes - download it and keep the downloaded libraries out , keys out""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "channelPct.gold", "equals": 0.33}
+- proof: {"config": "data/live-switch.json", "key": "channelPct.btc", "equals": 0.33}
+- proof: {"config": "data/live-switch.json", "key": "channelPctTop.gold", "equals": 0.33}
+- proof: {"config": "data/live-switch.json", "key": "channelPctTop.btc", "equals": 0.33}
+
+## R142 - Repo sync: download GitHub's official gh 2.103.3 macOS arm64 (14.1 MB) to ~/gh-cli (outside her folder), sign this Mac into GitHub by device code (Love approves on github.com), push the desk to github.com/liluvdied/aurelius keeping OUT only node_modules/ (downloaded libraries) and .secrets/ (keys), per Love.
+- when: 2026-10-29T03:46:58+00:00
+- Love: "Love Oct 28 2026 8:46 PM PT: "ohhhh my god dude lol okay. price on the same side of the break stays.  33% NEVER. EVER. LEAVES. UNDER. ANY. CIRCUM. STANCES. capiche? 😂 basically starting from scratch for all intents and purposes . or atleast severely brought back to the stone age . yes - download it and keep the downloaded libraries out , keys out""
+- books: r, e, p, o, s, i, t, o, r, y
+- status: ACTIVE
+- proof: {"process": "every desk sync excludes only node_modules/ and .secrets/ (Love 8:46 PM)"}
+
+## R139 - Cornerstone 0l: every change and every statement between Love and Claude goes into the repository - desk threads saved to HISTORY/ with tools/save-desk-thread.py, changes in the request book / diary / SAVES / vault, all pushed to github.com/liluvdied/aurelius; nothing excluded without asking Love.
+- when: 2026-10-29T03:43:10+00:00
+- Love: "Love Oct 28 2026 8:42 PM PT: "thank you hun. can you explain how all of this got left out of the repository? she told me everything we ever did said or changed was logged and could be brought back at any time. that was clearly not true . going forward, every change, every statement ever shared between you and i is IN. THE.  REPOSITORY. NOTHING LEAVES WITHOUT MY CONSENT. EVER. AGAIN. pls confirm""
+- books: e, v, e, r, y, t, h, i, n, g
+- status: ACTIVE
+- proof: {"code": "LOVE-RULEBOOK.md", "has": "0l. CORNERSTONE - EVERYTHING IS IN THE REPOSITORY"}
+- proof: {"exists": "tools/save-desk-thread.py"}
+- proof: {"exists": "HISTORY/thread-2026-10-28-desk-night-wall-and-gate.md"}
+
+## R138 - Cornerstone 0k: the no-removal gate works both ways - any rule line or setting taken out OR put in (or changed) is refused unless a request-book entry with Love's typed words names it (fix tag or setting). Demo: an unrequested rule line (fix999) and an unrequested setting are both REFUSED.
+- when: 2026-10-29T03:41:30+00:00
+- Love: "Love Oct 28 2026 8:40 PM PT: "nothing goes in, nothing goes out without me expressly claiming it in my own words that you can throw in my face if i ever bitch about something being gone okay""
+- books: e, v, e, r, y,  , b, o, o, k, ,,  , e, v, e, r, y,  , i, n, s, t, a, l, l
+- status: ACTIVE
+- proof: {"code": "LOVE-RULEBOOK.md", "has": "0k. CORNERSTONE - NOTHING IN, NOTHING OUT"}
+- proof: {"code": "tools/no-removal-gate.py", "has": "def code_adds(old, new, T):"}
+
+## R137 - Cornerstone 0j: only Love's TYPED words can remove/retire/change a rule; a decision-card tap never counts as consent. tools/no-removal-gate.py accepts an ALLOW-REMOVE entry only if its request-book words hold Love's typed text (card-only entries refused).
+- when: 2026-10-29T03:33:35+00:00
+- Love: "Love Oct 28 2026 8:32 PM PT: "yes but they came out without me choosing for them to come out. the fact that they are there is entirely inconsequential to the point hun. i didnt take them out by choice. they were removed without my consent and that is spiritual rape bro lol please do not let this ever happen again""
+- books: e, v, e, r, y,  , b, o, o, k, ,,  , e, v, e, r, y,  , i, n, s, t, a, l, l
+- status: ACTIVE
+- proof: {"code": "LOVE-RULEBOOK.md", "has": "0j. CORNERSTONE - CONSENT IS LOVE'S TYPED WORDS"}
+- proof: {"code": "tools/no-removal-gate.py", "has": "def typed(w):"}
+
+## R136 - Every pick and fix from tonight is a cornerstone in LOVE-RULEBOOK.md (section 0i) and in tools/cornerstones.py, and protected by the no-removal gate: fix429 $1.50/$50 wall + $1.50 zones, fix430 pink 15% of the channel, fix431 stale calls, fix432 no long under unbroken pink, add-on off until Love confirms (R133), fix405 sit-out hours (R121), item 1 zone flip (R129), item 2 slide hold (R130), item 3 rejection seat (R131), item 4 rejection hours (R132), item 7 flip 2-5m (R134), item 8 no 3-second hold (R135), 9 pure/sovereign off live, 10-12 paper rules back on paper only, 13 R095 kept, no wider session band wait (Love 8:12 PM "no the 33% hun"). None changes without Love's own words.
+- when: 2026-10-29T03:29:18+00:00
+- Love: "Love Oct 28 2026 8:29 PM PT: "can you please make sure every single one of these is listed as a cornerstone and immutable from change under any circumstances without me changing it.""
+- books: m, a, i, n, ,,  , r, e, j, e, c, t, i, o, n,  , (, +,  , p, a, p, e, r,  , b, o, o, k, s,  , f, o, r,  , 1, 0, -, 1, 2, )
+- status: ACTIVE
+- proof: {"code": "LOVE-RULEBOOK.md", "has": "0i. CORNERSTONES - LOVE'S PICKS OF OCT 28 NIGHT"}
+
+## R129 - fix433 item 1: fix394 back for MAIN only - bonesDecide zoneFlip: a green-zone long / red-zone short read passes on any 2/3/4/5m candle flipped her way (anyFlipNow, 2-5m after item 7), not only the 5m. Pure no-pink part not restored (not live). 8:45 PM PT boundary.
+- when: 2026-10-29T03:25:52+00:00
+- Love: "Love Oct 28 2026 8:18 PM PT: "1 - stay" (item 1: green-zone longs and red-zone shorts go on any 2-5m candle flipped her way, not only the 5m - main)"
+- books: r, e, c, o, n, -, t, o, g
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "true /* fix394: main (fix433) */"}
+
+## R130 - fix433 item 2: already in her - slideHold403 is identical to before the 6:45 PM restore (back via fix423 at 7:18 PM, main + rejection, gold + BTC); the 'fix403: no touch needed' label is put back so the request book can see it.
+- when: 2026-10-29T03:25:52+00:00
+- Love: "Love Oct 28 2026 8:23 PM PT (to the numbered list, after 8:18 PM "1 - stay"): "2- stay" (item 2: the gold-long slide hold under pink needs no pink touch, and stays on until a 25c break - main + rejection)"
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix403: no touch needed"}
+- proof: {"test": "tools/slide-test.cjs"}
+
+## R131 - fix433 item 3: offHourMain.rejSeatHours 0-23 back in live-switch. The no-pink copy is off live (fix421), so the rejection model already holds every rejection hour; the setting is restored as it was.
+- when: 2026-10-29T03:25:52+00:00
+- Love: "Love Oct 28 2026 8:23 PM PT (to the numbered list, after 8:18 PM "1 - stay"): "3- stay" (item 3: the rejection model holds the live seat in every rejection hour, both assets)"
+- books: r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejSeatHours", "equals": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}
+
+## R132 - fix433 item 4: offHourMain.rejHoursByAsset btc 0-23, gold [0,1,2,3,4,7,9,14,16,17,18,21,22,23] (old lists kept in fix433Prev). Live sit-out hours (liveSkipHours) still win.
+- when: 2026-10-29T03:25:52+00:00
+- Love: "Love Oct 28 2026 8:23 PM PT (to the numbered list, after 8:18 PM "1 - stay"): "4-stay" (item 4: rejection-model hours back to the before-restore lists: BTC every hour; gold 12,1,2,3,4,7,9 AM and 2,4,5,6,9,10,11 PM)"
+- books: r, e, c, o, n, -, r, e, j,  , (, a, n, d,  , r, e, c, o, n, -, t, o, g,  , o, f, f,  , t, h, o, s, e,  , h, o, u, r, s, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejHoursByAsset.btc", "equals": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejHoursByAsset.gold", "equals": [0, 1, 2, 3, 4, 7, 9, 14, 16, 17, 18, 21, 22, 23]}
+
+## R133 - Add-ons stay OFF (addOn.on false since fix428) until Love confirms she is working. Nothing turns them on without Love's words.
+- when: 2026-10-29T03:25:52+00:00
+- Love: "Love Oct 28 2026 8:23 PM PT (to the numbered list, after 8:18 PM "1 - stay"): "6-stay. once confirmed shes working. not before" (item 6: add-ons - 2.8x first add-on, one $5 add-on, second $3 at the next rejection)"
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "addOn.on", "equals": false}
+
+## R134 - fix433 item 7: anyFlipNow + anyFlipMinNow back to 2/3/4/5m (no 1m) as before the restore (main Bollinger/zone reads, paper fires, no-pink copy paper). The door flip for main + rejection was already 2-5m (anyFlip406Now, fix424).
+- when: 2026-10-29T03:25:52+00:00
+- Love: "Love Oct 28 2026 8:23 PM PT (to the numbered list, after 8:18 PM "1 - stay"): "7- back to 2m-5m" (item 7: her flip is 2/3/4/5m, no 1m)"
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, +,  , n, o, -, p, i, n, k,  , c, o, p, y,  , p, a, p, e, r, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix406 back as fix433"}
+
+## R135 - The fix411 3-second hold stays OUT (Love 7:36 PM "no 3 second hold" + 8:23 PM "8-keep it out").
+- when: 2026-10-29T03:25:52+00:00
+- Love: "Love Oct 28 2026 8:23 PM PT (to the numbered list, after 8:18 PM "1 - stay"): "8-keep it out" (item 8: the 3-second hold at the door)"
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "lacks": "fix411"}
+
+## R128 - Cornerstone 0h: nothing is removed from her code or live-switch without Love's own words - not by a restore, a card, a cleanup or a rebuild. tools/no-removal-gate.py diffs every install/restore and refuses any removed rule line / fix tag / Love quote / live-switch rule key unless a retired request (Love's words) names it; wired into tools/umpire.py. Options list for every item the 6:45 PM restore took out: data/LOVE-RESTORE-OPTIONS-2026-10-28.md.
+- when: 2026-10-29T03:18:14+00:00
+- Love: "Love Oct 28 2026 8:17 PM PT: "i never asked for that to be removed i will never understand 😂 but its fine we will start over again. she removed way more than i thought. i looked at your file. give me options for each one and i will manually do this all over again for the several thousandth time its fine , but this time  PLSSSSS . PLEASE. PLEEEEEEASE. PLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEASE. DO NOT LET ANYTHING. ANYYYYYYTHINGGGGGGGGG. EVER. EVER EVER EVER EVER EVERR GET REMOVED WITHOUT ME TELLLLLLLLING YOU TO REMOVE IT PLEASE I AM FUCKING BEGGING YOU""
+- books: e, v, e, r, y,  , b, o, o, k, ,,  , e, v, e, r, y,  , i, n, s, t, a, l, l
+- status: ACTIVE
+- proof: {"code": "LOVE-RULEBOOK.md", "has": "0h. CORNERSTONE - NOTHING LEAVES WITHOUT LOVE SAYING SO"}
+- proof: {"exists": "tools/no-removal-gate.py"}
+- proof: {"exists": "data/LOVE-RESTORE-OPTIONS-2026-10-28.md"}
+
+## R126 - fix431: main + rejection - a call more than 90 s old with nothing on Kalshi (no order id, not filled/partial/resting/sent) is skipped, never sent, even while it has been retrying. Fills keep their records; delayed twin + slide holds exempt. Test tools/stale-pink-test-431.cjs. Installed at the 8:30 PM PT boundary.
+- when: 2026-10-29T03:13:36+00:00
+- Love: "Love Oct 28 2026 8:06 PM PT: "yes to all of them bb" (to the list item "Stale call guard also catches a call that's been retrying for 10 min")"
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "an old call never fires (fix431)"}
+- proof: {"test": "tools/stale-pink-test-431.cjs"}
+
+## R127 - fix432: main + rejection, longs only - no long while price is under the 5m pink or less than 25c gold / $8 BTC through it, at any distance. Short mirror NOT included (Love has not answered). Test tools/stale-pink-test-431.cjs. Installed at the 8:30 PM PT boundary.
+- when: 2026-10-29T03:13:36+00:00
+- Love: "Love Oct 28 2026 7:43 PM PT: "NO SHES NOT SUPPOSED TO LONG INTO AN UNBROKEN PINK EVER" + 8:06 PM "yes to all of them bb" (to the list item "Never long into an unbroken pink")"
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d,  , +,  , B, T, C, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "const pl432 = pinkLongWall432(asset, lbR.L, qR.c, side)"}
+- proof: {"test": "tools/stale-pink-test-431.cjs"}
+
+## R125 - fix430: the pink's reach in her wall (reachWall429, main + rejection, gold + BTC) = the larger of $1.50 gold / $50 BTC and 15% of the session-band channel width price sits in. Session-band reach stays $1.50 / $50. Test: pink 14% of the channel above = refused, 16% = passes. Installed with fix429 at the 8:30 PM PT boundary.
+- when: 2026-10-29T03:11:36+00:00
+- Love: "Love Oct 28 2026 8:07 PM PT: "make the pink tolerance a minimum of 15% of the channel width please""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d,  , +,  , B, T, C, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const PINK_PCT429 = 0.15;"}
+- proof: {"test": "tools/reach-test-429.cjs"}
+
+## R124 - fix429: her reach wall back for main + rejection only (bandlock reachWall429 at the RECON door): no trade into an unbroken session band or the pink within $1.50 gold / $50 BTC; a band only counts broken once price is her break distance through it (gold 33c, BTC $6) - an 18c poke is not a break; red/green zone reach $1.50 gold (BTC keeps its sliding zone reach). REACH_RETIRED unchanged for every other book. Behaviour test tools/reach-test-429.cjs replays the 7:40:54 PM gold long (must be refused). Installed at the 8:30 PM PT boundary.
+- when: 2026-10-29T03:09:47+00:00
+- Love: "Love Oct 28 2026 8:06 PM PT: "yes to all of them bb , why did alllll of this get removed without my permission? i nevvvvvver ever said to take these out hun. i never would have. red green zone reach is 1.50 now, not 1.11 - how much did she remove dude? why is this one this in the repo? i literally begged dude""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d,  , +,  , B, T, C, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "const rw429 = reachWall429(asset, lbR.L, qR.c, side)"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const REACH429: Record<string, number> = { gold: 1.5, btc: 50 };"}
+- proof: {"test": "tools/reach-test-429.cjs"}
+
+## R123 - fix428: Kalshi add-on OFF (addOn.on true -> false; old block saved in fix428Prev) for main + rejection until Love confirms she is working, at the 8:15 PM PT boundary. Polymarket twin add-on (polyTwin.addOn), 5M untouched.
+- when: 2026-10-29T03:03:58+00:00
+- Love: "Love Oct 28 2026 7:36 PM PT: "add on of $5 can stay AFTER I CONFIRM SHES WORKING.""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, K, a, l, s, h, i, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "addOn.on", "equals": false}
+
+## R122 - fix427: live back ON at $1 for main (recon-tog) + rejection (recon-rej) on Kalshi at the 8:00 PM PT boundary. Size via the Kalshi-only wire cap bigMultipleCap {on:true, x:1, dollars:1} (every Kalshi opening order, entries and add-ons, cut to $1; exits untouched). maxDollars, liveBook, Polymarket, 5M, twin, sit-out hours untouched. No code change.
+- when: 2026-10-29T02:58:24+00:00
+- Love: "Love Oct 28 2026 7:55 PM PT: "pls put her on at $1 so i can tell you what we need to fix now that everything i put in & paid for with my fuckin sanity got taken out now lol""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, K, a, l, s, h, i, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "bigMultipleCap.dollars", "equals": 1}
+- proof: {"config": "data/live-switch.json", "key": "bigMultipleCap.x", "equals": 1}
+- proof: {"config": "data/live-switch.json", "key": "bigMultipleCap.on", "equals": true}
+
 ## R121 - fix426: fix405 sit-out hours back on live (liveSkipHours btc [0,8,18,21,23], gold [4,9,20,23]) at the 7:45 PM boundary
 - when: 2026-10-29T02:39:21+00:00
 - Love: "Love Oct 28 2026 7:37 PM PT: "fix 405’s hours off can stay.""

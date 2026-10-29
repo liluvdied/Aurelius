@@ -1,0 +1,17 @@
+[
+  {
+    "what": "export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar | undefined, cur: { o: number; h: number; l: number }, prev?: { h: number; l: number } | null, bars?: Bar[], rejOnly = false, reach = 0, pinkFlip = false /* fix326 */): { side: \"up\" | \"down\"; label: string } | null {",
+    "R": "R129",
+    "why": "fix433 item 1 adds the zoneFlip parameter to this line (Love 8:18 PM PT: \"1 - stay\")"
+  },
+  {
+    "what": "offHourMain.rejHoursByAsset.btc",
+    "R": "R132",
+    "why": "fix433 item 4 (Love 8:23 PM \"4-stay\" + 8:28 PM \"3-5 can stay\"): back to the before-restore list"
+  },
+  {
+    "what": "offHourMain.rejHoursByAsset.gold",
+    "R": "R132",
+    "why": "fix433 item 4: back to the before-restore list"
+  }
+]

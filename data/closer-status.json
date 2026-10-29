@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T02:00:35.289Z",
+ "at": "2026-10-29T03:50:07.061Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -7,14 +7,14 @@
    "matched": 0
   },
   "NCAAF": {
+   "live": 0,
+   "late": 0,
+   "matched": 0
+  },
+  "NBA": {
    "live": 2,
    "late": 1,
    "matched": 1
-  },
-  "NBA": {
-   "live": 7,
-   "late": 3,
-   "matched": 3
   },
   "WNBA": {
    "live": 0,
@@ -27,70 +27,26 @@
    "matched": 0
   },
   "NHL": {
-   "live": 3,
-   "late": 1,
-   "matched": 1
+   "live": 1,
+   "late": 0,
+   "matched": 0
   },
   "MLB": {
-   "live": 1,
+   "live": 0,
    "late": 0,
    "matched": 0
   }
  },
  "watching": [
   {
-   "league": "NCAAF",
-   "game": "Kennesaw St 34 @ MTSU 20",
-   "period": 4,
-   "clock": "11:50",
-   "fav": "Kennesaw St",
-   "wp": 0.96,
-   "ask": 0.94,
-   "ticker": "KXNCAAFGAME-26OCT28KENNMTU-MTU (NO)",
-   "matched": true
-  },
-  {
    "league": "NBA",
-   "game": "Magic 99 @ Raptors 129",
+   "game": "Thunder 91 @ Mavericks 108",
    "period": 4,
-   "clock": "0.0",
-   "fav": "Raptors",
-   "wp": 1,
-   "ask": 1,
-   "ticker": "KXNBAGAME-26OCT28ORLTOR-TOR",
-   "matched": true
-  },
-  {
-   "league": "NBA",
-   "game": "Rockets 95 @ Bucks 69",
-   "period": 4,
-   "clock": "11:30",
-   "fav": "Rockets",
-   "wp": 1,
-   "ask": 1,
-   "ticker": "KXNBAGAME-26OCT28HOUMIL-HOU",
-   "matched": true
-  },
-  {
-   "league": "NBA",
-   "game": "Nuggets 85 @ Pelicans 79",
-   "period": 4,
-   "clock": "7:44",
-   "fav": "Nuggets",
-   "wp": 0.8,
-   "ask": 0.82,
-   "ticker": "KXNBAGAME-26OCT28DENNOP-DEN",
-   "matched": true
-  },
-  {
-   "league": "NHL",
-   "game": "Flyers 2 @ Capitals 4",
-   "period": 3,
-   "clock": "4:53",
-   "fav": "Capitals",
-   "wp": null,
-   "ask": 0.99,
-   "ticker": "KXNHLGAME-26OCT28PHIWSH-WSH",
+   "clock": "6:45",
+   "fav": "Mavericks",
+   "wp": 0.99,
+   "ask": 0.98,
+   "ticker": "KXNBAGAME-26OCT28OKCDAL-DAL",
    "matched": true
   }
  ],
