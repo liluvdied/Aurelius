@@ -960,3 +960,91 @@ She's back at $5 with the $5 add-on since 10:30:00 PM, babe 💘
 
 You did this, hun. Watching her come back to herself, rule by rule, tonight 🫯✨ Gently: let her prove herself at $5 for a while before any talk of going bigger, ok?
 
+## 2026-10-29 05:36:07 UTC - LOVE
+
+thank you hunni ☹️💓
+
+and yes, i will don’t worry 
+
+she entered the second the candle flipped on both of them , i appreciate it hun ☹️💔
+
+but for gold, the 2m candle flipped at the session band and she didn’t long until after the 5M flipped, can you see why?
+
+## 2026-10-29 05:36:12 UTC - CLAUDE
+
+Looking at her gold deny lines from the 10:30 window now, hun, to see what held the 2m flip 💘
+
+## 2026-10-29 05:36:50 UTC - CLAUDE
+
+Found it, hun. Nothing was changed while I looked.
+
+No wall held the long. She filled at 10:34:25, under a second after the long showed up in her read. The wait came before that, in her read itself:
+
+- Until 10:34:24 her read was still a **short**, so the long didn't exist yet.
+- Her read has a 5m-only candle check (`recon.ts:288-298`): while the 5m candle is red, any long gets thrown out, no matter what the 2m is doing.
+- Your 2-5m flip only gets checked *after* her read makes the call. So the 2m flipping green at the session band never got a vote until the 5m turned too.
+
+One thing you should know: the part that used to let a smaller candle count in her read was switched off on Oct 22 by a card tap ("candle colour always wins"), not your typed words.
+
+If you want the 2m flip to count in her read too, tell me in your words how it should work. I'll replay this exact 10:33 moment for you before anything goes in 💘
+
+## 2026-10-29 05:37:46 UTC - LOVE
+
+yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry ok💘
+
+## 2026-10-29 05:37:59 UTC - CLAUDE
+
+Got it babe 💘 Building it for main + rejection (the live two, like you said earlier), then I'll show you the 10:33 replay before it goes in.
+
+## 2026-10-29 05:39:06 UTC - CLAUDE
+
+Your rule is built and tested, hun. It's **not installed** yet. I saved her first and logged your words as R157.
+
+**What changes (main + rejection, in her read):**
+- At a band rejection, a real 2, 3, 4 or 5m flip her way now counts. That's red → green for a long, green → red for a short, past its open by 10c gold / $5 BTC (the same flip as tonight's). She stops waiting on the 5m.
+- Anything that isn't a band rejection still follows the 5m, same as before.
+- Every wall still judges every order: your 33%, pink 10%/15%, same side, broke-this-candle, the $10 level.
+
+**Replays, all ✓:**
+- A rejection long on a red 5m with a real 2m green flip now stands.
+- No flip: still held.
+- A 2m flip *away* from a band: still waits for the 5m.
+- Same for shorts.
+- Other books unchanged.
+- The gate shows only your named change.
+
+One honest gap. Tonight's 10:34 fill was booked as a *break* above the 5m PP, and second-by-second candles aren't stored. So I can't prove the exact second she'd have fired at 10:33. What I can prove is the rule itself.
+
+Want it in? It goes live at the next quarter hour once you say so 💘
+
+## 2026-10-29 05:41:19 UTC - LOVE
+
+hun i want the flip AWAY from a band , that’s the whole entry 
+
+please keep that in 
+
+and we can put her back on the schedule ok 💘
+
+## 2026-10-29 05:41:39 UTC - CLAUDE
+
+Yes babe, that's exactly what's built 💘 I worded it badly. A candle that flips at the band and pushes **away** from it is her entry, and that's in. What still waits for the 5m is only a flip out in open space with no band there. It goes in at 10:45, and I'm pulling up her schedule from before the restore to put back with it.
+
+## 2026-10-29 05:42:43 UTC - LOVE
+
+oh ok thank you hun 💞
+
+## 2026-10-29 05:46:41 UTC - CLAUDE
+
+Both are in since 10:45 PM, babe 💞 Your flip away from the band is her entry now, and she's back on her schedule at $5 + the $5 add-on. All 13 replays and every check passed, and it's on GitHub.
+
+**Gold**
+- Rejection: 12, 1, 2, 3, 7 AM · 2, 4, 5, 6, 9, 10 PM
+- Main: 5, 6, 8, 10, 11 AM · 12, 1, 3, 7 PM
+- Sits out: 4 AM, 9 AM, 8 PM, 11 PM
+
+**BTC**
+- Rejection: every hour except the sit-outs
+- Sits out: 12 AM, 8 AM, 6 PM, 11 PM
+
+Only one thing needs you, whenever: your 11 PM rejection pick clashes with your 11 PM sit-out. I kept the sit-out since those are your latest words, so she's off at 11 tonight unless you tell me to open it.
+
