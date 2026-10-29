@@ -1,9 +1,14 @@
-# Every decision Love has made - rebuilt 2026-10-29T17:47:16.982910+00:00
+# Every decision Love has made - rebuilt 2026-10-29T18:21:29.431776+00:00
 
-1320 decisions with Love's words or card picks, out of 2062 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1321 decisions with Love's words or card picks, out of 2063 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T18:00:00.013937+00:00  ·  diary line 2530  ·  fix457
+- Love: “yes. if a band broke downwards it is only a short ... band breaks = trade the direction of the break. WITH PRICE ON THE SAME SIDE OF THE BREAK. A WICK THRU WITH PRICE ON THE OTHER SIDE OF THE BAND IS NOT AN ENTRY ... count the 33% correctly”
+- fix457 IN HER CODE
+- Full entry: 2026-10-29T18:00:00.013937+00:00 fix457 INSTALLED by Love's double-click (R170, Love Oct 29 2026 10:42 AM PT: "yes. if a band broke downwards it is only a short ... band breaks = trade the direction of the break. WITH PRICE ON THE SAME SIDE OF THE BREAK. A WICK THRU WITH PRICE ON THE OTHER SIDE OF THE BAND IS NOT AN ENTRY ... count the 33% correctly" + 10:43 AM "please send me a command so i know this fix got in"): main + rejection, gold + BTC - band broke this candle = only the break's direction with price on its side; wick through = no entry; her 33% counts a band broken against her this candle as in front. The 10:22 AM gold long replays REFUSED. 5M files untouched. {'bandlock.ts': 'c887f26b3a12e588'}.
 
 ## 2026-10-29T17:46:13.689829+00:00  ·  diary line 2529  ·  fix454, fix455
 - fix454 IN HER CODE
@@ -30,7 +35,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - fix439 IN HER CODE
 - fix441 IN HER CODE
 - fix454 IN HER CODE
-- fix457 a setting (hours/sizes follow her latest pick)
+- fix457 IN HER CODE
 - Full entry: 2026-10-29T17:33:46Z STAGED (NOT installed): fix457 - the 10:22:16 AM PT gold rejection long (YES 71c $4.93, 4021.877) passed every wall: fix441 let it back in 41c over -1σ 4021.47 after this candle broke it down (low 4020.60) while the candle was still red (open 4022.221); fix439 pink-to-red at 44.9% (cutoff 45%); 33% channel re-measured -1σ->-0.5σ (3%). Staged brokeThisCandle457 (main + rejection): band broken this candle + candle still going the break's way = no trade the other way. Replay data/STAGED-fix457/replay-1022-gold-457.cjs refuses it; tests 429/434/440/441/446 pass; gate refuses until Love's words. Love Oct 29 10:29 AM PT: "she just longed gold with a session band righttttt above her again. why did that get thru?????? it was ABSOLUTELY in the top 33% of the channel. this can't keep happening dude". Also: fix453b + fix454 confirmed landed 10:30:00 (golden ✓, gate ✓).
 
 ## 2026-10-29T17:30:00.033081+00:00  ·  diary line 2524  ·  fix454

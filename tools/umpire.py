@@ -49,6 +49,9 @@ if rTL.returncode != 0: ok = False
 rB441 = subprocess.run(["node", "tools/broke-candle-test-441.cjs"], capture_output=True, text=True)  # fix441 (Love Oct 28 2026 9:20 PM PT: "she shorted it when it just broke pink upwards")
 print(("SAFE   " if rB441.returncode == 0 else "OUT    ") + "tools/broke-candle-test-441.cjs  " + ((rB441.stdout.strip().split("\n") or [""])[-1]))
 if rB441.returncode != 0: ok = False
+rB457 = subprocess.run(["node", "tools/broke-candle-test-457.cjs"], capture_output=True, text=True)  # fix457 (R170, Love Oct 29 2026 10:42 AM PT: "band breaks = trade the direction of the break. WITH PRICE ON THE SAME SIDE OF THE BREAK ... count the 33% correctly"): the 10:22 AM gold long must be refused
+print(("SAFE   " if rB457.returncode == 0 else "OUT    ") + "tools/broke-candle-test-457.cjs  " + ((rB457.stdout.strip().split("\n") or [""])[-1]))
+if rB457.returncode != 0: ok = False
 rT442 = subprocess.run(["node", "tools/thirds-off-test-442.cjs"], capture_output=True, text=True)  # fix442 (Love Oct 28 2026 9:23 PM PT: "yeah no i got rid of the flip.")
 print(("SAFE   " if rT442.returncode == 0 else "OUT    ") + "tools/thirds-off-test-442.cjs  " + ((rT442.stdout.strip().split("\n") or [""])[-1]))
 if rT442.returncode != 0: ok = False

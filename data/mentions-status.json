@@ -1,7 +1,7 @@
 {
- "at": "2026-10-29T17:18:53.223Z",
- "events": 153,
- "checked": 1271,
+ "at": "2026-10-29T18:18:55.480Z",
+ "events": 151,
+ "checked": 1176,
  "live": [
   "KXEARNINGSMENTIONNVDA-26NOV18",
   "KXEARNINGSMENTIONFIG-26NOV04",
@@ -22,6 +22,7 @@
   "KXEARNINGSMENTIONCAVA-26NOV03",
   "KXEARNINGSMENTIONSTZ-27JAN07",
   "KXEARNINGSMENTIONNYT-26NOV04",
+  "KXEARNINGSMENTIONHIMS-26NOV02",
   "KXEARNINGSMENTIONCOST-26DEC10",
   "KXEARNINGSMENTIONADBE-26DEC09",
   "KXEARNINGSMENTIONSPCX-27JAN26",
@@ -47,6 +48,7 @@
   "KXEARNINGSMENTIONAZO-26DEC08",
   "KXEARNINGSMENTIONZM-26NOV23",
   "KXEARNINGSMENTIONACI-27JAN13",
+  "KXEARNINGSMENTIONDASH-26NOV04",
   "KXTRUMPSAYCOUNTRY-26NOV01",
   "KXEARNINGSMENTIONRIVN-26OCT29",
   "KXTRUMPSAYNICKNAME-27JAN01",
@@ -80,131 +82,9 @@
    "rate": 0.46,
    "n": 13,
    "basis": "6 of 13 events"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26OCT29B-OIL",
-   "event": "KXVANCEMENTION-26OCT29B",
-   "word": "Oil / Gas / Gasoline",
-   "title": "What will JD Vance say during midterm rally in Weatherford, Texas originally scheduled for October 29, 2026?",
-   "side": "no",
-   "ask": 0.34,
-   "rate": 0.45,
-   "n": 11,
-   "basis": "5 of 11 rallies"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26OCT29B-ECON",
-   "event": "KXVANCEMENTION-26OCT29B",
-   "word": "Economy / Economic",
-   "title": "What will JD Vance say during midterm rally in Weatherford, Texas originally scheduled for October 29, 2026?",
-   "side": "no",
-   "ask": 0.59,
-   "rate": 0.45,
-   "n": 11,
-   "basis": "5 of 11 rallies"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26OCT29B-CAMP",
-   "event": "KXVANCEMENTION-26OCT29B",
-   "word": "2028 / Campaign",
-   "title": "What will JD Vance say during midterm rally in Weatherford, Texas originally scheduled for October 29, 2026?",
-   "side": "yes",
-   "ask": 0.45,
-   "rate": 0.82,
-   "n": 11,
-   "basis": "9 of 11 rallies"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26OCT29-OIL",
-   "event": "KXVANCEMENTION-26OCT29",
-   "word": "Oil / Gas / Gasoline",
-   "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
-   "side": "no",
-   "ask": 0.3,
-   "rate": 0.38,
-   "n": 8,
-   "basis": "3 of 8 events"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26OCT29-INFL",
-   "event": "KXVANCEMENTION-26OCT29",
-   "word": "Inflation",
-   "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
-   "side": "no",
-   "ask": 0.33,
-   "rate": 0.41,
-   "n": 17,
-   "basis": "7 of 17 events"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26NOV18-WORK",
-   "event": "KXVANCEMENTION-26NOV18",
-   "word": "Working Class / Middle Class",
-   "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
-   "side": "no",
-   "ask": 0.46,
-   "rate": 0.25,
-   "n": 8,
-   "basis": "2 of 8 events"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26NOV18-HEAL",
-   "event": "KXVANCEMENTION-26NOV18",
-   "word": "Healthcare",
-   "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
-   "side": "yes",
-   "ask": 0.26,
-   "rate": 0.6,
-   "n": 10,
-   "basis": "6 of 10 events"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26NOV18-FRAU",
-   "event": "KXVANCEMENTION-26NOV18",
-   "word": "Fraud",
-   "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
-   "side": "yes",
-   "ask": 0.53,
-   "rate": 1,
-   "n": 9,
-   "basis": "9 of 9 events"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26NOV18-ECON",
-   "event": "KXVANCEMENTION-26NOV18",
-   "word": "Economy / Economic",
-   "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
-   "side": "no",
-   "ask": 0.41,
-   "rate": 0.39,
-   "n": 18,
-   "basis": "7 of 18 events"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26NOV18-DEMO",
-   "event": "KXVANCEMENTION-26NOV18",
-   "word": "Democrat",
-   "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
-   "side": "yes",
-   "ask": 0.58,
-   "rate": 1,
-   "n": 11,
-   "basis": "11 of 11 events"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26NOV18-AI",
-   "event": "KXVANCEMENTION-26NOV18",
-   "word": "AI / Artificial Intelligence",
-   "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
-   "side": "no",
-   "ask": 0.46,
-   "rate": 0.33,
-   "n": 9,
-   "basis": "3 of 9 events"
   }
  ],
  "errors": [
-  "Error: 429",
   "Error: 429",
   "Error: 429"
  ]

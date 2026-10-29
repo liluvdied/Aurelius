@@ -614,6 +614,40 @@ export function brokeThisCandle441(asset: string, L: Line[], tick: number, side:
   }
   return "";
 }
+// BAND BROKE THIS CANDLE = TRADE THE BREAK, PRICE ON ITS SIDE - HER 33% COUNTED RIGHT (fix457, R170 - Love Oct 29 2026 10:42 AM PT: "yes. if a band broke downwards it is only a short
+// this is like day 0 information hun. band breaks = trade the direction of the break. WITH PRICE ON THE SAME SIDE OF THE BREAK. A WICK THRU WITH PRICE ON THE OTHER SIDE OF THE BAND IS NOT
+// AN ENTRY. ==== BLOCKED / a LONG WITH A SESSION BAND 5 MILLIMETERS ABOVE HER ====== BLOCKKKKKED / count the 33% correctly. this cannot keep happening dude"): main + rejection, gold + BTC.
+// A session band or the pink that broke DOWN this 5m candle (opened over it, traded her break distance under it) = only a short this candle: no long, however far price pokes back over it;
+// a short needs price under it - a wick through with price back over it is not an entry. Mirror for a band broken UP. Her 33%: a band broken against her this candle is still in front of
+// her, so the channel is the one price was really in. 10:22:16 AM gold: -1σ 4021.47 broke down (low 4020.60), long at 4021.877 = 103% of -2σ 4009.24 -> -1σ - refused.
+export function brokeThisCandle457(asset: string, L: Line[], tick: number, side: string, o5?: number, hl?: { h: number; l: number } | null): string {
+  if (!(tick > 0) || !(side === "up" || side === "down")) return "";
+  const d = BREAK_DIST[asset] ?? 0, op = o5 === undefined ? fiveOpenNow(asset) : o5, x = hl === undefined ? fiveHLNow(asset) : hl;
+  if (!(d > 0) || !(op > 0) || !x) return "";
+  const up = side === "up", hi = Math.max(Number(x.h), tick), lo = Math.min(Number(x.l), tick);
+  const bands = L.filter((l) => Number(l.price) > 0 && (isSessBand(l) || String(l.name) === "5m PP"));
+  const brokeDn = (P: number) => op > P && lo <= P - d, brokeUp = (P: number) => op < P && hi >= P + d;
+  for (const b of bands) {
+    const P = Number(b.price);
+    if (up && brokeDn(P)) return `BROKE DOWN THIS CANDLE (fix457): ${b.name} (${P.toFixed(2)}) broke DOWN this candle (low ${lo.toFixed(2)}) - only a short this candle, never a long (price ${tick.toFixed(2)})`;
+    if (!up && brokeUp(P)) return `BROKE UP THIS CANDLE (fix457): ${b.name} (${P.toFixed(2)}) broke UP this candle (high ${hi.toFixed(2)}) - only a long this candle, never a short (price ${tick.toFixed(2)})`;
+    if (!up && brokeDn(P) && tick >= P) return `WICK THROUGH (fix457): ${b.name} (${P.toFixed(2)}) broke down this candle but price ${tick.toFixed(2)} is back over it - a wick through is not an entry`;
+    if (up && brokeUp(P) && tick <= P) return `WICK THROUGH (fix457): ${b.name} (${P.toFixed(2)}) broke up this candle but price ${tick.toFixed(2)} is back under it - a wick through is not an entry`;
+  }
+  // her 33%, counted with every session band broken against her this candle still in front of her
+  const S = bands.filter((l) => isSessBand(l));
+  const against = (P: number) => (up ? brokeDn(P) : brokeUp(P));
+  const ahead = S.filter((l) => against(l.price) || (up ? l.price > tick : l.price < tick)).sort((a, b) => (up ? a.price - b.price : b.price - a.price))[0];
+  const behind = S.filter((l) => !against(l.price) && (up ? l.price < tick : l.price > tick) && l !== ahead).sort((a, b) => (up ? b.price - a.price : a.price - b.price))[0];
+  if (ahead && behind) {
+    const w = Math.abs(ahead.price - behind.price);
+    if (w > 0) {
+      const f = (up ? tick - behind.price : behind.price - tick) / w;
+      if (f >= 1 - 0.33) return `HER 33% (fix457): ${up ? "long" : "short"} at ${Math.round(f * 100)}% of the ${behind.name} ${behind.price.toFixed(2)} -> ${ahead.name} ${ahead.price.toFixed(2)} channel - ${ahead.name} is unbroken her way - no ${up ? "long" : "short"} in her ${up ? "top" : "bottom"} 33%`;
+    }
+  }
+  return "";
+}
 export function reconZoneGate(asset: string, tick: number, side: string): string {
   if (REACH_RETIRED) return "";
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
@@ -804,6 +838,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
     if (book === "recon-tog" || book === "recon-rej") { const pl432 = pinkLongWall432(asset, lbR.L, qR.c, side); if (pl432) return deny(pl432, { tick: qR.c }); } // fix432: never long into an unbroken pink, main + rejection
     if (book === "recon-tog" || book === "recon-rej") { const ss434 = sameSide434(asset, lbR.L, qR.c, side); if (ss434) return deny(ss434, { tick: qR.c }); } // fix434: on her side of the break, her 33%
     if (book === "recon-tog" || book === "recon-rej") { const bt441 = brokeThisCandle441(asset, lbR.L, qR.c, side); if (bt441) return deny(bt441, { tick: qR.c }); } // fix441: broke it this candle = her side now
+    if (book === "recon-tog" || book === "recon-rej") { const bt457 = brokeThisCandle457(asset, lbR.L, qR.c, side); if (bt457) return deny(bt457, { tick: qR.c }); } // fix457 (R170, Love Oct 29 10:42 AM): band broke this candle = trade the break with price on its side; her 33% counted right
     { const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side) return deny(`the candle is ${tmR === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }
     const chR = channelOnly(asset, lbR.L, qR.c, side, refreshBroken(asset, lbR.L, qR.c)); // REJECTION OVERRIDE REMOVED (Oct 19 ~9:18 PM PT, Love: "let's remove the pink band rejection override... she shorted here and it would have been rejected for being in the bottom 33% on gold" - the wall rules over rejections again)
     if (chR) return deny(chR, { tick: qR.c });

@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T17:48:21.105Z",
+ "at": "2026-10-29T18:23:38.471Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -18,8 +18,8 @@
   },
   "WNBA": {
    "live": 1,
-   "late": 0,
-   "matched": 0
+   "late": 1,
+   "matched": 1
   },
   "NCAAMB": {
    "live": 0,
@@ -37,6 +37,18 @@
    "matched": 0
   }
  },
- "watching": [],
+ "watching": [
+  {
+   "league": "WNBA",
+   "game": "Valkyries 55 @ Dream 71",
+   "period": 4,
+   "clock": "6:32",
+   "fav": "Dream",
+   "wp": 0.98,
+   "ask": 0.99,
+   "ticker": "KXWNBAGAME-26OCT29GSATL-ATL",
+   "matched": true
+  }
+ ],
  "errors": []
 }

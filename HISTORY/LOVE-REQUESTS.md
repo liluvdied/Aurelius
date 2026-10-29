@@ -2,6 +2,41 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R176 - fix459: a long is refused by the unbroken pink (fix432 never-long-under-pink and fix429/430 pink reach) only when the pink is within 15% (gold) / 20% (BTC) of the session-band channel, band to band; main (recon-tog) + rejection (recon-rej), gold + BTC. The downslope pink rule (fix371/403 gold, fix423 BTC: no entries til pink breaks by 25c) stays exactly as is. Sliding scale later.
+- when: 2026-10-29T18:19:27+00:00
+- Love: "Love Oct 29 2026 11:18 AM PT: "thank you listening. 15% just for gold rn hun. 20% for btc. we will do the sliding scale later today. and yes, she was right to skip because the downslope pink rule where price keeps recting off of pink on a downslope, no entries til pink breaks by 25c. thats why she was right to skip hun" + 11:18 AM: "both books pls""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d,  , +,  , B, T, C, )
+- status: ACTIVE
+- proof: {"test": "tools/pink-15-20-test-459.cjs"}
+
+## R175 - (1) the $10 rule applies ONLY when the window target is AT a $10 level (price 4018, target 4020: no long into it, shorts only, away from it); (2) the walled-off 5M hours = B: off 3, 4, 5 AM, 1 PM, 9 PM and 11 PM PT; (3) the pink long rule is 15% of the channel width band to band, not any distance (applies to which books: Love to confirm); (4) the 11:04 AM gold skip was right.
+- when: 2026-10-29T18:13:38+00:00
+- Love: "Love Oct 29 2026 11:12 AM PT: "ohhh my god hun. you're nottttt listening to me. TARGET AT A $10 LEVEL. THIS TARGET ? NOTTTT AT A $10 LEVEL. i do not know how to state this any clearer hun / PRICE = (example) CURRENTLY AT 4018 / TARGET = 4020 / NO. LONG. INTO. IT. / SHORTS. ONLY. / AWAYYYYYY. FROM. $10. DOLLAR. LEVELS. / ONLY. FOR. TARGETS. AT. $10. DOLLAR. LEVELS. / Please listen to the things i say hun i do not know how many times i have said this exact statement already / to answer your question : B / also, she is only not allowed to long into pink at 15% of the channel width, band to band. / not all distances, period. / 15% / and she was right to skip""
+- books: (, 1, ), (, 3, ),  , K, a, l, s, h, i,  , m, a, i, n, /, r, e, j, e, c, t, i, o, n,  , (, b, o, o, k, s,  , t, o,  , c, o, n, f, i, r, m, ), ;,  , (, 2, ),  , P, o, l, y, m, a, r, k, e, t,  , 5, M,  , o, n, l, y
+- status: ACTIVE
+- proof: {"process": "recorded; (1)/(3) waiting on report + Love's book choice; (2) applied in the 5M build"}
+
+## R174 - R169 5M build spec: doors = a finished 1m, 2m, 3m, 4m or 5m candle that closed her way after her call (no 4+/3+ minutes-left rule on when it lands); she keeps trying until 3:00 is left in the 5m window; the late door (fix195, 2:00-3:00 left, pink touch, $25-60 away, last 1m her way, never past 1.5x) stays; everything else exactly as her Oct 27 4:57 AM copy.
+- when: 2026-10-29T18:03:54+00:00
+- Love: "Love Oct 29 2026 11:03 AM PT: "1M 2m, 3M , 4m or 5M candle flip in our favor / keeps trying until 3:00 minutes left / 2. stays / 3. stays / thank you bb" (answering A/B on the walled-off 5M built from her Oct 27 copy: 2 = the 2M/3M flip doors, 3 = the late door 2:00-3:00 left)"
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M,  , o, n, l, y
+- status: ACTIVE
+- proof: {"process": "5M walled-off build (R169/R172/R173/R174)"}
+
+## R173 - R169 decision: the walled-off 5M model is built from her exact Oct 27 code (the copy that ran Oct 27 AM, 79%), with only the 1M flip wait (R172), in its own files.
+- when: 2026-10-29T17:59:10+00:00
+- Love: "Love Oct 29 2026 10:58 AM PT: "october 27th please. she was at 79%. that's where she was when she was working" (answering which saved copy the walled-off 5M is built from - R169/R172)"
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M,  , o, n, l, y
+- status: ACTIVE
+- proof: {"process": "5M walled-off build from Oct 27 (R169/R172/R173)"}
+
+## R172 - R169 decision: the walled-off 5M model waits for the 1M flip only (fix188: a finished 1m candle closed her way since her call; call lives up to 5 min) - NOT fix189's ~4+ min (225 s) left requirement.
+- when: 2026-10-29T17:52:59+00:00
+- Love: "Love Oct 29 2026 10:52 AM PT... "1M flip only hun" (answering: rebuild the walled-off 5M exactly as Oct 25 with the 1M flip AND 4+ minutes (225 s) left, or the 1M flip only - R169)"
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M,  , o, n, l, y
+- status: ACTIVE
+- proof: {"process": "5M walled-off build (R169) - 1M flip only"}
+
 ## R171 - fix458 (config, 10:45 AM PT): an old main-book block (bookSkipHoursByAsset.<asset>.recon-tog) kept main out of hours Love gave main - lifted BTC 8, 11 AM, 1 PM and gold 10 PM only; fix458Prev keeps the old values.
 - when: 2026-10-29T17:46:27+00:00
 - Love: "Love Oct 29 2026 9:57 AM PT BTC schedule: "5am - GOES TO MAIN ... 8am - GOES TO MAIN 9am - GOES TO MAIN ... 11am - GOES TO MAIN 12pm. - GOES TO MAIN 1pm GOES TO MAIN" + 10:15 AM "give btc 6am on rejection now that i saw these okay :) luckily the hours i picked still held up on the actual numbers :)"; Love 9:42 AM PT gold schedule: "10pm - GOES TO MAIN for gold""

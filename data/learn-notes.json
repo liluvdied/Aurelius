@@ -1,5 +1,47 @@
 [
   {
+    "key": "close|held-KXBTC15M-26OCT291415-15",
+    "at": "2026-10-29T18:15:25.091Z",
+    "kind": "closed",
+    "text": "Bitcoin short Tap-reject at −0.5σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
+    "key": "KXBTC15M-26OCT291430-30|down|Tap-reject at -0.5σ",
+    "at": "2026-10-29T18:15:05.008Z",
+    "kind": "forming",
+    "text": "Bitcoin short Tap-reject at −0.5σ is forming, 15m left. This is a prime setup, 72-47. At 11am that one is 4-1. price is on the wrong side of the VWAP. Note only."
+  },
+  {
+    "key": "close|held-KXGOLD15M-26OCT291400-00",
+    "at": "2026-10-29T18:00:29.959Z",
+    "kind": "closed",
+    "text": "Gold long Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
+  },
+  {
+    "key": "close|held-KXBTC15M-26OCT291400-00",
+    "at": "2026-10-29T18:00:10.602Z",
+    "kind": "closed",
+    "text": "Bitcoin long Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
+  },
+  {
+    "key": "KXBTC15M-26OCT291415-15|down|Tap-reject at -0.5σ",
+    "at": "2026-10-29T18:00:06.730Z",
+    "kind": "forming",
+    "text": "Bitcoin short Tap-reject at −0.5σ is forming, 15m left. This is a prime setup, 71-47. At 11am that one is 4-1. price is on the wrong side of the VWAP. Note only."
+  },
+  {
+    "key": "close|mvtu8dpa-rnkvwo",
+    "at": "2026-10-29T18:00:02.464Z",
+    "kind": "closed",
+    "text": "Silver long Tap-reject at -1.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
+  },
+  {
+    "key": "close|mvtu2y13-nom4w1",
+    "at": "2026-10-29T17:52:07.903Z",
+    "kind": "closed",
+    "text": "Gold short Tap-reject at -1.5σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
     "key": "close|held-KXBTC15M-26OCT291345-45",
     "at": "2026-10-29T17:45:27.129Z",
     "kind": "closed",
@@ -436,47 +478,5 @@
     "at": "2026-10-29T13:27:43.821Z",
     "kind": "closed",
     "text": "Bitcoin long Tap-reject at -0.5σ hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "close|mvtkovau-azxjvg",
-    "at": "2026-10-29T13:26:18.489Z",
-    "kind": "closed",
-    "text": "Silver short Tap-reject at -1σ hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "KXBTC15M-26OCT292215-15|up|Tap-reject at -0.5σ",
-    "at": "2026-10-29T13:24:51.613Z",
-    "kind": "forming",
-    "text": "Bitcoin long Tap-reject at −0.5σ is forming, 770m left. This is a prime setup, 44-37. At 6am that one is 3-7. price is on the wrong side of the VWAP. Note only."
-  },
-  {
-    "key": "close|held-KXGOLD15M-26OCT290915-15",
-    "at": "2026-10-29T13:15:26.712Z",
-    "kind": "closed",
-    "text": "Gold short Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
-  },
-  {
-    "key": "close|held-KXBTC15M-26OCT290915-15",
-    "at": "2026-10-29T13:15:26.642Z",
-    "kind": "closed",
-    "text": "Bitcoin long Live hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "KXBTC15M-26OCT290930-30|up|Tap-reject at -0.5σ",
-    "at": "2026-10-29T13:15:09.391Z",
-    "kind": "forming",
-    "text": "Bitcoin long Tap-reject at -0.5σ is forming, 15m left. This is a prime setup, 44-37. At 6am that one is 2-0. price is on the wrong side of the VWAP. Note only."
-  },
-  {
-    "key": "pair|silver|mvtjwl0j-3okuhe|mvtjdpxe-c34unp",
-    "at": "2026-10-29T13:15:02.334Z",
-    "kind": "pair",
-    "text": "silver lost two in a row. Not an entry error. Tap-reject at -1.5σ lost. Nothing on the entry to change. It stays. Tap-reject at -1.5σ lost. Nothing on the entry to change. It stays. Not applied as a ban."
-  },
-  {
-    "key": "close|mvtjwl0j-3okuhe",
-    "at": "2026-10-29T13:15:01.730Z",
-    "kind": "closed",
-    "text": "Silver short Tap-reject at -1.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
   }
 ]

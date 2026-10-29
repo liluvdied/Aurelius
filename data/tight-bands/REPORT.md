@@ -1,6 +1,6 @@
 # Tight-bands 10x paper book 💎
 
-First 10x+ touch at a band in every Kalshi 15m window, $10 paper. TIGHT = 1σ under $3 gold / $100 BTC; NORMAL is the control. Updated Thu Oct 29 10:22 AM PT.
+First 10x+ touch at a band in every Kalshi 15m window, $10 paper. TIGHT = 1σ under $3 gold / $100 BTC; NORMAL is the control. Updated Thu Oct 29 11:22 AM PT.
 
 | Group | Asset | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|---|---|
@@ -10,12 +10,12 @@ First 10x+ touch at a band in every Kalshi 15m window, $10 paper. TIGHT = 1σ un
 | TIGHT | btc | cash at 3x | 35 | 5 | 14% | $-200.00 |
 | TIGHT | btc | cash at 5x | 35 | 3 | 9% | $-200.00 |
 | TIGHT | btc | cash at 10x | 35 | 2 | 6% | $-150.00 |
-| NORMAL | gold | cash at 3x | 428 | 43 | 10% | $-2990.00 |
-| NORMAL | gold | cash at 5x | 428 | 23 | 5% | $-3130.00 |
-| NORMAL | gold | cash at 10x | 428 | 10 | 2% | $-3280.09 |
-| NORMAL | btc | cash at 3x | 710 | 106 | 15% | $-3920.00 |
-| NORMAL | btc | cash at 5x | 710 | 65 | 9% | $-3850.00 |
-| NORMAL | btc | cash at 10x | 710 | 46 | 6% | $-2549.07 |
+| NORMAL | gold | cash at 3x | 431 | 43 | 10% | $-3020.00 |
+| NORMAL | gold | cash at 5x | 431 | 23 | 5% | $-3160.00 |
+| NORMAL | gold | cash at 10x | 431 | 10 | 2% | $-3310.09 |
+| NORMAL | btc | cash at 3x | 713 | 106 | 15% | $-3950.00 |
+| NORMAL | btc | cash at 5x | 713 | 65 | 9% | $-3880.00 |
+| NORMAL | btc | cash at 10x | 713 | 46 | 6% | $-2579.07 |
 
 ## Tight-band trades
 

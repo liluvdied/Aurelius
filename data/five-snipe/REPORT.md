@@ -1,19 +1,16 @@
 # 5m snipe paper book 🎯
 
-Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Thu 10:22 AM PT.
+Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Thu 11:22 AM PT.
 
 | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|
-| cash at 3x | 58 | 14 | 24% | $+669.17 |
-| cash at 5x | 58 | 13 | 22% | $+799.17 |
-| cash at 7.5x | 56 | 10 | 18% | $+794.17 |
-| cash at 10x | 56 | 10 | 18% | $+896.09 |
+| cash at 3x | 61 | 16 | 26% | $+794.17 |
+| cash at 5x | 61 | 15 | 25% | $+944.17 |
+| cash at 7.5x | 59 | 12 | 20% | $+964.17 |
+| cash at 10x | 59 | 12 | 20% | $+1091.09 |
 
 | When (PT) | Book | Side | Paid | Peak bid | 3x | 5x | 7.5x | 10x |
 |---|---|---|---|---|---|---|---|---|
-| Mon 07:28 AM | recon-tog | up | 0.03 | 0.03 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
-| Mon 07:52 AM | recon-tog | up | 0.12 | 0.99 | cashed 3x +20.00 | cashed 5x +40.00 | cashed 7.5x +65.00 | bell win +66.92 |
-| Mon 08:37 AM | recon-tog | down | 0.02 | 0.09 | cashed 3x +20.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Mon 08:43 AM | recon-rej | up | 0.06 | 0.17 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Mon 09:28 AM | recon-tog | up | 0.01 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Mon 09:38 AM | recon-tog | up | 0.05 | 0.97 | cashed 3x +20.00 | cashed 5x +40.00 | cashed 7.5x +65.00 | cashed 10x +90.00 |
@@ -89,5 +86,8 @@ Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her s
 | Thu 05:14 AM | recon-tog | up | 0.01 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Thu 06:18 AM | recon-rej | down | 0.04 | 0.02 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Thu 07:53 AM | recon-tog | down | 0.03 | 0.02 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu 09:04 AM | recon-tog | up | 0.01 | 0.98 | cashed 3x +20.00 | cashed 5x +40.00 | cashed 7.5x +65.00 | cashed 10x +90.00 |
 | Thu 09:14 AM | recon-tog | up | 0.01 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Thu 09:28 AM | recon-tog | down | 0.14 | 0.93 | cashed 3x +20.00 | cashed 5x +40.00 | open +0.00 | open +0.00 |
+| Thu 10:23 AM | recon-tog | down | 0.07 | 0.15 | bell win +115.00 | bell win +115.00 | bell win +115.00 | bell win +115.00 |
+| Thu 10:49 AM | recon-tog | up | 0.01 | 0.01 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |

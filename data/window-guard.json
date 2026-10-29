@@ -1,20 +1,29 @@
 {
-  "at": "2026-10-29T17:48:36.936Z",
+  "at": "2026-10-29T18:24:05.525Z",
   "gen": 417,
-  "window": "2026-10-29T10:45",
+  "window": "2026-10-29T11:15",
   "ok": false,
   "openNow": [
     {
+      "asset": "btc",
+      "side": "up",
+      "ticker": "KXBTC15M-26OCT291430-30",
+      "pattern": "Open +0.5σ",
+      "left": 356,
+      "same": true,
+      "stillOpen": true
+    },
+    {
       "asset": "gold",
       "side": "down",
-      "ticker": "KXGOLD15M-26OCT291400-00",
-      "pattern": "Tap-reject at -1.5σ",
-      "left": 685,
+      "ticker": "KXGOLD15M-26OCT291430-30",
+      "pattern": "Tap-reject at −1.5σ",
+      "left": 356,
       "same": true,
       "stillOpen": true
     }
   ],
-  "closedMisses": 6,
+  "closedMisses": 5,
   "rebooted": false,
   "note": "A paper trade is open and Kalshi does not have it. It is sent on this window only."
 }

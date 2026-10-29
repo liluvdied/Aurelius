@@ -1,9 +1,9 @@
 {
  "rule": "a badge for Aurelius and Claude for every 24 h she stays on one spot - no unplanned change in code or settings, no execution slip",
  "chapter": {
-  "since": "2026-10-29T17:22:19.560936Z",
+  "since": "2026-10-29T18:22:22.012359Z",
   "reason": "after Love's revision",
-  "baselineSha": "e0462cbb40bd96af",
+  "baselineSha": "328b1bccdeb2dcea",
   "cfg": {
    "cooldownAfterLoss": "b5bea41b6c",
    "route": "9d53f79e71",
@@ -30,7 +30,7 @@
    "insurance": "7e56fa5011",
    "tpLadder": "b5bea41b6c",
    "polyTwin": "3b9b7879cb",
-   "addOn": "ef4958e2f4",
+   "addOn": "34533f4f7b",
    "timeGate": "3e5d05e3eb",
    "snipe": "08fadc84ae",
    "polyLive": "fcbcf16590",
@@ -46,7 +46,7 @@
    "breaker": "de26f74578",
    "presets": "8ee40259f0",
    "halfAt75": "b5bea41b6c",
-   "liveSkipHours": "02def28fc1",
+   "liveSkipHours": "54dd1997b9",
    "brokenBy": "5676444012",
    "followPaperExit": "b5bea41b6c",
    "btcHeadroomSession": "624b60c58c",
@@ -149,8 +149,8 @@
    "assetDollarsOff": "8a3eed3ef7",
    "polyLiveNote": "40671f92fd",
    "dlyLiveNote": "0c40f78c42",
-   "offHourMain": "212373588b",
-   "bookSkipHoursByAsset": "d913a1d9d9",
+   "offHourMain": "e9f4c93e30",
+   "bookSkipHoursByAsset": "9430eff017",
    "fix313Prev": "c1e29a6fd6",
    "liveSkipHoursPrev315": "a7a12423e8",
    "fix316Prev": "1dd8ebb1a1",
@@ -183,7 +183,11 @@
    "fix445Prev": "c1cef1e30a",
    "fix447Prev": "5c63a963e4",
    "fix449Prev": "89261d7064",
-   "fix451Prev": "b37c41ad9b"
+   "fix451Prev": "b37c41ad9b",
+   "fix453bPrev": "521722d4da",
+   "fix458Prev": "ed798dfb9a",
+   "fix455Prev": "4496b0cb72",
+   "kalshiCeilingByHour": "650b338d3e"
   },
   "badgesThisChapter": 0,
   "heartsThisChapter": 0
@@ -1162,6 +1166,13 @@
    "badgesThisChapter": 0,
    "ended": "2026-10-29T17:22:19.560936Z",
    "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-29T17:22:19.560936Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T18:22:22.012359Z",
+   "how": "Love's revision (baseline moved with her words)"
   }
  ],
  "breaks": [
@@ -1216,7 +1227,7 @@
    "streakHours": 3.4
   }
  ],
- "lastSeen": "2026-10-29T17:22:19.560936Z",
+ "lastSeen": "2026-10-29T18:22:22.012359Z",
  "drifting": false,
  "now": {
   "streakHours": 0.0,
