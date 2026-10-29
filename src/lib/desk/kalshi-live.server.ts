@@ -26,6 +26,15 @@ function kalshiArmed() {
 // LIVE GUARD at the wire (Claude). Every Kalshi order passes here. An opening order is refused
 // while the live switch is off and is cut to the size ceiling. Exits always go through.
 // This is a safety layer only. It does not change which trades the model takes.
+// KALSHI CEILING BY HOUR (fix455, Love Oct 29 2026 10:17 AM PT: "we can double up on 8pm hun , $10 initial entry and $5 initial add on - $5 secondary add on at the next band price encounters and rejects. same way we have our entry logic wired. candle flips near a band = second add on of $5"): Kalshi-only order ceiling for named asset-hours (live-switch kalshiCeilingByHour { btc: { "20": 10 } }); everywhere else
+// it is maxDollars() as before. Polymarket keeps reading maxDollars() - never this.
+function kalshiCeil(ticker) {
+  try {
+    const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")); const a = String(ticker || "").includes("GOLD") ? "gold" : String(ticker || "").includes("BTC") ? "btc" : "";
+    const h = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24;
+    const v = Number(sw?.kalshiCeilingByHour?.[a]?.[String(h)]); return v > 0 && v <= 25 ? v : maxDollars();
+  } catch { return maxDollars(); }
+}
 function guardKalshiOrder(method, path, body) {
   // EXIT STAMP (Oct 18 ~4:44 PM PT, Love: "she entered a long after i was in a short again"): every reduce-only exit is stamped so a
   // resting take-profit can't be laid on a position count from before that exit (4:43:52 PM: half cashed out, then a take-profit
@@ -39,7 +48,7 @@ function guardKalshiOrder(method, path, body) {
   const yes = Number(body.price);
   const px = body.side === "bid" ? yes : 1 - yes;
   const count = Number.parseFloat(body.count);
-  let cap = maxDollars();
+  let cap = kalshiCeil(body.ticker); // fix455: Kalshi ceiling by hour (else maxDollars)
   // REACH (Oct 6 ~7:40 AM PT): a live-book copy bids a little over the ask so a fast tape still fills. Its size and the
   // 3x+ cap are judged on the TRUE ask it was sized on; the limit itself may run at most 20% over her ceiling.
   const reach = (globalThis as any).__aureliusReach?.[body.ticker];
@@ -1408,7 +1417,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   // reduced position sizes ... let's let them thru at $2 pls"): the DELAYED book (recon-dly) sizes its live-switch bookDollars flat - no 1/4-over-3.8x or
   // 3/4-over-2.2x cut. Still under the switch ceiling.
   const offMainD = offMainDollars(bookCopy, ticker);
-  const budget0 = offMainD > 0 ? Math.min(offMainD, maxDollars()) : bookCopy === "recon-dly" && ownDollars > 0 ? Math.min(ownDollars, maxDollars()) : bookCopy ? budgetFor(Math.min(assetOwn > 0 ? assetOwn : ownDollars > 0 ? ownDollars : cheapDollars > 0 ? cheapDollars : (bookDollarsFor(ticker) || Number(liveBook?.dollars) || 0), maxDollars()), multiple) : budgetFor(full, multiple);
+  const budget0 = offMainD > 0 ? Math.min(offMainD, kalshiCeil(ticker) /* fix455 */) : bookCopy === "recon-dly" && ownDollars > 0 ? Math.min(ownDollars, maxDollars()) : bookCopy ? budgetFor(Math.min(assetOwn > 0 ? assetOwn : ownDollars > 0 ? ownDollars : cheapDollars > 0 ? cheapDollars : (bookDollarsFor(ticker) || Number(liveBook?.dollars) || 0), maxDollars()), multiple) : budgetFor(full, multiple);
   // TOGETHER'S LATE REJECTION AT 1/4 (Oct 18 ~4:13 PM PT, Love): engine passes sizeMul 0.25 when TOGETHER skipped the window's opening.
   const sizeMulL = Number(opts?.sizeMul);
   const budgetC = bookCopy && !(offMainD > 0) && sizeMulL > 0 && sizeMulL < 1 ? Math.round(Number(budget0) * sizeMulL * 100) / 100 : budget0;
@@ -1416,7 +1425,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   // the main book (recon-tog) at her full slider never goes out under live-switch liveBook.minDollars - the 3/4-over-2.2x, 1/4-over-3.8x and late-1/4 cuts stop at the floor.
   // Off hours ($2 offHourMain), the rejection model and the twin keep their own flat sizes. Still under the switch ceiling.
   const mainFloor = Number(liveBook?.minDollars);
-  const budget = bookCopy === "recon-tog" && !(offMainD > 0) && mainFloor > 0 ? Math.max(Number(budgetC), Math.min(mainFloor, maxDollars(), Number(liveBook?.dollars) > 0 ? Number(liveBook?.dollars) : mainFloor)) : budgetC;
+  const budget = bookCopy === "recon-tog" && !(offMainD > 0) && mainFloor > 0 ? Math.max(Number(budgetC), Math.min(mainFloor, kalshiCeil(ticker) /* fix455 */, Number(liveBook?.dollars) > 0 ? Number(liveBook?.dollars) : mainFloor)) : budgetC;
   // FLAT SIZE (Oct 7 ~10:45 PM PT, Love: "lower position sizes down to $30 flat... tried on my end and it didn't lower them").
   // The slider was already $30, but a live-book copy was counted off the ask and allowed to fill up to 20% higher (the
   // fast-tape reach), so a $30 trade could cost $33-36. Now it is counted off the highest price it may pay: never over

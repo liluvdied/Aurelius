@@ -3646,5 +3646,77 @@
   "result": "open",
   "pnl": 0.0,
   "lane": "first"
+ },
+ {
+  "at": "2026-10-29T16:32:00+00:00",
+  "slot": "2026-10-29T16:30:00+00:00",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "ask": 0.55,
+  "left": 180,
+  "reaims": 0,
+  "result": "win",
+  "pnl": 4.09,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-29T16:32:00+00:00",
+  "slot": "2026-10-29T16:30:00+00:00",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "ask": 0.55,
+  "left": 180,
+  "reaims": 0,
+  "result": "win",
+  "pnl": 4.09,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-29T16:47:00+00:00",
+  "slot": "2026-10-29T16:45:00+00:00",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "ask": 0.6,
+  "left": 180,
+  "reaims": 0,
+  "result": "win",
+  "pnl": 3.33,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-29T16:47:00+00:00",
+  "slot": "2026-10-29T16:45:00+00:00",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "ask": 0.6,
+  "left": 180,
+  "reaims": 0,
+  "result": "win",
+  "pnl": 3.33,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-29T17:12:00+00:00",
+  "slot": "2026-10-29T17:10:00+00:00",
+  "side": "down",
+  "setup": "Candle falling from the top third",
+  "ask": 0.39,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-29T17:12:00+00:00",
+  "slot": "2026-10-29T17:10:00+00:00",
+  "side": "down",
+  "setup": "Candle falling from the top third",
+  "ask": 0.39,
+  "left": 180,
+  "reaims": 0,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "first"
  }
 ]

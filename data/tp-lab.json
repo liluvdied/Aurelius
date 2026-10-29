@@ -6634,5 +6634,23 @@
   ],
   "peakValue": 100,
   "hits": {}
+ },
+ "KXTEMPCHIHS-26OCT2914-T66.99:no": {
+  "id": "KXTEMPCHIHS-26OCT2914-T66.99:no",
+  "src": "scan",
+  "at": "2026-10-29T17:15:50.500Z",
+  "stake": 100,
+  "legs": [
+   {
+    "ticker": "KXTEMPCHIHS-26OCT2914-T66.99",
+    "side": "no",
+    "contracts": 114.94252873563218,
+    "cost": 100
+   }
+  ],
+  "peakValue": 110.34,
+  "hits": {
+   "10": "2026-10-29T17:44:12.296Z"
+  }
  }
 }

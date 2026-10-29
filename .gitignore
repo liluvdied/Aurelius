@@ -15,3 +15,16 @@ data/band-lock.jsonl
 data/grok-og-archive.jsonl
 # dna-blocks.jsonl is over 100 MB - its full copy lives in data/big-logs/ (Oct 29 2026, Love: nothing left out)
 data/dna-blocks.jsonl
+# Oct 29 2026 ~11:00 AM PT: more files over GitHub's 100 MB limit - NOT left out: each lives split (and the 401 MB archive gzip'd) in data/big-logs/ (see README there).
+HISTORY/offsite/p380.zip
+HISTORY/offsite/p381.zip
+HISTORY/offsite/p382.zip
+HISTORY/offsite/p383.zip
+HISTORY/offsite/bundle-1027/d2.tzst.part-aa
+data/grok-og-archive.jsonl.pre-runaway-cleanup
+data/SAVES/2026-10-27-0700PM-PT-before-runaway-cleanup/grok-og-archive.jsonl.bak
+data/VAULT/objects/7c/7c76b71eab1b8d6ad54d41c38507b5d2bc38d9a02992f2c39a1605524ccdfbd8
+data/archive/band-lock-upto-2026-10-27-1005PM-PT.jsonl
+data/archive/copy-timing-upto-2026-10-27-1005PM-PT.jsonl
+data/archive/gold-law-upto-2026-10-27-1005PM-PT.jsonl
+data/archive/other-side-upto-2026-10-27-1005PM-PT.jsonl

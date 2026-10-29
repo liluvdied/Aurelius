@@ -2263,6 +2263,39 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             })();
           }
         }
+        // THE SECOND ADD-ON AT 8 PM BTC (fix455, Love Oct 29 2026 10:17 AM PT: "we can double up on 8pm hun , $10 initial entry and $5 initial add on - $5 secondary add on at the next band price encounters and rejects. same way we have our entry logic wired. candle flips near a band = second add on of $5"): the Oct 28 second add-on (taken out in the 6:45 PM restore) brought back for the hours in live-switch
+        // addOn.second.hoursByAsset only (BTC 8 PM, rejection model): once the first add-on has filled, ONE more addOn.second.dollars on the SAME side when price is at a band that is NOT the
+        // first add-on's band and a 2-5m candle has flipped her way there (anyFlipMinNow, $5 BTC / 10c gold past its open). Once per position; every wall + wire check still judges it.
+        try {
+          const ao2 = (ao as any)?.second; const hB2 = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24;
+          const hrs2 = ao2?.hoursByAsset?.[String(id)]; const own2 = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] || "";
+          const bk2: string[] = Array.isArray(ao2?.books) ? ao2.books.map(String) : [];
+          if (!g.__aureliusAdd2) {
+            const s2: Record<string, number> = {}, w1: Record<string, string> = {};
+            try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (!x || !x.ok || !x.ticker) continue; if (x.add2) s2[x.ticker] = Date.parse(x.at) || Date.now(); else w1[x.ticker] = String(x.why || ""); } catch {} } } catch {}
+            g.__aureliusAdd2 = s2; g.__aureliusAdd1Why = w1;
+          }
+          const add2 = g.__aureliusAdd2, w1 = g.__aureliusAdd1Why || (g.__aureliusAdd1Why = {}); const try2 = g.__aureliusAdd2Try || (g.__aureliusAdd2Try = {});
+          if (addReg[row.ticker] && !(row.ticker in w1)) { try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.ticker === row.ticker && !x.add2) w1[row.ticker] = String(x.why || ""); } catch {} } } catch {} }
+          const cap2 = Number(ao2?.maxAsk) > 0 && Number(ao2.maxAsk) < 1 ? Number(ao2.maxAsk) : 0.72;
+          if (ao2?.on === true && ao?.on && !aoTwin && Array.isArray(hrs2) && hrs2.map(Number).includes(hB2) && bk2.includes(own2) && (id === "btc" || id === "gold") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !(Date.now() - (try2[row.ticker] || 0) < 5000)) {
+            const blm3 = await import("./bandlock");
+            const t2 = blm3.addOnTouchNow(id);
+            const bnd = (w: string) => { const m = /^(?:touched |came within \$[\d.]+ of )(.+?) \(/.exec(String(w || "")); return m ? m[1] : ""; };
+            const b2 = bnd(t2), b1 = bnd(w1[row.ticker] || "");
+            const tk2 = Number(quoteTick(id)?.c) || 0;
+            if (t2 && b2 && b2 !== b1 && tk2 > 0 && blm3.anyFlipMinNow(id, mySide, tk2)) {
+              try2[row.ticker] = Date.now();
+              const why2 = `${t2.replace(" - twin add-on, free", "")} and a candle flipped ${mySide === "up" ? "green" : "red"} there - second add-on (fix455)`;
+              void (async () => {
+                let r2: { ok?: boolean; reason?: string } | null = null;
+                try { r2 = await live.addOnBuy(row.ticker, mySide, Number(ao2.dollars) || 5, cap2, false); } catch (err) { r2 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "second add-on failed" }; }
+                if (r2?.ok) add2[row.ticker] = Date.now();
+                try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: why2, add2: true, book: own2, ...(r2 || {}) }) + "\n"); } catch {}
+              })();
+            }
+          }
+        } catch {}
       } catch {
       }
       // INSURANCE ON POLYMARKET (Love, Oct 3 ~11 PM PT: "you're not literally selling 25% of the position on kalshi? just
@@ -5383,9 +5416,10 @@ async function copyLiveBook(assets, lane = "") {
     // and keep it off" - fix364 only took it off the copy): a call her thirds read turned to the other side ("Top third - seen as a short ... (was: ...)" / "Bottom third ... seen as a long") never goes
     // live for main or rejection - 9:20 PM the refused gold long came back as a short right after the pink broke up. Held, not final: a real call of hers later in the window still goes.
     if (["recon-tog", "recon-rej"].includes(String(row.book)) && / - seen as a (short|long) /.test(String(row.setup || row.label || "")) && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `THIRDS FLIP OFF (fix442): "${String(row.setup || row.label).slice(0, 90)}" is a refused call turned to the other side - never live for main or rejection` }; continue; }
+    // fix454 (Love Oct 29 2026 9:57 AM PT: "3pm - GOES TO Main (w pink, bollingers, red green zones only , same for gold sorry forgot to mention pink earlier)"): the 3 PM rule takes pink calls too and holds whichever book has the 3 PM seat (BTC main, gold rejection).
     // 3 PM = BOLLINGERS AND ZONES ONLY (fix452, Love Oct 29 2026 9:42 AM PT: "3pm ✅ (bollingers, green/red zones only) (for btc and gold pls)"): in the 3 PM PT hour the rejection model
     // takes only calls off a Bollinger band or the green/red zone, gold and BTC; pink, session-band and other calls are held (not final - a zone/Bollinger call later in the window still goes). Walls still judge.
-    if (String(row.book) === "recon-rej" && Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24 === 15 && !/Bollinger|Green zone|Red zone/i.test(String(row.setup || row.label || "")) && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `3 PM = BOLLINGERS AND ZONES ONLY (fix452): "${String(row.setup || row.label).slice(0, 80)}" is not a Bollinger or green/red zone call` }; continue; }
+    if (["recon-rej", "recon-tog"].includes(String(row.book)) /* fix454: whichever book holds 3 PM - BTC main, gold rejection */ && Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24 === 15 && !/Bollinger|Green zone|Red zone|5m PP|pink/i.test(String(row.setup || row.label || "")) /* fix454: pink too */ && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `3 PM = BOLLINGERS AND ZONES ONLY (fix452): "${String(row.setup || row.label).slice(0, 80)}" is not a Bollinger or green/red zone call` }; continue; }
     const frame = asset?.vwap1m?.vwap ? asset.vwap1m : asset?.vwap5m;
     let placed = null;
     const tOrder = Date.now();

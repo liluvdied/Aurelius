@@ -208,5 +208,58 @@
     "what": "- TP 10% or $2 whichever first. Polymarket min $5.",
     "R": "R166",
     "why": "stale TP line replaced by the live structure with Love's words"
+  },
+  {
+    "what": "offHourMain.rejHoursByAsset.btc",
+    "R": "R167",
+    "why": "fix453b Love's BTC schedule + 6 AM rejection"
+  },
+  {
+    "what": "liveSkipHours.btc",
+    "R": "R167",
+    "why": "fix453b Love's BTC schedule + 6 AM rejection"
+  },
+  {
+    "what": "bookSkipHoursByAsset.btc.recon-dly",
+    "R": "R167",
+    "why": "fix453b Love's BTC schedule + 6 AM rejection"
+  },
+  {
+    "what": "let cap = maxDollars();",
+    "R": "R168",
+    "why": "fix455 Kalshi ceiling by hour"
+  },
+  {
+    "what": "const budget0 = offMainD > 0 ? Math.min(offMainD, maxDollars()) : bookCopy === \"recon-dly\" && ownDollars > 0 ? Math.min(ownDollars, maxDollars()) : bookCopy ? budgetFor(Math.min(assetOwn > 0 ? assetOwn : ownDollars > 0 ? ownDollars : cheapDollars > 0 ? cheapDollars : (bookDollarsFor(ticker) || Number(liveBook?.dollars) || 0), maxDollars()), multiple) : budgetFor(full, multiple);",
+    "R": "R168",
+    "why": "fix455 Kalshi ceiling by hour"
+  },
+  {
+    "what": "const budget = bookCopy === \"recon-tog\" && !(offMainD > 0) && mainFloor > 0 ? Math.max(Number(budgetC), Math.min(mainFloor, maxDollars(), Number(liveBook?.dollars) > 0 ? Number(liveBook?.dollars) : mainFloor)) : budgetC;",
+    "R": "R168",
+    "why": "fix455 Kalshi ceiling by hour"
+  },
+  {
+    "what": "offHourMain.dollarsByHour",
+    "R": "R168",
+    "why": "fix455 8 PM BTC"
+  },
+  {
+    "what": "addOn.second",
+    "R": "R168",
+    "why": "fix455 8 PM BTC"
+  },
+  {
+    "what": "kalshiCeilingByHour",
+    "R": "R168",
+    "why": "fix455 8 PM BTC"
+  },
+  {
+    "what": "bookSkipHoursByAsset.btc.recon-tog",
+    "R": "R164"
+  },
+  {
+    "what": "bookSkipHoursByAsset.gold.recon-tog",
+    "R": "R162"
   }
 ]

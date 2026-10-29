@@ -294,7 +294,21 @@
     "dollars": 5,
     "maxAsk": 0.263,
     "minLeft": 2,
-    "note": "Oct 20 ~12:04 AM PT, Love: \"when i said no limit i was talking about the multiple she could enter into - not no limit on how many times she could add on. limit it to 1 add on of $2 please. one of them\" - ONE $2 add per position, at a rejection her way, any multiple 3.8x or higher (maxAsk 26.3c, no ceiling on the multiple). No noLimit flag: the once-per-window gate enforces exactly one."
+    "note": "Oct 20 ~12:04 AM PT, Love: \"when i said no limit i was talking about the multiple she could enter into - not no limit on how many times she could add on. limit it to 1 add on of $2 please. one of them\" - ONE $2 add per position, at a rejection her way, any multiple 3.8x or higher (maxAsk 26.3c, no ceiling on the multiple). No noLimit flag: the once-per-window gate enforces exactly one.",
+    "second": {
+      "on": true,
+      "dollars": 5,
+      "maxAsk": 0.72,
+      "books": [
+        "recon-rej"
+      ],
+      "hoursByAsset": {
+        "btc": [
+          20
+        ]
+      },
+      "note": "fix455 Love Oct 29 2026 10:17 AM PT: second $5 add-on at BTC 8 PM, rejection model"
+    }
   },
   "timeGate": {
     "on": true,
@@ -480,11 +494,9 @@
       7
     ],
     "btc": [
-      0,
-      7,
-      8,
-      18,
-      23
+      1,
+      14,
+      21
     ]
   },
   "brokenBy": {
@@ -1584,33 +1596,21 @@
       ],
       "btc": [
         0,
-        1,
         2,
         3,
         4,
-        5,
         6,
         7,
-        8,
-        9,
         10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
         19,
         20,
-        21,
-        22,
-        23
+        22
       ]
     },
     "dollarsNote": "fix248 Oct 26 ~12:59 AM PT, Love: 'pls put it back to $11 and $5 for the orders hun' (rejection $11 + $5 add-on)",
-    "dollarsByHour": {},
+    "dollarsByHour": {
+      "20": 10
+    },
     "rejSeatHours": [
       0,
       1,
@@ -1644,9 +1644,6 @@
         2,
         4,
         6,
-        8,
-        11,
-        13,
         14,
         16,
         18,
@@ -1670,14 +1667,10 @@
         13,
         14,
         15,
-        16,
-        17,
-        18,
         19,
         20,
         21,
-        22,
-        23
+        22
       ]
     },
     "gold": {
@@ -1690,7 +1683,6 @@
         16,
         18,
         21,
-        22,
         23
       ],
       "recon-dly": [
@@ -2941,5 +2933,103 @@
       20,
       23
     ]
+  },
+  "fix453bPrev": {
+    "rejHoursByAsset.btc": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "liveSkipHours.btc": [
+      0,
+      7,
+      8,
+      18,
+      23
+    ],
+    "bookSkipHoursByAsset.btc.recon-dly": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  "fix458Prev": {
+    "btc.recon-tog": [
+      2,
+      4,
+      6,
+      8,
+      11,
+      13,
+      14,
+      16,
+      18,
+      21,
+      23
+    ],
+    "gold.recon-tog": [
+      2,
+      4,
+      6,
+      8,
+      14,
+      16,
+      18,
+      21,
+      22,
+      23
+    ]
+  },
+  "fix455Prev": {
+    "offHourMain.dollarsByHour": {},
+    "addOn.second": null,
+    "kalshiCeilingByHour": null
+  },
+  "kalshiCeilingByHour": {
+    "btc": {
+      "20": 10
+    }
   }
 }

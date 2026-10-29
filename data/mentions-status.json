@@ -1,7 +1,7 @@
 {
- "at": "2026-10-29T16:48:52.656Z",
- "events": 150,
- "checked": 1221,
+ "at": "2026-10-29T17:18:53.223Z",
+ "events": 153,
+ "checked": 1271,
  "live": [
   "KXEARNINGSMENTIONNVDA-26NOV18",
   "KXEARNINGSMENTIONFIG-26NOV04",
@@ -22,7 +22,6 @@
   "KXEARNINGSMENTIONCAVA-26NOV03",
   "KXEARNINGSMENTIONSTZ-27JAN07",
   "KXEARNINGSMENTIONNYT-26NOV04",
-  "KXEARNINGSMENTIONHIMS-26NOV02",
   "KXEARNINGSMENTIONCOST-26DEC10",
   "KXEARNINGSMENTIONADBE-26DEC09",
   "KXEARNINGSMENTIONSPCX-27JAN26",
@@ -40,6 +39,7 @@
   "KXEARNINGSMENTIONMELI-26NOV04",
   "KXEARNINGSMENTIONSBUX-26OCT29",
   "KXEARNINGSMENTIONASTS-26NOV10",
+  "KXEARNINGSMENTIONCALM-27JAN06",
   "KXEARNINGSMENTIONUAL-27JAN20",
   "KXEARNINGSMENTIONOKLO-26NOV10",
   "KXEARNINGSMENTIONRACE-26NOV03",
@@ -47,7 +47,6 @@
   "KXEARNINGSMENTIONAZO-26DEC08",
   "KXEARNINGSMENTIONZM-26NOV23",
   "KXEARNINGSMENTIONACI-27JAN13",
-  "KXEARNINGSMENTIONDASH-26NOV04",
   "KXTRUMPSAYCOUNTRY-26NOV01",
   "KXEARNINGSMENTIONRIVN-26OCT29",
   "KXTRUMPSAYNICKNAME-27JAN01",
@@ -83,23 +82,12 @@
    "basis": "6 of 13 events"
   },
   {
-   "ticker": "KXVANCEMENTION-26OCT29B-SMAL",
-   "event": "KXVANCEMENTION-26OCT29B",
-   "word": "Small Business",
-   "title": "What will JD Vance say during midterm rally in Weatherford, Texas originally scheduled for October 29, 2026?",
-   "side": "no",
-   "ask": 0.82,
-   "rate": 0.13,
-   "n": 8,
-   "basis": "1 of 8 rallies"
-  },
-  {
    "ticker": "KXVANCEMENTION-26OCT29B-OIL",
    "event": "KXVANCEMENTION-26OCT29B",
    "word": "Oil / Gas / Gasoline",
    "title": "What will JD Vance say during midterm rally in Weatherford, Texas originally scheduled for October 29, 2026?",
    "side": "no",
-   "ask": 0.35,
+   "ask": 0.34,
    "rate": 0.45,
    "n": 11,
    "basis": "5 of 11 rallies"
@@ -110,10 +98,21 @@
    "word": "Economy / Economic",
    "title": "What will JD Vance say during midterm rally in Weatherford, Texas originally scheduled for October 29, 2026?",
    "side": "no",
-   "ask": 0.61,
+   "ask": 0.59,
    "rate": 0.45,
    "n": 11,
    "basis": "5 of 11 rallies"
+  },
+  {
+   "ticker": "KXVANCEMENTION-26OCT29B-CAMP",
+   "event": "KXVANCEMENTION-26OCT29B",
+   "word": "2028 / Campaign",
+   "title": "What will JD Vance say during midterm rally in Weatherford, Texas originally scheduled for October 29, 2026?",
+   "side": "yes",
+   "ask": 0.45,
+   "rate": 0.82,
+   "n": 11,
+   "basis": "9 of 11 rallies"
   },
   {
    "ticker": "KXVANCEMENTION-26OCT29-OIL",
@@ -121,7 +120,7 @@
    "word": "Oil / Gas / Gasoline",
    "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
    "side": "no",
-   "ask": 0.26,
+   "ask": 0.3,
    "rate": 0.38,
    "n": 8,
    "basis": "3 of 8 events"
@@ -165,7 +164,7 @@
    "word": "Fraud",
    "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
    "side": "yes",
-   "ask": 0.52,
+   "ask": 0.53,
    "rate": 1,
    "n": 9,
    "basis": "9 of 9 events"
@@ -205,9 +204,6 @@
   }
  ],
  "errors": [
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
   "Error: 429",
   "Error: 429",
   "Error: 429"

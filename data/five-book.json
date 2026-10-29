@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T16:50:10.403Z",
+ "at": "2026-10-29T17:39:24.362Z",
  "rows": {
   "cpc-btc-updown-5m-2026-10-25-1540z:recon-rej-5m:2026-10-25T15:40:32.131Z": {
    "at": "2026-10-25T15:40:32.131Z",
@@ -4291,6 +4291,57 @@
    "door": "1m flip",
    "result": "win",
    "pnl": 3.81
+  },
+  "cpc-btc-updown-5m-2026-10-29-1650z:recon-rej-5m:2026-10-29T16:51:05.161Z": {
+   "at": "2026-10-29T16:51:05.161Z",
+   "book": "recon-rej-5m",
+   "slug": "cpc-btc-updown-5m-2026-10-29-1650z",
+   "side": "up",
+   "cost": 0.48,
+   "stake": 4.61,
+   "closesAt": "2026-10-29T16:55:00.000Z",
+   "status": "banked",
+   "banked": 4.49,
+   "soldPx": 0.97,
+   "addOn": false,
+   "setup": "Launched from the bottom third (low 81128.99) - a long until the top third",
+   "door": "1m flip",
+   "result": "win",
+   "pnl": 4.49
+  },
+  "cpc-btc-updown-5m-2026-10-29-1710z:recon-rej-5m:2026-10-29T17:12:04.268Z": {
+   "at": "2026-10-29T17:12:04.268Z",
+   "book": "recon-rej-5m",
+   "slug": "cpc-btc-updown-5m-2026-10-29-1710z",
+   "side": "down",
+   "cost": 0.59,
+   "stake": 5,
+   "closesAt": "2026-10-29T17:15:00.000Z",
+   "status": "to the bell",
+   "banked": null,
+   "soldPx": null,
+   "addOn": false,
+   "setup": "Candle falling from the top third",
+   "door": "2m flip",
+   "result": "win",
+   "pnl": 3.47
+  },
+  "cpc-btc-updown-5m-2026-10-29-1735z:recon-rej-5m:2026-10-29T17:36:02.907Z": {
+   "at": "2026-10-29T17:36:02.907Z",
+   "book": "recon-rej-5m",
+   "slug": "cpc-btc-updown-5m-2026-10-29-1735z",
+   "side": "down",
+   "cost": 0.63,
+   "stake": 4.77,
+   "closesAt": "2026-10-29T17:40:00.000Z",
+   "status": "banked",
+   "banked": 2.42,
+   "soldPx": 0.95,
+   "addOn": false,
+   "setup": "Candle falling from the top third",
+   "door": "1m flip",
+   "result": "win",
+   "pnl": 2.42
   }
  }
 }

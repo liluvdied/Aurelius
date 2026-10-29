@@ -2,6 +2,46 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R171 - fix458 (config, 10:45 AM PT): an old main-book block (bookSkipHoursByAsset.<asset>.recon-tog) kept main out of hours Love gave main - lifted BTC 8, 11 AM, 1 PM and gold 10 PM only; fix458Prev keeps the old values.
+- when: 2026-10-29T17:46:27+00:00
+- Love: "Love Oct 29 2026 9:57 AM PT BTC schedule: "5am - GOES TO MAIN ... 8am - GOES TO MAIN 9am - GOES TO MAIN ... 11am - GOES TO MAIN 12pm. - GOES TO MAIN 1pm GOES TO MAIN" + 10:15 AM "give btc 6am on rejection now that i saw these okay :) luckily the hours i picked still held up on the actual numbers :)"; Love 9:42 AM PT gold schedule: "10pm - GOES TO MAIN for gold""
+- books: r, e, c, o, n, -, t, o, g,  , (, B, T, C,  , +,  , g, o, l, d, )
+- status: ACTIVE
+- proof: {"config": "bookSkipHoursByAsset.btc.recon-tog", "equals": [2, 4, 6, 14, 16, 18, 21, 23]}
+
+## R170 - fix457: main + rejection (gold + BTC, never the 5M) - a session band or the pink that broke DOWN this 5m candle = only a short this candle (no long; mirror: broke UP = only a long); a wick through with price back on the other side of the band is not an entry; the 33% counts a band broken this candle against her as unbroken; a long with a session band just above (short with one just below) refused. Tests tools/broke-candle-test-457.cjs
+- when: 2026-10-29T17:43:18+00:00
+- Love: "Love Oct 29 2026 10:42 AM PT: "yes. if a band broke downwards it is only a short this is like day 0 information hun. band breaks = trade the direction of the break. WITH PRICE ON THE SAME SIDE OF THE BREAK. A WICK THRU WITH PRICE ON THE OTHER SIDE OF THE BAND IS NOT AN ENTRY. ==== BLOCKED ❌ / a LONG WITH A SESSION BAND 5 MILLIMETERS ABOVE HER ====== BLOCKKKKKED ❌ / count the 33% correctly. this cannot keep happening dude" (yes to fix457, staged after her 10:29 AM: "she just longed gold with a session band righttttt above her again. why did that get thru?????? it was ABSOLUTELY in the top 33% of the channel. this can't keep happening dude")"
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d,  , +,  , B, T, C, )
+- status: ACTIVE
+- proof: {"test": "tools/broke-candle-test-457.cjs"}
+
+## R169 - fix456 (in progress): the Polymarket 5M book becomes its own walled-off model, put back to how it ran on Oct 25 (rejection read + 1m flip, flip+4 minutes, its own walls), in its own files that no other book's code reads or changes. Gate + umpire will refuse any change to those files without Love's words.
+- when: 2026-10-29T17:27:42+00:00
+- Love: "Love Oct 29 2026 10:27 AM PT: "yes. put it back where it was october 25th please. she was only waiting for a 1M flip on that model. please create a SEPARATE BOOK FOR THAT MODEL. ITS SUPPOSED TO STAND ALONE FROM THE OTHERS. I CANNOT HAVE IT KEEP CHANGING EVRRYTIME WE REFINE THE OTHERS. IT WAS THE ONLY BOOK WE HAVE THAT WORKED. ... make it a SEPARATE BOOK. ON A SEPARATE MODEL. ONE ALTERATION TO ONE - DOES NOTTTTTTTTTTTTTTTT. DOES. NOT. TOUCH. THE 5M BOOK. WALLED OFF. PLEASE.""
+- books: 5, M,  , (, P, o, l, y, m, a, r, k, e, t, ),  , o, n, l, y
+- status: ACTIVE
+- proof: {"process": "5M walled off as its own model (Love Oct 29 10:27 AM) - build in progress"}
+
+## R168 - fix455: BTC 8 PM PT, rejection model, Kalshi only: $10 entry (offHourMain.dollarsByHour {"20": 10}, Kalshi-only ceiling kalshiCeilingByHour {btc: {"20": 10}} - maxDollars stays 5 so Polymarket still caps at 5), first add-on $5 on its rejection-hour trigger (2.8x+, offHourMain.addOn), and ONE second $5 add-on (addOn.second, books recon-rej, hoursByAsset btc [20]) on the same side when price is at a different band and a 2-5m candle has flipped her way there; walls + wire check judge every order. Test tools/eight-pm-test-455.cjs.
+- when: 2026-10-29T17:19:56+00:00
+- Love: "Love Oct 29 2026 10:17 AM PT: "and yeah no we can double up on 8pm hun , $10 initial entry and $5 initial add on - $5 secondary add on at the next band price encounters and rejects. same way we have our entry logic wired. candle flips near a band = second add on of $5""
+- books: r, e, c, o, n, -, r, e, j,  , (, b, t, c,  , 8,  , P, M, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "function kalshiCeil(ticker) {"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "second add-on (fix455)"}
+- proof: {"config": "data/live-switch.json", "key": "kalshiCeilingByHour.btc.20", "equals": 10}
+- proof: {"test": "tools/eight-pm-test-455.cjs"}
+
+## R167 - fix453b (config, 10:30 AM PT boundary): Love's BTC schedule (R164) goes in with 6 AM moved from cut to the rejection model: rejection [0,2,3,4,6,7,10,19,20,22]; main 5, 8, 9, 11 AM, 12, 1, 3 PM; delayed model on Kalshi 4, 5, 6, 11 PM ($2.50 + $5 add-on at 3.8x+); sit out 1 AM, 2 PM, 9 PM. 8 PM double sizing still waits on Love (the $5 ceiling).
+- when: 2026-10-29T17:16:04+00:00
+- Love: "Love Oct 29 2026 10:15 AM PT: "give btc 6am on rejection now that i saw these okay :) luckily the hours i picked still held up on the actual numbers :)" (with her 9:57 AM BTC schedule, R164)"
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j, ,,  , r, e, c, o, n, -, d, l, y,  , (, b, t, c, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejHoursByAsset.btc", "equals": [0, 2, 3, 4, 6, 7, 10, 19, 20, 22]}
+- proof: {"config": "data/live-switch.json", "key": "liveSkipHours.btc", "equals": [1, 14, 21]}
+- proof: {"config": "data/live-switch.json", "key": "bookSkipHoursByAsset.btc.recon-dly", "equals": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19, 20, 21, 22]}
+
 ## R166 - Standing rule: every performance number for any book is counted ONLY by the structure in place (her live take-profit structure + add-on, i.e. what she actually took). Never held-to-the-bell, never a different exit model.
 - when: 2026-10-29T17:05:04+00:00
 - Love: "Love Oct 29 2026 10:04 AM PT: "going forward if i ever ask you about a books performance, do not ever count it any other way than the strucutre we have in place. i have no idea why you would count it any differently" + 10:00 AM: "please do not count her wins or losses as ANYTHING OTHER THAN THE STRUCTURE WE HAVE IN PLACE.""

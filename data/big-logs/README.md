@@ -29,3 +29,8 @@ Restore: `cat <name>.zst.part-* | zstd -dc > <name>`
 
 ## dna-blocks.jsonl (from Oct 29 2026 ~10:08 AM PT)
 Over 100 MB, so it lives here as 90 MB raw pieces: cat data/big-logs/dna-blocks.jsonl.part-* > data/dna-blocks.jsonl
+
+## Added Oct 29 2026 ~11:00 AM PT (more files over 100 MB, none left out)
+- `offsite/p380.zip` … `p383.zip` and `offsite/bundle-1027-d2.tzst.part-aa`: split into 90 MB parts. Restore: `cat data/big-logs/offsite/p380.zip.part-* > HISTORY/offsite/p380.zip`.
+- `grok-og-archive-pre-runaway-7c76b71e.jsonl.gz.part-*`: ONE copy (gzip) of the 401 MB grok-og archive, sha256 7c76b71eab1b8d6a… - the same bytes as `data/grok-og-archive.jsonl.pre-runaway-cleanup`, `data/SAVES/2026-10-27-0700PM-PT-before-runaway-cleanup/grok-og-archive.jsonl.bak` and `data/VAULT/objects/7c/7c76b71e…`. Restore: `cat …part-* | gunzip > file`.
+- `data/archive/*-upto-2026-10-27-1005PM-PT.jsonl`: already here as `*-upto-…jsonl.zst.part-*`.

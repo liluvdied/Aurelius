@@ -4,13 +4,13 @@ Since Mon Oct 20 PT. rejHr = the asset's live rejection hours (fix243 map).
 
 | book | asset | hours | trades | win | P&L |
 |---|---|---|---|---|---|
-| approach | btc | other | 321 | 42% | -679.47 |
+| approach | btc | other | 322 | 42% | -664.83 |
 | approach | btc | rejHr | 461 | 54% | +898.01 |
-| approach | gold | other | 285 | 40% | -1024.79 |
-| approach | gold | rejHr | 234 | 44% | -407.28 |
-| rej paper | btc | other | 336 | 48% | -638.87 |
-| rej paper | btc | rejHr | 479 | 55% | +1581.13 |
-| rej paper | gold | other | 301 | 50% | -138.73 |
-| rej paper | gold | rejHr | 246 | 50% | +43.12 |
+| approach | gold | other | 286 | 41% | -998.00 |
+| approach | gold | rejHr | 236 | 44% | -413.80 |
+| rej paper | btc | other | 338 | 48% | -646.85 |
+| rej paper | btc | rejHr | 480 | 55% | +1594.33 |
+| rej paper | gold | other | 302 | 50% | -159.48 |
+| rej paper | gold | rejHr | 248 | 50% | +29.90 |
 
-Live-forward since Mon Oct 26 12 AM PT: 522 trades, 234 wins, -784.43
+Live-forward since Mon Oct 26 12 AM PT: 526 trades, 237 wins, -749.52

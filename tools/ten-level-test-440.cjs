@@ -10,6 +10,11 @@ const run = (tgt, tick, side, flipRule = true) => new Function("targetNow", "tic
 let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log("TEN LEVEL TEST: FAIL - " + m); } };
 t(run(4040, 4038, "up"), "target 4040, price 4038: a long INTO 4040 must be refused");
 t(!run(4040, 4038, "down"), "target 4040, price 4038: a short AWAY must go");
+// Love Oct 29 2026 10:35 AM PT, word for word: "EXAMPLE = PRICE CURRENTLY AT 4018 / TARGET PRICE 4020 / LONG INTO THAT LEVEL === BLOCKED / SHORT AWAY FROM THAT == ONLY TRADE ALLOWED."
+t(run(4020, 4018, "up"), "Love 10:35 AM: price 4018, target 4020 - LONG INTO it must be BLOCKED");
+t(!run(4020, 4018, "down"), "Love 10:35 AM: price 4018, target 4020 - SHORT AWAY is the only trade allowed");
+t(run(4020, 4022, "down"), "mirror: price 4022, target 4020 - SHORT INTO it must be BLOCKED");
+t(!run(4020, 4022, "up"), "mirror: price 4022, target 4020 - LONG AWAY is allowed");
 t(run(4041.4, 4038, "up"), "target $1.40 off the level (within $1.50): a long into it must be refused (main + rejection)");
 t(!run(4041.4, 4038, "up", false), "other books keep their $1");
 t(run(4040, 4042, "down"), "mirror: target 4040, price 4042: a short INTO 4040 must be refused");

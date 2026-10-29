@@ -1,5 +1,29 @@
 [
   {
+    "at": "2026-10-29T17:41:12.039Z",
+    "asset": "silver",
+    "side": "down",
+    "pattern": "Tap-reject at -1σ",
+    "stake": 25,
+    "multiple": 1.5384615384615383,
+    "profit": 12.42,
+    "pct": 50,
+    "result": "closed",
+    "why": "hard 48.8% · offered 50%"
+  },
+  {
+    "at": "2026-10-29T17:39:04.429Z",
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Tap-reject at -1σ",
+    "stake": 25,
+    "multiple": 1.7241379310344829,
+    "profit": 14.18,
+    "pct": 57,
+    "result": "closed",
+    "why": "hard 54.3% · offered 57%"
+  },
+  {
     "at": "2026-10-29T16:29:24.172Z",
     "asset": "gold",
     "side": "down",
@@ -2374,29 +2398,5 @@
     "pct": 54,
     "result": "closed",
     "why": "hard 52.1% · offered 54%"
-  },
-  {
-    "at": "2026-10-27T05:52:23.772Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at -0.5σ",
-    "stake": 25,
-    "multiple": 1.4285714285714286,
-    "profit": 9.82,
-    "pct": 39,
-    "result": "closed",
-    "why": "hard 37.9% · offered 39%"
-  },
-  {
-    "at": "2026-10-27T05:26:20.208Z",
-    "asset": "silver",
-    "side": "down",
-    "pattern": "Tap-reject at −1σ",
-    "stake": 25,
-    "multiple": 1.6949152542372883,
-    "profit": 13.14,
-    "pct": 53,
-    "result": "closed",
-    "why": "hard 52.1% · offered 53%"
   }
 ]
