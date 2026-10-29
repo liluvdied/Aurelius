@@ -9256,5 +9256,65 @@
   "status": "skipped",
   "final": true,
   "reason": "RECON-DLY sits out her worst hour (12 PM PT) live"
+ },
+ "KXBTC15M-26OCT291615-15:recon-rej:KXBTC15M-26OCT291615-15:recon-rej": {
+  "at": "2026-10-29T20:00:05.242Z",
+  "ticker": "KXBTC15M-26OCT291615-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26OCT291615-15:recon-tog:KXBTC15M-26OCT291615-15:recon-tog": {
+  "at": "2026-10-29T20:00:05.775Z",
+  "ticker": "KXBTC15M-26OCT291615-15",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-10-29T20:00:05.775Z",
+  "bookedAt": "2026-10-29T20:00:05.033Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.56,
+  "orderId": "01a1893f-8988-7243-98a0-9a79839dce99"
+ },
+ "KXGOLD15M-26OCT291615-15:recon-rej:KXGOLD15M-26OCT291615-15:recon-rej": {
+  "at": "2026-10-29T20:02:06.733Z",
+  "ticker": "KXGOLD15M-26OCT291615-15",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "INSIDE THE RED ZONE: long at 4022.91 inside the red zone (4022.71-4025.75) - the red belongs to shorts (fix377).",
+  "firstTryAt": "2026-10-29T20:01:09.107Z",
+  "bookedAt": "2026-10-29T20:02:05.974Z",
+  "tries": 223,
+  "final": false,
+  "paid": 0.44,
+  "orderId": "01a18941-6230-760e-905b-b1485089044a"
+ },
+ "KXBTC15M-26OCT291615-15:recon-dly:KXBTC15M-26OCT291615-15:recon-dly": {
+  "at": "2026-10-29T20:01:23.400Z",
+  "ticker": "KXBTC15M-26OCT291615-15",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (1 PM PT) live"
+ },
+ "KXGOLD15M-26OCT291615-15:recon-tog:KXGOLD15M-26OCT291615-15:recon-tog": {
+  "at": "2026-10-29T20:02:01.545Z",
+  "ticker": "KXGOLD15M-26OCT291615-15",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26OCT291615-15:recon-dly:KXGOLD15M-26OCT291615-15:recon-dly": {
+  "at": "2026-10-29T20:02:06.091Z",
+  "ticker": "KXGOLD15M-26OCT291615-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (1 PM PT) live"
  }
 }

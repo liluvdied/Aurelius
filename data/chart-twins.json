@@ -1,15 +1,15 @@
 {
- "at": "2026-10-29T20:09:26.456Z",
+ "at": "2026-10-29T20:19:07.519Z",
  "summary": {
   "btc-vantage": {
-   "trades": 41,
-   "wins": 24,
-   "pnl": 13.69
+   "trades": 42,
+   "wins": 25,
+   "pnl": 16.16
   },
   "btc-pepperstone": {
-   "trades": 43,
-   "wins": 27,
-   "pnl": 70.26
+   "trades": 44,
+   "wins": 28,
+   "pnl": 72.41
   },
   "gold-vantage": {
    "trades": 79,
@@ -17,49 +17,49 @@
    "pnl": 42.53
   },
   "gold-pepperstone": {
-   "trades": 76,
-   "wins": 44,
-   "pnl": -85.66
+   "trades": 77,
+   "wins": 45,
+   "pnl": -60.21
   },
   "rej-vantage": {
-   "trades": 77,
-   "wins": 53,
-   "pnl": 40.61
+   "trades": 78,
+   "wins": 54,
+   "pnl": 45.61
   },
   "rej-pepperstone": {
-   "trades": 79,
-   "wins": 46,
-   "pnl": -10.9
+   "trades": 80,
+   "wins": 47,
+   "pnl": -10.36
   }
  },
  "now": {
   "gold-vantage": {
-   "at": "2026-10-29T20:09:26.456Z",
-   "px": 4029.49,
-   "pink": 4022.58,
-   "channel": "-1σ 4018.43 - session VWAP 4031.74",
-   "pct": 83
+   "at": "2026-10-29T20:19:04.317Z",
+   "px": 4025.54,
+   "pink": 4024.47,
+   "channel": "-1σ 4018.45 - session VWAP 4031.70",
+   "pct": 54
   },
   "gold-pepperstone": {
-   "at": "2026-10-29T20:01:02.563Z",
-   "px": 4021.37,
-   "pink": 4019.66,
-   "channel": "-1σ 4018.37 - session VWAP 4031.81",
-   "pct": 22
+   "at": "2026-10-29T20:19:05.360Z",
+   "px": 4025.3,
+   "pink": 4024.33,
+   "channel": "-1σ 4018.38 - session VWAP 4031.73",
+   "pct": 52
   },
   "btc-vantage": {
-   "at": "2026-10-29T20:02:12.594Z",
-   "px": 80574.87,
-   "pink": 80812.25,
-   "channel": "-1σ 80008.43 - session VWAP 80589.54",
-   "pct": 97
+   "at": "2026-10-29T20:19:02.132Z",
+   "px": 80333.04,
+   "pink": 80528.99,
+   "channel": "-1σ 80008.65 - session VWAP 80584.68",
+   "pct": 56
   },
   "btc-pepperstone": {
-   "at": "2026-10-29T20:02:22.802Z",
-   "px": 80476.72,
-   "pink": 80720.18,
-   "channel": "-1σ 79899.13 - session VWAP 80489.49",
-   "pct": 98
+   "at": "2026-10-29T20:19:03.150Z",
+   "px": 80255.1,
+   "pink": 80442.55,
+   "channel": "-1σ 79899.68 - session VWAP 80486.31",
+   "pct": 61
   }
  },
  "rows": [
@@ -7822,8 +7822,9 @@
    "ask": 0.5,
    "multiple": 2,
    "stake": 5,
-   "result": "open",
-   "pnl": null
+   "result": "win",
+   "pnl": 5,
+   "settled": "no"
   },
   {
    "id": "KXGOLD15M-26OCT291615-15:gold-pepperstone",
@@ -7841,8 +7842,9 @@
    "ask": 0.44,
    "multiple": 2.27,
    "stake": 20,
-   "result": "open",
-   "pnl": null
+   "result": "win",
+   "pnl": 25.45,
+   "settled": "yes"
   },
   {
    "id": "KXBTC15M-26OCT291615-15:btc-vantage",
@@ -7860,8 +7862,9 @@
    "ask": 0.89,
    "multiple": 1.12,
    "stake": 20,
-   "result": "open",
-   "pnl": null
+   "result": "win",
+   "pnl": 2.47,
+   "settled": "no"
   },
   {
    "id": "KXBTC15M-26OCT291615-15:btc-pepperstone",
@@ -7879,8 +7882,9 @@
    "ask": 0.903,
    "multiple": 1.11,
    "stake": 20,
-   "result": "open",
-   "pnl": null
+   "result": "win",
+   "pnl": 2.15,
+   "settled": "no"
   },
   {
    "id": "KXBTC15M-26OCT291615-15:rej-pepperstone",
@@ -7897,8 +7901,9 @@
    "ask": 0.903,
    "multiple": 1.11,
    "stake": 5,
-   "result": "open",
-   "pnl": null
+   "result": "win",
+   "pnl": 0.54,
+   "settled": "no"
   }
  ]
 }

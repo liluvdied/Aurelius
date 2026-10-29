@@ -632,6 +632,22 @@ export function pinkShortWall464(asset: string, L: Line[], tick: number, side: s
   }
   return `NO SHORT OVER AN UNBROKEN PINK (fix464): 5m PP ${P.toFixed(2)} is ${tick > P ? `$${(tick - P).toFixed(2)} below` : `only $${(P - tick).toFixed(2)} broken, under her $${brk} break`} - no short until it breaks down`;
 }
+// HER 33% FOR THE CANDLE'S LAUNCH TOO (fix464, R201 - Love Oct 29 2026 1:09 PM PT: "dude she was in the bottom 33% of the channel that is not an excuse" + 11:33 AM: "NO LONGS IN TOP 33% . NO SHORTS IN THE BOTTOM 33%" + 11:39 AM: "we will do the sliding scale later"): main + rejection. thirdsMove (the candle launched from the bottom third = a long, never a short; from the top third = a short,
+// never a long) used the sliding share lockPctFor - 20% on gold channels $10-25 wide - so at 1:02:06 PM gold (launch low 4021.23, 24% up the -1σ 4018.08 -> VWAP 4031.35 channel, now 35%) it
+// did not fire for the rejection book while 40+ books on her fixed 33% refused the short. Until Love sets the sliding scale, main + rejection read the launch at her 33%.
+export function thirdsMove464(asset: string, L: Line[], tick: number, o: number, hl: { h: number; l: number } | null | undefined): "up" | "down" | "" {
+  const tap = PINK_TAP[asset] ?? 0, pct = 0.33;
+  if (!(tick > 0) || !hl || !(hl.l > 0) || !(hl.h > 0) || !(tap > 0)) return "";
+  const sqzP = squeezedPinkOf(L);
+  const C = chanL(asset, L).filter((l) => isChanBand(asset, l) && Number(l.price) > 0 && !sqzP(l));
+  const at = (x: number) => { const u = C.filter((l) => l.price > x).sort((a, c) => a.price - c.price)[0]; const d = C.filter((l) => l.price < x).sort((a, c) => c.price - a.price)[0]; return u && d ? { lo: d.price, hi: u.price, w: u.price - d.price } : null; };
+  const lo = at(hl.l), hi = at(hl.h);
+  const upOk = !!lo && lo.w > 0 && (hl.l - lo.lo) / lo.w <= pct && tick >= hl.l + tap && (tick - lo.lo) / lo.w < 1 - pct;
+  const dnOk = !!hi && hi.w > 0 && (hi.hi - hl.h) / hi.w <= pct && tick <= hl.h - tap && (hi.hi - tick) / hi.w < 1 - pct;
+  if (upOk && !dnOk) return "up";
+  if (dnOk && !upOk) return "down";
+  return "";
+}
 export function brokeThisCandle441(asset: string, L: Line[], tick: number, side: string, o5?: number, hl?: { h: number; l: number } | null): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
   const d = BREAK_DIST[asset] ?? 0, op = o5 === undefined ? fiveOpenNow(asset) : o5, x = hl === undefined ? fiveHLNow(asset) : hl;
@@ -845,6 +861,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
   // inverse included, any asset. An asset with no band feed can't be verified, so it can't open.
   void LAW_BOOKS;
   const deny = (reason: string, extra: Record<string, unknown> = {}) => {
+    if (G.__blQuiet464) return { ok: false as const, reason }; // fix464: her read asks the same walls quietly (no log line per tick)
     try { appendFileSync(D("band-lock.jsonl"), JSON.stringify({ at: new Date().toISOString(), book, asset, side, reason, ...extra }) + "\n"); } catch {}
     return { ok: false as const, reason };
   };
@@ -871,6 +888,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
     if (book === "recon-tog" || book === "recon-rej") { const ss434 = sameSide434(asset, lbR.L, qR.c, side); if (ss434) return deny(ss434, { tick: qR.c }); } // fix434: on her side of the break, her 33%
     if (book === "recon-tog" || book === "recon-rej") { const bt441 = brokeThisCandle441(asset, lbR.L, qR.c, side); if (bt441) return deny(bt441, { tick: qR.c }); } // fix441: broke it this candle = her side now
     if (book === "recon-tog" || book === "recon-rej") { const bt457 = brokeThisCandle457(asset, lbR.L, qR.c, side); if (bt457) return deny(bt457, { tick: qR.c }); } // fix457 (R170, Love Oct 29 10:42 AM): band broke this candle = trade the break with price on its side; her 33% counted right
+    if (book === "recon-tog" || book === "recon-rej") { const tm464 = thirdsMove464(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tm464 && tm464 !== side) return deny(`HER 33% LAUNCH (fix464): the candle is ${tm464 === "up" ? "rising from the bottom 33% - a long, never a short" : "falling from the top 33% - a short, never a long"}`, { tick: qR.c }); } // fix464 (R201, Love 1:09 PM "she was in the bottom 33% of the channel that is not an excuse")
     { const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side) return deny(`the candle is ${tmR === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }
     const chR = channelOnly(asset, lbR.L, qR.c, side, refreshBroken(asset, lbR.L, qR.c)); // REJECTION OVERRIDE REMOVED (Oct 19 ~9:18 PM PT, Love: "let's remove the pink band rejection override... she shorted here and it would have been rejected for being in the bottom 33% on gold" - the wall rules over rejections again)
     if (chR) return deny(chR, { tick: qR.c });

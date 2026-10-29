@@ -1,26 +1,26 @@
 {
- "at": "2026-10-29T20:08:15.279Z",
+ "at": "2026-10-29T20:17:28.752Z",
  "scanned": 138,
  "picked": [
-  "KXTEMPLAXHS",
+  "KXTEMPDCH",
   "KXTEMPMON",
-  "KXTEMP",
   "KXTEMPCHIMETROHS",
   "KXTEMPCHIHS",
+  "KXTEMP",
+  "KXTEMPLAXHS",
   "KXTEMPNYCHS",
-  "KXTEMPDCH",
-  "KXLOWNY",
-  "KXLOWTSDF",
-  "KXLOWTNYC",
-  "KXHIGHTEMPDEN",
-  "KXLOWTLAX",
-  "KXLOWTDC",
   "KXHIGHMIA",
-  "KXLOWTTTN",
-  "KXHIGHNYD",
+  "KXLOWTSEA",
+  "KXHIGHOU",
+  "KXLOWTDEN",
+  "KXLOWMIA",
   "KXHIGHLAX",
-  "KXLOWTSAN",
-  "KXHIGHNY"
+  "KXHIGHTSDF",
+  "KXHIGHTBOS",
+  "KXLOWTMIN",
+  "KXHIGHTEMPDEN",
+  "KXHIGHTEWR",
+  "KXHIGHTSFO"
  ],
  "stations": {
   "KXTEMPLAXHS": "KLAX",
@@ -71,11 +71,7 @@
  },
  "rules": {},
  "flags": [],
- "errors": [
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPCHIHS&status=settl",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPDCH&status=open&li",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWNY&status=open&limi"
- ],
+ "errors": [],
  "cats": {
   "Entertainment": 2595,
   "Elections": 2338,

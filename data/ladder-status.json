@@ -1,24 +1,6 @@
 {
- "at": "2026-10-29T20:00:01.646Z",
+ "at": "2026-10-29T20:10:02.571Z",
  "cities": [
-  {
-   "city": "CHI",
-   "station": "KMDW",
-   "hourLocal": 15,
-   "offset": 0.09999999999999432,
-   "lessons": 18,
-   "maxSoFar": 69.8,
-   "mu": 69.9,
-   "sigma": 1.0999999999999999,
-   "best": {
-    "buckets": [
-     "72° to 73°"
-    ],
-    "cost": 0.01,
-    "p": 0.07,
-    "edge": 0.06
-   }
-  },
   {
    "city": "AUS",
    "station": "KAUS",
@@ -30,11 +12,12 @@
    "sigma": 1.0999999999999999,
    "best": {
     "buckets": [
-     "77° to 78°"
+     "77° to 78°",
+     "79° to 80°"
     ],
     "cost": 0.24,
-    "p": 0.41,
-    "edge": 0.15
+    "p": 0.43,
+    "edge": 0.17
    }
   },
   {
@@ -56,6 +39,24 @@
    }
   },
   {
+   "city": "CHI",
+   "station": "KMDW",
+   "hourLocal": 15,
+   "offset": 0.09999999999999432,
+   "lessons": 18,
+   "maxSoFar": 69.8,
+   "mu": 69.9,
+   "sigma": 1.0999999999999999,
+   "best": {
+    "buckets": [
+     "72° to 73°"
+    ],
+    "cost": 0.01,
+    "p": 0.07,
+    "edge": 0.06
+   }
+  },
+  {
    "city": "MIA",
    "station": "KMIA",
    "hourLocal": 16,
@@ -71,25 +72,6 @@
     "cost": 0.01,
     "p": 0.14,
     "edge": 0.12
-   }
-  },
-  {
-   "city": "DEN",
-   "station": "KDEN",
-   "hourLocal": 14,
-   "offset": 0.09999999999999432,
-   "lessons": 18,
-   "maxSoFar": 62.6,
-   "mu": 63.1,
-   "sigma": 1.4,
-   "best": {
-    "buckets": [
-     "62° or below",
-     "63° to 64°"
-    ],
-    "cost": 0.15,
-    "p": 0.84,
-    "edge": 0.68
    }
   },
   {
@@ -124,9 +106,27 @@
      "74° to 75°",
      "76° or above"
     ],
-    "cost": 0.26,
+    "cost": 0.15,
     "p": 0.41,
-    "edge": 0.13
+    "edge": 0.25
+   }
+  },
+  {
+   "city": "DEN",
+   "station": "KDEN",
+   "hourLocal": 14,
+   "offset": 0.09999999999999432,
+   "lessons": 18,
+   "maxSoFar": 64.4,
+   "mu": 64.5,
+   "sigma": 1.4,
+   "best": {
+    "buckets": [
+     "63° to 64°"
+    ],
+    "cost": 0.13,
+    "p": 0.5,
+    "edge": 0.36
    }
   }
  ],

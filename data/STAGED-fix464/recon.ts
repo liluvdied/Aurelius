@@ -24,6 +24,7 @@ import { bandInWay } from "./auto";
 import { dnaNow } from "./dna";
 import { quoteTick, feedHealth } from "./quotes";
 import { addOnTouchNow, anyFlipNow, anyFlip406Now, realFlipNow } from "./bandlock"; // fix169 + fix326 + fix424 + fix446
+import { bandLockCheck as bandLockCheck464 } from "./bandlock"; // fix464 (R202): her read meets the same band tolerances as her orders
 
 const D = (f: string) => join(process.cwd(), "data", f);
 const r2 = (n: number) => Math.round(n * 100) / 100;
@@ -464,6 +465,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   let changed = false;
   const book = (lane: string, look: { side: "up" | "down"; label: string }, askIn?: number) => {
     if ((lane === "recon-tog" || lane === "recon-rej") && isFlip463(look.label)) return false; // fix463 (R191, Love Oct 29 12:38 PM PT: "no flip. independent calls"): a flipped read is never her call
+    if (lane === "recon-tog" || lane === "recon-rej") { try { if (thirdsRead463(sessionLines(ax, id), spot, look.side)) return false; const pv464b = pivot(resample(b, 5), 5); if (pv464b && pinkRead464(id, sessionLines(ax, id), spot, look.side, Number(pv464b.pp))) return false; const G464b = globalThis as any; G464b.__blQuiet464 = true; try { if (!bandLockCheck464(lane, id, look.side, String(m.ticker)).ok) return false; } finally { G464b.__blQuiet464 = false; } } catch {} } // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): EVERY read main or rejection books - whatever path it came from (incl. the gold zone pickup) - meets her thirds, the pink both sides and every band tolerance first
     const prior = rows.find((r) => r.ticker === m.ticker && r.lane === lane);
     if (lane === "recon-dly" && DLY_AS_COPY && !(look as any).copy353) return false; // fix353: her old twin calls (initial move, touches, re-aims) no longer book
     // FRESH 5M SWINGS (fix186, Oct 25 ~1:45 AM PT, Love: "can you see why the rejection model didn't long at the rejection of btc at the band? ... it didnt register a
@@ -662,8 +664,9 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // fix326: recon-tog alone reads the pink rejection on her flip (copies keep firstT); the fake-out turn still outranks.
   let firstTog = firstT;
   try { if (tgPF && !tgFO) firstTog = tgPF; } catch {}
-  try { if (firstTog && thirdsRead463(sessionLines(ax, id), spot, firstTog.side)) firstTog = null; } catch {}
-  try { const pv464 = pivot(resample(b, 5), 5); if (firstTog && pv464 && pinkRead464(id, sessionLines(ax, id), spot, firstTog.side, Number(pv464.pp))) firstTog = null; } catch {} // fix464 (R197/R198): no main read into an unbroken pink within 15% / 20%, either side // fix463 (R193, Love 12:41 PM "in the read itself"): no main read in her wrong third
+  try { if (firstTog && thirdsRead463(sessionLines(ax, id), spot, firstTog.side)) firstTog = null; } catch {} // fix463 (R193, Love 12:41 PM "in the read itself"): no main read in her wrong third
+  try { const pv464 = pivot(resample(b, 5), 5); if (firstTog && pv464 && pinkRead464(id, sessionLines(ax, id), spot, firstTog.side, Number(pv464.pp))) firstTog = null; } catch {} // fix464 (R197/R198): no read into an unbroken pink within 15% / 20%, either side
+  try { if (firstTog) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464("recon-tog", id, firstTog.side, String(m.ticker)).ok) firstTog = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): every band tolerance in the read too - a read her walls refuse is never her call
   if (firstTog && book("recon-tog", firstTog, lookP && !lookT && firstTog === firstT ? lookP.ask : undefined)) changed = true;
   // THE MAIN BOOK, REJECTIONS ONLY (fix250, Oct 26 ~1:03 AM PT, Love: "make a copy of the main book that trades rejections only ... she is not taking the same trades
   // at all"): a literal copy of TOGETHER - the very call TOGETHER reads this tick (firstT), the same one-call-per-window rule - with only her breaks left out
@@ -862,8 +865,9 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   let lookRM = lookR;
   // fix326: recon-rej alone reads the pink rejection on her flip (recon-dly re-aim, rej5, rejx keep lookR); the fake-out turn still outranks.
   try { if (rejLB && rejReach > 0 && !rejFO) { const pfR = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach, true); if (pfR && /5m PP/.test(String(pfR.label))) lookRM = pfR; } } catch {}
-  try { if (lookRM && thirdsRead463(sessionLines(ax, id), spot, lookRM.side)) lookRM = null; } catch {}
-  try { const pv464 = pivot(resample(b, 5), 5); if (lookRM && pv464 && pinkRead464(id, sessionLines(ax, id), spot, lookRM.side, Number(pv464.pp))) lookRM = null; } catch {} // fix464 (R197/R198): no rejection read into an unbroken pink within 15% / 20%, either side // fix463 (R193, Love 12:41 PM "in the read itself"): no rejection read in her wrong third
+  try { if (lookRM && thirdsRead463(sessionLines(ax, id), spot, lookRM.side)) lookRM = null; } catch {} // fix463 (R193, Love 12:41 PM "in the read itself"): no rejection read in her wrong third
+  try { const pv464 = pivot(resample(b, 5), 5); if (lookRM && pv464 && pinkRead464(id, sessionLines(ax, id), spot, lookRM.side, Number(pv464.pp))) lookRM = null; } catch {} // fix464 (R197/R198): no read into an unbroken pink within 15% / 20%, either side
+  try { if (lookRM) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464("recon-rej", id, lookRM.side, String(m.ticker)).ok) lookRM = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): every band tolerance in the read too - a read her walls refuse is never her call
   if (lookRM && book("recon-rej", lookRM)) changed = true;
   // HER READS FOR THE RE-AIM PAPER TWIN (fix223, Oct 25 ~6:00 PM PT, Love: "let's keep her as is, let's run a paper twin that can re aim"): log-only - every time the
   // rejection model's BTC read turns inside a 5m slot it is written to data/rej-reads.jsonl; tools/five-reaim-paper.py replays a 5m paper book that follows it. No orders.

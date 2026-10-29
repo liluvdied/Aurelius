@@ -12820,3 +12820,9 @@
 {"at":"2026-10-29T20:08:44.876Z","lane":"recon-top","ticker":"KXGOLD15M-26OCT291615-15","side":"up","label":"Break above session VWAP","ask":0,"why":"setup has no settled record yet"}
 {"at":"2026-10-29T20:09:05.606Z","lane":"recon-ogp5","ticker":"KXBTC15M-26OCT291615-15","side":"down","label":"Launched from the top third (high 80374.05) - a short until the bottom third","ask":0.975,"why":"under her 1.38x floor (1.03x at 98c)"}
 {"at":"2026-10-29T20:09:05.614Z","lane":"recon-rejx","ticker":"KXBTC15M-26OCT291615-15","side":"down","label":"Launched from the top third (high 80374.05) - a short until the bottom third","ask":0.975,"why":"under her 1.38x floor (1.03x at 98c)"}
+{"at":"2026-10-29T20:15:05.196Z","lane":"recon-rej","ticker":"KXBTC15M-26OCT291630-30","side":"down","label":"Red candle falling from the top third","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-29T20:15:07.587Z","lane":"recon-tog","ticker":"KXGOLD15M-26OCT291630-30","side":"down","label":"Rejected down off Red zone","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-29T20:15:07.592Z","lane":"recon-togr","ticker":"KXGOLD15M-26OCT291630-30","side":"down","label":"Rejected down off Red zone","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-29T20:15:07.596Z","lane":"recon-togp","ticker":"KXGOLD15M-26OCT291630-30","side":"down","label":"Rejected down off Red zone","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-29T20:15:07.603Z","lane":"recon-rej","ticker":"KXGOLD15M-26OCT291630-30","side":"down","label":"Rejected down off Red zone","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-29T20:15:07.609Z","lane":"recon-rejx","ticker":"KXGOLD15M-26OCT291630-30","side":"down","label":"Rejected down off Red zone","ask":1,"why":"ask out of bounds"}

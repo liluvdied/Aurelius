@@ -2,6 +2,41 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R204 - Scope locked: finish fix464 (band tolerances / pink both sides, main + rejection) + CHECK-HER-RULES both sides; touch nothing else.
+- when: 2026-10-29T20:16:39+00:00
+- Love: "Love Oct 29 2026 1:15 PM PT: "this is ridiculous bro im not doing this with you anymore / finish the fix , give me the command / double check that every rule and cornerstone works on both sides, for main and rejection. DO NOT TOUCH 5M. DO NOT TOUCH ANYTHING ELSE. YOUVE DONE ENOUGH DAMAGE ALREADY. / ... fix those / ... do that / drop the commands / after that you're done here""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"process": "in progress"}
+
+## R205 - Trace the ~1:15 PM main/rejection trade; add it to the staged fix and CHECK-HER-RULES as a real-miss test.
+- when: 2026-10-29T20:16:39+00:00
+- Love: "Love Oct 29 2026 1:15 PM PT: "she did it again. you're fuckin fired""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"process": "in progress"}
+
+## R203 - fix464 (INSTALL-1PM-SHORT-FIX.command): main + rejection - pinkShortWall464 (never short into an unbroken pink, 15% gold / 20% BTC, 25c / $8 break); climbHold464 (upslope pink: price climbing over an unbroken pink = no short till it breaks down by 25c / $8); thirdsMove464 (her 33% for the candle launch); pinkRead464 + every band tolerance (the door, quietly) in the read for every read main/rejection books. Test tools/pink-both-sides-test-464.cjs + cornerstone 0s.
+- when: 2026-10-29T20:16:02+00:00
+- Love: "Love Oct 29 2026 1:05 PM PT: "she shorted gold above 33% and above pink ... find it. fix it. fix the umpire. fix everything you did that isn't working please" + 1:06 PM: "there is zero instance where she is within 15% of an unbroken pink that she shorts" + "i told you 100 times it's for both sides. do what i say." + 1:09 PM: "dude she was in the bottom 33% of the channel that is not an excuse" + 1:12 PM: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"test": "tools/pink-both-sides-test-464.cjs"}
+
+## R202 - fix464 ships now: every band tolerance both sides on main + rejection at the door and in the read; add-ons pass her walls too (fix435 "EVERY SINGLE TRADE THAT EVER LEAVES THIS DESK").
+- when: 2026-10-29T20:13:02+00:00
+- Love: "Love Oct 29 2026 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS HOW MANY TIMES DO I HAVE TO SAY THE SAME FUCKING THING BRO""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"test": "tools/pink-both-sides-test-464.cjs"}
+
+## R201 - The 1:02:06 PM gold short was in her bottom 33% by her chart - find why the rejection door passed it and fix it the same as the other books.
+- when: 2026-10-29T20:10:36+00:00
+- Love: "Love Oct 29 2026 1:09 PM PT: "dude she was in the bottom 33% of the channel that is not an excuse""
+- books: r, e, c, o, n, -, r, e, j,  , (, g, o, l, d, )
+- status: ACTIVE
+- proof: {"process": "tracing"}
+
 ## R200 - Both-sides audit twice (from the rulebook, from the code) + a behaviour test per rule per side on the live code path; missing sides into INSTALL-1PM-SHORT-FIX.command; table in CHECK-HER-RULES.command.
 - when: 2026-10-29T20:09:25+00:00
 - Love: "Love Oct 29 2026 1:08 PM PT: "check every rule for both sides. twice. then do it again. if something else fails i'm cancelling my subscription and going elsewhere""
