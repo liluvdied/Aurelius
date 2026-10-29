@@ -1,7 +1,7 @@
 {
- "at": "2026-10-29T19:18:55.591Z",
- "events": 139,
- "checked": 1179,
+ "at": "2026-10-29T19:48:55.927Z",
+ "events": 149,
+ "checked": 1239,
  "live": [
   "KXEARNINGSMENTIONNVDA-26NOV18",
   "KXEARNINGSMENTIONFIG-26NOV04",
@@ -9,7 +9,8 @@
   "KXEARNINGSMENTIONARITZIA-27JAN14",
   "KXEARNINGSMENTIONRDDT-26OCT29",
   "KXEARNINGSMENTIONNBIS-26NOV10",
-  "KXEARNINGSMENTIONBAC-27JAN15",
+  "KXEARNINGSMENTIONYUM-26NOV03",
+  "KXEARNINGSMENTIONUBER-26NOV04",
   "KXEARNINGSMENTIONWFC-27JAN14",
   "KXEARNINGSMENTIONCOHR-26NOV04",
   "KXEARNINGSMENTIONDAL-27JAN13",
@@ -25,6 +26,7 @@
   "KXEARNINGSMENTIONSPCX-27JAN26",
   "KXEARNINGSMENTIONPSKY-26NOV09",
   "KXEARNINGSMENTIONALK-27JAN22",
+  "KXVANCEMENTION-26OCT29B",
   "KXEARNINGSMENTIONAMZN-26OCT29",
   "KXEARNINGSMENTIONMETA-27JAN27",
   "KXEARNINGSMENTIONMS-27JAN14",
@@ -34,6 +36,7 @@
   "KXTRUMPSAYMONTH-26NOV01",
   "KXEARNINGSMENTIONCRWV-26NOV09",
   "KXEARNINGSMENTIONDPZ-27MAR01",
+  "KXEARNINGSMENTIONMELI-26NOV04",
   "KXEARNINGSMENTIONSBUX-26OCT29",
   "KXEARNINGSMENTIONASTS-26NOV10",
   "KXEARNINGSMENTIONCALM-27JAN06",
@@ -44,7 +47,6 @@
   "KXEARNINGSMENTIONAZO-26DEC08",
   "KXEARNINGSMENTIONZM-26NOV23",
   "KXEARNINGSMENTIONACI-27JAN13",
-  "KXEARNINGSMENTIONDASH-26NOV04",
   "KXTRUMPSAYCOUNTRY-26NOV01",
   "KXEARNINGSMENTIONRIVN-26OCT29",
   "KXTRUMPSAYNICKNAME-27JAN01",
@@ -55,12 +57,16 @@
   "KXEARNINGSMENTIONKKR-26NOV09",
   "KXEARNINGSMENTIONCBRS-26NOV12",
   "KXEARNINGSMENTIONGIS-26DEC16",
+  "KXEARNINGSMENTIONWMT-26NOV19",
   "KXEARNINGSMENTIONON-26NOV02",
   "KXEARNINGSMENTIONPGR-26NOV03",
   "KXEARNINGSMENTIONAMD-26NOV03",
   "KXEARNINGSMENTIONLEVI-27JAN27",
+  "KXEARNINGSMENTIONZETA-26NOV03",
   "KXEARNINGSMENTIONPLTR-26NOV02",
-  "KXEARNINGSMENTIONTOST-26NOV03"
+  "KXEARNINGSMENTIONTOST-26NOV03",
+  "KXTRUMPMENTION-26OCT29",
+  "KXTRUMPMENTION-26OCT30"
  ],
  "flags": [
   {
@@ -75,37 +81,15 @@
    "basis": "6 of 13 events"
   },
   {
-   "ticker": "KXVANCEMENTION-26OCT29B-SMAL",
-   "event": "KXVANCEMENTION-26OCT29B",
-   "word": "Small Business",
-   "title": "What will JD Vance say during midterm rally in Weatherford, Texas originally scheduled for October 29, 2026?",
-   "side": "no",
-   "ask": 0.77,
-   "rate": 0.13,
-   "n": 8,
-   "basis": "1 of 8 rallies"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26OCT29B-OIL",
-   "event": "KXVANCEMENTION-26OCT29B",
-   "word": "Oil / Gas / Gasoline",
-   "title": "What will JD Vance say during midterm rally in Weatherford, Texas originally scheduled for October 29, 2026?",
-   "side": "no",
-   "ask": 0.27,
-   "rate": 0.45,
-   "n": 11,
-   "basis": "5 of 11 rallies"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26OCT29B-AMFI",
-   "event": "KXVANCEMENTION-26OCT29B",
-   "word": "America First",
-   "title": "What will JD Vance say during midterm rally in Weatherford, Texas originally scheduled for October 29, 2026?",
-   "side": "no",
-   "ask": 0.38,
-   "rate": 0.45,
-   "n": 11,
-   "basis": "5 of 11 rallies"
+   "ticker": "KXVANCEMENTION-26OCT30-ILLE",
+   "event": "KXVANCEMENTION-26OCT30",
+   "word": "Illegal Alien",
+   "title": "What will JD Vance say during Fraud Task Force Press Conference in St. Cloud, Minnesota originally scheduled for October 30, 2026?",
+   "side": "yes",
+   "ask": 0.36,
+   "rate": 0.67,
+   "n": 9,
+   "basis": "6 of 9 events"
   },
   {
    "ticker": "KXVANCEMENTION-26OCT29-OIL",
@@ -113,7 +97,7 @@
    "word": "Oil / Gas / Gasoline",
    "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
    "side": "no",
-   "ask": 0.29,
+   "ask": 0.27,
    "rate": 0.38,
    "n": 8,
    "basis": "3 of 8 events"
@@ -168,7 +152,7 @@
    "word": "Fraud",
    "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
    "side": "yes",
-   "ask": 0.51,
+   "ask": 0.52,
    "rate": 1,
    "n": 9,
    "basis": "9 of 9 events"
@@ -205,18 +189,42 @@
    "rate": 0.33,
    "n": 9,
    "basis": "3 of 9 events"
+  },
+  {
+   "ticker": "KXTRUMPMENTION-26NOV01-VETE",
+   "event": "KXTRUMPMENTION-26NOV01",
+   "word": "Veteran",
+   "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
+   "side": "no",
+   "ask": 0.66,
+   "rate": 0.13,
+   "n": 8,
+   "basis": "1 of 8 events"
+  },
+  {
+   "ticker": "KXTRUMPMENTION-26NOV01-ICE",
+   "event": "KXTRUMPMENTION-26NOV01",
+   "word": "ICE",
+   "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
+   "side": "yes",
+   "ask": 0.34,
+   "rate": 0.81,
+   "n": 16,
+   "basis": "13 of 16 rallies"
+  },
+  {
+   "ticker": "KXTRUMPMENTION-26NOV01-AMER",
+   "event": "KXTRUMPMENTION-26NOV01",
+   "word": "America First",
+   "title": "What will Donald Trump say during midterm rally in Dubuque, Iowa originally scheduled for November 1, 2026?",
+   "side": "no",
+   "ask": 0.2,
+   "rate": 0.52,
+   "n": 27,
+   "basis": "14 of 27 rallies"
   }
  ],
  "errors": [
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
   "Error: 429",
   "Error: 429",
   "Error: 429",

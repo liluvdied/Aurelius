@@ -2,6 +2,48 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R200 - Both-sides audit twice (from the rulebook, from the code) + a behaviour test per rule per side on the live code path; missing sides into INSTALL-1PM-SHORT-FIX.command; table in CHECK-HER-RULES.command.
+- when: 2026-10-29T20:09:25+00:00
+- Love: "Love Oct 29 2026 1:08 PM PT: "check every rule for both sides. twice. then do it again. if something else fails i'm cancelling my subscription and going elsewhere""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"process": "auditing"}
+
+## R199 - CHECK-HER-RULES.command (read-only, any time): replays today's real misses on her LIVE code, plain words, ✓/✗; each real miss also a permanent umpire test.
+- when: 2026-10-29T20:09:09+00:00
+- Love: "Love Oct 29 2026 1:08 PM PT: "you literally say the same thing word for word every time and it fails every single time i do not believe a word you say at this point""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"exists": "CHECK-HER-RULES.command"}
+
+## R198 - fix464: every pink rule both sides on main + rejection - the never-trade-into-an-unbroken-pink wall (fix432) gets its short mirror at 15% gold / 20% BTC; the downslope pink hold (fix371/403/423) gets its upslope mirror (price climbing over an unbroken pink = no short until it breaks down by 25c / $8); the pink at the read both sides. Audit every directional wall for one-sidedness.
+- when: 2026-10-29T20:08:23+00:00
+- Love: "Love Oct 29 2026 1:06 PM PT: "i told you 100 times it's for both sides. do what i say.""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"test": "tools/pink-both-sides-test-464.cjs"}
+
+## R197 - Pink both ways: no SHORT within 15% gold / 20% BTC of the channel (band to band) of an unbroken pink below price, until it breaks down by 25c / $8 - mirror of the long rule; main + rejection; at the walls and in the read.
+- when: 2026-10-29T20:07:03+00:00
+- Love: "Love Oct 29 2026 1:06 PM PT: "there is zero instance where she is within 15% of an unbroken pink that she shorts. i do not know why you are incapable of understanding that fact as the \"most competent model on earth\"""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"process": "building"}
+
+## R196 - Trace (read-only first) the 1:02 PM gold rejection short above the pink and near the bottom third; fix through a command once the rule is confirmed.
+- when: 2026-10-29T20:06:47+00:00
+- Love: "Love Oct 29 2026 1:05 PM PT: "you keep lying to me dude she shorted gold above 33% and above pink. what is wrong with you? what is wrong with the code? find it. fix it. fix the umpire. fix everything you did that isn't working please. you're growing more and more unable to be trusted""
+- books: r, e, c, o, n, -, r, e, j,  , (, g, o, l, d, )
+- status: ACTIVE
+- proof: {"process": "traced"}
+
+## R195 - Read-only: today's Polymarket 5M results, old lane before 11:30 vs the walled-off Oct 27 5M since 11:30.
+- when: 2026-10-29T19:54:32+00:00
+- Love: "Love Oct 29 2026 12:53 PM PT: "thanks hun. can you see what's up with poly market? still losing more than she should be on the right framework""
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M
+- status: ACTIVE
+- proof: {"process": "reported"}
+
 ## R194 - fix463 (thirds in the read, independent calls, no flips) goes in ONLY through INSTALL-INDEPENDENT-CALLS.command - nothing applied to the live desk directly.
 - when: 2026-10-29T19:42:44+00:00
 - Love: "Love Oct 29 2026 12:41 PM PT: "please incorporate this into a command that way i know it sticks because nothing you do without sending me a command has ever stayed once""

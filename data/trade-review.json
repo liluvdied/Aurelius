@@ -1,5 +1,39 @@
 [
   {
+    "id": "held-KXBTC15M-26OCT291600-00",
+    "at": "2026-10-29T20:00:12.273Z",
+    "result": "win",
+    "profit": 9.15,
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Live",
+    "multiple": 1.54,
+    "hour": "12pm",
+    "minutesLeft": null,
+    "windowOpen": null,
+    "entrySpot": null,
+    "target": null,
+    "vwap": null,
+    "nearestBand": "",
+    "bandBetween": false,
+    "peakPct": 21.5,
+    "exitPct": 202.8,
+    "giveback": -181.3,
+    "trail": "Trail never reached the watch.",
+    "points": 3,
+    "better": "Nothing to change. Same entry next time.",
+    "elements": [
+      "Bitcoin short",
+      "Live",
+      "1.4x to 2.2x",
+      "went green, short of the watch",
+      "12pm",
+      "held to the bell",
+      "Trail never reached the watch."
+    ],
+    "note": "Bitcoin short Live won +$9.15 (12pm). 1.4x to 2.2x. went green, short of the watch. held to the bell. Trail never reached the watch.. Max 53.8%, saw 21.5%, closed at 202.8%. Trail never reached the watch. Nothing to change. Same entry next time."
+  },
+  {
     "id": "held-KXGOLD15M-26OCT291545-45",
     "at": "2026-10-29T19:45:47.281Z",
     "result": "loss",
@@ -14149,39 +14183,5 @@
       "Trail never reached the watch."
     ],
     "note": "Gold long Live lost −$12.26 (10pm). 1.4x to 2.2x. went green, short of the watch. held to the bell. Trail never reached the watch.. Max 88.7%, saw 11.3%. Trail never reached the watch. The entry was the book. Nothing in the entry to change. Leave the setup on."
-  },
-  {
-    "id": "held-KXBTC15M-26OCT280200-00",
-    "at": "2026-10-28T06:00:14.429Z",
-    "result": "loss",
-    "profit": -13.9,
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at −0.5σ",
-    "multiple": 1.56,
-    "hour": "10pm",
-    "minutesLeft": null,
-    "windowOpen": null,
-    "entrySpot": null,
-    "target": null,
-    "vwap": null,
-    "nearestBand": "",
-    "bandBetween": false,
-    "peakPct": 20.3,
-    "exitPct": null,
-    "giveback": null,
-    "trail": "Trail never reached the watch.",
-    "points": 0,
-    "better": "The entry was the book. Nothing in the entry to change. Leave the setup on.",
-    "elements": [
-      "Bitcoin long",
-      "Tap-reject at −0.5σ",
-      "1.4x to 2.2x",
-      "went green, short of the watch",
-      "10pm",
-      "held to the bell",
-      "Trail never reached the watch."
-    ],
-    "note": "Bitcoin long Tap-reject at −0.5σ lost −$13.90 (10pm). 1.4x to 2.2x. went green, short of the watch. held to the bell. Trail never reached the watch.. Max 56.3%, saw 20.3%. Trail never reached the watch. The entry was the book. Nothing in the entry to change. Leave the setup on."
   }
 ]
