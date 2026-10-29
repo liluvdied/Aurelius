@@ -1,11 +1,11 @@
 {
- "at": "2026-10-29T06:15:57.586Z",
- "ok": true,
+ "at": "2026-10-29T15:59:41.706Z",
+ "ok": false,
  "checks": [
   {
    "name": "records",
    "ok": true,
-   "note": "639 records"
+   "note": "669 records"
   },
   {
    "name": "feed",
@@ -19,8 +19,8 @@
   },
   {
    "name": "copier",
-   "ok": true,
-   "note": "last write 24 s ago"
+   "ok": false,
+   "note": "last write 496 s ago"
   }
  ]
 }

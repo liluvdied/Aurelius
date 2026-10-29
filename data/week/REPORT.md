@@ -1,4 +1,4 @@
-# Week tracker - week of Sat Oct 24 (updated Wed 10:22 PM PT)
+# Week tracker - week of Sat Oct 24 (updated Thu 08:43 AM PT)
 
 Paper = $20 a trade per book. Live = what the desk actually did that window.
 
@@ -6,25 +6,25 @@ Paper = $20 a trade per book. Live = what the desk actually did that window.
 
 | Book | Paper trades | Paper P&L | Live filled | Not its hour | Held by a wall | Price cap / unfilled | Price floor |
 |---|---|---|---|---|---|---|---|
-| main book | 2026 | -$12,117.00 | 177 | 17 | 6 | 0 | 0 |
-| rejection model | 3451 | -$16,670.00 | 126 | 14 | 8 | 0 | 0 |
-| rejection twin +BB/zones (paper) | 687 | +$379.15 | 0 | 0 | 0 | 0 | 0 |
-| delayed twin | 746 | -$1,269.74 | 84 | 20 | 0 | 0 | 0 |
-| twin add-on (paper $5) | 213 | +$207.07 | 0 | 0 | 0 | 0 | 0 |
+| main book | 2095 | -$12,111.70 | 181 | 27 | 1 | 0 | 0 |
+| rejection model | 3520 | -$16,701.93 | 156 | 14 | 4 | 0 | 0 |
+| rejection twin +BB/zones (paper) | 755 | +$511.77 | 0 | 0 | 0 | 0 | 0 |
+| delayed twin | 808 | -$1,582.54 | 96 | 17 | 1 | 2 | 0 |
+| twin add-on (paper $5) | 239 | +$136.48 | 0 | 0 | 0 | 0 | 0 |
 
-Live fills vs paper price: average +1.8c over 389 fills (positive = live paid more).
+Live fills vs paper price: average +1.7c over 433 fills (positive = live paid more).
 
 ## 2. Walls on trial (live hours only)
 
 | Wall | Times it held a trade | Saved a loser | Cost a winner | Net for her |
 |---|---|---|---|---|
-| HER WALL | 2 | 2 (+$41.32) | 0 (+$0.00) | +$41.32 |
+| PINK TO RED | 1 | 1 (+$21.22) | 0 (+$0.00) | +$21.22 |
+| NO LONG UNDER AN UNBROKEN PINK | 1 | 1 (+$21.05) | 0 (+$0.00) | +$21.05 |
+| window ended before it filled | 1 | 1 (+$20.66) | 0 (+$0.00) | +$20.66 |
 | only 1.58 of 7.93 filled; trying for the rest at 72c or bett | 1 | 1 (+$20.52) | 0 (+$0.00) | +$20.52 |
-| BREAK INTO A ZONE | 1 | 1 (+$7.10) | 0 (+$0.00) | +$7.10 |
-| SESSION BAND AHEAD | 1 | 1 (+$4.61) | 0 (+$0.00) | +$4.61 |
-| PINK TO RED | 5 | 2 (+$41.17) | 3 (+$43.67) | -$2.50 |
-| NO SHORTS IN THE BOTTOM RUNG | 1 | 0 (+$0.00) | 1 (+$16.48) | -$16.48 |
-| PINK TO GREEN | 3 | 0 (+$0.00) | 3 (+$66.06) | -$66.06 |
+| SESSION BAND AHEAD | 1 | 1 (+$3.34) | 0 (+$0.00) | +$3.34 |
+| BOLLINGER CUSHION | 1 | 0 (+$0.00) | 1 (+$3.40) | -$3.40 |
+| UNFILLED (price ran past her cap) | 2 | 0 (+$0.00) | 2 (+$31.66) | -$31.66 |
 
 Net for her: positive = the wall saved more than it cost on paper; negative = it cost more than it saved.
 
@@ -381,6 +381,49 @@ Net for her: positive = the wall saved more than it cost on paper; negative = it
 | Sun 10-25 12:31 PM | btc | down | 8 | 136.91 | $2.85 | -$15.75 | lost |
 | Sun 10-25 12:45 AM | btc | down | 0 | 0 | $2.00 | +$1.82 | unknown |
 | Sun 10-25 12:45 PM | btc | down | 0 | 0 | $1.95 | +$2.13 | unknown |
+| Thu 10-29 02:00 AM | btc | up | 0 | 0 | $5.00 | +$13.22 | unknown |
+| Thu 10-29 02:16 AM | gold | up | 0 | 0 | $5.19 | -$10.59 | unknown |
+| Thu 10-29 02:30 AM | gold | down | 0 | 0 | $5.01 | -$10.39 | unknown |
+| Thu 10-29 02:46 AM | gold | down | 0 | 0 | $5.53 | -$10.98 | unknown |
+| Thu 10-29 02:55 AM | btc | up | 0 | 0 | $5.16 | +$2.85 | unknown |
+| Thu 10-29 03:00 AM | btc | down | 0 | 0 | $4.80 | +$3.53 | unknown |
+| Thu 10-29 03:15 AM | btc | down | 0 | 0 | $5.18 | +$11.78 | unknown |
+| Thu 10-29 03:20 AM | gold | up | 0 | 0 | $4.19 | -$9.65 | unknown |
+| Thu 10-29 03:45 AM | gold | down | 0 | 0 | $4.90 | -$10.45 | unknown |
+| Thu 10-29 03:51 AM | btc | down | 0 | 0 | $4.90 | -$10.28 | unknown |
+| Thu 10-29 04:00 AM | btc | down | 0 | 0 | $5.56 | +$4.53 | unknown |
+| Thu 10-29 04:01 AM | gold | down | 0 | 0 | $2.51 | -$7.92 | unknown |
+| Thu 10-29 04:15 AM | gold | down | 0 | 0 | $2.48 | +$2.77 | unknown |
+| Thu 10-29 04:15 AM | btc | down | 0 | 0 | $5.00 | +$17.57 | unknown |
+| Thu 10-29 04:33 AM | btc | down | 0 | 0 | $5.07 | -$9.46 | unknown |
+| Thu 10-29 04:34 AM | gold | down | 0 | 0 | $2.50 | +$3.21 | unknown |
+| Thu 10-29 04:46 AM | gold | down | 0 | 0 | $2.72 | +$2.36 | unknown |
+| Thu 10-29 04:47 AM | btc | down | 0 | 0 | $4.88 | +$11.82 | unknown |
+| Thu 10-29 05:00 AM | btc | down | 0 | 0 | $4.93 | +$4.84 | unknown |
+| Thu 10-29 05:02 AM | gold | up | 0 | 0 | $2.51 | +$2.42 | unknown |
+| Thu 10-29 05:18 AM | gold | down | 0 | 0 | $2.48 | +$6.40 | unknown |
+| Thu 10-29 05:30 AM | btc | up | 0 | 0 | $4.98 | +$13.01 | unknown |
+| Thu 10-29 05:31 AM | gold | down | 0 | 0 | $3.71 | -$8.98 | unknown |
+| Thu 10-29 05:45 AM | gold | down | 0 | 0 | $2.51 | +$2.44 | unknown |
+| Thu 10-29 05:51 AM | btc | up | 0 | 0 | $4.39 | -$10.36 | unknown |
+| Thu 10-29 06:00 AM | gold | down | 0 | 0 | $2.50 | -$7.87 | unknown |
+| Thu 10-29 06:01 AM | btc | up | 0 | 0 | $5.07 | +$1.75 | unknown |
+| Thu 10-29 06:15 AM | btc | up | 0 | 0 | $4.81 | +$4.45 | unknown |
+| Thu 10-29 06:16 AM | gold | down | 0 | 0 | $2.85 | +$5.48 | unknown |
+| Thu 10-29 06:31 AM | gold | up | 0 | 0 | $2.66 | +$2.19 | unknown |
+| Thu 10-29 06:41 AM | btc | up | 0 | 0 | $4.80 | -$10.46 | unknown |
+| Thu 10-29 06:45 AM | gold | down | 0 | 0 | $2.58 | -$7.96 | unknown |
+| Thu 10-29 06:46 AM | btc | up | 0 | 0 | $5.55 | +$1.50 | unknown |
+| Thu 10-29 07:00 AM | gold | up | 0 | 0 | $5.25 | -$10.64 | unknown |
+| Thu 10-29 07:02 AM | btc | down | 0 | 0 | $4.91 | -$10.29 | unknown |
+| Thu 10-29 07:15 AM | gold | down | 0 | 0 | $5.06 | -$10.32 | unknown |
+| Thu 10-29 07:21 AM | btc | up | 0 | 0 | $4.96 | -$10.35 | unknown |
+| Thu 10-29 07:30 AM | btc | up | 0 | 0 | $5.26 | +$2.96 | unknown |
+| Thu 10-29 07:38 AM | gold | up | 0 | 0 | $4.99 | +$4.46 | unknown |
+| Thu 10-29 07:45 AM | gold | down | 0 | 0 | $5.00 | +$3.42 | unknown |
+| Thu 10-29 07:46 AM | btc | down | 0 | 0 | $5.18 | +$3.75 | unknown |
+| Thu 10-29 08:20 AM | gold | down | 0 | 0 | $5.00 | +$1.90 | unknown |
+| Thu 10-29 08:31 AM | gold | up | 0 | 0 | $4.78 | open | unknown |
 | Tue 10-27 01:01 AM | btc | down | 5 | 89.25 | $2.64 | -$9.77 | lost |
 | Tue 10-27 01:02 AM | gold | down | 2 | 13.66 | $2.87 | +$8.02 | won |
 | Tue 10-27 01:05 PM | btc | down | 0 | 0 | $2.33 | +$0.78 | unknown |
@@ -641,12 +684,15 @@ Net for her: positive = the wall saved more than it cost on paper; negative = it
 | Wed 10-28 10:01 AM | gold | up | 0 | 0 | $4.63 | -$4.79 | unknown |
 | Wed 10-28 10:03 PM | gold | down | 2 | 91.27 | $4.70 | -$6.00 | lost |
 | Wed 10-28 10:05 PM | btc | down | 2 | 42.19 | $0.99 | -$5.04 | lost |
-| Wed 10-28 10:15 PM | btc | down | 1 | 10.05 | $1.08 | open | unknown |
-| Wed 10-28 10:15 PM | gold | down | 1 | 9.13 | $1.05 | open | unknown |
+| Wed 10-28 10:15 PM | gold | down | 1 | 9.13 | $1.05 | +$4.64 | unknown |
+| Wed 10-28 10:15 PM | btc | down | 1 | 10.05 | $1.08 | +$5.18 | unknown |
 | Wed 10-28 10:16 AM | gold | up | 0 | 0 | $4.24 | -$15.59 | unknown |
 | Wed 10-28 10:25 AM | btc | down | 1 | 23.37 | $2.04 | -$2.28 | lost |
+| Wed 10-28 10:30 PM | btc | up | 2 | 18.58 | $4.92 | -$14.17 | lost |
 | Wed 10-28 10:31 AM | gold | up | 0 | 0 | $4.73 | -$4.82 | unknown |
+| Wed 10-28 10:34 PM | gold | up | 1 | 10.5 | $6.00 | -$13.24 | lost |
 | Wed 10-28 10:37 AM | btc | down | 0 | 0 | $2.99 | -$7.68 | unknown |
+| Wed 10-28 10:46 PM | btc | down | 0 | 0 | $5.48 | +$12.39 | unknown |
 | Wed 10-28 10:48 AM | gold | up | 0 | 0 | $4.44 | +$2.42 | unknown |
 | Wed 10-28 11:01 AM | gold | up | 0 | 0 | $5.02 | -$15.68 | unknown |
 | Wed 10-28 11:03 AM | btc | down | 2 | 249.66 | $4.74 | +$11.47 | won |
@@ -676,13 +722,13 @@ Net for her: positive = the wall saved more than it cost on paper; negative = it
 |---|---|---|---|
 | 12 AM | 20-12 +$88.52 | 21-11 +$156.88 | 15-12 +$56.72 | 15-17 -$12.17 | 1-7 -$29.29 |
 | 1 AM | 18-13 +$66.53 | 18-13 +$78.00 | 15-12 +$144.89 | 12-18 -$100.00 | 2-10 -$31.57 |
-| 2 AM | 18-14 +$63.74 | 21-11 +$217.07 | 18-10 +$353.40 | 19-13 +$166.68 | 6-3 +$87.25 |
-| 3 AM | 16-17 -$99.10 | 17-16 -$66.19 | 13-15 -$108.86 | 10-21 -$271.85 | 0-10 -$52.95 |
-| 4 AM | 12-20 -$209.45 | 12-20 -$203.87 | 11-17 -$140.63 | 14-17 -$27.80 | 3-9 +$15.37 |
-| 5 AM | 16-16 -$72.27 | 18-14 +$7.57 | 14-14 -$41.92 | 17-13 +$116.12 | 3-7 +$45.57 |
-| 6 AM | 18-15 -$4.94 | 16-17 -$27.23 | 14-14 -$20.40 | 16-15 +$135.88 | 0-9 -$47.75 |
-| 7 AM | 12-20 -$167.03 | 15-17 -$44.89 | 16-12 +$36.40 | 21-10 +$224.59 | 3-5 +$57.34 |
-| 8 AM | 16-16 +$93.07 | 12-17 -$33.36 | 11-17 -$118.53 | 12-18 -$88.22 | 3-10 -$5.85 |
+| 2 AM | 21-19 +$17.05 | 24-16 +$165.63 | 23-13 +$379.70 | 21-19 +$70.09 | 7-7 +$85.73 |
+| 3 AM | 20-22 -$138.36 | 21-21 -$107.66 | 16-20 -$159.69 | 13-25 -$315.60 | 0-12 -$63.58 |
+| 4 AM | 19-21 -$118.19 | 18-22 -$141.39 | 18-18 +$7.92 | 19-19 +$13.34 | 5-10 +$41.74 |
+| 5 AM | 22-18 -$31.77 | 24-16 +$44.72 | 21-15 +$29.29 | 22-16 +$140.45 | 3-10 +$29.67 |
+| 6 AM | 23-18 +$26.23 | 21-20 +$3.16 | 20-16 +$43.23 | 20-19 +$137.38 | 0-12 -$63.63 |
+| 7 AM | 16-24 -$180.23 | 19-21 -$60.10 | 20-16 +$6.21 | 22-17 +$91.23 | 3-10 +$30.81 |
+| 8 AM | 20-18 +$101.61 | 16-19 -$25.00 | 15-19 -$108.26 | 13-21 -$138.82 | 3-11 -$11.16 |
 | 9 AM | 18-15 +$23.26 | 17-16 -$18.21 | 15-13 +$2.43 | 15-16 +$36.65 | 2-5 +$4.70 |
 | 10 AM | 20-13 +$99.16 | 18-14 +$49.08 | 16-11 +$80.44 | 13-18 -$115.02 | 4-4 +$60.92 |
 | 11 AM | 21-11 +$86.54 | 19-13 +$3.92 | 15-13 -$26.99 | 11-21 -$187.20 | 1-6 -$10.75 |
@@ -696,18 +742,18 @@ Net for her: positive = the wall saved more than it cost on paper; negative = it
 | 7 PM | 17-18 -$43.67 | 18-17 -$0.63 | 17-16 +$11.26 | 16-16 -$45.80 | 3-8 +$20.95 |
 | 8 PM | 18-19 -$48.94 | 17-19 +$462.70 | 17-19 +$183.81 | 14-21 -$207.89 | 4-8 +$34.75 |
 | 9 PM | 15-23 -$64.97 | 17-21 +$3.50 | 17-19 +$16.93 | 14-20 -$144.96 | 4-7 +$45.57 |
-| 10 PM | 17-13 +$60.34 | 17-13 +$80.64 | 19-10 +$126.05 | 9-20 -$220.78 | 1-5 -$8.58 |
-| 11 PM | 13-15 -$2.23 | 9-18 -$110.57 | 8-20 -$160.70 | 9-18 -$87.94 | 2-11 -$23.37 |
+| 10 PM | 20-16 +$46.86 | 20-16 +$67.24 | 21-14 +$76.71 | 12-21 -$195.45 | 1-5 -$8.58 |
+| 11 PM | 16-20 -$55.77 | 12-23 -$159.36 | 11-25 -$217.68 | 11-24 -$168.74 | 2-15 -$44.56 |
 
 ## 5. Carried vs fresh session bands (paper P&L)
 
 - main book, carried bands: 303-164, +$478.98
-- main book, fresh bands: 481-1003, -$12,472.23
+- main book, fresh bands: 520-1033, -$12,466.93
 - rejection model, carried bands: 815-953, -$4,072.77
-- rejection model, fresh bands: 533-1081, -$12,708.00
+- rejection model, fresh bands: 571-1112, -$12,739.93
 - rejection twin +BB/zones (paper), carried bands: 79-86, -$124.18
-- rejection twin +BB/zones (paper), fresh bands: 263-259, +$503.33
+- rejection twin +BB/zones (paper), fresh bands: 304-286, +$635.95
 - delayed twin, carried bands: 75-90, -$219.35
-- delayed twin, fresh bands: 214-293, -$1,017.88
+- delayed twin, fresh bands: 240-329, -$1,330.68
 - twin add-on (paper $5), carried bands: 11-27, +$100.62
-- twin add-on (paper $5), fresh bands: 42-133, +$106.45
+- twin add-on (paper $5), fresh bands: 45-156, +$35.86

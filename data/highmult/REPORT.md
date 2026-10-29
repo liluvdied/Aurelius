@@ -1,12 +1,12 @@
 # High-multiple paper book 💎
 
-Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, since Sun 04:30 AM PT. Paper only. Updated Wed 10:22 PM PT.
+Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, since Sun 04:30 AM PT. Paper only. Updated Thu 08:43 AM PT.
 
 | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|
-| cash at 3x | 27 | 6 | 22% | $-90.00 |
-| cash at 5x | 27 | 4 | 15% | $-70.00 |
-| cash at 10x | 27 | 1 | 4% | $-170.00 |
+| cash at 3x | 28 | 6 | 21% | $-100.00 |
+| cash at 5x | 28 | 4 | 14% | $-80.00 |
+| cash at 10x | 28 | 1 | 4% | $-180.00 |
 
 | When (PT) | Asset | Side | Ask | Setup | Peak bid | 3x | 5x | 10x |
 |---|---|---|---|---|---|---|---|---|
@@ -37,5 +37,7 @@ Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, sinc
 | Wed 12:55 PM | btc | down | 0.03 | Top third - seen as a short under 81428.18 (was: R | 0.018 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed 06:35 PM | btc | up | 0.08 | Launched from the bottom third (low 80602.61) - a  | 0.071 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed 10:05 PM | gold | down | 0.04 | Rejected down off Bollinger upper | 0.09 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu 03:35 AM | btc | down | 0.03 | Top third - seen as a short under 80334.52 (was: R | 0.034 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu 08:39 AM | btc | down | 0.05 | 1m rejection off Red zone | 0.059 | open +0.00 | open +0.00 | open +0.00 |
 
 Replay before launch (Oct 19-25, main calls at 10x+, n=16): cash 3x won 1/16 (-$8.12/trade), 5x 1/16 (-$6.88), 10x 0/16 (-$10).

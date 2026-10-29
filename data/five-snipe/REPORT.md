@@ -1,21 +1,16 @@
 # 5m snipe paper book 🎯
 
-Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Wed 10:22 PM PT.
+Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her side at 1-15c, $10 paper, one per window. Since Sun 04:55 AM PT. Updated Thu 08:43 AM PT.
 
 | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|
-| cash at 3x | 54 | 13 | 24% | $+679.17 |
-| cash at 5x | 54 | 12 | 22% | $+789.17 |
-| cash at 7.5x | 53 | 10 | 19% | $+824.17 |
-| cash at 10x | 53 | 10 | 19% | $+926.09 |
+| cash at 3x | 57 | 13 | 23% | $+649.17 |
+| cash at 5x | 57 | 12 | 21% | $+759.17 |
+| cash at 7.5x | 56 | 10 | 18% | $+794.17 |
+| cash at 10x | 56 | 10 | 18% | $+896.09 |
 
 | When (PT) | Book | Side | Paid | Peak bid | 3x | 5x | 7.5x | 10x |
 |---|---|---|---|---|---|---|---|---|
-| Mon 12:59 AM | recon-tog | down | 0.01 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
-| Mon 01:12 AM | recon-tog | up | 0.06 | 0.03 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
-| Mon 02:07 AM | recon-rej | down | 0.13 | 0.25 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
-| Mon 03:23 AM | recon-tog | up | 0.14 | 0.76 | cashed 3x +20.00 | cashed 5x +40.00 | lost -10.00 | lost -10.00 |
-| Mon 05:09 AM | recon-tog | down | 0.01 | 0.01 | bell win +490.00 | bell win +490.00 | bell win +490.00 | bell win +490.00 |
 | Mon 05:37 AM | recon-tog | up | 0.07 | 0.09 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Mon 06:29 AM | recon-rej | up | 0.01 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Mon 07:28 AM | recon-tog | up | 0.03 | 0.03 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
@@ -84,10 +79,15 @@ Polymarket BTC 5m: main/rejection call at a band + 1m candle flip her way, her s
 | Wed 04:53 PM | recon-rej | up | 0.03 | 0.06 | bell win +240.00 | bell win +240.00 | bell win +240.00 | bell win +240.00 |
 | Wed 04:56 PM | recon-tog | down | 0.14 | 0.13 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Wed 05:24 PM | recon-tog | up | 0.01 | 0.01 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
-| Wed 06:33 PM | recon-tog | up | 0.02 | 0.01 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed 07:07 PM | recon-tog | up | 0.12 | 0.11 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed 08:39 PM | recon-tog | up | 0.01 | 0.01 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed 08:59 PM | recon-tog | down | 0.15 | 0.14 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Wed 09:14 PM | recon-tog | down | 0.02 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
 | Wed 09:38 PM | recon-tog | down | 0.12 | 0.04 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed 10:07 PM | recon-tog | down | 0.1 | 0.09 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Wed 11:38 PM | recon-tog | up | 0.07 | 0.04 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Wed 11:54 PM | recon-tog | down | 0.02 | 0.01 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu 02:13 AM | recon-tog | down | 0.06 | 0.07 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
+| Thu 05:14 AM | recon-tog | up | 0.01 | 0.01 | open +0.00 | open +0.00 | open +0.00 | open +0.00 |
+| Thu 06:18 AM | recon-rej | down | 0.04 | 0.02 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Thu 07:53 AM | recon-tog | down | 0.03 | 0.02 | lost -10.00 | lost -10.00 | lost -10.00 | lost -10.00 |

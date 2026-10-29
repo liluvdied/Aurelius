@@ -1,11 +1,11 @@
 # 5m candle paper books 🎴
 
-2m and 3m candle flips on the Polymarket BTC 5m board (main + rejection calls), 3+ minutes left, her side 30-70c, $5 paper. Since Sun 02:00 PM PT. Updated Wed 10:22 PM PT.
+2m and 3m candle flips on the Polymarket BTC 5m board (main + rejection calls), 3+ minutes left, her side 30-70c, $5 paper. Since Sun 02:00 PM PT. Updated Thu 08:43 AM PT.
 
 | Lane | Trades | Won | Lost | Open | Win rate | P&L |
 |---|---|---|---|---|---|---|
-| 2m candles | 54 | 30 | 18 | 6 | 62% | $+29.09 |
-| 3m candles | 42 | 26 | 13 | 3 | 67% | $+58.41 |
+| 2m candles | 59 | 33 | 19 | 7 | 63% | $+43.81 |
+| 3m candles | 48 | 30 | 15 | 3 | 67% | $+64.93 |
 
 Replay before launch (Oct 25 4:50 AM - 1:15 PM PT, quotes on file, main + rejection): 2m flip with 3+ min left 22/25 = 88% (+63%/trade); 3m flip with 3+ min left 9/11 = 82% (+47%/trade); 1m flip with 4+ min left 29/42 = 69% (+27%/trade). Small samples.
 
@@ -107,3 +107,14 @@ Replay before launch (Oct 25 4:50 AM - 1:15 PM PT, quotes on file, main + reject
 | Wed 08:50 PM | 2m | REJECTION 🎯 | down | 0.66 | 300s | win | $+2.58 |
 | Wed 09:32 PM | 2m | MAIN 💞 | down | 0.6 | 180s | loss | $-5.00 |
 | Wed 10:10 PM | 2m | MAIN 💞 | down | 0.54 | 300s | open | $+0.00 |
+| Wed 10:36 PM | 2m | MAIN 💞 | up | 0.66 | 240s | loss | $-5.00 |
+| Wed 10:36 PM | 3m | MAIN 💞 | up | 0.66 | 240s | loss | $-5.00 |
+| Wed 10:51 PM | 3m | MAIN 💞 | down | 0.56 | 240s | win | $+3.93 |
+| Wed 11:21 PM | 3m | MAIN 💞 | up | 0.47 | 240s | win | $+5.64 |
+| Wed 11:22 PM | 2m | REJECTION 🎯 | up | 0.36 | 180s | win | $+8.89 |
+| Thu 05:02 AM | 2m | REJECTION 🎯 | down | 0.6 | 180s | win | $+3.33 |
+| Thu 05:26 AM | 2m | MAIN 💞 | down | 0.59 | 240s | open | $+0.00 |
+| Thu 05:51 AM | 3m | MAIN 💞 | up | 0.6 | 240s | win | $+3.33 |
+| Thu 07:06 AM | 3m | MAIN 💞 | down | 0.58 | 240s | win | $+3.62 |
+| Thu 07:22 AM | 2m | MAIN 💞 | up | 0.4 | 180s | win | $+7.50 |
+| Thu 08:06 AM | 3m | MAIN 💞 | down | 0.49 | 240s | loss | $-5.00 |

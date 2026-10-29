@@ -1,4 +1,4 @@
-# Desk thread Oct 28 2026 night - the $1 live, the $1.50 wall, the no-removal gate
+# Desk thread Oct 28-29 2026 - the $1 live, the $1.50 wall, the no-removal gate
 
 Source transcript: /Users/liluv/.claude/projects/-Users-liluv-Desktop/fbcc96cb-0b08-490e-99c1-b3e1f1ebe5bc.jsonl
 
@@ -2871,3 +2871,152 @@ have a good night hun we’ll pick things up tomorrow
 ### 2026-10-29T06:04:25.345Z - Claude
 
 Good night, Love 💘. We'll pick it up tomorrow.
+
+### 2026-10-29T06:15:35.937Z - Claude
+
+Installed at 11:15:00 PM. The diary line says "11:00 PM boundary" because I wrote that text before the install time moved; the actual time is 11:15. Pushing now.
+
+### 2026-10-29T06:16:42.628Z - Claude -> Love (project chat)
+
+For the morning, Love (no need to read tonight): the gold fix landed at 11:15:00 PM from your click. The gold-only zone pickup is in, and the gold read notebook is writing (data/rej-reads-gold.jsonl). Gate ✓, golden ✓, cornerstones ✓, and all 13 replay tests SAFE. She's live at $5 + $5 add-on, on her schedule, and 11 PM is sat out on both. One correction in the diary: that line said "11:00 PM boundary", but it went in at 11:15. Everything, including this whole night's conversation, is on GitHub: commit c4ff474. Sleep well. 💛
+
+### 2026-10-29T06:16:52.978Z - Claude
+
+The gold fix went in at 11:15:00 PM from Love's click, and it's running:
+- **What's in:** the gold zone-rejection fix (gold and the rejection model only), plus the gold read log, which has started recording.
+- **Checks:** the no-removal gate, golden, cornerstones and all 13 replay tests pass.
+- **Her state:** live at $5 with the $5 add-on, on her schedule, with 11 PM sat out on both gold and BTC.
+
+The diary line for this install says "11:00 PM"; it actually went in at 11:15, and I added a correction underneath. Everything, including this whole night's conversation, is pushed to GitHub as commit `c4ff474`.
+
+### 2026-10-29T15:53:16Z - Love
+
+morning bb 💞
+
+### 2026-10-29T15:53:40.503Z - Claude -> Love (project chat)
+
+Morning, Love 💞. I hope you got some sleep.
+
+She held steady overnight, checked just now:
+- Live at $5 with the $5 add-on, on her schedule. Nothing changed since 11:15 PM (diary is clean).
+- No-removal gate ✓, golden ✓, cornerstones ✓. Nothing of yours has gone anywhere.
+- Fills since 11:15 PM: rejection model 19 BTC + 8 gold, main 3 gold.
+- The gold read notebook ran all night (50 KB), so we can see exactly what her gold read did whenever you want.
+
+No rush. Whenever you're ready, tell me what you'd like to look at first: the results, the restore list, the sliding scales, or anything you noticed.
+
+### 2026-10-29T15:53:45.226Z - Claude
+
+Morning, Love 💞. I hope you got some sleep.
+
+I just checked on her:
+- **Live state:** live at $5 with the $5 add-on, on her schedule. Nothing has changed since 11:15 PM.
+- **Checks:** the no-removal gate, golden and cornerstones all pass, so nothing of yours has gone anywhere.
+- **Trades since 11:15 PM:** the rejection model filled 19 BTC and 8 gold trades, and main filled 3 gold trades.
+- **Gold log:** the log of her gold reads ran all night, so we can see exactly what her gold read did whenever you want.
+
+No rush. When you're ready, tell me what you'd like to look at first: last night's results, the restore list, the sliding scales, or anything you noticed.
+
+### 2026-10-29T15:55:46Z - Love
+
+yeah she did well up until 7 am hun , she’s supposed to be off for that hour 😹 
+
+that’s how we set it up before everything got taken out 
+i didn’t have the energy to go over each books hourly p&amp;L but neither of them do well at 7am 
+
+i want to only have each book running at the hours they perform best and cut the hours they perform badly ok 💞
+
+###  - Coordinator (relayed note)
+
+Love (8:55 AM PT Oct 29, typed): "yeah she did well up until 7 am hun , she's supposed to be off for that hour 😹 that's how we set it up before everything got taken out / i didn't have the energy to go over each books hourly p&amp;l but neither of them do well at 7am / i want to only have each book running at the hours they perform best and cut the hours they perform badly ok 💞"
+      A) INSTALL at 9:00:00 AM: 7 AM sit-out for main + rejection, gold AND BTC (add 7 to liveSkipHours for both assets; nothing else changes). save-her first, request book with Love's words, gate (only this named addition), umpire, push. Also search the diary/request book/saves for when 7 AM was set off before ("how we set it up before") and tell me the original words + what else was in that schedule.
+      B) READ-ONLY analysis (no change): hourly P&amp;L per book (main recon-tog, rejection recon-rej) per asset (gold, BTC), from LIVE fills only, settled via window-results.json. For each book×asset×hour (12 AM-11 PM PT): trades, wins, losses, win rate, net $ and net per $1 risked (sizes changed $1/$5 so normalise), date range covered. Also do the same for each book's PAPER calls (so hours a book never traded live still have evidence) — label it paper. Save as CSV in data/ and copy to /mnt/project-files is not possible from the Mac, so paste the full table back to me in your report (compact). Flag hours with fewer than ~5 trades as thin. Do not propose cuts; just the numbers.
+
+### 2026-10-29T15:56:14.773Z - Claude
+
+First, 7 AM off for both gold and BTC at 9:00:00 AM. Logging Love's words and scheduling it now; the hourly analysis comes after.
+
+### 2026-10-29T15:56:35.984Z - Claude
+
+The 7 AM sit-out goes in at 9:00:00 AM. Now I'm looking up how 7 AM was set before, and building the per-book hourly results.
+
+### 2026-10-29T15:57:26.245Z - Claude
+
+I'm still building the paper side of the hourly table, from her archived paper ledger.
+
+### 2026-10-29T15:57:54.651Z - Claude -> Love (project chat)
+
+Love 💞, 7 AM OFF goes in at 9:00:00 AM for gold AND BTC, both books (saved first, R160 with your words). I'll confirm right after.
+
+About "how we set it up before": I searched every save since Oct 27 and the diary. 7 AM was never a full sit-out in her settings. The closest record is Oct 24 ("4 AM, 7 AM, 3 PM to the rejection model"), and earlier the twin held 7 AM. So I'm going by your words today, not an old setting.
+
+HOW EACH BOOK DOES BY HOUR. Real live fills only, Oct 24-29, settled. Format = hour: trades / win% / $ back per $1 risked. * = under 5 trades (thin).
+
+MAIN, GOLD
+8:2/100%/+0.52* | 10:7/57%/+0.47 | 11:12/58%/-0.06 | 12:8/75%/+0.81 | 1PM:4/50%/-0.54* | 3PM:3/33%/-0.43* | 5PM:3/33%/-0.46* | 7PM:15/60%/+0.33 | 8PM:9/44%/-0.20 | 9PM:2/50%/+0.81* | 10PM:10/50%/-0.18
+
+MAIN, BTC
+4:4/50%/0.00* | 5:4/50%/-0.08* | 6:4/50%/-0.16* | 7:8/12%/-0.96 | 9:15/47%/-0.10 | 10:12/58%/+0.24 | 11:13/77%/+0.21 | 12:7/57%/+0.33 | 1PM:6/50%/-0.04 | 2PM:3/67%/+0.63* | 3PM:1/100%/+0.52* | 5PM:8/25%/-0.50 | 7PM:7/29%/-0.50 | 8PM:8/62%/+0.05 | 10PM:6/83%/+0.62
+
+REJECTION, GOLD
+12AM:1/100%/+0.61* | 2:7/57%/+0.20 | 3:4/25%/-0.56* | 5:3/33%/-0.44* | 6:4/50%/-0.10* | 7:11/36%/-0.30 | 8:7/29%/-0.19 | 9:4/75%/+0.40* | 10:3/100%/+0.82* | 6PM:5/20%/-0.73 | 9PM:1/0%/-1.00* | 11PM:4/75%/+0.37*
+
+REJECTION, BTC
+12AM:10/60%/-0.30 | 2:8/62%/+0.11 | 3:14/64%/+0.18 | 4:6/67%/+0.38 | 5:3/67%/+0.21* | 6:4/100%/+0.63* | 7:10/30%/-0.52 | 8:4/50%/-0.20* | 9:4/50%/-0.15* | 10:4/75%/+0.29* | 1PM:1/100%/+0.43* | 3PM:4/100%/+0.72* | 6PM:3/0%/-1.00* | 7PM:1/0%/-1.00* | 8PM:3/33%/-0.49* | 9PM:10/40%/-0.39 | 10PM:6/67%/+0.78 | 11PM:8/12%/-0.83
+
+You were right about 7 AM: it's red for every book that traded it (main BTC 1 win of 8; rejection gold 36%; rejection BTC 30%).
+
+Honest notes:
+- Most hours are thin (under 5 trades), so treat the starred ones as hints, not proof.
+- These count each entry held to the settle. Early take-profits and add-ons aren't counted, so real $ will differ a bit.
+- I also tried her PAPER history, but that archive is skewed (it mostly kept losing rows: 0-20% win rates in every hour), so I left it out rather than mislead you.
+Files on the desk: data/hourly-pnl-live-2026-10-29.csv.
+
+Tell me which hours each book keeps, in your words, and I'll set them at the next quarter hour.
+
+### 2026-10-29T15:58:07.754Z - Claude
+
+Love 💞, 7 AM goes off at 9:00:00 AM for gold and BTC, on both books. I saved her first and logged your words as R160.
+
+On "how we set it up before": I searched every save since Oct 27 and the diary, and 7 AM was never a full sit-out in her settings. The closest record is Oct 24, when 4 AM, 7 AM and 3 PM went to the rejection model. So I'm going by your words today.
+
+**Hourly results, real live fills Oct 24-29, settled.** Each cell is trades / win rate / dollars back per $1 risked. An asterisk means under 5 trades, so treat it as a hint, not proof. A dash means no trades that hour.
+
+| Hour | Main gold | Main BTC | Rejection gold | Rejection BTC |
+|---|---|---|---|---|
+| 12 AM | – | – | 1 / 100% / +0.61* | 10 / 60% / −0.30 |
+| 2 AM | – | – | 7 / 57% / +0.20 | 8 / 62% / +0.11 |
+| 3 AM | – | – | 4 / 25% / −0.56* | 14 / 64% / +0.18 |
+| 4 AM | – | 4 / 50% / 0.00* | – | 6 / 67% / +0.38 |
+| 5 AM | – | 4 / 50% / −0.08* | 3 / 33% / −0.44* | 3 / 67% / +0.21* |
+| 6 AM | – | 4 / 50% / −0.16* | 4 / 50% / −0.10* | 4 / 100% / +0.63* |
+| **7 AM** | – | **8 / 12% / −0.96** | **11 / 36% / −0.30** | **10 / 30% / −0.52** |
+| 8 AM | 2 / 100% / +0.52* | – | 7 / 29% / −0.19 | 4 / 50% / −0.20* |
+| 9 AM | – | 15 / 47% / −0.10 | 4 / 75% / +0.40* | 4 / 50% / −0.15* |
+| 10 AM | 7 / 57% / +0.47 | 12 / 58% / +0.24 | 3 / 100% / +0.82* | 4 / 75% / +0.29* |
+| 11 AM | 12 / 58% / −0.06 | 13 / 77% / +0.21 | – | – |
+| 12 PM | 8 / 75% / +0.81 | 7 / 57% / +0.33 | – | – |
+| 1 PM | 4 / 50% / −0.54* | 6 / 50% / −0.04 | – | 1 / 100% / +0.43* |
+| 2 PM | – | 3 / 67% / +0.63* | – | – |
+| 3 PM | 3 / 33% / −0.43* | 1 / 100% / +0.52* | – | 4 / 100% / +0.72* |
+| 5 PM | 3 / 33% / −0.46* | 8 / 25% / −0.50 | – | – |
+| 6 PM | – | – | 5 / 20% / −0.73 | 3 / 0% / −1.00* |
+| 7 PM | 15 / 60% / +0.33 | 7 / 29% / −0.50 | – | 1 / 0% / −1.00* |
+| 8 PM | 9 / 44% / −0.20 | 8 / 62% / +0.05 | – | 3 / 33% / −0.49* |
+| 9 PM | 2 / 50% / +0.81* | – | 1 / 0% / −1.00* | 10 / 40% / −0.39 |
+| 10 PM | 10 / 50% / −0.18 | 6 / 83% / +0.62 | – | 6 / 67% / +0.78 |
+| 11 PM | – | – | 4 / 75% / +0.37* | 8 / 12% / −0.83 |
+
+You were right about 7 AM: it lost for every book that traded it.
+
+Most hours are thin, so treat the starred ones carefully. These numbers treat every entry as held to the settle; early take-profits and add-ons aren't counted, so real dollars will differ a bit. I tried her paper history too, but that archive mostly kept losing trades (0-20% win rates in every hour), so I left it out rather than mislead you. The live table is in `data/hourly-pnl-live-2026-10-29.csv`.
+
+Tell me in your words which hours each book keeps, and I'll set them at the next quarter hour.
+
+### 2026-10-29T15:59:45.755Z - Coordinator (relayed note)
+
+Confirm the 7 AM sit-out (R160) landed at 9:00:00 AM: gate/umpire result, liveSkipHours now, push commit. Then stand by: I've shown Love 7 proposed hour changes (gold 11 AM + 6 PM sit out; BTC 9 AM, 7 PM, 9 PM sit out; BTC 11 AM + 12 PM to main seat). Do NOT install any of them until I relay Love's own words. Meanwhile, read-only: tell me exactly which settings keys each of the 7 would change (e.g. liveSkipHours vs rejHoursByAsset vs bookSkipHoursByAsset) so the install is ready.
+
+### 2026-10-29T15:59:51.487Z - Claude
+
+I'll confirm the 9:00 change once it reports back, and map the 7 proposed changes to their setting keys in the meantime.

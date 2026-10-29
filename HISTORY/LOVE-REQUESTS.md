@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R160 - fix449 (config, 9:00 AM PT boundary): 7 AM PT sit-out on Kalshi for gold AND BTC (7 added to liveSkipHours for both; prev in fix449Prev). Nothing else changes. Per-book hourly P&L analysis follows (read-only) for Love to pick each book's hours.
+- when: 2026-10-29T15:56:28+00:00
+- Love: "Love Oct 29 2026 8:55 AM PT: "yeah she did well up until 7 am hun , she's supposed to be off for that hour 😹 that's how we set it up before everything got taken out / i didn't have the energy to go over each books hourly p&l but neither of them do well at 7am / i want to only have each book running at the hours they perform best and cut the hours they perform badly ok""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d,  , +,  , B, T, C, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "liveSkipHours.gold", "has": 7}
+- proof: {"config": "data/live-switch.json", "key": "liveSkipHours.btc", "has": 7}
+
 ## R159 - fix448: (1) the rejection model takes the green/red zone rejection its paper twin sees when its own read is empty (10:50 PM gold miss), every wall still judging; (2) a log-only notebook of the rejection model's gold reads (data/rej-reads-gold.jsonl); (3) 11 PM stays off (sit-out unchanged). Test tools/zone-pickup-test-448.cjs.
 - when: 2026-10-29T05:57:31+00:00
 - Love: "Love Oct 28 2026 10:56 PM PT: "yes please fix that and add the log pls , off for 11 pls""

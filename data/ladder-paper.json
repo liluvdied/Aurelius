@@ -1,5 +1,291 @@
 [
  {
+  "id": "KXHIGHDEN-26OCT29:ladder",
+  "at": "2026-10-29T15:10:37.925Z",
+  "series": "KXHIGHDEN",
+  "city": "DEN",
+  "station": "KDEN",
+  "event": "KXHIGHDEN-26OCT29",
+  "mu": 64.1,
+  "sigma": 2.7,
+  "maxSoFar": 44.6,
+  "pLadder": 0.56,
+  "costPer1": 0.15,
+  "edge": 0.4,
+  "payout": 666.67,
+  "stake": 100,
+  "fee": 6.29,
+  "legs": [
+   {
+    "ticker": "KXHIGHDEN-26OCT29-T63",
+    "label": "62° or below",
+    "ask": 0.03,
+    "p": 0.28,
+    "contracts": 666.67,
+    "cost": 20,
+    "fee": 1.36,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHDEN-26OCT29-B63.5",
+    "label": "63° to 64°",
+    "ask": 0.12,
+    "p": 0.28,
+    "contracts": 666.67,
+    "cost": 80,
+    "fee": 4.93,
+    "result": null
+   }
+  ],
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "id": "KXHIGHAUS-26OCT29:ladder",
+  "at": "2026-10-29T14:00:40.905Z",
+  "series": "KXHIGHAUS",
+  "city": "AUS",
+  "station": "KAUS",
+  "event": "KXHIGHAUS-26OCT29",
+  "mu": 78.3,
+  "sigma": 2.7,
+  "maxSoFar": 69.8,
+  "pLadder": 0.47,
+  "costPer1": 0.1,
+  "edge": 0.36,
+  "payout": 1000,
+  "stake": 100,
+  "fee": 6.73,
+  "legs": [
+   {
+    "ticker": "KXHIGHAUS-26OCT29-B79.5",
+    "label": "79° to 80°",
+    "ask": 0.06,
+    "p": 0.26,
+    "contracts": 1000,
+    "cost": 60,
+    "fee": 3.95,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHAUS-26OCT29-B81.5",
+    "label": "81° to 82°",
+    "ask": 0.02,
+    "p": 0.15,
+    "contracts": 1000,
+    "cost": 20,
+    "fee": 1.38,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHAUS-26OCT29-B83.5",
+    "label": "83° to 84°",
+    "ask": 0.01,
+    "p": 0.05,
+    "contracts": 1000,
+    "cost": 10,
+    "fee": 0.7,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHAUS-26OCT29-T84",
+    "label": "85° or above",
+    "ask": 0.01,
+    "p": 0.01,
+    "contracts": 1000,
+    "cost": 10,
+    "fee": 0.7,
+    "result": null
+   }
+  ],
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "id": "KXHIGHCHI-26OCT29:ladder",
+  "at": "2026-10-29T14:00:17.533Z",
+  "series": "KXHIGHCHI",
+  "city": "CHI",
+  "station": "KMDW",
+  "event": "KXHIGHCHI-26OCT29",
+  "mu": 68.1,
+  "sigma": 2.7,
+  "maxSoFar": 64.4,
+  "pLadder": 0.41,
+  "costPer1": 0.14,
+  "edge": 0.26,
+  "payout": 714.29,
+  "stake": 100,
+  "fee": 6.03,
+  "legs": [
+   {
+    "ticker": "KXHIGHCHI-26OCT29-T68",
+    "label": "67° or below",
+    "ask": 0.14,
+    "p": 0.41,
+    "contracts": 714.29,
+    "cost": 100,
+    "fee": 6.03,
+    "result": null
+   }
+  ],
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "id": "KXHIGHMIA-26OCT29:ladder",
+  "at": "2026-10-29T13:10:15.150Z",
+  "series": "KXHIGHMIA",
+  "city": "MIA",
+  "station": "KMIA",
+  "event": "KXHIGHMIA-26OCT29",
+  "mu": 86.54,
+  "sigma": 2.7,
+  "maxSoFar": 78.8,
+  "pLadder": 0.22,
+  "costPer1": 0.02,
+  "edge": 0.2,
+  "payout": 5000,
+  "stake": 100,
+  "fee": 6.94,
+  "legs": [
+   {
+    "ticker": "KXHIGHMIA-26OCT29-T83",
+    "label": "82° or below",
+    "ask": 0.01,
+    "p": 0.07,
+    "contracts": 5000,
+    "cost": 50,
+    "fee": 3.47,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHMIA-26OCT29-B83.5",
+    "label": "83° to 84°",
+    "ask": 0.01,
+    "p": 0.16,
+    "contracts": 5000,
+    "cost": 50,
+    "fee": 3.47,
+    "result": null
+   }
+  ],
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "id": "KXHIGHNY-26OCT29:ladder",
+  "at": "2026-10-29T13:00:20.005Z",
+  "series": "KXHIGHNY",
+  "city": "NY",
+  "station": "KNYC",
+  "event": "KXHIGHNY-26OCT29",
+  "mu": 69.58,
+  "sigma": 2.7,
+  "maxSoFar": 55.04,
+  "pLadder": 0.66,
+  "costPer1": 0.13,
+  "edge": 0.52,
+  "payout": 769.23,
+  "stake": 100,
+  "fee": 6.47,
+  "legs": [
+   {
+    "ticker": "KXHIGHNY-26OCT29-B69.5",
+    "label": "69° to 70°",
+    "ask": 0.1,
+    "p": 0.29,
+    "contracts": 769.23,
+    "cost": 76.92,
+    "fee": 4.85,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHNY-26OCT29-B71.5",
+    "label": "71° to 72°",
+    "ask": 0.01,
+    "p": 0.23,
+    "contracts": 769.23,
+    "cost": 7.69,
+    "fee": 0.54,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHNY-26OCT29-B73.5",
+    "label": "73° to 74°",
+    "ask": 0.01,
+    "p": 0.11,
+    "contracts": 769.23,
+    "cost": 7.69,
+    "fee": 0.54,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHNY-26OCT29-T74",
+    "label": "75° or above",
+    "ask": 0.01,
+    "p": 0.03,
+    "contracts": 769.23,
+    "cost": 7.69,
+    "fee": 0.54,
+    "result": null
+   }
+  ],
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "id": "KXHIGHPHIL-26OCT29:ladder",
+  "at": "2026-10-29T13:00:14.167Z",
+  "series": "KXHIGHPHIL",
+  "city": "PHIL",
+  "station": "KPHL",
+  "event": "KXHIGHPHIL-26OCT29",
+  "mu": 72.3,
+  "sigma": 2.7,
+  "maxSoFar": 53.6,
+  "pLadder": 0.47,
+  "costPer1": 0.04,
+  "edge": 0.43,
+  "payout": 2500,
+  "stake": 100,
+  "fee": 6.91,
+  "legs": [
+   {
+    "ticker": "KXHIGHPHIL-26OCT29-B73.5",
+    "label": "73° to 74°",
+    "ask": 0.02,
+    "p": 0.26,
+    "contracts": 2500,
+    "cost": 50,
+    "fee": 3.43,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHPHIL-26OCT29-B75.5",
+    "label": "75° to 76°",
+    "ask": 0.01,
+    "p": 0.15,
+    "contracts": 2500,
+    "cost": 25,
+    "fee": 1.74,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHPHIL-26OCT29-T76",
+    "label": "77° or above",
+    "ask": 0.01,
+    "p": 0.06,
+    "contracts": 2500,
+    "cost": 25,
+    "fee": 1.74,
+    "result": null
+   }
+  ],
+  "result": "open",
+  "pnl": null
+ },
+ {
   "id": "KXHIGHLAX-26OCT28:ladder",
   "at": "2026-10-28T16:08:42.033Z",
   "series": "KXHIGHLAX",
@@ -24,7 +310,7 @@
     "contracts": 2000,
     "cost": 20,
     "fee": 1.39,
-    "result": null
+    "result": "no"
    },
    {
     "ticker": "KXHIGHLAX-26OCT28-B69.5",
@@ -34,7 +320,7 @@
     "contracts": 2000,
     "cost": 20,
     "fee": 1.39,
-    "result": null
+    "result": "no"
    },
    {
     "ticker": "KXHIGHLAX-26OCT28-B71.5",
@@ -44,11 +330,13 @@
     "contracts": 2000,
     "cost": 60,
     "fee": 4.08,
-    "result": null
+    "result": "no"
    }
   ],
-  "result": "open",
-  "pnl": null
+  "result": "loss",
+  "pnl": -106.86,
+  "finalHigh": 75,
+  "settledAt": "2026-10-29T14:10:18.496Z"
  },
  {
   "id": "KXHIGHDEN-26OCT28:ladder",
@@ -75,11 +363,13 @@
     "contracts": 2500,
     "cost": 100,
     "fee": 6.73,
-    "result": null
+    "result": "no"
    }
   ],
-  "result": "open",
-  "pnl": null
+  "result": "loss",
+  "pnl": -106.73,
+  "finalHigh": 65,
+  "settledAt": "2026-10-29T13:10:08.177Z"
  },
  {
   "id": "KXHIGHAUS-26OCT28:ladder",
@@ -106,7 +396,7 @@
     "contracts": 333.33,
     "cost": 13.33,
     "fee": 0.9,
-    "result": null
+    "result": "yes"
    },
    {
     "ticker": "KXHIGHAUS-26OCT28-B82.5",
@@ -116,11 +406,13 @@
     "contracts": 333.33,
     "cost": 86.67,
     "fee": 4.49,
-    "result": null
+    "result": "no"
    }
   ],
-  "result": "open",
-  "pnl": null
+  "result": "win",
+  "pnl": 227.94,
+  "finalHigh": 82,
+  "settledAt": "2026-10-29T12:19:51.668Z"
  },
  {
   "id": "KXHIGHCHI-26OCT28:ladder",
@@ -147,7 +439,7 @@
     "contracts": 1250,
     "cost": 12.5,
     "fee": 0.87,
-    "result": null
+    "result": "no"
    },
    {
     "ticker": "KXHIGHCHI-26OCT28-B72.5",
@@ -157,11 +449,13 @@
     "contracts": 1250,
     "cost": 87.5,
     "fee": 5.7,
-    "result": null
+    "result": "no"
    }
   ],
-  "result": "open",
-  "pnl": null
+  "result": "loss",
+  "pnl": -106.57,
+  "finalHigh": 76,
+  "settledAt": "2026-10-29T12:09:54.971Z"
  },
  {
   "id": "KXHIGHMIA-26OCT28:ladder",
@@ -188,7 +482,7 @@
     "contracts": 5000,
     "cost": 50,
     "fee": 3.47,
-    "result": null
+    "result": "no"
    },
    {
     "ticker": "KXHIGHMIA-26OCT28-B82.5",
@@ -198,11 +492,13 @@
     "contracts": 5000,
     "cost": 50,
     "fee": 3.47,
-    "result": null
+    "result": "no"
    }
   ],
-  "result": "open",
-  "pnl": null
+  "result": "loss",
+  "pnl": -106.94,
+  "finalHigh": 88,
+  "settledAt": "2026-10-29T11:19:54.024Z"
  },
  {
   "id": "KXHIGHNY-26OCT28:ladder",
@@ -229,7 +525,7 @@
     "contracts": 625,
     "cost": 75,
     "fee": 4.63,
-    "result": null
+    "result": "no"
    },
    {
     "ticker": "KXHIGHNY-26OCT28-B64.5",
@@ -239,7 +535,7 @@
     "contracts": 625,
     "cost": 12.5,
     "fee": 0.86,
-    "result": null
+    "result": "no"
    },
    {
     "ticker": "KXHIGHNY-26OCT28-B66.5",
@@ -249,7 +545,7 @@
     "contracts": 625,
     "cost": 6.25,
     "fee": 0.44,
-    "result": null
+    "result": "no"
    },
    {
     "ticker": "KXHIGHNY-26OCT28-T67",
@@ -259,11 +555,13 @@
     "contracts": 625,
     "cost": 6.25,
     "fee": 0.44,
-    "result": null
+    "result": "no"
    }
   ],
-  "result": "open",
-  "pnl": null
+  "result": "loss",
+  "pnl": -106.37,
+  "finalHigh": 60,
+  "settledAt": "2026-10-29T11:20:03.547Z"
  },
  {
   "id": "KXHIGHPHIL-26OCT28:ladder",
@@ -290,7 +588,7 @@
     "contracts": 769.23,
     "cost": 84.62,
     "fee": 5.28,
-    "result": null
+    "result": "no"
    },
    {
     "ticker": "KXHIGHPHIL-26OCT28-B71.5",
@@ -300,7 +598,7 @@
     "contracts": 769.23,
     "cost": 7.69,
     "fee": 0.54,
-    "result": null
+    "result": "no"
    },
    {
     "ticker": "KXHIGHPHIL-26OCT28-T72",
@@ -310,11 +608,13 @@
     "contracts": 769.23,
     "cost": 7.69,
     "fee": 0.54,
-    "result": null
+    "result": "no"
    }
   ],
-  "result": "open",
-  "pnl": null
+  "result": "loss",
+  "pnl": -106.36,
+  "finalHigh": 67,
+  "settledAt": "2026-10-29T11:10:08.007Z"
  },
  {
   "id": "KXHIGHDEN-26OCT27:ladder",

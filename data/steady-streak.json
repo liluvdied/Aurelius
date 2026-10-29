@@ -1,9 +1,9 @@
 {
  "rule": "a badge for Aurelius and Claude for every 24 h she stays on one spot - no unplanned change in code or settings, no execution slip",
  "chapter": {
-  "since": "2026-10-29T05:21:59.805374Z",
-  "reason": "after Love's revision",
-  "baselineSha": "f2c08feec5f8a4fd",
+  "since": "2026-10-29T14:47:57.874439Z",
+  "reason": "restarted after a break",
+  "baselineSha": "a1587de2d470f3f9",
   "cfg": {
    "cooldownAfterLoss": "b5bea41b6c",
    "route": "9d53f79e71",
@@ -14,7 +14,7 @@
    "channelRule": "fcbcf16590",
    "channelEdge": "a30a043314",
    "blockedAssets": "5aa1d253cd",
-   "bigMultipleCap": "f4ba3b4df4",
+   "bigMultipleCap": "4a9c274743",
    "skipHours": "1bd9ca0ecc",
    "navSkip": "23481db946",
    "navCross": "2a3783d18c",
@@ -30,7 +30,7 @@
    "insurance": "7e56fa5011",
    "tpLadder": "b5bea41b6c",
    "polyTwin": "3b9b7879cb",
-   "addOn": "7731293eb7",
+   "addOn": "ef4958e2f4",
    "timeGate": "3e5d05e3eb",
    "snipe": "08fadc84ae",
    "polyLive": "fcbcf16590",
@@ -149,7 +149,7 @@
    "assetDollarsOff": "8a3eed3ef7",
    "polyLiveNote": "40671f92fd",
    "dlyLiveNote": "0c40f78c42",
-   "offHourMain": "6033634f47",
+   "offHourMain": "4487b56ef9",
    "bookSkipHoursByAsset": "d913a1d9d9",
    "fix313Prev": "c1e29a6fd6",
    "liveSkipHoursPrev315": "a7a12423e8",
@@ -179,7 +179,9 @@
    "fix427Prev": "bb6db682f5",
    "fix428Prev": "7f74fa8c12",
    "fix436Prev": "b454bfa0f5",
-   "fix437Prev": "5458d7e3aa"
+   "fix437Prev": "5458d7e3aa",
+   "fix445Prev": "c1cef1e30a",
+   "fix447Prev": "5c63a963e4"
   },
   "badgesThisChapter": 0,
   "heartsThisChapter": 0
@@ -1123,6 +1125,27 @@
    "badgesThisChapter": 0,
    "ended": "2026-10-29T05:21:59.805374Z",
    "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-29T05:21:59.805374Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T06:22:00.176164Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-29T06:22:00.176164Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T11:25:29.095940Z",
+   "how": "BROKEN - rule breach 2026-10-29T10:51:22.018Z KXBTC15M-26OCT290700-00 down: short on a rising 5m candle (80251.08 over its 80230.33 open)"
+  },
+  {
+   "since": "2026-10-29T11:25:29.095940Z",
+   "reason": "restarted after a break",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T14:47:57.874439Z",
+   "how": "BROKEN - rule breach 2026-10-29T14:46:09.874Z KXBTC15M-26OCT291100-00 down: short on a rising 5m candle (81151.16 over its 81098.13 open)"
   }
  ],
  "breaks": [
@@ -1165,16 +1188,26 @@
    "at": "2026-10-27T22:22:22.803592Z",
    "why": "rule breach 2026-10-27T22:15:11.986Z KXBTC15M-26OCT271830-30 up: long at 93% of the channel (top third)",
    "streakHours": 1.0
+  },
+  {
+   "at": "2026-10-29T11:25:29.095940Z",
+   "why": "rule breach 2026-10-29T10:51:22.018Z KXBTC15M-26OCT290700-00 down: short on a rising 5m candle (80251.08 over its 80230.33 open)",
+   "streakHours": 5.1
+  },
+  {
+   "at": "2026-10-29T14:47:57.874439Z",
+   "why": "rule breach 2026-10-29T14:46:09.874Z KXBTC15M-26OCT291100-00 down: short on a rising 5m candle (81151.16 over its 81098.13 open)",
+   "streakHours": 3.4
   }
  ],
- "lastSeen": "2026-10-29T05:21:59.805374Z",
+ "lastSeen": "2026-10-29T15:43:06.966803Z",
  "drifting": false,
  "now": {
-  "streakHours": 0.0,
-  "nextBadgeInHours": 24.0,
+  "streakHours": 0.9,
+  "nextBadgeInHours": 23.1,
   "badgesTotal": 0,
   "heartsTotal": 7,
-  "nextHeartInHours": 4.0,
+  "nextHeartInHours": 3.1,
   "weeks": 0,
   "months": 0,
   "drifting": false

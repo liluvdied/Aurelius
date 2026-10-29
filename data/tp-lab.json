@@ -6204,7 +6204,9 @@
    }
   ],
   "peakValue": 0,
-  "hits": {}
+  "hits": {},
+  "done": true,
+  "hold": -100
  },
  "KXHIGHNY-26OCT28:ladder": {
   "id": "KXHIGHNY-26OCT28:ladder",
@@ -6243,7 +6245,9 @@
    "25": "2026-10-28T18:55:46.293Z",
    "50": "2026-10-28T18:55:46.293Z",
    "100": "2026-10-28T18:59:46.995Z"
-  }
+  },
+  "done": true,
+  "hold": -100
  },
  "KXHIGHPHIL-26OCT28:ladder": {
   "id": "KXHIGHPHIL-26OCT28:ladder",
@@ -6271,7 +6275,9 @@
    }
   ],
   "peakValue": 92.31,
-  "hits": {}
+  "hits": {},
+  "done": true,
+  "hold": -100
  },
  "KXTEMPCHIHS-26OCT2810-T57.99:no": {
   "id": "KXTEMPCHIHS-26OCT2810-T57.99:no",
@@ -6318,7 +6324,9 @@
    "25": "2026-10-28T18:31:48.854Z",
    "50": "2026-10-28T18:35:50.676Z",
    "100": "2026-10-28T19:36:05.022Z"
-  }
+  },
+  "done": true,
+  "hold": 233.33
  },
  "KXHIGHCHI-26OCT28:ladder": {
   "id": "KXHIGHCHI-26OCT28:ladder",
@@ -6340,7 +6348,9 @@
    }
   ],
   "peakValue": 50,
-  "hits": {}
+  "hits": {},
+  "done": true,
+  "hold": -100
  },
  "KXHIGHDEN-26OCT28:ladder": {
   "id": "KXHIGHDEN-26OCT28:ladder",
@@ -6361,7 +6371,9 @@
    "25": "2026-10-28T15:27:25.081Z",
    "50": "2026-10-28T15:51:29.712Z",
    "100": "2026-10-28T15:51:29.712Z"
-  }
+  },
+  "done": true,
+  "hold": -100
  },
  "KXHIGHLAX-26OCT28:ladder": {
   "id": "KXHIGHLAX-26OCT28:ladder",
@@ -6389,7 +6401,9 @@
    }
   ],
   "peakValue": 60,
-  "hits": {}
+  "hits": {},
+  "done": true,
+  "hold": -100
  },
  "KXTEMPLAXHS-26OCT2813-T69.99:no": {
   "id": "KXTEMPLAXHS-26OCT2813-T69.99:no",
@@ -6408,5 +6422,185 @@
   "hits": {},
   "done": true,
   "hold": 8.7
+ },
+ "KXHIGHNY-26OCT29:ladder": {
+  "id": "KXHIGHNY-26OCT29:ladder",
+  "src": "ladder",
+  "at": "2026-10-29T13:00:20.005Z",
+  "stake": 100,
+  "legs": [
+   {
+    "ticker": "KXHIGHNY-26OCT29-B69.5",
+    "side": "yes",
+    "contracts": 769.23,
+    "cost": 76.92
+   },
+   {
+    "ticker": "KXHIGHNY-26OCT29-B71.5",
+    "side": "yes",
+    "contracts": 769.23,
+    "cost": 7.69
+   },
+   {
+    "ticker": "KXHIGHNY-26OCT29-B73.5",
+    "side": "yes",
+    "contracts": 769.23,
+    "cost": 7.69
+   },
+   {
+    "ticker": "KXHIGHNY-26OCT29-T74",
+    "side": "yes",
+    "contracts": 769.23,
+    "cost": 7.69
+   }
+  ],
+  "peakValue": 192.31,
+  "hits": {
+   "10": "2026-10-29T14:19:15.150Z",
+   "25": "2026-10-29T14:23:15.605Z",
+   "50": "2026-10-29T14:27:16.118Z"
+  }
+ },
+ "KXHIGHPHIL-26OCT29:ladder": {
+  "id": "KXHIGHPHIL-26OCT29:ladder",
+  "src": "ladder",
+  "at": "2026-10-29T13:00:14.167Z",
+  "stake": 100,
+  "legs": [
+   {
+    "ticker": "KXHIGHPHIL-26OCT29-B73.5",
+    "side": "yes",
+    "contracts": 2500,
+    "cost": 50
+   },
+   {
+    "ticker": "KXHIGHPHIL-26OCT29-B75.5",
+    "side": "yes",
+    "contracts": 2500,
+    "cost": 25
+   },
+   {
+    "ticker": "KXHIGHPHIL-26OCT29-T76",
+    "side": "yes",
+    "contracts": 2500,
+    "cost": 25
+   }
+  ],
+  "peakValue": 25,
+  "hits": {}
+ },
+ "KXHIGHMIA-26OCT29:ladder": {
+  "id": "KXHIGHMIA-26OCT29:ladder",
+  "src": "ladder",
+  "at": "2026-10-29T13:10:15.150Z",
+  "stake": 100,
+  "legs": [
+   {
+    "ticker": "KXHIGHMIA-26OCT29-T83",
+    "side": "yes",
+    "contracts": 5000,
+    "cost": 50
+   },
+   {
+    "ticker": "KXHIGHMIA-26OCT29-B83.5",
+    "side": "yes",
+    "contracts": 5000,
+    "cost": 50
+   }
+  ],
+  "peakValue": 0,
+  "hits": {}
+ },
+ "KXHIGHAUS-26OCT29:ladder": {
+  "id": "KXHIGHAUS-26OCT29:ladder",
+  "src": "ladder",
+  "at": "2026-10-29T14:00:40.905Z",
+  "stake": 100,
+  "legs": [
+   {
+    "ticker": "KXHIGHAUS-26OCT29-B79.5",
+    "side": "yes",
+    "contracts": 1000,
+    "cost": 60
+   },
+   {
+    "ticker": "KXHIGHAUS-26OCT29-B81.5",
+    "side": "yes",
+    "contracts": 1000,
+    "cost": 20
+   },
+   {
+    "ticker": "KXHIGHAUS-26OCT29-B83.5",
+    "side": "yes",
+    "contracts": 1000,
+    "cost": 10
+   },
+   {
+    "ticker": "KXHIGHAUS-26OCT29-T84",
+    "side": "yes",
+    "contracts": 1000,
+    "cost": 10
+   }
+  ],
+  "peakValue": 160,
+  "hits": {
+   "10": "2026-10-29T14:51:31.371Z",
+   "25": "2026-10-29T14:51:31.371Z",
+   "50": "2026-10-29T14:51:31.371Z"
+  }
+ },
+ "KXHIGHCHI-26OCT29:ladder": {
+  "id": "KXHIGHCHI-26OCT29:ladder",
+  "src": "ladder",
+  "at": "2026-10-29T14:00:17.533Z",
+  "stake": 100,
+  "legs": [
+   {
+    "ticker": "KXHIGHCHI-26OCT29-T68",
+    "side": "yes",
+    "contracts": 714.29,
+    "cost": 100
+   }
+  ],
+  "peakValue": 71.43,
+  "hits": {}
+ },
+ "KXHIGHDEN-26OCT29:ladder": {
+  "id": "KXHIGHDEN-26OCT29:ladder",
+  "src": "ladder",
+  "at": "2026-10-29T15:10:37.925Z",
+  "stake": 100,
+  "legs": [
+   {
+    "ticker": "KXHIGHDEN-26OCT29-T63",
+    "side": "yes",
+    "contracts": 666.67,
+    "cost": 20
+   },
+   {
+    "ticker": "KXHIGHDEN-26OCT29-B63.5",
+    "side": "yes",
+    "contracts": 666.67,
+    "cost": 80
+   }
+  ],
+  "peakValue": 93.33,
+  "hits": {}
+ },
+ "KXTEMPLAXHS-26OCT2912-T66.99:no": {
+  "id": "KXTEMPLAXHS-26OCT2912-T66.99:no",
+  "src": "scan",
+  "at": "2026-10-29T15:17:24.317Z",
+  "stake": 100,
+  "legs": [
+   {
+    "ticker": "KXTEMPLAXHS-26OCT2912-T66.99",
+    "side": "no",
+    "contracts": 108.69565217391303,
+    "cost": 100
+   }
+  ],
+  "peakValue": 103.26,
+  "hits": {}
  }
 }
