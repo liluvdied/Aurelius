@@ -547,7 +547,7 @@ export function reachWall429(asset: string, L: Line[], tick: number, side: strin
   const o5 = open5 === undefined ? fiveOpenNow(asset) : open5;
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
   const sA = S.filter((l) => l.price > tick).sort((a, b) => a.price - b.price)[0], sB = S.filter((l) => l.price < tick).sort((a, b) => b.price - a.price)[0];
-  const pinkReach = Math.max(reach, sA && sB && PINK_PCT429 > 0 ? Math.round((sA.price - sB.price) * PINK_PCT429 * 100) / 100 : 0);
+  const pinkReach = Math.max(reach, sA && sB && PINK_PCT429 > 0 ? Math.round((sA.price - sB.price) * (PINK_PCT459[asset] ?? PINK_PCT429) * 100) / 100 : 0); // fix459 (R176): gold 15%, BTC 20% of the channel
   for (const b of L.filter((l) => Number(l.price) > 0 && (isSessBand(l) || String(l.name) === "5m PP"))) {
     const P = Number(b.price), pink = String(b.name) === "5m PP", r = pink ? pinkReach : reach;
     if (up ? tick >= P + d : tick <= P - d) continue; // broken her way by her break distance - behind her
@@ -579,6 +579,7 @@ export function pinkLongWall432(asset: string, L: Line[], tick: number, side: st
   const brk = PINK_BREAK432[asset] ?? 0;
   if (!pk || !(brk > 0)) return "";
   if (tick >= Number(pk.price) + brk) return "";
+  if (pinkBeyond459(asset, L, tick, Number(pk.price))) return ""; // fix459 (R176): only an unbroken pink within 15% gold / 20% BTC of the session-band channel holds a long
   return `NO LONG UNDER AN UNBROKEN PINK (fix432): 5m PP ${Number(pk.price).toFixed(2)} is ${tick < pk.price ? `$${(pk.price - tick).toFixed(2)} above` : `only $${(tick - pk.price).toFixed(2)} broken, under her $${brk} break`} - no long until it breaks up`;
 }
 // ON HER SIDE OF THE BREAK - HER 33% (fix434, STAGED - waits for Love's yes; Love Oct 28 2026 5:56 PM PT: "she needs to be ON the side of the break she cannot trade without
@@ -602,6 +603,18 @@ export function sameSide434(asset: string, L: Line[], tick: number, side: string
 // BROKE IT THIS CANDLE = HER SIDE NOW (fix441, STAGED - Love Oct 28 2026 9:20 PM PT: "she shorted it when it just broke pink upwards" + 5:56 PM "she needs to be ON the side of the break"):
 // main + rejection - when this 5m candle broke a session band or the pink UP by her break distance (gold 33c, BTC $6), no SHORT until price breaks back DOWN through it by that same
 // distance; mirror: broke DOWN = no LONG until price is back up through it by the distance. 9:20 PM: gold broke the pink 4038.56 up to 4038.95, main shorted at 4038.30 - refused.
+// PINK 15% GOLD / 20% BTC, BAND TO BAND (fix459, R176 - Love Oct 29 2026 11:12 AM PT: "she is only not allowed to long into pink at 15% of the channel width, band to band. / not all distances, period." + 11:18 AM: "15% just for gold rn hun. 20% for btc. we will do the sliding scale later today" + "both books pls"): main + rejection. The "never long under an unbroken pink" hold (fix432) still holds a long until price breaks
+// up through the pink by her break (25c gold / $8 BTC) - but only while the unbroken pink above price is within 15% (gold) / 20% (BTC) of the session-band channel price sits in
+// (session band below to session band above); the pink reach (fix429/430) uses the same share, over its $1 gold / $50 BTC floor. The downslope pink rule (fix371/403/423) is untouched.
+// Channel unreadable = the hold stays (never blind).
+export const PINK_PCT459: Record<string, number> = { gold: 0.15, btc: 0.2 };
+export function pinkBeyond459(asset: string, L: Line[], tick: number, pink: number): boolean {
+  if (!(tick > 0) || !(pink > tick)) return false;
+  const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
+  const a = S.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];
+  if (!a || !b || !(a.price > b.price)) return false;
+  return pink - tick > (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price);
+}
 export function brokeThisCandle441(asset: string, L: Line[], tick: number, side: string, o5?: number, hl?: { h: number; l: number } | null): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
   const d = BREAK_DIST[asset] ?? 0, op = o5 === undefined ? fiveOpenNow(asset) : o5, x = hl === undefined ? fiveHLNow(asset) : hl;

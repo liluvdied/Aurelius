@@ -49,6 +49,12 @@ if rTL.returncode != 0: ok = False
 rB441 = subprocess.run(["node", "tools/broke-candle-test-441.cjs"], capture_output=True, text=True)  # fix441 (Love Oct 28 2026 9:20 PM PT: "she shorted it when it just broke pink upwards")
 print(("SAFE   " if rB441.returncode == 0 else "OUT    ") + "tools/broke-candle-test-441.cjs  " + ((rB441.stdout.strip().split("\n") or [""])[-1]))
 if rB441.returncode != 0: ok = False
+r5W = subprocess.run([sys.executable, "tools/five5m-wall.py"], capture_output=True, text=True)  # fix456 (R169, Love Oct 29 2026 10:27 AM PT: "WALLED OFF. PLEASE."): her walled-off 5M untouched
+print(("SAFE   " if r5W.returncode == 0 else "OUT    ") + "tools/five5m-wall.py  " + ((r5W.stdout.strip().split("\n") or [""])[-1]))
+if r5W.returncode != 0: ok = False
+rP459 = subprocess.run(["node", "tools/pink-15-20-test-459.cjs"], capture_output=True, text=True)  # fix459 (R176, Love Oct 29 2026 11:12 AM PT: "she is only not allowed to long into pink at 15% of the channel width, band to band" + "15% just for gold rn hun. 20% for btc"): pink holds a long only inside 15%/20%
+print(("SAFE   " if rP459.returncode == 0 else "OUT    ") + "tools/pink-15-20-test-459.cjs  " + ((rP459.stdout.strip().split("\n") or [""])[-1]))
+if rP459.returncode != 0: ok = False
 rB457 = subprocess.run(["node", "tools/broke-candle-test-457.cjs"], capture_output=True, text=True)  # fix457 (R170, Love Oct 29 2026 10:42 AM PT: "band breaks = trade the direction of the break. WITH PRICE ON THE SAME SIDE OF THE BREAK ... count the 33% correctly"): the 10:22 AM gold long must be refused
 print(("SAFE   " if rB457.returncode == 0 else "OUT    ") + "tools/broke-candle-test-457.cjs  " + ((rB457.stdout.strip().split("\n") or [""])[-1]))
 if rB457.returncode != 0: ok = False

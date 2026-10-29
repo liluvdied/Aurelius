@@ -1,24 +1,4 @@
 {
- "KXBTC15M-26OCT281215-15:recon-rej5:s5977346:5m": {
-  "book": "recon-rej-5m",
-  "asset": "btc",
-  "side": "down",
-  "ticker": "KXBTC15M-26OCT281215-15",
-  "setup": "Failed break above 5m PP - rejected down",
-  "lastTry": 1793203864110,
-  "tries": 3,
-  "wallOk": true,
-  "status": "filled",
-  "final": true,
-  "late": false,
-  "slug": "cpc-btc-updown-5m-2026-10-28-1610z",
-  "contracts": 10.41,
-  "cost": 0.69,
-  "spent": 7.18,
-  "tops": 0,
-  "orderId": "DCGF0SWG11N2",
-  "closesAt": "2026-10-28T16:15:00.000Z"
- },
  "KXBTC15M-26OCT281230-30:recon-tog:KXBTC15M-26OCT281230-30:recon-tog:5m": {
   "book": "recon-tog-5m",
   "asset": "btc",
@@ -5173,5 +5153,17 @@
   "tops": 0,
   "orderId": "DD6YBHX012WE",
   "closesAt": "2026-10-29T18:25:00.000Z"
+ },
+ "KXBTC15M-26OCT291430-30:recon-tog:s5977661:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT291430-30",
+  "setup": "Rejected down off 5m PP",
+  "lastTry": 1793298541477,
+  "tries": 54,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
  }
 }

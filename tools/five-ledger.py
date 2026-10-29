@@ -20,7 +20,7 @@ try:
     for l in open(D('five-live', 'ledger.jsonl')):
         x = json.loads(l); led[(x['book'], x['slug'])] = x
 except Exception: pass
-for h in json.load(open(D('hedges.json'))):
+for h in json.load(open(D('hedges.json'))) + (json.load(open(D('five5m', 'hedges.json'))) if os.path.exists(D('five5m', 'hedges.json')) else []):  # fix456: her walled-off 5M's own positions too
     if h.get('kind') != 'rej5m' or str(h.get('at', '')) < START or h.get('book') not in NAMES: continue
     x = {k: h.get(k) for k in ('at', 'book', 'slug', 'side', 'cost', 'stake', 'closesAt', 'status', 'banked', 'halfPx', 'soldPx')}
     st = str(h.get('status') or '')

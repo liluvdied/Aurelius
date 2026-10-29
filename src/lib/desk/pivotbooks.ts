@@ -814,6 +814,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
       // RECONSTRUCTED (Oct 19 ~6:16 PM PT, Love): the three books on the locked spine (recon.ts) - the Oct 12 OG x PIVOT 5M + PAPER 24/7 entry logic,
       // verbatim, and TOGETHER = the first of the two in the window. Self-contained: none of the lane loop's later rules below touch them.
       try { if (reconTick(id, a, m, left, b, last1m, rows)) changed = true; } catch {}
+      try { const G456 = globalThis as any; if (G456.__five5mRowsMod) G456.__five5mRowsMod.fiveReadTick(id, a, m, left, b, last1m); else if (!G456.__five5mRowsLoading) { G456.__five5mRowsLoading = true; import("./five5m-rows").then((x) => { G456.__five5mRowsMod = x; }).catch(() => { G456.__five5mRowsLoading = false; }); } } catch {} // fix456 (R169, Love Oct 29 2026 10:27 AM PT: "WALLED OFF. PLEASE."): the walled-off 5M reads her own Oct 27 copy (recon5m.ts) into her own rows - BTC only, read-only on the desk; loaded apart so nothing of hers can stop the desk
       const st: Record<string, unknown> = {};
       if (chan) st.channel = { vwap: r2(chan.vw), sd: r2(chan.sd), up1: r2(chan.vw + chan.sd), dn1: r2(chan.vw - chan.sd), close: last1m?.c, inside: last1m ? Math.abs(last1m.c - chan.vw) <= chan.sd : null };
       for (const tf of [2, 5, 10, 15]) {

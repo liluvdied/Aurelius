@@ -3283,6 +3283,7 @@ async function polyTwin() {
       // NO 5M IN HER OFF HOURS (fix247, Oct 26 ~12:26 AM PT, Love: "11pm is off from now on on there ok"): polyTwin.rej5m.skipHours (PT) - no Poly 5m buys from main or
       // the rejection model in those hours. Kalshi is untouched.
       if (r5 && Array.isArray(r5.skipHours) && FLIP5_BOOKS.includes(String(r.book)) && r5.skipHours.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", hourCycle: "h23" }).format(new Date())) % 24)) continue;
+      if (r5 && r5.on === true && (r.book === (main5 ? "recon-tog" : "recon-rej") || ((r as any).lateOnly && FLIP5_BOOKS.includes(String(r.book)))) && (await import("./five5m-rows").then((x) => x.fiveOn()).catch(() => false))) continue; // fix456 (R169): while the walled-off 5M is on, this old 5M lane stays off - one 5M book, hers
       if (r5 && r5.on === true && (r.book === (main5 ? "recon-tog" : "recon-rej") || ((r as any).lateOnly && FLIP5_BOOKS.includes(String(r.book)))) && (Array.isArray(r5.assets) ? r5.assets : ["btc"]).includes(r.asset) && !(Date.parse(String(r5.until || "")) < now) && Number(r5.dollars) > 0) {
         const id5 = `${r.id}:5m`, d5 = reg[id5];
         if (d5 && (d5.status === "filled" || d5.final)) continue;
@@ -3647,6 +3648,7 @@ async function tick() {
   if (g.__aureliusBusy) return;
   void hedgeBank();
   void polyTwin(); // fix112 - the twin on Polymarket 24/7
+  void (async () => { try { const r456 = await import("./five5m-rows"), l456 = await import("./five5m"); if (r456.fiveOn()) void l456.fiveTick5m(); void l456.fiveBank5m(); } catch {} })(); // fix456 (R169): the walled-off 5M - her own lane (only while five5m.on) and her own exits (always, for anything she holds); loaded apart
   // READ-ONLY POLYMARKET AUDIT on request (Oct 21, Love): touch data/poly-audit.req -> data/poly-audit.json
   try { const rq = join(process.cwd(), "data", "poly-audit.req"); if (existsSync(rq) && !g.__polyAuditBusy) { g.__polyAuditBusy = true; renameSync(rq, rq + ".done"); void import("./poly-live.server").then((pm) => pm.polyAudit()).catch(() => {}).finally(() => { g.__polyAuditBusy = false; }); } } catch {}
   g.__aureliusBusy = true;

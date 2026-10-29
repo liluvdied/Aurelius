@@ -19,6 +19,7 @@ const parts = [
   src.slice(src.indexOf("const isSessBand = "), src.indexOf("\n", src.indexOf("const isSessBand = "))),
   grab("export const BREAK_DIST"), grab("export const ZONE_REACH_PCT"), grab("export const REACH429"),
   src.slice(src.indexOf("export const PINK_PCT429"), src.indexOf("\n", src.indexOf("export const PINK_PCT429"))),
+  ...(src.includes("export const PINK_PCT459") ? [src.slice(src.indexOf("export const PINK_PCT459"), src.indexOf(";", src.indexOf("export const PINK_PCT459")) + 1)] : []), // fix459 (R176): gold 15% / BTC 20% share the pink reach reads
   grab("export function zoneReachSlide("), grab("export function reachWall429("),
   "function fiveOpenNow(a) { return 0; } function zonesNow(a) { return null; }",
 ].map((x) => x.replace(/^export /, ""));

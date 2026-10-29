@@ -1,9 +1,33 @@
-# Every decision Love has made - rebuilt 2026-10-29T18:21:29.431776+00:00
+# Every decision Love has made - rebuilt 2026-10-29T18:31:54.933821+00:00
 
-1321 decisions with Love's words or card picks, out of 2063 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1326 decisions with Love's words or card picks, out of 2068 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T18:30:20.039122+00:00  ·  diary line 2535  ·  fix456
+- Love: “please create a SEPARATE BOOK FOR THAT MODEL ... WALLED OFF. PLEASE.”
+- fix456 IN HER CODE
+- Full entry: 2026-10-29T18:30:20.039122+00:00 fix456 INSTALLED by Love's double-click (R169 Love Oct 29 2026 10:27 AM PT: "please create a SEPARATE BOOK FOR THAT MODEL ... WALLED OFF. PLEASE."; R172 "1M flip only hun"; R173 "october 27th please. she was at 79%"; R174 "1M 2m, 3M , 4m or 5M candle flip in our favor / keeps trying until 3:00 minutes left / 2. stays / 3. stays"; R175 hours "B"): the Polymarket 5M is her own book - her Oct 27 4:57 AM PT read/walls/lane/exits in her own files, $5, BTC 5m, off 3, 4, 5 AM, 1 PM, 9 PM, 11 PM. Old 5M lane off while five5m.on. Kalshi files untouched: True. {'five5m-mem.ts': '22c32e964ef315ad', 'recon5m.ts': '3319be9ebca694bf', 'bandlock5m27.ts': 'd747023cd7eb3867', 'auto5m27.ts': '8ca46834fdee4047', 'dna5m27.ts': '0aaa1806f71406c1', 'five5m-rows.ts': '633226600030fa5c', 'five5m.ts': 'ae44d58e00b4bc4d', 'pivotbooks.ts': '3d6c4796053918ba', 'engine.ts': 'e7cd58074c58378f'}
+
+## 2026-10-29T18:30:00.033947+00:00  ·  diary line 2534  ·  fix429, fix432, fix459
+- Love: “she is only not allowed to long into pink at 15% of the channel width, band to band. / not all distances, period.”
+- Love: “both books pls”
+- fix429 IN HER CODE
+- fix432 IN HER CODE
+- fix459 IN HER CODE
+- Full entry: 2026-10-29T18:30:00.033947+00:00 fix459 INSTALLED by Love's double-click (R176, Love Oct 29 2026 11:12 AM PT: "she is only not allowed to long into pink at 15% of the channel width, band to band. / not all distances, period." + 11:18 AM "15% just for gold rn hun. 20% for btc" + "both books pls"): main + rejection - the unbroken pink holds a long (fix432) and reaches (fix429/430, over its $1/$50 floor) only within 15% gold / 20% BTC of the session-band channel; downslope pink rule untouched. {'bandlock.ts': '51b5b791eddccc16'}.
+
+## 2026-10-29T18:24:48Z  ·  diary line 2533
+- Full entry: 2026-10-29T18:24:48Z CORRECTION to the line above: Love HAS double-clicked INSTALL-PINK-15-20.command - it is waiting to land at 11:30 AM PT.
+
+## 2026-10-29T18:24:31.999211+00:00  ·  diary line 2532
+- Full entry: 2026-10-29T18:24:31.999211+00:00 NOTE R177 (no code change): Love 11:23 AM PT - session band, green/red, Bollinger and pink band tolerances are hard-set for all models, not book to book; ask before changing. The 9 used installers moved to INSTALLERS-ALREADY-USED (nothing deleted). INSTALL-PINK-15-20 and INSTALL-5M-STANDALONE stay, not clicked yet.
+
+## 2026-10-29T18:23:56Z  ·  diary line 2531  ·  fix456, fix459
+- fix456 IN HER CODE
+- fix459 IN HER CODE
+- Full entry: 2026-10-29T18:23:56Z STAGED (NOT installed, waiting on Love's double-click): fix456 the walled-off 5M (INSTALL-5M-STANDALONE.command; R169/R172/R173/R174/R175) - her Oct 27 4:57 AM PT read/walls/lane/exits as her own files in data/STAGED-five5m, door 1 = 1/2/3/4/5m flip her way until 3:00 left, doors 2+3 as Oct 27, hours B, $5; dry-run on a full copy: IN, 5M WALL ✓, gate ✓, Kalshi files byte-identical. Door replay Oct 27 12-12 AM PT: 131 calls, door open 88 (Oct 27 rule) -> 105 (R174), walls and price still judge each. fix459 pink 15% gold / 20% BTC (R176) staged as INSTALL-PINK-15-20.command.
 
 ## 2026-10-29T18:00:00.013937+00:00  ·  diary line 2530  ·  fix457
 - Love: “yes. if a band broke downwards it is only a short ... band breaks = trade the direction of the break. WITH PRICE ON THE SAME SIDE OF THE BREAK. A WICK THRU WITH PRICE ON THE OTHER SIDE OF THE BAND IS NOT AN ENTRY ... count the 33% correctly”

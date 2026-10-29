@@ -1,20 +1,20 @@
 {
  "btc": {
   "asset": "btc",
-  "at": "2026-10-29T18:23:59.761Z",
-  "spot": 80772.62,
-  "target": 80729.07,
-  "signal": null,
-  "side": null,
-  "verdict": "long and short signals at once: no trade"
+  "at": "2026-10-29T18:32:54.241Z",
+  "spot": 80544.11,
+  "target": 80703.41,
+  "signal": "BRICK 5m close below the 5m purple",
+  "side": "down",
+  "verdict": "gate 3: 1.16x is outside 1.38-1.8x"
  },
  "gold": {
   "asset": "gold",
-  "at": "2026-10-29T18:23:59.761Z",
-  "spot": 4007.392,
-  "target": 4011.25,
-  "signal": "BRICK 5m close below the 5m purple",
+  "at": "2026-10-29T18:32:54.241Z",
+  "spot": 4006.35,
+  "target": 4006.58,
+  "signal": "BRICK 5m close below the -2σ",
   "side": "down",
-  "verdict": "DNA: in the 25% of the channel closest to the -2σ (4007.03), 0.36 of 1.83"
+  "verdict": "TAKEN"
  }
 }

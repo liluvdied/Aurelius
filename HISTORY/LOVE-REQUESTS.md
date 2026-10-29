@@ -2,6 +2,34 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R180 - fix413 SESSION BAND AHEAD must not treat a far session band ($250 away on BTC) as an obstacle - it should only hold within her session band tolerance (distance to confirm from her recorded words).
+- when: 2026-10-29T18:32:26+00:00
+- Love: "Love Oct 29 2026 11:31 AM PT: "WHAT THE FUCK ARE YOU TALKING ABOUT BRO A BAND 250 AWAY IS NOT A FUCKING OBSTACLE""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j,  , (, +,  , c, o, p, y, ,,  , a, s,  , f, i, x, 4, 1, 3,  , t, o, d, a, y, )
+- status: ACTIVE
+- proof: {"process": "staging; tolerance from her recorded words"}
+
+## R179 - Entries are AT the break, not halfway after the move or later. Question: what stopped the BTC short at the pink break ~11:23 AM. No change yet.
+- when: 2026-10-29T18:30:27+00:00
+- Love: "Love Oct 29 2026 11:29 AM PT: "she enters on the break , not halfway after the move is done. AND CERTAINLYYYYY NOT AFTER THAT.""
+- books: r, e, c, o, n, -, t, o, g,  , (, B, T, C, )
+- status: ACTIVE
+- proof: {"process": "answered in report"}
+
+## R178 - No pink-break exemption to the 55% walls (nothing staged). Question to answer: why main did not short BTC 11:15-11:30 AM while price was less than 55% of the way through the pink -> green space.
+- when: 2026-10-29T18:29:40+00:00
+- Love: "Love Oct 29 2026 11:29 AM PT: "NO. do NOT LET POSITIONS THROUGH PAST 55%. the question is, why did she not enter WHEN IT WAS LESS THAN 55% OF THE WAY THROUGH??????""
+- books: r, e, c, o, n, -, t, o, g,  , (, B, T, C, )
+- status: ACTIVE
+- proof: {"process": "answered in report; no code change"}
+
+## R177 - (1) the 9 used installers moved into INSTALLERS-ALREADY-USED (nothing deleted); (2) STANDING NOTE (no code change): session band, green/red zone, Bollinger and pink band tolerances are hard-set and shared by all models - not changed book to book; still ask Love before changing any of them.
+- when: 2026-10-29T18:24:31+00:00
+- Love: "Love Oct 29 2026 11:23 AM PT: "yes, pls make a folder for the used ones and let me know if i need to do anything else. quick rule of thumb, going forward, session band, green/red, bollingers & pink band tolerances dont change book to book, those are hard set tolerances for all models. dont change anything else for anything else right now, just know that for the future okay but do pls ask, just in case and could you see why shes skipping btc this window hun?""
+- books: a, l, l,  , m, o, d, e, l, s,  , (, n, o, t, e,  , o, n, l, y, )
+- status: ACTIVE
+- proof: {"exists": "INSTALLERS-ALREADY-USED"}
+
 ## R176 - fix459: a long is refused by the unbroken pink (fix432 never-long-under-pink and fix429/430 pink reach) only when the pink is within 15% (gold) / 20% (BTC) of the session-band channel, band to band; main (recon-tog) + rejection (recon-rej), gold + BTC. The downslope pink rule (fix371/403 gold, fix423 BTC: no entries til pink breaks by 25c) stays exactly as is. Sliding scale later.
 - when: 2026-10-29T18:19:27+00:00
 - Love: "Love Oct 29 2026 11:18 AM PT: "thank you listening. 15% just for gold rn hun. 20% for btc. we will do the sliding scale later today. and yes, she was right to skip because the downslope pink rule where price keeps recting off of pink on a downslope, no entries til pink breaks by 25c. thats why she was right to skip hun" + 11:18 AM: "both books pls""
