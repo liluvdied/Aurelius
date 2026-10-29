@@ -1,6 +1,24 @@
 {
- "at": "2026-10-29T18:32:53.121Z",
+ "at": "2026-10-29T18:46:09.904Z",
  "rows": [
+  {
+   "ticker": "KXGOLD15M-26OCT291500-00",
+   "title": "Gold price up in next 15 mins? · Target Price: $4,009.55",
+   "side": "yes",
+   "qty": 8.33,
+   "cost": 4.58,
+   "entry": 0.55,
+   "bid": 0.53,
+   "ask": 0.54,
+   "value": 4.41,
+   "pnl": -0.17,
+   "pct": -4,
+   "closes": "2026-10-29T19:00:00Z",
+   "updated": "2026-10-29T18:45:48.517909Z",
+   "status": "active",
+   "rule": null,
+   "lastFill": "2026-10-29T18:45:48.517879Z"
+  },
   {
    "ticker": "KXBTC2026200-27JAN01-200000",
    "title": "Will Bitcoin be above $200000 by Jan 1, 2027 at 11:59PM ET? · Above $200000",

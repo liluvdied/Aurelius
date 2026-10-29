@@ -846,6 +846,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
     // SESSION BAND AHEAD OF THE PINK = WAIT, BACK (fix413, Love Oct 28 2026 6:0x PM PT card: brought back - first built Oct 17 ~12:10 PM PT, Love: "in the event price passes a pink band and there is an unbroken
     // session band above her, still need her to either wait for a break or a rejection there / going into an unbroken band is a losing recipe"): when the pink is her closest line and the session band in
     // front is closer than the one behind, no trade into it - wait for its break or rejection. 5:50 PM BTC: pink 81,105 just broken, -1σ 81,141 $31 ahead vs -2σ 81,072 $38 behind.
+    if ((book === "recon-tog" || book === "recon-rej") && aheadBeyond460(lbR.L, qR.c, side)) { /* fix460 (R181): the session band ahead is farther than 33% of her channel - not an obstacle; every other wall still judges */ } else
     if (book === "recon-tog" || book === "recon-rej") { const sa413 = sessionAheadWait(asset, lbR.L, qR.c, side); if (sa413) return deny(`SESSION BAND AHEAD (fix413): ${sa413}`, { tick: qR.c }); }
     if (book === "recon-tog" || book === "recon-rej") { const rw429 = reachWall429(asset, lbR.L, qR.c, side); if (rw429) return deny(rw429, { tick: qR.c }); } // fix429: her $1.50 / $50 wall + zone reach, main + rejection only
     if (book === "recon-tog" || book === "recon-rej") { const pl432 = pinkLongWall432(asset, lbR.L, qR.c, side); if (pl432) return deny(pl432, { tick: qR.c }); } // fix432: never long into an unbroken pink, main + rejection
@@ -1875,6 +1876,18 @@ export function atSessionBand(asset: string, W: Line[], tick: number): string {
 // for pink rejections). When the closest wall is the pink (just broke it, or bouncing off it), she looks at the session bands: if the unbroken one in
 // front is closer than the one behind, she waits for it - a break ($8 through) or a rejection ($8 back). The 12:03 PM long: pink 81,526 $2.50 under,
 // VWAP 81,558 $29 ahead vs -0.5 sigma $36 behind -> wait.
+// SESSION BAND AHEAD ONLY WITHIN HER 33% (fix460, R181 - Love Oct 29 2026 11:31 AM PT: "A BAND 250 AWAY IS NOT A FUCKING OBSTACLE" + 11:32 AM: "33% FUCKING PERCENT FROM BAND TO BAND BRO"):
+// the SESSION BAND AHEAD wait (fix413) holds her only while the unbroken session band in front of her is within 33% of her channel - session band behind her to session band ahead
+// of her. Farther than that it is not an obstacle and she is free of fix413; every other wall still judges her. No session band behind her = can't measure = the wait stays.
+// 11:23:32 AM BTC short: VWAP 80,470.81 $270.69 ahead, +1σ 81,081.42 behind - channel $610.61, 33% = $201.50 -> free.
+export function aheadBeyond460(W: Line[], tick: number, side: string): boolean {
+  if (!(side === "up" || side === "down") || !(tick > 0)) return false;
+  const S = W.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name)));
+  const above = S.filter((l) => l.price > tick).sort((a, b) => a.price - b.price)[0], below = S.filter((l) => l.price < tick).sort((a, b) => b.price - a.price)[0];
+  const ahead = side === "up" ? above : below, behind = side === "up" ? below : above;
+  if (!ahead || !behind) return false;
+  return Math.abs(ahead.price - tick) > 0.33 * Math.abs(ahead.price - behind.price);
+}
 export function sessionAheadWait(asset: string, W: Line[], tick: number, side: string): string {
   if (!(side === "up" || side === "down") || !(tick > 0) || !W.length) return "";
   const near = W.slice().sort((a, b) => Math.abs(a.price - tick) - Math.abs(b.price - tick))[0];

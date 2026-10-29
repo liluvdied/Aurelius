@@ -1,9 +1,24 @@
-# Every decision Love has made - rebuilt 2026-10-29T18:31:54.933821+00:00
+# Every decision Love has made - rebuilt 2026-10-29T18:45:38.757169+00:00
 
-1326 decisions with Love's words or card picks, out of 2068 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1329 decisions with Love's words or card picks, out of 2071 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T18:45:00.031648+00:00  ·  diary line 2538  ·  fix413, fix460
+- Love: “A BAND 250 AWAY IS NOT A FUCKING OBSTACLE”
+- fix413 IN HER CODE
+- fix460 IN HER CODE
+- Full entry: 2026-10-29T18:45:00.031648+00:00 fix460 INSTALLED by Love's double-click (R181/R182, Love Oct 29 2026 11:31 AM PT: "A BAND 250 AWAY IS NOT A FUCKING OBSTACLE" + 11:32 AM "33% FUCKING PERCENT FROM BAND TO BAND BRO" + 11:33 AM "NO LONGS IN TOP 33% . NO SHORTS IN THE BOTTOM 33%"): the SESSION BAND AHEAD wait (fix413, main + rejection) holds only a long in the top 33% / a short in the bottom 33% of the session-band channel; the 11:23:32 AM BTC short replays free. {'bandlock.ts': '5825a6529f296d8b'}.
+
+## 2026-10-29T18:39:42Z  ·  diary line 2537
+- Full entry: 2026-10-29T18:39:42Z R184 recorded (no change): Love - sliding scale later, thirds 20/33 when bands are wider; touch nothing else now.
+
+## 2026-10-29T18:32:51Z  ·  diary line 2536  ·  fix413, fix456, fix459
+- fix413 IN HER CODE
+- fix456 IN HER CODE
+- fix459 IN HER CODE
+- Full entry: 2026-10-29T18:32:51Z CONFIRMED: fix459 landed 11:30:00 and fix456 (walled-off 5M) landed 11:30:20 PT by Love's clicks; 5M WALL ✓, golden ✓, seal ✓, gate ✓. tools/stale-pink-test-431.cjs went OUT after fix459 (its harness lacked PINK_PCT459/pinkBeyond459 - Claude's miss); harness-only fix (rule unchanged, backup data/BACKUPS/stale-pink-test-431.cjs.pre-fix459-harness), SAFE again. R178-R180 logged; fix413 distance waiting on Love (no words give one).
 
 ## 2026-10-29T18:30:20.039122+00:00  ·  diary line 2535  ·  fix456
 - Love: “please create a SEPARATE BOOK FOR THAT MODEL ... WALLED OFF. PLEASE.”

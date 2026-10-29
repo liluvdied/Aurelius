@@ -1,5 +1,32 @@
 [
  {
+  "at": "2026-10-29T18:45:13.099Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT291500-00:ogp5",
+  "side": "down",
+  "spot": 80603.29,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $81.63, ADX 32)",
+   "zone": 81.63326587225829
+  }
+ },
+ {
+  "at": "2026-10-29T18:33:01.152Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvtvsj23-1m3kck:paper-247",
+  "side": "down",
+  "spot": 4006.112,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m S1 below, $0.85 away (zone $1.42, ATR 4.06, ADX 29)",
+   "zone": 1.4209738328969135
+  }
+ },
+ {
   "at": "2026-10-29T18:30:10.602Z",
   "fa": "gold",
   "src": "ogp5",
@@ -506,33 +533,6 @@
    "block": false,
    "why": "clear (zone $1.00, ADX 11)",
    "zone": 0.9978843855732344
-  }
- },
- {
-  "at": "2026-10-29T15:15:12.885Z",
-  "fa": "btc",
-  "src": "ogp5",
-  "row": "KXBTC15M-26OCT291130-30:ogp5",
-  "side": "up",
-  "spot": 81521.35,
-  "ck": {
-   "block": true,
-   "kind": "chase",
-   "why": "chasing: $306.06 over the pink 5m PP (81215.29), more than 1 ATR ($261.68); waiting for it to come back to the pink",
-   "zone": 136.02535495710157
-  }
- },
- {
-  "at": "2026-10-29T15:00:37.701Z",
-  "fa": "btc",
-  "src": "paper-247",
-  "row": "mvto7d7v-b41z87:paper-247",
-  "side": "up",
-  "spot": 81140.78,
-  "ck": {
-   "block": false,
-   "why": "clear (zone $125.07, ADX 33)",
-   "zone": 125.06841110747416
   }
  }
 ]

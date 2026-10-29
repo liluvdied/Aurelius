@@ -1,5 +1,43 @@
 [
   {
+    "id": "mvtvsj23-1m3kck",
+    "at": "2026-10-29T18:45:02.522Z",
+    "result": "loss",
+    "profit": -25,
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Tap-reject at -2σ",
+    "multiple": 1.59,
+    "hour": "11am",
+    "minutesLeft": null,
+    "windowOpen": null,
+    "entrySpot": 4006.112,
+    "target": 4006.58,
+    "vwap": 4032.39281933443,
+    "nearestBand": "",
+    "bandBetween": false,
+    "peakPct": 0,
+    "exitPct": null,
+    "giveback": null,
+    "trail": "Trail never armed.",
+    "points": 0,
+    "better": "The entry was the book. Nothing in the entry to change. Leave the setup on.",
+    "elements": [
+      "Gold short",
+      "Tap-reject at -2σ",
+      "1.4x to 2.2x",
+      "short below the VWAP",
+      "already through the strike",
+      "tight to the strike",
+      "never went green",
+      "11am",
+      "held to the bell",
+      "Trail never armed.",
+      "finished on the wrong side of the strike"
+    ],
+    "note": "Gold short Tap-reject at -2σ lost −$25.00 (11am). 1.4x to 2.2x. short below the VWAP. already through the strike. tight to the strike. never went green. held to the bell. Trail never armed.. finished on the wrong side of the strike. Max 58.7%, saw 0%. Trail never armed. The entry was the book. Nothing in the entry to change. Leave the setup on."
+  },
+  {
     "id": "held-KXBTC15M-26OCT291415-15",
     "at": "2026-10-29T18:15:25.091Z",
     "result": "win",
@@ -14149,39 +14187,5 @@
       "Trail took it. High 50.8%, out at 50.8%."
     ],
     "note": "Silver long Tap-reject at −1.5σ won +$12.70 (10pm). 1.4x to 2.2x. already through the strike. tight to the strike. cleared the arm. closed before the bell. Trail took it. High 50.8%, out at 50.8%.. Max 58.7%, saw 50.8%, closed at 50.8%. Trail took it. High 50.8%, out at 50.8%. Nothing to change. Same entry next time."
-  },
-  {
-    "id": "held-KXBTC15M-26OCT280100-00",
-    "at": "2026-10-28T05:00:16.446Z",
-    "result": "win",
-    "profit": 2.34,
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Live",
-    "multiple": 1.89,
-    "hour": "9pm",
-    "minutesLeft": null,
-    "windowOpen": null,
-    "entrySpot": null,
-    "target": null,
-    "vwap": null,
-    "nearestBand": "",
-    "bandBetween": false,
-    "peakPct": 81.1,
-    "exitPct": 77.7,
-    "giveback": 3.4,
-    "trail": "Trail took it. High 81.1%, out at 77.7%.",
-    "points": 3,
-    "better": "Nothing to change. Same entry next time.",
-    "elements": [
-      "Bitcoin short",
-      "Live",
-      "1.4x to 2.2x",
-      "cleared the arm",
-      "9pm",
-      "closed before the bell",
-      "Trail took it. High 81.1%, out at 77.7%."
-    ],
-    "note": "Bitcoin short Live won +$2.34 (9pm). 1.4x to 2.2x. cleared the arm. closed before the bell. Trail took it. High 81.1%, out at 77.7%.. Max 88.7%, saw 81.1%, closed at 77.7%, gave back 3.4. Trail took it. High 81.1%, out at 77.7%. Nothing to change. Same entry next time."
   }
 ]

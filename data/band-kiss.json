@@ -1,5 +1,19 @@
 [
   {
+    "at": "2026-10-29T18:33:00.812Z",
+    "ticker": "KXGOLD15M-26OCT291445-45",
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Tap-reject at -2σ",
+    "spot": 4006.112,
+    "target": 4006.58,
+    "band": 4006.58,
+    "gap": 0,
+    "vwap": 4032.39,
+    "profit": null,
+    "result": "open"
+  },
+  {
     "at": "2026-10-29T04:16:12.549Z",
     "ticker": "KXGOLD15M-26OCT290030-30",
     "asset": "gold",

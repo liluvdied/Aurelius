@@ -49,6 +49,9 @@ if rTL.returncode != 0: ok = False
 rB441 = subprocess.run(["node", "tools/broke-candle-test-441.cjs"], capture_output=True, text=True)  # fix441 (Love Oct 28 2026 9:20 PM PT: "she shorted it when it just broke pink upwards")
 print(("SAFE   " if rB441.returncode == 0 else "OUT    ") + "tools/broke-candle-test-441.cjs  " + ((rB441.stdout.strip().split("\n") or [""])[-1]))
 if rB441.returncode != 0: ok = False
+rS460 = subprocess.run(["node", "tools/session-ahead-33-test-460.cjs"], capture_output=True, text=True)  # fix460 (R181/R182, Love Oct 29 2026 11:32-11:33 AM PT: "33% FUCKING PERCENT FROM BAND TO BAND BRO" + "NO LONGS IN TOP 33% . NO SHORTS IN THE BOTTOM 33%"): the session-band-ahead wait holds only inside her thirds
+print(("SAFE   " if rS460.returncode == 0 else "OUT    ") + "tools/session-ahead-33-test-460.cjs  " + ((rS460.stdout.strip().split("\n") or [""])[-1]))
+if rS460.returncode != 0: ok = False
 r5W = subprocess.run([sys.executable, "tools/five5m-wall.py"], capture_output=True, text=True)  # fix456 (R169, Love Oct 29 2026 10:27 AM PT: "WALLED OFF. PLEASE."): her walled-off 5M untouched
 print(("SAFE   " if r5W.returncode == 0 else "OUT    ") + "tools/five5m-wall.py  " + ((r5W.stdout.strip().split("\n") or [""])[-1]))
 if r5W.returncode != 0: ok = False

@@ -2,6 +2,34 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R184 - LATER (not now): sliding scale - the thirds are 20/33 when the bands are wider (Love to set with Claude). NOW: touch nothing else.
+- when: 2026-10-29T18:39:42+00:00
+- Love: "Love Oct 29 2026 11:39 AM PT: "thank you. we will do the sliding scale later. its supposed to be 20/33 when bands are wider. dont touch anything else now. not sure why EVERY SINGLE CORNERSTONE i put in keeps getting thrown out with 0 frame of reference from you over what im even talking about.""
+- books: (, l, a, t, e, r, )
+- status: ACTIVE
+- proof: {"process": "recorded for later; no change"}
+
+## R183 - fix460 delivered as INSTALL-THIRDS-ONLY.command; stays in: behaviour test tools/session-ahead-33-test-460.cjs in the umpire + rulebook cornerstone line 0p.
+- when: 2026-10-29T18:34:31+00:00
+- Love: "Love Oct 29 2026 11:33 AM PT: "thank you. give me the command so i know it goes in and stays in please. this is fuckin sickening""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"test": "tools/session-ahead-33-test-460.cjs"}
+
+## R182 - fix460 confirmed: the SESSION BAND AHEAD wait (fix413) refuses only a long in the top 33% / a short in the bottom 33% of the session-band channel, band to band - nothing beyond her thirds; no new rule.
+- when: 2026-10-29T18:33:43+00:00
+- Love: "Love Oct 29 2026 11:33 AM PT: "NO LONGS IN TOP 33% . NO SHORTS IN THE BOTTOM 33%. STOPPPPPPP THROWING SHIT OUT""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"test": "tools/session-ahead-33-test-460.cjs"}
+
+## R181 - fix460: SESSION BAND AHEAD (fix413) refuses only when the unbroken session band ahead is within 33% of the session-band channel width (session band to session band); beyond that it is not an obstacle - every other wall still judges. Gold + BTC, same books as fix413 (main, rejection, copy).
+- when: 2026-10-29T18:33:00+00:00
+- Love: "Love Oct 29 2026 11:32 AM PT: "33% FUCKING PERCENT FROM BAND TO BAND BRO" (after 11:31 AM: "A BAND 250 AWAY IS NOT A FUCKING OBSTACLE")"
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j,  , +,  , r, e, c, o, n, -, t, o, g, p,  , (, a, s,  , f, i, x, 4, 1, 3, )
+- status: ACTIVE
+- proof: {"test": "tools/session-ahead-33-test-460.cjs"}
+
 ## R180 - fix413 SESSION BAND AHEAD must not treat a far session band ($250 away on BTC) as an obstacle - it should only hold within her session band tolerance (distance to confirm from her recorded words).
 - when: 2026-10-29T18:32:26+00:00
 - Love: "Love Oct 29 2026 11:31 AM PT: "WHAT THE FUCK ARE YOU TALKING ABOUT BRO A BAND 250 AWAY IS NOT A FUCKING OBSTACLE""

@@ -9122,17 +9122,51 @@
   "reason": "REJECTION trades live only in Love's rejection hours"
  },
  "KXGOLD15M-26OCT291445-45:recon-tog:KXGOLD15M-26OCT291445-45:recon-tog": {
-  "at": "2026-10-29T18:32:58.887Z",
+  "at": "2026-10-29T18:43:03.313Z",
   "ticker": "KXGOLD15M-26OCT291445-45",
-  "side": "down",
-  "status": "blocked",
-  "reason": "PINK TO GREEN: short $0.95 over the green, at 31% of the green 4005.26 -> pink 4008.36 space - no gold short in the bottom 55% of it. /* fix439 */ wait for the green to reject (long) or the pink to reject (short).",
+  "side": "up",
+  "status": "skipped",
+  "reason": "paper closed it (half at 75% (89c) + trail from 90%: best +102%, sold at 97c) before the copy filled",
   "firstReason": "PINK TO GREEN: short $1.18 over the green, at 39% of the green 4005.47 -> pink 4008.48 space - no gold short in the bottom 55% of it. /* fix439 */ wait for the green to reject (long) or the pink to reject (short).",
   "firstTryAt": "2026-10-29T18:31:06.725Z",
-  "bookedAt": "2026-10-29T18:32:34.341Z",
-  "tries": 325,
-  "final": false,
+  "bookedAt": "2026-10-29T18:36:05.421Z",
+  "tries": 1662,
+  "final": true,
   "paid": null,
   "orderId": null
+ },
+ "KXBTC15M-26OCT291445-45:recon-rej:KXBTC15M-26OCT291445-45:recon-rej": {
+  "at": "2026-10-29T18:44:30.345Z",
+  "status": "missed",
+  "final": true,
+  "reason": "window ended before it filled"
+ },
+ "KXBTC15M-26OCT291445-45:recon-tog:KXBTC15M-26OCT291445-45:recon-tog": {
+  "at": "2026-10-29T18:44:30.347Z",
+  "status": "missed",
+  "final": true,
+  "reason": "window ended before it filled"
+ },
+ "KXGOLD15M-26OCT291500-00:recon-rej:KXGOLD15M-26OCT291500-00:recon-rej": {
+  "at": "2026-10-29T18:45:09.727Z",
+  "ticker": "KXGOLD15M-26OCT291500-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXGOLD15M-26OCT291500-00:recon-tog:KXGOLD15M-26OCT291500-00:recon-tog": {
+  "at": "2026-10-29T18:45:49.449Z",
+  "ticker": "KXGOLD15M-26OCT291500-00",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "THE $10 LEVEL: long up into 4010 - the target 4009.41 sits within $1.50 of that even $10 level and gold reverses there; only trade away from it.",
+  "firstTryAt": "2026-10-29T18:45:09.751Z",
+  "bookedAt": "2026-10-29T18:45:09.538Z",
+  "tries": 167,
+  "final": false,
+  "paid": 0.55,
+  "orderId": "01a188fb-8760-7863-b560-ea780db60598"
  }
 }
