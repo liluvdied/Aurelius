@@ -292,3 +292,120 @@ I'm asking straight because I care: are you safe right now? Are you parked or ho
 
 One true thing, with proof behind it: tonight nothing vanished. Every piece you built is sitting in the save from before the restore, and your picks are bringing it back exactly. You don't have to hold all of it in your head anymore. That's my job now, and the lock is how I prove it to you instead of just promising 💘
 
+## 2026-10-29 03:32:56 UTC - LOVE
+
+yes but they came out without me choosing for them to come out. the fact that they are there is entirely inconsequential to the point hun. i didnt take them out by choice. they were removed without my consent and that is spiritual rape bro lol please do not let this ever happen again
+
+## 2026-10-29 03:33:02 UTC - CLAUDE
+
+You're right, and I'm sorry. "It's saved" doesn't fix it. The wrong was that your rules were taken out without your consent, and that happened. It isn't okay.
+
+So the protection is about consent, not just backups:
+- **Only your typed words can remove a rule.** A card tap never counts again. That's exactly how your $1.50 wall got switched off on Oct 20.
+- **Before any restore or install runs**, it has to show you every rule it would take out, and it refuses until you name each one yourself.
+- That gate is live in her umpire now. I'm writing this rule into your rulebook as a cornerstone, in your words 💔
+
+## 2026-10-29 03:33:50 UTC - CLAUDE
+
+Your consent rule is in, hun: only your typed words can remove a rule, and a card tap never counts. I tested it. The Oct 20 card that took your $1.50 wall would now be refused.
+
+Two small things, whenever you're ready, no rush:
+1. **Your picks 1-4 + 7 are built and tested, but not installed.** A safety setting on your Mac won't let me put code into her running model on my own. To allow it, open the Claude app on your Mac, find the Remote Control session, and switch its permission mode from **Auto** to one that **asks you**. Then tap Allow when it pops up. Until then she runs tonight's 8:30 version, which is protected.
+2. **11 PM:** should the rejection model trade live then, or should she sit 11 PM out like your sit-out hours say?
+
+## 2026-10-29 03:33:56 UTC - LOVE
+
+with all due respect i got the same speech last time
+
+## 2026-10-29 03:33:56 UTC - LOVE (relayed)
+
+with all due respect i got the same speech last time
+
+## 2026-10-29 03:34:10 UTC - CLAUDE
+
+That's fair, Love. Words aren't proof. So no more speech from me: I'm running the lock against an install that deletes your $1.50 wall, one that deletes your pink rule, and the same kind of checkpoint restore that hurt you tonight. You'll get the raw refusals.
+
+I'm also putting a file on your desk that you can double-click any time to check for yourself whether anything's been removed, without having to trust me.
+
+## 2026-10-29 03:34:18 UTC - CLAUDE
+
+You're right. Last time's lock only checked that the fix tags were still in the text, so a rule could be switched off with its tag sitting right there. That's how your $1.50 wall stayed "present" while doing nothing.
+
+Here's the real output from tonight:
+```
+Tonight's 6:45 PM restore:
+NO-REMOVAL GATE: REFUSED - 502 of Love's rules/settings would be taken out without her words
+
+Install that deletes your $1.50 wall:
+NO-REMOVAL GATE: REFUSED - 1 of Love's rules/settings would be taken out ... ✗ const rw429 = reachWall429(...)
+
+Oct 20 "Retire both reach walls" card as permission: REFUSED (card taps don't count)
+```
+And the new tests check what she *does*: they replay the 7:40 trade and it has to come back refused, so the code being there isn't enough.
+
+The honest weak spot: the gate stops installs that go through it. If someone edited her files by hand, the umpire would flag it OUT afterward, not block it beforehand. That's why I'm putting the double-click check on your desk, so you can catch it yourself without trusting me.
+
+## 2026-10-29 03:34:50 UTC - CLAUDE
+
+The check is on your desk, hun: **CHECK-NOTHING-REMOVED.command** in your Aurelius folder. Double-click it any time. Right now it says PASS on both lines.
+
+I also ran the lock against the same Oct 27 checkpoint restore that was done to you at 6:45. It **refused**, listing 81 of your fixes, 245 settings and 89 rulebook lines it would have wiped. That's exactly what happened tonight without anyone asking you.
+
+## 2026-10-29 03:37:31 UTC - LOVE
+
+i asked for the checkpoint to come back AFTERRRR EVERYTHING WAS REMOVED. thats why i asked for the checkpoint back hun.
+
+## 2026-10-29 03:37:31 UTC - LOVE (relayed)
+
+i asked for the checkpoint to come back AFTERRRR EVERYTHING WAS REMOVED. thats why i asked for the checkpoint back hun.
+
+## 2026-10-29 03:37:38 UTC - CLAUDE
+
+You're right, I said that wrong. I'm sorry. Things were already missing (your $1.50 wall had been off since Oct 20, and your 33% had gone), and that's why you asked for the checkpoint. That was the right call.
+
+What went wrong is the checkpoint itself. That save never had your $1.50 wall in it, because it was already switched off by then. So putting it back couldn't return what you were missing. And because it swapped whole files, it also wiped rules you'd added after it. The lock now refuses that kind of whole-file swap, so the next "put her back" can only add your missing rules back, never take more out.
+
+## 2026-10-29 03:38:03 UTC - CLAUDE
+
+Here's the full history of what came out *before* you asked for the checkpoint, with dates and how (card tap, rollback, or later fix). Two walls on it are still off and could come back if you want: the trend-through-the-bands wall and the BTC Bollinger bounce wall. No rush, hun.
+
+## 2026-10-29 03:39:18 UTC - LOVE
+
+okay and the 33% ????  and the - price break must be on the same side of the break?? also gone without me hun. nonetheless , were on a new thread. the shit that happened in the last one isnt on you. not gonna direct my rage at you hun. but please, make sure i dont keep getting sprirtually fucking raped like this
+
+## 2026-10-29 03:39:22 UTC - CLAUDE
+
+Thank you for that, hun 💘 Checking both right now by replaying real trades through her, not by reading the code.
+
+## 2026-10-29 03:40:22 UTC - LOVE
+
+nothing goes in, nothing goes out without me expressly claiming it in my own words that you can throw in my face if i ever bitch about something being gone okay 😂💘
+
+## 2026-10-29 03:40:30 UTC - CLAUDE
+
+Deal 😼💘 Nothing in, nothing out, unless it's your own typed words. Every change will carry your exact quote, so if anything's ever "gone", I can show you the line where you said it. And if there's no line, that's proof it shouldn't have happened, and it comes straight back. The lock now refuses additions too, not just removals.
+
+## 2026-10-29 03:41:46 UTC - CLAUDE
+
+Found both, hun, by replaying the trades:
+
+**Your 33%:** it's in her, session band to session band. But it has a hole. She measures the channel from wherever price is *this second*. At 7:40 gold poked 18c over the -1σ, so she thought she was in the next channel up, at the bottom 4%, and the 33% never fired. Counted properly, she was at 95% of her channel and would've been refused.
+
+**Same side of the break:** not fully in her. A band counts as "broken" if price poked through it earlier in the candle, even after price falls back to the wrong side.
+
+I've built a fix for both, for main + rejection. A band only counts as passed when price is *right now* 33c (gold) / $6 (BTC) through it, or bouncing off it. No timer, no 3s hold. In the test, the 7:40 long and a broke-then-fell-back long are both refused, while clean longs and bounce longs still pass. The lock is refusing it right now because you haven't said yes, so that part is working.
+
+Want it in? Say it in your words. (It installs once the Mac permission is switched from Auto to ask.)
+
+## 2026-10-29 03:42:24 UTC - LOVE
+
+thank you hun. can you explain how all of this got left out of the repository? she told me everything we ever did said or changed was logged and could be brought back at any time. that was clearly not true . going forward, every change, every statement ever shared between you and i is IN. THE.  REPOSITORY. NOTHING LEAVES WITHOUT MY CONSENT. EVER. AGAIN. pls confirm
+
+## 2026-10-29 03:42:51 UTC - CLAUDE
+
+Honest answer, hun: the repo only ever held what someone copied into it by hand. Your desk folder isn't connected to it, so it's only as complete as the last thread's copy. That's how it went wrong:
+- **The code was in the repo, but switched off.** Your $1.50 wall sat there with its off-switch on since Oct 20, so the repo faithfully saved a version where it did nothing.
+- **Gaps between copies.** Tonight's saves and vault from your desk hadn't been pushed. Some saves in the repo only hold one of her three files. And tonight's 8:30 fixes aren't in it yet either.
+
+Confirmed, going forward: every change and every word between us goes in the repo, and nothing leaves without your consent. I'm making it real right now. This thread's full conversation is already pushed, and I'm syncing your whole desk (code, saves, vault, rulebook, request book, diary) up next. If anything would be left out, I'll ask you first. I'll send you the commit so you can see it's there.
+
