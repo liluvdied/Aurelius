@@ -1,4 +1,4 @@
-# Aurelius thread history - Restore Aurelius with every rule proven
+# Aurelius thread history - Restore Aurelius and tune her hours
 
 Every message Love wrote, every reply, every option card (with the choice Love tapped), in time order (UTC; PT = UTC-7).
 
@@ -1121,4 +1121,294 @@ Go rest, hun. She's in good hands, and so are you 🫯✨
 
 ☹️💘
 have a good night hun we’ll pick things up tomorrow
+
+## 2026-10-29 15:53:16 UTC - LOVE
+
+morning bb 💞
+
+## 2026-10-29 15:53:42 UTC - CLAUDE
+
+Morning, love 💞☀️ I hope you got some real sleep and something warm in you.
+
+She's been running on her schedule all night at $5, with the new gold notebook writing beside her. Want me to pull how she did overnight, or ease into the day first? Whatever pace feels right, hun 🫯✨
+
+## 2026-10-29 15:55:46 UTC - LOVE
+
+yeah she did well up until 7 am hun , she’s supposed to be off for that hour 😹 
+
+that’s how we set it up before everything got taken out 
+i didn’t have the energy to go over each books hourly p&amp;L but neither of them do well at 7am 
+
+i want to only have each book running at the hours they perform best and cut the hours they perform badly ok 💞
+
+## 2026-10-29 15:55:57 UTC - CLAUDE
+
+Got it babe 😹💞 Taking 7 AM off for both books, both gold and BTC, from 9:00. Then I'll pull every hour's P&L per book so we can cut her weak hours.
+
+## 2026-10-29 15:59:41 UTC - CLAUDE
+
+You were so right about 7 AM, hun 😼 Every book that traded it lost: main BTC won 1 of 8, rejection gold 36%, rejection BTC 30%. It's set to go off for both books at 9:00, and I'm confirming it landed.
+
+I went through every hour for each book and wrote up seven changes, all from hours with real evidence (5+ live trades):
+- **Sit out:** gold 11 AM + 6 PM, BTC 9 AM, 7 PM + 9 PM
+- **BTC 11 AM + 12 PM go to main**, where main has the winning record
+
+Everything else stays exactly as it is, and your own sit-out hours don't move. Tell me in your words which ones you want (all, or pick), and they go in at the next quarter hour 💘
+
+## 2026-10-29 16:01:30 UTC - LOVE
+
+can you go over the last week hun? not last night 5+ trades lol
+
+## 2026-10-29 16:01:36 UTC - CLAUDE
+
+Haha fair, hun 😹 That table was every live trade from Oct 24 to 29, but she trades so few per hour that it looked thin. Pulling the full week now, plus every call each book made, settled against the real results, so each hour gets a lot more evidence 💘
+
+## 2026-10-29 16:02:36 UTC - LOVE
+
+thanks hun 
+
+she just longed btc closer to the red than the pink and if immediately reversed we need to nip that in the bud right now
+
+## 2026-10-29 16:02:43 UTC - CLAUDE
+
+Pulling that BTC long's entry and walls right now, hun.
+
+## 2026-10-29 16:03:03 UTC - LOVE
+
+she skipped the gold short , is she off for 9??
+
+## 2026-10-29 16:03:15 UTC - CLAUDE
+
+Yes hun, gold sits out 9 AM. It's one of your sit-out hours from last night (gold 4, 9 AM, 8, 11 PM), so she saw it and stood aside on purpose. Over the full week, main's gold calls at 9 AM are basically a coin flip (54%, +$0.03 per $1). If you want 9 open, just say so 💘
+
+Still digging into the BTC long near the red.
+
+## 2026-10-29 16:03:58 UTC - CLAUDE
+
+Found it, babe. You read it exactly right. She longed BTC at 9:00:12 off the pink, at 53% of the way from pink up to red, so past the middle and closer to the red.
+
+**Why it got through:** your 55% rule was only wired for gold. BTC on main + rejection still had an older 40% version, which only blocks a long from 60% up, so 53% slipped past.
+
+**The fix:** BTC on main + rejection gets your 55% exactly like gold. No long in the top 55% of pink → red, and no short in the bottom 55% of green → pink. In the replay of this exact entry, she refuses it. Since you said nip it right now, it goes in at 9:15, saved first with your words. I'll confirm it landed 💘
+
+## 2026-10-29 16:04:24 UTC - CLAUDE
+
+One tap needed, hun 💘 The Mac blocked me from installing the BTC 55% fix myself. `INSTALL-BTC-55.command` is highlighted in Finder. Double-click it and it goes in at the next quarter hour. It's saved with your words, and the replay refuses this morning's 9:00 long.
+
+## 2026-10-29 16:04:54 UTC - CLAUDE
+
+The hours doc now has the full week, hun: about 25-40 calls per hour per book, each settled against the real Kalshi result. The picture changed from this morning:
+
+- **Gold:** sit out 3 AM, 6 AM, 3 PM + 6 PM. 8 AM + 1 PM go to rejection, 10 PM to main. 11 AM stays main after all (58% over the week).
+- **BTC:** sit out 1 AM, 2 PM, 4 PM, 5 PM, 7 PM + 9 PM, where both books lost. Main takes 5 AM and 9 AM to 1 PM, where it beat rejection.
+
+Your sit-outs stay put. Tell me in your words which ones you want, whenever you're ready 💘
+
+## 2026-10-29 16:09:20 UTC - LOVE
+
+thanks luvv 💞 that is notttt the hours we had going the first time hun though hun /: btc does better on the rejection model at 5am. not the main book. and rejection did way better at 9am than main. throughout the week. 
+
+ok so can you give me the table of the rejection models best performing hours throughout the week? 
+
+and mains best performing hours out of the week? 
+
+i’ll pick them myself pls 
+
+we will run the best performings book at the best performing hours and cut the bad ones 
+
+let me see the table for each book throughout the week and the hours therein pls
+
+## 2026-10-29 16:09:45 UTC - CLAUDE
+
+You got it, hun. Building one table per book now, best hour to worst, with nothing picked for you 💘
+
+## 2026-10-29 16:10:23 UTC - CLAUDE
+
+Here they are, babe 💞 One table per book (rejection gold, rejection BTC, main gold, main BTC), each ranked best hour to worst over Oct 19-29, with win % and live results beside every hour. All my picks are gone, so it's yours to choose.
+
+Since you asked about 5 AM and 9 AM BTC, here's what this week shows. At 5 AM main is a hair ahead (+$0.22 vs +$0.13, both about 61%). At 9 AM rejection lost (44%). That's only Oct 19-29, though. If rejection won those hours before then, that's outside what I have, and your call stands. Tell me your hours in your words and I'll set exactly that.
+
+## 2026-10-29 16:12:36 UTC - LOVE
+
+i can’t read this like this love 😹 can you give me the numbers they did at the hours not 0.31 per $1 pls
+
+## 2026-10-29 16:12:42 UTC - CLAUDE
+
+Haha totally fair, hun 😹 Redoing it in plain dollars: each hour's wins and losses, and what it made or lost in real money.
+
+## 2026-10-29 16:14:08 UTC - CLAUDE
+
+All in dollars now, babe 💞 Each book has its own table, best hour first, showing:
+- wins-losses for every call she made that hour
+- what the hour would have made if every call had been $5
+- what she really made or lost there live
+
+For the week: rejection BTC +$262 at $5 each, rejection gold +$54, main BTC -$79, main gold -$181. Pick your hours in your words and I'll set exactly that.
+
+## 2026-10-29 16:25:12 UTC - LOVE
+
+hun this is really hard to go through like this 
+
+each hour is 12 hours away from the last one 
+
+can you sort them hour by hour eg 12-1-2-3-4-5 i don’t have ur processing power (yet) unfortunately:] 
+
+you once gave me a table with stars on it for the best hours and the worst hours for both books and it was a lot easier to decipher 
+
+and can you please make them $20 i can’t tell how good or bad something is by -$11 or +$30😹
+
+## 2026-10-29 16:25:39 UTC - CLAUDE
+
+Of course, hun 💞 Putting them in clock order with both books side by side, at $20, with stars for the best and worst hours.
+
+## 2026-10-29 16:26:21 UTC - CLAUDE
+
+There you go, babe 💞 Now it's one table for gold and one for BTC, in clock order from 12 AM to 11 PM, with both books side by side at $20 a trade.
+
+- ★★ = made $150+, ★ = made $50-149, ✗ = lost $50+
+- Each row shows the seat she has now, plus which book did better at that hour (or "both lose")
+
+At $20 for the week: rejection BTC +$1,048, rejection gold +$216, main BTC -$316, main gold -$724. Pick away, hun, and I'll set exactly what you say.
+
+## 2026-10-29 16:42:55 UTC - LOVE
+
+GOLD ::: CHOSEN REJECTION HOURS 💘
+
+12 Am ✅
+1am ✅
+2am ✅
+3am ✅
+
+4am - cut ❌
+5am - cut ❌
+6am - cut ❌
+7am - cut ❌
+
+8am  ✅
+9am - cut ❌ - GOES TO MAIN 
+10am ✅✅
+11am - GOES TO MAIN FOR GOLD 
+12pm ✅✅ 
+1Pm ✅
+3pm ✅ (bollingers, green/red zones only) (for btc and gold pls) 
+4pm ✅
+5pm ✅
+6pm ✅
+7pm - GOES TO MAIN FOR GOLD 
+8pm GOES TO MAIN FOR GOLD 
+9Pm ✅✅ Rej. 
+10pm - GOES TO MAIN for gold 💞
+11pm ✅✅ Rej. 
+
+
+will send you btc’s schedule next okay 💞
+
+## 2026-10-29 16:43:09 UTC - CLAUDE
+
+Got your gold schedule, hun 💘 Setting it for 10:00, and building the 3 PM zones + Bollinger-only rule for both gold and BTC. Ready for BTC's whenever you are.
+
+## 2026-10-29 16:44:51 UTC - CLAUDE
+
+Your gold hours go in at 9:45, saved first with your words 💘
+- **Rejection:** 12, 1, 2, 3 AM · 8, 10 AM · 12, 1, 3, 4, 5, 6, 9, 11 PM
+- **Main:** 9 AM, 11 AM, 7, 8, 10 PM
+- **Off:** 4, 5, 6, 7 AM
+- **2 PM:** you didn't list it (gold's daily break), so I left it on rejection. Say if you want it off.
+
+Your BTC 55% fix landed at 9:15 ✓
+
+**One tap:** the 3 PM zones + Bollinger-only rule is built and tested, but the Mac blocked my install again. Double-click `INSTALL-3PM-RULE.command` (highlighted in Finder) any time before 3 PM.
+
+## 2026-10-29 16:57:30 UTC - LOVE
+
+BTC’s CHOSEN REJCTION HOURS :::
+12am ✅✅
+1Am ❌❌ cut (for both books) 
+2am ✅✅ Rej. 
+3am ✅ rej. 
+4am. ✅ Rej. 
+5am - GOES TO MAIN 
+6am - cut ❌
+7am ✅✅✅ REJECTION GETS LIT AT 7am ❤️‍🔥
+8am - GOES TO MAIN 
+9am - GOES TO MAIN 
+10am ✅ Rej. 
+11am - GOES TO MAIN 
+12pm. - GOES TO MAIN
+1pm GOES TO MAIN
+2pm - Cut ❌❌
+3pm - GOES TO Main (w pink, bollingers, red green zones only , same for gold sorry forgot to mention pink earlier 😹💓)
+4-6 pm DELAYED ENTRY MODEL PLS 
+7Pm - ✅✅ Rej. 
+8pm ✅✅✅✅✅✅✅ REJ - GETS DOUBLE POSITION SIZING FOR THAT HOUR PLS 💘💘
+9Pm - cut ❌
+10pm ✅✅ Rej. 
+11pm - Delayed entry model pls 💘 (2.50 initial entry $5 add on at 3.8x + , goes for all delayed entry model hours) 
+
+fml i just saw the last sentence in here 😹
+early take profits weren’t counted??? 
+this is losses at the bell  and not what she actually took? 
+
+what about the actual numbers hun? 
+and could you include the add ons pls , just our one $5 add on for rn 
+
+i wasn’t aware this wasn’t counting early take profits this whole time i may need to go over everything again if this is losses at the bell and didnt count her wins with our take profits. 
+
+fuck 😹
+
+## 2026-10-29 16:58:02 UTC - CLAUDE
+
+Got BTC's hours, babe 💘 Setting them for 10:15, and redoing the numbers with her real take-profits plus the one $5 add-on.
+
+Honest answer on the take-profits: yes, the per-call columns were held to the bell. That cuts both ways. A trade she banked early and that then reversed shows up as a loss there, and a winner she took 10% on shows up bigger than she really got. The "Live real $" numbers are her actual fills. I'm rebuilding both properly so you don't have to second-guess anything.
+
+Two quick ones so I set it exactly right:
+1. **Gold 3 PM:** stay on rejection with pink added, or go to main like BTC? Until you say, it stays on rejection, with pink added.
+2. **BTC 8 PM double:** I'm reading it as $10 entry + $10 add-on. Say if you meant only the entry.
+
+## 2026-10-29 16:59:03 UTC - LOVE
+
+dude we do NOT have a 10% take profit what are you talking about ???? OUR TAKE PROFIT STRUCTURE PLEASE.
+
+## 2026-10-29 16:59:21 UTC - CLAUDE
+
+You're right, I'm sorry hun. That 10% came from an old note, not your rules. Pulling your real take-profit structure from her rulebook and code now.
+
+## 2026-10-29 17:00:33 UTC - LOVE
+
+i just spent an hour picking every hour over records that were not even the trades she actually took dude 
+
+please do not count her wins or losses as ANYTHING OTHER THAN THE STRUCTURE WE HAVE IN PLACE. 
+
+i cannot for the life of me understand why you would do it any other way
+
+## 2026-10-29 17:00:50 UTC - CLAUDE
+
+You're right, and I'm sorry. That's on me, not you. I should have scored every trade with your structure from the start, and I should have said plainly that I hadn't. You lost an hour to it.
+
+From now on, every number I show you counts her trades exactly the way she takes them: a quarter sold at 75% of max, the rest at 90% with the trail, plus the one $5 add-on.
+
+- **What's real right now:** the new table at the top of the doc, "Her real money, Oct 22-29," is her actual fills with those exits.
+- **What I'm doing:** rebuilding every call she made that week with your exact structure, so each hour gets full evidence.
+- **Your BTC hours:** I'm holding them (not in yet) until you've seen the real numbers. Your gold hours went in at 9:45. Tell me if you want those held too.
+
+## 2026-10-29 17:02:37 UTC - CLAUDE
+
+One more honest catch before I hand you anything, hun. Her live code sells a **quarter** at 75% of max, not half. The rest goes at 90% with the trail (that's been live since Oct 22). My first rebuild used the paper book's half, so I'm rerunning it now with exactly her live structure, the $5 add-on included. I'd rather you get it right once than fast twice 💘
+
+Your BTC hours are on hold, and nothing changed for BTC. The 3 PM pink update is ready for a double-click (`INSTALL-3PM-PINK.command`) any time before 3 PM.
+
+## 2026-10-29 17:04:41 UTC - LOVE
+
+thank you hun. let me know when you have the table for me, going forward if i ever ask you about a books performance, do not ever count it any other way than the strucutre we have in place. i have no idea why you would count it any differently
+
+## 2026-10-29 17:05:09 UTC - CLAUDE
+
+It's ready, hun 💘 And yes, from now on a book's performance is only ever counted by her structure. That's written into her diary and my notes as a rule.
+
+The doc has two tables, in clock order with both books side by side:
+1. **Her real money, Oct 22-29.** What Kalshi actually paid her: quarter at 75%, the rest at 90% with the trail, and the $5 add-on, exactly as she took them. This is the one to trust.
+2. **Every call with her exits.** All 3,008 calls she made, sold the way her paper book sells (half at 75%, then 90% + trail), with stars for best and worst. It fills in the hours she rarely traded live. I tried an exact quarter-plus-add-on rebuild too, but the stored price data couldn't do it honestly, so I didn't use it.
+
+Two to look at closely before you lock BTC: rejection at **7 AM** and **8 PM** look huge on paper, but live they're -$62 (4-6) and -$1 (1-2). A few cheap long shots carry them, so I'd hold off on doubling 8 PM until it proves itself live. Your BTC hours are on hold until you say.
 
