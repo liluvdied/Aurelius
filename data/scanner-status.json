@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T19:01:26.969Z",
+ "at": "2026-10-29T19:44:41.464Z",
  "scanned": 114,
  "picked": [
   "KXTEMPLAXHS",
@@ -9,10 +9,6 @@
   "KXTEMPCHIHS",
   "KXTEMPNYCHS",
   "KXTEMPDCH",
-  "KXLOWTATL",
-  "KXHIGHHOU",
-  "KXHIGHDEN",
-  "KXHIGHTKSAN",
   "KXHIGHTLV",
   "KXHIGHTDAL",
   "KXLOWTSEA",
@@ -20,7 +16,11 @@
   "KXLOWCHI",
   "KXLOWNYC",
   "KXHIGHUS",
-  "KXHIGHTMIN"
+  "KXHIGHTMIN",
+  "KXLOWNY",
+  "KXLOWTSDF",
+  "KXLOWTNYC",
+  "KXHIGHTEMPDEN"
  ],
  "stations": {
   "KXTEMPLAXHS": "KLAX",

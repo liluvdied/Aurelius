@@ -1128,5 +1128,35 @@
   "left": 240,
   "result": "loss",
   "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-29T19:06:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.57,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-29T19:06:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.57,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-29T19:21:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.5,
+  "left": 240,
+  "result": "open",
+  "pnl": 0.0
  }
 ]

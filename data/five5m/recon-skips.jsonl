@@ -2,3 +2,10 @@
 {"at":"2026-10-29T18:45:12.515Z","lane":"recon-tog","ticker":"KXBTC15M-26OCT291500-00","side":"up","label":"Rejected up off session VWAP","ask":0,"why":"ask out of bounds"}
 {"at":"2026-10-29T18:48:56.282Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291500-00","side":"up","label":"Candle rising from the bottom third","ask":0,"why":"setup has no settled record yet"}
 {"at":"2026-10-29T19:01:16.020Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291515-15","side":"up","label":"Rejected up off 5m PP","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-29T19:15:12.087Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291530-30","side":"up","label":"Break above 5m PP","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-29T19:30:04.288Z","lane":"recon-tog","ticker":"KXBTC15M-26OCT291545-45","side":"up","label":"Break above 5m PP","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-29T19:30:04.288Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291545-45","side":"up","label":"Break above 5m PP","ask":0,"why":"setup has no settled record yet"}
+{"at":"2026-10-29T19:30:59.958Z","lane":"recon-rej5","ticker":"KXBTC15M-26OCT291545-45","side":"up","label":"1m rejection off 5m PP","ask":0.73,"why":"under her 1.38x floor (1.37x at 73c)"}
+{"at":"2026-10-29T19:31:16.585Z","lane":"recon-rej5","ticker":"KXBTC15M-26OCT291545-45","side":"up","label":"1m rejection off 5m PP","ask":0.76,"why":"under her 1.38x floor (1.32x at 76c)"}
+{"at":"2026-10-29T19:45:05.332Z","lane":"recon-tog","ticker":"KXBTC15M-26OCT291600-00","side":"down","label":"Rejected down off 5m PP","ask":1,"why":"ask out of bounds"}
+{"at":"2026-10-29T19:45:30.077Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291600-00","side":"up","label":"Break above 5m PP","ask":0,"why":"setup has no settled record yet"}

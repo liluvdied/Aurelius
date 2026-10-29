@@ -418,6 +418,26 @@ function skipLog(lane: string, ticker: string, side: string, label: string, ask:
     writeFileSync(D("recon-skips.jsonl"), (existsSync(D("recon-skips.jsonl")) ? readFileSync(D("recon-skips.jsonl"), "utf8") : "") + JSON.stringify({ at: new Date().toISOString(), lane, ticker, side, label, ask, why }) + "\n");
   } catch {}
 }
+// INDEPENDENT CALLS, NO FLIPS - FREE TO TRADE ENFORCED (fix463, R191 - Love Oct 29 2026 12:38 PM PT: "oh my god bro. i told you. no flip. independent calls. she does not get one call per window. only once she has executed a trade." + R008 Love Oct 27 2026 1:13 PM PT: "YES. ONE EXECUTED TRADE PER WINDOW. EXECUTED. EXECUTED. EXECUTED. EXECUTED. NO TRADE EXECUTED - FREEEE TO TRADE." + R016 Oct 27 1:58 PM PT: "SHE DID NOT TAKE A BTC POSITION I TOLD YOU I WANTED HER TO TAKE ANY
+// POSITOON THAT SHOWS UP IF SHE HASNT TAKEN ONE"): main + rejection only. (1) A flipped read (" - seen as a short/long ... (was: ...)", a refused call turned to the other side) is never booked
+// as her call - a refused read is just refused. (2) Every fresh read stands on its own: an unfilled call follows her newest read whatever its side - a same-side read with a new setup
+// replaces the old one too (it used to stay stuck: 12:31 PM gold, "Rejected down off -1σ" could never replace the flipped short, which fix442 kept off live). (3) Only an EXECUTED trade
+// (a fill, or an order on the wire) closes the window - the checks below are unchanged.
+export function isFlip463(label: string): boolean { return / - seen as a (short|long) /.test(String(label || "")); }
+export function freshSameSide463(lane: string, priorSide: string, priorLabel: string, look: { side: string; label: string }): boolean {
+  return (lane === "recon-tog" || lane === "recon-rej") && priorSide === look.side && String(priorLabel || "") !== String(look.label || "") && !isFlip463(look.label);
+}
+// HER THIRDS IN THE READ ITSELF (fix463, R193 - Love Oct 29 2026 12:41 PM PT: "to answer your question, yes. in the read itself. / not just the walls that go out please" + her cornerstone
+// "NO LONGS IN TOP 33% . NO SHORTS IN THE BOTTOM 33%"): main + rejection - her read never calls a long in the top 33% of the session-band channel (the unbroken session band above her),
+// nor a short in the bottom 33% (the one below). The walls still check at the door. 12:31 PM gold: long read at 88% up the 4004.95 -> -1σ 4018.29 channel - never her call.
+export function thirdsRead463(L: { name: string; price: number }[], spot: number, side: string): boolean {
+  if (!(spot > 0) || !(side === "up" || side === "down")) return false;
+  const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name)));
+  const a = S.filter((l) => l.price > spot).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < spot).sort((x, y) => y.price - x.price)[0];
+  if (!a || !b || !(a.price > b.price)) return false;
+  const f = (spot - b.price) / (a.price - b.price);
+  return side === "up" ? f >= 1 - 0.33 : f <= 0.33;
+}
 export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], last1m: Bar | undefined, rows: any[]): boolean {
   if (!m?.ticker || !(left >= 120) || !(id === "btc" || id === "gold")) return false;
   if (!reconLocked().ok) return false;
@@ -431,6 +451,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   const spot = Number(ax?.spot) || 0;
   let changed = false;
   const book = (lane: string, look: { side: "up" | "down"; label: string }, askIn?: number) => {
+    if ((lane === "recon-tog" || lane === "recon-rej") && isFlip463(look.label)) return false; // fix463 (R191, Love Oct 29 12:38 PM PT: "no flip. independent calls"): a flipped read is never her call
     const prior = rows.find((r) => r.ticker === m.ticker && r.lane === lane);
     if (lane === "recon-dly" && DLY_AS_COPY && !(look as any).copy353) return false; // fix353: her old twin calls (initial move, touches, re-aims) no longer book
     // FRESH 5M SWINGS (fix186, Oct 25 ~1:45 AM PT, Love: "can you see why the rejection model didn't long at the rejection of btc at the band? ... it didnt register a
@@ -479,6 +500,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       // partial, locks the window forever (changeMind stays false: an executed trade is never reversed).
       // NOT JUST ONCE (Oct 20 ~7:51 PM PT, Love: "price now broke the vwap and pink down, she should short here" - gold's 7:45 call had already been re-aimed
       // long once and could not turn again): her law is one EXECUTED direction per window, so an unfilled call follows her bones as often as they turn.
+      if (freshSameSide463(lane, String(prior.side), String(prior.label), look)) { /* fix463 (R191): an independent same-side read replaces the old unfilled call - the fill / order-on-the-wire / floor checks below still decide */ } else
       if (prior.side === look.side) return false;
       try { if (((globalThis as any).__reaim373 || {})[m.ticker + ":" + lane] && prior.side === "down" && look.side === "up") return false; } catch {} // fix373: a pink-rejection re-aim sticks - main's old long read never turns her back
       // ONE CALL, NEVER RE-AIMED (Oct 21 ~11:42 AM PT, Love: "please stop having it flip the trades it says she took ... i need it to stay the one trade she
@@ -628,6 +650,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // fix326: recon-tog alone reads the pink rejection on her flip (copies keep firstT); the fake-out turn still outranks.
   let firstTog = firstT;
   try { if (tgPF && !tgFO) firstTog = tgPF; } catch {}
+  try { if (firstTog && thirdsRead463(sessionLines(ax, id), spot, firstTog.side)) firstTog = null; } catch {} // fix463 (R193, Love 12:41 PM "in the read itself"): no main read in her wrong third
   if (firstTog && book("recon-tog", firstTog, lookP && !lookT && firstTog === firstT ? lookP.ask : undefined)) changed = true;
   // THE MAIN BOOK, REJECTIONS ONLY (fix250, Oct 26 ~1:03 AM PT, Love: "make a copy of the main book that trades rejections only ... she is not taking the same trades
   // at all"): a literal copy of TOGETHER - the very call TOGETHER reads this tick (firstT), the same one-call-per-window rule - with only her breaks left out
@@ -826,6 +849,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   let lookRM = lookR;
   // fix326: recon-rej alone reads the pink rejection on her flip (recon-dly re-aim, rej5, rejx keep lookR); the fake-out turn still outranks.
   try { if (rejLB && rejReach > 0 && !rejFO) { const pfR = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach, true); if (pfR && /5m PP/.test(String(pfR.label))) lookRM = pfR; } } catch {}
+  try { if (lookRM && thirdsRead463(sessionLines(ax, id), spot, lookRM.side)) lookRM = null; } catch {} // fix463 (R193, Love 12:41 PM "in the read itself"): no rejection read in her wrong third
   if (lookRM && book("recon-rej", lookRM)) changed = true;
   // HER READS FOR THE RE-AIM PAPER TWIN (fix223, Oct 25 ~6:00 PM PT, Love: "let's keep her as is, let's run a paper twin that can re aim"): log-only - every time the
   // rejection model's BTC read turns inside a 5m slot it is written to data/rej-reads.jsonl; tools/five-reaim-paper.py replays a 5m paper book that follows it. No orders.

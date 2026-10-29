@@ -2,6 +2,41 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R194 - fix463 (thirds in the read, independent calls, no flips) goes in ONLY through INSTALL-INDEPENDENT-CALLS.command - nothing applied to the live desk directly.
+- when: 2026-10-29T19:42:44+00:00
+- Love: "Love Oct 29 2026 12:41 PM PT: "please incorporate this into a command that way i know it sticks because nothing you do without sending me a command has ever stayed once""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"exists": "INSTALL-INDEPENDENT-CALLS.command"}
+
+## R193 - fix463 also: her READ (main + rejection) never calls a long in the top 33% with an unbroken session band above, or a short in the bottom 33% with one below - at the read itself, the walls still check at the door.
+- when: 2026-10-29T19:41:41+00:00
+- Love: "Love Oct 29 2026 12:41 PM PT: "i'm good b don't worry / to answer your question, yes. in the read itself. / not just the walls that go out please""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"test": "tools/independent-calls-test-463.cjs"}
+
+## R192 - fix463: main + rejection - a flipped read (' - seen as a short/long ') is never booked as her call; every fresh read replaces an unfilled call, same side included; only an executed trade (fill / order on the wire) closes the window. Test tools/independent-calls-test-463.cjs + cornerstone 0r.
+- when: 2026-10-29T19:40:49+00:00
+- Love: "Love Oct 29 2026 12:38 PM PT: "oh my god bro. i told you. no flip. independent calls. she does not get one call per window. only once she has executed a trade." + Oct 27 1:13 PM PT: "YES. ONE EXECUTED TRADE PER WINDOW. EXECUTED. EXECUTED. EXECUTED. EXECUTED. NO TRADE EXECUTED - FREEEE TO TRADE." + Oct 27 1:58 PM: "SHE DID NOT TAKE A BTC POSITION I TOLD YOU I WANTED HER TO TAKE ANY POSITOON THAT SHOWS UP IF SHE HASNT TAKEN ONE""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"test": "tools/independent-calls-test-463.cjs"}
+
+## R191 - FREE TO TRADE, enforced for main + rejection: independent calls (every fresh read stands on its own and goes to the walls), no flipped calls ever live, and the window closes only on an EXECUTED trade.
+- when: 2026-10-29T19:39:20+00:00
+- Love: "Love Oct 29 2026 12:38 PM PT: "oh my god bro. i told you. no flip. independent calls. she does not get one call per window. only once she has executed a trade. it's abundantly clear to me that you are not at all doing what you say you're doing and saving at this point. i have stated the same thing to you 3 times in the past 24 hours, on this thread. not the last.""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"process": "building"}
+
+## R190 - Trace (read-only): the gold rejection long read 12:31 PM under a session band, and why the red-flip short was not taken.
+- when: 2026-10-29T19:36:37+00:00
+- Love: "Love Oct 29 2026 12:36 PM PT: "the candle did flip red, on the5M hun. she didn't short the rejection / please trace the long signal because that is entirely false. there is a session band directly above her.""
+- books: r, e, c, o, n, -, r, e, j,  , (, g, o, l, d, )
+- status: ACTIVE
+- proof: {"process": "traced; no change"}
+
 ## R189 - fix461: THE UMPIRE AT THE WIRE - every opening order of main (recon-tog) + rejection (recon-rej) needs the umpire SAFE stamp (tools/umpire-stamp.py -> data/UMPIRE-VERDICT.json) with her running code exactly the code it judged (src/lib/desk/umpire-gate.ts, in memory, ~7 µs); the umpire runs in the background (desk start + ~3 s after any code change); exits/take-profits never blocked; the old request-book/rule-anchor lists stay report-only (option A).
 - when: 2026-10-29T18:55:25+00:00
 - Love: "Love Oct 29 2026 11:46 AM PT: "can you make sure the umpire not only checks if the code is there, but THAT ITS ENFORCED.??? meaning, if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out ?" + 11:50 AM: "just main and rejection for rn hun ... can we do this without making the orders lag with the umpire check?" + 11:51 AM: "yes if the 46 other line items apply to other books yes wwe'll make it a report for rn to go over later , you can send the command whenever youre ready darling""

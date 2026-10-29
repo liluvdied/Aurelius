@@ -14085,18 +14085,88 @@
   "reason": "RECON-DLY sits out her worst hour (11 AM PT) live"
  },
  "KXBTC15M-26OCT291430-30:recon-tog": {
-  "status": "blocked",
+  "status": "skipped",
   "paid": null,
-  "reason": "PINK 10%: long $13.42 under the unbroken pink (80783.15) - inside 10% ($61.08) of the 80470.60 -> 81081.39 channel. wait for pink to break up."
+  "reason": "paper closed it (half at 75% (85c) + trail from 90%: best +195%, sold at 97c) before the copy filled"
  },
  "KXGOLD15M-26OCT291430-30:recon-tog": {
-  "status": "blocked",
+  "status": "missed",
   "paid": null,
-  "reason": "THE IMPOSSIBILITY: short at 7% of the 4007.40 -> 4020.06 channel - the bottom 20%, into the unbroken band below. never."
+  "reason": "window ended before it filled (last: THE IMPOSSIBILITY: short at 7% of the 4007.40 -> 4020.06 channel - the bottom 20%, into the unbroken band below. never.)"
  },
  "KXGOLD15M-26OCT291430-30:recon-dly": {
   "status": "skipped",
   "paid": null,
   "reason": "RECON-DLY sits out her worst hour (11 AM PT) live"
+ },
+ "KXGOLD15M-26OCT291445-45:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (11 AM PT) live"
+ },
+ "KXGOLD15M-26OCT291445-45:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "paper closed it (half at 75% (89c) + trail from 90%: best +102%, sold at 97c) before the copy filled"
+ },
+ "KXBTC15M-26OCT291445-45:recon-tog": {
+  "status": "missed",
+  "paid": null,
+  "reason": "window ended before it filled"
+ },
+ "KXGOLD15M-26OCT291500-00:recon-tog": {
+  "status": "filled",
+  "paid": 0.55,
+  "reason": ""
+ },
+ "KXGOLD15M-26OCT291500-00:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (11 AM PT) live"
+ },
+ "KXBTC15M-26OCT291500-00:recon-tog": {
+  "status": "filled",
+  "paid": 0.67,
+  "reason": ""
+ },
+ "KXBTC15M-26OCT291500-00:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "paper closed it (half at 75% (92c) + trail from 90%: best +50%, sold at 98c) before the copy filled"
+ },
+ "KXBTC15M-26OCT291515-15:recon-tog": {
+  "status": "filled",
+  "paid": 0.56,
+  "reason": ""
+ },
+ "KXGOLD15M-26OCT291515-15:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26OCT291515-15:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (12 PM PT) live"
+ },
+ "KXGOLD15M-26OCT291515-15:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (12 PM PT) live"
+ },
+ "KXBTC15M-26OCT291530-30:recon-tog": {
+  "status": "filled",
+  "paid": 0.58,
+  "reason": ""
+ },
+ "KXGOLD15M-26OCT291530-30:recon-tog": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26OCT291530-30:recon-dly": {
+  "status": "skipped",
+  "paid": null,
+  "reason": "RECON-DLY sits out her worst hour (12 PM PT) live"
  }
 }

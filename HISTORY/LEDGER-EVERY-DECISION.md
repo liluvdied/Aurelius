@@ -1,9 +1,24 @@
-# Every decision Love has made - rebuilt 2026-10-29T18:59:17.801745+00:00
+# Every decision Love has made - rebuilt 2026-10-29T19:45:13.859986+00:00
 
-1330 decisions with Love's words or card picks, out of 2072 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1333 decisions with Love's words or card picks, out of 2076 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T19:45:00.090578+00:00  ·  diary line 2543  ·  fix463
+- Love: “no flip. independent calls. she does not get one call per window. only once she has executed a trade.”
+- fix463 IN HER CODE
+- Full entry: 2026-10-29T19:45:00.090578+00:00 fix463 INSTALLED by Love's double-click (R191/R192, Love Oct 29 2026 12:38 PM PT: "no flip. independent calls. she does not get one call per window. only once she has executed a trade."): main + rejection - no flipped read is ever her call; every fresh read replaces an unfilled call; only an executed trade closes the window; pre-stamped SAFE (PRE-STAMP LANDED ✓ - her new code is the code the umpire alr). {'recon.ts': '47bfca18339cdde7'}
+
+## 2026-10-29T19:42:44Z  ·  diary line 2542  ·  fix463
+- fix463 IN HER CODE
+- Full entry: 2026-10-29T19:42:44Z STAGED (waiting on Love's click): fix463 INSTALL-INDEPENDENT-CALLS.command (R191-R194) - main + rejection: thirds in the read, no flips, independent calls; pre-stamp SAFE 21.2 s; tests ✓; gate ✓.
+
+## 2026-10-29T18:59:22.494659+00:00  ·  diary line 2540  ·  fix461
+- Love: “can you make sure the umpire not only checks if the code is there, but THAT ITS ENFORCED.??? meaning, if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out ?”
+- Love: “without making the orders lag”
+- fix461 IN HER CODE
+- Full entry: 2026-10-29T18:59:22.494659+00:00 fix461 INSTALLED by Love's double-click (R185/R186/R187/R189, Love Oct 29 2026 11:46 AM PT: "can you make sure the umpire not only checks if the code is there, but THAT ITS ENFORCED.??? meaning, if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out ?" + 11:50 AM "just main and rejection for rn hun" + "without making the orders lag"): main + rejection opening orders need the umpire's SAFE stamp on the running code (in memory, ~7 µs); exits never blocked; old restore-list items report-only. First stamp: UMPIRE STAMP ✓ SAFE (22.4 s, 122 files). {'kalshi-live.server.ts': '8875c0bde7c9a6ed', 'umpire-gate.ts': 'b4b54662d2d75f9e'}
 
 ## 2026-10-29T18:56:29Z  ·  diary line 2539  ·  fix461
 - fix461 IN HER CODE

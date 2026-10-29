@@ -1,8 +1,8 @@
 {
  "ok": true,
- "at": "2026-10-29T18:59:26.550029+00:00",
+ "at": "2026-10-29T19:43:21.327294+00:00",
  "why": "",
- "secs": 21.8,
+ "secs": 20.8,
  "reportOnly": [
   "tools/requests.py",
   "tools/rule-anchors.py"
@@ -95,7 +95,7 @@
   "probe.ts": "9c0674e13b6c4516",
   "quotes.ts": "9b203164a757ba83",
   "realtwin.ts": "c74ff01ef7e1b5ea",
-  "recon.ts": "9064bffb9729c81e",
+  "recon.ts": "47bfca18339cdde7",
   "recon5m.ts": "3319be9ebca694bf",
   "research.ts": "cd5d69f9cb3ff595",
   "review.ts": "ed486d1c8a4113c0",
@@ -130,5 +130,6 @@
   "umpire-gate.ts": "b4b54662d2d75f9e",
   "vwap.ts": "78918a253309f5e0",
   "watchdog.ts": "5602586aa0e3daae"
- }
+ },
+ "prestamp": true
 }
