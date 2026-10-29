@@ -1,5 +1,87 @@
 [
  {
+  "at": "2026-10-29T06:15:13.537Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT290230-30:ogp5",
+  "side": "up",
+  "spot": 4026.74,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP above, $1.70 away (zone $3.00, ATR 4.77, ADX 27)",
+   "zone": 1.5669806905517185
+  }
+ },
+ {
+  "at": "2026-10-29T06:15:12.508Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT290230-30:ogp5",
+  "side": "up",
+  "spot": 80048.22,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $44.75, ADX 27)",
+   "zone": 44.754659004801674
+  }
+ },
+ {
+  "at": "2026-10-29T06:00:49.315Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT290215-15:ogp5",
+  "side": "up",
+  "spot": 4027.757,
+  "ck": {
+   "block": false,
+   "why": "clear (zone $1.32, ADX 23)",
+   "zone": 1.3234179212214991
+  }
+ },
+ {
+  "at": "2026-10-29T06:00:14.055Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT290215-15:ogp5",
+  "side": "down",
+  "spot": 80103.66,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m S1 below, $14 away (zone $54, ATR 121.34, ADX 32)",
+   "zone": 54.02912934353178
+  }
+ },
+ {
+  "at": "2026-10-29T05:46:13.537Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvt4efeh-0hoe0p:paper-247",
+  "side": "down",
+  "spot": 4033.972,
+  "ck": {
+   "block": true,
+   "kind": "chase",
+   "why": "chasing: $5.00 under the pink 5m PP (4038.97), more than 1 ATR ($4.30); waiting for it to come back to the pink",
+   "zone": 0.9348882019569631
+  }
+ },
+ {
+  "at": "2026-10-29T05:45:39.965Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT290200-00:ogp5",
+  "side": "down",
+  "spot": 4034.08,
+  "ck": {
+   "block": true,
+   "kind": "chase",
+   "why": "chasing: $5.20 under the pink 5m PP (4039.28), more than 1 ATR ($4.30); waiting for it to come back to the pink",
+   "zone": 0.9348880692608729
+  }
+ },
+ {
   "at": "2026-10-29T05:45:18.836Z",
   "fa": "gold",
   "src": "paper-247",
@@ -454,88 +536,6 @@
    "block": false,
    "why": "clear (zone $1.45, ADX 20)",
    "zone": 1.4464946704299992
-  }
- },
- {
-  "at": "2026-10-29T02:47:05.580Z",
-  "fa": "btc",
-  "src": "paper-247",
-  "row": "mvsy00yr-5lrnua:paper-247",
-  "side": "up",
-  "spot": 79659.76,
-  "ck": {
-   "block": false,
-   "why": "clear (zone $100.01, ADX 71)",
-   "zone": 100.01290132831272
-  }
- },
- {
-  "at": "2026-10-29T02:45:25.311Z",
-  "fa": "gold",
-  "src": "ogp5",
-  "row": "KXGOLD15M-26OCT282300-00:ogp5",
-  "side": "down",
-  "spot": 4043.11,
-  "ck": {
-   "block": true,
-   "kind": "wall",
-   "why": "5m S1 below, $1.34 away (zone $1.45, ATR 5.98, ADX 20)",
-   "zone": 1.4464946704299992
-  }
- },
- {
-  "at": "2026-10-29T02:45:12.555Z",
-  "fa": "btc",
-  "src": "ogp5",
-  "row": "KXBTC15M-26OCT282300-00:ogp5",
-  "side": "up",
-  "spot": 79651.99,
-  "ck": {
-   "block": false,
-   "why": "clear (zone $100.01, ADX 71)",
-   "zone": 100.01288185012073
-  }
- },
- {
-  "at": "2026-10-29T02:30:48.125Z",
-  "fa": "gold",
-  "src": "paper-247",
-  "row": "mvsxf356-bnvr4c:paper-247",
-  "side": "down",
-  "spot": 4043.88,
-  "ck": {
-   "block": true,
-   "kind": "chase",
-   "why": "chasing: $7.90 under the pink 5m PP (4051.78), more than 1 ATR ($6.12); waiting for it to come back to the pink",
-   "zone": 1.3977313330712307
-  }
- },
- {
-  "at": "2026-10-29T02:30:15.097Z",
-  "fa": "gold",
-  "src": "ogp5",
-  "row": "KXGOLD15M-26OCT282245-45:ogp5",
-  "side": "down",
-  "spot": 4045.29,
-  "ck": {
-   "block": true,
-   "kind": "chase",
-   "why": "chasing: $6.49 under the pink 5m PP (4051.78), more than 1 ATR ($6.12); waiting for it to come back to the pink",
-   "zone": 1.3977313330712307
-  }
- },
- {
-  "at": "2026-10-29T02:30:10.429Z",
-  "fa": "btc",
-  "src": "ogp5",
-  "row": "KXBTC15M-26OCT282245-45:ogp5",
-  "side": "down",
-  "spot": 79856.94,
-  "ck": {
-   "block": true,
-   "kind": "wall",
-   "why": "5m S1 below, $97 away (zone $102, ATR 194.15, ADX 66)",
-   "zone": 101.93008644072728
   }
  }
 ]

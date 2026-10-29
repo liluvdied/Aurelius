@@ -845,6 +845,13 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     if (pX && Number(pX.s1) > 0 && Number(pX.r1) > 0) LX.push({ name: "Green zone", price: Number(pX.s1), unit: uX }, { name: "Red zone", price: Number(pX.r1), unit: uX });
     const lookRX = bonesDecide(id, LX, spot, last1m, cur, prev, b, true);
     if (lookRX && book("recon-rejx", lookRX)) changed = true;
+    // THE REJECTION MODEL TAKES THE ZONE REJECTION HER TWIN SEES (fix448, Love Oct 28 2026 10:56 PM PT: "yes please fix that and add the log pls , off for 11 pls" - 10:50 PM gold: the twin read "Rejected up off Green zone" at 4034.57 and the
+    // rejection model's own read said nothing): when her own read is empty and the twin reads a green/red zone rejection, the rejection model books that call. Every wall
+    // still judges it at the door and the wire.
+    if (id === "gold") { if (!lookRM && lookRX && /(Green|Red) zone/.test(String(lookRX.label)) && book("recon-rej", lookRX)) changed = true; } // gold only (the 10:50 PM miss)
+    // HER GOLD READ LOG (fix448, log only - no trading change): the rejection model's own read, the pink read and her twin's read on gold, written when any of them changes.
+    try { if (id === "gold") { const GL = ((globalThis as any).__rejReadG ||= {}); const sig = `${lookR?.side ?? "-"}|${lookR?.label ?? ""}|${lookRM?.side ?? "-"}|${lookRM?.label ?? ""}|${lookRX?.side ?? "-"}|${lookRX?.label ?? ""}`;
+      if (GL.sig !== sig) { GL.sig = sig; appendFileSync(D("rej-reads-gold.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: m.ticker, spot: Math.round(spot * 100) / 100, o5: cur.o, own: lookR, pinkRead: lookRM, twin: lookRX }) + "\n"); } } } catch {}
   } catch {}
   return changed;
 }

@@ -1,10 +1,10 @@
 {
-  "id": "mvt3ttc0-gj8tsk",
-  "at": "2026-10-29T05:45:19.085Z",
-  "asset": "silver",
-  "side": "up",
-  "pattern": "Tap-reject at +0.5σ",
+  "id": "held-KXBTC15M-26OCT290200-00",
+  "at": "2026-10-29T06:00:08.811Z",
+  "asset": "btc",
+  "side": "down",
+  "pattern": "Tap-reject at -0.5σ",
   "rule": "none",
-  "better": "The entry was the book. Nothing in the entry to change. Leave the setup on.",
+  "better": "Nothing to change. Same entry next time.",
   "spent": true
 }

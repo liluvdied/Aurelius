@@ -1,9 +1,19 @@
-# Every decision Love has made - rebuilt 2026-10-29T05:45:12.137234+00:00
+# Every decision Love has made - rebuilt 2026-10-29T06:15:29.455312+00:00
 
-1305 decisions with Love's words or card picks, out of 2047 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1307 decisions with Love's words or card picks, out of 2049 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T06:15:00.015100+00:00  ·  diary line 2516  ·  fix448
+- Love: “yes please fix that and add the log pls , off for 11 pls”
+- fix448 IN HER CODE
+- Full entry: 2026-10-29T06:15:00.015100+00:00 fix448 INSTALLED at the 11:00 PM PT boundary (Love Oct 28 2026 10:56 PM PT: "yes please fix that and add the log pls , off for 11 pls"): the rejection model takes the green/red zone rejection her twin sees when her own read is empty (10:50 PM gold miss), walls still judging; gold read log data/rej-reads-gold.jsonl; 11 PM stays off (sit-out). R159. No-removal gate passed. {'recon.ts': '9064bffb9729c81e'}.
+
+## 2026-10-29T05:45:03.006263+00:00  ·  diary line 2515  ·  fix447
+- Love: “and we can put her back on the schedule ok”
+- fix447 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T05:45:03.006263+00:00 fix447 CONFIG at the 10:45 PM PT boundary (Love Oct 28 2026 10:41 PM PT: "and we can put her back on the schedule ok"): rejection hours gold [] -> [0,1,2,3,4,7,9,14,16,17,18,21,22,23], btc 0-23 (unchanged), rejSeatHours None -> 0-23. Sit-out hours unchanged. R158/R131/R132.
 
 ## 2026-10-29T05:45:00.023664+00:00  ·  diary line 2514  ·  fix446
 - Love: “yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry ok”

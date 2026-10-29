@@ -1703,3 +1703,7 @@
 {"at":"2026-10-29T05:39:25.112332Z","ticker":"KXGOLD15M-26OCT290145-45","action":"buy","side":"yes","qty":"10.50","yes":"0.9990","status":"executed"}
 {"at":"2026-10-29T05:39:19.969017Z","ticker":"KXBTC15M-26OCT290145-45","action":"buy","side":"yes","qty":"8.62","yes":"0.9990","status":"executed"}
 {"at":"2026-10-29T05:41:46.872973Z","ticker":"KXBTC15M-26OCT290145-45","action":"buy","side":"yes","qty":"9.96","yes":"0.9990","status":"executed"}
+{"at":"2026-10-29T05:52:58.855504Z","ticker":"KXBTC15M-26OCT290200-00","action":"sell","side":"no","qty":"28.09","yes":"0.1100","status":"resting"}
+{"at":"2026-10-29T05:52:58.855504Z","ticker":"KXBTC15M-26OCT290200-00","action":"sell","side":"no","qty":"28.09","yes":"0.1100","status":"canceled"}
+{"at":"2026-10-29T05:57:57.946795Z","ticker":"KXGOLD15M-26OCT290200-00","action":"buy","side":"yes","qty":"45.80","yes":"0.9990","status":"executed"}
+{"at":"2026-10-29T05:57:57.94612Z","ticker":"KXGOLD15M-26OCT290200-00","action":"buy","side":"yes","qty":"46.74","yes":"0.9990","status":"canceled"}

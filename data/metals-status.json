@@ -1,20 +1,51 @@
 {
- "at": "2026-10-29T05:45:19.252Z",
- "platinum": "no open market",
+ "at": "2026-10-29T06:16:00.227Z",
+ "platinum": {
+  "ticker": "KXPLATINUM15M-26OCT290230-30",
+  "spot": 1516.152,
+  "target": 1515.6,
+  "kStrike": 1515.696,
+  "yesAsk": 0.51,
+  "noAsk": 0.53,
+  "left": 839,
+  "vwap": 1520.1793120139941,
+  "sd": 4.821477835691605,
+  "z": -0.84
+ },
  "palladium": {
-  "left": 880
+  "ticker": "KXPALLADIUM15M-26OCT290230-30",
+  "spot": 1007.328,
+  "target": 1007.218,
+  "kStrike": 1008.647,
+  "yesAsk": 0.53,
+  "noAsk": 0.52,
+  "left": 837,
+  "vwap": 1007.6014429928741,
+  "sd": 2.366710766510981,
+  "z": -0.12
  },
  "msilver": {
-  "ticker": "KXSILVER15M-26OCT290200-00",
-  "spot": 53.1111,
-  "target": 53.1862,
-  "kStrike": 53.2,
-  "yesAsk": 0.35,
-  "noAsk": 0.66,
-  "left": 880,
-  "vwap": 53.34194286399426,
-  "sd": 0.07415747499888106,
-  "z": -3.11
+  "ticker": "KXSILVER15M-26OCT290230-30",
+  "spot": 52.731,
+  "target": 52.742,
+  "kStrike": 52.75,
+  "yesAsk": 0.49,
+  "noAsk": 0.54,
+  "left": 837,
+  "vwap": 53.09053051974161,
+  "sd": 0.2692438990705457,
+  "z": -1.34
  },
- "mgold": "no open market"
+ "mgold": {
+  "ticker": "KXGOLD15M-26OCT290230-30",
+  "spot": 4025.23,
+  "target": 4025.9,
+  "kStrike": 4025.93,
+  "yesAsk": 0.47,
+  "noAsk": 0.54,
+  "left": 837,
+  "vwap": 4033.6811731604425,
+  "sd": 7.401667194225188,
+  "z": -1.14
+ }
 }

@@ -65,6 +65,8 @@ need("const bt441 = brokeThisCandle441(asset, lbR.L, qR.c, side)" in B and os.pa
 need("THIRDS FLIP OFF (fix442)" in E and os.path.exists("tools/thirds-off-test-442.cjs"), "24. THE THIRDS FLIP IS OFF for main + rejection - a refused call is never turned to the other side (fix442)")
 # CORNERSTONE (Love Oct 28 2026 10:37 PM PT: "yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry ok" + 10:41 PM: "hun i want the flip AWAY from a band , that's the whole entry please keep that in"):
 need("true /* fix446: main */" in R and "const fl446 =" in R and os.path.exists("tools/band-flip-test-446.cjs"), "25. HER ENTRY: a 2-5m flip AWAY from a band at a band rejection (red->green long, green->red short) - main + rejection (fix446)")
+# CORNERSTONE (Love Oct 28 2026 10:56 PM PT: "yes please fix that and add the log pls"):
+need('if (id === "gold") { if (!lookRM && lookRX && /(Green|Red) zone/' in R and os.path.exists("tools/zone-pickup-test-448.cjs"), "26. THE REJECTION MODEL TAKES THE ZONE REJECTION HER TWIN SEES when her own read is empty; gold read log on (fix448)")
 need(os.path.exists("tools/slide-test.cjs") and os.path.exists("tools/slide-test-btc.cjs") and os.path.exists("tools/behaviour-umpire.cjs"), "13. BEHAVIOUR TESTS stay: behaviour umpire + gold/BTC slide replays")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),

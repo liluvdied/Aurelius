@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R159 - fix448: (1) the rejection model takes the green/red zone rejection its paper twin sees when its own read is empty (10:50 PM gold miss), every wall still judging; (2) a log-only notebook of the rejection model's gold reads (data/rej-reads-gold.jsonl); (3) 11 PM stays off (sit-out unchanged). Test tools/zone-pickup-test-448.cjs.
+- when: 2026-10-29T05:57:31+00:00
+- Love: "Love Oct 28 2026 10:56 PM PT: "yes please fix that and add the log pls , off for 11 pls""
+- books: r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "if (!lookRM && lookRX && /(Green|Red) zone/.test(String(lookRX.label)) && book(\"recon-rej\", lookRX)) changed = true;"}
+- proof: {"test": "tools/zone-pickup-test-448.cjs"}
+
 ## R158 - fix447 (config, 10:45 PM PT boundary): back on her schedule - the 9:15 PM test seat (fix436: main gold every hour, rejection BTC every hour) ends; rejection-model hours back to the before-restore lists (offHourMain.rejHoursByAsset btc 0-23, gold [0,1,2,3,4,7,9,14,16,17,18,21,22,23]) and offHourMain.rejSeatHours 0-23 (R131/R132). Love's sit-out hours (liveSkipHours btc [0,8,18,23], gold [4,9,20,23]) unchanged - the 11 PM rejection seat (fix374) stays sat out. Main's own skip hours unchanged.
 - when: 2026-10-29T05:42:27+00:00
 - Love: "Love Oct 28 2026 10:41 PM PT: "and we can put her back on the schedule ok" + 8:23 PM "3- stay" / "4-stay" + 8:28 PM "3-5 can stay. i meant on the untested books bb""

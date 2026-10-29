@@ -13280,3 +13280,13 @@
 {"at":"2026-10-29T05:41:51.101Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:s5977508:5m","status":"waiting","reason":"waiting for a 1m candle to close red (her 5m flip)"}
 {"at":"2026-10-29T05:42:05.059Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:s5977508:5m","book":"recon-rej-5m","asset":"btc","side":"down","ticker":"KXBTC15M-26OCT290145-45","setup":"Rejected down off 5m PP","lastTry":1793252524437,"tries":4,"wallOk":true,"door":"2m flip","status":"filled","final":true,"late":false,"slug":"cpc-btc-updown-5m-2026-10-29-0540z","contracts":7.04,"cost":0.68,"spent":4.79,"tops":0,"orderId":"DCW28F6011MC","closesAt":"2026-10-29T05:45:00.000Z"}
 {"at":"2026-10-29T05:44:02.843Z","id":"KXBTC15M-26OCT290145-45:recon-tog:s5977508:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:46:06.820Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:s5977508:5m","status":"settled","how":"won (polymarket)","pnl":2.25,"dayNet":-12.43,"streak":0,"pauseUntil":"2026-10-28T17:21:05.742Z"}
+{"at":"2026-10-29T05:49:02.624Z","id":"KXBTC15M-26OCT290200-00:recon-tog:KXBTC15M-26OCT290200-00:recon-tog:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:49:14.521Z","id":"KXBTC15M-26OCT290200-00:recon-rej5:KXBTC15M-26OCT290200-00:recon-rej5:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:51:01.664Z","id":"KXBTC15M-26OCT290200-00:recon-rej5:s5977510:5m","status":"waiting","reason":"waiting for a 1m candle to close red (her 5m flip)"}
+{"at":"2026-10-29T05:52:04.382Z","id":"KXBTC15M-26OCT290200-00:recon-tog:s5977510:5m","status":"no fill","reason":"Polymarket down at 0.93 is outside 0.6-0.7"}
+{"at":"2026-10-29T05:52:04.846Z","id":"KXBTC15M-26OCT290200-00:recon-rej5:s5977510:5m","status":"no fill","reason":"Polymarket down at 0.93 is outside 0.3-0.68"}
+{"at":"2026-10-29T05:52:32.906Z","id":"KXBTC15M-26OCT290200-00:recon-rej5:s5977510:5m","status":"waiting","reason":"waiting for her flip with 4+ minutes left in the 5m window"}
+{"at":"2026-10-29T05:54:02.193Z","id":"KXBTC15M-26OCT290200-00:recon-tog:s5977510:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:54:02.193Z","id":"KXBTC15M-26OCT290200-00:recon-rej5:s5977510:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:59:01.558Z","id":"KXBTC15M-26OCT290200-00:recon-tog:s5977511:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}

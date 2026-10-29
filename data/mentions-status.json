@@ -1,7 +1,7 @@
 {
- "at": "2026-10-29T05:18:35.920Z",
- "events": 155,
- "checked": 1213,
+ "at": "2026-10-29T05:48:36.278Z",
+ "events": 152,
+ "checked": 1182,
  "live": [
   "KXEARNINGSMENTIONKKR-26NOV09",
   "KXEARNINGSMENTIONWMT-26NOV19",
@@ -43,7 +43,6 @@
   "KXEARNINGSMENTIONYUM-26NOV03",
   "KXTRUMPSAYNICKNAME-27JAN01",
   "KXEARNINGSMENTIONZETA-26NOV03",
-  "KXEARNINGSMENTIONLLY-26OCT29",
   "KXEARNINGSMENTIONALK-27JAN22",
   "KXEARNINGSMENTIONPGR-26NOV03",
   "KXEARNINGSMENTIONCOHR-26NOV04",
@@ -91,7 +90,7 @@
    "word": "Oil / Gas / Gasoline",
    "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
    "side": "no",
-   "ask": 0.24,
+   "ask": 0.23,
    "rate": 0.38,
    "n": 8,
    "basis": "3 of 8 events"
@@ -157,7 +156,7 @@
    "word": "Fraud",
    "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
    "side": "yes",
-   "ask": 0.65,
+   "ask": 0.62,
    "rate": 1,
    "n": 9,
    "basis": "9 of 9 events"
@@ -179,13 +178,16 @@
    "word": "AI / Artificial Intelligence",
    "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
    "side": "no",
-   "ask": 0.56,
+   "ask": 0.47,
    "rate": 0.33,
    "n": 9,
    "basis": "3 of 9 events"
   }
  ],
  "errors": [
+  "Error: 429",
+  "Error: 429",
+  "Error: 429",
   "Error: 429",
   "Error: 429",
   "Error: 429"
