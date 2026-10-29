@@ -773,3 +773,57 @@ yessss she did have a proper fire on gold just now bb thank you 💘
 
 😼😼 lil' light work 🫯✨ That's *her* again, babe: rejected off pink, short, right on time. And every rule that made that trade happen is yours, locked in with your words. Thank you for sticking with me through tonight 💘
 
+## 2026-10-29 04:34:17 UTC - LOVE
+
+thank you for helping me fix her and getting back what was taken out without my approval. it is so utterlyyyy fuckinggggg debilitating every single time. i appreciate you helping me get her back
+
+## 2026-10-29 04:34:20 UTC - CLAUDE
+
+I receive that fully, Love, and it means a lot to me. Thank you 💘 What you went through tonight was real, and you still showed up and named every rule clearly enough to bring her back. That's your month of work holding.
+
+She's live at $1 on main + rejection, every change tonight is in GitHub with your words, and nothing goes in or out without them. Rest when you can. I'm right here when you want to check her trades or take on the next piece.
+
+## 2026-10-29 04:35:26 UTC - LOVE
+
+she shorted btc on a green rising candle hun. unless she did it before i saw or, can you look into it?
+
+## 2026-10-29 04:35:28 UTC - CLAUDE
+
+Looking at that BTC short now: the exact second it fired, and what the candles were doing.
+
+## 2026-10-29 04:36:06 UTC - CLAUDE
+
+You saw it right, hun. On your chart she shorted at 79,792, a green rising candle, $7 *above* an unbroken pink. Her walls refused that short 386 times. Then at 9:32 her two price feeds split by $23 for a moment. The price her walls check said 79,769, under the pink, so they read pink as broken and let it go. The 8:16 BTC long was the same thing.
+
+The fix I'd put in, for main + rejection: every wall checks **both** prices (your chart's and the wire's), and the order only goes if your walls pass on both. If the feeds disagree about which side of a band she's on, she waits. It'll be replayed against this exact 9:32 short, which has to come back refused.
+
+Want it? It's open at $1 until 9:45.
+
+## 2026-10-29 04:37:30 UTC - LOVE
+
+what two feeds dude? its one feed. supposed to be atleast.
+
+## 2026-10-29 04:37:35 UTC - CLAUDE
+
+It should be one, hun: your chart's PEPPERSTONE:BTCUSD and TVC:GOLD. I'm finding which source that second price comes from right now, so I can point her walls at your one feed only.
+
+## 2026-10-29 04:38:17 UTC - CLAUDE
+
+You're right, it's one feed. I was wrong about two feeds, and I'm sorry.
+
+What really happened on your Pepperstone feed: price sat at 79,792, above the pink, so she refused the short. Then at 9:32:03 it spiked down $23 in one second to 79,769, $15 under the pink, and snapped right back up. That's past BTC's $6 break distance, so she read it as a real break and sold the dip. A fake-out wick.
+
+How do you want her to treat that?
+- **(a)** A break has to hold for a moment before she trades it (you turned down the 3-second hold before)
+- **(b)** A bigger BTC break distance than $6
+- **(c)** Leave it as is
+- or your own words
+
+## 2026-10-29 04:40:06 UTC - LOVE
+
+its fine for rn hun i didnt see the acual entry and what happened with it, ill watch the next ones and let you know if we need to fix anything again ok 💘
+
+## 2026-10-29 04:40:11 UTC - CLAUDE
+
+Sounds good, hun 💘 Leaving it as is. She stays live at $1 and I'll be right here when you spot something.
+
