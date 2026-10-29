@@ -1,9 +1,20 @@
-# Every decision Love has made - rebuilt 2026-10-29T05:00:36.938976+00:00
+# Every decision Love has made - rebuilt 2026-10-29T05:45:12.137234+00:00
 
-1303 decisions with Love's words or card picks, out of 2045 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1305 decisions with Love's words or card picks, out of 2047 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T05:45:00.023664+00:00  ·  diary line 2514  ·  fix446
+- Love: “yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry ok”
+- fix446 IN HER CODE
+- Full entry: 2026-10-29T05:45:00.023664+00:00 fix446 INSTALLED (Love Oct 28 2026 10:37 PM PT: "yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry ok" + 10:41 PM "hun i want the flip AWAY from a band , that's the whole entry please keep that in"): main + rejection - a band-rejection read stands on a real 2-5m flip her way, not only the 5m. R157. No-removal gate passed. {'recon.ts': '09a74b45b813675d'}.
+
+## 2026-10-29T05:30:00.014933+00:00  ·  diary line 2513  ·  fix427, fix445
+- Love: “shes good babez. You can put her back on at five dollars with the five dollar addon ok”
+- fix427 a setting (hours/sizes follow her latest pick)
+- fix445 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T05:30:00.014933+00:00 fix445 CONFIG at the 10:30 PM PT boundary (Love Oct 28 2026 10:21 PM PT: "shes good babez. You can put her back on at five dollars with the five dollar addon ok"): back to $5 + one $5 add-on - before {"liveBook.dollars": 1, "offHourMain.dollars": 1, "live-size.dollars": 1, "bigMultipleCap": {"on": true, "x": 1, "dollars": 1, "offNote": "Oct 17 ~12:16 AM PT: replaced by 1/4 size over 3.8x (Love)", "note427": "fix427 Oct 28 2026 8:00 PM PT, Love 7:55 PM: \"pls put her on at $1\" - every Kalshi opening order (main + rejection entries and add-ons) cut to $1 at the wire; exits untouched."}, "addOn.on": false, "addOn.dollars": 8, "offHourMain.addOn.dollars": 8}; after liveBook.dollars 5, offHourMain.dollars 5, live-size 5, bigMultipleCap off (x 3), addOn on $5, offHourMain.addOn $5. R156. No code change.
 
 ## 2026-10-29T05:00:03.008881+00:00  ·  diary line 2512  ·  fix375, fix431, fix444
 - Love: “too strict , telling you lol”

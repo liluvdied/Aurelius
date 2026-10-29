@@ -52,6 +52,9 @@ if rB441.returncode != 0: ok = False
 rT442 = subprocess.run(["node", "tools/thirds-off-test-442.cjs"], capture_output=True, text=True)  # fix442 (Love Oct 28 2026 9:23 PM PT: "yeah no i got rid of the flip.")
 print(("SAFE   " if rT442.returncode == 0 else "OUT    ") + "tools/thirds-off-test-442.cjs  " + ((rT442.stdout.strip().split("\n") or [""])[-1]))
 if rT442.returncode != 0: ok = False
+rBF = subprocess.run(["node", "tools/band-flip-test-446.cjs"], capture_output=True, text=True)  # fix446 (Love Oct 28 2026 10:41 PM PT: "i want the flip AWAY from a band , that's the whole entry")
+print(("SAFE   " if rBF.returncode == 0 else "OUT    ") + "tools/band-flip-test-446.cjs  " + ((rBF.stdout.strip().split("\n") or [""])[-1]))
+if rBF.returncode != 0: ok = False
 r9 = subprocess.run([sys.executable, "tools/extra-call-5m.py"], capture_output=True, text=True)  # record only (Love Oct 27 2:25 PM PT: "track and log those")
 print("INFO   tools/extra-call-5m.py  " + ((r9.stdout.strip().split("\n") or [""])[0]))
 r10 = subprocess.run([sys.executable, "tools/pink-flag.py"], capture_output=True, text=True)  # record only (Love Oct 27 5:23 PM PT: "if one of the other books takes a trade like that and loses flag it for me")

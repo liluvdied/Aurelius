@@ -2510,3 +2510,156 @@ Love (10:21 PM PT, typed): "shes good babez. You can put her back on at five dol
 ### 2026-10-29T05:22:22.367Z - Claude
 
 That's a KNOWN-GOOD save, since Love said "shes good". On the $5 cap: it limits each single order, so a $5 entry plus a separate $5 add-on both fit under it, and `maxDollars` stays at 5. Waiting on the 10:30 change.
+
+### 2026-10-29T05:31:11.832Z - Claude -> Love (project chat)
+
+Done, Love 💘. She's back at $5 with the $5 add-on since 10:30:00 PM:
+- before -> after: book size 1 -> 5, off-hours/rejection size 1 -> 5, slider 1 -> 5, the $1 wire cap OFF (back to how it was before 8 PM), add-on OFF -> ON at $5 (one add-on; the second stays off)
+- the $5 ceiling (maxDollars) is unchanged. It caps each order, so a $5 entry plus a separate $5 add-on both fit.
+- live ✓, main on gold every hour, rejection on BTC every hour, sit-out hours unchanged
+- golden ✓, seal ✓, no-removal gate ✓, cornerstones ✓
+- saved first as KNOWN-GOOD ("shes good"), R156 with your words
+- on GitHub: commit 85a0d54 (this conversation included)
+No trades in the first seconds of 10:30 yet. She's working the new window.
+
+### 2026-10-29T05:31:26.187Z - Claude
+
+Done, Love 💘. She's been back at $5 with a $5 add-on since 10:30:00 PM:
+- **Sizes:** her entry sizes went from $1 back to $5 everywhere Kalshi reads them, and the temporary $1 cap is off.
+- **Add-on:** on at $5, one per trade. The second add-on stays off.
+- **The $5 ceiling** is unchanged. It applies to each order separately, so a $5 entry and a $5 add-on both fit.
+- **Everything else is the same:** she's live, main on gold every hour, rejection on BTC every hour, with your sit-out hours and walls as they were.
+- **Checks:** golden, seal, the no-removal check and the cornerstones all pass.
+- **Saved:** before the change I saved her as known-good, since you said she's good, and your words are logged as R156.
+- **On GitHub:** commit `85a0d54`, including this conversation.
+
+She hasn't placed a trade since 10:30 yet; she's working the new window.
+
+### 2026-10-29T05:36:07Z - Love
+
+thank you hunni ☹️💓
+
+and yes, i will don’t worry 
+
+she entered the second the candle flipped on both of them , i appreciate it hun ☹️💔
+
+but for gold, the 2m candle flipped at the session band and she didn’t long until after the 5M flipped, can you see why?
+
+###  - Coordinator (relayed note)
+
+Love (10:36 PM PT): "for gold, the 2m candle flipped at the session band and she didn't long until after the 5M flipped, can you see why?" READ-ONLY, change nothing. Gold, main seat, 10:30 PM window: find the gold long entry time (live-fires.json) and every deny/hold line for gold between the 2m candle flipping green at the session band and the actual fill (live-blocks.json + logs). For each line: time, verbatim text, count. Tell me exactly which rule held her (flip check reading the 5m instead of 2m? zone flip fix394 only reading 5m? $5/10c past-open threshold measured on the 5m? pink/reach/33%/same-side?), with file:line of the code that did it, and the 2m candle's open/close vs the 5m at that time. Do not propose or install anything; just report.
+
+### 2026-10-29T05:36:40.194Z - Claude -> Love (project chat)
+
+Love, I found it. Read only, nothing changed.
+
+Gold, main, 10:30 window:
+- 10:33:51 her read was still a SHORT, held by "PINK 10%: short $0.25 over the unbroken pink (4042.15) - inside 10% ($2.00) of the 4039.52 -> 4048.07 channel"
+- 10:34:24 her read became the LONG "Break above 5m PP", and it filled 0.7 s later (10:34:25, 52c)
+So no wall held the long. It filled the instant it existed. The delay was in her READ: the long didn't exist until the 5m candle turned.
+
+The rule that did it: HER CANDLE in her read, recon.ts:288-298:
+"a rising 5m candle is a long or nothing, a falling one a short or nothing"
+In code: any long is thrown out of her read while the 5m candle is falling (price under the 5m open), whatever the 2m is doing. (recon.ts:298, the "falling && !m1(c)" check.) The 1m waiver was switched off by fix102 (Oct 22, "candle colour always wins").
+Her 2-5m flip (your fix406 / tonight's pick 7) only counts at the door AFTER her read makes the call. It never gets the chance if the 5m-candle rule has already thrown the long out.
+
+So the 2m flipped green at the session band, but the 5m was still red, so her read had no long until the 5m flipped. That's the order of events, and nothing's broken: it's HER CANDLE (5m) sitting in front of your 2-5m flip. Whenever you want, tell me in your words how it should be (e.g. "a 2-5m flip her way counts in her read too"), and I'll show you the replay of this exact 10:33 moment before anything goes in.
+
+### 2026-10-29T05:36:45.633Z - Claude
+
+Love, I found it, and I didn't change anything.
+
+- **10:33:51:** her read on gold was still a short, held by PINK 10% (price was 25c above the unbroken pink).
+- **10:34:24:** her read became a long ("Break above 5m PP") and filled 0.7 seconds later.
+
+So no wall held the long; it filled the moment it existed. The delay was in her read: the long didn't exist until the 5m candle turned.
+
+The reason is her candle rule (`recon.ts:288-298`): "a rising 5m candle is a long or nothing, a falling one a short or nothing". While the 5m candle is red, her read throws out every long, whatever the 2m is doing. The 1m exception has been off since Oct 22 ("candle colour always wins"). Your 2-5m flip only counts at the door, after her read has made a call, so it never got the chance here.
+
+So the 2m flipped green at the session band, but the 5m was still red, and her read had no long until the 5m flipped. If you want a 2-5m flip your way to count in her read too, tell me in your words. I'll show you a replay of this exact 10:33 moment before anything goes in.
+
+### 2026-10-29T05:37:46Z - Love
+
+yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry ok💘
+
+###  - Coordinator (relayed note)
+
+Love (10:37 PM PT, typed): "yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry ok💘". This answers the recon.ts:288-298 HER CANDLE finding (5m-only check throwing out the long while the 2m had flipped green at the session band). Books: main (recon-tog) + rejection (recon-rej) ONLY (Love earlier: "main and rejection for rn"). Copy, paper books, twin, 5M/Polymarket untouched.
+      Do, in this order, and DO NOT INSTALL yet:
+      1) save-her before-fixN; request book add with Love's exact words above, books ["main","rejection"], proof list.
+      2) Build the change in a staging copy: in her read, a 2m/3m/4m/5m candle that flipped red-&gt;green (long) or green-&gt;red (short) at a band rejection counts as her candle, so the 5m-only falling/rising check no longer throws it out for main + rejection. Mirror for shorts. Only at a band rejection; a 2m flip elsewhere does NOT bypass it. No other rule loosened: 33%, pink 10%/15% reach, same-side, broke-this-candle, $10-level, wall check at the wire all still apply. Keep the same flip definition as tonight's 2-5m flip (pick 7 / R096, incl. $5 BTC / 10c gold past open) — reuse that code, don't invent new thresholds; if the definitions conflict, stop and tell me.
+      3) Replay: (a) the gold 10:33 moment tonight: show when she would have longed (time, price) vs actual 10:34:25; (b) the same window on BTC rejection; (c) a counter-case where a 2m flip is NOT at a band rejection -&gt; still held; (d) a case with an unbroken pink / 33% in the way -&gt; still held. Run all behaviour tests, no-removal gate (expect only the named addition), cornerstones, umpire. 
+      4) Report replay results + the diff (plain words + file:line) to me. Then I will show Love. Install will be at the next :00/:15/:30/:45 boundary after I relay Love's go-ahead message.
+
+### 2026-10-29T05:38:53.073Z - Claude -> Love (project chat)
+
+Love, your rule is built, tested, NOT installed yet (saved first, R157 with your words):
+"yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry"
+
+What changes, plain words (recon.ts, her read, main + rejection only):
+- At a BAND REJECTION ("Rejected up/down off <band>", "2m/3m rejection off", "Tap-reject at", "Failed break... rejected"), a 2/3/4/5m candle that really flipped her way (red -> green for a long, green -> red for a short, past its open by 10c gold / $5 BTC, the same flip definition as tonight's) now counts. She no longer waits for the 5m to turn.
+- Anything that's NOT a band rejection still follows the 5m candle, like before.
+- Every wall still judges at the door and the wire: your 33%, pink 10/15%, same side, broke-this-candle, $10 level.
+
+Replays:
+✓ a band-rejection long on a red 5m with a real 2-5m green flip now stands (tonight's 10:33 case)
+✓ no flip = still held
+✓ a 2m flip that's NOT at a band rejection still waits for the 5m
+✓ mirror for shorts
+✓ other books unchanged
+✓ the gate (only your named change), the flip test, everything else
+Honest note: tonight's 10:34 fill was labelled "Break above 5m PP" (a break), so I can't prove from the logs exactly which second a rejection long would have fired. The candle-by-candle tape at that resolution isn't stored. The replay above is the rule itself.
+
+Say "install it" and it goes in at the next quarter hour.
+
+### 2026-10-29T05:38:59.094Z - Claude
+
+Love, your rule is built and tested but not installed yet. I saved her first and logged your words as R157.
+
+**What changes** (her read, main and rejection only):
+- **At a band rejection:** a 2-5m candle that really flipped your way (red to green for a long, green to red for a short, past its open by 10c on gold or $5 on BTC) is now her entry. She no longer waits for the 5m to turn.
+- **Everywhere else:** reads that aren't band rejections still follow the 5m candle, as before.
+- **Your walls:** they all still judge every order, including the 33%, the pink, same side, broke-this-candle and the $10 level.
+
+**Replays:**
+- A band-rejection long with a real 2-5m flip now goes through on a red 5m.
+- With no flip, it's still held.
+- A 2m flip that isn't at a band rejection still waits for the 5m.
+- The mirror works for shorts, and other books are unchanged.
+- The no-removal check passes, and the earlier flip test still passes with it.
+
+One thing I can't prove: tonight's 10:34 fill was a break ("Break above 5m PP"), not a rejection. The minute-by-minute candle record from 10:33 isn't stored, so I can't show the exact second a rejection long would have fired. The replays test the rule itself.
+
+Say "install it" and it goes in at the next quarter hour.
+
+### 2026-10-29T05:41:19Z - Love
+
+hun i want the flip AWAY from a band , that’s the whole entry 
+
+please keep that in 
+
+and we can put her back on the schedule ok 💘
+
+### 2026-10-29T05:41:30.108Z - Claude
+
+Love confirmed the band-rejection flip ("the flip AWAY from a band, that's the whole entry... keep that in"), so it installs at 10:45. "The schedule" could mean two different hour sets, so I'll ask Love which one.
+
+###  - Coordinator (relayed note)
+
+Love (10:41 PM PT, typed): "hun i want the flip AWAY from a band , that's the whole entry / please keep that in / and we can put her back on the schedule ok 💘"
+      (My earlier wording "a 2m flip away from a band still waits" meant a flip NOT at any band. Love's meaning = a flip at the band pushing away from it = band rejection = exactly R157 as built. Confirm the built rule covers: candle at/off a band, flips her way, moving away from the band.)
+      A) INSTALL R157 (built, staged, tested) at 10:45:00 PM for main + rejection. Log Love's words above on R157. Gate + umpire SAFE.
+      B) "put her back on the schedule": Love's earlier picks "3-5 can stay" = R102/fix412 rejection seat every rejection hour, rejection-model hours back to the 6:39 PM save lists (BTC every hour; gold 0,1,2,3,4,7,9,14,16,17,18,21,22,23), fix374 rejection live at 11 PM. Log a request (Love's words, books main+rejection). Install at 10:45 together with A IF clean, BUT: Love's latest sit-out words (R121 fix405, liveSkipHours btc [0,8,18,23], gold [4,9,20,23]) stay exactly as they are; do NOT lift any sit-out. Where fix374 (11 PM rejection live) clashes with the 23 sit-out, keep the sit-out and tell me. Do not change main's bookSkipHours unless the 6:39 save differs from now; if it differs, DON'T change it, list before/after for me.
+      C) Report BEFORE you install at 10:45 if anything is ambiguous; otherwise report after: the full hour-by-hour schedule now in force for gold and BTC (which seat, or sit out, per hour, 12 AM-11 PM), install time, gate/umpire, push commit (ff branch from main, never force).
+
+### 2026-10-29T05:42:32.477Z - Claude
+
+Both 10:45 changes are queued: your entry rule (fix446) at 10:45:00 and the schedule at 10:45:03. I'll send the hour-by-hour schedule once they're in.
+
+### 2026-10-29T05:42:43Z - Love
+
+oh ok thank you hun 💞
+
+### 2026-10-29T05:42:45.401Z - Claude
+
+Of course, Love 💞. Your entry rule (the 2-5m flip away from a band) goes in at 10:45:00 PM, and she's back on her schedule at 10:45:03. I'll send you the full schedule, hour by hour, right after.

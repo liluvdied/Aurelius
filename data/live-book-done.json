@@ -8370,5 +8370,57 @@
   "status": "skipped",
   "final": true,
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26OCT290145-45:recon-dly:KXGOLD15M-26OCT290145-45:recon-dly": {
+  "at": "2026-10-29T05:33:50.346Z",
+  "ticker": "KXGOLD15M-26OCT290145-45",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (10 PM PT) live"
+ },
+ "KXGOLD15M-26OCT290145-45:recon-tog:KXGOLD15M-26OCT290145-45:recon-tog": {
+  "at": "2026-10-29T05:34:25.522Z",
+  "ticker": "KXGOLD15M-26OCT290145-45",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "PINK 10%: short $0.25 over the unbroken pink (4042.15) - inside 10% ($2.00) of the 4039.52 -> 4048.07 channel. wait for pink to break down.",
+  "firstTryAt": "2026-10-29T05:33:51.377Z",
+  "bookedAt": "2026-10-29T05:34:24.827Z",
+  "tries": 126,
+  "final": false,
+  "paid": 0.52,
+  "orderId": "01a18626-fee8-7b0d-906a-732ec5e71c8f"
+ },
+ "KXGOLD15M-26OCT290145-45:recon-rej:KXGOLD15M-26OCT290145-45:recon-rej": {
+  "at": "2026-10-29T05:33:51.378Z",
+  "ticker": "KXGOLD15M-26OCT290145-45",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26OCT290200-00:recon-rej:KXBTC15M-26OCT290200-00:recon-rej": {
+  "at": "2026-10-29T05:45:36.160Z",
+  "ticker": "KXBTC15M-26OCT290200-00",
+  "side": "down",
+  "status": "blocked",
+  "reason": "SESSION BAND AHEAD (fix413): -1σ (79902.83) unbroken 299.47 below, closer than session VWAP 331.98 behind: waiting for a break or a rejection there",
+  "firstReason": "SESSION BAND AHEAD (fix413): -1σ (79902.86) unbroken 298.15 below, closer than session VWAP 333.36 behind: waiting for a break or a rejection there",
+  "firstTryAt": "2026-10-29T05:45:14.033Z",
+  "bookedAt": "2026-10-29T05:45:13.730Z",
+  "tries": 85,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXBTC15M-26OCT290200-00:recon-tog:KXBTC15M-26OCT290200-00:recon-tog": {
+  "at": "2026-10-29T05:45:14.035Z",
+  "ticker": "KXBTC15M-26OCT290200-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
  }
 }

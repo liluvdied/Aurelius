@@ -3,7 +3,7 @@
   "lockedBy": "Love",
   "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424)",
   "files": {
-    "recon.ts": "173faa81727a26b2"
+    "recon.ts": "09a74b45b813675d"
   },
   "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
   "signedBy": [

@@ -1564,7 +1564,22 @@
     ],
     "rejNote": "Oct 23 ~2:04 PM PT, Love: the rejection model (recon-rej) takes 11 PM, 12 AM and 2 AM on the $2 + $3 structure instead of the main book (fix145) | Oct 23 ~2:16 PM PT, Love picked 'All 8 hours where it won': rejection model at 12, 2, 6, 8 AM, 2, 4, 6, 9, 11 PM on $2 + $3; main book keeps 4, 9, 11 AM, 12 PM off hours | Oct 23 ~2:17 PM PT, Love: 'all hours the rejection model performed better than ours throughout the week if it was repeated among days' -> hours where rej beat tog on more days than not (Oct 20-23): 12, 2, 3, 6, 8, 9 AM, 4, 6, 9, 11 PM (2 PM dropped: better 1 of 4 days) | Oct 23 ~2:55 PM PT, Love card 'Kalshi main 24/7, Poly rejection': rejHours cleared, rejection model moves to Polymarket 24/7 (fix151) | Oct 23 ~2:57 PM PT, Love: keep the rejection model on Kalshi in its hours (main book's worst) - rejHours restored; Polymarket rejection 24/7 stays (fix152) | Oct 23 ~5:30 PM PT, Love: the DELAYED twin takes 1, 2, 5 AM, 12, 2 PM on Kalshi and Poly (fix155); 2 AM leaves the rejection hours | Oct 23 ~7:02 PM PT, Love: 4 PM to the DELAYED twin too (fix156) | Oct 24 ~7:26 PM PT, Love picked 'Only clear winners' (paper Oct 19-24, best book beat the owner by $50+): 4 AM, 7 AM, 3 PM to the rejection model; 9 AM to the main book | fix239 Oct 25 ~9:47 PM PT, Love card 'Rejection takes main's hours' (paper $20 flat since Oct 20: rejection +$1,361 vs main -$984; today +$836 vs -$31): the rejection model takes every hour the main book owned (9, 10, 11 AM, 1, 5, 7, 8, 10 PM) at $20 (Love 9:47 PM: no let us run it at $20 hun she is working) + $5 add-on; main stays paper; twin hours unchanged | fix240 Oct 25 ~9:49 PM PT, Love: 'ehhh $15 and $5 add on for rn hun' -> rejection $15 + $5 add-on; switch ceiling maxDollars 11 -> 15 so the $15 isn't cut to $11 | fix241 Oct 25 ~10 PM PT, Love card 'Those + 8 PM and 10 PM': main book keeps [10, 11, 15, 20, 22] live at her slider (paper Oct 20-25 main beat rejection there on total and most days) | fix243 Oct 25 ~10:30 PM PT, Love: 'yes every hour you just said hun - let them take the best performing hours per model per book' (replay Oct 20-25 live sizes: split +$1,720 vs +$1,090; Mon-Wed-picked tested Thu-Sat +$883 vs +$512): rejHoursByAsset - gold: main also 7 PM; btc: rejection takes 10 AM, 3, 8, 10 PM, main takes 8, 9 AM (11 AM stays main) | fix249 Oct 26 ~1:00 AM PT, Love: 'put her on the main book pls im not doin this over again' - every rejection hour handed to the main book (old map in rejHoursPrev) | fix251 Oct 26 1:47 AM PT, Love: 'run her on the new rejection model for the hour' - rejection hours restored",
     "rejHoursByAsset": {
-      "gold": [],
+      "gold": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        7,
+        9,
+        14,
+        16,
+        17,
+        18,
+        21,
+        22,
+        23
+      ],
       "btc": [
         0,
         1,
@@ -1593,7 +1608,33 @@
       ]
     },
     "dollarsNote": "fix248 Oct 26 ~12:59 AM PT, Love: 'pls put it back to $11 and $5 for the orders hun' (rejection $11 + $5 add-on)",
-    "dollarsByHour": {}
+    "dollarsByHour": {},
+    "rejSeatHours": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
   },
   "bookSkipHoursByAsset": {
     "btc": {
@@ -2825,5 +2866,37 @@
     "addOn.on": false,
     "addOn.dollars": 8,
     "offHourMain.addOn.dollars": 8
+  },
+  "fix447Prev": {
+    "rejHoursByAsset": {
+      "gold": [],
+      "btc": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    "rejSeatHours": null
   }
 }

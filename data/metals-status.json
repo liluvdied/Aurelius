@@ -1,9 +1,20 @@
 {
- "at": "2026-10-29T05:30:09.132Z",
+ "at": "2026-10-29T05:45:19.252Z",
  "platinum": "no open market",
  "palladium": {
-  "left": 890
+  "left": 880
  },
- "msilver": "no open market",
+ "msilver": {
+  "ticker": "KXSILVER15M-26OCT290200-00",
+  "spot": 53.1111,
+  "target": 53.1862,
+  "kStrike": 53.2,
+  "yesAsk": 0.35,
+  "noAsk": 0.66,
+  "left": 880,
+  "vwap": 53.34194286399426,
+  "sd": 0.07415747499888106,
+  "z": -3.11
+ },
  "mgold": "no open market"
 }

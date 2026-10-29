@@ -1,5 +1,59 @@
 [
   {
+    "key": "pair|silver|mvt3ttc0-gj8tsk|mvt1plw3-ch8uog",
+    "at": "2026-10-29T05:45:20.154Z",
+    "kind": "pair",
+    "text": "silver lost two in a row. Not an entry error. Tap-reject at +0.5σ lost. Nothing on the entry to change. It stays. Tap-reject at -1.5σ lost. Nothing on the entry to change. It stays. Not applied as a ban."
+  },
+  {
+    "key": "close|mvt3ttc0-gj8tsk",
+    "at": "2026-10-29T05:45:19.085Z",
+    "kind": "closed",
+    "text": "Silver long Tap-reject at +0.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
+  },
+  {
+    "key": "pair|btc|held-KXBTC15M-26OCT290145-45|mvt3u2tc-mcbe6u",
+    "at": "2026-10-29T05:45:18.942Z",
+    "kind": "pair",
+    "text": "btc lost two in a row. Not an entry error. Tap-reject at −0.5σ lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Tap-reject at -0.5σ lost. Nothing on the entry to change. It stays. Not applied as a ban."
+  },
+  {
+    "key": "close|held-KXBTC15M-26OCT290145-45",
+    "at": "2026-10-29T05:45:18.143Z",
+    "kind": "closed",
+    "text": "Bitcoin long Tap-reject at −0.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
+  },
+  {
+    "key": "close|mvt3u2tc-mcbe6u",
+    "at": "2026-10-29T05:45:02.917Z",
+    "kind": "closed",
+    "text": "Bitcoin long Tap-reject at -0.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
+  },
+  {
+    "key": "KXBTC15M-26OCT290200-00|down|Tap-reject at -0.5σ",
+    "at": "2026-10-29T05:45:03.538Z",
+    "kind": "forming",
+    "text": "Bitcoin short Tap-reject at -0.5σ is forming, 15m left. This is a prime setup, 76-44. At 10pm that one is 3-0. clean so far. Note only."
+  },
+  {
+    "key": "KXBTC15M-26OCT290200-00|up|Tap-reject at -0.5σ",
+    "at": "2026-10-29T05:45:03.538Z",
+    "kind": "forming",
+    "text": "Bitcoin long Tap-reject at −0.5σ is forming, 15m left. This is a prime setup, 43-36. At 10pm that one is 2-4. price is on the wrong side of the VWAP. Note only."
+  },
+  {
+    "key": "close|mvt3u2th-ow3nij",
+    "at": "2026-10-29T05:42:59.795Z",
+    "kind": "closed",
+    "text": "Gold short Tap-reject at -0.5σ hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
+    "key": "close|held-KXGOLD15M-26OCT290130-30",
+    "at": "2026-10-29T05:30:47.961Z",
+    "kind": "closed",
+    "text": "Gold short Live hit. Nothing to change. Same entry next time. Not applied."
+  },
+  {
     "key": "close|held-KXBTC15M-26OCT290130-30",
     "at": "2026-10-29T05:30:26.568Z",
     "kind": "closed",
@@ -424,59 +478,5 @@
     "at": "2026-10-29T01:36:53.952Z",
     "kind": "closed",
     "text": "Gold short Tap-reject at +1.5σ hit. Nothing to change. Same entry next time. Not applied."
-  },
-  {
-    "key": "pair|gold|held-KXGOLD15M-26OCT282130-30|held-KXGOLD15M-26OCT282115-15",
-    "at": "2026-10-29T01:30:39.080Z",
-    "kind": "pair",
-    "text": "gold lost two in a row. Not an entry error. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Not applied as a ban."
-  },
-  {
-    "key": "close|held-KXGOLD15M-26OCT282130-30",
-    "at": "2026-10-29T01:30:38.524Z",
-    "kind": "closed",
-    "text": "Gold short Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
-  },
-  {
-    "key": "pair|silver|mvsuqusu-nxum6w|mvsttw12-3ud2bo",
-    "at": "2026-10-29T01:30:02.854Z",
-    "kind": "pair",
-    "text": "silver lost two in a row. Not an entry error. Tap-reject at +2.5σ lost. Nothing on the entry to change. It stays. Tap-reject at −1σ lost. Nothing on the entry to change. It stays. Not applied as a ban."
-  },
-  {
-    "key": "close|mvsuqusu-nxum6w",
-    "at": "2026-10-29T01:30:02.351Z",
-    "kind": "closed",
-    "text": "Silver short Tap-reject at +2.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
-  },
-  {
-    "key": "pair|btc|mvsurwrq-xhsalf|held-KXBTC15M-26OCT282100-00",
-    "at": "2026-10-29T01:30:02.840Z",
-    "kind": "pair",
-    "text": "btc lost two in a row. Not an entry error. Tap-reject at -2.5σ lost. Nothing on the entry to change. It stays. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Not applied as a ban."
-  },
-  {
-    "key": "close|mvsurwrq-xhsalf",
-    "at": "2026-10-29T01:30:02.351Z",
-    "kind": "closed",
-    "text": "Bitcoin long Tap-reject at -2.5σ lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
-  },
-  {
-    "key": "KXBTC15M-26OCT282130-30|down|Tap-reject at -0.5σ",
-    "at": "2026-10-29T01:27:55.975Z",
-    "kind": "forming",
-    "text": "Bitcoin short Tap-reject at −0.5σ is forming, 2m left. This is a prime setup, 76-44. At 6pm that one is 7-8. a band is still in front, under 3 minutes. Note only."
-  },
-  {
-    "key": "pair|gold|held-KXGOLD15M-26OCT282115-15|held-KXGOLD15M-26OCT282100-00",
-    "at": "2026-10-29T01:15:38.228Z",
-    "kind": "pair",
-    "text": "gold lost two in a row. Not an entry error. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Not applied as a ban."
-  },
-  {
-    "key": "close|held-KXGOLD15M-26OCT282115-15",
-    "at": "2026-10-29T01:15:37.889Z",
-    "kind": "closed",
-    "text": "Gold short Live lost. The entry was the book. Nothing in the entry to change. Leave the setup on. Not applied."
   }
 ]

@@ -1,10 +1,10 @@
 {
- "at": "2026-10-29T05:30:24.717Z",
+ "at": "2026-10-29T05:45:24.566Z",
  "summary": {
   "btc-vantage": {
-   "trades": 59,
-   "wins": 40,
-   "pnl": 133.57
+   "trades": 58,
+   "wins": 39,
+   "pnl": 120.78
   },
   "btc-pepperstone": {
    "trades": 61,
@@ -12,9 +12,9 @@
    "pnl": 200.15
   },
   "gold-vantage": {
-   "trades": 65,
+   "trades": 64,
    "wins": 41,
-   "pnl": 100.83
+   "pnl": 120.83
   },
   "gold-pepperstone": {
    "trades": 61,
@@ -34,75 +34,35 @@
  },
  "now": {
   "gold-vantage": {
-   "at": "2026-10-29T05:30:23.675Z",
-   "px": 4041.7,
-   "pink": 4042.61,
-   "channel": "-1σ 4039.83 - session VWAP 4048.41",
-   "pct": 22
+   "at": "2026-10-29T05:45:22.156Z",
+   "px": 4033.35,
+   "pink": 4039.2,
+   "channel": "-2σ 4030.91 - -1σ 4039.49",
+   "pct": 28
   },
   "gold-pepperstone": {
-   "at": "2026-10-29T05:30:24.717Z",
-   "px": 4041.9,
-   "pink": 4042.62,
-   "channel": "-1σ 4039.75 - session VWAP 4048.30",
-   "pct": 25
+   "at": "2026-10-29T05:45:23.375Z",
+   "px": 4033.72,
+   "pink": 4039.21,
+   "channel": "-2σ 4030.89 - -1σ 4039.44",
+   "pct": 33
   },
   "btc-vantage": {
-   "at": "2026-10-29T05:30:21.333Z",
-   "px": 80373.95,
-   "pink": 80354.01,
-   "channel": "-1σ 79977.69 - session VWAP 80595.49",
-   "pct": 64
+   "at": "2026-10-29T05:45:20.480Z",
+   "px": 80317.63,
+   "pink": 80330.42,
+   "channel": "-1σ 79977.21 - session VWAP 80588.46",
+   "pct": 56
   },
   "btc-pepperstone": {
-   "at": "2026-10-29T05:30:22.524Z",
-   "px": 80296,
-   "pink": 80260.26,
-   "channel": "-1σ 79904.43 - session VWAP 80542.10",
-   "pct": 61
+   "at": "2026-10-29T05:45:21.198Z",
+   "px": 80198.34,
+   "pink": 80232.67,
+   "channel": "-1σ 79902.85 - session VWAP 80534.33",
+   "pct": 47
   }
  },
  "rows": [
-  {
-   "id": "KXGOLD15M-26OCT280230-30:gold-vantage",
-   "twin": "gold-vantage",
-   "chart": "VANTAGE",
-   "asset": "gold",
-   "ticker": "KXGOLD15M-26OCT280230-30",
-   "closes": "2026-10-28T06:30:00Z",
-   "at": "2026-10-28T06:27:46.335Z",
-   "side": "down",
-   "price": 4033.1,
-   "pink": 16850.35,
-   "frac": 0.97,
-   "why": "top 97% of the channel (-1σ 2132.42 - session VWAP 4099.98), below the pink 16850.35",
-   "ask": 0.047,
-   "multiple": 21.28,
-   "stake": 20,
-   "result": "loss",
-   "pnl": -20,
-   "settled": "yes"
-  },
-  {
-   "id": "KXBTC15M-26OCT280245-45:btc-vantage",
-   "twin": "btc-vantage",
-   "chart": "VANTAGE",
-   "asset": "btc",
-   "ticker": "KXBTC15M-26OCT280245-45",
-   "closes": "2026-10-28T06:45:00Z",
-   "at": "2026-10-28T06:30:16.437Z",
-   "side": "down",
-   "price": 80913.84,
-   "pink": 80938.27,
-   "frac": 0.99,
-   "why": "top 99% of the channel (-1σ 80798.67 - session VWAP 80915.54), below the pink 80938.27",
-   "ask": 0.61,
-   "multiple": 1.64,
-   "stake": 20,
-   "result": "win",
-   "pnl": 12.79,
-   "settled": "no"
-  },
   {
    "id": "KXBTC15M-26OCT280245-45:btc-pepperstone",
    "twin": "btc-pepperstone",
@@ -7904,6 +7864,44 @@
    "ask": 0.56,
    "multiple": 1.79,
    "stake": 5,
+   "result": "open",
+   "pnl": null
+  },
+  {
+   "id": "KXGOLD15M-26OCT290145-45:gold-vantage",
+   "twin": "gold-vantage",
+   "chart": "VANTAGE",
+   "asset": "gold",
+   "ticker": "KXGOLD15M-26OCT290145-45",
+   "closes": "2026-10-29T05:45:00Z",
+   "at": "2026-10-29T05:36:10.698Z",
+   "side": "down",
+   "price": 4039.25,
+   "pink": 4042.06,
+   "frac": 0.94,
+   "why": "top 94% of the channel (-2σ 4031.19 - -1σ 4039.74), below the pink 4042.06",
+   "ask": 0.83,
+   "multiple": 1.2,
+   "stake": 20,
+   "result": "open",
+   "pnl": null
+  },
+  {
+   "id": "KXGOLD15M-26OCT290145-45:gold-pepperstone",
+   "twin": "gold-pepperstone",
+   "chart": "PEPPERSTONE",
+   "asset": "gold",
+   "ticker": "KXGOLD15M-26OCT290145-45",
+   "closes": "2026-10-29T05:45:00Z",
+   "at": "2026-10-29T05:36:11.523Z",
+   "side": "down",
+   "price": 4039.2,
+   "pink": 4042.05,
+   "frac": 0.94,
+   "why": "top 94% of the channel (-2σ 4031.15 - -1σ 4039.67), below the pink 4042.05",
+   "ask": 0.83,
+   "multiple": 1.2,
+   "stake": 20,
    "result": "open",
    "pnl": null
   }

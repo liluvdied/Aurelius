@@ -118,5 +118,45 @@
     "what": "offHourMain.addOn.dollars",
     "R": "R156",
     "why": "fix445 back to $5 + $5 add-on (Love 10:21 PM)"
+  },
+  {
+    "what": "import { addOnTouchNow, anyFlipNow, anyFlip406Now } from \"./bandlock\"; // fix169 + fix326 + fix424",
+    "R": "R157",
+    "why": "fix446 edits this line (Love 10:37 PM)"
+  },
+  {
+    "what": "export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar | undefined, cur: { o: number; h: number; l: number }, prev?: { h: number; l: number } | null, bars?: Bar[], rejOnly = false, reach = 0, pinkFlip = false /* fix326 */, zoneFlip = false /* fix394 back as fix433 (Love Oct 28 2026 8:18 PM PT: \"1 - stay\" (to: green-zone longs and red-zone shorts go on any 2-5m candle flipped her way, not only the 5m - main)): main zone reads take a 2-5m flip */): { side: \"up\" | \"down\"; label: string } | null {",
+    "R": "R157",
+    "why": "fix446 edits this line (Love 10:37 PM)"
+  },
+  {
+    "what": "return seenL.filter((c) => !((c.side === \"up\" && (f >= 1 - k || (fix33 && f >= 0.67) || (falling && !m1(c)) || spot > topS)) || (c.side === \"down\" && (f <= k || (fix33 && f <= 0.33) || (rising && !m1(c)) || spot < botS))));",
+    "R": "R157",
+    "why": "fix446 edits this line (Love 10:37 PM)"
+  },
+  {
+    "what": "lookT = reachT > 0 ? bonesDecide(id, LB, spot, last1m, cur, prev, b, false, reachT, false, true /* fix394: main (fix433) */) : look5;",
+    "R": "R157",
+    "why": "fix446 edits this line (Love 10:37 PM)"
+  },
+  {
+    "what": "lookR = bonesDecide(id, LR, spot, last1m, cur, prev, b, true);",
+    "R": "R157",
+    "why": "fix446 edits this line (Love 10:37 PM)"
+  },
+  {
+    "what": "lookR = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach);",
+    "R": "R157",
+    "why": "fix446 edits this line (Love 10:37 PM)"
+  },
+  {
+    "what": "if (lookR && /Bollinger/.test(String(lookR.label)) && !(lookR.side === \"up\" ? spot > cur.o : spot < cur.o)) lookR = bonesDecide(id, rejL || LR, spot, last1m, cur, prev, b, true, rejReach);",
+    "R": "R157",
+    "why": "fix446 edits this line (Love 10:37 PM)"
+  },
+  {
+    "what": "offHourMain.rejHoursByAsset.gold",
+    "R": "R158",
+    "why": "fix447 back on her schedule (Love 10:41 PM)"
   }
 ]

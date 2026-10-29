@@ -2,6 +2,23 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R158 - fix447 (config, 10:45 PM PT boundary): back on her schedule - the 9:15 PM test seat (fix436: main gold every hour, rejection BTC every hour) ends; rejection-model hours back to the before-restore lists (offHourMain.rejHoursByAsset btc 0-23, gold [0,1,2,3,4,7,9,14,16,17,18,21,22,23]) and offHourMain.rejSeatHours 0-23 (R131/R132). Love's sit-out hours (liveSkipHours btc [0,8,18,23], gold [4,9,20,23]) unchanged - the 11 PM rejection seat (fix374) stays sat out. Main's own skip hours unchanged.
+- when: 2026-10-29T05:42:27+00:00
+- Love: "Love Oct 28 2026 10:41 PM PT: "and we can put her back on the schedule ok" + 8:23 PM "3- stay" / "4-stay" + 8:28 PM "3-5 can stay. i meant on the untested books bb""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejHoursByAsset.gold", "equals": [0, 1, 2, 3, 4, 7, 9, 14, 16, 17, 18, 21, 22, 23]}
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejSeatHours", "equals": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}
+
+## R157 - fix446: main + rejection - in her read (recon.ts perspective, HER CANDLE), a band-rejection read (Rejected up/down off, Nm rejection off, Tap-reject at, Failed break) is no longer thrown out by the 5m candle colour once a 2/3/4/5m candle has really flipped her way (realFlipNow: red->green for a long, green->red for a short, past its open by 10c gold / $5 BTC). Non-rejection reads still need the 5m. Every wall still judges at the door and the wire. Test tools/band-flip-test-446.cjs.
+- when: 2026-10-29T05:38:43+00:00
+- Love: "Love Oct 28 2026 10:37 PM PT: "yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry ok""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "true /* fix446: main */"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "true /* fix446: rejection */"}
+- proof: {"test": "tools/band-flip-test-446.cjs"}
+
 ## R156 - fix445 (config, 10:30 PM PT boundary): main + rejection back to $5 with ONE $5 add-on - liveBook.dollars 1->5, offHourMain.dollars 1->5, data/live-size.json dollars 1->5, the $1 wire cap off again (bigMultipleCap back to its fix427Prev: on false, x 3), addOn.on false->true, addOn.dollars 8->5, offHourMain.addOn.dollars 8->5 (prev in fix445Prev). Second add-on stays off (R092). maxDollars 5, Polymarket, 5M, sit-out hours, seats untouched.
 - when: 2026-10-29T05:21:55+00:00
 - Love: "Love Oct 28 2026 10:21 PM PT: "shes good babez. You can put her back on at five dollars with the five dollar addon ok""

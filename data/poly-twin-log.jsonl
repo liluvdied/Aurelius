@@ -13270,3 +13270,13 @@
 {"at":"2026-10-29T05:24:01.350Z","id":"KXBTC15M-26OCT290130-30:recon-tog:s5977504:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
 {"at":"2026-10-29T05:29:03.542Z","id":"KXBTC15M-26OCT290130-30:recon-tog:s5977505:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
 {"at":"2026-10-29T05:30:11.442Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:KXBTC15M-26OCT290145-45:recon-rej5:5m","status":"waiting","reason":"waiting for a 1m candle to close green (her 5m flip)"}
+{"at":"2026-10-29T05:32:03.883Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:KXBTC15M-26OCT290145-45:recon-rej5:5m","status":"waiting","reason":"waiting for her flip with 4+ minutes left in the 5m window"}
+{"at":"2026-10-29T05:34:01.331Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:KXBTC15M-26OCT290145-45:recon-rej5:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:34:01.333Z","id":"KXBTC15M-26OCT290145-45:recon-tog:KXBTC15M-26OCT290145-45:recon-tog:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:35:40.373Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:s5977507:5m","status":"waiting","reason":"waiting for a 1m candle to close red (her 5m flip)"}
+{"at":"2026-10-29T05:37:59.523Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:s5977507:5m","status":"waiting","reason":"waiting for her flip with 4+ minutes left in the 5m window"}
+{"at":"2026-10-29T05:39:02.701Z","id":"KXBTC15M-26OCT290145-45:recon-tog:s5977507:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:39:02.701Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:s5977507:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T05:41:51.101Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:s5977508:5m","status":"waiting","reason":"waiting for a 1m candle to close red (her 5m flip)"}
+{"at":"2026-10-29T05:42:05.059Z","id":"KXBTC15M-26OCT290145-45:recon-rej5:s5977508:5m","book":"recon-rej-5m","asset":"btc","side":"down","ticker":"KXBTC15M-26OCT290145-45","setup":"Rejected down off 5m PP","lastTry":1793252524437,"tries":4,"wallOk":true,"door":"2m flip","status":"filled","final":true,"late":false,"slug":"cpc-btc-updown-5m-2026-10-29-0540z","contracts":7.04,"cost":0.68,"spent":4.79,"tops":0,"orderId":"DCW28F6011MC","closesAt":"2026-10-29T05:45:00.000Z"}
+{"at":"2026-10-29T05:44:02.843Z","id":"KXBTC15M-26OCT290145-45:recon-tog:s5977508:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
