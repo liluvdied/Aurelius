@@ -1,0 +1,103 @@
+// TAP + RESCUE (Claude, 2026-10-02, Love: "if price is at a band at like 12x, throw $2.50 at it" /
+// "if she enters legally and price reverses into the next band, she can throw an extra $5 in").
+// Paper only, never trades. Fed every desk tick.
+//   TAP:    price touches one of her lines and the bounce side costs 10c or less (10x+). A $2.50 ticket
+//           on the bounce side, one per window. Two books: TAP 3x sells at +200% (her idea), TAP HOLD
+//           rides to the bell (the replay favored that on BTC: rare 20-100x hits paid for the misses).
+//   RESCUE: one of ORIGINAL's open paper trades has turned against her, its side now costs 25c or less
+//           (4x+), and price has just pushed into one of her lines. A $5 add on the same side, held.
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import type { AssetSnapshot } from "./types";
+import { dnaLines } from "./dna";
+import { tapConsider } from "./nightbook";
+
+const prev: Record<string, number> = {};
+// SNAP (Love, Oct 4 ~2:45 AM PT: "price flies, hits a band and rejects hard, you can hit 100% in seconds... 4x and up...
+// set books with take profits at 50%, 100%, 200%, & 300%"). Spot history per asset (90 s) to see a touch and the snap back.
+const hist: Record<string, { t: number; v: number }[]> = {};
+const lastSnap: Record<string, { at: number; dir: "up" | "down"; label: string }> = {};
+/** A hard band rejection toward `dir` in the last `withinMs` (price touched one of her lines, then snapped 0.15σ away). */
+export function bandRejectNow(asset: string, dir: "up" | "down", withinMs = 20000): string | null {
+  const s = lastSnap[asset];
+  return s && s.dir === dir && Date.now() - s.at <= withinMs ? s.label : null;
+}
+function snapScan(id: "btc" | "gold", spot: number, b: any): { dir: "up" | "down"; label: string } | null {
+  const sd = Number(b?.sd) || 0;
+  const h = hist[id] || [];
+  if (!(sd > 0) || h.length < 3) return null;
+  const now = Date.now();
+  const recent = h.filter((x) => now - x.t <= 60000 && now - x.t > 0);
+  for (const l of dnaLines(id, b)) {
+    for (const x of recent) {
+      if (x.v <= l.price + 0.05 * sd && spot >= l.price + 0.15 * sd && spot > x.v) return { dir: "up", label: `SNAP up off the ${l.name} ${l.price.toFixed(2)}` };
+      if (x.v >= l.price - 0.05 * sd && spot <= l.price - 0.15 * sd && spot < x.v) return { dir: "down", label: `SNAP down off the ${l.name} ${l.price.toFixed(2)}` };
+    }
+  }
+  return null;
+}
+export function tapTick(assets: Record<string, AssetSnapshot> | null | undefined) {
+  if (!assets) return;
+  let bandsNow: Record<string, any> | null = null;
+  try {
+    bandsNow = JSON.parse(readFileSync(join(process.cwd(), "data", "bands-now.json"), "utf8"));
+  } catch {
+    return;
+  }
+  let night: { book: string; ticker: string; side: "up" | "down"; result: string; dnaMode?: string }[] = [];
+  try {
+    night = JSON.parse(readFileSync(join(process.cwd(), "data", "night-book.json"), "utf8"));
+  } catch {
+    night = [];
+  }
+  for (const id of ["btc", "gold"] as const) {
+    const a = assets[id];
+    const m = a?.market;
+    const spot = Number(a?.spot) || 0;
+    if (!m?.ticker || !(spot > 0) || !bandsNow?.[id]) continue;
+    const p0 = prev[id];
+    prev[id] = spot;
+    // SNAP: record the tape, look for a hard rejection, and hand 4x+ cheap-side tickets to the SNAP books.
+    try {
+      const h = hist[id] || (hist[id] = []);
+      const nowT = Date.now();
+      const snap = snapScan(id, spot, bandsNow[id]);
+      h.push({ t: nowT, v: spot });
+      while (h.length && nowT - h[0].t > 90000) h.shift();
+      if (snap) {
+        const prevSnap = lastSnap[id];
+        if (!prevSnap || prevSnap.dir !== snap.dir || nowT - prevSnap.at > 30000) lastSnap[id] = { at: nowT, ...snap };
+        const sAsk = snap.dir === "up" ? m.yesAsk : m.noAsk;
+        if (id === "btc" && a.secondsLeft > 120 && sAsk > 0.01 && sAsk <= 0.25 + 1e-9) {
+          tapConsider({ ticker: m.ticker, side: snap.dir, ask: sAsk, label: snap.label }, id, "snap", { spot, sd: bandsNow[id]?.sd ?? null });
+        }
+        // SNAP 16x (Love, Oct 4 ~3 AM PT: "do some at 16x too, wherever... it runs up 50% in a millisecond... $20 with those
+        // take profits - 50, 100, 200, 300"): the snap side at 6.25c or less, any time with 20 s+ on the clock.
+        if (id === "btc" && a.secondsLeft > 20 && sAsk > 0.01 && sAsk <= 0.0625 + 1e-9) {
+          tapConsider({ ticker: m.ticker, side: snap.dir, ask: sAsk, label: `${snap.label} · 16x` }, id, "snap16", { spot, sd: bandsNow[id]?.sd ?? null });
+        }
+      }
+    } catch {
+    }
+    if (!(p0 > 0) || p0 === spot) continue;
+    if (!(a.secondsLeft > 20)) continue;
+    const tol = id === "btc" ? 15 : 0.3;
+    for (const l of dnaLines(id, bandsNow[id])) {
+      let bounce: "up" | "down" | null = null;
+      if (p0 > l.price && spot <= l.price + tol) bounce = "up";
+      else if (p0 < l.price && spot >= l.price - tol) bounce = "down";
+      if (!bounce) continue;
+      // TAP: bounce side at 10x+
+      const ask = bounce === "up" ? m.yesAsk : m.noAsk;
+      if (ask > 0.01 && ask <= 0.1) tapConsider({ ticker: m.ticker, side: bounce, ask, label: `TAP off the ${l.name} ${l.price.toFixed(2)}` }, id, "tap", { spot, line: l });
+      // RESCUE: an open ORIGINAL trade that price is now pushing against, into this line
+      const mine = night.find((r) => r.book === "original" && !r.dnaMode && r.result === "open" && r.ticker === m.ticker);
+      if (mine && mine.side === bounce) {
+        const addAsk = mine.side === "up" ? m.yesAsk : m.noAsk;
+        // Love, Oct 3 ~12:45 AM PT: "it will be at a 3-7x generally" -> RESCUE adds from 3x (was 4x).
+        if (addAsk > 0.01 && addAsk <= 1 / 3 + 1e-9) tapConsider({ ticker: m.ticker, side: mine.side, ask: addAsk, label: `RESCUE add into the ${l.name} ${l.price.toFixed(2)}` }, id, "rescue", { spot, line: l });
+      }
+      break;
+    }
+  }
+}

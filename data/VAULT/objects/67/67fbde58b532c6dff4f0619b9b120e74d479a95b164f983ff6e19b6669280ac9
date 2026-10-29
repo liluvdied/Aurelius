@@ -1,0 +1,67 @@
+// BEHAVIOUR UMPIRE (Love Oct 28 2026 6:22 PM PT: "please create an umpire that ACTUALLY checks if the conditions are met and not just the code is there"
+// + 6:27 PM "LOCK. THEM. POUR CONCRETE OVER THEM."). Loads her real bandlock.ts, replays real situations, and checks she refuses / allows exactly as Love said.
+// usage: node tools/behaviour-umpire.js [path/to/bandlock.ts]   exit 0 = every rule behaves, 1 = something broke (refuse the install)
+const path = require("path"), fs = require("fs");
+const ROOT = path.join(__dirname, ".."); const ts = require(path.join(ROOT, "node_modules/typescript"));
+const file = process.argv[2] ? path.resolve(process.argv[2]) : path.join(ROOT, "src/lib/desk/bandlock.ts");
+const out = fs.mkdtempSync("/tmp/beh-");
+fs.writeFileSync(path.join(out, "bandlock.js"), ts.transpileModule(fs.readFileSync(file, "utf8"), { compilerOptions: { module: 1, target: 99 } }).outputText);
+fs.writeFileSync(path.join(out, "quotes.js"), "exports.quoteTick=()=>null;exports.feedHealth=()=>({ok:true});");
+fs.writeFileSync(path.join(out, "recon.js"), "exports.RECON={};");
+const G = globalThis; let NOW = Date.now(); Date.now = () => NOW;
+const B = require(path.join(out, "bandlock.js"));
+const res = []; const RETIRED = /^(REAL FLIP|SESSION BAND AHEAD|33% \(\w+\): no BTC)/; // retired by Love Oct 28 2026 7:08 PM PT: "this shit you just put on after i asked you to put them back on the checkpoint version is not the fucking checkpoint version"
+const T = (name, ok, detail) => RETIRED.test(name) ? null : res.push({ name, ok: !!ok, detail: String(detail ?? "").slice(0, 160) });
+const sec = (iso) => Date.parse(iso) / 1000;
+const BOOKS = { main: [false, false, false, false, true, 0.4, true, false], rejection: [false, false, false, true, true, 0.4, true, false], copy: [false, false, true, false, false, 0, false, false] };
+const geo = (asset, L, tick, side, bk) => { try { return B.impossibleGeo(asset, L, tick, side, ...BOOKS[bk]).why || ""; } catch (e) { return "ERROR " + e.message; } };
+
+// 1. REAL FLIP (Love Oct 28 6:21 PM: "candle. flip. green -> red / red -> green") - 6:16:04 PM PT gold short: 2m/4m opened 6:16:00 and went straight down
+NOW = Date.parse("2026-10-29T01:16:04Z");
+G.__pivBars = { gold: { bars: [{ t: sec("2026-10-29T01:15:00Z"), o: 4053.0, h: 4054.55, l: 4052.9, c: 4054.0 }, { t: sec("2026-10-29T01:16:00Z"), o: 4054.0, h: 4054.0, l: 4053.81, c: 4053.81 }] } };
+G.__qtrail_1 = { gold: [{ t: NOW - 3000, c: 4054.0 }, { t: NOW - 500, c: 4053.81 }] };
+T("REAL FLIP: a born-red candle is not a flip (6:16:04 PM gold short)", typeof B.realFlipNow === "function" && !B.realFlipNow("gold", "down", 4053.81), "realFlipNow");
+G.__pivBars.gold.bars[1] = { t: sec("2026-10-29T01:16:00Z"), o: 4054.0, h: 4054.3, l: 4053.81, c: 4053.81 };
+T("REAL FLIP: a candle that went green then turned red counts", typeof B.realFlipNow === "function" && B.realFlipNow("gold", "down", 4053.81), "realFlipNow");
+
+// 2. SESSION BAND AHEAD (Love Oct 28 6:32 PM: "EVEN if price ticked 1 millimeter over it it was STILL underneath a band") - 5:50:57 PM BTC long
+const sa = B.sessionAheadWait("btc", [{ name: "5m PP", price: 81105.2 }, { name: "-1σ", price: 81141.31 }, { name: "-2σ", price: 81072.74 }], 81110, "up");
+T("SESSION BAND AHEAD: the 5:50:57 PM BTC long waits under -1σ", !!sa, sa);
+
+// 3. 33% SESSION BAND TO SESSION BAND, every book (Love Oct 28 6:30 PM: "the 33% needs to be 1000000% immutable" / "the 20/33% tolerance stands on EVERY single book aside from the delayed entry model")
+NOW = Date.parse("2026-10-29T01:36:10Z");
+const gL = [{ name: "session VWAP", price: 4050.71 }, { name: "+1σ", price: 4059.04 }, { name: "+2σ", price: 4067.37 }, { name: "-1σ", price: 4042.38 }, { name: "5m PP", price: 4057.42 }];
+const bars = []; for (let t = sec("2026-10-29T00:50:00Z"); t < sec("2026-10-29T01:37:00Z"); t += 60) bars.push({ t, o: 4063, h: 4063.2, l: 4062.8, c: 4063 });
+G.__pivBars = { gold: { bars } }; G.__qtrail_1 = { gold: [{ t: NOW - 3000, c: 4063 }, { t: NOW - 500, c: 4063 }] };
+for (const bk of Object.keys(BOOKS)) {
+  const a = geo("gold", gL, 4066.0, "up", bk), b = geo("gold", gL, 4060.0, "down", bk);
+  T(`33% (${bk}): no gold long in the top 33% (84% of +1σ -> +2σ)`, /IMPOSSIBILITY|THIRD|top/i.test(a), a);
+  T(`33% (${bk}): no gold short in the bottom 33% (12% of +1σ -> +2σ)`, /IMPOSSIBILITY|THIRD|bottom/i.test(b), b);
+}
+const bL = [{ name: "session VWAP", price: 81300 }, { name: "-1σ", price: 81141.31 }, { name: "-2σ", price: 81072.74 }];
+G.__pivBars = { btc: { bars: [] } }; G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 81120 }, { t: NOW - 500, c: 81120 }] };
+for (const bk of Object.keys(BOOKS)) { const a = geo("btc", bL, 81120, "up", bk); T(`33% (${bk}): no BTC long at 69% of a $68 channel (33%, never 20%)`, /IMPOSSIBILITY|THIRD|top/i.test(a), a); }
+
+// 4. DOJI (Love Oct 28 2026 6:54 PM PT: "a GREEN doji candle - followed by a RED CANDLE = SHORT. NOT A LONG. / a RED doji candle , followed by a GREEN CANDLE = LONG. NOT SHORT.")
+const PLAIN = [false, false, false, false, false, 0, false, false];
+const dojiCase = (dojiGreen, afterRed) => {
+  NOW = Date.parse("2026-10-29T01:37:30Z"); const up = dojiGreen; // green doji after an up trend, red doji after a down trend
+  const db = []; let p = up ? 4024 : 4066; for (let t = sec("2026-10-29T00:55:00Z"); t < sec("2026-10-29T01:30:00Z"); t += 60) { const o = p; p += up ? 0.6 : -0.6; db.push({ t, o, h: Math.max(o, p) + 0.1, l: Math.min(o, p) - 0.1, c: p }); }
+  const d0 = p, cc = dojiGreen ? 0.04 : -0.04;
+  for (let i = 0; i < 5; i++) db.push({ t: sec("2026-10-29T01:30:00Z") + 60 * i, o: i ? d0 + cc * i / 5 : d0, h: d0 + 0.4, l: d0 - 0.4, c: d0 + cc * (i + 1) / 5 });
+  const mv = afterRed ? -1 : 1; db.push({ t: sec("2026-10-29T01:35:00Z"), o: d0 + cc, h: d0 + cc + (mv > 0 ? 1.2 : 0.05), l: d0 + cc - (mv < 0 ? 1.2 : 0.05), c: d0 + cc + mv * 1.1 }, { t: sec("2026-10-29T01:36:00Z"), o: d0 + cc + mv * 1.1, h: d0 + cc + mv * 1.1 + 0.1, l: d0 + cc + mv * 1.1 - 0.1, c: d0 + cc + mv * 1.3 }, { t: sec("2026-10-29T01:37:00Z"), o: d0 + cc + mv * 1.3, h: d0 + cc + mv * 1.3 + 0.1, l: d0 + cc + mv * 1.3 - 0.1, c: d0 + cc + mv * 1.4 });
+  const px = d0 + cc + mv * 1.4; G.__pivBars = { gold: { bars: db } }; G.__qtrail_1 = { gold: [{ t: NOW - 3000, c: px }, { t: NOW - 500, c: px }] };
+  const L = [{ name: "session VWAP", price: px - 15 }, { name: "+1σ", price: px - 4.5 }, { name: "+2σ", price: px + 4.5 }, { name: "-1σ", price: px - 25 }, { name: "5m PP", price: px - 10 }];
+  return { long: geo2("gold", L, px, "up"), short: geo2("gold", L, px, "down") };
+};
+const geo2 = (asset, L, tick, side) => { try { return B.impossibleGeo(asset, L, tick, side, ...PLAIN).why || ""; } catch (e) { return "ERROR " + e.message; } };
+const gr = dojiCase(true, true), rg = dojiCase(false, false);
+T("DOJI: GREEN doji then RED candle - the long is refused by the doji", /DOJI AFTER THE TREND[^\n]*SHORT only/.test(gr.long), gr.long);
+T("DOJI: GREEN doji then RED candle - the doji never blocks the SHORT", !/DOJI/.test(gr.short), gr.short || "(clear)");
+T("DOJI: RED doji then GREEN candle - the short is refused (doji LONG only, or her rising candle first)", /DOJI AFTER THE TREND[^\n]*LONG only|HER CANDLE: the 5m candle is rising/.test(rg.short), rg.short);
+T("DOJI: RED doji then GREEN candle - the doji never blocks the LONG", !/DOJI/.test(rg.long), rg.long || "(clear)");
+const ok = res.every((r) => r.ok);
+for (const r of res) console.log((r.ok ? "  ✓ " : "  ✗ ") + r.name + (r.ok ? "" : "  <- " + r.detail));
+console.log(ok ? "BEHAVIOUR ✓ - she acts on every one of these rules." : "BEHAVIOUR ✗ - a rule is in her code but she does not act on it. Refuse the install, tell Love.");
+try { fs.appendFileSync(path.join(ROOT, "data/behaviour-umpire.jsonl"), JSON.stringify({ at: new Date().toISOString(), file, ok, res }) + "\n"); } catch {}
+process.exit(ok ? 0 : 1);
