@@ -5382,6 +5382,10 @@ async function copyLiveBook(assets, lane = "") {
     // - the 7:40:54 PM gold long was booked 7:30:14 and knocked 2,626 times before it filled): a main or rejection call more than 90 s old that has NOTHING on Kalshi yet (no order id,
     // nothing filled, partial, resting or sent) is written down skipped, never sent. A call that already holds a fill keeps its record untouched. Slide holds (fix371) stay exempt.
     if (done[row.id] && ["recon-tog", "recon-rej"].includes(String(row.book)) && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || "")) && !((globalThis as any).__slide371Log || {})[row.id] && Date.parse(String(row.at)) > 0 && Date.now() - Date.parse(String(row.at)) > 90000) { done[row.id] = { ...done[row.id], at: new Date().toISOString(), status: "skipped", final: true, reason: `STALE CALL: booked ${Math.round((Date.now() - Date.parse(String(row.at))) / 1000)} s ago and still unfilled after ${Number(done[row.id]?.tries) || 0} tries - an old call never fires (fix431)` }; continue; }
+    // THE THIRDS FLIP IS OFF FOR MAIN + REJECTION (fix442, Love Oct 28 2026 9:23 PM PT: "yeah no i got rid of the flip." + Oct 27 8:38 PM: "yes the flip is already supposed to be off hun, pls remove that
+    // and keep it off" - fix364 only took it off the copy): a call her thirds read turned to the other side ("Top third - seen as a short ... (was: ...)" / "Bottom third ... seen as a long") never goes
+    // live for main or rejection - 9:20 PM the refused gold long came back as a short right after the pink broke up. Held, not final: a real call of hers later in the window still goes.
+    if (["recon-tog", "recon-rej"].includes(String(row.book)) && / - seen as a (short|long) /.test(String(row.setup || row.label || "")) && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `THIRDS FLIP OFF (fix442): "${String(row.setup || row.label).slice(0, 90)}" is a refused call turned to the other side - never live for main or rejection` }; continue; }
     const frame = asset?.vwap1m?.vwap ? asset.vwap1m : asset?.vwap5m;
     let placed = null;
     const tOrder = Date.now();
@@ -5658,6 +5662,7 @@ export {
   sendLive
 };
 
+// fix403: no touch needed - back as fix433 (Love Oct 28 2026 8:23 PM PT: "2- stay"): the gold slide hold under pink needs no pink touch and stays on until a 25c break (slideHold403 below, unchanged since before the 6:45 PM restore).
 /** fix403 (Oct 28 2026 4:03 PM PT, Love card "How should the gold downslope-under-pink hold work now?" -> "No longs till pink breaks"; fix371 words (Oct 27 10:12 PM PT): "maybe in the event of this we should wait for a break").
  *  Restored as fix423 after the checkpoint restore (Love Oct 28 2026 7:18 PM PT card "Put the downslope pink wall back, and on which books?" -> "Main + rejection, gold AND BTC"; Love 7:17 PM: "you see price on a downslope ?????  you see prices rejecting off of pink a hundred times ????? this was in the checkpoint.").
  *  sm = 5 s samples of gold price + 5m pink for the last 30 min. Sliding = more than $2 lower than 30 min ago while under pink (pink + 25c).

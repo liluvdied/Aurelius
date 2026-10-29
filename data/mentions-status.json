@@ -1,7 +1,7 @@
 {
- "at": "2026-10-29T03:48:33.474Z",
- "events": 149,
- "checked": 1219,
+ "at": "2026-10-29T04:18:33.902Z",
+ "events": 153,
+ "checked": 1249,
  "live": [
   "KXEARNINGSMENTIONKKR-26NOV09",
   "KXEARNINGSMENTIONWMT-26NOV19",
@@ -16,13 +16,14 @@
   "KXEARNINGSMENTIONAZO-26DEC08",
   "KXEARNINGSMENTIONSPCX-27JAN26",
   "KXEARNINGSMENTIONCOST-26DEC10",
-  "KXEARNINGSMENTIONFIG-26NOV04",
   "KXEARNINGSMENTIONDKNG-26NOV06",
   "KXEARNINGSMENTIONACI-27JAN13",
+  "KXEARNINGSMENTIONTSLA-27JAN27",
   "KXEARNINGSMENTIONNYT-26NOV04",
   "KXEARNINGSMENTIONAAPL-26OCT29",
   "KXEARNINGSMENTIONNBIS-26NOV10",
   "KXEARNINGSMENTIONZM-26NOV23",
+  "KXEARNINGSMENTIONDASH-26NOV04",
   "KXEARNINGSMENTIONPLTR-26NOV02",
   "KXEARNINGSMENTIONINTU-26NOV19",
   "KXEARNINGSMENTIONTOST-26NOV03",
@@ -46,6 +47,7 @@
   "KXEARNINGSMENTIONRDDT-26OCT29",
   "KXEARNINGSMENTIONPSKY-26NOV09",
   "KXEARNINGSMENTIONARITZIA-27JAN14",
+  "KXEARNINGSMENTIONADBE-26DEC09",
   "KXEARNINGSMENTIONWFC-27JAN14",
   "KXEARNINGSMENTIONAMZN-26OCT29",
   "KXEARNINGSMENTIONSBUX-26OCT29",
@@ -85,7 +87,7 @@
    "word": "Oil / Gas / Gasoline",
    "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
    "side": "no",
-   "ask": 0.25,
+   "ask": 0.24,
    "rate": 0.38,
    "n": 8,
    "basis": "3 of 8 events"
@@ -118,21 +120,10 @@
    "word": "Tariff",
    "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
    "side": "no",
-   "ask": 0.62,
+   "ask": 0.63,
    "rate": 0.19,
    "n": 16,
    "basis": "3 of 16 events"
-  },
-  {
-   "ticker": "KXVANCEMENTION-26NOV18-INFL",
-   "event": "KXVANCEMENTION-26NOV18",
-   "word": "Inflation",
-   "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
-   "side": "no",
-   "ask": 0.45,
-   "rate": 0.41,
-   "n": 17,
-   "basis": "7 of 17 events"
   },
   {
    "ticker": "KXVANCEMENTION-26NOV18-HEAL",
@@ -169,11 +160,6 @@
   }
  ],
  "errors": [
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
   "Error: 429",
   "Error: 429",
   "Error: 429",

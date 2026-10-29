@@ -134,7 +134,7 @@ function rejFlipAtBand(asset: string, L: Line[], spot: number, cur: { o: number;
 }
 /** fix326: her flip (any 1/2/3/4/5m candle literally her colour). */
 function pfFlipOk(asset: string, side: string, spot: number): boolean { try { return anyFlipNow(asset, side, spot); } catch { return false; } }
-export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar | undefined, cur: { o: number; h: number; l: number }, prev?: { h: number; l: number } | null, bars?: Bar[], rejOnly = false, reach = 0, pinkFlip = false /* fix326 */): { side: "up" | "down"; label: string } | null {
+export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar | undefined, cur: { o: number; h: number; l: number }, prev?: { h: number; l: number } | null, bars?: Bar[], rejOnly = false, reach = 0, pinkFlip = false /* fix326 */, zoneFlip = false /* fix394 back as fix433 (Love Oct 28 2026 8:18 PM PT: "1 - stay" (to: green-zone longs and red-zone shorts go on any 2-5m candle flipped her way, not only the 5m - main)): main zone reads take a 2-5m flip */): { side: "up" | "down"; label: string } | null {
   const brk = BREAK[asset] ?? 0, tap = TAP[asset] ?? 0;
   // fix326 PINK REJECTION ON HER FLIP (Oct 27 ~11:51 AM PT, main + rejection model only; Love Oct 21 9:12 PM PT: "red candle falling rejected from pink - she is clear to
   // short anywhere in the channel, except the bottom 33%" + Oct 27 11:47 AM: "the second it flipped before she was in" + card "Main + rejection model"): a pink rejection
@@ -341,7 +341,7 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
   // fix297 (Oct 26 ~10:20 PM PT, Love: "she can't use the green zone as a signal to short down / or for the red zone / that is rejection only for gold / she can only
   // use the session bands the bollingers and the pink band for that"): a "Failed break above Green zone - rejected down" label ends in " - rejected down", so the
   // fix67 filter below missed it and the 10:16 PM gold main short got through. The zone is now matched anywhere in the label.
-  cands2 = cands2.filter((c) => { const lb = String(c.label); if (!/(Green|Red) zone( - |$)/.test(lb)) return true; if (/^(Break|Close) /.test(lb)) return false; return /Green zone( - |$)/.test(lb) ? c.side === "up" && spot > cur.o : c.side === "down" && spot < cur.o; });
+  cands2 = cands2.filter((c) => { const lb = String(c.label); if (!/(Green|Red) zone( - |$)/.test(lb)) return true; if (/^(Break|Close) /.test(lb)) return false; return /Green zone( - |$)/.test(lb) ? c.side === "up" && (spot > cur.o || (zoneFlip && (() => { try { return anyFlipNow(asset, "up", spot); } catch { return false; } })())) : c.side === "down" && (spot < cur.o || (zoneFlip && (() => { try { return anyFlipNow(asset, "down", spot); } catch { return false; } })())); }); /* fix394 back as fix433 (Love Oct 28 2026 8:18 PM PT: "1 - stay" (to: green-zone longs and red-zone shorts go on any 2-5m candle flipped her way, not only the 5m - main)): with zoneFlip a 2/3/4/5m candle flipped her way counts, not only the 5m */
   let seenC = cands2;
   try { if (perspective) seenC = perspective(cands2); } catch {}
   const pool = rejOnly ? seenC.filter((c) => c.rank >= 1) : seenC;
@@ -583,7 +583,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     // 5m candle rejecting up off the green = long, a red 5m candle rejecting down off the red = short. Named apart from "5m S1/R1" so no older rule reads them.
     try { if (!quietR() && p && Number(p.s1) > 0 && Number(p.r1) > 0) LB.push({ name: "Green zone", price: Number(p.s1), unit: Number(L[0]?.unit) || 0 }, { name: "Red zone", price: Number(p.r1), unit: Number(L[0]?.unit) || 0 }); } catch {}
     try { const zB = (globalThis as any).__bbsr?.[id]; if (!quietR() && zB && Number(zB.bbU) > 0 && Number(zB.bbL) > 0 && Date.now() - Number(zB.at) <= 20000) LB.push({ name: "Bollinger upper", price: Number(zB.bbU), unit: Number(L[0]?.unit) || 0 }, { name: "Bollinger lower", price: Number(zB.bbL), unit: Number(L[0]?.unit) || 0 }); } catch {}
-    lookT = reachT > 0 ? bonesDecide(id, LB, spot, last1m, cur, prev, b, false, reachT) : look5;
+    lookT = reachT > 0 ? bonesDecide(id, LB, spot, last1m, cur, prev, b, false, reachT, false, true /* fix394: main (fix433) */) : look5;
     rejLB = LB; rejReach = reachT; rejL = L; // fix246
     try { if (reachT > 0) { const pf0 = bonesDecide(id, LB, spot, last1m, cur, prev, b, false, reachT, true); if (pf0 && /5m PP/.test(String(pf0.label)) && (pf0.side === "up" ? pfFlipOk(id, "up", spot) : pfFlipOk(id, "down", spot))) tgPF = pf0; } } catch {} // fix326
     // HER 5M CANDLE OFF THE BOLLINGER (Oct 22 ~2:09 AM PT, Love: "she was taking that same set up on the main book earlier ... she's good to do that on the delayed

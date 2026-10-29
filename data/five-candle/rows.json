@@ -926,7 +926,17 @@
   "side": "up",
   "ask": 0.63,
   "left": 300,
-  "result": "open",
-  "pnl": 0.0
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-29T03:50:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.66,
+  "left": 300,
+  "result": "win",
+  "pnl": 2.58
  }
 ]

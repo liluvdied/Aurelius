@@ -49,12 +49,14 @@ def love_text():
 
 def code_adds(old, new, T):
     # each run of added lines is judged as one block: every fix tag in it must be named in Love's typed requests, and a block with rule lines needs at least one such tag
-    O = set(l.strip() for l in open(old, encoding="utf8").read().split("\n"))
+    OT = open(old, encoding="utf8").read(); O = set(l.strip() for l in OT.split("\n")); OF = set(FIX.findall(OT))
     out = []; blk = []
     def judge(b):
         rule = [x for x in b if MARK.search(x) or GUARD.search(x)]
         if not rule: return
-        tags = set(t for x in b for t in FIX.findall(x))
+        tags = set(t for x in b for t in FIX.findall(x)) - OF  # only tags NEW to the file need Love's words; an edited line keeps its old tags
+        if not tags and not set(t for x in b for t in FIX.findall(x)): tags = set()
+        elif not tags: return
         if not tags or not all(re.search(r"\b" + re.escape(t) + r"\b", T) for t in tags):
             for x in rule: out.append(("added without Love's words", x))
     for l in open(new, encoding="utf8").read().split("\n") + [None]:

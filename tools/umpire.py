@@ -37,6 +37,21 @@ if rT.returncode != 0: ok = False
 rG = subprocess.run([sys.executable, "tools/no-removal-gate.py"], capture_output=True, text=True)  # cornerstone 0h (Love Oct 28 2026 8:17 PM PT: "DO NOT LET ANYTHING. ANYYYYYYTHINGGGGGGGGG. EVER ... GET REMOVED WITHOUT ME TELLLLLLLLING YOU TO REMOVE IT"): nothing of hers gone since the last save
 print(("SAFE   " if rG.returncode == 0 else "OUT    ") + "tools/no-removal-gate.py  " + ((rG.stdout.strip().split("\n") or [""])[0]))
 if rG.returncode != 0: ok = False; print(rG.stdout)
+rF = subprocess.run(["node", "tools/flip-test-433.cjs"], capture_output=True, text=True)  # fix433 behaviour test (Love Oct 28 2026 8:23 PM PT: "7- back to 2m-5m"): a 1m-only flip never counts
+print(("SAFE   " if rF.returncode == 0 else "OUT    ") + "tools/flip-test-433.cjs  " + ((rF.stdout.strip().split("\n") or [""])[-1]))
+if rF.returncode != 0: ok = False
+rSS = subprocess.run(["node", "tools/side-test-434.cjs"], capture_output=True, text=True)  # fix434 behaviour test (Love Oct 28 2026 8:46 PM PT: "price on the same side of the break stays. 33% NEVER. EVER. LEAVES."): pokes and fall-backs refused
+print(("SAFE   " if rSS.returncode == 0 else "OUT    ") + "tools/side-test-434.cjs  " + ((rSS.stdout.strip().split("\n") or [""])[-1]))
+if rSS.returncode != 0: ok = False
+rTL = subprocess.run(["node", "tools/ten-level-test-440.cjs"], capture_output=True, text=True)  # fix440 behaviour test (Love Oct 28 2026 9:18 PM PT: "no trading into them. only away from them. within 1.50")
+print(("SAFE   " if rTL.returncode == 0 else "OUT    ") + "tools/ten-level-test-440.cjs  " + ((rTL.stdout.strip().split("\n") or [""])[-1]))
+if rTL.returncode != 0: ok = False
+rB441 = subprocess.run(["node", "tools/broke-candle-test-441.cjs"], capture_output=True, text=True)  # fix441 (Love Oct 28 2026 9:20 PM PT: "she shorted it when it just broke pink upwards")
+print(("SAFE   " if rB441.returncode == 0 else "OUT    ") + "tools/broke-candle-test-441.cjs  " + ((rB441.stdout.strip().split("\n") or [""])[-1]))
+if rB441.returncode != 0: ok = False
+rT442 = subprocess.run(["node", "tools/thirds-off-test-442.cjs"], capture_output=True, text=True)  # fix442 (Love Oct 28 2026 9:23 PM PT: "yeah no i got rid of the flip.")
+print(("SAFE   " if rT442.returncode == 0 else "OUT    ") + "tools/thirds-off-test-442.cjs  " + ((rT442.stdout.strip().split("\n") or [""])[-1]))
+if rT442.returncode != 0: ok = False
 r9 = subprocess.run([sys.executable, "tools/extra-call-5m.py"], capture_output=True, text=True)  # record only (Love Oct 27 2:25 PM PT: "track and log those")
 print("INFO   tools/extra-call-5m.py  " + ((r9.stdout.strip().split("\n") or [""])[0]))
 r10 = subprocess.run([sys.executable, "tools/pink-flag.py"], capture_output=True, text=True)  # record only (Love Oct 27 5:23 PM PT: "if one of the other books takes a trade like that and loses flag it for me")

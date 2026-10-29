@@ -2,6 +2,75 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R150 - fix442: the thirds flip is OFF for main + rejection (fix364 only took it off the copy) - a call her thirds read turned to the other side ("Top third - seen as a short" / "Bottom third ... seen as a long") never goes live; held, not final. Test tools/thirds-off-test-442.cjs (the 9:20 PM gold short is held).
+- when: 2026-10-29T04:24:55+00:00
+- Love: "Love Oct 28 2026 9:23 PM PT: "yeah no i got rid of the flip." + Oct 27 2026 8:38 PM PT: "yes the flip is already supposed to be off hun, pls remove that and keep it off" + 9:22 PM: "probably flipped from a banned long.""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "THIRDS FLIP OFF (fix442)"}
+- proof: {"test": "tools/thirds-off-test-442.cjs"}
+
+## R151 - fix441: main + rejection - when this 5m candle broke a session band or the pink UP by her break distance (gold 33c / BTC $6), no SHORT until price breaks back DOWN through it by that distance; mirror for longs. Test tools/broke-candle-test-441.cjs (the 9:20 PM gold short is refused). Installs on Love's "install them".
+- when: 2026-10-29T04:24:55+00:00
+- Love: "Love Oct 28 2026 9:20 PM PT: "ohhhh my god bro. she shorted it when it just broke pink upwards" + 5:56 PM: "she needs to be ON the side of the break she cannot trade without price being on the same side of the break" + 8:46 PM "price on the same side of the break stays.""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "const bt441 = brokeThisCandle441(asset, lbR.L, qR.c, side)"}
+- proof: {"test": "tools/broke-candle-test-441.cjs"}
+
+## R149 - fix440: Love's correction of fix376 (main + rejection, gold). fix376's CLEAR OF THE $10 LEVEL (held trades going AWAY from a $10 level until $1.50 clear - it refused the 9:10 PM pink-rejection short at 4038.91 under 4040) is taken out on these typed words and replaced by Love's rule: an even $10 level ABOVE price within $1.50 = no long (shorts go); BELOW within $1.50 = no short (longs go). Test tools/ten-level-test-440.cjs. Installed at the 9:30 PM PT boundary.
+- when: 2026-10-29T04:19:49+00:00
+- Love: "Love Oct 28 2026 9:18 PM PT: "thats not at all what that rule was supposed to be luv. its supposed to be a trade away from even $10 levels on gold. no trading into them. only away from them. within 1.50. THAAAAT RULE STAYED???? AND NOT THE CORNERSTONES?????? what the full fuck bro lol tghat was soooooooo much less important. she scrapped the 33% rules and kept that one? unbelievable. target wasnt even within 1.50 of a 10 dollar level. it only stand this way (example) target = 4040 + price currently 4038 - no longs into the 10 level. only shorts. vis versa. that what that rule was for. massively wrecked that""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "no trading into an even $10 level within $1.50; only away from it."}
+- proof: {"code": "src/lib/desk/bandlock.ts", "lacks": "CLEAR OF THE $10 LEVEL: ${side"}
+- proof: {"test": "tools/ten-level-test-440.cjs"}
+
+## R147 - fix439 (staged with fix438): the gold PINK TO GREEN / PINK TO RED refusal messages print her real share - 55% for main + rejection (fix409), 50% for every other book - wording only, the rule itself unchanged.
+- when: 2026-10-29T04:09:21+00:00
+- Love: "Love Oct 28 2026 9:08 PM PT: "6 , main and rejection for rn hun i dont have the energy to do more than that right now 
+
+7 - 55% 
+
+and there is no auto mode here hun i have the mode hard set""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, m, e, s, s, a, g, e,  , t, e, x, t, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "no gold short in the bottom ${flipRule ? 55 : 50}% of it. /* fix439 */"}
+
+## R148 - Sweep pick 6 BACK for main + rejection only: the 3 PM channel of pink / R1-S1 / Bollinger (fix24, switched off by fix153) - to be built scoped to recon-tog + recon-rej (the channel function is shared, so it needs a per-book switch); staged, not installed yet.
+- when: 2026-10-29T04:09:21+00:00
+- Love: "Love Oct 28 2026 9:08 PM PT: "6 , main and rejection for rn hun i dont have the energy to do more than that right now 
+
+7 - 55% 
+
+and there is no auto mode here hun i have the mode hard set""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"process": "pick 6 (3 PM channel) for main + rejection - build pending, Love 9:08 PM"}
+
+## R146 - fix437 (config, 9:15 PM PT boundary): BTC trades live at 9 PM again on the rejection model at $1 - 21 removed from liveSkipHours.btc (now [0, 8, 18, 23]; prev in fix437Prev). Overrides the 9 PM part of R121 on Love's typed words.
+- when: 2026-10-29T04:05:09+00:00
+- Love: "Love Oct 28 2026 9:04 PM PT: "hun. put. btc. on. at. $1.""
+- books: r, e, c, o, n, -, r, e, j,  , (, b, t, c, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "liveSkipHours.btc", "equals": [0, 8, 18, 23]}
+
+## R145 - fix436 (config, 9:15 PM PT boundary): GOLD live seat = main (recon-tog) every hour, rejection off gold live; BTC live seat = rejection (recon-rej) every hour, main off BTC live - offHourMain.rejHoursByAsset gold [] and btc 0-23 (old lists in fix436Prev). $1, add-on off, Love's fix405 sit-out hours kept (btc 0,8,18,21,23; gold 4,9,20,23).
+- when: 2026-10-29T04:04:36+00:00
+- Love: "Love Oct 28 2026 9:03 PM PT: "yeah i want both of them on at $1 to see if theyre working hun. main on gold, rejection on btc pls""
+- books: r, e, c, o, n, -, t, o, g,  , (, g, o, l, d, ), ,,  , r, e, c, o, n, -, r, e, j,  , (, b, t, c, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejHoursByAsset.gold", "equals": []}
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejHoursByAsset.btc", "equals": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}
+
+## R144 - fix435: at the Kalshi wire (kalshi-live place()), every main + rejection opening order - re-aims included - already re-runs her whole door (bandLockCheck: $1.50 wall, pink rules, 33%, same side of the break once fix434 is in, zones); now if that check can't run it is REFUSED instead of sent (was: an error let the order through), and main + rejection can never use the gate-test bypass. Sweep picks 6 + 7 = Back (logged here; #6 3 PM channel needs Love's word on which books, #7 re-aim wall check is this wire check).
+- when: 2026-10-29T04:04:03+00:00
+- Love: "Love Oct 28 2026 9:01 PM PT: "6 stays hun. 7 stays. wall check on re aims AND EVERY SINGLE TRADE THAT EVER LEAVES THIS DESK are 100% NECESSARY. AND MUST FAIL TO SEND OUT A LIVE ORDER IF THEY ARE NOT MET. ... for now please place her live on both books(main and rejectioN) at $1 so i can see if theres anything wrong""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "her walls could not be checked for this order - it does not go out unchecked (fix435)"}
+
 ## R143 - Standing rule: after EVERY change and every exchange that matters, the desk (minus .secrets/ and node_modules/) and the thread save are pushed to github.com/liluvdied/aurelius branch claude/project-thread-mj3rmw - never force, never main. Plus a full read-only rule sweep (data/RULE-SWEEP-2026-10-28.md) so Love doesn't find losses one by one.
 - when: 2026-10-29T03:50:55+00:00
 - Love: "Love Oct 28 2026 8:50 PM PT: "who knows how much else got tossed dude.  if the literal first cornerstone of the model- the 33/20 band tolerances got erased im sure im gonna find out about more of them hun. its fine. its not but its fine. i did it on github luv, please push every single thing there going forward""

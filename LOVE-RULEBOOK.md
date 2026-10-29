@@ -61,7 +61,7 @@ These are cornerstones for MAIN + REJECTION. tools/cornerstones.py fails if any 
 - HER FLIP: a 2/3/4/5m candle (no 1m) at least 10c gold / $5 BTC past its open her way. A candle born her colour counts ("a candle born red at a band and falling is still a short"). fix406/407/424; fix416 real-flip is OFF.
 - 33% IMPOSSIBILITY, session band to session band; BTC 33% up to $500 wide even on one-fresh-sigma channels (fix379/414).
 - Gold pink tolerance 55% (pink-to-green no short bottom 55%, pink-to-red no long top 55%) (fix409). BTC 40% (fix323/324).
-- Gold $10 level: away from it only once $1.50 clear (fix376). No long inside red zone / no short inside green (fix377). No long within $1.50 under R1 / no short within $1.50 over S1 (fix378).
+- Gold $10 level (fix440, Love Oct 28 2026 9:18 PM PT: "no trading into them. only away from them. within 1.50"): no trading INTO an even $10 level when the target is within $1.50 of it, only away (main + rejection). [fix376 "away only once $1.50 clear" retired on those words, R149.] No long inside red zone / no short inside green (fix377). No long within $1.50 under R1 / no short within $1.50 over S1 (fix378).
 - Blue VWAP walls when bands are small (fix397/399).
 - Session band ahead of the pink = wait for its break or rejection (fix413).
 - Downslope under pink: no long while price slides under an unbroken pink until it breaks - gold $2 / 25c, BTC $40 / $8 (fix371/403/423).

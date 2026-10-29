@@ -3178,5 +3178,17 @@
   "result": "open",
   "pnl": 0.0,
   "lane": "first"
+ },
+ {
+  "at": "2026-10-29T03:32:00+00:00",
+  "slot": "2026-10-29T03:30:00+00:00",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "ask": 0.47,
+  "left": 180,
+  "reaims": 0,
+  "result": "loss",
+  "pnl": -5.0,
+  "lane": "first"
  }
 ]

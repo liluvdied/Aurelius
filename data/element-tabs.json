@@ -4,7 +4,7 @@
     "loss": 316
   },
   "over 2.2x": {
-    "win": 321,
+    "win": 322,
     "loss": 624
   },
   "went green, short of the arm": {
@@ -16,12 +16,12 @@
     "loss": 120
   },
   "held to the bell": {
-    "win": 1283,
-    "loss": 2641
+    "win": 1285,
+    "loss": 2642
   },
   "1.4x to 2.2x": {
-    "win": 3141,
-    "loss": 2101
+    "win": 3142,
+    "loss": 2102
   },
   "7pm": {
     "win": 161,
@@ -40,8 +40,8 @@
     "loss": 74
   },
   "9pm": {
-    "win": 150,
-    "loss": 132
+    "win": 152,
+    "loss": 133
   },
   "never went green": {
     "win": 51,
@@ -64,7 +64,7 @@
     "loss": 7
   },
   "already through the strike": {
-    "win": 1553,
+    "win": 1554,
     "loss": 1025
   },
   "far from the strike": {
@@ -96,7 +96,7 @@
     "loss": 25
   },
   "tight to the strike": {
-    "win": 1346,
+    "win": 1347,
     "loss": 884
   },
   "4pm": {
@@ -120,7 +120,7 @@
     "loss": 83
   },
   "Gold short Live": {
-    "win": 341,
+    "win": 342,
     "loss": 284
   },
   "Bitcoin short Tap-reject at +1.5σ": {
@@ -156,7 +156,7 @@
     "loss": 16
   },
   "finished on the right side of the strike": {
-    "win": 438,
+    "win": 439,
     "loss": 0
   },
   "Bitcoin short Tap-reject at +0.5σ": {
@@ -177,7 +177,7 @@
   },
   "Bitcoin short Live": {
     "win": 357,
-    "loss": 366
+    "loss": 367
   },
   "Bitcoin long Tap-reject at -1.5σ": {
     "win": 36,
@@ -188,8 +188,8 @@
     "loss": 4
   },
   "went green, short of the watch": {
-    "win": 869,
-    "loss": 1913
+    "win": 870,
+    "loss": 1914
   },
   "2am": {
     "win": 175,
@@ -260,11 +260,11 @@
     "loss": 0
   },
   "Trail never reached the watch.": {
-    "win": 866,
-    "loss": 1912
+    "win": 867,
+    "loss": 1913
   },
   "cleared the arm": {
-    "win": 2575,
+    "win": 2576,
     "loss": 52
   },
   "Trail took it. High 60.2%, out at 58.5%.": {
@@ -372,7 +372,7 @@
     "loss": 33
   },
   "short below the VWAP": {
-    "win": 178,
+    "win": 179,
     "loss": 116
   },
   "Trail saw 33.3% and did not take it.": {
@@ -392,7 +392,7 @@
     "loss": 122
   },
   "Gold short Tap-reject at -1.5σ": {
-    "win": 60,
+    "win": 61,
     "loss": 44
   },
   "Trail saw 20.3% and did not take it.": {
@@ -4956,6 +4956,10 @@
     "loss": 0
   },
   "Trail took it. High 43.5%, out at 40.2%.": {
+    "win": 1,
+    "loss": 0
+  },
+  "Trail saw 206.9% and did not take it.": {
     "win": 1,
     "loss": 0
   }
