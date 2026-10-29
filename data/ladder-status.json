@@ -1,10 +1,28 @@
 {
- "at": "2026-10-29T01:58:57.578Z",
+ "at": "2026-10-29T04:29:08.283Z",
  "cities": [
+  {
+   "city": "AUS",
+   "station": "KAUS",
+   "hourLocal": 23,
+   "offset": 0.29999999999999716,
+   "lessons": 18,
+   "maxSoFar": 81,
+   "mu": 81.3,
+   "sigma": 0.8,
+   "best": {
+    "buckets": [
+     "82° to 83°"
+    ],
+    "cost": 0.01,
+    "p": 0.38,
+    "edge": 0.37
+   }
+  },
   {
    "city": "DEN",
    "station": "KDEN",
-   "hourLocal": 19,
+   "hourLocal": 22,
    "offset": 0.09999999999999432,
    "lessons": 17,
    "maxSoFar": 66.2,
@@ -22,7 +40,7 @@
   {
    "city": "LAX",
    "station": "KLAX",
-   "hourLocal": 18,
+   "hourLocal": 21,
    "offset": -0.30000000000001137,
    "lessons": 18,
    "maxSoFar": 75.2,
@@ -39,45 +57,49 @@
    }
   },
   {
-   "city": "PHIL",
-   "station": "KPHL",
-   "hourLocal": 21,
-   "offset": 0.29999999999999716,
-   "lessons": 18,
-   "maxSoFar": 66.9,
-   "mu": 67.2,
-   "sigma": 0.8,
+   "city": "MIA",
+   "station": "KMIA",
+   "hourLocal": 0,
+   "offset": 0.539999999999992,
+   "lessons": 20,
+   "maxSoFar": -999,
+   "mu": 85.5,
+   "sigma": 2.7,
    "best": {
     "buckets": [
-     "69° to 70°"
+     "82° or below",
+     "83° to 84°",
+     "85° to 86°"
     ],
-    "cost": 0.01,
-    "p": 0.05,
-    "edge": 0.04
+    "cost": 0.21,
+    "p": 0.64,
+    "edge": 0.42
    }
   },
   {
-   "city": "AUS",
-   "station": "KAUS",
-   "hourLocal": 20,
+   "city": "PHIL",
+   "station": "KPHL",
+   "hourLocal": 0,
    "offset": 0.29999999999999716,
    "lessons": 18,
-   "maxSoFar": 81,
-   "mu": 81.3,
-   "sigma": 0.8,
+   "maxSoFar": -999,
+   "mu": 71.3,
+   "sigma": 2.7,
    "best": {
     "buckets": [
-     "82° to 83°"
+     "73° to 74°",
+     "75° to 76°",
+     "77° or above"
     ],
-    "cost": 0.01,
-    "p": 0.38,
-    "edge": 0.37
+    "cost": 0.04,
+    "p": 0.33,
+    "edge": 0.29
    }
   },
   {
    "city": "CHI",
    "station": "KMDW",
-   "hourLocal": 20,
+   "hourLocal": 23,
    "offset": -0.09999999999999432,
    "lessons": 17,
    "maxSoFar": 75.2,
@@ -95,37 +117,22 @@
   {
    "city": "NY",
    "station": "KNYC",
-   "hourLocal": 21,
+   "hourLocal": 0,
    "offset": 1.5,
    "lessons": 16,
-   "maxSoFar": 61,
-   "mu": 62.5,
-   "sigma": 0.8,
+   "maxSoFar": -999,
+   "mu": 70.5,
+   "sigma": 2.7,
    "best": {
     "buckets": [
-     "64° to 65°"
+     "69° to 70°",
+     "71° to 72°",
+     "73° to 74°",
+     "75° or above"
     ],
-    "cost": 0.01,
-    "p": 0.1,
-    "edge": 0.09
-   }
-  },
-  {
-   "city": "MIA",
-   "station": "KMIA",
-   "hourLocal": 21,
-   "offset": 0.539999999999992,
-   "lessons": 20,
-   "maxSoFar": 87.8,
-   "mu": 88.3,
-   "sigma": 0.8,
-   "best": {
-    "buckets": [
-     "90° or above"
-    ],
-    "cost": 0.01,
-    "p": 0.07,
-    "edge": 0.06
+    "cost": 0.18,
+    "p": 0.77,
+    "edge": 0.58
    }
   }
  ],

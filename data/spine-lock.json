@@ -3,7 +3,7 @@
   "lockedBy": "Love",
   "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424)",
   "files": {
-    "recon.ts": "72317d00964ab064"
+    "recon.ts": "173faa81727a26b2"
   },
   "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
   "signedBy": [
@@ -118,7 +118,7 @@
       "at": "2026-10-21T05:47:47.551663+00:00",
       "by": "Love (her pick, 10:47 PM PT)",
       "sha": "ab786b5bc0b63e07",
-      "quote": "Picked \"No chase past 2\u03c3\" on \"Stop her chasing moves that are already stretched far from VWAP?\" (no long 2\u03c3+ above VWAP, no short 2\u03c3+ below; fades back toward VWAP stay allowed)"
+      "quote": "Picked \"No chase past 2σ\" on \"Stop her chasing moves that are already stretched far from VWAP?\" (no long 2σ+ above VWAP, no short 2σ+ below; fades back toward VWAP stay allowed)"
     },
     {
       "at": "2026-10-21T06:19:47.753826+00:00",
@@ -129,17 +129,17 @@
     {
       "at": "2026-10-21T17:10:13.713872+00:00",
       "by": "Love",
-      "quote": "she didn\u2019t enter on the delayed entry model bb / we will have her use the bollinger band extremes for those okay \u2763\ufe0f a rejection off of one ok\ud83e\ude77"
+      "quote": "she didn’t enter on the delayed entry model bb / we will have her use the bollinger band extremes for those okay ❣️ a rejection off of one ok🩷"
     },
     {
       "at": "2026-10-21T17:17:50.998006+00:00",
       "by": "Love",
-      "quote": "sorrrry i should clarify, if it hits a bollinger band and rejects that\u2019s an entry on the delayed book / if it hits a band and rejects that\u2019s also an entry on on that book as well / so just an extra point of reference for her on those ok \ud83e\ude77"
+      "quote": "sorrrry i should clarify, if it hits a bollinger band and rejects that’s an entry on the delayed book / if it hits a band and rejects that’s also an entry on on that book as well / so just an extra point of reference for her on those ok 🩷"
     },
     {
       "at": "2026-10-21T17:28:35.651038+00:00",
       "by": "Love",
-      "quote": "yes, on btc just now it rejected off the first band below, then rejected from the band above afterwards, so she\u2019d enter there on the second interaction with any of them - after the first interaction with a band passes ... then we keep the delayed entry model on for $2 during her off hours / (10:27 AM) so she\u2019d wait for the second rejection at the red ... just the second interaction with a band, they may line up with each other on occasion that\u2019s ok ... whichever the second band it interacts with dictates bb"
+      "quote": "yes, on btc just now it rejected off the first band below, then rejected from the band above afterwards, so she’d enter there on the second interaction with any of them - after the first interaction with a band passes ... then we keep the delayed entry model on for $2 during her off hours / (10:27 AM) so she’d wait for the second rejection at the red ... just the second interaction with a band, they may line up with each other on occasion that’s ok ... whichever the second band it interacts with dictates bb"
     },
     {
       "at": "2026-10-21T17:32:19.478303+00:00",
@@ -149,37 +149,37 @@
     {
       "at": "2026-10-21T17:37:54.036903+00:00",
       "by": "Love",
-      "quote": "yes pls \u2763\ufe0f [fresh slate for the delayed book\u2019s record] ... and gold should be shorted when it hits a 4x here if there is no band nearby , just once our main books trade has been in profit and the other side hits a 4x - only if there\u2019s no band nearby ok"
+      "quote": "yes pls ❣️ [fresh slate for the delayed book’s record] ... and gold should be shorted when it hits a 4x here if there is no band nearby , just once our main books trade has been in profit and the other side hits a 4x - only if there’s no band nearby ok"
     },
     {
       "at": "2026-10-21T17:48:34.963233+00:00",
       "by": "Love",
-      "quote": "Love picked \"Last 5m candle only\" on \"Limit a standing break to this window?\" (10:48 AM PT) - after the 10:40 AM gold \"Break below +2\u03c3\" from a ~8:40 AM cross"
+      "quote": "Love picked \"Last 5m candle only\" on \"Limit a standing break to this window?\" (10:48 AM PT) - after the 10:40 AM gold \"Break below +2σ\" from a ~8:40 AM cross"
     },
     {
       "at": "2026-10-21T17:50:09.566918+00:00",
       "by": "Love",
-      "quote": "hun this is the same mistake that we\u2019ve been running into all week, a break only casts from the current candle. not two hours later. please ensure that it only counts for the current candle. and can never shift from that okay ... only the current candle can dictate a break. not hours later."
+      "quote": "hun this is the same mistake that we’ve been running into all week, a break only casts from the current candle. not two hours later. please ensure that it only counts for the current candle. and can never shift from that okay ... only the current candle can dictate a break. not hours later."
     },
     {
       "at": "2026-10-21T17:55:50.239539+00:00",
       "by": "Love",
-      "quote": "hun, trade the band where price CURRENTLY is ... if there is a 1m close above or below a band, trade as normal. that\u2019s it. nothing else to it. not a close from hours later. where price currently is."
+      "quote": "hun, trade the band where price CURRENTLY is ... if there is a 1m close above or below a band, trade as normal. that’s it. nothing else to it. not a close from hours later. where price currently is."
     },
     {
       "at": "2026-10-21T18:13:03.283440+00:00",
       "by": "Love",
-      "quote": "Love picked \"Session bands + pink only\" on \"How should gold measure its thirds when pivots squeeze the channel?\" (11:12 AM PT) - gold\u2019s thirds measure like BTC\u2019s: VWAP, sigmas and pink; R1/R2/S1/S2 still count as bands for rejections and breaks"
+      "quote": "Love picked \"Session bands + pink only\" on \"How should gold measure its thirds when pivots squeeze the channel?\" (11:12 AM PT) - gold’s thirds measure like BTC’s: VWAP, sigmas and pink; R1/R2/S1/S2 still count as bands for rejections and breaks"
     },
     {
       "at": "2026-10-21T18:14:03.488951+00:00",
       "by": "Love",
-      "quote": "Love picked \"Drop the 2\u03c3 rule\" on \"Past 2\u03c3, what should she do instead of shorting?\" (11:12 AM PT) - longs past 2\u03c3 open again under her normal thirds and candle rules"
+      "quote": "Love picked \"Drop the 2σ rule\" on \"Past 2σ, what should she do instead of shorting?\" (11:12 AM PT) - longs past 2σ open again under her normal thirds and candle rules"
     },
     {
       "at": "2026-10-21T18:16:30.123661+00:00",
       "by": "Love",
-      "quote": "yes the distance of 33% from the top or bottom of the channel was only ever supposed to apply to the session bands hun ... the TOP line, of the whole channel, and the BOTTOM line. of the whole channel. she can\u2019t trade the breaks in the direction of those. she can trade the rejections of the bottom line or top line of the whole channel, not the breaks of them."
+      "quote": "yes the distance of 33% from the top or bottom of the channel was only ever supposed to apply to the session bands hun ... the TOP line, of the whole channel, and the BOTTOM line. of the whole channel. she can’t trade the breaks in the direction of those. she can trade the rejections of the bottom line or top line of the whole channel, not the breaks of them."
     },
     {
       "at": "2026-10-21T18:29:13.298355+00:00",

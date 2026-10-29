@@ -1,0 +1,52 @@
+[
+  {
+    "what": "export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar | undefined, cur: { o: number; h: number; l: number }, prev?: { h: number; l: number } | null, bars?: Bar[], rejOnly = false, reach = 0, pinkFlip = false /* fix326 */): { side: \"up\" | \"down\"; label: string } | null {",
+    "R": "R129",
+    "why": "fix433 item 1 adds the zoneFlip parameter to this line (Love 8:18 PM PT: \"1 - stay\")"
+  },
+  {
+    "what": "offHourMain.rejHoursByAsset.btc",
+    "R": "R145",
+    "why": "fix436: BTC = rejection every hour (Love 9:03 PM \"main on gold, rejection on btc pls\")"
+  },
+  {
+    "what": "offHourMain.rejHoursByAsset.gold",
+    "R": "R145",
+    "why": "fix436: gold = main every hour"
+  },
+  {
+    "what": "liveSkipHours.btc",
+    "R": "R146",
+    "why": "fix437: 9 PM BTC back on (Love 9:04 PM \"hun. put. btc. on. at. $1.\")"
+  },
+  {
+    "what": "if (ppG > 0 && r1G > ppG && tick > ppG && tick < r1G && (((): boolean => { const vwP = Number((L || []).find((l: Line) => String(l.name) === \"session VWAP\")?.price) || 0, u1P = Number((L || []).find((l: Line) => String(l.name) === \"+1σ\")?.price) || 0, sdP = Math.abs(u1P - vwP); return (tick - ppG) / (r1G - ppG) >= (flipRule ? 0.45 : 0.50) /* fix409 (Love Oct 28 2026 5:39 PM PT: \"55% for shorts and longs pls / main rejection and copy bb\"): main + rejection + copy no gold long in the top 55% of pink -> red; others keep 50% */ /* fix276 (Oct 26 ~11:43 AM PT, Love: \"no longs into the top 40% of the channel from pink to red\" + \"let's make it an even 50% for gold hun\"): top 50% at every band width, was top 40% only once session bands are $10+ apart */ || (!(sdP > 0 && sdP >= 10) && r1G - tick <= 1.5); })()) /* fix134 (Oct 23 12:32 AM PT, Love: \"bring that down to $1.50 ... indefinitely\"): $1.50 under the red, was $2 */ /* fix111: top 40% again once session bands are $10+ apart */ && true /* fix108 (Oct 22 ~7:41 PM PT, Love card \"Both\"): $2 under the red, was top 40% (>= 0.60) */) why = `PINK TO RED: long $${(r1G - tick).toFixed(2)} under the red, at ${Math.round((tick - ppG) / (r1G - ppG) * 100)}% of the pink ${ppG.toFixed(2)} -> red ${r1G.toFixed(2)} space - no gold long in the top 50% of it (or within $1.50 of the red). wait for the red to reject (short) or the pink to reject (long).`;",
+    "R": "R147",
+    "why": "fix439 wording only: 55% (Love 9:08 PM \"7 - 55%\")"
+  },
+  {
+    "what": "if (ppH > 0 && s1H > 0 && s1H < ppH && tick < ppH && tick > s1H && (tick - s1H) / (ppH - s1H) <= (flipRule ? 0.55 /* fix409 (Love Oct 28 2026 5:37 PM PT: \"yeah let's make it 55% hun that's good\" + card \"Main + rejection + copy\"): was 0.60 */ : 0.50) /* fix365 (Love Oct 27 2026 8:39 PM PT: \"we can include the 60% into the rejection models too bb\"): main + rejection model + no-pink copy 60% (the pure no-pink skips this wall, fix363) */ /* fix364 (Love Oct 27 2026 8:38 PM PT: \"yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine\"): MAIN only 60%, every other book keeps 50% */) why = `PINK TO GREEN: short $${(tick - s1H).toFixed(2)} over the green, at ${Math.round((tick - s1H) / (ppH - s1H) * 100)}% of the green ${s1H.toFixed(2)} -> pink ${ppH.toFixed(2)} space - no gold short in the bottom ${flipRule || togpLoose ? 60 : 50}% of it. wait for the green to reject (long) or the pink to reject (short).`;",
+    "R": "R147",
+    "why": "fix439 wording only: 55% (Love 9:08 PM \"7 - 55%\")"
+  },
+  {
+    "what": "if (!why && asset === \"gold\" && flipRule && (side === \"up\" || side === \"down\")) { const L376 = Math.round(tick / 10) * 10, d376 = tick - L376;",
+    "R": "R149",
+    "why": "fix440: Love's correction - fix376 out (9:18 PM)"
+  },
+  {
+    "what": "if (Math.abs(d376) >= 0.3 && Math.abs(d376) < 1.5 && ((side === \"up\" && d376 > 0) || (side === \"down\" && d376 < 0))) why = `CLEAR OF THE $10 LEVEL: ${side === \"up\" ? \"long\" : \"short\"} only $${Math.abs(d376).toFixed(2)} ${d376 > 0 ? \"over\" : \"under\"} ${L376} - the level pulls price back; she waits until price is $1.50 clear (fix376).`; }",
+    "R": "R149",
+    "why": "fix440: Love's correction - fix376 out (9:18 PM)"
+  },
+  {
+    "what": "fix376",
+    "R": "R149",
+    "why": "fix440 replaces fix376's check"
+  },
+  {
+    "what": "- Gold $10 level: away from it only once $1.50 clear (fix376). No long inside red zone / no short inside green (fix377). No long within $1.50 under R1 / no short within $1.50 over S1 (fix378).",
+    "R": "R149",
+    "why": "rulebook line updated to Love's corrected $10 rule (fix440)"
+  }
+]

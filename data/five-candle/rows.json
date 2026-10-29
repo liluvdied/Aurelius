@@ -888,5 +888,55 @@
   "left": 300,
   "result": "win",
   "pnl": 3.93
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-29T02:02:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.43,
+  "left": 180,
+  "result": "win",
+  "pnl": 6.63
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-29T02:50:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.49,
+  "left": 300,
+  "result": "win",
+  "pnl": 5.2
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-29T02:51:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.59,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.47
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-29T03:20:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.63,
+  "left": 300,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-29T03:50:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.66,
+  "left": 300,
+  "result": "win",
+  "pnl": 2.58
  }
 ]

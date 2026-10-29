@@ -481,3 +481,8 @@
 {"at":"2026-10-28T23:57:52.283Z","ticker":"KXBTC15M-26OCT282000-00","kind":"close","pos":29.03,"src":"dock","filled":29.03,"avgYes":0.84,"payout":24.39,"ms":220,"engine":true}
 {"at":"2026-10-29T00:04:51.103Z","ticker":"KXGOLD15M-26OCT282015-15","kind":"part25","pos":-9.43,"src":"dock","filled":2.35,"avgYes":0.066,"ms":76}
 {"at":"2026-10-29T00:42:51.225Z","ticker":"KXBTC15M-26OCT282045-45","kind":"part25","pos":-8.62,"src":"dock","filled":2.15,"avgYes":0.028,"ms":72}
+{"at":"2026-10-29T02:25:10.436Z","ticker":"KXBTC15M-26OCT282230-30","kind":"part25","pos":11.9,"src":"dock","filled":2.97,"avgYes":0.85,"ms":75}
+{"at":"2026-10-29T03:40:49.570Z","ticker":"KXBTC15M-26OCT282345-45","kind":"part25","pos":-1.87,"src":"dock","filled":0.46,"avgYes":0.0769,"ms":76}
+{"at":"2026-10-29T03:55:24.061Z","ticker":"KXBTC15M-26OCT290000-00","kind":"part25","pos":-1.53,"src":"read","filled":0.38,"avgYes":0.076,"ms":198}
+{"at":"2026-10-29T04:28:20.311Z","ticker":"KXGOLD15M-26OCT290030-30","kind":"part25","pos":-3.42,"src":"read","filled":0.85,"avgYes":0.17,"ms":153}
+{"at":"2026-10-29T04:29:44.349Z","ticker":"KXGOLD15M-26OCT290030-30","kind":"close","pos":-2.57,"src":"dock","filled":2.57,"avgYes":0.065,"payout":0.03,"ms":234,"engine":true}

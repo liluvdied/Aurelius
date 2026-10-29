@@ -1,12 +1,12 @@
 # High-multiple paper book 💎
 
-Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, since Sun 04:30 AM PT. Paper only. Updated Wed 06:21 PM PT.
+Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, since Sun 04:30 AM PT. Paper only. Updated Wed 09:21 PM PT.
 
 | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|
-| cash at 3x | 25 | 6 | 24% | $-70.00 |
-| cash at 5x | 25 | 4 | 16% | $-50.00 |
-| cash at 10x | 25 | 1 | 4% | $-150.00 |
+| cash at 3x | 26 | 6 | 23% | $-80.00 |
+| cash at 5x | 26 | 4 | 15% | $-60.00 |
+| cash at 10x | 26 | 1 | 4% | $-160.00 |
 
 | When (PT) | Asset | Side | Ask | Setup | Peak bid | 3x | 5x | 10x |
 |---|---|---|---|---|---|---|---|---|
@@ -35,5 +35,6 @@ Main-book calls at 10x+ (Kalshi ask 10c or less), one per window, $10 each, sinc
 | Wed 10:25 AM | btc | down | 0.02 | Rejected down off -1σ | 0.012 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed 10:55 AM | btc | down | 0.04 | Candle falling from the top third | 0.02 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed 12:55 PM | btc | down | 0.03 | Top third - seen as a short under 81428.18 (was: R | 0.018 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Wed 06:35 PM | btc | up | 0.08 | Launched from the bottom third (low 80602.61) - a  | 0.071 | lost -10.00 | lost -10.00 | lost -10.00 |
 
 Replay before launch (Oct 19-25, main calls at 10x+, n=16): cash 3x won 1/16 (-$8.12/trade), 5x 1/16 (-$6.88), 10x 0/16 (-$10).

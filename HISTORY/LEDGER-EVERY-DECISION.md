@@ -1,9 +1,97 @@
-# Every decision Love has made - rebuilt 2026-10-29T02:34:24.269505+00:00
+# Every decision Love has made - rebuilt 2026-10-29T04:30:11.621839+00:00
 
-1284 decisions with Love's words or card picks, out of 2023 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1300 decisions with Love's words or card picks, out of 2042 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T04:30:00.014847+00:00  ·  diary line 2509  ·  fix232, fix376, fix440, fix441, fix442
+- Love: “its supposed to be a trade away from even $10 levels on gold. no trading into them. only away from them. within 1.50 ... target = 4040 + price currently 4038 - no longs into the 10 level. only shorts. vis versa.”
+- fix232 IN HER CODE
+- fix376 IN HER CODE
+- fix440 IN HER CODE
+- fix441 IN HER CODE
+- fix442 IN HER CODE
+- Full entry: 2026-10-29T04:30:00.014847+00:00 fix440 INSTALLED at the 9:30 PM PT boundary (Love Oct 28 2026 9:18 PM PT: "its supposed to be a trade away from even $10 levels on gold. no trading into them. only away from them. within 1.50 ... target = 4040 + price currently 4038 - no longs into the 10 level. only shorts. vis versa."): fix376 (held trades going AWAY from a $10 level - the 9:10 PM pink short) taken out; her INTO rule (fix232) at $1.50 for main + rejection. R149. ALSO fix441 (Love 9:20 PM "she shorted it when it just broke pink upwards": no trade back against a band/pink broken this candle until price breaks back by her distance, main + rejection, R151) and fix442 (Love 9:23 PM "yeah no i got rid of the flip.": the thirds flip off for main + rejection, R150). Installed on Love's 9:26 PM "install them pls". No-removal gate passed. {'bandlock.ts': '17ea8c6f56972987', 'engine.ts': '259dee7a2fc490bf'}.
+
+## 2026-10-29T04:15:02.988456+00:00  ·  diary line 2508  ·  fix437
+- Love: “hun. put. btc. on. at. $1.”
+- fix437 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T04:15:02.988456+00:00 fix437 CONFIG at the 9:15 PM PT boundary (Love Oct 28 2026 9:04 PM PT: "hun. put. btc. on. at. $1."): liveSkipHours.btc [0, 8, 18, 21, 23] -> [0, 8, 18, 23] - BTC trades live at 9 PM on the rejection model at $1. R146. No code change.
+
+## 2026-10-29T04:15:00.020309+00:00  ·  diary line 2507  ·  fix433, fix434, fix435, fix438, fix439
+- fix433 IN HER CODE
+- fix434 IN HER CODE
+- fix435 IN HER CODE
+- fix438 in her code without its number (see her words in the code comments)
+- fix439 IN HER CODE
+- Full entry: 2026-10-29T04:15:00.020309+00:00 fix438 INSTALLED at the 9:30 PM PT boundary - Love's code picks (installed by Love double-clicking INSTALL-LOVES-PICKS.command): fix433 (8:18 PM "1 - stay" zone flip [R129]; 8:23 PM "2- stay" slide-hold label [R130]; "7- back to 2m-5m" [R134]), fix434 (8:46 PM "price on the same side of the break stays.  33% NEVER. EVER. LEAVES." [R140/R141]), fix439 (9:08 PM "7 - 55%" wording [R147]), fix435 (9:01 PM "EVERY SINGLE TRADE THAT EVER LEAVES THIS DESK ... MUST FAIL TO SEND OUT A LIVE ORDER IF THEY ARE NOT MET." [R144]). Settings untouched (picks 3/4/5 held for Love's 9:03 PM seat plan). No-removal gate passed. {'bandlock.ts': '7106fb14543aa416', 'engine.ts': '227490c3fcb59db7', 'recon.ts': '173faa81727a26b2', 'kalshi-live.server.ts': '35dc70f363f3b3d8'}. Live stays on.
+
+## 2026-10-29T04:14:59.993340+00:00  ·  diary line 2506  ·  fix405, fix436
+- Love: “yeah i want both of them on at $1 to see if theyre working hun. main on gold, rejection on btc pls”
+- fix405 a setting (hours/sizes follow her latest pick)
+- fix436 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T04:14:59.993340+00:00 fix436 CONFIG at the 9:15 PM PT boundary (Love Oct 28 2026 9:03 PM PT: "yeah i want both of them on at $1 to see if theyre working hun. main on gold, rejection on btc pls"): offHourMain.rejHoursByAsset gold [0, 2, 3, 4, 7, 8, 9, 14, 16, 17, 18, 21, 22, 23] -> [] (main holds gold every hour, rejection off gold live), btc [0, 2, 3, 4, 7, 10, 11, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23] -> 0-23 (rejection holds BTC every hour, main off BTC live). $1, add-on off, fix405 sit-out hours kept. R145. No code change.
+
+## 2026-10-29T04:06:38Z  ·  diary line 2505
+- Love: “there are a bunnnnch of things that arent here hun. we had sliding scales set for her band tolerances so we wouldnt need to make adjustments every single day and she could stay in one place. i dont have the energy to start again from square 1 as far as that (and every other thing left out) is concerned. we will tackle that bridge when we come to it (them).”
+- Full entry: 2026-10-29T04:06:38Z NOTED FOR LATER (Love Oct 28 2026 9:01 PM PT: "there are a bunnnnch of things that arent here hun. we had sliding scales set for her band tolerances so we wouldnt need to make adjustments every single day and she could stay in one place. i dont have the energy to start again from square 1 as far as that (and every other thing left out) is concerned. we will tackle that bridge when we come to it (them)."): the sliding-scale band tolerances are missing - to be found and brought back with Love when she's ready. Nothing changed now.
+
+## 2026-10-29T03:33:35Z  ·  diary line 2504  ·  fix433
+- Love: “they were removed without my consent ... please do not let this ever happen again”
+- fix433 IN HER CODE
+- Full entry: 2026-10-29T03:33:35Z CORNERSTONE 0j (Love Oct 28 2026 8:32 PM PT: "they were removed without my consent ... please do not let this ever happen again"): only Love's typed words remove/retire/change a rule; card taps never count; no-removal gate now refuses card-only allow entries. R137. Also: the fix433 install (Love's picks 1-4, 7) was blocked at 8:30 PM by this Mac's Claude Code auto-mode permission check ([Production Deploy]) - NOT installed, waiting for Love's permission; she runs the 8:30 version.
+
+## 2026-10-29T03:30:00.013240+00:00  ·  diary line 2503  ·  fix429, fix430, fix431, fix432
+- Love: “yes to all of them bb , why did alllll of this get removed without my permission? i nevvvvvver ever said to take these out hun. i never would have. red green zone reach is 1.50 now, not 1.11”
+- Love: “make the pink tolerance a minimum of 15% of the channel width please”
+- fix429 IN HER CODE
+- fix430 IN HER CODE
+- fix431 IN HER CODE
+- fix432 IN HER CODE
+- Full entry: 2026-10-29T03:30:00.013240+00:00 fix429 INSTALLED at the 8:30 PM PT boundary (Love Oct 28 2026 8:06 PM PT: "yes to all of them bb , why did alllll of this get removed without my permission? i nevvvvvver ever said to take these out hun. i never would have. red green zone reach is 1.50 now, not 1.11"): bandlock reachWall429 at the RECON door for main + rejection only - no trade into an unbroken session band or the pink within $1.50 gold / $50 BTC (a band counts broken only once price is 33c gold / $6 BTC through it; an 18c poke from under it is not a break), red/green zone reach $1.50 gold, BTC sliding zone reach. REACH_RETIRED unchanged for every other book. Behaviour test tools/reach-test-429.cjs (7:40:54 PM gold long must be refused) in the umpire; cornerstones 14-15; requests R124 + R125 (fix430 pink 15% of the channel minimum, Love 8:07 PM PT: "make the pink tolerance a minimum of 15% of the channel width please"); requests.py runs .cjs proofs with node. bandlock cfe54cc3e39ee9bf, engine a8d03f8d5cbf426b. ALSO fix431 (main + rejection: a call over 90 s old with nothing on Kalshi is skipped even while retrying; R126) + fix432 (main + rejection: no long under an unbroken pink until it breaks up 25c gold / $8 BTC; Love 7:43 PM "NO SHES NOT SUPPOSED TO LONG INTO AN UNBROKEN PINK EVER"; R127), behaviour test tools/stale-pink-test-431.cjs, cornerstones 16-17. Live stays on.
+
+## 2026-10-29T03:18:14Z  ·  diary line 2502
+- Love: “DO NOT LET ANYTHING. ANYYYYYYTHINGGGGGGGGG. EVER. EVER EVER EVER EVER EVERR GET REMOVED WITHOUT ME TELLLLLLLLING YOU TO REMOVE IT PLEASE I AM FUCKING BEGGING YOU”
+- Full entry: 2026-10-29T03:18:14Z CORNERSTONE 0h logged (Love Oct 28 2026 8:17 PM PT: "DO NOT LET ANYTHING. ANYYYYYYTHINGGGGGGGGG. EVER. EVER EVER EVER EVER EVERR GET REMOVED WITHOUT ME TELLLLLLLLING YOU TO REMOVE IT PLEASE I AM FUCKING BEGGING YOU") - R128; no-removal gate + options list to follow after the 8:30 install.
+
+## 2026-10-29T03:15:00.012830+00:00  ·  diary line 2501  ·  fix426, fix428
+- Love: “add on of $5 can stay AFTER I CONFIRM SHES WORKING.”
+- Love: “fix 405's hours off can stay.”
+- fix426 a setting (hours/sizes follow her latest pick)
+- fix428 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T03:15:00.012830+00:00 fix428 CONFIG at the 8:15 PM PT boundary: (1) Kalshi add-on OFF, addOn.on true->false (Love Oct 28 2026 7:36 PM PT: "add on of $5 can stay AFTER I CONFIRM SHES WORKING.") - request R123; (2) fix426/R121 sit-out hours put in: liveSkipHours btc [8, 18, 23] -> [0,8,18,21,23], gold [4, 9, 23] -> [4,9,20,23] (Love 7:37 PM PT: "fix 405's hours off can stay."). fix428Prev keeps the old values. 5M, Polymarket, twin, maxDollars untouched. No code change.
+
+## 2026-10-29T03:13:36Z  ·  diary line 2500  ·  fix413, fix429
+- Love: “no the 33% hun”
+- fix413 IN HER CODE
+- fix429 IN HER CODE
+- Full entry: 2026-10-29T03:13:36Z DECISION (Love Oct 28 2026 ~8:12 PM PT, relayed from the project thread: "no the 33% hun") - NO wider session band wait: fix413 stays as it is; her $1.50 wall (fix429) + her 33% stand.
+
+## 2026-10-29T03:01:49.172176+00:00  ·  diary line 2499
+- Love: “pls put her on at $1”
+- Full entry: 2026-10-29T03:01:49.172176+00:00 fix427b SIZE to $1 (Love 7:55 PM PT: "pls put her on at $1"): the wire cap alone let a partial fill keep topping up toward the old $5.71 want, so the real Kalshi sizes go to $1: liveBook.dollars 5->1, offHourMain.dollars 5->1, data/live-size.json dollars 5->1 (goldBook was absent, so gold follows dollars). maxDollars 5 (Polymarket reads it), polyTwin, 5M, twin, add-on settings, sit-out hours untouched. bigMultipleCap $1 wire cap stays as backstop.
+
+## 2026-10-29T03:00:00.013261+00:00  ·  diary line 2498  ·  fix427
+- Love: “pls put her on at $1 so i can tell you what we need to fix now that everything i put in & paid for with my fuckin sanity got taken out now lol”
+- fix427 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T03:00:00.013261+00:00 LIVE ON fix427 at $1 (Love Oct 28 2026 7:55 PM PT: "pls put her on at $1 so i can tell you what we need to fix now that everything i put in & paid for with my fuckin sanity got taken out now lol"): live false->true; bigMultipleCap on false->true, x 3->1, dollars 1 (Kalshi-only wire cap: every main + rejection opening order, entries and add-ons, cut to $1). maxDollars 5, liveBook, Polymarket, 5M, twin, sit-out hours untouched. No code change. Save: data/SAVES/2026-10-28-0758PM-PT-before-live-1dollar. Request R122.
+
+## 2026-10-29T02:42:13.389366+00:00  ·  diary line 2497
+- Love: “SHE LONGED INTO AN UNBROKEN BAND AGAIN TURN HER THE FUCK OFF”
+- Full entry: 2026-10-29T02:42:13.389366+00:00 LIVE OFF (Love Oct 28 2026 7:41 PM PT: "SHE LONGED INTO AN UNBROKEN BAND AGAIN TURN HER THE FUCK OFF")
+
+## 2026-10-29T02:39:59Z  ·  diary line 2496
+- Love: “please place EVERY. SINGLE ONE of these as cornerstones luv i can’t go thru this again”
+- Full entry: 2026-10-29T02:39:59Z CORNERSTONES 5-13 added to tools/cornerstones.py (Love 7:39 PM PT: "please place EVERY. SINGLE ONE of these as cornerstones luv i can’t go thru this again")
+
+## 2026-10-29T02:37:06.293187+00:00  ·  diary line 2490
+- Love: “no 3 second hold”
+- Full entry: 2026-10-29T02:37:06.293187+00:00 THAW (Love Oct 28 2026 7:36 PM PT: "no 3 second hold
+
+## 2026-10-29T02:34:40.910863+00:00  ·  diary line 2489  ·  fix424
+- fix424 IN HER CODE
+- Full entry: 2026-10-29T02:34:40.910863+00:00 fix424 live back on: umpire OUT only on the 30 request-book items the Oct 28 6:45 PM restore removed (listed to Love); every behaviour/slide/golden/cornerstone check passed
 
 ## 2026-10-29T02:34:08.824069+00:00  ·  diary line 2487
 - Love: “Put the removed protections back on main and rejection?”
@@ -173,7 +261,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Full entry: 2026-10-28T22:00:02.432304+00:00 THAW (fix396 PURE NO-PINK own taps nearer half only (Love 2:46 PM PT card "Yes, nearer half only") + fix397 THE BLUE VWAP WALL at the Kalshi wire, all Kalshi books (Love 2:46 PM PT: "we need to keep the blue vwap a wall on all books when bands are small" + card "All Kalshi books, 5M frozen"))
 
 ## 2026-10-28T21:45:02Z  ·  diary line 2431  ·  fix394, fix395
-- fix394 a setting (hours/sizes follow her latest pick)
+- fix394 IN HER CODE
 - fix395 a setting (hours/sizes follow her latest pick)
 - Full entry: 2026-10-28T21:45:02Z fix394+fix395 installed at 21:45:00Z boundary (recon.ts 8b68e692606ed8a0). R082 + R083. fix394: bonesDecide zoneFlip (main lookT + pure own eyes). fix395: pure no-pink HER OWN TAPS. Flip replay data/lab/flips.py (455 live entries): 1m only 9/44%/+$10, 2-3m (no 5m) 44/61%/+$73, 5m 272/54%/-$80, no flip 115/41%/-$51 - shown to Love, nothing changed.
 
@@ -181,7 +269,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Love: “Pure no-pink + main”
 - Love: “hun i’ve asked for this several times now, i want pure to be able to take her own taps”
 - Card pick: **Pure no-pink + main**
-- fix394 in her code without its number (see her words in the code comments)
+- fix394 IN HER CODE
 - fix395 in her code without its number (see her words in the code comments)
 - Full entry: 2026-10-28T21:45:02.439911+00:00 THAW (fix394 MAIN + PURE NO-PINK zone reads take any 1-5m flip (Love 2:35 PM PT card "Pure no-pink + main") + fix395 PURE NO-PINK HER OWN TAPS (Love 2:37 PM PT: "hun i’ve asked for this several times now, i want pure to be able to take her own taps"))
 
@@ -190,7 +278,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - fix67 IN HER CODE
 - fix389 taken back / replaced (see its entries)
 - fix390 IN HER CODE
-- fix394 in her code without its number (see her words in the code comments)
+- fix394 IN HER CODE
 - Full entry: 2026-10-28T21:37:00Z Love 2:36 PM PT: "hun i’ve asked several times now, i want her to be able to take her own calls." - pure no-pink already reads with her own eyes (fix389/389b); the only thing still holding her own zone calls was the fix67 5m-candle-colour filter inside bonesDecide (recon.ts l.344) - fix394 (R082, 2:45 PM PT) lets her own read take any 1-5m flip off the zones. Her calls still meet main's walls per fix390 (Love 1:11 PM). Asked Love if she also wants her own calls free of main's walls.
 
 ## 2026-10-28T21:30:00Z  ·  diary line 2427  ·  fix393
@@ -326,7 +414,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 ## 2026-10-28T06:22:42Z  ·  diary line 2371  ·  fix374, fix375
 - Love: “yesss pls 💘 (to:”
 - fix374 in her code without its number (see her words in the code comments)
-- fix375 in her code without its number (see her words in the code comments)
+- fix375 IN HER CODE
 - Full entry: 2026-10-28T06:22:42Z fix375 (Oct 27 11:25 PM PT, Love: "yesss pls 💘 (to: "Want me to add a guard so a call that is over a minute old can never fire right after a seat opens?")"): STALE CALL GUARD - copier never sends a never-tried call older than 90 s. Cause: fix374 switched the rejection seat on mid-window and her 11:15:11 gold long filled at 11:20:36 at 64c at the red (my mistake, owned to Love).
 
 ## 2026-10-28T06:19:13Z  ·  diary line 2367  ·  fix374

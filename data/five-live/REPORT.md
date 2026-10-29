@@ -1,11 +1,11 @@
 # 5M books ledger ✨ clean slate
 
-Live Polymarket 5m trades on the flip + 4 minutes rule at $5, since Sun 02:12 AM PT. Updated Wed 06:21 PM PT.
+Live Polymarket 5m trades on the flip + 4 minutes rule at $5, since Sun 02:12 AM PT. Updated Wed 09:21 PM PT.
 
 | Book | Trades | Won | Lost | Open | Win rate | P&L |
 |---|---|---|---|---|---|---|
 | MAIN 💞 | 14 | 6 | 6 | 2 | 50% | $+0.32 |
-| REJECTION 🎯 | 198 | 110 | 49 | 39 | 69% | $+288.01 |
+| REJECTION 🎯 | 201 | 112 | 50 | 39 | 69% | $+296.34 |
 
 | When (PT) | Book | Side | Paid | Stake | Result | P&L |
 |---|---|---|---|---|---|---|
@@ -221,3 +221,6 @@ Live Polymarket 5m trades on the flip + 4 minutes rule at $5, since Sun 02:12 AM
 | Wed 05:26 PM | REJECTION 🎯 | up | 0.43 | $7.86 | win | $+9.89 |
 | Wed 06:01 PM | REJECTION 🎯 | up | 0.37 | $4.4 | loss | $-4.40 |
 | Wed 06:06 PM | REJECTION 🎯 | down | 0.44 | $3.38 | win | $+3.93 |
+| Wed 07:16 PM | REJECTION 🎯 | up | 0.32 | $4.32 | win | $+8.25 |
+| Wed 08:32 PM | REJECTION 🎯 | down | 0.58 | $4.26 | loss | $-4.26 |
+| Wed 08:36 PM | REJECTION 🎯 | down | 0.49 | $4.62 | win | $+4.34 |

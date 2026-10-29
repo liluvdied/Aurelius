@@ -316,7 +316,11 @@ async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding
         if (!bl.ok) { sent.__aureliusBlock = `Blocked by the band lock: ${bl.reason}`; return null; }
       }
     } catch {
+      // EVERY ORDER PASSES HER WALLS OR DOES NOT GO (fix435, Love Oct 28 2026 9:01 PM PT: "wall check on re aims AND EVERY SINGLE TRADE THAT EVER LEAVES THIS DESK are 100% NECESSARY.
+      // AND MUST FAIL TO SEND OUT A LIVE ORDER IF THEY ARE NOT MET."): if her walls can't be checked for a main or rejection opening order (re-aims included), it is refused - never sent unchecked.
+      if (line?.bookCopy === "recon-tog" || line?.bookCopy === "recon-rej") { sent.__aureliusBlock = "Blocked: her walls could not be checked for this order - it does not go out unchecked (fix435)"; return null; }
     }
+    if ((line?.bookCopy === "recon-tog" || line?.bookCopy === "recon-rej") && line?.gateTest) { sent.__aureliusBlock = "Blocked: main and rejection never skip her walls (fix435)"; return null; } // fix435: no gate-test bypass for main + rejection
   }
   // CONTROL-ALT-DELETE (Claude, Oct 3 ~4:10 PM PT, Love: "remove any trace of her blocks entirely"): Grok's order-path
   // gates were deleted here (paper-only, worst-hours/DNA skip, channel rule, band-in-the-way). Her own lists stay.

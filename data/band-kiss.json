@@ -1,5 +1,33 @@
 [
   {
+    "at": "2026-10-29T04:16:12.549Z",
+    "ticker": "KXGOLD15M-26OCT290030-30",
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Tap-reject at -1.5σ",
+    "spot": 4036.34,
+    "target": 4037.07,
+    "band": 4036.61,
+    "gap": 0.46,
+    "vwap": 4049.37,
+    "profit": null,
+    "result": "open"
+  },
+  {
+    "at": "2026-10-29T03:23:15.531Z",
+    "ticker": "KXGOLD15M-26OCT282330-30",
+    "asset": "gold",
+    "side": "down",
+    "pattern": "Tap-reject at -1.5σ",
+    "spot": 4037.94,
+    "target": 4039.38,
+    "band": 4038.29,
+    "gap": 1.09,
+    "vwap": 4050.63,
+    "profit": null,
+    "result": "open"
+  },
+  {
     "at": "2026-10-28T19:02:08.813Z",
     "ticker": "KXBTC15M-26OCT281515-15",
     "asset": "btc",

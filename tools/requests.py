@@ -53,7 +53,7 @@ def proof_ok(p):
             if "equals" in p or "eq" in p: return v == p.get("equals", p.get("eq"))
             if "has" in p: return p["has"] in v
             if "lacks" in p: return p["lacks"] not in v
-        if "test" in p: return subprocess.run([sys.executable, p["test"]], capture_output=True).returncode == 0
+        if "test" in p: return subprocess.run((["node"] if str(p["test"]).endswith((".cjs", ".js")) else [sys.executable]) + [p["test"]], capture_output=True).returncode == 0  # fix429: node behaviour tests run with node (Claude, Oct 28 2026 8:12 PM PT)
         if "exists" in p: return os.path.exists(p["exists"])
         if "process" in p: return True
     except Exception: return False
