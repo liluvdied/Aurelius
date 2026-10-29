@@ -8,3 +8,11 @@
 {"at":"2026-10-29T18:43:02.522Z","id":"KXBTC15M-26OCT291445-45:recon-rej5:s5977664:5m","status":"waiting","reason":"waiting for her flip - she tries until 3:00 is left in the 5m window (R174)"}
 {"at":"2026-10-29T18:44:02.493Z","id":"KXBTC15M-26OCT291445-45:recon-tog:s5977664:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
 {"at":"2026-10-29T18:44:02.494Z","id":"KXBTC15M-26OCT291445-45:recon-rej5:s5977664:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T18:48:56.590Z","id":"KXBTC15M-26OCT291500-00:recon-rej5:KXBTC15M-26OCT291500-00:recon-rej5:5m","status":"waiting","reason":"waiting for a 1m candle to close green (her 5m flip)"}
+{"at":"2026-10-29T18:49:00.607Z","id":"KXBTC15M-26OCT291500-00:recon-rej5:KXBTC15M-26OCT291500-00:recon-rej5:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T18:49:02.720Z","id":"KXBTC15M-26OCT291500-00:recon-tog:KXBTC15M-26OCT291500-00:recon-tog:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T18:51:03.015Z","id":"KXBTC15M-26OCT291500-00:recon-rej5:s5977666:5m","status":"waiting","reason":"waiting for a 1m candle to close green (her 5m flip)"}
+{"at":"2026-10-29T18:52:02.216Z","id":"KXBTC15M-26OCT291500-00:recon-rej5:s5977666:5m","status":"no fill","reason":"Polymarket up at 0.93 is outside 0.3-0.68"}
+{"at":"2026-10-29T18:52:32.895Z","id":"KXBTC15M-26OCT291500-00:recon-rej5:s5977666:5m","status":"waiting","reason":"waiting for her flip - she tries until 3:00 is left in the 5m window (R174)"}
+{"at":"2026-10-29T18:54:01.614Z","id":"KXBTC15M-26OCT291500-00:recon-tog:s5977666:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}
+{"at":"2026-10-29T18:54:01.614Z","id":"KXBTC15M-26OCT291500-00:recon-rej5:s5977666:5m","status":"expired","reason":"its own window is over - a call never trades the next window"}

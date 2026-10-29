@@ -1,5 +1,19 @@
 [
  {
+  "at": "2026-10-29T18:46:43.787Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT291500-00:ogp5",
+  "side": "down",
+  "spot": 4008.608,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP below, $0.01 away (zone $3.00, ATR 4.01, ADX 31)",
+   "zone": 1.4780980055825992
+  }
+ },
+ {
   "at": "2026-10-29T18:45:13.099Z",
   "fa": "btc",
   "src": "ogp5",
@@ -520,19 +534,6 @@
    "kind": "wall",
    "why": "5m R1 above, $15 away (zone $136, ATR 261.68, ADX 37)",
    "zone": 136.02535495710157
-  }
- },
- {
-  "at": "2026-10-29T15:15:17.978Z",
-  "fa": "gold",
-  "src": "ogp5",
-  "row": "KXGOLD15M-26OCT291130-30:ogp5",
-  "side": "down",
-  "spot": 4023.9,
-  "ck": {
-   "block": false,
-   "why": "clear (zone $1.00, ADX 11)",
-   "zone": 0.9978843855732344
   }
  }
 ]

@@ -2,6 +2,41 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R189 - fix461: THE UMPIRE AT THE WIRE - every opening order of main (recon-tog) + rejection (recon-rej) needs the umpire SAFE stamp (tools/umpire-stamp.py -> data/UMPIRE-VERDICT.json) with her running code exactly the code it judged (src/lib/desk/umpire-gate.ts, in memory, ~7 µs); the umpire runs in the background (desk start + ~3 s after any code change); exits/take-profits never blocked; the old request-book/rule-anchor lists stay report-only (option A).
+- when: 2026-10-29T18:55:25+00:00
+- Love: "Love Oct 29 2026 11:46 AM PT: "can you make sure the umpire not only checks if the code is there, but THAT ITS ENFORCED.??? meaning, if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out ?" + 11:50 AM: "just main and rejection for rn hun ... can we do this without making the orders lag with the umpire check?" + 11:51 AM: "yes if the 46 other line items apply to other books yes wwe'll make it a report for rn to go over later , you can send the command whenever youre ready darling""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"test": "tools/umpire-gate-test-461.cjs"}
+
+## R188 - NOTE: R101 (fix411 3-second hold) stays retired per Love's typed words R120/R135; 'same side of the break' is carried by fix434 (R140/R141). Its open proof in tools/requests.py is a stale item, not a missing rule.
+- when: 2026-10-29T18:54:10+00:00
+- Love: "Love Oct 28 2026 7:36 PM PT: "no 3 second hold" (R120) + 8:23 PM: "8-keep it out" (R135)"
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function sameSide434("}
+
+## R187 - Umpire gate option A (report-only for the 46 old items) - yes, if those items are other books'.
+- when: 2026-10-29T18:52:45+00:00
+- Love: "Love Oct 29 2026 11:51 AM PT: "yes if the 46 other line items apply to other books yes wwe'll make it a report for rn to go over later , you can send the command whenever youre ready darling""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"process": "46 items sorted for Love"}
+
+## R186 - Umpire enforcement gate: main + rejection only for now; zero order lag - the umpire verdict is computed ahead of time in the background (stamp + warm file hashes), the order only reads the cached verdict.
+- when: 2026-10-29T18:50:21+00:00
+- Love: "Love Oct 29 2026 11:50 AM PT: "just main and rejection for rn hun. we'll apply it to other books later when i have the energy lol. can we do this without making the orders lag with the umpire check? like when she sees a set up forming, so it doesnt have to wait once it actually clears the threshold for SAFE? so they can go out seamlessly?""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"process": "staging"}
+
+## R185 - Umpire enforcement gate (staging): every opening order needs a fresh umpire SAFE stamp whose file hashes match the running code; exits never blocked. Books: Love to confirm (default main + rejection).
+- when: 2026-10-29T18:46:58+00:00
+- Love: "Love Oct 29 2026 11:46 AM PT: "can you make sure the umpire not only checks if the code is there, but THAT ITS ENFORCED.??? meaning, if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out ?""
+- books: r, e, c, o, n, -, t, o, g,  , +,  , r, e, c, o, n, -, r, e, j,  , (, d, e, f, a, u, l, t, ,,  , t, o,  , c, o, n, f, i, r, m, )
+- status: ACTIVE
+- proof: {"process": "staging"}
+
 ## R184 - LATER (not now): sliding scale - the thirds are 20/33 when the bands are wider (Love to set with Claude). NOW: touch nothing else.
 - when: 2026-10-29T18:39:42+00:00
 - Love: "Love Oct 29 2026 11:39 AM PT: "thank you. we will do the sliding scale later. its supposed to be 20/33 when bands are wider. dont touch anything else now. not sure why EVERY SINGLE CORNERSTONE i put in keeps getting thrown out with 0 frame of reference from you over what im even talking about.""
