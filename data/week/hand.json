@@ -1,8 +1,56 @@
 [
  {
+  "ticker": "KXBTC15M-26OCT291245-45",
+  "asset": "btc",
+  "side": "down",
+  "atPT": "Thu 10-29 09:30 AM",
+  "stake": 5,
+  "ask": 0.44,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXBTC15M-26OCT291230-30",
+  "asset": "btc",
+  "side": "down",
+  "profit": 4.04,
+  "peak": 0.95,
+  "atPT": "Thu 10-29 09:15 AM",
+  "stake": 5.48,
+  "ask": 0.53,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXBTC15M-26OCT291215-15",
+  "asset": "btc",
+  "side": "up",
+  "profit": 15.18,
+  "peak": 0.95,
+  "atPT": "Thu 10-29 09:00 AM",
+  "stake": 5.31,
+  "ask": 0.62,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
+  "ticker": "KXGOLD15M-26OCT291200-00",
+  "asset": "gold",
+  "side": "down",
+  "profit": 13,
+  "peak": 0.95,
+  "atPT": "Thu 10-29 08:51 AM",
+  "stake": 4.8,
+  "ask": 0.72,
+  "buys": 0,
+  "contracts": 0
+ },
+ {
   "ticker": "KXGOLD15M-26OCT291145-45",
   "asset": "gold",
   "side": "up",
+  "profit": 1.95,
+  "peak": 0.95,
   "atPT": "Thu 10-29 08:31 AM",
   "stake": 4.78,
   "ask": 0.66,

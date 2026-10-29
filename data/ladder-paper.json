@@ -1,5 +1,56 @@
 [
  {
+  "id": "KXHIGHLAX-26OCT29:ladder",
+  "at": "2026-10-29T16:00:47.340Z",
+  "series": "KXHIGHLAX",
+  "city": "LAX",
+  "station": "KLAX",
+  "event": "KXHIGHLAX-26OCT29",
+  "mu": 70.7,
+  "sigma": 2.7,
+  "maxSoFar": 68,
+  "pLadder": 0.62,
+  "costPer1": 0.26,
+  "edge": 0.34,
+  "payout": 384.62,
+  "stake": 100,
+  "fee": 5.57,
+  "legs": [
+   {
+    "ticker": "KXHIGHLAX-26OCT29-T68",
+    "label": "67° or below",
+    "ask": 0.01,
+    "p": 0.12,
+    "contracts": 384.62,
+    "cost": 3.85,
+    "fee": 0.27,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHLAX-26OCT29-B68.5",
+    "label": "68° to 69°",
+    "ask": 0.02,
+    "p": 0.21,
+    "contracts": 384.62,
+    "cost": 7.69,
+    "fee": 0.53,
+    "result": null
+   },
+   {
+    "ticker": "KXHIGHLAX-26OCT29-B70.5",
+    "label": "70° to 71°",
+    "ask": 0.23,
+    "p": 0.29,
+    "contracts": 384.62,
+    "cost": 88.46,
+    "fee": 4.77,
+    "result": null
+   }
+  ],
+  "result": "open",
+  "pnl": null
+ },
+ {
   "id": "KXHIGHDEN-26OCT29:ladder",
   "at": "2026-10-29T15:10:37.925Z",
   "series": "KXHIGHDEN",

@@ -1,5 +1,36 @@
 [
  {
+  "id": "KXBTC15M-26OCT291215-15:down",
+  "at": "2026-10-29T16:06:28.986Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT291215-15",
+  "side": "down",
+  "sigma": 2.32,
+  "spot": 81774.91,
+  "vwap": 80386.94,
+  "stdev": 597.77,
+  "target": 81713.88,
+  "secondsLeft": 512,
+  "ask": 0.33,
+  "multiple": 3.03,
+  "peakBid": 0.999,
+  "peakPct": 203,
+  "exits": {
+   "+50": 0.65,
+   "+100": 0.75,
+   "+200": 0.995,
+   "+300": null
+  },
+  "result": "win",
+  "profits": {
+   "hold": 10.15,
+   "+50": 4.85,
+   "+100": 6.36,
+   "+200": 10.08,
+   "+300": 10.15
+  }
+ },
+ {
   "id": "KXBTC15M-26OCT291200-00:down",
   "at": "2026-10-29T15:45:15.514Z",
   "asset": "btc",
@@ -21,8 +52,14 @@
    "+200": null,
    "+300": null
   },
-  "result": "open",
-  "profits": null
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": 2.5,
+   "+100": -5,
+   "+200": -5,
+   "+300": -5
+  }
  },
  {
   "id": "KXBTC15M-26OCT291145-45:down",

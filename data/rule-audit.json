@@ -1810,13 +1810,22 @@
    "why": [
     "short on a rising 5m candle (81151.16 over its 81098.13 open)"
    ]
+  },
+  {
+   "at": "2026-10-29T16:30:16.163Z",
+   "ticker": "KXBTC15M-26OCT291245-45",
+   "side": "down",
+   "cost": 5.98,
+   "why": [
+    "short on a rising 5m candle (81379.06 over its 81345.82 open)"
+   ]
   }
  ],
- "checkedTo": "2026-10-29T15:43:07.822591Z",
+ "checkedTo": "2026-10-29T16:31:04.972586Z",
  "lastRun": {
-  "at": "2026-10-29T15:43:07.822591Z",
-  "orders": 2,
-  "breaches": 0
+  "at": "2026-10-29T16:31:04.972586Z",
+  "orders": 24,
+  "breaches": 1
  },
  "note": "Cleaned by Claude 3:30 AM PT Oct 21: dropped audit false positives (gold 9:55Z stale pivot; gold 5:30Z predates the 2\u03c3 rule) and duplicates. Real: BTC twin short 2:34 AM PT on a rising candle above every band."
 }

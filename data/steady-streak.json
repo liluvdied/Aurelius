@@ -1,9 +1,9 @@
 {
  "rule": "a badge for Aurelius and Claude for every 24 h she stays on one spot - no unplanned change in code or settings, no execution slip",
  "chapter": {
-  "since": "2026-10-29T14:47:57.874439Z",
-  "reason": "restarted after a break",
-  "baselineSha": "a1587de2d470f3f9",
+  "since": "2026-10-29T16:31:04.276388Z",
+  "reason": "after Love's revision",
+  "baselineSha": "c2a54adbd25fbe63",
   "cfg": {
    "cooldownAfterLoss": "b5bea41b6c",
    "route": "9d53f79e71",
@@ -46,7 +46,7 @@
    "breaker": "de26f74578",
    "presets": "8ee40259f0",
    "halfAt75": "b5bea41b6c",
-   "liveSkipHours": "9c45d2fa7a",
+   "liveSkipHours": "f2d4860612",
    "brokenBy": "5676444012",
    "followPaperExit": "b5bea41b6c",
    "btcHeadroomSession": "624b60c58c",
@@ -181,7 +181,8 @@
    "fix436Prev": "b454bfa0f5",
    "fix437Prev": "5458d7e3aa",
    "fix445Prev": "c1cef1e30a",
-   "fix447Prev": "5c63a963e4"
+   "fix447Prev": "5c63a963e4",
+   "fix449Prev": "89261d7064"
   },
   "badgesThisChapter": 0,
   "heartsThisChapter": 0
@@ -1146,6 +1147,13 @@
    "badgesThisChapter": 0,
    "ended": "2026-10-29T14:47:57.874439Z",
    "how": "BROKEN - rule breach 2026-10-29T14:46:09.874Z KXBTC15M-26OCT291100-00 down: short on a rising 5m candle (81151.16 over its 81098.13 open)"
+  },
+  {
+   "since": "2026-10-29T14:47:57.874439Z",
+   "reason": "restarted after a break",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T16:31:04.276388Z",
+   "how": "Love's revision (baseline moved with her words)"
   }
  ],
  "breaks": [
@@ -1200,14 +1208,14 @@
    "streakHours": 3.4
   }
  ],
- "lastSeen": "2026-10-29T15:43:06.966803Z",
+ "lastSeen": "2026-10-29T16:31:04.276388Z",
  "drifting": false,
  "now": {
-  "streakHours": 0.9,
-  "nextBadgeInHours": 23.1,
+  "streakHours": 0.0,
+  "nextBadgeInHours": 24.0,
   "badgesTotal": 0,
   "heartsTotal": 7,
-  "nextHeartInHours": 3.1,
+  "nextHeartInHours": 4.0,
   "weeks": 0,
   "months": 0,
   "drifting": false

@@ -168,5 +168,20 @@
     "what": "liveSkipHours.btc",
     "R": "R160",
     "why": "fix449 7 AM off"
+  },
+  {
+    "what": "const imR = impossibleGeo(asset, lbR.L, qR.c, side, false, book === \"recon-dly\" && !DLY_AS_COPY, book === \"recon-togp\" || (DLY_AS_COPY && book === \"recon-dly\") /* fix353 */ || book === \"recon-dlyk\" /* fix354: the delayed no-pink copy meets the copy walls */, book === \"recon-rej\", book === \"recon-rej\" || book === \"recon-tog\" || book === \"recon-np\", book === \"recon-np\" /* fix392 (Love Oct 28 2026 1:54 PM PT, card \"Make BTC's no-short zone the bottom 50% from green to pink?\" -> \"Pure no-pink only, 50%\"): the pure no-pink's BTC PINK TO GREEN / PINK TO RED line is 50%; main + rejection stay 40% */ ? 0.5 : (book === \"recon-tog\" || book === \"recon-rej\" || book === \"recon-np\" /* fix324 */) ? 0.4 : 0, (book === \"recon-tog\" || book === \"recon-rej\" || book === \"recon-np\") ? true : false, false /* fix390 (Love Oct 28 2026 1:10 PM PT: \"no just make her have the same cushions and band tolerances and everything and she should be good hun\"): the pure no-pink meets MAIN's walls */).why; // fix272: twin pink-free every hour // THE IMPOSSIBILITY at her door too (Oct 20 ~2:37 PM PT, Love) - same function as the wire",
+    "R": "R161",
+    "why": "fix450 BTC 55%"
+  },
+  {
+    "what": "offHourMain.rejHoursByAsset.gold",
+    "R": "R162",
+    "why": "fix451 Love's gold schedule"
+  },
+  {
+    "what": "liveSkipHours.gold",
+    "R": "R162",
+    "why": "fix451 Love's gold schedule"
   }
 ]

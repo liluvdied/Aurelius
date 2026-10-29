@@ -6584,8 +6584,10 @@
     "cost": 80
    }
   ],
-  "peakValue": 93.33,
-  "hits": {}
+  "peakValue": 113.33,
+  "hits": {
+   "10": "2026-10-29T16:39:57.053Z"
+  }
  },
  "KXTEMPLAXHS-26OCT2912-T66.99:no": {
   "id": "KXTEMPLAXHS-26OCT2912-T66.99:no",
@@ -6601,6 +6603,36 @@
    }
   ],
   "peakValue": 103.26,
+  "hits": {},
+  "done": true,
+  "hold": 8.7
+ },
+ "KXHIGHLAX-26OCT29:ladder": {
+  "id": "KXHIGHLAX-26OCT29:ladder",
+  "src": "ladder",
+  "at": "2026-10-29T16:00:47.340Z",
+  "stake": 100,
+  "legs": [
+   {
+    "ticker": "KXHIGHLAX-26OCT29-T68",
+    "side": "yes",
+    "contracts": 384.62,
+    "cost": 3.85
+   },
+   {
+    "ticker": "KXHIGHLAX-26OCT29-B68.5",
+    "side": "yes",
+    "contracts": 384.62,
+    "cost": 7.69
+   },
+   {
+    "ticker": "KXHIGHLAX-26OCT29-B70.5",
+    "side": "yes",
+    "contracts": 384.62,
+    "cost": 88.46
+   }
+  ],
+  "peakValue": 100,
   "hits": {}
  }
 }

@@ -1,9 +1,24 @@
-# Every decision Love has made - rebuilt 2026-10-29T06:15:29.455312+00:00
+# Every decision Love has made - rebuilt 2026-10-29T16:15:12.181819+00:00
 
-1307 decisions with Love's words or card picks, out of 2049 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1310 decisions with Love's words or card picks, out of 2052 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T16:15:00.043145+00:00  ·  diary line 2519  ·  fix450
+- Love: “she just longed btc closer to the red than the pink and if immediately reversed we need to nip that in the bud right now”
+- fix450 IN HER CODE
+- Full entry: 2026-10-29T16:15:00.043145+00:00 fix450 INSTALLED (Love Oct 29 2026 9:02 AM PT: "she just longed btc closer to the red than the pink and if immediately reversed we need to nip that in the bud right now"): BTC main + rejection pink-to-red / green-to-pink 40% -> 55% like gold. R161. No-removal gate passed. {'bandlock.ts': 'dc286fc8b3adf839'}.
+
+## 2026-10-29T16:00:00.011328+00:00  ·  diary line 2518  ·  fix449
+- Love: “she's supposed to be off for that hour ... neither of them do well at 7am”
+- fix449 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T16:00:00.011328+00:00 fix449 CONFIG at the 9:00 AM PT boundary (Love Oct 29 2026 8:55 AM PT: "she's supposed to be off for that hour ... neither of them do well at 7am"): liveSkipHours gold [4, 9, 20, 23] -> [4, 7, 9, 20, 23], btc [0, 8, 18, 23] -> [0, 7, 8, 18, 23]. R160. No code change.
+
+## 2026-10-29T06:15:57Z  ·  diary line 2517  ·  fix448
+- Love: “i clicked it”
+- fix448 IN HER CODE
+- Full entry: 2026-10-29T06:15:57Z NOTE: the fix448 line above says "11:00 PM PT boundary" - it actually installed at 11:15:00 PM PT (06:15:00Z) after Love double-clicked INSTALL-GOLD-ZONE-FIX.command at 11:01 PM (Love: "i clicked it"). Live on, $5 + $5 add-on, schedule unchanged, 11 PM sit-out in force; gold read notebook data/rej-reads-gold.jsonl writing.
 
 ## 2026-10-29T06:15:00.015100+00:00  ·  diary line 2516  ·  fix448
 - Love: “yes please fix that and add the log pls , off for 11 pls”

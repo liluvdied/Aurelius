@@ -87969,5 +87969,90 @@
    "Clean: right side of the band, nothing in front, sold on plan.",
    "The rejection shadow agreed (long off -1σ)."
   ]
+ },
+ "KXGOLD15M-26OCT291200-00": {
+  "ticker": "KXGOLD15M-26OCT291200-00",
+  "at": "2026-10-29T16:00:44.632Z",
+  "asset": "gold",
+  "side": "down",
+  "setup": "Break below -1σ",
+  "multiple": 1.39,
+  "profit": 13,
+  "result": "win",
+  "entry": {
+   "spot": 4022.248,
+   "band": "-1σ",
+   "distSigma": 0.1,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": true,
+   "minuteIn": 6.4
+  },
+  "peakPct": 31.9,
+  "maxPct": 38.9,
+  "takeProfitPct": 33.9,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, won at the bell.",
+   "The rejection shadow agreed (short off -1σ)."
+  ]
+ },
+ "KXBTC15M-26OCT291215-15": {
+  "ticker": "KXBTC15M-26OCT291215-15",
+  "at": "2026-10-29T16:15:09.750Z",
+  "asset": "btc",
+  "side": "up",
+  "setup": "Rejected up off 5m PP",
+  "multiple": 1.61,
+  "profit": 15.18,
+  "result": "win",
+  "entry": {
+   "spot": 81700.01,
+   "band": "+2σ",
+   "distSigma": 0.24,
+   "rightSide": true,
+   "bandAhead": true,
+   "throughTarget": true,
+   "minuteIn": 0.2
+  },
+  "peakPct": 53.2,
+  "maxPct": 61.3,
+  "takeProfitPct": 50,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "A band was directly in front of the long at entry."
+  ],
+  "lessons": []
+ },
+ "KXBTC15M-26OCT291230-30": {
+  "ticker": "KXBTC15M-26OCT291230-30",
+  "at": "2026-10-29T16:30:16.923Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "multiple": 1.89,
+  "profit": 4.04,
+  "result": "win",
+  "entry": {
+   "spot": 81593.14,
+   "band": "+2σ",
+   "distSigma": 0.04,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": true,
+   "minuteIn": 0.6
+  },
+  "peakPct": 79.2,
+  "maxPct": 88.7,
+  "takeProfitPct": 66.5,
+  "exit": "mirrored RECON-REJ paper out: half at 75% (88c) + trail from 90%: best +106%, sold at 94c",
+  "record": "no record yet",
+  "flags": [],
+  "lessons": [
+   "Clean: right side of the band, nothing in front, sold on plan."
+  ]
  }
 }

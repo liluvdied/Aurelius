@@ -1068,5 +1068,15 @@
   "left": 240,
   "result": "loss",
   "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-29T16:06:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.53,
+  "left": 240,
+  "result": "win",
+  "pnl": 4.43
  }
 ]

@@ -1,5 +1,40 @@
 [
   {
+    "id": "KXBTC15M-26OCT291300-00:down:Tap-reject at -0.5σ",
+    "at": "2026-10-29T16:45:09.462Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at −0.5σ",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT291300-00",
+    "hits": 71,
+    "multiple": 1.89
+  },
+  {
+    "id": "KXBTC15M-26OCT291245-45:down:Tap-reject at -0.5σ",
+    "at": "2026-10-29T16:44:11.509Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at −0.5σ",
+    "result": "no",
+    "ticker": "KXBTC15M-26OCT291245-45",
+    "hits": 72,
+    "multiple": 5.56,
+    "profit": -25
+  },
+  {
+    "id": "KXBTC15M-26OCT291230-30:up:Tap-reject at -0.5σ",
+    "at": "2026-10-29T16:16:37.364Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Tap-reject at −0.5σ",
+    "result": "no",
+    "ticker": "KXBTC15M-26OCT291230-30",
+    "hits": 44,
+    "multiple": 3.13,
+    "profit": -25
+  },
+  {
     "id": "KXBTC15M-26OCT291000-00:down:Tap-reject at -0.5σ",
     "at": "2026-10-29T13:45:19.583Z",
     "asset": "btc",
@@ -2361,41 +2396,5 @@
     "hits": 79,
     "multiple": 1.89,
     "profit": 22.25
-  },
-  {
-    "id": "KXBTC15M-26OCT251215-15:down:Tap-reject at -0.5σ",
-    "at": "2026-10-25T16:00:14.941Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at −0.5σ",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT251215-15",
-    "hits": 79,
-    "multiple": 2.08,
-    "profit": 27
-  },
-  {
-    "id": "KXBTC15M-26OCT251200-00:down:Tap-reject at -0.5σ",
-    "at": "2026-10-25T15:55:08.644Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at −0.5σ",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT251200-00",
-    "hits": 79,
-    "multiple": 1.28,
-    "profit": 7
-  },
-  {
-    "id": "KXBTC15M-26OCT251100-00:up:Tap-reject at -0.5σ",
-    "at": "2026-10-25T14:50:38.462Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at -0.5σ",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT251100-00",
-    "hits": 25,
-    "multiple": 1.19,
-    "profit": 4.75
   }
 ]

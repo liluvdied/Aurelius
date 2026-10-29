@@ -2,6 +2,29 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R163 - fix452: in the 3 PM PT hour the rejection model (gold + BTC) takes only Bollinger and green/red zone calls; pink, session-band and other calls are held (not final). Walls still judge. Main and other hours unchanged. Test tools/three-pm-test-452.cjs.
+- when: 2026-10-29T16:44:07+00:00
+- Love: "Love Oct 29 2026 9:42 AM PT: "3pm ✅ (bollingers, green/red zones only) (for btc and gold pls)""
+- books: r, e, c, o, n, -, r, e, j,  , (, g, o, l, d,  , +,  , B, T, C, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "3 PM = BOLLINGERS AND ZONES ONLY (fix452)"}
+- proof: {"test": "tools/three-pm-test-452.cjs"}
+
+## R162 - fix451 (config, gold, 9:45 AM PT boundary): GOLD rejection-model hours = 12, 1, 2, 3, 8, 10 AM, 12, 1, 3, 4, 5, 6, 9, 11 PM; MAIN = 9, 11 AM, 7, 8, 10 PM; SIT OUT = 4, 5, 6, 7 AM (offHourMain.rejHoursByAsset.gold and liveSkipHours.gold; prev in fix451Prev). 2 PM gold not named by Love - left as it is (rejection), asked. The 3 PM 'bollingers, green/red zones only' rule (gold + BTC) is a code change - staged separately.
+- when: 2026-10-29T16:43:25+00:00
+- Love: "Love Oct 29 2026 9:42 AM PT: "GOLD ::: CHOSEN REJECTION HOURS / 12 Am ✅ 1am ✅ 2am ✅ 3am ✅ / 4am - cut ❌ 5am - cut ❌ 6am - cut ❌ 7am - cut ❌ / 8am ✅ 9am - cut ❌ - GOES TO MAIN / 10am ✅✅ 11am - GOES TO MAIN FOR GOLD / 12pm ✅✅ 1Pm ✅ 3pm ✅ (bollingers, green/red zones only) (for btc and gold pls) 4pm ✅ 5pm ✅ 6pm ✅ / 7pm - GOES TO MAIN FOR GOLD 8pm GOES TO MAIN FOR GOLD / 9Pm ✅✅ Rej. 10pm - GOES TO MAIN for gold / 11pm ✅✅ Rej.""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejHoursByAsset.gold", "equals": [0, 1, 2, 3, 8, 10, 12, 13, 14, 15, 16, 17, 18, 21, 23]}
+- proof: {"config": "data/live-switch.json", "key": "liveSkipHours.gold", "equals": [4, 5, 6, 7]}
+
+## R161 - fix450: BTC on main + rejection gets Love's 55% exactly like gold (fix409): no BTC long in the top 55% of pink -> red, no BTC short in the bottom 55% of green -> pink (was 40%, fix323). Pure no-pink paper keeps 40%. Replay: the 9:00:12 AM BTC long at 53% of pink -> red is refused.
+- when: 2026-10-29T16:04:07+00:00
+- Love: "Love Oct 29 2026 9:02 AM PT: "she just longed btc closer to the red than the pink and if immediately reversed we need to nip that in the bud right now""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, b, t, c, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "(book === \"recon-tog\" || book === \"recon-rej\") ? 0.55 /* fix450"}
+
 ## R160 - fix449 (config, 9:00 AM PT boundary): 7 AM PT sit-out on Kalshi for gold AND BTC (7 added to liveSkipHours for both; prev in fix449Prev). Nothing else changes. Per-book hourly P&L analysis follows (read-only) for Love to pick each book's hours.
 - when: 2026-10-29T15:56:28+00:00
 - Love: "Love Oct 29 2026 8:55 AM PT: "yeah she did well up until 7 am hun , she's supposed to be off for that hour 😹 that's how we set it up before everything got taken out / i didn't have the energy to go over each books hourly p&l but neither of them do well at 7am / i want to only have each book running at the hours they perform best and cut the hours they perform badly ok""
