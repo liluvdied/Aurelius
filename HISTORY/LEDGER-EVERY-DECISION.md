@@ -1,9 +1,30 @@
-# Every decision Love has made - rebuilt 2026-10-29T00:00:42.178156+00:00
+# Every decision Love has made - rebuilt 2026-10-29T00:31:48.628423+00:00
 
-1262 decisions with Love's words or card picks, out of 1988 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1266 decisions with Love's words or card picks, out of 1995 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T00:30:08.958626+00:00  ·  diary line 2459
+- Love: “do you think we can try running another paper book with the half sigmas and see how that does? the og rolling vwap? on the 1, 2,3,4&5M timeframes? i have the source code of the OG model (grok v1) ... let's see how those do, and definitely give them the same guard ok”
+- Full entry: 2026-10-29T00:30:08.958626+00:00 THAW (Love Oct 28 2026 5:07 PM PT: "do you think we can try running another paper book with the half sigmas and see how that does? the og rolling vwap? on the 1, 2,3,4&5M timeframes? i have the source code of the OG model (grok v1) ... let's see how those do, and definitely give them the same guard ok" + 5:14 PM: "its in there by the name of desk project bb" + 5:15 PM: "we may need to just take the elements of that strategy/model, and rewrite it from the ground up. there's toooo many bugs , it would be easier to just redo it ourselves")
+
+## 2026-10-29T00:30:05.715764+00:00  ·  diary line 2457
+- Love: “yess pls bb 💘”
+- Love: “Main + rejection + paper books”
+- Card pick: **Main + rejection + paper books**
+- Full entry: 2026-10-29T00:30:05.715764+00:00 THAW (Love Oct 28 2026 5:12 PM PT: "yess pls bb 💘" (to: should main and rejection also get the $5 / 10c minimum flip - the copy already has it) + card "Main + rejection + paper books")
+
+## 2026-10-29T00:30:02.980826+00:00  ·  diary line 2455
+- Love: “and let’s go ahead and cut the 1M’s even though it’s not much of a save, it’s something :)”
+- Love: “Which books lose the 1m flip (2-5m only)?”
+- Card pick: **Which books lose the 1m flip (2-5m only)?**
+- Full entry: 2026-10-29T00:30:02.980826+00:00 THAW (Love Oct 28 2026 5:07 PM PT: "and let’s go ahead and cut the 1M’s even though it’s not much of a save, it’s something :)" + card "Which books lose the 1m flip (2-5m only)?" -> "Main + rejection + copy" (All three Kalshi books need a 2, 3, 4 or 5m flip; Cornerstone #1 becomes 2-5m for them. Twin and 5M untouched.))
+
+## 2026-10-29T00:00:49Z  ·  diary line 2454  ·  fix405
+- Love: “yes let's cut those hours bb”
+- fix405 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T00:00:49Z fix405 CONFIG: liveSkipHours btc [0,8,18,21,23], gold [4,9,20] (Love 4:59 PM PT: "yes let's cut those hours bb"). Not the current hour (5 PM). fix405Prev saved. R095.
 
 ## 2026-10-28T23:37:03Z  ·  diary line 2452  ·  fix402
 - fix402 a setting (hours/sizes follow her latest pick)

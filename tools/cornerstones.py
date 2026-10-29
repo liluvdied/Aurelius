@@ -9,7 +9,7 @@ def need(ok, what):
     print(("  ✓ " if ok else "  ✗ ") + what)
     if not ok: bad.append(what)
 print("HER CORNERSTONES")
-need("function anyFlipNow(" in B and "for (const n of [1, 2, 3, 4, 5])" in B, "1. HER FLIP: the 1/2/3/4/5m candle reader exists")
+need("function anyFlipNow(" in B and "for (const n of [2, 3, 4, 5] /* fix406" in B, "1. HER FLIP: the 2/3/4/5m candle reader exists (fix406, Love Oct 28 2026 5:07 PM PT: cut the 1m)")
 need("if (flipRule) { if (!why && !foTurn && !anyFlipNow(asset, side, tick))" in B, "1. HER FLIP: no candle her way = no entry")
 door = re.search(r'const imR = impossibleGeo\([^\n]*', B); wire = re.search(r'const geo = impossibleGeo\([^\n]*', B); cop = re.search(r'else whyR = impossibleGeo\([^\n]*', B)
 for nm, m in (("door", door), ("copier", cop), ("wire", wire)):

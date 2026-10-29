@@ -2,6 +2,28 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R098 - fix408: recon-og = PAPER book rebuilt from grok v1 elements (desk-project/src/lib/desk/vwap.ts): rolling 60-min VWAP + half-sigma bands 0.5-3 on 1/2/3/4/5m frames, tap-reject only (came from that side, tagged, not broken, pushed off), through the same guard as pure (fix401 gate: main walls + 2-5m flip + blue check)
+- when: 2026-10-29T00:17:44+00:00
+- Love: "Love Oct 28 2026 5:07 PM PT: "do you think we can try running another paper book with the half sigmas and see how that does? the og rolling vwap? on the 1, 2,3,4&5M timeframes? i have the source code of the OG model (grok v1) ... let's see how those do, and definitely give them the same guard ok" + 5:14 PM: "its in there by the name of desk project bb" + 5:15 PM: "we may need to just take the elements of that strategy/model, and rewrite it from the ground up. there's toooo many bugs , it would be easier to just redo it ourselves""
+- books: n, e, w,  , p, a, p, e, r,  , l, a, n, e,  , r, e, c, o, n, -, o, g,  , o, n, l, y, ;,  , n, o,  , l, i, v, e,  , l, i, s, t, ;,  , n, o,  , o, t, h, e, r,  , b, o, o, k,  , c, h, a, n, g, e, s
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix408"}
+
+## R097 - fix407: main + rejection HER FLIP needs a 2/3/4/5m candle at least $5 (BTC) / 10c (gold) past its open her way (anyFlipMinNow), like the copy
+- when: 2026-10-29T00:16:12+00:00
+- Love: "Love Oct 28 2026 5:12 PM PT: "yess pls bb 💘" (to: should main and rejection also get the $5 / 10c minimum flip - the copy already has it)"
+- books: m, a, i, n,  , (, r, e, c, o, n, -, t, o, g, ),  , +,  , r, e, j, e, c, t, i, o, n,  , (, r, e, c, o, n, -, r, e, j, ), ;,  , s, c, o, p, e,  , o, f,  , p, a, p, e, r,  , b, o, o, k, s,  , t, h, a, t,  , s, h, a, r, e,  , t, h, e,  , f, l, i, p, R, u, l, e,  , l, i, n, e,  , p, e, n, d, i, n, g,  , L, o, v, e
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix407"}
+
+## R096 - fix406: CORNERSTONE #1 HER FLIP = 2/3/4/5m (no 1m) - anyFlipNow + anyFlipMinNow loops [2,3,4,5]; HER FLIP message text
+- when: 2026-10-29T00:09:45+00:00
+- Love: "Love Oct 28 2026 5:07 PM PT: "and let’s go ahead and cut the 1M’s even though it’s not much of a save, it’s something :)" + card "Which books lose the 1m flip (2-5m only)?" -> "Main + rejection + copy" (All three Kalshi books need a 2, 3, 4 or 5m flip; Cornerstone #1 becomes 2-5m for them. Twin and 5M untouched.)"
+- books: m, a, i, n, ,,  , r, e, j, e, c, t, i, o, n, ,,  , n, o, -, p, i, n, k,  , c, o, p, y,  , (, +,  , p, u, r, e, /, s, o, v,  , p, a, t, h, s,  , t, h, a, t,  , c, a, l, l,  , a, n, y, F, l, i, p, N, o, w, ), ;,  , t, w, i, n,  , +,  , P, o, l, y,  , 5, M,  , (, b, a, n, d, l, o, c, k, 5, m, ),  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "for (const n of [2, 3, 4, 5] /* fix406"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "if (flipRule) { if (!why && !foTurn && !anyFlipNow(asset, side, tick))"}
+
 ## R095 - fix405: liveSkipHours btc + [0,21,23], gold + [20] - every Kalshi book sits those hours out live (paper keeps measuring); Poly untouched
 - when: 2026-10-29T00:00:30+00:00
 - Love: "Love Oct 28 2026 4:59 PM PT: "yes let’s cut those hours bb" (BTC 11 PM, 9 PM, midnight; gold 8 PM - from my 4:52 PM message)"
@@ -714,7 +736,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-27T18:37:00Z
 - Love: "hun, i asked for a 1 minute , 2m, 3m, or 5M candle to flip in our favor. one of the cornerstones of the model. + i'd like it to be the literal color of the candle."
 - books: main, rejection model
-- status: ACTIVE
+- status: RETIRED - Love: "Love Oct 28 2026 5:07 PM PT: "and let's go ahead and cut the 1M's even though it's not much of a save, it's something :)" + card "Main + rejection + copy" - Cornerstone #1 is now 2/3/4/5m (R096)"
 - proof: {"code": "src/lib/desk/bandlock.ts", "has": "for (const n of [1, 2, 3, 4, 5])"}
 - proof: {"code": "src/lib/desk/bandlock.ts", "has": "if (flipRule) { if (!why && !foTurn && !anyFlipNow(asset, side, tick))"}
 

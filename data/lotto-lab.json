@@ -1,5 +1,98 @@
 [
  {
+  "id": "KXBTC15M-26OCT282030-30:up",
+  "at": "2026-10-29T00:22:19.991Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT282030-30",
+  "side": "up",
+  "sigma": -2.67,
+  "spot": 81077.32,
+  "vwap": 81227.01,
+  "stdev": 55.98,
+  "target": 81232.16,
+  "secondsLeft": 461,
+  "ask": 0.1,
+  "multiple": 10,
+  "peakBid": 0.13,
+  "peakPct": 30,
+  "exits": {
+   "+50": null,
+   "+100": null,
+   "+200": null,
+   "+300": null
+  },
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": -5,
+   "+100": -5,
+   "+200": -5,
+   "+300": -5
+  }
+ },
+ {
+  "id": "KXGOLD15M-26OCT282030-30:up",
+  "at": "2026-10-29T00:17:37.271Z",
+  "asset": "gold",
+  "ticker": "KXGOLD15M-26OCT282030-30",
+  "side": "up",
+  "sigma": -2.28,
+  "spot": 4042.272,
+  "vwap": 4053.96,
+  "stdev": 5.13,
+  "target": 4044.66,
+  "secondsLeft": 742,
+  "ask": 0.32,
+  "multiple": 3.13,
+  "peakBid": 0.905,
+  "peakPct": 183,
+  "exits": {
+   "+50": 0.67,
+   "+100": 0.67,
+   "+200": null,
+   "+300": null
+  },
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": 5.47,
+   "+100": 5.47,
+   "+200": -5,
+   "+300": -5
+  }
+ },
+ {
+  "id": "KXGOLD15M-26OCT282015-15:up",
+  "at": "2026-10-29T00:06:01.737Z",
+  "asset": "gold",
+  "ticker": "KXGOLD15M-26OCT282015-15",
+  "side": "up",
+  "sigma": -2.03,
+  "spot": 4046.54,
+  "vwap": 4055.13,
+  "stdev": 4.23,
+  "target": 4054.55,
+  "secondsLeft": 540,
+  "ask": 0.056,
+  "multiple": 17.86,
+  "peakBid": 0.082,
+  "peakPct": 46,
+  "exits": {
+   "+50": null,
+   "+100": null,
+   "+200": null,
+   "+300": null
+  },
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": -5,
+   "+100": -5,
+   "+200": -5,
+   "+300": -5
+  }
+ },
+ {
   "id": "KXBTC15M-26OCT281915-15:up",
   "at": "2026-10-28T23:00:51.939Z",
   "asset": "btc",

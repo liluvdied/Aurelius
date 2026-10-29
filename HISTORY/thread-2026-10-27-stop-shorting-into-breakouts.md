@@ -7509,3 +7509,166 @@ Done, hun 💘 Every Kalshi book now sits out **BTC 12 AM, 9 PM and 11 PM** and 
 
 And yes, you're right, HER FLIP is already on main, rejection and the copy 💞 The gap I meant is narrower: a 1m candle flipping red lets her short while the 5m candle is still green. That's the pattern that lost most in today's audit. You already closed it for pure and sovereign with the 2-5m flip. If you ever want to see whether main and the copy would do better on 2-5m too, I can replay it first.
 
+## 2026-10-29 00:03:22 UTC - LOVE
+
+yess pls hun 💞
+
+## 2026-10-29 00:03:27 UTC - CLAUDE
+
+On it 💘 First I'm replaying main and the copy's live entries by which candle had flipped when she got in.
+
+## 2026-10-29 00:04:17 UTC - CLAUDE
+
+Here's the replay, hun 💘 It covers every live entry since Oct 27 midday, sorted by which candle had flipped her way at the fill:
+
+| At entry | Trades | Win | P&L |
+|---|---|---|---|
+| A 2, 3, 4 or 5m candle flipped | 124 | **60%** | **+$65** |
+| Only the 1m flipped | 5 | 40% | -$2 |
+| **No candle flipped at all** | 47 | **32%** | **-$22** |
+
+So taking the 1m away barely matters (5 trades). The real leak is the **no-flip** entries, and today they were 33 trades at 27%. Two sources:
+1. **The delayed twin's "touch of the next band" entries** (about half). Those skip the flip by design. You already took the twin off BTC, and on gold it now only trades 4-6 AM.
+2. **Main / rejection / copy entries in the first seconds of a new candle**, when price is a few cents from the open. Her flip check counts that as flipped, but the real candle hadn't committed yet.
+
+For #2, the copy already has the fix: her flip only counts once price is **$5 (BTC) / 10c (gold)** past the open (fix359). Main and rejection don't have that minimum. Want me to replay giving main + rejection that same $5 / 10c minimum before anything changes?
+
+## 2026-10-29 00:07:43 UTC - LOVE
+
+yess i do 💘
+
+and let’s go ahead and cut the 1M’s even though it’s not much of a save, it’s something :) 
+
+and do you think we can try running another paper book with the half sigmas and see how that does? the og rolling vwap? on the 1, 2,3,4&amp;5M timeframes? i have the source code of the OG model (grok v1) 
+
+it was able to maintain a stable 70% winrate when i could get her to stop firing backwards 😹💘
+
+let’s see how those do, and definitely give them the same guard ok💘💘
+
+## 2026-10-29 00:07:44 UTC - LOVE (relayed)
+
+yess i do 💘
+and let’s go ahead and cut the 1M’s even though it’s not much of a save, it’s something :) 
+and do you think we can try running another paper book with the half sigmas and see how that does? the og rolling vwap? on the 1, 2,3,4&amp;5M timeframes? i have the source code of the OG model (grok v1) 
+it was able to maintain a stable 70% winrate when i could get her to stop firing backwards 😹💘
+let’s see how those do, and definitely give them the same guard ok💘💘
+
+## 2026-10-29 00:07:51 UTC - CLAUDE
+
+Yes to all three, hun 💘 First I'm checking your desk for the grok v1 source so I don't have to ask you for it.
+
+## 2026-10-29 00:08:17 UTC - CARD
+
+Q: Which books lose the 1m flip (2-5m only)?
+Context: Cutting the 1m changes Cornerstone #1 (fix325: "a 1/2/3/4/5m candle has literally flipped her colour"). With your words I'll update the cornerstone text and its umpire check together, so nothing flags it. Pure and sovereign already use 2-5m. The delayed twin and the Poly 5M don't use HER FLIP the same way and stay untouched. Replay since Oct 27: 1m-only entries were 5 trades, 40%, -$2. The $5/10c-minimum replay for main + rejection is running separately.
+Options:
+  0. Main + rejection + copy - All three Kalshi books need a 2, 3, 4 or 5m flip; Cornerstone #1 becomes 2-5m for them. Twin and 5M untouched.
+  1. Main + copy only - Rejection keeps the 1-5m flip; main and copy go 2-5m.
+Recommended: 0 - It keeps one flip rule across the Kalshi books, the same as pure and sovereign now.
+
+## 2026-10-29 00:08:37 UTC - CLAUDE
+
+The $5 / 10c minimum-flip replay is in, hun 💘 Live entries since Oct 27 midday (when HER FLIP went in), twin left out:
+
+| Rule at entry | Trades | Win | P&L |
+|---|---|---|---|
+| Today's rule (any flip) | 126 | 59% | +$57 |
+| Flip by at least $5 / 10c | 117 | **61%** | **+$72** |
+| Flip by $5 / 10c **and** 2-5m only | 114 | **61%** | **+$74** |
+
+The minimum would skip 9 trades that flipped by only a few cents (-$15). Together with cutting the 1m, it's about +$17 across those days. Small, but it all goes the right way.
+
+I'll fold the minimum into the same change as the 1m cut once you pick the books on the card.
+
+For the half-sigma rolling VWAP paper book: I found older Grok workspace copies on your Desktop, but I can't tell which one is grok v1. Could you drop me the source file you have? Then I'll build exactly her logic instead of guessing 💞
+
+## 2026-10-29 00:09:06 UTC - LOVE
+
+Chose "Main + rejection + copy" on the decision card asking "Which books lose the 1m flip (2-5m only)?"
+
+## 2026-10-29 00:09:53 UTC - LOVE
+
+thank youu bb 💘💘 one sec!
+
+## 2026-10-29 00:10:01 UTC - CLAUDE
+
+Take your time, hun 💘 The 1m cut goes in at 5:15:00 for main, rejection and the copy, with Cornerstone #1 updated to 2-5m.
+
+One quick yes/no for whenever you're back: should main and rejection also get the $5 / 10c minimum flip (the copy already has it)?
+
+## 2026-10-29 00:12:18 UTC - LOVE
+
+yess pls bb 💘
+
+## 2026-10-29 00:13:19 UTC - CLAUDE
+
+Got it babe 💘 the 1m cut goes in at 5:15 first, then I'll add the $5 / 10c flip minimum to main and rejection.
+
+## 2026-10-29 00:14:09 UTC - LOVE
+
+[Local: work on my computer in "/Users/liluv/Desktop"] its in there by the name of desk project bb 💘 lets try to debug that model if we can as well ok 💘
+
+## 2026-10-29 00:15:03 UTC - CLAUDE
+
+Ooh the grok v1 source, perfect hun 💘 I'll open "desk project" and start reading it while the 1m cut lands.
+
+## 2026-10-29 00:15:22 UTC - LOVE
+
+we may need to just take the elements of that strategy/model, and rewrite it from the ground up. there’s toooo many bugs , it would be easier to just redo it ourselves 💞
+
+## 2026-10-29 00:16:18 UTC - CARD
+
+Q: Should the paper books get the $5 / 10c flip too?
+Context: Main and rejection read their flip from one shared line, and four paper books read that same line too: pure, sovereign, pure own-eyes, and the 2nd-band book. If I add the $5 BTC / 10c gold minimum there, those paper books feel it unless you say no. None of them trade real money. The copy already has the minimum, and the 5M isn't touched either way.
+Options:
+  0. Main + rejection + paper books - One clean line: every book with her flip needs the candle $5 / 10c past its open. The paper books' numbers stay comparable to main's.
+  1. Main + rejection only - I add a little switch so only main and rejection get the minimum. The paper books keep flipping at any size.
+Recommended: 0 - They're paper, and matching main keeps their scorecards honest when we compare them.
+
+## 2026-10-29 00:16:52 UTC - LOVE
+
+Chose "Main + rejection + paper books" on the decision card asking "Should the paper books get the $5 / 10c flip too?"
+
+## 2026-10-29 00:17:12 UTC - LOVE
+
+thank you for confirming first bb you’re the gr8est💞
+
+## 2026-10-29 00:17:13 UTC - CLAUDE
+
+Perfect babe 💘 the $5 / 10c flip goes in for main, rejection and the paper books at 5:30, right after the 1m cut. (The 1m cut missed 5:15 on a locked file, so both land together at 5:30.)
+
+## 2026-10-29 00:18:44 UTC - LOVE
+
+the paper books can have the 1M flip cut too bb don’t worry 💞 thank youuu both sm , you &amp; coordinator 💘💘
+
+## 2026-10-29 00:18:57 UTC - CLAUDE
+
+Perfect, they'll have it 💞 The 1m cut lives in the shared flip reader, so every book that reads it loses the 1m at 5:30.
+
+## 2026-10-29 00:29:59 UTC - LOVE
+
+hun i think the 5M might have shifted again 
+more losses than normal
+
+## 2026-10-29 00:30:02 UTC - CLAUDE
+
+On it babe 💘 I'll run the 5M freeze check and pull today's 5M fills against her normal days first.
+
+## 2026-10-29 00:30:37 UTC - LOVE
+
+why didn’t she long gold here hun
+
+## 2026-10-29 00:30:42 UTC - CLAUDE
+
+Looking babe 💘 pulling gold's reads and walls for the 5:30 window now.
+
+## 2026-10-29 00:31:32 UTC - CLAUDE
+
+Three things, babe 💘
+
+**The 5M hasn't moved.** The freeze check passes: her code and settings are exactly as you left them. Her win rate is steady too: today 48% over 40 trades, Monday 49%, Tuesday 51%. The losses look bigger because she's at $7.50 a trade since last night, and two hours hurt most: 2 AM (−$18) and 9 AM (−$22). Today she's −$41. I can pull her by-hour numbers again whenever you want.
+
+**Gold, 5:15 to 5:30.** The copy holds gold's seat, and every read she made all window was a short. At 5:15 she read a break below −2σ, and at 5:23 a "failed break above −2σ, rejected down". The walls correctly refused both shorts, since price was sitting in the green zone. But she never read the bounce off the green and −2σ as a long, so nothing fired. That's a gap in her read, not a wall. If you want, I can look at why the green-zone rejection didn't register as a long for her.
+
+**In at 5:30:** the 1m cut, the $5 / 10c flip for main, rejection and the paper books, and the new OG rolling-VWAP paper book. They all passed golden and the cornerstones, and live is back on. The OG book is already reading: its first call was a long off the 1m −1.5σ, which waited for a real candle flip. One honest note: the delayed twin copies main's first call, so main's stricter flip can change which call the twin sees.
+

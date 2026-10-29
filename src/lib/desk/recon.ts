@@ -42,7 +42,7 @@ const REACH_PCT = 0.2; // BTC $50 (Love picked "Reach $50 on BTC", Oct 21 ~9:05 
 type Bar = { t: number; o: number; h: number; l: number; c: number };
 type Piv = { pp: number; r1: number; s1: number; r2: number; s2: number; a: number };
 type Line = { name: string; price: number; unit: number; center?: boolean };
-export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-dly", "recon-rejx", "recon-togr", "recon-rej5", "recon-togp", "recon-dlyk", "recon-np", "recon-sov" /* fix372 */, "recon-npo" /* fix389 */, "recon-b2" /* fix404: paper only */] as const; /* fix361 (Love Oct 27 2026 8:06 PM PT: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long"): recon-np = the PURE no-pink twin, PAPER only (never in liveBook, never read by Polymarket) */ /* fix354 (Oct 27 2026 6:20 PM PT, Love: "yes let's ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly"): the delayed no-pink copy, PAPER only (never in liveBook, never read by Polymarket) */ /* fix281 recon-togp */ /* fix261 recon-rej5 */ /* fix250 recon-togr */ /* fix171 recon-rejx */ // + MOST SUCCESSFUL 70%+ (Oct 19 ~9:02 PM PT, Love) + REJECTIONS ONLY twin (Oct 20 ~7:39 AM PT, Love)
+export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-dly", "recon-rejx", "recon-togr", "recon-rej5", "recon-togp", "recon-dlyk", "recon-np", "recon-sov" /* fix372 */, "recon-npo" /* fix389 */, "recon-b2", "recon-og" /* fix408 */ /* fix404: paper only */] as const; /* fix361 (Love Oct 27 2026 8:06 PM PT: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long"): recon-np = the PURE no-pink twin, PAPER only (never in liveBook, never read by Polymarket) */ /* fix354 (Oct 27 2026 6:20 PM PT, Love: "yes let's ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly"): the delayed no-pink copy, PAPER only (never in liveBook, never read by Polymarket) */ /* fix281 recon-togp */ /* fix261 recon-rej5 */ /* fix250 recon-togr */ /* fix171 recon-rejx */ // + MOST SUCCESSFUL 70%+ (Oct 19 ~9:02 PM PT, Love) + REJECTIONS ONLY twin (Oct 20 ~7:39 AM PT, Love)
 export const RECON = new Set<string>(RECON_LANES);
 const DLY_AS_COPY = false; /* fix353 PAUSED (Love 6:11 PM PT: "wait no no no no no no do not change the 5M on polymarket in any way nooo"): the twin is exactly as before everywhere */ // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): the DELAYED twin is the no-pink copy with a delayed entry
 
@@ -432,7 +432,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     // the pure no-pink (recon-np + paper recon-npo) and the sovereign twin (recon-sov) book a call only when a 2/3/4/5m candle has flipped her way, MAIN's walls pass
     // (impossibleGeo with main's settings: cushions, 33/20% tolerance, pink-to-green/red line - pure 50%, sovereign 40% like main) and, while bands are small, she is not
     // just under the blue VWAP for a long / just over it for a short (half the VWAP-to-1σ width, fix397). Every refusal -> data/pure-walls.jsonl (once per window/lane/reason).
-    if (lane === "recon-np" || lane === "recon-npo" || lane === "recon-sov" || lane === "recon-b2" /* fix404 */) {
+    if (lane === "recon-np" || lane === "recon-npo" || lane === "recon-sov" || lane === "recon-b2" /* fix404 */ || lane === "recon-og" /* fix408 */) {
       let why401 = "";
       try {
         const sd401 = look.side, lb401 = (globalThis as any).__lawBands?.[id], L401 = lb401?.L;
@@ -730,6 +730,36 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     for (let k = px.length - 1; k > 0 && !t404; k--) { const B = px[k], A = px[k - 1];
       if (spot < B && spot > A && loR <= A - thru && cur.h >= B - nr && cur.h < B + bk && spot <= cur.h - tp) t404 = { side: "down", label: `2nd-band flip: blew through ${nmOf(A)}, rejected down off ${nmOf(B)}` }; }
     if (t404 && book("recon-b2", t404 as any)) changed = true; } } catch {}
+  // THE OG ROLLING VWAP (fix408, Love Oct 28 2026 5:07 PM PT: "another paper book with the half sigmas ... the og rolling vwap? on the 1, 2,3,4&5M timeframes? ... definitely give them the same guard"
+  // + 5:15 PM: "take the elements of that strategy/model, and rewrite it from the ground up"): PAPER ONLY (recon-og, in no live list). Rebuilt from grok v1's elements (desk-project vwap.ts):
+  // on each of the 1/2/3/4/5m frames, a rolling 60-minute VWAP (volume-weighted, typical price; TWAP if no volume) with half-sigma bands at 0.5/1/1.5/2/2.5/3 and the VWAP itself.
+  // Tap-reject only, never backwards: long = the last 3 closed candles of that frame closed above the line, this or the last candle wicked into it (within BTC $10 / gold 50c) without
+  // breaking it (BTC $6 / gold 33c), and price pushed off her tap and sits above it. Short is the mirror. No break-retests, no "watching" calls. Then the same guard as pure (fix401 gate).
+  try { const bs408: any[] = ((((globalThis as any).__pivBars?.[id]?.bars) ?? []) as any[]).filter((x) => Number(x.c) > 0 && Number(x.t) > 0).sort((x, y) => x.t - y.t);
+    if (bs408.length >= 60 && spot > 0) { const nr = id === "btc" ? 10 : 0.5, bk = BREAK[id] ?? 0, tp = TAP[id] ?? 0, nowS = Math.floor(Date.now() / 1000);
+      let t408: { side: "up" | "down"; label: string } | null = null;
+      for (const n of [1, 2, 3, 4, 5]) { if (t408) break;
+        const fr: { t: number; o: number; h: number; l: number; c: number; v: number }[] = [];
+        for (const x of bs408) { const t0 = Math.floor(Number(x.t) / (n * 60)) * n * 60, v = Number(x.v) > 0 ? Number(x.v) : 0, f = fr[fr.length - 1];
+          if (f && f.t === t0) { f.h = Math.max(f.h, +x.h); f.l = Math.min(f.l, +x.l); f.c = +x.c; f.v += v; } else fr.push({ t: t0, o: +x.o, h: +x.h, l: +x.l, c: +x.c, v }); }
+        const tNow = Math.floor(nowS / (n * 60)) * n * 60, lf = fr[fr.length - 1];
+        if (!lf) continue;
+        if (lf.t === tNow) { lf.c = spot; lf.h = Math.max(lf.h, spot); lf.l = Math.min(lf.l, spot); } else fr.push({ t: tNow, o: lf.c, h: Math.max(lf.c, spot), l: Math.min(lf.c, spot), c: spot, v: 0 });
+        const win = fr.slice(-Math.round(60 / n)); if (win.length < 8) continue;
+        let pv = 0, vol = 0, tw = 0; for (const c of win) { const tpx = (c.h + c.l + c.c) / 3; pv += tpx * c.v; vol += c.v; tw += tpx; }
+        const useV = vol > 0 && pv > 0, vw = useV ? pv / vol : tw / win.length;
+        let acc = 0, w = 0; for (const c of win) { const tpx = (c.h + c.l + c.c) / 3, wt = useV ? c.v : 1; acc += wt * (tpx - vw) ** 2; w += wt; }
+        const sd = Math.max(w > 0 ? Math.sqrt(acc / w) : 0, vw * 0.00015);
+        const live = fr[fr.length - 1], last = fr[fr.length - 2], closed3 = fr.slice(-4, -1);
+        if (!last || closed3.length < 3) continue;
+        const lv: { p: number; nm: string }[] = [{ p: vw, nm: `${n}m VWAP` }];
+        for (const k of [0.5, 1, 1.5, 2, 2.5, 3]) { lv.push({ p: vw + k * sd, nm: `${n}m +${k}σ` }); lv.push({ p: vw - k * sd, nm: `${n}m −${k}σ` }); }
+        lv.sort((x, y) => Math.abs(x.p - spot) - Math.abs(y.p - spot));
+        const loT = Math.min(live.l, last.l), hiT = Math.max(live.h, last.h);
+        for (const { p, nm } of lv) {
+          if (closed3.every((c) => c.c > p) && loT <= p + nr && loT > p - bk && spot > p && spot >= loT + tp) { t408 = { side: "up", label: `OG tap-reject up off ${nm}` }; break; }
+          if (closed3.every((c) => c.c < p) && hiT >= p - nr && hiT < p + bk && spot < p && spot <= hiT - tp) { t408 = { side: "down", label: `OG tap-reject down off ${nm}` }; break; } } }
+      if (t408 && book("recon-og", t408 as any)) changed = true; } } catch {}
   // BTC PINK-REJECTION RE-AIM (fix373, Love Oct 27 2026 10:38 PM PT: "if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok" + card "Which books get the BTC pink-rejection re-aim?" -> "Main + rejection + copy"; study since Oct 11: BTC longs refused under pink, the pink-rejection short won 27 of 38 +$222 while the refused long lost ~$204):
   // BTC only, MAIN / REJECTION MODEL / NO-PINK COPY - when her open call this window is a LONG that never filled and a PINK wall refused it, and the engine now reads a
   // rejection DOWN off the pink (bonesDecide, rejections only) with a 1-5m candle flipped red, the unfilled long re-aims to that short (book() re-aims; a fill locks the window). Gold untouched.

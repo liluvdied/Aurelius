@@ -3010,5 +3010,41 @@
   "result": "win",
   "pnl": 10.62,
   "lane": "first"
+ },
+ {
+  "at": "2026-10-28T23:32:00+00:00",
+  "slot": "2026-10-28T23:30:00+00:00",
+  "side": "down",
+  "setup": "Rejected down off fresh +1\u03c3",
+  "ask": 0.62,
+  "left": 180,
+  "reaims": 2,
+  "result": "loss",
+  "pnl": -5.0,
+  "lane": "re-aim"
+ },
+ {
+  "at": "2026-10-28T23:32:00+00:00",
+  "slot": "2026-10-28T23:30:00+00:00",
+  "side": "down",
+  "setup": "Launched from the top third (high 81281.22) - a short until the bottom third",
+  "ask": 0.62,
+  "left": 180,
+  "reaims": 0,
+  "result": "loss",
+  "pnl": -5.0,
+  "lane": "first"
+ },
+ {
+  "at": "2026-10-29T00:12:00+00:00",
+  "slot": "2026-10-29T00:10:00+00:00",
+  "side": "up",
+  "setup": "Green candle rising from the bottom third",
+  "ask": 0.68,
+  "left": 180,
+  "reaims": 3,
+  "result": "open",
+  "pnl": 0.0,
+  "lane": "re-aim"
  }
 ]

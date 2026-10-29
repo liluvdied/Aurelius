@@ -1,12 +1,12 @@
 # 5m paper books - main, rejection, delayed (BTC)
 
-Updated 2026-10-28T23:21Z. Every BTC call each book made, replayed on the 5m market the desk would take (right = BTC closes that 5m window on her side of its open), next to the same call's own 15m result. P&L at a flat 50c entry (Poly 5m usually opens near even): +$1 per $1 when right, -$1 when wrong.
+Updated 2026-10-29T00:22Z. Every BTC call each book made, replayed on the 5m market the desk would take (right = BTC closes that 5m window on her side of its open), next to the same call's own 15m result. P&L at a flat 50c entry (Poly 5m usually opens near even): +$1 per $1 when right, -$1 when wrong.
 
 | book | calls | 5m right | 5m % | 5m P&L per $1 | 15m settled | 15m right | 15m % |
 |---|---|---|---|---|---|---|---|
-| MAIN 💞 | 340 | 202 | 59% | +64 | 331 | 179 | 54% |
-| REJECTION 🎯 | 335 | 210 | 63% | +85 | 324 | 166 | 51% |
-| DELAYED ⏳ | 331 | 156 | 47% | -19 | 323 | 152 | 47% |
+| MAIN 💞 | 342 | 203 | 59% | +64 | 333 | 180 | 54% |
+| REJECTION 🎯 | 337 | 211 | 63% | +85 | 326 | 167 | 51% |
+| DELAYED ⏳ | 333 | 156 | 47% | -21 | 325 | 152 | 47% |
 
 ## Overnight (12 AM - 9 AM PT)
 
@@ -36,8 +36,8 @@ Updated 2026-10-28T23:21Z. Every BTC call each book made, replayed on the 5m mar
 | 1:00 PM | 64% · 14 | 67% · 15 | 36% · 14 |
 | 2:00 PM | 46% · 13 | 58% · 12 | 82% · 11 |
 | 3:00 PM | 72% · 18 | 67% · 18 | 20% · 15 |
-| 4:00 PM | 38% · 13 | 46% · 13 | 25% · 12 |
-| 5:00 PM | 42% · 12 | 42% · 12 | 25% · 12 |
+| 4:00 PM | 43% · 14 | 50% · 14 | 23% · 13 |
+| 5:00 PM | 38% · 13 | 38% · 13 | 23% · 13 |
 | 6:00 PM | 60% · 10 | 75% · 8 | 45% · 11 |
 | 7:00 PM | 50% · 14 | 64% · 14 | 47% · 15 |
 | 8:00 PM | 67% · 15 | 64% · 14 | 47% · 15 |

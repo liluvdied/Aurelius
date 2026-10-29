@@ -1159,7 +1159,7 @@ export function ownerBook(ticker: string): string {
 export function anyFlipNow(asset: string, side: string, tick: number): boolean {
   try {
     const bars: any[] = G.__pivBars?.[asset]?.bars ?? [], tr = trailNow(asset), ms = Date.now();
-    for (const n of [1, 2, 3, 4, 5]) {
+    for (const n of [2, 3, 4, 5] /* fix406 (Love Oct 28 2026 5:07 PM PT: "let's go ahead and cut the 1M's" + card "Main + rejection + copy"): no 1m flip */) {
       const f0 = Math.floor(ms / (n * 60000)) * n * 60;
       const inF = bars.filter((x) => Number(x.t) >= f0).sort((x, y) => x.t - y.t);
       let o = inF.length ? Number(inF[0].o) : 0;
@@ -1190,7 +1190,7 @@ export function anyFlipMinNow(asset: string, side: string, tick: number): boolea
   const min = asset === "gold" ? 0.1 : 5;
   try {
     const bars: any[] = G.__pivBars?.[asset]?.bars ?? [], tr = trailNow(asset), ms = Date.now();
-    for (const n of [1, 2, 3, 4, 5]) {
+    for (const n of [2, 3, 4, 5] /* fix406 (Love Oct 28 2026 5:07 PM PT: "let's go ahead and cut the 1M's" + card "Main + rejection + copy"): no 1m flip */) {
       const f0 = Math.floor(ms / (n * 60000)) * n * 60;
       const inF = bars.filter((x) => Number(x.t) >= f0).sort((x, y) => x.t - y.t);
       let o = inF.length ? Number(inF[0].o) : 0;
@@ -2766,8 +2766,9 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // HER FLIP, LITERAL COLOUR (fix325, Oct 27 ~11:34 AM PT, Love: "hun. i'd like it to be the literal color of the candle." + "i asked for a 1 minute , 2m, 3m, or 5M candle to flip in our
   // favor. one of the cornerstones of the model." + card "Main + rejection model" - 11:30:28 AM main gold short with every 1-5m candle green): for these books an entry needs at least one live
   // 1/2/3/4/5m candle past its open her way (literal colour); none = no entry. The 5m-only read with the 30c gold / $10 BTC stickiness stands down for them.
-  if (flipRule) { if (!why && !foTurn && !anyFlipNow(asset, side, tick)) why = `HER FLIP: no 1/2/3/4/5m candle is ${side === "up" ? "green" : "red"} - a ${side === "up" ? "long" : "short"} needs one flipped her way.`; cdl = ""; }
-  if (togpLoose && !flipRule) { if (!why && !(foTurn && npPink) /* fix366 (Love Oct 27 2026 9:23 PM PT: "yes, both bb" (to: copy only - a fake-out turn no longer skips her flip; her Bollinger-over-the-band wall $50 -> $75)): a fake-out turn no longer skips the copy's flip (was !foTurn) */ && !anyFlipMinNow(asset, side, tick) /* fix359 */) why = `HER FLIP: no 1/2/3/4/5m candle is ${side === "up" ? "green" : "red"} by ${asset === "gold" ? "10c" : "$5"} - a ${side === "up" ? "long" : "short"} needs one flipped her way for real (fix359).`; cdl = ""; } // fix349 (Oct 27 2026 5:40 PM PT, Love: "yes pls pls" to "Do you want me to give the copy the same 1-5m flip rule as main?"): the no-pink copy needs her flip too, the same line as main's
+  if (flipRule) { if (!why && !foTurn && !anyFlipNow(asset, side, tick)) why = `HER FLIP: no 2/3/4/5m candle is ${side === "up" ? "green" : "red"} - a ${side === "up" ? "long" : "short"} needs one flipped her way.`; cdl = ""; }
+  if (flipRule && !why && !foTurn && !anyFlipMinNow(asset, side, tick)) why = `HER FLIP: no 2/3/4/5m candle is at least ${asset === "btc" ? "$5" : "10c"} past its open her way - a ${side === "up" ? "long" : "short"} needs a real flip.`; // fix407 (Love Oct 28 2026 5:12 PM PT: "yess pls bb" to the $5 / 10c minimum flip for main + rejection, + card "Main + rejection + paper books"): every book on flipRule (main, rejection, paper pure/sov/own-eyes/2nd-band) needs the candle $5 BTC / 10c gold past its open, like the copy
+  if (togpLoose && !flipRule) { if (!why && !(foTurn && npPink) /* fix366 (Love Oct 27 2026 9:23 PM PT: "yes, both bb" (to: copy only - a fake-out turn no longer skips her flip; her Bollinger-over-the-band wall $50 -> $75)): a fake-out turn no longer skips the copy's flip (was !foTurn) */ && !anyFlipMinNow(asset, side, tick) /* fix359 */) why = `HER FLIP: no 2/3/4/5m candle is ${side === "up" ? "green" : "red"} by ${asset === "gold" ? "10c" : "$5"} - a ${side === "up" ? "long" : "short"} needs one flipped her way for real (fix359).`; cdl = ""; } // fix349 (Oct 27 2026 5:40 PM PT, Love: "yes pls pls" to "Do you want me to give the copy the same 1-5m flip rule as main?"): the no-pink copy needs her flip too, the same line as main's
   if (rejNoAhead && cdl && cdl !== side && anyFlipNow(asset, side, tick)) cdl = ""; // fix319 (Oct 27 ~6:23 AM PT, Love: "enter in at a candle flip of 1, 2,3,4, 5M candles" + card "Rejection model only"): the rejection model may go with any 1-5m candle moving her way
   // BACK OVER BY $10 (fix154, Oct 23 ~3:51 PM PT, Love: "make it over $10 over the band so it can't go a few cents over again and it's a real valid trade if she does" -
   // the 3:45 PM BTC long passed on a one-tick blip to 81,036.56, $4.60 back over -2σ after the 5m candle had dipped under it): on BTC, once this 5m candle has been
