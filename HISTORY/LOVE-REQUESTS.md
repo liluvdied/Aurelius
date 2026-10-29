@@ -2,6 +2,48 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R104 - fix414: remove fix399 20% small-band tolerance from THE IMPOSSIBILITY - her 33% (and existing scale) stands for every book that had it; fix399 blue VWAP cross wall stays
+- when: 2026-10-29T01:11:36+00:00
+- Love: "Love Oct 28 2026 6:10 PM PT: "just keep it at 33% dude if that let that long through that’s a HARD no on 20% at this band width""
+- books: e, v, e, r, y,  , K, a, l, s, h, i,  , b, o, o, k,  , f, i, x, 3, 9, 9,  , r, e, a, c, h, e, d,  , (, m, a, i, n, ,,  , r, e, j, e, c, t, i, o, n, ,,  , c, o, p, y, ,,  , p, u, r, e, ,,  , e, t, c, ., ;,  , 5, M,  , f, r, o, z, e, n,  , f, i, l, e,  , u, n, t, o, u, c, h, e, d, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix414"}
+
+## R103 - fix413: SESSION BAND AHEAD OF THE PINK = WAIT back at the door for main/rej/copy - when pink is her closest line and the session band in front is closer than the one behind, no trade into it until it breaks or rejects
+- when: 2026-10-29T01:08:51+00:00
+- Love: "Love Oct 28 2026 6:06 PM PT: "DUDE. IT IS A STRICT BAND TOLERANCE. PRICE BREAKING PINK DOES NOT REMOVE THAT." + 6:07 PM: "and yesssss it did bro i’ve seen her wait on that exact trade a trillllllion times." (to: bring back SESSION BAND AHEAD OF THE PINK = WAIT, card option Rejection, main + copy)"
+- books: m, a, i, n,  , (, r, e, c, o, n, -, t, o, g, ), ,,  , r, e, j, e, c, t, i, o, n,  , (, r, e, c, o, n, -, r, e, j, ), ,,  , c, o, p, y,  , (, r, e, c, o, n, -, t, o, g, p, ,,  , p, a, p, e, r,  , n, o, w, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix413"}
+
+## R102 - fix412: the rejection model (recon-rej) takes the live seat back from the no-pink copy in every rejection hour, both assets (offHourMain.rejSeatHours 0-23; fix412Prev keeps the old list). The copy stays paper.
+- when: 2026-10-29T01:04:28+00:00
+- Love: "Love Oct 28 2026 6:03 PM PT: "do not run this model bro i’m not retraining a model again" + 6:03 PM: "put her on the rejection model""
+- books: r, e, j, e, c, t, i, o, n,  , (, r, e, c, o, n, -, r, e, j, ),  , l, i, v, e,  , s, e, a, t, ;,  , c, o, p, y,  , (, r, e, c, o, n, -, t, o, g, p, ),  , o, f, f,  , l, i, v, e
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "offHourMain.rejSeatHours", "equals": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}
+
+## R101 - fix411: HELD ON HER SIDE at the door - main/rej/copy: every wall (impossibleGeo) must also pass at the least-favourable price of the last 3 s (one-tick spike through pink can no longer count as the break). Breaks still instant otherwise.
+- when: 2026-10-29T01:01:01+00:00
+- Love: "Love Oct 28 2026 5:56 PM PT: "and please reinforce that barrier if you can ... she needs to be ON the side of the break she cannot trade without price being on the same side of the break this is veryyyy old news" + 5:59 PM: "pls reinforce everything""
+- books: m, a, i, n,  , (, r, e, c, o, n, -, t, o, g, ), ,,  , r, e, j, e, c, t, i, o, n,  , (, r, e, c, o, n, -, r, e, j, ), ,,  , c, o, p, y,  , (, r, e, c, o, n, -, t, o, g, p, ), ;,  , 5, M,  , f, r, o, z, e, n,  , u, n, t, o, u, c, h, e, d, ;,  , t, w, i, n,  , u, n, t, o, u, c, h, e, d
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix411"}
+
+## R100 - fix410: Poly 5M stake back to $5 (polyTwin.rej5m.dollars 7.5 -> 5); refreeze the 5M on these words
+- when: 2026-10-29T00:45:16+00:00
+- Love: "Love Oct 28 2026 5:41 PM PT: "let’s bring the 5M back to $5 for a bit too hun , let’s let her get stable again 💘""
+- books: P, o, l, y,  , 5, M,  , o, n, l, y,  , (, r, e, c, o, n, -, r, e, j, -, 5, m, )
+- status: ACTIVE
+- proof: {"config": "data/live-switch.json", "key": "polyTwin.rej5m.dollars", "equals": 5}
+
+## R099 - fix409: gold PINK TO GREEN no short in the bottom 55% (was 60%) and PINK TO RED no long in the top 55% (was 50%) for main + rejection + copy (flipRule || togpLoose; paper books on main walls follow). Twin + others keep 50%.
+- when: 2026-10-29T00:40:05+00:00
+- Love: "Love Oct 28 2026 5:37 PM PT: "yeah let’s make it 55% hun that’s good" + 5:39 PM: "55% for shorts and longs pls 💞 main rejection and copy bb""
+- books: m, a, i, n,  , (, r, e, c, o, n, -, t, o, g, ), ,,  , r, e, j, e, c, t, i, o, n,  , (, r, e, c, o, n, -, r, e, j, ), ,,  , n, o, -, p, i, n, k,  , c, o, p, y,  , (, r, e, c, o, n, -, t, o, g, p, ), ;,  , g, o, l, d,  , o, n, l, y
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix409"}
+
 ## R098 - fix408: recon-og = PAPER book rebuilt from grok v1 elements (desk-project/src/lib/desk/vwap.ts): rolling 60-min VWAP + half-sigma bands 0.5-3 on 1/2/3/4/5m frames, tap-reject only (came from that side, tagged, not broken, pushed off), through the same guard as pure (fix401 gate: main walls + 2-5m flip + blue check)
 - when: 2026-10-29T00:17:44+00:00
 - Love: "Love Oct 28 2026 5:07 PM PT: "do you think we can try running another paper book with the half sigmas and see how that does? the og rolling vwap? on the 1, 2,3,4&5M timeframes? i have the source code of the OG model (grok v1) ... let's see how those do, and definitely give them the same guard ok" + 5:14 PM: "its in there by the name of desk project bb" + 5:15 PM: "we may need to just take the elements of that strategy/model, and rewrite it from the ground up. there's toooo many bugs , it would be easier to just redo it ourselves""
@@ -290,7 +332,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-28T06:19:13+00:00
 - Love: "how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow :)"
 - books: recon-rej
-- status: ACTIVE
+- status: RETIRED - Love: "Love Oct 28 2026 6:03 PM PT: "put her on the rejection model" (R102, fix412: rejection seat every hour)"
 - proof: {"code": "src/lib/desk/engine.ts", "has": "omR.rejSeatHours.map(Number).includes(hNow)"}
 - proof: {"config": "data/live-switch.json", "key": "offHourMain.rejSeatHours", "equals": [23]}
 
@@ -362,7 +404,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-28T03:39:49+00:00
 - Love: "we can include the 60% into the rejection models too bb"
 - books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j, ,,  , r, e, c, o, n, -, t, o, g, p,  , (, +, r, e, c, o, n, -, d, l, y, k,  , p, a, p, e, r, )
-- status: ACTIVE
+- status: RETIRED - Love: "Love Oct 28 2026 5:37-5:39 PM PT: "yeah let’s make it 55% hun" + "55% for shorts and longs pls 💞 main rejection and copy bb" (R099, fix409)"
 - proof: {"code": "src/lib/desk/bandlock.ts", "has": "(flipRule || togpLoose ? 0.60 : 0.50)"}
 
 ## R049 - No-pink copy never takes a thirds flip ("- seen as a short/long" labels); MAIN gold PINK TO GREEN wall 60% (other books 50%) (fix364)
@@ -422,7 +464,7 @@ Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire
 - when: 2026-10-28T01:55:41+00:00
 - Love: "let’s cut those hours and raise her stake to $10 on the other hours hunni 💞 better math on that + card "Raise the 5M to $10 now, or let the new hours prove out first?" -> "$7.50 now""
 - books: P, o, l, y, m, a, r, k, e, t,  , 5, M,  , o, n, l, y
-- status: ACTIVE
+- status: RETIRED - Love: "Love Oct 28 2026 5:41 PM PT: "let’s bring the 5M back to $5 for a bit too hun" (R100, fix410)"
 - proof: {"config": "data/live-switch.json", "key": "polyTwin.rej5m.dollars", "equals": 7.5}
 - proof: {"code": "src/lib/desk/poly-live.server.ts", "has": "fix358"}
 

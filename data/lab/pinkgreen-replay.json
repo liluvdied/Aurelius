@@ -1,0 +1,557 @@
+{
+ "buckets": {
+  "recon-rej | no touch | under 50%": {
+   "win": 9,
+   "loss": 6,
+   "unknown": 2
+  },
+  "recon-togp | no touch | under 50%": {
+   "win": 8,
+   "loss": 6,
+   "unknown": 1
+  },
+  "recon-tog | no touch | under 50%": {
+   "win": 9,
+   "loss": 5,
+   "unknown": 1
+  },
+  "recon-rej | pink touched | under 50%": {
+   "win": 1,
+   "loss": 1,
+   "unknown": 2
+  },
+  "recon-togp | pink touched | under 50%": {
+   "win": 1,
+   "loss": 1,
+   "unknown": 0
+  },
+  "recon-tog | pink touched | under 50%": {
+   "win": 1,
+   "loss": 1,
+   "unknown": 0
+  },
+  "recon-rej | pink touched | 50%+": {
+   "win": 1,
+   "loss": 2,
+   "unknown": 0
+  },
+  "recon-rej | no touch | 50%+": {
+   "win": 0,
+   "loss": 1,
+   "unknown": 0
+  },
+  "recon-tog | no touch | 50%+": {
+   "win": 0,
+   "loss": 1,
+   "unknown": 0
+  },
+  "recon-togp | pink touched | 50%+": {
+   "win": 1,
+   "loss": 0,
+   "unknown": 0
+  },
+  "recon-tog | pink touched | 50%+": {
+   "win": 1,
+   "loss": 0,
+   "unknown": 0
+  }
+ },
+ "rows": [
+  {
+   "at": "2026-10-26T23:00:09.241Z",
+   "ticker": "KXGOLD15M-26OCT261915-15",
+   "book": "recon-rej",
+   "pct": 49,
+   "touched": false,
+   "short": "unknown"
+  },
+  {
+   "at": "2026-10-27T00:00:17.225Z",
+   "ticker": "KXGOLD15M-26OCT262015-15",
+   "book": "recon-rej",
+   "pct": 18,
+   "touched": false,
+   "short": "unknown"
+  },
+  {
+   "at": "2026-10-27T00:00:17.225Z",
+   "ticker": "KXGOLD15M-26OCT262015-15",
+   "book": "recon-togp",
+   "pct": 18,
+   "touched": false,
+   "short": "unknown"
+  },
+  {
+   "at": "2026-10-27T00:00:17.226Z",
+   "ticker": "KXGOLD15M-26OCT262015-15",
+   "book": "recon-tog",
+   "pct": 18,
+   "touched": false,
+   "short": "unknown"
+  },
+  {
+   "at": "2026-10-27T06:46:17.838Z",
+   "ticker": "KXGOLD15M-26OCT270300-00",
+   "book": "recon-rej",
+   "pct": 42,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-27T06:46:17.838Z",
+   "ticker": "KXGOLD15M-26OCT270300-00",
+   "book": "recon-togp",
+   "pct": 42,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-27T06:46:17.838Z",
+   "ticker": "KXGOLD15M-26OCT270300-00",
+   "book": "recon-tog",
+   "pct": 42,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-27T08:00:08.071Z",
+   "ticker": "KXGOLD15M-26OCT270415-15",
+   "book": "recon-rej",
+   "pct": 5,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-27T08:00:08.071Z",
+   "ticker": "KXGOLD15M-26OCT270415-15",
+   "book": "recon-togp",
+   "pct": 5,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-27T08:00:08.072Z",
+   "ticker": "KXGOLD15M-26OCT270415-15",
+   "book": "recon-tog",
+   "pct": 5,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-27T08:15:52.917Z",
+   "ticker": "KXGOLD15M-26OCT270430-30",
+   "book": "recon-rej",
+   "pct": 34,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-27T08:15:52.917Z",
+   "ticker": "KXGOLD15M-26OCT270430-30",
+   "book": "recon-togp",
+   "pct": 34,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-27T08:15:52.917Z",
+   "ticker": "KXGOLD15M-26OCT270430-30",
+   "book": "recon-tog",
+   "pct": 34,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-27T08:55:03.264Z",
+   "ticker": "KXGOLD15M-26OCT270500-00",
+   "book": "recon-rej",
+   "pct": 36,
+   "touched": true,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-27T08:55:03.264Z",
+   "ticker": "KXGOLD15M-26OCT270500-00",
+   "book": "recon-togp",
+   "pct": 36,
+   "touched": true,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-27T08:55:03.265Z",
+   "ticker": "KXGOLD15M-26OCT270500-00",
+   "book": "recon-tog",
+   "pct": 36,
+   "touched": true,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-27T10:15:14.918Z",
+   "ticker": "KXGOLD15M-26OCT270630-30",
+   "book": "recon-togp",
+   "pct": 33,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-27T10:15:14.918Z",
+   "ticker": "KXGOLD15M-26OCT270630-30",
+   "book": "recon-tog",
+   "pct": 33,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-27T23:01:14.233Z",
+   "ticker": "KXGOLD15M-26OCT271915-15",
+   "book": "recon-rej",
+   "pct": 43,
+   "touched": true,
+   "short": "unknown"
+  },
+  {
+   "at": "2026-10-27T23:18:58.824Z",
+   "ticker": "KXGOLD15M-26OCT271930-30",
+   "book": "recon-rej",
+   "pct": 43,
+   "touched": true,
+   "short": "unknown"
+  },
+  {
+   "at": "2026-10-28T01:45:08.476Z",
+   "ticker": "KXGOLD15M-26OCT272200-00",
+   "book": "recon-rej",
+   "pct": 48,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T01:45:08.476Z",
+   "ticker": "KXGOLD15M-26OCT272200-00",
+   "book": "recon-togp",
+   "pct": 48,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T01:45:08.477Z",
+   "ticker": "KXGOLD15M-26OCT272200-00",
+   "book": "recon-tog",
+   "pct": 48,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T02:00:08.963Z",
+   "ticker": "KXGOLD15M-26OCT272215-15",
+   "book": "recon-rej",
+   "pct": 37,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T02:00:08.966Z",
+   "ticker": "KXGOLD15M-26OCT272215-15",
+   "book": "recon-togp",
+   "pct": 37,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T02:00:08.967Z",
+   "ticker": "KXGOLD15M-26OCT272215-15",
+   "book": "recon-tog",
+   "pct": 37,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T02:15:08.932Z",
+   "ticker": "KXGOLD15M-26OCT272230-30",
+   "book": "recon-rej",
+   "pct": 34,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T02:15:08.932Z",
+   "ticker": "KXGOLD15M-26OCT272230-30",
+   "book": "recon-togp",
+   "pct": 34,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T02:15:08.933Z",
+   "ticker": "KXGOLD15M-26OCT272230-30",
+   "book": "recon-tog",
+   "pct": 34,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T02:30:06.677Z",
+   "ticker": "KXGOLD15M-26OCT272245-45",
+   "book": "recon-rej",
+   "pct": 40,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T04:03:11.364Z",
+   "ticker": "KXGOLD15M-26OCT280015-15",
+   "book": "recon-togp",
+   "pct": 45,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T04:03:11.364Z",
+   "ticker": "KXGOLD15M-26OCT280015-15",
+   "book": "recon-tog",
+   "pct": 45,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T04:19:54.166Z",
+   "ticker": "KXGOLD15M-26OCT280030-30",
+   "book": "recon-rej",
+   "pct": 49,
+   "touched": true,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T04:19:54.166Z",
+   "ticker": "KXGOLD15M-26OCT280030-30",
+   "book": "recon-tog",
+   "pct": 49,
+   "touched": true,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T04:23:10.061Z",
+   "ticker": "KXGOLD15M-26OCT280030-30",
+   "book": "recon-togp",
+   "pct": 41,
+   "touched": true,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T06:00:42.904Z",
+   "ticker": "KXGOLD15M-26OCT280215-15",
+   "book": "recon-rej",
+   "pct": 9,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T06:00:42.905Z",
+   "ticker": "KXGOLD15M-26OCT280215-15",
+   "book": "recon-togp",
+   "pct": 9,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T06:00:42.905Z",
+   "ticker": "KXGOLD15M-26OCT280215-15",
+   "book": "recon-tog",
+   "pct": 9,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T07:01:31.758Z",
+   "ticker": "KXGOLD15M-26OCT280315-15",
+   "book": "recon-rej",
+   "pct": 56,
+   "touched": true,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T11:00:10.643Z",
+   "ticker": "KXGOLD15M-26OCT280715-15",
+   "book": "recon-rej",
+   "pct": 57,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T11:00:10.643Z",
+   "ticker": "KXGOLD15M-26OCT280715-15",
+   "book": "recon-tog",
+   "pct": 57,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T11:00:18.670Z",
+   "ticker": "KXGOLD15M-26OCT280715-15",
+   "book": "recon-togp",
+   "pct": 46,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T13:45:59.733Z",
+   "ticker": "KXGOLD15M-26OCT281000-00",
+   "book": "recon-rej",
+   "pct": 55,
+   "touched": true,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T17:30:23.739Z",
+   "ticker": "KXGOLD15M-26OCT281345-45",
+   "book": "recon-rej",
+   "pct": 40,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T17:45:12.903Z",
+   "ticker": "KXGOLD15M-26OCT281400-00",
+   "book": "recon-rej",
+   "pct": 31,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T17:45:12.903Z",
+   "ticker": "KXGOLD15M-26OCT281400-00",
+   "book": "recon-togp",
+   "pct": 31,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T17:45:12.904Z",
+   "ticker": "KXGOLD15M-26OCT281400-00",
+   "book": "recon-tog",
+   "pct": 31,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T18:15:08.231Z",
+   "ticker": "KXGOLD15M-26OCT281430-30",
+   "book": "recon-rej",
+   "pct": 46,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T18:15:08.231Z",
+   "ticker": "KXGOLD15M-26OCT281430-30",
+   "book": "recon-togp",
+   "pct": 46,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T18:15:08.231Z",
+   "ticker": "KXGOLD15M-26OCT281430-30",
+   "book": "recon-tog",
+   "pct": 46,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T22:15:10.620Z",
+   "ticker": "KXGOLD15M-26OCT281830-30",
+   "book": "recon-rej",
+   "pct": 31,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T22:15:10.621Z",
+   "ticker": "KXGOLD15M-26OCT281830-30",
+   "book": "recon-tog",
+   "pct": 31,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T22:46:59.433Z",
+   "ticker": "KXGOLD15M-26OCT281900-00",
+   "book": "recon-rej",
+   "pct": 19,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T22:46:59.433Z",
+   "ticker": "KXGOLD15M-26OCT281900-00",
+   "book": "recon-togp",
+   "pct": 19,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T22:46:59.433Z",
+   "ticker": "KXGOLD15M-26OCT281900-00",
+   "book": "recon-tog",
+   "pct": 19,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-28T23:03:21.807Z",
+   "ticker": "KXGOLD15M-26OCT281915-15",
+   "book": "recon-rej",
+   "pct": 17,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T23:03:21.808Z",
+   "ticker": "KXGOLD15M-26OCT281915-15",
+   "book": "recon-togp",
+   "pct": 17,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T23:03:21.808Z",
+   "ticker": "KXGOLD15M-26OCT281915-15",
+   "book": "recon-tog",
+   "pct": 17,
+   "touched": false,
+   "short": "loss"
+  },
+  {
+   "at": "2026-10-28T23:30:37.972Z",
+   "ticker": "KXGOLD15M-26OCT281945-45",
+   "book": "recon-rej",
+   "pct": 30,
+   "touched": false,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-29T00:27:58.498Z",
+   "ticker": "KXGOLD15M-26OCT282030-30",
+   "book": "recon-rej",
+   "pct": 59,
+   "touched": true,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-29T00:27:58.498Z",
+   "ticker": "KXGOLD15M-26OCT282030-30",
+   "book": "recon-togp",
+   "pct": 59,
+   "touched": true,
+   "short": "win"
+  },
+  {
+   "at": "2026-10-29T00:27:58.498Z",
+   "ticker": "KXGOLD15M-26OCT282030-30",
+   "book": "recon-tog",
+   "pct": 59,
+   "touched": true,
+   "short": "win"
+  }
+ ]
+}

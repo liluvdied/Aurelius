@@ -1,19 +1,19 @@
 {
- "made": "2026-10-29T00:31:24.559758+00:00",
+ "made": "2026-10-29T00:46:37.134095+00:00",
  "from": "2026-10-28T03:10:00.751Z",
  "stake": 7.5,
  "note": "fees not counted; settlement read from last quote before close",
  "pureNoPinkOn5M": {
-  "trades": 68,
+  "trades": 69,
   "wins": 41,
-  "winRate": 0.603,
-  "pnl": 118.68
+  "winRate": 0.594,
+  "pnl": 111.18
  },
  "pureNoPinkOn5M_in5mHours": {
-  "trades": 49,
+  "trades": 50,
   "wins": 26,
-  "winRate": 0.531,
-  "pnl": 48.84
+  "winRate": 0.52,
+  "pnl": 41.34
  },
  "real5M": {
   "trades": 42,
@@ -126,10 +126,10 @@
    "pnl": 7.01
   },
   "17": {
-   "trades": 2,
+   "trades": 3,
    "wins": 1,
-   "winRate": 0.5,
-   "pnl": -5.13
+   "winRate": 0.333,
+   "pnl": -12.63
   },
   "20": {
    "trades": 4,
@@ -900,6 +900,17 @@
    "side": "up",
    "label": "Tap-reject at Bollinger lower",
    "entry": 0.04,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 17,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-29T00:31:41.105Z",
+   "slug": "cpc-btc-updown-5m-2026-10-29-0030z",
+   "side": "up",
+   "label": "1m rejection off fresh -2\u03c3",
+   "entry": 0.2,
    "won": false,
    "pnl": -7.5,
    "hourPT": 17,

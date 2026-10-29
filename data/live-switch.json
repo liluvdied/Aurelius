@@ -249,12 +249,12 @@
     "hedgeTwin": false,
     "rej5m": {
       "on": true,
-      "dollars": 7.5,
+      "dollars": 5,
       "assets": [
         "btc"
       ],
       "until": "2099-01-01T00:00:00Z",
-      "note": "fix170, Oct 24 ~7:00 PM PT, Love: rejection model on Polymarket BTC 5m markets at $2 for the next hour (trial, ends 8:10 PM PT) | Oct 24 ~7:21 PM PT, Love: 'just have it be a 24 hour trial' -> until Sun Oct 25 7:15 PM PT | fix171 Oct 24 ~7:34 PM PT, Love: main book on the 5m for the hour (mainUntil 8:45 PM PT), then the rejection model resumes | fix185 Oct 25 ~12:19 AM PT, Love: main book on the 5m overnight (till 9 AM PT) except her rejection hours; 12 AM hour to the main book too (mainAllUntil 1 AM PT) | fix190 Oct 25 ~2:09 AM PT, Love: 'we can run the 5M books on the new flip-infrastructure @ $5 overnight' -> $5 | fix227 Oct 25 ~6:39 PM PT, Love: 'let's up the position sizing on the 5M book to $7 pls ... we'll let her run for the night there' -> $7, until Mon Oct 26 9 AM PT | fix228 Oct 25 ~6:39 PM PT, Love: 'oh no the trial is done hun she's staying on polymarket exactly how she's been on okay' -> no end date (2099) | fix236 Oct 25 ~9:16 PM PT, Love card 'Stop 15m, 5m to $10' -> $10 | fix265 Oct 26 ~9:00 AM PT, Love: 'i didn't want that model on at $15, just put it on at $5 ... until she makes some back' -> $5 | fix358 Oct 27 ~6:55 PM PT, Love: \"let's cut those hours and raise her stake to $10 on the other hours hunni \ud83d\udc9e better math on that\" + card \"$7.50 now\": 5M $7.50 in her kept hours (Poly cap lifts for 5m markets only).",
+      "note": "fix170, Oct 24 ~7:00 PM PT, Love: rejection model on Polymarket BTC 5m markets at $2 for the next hour (trial, ends 8:10 PM PT) | Oct 24 ~7:21 PM PT, Love: 'just have it be a 24 hour trial' -> until Sun Oct 25 7:15 PM PT | fix171 Oct 24 ~7:34 PM PT, Love: main book on the 5m for the hour (mainUntil 8:45 PM PT), then the rejection model resumes | fix185 Oct 25 ~12:19 AM PT, Love: main book on the 5m overnight (till 9 AM PT) except her rejection hours; 12 AM hour to the main book too (mainAllUntil 1 AM PT) | fix190 Oct 25 ~2:09 AM PT, Love: 'we can run the 5M books on the new flip-infrastructure @ $5 overnight' -> $5 | fix227 Oct 25 ~6:39 PM PT, Love: 'let's up the position sizing on the 5M book to $7 pls ... we'll let her run for the night there' -> $7, until Mon Oct 26 9 AM PT | fix228 Oct 25 ~6:39 PM PT, Love: 'oh no the trial is done hun she's staying on polymarket exactly how she's been on okay' -> no end date (2099) | fix236 Oct 25 ~9:16 PM PT, Love card 'Stop 15m, 5m to $10' -> $10 | fix265 Oct 26 ~9:00 AM PT, Love: 'i didn't want that model on at $15, just put it on at $5 ... until she makes some back' -> $5 | fix358 Oct 27 ~6:55 PM PT, Love: \"let's cut those hours and raise her stake to $10 on the other hours hunni \ud83d\udc9e better math on that\" + card \"$7.50 now\": 5M $7.50 in her kept hours (Poly cap lifts for 5m markets only). | fix410 Oct 28 2026 5:41 PM PT, Love: \"let's bring the 5M back to $5 for a bit too hun , let's let her get stable again\" -> $5 (was $7.50).",
       "mainUntil": "2026-10-25T16:00:00Z",
       "mainAllUntil": "2026-10-25T11:00:00Z",
       "extraRej": {
@@ -277,7 +277,8 @@
       "skipHoursPrev357": [
         23
       ],
-      "dollarsPrev358": 5
+      "dollarsPrev358": 5,
+      "dollarsPrev410": 7.5
     },
     "no15m": true,
     "no15mNote": "fix236 Oct 25 ~9:16 PM PT, Love card 'Stop 15m, 5m to $10': no Polymarket 15m entries; since Oct 23 Poly 15m gold 5-24 -$40.63, BTC 45-62 +$10.82 vs 5m 13-2 +$55.25 since the 72% rule"
@@ -1640,6 +1641,29 @@
     "dollarsNote": "fix248 Oct 26 ~12:59 AM PT, Love: 'pls put it back to $11 and $5 for the orders hun' (rejection $11 + $5 add-on)",
     "dollarsByHour": {},
     "rejSeatHours": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
       23
     ]
   },
@@ -2779,5 +2803,12 @@
     },
     "note": "fix405 Oct 28 2026 5:00 PM PT: copy back to undo the hour cuts"
   },
-  "note405": "fix405 Oct 28 2026 5:00 PM PT, Love 4:59 PM: \"yes let's cut those hours bb\": Kalshi sits out BTC 12 AM, 9 PM, 11 PM and gold 8 PM live (real fills since Oct 25: BTC 11 PM 18% of 11 -$69, 9 PM 38% -$81, 12 AM 43% -$86; gold 8 PM 27% of 11 -$64). Paper keeps measuring. Poly untouched."
+  "note405": "fix405 Oct 28 2026 5:00 PM PT, Love 4:59 PM: \"yes let's cut those hours bb\": Kalshi sits out BTC 12 AM, 9 PM, 11 PM and gold 8 PM live (real fills since Oct 25: BTC 11 PM 18% of 11 -$69, 9 PM 38% -$81, 12 AM 43% -$86; gold 8 PM 27% of 11 -$64). Paper keeps measuring. Poly untouched.",
+  "fix412Prev": {
+    "offHourMain.rejSeatHours": [
+      23
+    ],
+    "note": "fix412 Oct 28 2026 6:15 PM PT: copy back to undo (copy held the rejection seat)"
+  },
+  "note412": "fix412 Oct 28 2026 6:03 PM PT, Love: \"do not run this model bro i'm not retraining a model again\" + \"put her on the rejection model\": recon-rej takes the live seat in every rejection hour, both assets; the no-pink copy is off live."
 }

@@ -262,3 +262,11 @@ Love: "let's cut those hours and raise her stake to $10 on the other hours hunni
 - fix406: the 1m flip is cut from anyFlipNow + anyFlipMinNow (main, rejection, copy, every book on the shared reader). R002 retired, R096.
 - fix407: every flipRule book (main, rejection, paper pure/sov/own-eyes/2nd-band) needs the 2-5m candle $5 BTC / 10c gold past its open, like the copy. R097.
 - fix408: recon-og PAPER book - grok v1 rebuilt (Love 5:15 PM: "take the elements of that strategy/model, and rewrite it from the ground up"): rolling 60-min VWAP + half-sigma bands 0.5-3 + VWAP on 1/2/3/4/5m, tap-rejects only, same guard as pure (fix401 gate). R098.
+
+## fix409-414 (Oct 28 2026 5:45-6:15 PM PT)
+- fix409: gold PINK TO GREEN no short in the bottom 55% (was 60%), PINK TO RED no long in the top 55% (was 50%) - main, rejection, copy. Love 5:39 PM: "55% for shorts and longs pls / main rejection and copy bb". R099.
+- fix410: Poly 5M back to $5 (was $7.50), refrozen. Love 5:41 PM: "let's bring the 5M back to $5 for a bit too hun , let's let her get stable again". R100.
+- fix411: HELD ON HER SIDE - main/rej/copy: every wall must also pass at the least-favourable price of the last 3 s (a one-tick poke through pink is not a break). Love 5:56 PM: "she needs to be ON the side of the break" + 5:59 PM "pls reinforce everything". R101.
+- fix412: the rejection model holds the live seat in every rejection hour, both assets; the no-pink copy is paper (keeps training). Love 6:03 PM: "do not run this model bro" + "put her on the rejection model" + 6:04 PM "no still retrain it. just don't retrain it on real money". R102.
+- fix413: SESSION BAND AHEAD OF THE PINK = WAIT back at the door for main/rej/copy (first Oct 17 12:10 PM, retired Oct 17 4:20 PM). Love 6:06-6:07 PM: "IT IS A STRICT BAND TOLERANCE. PRICE BREAKING PINK DOES NOT REMOVE THAT" + "i've seen her wait on that exact trade a trillllllion times". R103.
+- fix414: fix399's 20% small-band tolerance is OFF - her 33% stands. Love 6:10 PM: "just keep it at 33% dude ... that's a HARD no on 20% at this band width". R104.

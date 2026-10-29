@@ -1,9 +1,41 @@
-# Every decision Love has made - rebuilt 2026-10-29T00:31:48.628423+00:00
+# Every decision Love has made - rebuilt 2026-10-29T01:16:45.835224+00:00
 
-1266 decisions with Love's words or card picks, out of 1995 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1273 decisions with Love's words or card picks, out of 2006 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T01:15:09Z  ·  diary line 2471  ·  fix412
+- Love: “do not run this model bro i'm not retraining a model again”
+- Love: “put her on the rejection model”
+- fix412 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T01:15:09Z fix412 CONFIG at boundary: offHourMain.rejSeatHours 0-23 - the rejection model holds the live seat in every rejection hour (both assets), the no-pink copy off live (fix412Prev). (Love 6:03 PM PT: "do not run this model bro i'm not retraining a model again" + "put her on the rejection model")
+
+## 2026-10-29T01:15:09.265712+00:00  ·  diary line 2469
+- Love: “just keep it at 33% dude if that let that long through that’s a HARD no on 20% at this band width”
+- Full entry: 2026-10-29T01:15:09.265712+00:00 THAW (Love Oct 28 2026 6:10 PM PT: "just keep it at 33% dude if that let that long through that’s a HARD no on 20% at this band width")
+
+## 2026-10-29T01:15:06.098757+00:00  ·  diary line 2467
+- Love: “DUDE. IT IS A STRICT BAND TOLERANCE. PRICE BREAKING PINK DOES NOT REMOVE THAT.”
+- Full entry: 2026-10-29T01:15:06.098757+00:00 THAW (Love Oct 28 2026 6:06 PM PT: "DUDE. IT IS A STRICT BAND TOLERANCE. PRICE BREAKING PINK DOES NOT REMOVE THAT." + 6:07 PM: "and yesssss it did bro i’ve seen her wait on that exact trade a trillllllion times." (to: bring back SESSION BAND AHEAD OF THE PINK = WAIT, card option Rejection, main + copy))
+
+## 2026-10-29T01:15:03.925287+00:00  ·  diary line 2465
+- Love: “and please reinforce that barrier if you can ... she needs to be ON the side of the break she cannot trade without price being on the same side of the break this is veryyyy old news”
+- Full entry: 2026-10-29T01:15:03.925287+00:00 THAW (Love Oct 28 2026 5:56 PM PT: "and please reinforce that barrier if you can ... she needs to be ON the side of the break she cannot trade without price being on the same side of the break this is veryyyy old news" + 5:59 PM: "pls reinforce everything")
+
+## 2026-10-29T01:00:00Z  ·  diary line 2464  ·  fix410
+- Love: “let’s bring the 5M back to $5 for a bit too hun , let’s let her get stable again 💘”
+- fix410 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T01:00:00Z fix410 CONFIG at boundary: Poly 5M polyTwin.rej5m.dollars 7.5 -> 5 (dollarsPrev410). 5M refrozen. (Love Oct 28 2026 5:41 PM PT: "let’s bring the 5M back to $5 for a bit too hun , let’s let her get stable again 💘")
+
+## 2026-10-29T00:45:03.625277+00:00  ·  diary line 2462
+- Love: “yeah let’s make it 55% hun that’s good”
+- Full entry: 2026-10-29T00:45:03.625277+00:00 THAW (Love Oct 28 2026 5:37 PM PT: "yeah let’s make it 55% hun that’s good" + 5:39 PM: "55% for shorts and longs pls 💞 main rejection and copy bb")
+
+## 2026-10-29T00:32:04.356242+00:00  ·  diary line 2461  ·  fix358, fix406
+- fix358 IN HER CODE
+- fix406 IN HER CODE
+- Full entry: 2026-10-29T00:32:04.356242+00:00 fix406+407+408 verified 00:30Z: live True, GOLDEN ✓, CORNERSTONES ✓ (line 12 now 2/3/4/5m), UMPIRE SAFE, SEAL ✓, 5M FROZEN ✓. Rulebook Cornerstone #1 updated. Love 5:29 PM 'the 5M might have shifted' -> freeze ✓, 5M Wed 40 trades 48% -$41 (Mon 49%, Tue 51%; \$7.50 stake since fix358).
 
 ## 2026-10-29T00:30:08.958626+00:00  ·  diary line 2459
 - Love: “do you think we can try running another paper book with the half sigmas and see how that does? the og rolling vwap? on the 1, 2,3,4&5M timeframes? i have the source code of the OG model (grok v1) ... let's see how those do, and definitely give them the same guard ok”

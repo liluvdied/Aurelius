@@ -71315,3 +71315,168 @@
 {"at":"2026-10-29T00:31:38.338Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4041.68,"broke":null,"wait":"no band broken yet this window"}
 {"at":"2026-10-29T00:31:53.915Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4040.65,"broke":null,"wait":"no band broken yet this window"}
 {"at":"2026-10-29T00:32:08.734Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4040.83,"broke":{"dir":"up","name":"-2σ","price":4040.386268454665},"wait":"broke -2σ up, watching 5m PP (4 away)"}
+{"at":"2026-10-29T00:32:25.285Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4040.37,"broke":{"dir":"up","name":"-2σ","price":4040.3299706021767},"wait":"broke -2σ up, watching 5m PP (4.46 away)"}
+{"at":"2026-10-29T00:32:47.268Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4039.34,"broke":{"dir":"down","name":"5m BBSR lower","price":4039.847092827223},"wait":"broke 5m BBSR lower down, watching -3σ (5.22 away)"}
+{"at":"2026-10-29T00:32:56.169Z","ticker":"KXGOLD15M-26OCT282045-45","tick":0,"broke":{"dir":"down","name":"5m BBSR lower","price":4039.847092827223},"wait":"no fresh price"}
+{"at":"2026-10-29T00:33:03.230Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4038.58,"broke":{"dir":"down","name":"5m BBSR lower","price":4039.847092827223},"wait":"broke 5m BBSR lower down, watching -3σ (4.56 away)"}
+{"at":"2026-10-29T00:33:19.089Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4038.72,"broke":{"dir":"down","name":"5m BBSR lower","price":4039.847092827223},"wait":"broke 5m BBSR lower down, watching -3σ (4.9 away)"}
+{"at":"2026-10-29T00:33:34.456Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4039.53,"broke":{"dir":"down","name":"5m BBSR lower","price":4039.847092827223},"wait":"broke 5m BBSR lower down, watching -3σ (5.81 away)"}
+{"at":"2026-10-29T00:33:50.162Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4039.38,"broke":{"dir":"down","name":"5m BBSR lower","price":4039.847092827223},"wait":"broke 5m BBSR lower down, watching -3σ (5.73 away)"}
+{"at":"2026-10-29T00:33:56.524Z","ticker":"KXGOLD15M-26OCT282045-45","tick":0,"broke":{"dir":"down","name":"5m BBSR lower","price":4039.847092827223},"wait":"no fresh price"}
+{"at":"2026-10-29T00:35:02.207Z","ticker":"KXGOLD15M-26OCT282045-45","tick":0,"broke":{"dir":"down","name":"5m BBSR lower","price":4039.847092827223},"wait":"no fresh price"}
+{"at":"2026-10-29T00:35:43.328Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4040.2,"broke":{"dir":"up","name":"-2σ","price":4039.288661835262},"wait":"broke -2σ up, watching 5m PP (2.75 away)"}
+{"at":"2026-10-29T00:35:58.855Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4040.76,"broke":{"dir":"up","name":"-2σ","price":4039.288661835262},"wait":"broke -2σ up, watching 5m PP (2.19 away)"}
+{"at":"2026-10-29T00:36:13.898Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4040.71,"broke":{"dir":"up","name":"-2σ","price":4039.288661835262},"wait":"broke -2σ up, watching 5m PP (2.58 away)"}
+{"at":"2026-10-29T00:36:29.469Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4040.48,"broke":{"dir":"up","name":"-2σ","price":4039.288661835262},"wait":"broke -2σ up, watching 5m PP (2.81 away)"}
+{"at":"2026-10-29T00:36:44.545Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4039.82,"broke":{"dir":"up","name":"-2σ","price":4039.288661835262},"wait":"broke -2σ up, watching 5m PP (3.47 away)"}
+{"at":"2026-10-29T00:37:00.542Z","ticker":"KXGOLD15M-26OCT282045-45","tick":4038.71,"broke":{"dir":"up","name":"-2σ","price":4039.288661835262},"wait":"broke -2σ up, watching 5m PP (4.58 away)"}
+{"at":"2026-10-29T00:45:04.555Z","ticker":"KXBTC15M-26OCT282100-00","tick":81080.79,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:45:04.620Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4039.44,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:45:19.598Z","ticker":"KXBTC15M-26OCT282100-00","tick":81053.93,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:45:19.635Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4039.54,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:45:23.352Z","ticker":"KXBTC15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:45:23.429Z","ticker":"KXGOLD15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:45:27.664Z","ticker":"KXBTC15M-26OCT282100-00","tick":81078.6,"broke":{"dir":"up","name":"fresh -2σ","price":81081.63974201799},"wait":"broke fresh -2σ up, watching 5m PP (40.65 away)"}
+{"at":"2026-10-29T00:45:34.813Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4039.14,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:45:49.886Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.98,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:45:54.665Z","ticker":"KXBTC15M-26OCT282100-00","tick":0,"broke":{"dir":"down","name":"5m BBSR lower","price":81043.54212193651},"wait":"no fresh price"}
+{"at":"2026-10-29T00:45:54.691Z","ticker":"KXGOLD15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:45:58.707Z","ticker":"KXBTC15M-26OCT282100-00","tick":81048.51,"broke":{"dir":"down","name":"5m BBSR lower","price":81043.54212193651},"wait":"broke 5m BBSR lower down, watching fresh -3σ (35.04 away)"}
+{"at":"2026-10-29T00:46:05.800Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.18,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:46:11.807Z","ticker":"KXBTC15M-26OCT282100-00","tick":0,"broke":{"dir":"up","name":"5m BBSR lower","price":81048.72634959586},"wait":"no fresh price"}
+{"at":"2026-10-29T00:46:11.846Z","ticker":"KXGOLD15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:46:20.990Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.05,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:46:27.620Z","ticker":"KXBTC15M-26OCT282100-00","tick":0,"broke":{"dir":"up","name":"5m BBSR lower","price":81051.29106569555},"wait":"no fresh price"}
+{"at":"2026-10-29T00:46:27.652Z","ticker":"KXGOLD15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:46:36.045Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.42,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:46:51.670Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.11,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:47:00.161Z","ticker":"KXGOLD15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:47:06.774Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.37,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:47:22.099Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.74,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:47:32.925Z","ticker":"KXGOLD15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:47:37.354Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.74,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:47:52.764Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4036.91,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:48:08.004Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.62,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:48:23.375Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.71,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:48:35.909Z","ticker":"KXGOLD15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:48:38.936Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.4,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:48:54.562Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.97,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:48:58.143Z","ticker":"KXGOLD15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:49:10.582Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.31,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:49:25.992Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.4,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:49:41.072Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.1,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:49:56.346Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.61,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:50:11.390Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.39,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:50:26.694Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.51,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:50:41.995Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4039.52,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:50:57.607Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4039.57,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:51:13.174Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4039.28,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:51:28.505Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4039.2,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:51:43.842Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4039.14,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:51:59.223Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.94,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:52:14.233Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.39,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:52:30.342Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.19,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:52:45.834Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.25,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:53:01.595Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.68,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:53:16.865Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.17,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:53:32.960Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.01,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:53:48.156Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.64,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:53:58.561Z","ticker":"KXGOLD15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:54:04.059Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4036.92,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:54:19.253Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.09,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:54:34.921Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.51,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:54:50.166Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.38,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:55:06.226Z","ticker":"KXGOLD15M-26OCT282100-00","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T00:55:08.730Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.35,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:55:24.460Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.15,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:55:39.504Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.44,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:55:54.536Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.15,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:56:10.190Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4036.55,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:56:25.719Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.57,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:56:41.497Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.8,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:56:56.864Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.58,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:57:12.592Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.97,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:57:27.805Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.73,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:57:43.398Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4037.7,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T00:57:58.843Z","ticker":"KXGOLD15M-26OCT282100-00","tick":4038.43,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:00:04.644Z","ticker":"KXBTC15M-26OCT282115-15","tick":81012.27,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:00:04.845Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4036.99,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:00:20.280Z","ticker":"KXBTC15M-26OCT282115-15","tick":81010.18,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:00:20.307Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4037.52,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:00:32.246Z","ticker":"KXBTC15M-26OCT282115-15","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T01:00:32.483Z","ticker":"KXGOLD15M-26OCT282115-15","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T01:00:36.241Z","ticker":"KXBTC15M-26OCT282115-15","tick":81034.37,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:00:36.268Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4039.03,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:00:47.792Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4039.68,"broke":{"dir":"up","name":"5m PP","price":4038.7122980856275},"wait":"broke 5m PP up, watching -1σ (2.06 away)"}
+{"at":"2026-10-29T01:00:51.794Z","ticker":"KXBTC15M-26OCT282115-15","tick":81005.5,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:01:03.964Z","ticker":"KXGOLD15M-26OCT282115-15","tick":0,"broke":{"dir":"up","name":"5m PP","price":4038.7122980856275},"wait":"no fresh price"}
+{"at":"2026-10-29T01:01:14.998Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4042.79,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (6.86 away)"}
+{"at":"2026-10-29T01:01:30.039Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4042.37,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (7.26 away)"}
+{"at":"2026-10-29T01:01:45.480Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4043.37,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (6.24 away)"}
+{"at":"2026-10-29T01:02:00.542Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4043.81,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (5.79 away)"}
+{"at":"2026-10-29T01:02:16.306Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4044.4,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (5.19 away)"}
+{"at":"2026-10-29T01:02:32.216Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4044.64,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (4.93 away)"}
+{"at":"2026-10-29T01:02:33.390Z","ticker":"KXGOLD15M-26OCT282115-15","tick":0,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"no fresh price"}
+{"at":"2026-10-29T01:02:47.501Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4043.88,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (5.66 away)"}
+{"at":"2026-10-29T01:02:54.180Z","ticker":"KXGOLD15M-26OCT282115-15","tick":0,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"no fresh price"}
+{"at":"2026-10-29T01:03:03.327Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4044.66,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (4.86 away)"}
+{"at":"2026-10-29T01:03:19.098Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4044.03,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (5.47 away)"}
+{"at":"2026-10-29T01:03:35.490Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4042.44,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (7.06 away)"}
+{"at":"2026-10-29T01:03:51.177Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4043.21,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (6.24 away)"}
+{"at":"2026-10-29T01:04:01.492Z","ticker":"KXGOLD15M-26OCT282115-15","tick":0,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"no fresh price"}
+{"at":"2026-10-29T01:04:06.549Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4041.62,"broke":{"dir":"up","name":"-1σ","price":4041.7253404023945},"wait":"broke -1σ up, watching session VWAP (7.81 away)"}
+{"at":"2026-10-29T01:04:25.354Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4041.93,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (7.46 away)"}
+{"at":"2026-10-29T01:04:40.901Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4041.72,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (7.65 away)"}
+{"at":"2026-10-29T01:04:56.307Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4041.6,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (7.76 away)"}
+{"at":"2026-10-29T01:05:11.893Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4042.9,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (6.43 away)"}
+{"at":"2026-10-29T01:05:27.516Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4041.73,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (7.59 away)"}
+{"at":"2026-10-29T01:05:43.341Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4042.08,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (7.22 away)"}
+{"at":"2026-10-29T01:05:59.062Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4042.62,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (6.66 away)"}
+{"at":"2026-10-29T01:06:15.030Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4044.7,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (4.57 away)"}
+{"at":"2026-10-29T01:06:30.130Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4044.07,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (5.19 away)"}
+{"at":"2026-10-29T01:06:45.859Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4045.54,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (3.72 away)"}
+{"at":"2026-10-29T01:07:01.400Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4046.23,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (3.02 away)"}
+{"at":"2026-10-29T01:07:17.388Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4046.49,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (2.76 away)"}
+{"at":"2026-10-29T01:07:32.513Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4046.24,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (2.99 away)"}
+{"at":"2026-10-29T01:07:47.971Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4046.81,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (2.42 away)"}
+{"at":"2026-10-29T01:08:02.983Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4046.83,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (2.4 away)"}
+{"at":"2026-10-29T01:08:19.939Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4047.21,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (2.02 away)"}
+{"at":"2026-10-29T01:08:35.422Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4047.03,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (2.2 away)"}
+{"at":"2026-10-29T01:08:50.623Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4047.18,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (2.03 away)"}
+{"at":"2026-10-29T01:09:01.256Z","ticker":"KXGOLD15M-26OCT282115-15","tick":0,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"no fresh price"}
+{"at":"2026-10-29T01:09:06.581Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4046.53,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (2.67 away)"}
+{"at":"2026-10-29T01:09:21.712Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4045.03,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (4.17 away)"}
+{"at":"2026-10-29T01:09:37.054Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4046.63,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (2.55 away)"}
+{"at":"2026-10-29T01:09:52.217Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4046.38,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching session VWAP (2.79 away)"}
+{"at":"2026-10-29T01:10:01.989Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4046.96,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching 5m PP (4.32 away)"}
+{"at":"2026-10-29T01:10:17.398Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4045.82,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching 5m PP (3.18 away)"}
+{"at":"2026-10-29T01:10:33.136Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4045.28,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching 5m PP (2.64 away)"}
+{"at":"2026-10-29T01:10:48.670Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4045.68,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching 5m PP (3.04 away)"}
+{"at":"2026-10-29T01:11:04.225Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4045.64,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching 5m PP (3.33 away)"}
+{"at":"2026-10-29T01:11:19.952Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4047.29,"broke":{"dir":"up","name":"-1σ","price":4041.4725076179325},"wait":"broke -1σ up, watching 5m PP (4.98 away)"}
+{"at":"2026-10-29T01:11:34.224Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4049.84,"broke":{"dir":"up","name":"session VWAP","price":4049.134079214047},"wait":"broke session VWAP up, watching +1σ (7.05 away)"}
+{"at":"2026-10-29T01:11:50.071Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4051.04,"broke":{"dir":"up","name":"session VWAP","price":4049.134079214047},"wait":"broke session VWAP up, watching +1σ (5.85 away)"}
+{"at":"2026-10-29T01:12:05.819Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4050.77,"broke":{"dir":"up","name":"session VWAP","price":4049.134079214047},"wait":"broke session VWAP up, watching +1σ (6.12 away)"}
+{"at":"2026-10-29T01:12:21.051Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4050.87,"broke":{"dir":"up","name":"session VWAP","price":4049.134079214047},"wait":"broke session VWAP up, watching +1σ (6.01 away)"}
+{"at":"2026-10-29T01:12:36.763Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4051.06,"broke":{"dir":"up","name":"session VWAP","price":4049.134079214047},"wait":"broke session VWAP up, watching +1σ (5.82 away)"}
+{"at":"2026-10-29T01:12:52.385Z","ticker":"KXGOLD15M-26OCT282115-15","tick":4052.43,"broke":{"dir":"up","name":"session VWAP","price":4049.134079214047},"wait":"broke session VWAP up, watching +1σ (4.44 away)"}
+{"at":"2026-10-29T01:15:03.237Z","ticker":"KXBTC15M-26OCT282130-30","tick":80879.75,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:15:03.287Z","ticker":"KXGOLD15M-26OCT282130-30","tick":4053.92,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:15:18.708Z","ticker":"KXGOLD15M-26OCT282130-30","tick":4053.3,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:15:28.998Z","ticker":"KXBTC15M-26OCT282130-30","tick":80898.88,"broke":{"dir":"up","name":"fresh -3σ","price":80860.57370958665},"wait":"broke fresh -3σ up, watching session VWAP (30.5 away)"}
+{"at":"2026-10-29T01:15:32.977Z","ticker":"KXBTC15M-26OCT282130-30","tick":0,"broke":{"dir":"up","name":"fresh -3σ","price":80860.57370958665},"wait":"no fresh price"}
+{"at":"2026-10-29T01:15:33.071Z","ticker":"KXGOLD15M-26OCT282130-30","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T01:15:34.375Z","ticker":"KXGOLD15M-26OCT282130-30","tick":4053.82,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:15:49.656Z","ticker":"KXGOLD15M-26OCT282130-30","tick":4054.19,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:16:04.329Z","ticker":"KXBTC15M-26OCT282130-30","tick":0,"broke":{"dir":"up","name":"fresh -3σ","price":80858.60108105034},"wait":"no fresh price"}
+{"at":"2026-10-29T01:16:04.372Z","ticker":"KXGOLD15M-26OCT282130-30","tick":0,"broke":null,"wait":"no fresh price"}
+{"at":"2026-10-29T01:16:05.401Z","ticker":"KXGOLD15M-26OCT282130-30","tick":4053.5,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:16:20.565Z","ticker":"KXGOLD15M-26OCT282130-30","tick":4054.79,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:16:28.991Z","ticker":"KXBTC15M-26OCT282130-30","tick":80914.65,"broke":{"dir":"up","name":"fresh -3σ","price":80858.60108105034},"wait":"broke fresh -3σ up, watching session VWAP (46.27 away)"}
+{"at":"2026-10-29T01:16:36.372Z","ticker":"KXGOLD15M-26OCT282130-30","tick":4056.32,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:16:44.500Z","ticker":"KXBTC15M-26OCT282130-30","tick":80910.25,"broke":{"dir":"up","name":"fresh -3σ","price":80858.60108105034},"wait":"broke fresh -3σ up, watching session VWAP (41.87 away)"}
+{"at":"2026-10-29T01:16:52.107Z","ticker":"KXGOLD15M-26OCT282130-30","tick":4055.38,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:17:00.159Z","ticker":"KXBTC15M-26OCT282130-30","tick":80904.41,"broke":{"dir":"up","name":"fresh -3σ","price":80858.60108105034},"wait":"broke fresh -3σ up, watching session VWAP (36.03 away)"}
+{"at":"2026-10-29T01:17:07.744Z","ticker":"KXGOLD15M-26OCT282130-30","tick":4054.03,"broke":null,"wait":"no band broken yet this window"}
+{"at":"2026-10-29T01:17:15.773Z","ticker":"KXBTC15M-26OCT282130-30","tick":80902.03,"broke":{"dir":"up","name":"fresh -3σ","price":80858.60108105034},"wait":"broke fresh -3σ up, watching session VWAP (33.65 away)"}
+{"at":"2026-10-29T01:17:23.491Z","ticker":"KXGOLD15M-26OCT282130-30","tick":4054.66,"broke":null,"wait":"no band broken yet this window"}

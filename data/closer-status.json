@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T00:31:31.472Z",
+ "at": "2026-10-29T01:17:03.055Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -12,9 +12,9 @@
    "matched": 0
   },
   "NBA": {
-   "live": 9,
-   "late": 0,
-   "matched": 0
+   "live": 10,
+   "late": 4,
+   "matched": 4
   },
   "WNBA": {
    "live": 0,
@@ -27,7 +27,7 @@
    "matched": 0
   },
   "NHL": {
-   "live": 1,
+   "live": 3,
    "late": 0,
    "matched": 0
   },
@@ -37,6 +37,51 @@
    "matched": 0
   }
  },
- "watching": [],
+ "watching": [
+  {
+   "league": "NBA",
+   "game": "Heat 128 @ Hawks 114",
+   "period": 4,
+   "clock": "1:13",
+   "fav": "Heat",
+   "wp": 1,
+   "ask": 1,
+   "ticker": "KXNBAGAME-26OCT28MIAATL-MIA",
+   "matched": true
+  },
+  {
+   "league": "NBA",
+   "game": "Wizards 105 @ Cavaliers 111",
+   "period": 4,
+   "clock": "3:42",
+   "fav": "Cavaliers",
+   "wp": 0.91,
+   "ask": 0.91,
+   "ticker": "KXNBAGAME-26OCT28WASCLE-WAS (NO)",
+   "matched": true
+  },
+  {
+   "league": "NBA",
+   "game": "Hornets 79 @ Pistons 82",
+   "period": 4,
+   "clock": "7:03",
+   "fav": "Pistons",
+   "wp": 0.72,
+   "ask": 0.75,
+   "ticker": "KXNBAGAME-26OCT28CHADET-DET",
+   "matched": true
+  },
+  {
+   "league": "NBA",
+   "game": "76ers 80 @ Pacers 90",
+   "period": 4,
+   "clock": "10:13",
+   "fav": "Pacers",
+   "wp": 0.82,
+   "ask": 0.74,
+   "ticker": "KXNBAGAME-26OCT28PHIIND-IND",
+   "matched": true
+  }
+ ],
  "errors": []
 }
