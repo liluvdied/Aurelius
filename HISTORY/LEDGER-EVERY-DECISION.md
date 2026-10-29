@@ -1,9 +1,13 @@
-# Every decision Love has made - rebuilt 2026-10-29T18:52:32.009124+00:00
+# Every decision Love has made - rebuilt 2026-10-29T18:59:17.801745+00:00
 
-1329 decisions with Love's words or card picks, out of 2071 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1330 decisions with Love's words or card picks, out of 2072 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T18:56:29Z  ·  diary line 2539  ·  fix461
+- fix461 IN HER CODE
+- Full entry: 2026-10-29T18:56:29Z STAGED (waiting on Love's click): fix461 THE UMPIRE AT THE WIRE (INSTALL-UMPIRE-GATE.command; R185-R189) - main + rejection opening orders need the umpire SAFE stamp on the running code, in-memory 6.7 µs; exits never blocked; option A. Dry run: IN, gate inside the opening-only block. R188 notes R101 (3 s hold) stays retired per R120/R135.
 
 ## 2026-10-29T18:45:00.031648+00:00  ·  diary line 2538  ·  fix413, fix460
 - Love: “A BAND 250 AWAY IS NOT A FUCKING OBSTACLE”

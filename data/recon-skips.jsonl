@@ -12707,3 +12707,6 @@
 {"at":"2026-10-29T18:49:23.432Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291500-00","side":"up","label":"Launched from the bottom third (low 80544.95) - a long until the top third","ask":0,"why":"setup has no settled record yet"}
 {"at":"2026-10-29T18:49:59.676Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291500-00","side":"up","label":"Break above 5m PP","ask":0,"why":"setup is 17% over 36 settled (needs 70%+)"}
 {"at":"2026-10-29T18:54:59.454Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291500-00","side":"up","label":"Break above 5m PP","ask":0,"why":"setup is 29% over 42 settled (needs 70%+)"}
+{"at":"2026-10-29T19:00:04.413Z","lane":"recon-tog","ticker":"KXGOLD15M-26OCT291515-15","side":"up","label":"Rejected up off 5m PP","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-29T19:00:04.417Z","lane":"recon-rej","ticker":"KXGOLD15M-26OCT291515-15","side":"up","label":"Rejected up off 5m PP","ask":0,"why":"ask out of bounds"}
+{"at":"2026-10-29T19:01:16.013Z","lane":"recon-top","ticker":"KXBTC15M-26OCT291515-15","side":"up","label":"Rejected up off 5m PP","ask":0,"why":"setup is 39% over 23 settled (needs 70%+)"}

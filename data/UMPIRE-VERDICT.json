@@ -1,8 +1,8 @@
 {
  "ok": true,
- "at": "2026-10-29T18:52:37.462951+00:00",
+ "at": "2026-10-29T18:59:26.550029+00:00",
  "why": "",
- "secs": 18.1,
+ "secs": 21.8,
  "reportOnly": [
   "tools/requests.py",
   "tools/rule-anchors.py"
@@ -59,7 +59,7 @@
   "hourprobe.ts": "29d64ab796819e96",
   "hours.ts": "f53f287126dbe9a3",
   "insurance.ts": "4c605102c7a99ab6",
-  "kalshi-live.server.ts": "b55d2098e92a16a2",
+  "kalshi-live.server.ts": "8875c0bde7c9a6ed",
   "kalshi.ts": "07b7b93593f03088",
   "labjob.ts": "f1466c1ac9b1bdc0",
   "labpull.ts": "d6a06f758c25e88e",
@@ -127,6 +127,7 @@
   "tv.ts": "482f42c8b30577b7",
   "twin.ts": "5d167f2f91c25a1e",
   "types.ts": "2bd4d0663c7660e8",
+  "umpire-gate.ts": "b4b54662d2d75f9e",
   "vwap.ts": "78918a253309f5e0",
   "watchdog.ts": "5602586aa0e3daae"
  }

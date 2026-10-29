@@ -6,6 +6,7 @@ import { bandInWay, bandOnPath, bandReach, centerWrong, shortBandOnTarget, short
 import { listPrimePaper, onPrimeBook, primeOwns, primeProven } from "./prime-book";
 import { readBook } from "./book";
 import { bandLevels, liveOn, loveSkip, maxDollars, noteBlock, recordFire } from "./live-guard";
+void import("./umpire-gate").catch(() => {}); // fix461 (R185/R186, Love Oct 29 2026 11:46 AM PT: "if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out"): the umpire gate starts with the wire
 const ROOT = "https://external-api.kalshi.com";
 const LIVE_DOLLARS = 10;
 let cachedKey = null;
@@ -330,6 +331,7 @@ async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding
       if (line?.bookCopy === "recon-tog" || line?.bookCopy === "recon-rej") { sent.__aureliusBlock = "Blocked: her walls could not be checked for this order - it does not go out unchecked (fix435)"; return null; }
     }
     if ((line?.bookCopy === "recon-tog" || line?.bookCopy === "recon-rej") && line?.gateTest) { sent.__aureliusBlock = "Blocked: main and rejection never skip her walls (fix435)"; return null; } // fix435: no gate-test bypass for main + rejection
+    if (line?.bookCopy === "recon-tog" || line?.bookCopy === "recon-rej") { const ug461 = (globalThis as any).__umpGate461; const u461 = typeof ug461 === "function" ? ug461(String(line.bookCopy)) : "THE UMPIRE GATE is not running - no opening order for main or rejection (fix461)"; if (u461) { sent.__aureliusBlock = `Blocked: ${u461}`; return null; } } // fix461 (R185/R186, Love Oct 29 2026 11:46 AM PT: "if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out" + 11:50 AM "without making the orders lag"): main + rejection opening orders need the umpire's SAFE stamp on the code running now - an in-memory check; exits never come here
   }
   // CONTROL-ALT-DELETE (Claude, Oct 3 ~4:10 PM PT, Love: "remove any trace of her blocks entirely"): Grok's order-path
   // gates were deleted here (paper-only, worst-hours/DNA skip, channel rule, band-in-the-way). Her own lists stay.

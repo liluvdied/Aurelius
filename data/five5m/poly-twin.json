@@ -101,10 +101,34 @@
   "side": "up",
   "ticker": "KXBTC15M-26OCT291500-00",
   "setup": "Rejected up off 5m PP",
-  "lastTry": 1793300195715,
-  "tries": 8,
+  "lastTry": 1793300341629,
+  "tries": 39,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT291515-15:recon-tog:KXBTC15M-26OCT291515-15:recon-tog:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT291515-15",
+  "setup": "Rejected up off 5m PP",
+  "lastTry": 1793300554599,
+  "tries": 34,
   "wallOk": true,
   "status": "waiting",
   "reason": "late door only (the other book holds the 5m)"
+ },
+ "KXBTC15M-26OCT291515-15:recon-rej5:KXBTC15M-26OCT291515-15:recon-rej5:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "up",
+  "ticker": "KXBTC15M-26OCT291515-15",
+  "setup": "Rejected up off 5m PP",
+  "lastTry": 1793300554599,
+  "tries": 19,
+  "wallOk": true,
+  "status": "waiting",
+  "reason": "waiting for her flip - she tries until 3:00 is left in the 5m window (R174)"
  }
 }
