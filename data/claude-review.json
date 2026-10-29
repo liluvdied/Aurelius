@@ -86347,5 +86347,36 @@
   "lessons": [
    "The rejection shadow agreed (short off -1.5σ)."
   ]
+ },
+ "KXBTC15M-26OCT290000-00": {
+  "ticker": "KXBTC15M-26OCT290000-00",
+  "at": "2026-10-29T04:00:13.073Z",
+  "asset": "btc",
+  "side": "down",
+  "setup": "1m rejection off 5m PP",
+  "multiple": 1.45,
+  "profit": 0.42,
+  "result": "win",
+  "entry": {
+   "spot": 79761.77,
+   "band": "-1.5σ",
+   "distSigma": 0.06,
+   "rightSide": false,
+   "bandAhead": true,
+   "throughTarget": true,
+   "minuteIn": 1.1
+  },
+  "peakPct": 43.5,
+  "maxPct": 44.9,
+  "takeProfitPct": 39.9,
+  "exit": "mirrored RECON-REJ paper out: half at 75% (92c) + trail from 90%: best +52%, sold at 99c",
+  "record": "no record yet",
+  "flags": [
+   "Entered on the wrong side of -1.5σ: short just over it.",
+   "A band was directly in front of the short at entry."
+  ],
+  "lessons": [
+   "The rejection shadow went the other way (long off -1.5σ)."
+  ]
  }
 }

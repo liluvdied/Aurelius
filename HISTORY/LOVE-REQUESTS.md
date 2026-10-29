@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R143 - Standing rule: after EVERY change and every exchange that matters, the desk (minus .secrets/ and node_modules/) and the thread save are pushed to github.com/liluvdied/aurelius branch claude/project-thread-mj3rmw - never force, never main. Plus a full read-only rule sweep (data/RULE-SWEEP-2026-10-28.md) so Love doesn't find losses one by one.
+- when: 2026-10-29T03:50:55+00:00
+- Love: "Love Oct 28 2026 8:50 PM PT: "who knows how much else got tossed dude.  if the literal first cornerstone of the model- the 33/20 band tolerances got erased im sure im gonna find out about more of them hun. its fine. its not but its fine. i did it on github luv, please push every single thing there going forward""
+- books: r, e, p, o, s, i, t, o, r, y
+- status: ACTIVE
+- proof: {"process": "push the desk + HISTORY thread save to the repo after every change (Love 8:50 PM)"}
+
 ## R140 - fix434: ON HER SIDE OF THE BREAK, her 33% - main + rejection: her 33% channel runs session band to session band, and a band only counts as passed when price is NOW 33c gold / $6 BTC through it (or bouncing off it); long in the top 33% / short in the bottom 33% = refused. No hold, no timer. Behaviour test tools/side-test-434.cjs. Installs with fix433 once this Mac lets installs run.
 - when: 2026-10-29T03:46:58+00:00
 - Love: "Love Oct 28 2026 8:46 PM PT: "ohhhh my god dude lol okay. price on the same side of the break stays.  33% NEVER. EVER. LEAVES. UNDER. ANY. CIRCUM. STANCES. capiche? 😂 basically starting from scratch for all intents and purposes . or atleast severely brought back to the stone age . yes - download it and keep the downloaded libraries out , keys out""

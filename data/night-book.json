@@ -1,5 +1,445 @@
 [
  {
+  "id": "KXBTC15M-26OCT290015-15:sole5z",
+  "book": "sole5z",
+  "at": "2026-10-29T04:00:39.242Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT290015-15",
+  "side": "up",
+  "setup": "Close above 5m nav purple",
+  "ask": 0.41,
+  "multiple": 2.44,
+  "stake": 30,
+  "tpPct": 129.51,
+  "peakPct": 0,
+  "exit": null,
+  "sellBid": null,
+  "result": "open",
+  "pnl": null,
+  "bands": {
+   "nav": {
+    "m1": {
+     "c": 79730.194,
+     "up": 79752.621,
+     "dn": 79707.768
+    },
+    "m5": {
+     "c": 79739.746,
+     "up": 79837.684,
+     "dn": 79641.808
+    },
+    "m10": {
+     "c": 79775.436,
+     "up": 79855.622,
+     "dn": 79695.249
+    },
+    "m15": {
+     "c": 79769.275,
+     "up": 80402.644,
+     "dn": 79135.906
+    },
+    "m60": {
+     "c": 80501.642,
+     "up": 81478.405,
+     "dn": 79524.879
+    },
+    "close1m": 79742.76,
+    "prev1m": 79746.52,
+    "close1mAt": 1793246340,
+    "close5m": 79742.76,
+    "prev5m": 79713.36,
+    "close5mAt": 1793246100,
+    "bar5m": {
+     "o": 79693.86,
+     "h": 79778.72,
+     "l": 79693.86,
+     "c": 79742.76
+    },
+    "atr5m": 128.98,
+    "live1m": {
+     "t": 1793246400,
+     "h": 79753.46,
+     "l": 79699.27,
+     "c": 79699.27
+    }
+   },
+   "spot": 79709.75,
+   "vwap": 80643.69,
+   "sd": 643.75,
+   "up1": 81287.44,
+   "up2": 81931.19,
+   "up3": 82574.95,
+   "dn1": 79999.93,
+   "dn2": 79356.18
+  },
+  "spot": 79709.75,
+  "event": null,
+  "hourPT": 21,
+  "troughPct": -2.44
+ },
+ {
+  "id": "KXBTC15M-26OCT290015-15:bank5p",
+  "book": "bank5p",
+  "at": "2026-10-29T04:00:39.219Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT290015-15",
+  "side": "up",
+  "setup": "Close above 5m nav purple (SOLE+ entry, BANK exit)",
+  "ask": 0.41,
+  "multiple": 2.44,
+  "stake": 30,
+  "tpPct": 129.51,
+  "peakPct": 0,
+  "exit": null,
+  "sellBid": null,
+  "result": "open",
+  "pnl": null,
+  "bands": {
+   "nav": {
+    "m1": {
+     "c": 79730.194,
+     "up": 79752.621,
+     "dn": 79707.768
+    },
+    "m5": {
+     "c": 79739.746,
+     "up": 79837.684,
+     "dn": 79641.808
+    },
+    "m10": {
+     "c": 79775.436,
+     "up": 79855.622,
+     "dn": 79695.249
+    },
+    "m15": {
+     "c": 79769.275,
+     "up": 80402.644,
+     "dn": 79135.906
+    },
+    "m60": {
+     "c": 80501.642,
+     "up": 81478.405,
+     "dn": 79524.879
+    },
+    "close1m": 79742.76,
+    "prev1m": 79746.52,
+    "close1mAt": 1793246340,
+    "close5m": 79742.76,
+    "prev5m": 79713.36,
+    "close5mAt": 1793246100,
+    "bar5m": {
+     "o": 79693.86,
+     "h": 79778.72,
+     "l": 79693.86,
+     "c": 79742.76
+    },
+    "atr5m": 128.98,
+    "live1m": {
+     "t": 1793246400,
+     "h": 79753.46,
+     "l": 79699.27,
+     "c": 79699.27
+    }
+   },
+   "spot": 79709.75,
+   "vwap": 80643.69,
+   "sd": 643.75,
+   "up1": 81287.44,
+   "up2": 81931.19,
+   "up3": 82574.95,
+   "dn1": 79999.93,
+   "dn2": 79356.18
+  },
+  "spot": 79709.75,
+  "event": null,
+  "hourPT": 21,
+  "troughPct": -2.44
+ },
+ {
+  "id": "KXBTC15M-26OCT290015-15:sole5p",
+  "book": "sole5p",
+  "at": "2026-10-29T04:00:39.219Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT290015-15",
+  "side": "up",
+  "setup": "Close above 5m nav purple",
+  "ask": 0.41,
+  "multiple": 2.44,
+  "stake": 30,
+  "tpPct": 129.51,
+  "peakPct": 0,
+  "exit": null,
+  "sellBid": null,
+  "result": "open",
+  "pnl": null,
+  "bands": {
+   "nav": {
+    "m1": {
+     "c": 79730.194,
+     "up": 79752.621,
+     "dn": 79707.768
+    },
+    "m5": {
+     "c": 79739.746,
+     "up": 79837.684,
+     "dn": 79641.808
+    },
+    "m10": {
+     "c": 79775.436,
+     "up": 79855.622,
+     "dn": 79695.249
+    },
+    "m15": {
+     "c": 79769.275,
+     "up": 80402.644,
+     "dn": 79135.906
+    },
+    "m60": {
+     "c": 80501.642,
+     "up": 81478.405,
+     "dn": 79524.879
+    },
+    "close1m": 79742.76,
+    "prev1m": 79746.52,
+    "close1mAt": 1793246340,
+    "close5m": 79742.76,
+    "prev5m": 79713.36,
+    "close5mAt": 1793246100,
+    "bar5m": {
+     "o": 79693.86,
+     "h": 79778.72,
+     "l": 79693.86,
+     "c": 79742.76
+    },
+    "atr5m": 128.98,
+    "live1m": {
+     "t": 1793246400,
+     "h": 79753.46,
+     "l": 79699.27,
+     "c": 79699.27
+    }
+   },
+   "spot": 79709.75,
+   "vwap": 80643.69,
+   "sd": 643.75,
+   "up1": 81287.44,
+   "up2": 81931.19,
+   "up3": 82574.95,
+   "dn1": 79999.93,
+   "dn2": 79356.18
+  },
+  "spot": 79709.75,
+  "event": null,
+  "hourPT": 21,
+  "troughPct": -2.44
+ },
+ {
+  "id": "KXBTC15M-26OCT290015-15:sole5",
+  "book": "sole5",
+  "at": "2026-10-29T04:00:39.197Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT290015-15",
+  "side": "up",
+  "setup": "Close above 5m nav purple",
+  "ask": 0.41,
+  "multiple": 2.44,
+  "stake": 30,
+  "tpPct": 129.51,
+  "peakPct": 0,
+  "exit": null,
+  "sellBid": null,
+  "result": "open",
+  "pnl": null,
+  "bands": {
+   "nav": {
+    "m1": {
+     "c": 79730.194,
+     "up": 79752.621,
+     "dn": 79707.768
+    },
+    "m5": {
+     "c": 79739.746,
+     "up": 79837.684,
+     "dn": 79641.808
+    },
+    "m10": {
+     "c": 79775.436,
+     "up": 79855.622,
+     "dn": 79695.249
+    },
+    "m15": {
+     "c": 79769.275,
+     "up": 80402.644,
+     "dn": 79135.906
+    },
+    "m60": {
+     "c": 80501.642,
+     "up": 81478.405,
+     "dn": 79524.879
+    },
+    "close1m": 79742.76,
+    "prev1m": 79746.52,
+    "close1mAt": 1793246340,
+    "close5m": 79742.76,
+    "prev5m": 79713.36,
+    "close5mAt": 1793246100,
+    "bar5m": {
+     "o": 79693.86,
+     "h": 79778.72,
+     "l": 79693.86,
+     "c": 79742.76
+    },
+    "atr5m": 128.98,
+    "live1m": {
+     "t": 1793246400,
+     "h": 79753.46,
+     "l": 79699.27,
+     "c": 79699.27
+    }
+   },
+   "spot": 79709.75,
+   "vwap": 80643.69,
+   "sd": 643.75,
+   "up1": 81287.44,
+   "up2": 81931.19,
+   "up3": 82574.95,
+   "dn1": 79999.93,
+   "dn2": 79356.18
+  },
+  "spot": 79709.75,
+  "event": null,
+  "hourPT": 21,
+  "troughPct": -2.44
+ },
+ {
+  "id": "KXBTC15M-26OCT290000-00:taphold",
+  "book": "taphold",
+  "at": "2026-10-29T03:58:12.876Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT290000-00",
+  "side": "up",
+  "setup": "TAP off the 5m purple 79740.80",
+  "ask": 0.041,
+  "multiple": 24.39,
+  "stake": 2.5,
+  "tpPct": 0,
+  "peakPct": 0,
+  "exit": "held to the bell",
+  "sellBid": null,
+  "result": "loss",
+  "pnl": -2.5,
+  "bands": {
+   "spot": 79741.31,
+   "line": {
+    "name": "5m purple",
+    "price": 79740.803
+   }
+  },
+  "spot": 79741.31,
+  "event": null,
+  "hourPT": 20,
+  "troughPct": -97.56,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Clean entry: no band right above the long."
+   ],
+   "better": [
+    "24.39x is a long shot; these need a strong reason.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
+ },
+ {
+  "id": "KXBTC15M-26OCT290000-00:tap3x",
+  "book": "tap3x",
+  "at": "2026-10-29T03:58:12.876Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT290000-00",
+  "side": "up",
+  "setup": "TAP off the 5m purple 79740.80",
+  "ask": 0.041,
+  "multiple": 24.39,
+  "stake": 2.5,
+  "tpPct": 200,
+  "peakPct": 0,
+  "exit": "held to the bell",
+  "sellBid": null,
+  "result": "loss",
+  "pnl": -2.5,
+  "bands": {
+   "spot": 79741.31,
+   "line": {
+    "name": "5m purple",
+    "price": 79740.803
+   }
+  },
+  "spot": 79741.31,
+  "event": null,
+  "hourPT": 20,
+  "troughPct": -97.56,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Clean entry: no band right above the long."
+   ],
+   "better": [
+    "24.39x is a long shot; these need a strong reason.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
+ },
+ {
+  "id": "KXBTC15M-26OCT290000-00:brk1",
+  "book": "brk1",
+  "at": "2026-10-29T03:51:23.542Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT290000-00",
+  "side": "down",
+  "setup": "FIRST BREAK: Pepperstone broke the -1.5σ down",
+  "ask": 0.72,
+  "multiple": 1.39,
+  "stake": 30,
+  "tpPct": 35,
+  "peakPct": 37.5,
+  "exit": "take profit: peaked +38%, 1% trail",
+  "sellBid": 0.99,
+  "result": "sold",
+  "pnl": 11.25,
+  "bands": {
+   "spot": 79698.75,
+   "line": "-1.5σ",
+   "feed": "Pepperstone"
+  },
+  "spot": 79698.75,
+  "event": null,
+  "hourPT": 20,
+  "soldAt": "2026-10-29T03:58:30.843Z",
+  "exitMult": 1.01,
+  "exitCushion": 48.88,
+  "exitLeft": 90,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Clean entry: no band right below the short.",
+    "Take profit banked +11.25 of the 11.67 it paid at the bell."
+   ],
+   "better": [],
+   "keep": [
+    "Take profit + trail did its job.",
+    "Do more of exactly this."
+   ],
+   "v": 2
+  },
+  "arch": true
+ },
+ {
   "id": "KXBTC15M-26OCT290000-00:sole15",
   "book": "sole15",
   "at": "2026-10-29T03:50:09.269Z",
@@ -11,11 +451,11 @@
   "multiple": 1.64,
   "stake": 30,
   "tpPct": 57.54,
-  "peakPct": 11.48,
-  "exit": null,
-  "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "peakPct": 62.3,
+  "exit": "take profit: peaked +62%, 1% trail",
+  "sellBid": 0.99,
+  "result": "sold",
+  "pnl": 18.69,
   "bands": {
    "nav": {
     "m1": {
@@ -75,7 +515,26 @@
   "spot": 79755.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -1.64
+  "troughPct": -1.64,
+  "soldAt": "2026-10-29T03:58:30.843Z",
+  "exitMult": 1.01,
+  "exitCushion": 48.88,
+  "exitLeft": 90,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the 5m purple + 10m purple + 15m purple over her as a ceiling.",
+    "Take profit banked +18.69 of the 19.18 it paid at the bell."
+   ],
+   "better": [
+    "Entered with the -1.5σ right below her. Her DNA blocks this now."
+   ],
+   "keep": [
+    "Take profit + trail did its job."
+   ],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXBTC15M-26OCT290000-00:sole10",
@@ -89,11 +548,11 @@
   "multiple": 1.64,
   "stake": 30,
   "tpPct": 57.54,
-  "peakPct": 11.48,
-  "exit": null,
-  "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "peakPct": 62.3,
+  "exit": "take profit: peaked +62%, 1% trail",
+  "sellBid": 0.99,
+  "result": "sold",
+  "pnl": 18.69,
   "bands": {
    "nav": {
     "m1": {
@@ -153,7 +612,26 @@
   "spot": 79755.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -1.64
+  "troughPct": -1.64,
+  "soldAt": "2026-10-29T03:58:30.843Z",
+  "exitMult": 1.01,
+  "exitCushion": 48.88,
+  "exitLeft": 90,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the 5m purple + 10m purple + 15m purple over her as a ceiling.",
+    "Take profit banked +18.69 of the 19.18 it paid at the bell."
+   ],
+   "better": [
+    "Entered with the -1.5σ right below her. Her DNA blocks this now."
+   ],
+   "keep": [
+    "Take profit + trail did its job."
+   ],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXBTC15M-26OCT290000-00:brk",
@@ -186,7 +664,21 @@
    "price": 79732.36171417705
   },
   "troughPct": -30.88,
-  "soldAt": "2026-10-29T03:48:12.430Z"
+  "soldAt": "2026-10-29T03:48:12.430Z",
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Clean entry: no band right below the short.",
+    "Had the -1σ over her as a ceiling."
+   ],
+   "better": [
+    "Sold early but it won at the bell: holding paid 14.12 vs -9.26. That exit had no good reason.",
+    "Peaked +1% but sold 32 points lower."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "dnaMode": "atr",
@@ -201,11 +693,11 @@
   "multiple": 1.47,
   "stake": 30,
   "tpPct": 42.06,
-  "peakPct": 1.47,
-  "exit": null,
-  "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "peakPct": 42.5,
+  "exit": "take profit +42.06%",
+  "sellBid": 0.969,
+  "result": "sold",
+  "pnl": 12.75,
   "bands": {
    "vwap": 80298.59086230559,
    "sd": 566.2291481285345,
@@ -215,7 +707,26 @@
   "spot": 79720.5,
   "event": null,
   "hourPT": 20,
-  "troughPct": -30.88
+  "troughPct": -30.88,
+  "soldAt": "2026-10-29T03:58:20.854Z",
+  "exitMult": 1.03,
+  "exitCushion": 37.51,
+  "exitLeft": 100,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Clean entry: no band right below the short.",
+    "Had the -1σ over her as a ceiling.",
+    "Take profit banked +12.75 of the 14.12 it paid at the bell."
+   ],
+   "better": [],
+   "keep": [
+    "Take profit + trail did its job.",
+    "Do more of exactly this."
+   ],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXBTC15M-26OCT290000-00:golden",
@@ -229,11 +740,11 @@
   "multiple": 1.47,
   "stake": 30,
   "tpPct": 42.06,
-  "peakPct": 1.47,
-  "exit": null,
-  "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "peakPct": 42.5,
+  "exit": "take profit +42.06%",
+  "sellBid": 0.969,
+  "result": "sold",
+  "pnl": 12.75,
   "bands": {
    "vwap": 80298.59086230559,
    "sd": 566.2291481285345,
@@ -243,7 +754,26 @@
   "spot": 79720.5,
   "event": null,
   "hourPT": 20,
-  "troughPct": -30.88
+  "troughPct": -30.88,
+  "soldAt": "2026-10-29T03:58:20.854Z",
+  "exitMult": 1.03,
+  "exitCushion": 37.51,
+  "exitLeft": 100,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Clean entry: no band right below the short.",
+    "Had the -1σ over her as a ceiling.",
+    "Take profit banked +12.75 of the 14.12 it paid at the bell."
+   ],
+   "better": [],
+   "keep": [
+    "Take profit + trail did its job.",
+    "Do more of exactly this."
+   ],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickc:maker",
@@ -258,10 +788,10 @@
   "stake": 30,
   "tpPct": 86.47,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -317,8 +847,21 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -62.75,
-  "entryFee": 0
+  "troughPct": -99.8,
+  "entryFee": 0,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickc:fee",
@@ -333,10 +876,10 @@
   "stake": 30,
   "tpPct": 83.08,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -31.01,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -392,8 +935,21 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -63.46,
-  "entryFee": 1.01
+  "troughPct": -99.81,
+  "entryFee": 1.01,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickc:half",
@@ -408,10 +964,10 @@
   "stake": 30,
   "tpPct": 83.08,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -467,7 +1023,20 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -63.46
+  "troughPct": -99.81,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickc:late",
@@ -482,10 +1051,10 @@
   "stake": 30,
   "tpPct": 83.08,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -541,7 +1110,20 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -63.46
+  "troughPct": -99.81,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickc:wall",
@@ -619,7 +1201,21 @@
   "soldAt": "2026-10-29T03:47:56.377Z",
   "exitMult": 2.86,
   "exitCushion": -1.12,
-  "exitLeft": 724
+  "exitLeft": 724,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor.",
+    "Exit saved it: it lost at the bell, she banked -9.81 instead of -30."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Peaked +0% but sold 33 points lower."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickc:cut2",
@@ -697,7 +1293,21 @@
   "soldAt": "2026-10-29T03:50:09.055Z",
   "exitMult": 3.45,
   "exitCushion": -1.47,
-  "exitLeft": 591
+  "exitLeft": 591,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor.",
+    "Exit saved it: it lost at the bell, she banked -13.27 instead of -30."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Peaked +0% but sold 44 points lower."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickc:patient",
@@ -712,10 +1322,10 @@
   "stake": 30,
   "tpPct": 83.08,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -771,7 +1381,20 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -63.46
+  "troughPct": -99.81,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickc:tp75",
@@ -786,10 +1409,10 @@
   "stake": 30,
   "tpPct": 83.08,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -845,7 +1468,20 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -63.46
+  "troughPct": -99.81,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickc:ride",
@@ -860,10 +1496,10 @@
   "stake": 30,
   "tpPct": 83.08,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -919,7 +1555,20 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -63.46
+  "troughPct": -99.81,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:b11",
@@ -934,10 +1583,10 @@
   "stake": 16.68,
   "tpPct": 83.08,
   "peakPct": 8.51,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -17.3,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -994,7 +1643,19 @@
   "event": null,
   "hourPT": 20,
   "entryFee": 0.62,
-  "notes": null
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "bell": "no",
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickc",
@@ -1009,10 +1670,10 @@
   "stake": 30,
   "tpPct": 83.08,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -1068,7 +1729,20 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -63.46
+  "troughPct": -99.81,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickp",
@@ -1083,10 +1757,10 @@
   "stake": 30,
   "tpPct": 83.08,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -1142,7 +1816,20 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -63.46
+  "troughPct": -99.81,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brick",
@@ -1157,10 +1844,10 @@
   "stake": 30,
   "tpPct": 83.08,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "spot": 4043.76,
    "vwap": 4050.0308500243495,
@@ -1216,7 +1903,20 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -63.46
+  "troughPct": -99.81,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:claude:x5",
@@ -1298,7 +1998,21 @@
   "soldAt": "2026-10-29T03:50:08.074Z",
   "exitMult": 4.76,
   "exitCushion": -1.38,
-  "exitLeft": 594
+  "exitLeft": 594,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor.",
+    "Exit saved it: it lost at the bell, she banked -16.87 instead of -30."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Peaked +6% but sold 63 points lower."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:trend:x5",
@@ -1380,7 +2094,21 @@
   "soldAt": "2026-10-29T03:50:08.074Z",
   "exitMult": 4.76,
   "exitCushion": -1.38,
-  "exitLeft": 594
+  "exitLeft": 594,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor.",
+    "Exit saved it: it lost at the bell, she banked -16.87 instead of -30."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Peaked +6% but sold 63 points lower."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brk",
@@ -1463,7 +2191,21 @@
    "price": 4043.433
   },
   "troughPct": -25,
-  "soldAt": "2026-10-29T03:47:08.258Z"
+  "soldAt": "2026-10-29T03:47:08.258Z",
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor.",
+    "Exit saved it: it lost at the bell, she banked -7.5 instead of -30."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Peaked +6% but sold 31 points lower."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:trend",
@@ -1478,10 +2220,10 @@
   "stake": 30,
   "tpPct": 97.5,
   "peakPct": 6.25,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "nav": {
     "m1": {
@@ -1541,7 +2283,20 @@
   "spot": 4043.61,
   "event": null,
   "hourPT": 20,
-  "troughPct": -60.42
+  "troughPct": -99.79,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:claude",
@@ -1556,10 +2311,10 @@
   "stake": 30,
   "tpPct": 97.5,
   "peakPct": 6.25,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "nav": {
     "m1": {
@@ -1619,7 +2374,20 @@
   "spot": 4043.61,
   "event": null,
   "hourPT": 20,
-  "troughPct": -60.42
+  "troughPct": -99.79,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:sole15",
@@ -1634,10 +2402,10 @@
   "stake": 30,
   "tpPct": 97.5,
   "peakPct": 6.25,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "nav": {
     "m1": {
@@ -1697,7 +2465,20 @@
   "spot": 4043.61,
   "event": null,
   "hourPT": 20,
-  "troughPct": -60.42
+  "troughPct": -99.79,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:brickt",
@@ -1712,10 +2493,10 @@
   "stake": 30,
   "tpPct": 119.3,
   "peakPct": 18.6,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "vwap": 4050.0334005691902,
    "sd": 8.334958037480373,
@@ -1744,7 +2525,20 @@
   "spot": 4043.76,
   "event": null,
   "hourPT": 20,
-  "troughPct": -55.81
+  "troughPct": -99.77,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple + 15m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the -0.5σ right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:bank5p:x5",
@@ -1826,7 +2620,21 @@
   "soldAt": "2026-10-29T03:50:08.074Z",
   "exitMult": 4.76,
   "exitCushion": -1.38,
-  "exitLeft": 594
+  "exitLeft": 594,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple under her as a floor.",
+    "Exit saved it: it lost at the bell, she banked -15.35 instead of -30."
+   ],
+   "better": [
+    "Entered with the 15m purple right above her. Her DNA blocks this now.",
+    "Peaked +19% but sold 70 points lower."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:sole5v",
@@ -1841,10 +2649,10 @@
   "stake": 30,
   "tpPct": 119.3,
   "peakPct": 18.6,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "nav": {
     "m1": {
@@ -1904,7 +2712,20 @@
   "spot": 4043.328,
   "event": null,
   "hourPT": 20,
-  "troughPct": -55.81
+  "troughPct": -99.77,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the 15m purple right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:sole5z",
@@ -1919,10 +2740,10 @@
   "stake": 30,
   "tpPct": 119.3,
   "peakPct": 18.6,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "nav": {
     "m1": {
@@ -1982,7 +2803,20 @@
   "spot": 4043.328,
   "event": null,
   "hourPT": 20,
-  "troughPct": -55.81
+  "troughPct": -99.77,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the 15m purple right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:bank5p",
@@ -1997,10 +2831,10 @@
   "stake": 30,
   "tpPct": 119.3,
   "peakPct": 18.6,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "nav": {
     "m1": {
@@ -2060,7 +2894,20 @@
   "spot": 4043.328,
   "event": null,
   "hourPT": 20,
-  "troughPct": -55.81
+  "troughPct": -99.77,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the 15m purple right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:sole5p",
@@ -2075,10 +2922,10 @@
   "stake": 30,
   "tpPct": 119.3,
   "peakPct": 18.6,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "nav": {
     "m1": {
@@ -2138,7 +2985,20 @@
   "spot": 4043.328,
   "event": null,
   "hourPT": 20,
-  "troughPct": -55.81
+  "troughPct": -99.77,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the 15m purple right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:sole10",
@@ -2153,10 +3013,10 @@
   "stake": 30,
   "tpPct": 119.3,
   "peakPct": 18.6,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "nav": {
     "m1": {
@@ -2216,7 +3076,20 @@
   "spot": 4043.328,
   "event": null,
   "hourPT": 20,
-  "troughPct": -55.81
+  "troughPct": -99.77,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the 15m purple right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXGOLD15M-26OCT290000-00:sole5",
@@ -2231,10 +3104,10 @@
   "stake": 30,
   "tpPct": 119.3,
   "peakPct": 18.6,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": {
    "nav": {
     "m1": {
@@ -2294,7 +3167,20 @@
   "spot": 4043.328,
   "event": null,
   "hourPT": 20,
-  "troughPct": -55.81
+  "troughPct": -99.77,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Had the -1σ + 10m purple under her as a floor."
+   ],
+   "better": [
+    "Entered with the 15m purple right above her. Her DNA blocks this now.",
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXSILVER15M-26OCT290000-00:snpt",
@@ -2309,14 +3195,26 @@
   "stake": 30,
   "tpPct": 0,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "win",
+  "pnl": 21.72,
   "bands": null,
   "spot": 53.2195,
   "event": null,
-  "hourPT": 20
+  "hourPT": 20,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Held to the bell and won +21.72."
+   ],
+   "better": [],
+   "keep": [
+    "Do more of exactly this."
+   ],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXSILVER15M-26OCT290000-00:snapb",
@@ -2331,14 +3229,26 @@
   "stake": 30,
   "tpPct": 0,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "win",
+  "pnl": 21.72,
   "bands": null,
   "spot": 53.2195,
   "event": null,
-  "hourPT": 20
+  "hourPT": 20,
+  "bell": "no",
+  "notes": {
+   "worked": [
+    "Held to the bell and won +21.72."
+   ],
+   "better": [],
+   "keep": [
+    "Do more of exactly this."
+   ],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXSILVER15M-26OCT290000-00:cfol",
@@ -2353,14 +3263,24 @@
   "stake": 30,
   "tpPct": 0,
   "peakPct": 0,
-  "exit": null,
+  "exit": "held to the bell",
   "sellBid": null,
-  "result": "open",
-  "pnl": null,
+  "result": "loss",
+  "pnl": -30,
   "bands": null,
   "spot": 53.2195,
   "event": null,
-  "hourPT": 20
+  "hourPT": 20,
+  "bell": "no",
+  "notes": {
+   "worked": [],
+   "better": [
+    "Never went green: the setup didn't follow through."
+   ],
+   "keep": [],
+   "v": 2
+  },
+  "arch": true
  },
  {
   "id": "KXBTC15M-26OCT282345-45:taphold",
@@ -168840,642 +169760,6 @@
     "Entered with the 10m purple + 15m purple right above her. Her DNA blocks this now.",
     "Sold early but it won at the bell: holding paid 43.17 vs +4.39. That exit had no good reason.",
     "Peaked +32% but sold 17 points lower."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXGOLD15M-26OCT281245-45:brickc:patient",
-  "book": "brickcpt",
-  "at": "2026-10-28T16:33:29.589Z",
-  "asset": "gold",
-  "ticker": "KXGOLD15M-26OCT281245-45",
-  "side": "up",
-  "setup": "PUSH up off the -1σ",
-  "ask": 0.41,
-  "multiple": 2.44,
-  "stake": 30,
-  "tpPct": 129.51,
-  "peakPct": 31.71,
-  "exit": "locked the win (was +32%, back to +15%)",
-  "sellBid": 0.47,
-  "result": "sold",
-  "pnl": 4.39,
-  "bands": {
-   "spot": 4039.572,
-   "vwap": 4047.4031327570087,
-   "sd": 8.809977958359113,
-   "nav": {
-    "m1": {
-     "c": 4039.767,
-     "up": 4040,
-     "dn": 4039.533
-    },
-    "m5": {
-     "c": 4038.828,
-     "up": 4043.401,
-     "dn": 4034.255
-    },
-    "m10": {
-     "c": 4040.773,
-     "up": 4043.485,
-     "dn": 4038.062
-    },
-    "m15": {
-     "c": 4041.782,
-     "up": 4046.742,
-     "dn": 4036.823
-    },
-    "m60": {
-     "c": 4046.218,
-     "up": 4055.886,
-     "dn": 4036.549
-    },
-    "close1m": 4039.572,
-    "prev1m": 4039.14,
-    "close1mAt": 1793205120,
-    "close5m": 4040.068,
-    "prev5m": 4040.03,
-    "close5mAt": 1793204700,
-    "bar5m": {
-     "o": 4040.02,
-     "h": 4041.255,
-     "l": 4038.56,
-     "c": 4040.068
-    },
-    "atr5m": 3.53,
-    "live1m": {
-     "t": 1793205180,
-     "h": 4039.92,
-     "l": 4038.6,
-     "c": 4039.61
-    }
-   },
-   "target": 4040.4
-  },
-  "spot": 4039.572,
-  "event": null,
-  "hourPT": 9,
-  "troughPct": -43.9,
-  "soldAt": "2026-10-28T16:42:35.049Z",
-  "exitMult": 2.13,
-  "exitCushion": -0.12,
-  "exitLeft": 144,
-  "bell": "yes",
-  "notes": {
-   "worked": [
-    "Had the -1σ + 5m purple under her as a floor."
-   ],
-   "better": [
-    "Entered with the 10m purple + 15m purple right above her. Her DNA blocks this now.",
-    "Sold early but it won at the bell: holding paid 43.17 vs +4.39. That exit had no good reason.",
-    "Peaked +32% but sold 17 points lower."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXGOLD15M-26OCT281245-45:brickc:tp75",
-  "book": "brickc75",
-  "at": "2026-10-28T16:33:29.589Z",
-  "asset": "gold",
-  "ticker": "KXGOLD15M-26OCT281245-45",
-  "side": "up",
-  "setup": "PUSH up off the -1σ",
-  "ask": 0.41,
-  "multiple": 2.44,
-  "stake": 30,
-  "tpPct": 129.51,
-  "peakPct": 31.71,
-  "exit": "locked the win (was +32%, back to +15%)",
-  "sellBid": 0.47,
-  "result": "sold",
-  "pnl": 4.39,
-  "bands": {
-   "spot": 4039.572,
-   "vwap": 4047.4031327570087,
-   "sd": 8.809977958359113,
-   "nav": {
-    "m1": {
-     "c": 4039.767,
-     "up": 4040,
-     "dn": 4039.533
-    },
-    "m5": {
-     "c": 4038.828,
-     "up": 4043.401,
-     "dn": 4034.255
-    },
-    "m10": {
-     "c": 4040.773,
-     "up": 4043.485,
-     "dn": 4038.062
-    },
-    "m15": {
-     "c": 4041.782,
-     "up": 4046.742,
-     "dn": 4036.823
-    },
-    "m60": {
-     "c": 4046.218,
-     "up": 4055.886,
-     "dn": 4036.549
-    },
-    "close1m": 4039.572,
-    "prev1m": 4039.14,
-    "close1mAt": 1793205120,
-    "close5m": 4040.068,
-    "prev5m": 4040.03,
-    "close5mAt": 1793204700,
-    "bar5m": {
-     "o": 4040.02,
-     "h": 4041.255,
-     "l": 4038.56,
-     "c": 4040.068
-    },
-    "atr5m": 3.53,
-    "live1m": {
-     "t": 1793205180,
-     "h": 4039.92,
-     "l": 4038.6,
-     "c": 4039.61
-    }
-   },
-   "target": 4040.4
-  },
-  "spot": 4039.572,
-  "event": null,
-  "hourPT": 9,
-  "troughPct": -43.9,
-  "soldAt": "2026-10-28T16:42:35.049Z",
-  "exitMult": 2.13,
-  "exitCushion": -0.12,
-  "exitLeft": 144,
-  "bell": "yes",
-  "notes": {
-   "worked": [
-    "Had the -1σ + 5m purple under her as a floor."
-   ],
-   "better": [
-    "Entered with the 10m purple + 15m purple right above her. Her DNA blocks this now.",
-    "Sold early but it won at the bell: holding paid 43.17 vs +4.39. That exit had no good reason.",
-    "Peaked +32% but sold 17 points lower."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXGOLD15M-26OCT281245-45:brickc:ride",
-  "book": "brickcr",
-  "at": "2026-10-28T16:33:29.589Z",
-  "asset": "gold",
-  "ticker": "KXGOLD15M-26OCT281245-45",
-  "side": "up",
-  "setup": "PUSH up off the -1σ",
-  "ask": 0.41,
-  "multiple": 2.44,
-  "stake": 30,
-  "tpPct": 129.51,
-  "peakPct": 107.32,
-  "exit": "held to the bell",
-  "sellBid": null,
-  "result": "win",
-  "pnl": 43.17,
-  "bands": {
-   "spot": 4039.572,
-   "vwap": 4047.4031327570087,
-   "sd": 8.809977958359113,
-   "nav": {
-    "m1": {
-     "c": 4039.767,
-     "up": 4040,
-     "dn": 4039.533
-    },
-    "m5": {
-     "c": 4038.828,
-     "up": 4043.401,
-     "dn": 4034.255
-    },
-    "m10": {
-     "c": 4040.773,
-     "up": 4043.485,
-     "dn": 4038.062
-    },
-    "m15": {
-     "c": 4041.782,
-     "up": 4046.742,
-     "dn": 4036.823
-    },
-    "m60": {
-     "c": 4046.218,
-     "up": 4055.886,
-     "dn": 4036.549
-    },
-    "close1m": 4039.572,
-    "prev1m": 4039.14,
-    "close1mAt": 1793205120,
-    "close5m": 4040.068,
-    "prev5m": 4040.03,
-    "close5mAt": 1793204700,
-    "bar5m": {
-     "o": 4040.02,
-     "h": 4041.255,
-     "l": 4038.56,
-     "c": 4040.068
-    },
-    "atr5m": 3.53,
-    "live1m": {
-     "t": 1793205180,
-     "h": 4039.92,
-     "l": 4038.6,
-     "c": 4039.61
-    }
-   },
-   "target": 4040.4
-  },
-  "spot": 4039.572,
-  "event": null,
-  "hourPT": 9,
-  "troughPct": -65.85,
-  "bell": "yes",
-  "notes": {
-   "worked": [
-    "Had the -1σ + 5m purple under her as a floor.",
-    "Held to the bell and won +43.17."
-   ],
-   "better": [
-    "Entered with the 10m purple + 15m purple right above her. Her DNA blocks this now."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXGOLD15M-26OCT281245-45:brickc",
-  "book": "brickc",
-  "at": "2026-10-28T16:33:29.589Z",
-  "asset": "gold",
-  "ticker": "KXGOLD15M-26OCT281245-45",
-  "side": "up",
-  "setup": "PUSH up off the -1σ",
-  "ask": 0.41,
-  "multiple": 2.44,
-  "stake": 30,
-  "tpPct": 129.51,
-  "peakPct": 31.71,
-  "exit": "locked the win (was +32%, back to +15%)",
-  "sellBid": 0.47,
-  "result": "sold",
-  "pnl": 4.39,
-  "bands": {
-   "spot": 4039.572,
-   "vwap": 4047.4031327570087,
-   "sd": 8.809977958359113,
-   "nav": {
-    "m1": {
-     "c": 4039.767,
-     "up": 4040,
-     "dn": 4039.533
-    },
-    "m5": {
-     "c": 4038.828,
-     "up": 4043.401,
-     "dn": 4034.255
-    },
-    "m10": {
-     "c": 4040.773,
-     "up": 4043.485,
-     "dn": 4038.062
-    },
-    "m15": {
-     "c": 4041.782,
-     "up": 4046.742,
-     "dn": 4036.823
-    },
-    "m60": {
-     "c": 4046.218,
-     "up": 4055.886,
-     "dn": 4036.549
-    },
-    "close1m": 4039.572,
-    "prev1m": 4039.14,
-    "close1mAt": 1793205120,
-    "close5m": 4040.068,
-    "prev5m": 4040.03,
-    "close5mAt": 1793204700,
-    "bar5m": {
-     "o": 4040.02,
-     "h": 4041.255,
-     "l": 4038.56,
-     "c": 4040.068
-    },
-    "atr5m": 3.53,
-    "live1m": {
-     "t": 1793205180,
-     "h": 4039.92,
-     "l": 4038.6,
-     "c": 4039.61
-    }
-   },
-   "target": 4040.4
-  },
-  "spot": 4039.572,
-  "event": null,
-  "hourPT": 9,
-  "troughPct": -43.9,
-  "soldAt": "2026-10-28T16:42:35.049Z",
-  "exitMult": 2.13,
-  "exitCushion": -0.12,
-  "exitLeft": 144,
-  "bell": "yes",
-  "notes": {
-   "worked": [
-    "Had the -1σ + 5m purple under her as a floor."
-   ],
-   "better": [
-    "Entered with the 10m purple + 15m purple right above her. Her DNA blocks this now.",
-    "Sold early but it won at the bell: holding paid 43.17 vs +4.39. That exit had no good reason.",
-    "Peaked +32% but sold 17 points lower."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXBTC15M-26OCT281245-45:sole15",
-  "book": "sole15",
-  "at": "2026-10-28T16:31:13.225Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT281245-45",
-  "side": "up",
-  "setup": "Tap-reject at -1.5σ",
-  "ask": 0.69,
-  "multiple": 1.45,
-  "stake": 30,
-  "tpPct": 40.43,
-  "peakPct": 23.19,
-  "exit": "held to the bell",
-  "sellBid": null,
-  "result": "loss",
-  "pnl": -30,
-  "bands": {
-   "nav": {
-    "m1": {
-     "c": 80402.816,
-     "up": 80433.749,
-     "dn": 80371.882
-    },
-    "m5": {
-     "c": 80424.503,
-     "up": 80479.394,
-     "dn": 80369.613
-    },
-    "m10": {
-     "c": 80442.083,
-     "up": 80540.596,
-     "dn": 80343.57
-    },
-    "m15": {
-     "c": 80494.394,
-     "up": 80537.807,
-     "dn": 80450.982
-    },
-    "m60": {
-     "c": 80779.268,
-     "up": 81265.973,
-     "dn": 80292.562
-    },
-    "close1m": 80436.86,
-    "prev1m": 80407.1,
-    "close1mAt": 1793205000,
-    "close5m": 80407.1,
-    "prev5m": 80339.11,
-    "close5mAt": 1793204700,
-    "bar5m": {
-     "o": 80339.47,
-     "h": 80444.38,
-     "l": 80338.57,
-     "c": 80407.1
-    },
-    "atr5m": 103.43,
-    "live1m": {
-     "t": 1793205060,
-     "h": 80437.79,
-     "l": 80436.09,
-     "c": 80437.79
-    }
-   },
-   "spot": 80436.39,
-   "vwap": 80861.6,
-   "sd": 286.36,
-   "up1": 81147.96,
-   "up2": 81434.32,
-   "up3": 81720.68,
-   "dn1": 80575.24,
-   "dn2": 80288.88
-  },
-  "spot": 80436.39,
-  "event": null,
-  "hourPT": 9,
-  "troughPct": -99.71,
-  "bell": "no",
-  "notes": {
-   "worked": [
-    "Had the -1.5σ + 5m purple under her as a floor."
-   ],
-   "better": [
-    "Entered with the 10m purple + 15m purple right above her. Her DNA blocks this now.",
-    "Was up +23% and still lost: a gate/lock with a reason should bank these."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXBTC15M-26OCT281245-45:sole5v",
-  "book": "sole5v",
-  "at": "2026-10-28T16:31:03.202Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT281245-45",
-  "side": "up",
-  "setup": "Tap-reject at -1.5σ (Vantage lines)",
-  "ask": 0.69,
-  "multiple": 1.45,
-  "stake": 30,
-  "tpPct": 40.43,
-  "peakPct": 23.19,
-  "exit": "held to the bell",
-  "sellBid": null,
-  "result": "loss",
-  "pnl": -30,
-  "bands": {
-   "nav": {
-    "m1": {
-     "c": 80396.682,
-     "up": 80427.361,
-     "dn": 80366.003
-    },
-    "m5": {
-     "c": 80424.503,
-     "up": 80479.394,
-     "dn": 80369.613
-    },
-    "m10": {
-     "c": 80442.113,
-     "up": 80540.592,
-     "dn": 80343.634
-    },
-    "m15": {
-     "c": 80494.394,
-     "up": 80537.807,
-     "dn": 80450.982
-    },
-    "m60": {
-     "c": 80779.268,
-     "up": 81265.973,
-     "dn": 80292.562
-    },
-    "close1m": 80407.1,
-    "prev1m": 80435.41,
-    "close1mAt": 1793204940,
-    "close5m": 80407.1,
-    "prev5m": 80339.11,
-    "close5mAt": 1793204700,
-    "bar5m": {
-     "o": 80339.47,
-     "h": 80444.38,
-     "l": 80338.57,
-     "c": 80407.1
-    },
-    "atr5m": 103.43,
-    "live1m": {
-     "t": 1793205000,
-     "h": 80459.98,
-     "l": 80407.51,
-     "c": 80438.26
-    }
-   },
-   "spot": 80436.88,
-   "vwap": 80861.64,
-   "sd": 286.35,
-   "up1": 81147.98,
-   "up2": 81434.33,
-   "up3": 81720.68,
-   "dn1": 80575.29,
-   "dn2": 80288.95
-  },
-  "spot": 80436.88,
-  "event": null,
-  "hourPT": 9,
-  "troughPct": -99.71,
-  "bell": "no",
-  "notes": {
-   "worked": [
-    "Had the -1.5σ + 5m purple under her as a floor."
-   ],
-   "better": [
-    "Entered with the 10m purple + 15m purple right above her. Her DNA blocks this now.",
-    "Was up +23% and still lost: a gate/lock with a reason should bank these."
-   ],
-   "keep": [],
-   "v": 2
-  },
-  "arch": true
- },
- {
-  "id": "KXBTC15M-26OCT281245-45:original",
-  "book": "original",
-  "at": "2026-10-28T16:30:29.675Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT281245-45",
-  "side": "up",
-  "setup": "Tap-reject at -1.5σ",
-  "ask": 0.6,
-  "multiple": 1.67,
-  "stake": 30,
-  "tpPct": 60,
-  "peakPct": 41.67,
-  "exit": "held to the bell",
-  "sellBid": null,
-  "result": "loss",
-  "pnl": -30,
-  "bands": {
-   "nav": {
-    "m1": {
-     "c": 80392.404,
-     "up": 80421.3,
-     "dn": 80363.509
-    },
-    "m5": {
-     "c": 80424.187,
-     "up": 80479.246,
-     "dn": 80369.128
-    },
-    "m10": {
-     "c": 80465.72,
-     "up": 80524.571,
-     "dn": 80406.869
-    },
-    "m15": {
-     "c": 80489.578,
-     "up": 80538.083,
-     "dn": 80441.074
-    },
-    "m60": {
-     "c": 80779.268,
-     "up": 81265.973,
-     "dn": 80292.562
-    },
-    "close1m": 80407.1,
-    "prev1m": 80435.41,
-    "close1mAt": 1793204940,
-    "close5m": 80407.1,
-    "prev5m": 80339.11,
-    "close5mAt": 1793204700,
-    "bar5m": {
-     "o": 80339.47,
-     "h": 80444.38,
-     "l": 80338.57,
-     "c": 80407.1
-    },
-    "atr5m": 103.43,
-    "live1m": {
-     "t": 1793205000,
-     "h": 80442.02,
-     "l": 80407.51,
-     "c": 80436.77
-    }
-   },
-   "spot": 80436.6,
-   "vwap": 80861.93,
-   "sd": 286.23,
-   "up1": 81148.16,
-   "up2": 81434.39,
-   "up3": 81720.61,
-   "dn1": 80575.71,
-   "dn2": 80289.48
-  },
-  "spot": 80436.6,
-  "event": null,
-  "hourPT": 9,
-  "troughPct": -99.67,
-  "bell": "no",
-  "notes": {
-   "worked": [
-    "Had the -1.5σ + 5m purple under her as a floor."
-   ],
-   "better": [
-    "Entered with the 10m purple + 15m purple right above her. Her DNA blocks this now.",
-    "Was up +42% and still lost: a gate/lock with a reason should bank these."
    ],
    "keep": [],
    "v": 2

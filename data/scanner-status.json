@@ -1,6 +1,6 @@
 {
- "at": "2026-10-29T03:50:00.011Z",
- "scanned": 78,
+ "at": "2026-10-29T03:59:01.507Z",
+ "scanned": 126,
  "picked": [
   "KXTEMPNYCHS",
   "KXTEMPCHIHS",
@@ -9,18 +9,18 @@
   "KXTEMPCHIMETROHS",
   "KXTEMPDCH",
   "KXTEMPMON",
+  "KXHIGHMIA",
+  "KXHIGHUS",
+  "KXLOWTMIA",
+  "KXHIGHTBOS",
+  "KXHIGHNY",
+  "KXHIGHTOKC",
+  "KXHIGHHOU",
+  "KXHIGHDEN",
   "KXLOWTHOU",
   "KXHIGHTLV",
   "KXHIGHOU",
-  "KXLOWDEN",
-  "KXLOWTDEN",
-  "KXLOWNY",
-  "KXLOWTEWR",
-  "KXLOWTKSAN",
-  "KXHIGHTEMPDEN",
-  "KXLOWTBOS",
-  "KXHIGHTTTN",
-  "KXLOWCHI"
+  "KXLOWDEN"
  ],
  "stations": {
   "KXTEMPLAXHS": "KLAX",
@@ -71,11 +71,7 @@
  },
  "rules": {},
  "flags": [],
- "errors": [
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTBOS&status=open&li",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTTTN&status=open&l",
-  "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWCHI&status=open&lim"
- ],
+ "errors": [],
  "cats": {
   "Politics": 2291,
   "Financials": 1085,

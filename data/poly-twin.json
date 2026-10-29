@@ -1,28 +1,4 @@
 {
- "KXBTC15M-26OCT280145-45:recon-rej5:s5977220:5m": {
-  "book": "recon-rej-5m",
-  "asset": "btc",
-  "side": "up",
-  "ticker": "KXBTC15M-26OCT280145-45",
-  "setup": "1m rejection off 5m PP",
-  "lastTry": 1793166241958,
-  "tries": 43,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
- "KXBTC15M-26OCT280200-00:recon-tog:KXBTC15M-26OCT280200-00:recon-tog:5m": {
-  "book": "recon-tog-5m",
-  "asset": "btc",
-  "side": "up",
-  "ticker": "KXBTC15M-26OCT280200-00",
-  "setup": "Rejected up off 5m PP",
-  "lastTry": 1793166542068,
-  "tries": 47,
-  "status": "expired",
-  "final": true,
-  "reason": "its own window is over - a call never trades the next window"
- },
  "KXBTC15M-26OCT280200-00:recon-rej5:KXBTC15M-26OCT280200-00:recon-rej5:5m": {
   "book": "recon-rej-5m",
   "asset": "btc",
@@ -5159,10 +5135,34 @@
   "side": "down",
   "ticker": "KXBTC15M-26OCT290000-00",
   "setup": "Rejected down off 5m PP",
-  "lastTry": 1793245844099,
-  "tries": 10,
-  "wallOk": true,
-  "status": "waiting",
-  "reason": "late door only (the other book holds the 5m)"
+  "lastTry": 1793246041653,
+  "tries": 57,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT290000-00:recon-rej5:s5977486:5m": {
+  "book": "recon-rej-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT290000-00",
+  "setup": "Rejected down off 5m PP",
+  "lastTry": 1793246044656,
+  "tries": 1,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
+ },
+ "KXBTC15M-26OCT290000-00:recon-tog:s5977487:5m": {
+  "book": "recon-tog-5m",
+  "asset": "btc",
+  "side": "down",
+  "ticker": "KXBTC15M-26OCT290000-00",
+  "setup": "Rejected down off 5m PP",
+  "lastTry": 1793246344544,
+  "tries": 59,
+  "status": "expired",
+  "final": true,
+  "reason": "its own window is over - a call never trades the next window"
  }
 }

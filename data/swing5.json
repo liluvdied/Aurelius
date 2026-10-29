@@ -1,14 +1,4 @@
 {
- "KXBTC15M-26OCT282100-00:recon-tog:s5977451": {
-  "id": "KXBTC15M-26OCT282100-00:recon-tog:s5977451",
-  "book": "recon-tog",
-  "at": "2026-10-29T00:55:00.591Z",
-  "asset": "btc",
-  "ticker": "KXBTC15M-26OCT282100-00",
-  "side": "down",
-  "setup": "Top third - seen as a short under 81064.71 (was: Rejected up off Bollinger lower)",
-  "spotAt": 81043.08
- },
  "KXBTC15M-26OCT282100-00:recon-rej5:s5977451": {
   "id": "KXBTC15M-26OCT282100-00:recon-rej5:s5977451",
   "book": "recon-rej",
@@ -398,5 +388,25 @@
   "side": "down",
   "setup": "Rejected down off 5m PP",
   "spotAt": 79755.28
+ },
+ "KXBTC15M-26OCT290000-00:recon-rej5:s5977486": {
+  "id": "KXBTC15M-26OCT290000-00:recon-rej5:s5977486",
+  "book": "recon-rej",
+  "at": "2026-10-29T03:54:04.517Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT290000-00",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "spotAt": 79734.21
+ },
+ "KXBTC15M-26OCT290000-00:recon-tog:s5977487": {
+  "id": "KXBTC15M-26OCT290000-00:recon-tog:s5977487",
+  "book": "recon-tog",
+  "at": "2026-10-29T03:55:00.814Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT290000-00",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "spotAt": 79695.16
  }
 }

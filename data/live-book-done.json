@@ -8540,5 +8540,51 @@
   "status": "skipped",
   "final": true,
   "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26OCT290015-15:recon-rej:KXBTC15M-26OCT290015-15:recon-rej": {
+  "at": "2026-10-29T04:00:08.551Z",
+  "ticker": "KXBTC15M-26OCT290015-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "BTC sits out the 9 PM PT hour live (Love's call, Oct 8)"
+ },
+ "KXBTC15M-26OCT290015-15:recon-tog:KXBTC15M-26OCT290015-15:recon-tog": {
+  "at": "2026-10-29T04:00:08.553Z",
+  "ticker": "KXBTC15M-26OCT290015-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26OCT290015-15:recon-rej:KXGOLD15M-26OCT290015-15:recon-rej": {
+  "at": "2026-10-29T04:00:42.331Z",
+  "ticker": "KXGOLD15M-26OCT290015-15",
+  "side": "down",
+  "status": "blocked",
+  "reason": "PINK TO GREEN: short $1.30 over the green, at 41% of the green 4037.10 -> pink 4040.27 space - no gold short in the bottom 60% of it. wait for the green to reject (long) or the pink to reject (short).",
+  "firstReason": "PINK TO GREEN: short $1.22 over the green, at 38% of the green 4037.10 -> pink 4040.27 space - no gold short in the bottom 60% of it. wait for the green to reject (long) or the pink to reject (short).",
+  "firstTryAt": "2026-10-29T04:00:15.339Z",
+  "bookedAt": "2026-10-29T04:00:15.209Z",
+  "tries": 136,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXGOLD15M-26OCT290015-15:recon-tog:KXGOLD15M-26OCT290015-15:recon-tog": {
+  "at": "2026-10-29T04:00:15.341Z",
+  "ticker": "KXGOLD15M-26OCT290015-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26OCT290015-15:recon-dly:KXBTC15M-26OCT290015-15:recon-dly": {
+  "at": "2026-10-29T04:00:30.190Z",
+  "ticker": "KXBTC15M-26OCT290015-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "RECON-DLY sits out her worst hour (9 PM PT) live"
  }
 }

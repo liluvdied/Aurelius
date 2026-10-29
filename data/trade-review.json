@@ -1,5 +1,39 @@
 [
   {
+    "id": "held-KXBTC15M-26OCT290000-00",
+    "at": "2026-10-29T04:00:13.073Z",
+    "result": "win",
+    "profit": 0.42,
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Live",
+    "multiple": 1.45,
+    "hour": "8pm",
+    "minutesLeft": null,
+    "windowOpen": null,
+    "entrySpot": null,
+    "target": null,
+    "vwap": null,
+    "nearestBand": "",
+    "bandBetween": false,
+    "peakPct": 43.5,
+    "exitPct": 40.2,
+    "giveback": 3.3,
+    "trail": "Trail took it. High 43.5%, out at 40.2%.",
+    "points": 3,
+    "better": "Nothing to change. Same entry next time.",
+    "elements": [
+      "Bitcoin short",
+      "Live",
+      "1.4x to 2.2x",
+      "cleared the arm",
+      "8pm",
+      "closed before the bell",
+      "Trail took it. High 43.5%, out at 40.2%."
+    ],
+    "note": "Bitcoin short Live won +$0.42 (8pm). 1.4x to 2.2x. cleared the arm. closed before the bell. Trail took it. High 43.5%, out at 40.2%.. Max 44.9%, saw 43.5%, closed at 40.2%, gave back 3.3. Trail took it. High 43.5%, out at 40.2%. Nothing to change. Same entry next time."
+  },
+  {
     "id": "held-KXBTC15M-26OCT282345-45",
     "at": "2026-10-29T03:45:20.435Z",
     "result": "loss",
@@ -14134,42 +14168,5 @@
       "Trail never reached the watch."
     ],
     "note": "Bitcoin short Live lost −$9.57 (11am). 1.4x to 2.2x. went green, short of the watch. held to the bell. Trail never reached the watch.. Max 56.3%, saw 18.8%. Trail never reached the watch. The entry was the book. Nothing in the entry to change. Leave the setup on."
-  },
-  {
-    "id": "mvqzrx6r-o1vobw",
-    "at": "2026-10-27T18:15:04.085Z",
-    "result": "loss",
-    "profit": -25,
-    "asset": "gold",
-    "side": "down",
-    "pattern": "Tap-reject at +2σ",
-    "multiple": 1.52,
-    "hour": "11am",
-    "minutesLeft": null,
-    "windowOpen": null,
-    "entrySpot": 4056.06,
-    "target": 4056.97,
-    "vwap": null,
-    "nearestBand": "",
-    "bandBetween": false,
-    "peakPct": -1.5,
-    "exitPct": null,
-    "giveback": null,
-    "trail": "Trail never armed.",
-    "points": 0,
-    "better": "The entry was the book. Nothing in the entry to change. Leave the setup on.",
-    "elements": [
-      "Gold short",
-      "Tap-reject at +2σ",
-      "1.4x to 2.2x",
-      "already through the strike",
-      "tight to the strike",
-      "never went green",
-      "11am",
-      "held to the bell",
-      "Trail never armed.",
-      "finished on the wrong side of the strike"
-    ],
-    "note": "Gold short Tap-reject at +2σ lost −$25.00 (11am). 1.4x to 2.2x. already through the strike. tight to the strike. never went green. held to the bell. Trail never armed.. finished on the wrong side of the strike. Max 51.5%, saw -1.5%. Trail never armed. The entry was the book. Nothing in the entry to change. Leave the setup on."
   }
 ]

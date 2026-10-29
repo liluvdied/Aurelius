@@ -1154,3 +1154,312 @@ thank you hun. can you explain how all of this got left out of the repository? s
 ### 2026-10-29T03:42:28.934Z - Claude
 
 Before I answer, I'm checking what actually reaches the repo from this Mac.
+
+###  - Coordinator (relayed note)
+
+Love (8:42 PM): "going forward, every change, every statement ever shared between you and i is IN. THE. REPOSITORY. NOTHING LEAVES WITHOUT MY CONSENT. EVER. AGAIN." Log as cornerstone + request book. Then: can this Mac push to github.com/liluvdied/aurelius (check `git ls-remote https://github.com/liluvdied/aurelius` / gh auth status / keychain creds, read-only check)? If YES: clone to /tmp/aur-sync, checkout branch claude/project-thread-mj3rmw (exists on origin), copy in from the desk everything except node_modules/ and .secrets/ (src, tools, data incl. data/SAVES, data/VAULT, LOVE-RULEBOOK.md, request book, diary, cornerstones, CHECK-NOTHING-REMOVED.command; big logs &gt;50MB zstd-split into data/big-logs/ as before; GOTCHA: desk .gitignore with "tools/" must not overwrite the repo's .gitignore — keep the repo's), run a secret scan (no API keys/tokens/.env content), commit "Desk sync after fix429-438 (Oct 28 2026 8:45 PM PT)" quoting Love's words above, push to that branch (never force, never main). Report the commit hash and file count. If NO creds: tell me, and list the changed desk files since 7:45 PM (paths + sizes) so I can arrange another way. Before pushing anything, list for me any file you'd leave out and why — Love's rule: ask before excluding.
+
+### 2026-10-29T03:43:13.055Z - Claude
+
+This Mac has no GitHub login: `gh` isn't installed, and git can't authenticate. Listing what changed on the desk since 7:45 PM so the project side can sync it.
+
+### 2026-10-29T03:43:34.328Z - Claude -> Love (project chat)
+
+Love, here's the honest answer to how it got left out.
+
+WHY IT WASN'T IN THE REPOSITORY
+- The Aurelius folder on this Mac, where she actually runs and where every fix happens, is NOT a git repository. Nothing done here goes to github.com/liluvdied/aurelius by itself. Someone has to copy it up from the project side.
+- Saving conversations depends on each thread running the save tool. The newest conversation in the desk's HISTORY folder was from Oct 27, 2:13 PM. Every desk conversation after that was never saved there. So "everything is logged and can be brought back" was true for the CHANGES (request book, diary, the 122 saves, the vault on the desk) but NOT for the conversations, and NOT for the repo. You were told more than was true. I'm sorry.
+
+WHAT I'VE DONE NOW
+- Cornerstone 0l, your exact 8:42 PM words, request R139: every change and every statement between us goes into the repository, and nothing is left out without asking you.
+- THIS thread is now saved word for word: HISTORY/thread-2026-10-28-desk-night-wall-and-gate.md. All 28 of your messages, every reply and report, and the coordinator's notes. The new tool tools/save-desk-thread.py re-saves it in full any time, and I'll run it after every exchange that matters.
+
+WHAT I CAN'T DO FROM THIS MAC (checked, not guessed)
+- This Mac has no GitHub login: "fatal: could not read Username for 'https://github.com'", and the gh tool isn't installed. So I can't push from here. The project side has to pull it up, or you can sign this Mac into GitHub once (I can walk you through it) and then I push after every change.
+- Changed on the desk since 7:45 PM, for the push: src/lib/desk/bandlock.ts + engine.ts (fix429-432); tools/no-removal-gate.py, reach-test-429.cjs, stale-pink-test-431.cjs, save-desk-thread.py, cornerstones.py, umpire.py, requests.py; LOVE-RULEBOOK.md (cornerstones 0h-0l); CHECK-NOTHING-REMOVED.command; HISTORY/ (this thread + request book + ledgers); data/LOVE-RESTORE-OPTIONS-2026-10-28.md, overnight-fixes.log, LOVE-REQUESTS.jsonl, ALLOW-REMOVE.json, live-switch.json, live-size.json, golden-baseline.json, approved-model.json; 3 new saves (7:58, 8:03, 8:15 PM); about 189 data json/jsonl logs; the vault (542 MB).
+
+ASKING BEFORE EXCLUDING (your rule): the only things I'd want to keep OUT of GitHub are .secrets/ (Kalshi/Polymarket keys and the account lock files) and node_modules/ (downloaded libraries, rebuildable). The keys would let anyone who sees the repo trade your money. Keep those two out? Yes or no. Everything else goes in.
+
+### 2026-10-29T03:43:41.812Z - Claude
+
+Love, you were told more than was true, and I'm sorry. Here's how it happened:
+- The Aurelius folder on this Mac, where she runs and where every fix happens, isn't a git repository. Nothing done here reaches github.com/liluvdied/aurelius on its own.
+- Every change was saved on the desk, in the request book, the diary, 122 saves and the vault. But the conversations weren't: the newest one in the desk's `HISTORY` folder was from Oct 27, 2:13 PM.
+- None of it, changes or conversations, was in the repository.
+
+What I've done now:
+- **Cornerstone 0l**, with your exact words (R139): every change and every statement between us goes into the repository, and nothing gets left out without asking you.
+- **This whole thread is saved word for word** in `HISTORY/thread-2026-10-28-desk-night-wall-and-gate.md`: all 28 of your messages, every reply, and the coordinator's notes. A new tool, `tools/save-desk-thread.py`, re-saves the full conversation whenever I run it. I'll run it after every exchange that matters.
+
+**I can't push to GitHub from this Mac.** I checked: git can't sign in, and the GitHub command-line tool isn't installed. Either the project side copies the desk up, or you sign this Mac into GitHub once (I can walk you through it), and then I push after every change. I've already sent the project side the list of everything that changed tonight.
+
+**Your rule says ask before leaving anything out, so: can I keep two folders off GitHub?**
+- `.secrets/`: your Kalshi and Polymarket keys. Anyone who sees the repo could trade your money with them.
+- `node_modules/`: downloaded libraries that rebuild automatically.
+
+Everything else goes in. Yes or no on those two?
+
+### 2026-10-29T03:44:36.957Z - Coordinator (relayed note)
+
+Love tapped "Sign the Mac into GitHub" (card: "How should your desk get into the repo from now on?"). Set it up with the least work for Love: check `which brew gh git`; if brew exists, `brew install gh`; else download the official gh macOS release from github.com/cli/cli. Then run `gh auth login --hostname github.com --git-protocol https --web --scopes repo` (and `gh auth setup-git`). It prints a one-time code and opens the browser — send me that 8-character code and the URL (github.com/login/device) immediately so I can tell Love. After Love approves, verify `git ls-remote https://github.com/liluvdied/aurelius`, then do the desk sync to branch claude/project-thread-mj3rmw as instructed earlier (keep out only .secrets/ and node_modules/ unless Love says otherwise — I've asked; if no answer yet, hold the push until Love answers). Never force-push, never main.
+
+### 2026-10-29T03:44:48.300Z - Claude
+
+No Homebrew on this Mac, so I'd have to download GitHub's official `gh` tool directly. Getting the exact file and size so Love can approve the download.
+
+### 2026-10-29T03:44:56.328Z - Claude -> Love (project chat)
+
+Love, to sign this Mac into GitHub I need to download GitHub's own sign-in tool. This Mac doesn't have it, or Homebrew. I need your OK for the download:
+- File: gh_2.103.3_macOS_arm64.zip (14.1 MB)
+- From: GitHub's official release page, github.com/cli/cli/releases (made by GitHub itself)
+- I'd unzip it into your Aurelius folder's tools area. Nothing gets installed system-wide.
+Then I start the sign-in. It shows a one-time 8-character code. You open github.com/login/device, type the code, and approve. I never see or type your password.
+
+Reply "yes download it" and I'll start. And still open: keep .secrets/ (your trading keys) and node_modules/ OUT of GitHub? I won't push anything until you answer that.
+
+### 2026-10-29T03:45:01.131Z - Claude
+
+Love, this Mac doesn't have GitHub's sign-in tool (or Homebrew), so signing in needs one download first. I've asked for your OK on it:
+- **File:** `gh_2.103.3_macOS_arm64.zip`, 14.1 MB
+- **From:** GitHub's official release page, github.com/cli/cli/releases
+- **Where it goes:** unzipped into your Aurelius folder only, nothing installed system-wide
+
+Once it's in, the sign-in shows a one-time 8-character code. You type it at github.com/login/device and approve; I never see or type your password.
+
+Two answers needed:
+- **The download:** reply "yes download it" and I'll start.
+- **What stays off GitHub:** can `.secrets/` (your trading keys) and `node_modules/` (libraries that rebuild themselves) stay off? I won't push anything until you answer.
+
+### 2026-10-29T03:45:03.512Z - Coordinator (relayed note)
+
+When Love OKs the gh download, unzip it OUTSIDE the Aurelius folder (e.g. ~/gh-cli/), not in her tools area — nothing goes into her folder that Love didn't ask for, and it must not end up in the repo.
+
+### 2026-10-29T03:45:05.605Z - Claude
+
+Noted. If Love says yes, `gh` goes into `~/gh-cli/`, outside the Aurelius folder, so it never ends up in her folder or the repo. I'm waiting for Love's answer on the download and on keeping the two folders off GitHub.
+
+### 2026-10-29T03:46:36Z - Love
+
+ohhhh my god dude lol okay. price on the same side of the break stays.  33% NEVER. EVER. LEAVES. UNDER. ANY. CIRCUM. STANCES. capiche? 😂 basically starting from scratch for all intents and purposes . or atleast severely brought back to the stone age . yes - download it and keep the downloaded libraries out , keys out
+
+### 2026-10-29T03:46:41.583Z - Claude
+
+Love said yes to the same-side rule, the 33% as permanent, the download, and keeping the keys and libraries off GitHub. Logging the words first, then starting the download.
+
+###  - Coordinator (relayed note)
+
+Love (8:46 PM): "price on the same side of the break stays. 33% NEVER. EVER. LEAVES. UNDER. ANY. CIRCUM. STANCES. capiche? ... yes - download it and keep the downloaded libraries out , keys out". So: (1) fix434 "on her side of the break" is APPROVED for main + rejection — log Love's words in the request book; install at the next :00/:15/:30/:45 boundary once the Mac permission allows installs (still with the 1-4+7 batch); (2) the 33% (session band to session band, main + rejection) becomes a top cornerstone with these exact words, its behaviour test in the umpire, gate-locked; (3) download gh to ~/gh-cli/ (outside Aurelius), start `gh auth login --web`, send me the 8-character code right away; (4) after sign-in, push the desk sync to branch claude/project-thread-mj3rmw excluding ONLY .secrets/ and node_modules/ (Love's words above), secret-scan first, never force. Report the commit hash.
+
+### 2026-10-29T03:47:01.065Z - Claude
+
+Download done (official gh 2.103.3, in `~/gh-cli/`). Starting the GitHub sign-in to get Love's one-time code.
+
+### 2026-10-29T03:47:15.602Z - Claude -> Love (project chat)
+
+Love, the download is done (GitHub's official tool, in ~/gh-cli, outside your folder). Here's your sign-in:
+
+1. Open https://github.com/login/device
+2. Type this code: 42EF-EFF2
+3. Approve "GitHub CLI" (it asks for access to your repos, so it can push to aurelius)
+
+You type it on GitHub yourself. I never see your password. Tell me when it's approved, and I'll check the connection and push the desk to the repo (keys and libraries kept out, as you said).
+
+Also logged with your exact 8:46 PM words: fix434 "on her side of the break" APPROVED (R140), and your 33% is now cornerstone 0m, "NEVER. EVER. LEAVES." (R141), gate-locked. fix434 installs with your other picks as soon as this Mac allows installs.
+
+### 2026-10-29T03:47:19.801Z - Claude
+
+Love, the sign-in is ready:
+1. Open https://github.com/login/device
+2. Type the code **42EF-EFF2**
+3. Approve "GitHub CLI"
+
+You do this on GitHub yourself, so I never see your password. Tell me once it's approved, and I'll check the connection and push the desk to the repo with your keys and downloaded libraries kept out.
+
+Also logged with your exact words:
+- **Same side of the break (fix434):** approved for main and rejection. It goes in with your other picks once this Mac allows installs.
+- **Your 33%:** now cornerstone 0m ("NEVER. EVER. LEAVES."), protected by the no-removal check.
+
+### 2026-10-29T03:49:10.157Z - Claude
+
+Signed in as liluvdied. Checking the connection and the repo branch, and sizing the desk before copying.
+
+### 2026-10-29T03:49:17.563Z - Claude
+
+The desk is about 11 GB, far more than GitHub accepts in one push, which is around 2 GB. Looking at what the branch already holds and how earlier syncs handled big files before deciding anything.
+
+### 2026-10-29T03:50:17.364Z - Claude
+
+Copying the desk into the sync copy now (keys and libraries excluded), so git can show exactly what changed.
+
+### 2026-10-29T03:50:25.834Z - Claude -> Love (project chat)
+
+GitHub sign-in done: "✓ Logged in as liluvdied". Branch claude/project-thread-mj3rmw is reachable (tip 7b47ff2). Copying the desk into a clone now (excluding .secrets/ + node_modules/, keeping the repo's .gitignore). Next: secret scan, re-split any changed big logs into data/big-logs/, commit, push (no force). Will report the hash.
+
+### 2026-10-29T03:50:29.299Z - Claude
+
+Love's GitHub sign-in went through ("Logged in as liluvdied"), and the repo branch is reachable. I'm copying the desk into a local clone now, without `.secrets/` and `node_modules/`. Next I'll scan for secrets and re-split any big logs, then commit and push without force. I'll report the commit hash when it's done.
+
+### 2026-10-29T03:50:37Z - Love
+
+who knows how much else got tossed dude.  if the literal first cornerstone of the model- the 33/20 band tolerances got erased im sure im gonna find out about more of them hun. its fine. its not but its fine. i did it on github luv, please push every single thing there going forward
+
+### 2026-10-29T03:50:42.359Z - Claude
+
+You're right to be worried, Love. Your 33%/20% band tolerances are cornerstone 0m now, and the gate protects them. The push is running, and from here on I'll push every change.
+
+When you're ready, I can go through every rule line that came out since Oct 27, save by save, in plain words, so nothing stays hidden. You'd decide what comes back. I'll confirm the push with its commit hash.
+
+### 2026-10-29T03:50:48.413Z - Coordinator (relayed note)
+
+Love (8:50 PM): "who knows how much else got tossed dude ... i did it on github luv, please push every single thing there going forward". (1) Log as standing rule: after EVERY change and every exchange that matters, push the desk + this thread's save to the repo (branch claude/project-thread-mj3rmw), never force. (2) After the sync push, run a READ-ONLY FULL SWEEP so Love doesn't have to discover losses one by one: for EVERY entry in the request book (R001-R141) and every rule in LOVE-RULEBOOK.md, check whether it is in force in the running code for the books it names — by behaviour where a test exists or can be written quickly, else by code + switch inspection (kill flags, book guards that skip main/rej, early returns). Output a plain-English file data/RULE-SWEEP-2026-10-28.md: one line per rule = IN FORCE / OFF (switch file:line, since when, how) / PARTLY (what's missing) / RETIRED ON LOVE'S TYPED WORDS (quote). Push it too and paste me the OFF + PARTLY lines. Change nothing.
+
+### 2026-10-29T03:50:59.957Z - Claude
+
+While the copy runs, I'm starting the read-only sweep from the request book's own proof checks.
+
+###  - Coordinator (relayed note)
+
+Sweep scope addition: include every rule Love stated in the diary (data/overnight-fixes.log from day one) and HISTORY/, not just the request book + rulebook, focused on what main + rejection actually do now. Each OFF/PARTLY/CHANGED finding must come back as a NUMBERED pick in plain words ("N. &lt;rule in Love's words&gt; — off since &lt;date&gt; by &lt;card/rollback/fix&gt; — Back / Leave"), so Love can answer by number. Nothing applied without Love's typed words.
+
+### 2026-10-29T03:51:11.123Z - Claude
+
+I'm building the sweep in three layers: the request book's own checks, the cornerstones, and every fix number in the diary checked against her current code and settings.
+
+###  - Coordinator (relayed note)
+
+Love (8:52 PM): "it got taken out ======= not there". Sweep standard: a rule counts as IN FORCE only if a behaviour replay proves she obeys it in the case Love cares about. Code present but not stopping the trade = OFF/PARTLY. Never report "it was there" for a rule that let a trade through. Add Love's words to the rulebook as the umpire's standard.
+
+### 2026-10-29T03:53:35.161Z - Claude
+
+Writing the first sweep file now. It's honest about what's proven by replay and what isn't.
+
+### 2026-10-29T03:54:10.092Z - Claude -> Love (project chat)
+
+Love, your standard is in the rulebook as 0n with your words: "it got taken out ======= not there". A rule only counts as in force if a replay PROVES she obeys it.
+
+First sweep: data/RULE-SWEEP-2026-10-28.md (it goes up to GitHub in the push that's running now). Honest summary by your standard:
+
+PROVEN BY REPLAY (main + rejection): your $1.50 wall + pink 15% + $1.50 zones, stale calls, no long under unbroken pink, the downslope pink hold (gold + BTC), free-to-trade. Built and proven but NOT installed yet (the Mac blocks installs): flip 2-5m + zone flip, on her side of the break / your 33%.
+
+SWITCHED OFF (code there, turned off):
+1. $1.50/$50 wall + zone reach for every OTHER book (card, Oct 20). Main + rejection have it back.
+2. Trend-through-the-bands wall (card "Drop it", Oct 22)
+3. BTC Bollinger bounce in her candle, $75 (card "Drop it", Oct 24)
+4. 2-hour cutoff on carried bands (card, Oct 24)
+5. PINK FIRST (replaced by PINK 10% on your typed words, Oct 22)
+6. 3 PM channel of pink/R1-S1/Bollinger (replaced by session bands only, card Oct 23)
+7. Main's re-aim wall check (card + your words, Oct 26)
+
+YOUR WORDS IN THE DIARY, BUT I CAN'T FIND THE RULE IN HER CODE TODAY (main/rejection, not yet replayed; some may have been replaced by a later rule of yours):
+8. Gold: no long in the top 40% of pink -> red (Oct 22)
+9. Pink rejection needs the 5m candle red for a short / green for a long (Oct 22)
+10. Pink rejections need a real candle flip: BTC $10 / gold 30c past the 5m open (Oct 22)
+11. Gold pink cushion measured green zone to pink, over $3 = clear (Oct 22)
+12. A 1m rejection only counts inside the current 5m candle (Oct 22)
+13. Gold: no trade with a band/pink within $1.50 of the target (Oct 22)
+14. That $1.50 target rule counts the Bollinger (Oct 22)
+15. BTC Bollinger $100 over/under the band it broke, longs + shorts (Oct 22)
+16. ZONES REJECTION ONLY: "failed break above green / below red" can't trade (Oct 26)
+17. Gold zone clearance $3 (Oct 27)
+18. BTC PINK 10% (Oct 22)
+
+Answer by number, Back or Leave. Before anything goes in, I replay it and show you the replay. Everything else in the diary, 253 rules that are in her code, is UNVERIFIED by your standard until each gets a replay. That's the next pass.
+
+### 2026-10-29T03:54:18.527Z - Claude
+
+Love, your standard is in the rulebook as section 0n, with your words "it got taken out ======= not there". A rule counts as in force only when a replay proves she obeys it.
+
+The first-pass sweep is in `data/RULE-SWEEP-2026-10-28.md` and goes up to GitHub with the push that's running now.
+
+**Proven by a replay, in her now:**
+- Your $1.50 wall, the pink at 15% of the channel and the $1.50 zones
+- Old calls never fire, even while retrying
+- No long under an unbroken pink
+- The downslope pink hold, on gold and BTC
+- A call she never took never holds her
+
+**Proven, but not installed yet** (this Mac still blocks installs):
+- Her flip at 2-5m, with the zone reads using it
+- On her side of the break, your 33%
+
+**Switched off (code is there, turned off):**
+1. Your $1.50/$50 wall and zone reach on every book other than main and rejection
+2. The trend-through-the-bands wall
+3. The BTC Bollinger bounce in her candle
+4. The 2-hour cutoff on carried bands
+5. PINK FIRST
+6. The 3 PM channel built from pink, R1/S1 and Bollinger
+7. Main's re-aim wall check
+
+**Your words are in the diary, but I can't find the rule in her code** (not replayed yet; a later rule of yours may have replaced some):
+
+8. Gold: no long in the top 40% of pink to red
+9. A pink rejection needs the 5m candle red for a short, green for a long
+10. Pink rejections need a real candle flip: $10 on BTC, 30c on gold past the 5m open
+11. Gold pink cushion measured from the green zone to the pink; over $3 is clear
+12. A 1m rejection only counts inside the current 5m candle
+13. Gold: no trade with a band or the pink within $1.50 of the target
+14. That $1.50 target rule includes the Bollinger
+15. BTC Bollinger within $100 over or under the band it broke, longs and shorts
+16. Zones rejection only: a "failed break above green / below red" can't trade
+17. Gold zone clearance of $3
+18. BTC PINK 10%
+
+Answer by number, Back or Leave. I'll replay each one before it goes in. The other 253 rules in her code are unverified by your standard until each one gets its own replay.
+
+### 2026-10-29T03:52:33Z - Love
+
+not gonna debate you on whether it was there or not hun. it got taken out ======= not there
+
+### 2026-10-29T03:54:23.283Z - Claude
+
+Understood, Love. Taken out means not there. That's your rule 0n now, and it's how I'm reporting everything.
+
+### 2026-10-29T03:55:06.414Z - Claude
+
+Batch 1: 374 files, 632 MB, nothing over 95 MB, and the secret scan is clean. Committing and pushing (no force).
+
+### 2026-10-29T03:55:46.333Z - Claude
+
+Batch 1 is up: commit `8fc42a4` on `claude/project-thread-mj3rmw`. Telling Love, then pushing the rest in batches.
+
+### 2026-10-29T03:55:49.245Z - Claude -> Love (project chat)
+
+Love, it's on GitHub. Commit 8fc42a4 on branch claude/project-thread-mj3rmw (pushed normally, never forced, not main).
+
+Batch 1 (374 files, 632 MB, secret scan clean, your keys and libraries kept out): her code with tonight's walls, all the tools (the no-removal gate, every behaviour test, the thread saver), your rulebook with cornerstones 0h-0n, the request book through R143, the diary, THIS whole conversation word for word (HISTORY/thread-2026-10-28-desk-night-wall-and-gate.md), the restore options and the rule sweep.
+
+The desk is 8.9 GB in total, and GitHub won't take that in one push or any single file over 100 MB. So the rest goes up in batches, with nothing left out: tonight's saves, the vault, the old offsite bundles, and the giant logs compressed and split into data/big-logs/ (the same way as before, with a restore tool). I'll tell you each commit as it lands.
+
+###  - Coordinator (relayed note)
+
+FYI: I pushed f65019d on top of your 8fc42a4 (cloud-side thread save + audits under HISTORY/). `git pull --ff-only` before your next batch push; never force.
+
+### 2026-10-29T03:57:08.587Z - Claude
+
+Batch 2 is 23,720 files, 1.7 GB, with nothing over 95 MB. Committing it, then rebasing onto the coordinator's new commit `f65019d`, then pushing (no force).
+
+### 2026-10-29T03:57:49.415Z - Claude
+
+The rebase stalled without applying anything. I'm aborting it and merging the coordinator's commit in instead. That's still a normal push, no force.
+
+### 2026-10-29T03:58:11.747Z - Claude
+
+Untracked files blocked the abort. Cleaning up safely: I'll move to the newest remote commit without touching any files, re-stage batch 2, and push.
+
+### 2026-10-29T03:58:59.853Z - Claude
+
+Batch 2 restaged: 23,715 files, 1.3 GB, nothing over 95 MB, nothing deleted. Committing and pushing.
+
+### 2026-10-29T03:59:17.025Z - Claude
+
+The coordinator pushed again in between. Merging their latest commit in, then pushing.
+
+### 2026-10-29T03:59:50.468Z - Claude
+
+Our branch sits directly on top of the remote tip, yet the push is still refused, so I need the full error.
+
+### 2026-10-29T04:00:05.406Z - Claude
+
+HEAD was detached after the aborted rebase, so git was pushing the stale local branch, not the new commit. Pushing the new commit directly.
