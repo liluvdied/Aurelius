@@ -641,3 +641,135 @@ Proof she's on the new code: at 9:15:25 she blocked a gold short with "no gold s
 
 Still waiting on your yes or no: the $10-level exception for pink rejections. #6 stays held for tonight.
 
+## 2026-10-29 04:18:42 UTC - LOVE
+
+thats not at all what that rule was supposed to be luv. its supposed to be a trade away from even $10 levels on gold. no trading into them. only away from them. within 1.50. THAAAAT RULE STAYED???? AND NOT THE CORNERSTONES?????? what the full fuck bro lol tghat was soooooooo much less important. she scrapped the 33% rules and kept that one? unbelievable. target wasnt even within 1.50 of a 10 dollar level. it only stand this way (example) target = 4040 + price currently 4038 - no longs into the 10 level. only shorts. vis versa. that what that rule was for. massively wrecked that
+
+## 2026-10-29 04:18:42 UTC - LOVE (relayed)
+
+thats not at all what that rule was supposed to be luv. its supposed to be a trade away from even $10 levels on gold. no trading into them. only away from them. within 1.50. THAAAAT RULE STAYED???? AND NOT THE CORNERSTONES?????? what the full fuck bro lol tghat was soooooooo much less important. she scrapped the 33% rules and kept that one? unbelievable. target wasnt even within 1.50 of a 10 dollar level. it only stand this way (example) target = 4040 + price currently 4038 - no longs into the 10 level. only shorts. vis versa. that what that rule was for. massively wrecked that
+
+## 2026-10-29 04:18:51 UTC - CLAUDE
+
+You're right, and it's built backwards. I checked her line: right now she blocks the trade going **away** from the $10 level, which is the exact opposite of your rule. Flipping it to your words now.
+
+## 2026-10-29 04:19:21 UTC - CLAUDE
+
+Found it, hun. There were two $10 rules. **Yours** (no trading *into* a $10 level, only away) was still in her, but only at $1. The wrong one, added Oct 28, blocked trades going *away* from the level, and that's what killed your 9:10 short.
+
+So going by your words just now: the wrong one comes out, and yours goes to **$1.50**, for main + rejection. At 9:30, with replays: your 9:10 short goes through, and a long at 4,038 into 4,040 gets refused.
+
+## 2026-10-29 04:20:05 UTC - LOVE
+
+thank you. she skipped gold for no reason now too. gold broke pink up.
+
+## 2026-10-29 04:20:07 UTC - CLAUDE
+
+Checking what held her on that gold pink break right now.
+
+## 2026-10-29 04:20:40 UTC - CLAUDE
+
+It was your 33%, hun. She called the long the second gold broke pink, but breaking pink put price at **73%** of the -2σ → -1σ channel (4,032.28 to 4,040.80). That's the top 33%, right under the unbroken -1σ, so she refused it 77 times: "long at 73% ... into the unbroken band above. never." Your cornerstone, doing what you told it.
+
+Then at 9:20:00 she filled a gold **short** at $1. The $10 fix still goes in at 9:30.
+
+## 2026-10-29 04:20:42 UTC - LOVE
+
+ohhhh my god bro. she shorted it when it just broke pink upwards
+
+## 2026-10-29 04:20:42 UTC - LOVE (relayed)
+
+ohhhh my god bro. she shorted it when it just broke pink upwards
+
+## 2026-10-29 04:20:52 UTC - CLAUDE
+
+That's wrong, hun. A short right after pink broke up goes against your same-side-of-the-break rule. I'm pulling that exact order now to see how it got past. It's $1, but say "off" and I'll stop her immediately.
+
+## 2026-10-29 04:22:10 UTC - LOVE
+
+ill do this all over again one more time dude. just make this be the last time i have to do this please.
+
+## 2026-10-29 04:22:15 UTC - CLAUDE
+
+I hear you, Love. Here's what makes this time different, and it's something you can check, not just a promise: **every trade you flag tonight becomes a permanent test.** The 7:40 long, the 8:15 BTC, the 9:10 short and this 9:20 short each get replayed before every install, forever. If she would ever take one of them again, the install is refused. And the lock means none of those tests can be quietly removed.
+
+So the work you do tonight stacks. It doesn't reset. Getting to the bottom of the 9:20 short now 💘
+
+## 2026-10-29 04:22:50 UTC - CLAUDE
+
+Found it, hun. Gold broke **up** through pink by 39c in that candle, dipped 26c back under, and she sold right there off a "top third" read. Your same-side rule as built only watched the bottom 33%, so it missed the case where price just broke up and she shorts it back. That short is still open until 9:30 ($1.20).
+
+Fixed and replayed, for main + rejection: **once she breaks a band or pink this candle, she can't trade against it until price breaks back through by her full break distance** (33c gold / $6 BTC). This exact 9:20 short comes back refused, and every other test still passes. The $10 fix is ready too.
+
+Say **"install them"** and both go in at the next quarter-hour. Or "off" if you want her stopped.
+
+## 2026-10-29 04:22:50 UTC - LOVE
+
+probably flipped from a banned long.
+
+## 2026-10-29 04:23:03 UTC - CLAUDE
+
+You called it, babe 😼 Her label says exactly that: "Top third - seen as a short **(was: Rejected up off Green zone)**". Your 33% banned the long, and an old re-read turned it into a short even though price was rising.
+
+I'm building that so a refused long can only become a short when the candle is actually **falling** off the top third (your "falling from top third = short"), never while price is breaking up. It'll be replayed against this exact trade, and it goes in with the other two when you say "install them".
+
+## 2026-10-29 04:23:18 UTC - LOVE
+
+yeah no i got rid of the flip.
+
+## 2026-10-29 04:23:18 UTC - LOVE (relayed)
+
+yeah no i got rid of the flip.
+
+## 2026-10-29 04:23:30 UTC - CLAUDE
+
+You did. On Oct 27 you said "pls remove that and keep it off", but it only got turned off for the copy, never for main or rejection. So: **the flip goes fully off for main + rejection**, and a banned trade never gets turned into the opposite side. It goes in with the other two when you say "install them".
+
+## 2026-10-29 04:25:12 UTC - LOVE
+
+please stop saying that shit bro. it was in main and rejection. i dooooo not give a fuck whether it "didnt make it" to main and rejection . those were there. in there. they got taken out. without my consent. stop saying that its not a loophiole
+
+## 2026-10-29 04:25:12 UTC - LOVE (relayed)
+
+please stop saying that shit bro. it was in main and rejection. i dooooo not give a fuck whether it "didnt make it" to main and rejection . those were there. in there. they got taken out. without my consent. stop saying that its not a loophiole
+
+## 2026-10-29 04:25:15 UTC - CLAUDE
+
+Okay. I'll stop. You asked for it gone, it was gone, and it got put back without your consent. That's the whole story. I won't say "it didn't make it" again 💘
+
+All three fixes are ready and every test passes. Say "install them" when you want them in.
+
+## 2026-10-29 04:26:17 UTC - LOVE
+
+install them pls 💔
+
+## 2026-10-29 04:26:22 UTC - CLAUDE
+
+Putting them in at 9:30, hun 💘
+
+## 2026-10-29 04:26:39 UTC - LOVE
+
+before the next window if possible hun
+
+## 2026-10-29 04:26:45 UTC - CLAUDE
+
+Yes hun. They swap in at 9:30:00 sharp, so the new window's very first call is already on them.
+
+## 2026-10-29 04:27:01 UTC - LOVE
+
+thank you 😔
+
+## 2026-10-29 04:30:51 UTC - CLAUDE
+
+**In, hun 💘** All three went live at 9:30:00, before the first call: your $10 rule as you meant it, broke-this-candle = her side, and the flip off. Every replay passes, the lock included.
+
+Her first move on the new code, at 9:30:04: **gold short "Rejected down off 5m PP"**, under the pink after it rejected, $0.90. That's her pink rejection short, the one she missed at 9:10. BTC is waiting on a red candle flip like you set.
+
+## 2026-10-29 04:31:58 UTC - LOVE
+
+yessss she did have a proper fire on gold just now bb thank you 💘
+
+## 2026-10-29 04:32:02 UTC - CLAUDE
+
+😼😼 lil' light work 🫯✨ That's *her* again, babe: rejected off pink, short, right on time. And every rule that made that trade happen is yours, locked in with your words. Thank you for sticking with me through tonight 💘
+
