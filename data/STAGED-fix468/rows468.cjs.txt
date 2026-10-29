@@ -1,0 +1,7 @@
+// 5M MIRRORS (fix468, R213 + R177 + R209): her own files
+if (B5) { const top5 = B5.includes("NO LONGS IN THE TOP RUNG (fix468)"), bot5 = B5.includes("NO SHORTS IN THE BOTTOM RUNG: btc short");
+  add("5M: BTC rungs: no long over the session +2σ (fix468) / no short under the -2σ", top5, bot5);
+  const z5l = /if \(side === "up" && zP8 > 0 && zR8 > zP8 && tick > zP8 && tick < zR8 && \(tick - zP8\) \/ \(zR8 - zP8\) >= 0\.45\) return/.test(B5), z5s = /if \(side === "down" && zP8 > 0 && zS8 > 0 && zS8 < zP8 && tick > zS8 && tick < zP8 && \(tick - zS8\) \/ \(zP8 - zS8\) <= 0\.55\) return/.test(B5);
+  add("5M: BTC zones 55%: no long top 55% pink->red / no short bottom 55% green->pink (fix468)", z5l, z5s);
+  const bb5l = R5.includes('if (c.side === "up" && asset === "btc" && bbU > 0) { const ppB = pB("5m PP"); if (ppB > 0 && bbU > ppB && bbU - ppB <= 100) return false; }'), bb5s = R5.includes('if (c.side === "down" && asset === "btc" && bbL > 0) { const ppB = pB("5m PP"); if (ppB > 0 && bbL < ppB && ppB - bbL <= 100) return false; }');
+  add("5M: BTC Bollinger within $100 of the pink: no long breaking pink up (fix468) / no short breaking it down", bb5l, bb5s, "R213 1:40 PM"); }

@@ -2,6 +2,34 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R216 - fix468 adds to the walled-off 5M, in her own files: the BTC green/red zone guard at 55% both sides (no short in the bottom 55% of green->pink, no long in the top 55% of pink->red), same as main + rejection. The fix373 pink re-aim (a re-aim lock, not a tolerance) stays OFF the 5M.
+- when: 2026-10-29T20:48:06+00:00
+- Love: "Love Oct 29 2026 11:23 AM PT: "session band, green/red, bollingers & pink band tolerances dont change book to book, those are hard set tolerances for all models." + 1:24 PM: "both sides ... all books. aside from delayed." + 1:23 PM: "including 5M" + 1:40 PM: "ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS""
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M
+- status: ACTIVE
+- proof: {"test": "tools/check-her-rules.cjs --only5m"}
+
+## R214 - fix467 (INSTALL-MIRRORS.command): every book but delayed - NO LONGS IN THE TOP RUNG (mirror of fix296), BOLLINGER WITHIN $100 OVER THE PINK drops a long (mirror of Oct 21), the fix373 pink re-aim both ways, BTC zone guard 0.55 at the door, copier and wire; the delayed book's share pinned on every path.
+- when: 2026-10-29T20:44:02+00:00
+- Love: "Love Oct 29 2026 1:40 PM PT: "oh my goddd bro. bollinger over pink NEEDS A LONG MIRROR. ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS ... i didn't get the other command / let me know when you send that" + 1:24 PM: "both sides ... all books. aside from delayed." + 1:23 PM: "including 5M""
+- books: e, v, e, r, y,  , b, o, o, k,  , e, x, c, e, p, t,  , d, e, l, a, y, e, d
+- status: ACTIVE
+- proof: {"test": "tools/check-her-rules.cjs"}
+
+## R215 - fix468 (INSTALL-5M-MIRRORS.command): the walled-off 5M in her files - NO LONGS IN THE TOP RUNG + BOLLINGER WITHIN $100 OVER THE PINK drops a long; 5M wall refrozen.
+- when: 2026-10-29T20:44:02+00:00
+- Love: "Love Oct 29 2026 1:40 PM PT: "oh my goddd bro. bollinger over pink NEEDS A LONG MIRROR. ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS ... i didn't get the other command / let me know when you send that" + 1:24 PM: "both sides ... all books. aside from delayed." + 1:23 PM: "including 5M""
+- books: P, o, l, y, m, a, r, k, e, t,  , 5, M
+- status: ACTIVE
+- proof: {"test": "tools/check-her-rules.cjs"}
+
+## R213 - Standing: every band tolerance works both ways. INSTALL-MIRRORS.command: mirror the BTC Bollinger-near-pink drop (long side), the BTC bottom-rung short block (top-rung long block), the fix373 pink re-aim lock (both ways), and the wire zoneGuard to the door's 0.55; any other one-sided tolerance found; every book but delayed, 5M in her own files.
+- when: 2026-10-29T20:40:57+00:00
+- Love: "Love Oct 29 2026 1:40 PM PT: "oh my goddd bro. bollinger over pink NEEDS A LONG MIRROR. ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS ... i didn't get the other command / let me know when you send that""
+- books: e, v, e, r, y,  , b, o, o, k,  , e, x, c, e, p, t,  , d, e, l, a, y, e, d, ,,  , i, n, c, l, .,  , t, h, e,  , 5, M
+- status: ACTIVE
+- proof: {"process": "building"}
+
 ## R211 - fix465 (INSTALL-33-PINK-ALL-BOOKS.command): lockPctFor a hard 33% for every book except the delayed book (recon-dly / recon-dlyk keep their shares byte for byte); every non-delayed recon book meets the pink (15/20, never into an unbroken pink both sides) and 33% walls at the door and in the read.
 - when: 2026-10-29T20:32:06+00:00
 - Love: "Love Oct 29 2026 1:22-1:26 PM PT: "no i'm keeping it a hard 33% for all books" + "not on the delayed book please. every single other one" + "including 5M. i'm assuming that's why she's losing so much now." + "both sides. not just longs. not just shorts. pink as well. both sides. all books. aside from delayed. do not ever use that as a loophole again." + "implement the 33% and pink tolerances BOTH SIDES. ON ALL BOOKS. ASIDE FROM DELAYED.""

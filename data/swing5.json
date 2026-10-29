@@ -388,5 +388,15 @@
   "side": "down",
   "setup": "Launched from the top third (high 79917.93) - a short until the bottom third",
   "spotAt": 79893.08
+ },
+ "KXBTC15M-26OCT291645-45:recon-rej5:s5977688": {
+  "id": "KXBTC15M-26OCT291645-45:recon-rej5:s5977688",
+  "book": "recon-rej",
+  "at": "2026-10-29T20:40:02.739Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT291645-45",
+  "side": "down",
+  "setup": "Candle falling from the top third",
+  "spotAt": 79788.53
  }
 }

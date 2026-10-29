@@ -1,185 +1,68 @@
 {
- "at": "2026-10-29T20:35:08.165Z",
+ "at": "2026-10-29T20:52:14.893Z",
  "summary": {
   "btc-vantage": {
    "trades": 42,
-   "wins": 25,
-   "pnl": 16.16
+   "wins": 26,
+   "pnl": 78.66
   },
   "btc-pepperstone": {
-   "trades": 43,
-   "wins": 28,
-   "pnl": 96.7
+   "trades": 44,
+   "wins": 29,
+   "pnl": 132.26
   },
   "gold-vantage": {
    "trades": 78,
    "wins": 48,
-   "pnl": 62.53
+   "pnl": 125.51
   },
   "gold-pepperstone": {
-   "trades": 76,
-   "wins": 45,
-   "pnl": -40.21
+   "trades": 75,
+   "wins": 44,
+   "pnl": -52.47
   },
   "rej-vantage": {
-   "trades": 78,
-   "wins": 54,
-   "pnl": 45.61
+   "trades": 77,
+   "wins": 53,
+   "pnl": 41.18
   },
   "rej-pepperstone": {
    "trades": 79,
    "wins": 46,
-   "pnl": -10.98
+   "pnl": -12.31
   }
  },
  "now": {
   "gold-vantage": {
-   "at": "2026-10-29T20:35:07.100Z",
-   "px": 4027.56,
-   "pink": 4025.93,
-   "channel": "-1σ 4018.44 - session VWAP 4031.65",
-   "pct": 69
+   "at": "2026-10-29T20:47:04.078Z",
+   "px": 4023.12,
+   "pink": 16456.43,
+   "channel": "-1σ 3613.69 - session VWAP 4033.97",
+   "pct": 97
   },
   "gold-pepperstone": {
-   "at": "2026-10-29T20:35:08.165Z",
-   "px": 4027.29,
-   "pink": 4025.81,
-   "channel": "-1σ 4018.38 - session VWAP 4031.67",
-   "pct": 67
+   "at": "2026-10-29T20:52:14.893Z",
+   "px": 4020.08,
+   "pink": 4023.34,
+   "channel": "-1σ 4018.34 - session VWAP 4031.59",
+   "pct": 13
   },
   "btc-vantage": {
-   "at": "2026-10-29T20:31:25.544Z",
-   "px": 80448.71,
-   "pink": 80452.93,
-   "channel": "-1σ 80009.22 - session VWAP 80582.33",
-   "pct": 77
+   "at": "2026-10-29T20:50:29.607Z",
+   "px": 79186.47,
+   "pink": 79543.2,
+   "channel": "-3σ 78688.43 - -2σ 79304.67",
+   "pct": 81
   },
   "btc-pepperstone": {
-   "at": "2026-10-29T20:31:15.445Z",
-   "px": 80347,
-   "pink": 80360.64,
-   "channel": "-1σ 79900.29 - session VWAP 80484.22",
-   "pct": 77
+   "at": "2026-10-29T20:50:40.014Z",
+   "px": 79145.77,
+   "pink": 79453.17,
+   "channel": "-3σ 78662.29 - -2σ 79263.23",
+   "pct": 80
   }
  },
  "rows": [
-  {
-   "id": "KXGOLD15M-26OCT281415-15:gold-vantage",
-   "twin": "gold-vantage",
-   "chart": "VANTAGE",
-   "asset": "gold",
-   "ticker": "KXGOLD15M-26OCT281415-15",
-   "closes": "2026-10-28T18:15:00Z",
-   "at": "2026-10-28T18:01:38.947Z",
-   "side": "down",
-   "price": 4037.12,
-   "pink": 4040.17,
-   "frac": 0.86,
-   "why": "top 86% of the channel (-2σ 4029.60 - -1σ 4038.32), below the pink 4040.17",
-   "ask": 0.62,
-   "multiple": 1.61,
-   "stake": 20,
-   "result": "win",
-   "pnl": 12.26,
-   "settled": "no"
-  },
-  {
-   "id": "KXGOLD15M-26OCT281415-15:gold-pepperstone",
-   "twin": "gold-pepperstone",
-   "chart": "PEPPERSTONE",
-   "asset": "gold",
-   "ticker": "KXGOLD15M-26OCT281415-15",
-   "closes": "2026-10-28T18:15:00Z",
-   "at": "2026-10-28T18:01:39.972Z",
-   "side": "down",
-   "price": 4036.84,
-   "pink": 4040.15,
-   "frac": 0.84,
-   "why": "top 84% of the channel (-2σ 4029.43 - -1σ 4038.28), below the pink 4040.15",
-   "ask": 0.62,
-   "multiple": 1.61,
-   "stake": 20,
-   "result": "win",
-   "pnl": 12.26,
-   "settled": "no"
-  },
-  {
-   "id": "KXBTC15M-26OCT281415-15:rej-pepperstone",
-   "twin": "rej-pepperstone",
-   "chart": "PEPPERSTONE",
-   "asset": "btc",
-   "ticker": "KXBTC15M-26OCT281415-15",
-   "closes": "2026-10-28T18:15:00Z",
-   "at": "2026-10-28T18:02:10.483Z",
-   "side": "down",
-   "price": 80732.6,
-   "pink": 80676.74,
-   "why": "1m rejected down off session VWAP 80836.20 (high 80858.56, close 80771.27)",
-   "ask": 0.48,
-   "multiple": 2.08,
-   "stake": 5,
-   "result": "win",
-   "pnl": 5.42,
-   "settled": "no"
-  },
-  {
-   "id": "KXBTC15M-26OCT281415-15:rej-vantage",
-   "twin": "rej-vantage",
-   "chart": "VANTAGE",
-   "asset": "btc",
-   "ticker": "KXBTC15M-26OCT281415-15",
-   "closes": "2026-10-28T18:15:00Z",
-   "at": "2026-10-28T18:03:01.482Z",
-   "side": "up",
-   "price": 81131.39,
-   "pink": 80805.34,
-   "why": "1m rejected up off session VWAP 80934.65 (low 80818.46, close 81131.44)",
-   "ask": 0.82,
-   "multiple": 1.22,
-   "stake": 5,
-   "result": "loss",
-   "pnl": -5,
-   "settled": "no"
-  },
-  {
-   "id": "KXBTC15M-26OCT281415-15:btc-vantage",
-   "twin": "btc-vantage",
-   "chart": "VANTAGE",
-   "asset": "btc",
-   "ticker": "KXBTC15M-26OCT281415-15",
-   "closes": "2026-10-28T18:15:00Z",
-   "at": "2026-10-28T18:04:36.354Z",
-   "side": "up",
-   "price": 80982,
-   "pink": 80794.03,
-   "frac": 0.16,
-   "why": "bottom 16% of the channel (session VWAP 80934.38 - +1σ 81238.36), above the pink 80794.03",
-   "ask": 0.72,
-   "multiple": 1.39,
-   "stake": 20,
-   "result": "loss",
-   "pnl": -20,
-   "settled": "no"
-  },
-  {
-   "id": "KXBTC15M-26OCT281430-30:rej-vantage",
-   "twin": "rej-vantage",
-   "chart": "VANTAGE",
-   "asset": "btc",
-   "ticker": "KXBTC15M-26OCT281430-30",
-   "closes": "2026-10-28T18:30:00Z",
-   "at": "2026-10-28T18:15:21.952Z",
-   "side": "up",
-   "price": 80758.94,
-   "pink": 80796.28,
-   "why": "1m rejected up off pink 80796.28 (low 80762.12, close 80824.10)",
-   "ask": 0.53,
-   "multiple": 1.89,
-   "stake": 5,
-   "result": "win",
-   "pnl": 4.43,
-   "settled": "yes"
-  },
   {
    "id": "KXBTC15M-26OCT281430-30:rej-pepperstone",
    "twin": "rej-pepperstone",
@@ -7842,8 +7725,9 @@
    "ask": 0.36,
    "multiple": 2.78,
    "stake": 20,
-   "result": "open",
-   "pnl": null
+   "result": "win",
+   "pnl": 35.56,
+   "settled": "no"
   },
   {
    "id": "KXBTC15M-26OCT291645-45:btc-vantage",
@@ -7861,8 +7745,9 @@
    "ask": 0.32,
    "multiple": 3.13,
    "stake": 20,
-   "result": "open",
-   "pnl": null
+   "result": "win",
+   "pnl": 42.5,
+   "settled": "no"
   },
   {
    "id": "KXBTC15M-26OCT291645-45:rej-vantage",
@@ -7879,8 +7764,9 @@
    "ask": 0.61,
    "multiple": 1.64,
    "stake": 5,
-   "result": "open",
-   "pnl": null
+   "result": "loss",
+   "pnl": -5,
+   "settled": "no"
   },
   {
    "id": "KXBTC15M-26OCT291645-45:rej-pepperstone",
@@ -7897,6 +7783,120 @@
    "ask": 0.55,
    "multiple": 1.82,
    "stake": 5,
+   "result": "win",
+   "pnl": 4.09,
+   "settled": "no"
+  },
+  {
+   "id": "KXGOLD15M-26OCT291645-45:gold-vantage",
+   "twin": "gold-vantage",
+   "chart": "VANTAGE",
+   "asset": "gold",
+   "ticker": "KXGOLD15M-26OCT291645-45",
+   "closes": "2026-10-29T20:45:00Z",
+   "at": "2026-10-29T20:37:03.794Z",
+   "side": "down",
+   "price": 4027.61,
+   "pink": 16671,
+   "frac": 0.98,
+   "why": "top 98% of the channel (-1σ 3624.96 - session VWAP 4033.84), below the pink 16671.00",
+   "ask": 0.21,
+   "multiple": 4.76,
+   "stake": 20,
+   "result": "win",
+   "pnl": 75.24,
+   "settled": "no"
+  },
+  {
+   "id": "KXGOLD15M-26OCT291700-00:gold-vantage",
+   "twin": "gold-vantage",
+   "chart": "VANTAGE",
+   "asset": "gold",
+   "ticker": "KXGOLD15M-26OCT291700-00",
+   "closes": "2026-10-29T21:00:00Z",
+   "at": "2026-10-29T20:47:04.079Z",
+   "side": "down",
+   "price": 4023.12,
+   "pink": 16456.43,
+   "frac": 0.97,
+   "why": "top 97% of the channel (-1σ 3613.69 - session VWAP 4033.97), below the pink 16456.43",
+   "ask": 0.41,
+   "multiple": 2.44,
+   "stake": 20,
+   "result": "open",
+   "pnl": null
+  },
+  {
+   "id": "KXBTC15M-26OCT291700-00:rej-vantage",
+   "twin": "rej-vantage",
+   "chart": "VANTAGE",
+   "asset": "btc",
+   "ticker": "KXBTC15M-26OCT291700-00",
+   "closes": "2026-10-29T21:00:00Z",
+   "at": "2026-10-29T20:47:05.974Z",
+   "side": "down",
+   "price": 78624.59,
+   "pink": 79684.22,
+   "why": "1m rejected down off -3σ 78753.43 (high 79015.31, close 78726.37)",
+   "ask": 0.69,
+   "multiple": 1.45,
+   "stake": 5,
+   "result": "open",
+   "pnl": null
+  },
+  {
+   "id": "KXBTC15M-26OCT291700-00:rej-pepperstone",
+   "twin": "rej-pepperstone",
+   "chart": "PEPPERSTONE",
+   "asset": "btc",
+   "ticker": "KXBTC15M-26OCT291700-00",
+   "closes": "2026-10-29T21:00:00Z",
+   "at": "2026-10-29T20:47:06.769Z",
+   "side": "down",
+   "price": 78530.47,
+   "pink": 79582.69,
+   "why": "1m rejected down off -3σ 78686.91 (high 78914.61, close 78581.13)",
+   "ask": 0.69,
+   "multiple": 1.45,
+   "stake": 5,
+   "result": "open",
+   "pnl": null
+  },
+  {
+   "id": "KXBTC15M-26OCT291700-00:btc-vantage",
+   "twin": "btc-vantage",
+   "chart": "VANTAGE",
+   "asset": "btc",
+   "ticker": "KXBTC15M-26OCT291700-00",
+   "closes": "2026-10-29T21:00:00Z",
+   "at": "2026-10-29T20:50:29.607Z",
+   "side": "down",
+   "price": 79186.47,
+   "pink": 79543.2,
+   "frac": 0.81,
+   "why": "top 81% of the channel (-3σ 78688.43 - -2σ 79304.67), below the pink 79543.20",
+   "ask": 0.38,
+   "multiple": 2.63,
+   "stake": 20,
+   "result": "open",
+   "pnl": null
+  },
+  {
+   "id": "KXBTC15M-26OCT291700-00:btc-pepperstone",
+   "twin": "btc-pepperstone",
+   "chart": "PEPPERSTONE",
+   "asset": "btc",
+   "ticker": "KXBTC15M-26OCT291700-00",
+   "closes": "2026-10-29T21:00:00Z",
+   "at": "2026-10-29T20:50:40.014Z",
+   "side": "down",
+   "price": 79145.77,
+   "pink": 79453.17,
+   "frac": 0.8,
+   "why": "top 80% of the channel (-3σ 78662.29 - -2σ 79263.23), below the pink 79453.17",
+   "ask": 0.38,
+   "multiple": 2.63,
+   "stake": 20,
    "result": "open",
    "pnl": null
   }

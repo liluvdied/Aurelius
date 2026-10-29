@@ -1,6 +1,61 @@
 {
- "at": "2026-10-29T20:30:03.514Z",
+ "at": "2026-10-29T20:50:05.888Z",
  "cities": [
+  {
+   "city": "LAX",
+   "station": "KLAX",
+   "hourLocal": 13,
+   "offset": -0.30000000000001137,
+   "lessons": 19,
+   "maxSoFar": 73.4,
+   "mu": 73.1,
+   "sigma": 1.7,
+   "best": {
+    "buckets": [
+     "74° to 75°",
+     "76° or above"
+    ],
+    "cost": 0.28,
+    "p": 0.41,
+    "edge": 0.11
+   }
+  },
+  {
+   "city": "PHIL",
+   "station": "KPHL",
+   "hourLocal": 16,
+   "offset": 0.29999999999999716,
+   "lessons": 19,
+   "maxSoFar": 69.8,
+   "mu": 72.3,
+   "sigma": 0.8,
+   "best": {
+    "buckets": [
+     "73° to 74°"
+    ],
+    "cost": 0.01,
+    "p": 0.4,
+    "edge": 0.39
+   }
+  },
+  {
+   "city": "MIA",
+   "station": "KMIA",
+   "hourLocal": 16,
+   "offset": 0.539999999999992,
+   "lessons": 21,
+   "maxSoFar": 87.1,
+   "mu": 87.6,
+   "sigma": 0.8,
+   "best": {
+    "buckets": [
+     "89° to 90°"
+    ],
+    "cost": 0.01,
+    "p": 0.14,
+    "edge": 0.12
+   }
+  },
   {
    "city": "NY",
    "station": "KNYC",
@@ -32,9 +87,9 @@
     "buckets": [
      "67° to 68°"
     ],
-    "cost": 0.07,
+    "cost": 0.04,
     "p": 0.07,
-    "edge": 0
+    "edge": 0.03
    }
   },
   {
@@ -51,28 +106,9 @@
      "70° to 71°",
      "72° to 73°"
     ],
-    "cost": 0.27,
+    "cost": 0.26,
     "p": 0.64,
-    "edge": 0.36
-   }
-  },
-  {
-   "city": "LAX",
-   "station": "KLAX",
-   "hourLocal": 13,
-   "offset": -0.30000000000001137,
-   "lessons": 19,
-   "maxSoFar": 73.4,
-   "mu": 73.1,
-   "sigma": 1.7,
-   "best": {
-    "buckets": [
-     "74° to 75°",
-     "76° or above"
-    ],
-    "cost": 0.07,
-    "p": 0.41,
-    "edge": 0.33
+    "edge": 0.37
    }
   },
   {
@@ -89,45 +125,9 @@
      "77° to 78°",
      "79° to 80°"
     ],
-    "cost": 0.18,
+    "cost": 0.13,
     "p": 0.43,
-    "edge": 0.24
-   }
-  },
-  {
-   "city": "MIA",
-   "station": "KMIA",
-   "hourLocal": 16,
-   "offset": 0.539999999999992,
-   "lessons": 21,
-   "maxSoFar": 87.1,
-   "mu": 87.6,
-   "sigma": 0.8,
-   "best": {
-    "buckets": [
-     "89° to 90°"
-    ],
-    "cost": 0.01,
-    "p": 0.14,
-    "edge": 0.12
-   }
-  },
-  {
-   "city": "PHIL",
-   "station": "KPHL",
-   "hourLocal": 16,
-   "offset": 0.29999999999999716,
-   "lessons": 19,
-   "maxSoFar": 69.8,
-   "mu": 72.3,
-   "sigma": 0.8,
-   "best": {
-    "buckets": [
-     "73° to 74°"
-    ],
-    "cost": 0.01,
-    "p": 0.4,
-    "edge": 0.39
+    "edge": 0.29
    }
   }
  ],

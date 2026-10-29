@@ -173,7 +173,11 @@ export function blueSmall399(asset: string, L: Line[]): { vw: number; w: number 
   const vw = f("fresh VWAP") || f("session VWAP"), u1 = f("fresh +1σ") || f("+1σ"), w = vw > 0 && u1 > 0 ? Math.abs(u1 - vw) : 0;
   return vw > 0 && w > 0 && w < (asset === "btc" ? 150 : 3) ? { vw, w } : null;
 }
+// HARD 33% FOR EVERY BOOK BUT THE DELAYED BOOK (fix465, R206/R207/R209/R210 - Love Oct 29 2026 1:22-1:26 PM PT: "no i'm keeping it a hard 33% for all books so you can't get them confused" + "not on the delayed book please. every single other one" + "both sides. not just longs. not just shorts. pink as well. both sides. all books. aside from delayed. do not ever use that as a loophole again." + "implement the 33% and pink tolerances BOTH SIDES. ON ALL BOOKS. ASIDE FROM DELAYED."): every thirds share that reads lockPctFor (her channel walls, THE IMPOSSIBILITY,
+// the candle-launch rule thirdsMove, the paper books' walls) is a hard 33% - except while the delayed book (recon-dly / recon-dlyk) is being judged, which keeps its own shares byte for byte.
+export const DLY465 = new Set(["recon-dly", "recon-dlyk"]);
 export function lockPctFor(asset: string, width: number): number {
+  if (!DLY465.has(String(G.__curBook465 || ""))) return 0.33; // fix465 (R209): a hard 33% for every book but the delayed book
   if (!(width > 0)) return 0.33;
   // FRESH BANDS ARE WALLS (fix219, Oct 25 ~3:51 PM PT, Love card "All fresh bands are walls" + "we can make it the top/bottom 20% for bands this small bb"):
   // while the carried bands run the channel, the new session's VWAP and ±σ are lines too; a channel no wider than one fresh sigma locks only its top/bottom 20%.
@@ -841,6 +845,7 @@ export function thirdWallAbsolute(asset: string, L: Line[], tick: number, side: 
   return "";
 }
 export function bandLockCheck(book: string, asset: string, side: string, ticker = ""): { ok: true } | { ok: false; reason: string } {
+  if (!G.__inBLC465) { G.__inBLC465 = true; const prev465 = G.__curBook465; try { G.__curBook465 = book; return bandLockCheck(book, asset, side, ticker); } finally { G.__inBLC465 = false; G.__curBook465 = prev465; } } // fix465: the book being judged sets her thirds share (delayed keeps its own)
   // EVERY BOOK (Oct 16 ~1:10 PM PT, Love: "EVERY FUCKING BOOK WE OWN. EVERYTHING THAT EVER RUNS."): no exemptions - the
   // inverse included, any asset. An asset with no band feed can't be verified, so it can't open.
   void LAW_BOOKS;
@@ -872,6 +877,10 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
     if (book === "recon-tog" || book === "recon-rej") { const ss434 = sameSide434(asset, lbR.L, qR.c, side); if (ss434) return deny(ss434, { tick: qR.c }); } // fix434: on her side of the break, her 33%
     if (book === "recon-tog" || book === "recon-rej") { const bt441 = brokeThisCandle441(asset, lbR.L, qR.c, side); if (bt441) return deny(bt441, { tick: qR.c }); } // fix441: broke it this candle = her side now
     if (book === "recon-tog" || book === "recon-rej") { const bt457 = brokeThisCandle457(asset, lbR.L, qR.c, side); if (bt457) return deny(bt457, { tick: qR.c }); } // fix457 (R170, Love Oct 29 10:42 AM): band broke this candle = trade the break with price on its side; her 33% counted right
+    if (book !== "recon-tog" && book !== "recon-rej" && !DLY465.has(book)) { // fix465 (R209/R210, Love Oct 29 2026 1:24 PM PT: "both sides. not just longs. not just shorts. pink as well. both sides. all books. aside from delayed."): every other book meets the same walls
+      if (!aheadBeyond460(lbR.L, qR.c, side)) { const sa465 = sessionAheadWait(asset, lbR.L, qR.c, side); if (sa465) return deny(`SESSION BAND AHEAD (fix413/fix465): ${sa465}`, { tick: qR.c }); }
+      for (const w465 of [reachWall429(asset, lbR.L, qR.c, side), pinkLongWall432(asset, lbR.L, qR.c, side), pinkShortWall464(asset, lbR.L, qR.c, side), sameSide434(asset, lbR.L, qR.c, side), brokeThisCandle441(asset, lbR.L, qR.c, side), brokeThisCandle457(asset, lbR.L, qR.c, side)]) if (w465) return deny(w465, { tick: qR.c });
+    }
     { const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side) return deny(`the candle is ${tmR === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }
     const chR = channelOnly(asset, lbR.L, qR.c, side, refreshBroken(asset, lbR.L, qR.c)); // REJECTION OVERRIDE REMOVED (Oct 19 ~9:18 PM PT, Love: "let's remove the pink band rejection override... she shorted here and it would have been rejected for being in the bottom 33% on gold" - the wall rules over rejections again)
     if (chR) return deny(chR, { tick: qR.c });
@@ -2434,6 +2443,7 @@ function tpOrderAtWire(t: string, side: string): boolean {
   return false;
 }
 export function wireWall(ticker: string, side: "up" | "down"): string {
+  if (!G.__inWW465) { G.__inWW465 = true; const prev465 = G.__curBook465; try { G.__curBook465 = ownerBook(String(ticker)); return wireWall(ticker, side); } finally { G.__inWW465 = false; G.__curBook465 = prev465; } } // fix465: the wire judges with the owning book's share
   const t = String(ticker || "").toUpperCase();
   const asset = t.startsWith("KXBTC15M") ? "btc" : t.startsWith("KXGOLD15M") ? "gold" : "";
   if (!asset) return "";

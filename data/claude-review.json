@@ -88677,5 +88677,35 @@
   "lessons": [
    "The rejection shadow went the other way (long off -0.5σ)."
   ]
+ },
+ "KXGOLD15M-26OCT291645-45": {
+  "ticker": "KXGOLD15M-26OCT291645-45",
+  "at": "2026-10-29T20:45:30.440Z",
+  "asset": "gold",
+  "side": "up",
+  "setup": "Rejected up off 5m PP",
+  "multiple": 1.96,
+  "profit": -8.22,
+  "result": "loss",
+  "entry": {
+   "spot": 4025.218,
+   "band": "-0.5σ",
+   "distSigma": 0.04,
+   "rightSide": true,
+   "bandAhead": false,
+   "throughTarget": null,
+   "minuteIn": 0.2
+  },
+  "peakPct": 80.4,
+  "maxPct": 96.1,
+  "takeProfitPct": 72.1,
+  "exit": "held to the bell",
+  "record": "no record yet",
+  "flags": [
+   "Reached the take-profit (+80.4% vs +72.1%) and still lost. The sale was missed."
+  ],
+  "lessons": [
+   "The rejection shadow agreed (long off -0.5σ)."
+  ]
  }
 }

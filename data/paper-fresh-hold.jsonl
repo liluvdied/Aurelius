@@ -142,3 +142,4 @@
 {"at":"2026-10-29T19:32:07.024Z","asset":"gold","side":"down","ticker":"KXGOLD15M-26OCT291545-45","label":"Tap-reject at -1σ","hold":"setup priced at 4015.377 but live is 4016.018 (off by 0.64)"}
 {"at":"2026-10-29T20:15:29.028Z","asset":"btc","side":"up","ticker":"KXBTC15M-26OCT291630-30","label":"Close above 5m nav lower band (rejected)","hold":"opening floor: 28s into the window (waits until 30s) - fast rails not met: setup priced at 80231.34, live 80264.07 (off 32.73)"}
 {"at":"2026-10-29T20:15:37.629Z","asset":"btc","side":"up","ticker":"KXBTC15M-26OCT291630-30","label":"Close above 5m nav lower band (rejected)","hold":"setup priced at 80275.64 but live is 80294.66 (off by 19.02)"}
+{"at":"2026-10-29T20:49:57.946Z","asset":"gold","side":"down","ticker":"KXGOLD15M-26OCT291700-00","label":"Tap-reject at -0.5σ","hold":"setup priced at 4021 but live is 4020.422 (off by 0.58)"}

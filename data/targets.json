@@ -1,5 +1,37 @@
 [
   {
+    "id": "mvu0jc2m-qjsyap",
+    "at": "2026-10-29T20:45:49.918Z",
+    "asset": "gold",
+    "ticker": "KXGOLD15M-26OCT291700-00",
+    "side": "down",
+    "pattern": "Tap-reject at -0.5σ",
+    "venue": "paper",
+    "spot": 4022.17,
+    "target": 4022.83,
+    "vwap": null,
+    "multiple": 1.7241379310344829,
+    "profit": 14.14,
+    "result": "win",
+    "closedAt": "2026-10-29T20:50:59.873Z"
+  },
+  {
+    "id": "mvu0j2ho-lhjg8e",
+    "at": "2026-10-29T20:45:37.500Z",
+    "asset": "silver",
+    "ticker": "KXSILVER15M-26OCT291700-00",
+    "side": "down",
+    "pattern": "Tap-reject at -1σ",
+    "venue": "paper",
+    "spot": 52.1945,
+    "target": 52.205,
+    "vwap": null,
+    "multiple": 1.7241379310344829,
+    "profit": 13.97,
+    "result": "win",
+    "closedAt": "2026-10-29T20:50:14.958Z"
+  },
+  {
     "id": "held-KXGOLD15M-26OCT291645-45",
     "at": "2026-10-29T20:30:09.643Z",
     "asset": "gold",
@@ -11,8 +43,9 @@
     "target": null,
     "vwap": null,
     "multiple": 1.96,
-    "profit": null,
-    "result": "open"
+    "profit": -8.22,
+    "result": "loss",
+    "closedAt": "2026-10-29T20:45:30.440Z"
   },
   {
     "id": "held-KXBTC15M-26OCT291630-30",
@@ -7926,37 +7959,5 @@
     "profit": 9.24,
     "result": "win",
     "closedAt": "2026-10-28T02:30:22.752Z"
-  },
-  {
-    "id": "held-KXGOLD15M-26OCT272215-15",
-    "at": "2026-10-28T02:07:17.912Z",
-    "asset": "gold",
-    "ticker": "KXGOLD15M-26OCT272215-15",
-    "side": "down",
-    "pattern": "Live",
-    "venue": "kalshi",
-    "spot": null,
-    "target": null,
-    "vwap": null,
-    "multiple": 1.67,
-    "profit": 1.29,
-    "result": "win",
-    "closedAt": "2026-10-28T02:15:27.581Z"
-  },
-  {
-    "id": "mvrh12m9-ebk7bw",
-    "at": "2026-10-28T02:04:12.801Z",
-    "asset": "gold",
-    "ticker": "KXGOLD15M-26OCT272215-15",
-    "side": "down",
-    "pattern": "Tap-reject at -2.5σ",
-    "venue": "paper",
-    "spot": 4046.82,
-    "target": 4048.61,
-    "vwap": null,
-    "multiple": 1.5151515151515151,
-    "profit": 11.7,
-    "result": "win",
-    "closedAt": "2026-10-28T02:13:14.892Z"
   }
 ]

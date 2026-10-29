@@ -5,10 +5,11 @@
     "asset": "btc",
     "side": "up",
     "pattern": "Tap-reject at −0.5σ",
-    "result": "open",
+    "result": "no",
     "ticker": "KXBTC15M-26OCT291645-45",
     "hits": 41,
-    "multiple": 1.85
+    "multiple": 1.85,
+    "profit": -25
   },
   {
     "id": "KXBTC15M-26OCT291630-30:up:Tap-reject at -0.5σ",

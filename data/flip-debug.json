@@ -1,5 +1,47 @@
 [
  {
+  "at": "2026-10-29T20:45:51.355Z",
+  "fa": "gold",
+  "src": "paper-247",
+  "row": "mvu0jc2m-qjsyap:paper-247",
+  "side": "down",
+  "spot": 4022.288,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m S1 below, $0.94 away (zone $1.68, ATR 3.80, ADX 37)",
+   "zone": 1.6824831673039824
+  }
+ },
+ {
+  "at": "2026-10-29T20:45:18.842Z",
+  "fa": "gold",
+  "src": "ogp5",
+  "row": "KXGOLD15M-26OCT291700-00:ogp5",
+  "side": "up",
+  "spot": 4022.4,
+  "ck": {
+   "block": true,
+   "kind": "wall",
+   "why": "5m PP above, $2.03 away (zone $3.00, ATR 3.80, ADX 37)",
+   "zone": 1.6824831673039824
+  }
+ },
+ {
+  "at": "2026-10-29T20:45:04.114Z",
+  "fa": "btc",
+  "src": "ogp5",
+  "row": "KXBTC15M-26OCT291700-00:ogp5",
+  "side": "down",
+  "spot": 78723.69,
+  "ck": {
+   "block": true,
+   "kind": "chase",
+   "why": "chasing: $880.09 under the pink 5m PP (79603.78), more than 1 ATR ($286.85); waiting for it to come back to the pink",
+   "zone": 150.59441746557738
+  }
+ },
+ {
   "at": "2026-10-29T20:30:14.060Z",
   "fa": "gold",
   "src": "ogp5",
@@ -493,46 +535,6 @@
    "kind": "wall",
    "why": "5m PP below, $0.03 away (zone $3.00, ATR 4.81, ADX 26)",
    "zone": 1.5262486709713197
-  }
- },
- {
-  "at": "2026-10-29T16:45:08.718Z",
-  "fa": "btc",
-  "src": "ogp5",
-  "row": "KXBTC15M-26OCT291300-00:ogp5",
-  "side": "down",
-  "spot": 81347.42,
-  "ck": {
-   "block": false,
-   "why": "clear (zone $108.48, ADX 33)",
-   "zone": 108.477831506692
-  }
- },
- {
-  "at": "2026-10-29T16:37:56.002Z",
-  "fa": "gold",
-  "src": "ogp5",
-  "row": "KXGOLD15M-26OCT291245-45:ogp5",
-  "side": "down",
-  "spot": 4013.27,
-  "ck": {
-   "block": false,
-   "why": "clear (zone $1.47, ADX 24)",
-   "zone": 1.4667415727116242
-  }
- },
- {
-  "at": "2026-10-29T16:30:18.610Z",
-  "fa": "btc",
-  "src": "ogp5",
-  "row": "KXBTC15M-26OCT291245-45:ogp5",
-  "side": "down",
-  "spot": 81369.28,
-  "ck": {
-   "block": true,
-   "kind": "wall",
-   "why": "5m S1 below, $109 away (zone $122, ATR 232.17, ADX 41)",
-   "zone": 121.88763983841619
   }
  }
 ]

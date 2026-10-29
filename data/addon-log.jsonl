@@ -2289,3 +2289,6 @@
 {"at":"2026-10-29T20:22:13.759Z","ticker":"KXBTC15M-26OCT291630-30","side":"up","why":"touched Bollinger lower (80244.38, price 80223.43) - twin add-on, free","bid":0.26,"ok":false,"reason":"ask 0.27 over 0.263"}
 {"at":"2026-10-29T20:22:18.883Z","ticker":"KXBTC15M-26OCT291630-30","side":"up","why":"touched Green zone (80181.34, price 80210.97) - twin add-on, free","bid":0.26,"ok":false,"reason":"ask 0.27 over 0.263"}
 {"at":"2026-10-29T20:22:26.286Z","ticker":"KXBTC15M-26OCT291630-30","side":"up","why":"touched Green zone (80181.34, price 80174.59) - twin add-on, free","bid":0.19,"ok":true,"filled":26.2,"px":0.21,"ask":0.2,"orderId":"01a18953-ffd0-7fe8-8c96-ba38a3a67e5a","reason":""}
+{"at":"2026-10-29T20:41:16.931Z","ticker":"KXGOLD15M-26OCT291645-45","side":"up","why":"touched the pink (4025.54, price 4024.73) - twin add-on, free","bid":0.35,"ok":false,"reason":"ask 0.36 over 0.357"}
+{"at":"2026-10-29T20:41:22.392Z","ticker":"KXGOLD15M-26OCT291645-45","side":"up","why":"touched the pink (4025.54, price 4024.38) - twin add-on, free","bid":0.35,"ok":false,"reason":"ask 0.36 over 0.357"}
+{"at":"2026-10-29T20:41:28.317Z","ticker":"KXGOLD15M-26OCT291645-45","side":"up","why":"touched the pink (4025.54, price 4024.39) - twin add-on, free","bid":0.25,"ok":true,"filled":18.51,"px":0.27,"ask":0.26,"orderId":"01a18965-6cc0-7cf9-872f-0646cc29081f","reason":""}
