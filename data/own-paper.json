@@ -1,14 +1,77 @@
 [
   {
+    "id": "KXBTC15M-26OCT290115-15:down:Tap-reject at -0.5σ:own",
+    "at": "2026-10-29T05:00:36.205Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "Tap-reject at −0.5σ",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT290115-15",
+    "hits": 76,
+    "multiple": 2.08
+  },
+  {
+    "id": "KXGOLD15M-26OCT290115-15:up:Tap-reject at -1σ:own",
+    "at": "2026-10-29T05:00:13.574Z",
+    "asset": "gold",
+    "side": "up",
+    "pattern": "Tap-reject at -1σ",
+    "result": "open",
+    "ticker": "KXGOLD15M-26OCT290115-15",
+    "hits": 0,
+    "multiple": 1.56
+  },
+  {
+    "id": "KXBTC15M-26OCT290100-00:up:Open -1σ:own",
+    "at": "2026-10-29T04:45:15.853Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "Open -1σ",
+    "result": "yes",
+    "ticker": "KXBTC15M-26OCT290100-00",
+    "hits": 0,
+    "multiple": 2.13,
+    "profit": 28.25,
+    "live": "missed"
+  },
+  {
+    "id": "KXGOLD15M-26OCT290100-00:up:Tap-reject at -1σ:own",
+    "at": "2026-10-29T04:45:03.217Z",
+    "asset": "gold",
+    "side": "up",
+    "pattern": "Tap-reject at -1σ",
+    "result": "no",
+    "ticker": "KXGOLD15M-26OCT290100-00",
+    "hits": 0,
+    "multiple": 1.89,
+    "profit": -25,
+    "live": "missed"
+  },
+  {
+    "id": "KXSILVER15M-26OCT290045-45:down:Tap-reject at -1.5σ:own",
+    "at": "2026-10-29T04:35:01.936Z",
+    "asset": "silver",
+    "side": "down",
+    "pattern": "Tap-reject at −1.5σ",
+    "result": "no",
+    "ticker": "KXSILVER15M-26OCT290045-45",
+    "hits": 0,
+    "multiple": 2.13,
+    "profit": -25,
+    "live": "missed"
+  },
+  {
     "id": "KXGOLD15M-26OCT290045-45:up:Tap-reject at -1.5σ:own",
     "at": "2026-10-29T04:30:03.460Z",
     "asset": "gold",
     "side": "up",
     "pattern": "Tap-reject at −1.5σ",
-    "result": "open",
+    "result": "yes",
     "ticker": "KXGOLD15M-26OCT290045-45",
     "hits": 0,
-    "multiple": 1.89
+    "multiple": 1.89,
+    "live": "missed",
+    "profit": 22.25
   },
   {
     "id": "KXGOLD15M-26OCT290030-30:up:Tap-reject at -1.5σ:own",
@@ -2528,71 +2591,6 @@
     "hits": 0,
     "multiple": 2.04,
     "profit": -25,
-    "live": "missed"
-  },
-  {
-    "id": "KXGOLD15M-26OCT280045-45:down:Tap-reject at -1.5σ:own",
-    "at": "2026-10-28T04:30:08.799Z",
-    "asset": "gold",
-    "side": "down",
-    "pattern": "Tap-reject at −1.5σ",
-    "result": "no",
-    "ticker": "KXGOLD15M-26OCT280045-45",
-    "hits": 0,
-    "multiple": 1.85,
-    "profit": -25,
-    "live": "missed"
-  },
-  {
-    "id": "KXGOLD15M-26OCT280030-30:down:Tap-reject at -1.5σ:own",
-    "at": "2026-10-28T04:15:11.284Z",
-    "asset": "gold",
-    "side": "down",
-    "pattern": "Tap-reject at −1.5σ",
-    "result": "yes",
-    "ticker": "KXGOLD15M-26OCT280030-30",
-    "hits": 0,
-    "multiple": 1.96,
-    "profit": 24,
-    "live": "missed"
-  },
-  {
-    "id": "KXBTC15M-26OCT280030-30:down:Tap-reject at +0.5σ:own",
-    "at": "2026-10-28T04:15:03.244Z",
-    "asset": "btc",
-    "side": "down",
-    "pattern": "Tap-reject at +0.5σ",
-    "result": "yes",
-    "ticker": "KXBTC15M-26OCT280030-30",
-    "hits": 0,
-    "multiple": 2,
-    "profit": 25,
-    "live": "missed"
-  },
-  {
-    "id": "KXBTC15M-26OCT280015-15:up:Tap-reject at +1.5σ:own",
-    "at": "2026-10-28T04:02:00.288Z",
-    "asset": "btc",
-    "side": "up",
-    "pattern": "Tap-reject at +1.5σ",
-    "result": "no",
-    "ticker": "KXBTC15M-26OCT280015-15",
-    "hits": 0,
-    "multiple": 1.56,
-    "profit": -25,
-    "live": "missed"
-  },
-  {
-    "id": "KXGOLD15M-26OCT280015-15:down:Tap-reject at -1.5σ:own",
-    "at": "2026-10-28T04:00:18.249Z",
-    "asset": "gold",
-    "side": "down",
-    "pattern": "Tap-reject at −1.5σ",
-    "result": "yes",
-    "ticker": "KXGOLD15M-26OCT280015-15",
-    "hits": 0,
-    "multiple": 2,
-    "profit": 25,
     "live": "missed"
   }
 ]

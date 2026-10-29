@@ -535,7 +535,7 @@ const REACH_RETIRED = true;
 // front of the trade within her reach refuses it; a band only counts as broken once price is her break distance through it (gold 33c, BTC $6) - a poke is not a break.
 // A band price sits just past counts as a poke only when this 5m candle opened on the other side of it (came through it, not off it).
 // Red/green zones: gold $1.50 (Love), BTC its sliding zone reach. Can't read the zones = can't verify = no order.
-export const REACH429: Record<string, number> = { gold: 1.5, btc: 50 };
+export const REACH429: Record<string, number> = { gold: 1, btc: 50 }; // fix443 (Love Oct 28 2026 9:52 PM PT: "1.50 is too big rn. make it $1 teporarily pls. til we come up with the sliding scale"): gold $1.50 -> $1 for now
 // PINK TOLERANCE 15% (fix430, Love Oct 28 2026 8:07 PM PT: "make the pink tolerance a minimum of 15% of the channel width please"): the pink's reach is the larger of
 // her fixed reach ($1.50 gold / $50 BTC) and 15% of the session-band channel price sits in (session band below to session band above).
 export const PINK_PCT429 = 0.15;
@@ -557,7 +557,7 @@ export function reachWall429(asset: string, L: Line[], tick: number, side: strin
   }
   const z = Z === undefined ? zonesNow(asset) : Z;
   if (!z || !(z.r1 > 0) || !(z.s1 > 0)) return "can't verify the red/green zones right now (fix429)";
-  const ZR = asset === "gold" ? 1.5 : zoneReachSlide(asset, z);
+  const ZR = asset === "gold" ? 1 /* fix443: $1 for now (Love 9:52 PM) */ : zoneReachSlide(asset, z);
   if (up) {
     if (tick >= z.r1 && tick < z.r2) return `HER WALL (fix429): inside the red zone (${z.r1.toFixed(2)}-${z.r2.toFixed(2)}) - no long`;
     const nxt = Math.min(z.r1 > tick ? z.r1 : Infinity, z.s2 > tick ? z.s2 : Infinity);

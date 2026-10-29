@@ -48,5 +48,40 @@
     "what": "- Gold $10 level: away from it only once $1.50 clear (fix376). No long inside red zone / no short inside green (fix377). No long within $1.50 under R1 / no short within $1.50 over S1 (fix378).",
     "R": "R149",
     "why": "rulebook line updated to Love's corrected $10 rule (fix440)"
+  },
+  {
+    "what": "export const REACH429: Record<string, number> = { gold: 1.5, btc: 50 };",
+    "R": "R153",
+    "why": "fix443 $1 for now (Love 9:52 PM)"
+  },
+  {
+    "what": "const ZR = asset === \"gold\" ? 1.5 : zoneReachSlide(asset, z);",
+    "R": "R153",
+    "why": "fix443 $1 for now (Love 9:52 PM)"
+  },
+  {
+    "what": "if (done[row.id] && [\"recon-tog\", \"recon-rej\"].includes(String(row.book)) && !done[row.id]?.orderId && ![\"partial\", \"resting\", \"filled\", \"sent\"].includes(String(done[row.id]?.status || \"\")) && !((globalThis as any).__slide371Log || {})[row.id] && Date.parse(String(row.at)) > 0 && Date.now() - Date.parse(String(row.at)) > 90000) { done[row.id] = { ...done[row.id], at: new Date().toISOString(), status: \"skipped\", final: true, reason: `STALE CALL: booked ${Math.round((Date.now() - Date.parse(String(row.at))) / 1000)} s ago and still unfilled after ${Number(done[row.id]?.tries) || 0} tries - an old call never fires (fix431)` }; continue; }",
+    "R": "R154",
+    "why": "fix444: 90 s drop for held calls out (Love 9:52 PM)"
+  },
+  {
+    "what": "fix431",
+    "R": "R154",
+    "why": "fix444"
+  },
+  {
+    "what": "// STALE EVEN WHILE RETRYING - MAIN + REJECTION (fix431, Love Oct 28 2026 8:06 PM PT: \"yes to all of them bb\" to \"Stale call guard also catches a call that's been retrying for 10 min\"",
+    "R": "R154",
+    "why": "fix444 comment of the removed fix431 line"
+  },
+  {
+    "what": "// - the 7:40:54 PM gold long was booked 7:30:14 and knocked 2,626 times before it filled): a main or rejection call more than 90 s old that has NOTHING on Kalshi yet (no order id,",
+    "R": "R154",
+    "why": "fix444 comment of the removed fix431 line"
+  },
+  {
+    "what": "// nothing filled, partial, resting or sent) is written down skipped, never sent. A call that already holds a fill keeps its record untouched. Slide holds (fix371) stay exempt.",
+    "R": "R154",
+    "why": "fix444 comment of the removed fix431 line"
   }
 ]

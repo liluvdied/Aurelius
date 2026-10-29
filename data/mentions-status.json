@@ -1,7 +1,7 @@
 {
- "at": "2026-10-29T04:18:33.902Z",
- "events": 153,
- "checked": 1249,
+ "at": "2026-10-29T04:48:35.254Z",
+ "events": 156,
+ "checked": 1275,
  "live": [
   "KXEARNINGSMENTIONKKR-26NOV09",
   "KXEARNINGSMENTIONWMT-26NOV19",
@@ -16,11 +16,13 @@
   "KXEARNINGSMENTIONAZO-26DEC08",
   "KXEARNINGSMENTIONSPCX-27JAN26",
   "KXEARNINGSMENTIONCOST-26DEC10",
+  "KXEARNINGSMENTIONFIG-26NOV04",
   "KXEARNINGSMENTIONDKNG-26NOV06",
   "KXEARNINGSMENTIONACI-27JAN13",
   "KXEARNINGSMENTIONTSLA-27JAN27",
   "KXEARNINGSMENTIONNYT-26NOV04",
   "KXEARNINGSMENTIONAAPL-26OCT29",
+  "KXEARNINGSMENTIONMELI-26NOV04",
   "KXEARNINGSMENTIONNBIS-26NOV10",
   "KXEARNINGSMENTIONZM-26NOV23",
   "KXEARNINGSMENTIONDASH-26NOV04",
@@ -36,11 +38,11 @@
   "KXTRUMPSAYMONTH-26NOV01",
   "KXEARNINGSMENTIONOKLO-26NOV10",
   "KXEARNINGSMENTIONWEN-26NOV05",
-  "KXEARNINGSMENTIONNVDA-26NOV18",
   "KXEARNINGSMENTIONMETA-27JAN27",
   "KXEARNINGSMENTIONYUM-26NOV03",
   "KXTRUMPSAYNICKNAME-27JAN01",
   "KXEARNINGSMENTIONZETA-26NOV03",
+  "KXEARNINGSMENTIONLLY-26OCT29",
   "KXEARNINGSMENTIONALK-27JAN22",
   "KXEARNINGSMENTIONPGR-26NOV03",
   "KXEARNINGSMENTIONCOHR-26NOV04",
@@ -64,7 +66,6 @@
   "KXEARNINGSMENTIONUAL-27JAN20",
   "KXEARNINGSMENTIONINTC-26OCT22",
   "KXEARNINGSMENTIONBAC-27JAN15",
-  "KXEARNINGSMENTIONC-27JAN14",
   "KXEARNINGSMENTIONMS-27JAN14",
   "KXEARNINGSMENTIONMA-26OCT29",
   "KXEARNINGSMENTIONBLK-27JAN14"
@@ -98,7 +99,7 @@
    "word": "America First",
    "title": "What will JD Vance say during Fox News: town hall with JD Vance originally scheduled for October 29, 2026?",
    "side": "no",
-   "ask": 0.59,
+   "ask": 0.61,
    "rate": 0.1,
    "n": 10,
    "basis": "1 of 10 events"
@@ -120,7 +121,7 @@
    "word": "Tariff",
    "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
    "side": "no",
-   "ask": 0.63,
+   "ask": 0.62,
    "rate": 0.19,
    "n": 16,
    "basis": "3 of 16 events"
@@ -142,7 +143,7 @@
    "word": "Fraud",
    "title": "What will JD Vance say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026?",
    "side": "yes",
-   "ask": 0.62,
+   "ask": 0.63,
    "rate": 1,
    "n": 9,
    "basis": "9 of 9 events"
@@ -160,9 +161,6 @@
   }
  ],
  "errors": [
-  "Error: 429",
-  "Error: 429",
-  "Error: 429",
   "Error: 429",
   "Error: 429"
  ]

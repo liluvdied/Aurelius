@@ -2,6 +2,38 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R155 - Her reach wall (fix429, main + rejection) as it stands after fix443: no trade into an unbroken session band or the pink within $1 gold (TEMPORARY, until the sliding scale) / $50 BTC; the pink's reach is at least 15% of the channel (fix430); a band only counts broken once price is 33c gold / $6 BTC through it; red/green zone reach $1 gold, BTC sliding. Replaces R124 (retired on Love's 9:52 PM words for the $1 change only).
+- when: 2026-10-29T05:01:02+00:00
+- Love: "Love Oct 28 2026 8:06 PM PT: "yes to all of them bb ... red green zone reach is 1.50 now, not 1.11" + 9:52 PM: "1.50 is too big rn. make it $1 teporarily pls. til we come up with the sliding scale""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "const rw429 = reachWall429(asset, lbR.L, qR.c, side)"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const REACH429: Record<string, number> = { gold: 1, btc: 50 };"}
+- proof: {"test": "tools/reach-test-429.cjs"}
+
+## R154 - fix444: the 90-second drop for HELD calls (fix431, main + rejection) taken out - a call a wall is holding stays alive and is re-checked live at the wire (fix435) every try. The original fix375 stale guard (a never-tried call over 90 s old never fires right after a seat opens) stays.
+- when: 2026-10-29T04:54:28+00:00
+- Love: "Love Oct 28 2026 9:52 PM PT: "too strict , telling you lol" (her answer to: "with the stale guard on, a call that a wall holds for over 90 seconds gets dropped ... If that feels too strict, tell me")"
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "lacks": "an old call never fires (fix431)"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "STALE CALL GUARD (fix375"}
+
+## R153 - fix443 (main + rejection, gold, TEMPORARY until the sliding scale): her reach wall (fix429) $1.50 -> $1 on session bands, the pink's base reach (15% of the channel still the minimum) and the red/green zones. BTC unchanged. Test tools/reach-test-429.cjs updated to $1.
+- when: 2026-10-29T04:53:18+00:00
+- Love: "Love Oct 28 2026 9:52 PM PT: "too strict , telling you lol . gold broke the session band at 4039. fuck 1.50 is too big rn. make it $1 teporarily pls. til we come up with the sliding scale when i have the wherewithall to do this all over again . gold broke the pink now. still no entry. shes still broken""
+- books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d, )
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const REACH429: Record<string, number> = { gold: 1, btc: 50 };"}
+- proof: {"test": "tools/reach-test-429.cjs"}
+
+## R152 - PR #1 (claude/project-thread-mj3rmw -> main, head 792805a) merged into main with a merge commit (every commit kept, nothing squashed, nothing forced).
+- when: 2026-10-29T04:43:10+00:00
+- Love: "Love Oct 28 2026 9:42 PM PT: "merge bb merge" (to: is everything being pushed to the repository properly now)"
+- books: r, e, p, o, s, i, t, o, r, y
+- status: ACTIVE
+- proof: {"process": "main carries the Oct 28 night desk sync via PR #1 merge (Love 9:42 PM)"}
+
 ## R150 - fix442: the thirds flip is OFF for main + rejection (fix364 only took it off the copy) - a call her thirds read turned to the other side ("Top third - seen as a short" / "Bottom third ... seen as a long") never goes live; held, not final. Test tools/thirds-off-test-442.cjs (the 9:20 PM gold short is held).
 - when: 2026-10-29T04:24:55+00:00
 - Love: "Love Oct 28 2026 9:23 PM PT: "yeah no i got rid of the flip." + Oct 27 2026 8:38 PM PT: "yes the flip is already supposed to be off hun, pls remove that and keep it off" + 9:22 PM: "probably flipped from a banned long.""
@@ -199,7 +231,7 @@ and there is no auto mode here hun i have the mode hard set""
 - when: 2026-10-29T03:13:36+00:00
 - Love: "Love Oct 28 2026 8:06 PM PT: "yes to all of them bb" (to the list item "Stale call guard also catches a call that's been retrying for 10 min")"
 - books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
-- status: ACTIVE
+- status: RETIRED - Love: "Love Oct 28 2026 9:52 PM PT: "too strict , telling you lol" (her answer to: "with the stale guard on, a call that a wall holds for over 90 seconds gets dropped ... If that feels too strict, tell me")"
 - proof: {"code": "src/lib/desk/engine.ts", "has": "an old call never fires (fix431)"}
 - proof: {"test": "tools/stale-pink-test-431.cjs"}
 
@@ -223,7 +255,7 @@ and there is no auto mode here hun i have the mode hard set""
 - when: 2026-10-29T03:09:47+00:00
 - Love: "Love Oct 28 2026 8:06 PM PT: "yes to all of them bb , why did alllll of this get removed without my permission? i nevvvvvver ever said to take these out hun. i never would have. red green zone reach is 1.50 now, not 1.11 - how much did she remove dude? why is this one this in the repo? i literally begged dude""
 - books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, g, o, l, d,  , +,  , B, T, C, )
-- status: ACTIVE
+- status: RETIRED - Love: "Love Oct 28 2026 9:52 PM PT: "too strict , telling you lol . gold broke the session band at 4039. fuck 1.50 is too big rn. make it $1 teporarily pls. til we come up with the sliding scale when i have the wherewithall to do this all over again""
 - proof: {"code": "src/lib/desk/bandlock.ts", "has": "const rw429 = reachWall429(asset, lbR.L, qR.c, side)"}
 - proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const REACH429: Record<string, number> = { gold: 1.5, btc: 50 };"}
 - proof: {"test": "tools/reach-test-429.cjs"}

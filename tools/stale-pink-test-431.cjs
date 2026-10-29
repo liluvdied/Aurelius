@@ -7,22 +7,7 @@ const ts = require(path.join(root, "node_modules/typescript"));
 const E = fs.readFileSync(process.argv[2] || path.join(root, "src/lib/desk/engine.ts"), "utf8");
 const Bs = fs.readFileSync(process.argv[3] || path.join(root, "src/lib/desk/bandlock.ts"), "utf8");
 let ok = true;
-const li = E.split("\n").find((x) => x.includes("an old call never fires (fix431)"));
-if (!li) { console.log("STALE/PINK TEST: FAIL - fix431 stale guard is missing from engine.ts"); process.exit(1); }
-const run = new Function("done", "row", "globalThis", "let out = 'kept'; for (const _ of [0]) { " + ts.transpileModule(li, { compilerOptions: { target: ts.ScriptTarget.ES2020 } }).outputText + " } return out;");
-const now = Date.now(), at = new Date(now - 640000).toISOString();
-const d1 = { "g": { status: "blocked", tries: 2626, reason: "BREAK INTO A ZONE" } };
-run(d1, { id: "g", book: "recon-tog", at }, {});
-if (d1.g.status !== "skipped" || !d1.g.final) { ok = false; console.log("STALE/PINK TEST: FAIL - the 7:40 gold long (booked 10.7 min earlier, 2,626 tries, nothing on Kalshi) was NOT skipped"); }
-const d2 = { "g": { status: "partial", orderId: "x", tries: 3 } };
-run(d2, { id: "g", book: "recon-rej", at }, {});
-if (d2.g.status !== "partial") { ok = false; console.log("STALE/PINK TEST: FAIL - a call holding a partial fill lost its record"); }
-const d3 = { "g": { status: "blocked", tries: 5 } };
-run(d3, { id: "g", book: "recon-tog", at: new Date(now - 30000).toISOString() }, {});
-if (d3.g.status !== "blocked") { ok = false; console.log("STALE/PINK TEST: FAIL - a 30 s old call was skipped"); }
-const d4 = { "g": { status: "blocked", tries: 5 } };
-run(d4, { id: "g", book: "recon-dly", at }, {});
-if (d4.g.status !== "blocked") { ok = false; console.log("STALE/PINK TEST: FAIL - the delayed twin is not exempt"); }
+if (E.includes("an old call never fires (fix431)")) { ok = false; console.log("STALE/PINK TEST: FAIL - the 90 s drop for held calls (fix431) is back - Love took it out (fix444)"); }
 const i = Bs.indexOf("export const PINK_BREAK432"), j0 = Bs.indexOf("export function pinkLongWall432(");
 if (i < 0 || j0 < 0) { console.log("STALE/PINK TEST: FAIL - fix432 pink-long wall is missing from bandlock.ts"); process.exit(1); }
 let dep = 0, j = Bs.indexOf("{", Bs.indexOf("): string", j0)); for (let k = j; k < Bs.length; k++) { if (Bs[k] === "{") dep++; else if (Bs[k] === "}") { dep--; if (dep === 0) { j = k + 1; break; } } }
@@ -34,5 +19,5 @@ if (!P("gold", L, 4047.50, "up")) { ok = false; console.log("STALE/PINK TEST: FA
 if (P("gold", L, 4047.60, "up")) { ok = false; console.log("STALE/PINK TEST: FAIL - a long 28c over the pink (broken) was refused"); }
 if (P("gold", L, 4044.03, "down")) { ok = false; console.log("STALE/PINK TEST: FAIL - a short was refused by the long-only pink wall"); }
 if (!P("btc", [{ name: "5m PP", price: 80000 }], 80005, "up") || P("btc", [{ name: "5m PP", price: 80000 }], 80008, "up")) { ok = false; console.log("STALE/PINK TEST: FAIL - BTC $8 pink break"); }
-console.log(ok ? "STALE/PINK TEST ✓ - the 7:40 PM gold long is skipped as stale (10 min, 2,626 tries) and refused under the unbroken pink; fills keep their records; broken-pink longs and shorts pass." : "STALE/PINK TEST: FAIL");
+console.log(ok ? "STALE/PINK TEST ✓ - the 7:40 PM gold long is refused under the unbroken pink; broken-pink longs and shorts pass; the 90 s drop for held calls stays out (fix444)." : "STALE/PINK TEST: FAIL");
 process.exit(ok ? 0 : 1);

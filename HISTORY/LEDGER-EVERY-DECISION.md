@@ -1,9 +1,25 @@
-# Every decision Love has made - rebuilt 2026-10-29T04:30:11.621839+00:00
+# Every decision Love has made - rebuilt 2026-10-29T05:00:36.938976+00:00
 
-1300 decisions with Love's words or card picks, out of 2042 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1303 decisions with Love's words or card picks, out of 2045 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T05:00:03.008881+00:00  ·  diary line 2512  ·  fix375, fix431, fix444
+- Love: “too strict , telling you lol”
+- fix375 IN HER CODE
+- fix431 IN HER CODE
+- fix444 IN HER CODE
+- Full entry: 2026-10-29T05:00:03.008881+00:00 fix444 INSTALLED at the 10:00 PM PT boundary (Love Oct 28 2026 9:52 PM PT: "too strict , telling you lol" - to the 90 s drop for held calls): fix431 taken out (R126 retired on those words, R154); held calls stay alive and are re-checked at the wire every try; the original fix375 stale guard stays. No-removal gate passed. {'engine.ts': 'c597c5785925132d'}.
+
+## 2026-10-29T05:00:00.012479+00:00  ·  diary line 2511  ·  fix443
+- Love: “1.50 is too big rn. make it $1 teporarily pls. til we come up with the sliding scale”
+- fix443 IN HER CODE
+- Full entry: 2026-10-29T05:00:00.012479+00:00 fix443 INSTALLED at the 10:00 PM PT boundary (Love Oct 28 2026 9:52 PM PT: "1.50 is too big rn. make it $1 teporarily pls. til we come up with the sliding scale"): gold reach wall (session bands + pink base) and red/green zone reach $1.50 -> $1 for main + rejection, TEMPORARY. Pink keeps its 15%-of-channel minimum; $10-level rule unchanged. R153. No-removal gate passed. {'bandlock.ts': 'cba45fae27262fa8'}.
+
+## 2026-10-29T04:40:28Z  ·  diary line 2510
+- Love: “its fine for rn hun i didnt see the acual entry and what happened with it, ill watch the next ones and let you know if we need to fix anything again ok”
+- Full entry: 2026-10-29T04:40:28Z DECISION (Love Oct 28 2026 9:40 PM PT: "its fine for rn hun i didnt see the acual entry and what happened with it, ill watch the next ones and let you know if we need to fix anything again ok"): the 9:32 PM BTC short (a $23 dip through the pink at 9:32:03 on her one Pepperstone feed, then back up) - no change; Love watches the next ones. Earlier claim of 'two feeds' was Claude's error, corrected.
 
 ## 2026-10-29T04:30:00.014847+00:00  ·  diary line 2509  ·  fix232, fix376, fix440, fix441, fix442
 - Love: “its supposed to be a trade away from even $10 levels on gold. no trading into them. only away from them. within 1.50 ... target = 4040 + price currently 4038 - no longs into the 10 level. only shorts. vis versa.”

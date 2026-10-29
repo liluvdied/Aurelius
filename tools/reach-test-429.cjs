@@ -36,10 +36,12 @@ const c = W("gold", L, 4045.40, "up", Zfar, 4042.27);
 if (c) { ok = false; console.log("REACH TEST: FAIL - a clean long $1.55 past -1σ with pink $1.92 ahead was refused: " + c); }
 const d = W("gold", L, 4044.03, "up", Zfar, 4045.00);
 if (d) { ok = false; console.log("REACH TEST: FAIL - a bounce long off -1σ from above (candle opened over it) was refused: " + d); }
-const e = W("gold", L, 4046.00, "up", Zfar, 4045.00);
-if (!e) { ok = false; console.log("REACH TEST: FAIL - a long with the pink $1.32 above (inside $1.50) was NOT refused"); }
-const f = W("gold", L, 4044.80, "up", { pp: 4040, r1: 4046.0, r2: 4049, s1: 4036, s2: 4033 }, 4045.00);
-if (!f) { ok = false; console.log("REACH TEST: FAIL - a long with the red zone $1.20 above (inside her $1.50 zone reach) was NOT refused"); }
+const e = W("gold", L, 4046.50, "up", Zfar, 4045.00);
+if (!e) { ok = false; console.log("REACH TEST: FAIL - a long with the pink $0.82 above (inside her $1) was NOT refused"); }
+const e2 = W("gold", L, 4046.00, "up", Zfar, 4045.00);
+if (e2) { ok = false; console.log("REACH TEST: FAIL - a long with the pink $1.32 above (outside her $1 for now, fix443) was refused: " + e2); }
+const f = W("gold", L, 4045.20, "up", { pp: 4040, r1: 4046.0, r2: 4049, s1: 4036, s2: 4033 }, 4045.00);
+if (!f) { ok = false; console.log("REACH TEST: FAIL - a long with the red zone $0.80 above (inside her $1 zone reach) was NOT refused"); }
 const g = W("gold", L, 4044.80, "up", null, 4045.00);
 if (!g) { ok = false; console.log("REACH TEST: FAIL - unreadable zones did not refuse (never blind)"); }
 // fix430 (Love 8:07 PM PT: "make the pink tolerance a minimum of 15% of the channel width please"): channel -1σ 4040 -> -0.5σ 4060 ($20, 15% = $3.00), pink 4050
@@ -48,5 +50,5 @@ const p14 = W("gold", L2, 4047.20, "up", Zfar, 4046.00); // pink $2.80 above = 1
 if (!p14) { ok = false; console.log("REACH TEST: FAIL - a long with the unbroken pink 14% of the channel above ($2.80) was NOT refused (15% minimum)"); }
 const p16 = W("gold", L2, 4046.80, "up", Zfar, 4046.00); // pink $3.20 above = 16%
 if (p16) { ok = false; console.log("REACH TEST: FAIL - a long with the pink 16% of the channel above ($3.20) was refused: " + p16); }
-console.log(ok ? "REACH TEST ✓ - the 7:40 PM gold long into the unbroken -1σ is refused (a 18c poke is not a break); clean and bounce longs pass; pink (15% of the channel minimum), session and $1.50 zone walls hold." : "REACH TEST: FAIL");
+console.log(ok ? "REACH TEST ✓ - the 7:40 PM gold long into the unbroken -1σ is refused (a 18c poke is not a break); clean and bounce longs pass; pink (15% of the channel minimum), session and zone walls hold at her $1 for now (fix443)." : "REACH TEST: FAIL");
 process.exit(ok ? 0 : 1);

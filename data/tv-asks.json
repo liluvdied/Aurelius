@@ -1,45 +1,45 @@
 {
- "from": "2026-10-29T04:29:38.660Z",
- "to": "2026-10-29T04:30:38.998Z",
+ "from": "2026-10-29T05:05:58.711Z",
+ "to": "2026-10-29T05:07:00.179Z",
  "asks": [
   [
    "PEPPERSTONE:BTCUSD|1",
-   27
+   31
   ],
   [
    "VANTAGE:BTCUSD|1",
-   22
-  ],
-  [
-   "TVC:GOLD|5",
-   18
-  ],
-  [
-   "TVC:GOLD|1",
-   17
+   26
   ],
   [
    "PEPPERSTONE:BTCUSD|5",
-   17
+   19
   ],
   [
-   "PEPPERSTONE:BTCUSD|chart:btc",
-   12
+   "TVC:GOLD|1",
+   16
   ],
   [
    "VANTAGE:BTCUSD|5",
-   11
+   15
+  ],
+  [
+   "TVC:GOLD|5",
+   13
+  ],
+  [
+   "PEPPERSTONE:BTCUSD|chart:btc",
+   10
   ],
   [
    "TVC:GOLD|chart:gold",
-   7
+   8
   ],
   [
-   "VANTAGE:BTCUSD|15",
+   "TVC:GOLD|chart:gold5",
    4
   ],
   [
-   "PEPPERSTONE:XAUUSD|1",
+   "OANDA:BTCUSD|chart:btcGolden",
    3
   ],
   [
@@ -47,15 +47,15 @@
    3
   ],
   [
+   "TVC:SILVER|5",
+   3
+  ],
+  [
    "OANDA:XAGUSD|chart:silver",
    3
   ],
   [
-   "TVC:GOLD|chart:gold5",
-   3
-  ],
-  [
-   "TVC:SILVER|5",
+   "VANTAGE:BTCUSD|15",
    3
   ],
   [
@@ -63,28 +63,8 @@
    2
   ],
   [
-   "OANDA:BTCUSD|chart:btcGolden",
-   2
-  ],
-  [
    "TVC:GOLD|15",
    2
-  ],
-  [
-   "VANTAGE:XAUUSD|5",
-   2
-  ],
-  [
-   "VANTAGE:XAUUSD|1",
-   2
-  ],
-  [
-   "PEPPERSTONE:XAUUSD|5",
-   2
-  ],
-  [
-   "PEPPERSTONE:BTCUSD|60",
-   1
   ],
   [
    "OANDA:BTCUSD|5",
@@ -96,6 +76,22 @@
   ],
   [
    "TVC:GOLD|60",
+   1
+  ],
+  [
+   "TVC:PLATINUM|1",
+   1
+  ],
+  [
+   "TVC:PALLADIUM|1",
+   1
+  ],
+  [
+   "TVC:SILVER|1",
+   1
+  ],
+  [
+   "PEPPERSTONE:BTCUSD|60",
    1
   ]
  ]
