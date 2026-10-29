@@ -1,9 +1,9 @@
 {
  "rule": "a badge for Aurelius and Claude for every 24 h she stays on one spot - no unplanned change in code or settings, no execution slip",
  "chapter": {
-  "since": "2026-10-29T00:22:00.524458Z",
+  "since": "2026-10-29T01:21:42.131246Z",
   "reason": "after Love's revision",
-  "baselineSha": "8b41a0049103c357",
+  "baselineSha": "09e5bc862efff1d6",
   "cfg": {
    "cooldownAfterLoss": "b5bea41b6c",
    "route": "9d53f79e71",
@@ -29,7 +29,7 @@
    "netBelow": "4f53cda18c",
    "insurance": "7e56fa5011",
    "tpLadder": "b5bea41b6c",
-   "polyTwin": "16806c301c",
+   "polyTwin": "3b9b7879cb",
    "addOn": "329286406a",
    "timeGate": "f698c8086d",
    "snipe": "08fadc84ae",
@@ -149,7 +149,7 @@
    "assetDollarsOff": "8a3eed3ef7",
    "polyLiveNote": "40671f92fd",
    "dlyLiveNote": "0c40f78c42",
-   "offHourMain": "cdc637a6de",
+   "offHourMain": "134a2a373e",
    "bookSkipHoursByAsset": "9b3f566776",
    "fix313Prev": "c1e29a6fd6",
    "liveSkipHoursPrev315": "a7a12423e8",
@@ -172,7 +172,9 @@
    "fix402Prev": "058afe6f24",
    "note402": "0d8e7717b9",
    "fix405Prev": "d396e7b5bf",
-   "note405": "c152437af2"
+   "note405": "c152437af2",
+   "fix412Prev": "cc2998e771",
+   "note412": "ce19eee58c"
   },
   "badgesThisChapter": 0,
   "heartsThisChapter": 0
@@ -1081,6 +1083,13 @@
    "badgesThisChapter": 0,
    "ended": "2026-10-29T00:22:00.524458Z",
    "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-29T00:22:00.524458Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T01:21:42.131246Z",
+   "how": "Love's revision (baseline moved with her words)"
   }
  ],
  "breaks": [
@@ -1125,7 +1134,7 @@
    "streakHours": 1.0
   }
  ],
- "lastSeen": "2026-10-29T00:22:00.524458Z",
+ "lastSeen": "2026-10-29T01:21:42.131246Z",
  "drifting": false,
  "now": {
   "streakHours": 0.0,

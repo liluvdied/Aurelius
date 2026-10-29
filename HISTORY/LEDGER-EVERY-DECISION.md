@@ -1,9 +1,23 @@
-# Every decision Love has made - rebuilt 2026-10-29T01:16:45.835224+00:00
+# Every decision Love has made - rebuilt 2026-10-29T01:32:28.702084+00:00
 
-1273 decisions with Love's words or card picks, out of 2006 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1276 decisions with Love's words or card picks, out of 2010 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-10-29T01:32:16Z  ·  diary line 2475  ·  fix416
+- Love: “yes. we literallly did this 20 fuckin times bro yes. candle. flip. green -> red / red -> green”
+- Love: “pls make these cornerstones of her”
+- fix416 IN HER CODE
+- Full entry: 2026-10-29T01:32:16Z fix416/416b VERIFIED at 01:30Z boundary (Love 6:21 PM PT: "yes. we literallly did this 20 fuckin times bro yes. candle. flip. green -> red / red -> green" + 6:23 PM "every single book dude yes / don’t touch 5M and twin"): realFlipNow for flipRule books (main, rejection, pure, paper), copy line, anyFlip2Now paper; GOLDEN ✓ CORNERSTONES ✓ UMPIRE SAFE. R107 cornerstones added (real flip, session band to session band, BTC 33% immutable) in tools/cornerstones.py + LOVE-RULEBOOK.md 0d/0e (Love 6:28-6:31 PM: "pls make these cornerstones of her" / "the 33% needs to be 1000000%  immutable." / "it is from session band to session band").
+
+## 2026-10-29T01:30:03.458332+00:00  ·  diary line 2473
+- Full entry: 2026-10-29T01:30:03.458332+00:00 THAW (yes. we literallly did this 20 fuckin times bro yes. candle. flip. green -> red / red -> green (Love Oct 28 2026 6:21 PM PT, after: JUST. A. CANDLE. FLIP. IT WAS GREEN AND RISING.))
+
+## 2026-10-29T01:16:49Z  ·  diary line 2472  ·  fix411, fix412
+- fix411 IN HER CODE
+- fix412 in her code without its number (see her words in the code comments)
+- Full entry: 2026-10-29T01:16:49Z fix411+413+414 bandlock + fix412 seat installed 01:15:00Z, golden/cornerstones ✓, live True; golden note412 hash added; R043/R050/R060 retired on Love words (superseded by R100/R099/R102).
 
 ## 2026-10-29T01:15:09Z  ·  diary line 2471  ·  fix412
 - Love: “do not run this model bro i'm not retraining a model again”

@@ -23,7 +23,7 @@ import { createHash } from "node:crypto";
 import { bandInWay } from "./auto";
 import { dnaNow } from "./dna";
 import { quoteTick, feedHealth } from "./quotes";
-import { addOnTouchNow, anyFlipNow, anyFlip2Now, impossibleGeo, blueSmall399 } from "./bandlock"; // fix169 + fix326 + fix401
+import { addOnTouchNow, anyFlipNow } from "./bandlock"; // fix169 + fix326
 
 const D = (f: string) => join(process.cwd(), "data", f);
 const r2 = (n: number) => Math.round(n * 100) / 100;
@@ -42,7 +42,7 @@ const REACH_PCT = 0.2; // BTC $50 (Love picked "Reach $50 on BTC", Oct 21 ~9:05 
 type Bar = { t: number; o: number; h: number; l: number; c: number };
 type Piv = { pp: number; r1: number; s1: number; r2: number; s2: number; a: number };
 type Line = { name: string; price: number; unit: number; center?: boolean };
-export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-dly", "recon-rejx", "recon-togr", "recon-rej5", "recon-togp", "recon-dlyk", "recon-np", "recon-sov" /* fix372 */, "recon-npo" /* fix389 */, "recon-b2", "recon-og" /* fix408 */ /* fix404: paper only */] as const; /* fix361 (Love Oct 27 2026 8:06 PM PT: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long"): recon-np = the PURE no-pink twin, PAPER only (never in liveBook, never read by Polymarket) */ /* fix354 (Oct 27 2026 6:20 PM PT, Love: "yes let's ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly"): the delayed no-pink copy, PAPER only (never in liveBook, never read by Polymarket) */ /* fix281 recon-togp */ /* fix261 recon-rej5 */ /* fix250 recon-togr */ /* fix171 recon-rejx */ // + MOST SUCCESSFUL 70%+ (Oct 19 ~9:02 PM PT, Love) + REJECTIONS ONLY twin (Oct 20 ~7:39 AM PT, Love)
+export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-dly", "recon-rejx", "recon-togr", "recon-rej5", "recon-togp", "recon-dlyk"] as const; /* fix354 (Oct 27 2026 6:20 PM PT, Love: "yes let's ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly"): the delayed no-pink copy, PAPER only (never in liveBook, never read by Polymarket) */ /* fix281 recon-togp */ /* fix261 recon-rej5 */ /* fix250 recon-togr */ /* fix171 recon-rejx */ // + MOST SUCCESSFUL 70%+ (Oct 19 ~9:02 PM PT, Love) + REJECTIONS ONLY twin (Oct 20 ~7:39 AM PT, Love)
 export const RECON = new Set<string>(RECON_LANES);
 const DLY_AS_COPY = false; /* fix353 PAUSED (Love 6:11 PM PT: "wait no no no no no no do not change the 5M on polymarket in any way nooo"): the twin is exactly as before everywhere */ // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): the DELAYED twin is the no-pink copy with a delayed entry
 
@@ -134,7 +134,7 @@ function rejFlipAtBand(asset: string, L: Line[], spot: number, cur: { o: number;
 }
 /** fix326: her flip (any 1/2/3/4/5m candle literally her colour). */
 function pfFlipOk(asset: string, side: string, spot: number): boolean { try { return anyFlipNow(asset, side, spot); } catch { return false; } }
-export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar | undefined, cur: { o: number; h: number; l: number }, prev?: { h: number; l: number } | null, bars?: Bar[], rejOnly = false, reach = 0, pinkFlip = false /* fix326 */, zoneFlip = false /* fix394 (Love Oct 28 2026 2:35 PM PT card "Let green/red zone rejections fire on any 1-5m candle flip?" -> "Pure no-pink + main"; 2:34 PM: "and the candle flipped from green bb"): main + pure no-pink zone reads take a 1-5m flip */): { side: "up" | "down"; label: string } | null {
+export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar | undefined, cur: { o: number; h: number; l: number }, prev?: { h: number; l: number } | null, bars?: Bar[], rejOnly = false, reach = 0, pinkFlip = false /* fix326 */): { side: "up" | "down"; label: string } | null {
   const brk = BREAK[asset] ?? 0, tap = TAP[asset] ?? 0;
   // fix326 PINK REJECTION ON HER FLIP (Oct 27 ~11:51 AM PT, main + rejection model only; Love Oct 21 9:12 PM PT: "red candle falling rejected from pink - she is clear to
   // short anywhere in the channel, except the bottom 33%" + Oct 27 11:47 AM: "the second it flipped before she was in" + card "Main + rejection model"): a pink rejection
@@ -341,7 +341,7 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
   // fix297 (Oct 26 ~10:20 PM PT, Love: "she can't use the green zone as a signal to short down / or for the red zone / that is rejection only for gold / she can only
   // use the session bands the bollingers and the pink band for that"): a "Failed break above Green zone - rejected down" label ends in " - rejected down", so the
   // fix67 filter below missed it and the 10:16 PM gold main short got through. The zone is now matched anywhere in the label.
-  cands2 = cands2.filter((c) => { const lb = String(c.label); if (!/(Green|Red) zone( - |$)/.test(lb)) return true; if (/^(Break|Close) /.test(lb)) return false; return /Green zone( - |$)/.test(lb) ? c.side === "up" && (spot > cur.o || (zoneFlip && (() => { try { return anyFlipNow(asset, "up", spot); } catch { return false; } })())) : c.side === "down" && (spot < cur.o || (zoneFlip && (() => { try { return anyFlipNow(asset, "down", spot); } catch { return false; } })())); }); /* fix394 (Love Oct 28 2026 2:35 PM PT card "Let green/red zone rejections fire on any 1-5m candle flip?" -> "Pure no-pink + main"; 2:34 PM: "and the candle flipped from green bb"): with zoneFlip a 1/2/3/4/5m candle flipped her way counts, not only the 5m */
+  cands2 = cands2.filter((c) => { const lb = String(c.label); if (!/(Green|Red) zone( - |$)/.test(lb)) return true; if (/^(Break|Close) /.test(lb)) return false; return /Green zone( - |$)/.test(lb) ? c.side === "up" && spot > cur.o : c.side === "down" && spot < cur.o; });
   let seenC = cands2;
   try { if (perspective) seenC = perspective(cands2); } catch {}
   const pool = rejOnly ? seenC.filter((c) => c.rank >= 1) : seenC;
@@ -428,28 +428,6 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   const book = (lane: string, look: { side: "up" | "down"; label: string }, askIn?: number) => {
     const prior = rows.find((r) => r.ticker === m.ticker && r.lane === lane);
     if (lane === "recon-dly" && DLY_AS_COPY && !(look as any).copy353) return false; // fix353: her old twin calls (initial move, touches, re-aims) no longer book
-    // fix401 (Oct 28 2026 3:52 PM PT, Love 3:50 PM: "fix all of those hun pls including longs i dont care if they won" + 3:52 PM: "same band tolerances as our other models pls and the 2,3,4&5M candle flips pls"):
-    // the pure no-pink (recon-np + paper recon-npo) and the sovereign twin (recon-sov) book a call only when a 2/3/4/5m candle has flipped her way, MAIN's walls pass
-    // (impossibleGeo with main's settings: cushions, 33/20% tolerance, pink-to-green/red line - pure 50%, sovereign 40% like main) and, while bands are small, she is not
-    // just under the blue VWAP for a long / just over it for a short (half the VWAP-to-1σ width, fix397). Every refusal -> data/pure-walls.jsonl (once per window/lane/reason).
-    if (lane === "recon-np" || lane === "recon-npo" || lane === "recon-sov" || lane === "recon-b2" /* fix404 */ || lane === "recon-og" /* fix408 */) {
-      let why401 = "";
-      try {
-        const sd401 = look.side, lb401 = (globalThis as any).__lawBands?.[id], L401 = lb401?.L;
-        if (!anyFlip2Now(id, sd401, spot)) why401 = "no 2/3/4/5m candle flipped her way";
-        else if (Array.isArray(L401) && L401.length && Date.now() - Number(lb401.at) <= 15000) {
-          why401 = impossibleGeo(id, L401, spot, sd401, false, false, false, false, true, lane === "recon-sov" ? 0.4 : 0.5, true, false).why || "";
-          const b401 = why401 ? null : blueSmall399(id, L401);
-          if (b401 && sd401 === "up" && spot < b401.vw && b401.vw - spot <= b401.w / 2) why401 = `long just under the blue VWAP ${b401.vw.toFixed(2)} while bands are small`;
-          if (b401 && sd401 === "down" && spot > b401.vw && spot - b401.vw <= b401.w / 2) why401 = `short just over the blue VWAP ${b401.vw.toFixed(2)} while bands are small`;
-        }
-      } catch {}
-      if (why401) {
-        const k401 = `${m.ticker}:${lane}:${why401.slice(0, 40)}`, G401 = ((globalThis as any).__walls401 ||= {});
-        if (!G401[k401]) { G401[k401] = 1; try { appendFileSync(D("pure-walls.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look.side, label: look.label, spot, why: why401 }) + "\n"); } catch {} }
-        return false;
-      }
-    }
     // FRESH 5M SWINGS (fix186, Oct 25 ~1:45 AM PT, Love: "can you see why the rejection model didn't long at the rejection of btc at the band? ... it didnt register a
     // couple of taps tonight ... let's make sure she has what she needs to enter when she pleases" + card "Fresh 5m swings, keep the hours"): her books make one call per
     // 15m window, so on Polymarket's 5m board a second tap in the same 15 minutes was invisible (1:15:43 AM rejection long, then the 1:18 tap went unseen). When the main
@@ -497,7 +475,6 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       // NOT JUST ONCE (Oct 20 ~7:51 PM PT, Love: "price now broke the vwap and pink down, she should short here" - gold's 7:45 call had already been re-aimed
       // long once and could not turn again): her law is one EXECUTED direction per window, so an unfilled call follows her bones as often as they turn.
       if (prior.side === look.side) return false;
-      try { if (((globalThis as any).__reaim373 || {})[m.ticker + ":" + lane] && prior.side === "down" && look.side === "up") return false; } catch {} // fix373: a pink-rejection re-aim sticks - main's old long read never turns her back
       // ONE CALL, NEVER RE-AIMED (Oct 21 ~11:42 AM PT, Love: "please stop having it flip the trades it says she took ... i need it to stay the one trade she
       // would have taken at the beginning of the window and stay there / and then wait for price to interact with the next band from the main books entry, and
       // then enter in on the delayed model"): the MAIN book (TOGETHER) and the DELAYED book keep their first call of the window - on paper and on Kalshi.
@@ -581,7 +558,6 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // reading (near-band reach, Bollinger + green/red zone rejection bands, the candle in her third, the fake-out turn) is kept here for the REJECTION model below.
   let rejCandleNow: { side: "up" | "down"; label: string } | null = null; // fix260
   let tpStack = false; // fix283
-  let npPink = 0, npL: { name: string; price: number }[] = []; // fix361: the pure no-pink twin reads the pink and her lines
   let tgPF: { side: "up" | "down"; label: string } | null = null, tgFO = false; // fix326
   let rejLB: Line[] | null = null, rejReach = 0, rejL: Line[] | null = null, rejCandle: { side: "up" | "down"; label: string } | null = null, rejFO: { side: "up" | "down"; label: string } | null = null;
   try {
@@ -597,7 +573,6 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     // other 80% of the channel ... and skip the pinks anywhere else outside of the channel"): the no-pink copy only. The pink counts as stacked when it sits inside
     // her session channel (the session bands around price) within 20% of its width from the bottom or top band.
     try { const ppS = Number(p?.pp) || 0, wS = sUp - sDn; tpStack = Number.isFinite(wS) && wS > 0 && ppS > sDn && ppS < sUp && (ppS - sDn <= 0.2 * wS || sUp - ppS <= 0.2 * wS); } catch { tpStack = false; }
-    try { npPink = Number(p?.pp) || 0; npL = L.map((l: any) => ({ name: String(l.name), price: Number(l.price) })); } catch {} // fix361
     // BOLLINGER REJECTIONS FOR THE MAIN BOOK (Oct 21 ~11:27 PM PT, Love: "just have her short the rejection of the bollinger bands like we talked about" - and
     // 11:07 PM "or at the rejection of the bollinger band like we talked about if it is in her clear zone and fits all her other rules"): her 5m Bollinger upper and
     // lower join TOGETHER's lines (both assets, her tap: BTC $10 / gold $0.30) as rejection-only bands. Not in her thirds; every wall still judges the call.
@@ -607,7 +582,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     // 5m candle rejecting up off the green = long, a red 5m candle rejecting down off the red = short. Named apart from "5m S1/R1" so no older rule reads them.
     try { if (!quietR() && p && Number(p.s1) > 0 && Number(p.r1) > 0) LB.push({ name: "Green zone", price: Number(p.s1), unit: Number(L[0]?.unit) || 0 }, { name: "Red zone", price: Number(p.r1), unit: Number(L[0]?.unit) || 0 }); } catch {}
     try { const zB = (globalThis as any).__bbsr?.[id]; if (!quietR() && zB && Number(zB.bbU) > 0 && Number(zB.bbL) > 0 && Date.now() - Number(zB.at) <= 20000) LB.push({ name: "Bollinger upper", price: Number(zB.bbU), unit: Number(L[0]?.unit) || 0 }, { name: "Bollinger lower", price: Number(zB.bbL), unit: Number(L[0]?.unit) || 0 }); } catch {}
-    lookT = reachT > 0 ? bonesDecide(id, LB, spot, last1m, cur, prev, b, false, reachT, false, true /* fix394: main */) : look5;
+    lookT = reachT > 0 ? bonesDecide(id, LB, spot, last1m, cur, prev, b, false, reachT) : look5;
     rejLB = LB; rejReach = reachT; rejL = L; // fix246
     try { if (reachT > 0) { const pf0 = bonesDecide(id, LB, spot, last1m, cur, prev, b, false, reachT, true); if (pf0 && /5m PP/.test(String(pf0.label)) && (pf0.side === "up" ? pfFlipOk(id, "up", spot) : pfFlipOk(id, "down", spot))) tgPF = pf0; } } catch {} // fix326
     // HER 5M CANDLE OFF THE BOLLINGER (Oct 22 ~2:09 AM PT, Love: "she was taking that same set up on the main book earlier ... she's good to do that on the delayed
@@ -661,114 +636,11 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // window even if she doesn't take it i do not want that in there"): the copy reads the main book's entry logic herself every tick (firstT - the same read TOGETHER
   // books from) instead of being handed TOGETHER's one booked call, and an unfilled call re-aims to whatever she reads now (book() above). Pinks stay out unless stacked (fix283).
   try { const srcP: any = firstT;
-    if (srcP && (srcP.side === "up" || srcP.side === "down") && (!/5m PP|pink/i.test(String(srcP.label)) || tpStack) /* fix283 */ && !/ - seen as a (short|long) /.test(String(srcP.label)) /* fix364 (Love Oct 27 2026 8:38 PM PT: "yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine"): the copy never takes a thirds flip (main's read turned to the other side) */ && book("recon-togp", { side: srcP.side, label: String(srcP.label) }, lookP && !lookT ? lookP.ask : undefined)) changed = true; } catch {}
+    if (srcP && (srcP.side === "up" || srcP.side === "down") && (!/5m PP|pink/i.test(String(srcP.label)) || tpStack) /* fix283 */ && book("recon-togp", { side: srcP.side, label: String(srcP.label) }, lookP && !lookT ? lookP.ask : undefined)) changed = true; } catch {}
   // THE DELAYED TWIN = THE NO-PINK COPY, DELAYED (fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds")): the copy's own read this tick (firstT, pink left out unless stacked, fix283),
   // booked for recon-dly only once the window is 30 seconds old; the copy's walls judge her at the door and the wire (bandlock fix353).
   try { const srcD: any = firstT;
     if (srcD && (srcD.side === "up" || srcD.side === "down") && 900 - left >= 30 /* fix354: books the PAPER lane recon-dlyk; recon-dly is untouched */ && (!/5m PP|pink/i.test(String(srcD.label)) || tpStack) && book("recon-dlyk", { side: srcD.side, label: String(srcD.label), copy353: true } as any, lookP && !lookT ? lookP.ask : undefined)) changed = true; } catch {}
-  // THE PURE NO-PINK TWIN (fix361, Love Oct 27 2026 8:06 PM PT: "yes, i want to start another no-pink twin that completely disregards pink trades entirely / only trades band taps and rejections , sessions red green and bollingers / in this case she would have waited for it to reject the blue band and long"): PAPER lane recon-np. She takes main's read this tick (firstT) only when it is a tap or rejection of a session band
-  // (VWAP / sigmas), the red or green zone or a Bollinger - never a pink, pivot, nav, thirds or break call - and never when the pink sits between price and the band she
-  // is calling off (then price already went through the pink and the move is a pink trade: she waits for the next band, e.g. the blue band rejection). A zone she
-  // cannot place needs the pink at least $33 (BTC) / $1 (gold) away. The no-pink copy's walls judge her at the door and the wire (bandlock fix361). Same book() rules.
-  try { const srcN: any = firstT, lbN = String(srcN?.label || "");
-    const okN = !!srcN && (srcN.side === "up" || srcN.side === "down") && /^(Rejected (up|down) off|Failed break (above|below)|Tap-reject at) /i.test(lbN) /* fix387 (Love Oct 28 2026 12:17 PM PT: "yesss pls let her take tap rejects on her own bb"): main's "Tap-reject at <band>" reads count too - same bands, same pink check */ && /σ|VWAP|Bollinger|red zone|green zone/i.test(lbN) && !/5m PP|pink|PP|R1|R2|S1|S2|nav|purple|third/i.test(lbN);
-    if (okN) { const bandN = npL.filter((l) => l.price > 0 && lbN.includes(l.name)).sort((x, y) => y.name.length - x.name.length)[0]; const pp = npPink;
-      let pinkN = false; if (pp > 0) { const sesN = npL.filter((l) => /σ|VWAP/.test(l.name) && l.price > 0).map((l) => l.price), uN = Math.min(...sesN.filter((x) => x > spot)), dN = Math.max(...sesN.filter((x) => x <= spot)), wN = uN - dN;
-        const stackN = Number.isFinite(wN) && wN > 0 && pp > dN && pp < uN && ((pp - dN) / wN <= 0.10 || (uN - pp) / wN <= 0.10); /* fix363 (Love Oct 27 2026 8:32 PM PT: "as for pink holds on the new no-pink one, she only does it if the pink band and the session occupy the same bottom/top 10% of the channel pls / otherwise the rejections should blow right thru"): pink holds her only when stacked with a session band in the outer 10% */
-        if (stackN) { if (bandN) pinkN = srcN.side === "down" ? pp > spot && pp < bandN.price : pp < spot && pp > bandN.price; else pinkN = Math.abs(spot - pp) < (id === "gold" ? 1 : 33); } }
-      if (!pinkN && book("recon-np", { side: srcN.side, label: lbN } as any, lookP && !lookT ? lookP.ask : undefined)) changed = true; } } catch {}
-  // THE SOVEREIGN TWIN (fix372, Love Oct 27 2026 10:32 PM PT: "rather than having it copy mains calls, can you instill the engine and entry logic and give her sovereign reign to make her own trades aside from main? ... rather than changing her we can make a twin and test it over night before going live"): PAPER lane recon-sov. She does not copy main's call: every tick she runs the engine's own read (bonesDecide)
-  // on her full rejection board (session bands, pink, green/red zone, Bollinger - rejLB, main's reach) in REJECTIONS-ONLY mode, and books what she reads when a 1/2/3/4/5m candle
-  // has flipped her way (cornerstone #1). Unfilled calls re-aim to her newest read (book() above), so a refused long under pink becomes the pink-rejection short when it comes.
-  // Paper only - never in any live list; Love decides after the overnight test.
-  try { if (rejLB && rejReach > 0) { const sv = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach);
-    if (sv && (sv.side === "up" || sv.side === "down") && !/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(String(sv.label)) && (() => { try { return anyFlipNow(id, sv.side, spot); } catch { return false; } })() && book("recon-sov", { side: sv.side, label: String(sv.label) } as any)) changed = true; } } catch {}
-  // THE PURE NO-PINK WITH HER OWN EYES (fix389, Love Oct 28 2026 1:04 PM PT: "yess that’s what i was sayin earlier i want to give her her own taps ok :)"): PAPER lane recon-npo.
-  // She does not wait for main's wording: every tick she runs the engine's own read (bonesDecide, REJECTIONS ONLY, main's reach) on her own board - the session VWAP and
-  // sigmas, the red/green zone and the Bollinger bands, never the pink, pivots, purples or nav - and books what she reads when a 1-5m candle has flipped her way. The pure
-  // no-pink's pink check rides with her (pink stacked with a session band in the outer 10% and sitting between price and her band = wait). Paper only; recon-np's live seat is untouched.
-  try { if (rejLB && rejReach > 0) { const LB9 = rejLB.filter((l) => /σ|VWAP|Bollinger|Green zone|Red zone/i.test(String(l.name)) && !/PP|pink|purple|nav|R1|R2|S1|S2/i.test(String(l.name)));
-    const s9 = LB9.length ? bonesDecide(id, LB9, spot, last1m, cur, prev, b, true, rejReach, false, true /* fix394: pure no-pink */) : null; const lb9 = String(s9?.label || "");
-    if (s9 && (s9.side === "up" || s9.side === "down") && !/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(lb9) && !/third/i.test(lb9) /* fix391 (Love Oct 28 2026 1:42 PM PT, card "Stop the pure no-pink from taking thirds reads?" -> "Yes, band reads only"): her own eyes take band taps/rejections/failed breaks only, never a thirds read (Candle rising/falling, Launched from the top/bottom third) - pure no-pink (recon-np live + recon-npo paper) only */ && (() => { try { return anyFlipNow(id, s9.side, spot); } catch { return false; } })()) {
-      const band9 = LB9.filter((l) => l.price > 0 && lb9.includes(l.name)).sort((x, y) => y.name.length - x.name.length)[0]; const pp9 = npPink; let pink9 = false;
-      if (pp9 > 0) { const ses9 = npL.filter((l) => /σ|VWAP/.test(l.name) && l.price > 0).map((l) => l.price), u9 = Math.min(...ses9.filter((x) => x > spot)), d9 = Math.max(...ses9.filter((x) => x <= spot)), w9 = u9 - d9;
-        const st9 = Number.isFinite(w9) && w9 > 0 && pp9 > d9 && pp9 < u9 && ((pp9 - d9) / w9 <= 0.10 || (u9 - pp9) / w9 <= 0.10);
-        if (st9) { if (band9) pink9 = s9.side === "down" ? pp9 > spot && pp9 < band9.price : pp9 < spot && pp9 > band9.price; else pink9 = Math.abs(spot - pp9) < (id === "gold" ? 1 : 33); } }
-      if (!pink9 && book("recon-npo", { side: s9.side, label: lb9 } as any)) changed = true;
-      // fix389b (Love Oct 28 2026 1:05 PM PT: "and you can put her on that now, we will put her back where she is is she doesn’t do well on it okay :)) would have worked this short too so let’s give her the ability to do that okay bb"):
-      // the LIVE pure no-pink (recon-np) reads with her own eyes too - whichever read speaks first in a window is her call, main's wording or her own band read. Undo = delete this line.
-      if (!pink9 && book("recon-np", { side: s9.side, label: lb9 } as any)) changed = true; } } } catch {}
-  // HER OWN TAPS (fix395, Love Oct 28 2026 2:37 PM PT: "hun i’ve asked for this several times now, i want pure to be able to take her own taps" + 2:36 PM: "i want her to be able to take her own calls."):
-  // PURE NO-PINK only (recon-np live + recon-npo paper). Price taps one of her bands this 5m candle (σ/VWAP, Bollinger, green/red zone - within BTC $10 / gold 50c, never broken
-  // through: BTC $6 / gold 33c) and pushes off it her tap (BTC $3 / gold 30c) with a 1/2/3/4/5m candle flipped her way -> her own "Tap-reject at <band>" call. Green zone = longs only,
-  // red zone = shorts only (fix67/fix297). The 5m candle's open does not matter. Same pink check as her own eyes; main's walls still judge her at the door and the wire (fix390).
-  try { if (rejLB && rejReach > 0 && cur && cur.l > 0 && cur.h > 0) { const nr95 = id === "btc" ? 10 : 0.5, bk95 = BREAK[id] ?? 0, tp95 = TAP[id] ?? 0;
-    const LB95 = rejLB.filter((l) => /σ|VWAP|Bollinger|Green zone|Red zone/i.test(String(l.name)) && !/PP|pink|purple|nav|R1|R2|S1|S2/i.test(String(l.name)) && Number(l.price) > 0);
-    let t95: { side: "up" | "down"; label: string; d: number; p: number } | null = null;
-    // fix396 (Love Oct 28 2026 2:46 PM PT card "Make pure's own taps fire only near the band she tapped?" -> "Yes, nearer half only"; 2:45 PM: "dude she just longed btc into a band"):
-    // her own tap fires only while price is in the half of the channel nearest the band she tapped - halfway to the next band her way (any line on her board, pink included).
-    const half96 = (p: number, sd: string): boolean => { const nx = (rejLB || []).map((l) => Number(l.price)).filter((x) => x > 0 && (sd === "up" ? x > p + tp95 : x < p - tp95)); if (!nx.length) return true; const n = sd === "up" ? Math.min(...nx) : Math.max(...nx); return sd === "up" ? spot - p <= (n - p) / 2 : p - spot <= (p - n) / 2; };
-    for (const l of LB95) { const p = Number(l.price), nm = String(l.name);
-      if (!/Red zone/i.test(nm) && spot > p && cur.l <= p + nr95 && cur.l > p - bk95 && spot >= cur.l + tp95 && half96(p, "up") && (() => { try { return anyFlipNow(id, "up", spot); } catch { return false; } })()) { const d = spot - p; if (!t95 || d < t95.d) t95 = { side: "up", label: `Tap-reject at ${nm}`, d, p }; }
-      if (!/Green zone/i.test(nm) && spot < p && cur.h >= p - nr95 && cur.h < p + bk95 && spot <= cur.h - tp95 && half96(p, "down") && (() => { try { return anyFlipNow(id, "down", spot); } catch { return false; } })()) { const d = p - spot; if (!t95 || d < t95.d) t95 = { side: "down", label: `Tap-reject at ${nm}`, d, p }; } }
-    if (t95) { const pp95 = npPink; let pink95 = false;
-      if (pp95 > 0) { const ses95 = npL.filter((l) => /σ|VWAP/.test(l.name) && l.price > 0).map((l) => l.price), u95 = Math.min(...ses95.filter((x) => x > spot)), d95 = Math.max(...ses95.filter((x) => x <= spot)), w95 = u95 - d95;
-        const st95 = Number.isFinite(w95) && w95 > 0 && pp95 > d95 && pp95 < u95 && ((pp95 - d95) / w95 <= 0.10 || (u95 - pp95) / w95 <= 0.10);
-        if (st95) pink95 = t95.side === "down" ? pp95 > spot && pp95 < t95.p : pp95 < spot && pp95 > t95.p; }
-      if (!pink95 && book("recon-npo", { side: t95.side, label: t95.label } as any)) changed = true;
-      if (!pink95 && book("recon-np", { side: t95.side, label: t95.label } as any)) changed = true; } } } catch {}
-  // THE 2ND-BAND FLIP (fix404, Love Oct 28 2026 4:18 PM PT: "can we set it up for her to trade a candle flip at the 2nd bands for now ? / if price blows thru one and rejects and flips at the 2nd when bands are tight?"
-  // + 4:20 PM: "yess we'll keep it paper for the next couple days" + card "Paper first"): PAPER ONLY (recon-b2, in no live list). Bands tight (blue VWAP to 1σ under $150 BTC / $3 gold, fix399).
-  // Long: price was above band A in this or the last 5m candle (by BTC $8 / gold $1), fell through it to the next band B below, touched B (within BTC $10 / gold 50c) without breaking it
-  // (BTC $6 / gold 33c), pushed off B her tap and is still under A -> long, with a 2/3/4/5m flip and main's walls (fix401 gate). Short is the mirror. Any line on her board counts as a band.
-  try { const lb404 = (globalThis as any).__lawBands?.[id]; if (rejLB && cur && cur.l > 0 && cur.h > 0 && lb404 && Array.isArray(lb404.L) && blueSmall399(id, lb404.L)) {
-    const nr = id === "btc" ? 10 : 0.5, bk = BREAK[id] ?? 0, tp = TAP[id] ?? 0, thru = id === "btc" ? 8 : 1, hiR = Math.max(cur.h, prev?.h ?? -Infinity), loR = Math.min(cur.l, prev?.l ?? Infinity);
-    const px = [...new Set((rejLB || []).map((l) => Number(l.price)).filter((x) => x > 0))].sort((x, y) => x - y), nmOf = (p: number) => String((rejLB || []).find((l) => Number(l.price) === p)?.name || "band");
-    let t404: { side: "up" | "down"; label: string } | null = null;
-    for (let k = 0; k < px.length - 1 && !t404; k++) { const B = px[k], A = px[k + 1];
-      if (spot > B && spot < A && hiR >= A + thru && cur.l <= B + nr && cur.l > B - bk && spot >= cur.l + tp) t404 = { side: "up", label: `2nd-band flip: blew through ${nmOf(A)}, rejected up off ${nmOf(B)}` }; }
-    for (let k = px.length - 1; k > 0 && !t404; k--) { const B = px[k], A = px[k - 1];
-      if (spot < B && spot > A && loR <= A - thru && cur.h >= B - nr && cur.h < B + bk && spot <= cur.h - tp) t404 = { side: "down", label: `2nd-band flip: blew through ${nmOf(A)}, rejected down off ${nmOf(B)}` }; }
-    if (t404 && book("recon-b2", t404 as any)) changed = true; } } catch {}
-  // THE OG ROLLING VWAP (fix408, Love Oct 28 2026 5:07 PM PT: "another paper book with the half sigmas ... the og rolling vwap? on the 1, 2,3,4&5M timeframes? ... definitely give them the same guard"
-  // + 5:15 PM: "take the elements of that strategy/model, and rewrite it from the ground up"): PAPER ONLY (recon-og, in no live list). Rebuilt from grok v1's elements (desk-project vwap.ts):
-  // on each of the 1/2/3/4/5m frames, a rolling 60-minute VWAP (volume-weighted, typical price; TWAP if no volume) with half-sigma bands at 0.5/1/1.5/2/2.5/3 and the VWAP itself.
-  // Tap-reject only, never backwards: long = the last 3 closed candles of that frame closed above the line, this or the last candle wicked into it (within BTC $10 / gold 50c) without
-  // breaking it (BTC $6 / gold 33c), and price pushed off her tap and sits above it. Short is the mirror. No break-retests, no "watching" calls. Then the same guard as pure (fix401 gate).
-  try { const bs408: any[] = ((((globalThis as any).__pivBars?.[id]?.bars) ?? []) as any[]).filter((x) => Number(x.c) > 0 && Number(x.t) > 0).sort((x, y) => x.t - y.t);
-    if (bs408.length >= 60 && spot > 0) { const nr = id === "btc" ? 10 : 0.5, bk = BREAK[id] ?? 0, tp = TAP[id] ?? 0, nowS = Math.floor(Date.now() / 1000);
-      let t408: { side: "up" | "down"; label: string } | null = null;
-      for (const n of [1, 2, 3, 4, 5]) { if (t408) break;
-        const fr: { t: number; o: number; h: number; l: number; c: number; v: number }[] = [];
-        for (const x of bs408) { const t0 = Math.floor(Number(x.t) / (n * 60)) * n * 60, v = Number(x.v) > 0 ? Number(x.v) : 0, f = fr[fr.length - 1];
-          if (f && f.t === t0) { f.h = Math.max(f.h, +x.h); f.l = Math.min(f.l, +x.l); f.c = +x.c; f.v += v; } else fr.push({ t: t0, o: +x.o, h: +x.h, l: +x.l, c: +x.c, v }); }
-        const tNow = Math.floor(nowS / (n * 60)) * n * 60, lf = fr[fr.length - 1];
-        if (!lf) continue;
-        if (lf.t === tNow) { lf.c = spot; lf.h = Math.max(lf.h, spot); lf.l = Math.min(lf.l, spot); } else fr.push({ t: tNow, o: lf.c, h: Math.max(lf.c, spot), l: Math.min(lf.c, spot), c: spot, v: 0 });
-        const win = fr.slice(-Math.round(60 / n)); if (win.length < 8) continue;
-        let pv = 0, vol = 0, tw = 0; for (const c of win) { const tpx = (c.h + c.l + c.c) / 3; pv += tpx * c.v; vol += c.v; tw += tpx; }
-        const useV = vol > 0 && pv > 0, vw = useV ? pv / vol : tw / win.length;
-        let acc = 0, w = 0; for (const c of win) { const tpx = (c.h + c.l + c.c) / 3, wt = useV ? c.v : 1; acc += wt * (tpx - vw) ** 2; w += wt; }
-        const sd = Math.max(w > 0 ? Math.sqrt(acc / w) : 0, vw * 0.00015);
-        const live = fr[fr.length - 1], last = fr[fr.length - 2], closed3 = fr.slice(-4, -1);
-        if (!last || closed3.length < 3) continue;
-        const lv: { p: number; nm: string }[] = [{ p: vw, nm: `${n}m VWAP` }];
-        for (const k of [0.5, 1, 1.5, 2, 2.5, 3]) { lv.push({ p: vw + k * sd, nm: `${n}m +${k}σ` }); lv.push({ p: vw - k * sd, nm: `${n}m −${k}σ` }); }
-        lv.sort((x, y) => Math.abs(x.p - spot) - Math.abs(y.p - spot));
-        const loT = Math.min(live.l, last.l), hiT = Math.max(live.h, last.h);
-        for (const { p, nm } of lv) {
-          if (closed3.every((c) => c.c > p) && loT <= p + nr && loT > p - bk && spot > p && spot >= loT + tp) { t408 = { side: "up", label: `OG tap-reject up off ${nm}` }; break; }
-          if (closed3.every((c) => c.c < p) && hiT >= p - nr && hiT < p + bk && spot < p && spot <= hiT - tp) { t408 = { side: "down", label: `OG tap-reject down off ${nm}` }; break; } } }
-      if (t408 && book("recon-og", t408 as any)) changed = true; } } catch {}
-  // BTC PINK-REJECTION RE-AIM (fix373, Love Oct 27 2026 10:38 PM PT: "if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok" + card "Which books get the BTC pink-rejection re-aim?" -> "Main + rejection + copy"; study since Oct 11: BTC longs refused under pink, the pink-rejection short won 27 of 38 +$222 while the refused long lost ~$204):
-  // BTC only, MAIN / REJECTION MODEL / NO-PINK COPY - when her open call this window is a LONG that never filled and a PINK wall refused it, and the engine now reads a
-  // rejection DOWN off the pink (bonesDecide, rejections only) with a 1-5m candle flipped red, the unfilled long re-aims to that short (book() re-aims; a fill locks the window). Gold untouched.
-  try { if (id === "btc" && rejLB && rejReach > 0) { const lanes373 = ["recon-tog", "recon-rej", "recon-togp"].filter((ln) => rows.some((r) => r.ticker === m.ticker && r.lane === ln && r.side === "up" && r.result === "open"));
-    if (lanes373.length) { const sv3 = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach);
-      if (sv3 && sv3.side === "down" && /5m PP/.test(String(sv3.label)) && (() => { try { return anyFlipNow(id, "down", spot); } catch { return false; } })()) {
-        let d3: Record<string, any> = {}; try { d3 = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); } catch {}
-        for (const ln of lanes373) { let pinkNo = false, filled = false; for (const k3 of Object.keys(d3)) { if (!k3.startsWith(m.ticker + ":" + ln)) continue; const v3 = d3[k3]; if (v3?.status === "filled" || v3?.status === "partial") filled = true; if (v3?.side === "up" && (/^PINK/.test(String(v3?.firstReason || "")) || /^PINK/.test(String(v3?.reason || "")))) pinkNo = true; }
-          if (pinkNo && !filled && (((globalThis as any).__reaim373 ||= {})[m.ticker + ":" + ln] = 1) && book(ln, { side: "down", label: `${sv3.label} - re-aimed off the pink rejection (fix373)` } as any)) { changed = true; try { appendFileSync(D("pink-reaim.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: m.ticker, lane: ln, label: sv3.label, spot }) + "\n"); } catch {} } } } } } } catch {}
   // 6) DELAYED (Oct 20 ~9:38 PM PT, Love: "a delayed entry model to trade at $1 - same frame, same everything, just waits out the initial move, and enters on the
   // other side of the window than she would have been in had she got in initially when the opportunity presents itself ... her trades go in profit and reverse,
   // so we implement the delayed entry model to be on the other side of it - the right side of it"): TOGETHER's first call in the window is the initial move; this

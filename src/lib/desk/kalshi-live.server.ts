@@ -298,17 +298,13 @@ function windowLockSide(ticker) {
   } catch {}
   return "";
 }
-// fix362c: the pure no-pink (recon-np) is a live book while live-switch npLive.on is true - kept out of liveBook.books so Polymarket's 1H book never follows her
-// fix383 (Love Oct 28 2026 10:45 AM PT: "let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold"): the sovereign twin (recon-sov) is a live book while live-switch sovLive.on is true - kept out of liveBook.books (Polymarket follows that list)
-function sovLiveOn() { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.sovLive?.on === true; } catch { return false; } }
-function npLiveOn() { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.npLive?.on === true; } catch { return false; } }
 async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding = false, forceExit = false) {
   // LIVE BOOK lock (Love, Oct 3): while a live book is named, no other route may OPEN a position. Exits always pass.
   if (!reduceOnly) {
     try {
       const lb = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook;
       const books = lb ? (Array.isArray(lb.books) ? lb.books : lb.book ? [lb.book] : []) : [];
-      if (books.length && !books.includes(line?.bookCopy) && !(line?.bookCopy === "recon-np" && npLiveOn()) && !(line?.bookCopy === "recon-sov" && sovLiveOn()) /* fix383 */ /* fix362c */) {
+      if (books.length && !books.includes(line?.bookCopy)) {
         sent.__aureliusBlock = `Blocked. Only ${books.map((b) => String(b).toUpperCase()).join(" + ")} go live right now.`;
         return null;
       }
@@ -458,7 +454,7 @@ function assetDollarsFor(ticker) {
 // HER OFF HOURS AT $5 (fix142, Oct 23 ~1:20 PM PT, Love: "keep her on $5 for her off hours ... $2 initially"): in TOGETHER's off hours (bookSkipHours
 // ["recon-tog"]) with live-switch offHourMain.on, the main book's opening sizes offHourMain.dollars flat (no multiple cut, no late 1/4).
 function offMainDollars(bookCopy, ticker?) { // fix243: ticker picks the asset's rejection hours (offHourMain.rejHoursByAsset)
-  if (bookCopy !== "recon-tog" && bookCopy !== "recon-rej" && bookCopy !== "recon-togp" && bookCopy !== "recon-sov" /* fix383: the sovereign twin sizes like the copy in the seat she fills */) return 0; // fix145: the rejection model in her rejection hours; fix281: the no-pink copy sizes like it there
+  if (bookCopy !== "recon-tog" && bookCopy !== "recon-rej" && bookCopy !== "recon-togp") return 0; // fix145: the rejection model in her rejection hours; fix281: the no-pink copy sizes like it there
   try {
     const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
     const om = sw?.offHourMain; if (!om || om.on !== true) return 0;
@@ -1205,7 +1201,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   const bookCopy = typeof opts?.bookCopy === "string" ? opts.bookCopy : "";
   const liveBooks = liveBook ? (Array.isArray(liveBook.books) ? liveBook.books : liveBook.book ? [liveBook.book] : []) : [];
   if (liveBooks.length && !bookCopy) return { status: "blocked", reason: `${liveBooks.map((b) => String(b).toUpperCase()).join(" + ")} only right now (Love's call)` };
-  if (bookCopy && !liveBooks.includes(bookCopy) && !(bookCopy === "recon-np" && npLiveOn()) && !(bookCopy === "recon-sov" && sovLiveOn()) /* fix383 */ /* fix362c */) return { status: "blocked", reason: `${bookCopy} is not a live book` };
+  if (bookCopy && !liveBooks.includes(bookCopy)) return { status: "blocked", reason: `${bookCopy} is not a live book` };
   // New lock (Oct 3, Love): ONLY a named live book can open a position. The Grok-era prime / paper copy routes are gone.
   if (!bookCopy) return { status: "blocked", reason: "only a named live book opens positions" };
   if (opts?.primeCopy && paperCopy) return { status: "blocked", reason: "one book at a time" };
@@ -1408,7 +1404,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   // reduced position sizes ... let's let them thru at $2 pls"): the DELAYED book (recon-dly) sizes its live-switch bookDollars flat - no 1/4-over-3.8x or
   // 3/4-over-2.2x cut. Still under the switch ceiling.
   const offMainD = offMainDollars(bookCopy, ticker);
-  const budget0 = offMainD > 0 ? Math.min(offMainD, maxDollars()) : (bookCopy === "recon-dly" || bookCopy === "recon-np" /* fix362: flat bookDollars ($3) */) && ownDollars > 0 ? Math.min(ownDollars, maxDollars()) : bookCopy ? budgetFor(Math.min(assetOwn > 0 ? assetOwn : ownDollars > 0 ? ownDollars : cheapDollars > 0 ? cheapDollars : (bookDollarsFor(ticker) || Number(liveBook?.dollars) || 0), maxDollars()), multiple) : budgetFor(full, multiple);
+  const budget0 = offMainD > 0 ? Math.min(offMainD, maxDollars()) : bookCopy === "recon-dly" && ownDollars > 0 ? Math.min(ownDollars, maxDollars()) : bookCopy ? budgetFor(Math.min(assetOwn > 0 ? assetOwn : ownDollars > 0 ? ownDollars : cheapDollars > 0 ? cheapDollars : (bookDollarsFor(ticker) || Number(liveBook?.dollars) || 0), maxDollars()), multiple) : budgetFor(full, multiple);
   // TOGETHER'S LATE REJECTION AT 1/4 (Oct 18 ~4:13 PM PT, Love): engine passes sizeMul 0.25 when TOGETHER skipped the window's opening.
   const sizeMulL = Number(opts?.sizeMul);
   const budgetC = bookCopy && !(offMainD > 0) && sizeMulL > 0 && sizeMulL < 1 ? Math.round(Number(budget0) * sizeMulL * 100) / 100 : budget0;

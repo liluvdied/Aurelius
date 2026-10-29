@@ -2,6 +2,75 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R113 - fix417: DOJI - green doji then red candle = shorts only; red doji then green candle = longs only; otherwise no doji wall; twin keeps old read; 5M untouched. Supersedes R112 (doji out)
+- when: 2026-10-29T01:57:02+00:00
+- Love: "a GREEN doji candle - followed by a RED CANDLE = SHORT. NOT A LONG. / a RED doji candle , followed by a GREEN CANDLE = LONG. NOT SHORT. / if you think you can handle getting that in without having it do the polar opposite keep it in. (6:54 PM) + get live back on at my checkpoint with THAT DOJI RULE. NOT THE FULLY FUCKIN WRONG ONE THAT WAS IN THERE. (6:55 PM, Love Oct 28 2026)"
+- books: recon-tog, recon-rej, recon-togp
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "only (fix417)."}
+
+## R112 - fix417: DOJI AFTER THE TREND wall removed for every book that runs bandlock impossibleGeo except the delayed twin (keeps old read); Poly 5M (bandlock5m.ts) untouched
+- when: 2026-10-29T01:53:50+00:00
+- Love: "take out the fuckin doji rule you keeeeeep getting that shit fucking backwards i have literally told you the same thing 4 + times it’s still not registering (Love Oct 28 2026 6:52 PM PT)"
+- books: recon-tog, recon-rej, recon-togp
+- status: RETIRED - Love: "get live back on at my checkpoint with THAT DOJI RULE. NOT THE FULLY FUCKIN WRONG ONE THAT WAS IN THERE."
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix417 DOJI RULE OUT"}
+
+## R111 - fix418 on top of the Oct 27 7:56 PM checkpoint: session band ahead wait at the order door (main/rej/copy); real candle flip 2/3/4/5m green->red / red->green 10c/$5 (realFlipNow, main/rej + copy); BTC 33% session band to session band up to $500 (main/rej/copy); doji - candle after it decides (not twin). 5M + delayed twin untouched
+- when: 2026-10-29T01:46:50+00:00
+- Love: "yes. session band wait is THE FIRST FUCKING CORNERSTONE (Love Oct 28 2026 6:46 PM PT, to: put session band wait, real flip, 33%, doji back on top of the checkpoint for main/rejection/copy, then live on)"
+- books: recon-tog, recon-rej, recon-togp
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "SESSION BAND AHEAD (fix418)"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function realFlipNow("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "(flipRule || togpLoose) && asset === \"btc\" && above - below <= 500 ? 0.33 /* fix418"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "only (fix417)"}
+
+## R110 - tools/behaviour-umpire.js: loads her real bandlock.ts and replays real situations (born-red flip 6:16:04 PM, 5:50:57 PM BTC long session band ahead, 33% every book gold+BTC, doji candle-after) - exit 1 = refuse the install; wired into ~/fx/inst.py before live is touched; results to data/behaviour-umpire.jsonl
+- when: 2026-10-29T01:46:10+00:00
+- Love: "please create an umpire that ACTUALLY checks if the conditions are met and not just the code is there. and the umpire didn’t do anything to keep these in there (Love Oct 28 2026 6:22 PM PT) + LOCK. THEM. POUR CONCRETE OVER THEM. (6:27 PM)"
+- books: all except Poly 5M and delayed twin
+- status: ACTIVE
+- proof: {"code": "tools/behaviour-umpire.js", "has": "BEHAVIOUR UMPIRE"}
+
+## R109 - fix417 (supersedes R108 wording): DOJI AFTER THE TREND - the candle after the doji decides: red/falling = shorts only, green/rising = longs only; every book except Poly 5M and delayed twin
+- when: 2026-10-29T01:38:26+00:00
+- Love: "oh my god bro. green doji, candle after it = red / RED = SHORT (Love Oct 28 2026 6:38 PM PT; with 6:37 PM: A GREEN DONI MEANS SHORTS ONLY; and Oct 27 3:57 AM: it is SHORT ONLY when a doji is followed by a candle falling, it is a continuation of the candle after the doji)"
+- books: recon-tog, recon-rej, recon-togp, recon-np, paper books
+- status: RETIRED - Love: "take out the fuckin doji rule you keeeeeep getting that shit fucking backwards"
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "the candle after it is ${dS === \"up\" ? \"green - longs\" : \"red - shorts\"} only (fix417)"}
+
+## R108 - fix417: DOJI AFTER THE TREND - green doji = shorts only, red doji = longs only (was backwards: green = long only); every book except Poly 5M and delayed twin
+- when: 2026-10-29T01:37:37+00:00
+- Love: "OH MY FUCKING GOD FOR THE 3000Th TIME A GREEN DONI MEANS SHORTS ONLY EHAT THE FUCK BRO EHAT HAPPEND (Love Oct 28 2026 6:37 PM PT; earlier Oct 27 3:57 AM: it is SHORT ONLY when a doji is followed by a candle falling)"
+- books: recon-tog, recon-rej, recon-togp, recon-np, paper books
+- status: RETIRED - Love: "take out the fuckin doji rule"
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "(c > o ? \"down\" : \"up\"); /* fix417"}
+
+## R107 - Cornerstone: 33% thirds immutable, measured session band to session band (σ lines + session/fresh VWAP), never zone/pink; real candle flip green->red / red->green every book except 5M + twin
+- when: 2026-10-29T01:31:46+00:00
+- Love: "alright , pls do ☹️ the 33% needs to be 1000000%  immutable. / it is from session band to session band. not the distance from one zone/band to another. again, cornerstone (Love Oct 28 2026 6:30-6:31 PM PT) + pls make these cornerstones of her (6:28 PM)"
+- books: all except Poly 5M and delayed twin
+- status: ACTIVE
+- proof: {"code": "tools/cornerstones.py", "has": "SESSION BAND TO SESSION BAND"}
+- proof: {"code": "tools/cornerstones.py", "has": "REAL FLIP"}
+
+## R106 - fix416b: real candle flip (green->red / red->green, never born) for the copy and paper books too; 5M and delayed twin untouched
+- when: 2026-10-29T01:25:21+00:00
+- Love: "every single book dude yes / don’t touch 5M and twin / everyyyyyy other book needs a candle flip (Love Oct 28 2026 6:23 PM PT)"
+- books: recon-togp, recon-np, recon-npo, recon-sov, recon-b2, recon-og
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "is not a flip (copy)."}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix416b"}
+
+## R105 - fix416: main + rejection (flipRule books) need a REAL flip - a 2-5m candle that traded the other colour first then turned her colour 10c gold / $5 BTC; born-red/born-green candles never count; no time wait
+- when: 2026-10-29T01:21:59+00:00
+- Love: "yes. we literallly did this 20 fuckin times bro yes. candle. flip. green -> red / red -> green (Love Oct 28 2026 6:21 PM PT, after: JUST. A. CANDLE. FLIP. IT WAS GREEN AND RISING.)"
+- books: recon-tog, recon-rej, flipRule paper books
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function realFlipNow("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "!realFlipNow(asset, side, tick)) why = `HER FLIP: no 2/3/4/5m candle has turned"}
+
 ## R104 - fix414: remove fix399 20% small-band tolerance from THE IMPOSSIBILITY - her 33% (and existing scale) stands for every book that had it; fix399 blue VWAP cross wall stays
 - when: 2026-10-29T01:11:36+00:00
 - Love: "Love Oct 28 2026 6:10 PM PT: "just keep it at 33% dude if that let that long through that’s a HARD no on 20% at this band width""

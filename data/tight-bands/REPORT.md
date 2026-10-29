@@ -1,18 +1,18 @@
 # Tight-bands 10x paper book 💎
 
-First 10x+ touch at a band in every Kalshi 15m window, $10 paper. TIGHT = 1σ under $3 gold / $100 BTC; NORMAL is the control. Updated Wed Oct 28 05:22 PM PT.
+First 10x+ touch at a band in every Kalshi 15m window, $10 paper. TIGHT = 1σ under $3 gold / $100 BTC; NORMAL is the control. Updated Wed Oct 28 06:22 PM PT.
 
 | Group | Asset | Lane | Trades | Won | Win rate | P&L |
 |---|---|---|---|---|---|---|
 | TIGHT | gold | cash at 3x | 32 | 7 | 22% | $-110.00 |
 | TIGHT | gold | cash at 5x | 32 | 6 | 19% | $-20.00 |
 | TIGHT | gold | cash at 10x | 32 | 4 | 12% | $+70.04 |
-| TIGHT | btc | cash at 3x | 32 | 4 | 12% | $-200.00 |
-| TIGHT | btc | cash at 5x | 32 | 2 | 6% | $-220.00 |
-| TIGHT | btc | cash at 10x | 32 | 1 | 3% | $-220.00 |
-| NORMAL | gold | cash at 3x | 391 | 40 | 10% | $-2710.00 |
-| NORMAL | gold | cash at 5x | 391 | 22 | 6% | $-2810.00 |
-| NORMAL | gold | cash at 10x | 391 | 10 | 3% | $-2910.09 |
+| TIGHT | btc | cash at 3x | 35 | 5 | 14% | $-200.00 |
+| TIGHT | btc | cash at 5x | 35 | 3 | 9% | $-200.00 |
+| TIGHT | btc | cash at 10x | 35 | 2 | 6% | $-150.00 |
+| NORMAL | gold | cash at 3x | 393 | 40 | 10% | $-2730.00 |
+| NORMAL | gold | cash at 5x | 393 | 22 | 6% | $-2830.00 |
+| NORMAL | gold | cash at 10x | 393 | 10 | 3% | $-2930.09 |
 | NORMAL | btc | cash at 3x | 671 | 101 | 15% | $-3680.00 |
 | NORMAL | btc | cash at 5x | 671 | 62 | 9% | $-3610.00 |
 | NORMAL | btc | cash at 10x | 671 | 44 | 7% | $-2359.07 |
@@ -85,3 +85,6 @@ First 10x+ touch at a band in every Kalshi 15m window, $10 paper. TIGHT = 1σ un
 | Wed Oct 28 03:21 PM | btc | up | 74.47 | 18.5 | 5m S1 | 0.072 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed Oct 28 03:39 PM | btc | down | 75.02 | 15.6 | fresh VWAP | 0.2 | lost -10.00 | lost -10.00 | lost -10.00 |
 | Wed Oct 28 03:57 PM | btc | up | 69.68 | 16.4 | 5m PP | 0.073 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Wed Oct 28 05:22 PM | btc | up | 55.69 | 18.5 | fresh -2σ | 0.12 | lost -10.00 | lost -10.00 | lost -10.00 |
+| Wed Oct 28 05:42 PM | btc | up | 64.34 | 26.3 | fresh -2σ | 0.75 | cashed 3x +20.00 | cashed 5x +40.00 | cashed 10x +90.00 |
+| Wed Oct 28 06:08 PM | btc | up | 90.8 | 16.4 | 5m S1 | 0.059 | lost -10.00 | lost -10.00 | lost -10.00 |

@@ -1,5 +1,5 @@
 {
- "at": "2026-10-29T01:17:03.055Z",
+ "at": "2026-10-29T02:00:35.289Z",
  "leagues": {
   "NFL": {
    "live": 0,
@@ -8,13 +8,13 @@
   },
   "NCAAF": {
    "live": 2,
-   "late": 0,
-   "matched": 0
+   "late": 1,
+   "matched": 1
   },
   "NBA": {
-   "live": 10,
-   "late": 4,
-   "matched": 4
+   "live": 7,
+   "late": 3,
+   "matched": 3
   },
   "WNBA": {
    "live": 0,
@@ -28,8 +28,8 @@
   },
   "NHL": {
    "live": 3,
-   "late": 0,
-   "matched": 0
+   "late": 1,
+   "matched": 1
   },
   "MLB": {
    "live": 1,
@@ -39,47 +39,58 @@
  },
  "watching": [
   {
-   "league": "NBA",
-   "game": "Heat 128 @ Hawks 114",
+   "league": "NCAAF",
+   "game": "Kennesaw St 34 @ MTSU 20",
    "period": 4,
-   "clock": "1:13",
-   "fav": "Heat",
+   "clock": "11:50",
+   "fav": "Kennesaw St",
+   "wp": 0.96,
+   "ask": 0.94,
+   "ticker": "KXNCAAFGAME-26OCT28KENNMTU-MTU (NO)",
+   "matched": true
+  },
+  {
+   "league": "NBA",
+   "game": "Magic 99 @ Raptors 129",
+   "period": 4,
+   "clock": "0.0",
+   "fav": "Raptors",
    "wp": 1,
    "ask": 1,
-   "ticker": "KXNBAGAME-26OCT28MIAATL-MIA",
+   "ticker": "KXNBAGAME-26OCT28ORLTOR-TOR",
    "matched": true
   },
   {
    "league": "NBA",
-   "game": "Wizards 105 @ Cavaliers 111",
+   "game": "Rockets 95 @ Bucks 69",
    "period": 4,
-   "clock": "3:42",
-   "fav": "Cavaliers",
-   "wp": 0.91,
-   "ask": 0.91,
-   "ticker": "KXNBAGAME-26OCT28WASCLE-WAS (NO)",
+   "clock": "11:30",
+   "fav": "Rockets",
+   "wp": 1,
+   "ask": 1,
+   "ticker": "KXNBAGAME-26OCT28HOUMIL-HOU",
    "matched": true
   },
   {
    "league": "NBA",
-   "game": "Hornets 79 @ Pistons 82",
+   "game": "Nuggets 85 @ Pelicans 79",
    "period": 4,
-   "clock": "7:03",
-   "fav": "Pistons",
-   "wp": 0.72,
-   "ask": 0.75,
-   "ticker": "KXNBAGAME-26OCT28CHADET-DET",
+   "clock": "7:44",
+   "fav": "Nuggets",
+   "wp": 0.8,
+   "ask": 0.82,
+   "ticker": "KXNBAGAME-26OCT28DENNOP-DEN",
    "matched": true
   },
   {
-   "league": "NBA",
-   "game": "76ers 80 @ Pacers 90",
-   "period": 4,
-   "clock": "10:13",
-   "fav": "Pacers",
-   "wp": 0.82,
-   "ask": 0.74,
-   "ticker": "KXNBAGAME-26OCT28PHIIND-IND",
+   "league": "NHL",
+   "game": "Flyers 2 @ Capitals 4",
+   "period": 3,
+   "clock": "4:53",
+   "fav": "Capitals",
+   "wp": null,
+   "ask": 0.99,
+   "ticker": "KXNHLGAME-26OCT28PHIWSH-WSH",
    "matched": true
   }
  ],

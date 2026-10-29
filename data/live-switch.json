@@ -1,6 +1,6 @@
 {
   "live": true,
-  "maxDollars": 10,
+  "maxDollars": 5,
   "cooldownAfterLoss": true,
   "route": "paper",
   "at": "2026-10-22T18:11:00.468Z",
@@ -291,24 +291,10 @@
       "note": "fix175 Oct 24 ~9:48 PM PT, Love: DELAYED twin Kalshi add-on $4 (was $3) | fix190 Oct 25 ~2:09 AM PT, Love: 'then we can raise her add on to $5, those are working as intended' -> $5"
     },
     "on": true,
-    "dollars": 5,
-    "maxAsk": 0.357,
+    "dollars": 8,
+    "maxAsk": 0.263,
     "minLeft": 2,
-    "note": "Oct 20 ~12:04 AM PT, Love: \"when i said no limit i was talking about the multiple she could enter into - not no limit on how many times she could add on. limit it to 1 add on of $2 please. one of them\" - ONE $2 add per position, at a rejection her way, any multiple 3.8x or higher (maxAsk 26.3c, no ceiling on the multiple). No noLimit flag: the once-per-window gate enforces exactly one. | fix393 Oct 28 2026 2:28 PM PT, Love card 'Lower the first add-on to 2.8x+ for which books?' -> 'All $10 books' (+ 2:26 PM: \"she is supposed to do her default 2.8x hun, and thennn catch the other at a band rejection\"): first add-on at the first band touch at 2.8x+ (35.7c incl slip) for main/rej/copy/sov/np; twin (addOn.twin) + Poly untouched",
-    "second": {
-      "on": false,
-      "dollars": 5,
-      "maxAsk": 0.72,
-      "minLeft": 2,
-      "books": [
-        "recon-tog",
-        "recon-rej",
-        "recon-togp",
-        "recon-sov",
-        "recon-np"
-      ],
-      "note": "fix380 Oct 28 2026 1:12 AM PT, Love: \"we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters ... a candle flip at any band she encounters after our first add on\" + card \"Main + rejection + copy\""
-    }
+    "note": "Oct 20 ~12:04 AM PT, Love: \"when i said no limit i was talking about the multiple she could enter into - not no limit on how many times she could add on. limit it to 1 add on of $2 please. one of them\" - ONE $2 add per position, at a rejection her way, any multiple 3.8x or higher (maxAsk 26.3c, no ceiling on the multiple). No noLimit flag: the once-per-window gate enforces exactly one."
   },
   "timeGate": {
     "on": true,
@@ -339,9 +325,7 @@
       "recon-tog",
       "recon-rej",
       "recon-dly",
-      "recon-togp",
-      "recon-np",
-      "recon-sov"
+      "recon-togp"
     ]
   },
   "snipe": {
@@ -492,13 +476,11 @@
     "gold": [
       4,
       9,
-      20
+      23
     ],
     "btc": [
-      0,
       8,
       18,
-      21,
       23
     ]
   },
@@ -731,9 +713,7 @@
         "recon-tog",
         "recon-rej",
         "recon-dly",
-        "recon-togp",
-        "recon-np",
-        "recon-sov"
+        "recon-togp"
       ],
       "gold": [
         "dcd",
@@ -758,9 +738,7 @@
         "recon-tog",
         "recon-rej",
         "recon-dly",
-        "recon-togp",
-        "recon-np",
-        "recon-sov"
+        "recon-togp"
       ],
       "silver": [
         "pap247"
@@ -1021,7 +999,6 @@
       23
     ],
     "recon-tog": [
-      1,
       2,
       4,
       6,
@@ -1088,9 +1065,7 @@
     "recon-tog",
     "recon-rej",
     "recon-dly",
-    "recon-togp",
-    "recon-np",
-    "recon-sov"
+    "recon-togp"
   ],
   "noLocksNote": "Love, Oct 11 ~8:30 AM PT: 'that's too sensitive hun they'll never run... let her take profits half at 75 the rest at 90%'. PAPER's live books skip LOCK THE WIN and the take-profit gates.",
   "reversalGuard": {
@@ -1135,9 +1110,7 @@
     "recon-tog",
     "recon-rej",
     "recon-dly",
-    "recon-togp",
-    "recon-np",
-    "recon-sov"
+    "recon-togp"
   ],
   "goldGateExemptNote": "Love Oct 11 ~6:40 PM PT: pivot books fire on gold when they call it; only a nav band between price and the strike blocks.",
   "comboGuard": {
@@ -1419,9 +1392,7 @@
     "recon-tog",
     "recon-rej",
     "recon-dly",
-    "recon-togp",
-    "recon-np",
-    "recon-sov"
+    "recon-togp"
   ],
   "paperFires": [
     "ogp5-inv",
@@ -1439,9 +1410,7 @@
     "recon-tog",
     "recon-rej",
     "recon-dly",
-    "recon-togp",
-    "recon-np",
-    "recon-sov"
+    "recon-togp"
   ],
   "cheapSize": {
     "minMult": 2.8,
@@ -1451,8 +1420,7 @@
   "closeMode": "market",
   "bookDollars": {
     "ogp5-inv": 5,
-    "recon-dly": 2.5,
-    "recon-np": 10
+    "recon-dly": 2.5
   },
   "liveSkipHoursPrev": {
     "gold": [
@@ -1573,7 +1541,7 @@
     "on": true,
     "dollars": 5,
     "addOn": {
-      "dollars": 5,
+      "dollars": 8,
       "maxAsk": 0.357,
       "note": "fix176 Oct 24 ~9:50 PM PT, Love card '$4 for both': Kalshi rejection-model hours and main-book off hours add $4 (was $3), 2.8x+",
       "dollarsByHour": {}
@@ -1581,7 +1549,6 @@
     "note": "Oct 23 ~1:20 PM PT, Love: off hours (bookSkipHours recon-tog) the main book trades Kalshi at $2 + one $3 add-on at 2.8x+ (next band touch, or a flip near a band); the delayed twin trades Polymarket only (polyTwin), off Kalshi (fix142) | fix201 Oct 25 ~4:36 AM PT, Love: 'lets put the rejection model on at $5 and a $5 add on hun' - $5 + $5 add-on",
     "rejHours": [
       0,
-      1,
       2,
       3,
       4,
@@ -1597,11 +1564,11 @@
     "rejHoursByAsset": {
       "gold": [
         0,
-        1,
         2,
         3,
         4,
         7,
+        8,
         9,
         14,
         16,
@@ -1613,22 +1580,15 @@
       ],
       "btc": [
         0,
-        1,
         2,
         3,
         4,
-        5,
-        6,
         7,
-        8,
-        9,
         10,
         11,
-        12,
         13,
         14,
         15,
-        16,
         17,
         18,
         19,
@@ -1639,38 +1599,11 @@
       ]
     },
     "dollarsNote": "fix248 Oct 26 ~12:59 AM PT, Love: 'pls put it back to $11 and $5 for the orders hun' (rejection $11 + $5 add-on)",
-    "dollarsByHour": {},
-    "rejSeatHours": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23
-    ]
+    "dollarsByHour": {}
   },
   "bookSkipHoursByAsset": {
     "btc": {
       "recon-tog": [
-        1,
         2,
         4,
         6,
@@ -1712,10 +1645,10 @@
     },
     "gold": {
       "recon-tog": [
-        1,
         2,
         4,
         6,
+        8,
         14,
         16,
         18,
@@ -2026,22 +1959,6 @@
     "offHourMain.addOn.dollars": 5,
     "live-size.dollars": 2.5,
     "note": "fix360 Love Oct 27 2026 7:44 PM PT: \"hey hunn, we can put our main book and no pink rejection model(s) back on at $5 initial entry , $8 add on pls\" + card \"Main + copy + rejection\" - copy back to undo"
-  },
-  "npLive": {
-    "on": true,
-    "hours": [
-      21
-    ],
-    "addOn": 5,
-    "note": "fix362 Love Oct 27 2026 8:17 PM PT: \"let\u2019s go ahead and try running the new no-pink now at $3 & $5 add ons pls\" + card \"New one at 9 PM only\" - recon-np live on Kalshi only at 9 PM PT (BTC + gold), $3 entry (bookDollars) + $5 add-on; main/rejection/copy sit 9 PM out live. NOT in liveBook.books so Polymarket 1H never follows her.",
-    "hoursByAsset": {
-      "btc": [],
-      "gold": []
-    },
-    "yieldToTwin": true,
-    "note381": "fix381 Oct 28 2026 10:14 AM PT, Love: \"i'm sold lol pure no pink it is now bb\" + card \"BTC every hour, gold stays\": recon-np holds the BTC seat every hour main/rejection/copy held (twin keeps its hours), gold only 9 PM as before, $3 + $5.",
-    "note398": "fix398 Oct 28 2026 3:20 PM PT, Love: \"she longed btc on a falling red candle hun this model is not working like the rejection one we had running pls put that one back on til we iron this out this is too many bad trades\": pure no-pink off the BTC Kalshi seat (paper keeps running); the rejection model holds BTC every hour. Gold untouched.",
-    "note400": "fix400 Oct 28 2026 3:35 PM PT, Love: \"yes the rejection model we had running earlier goes back for btc and gold not just btc that model needs work bb\": pure no-pink off the gold Kalshi seat too (paper keeps running). Gold 1/4/7/9 AM + 9 PM fall to the rejection seat, 8 PM to main."
   },
   "fix374Prev": {
     "liveSkipHours": {
@@ -2658,14 +2575,6 @@
       "recon-np"
     ]
   },
-  "sovLive": {
-    "on": false,
-    "assets": [
-      "gold"
-    ],
-    "note": "fix383 Oct 28 2026 10:45 AM PT, Love: \"let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold ok\" - recon-sov takes gold's rejection hours live in place of the no-pink copy ($5 + $7 + $3 like the copy); pure no-pink gold 1, 4, 7, 9 AM, 8 PM + 9 PM; main gets gold 8 AM. NOT in liveBook.books.",
-    "note400": "fix400 Oct 28 2026 3:36 PM PT, Love card \"No-pink copy, like BTC\" (Sovereign comes off gold live (stays paper); the no-pink copy holds every gold rejection hour, like this morning)."
-  },
   "fix384Prev": {
     "maxDollars": 5,
     "bookDollars": {
@@ -2810,5 +2719,15 @@
     ],
     "note": "fix412 Oct 28 2026 6:15 PM PT: copy back to undo (copy held the rejection seat)"
   },
-  "note412": "fix412 Oct 28 2026 6:03 PM PT, Love: \"do not run this model bro i'm not retraining a model again\" + \"put her on the rejection model\": recon-rej takes the live seat in every rejection hour, both assets; the no-pink copy is off live."
+  "note412": "fix412 Oct 28 2026 6:03 PM PT, Love: \"do not run this model bro i'm not retraining a model again\" + \"put her on the rejection model\": recon-rej takes the live seat in every rejection hour, both assets; the no-pink copy is off live.",
+  "checkpointRestore": {
+    "at": "2026-10-29T01:45:02.530124+00:00",
+    "words": "Love Oct 28 2026 6:39-6:41 PM PT: \"bro put her back at the fuckin checkpoint i\u2019m not doing this again / save all of these new revisions on another paper twin and give me my model back\" + \"just put her on my last checkpoint pls i cannot fuckin do this again\"",
+    "from": "data/SAVES/KNOWN-GOOD-2026-10-27-0756PM-PT-checkpoint-main-and-no-pink-copy-after-fix360",
+    "kept": [
+      "polyTwin (5M)",
+      "recon-dly skip hours (twin)"
+    ],
+    "tonightSave": "data/SAVES/2026-10-28-0639PM-PT-tonight-revisions-fix361-416-before-checkpoint-restore"
+  }
 }

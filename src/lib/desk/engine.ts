@@ -2207,7 +2207,6 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         // MAIN BOOK ONLY (Love, same message: "ONE $2 dollar add on to our main books positions"): the delayed twin's positions never add.
         let aoTwin = false;
         try { aoTwin = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] === "recon-dly"; } catch { aoTwin = false; }
-        let aoNp = false; try { aoNp = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] === "recon-np"; } catch { aoNp = false; } // fix362: the pure no-pink adds npLive.addOn ($5)
         // $2 AT A BAND, 2.8x+ (Oct 17 ~1:15 PM PT, Love: "implement the $2 add on for me at a band, as long as it's over 2.8x actually / so it's
         // effectively 1/5th of the normal position size" + her picks: band rejection her way, once per window, 5+ min left, BTC and gold, her trades
         // only). addOn { on, dollars 2, maxAsk 0.35 }. A refused/unfilled try retries after 5 s; only a fill uses up the window's add-on.
@@ -2252,7 +2251,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             void (async () => {
               let r: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
               try {
-                r = await live.addOnBuy(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoNp ? (Number((liveCfg as any)?.npLive?.addOn) || 5) /* fix362 */ : aoOff ? aoOff.aoDollars : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: "just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those"): walls skip add-ons like the twin's (was free only for the twin)
+                r = await live.addOnBuy(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoOff ? aoOff.aoDollars : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: "just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those"): walls skip add-ons like the twin's (was free only for the twin)
               } catch (err) {
                 r = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "add-on failed" };
               }
@@ -2264,42 +2263,6 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             })();
           }
         }
-        // THE SECOND ADD-ON (fix380, Oct 28 2026 1:12 AM PT, Love: "we will do $7 on the first add on, & $3 at the next rejection off of a band she encounters / same entry logic ...
-        // let's have her take it as she would any other trade, at whatever multiple is available there / a candle flip at any band she encounters after our first add on" + card "Main + rejection + copy"):
-        // MAIN, REJECTION MODEL, NO-PINK COPY - once her first add-on has filled, ONE more (addOn.second.dollars, $3) on the same side when price is at a band (any band her add-on reads)
-        // that is NOT the first add-on's band and a 1/2/3/4/5m candle has flipped her way there (anyFlipMinNow: $5 BTC / 10c gold past its open). Any multiple up to her entry ceiling
-        // (addOn.second.maxAsk, 72c = 1.37x). Once per position, kept across a restart (addon-log.jsonl rows with add2). The twin and Polymarket never take it; the pure no-pink takes it since fix384 (addOn.second.books).
-        try {
-          const ao2 = (ao as any)?.second;
-          const own2 = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] || "";
-          const bk2: string[] = Array.isArray(ao2?.books) ? ao2.books.map(String) : ["recon-tog", "recon-rej", "recon-togp"];
-          if (!g.__aureliusAdd2) {
-            const s2: Record<string, number> = {}, w1: Record<string, string> = {};
-            try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (!x || !x.ok || !x.ticker) continue; if (x.add2) s2[x.ticker] = Date.parse(x.at) || Date.now(); else w1[x.ticker] = String(x.why || ""); } catch {} } } catch {}
-            g.__aureliusAdd2 = s2; g.__aureliusAdd1Why = w1;
-          }
-          const add2 = g.__aureliusAdd2, w1 = g.__aureliusAdd1Why || (g.__aureliusAdd1Why = {});
-          const try2 = g.__aureliusAdd2Try || (g.__aureliusAdd2Try = {});
-          if (addReg[row.ticker] && !(row.ticker in w1) && !(Date.now() - (try2["w:" + row.ticker] || 0) < 5000)) { try2["w:" + row.ticker] = Date.now(); try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.ticker === row.ticker && !x.add2) w1[row.ticker] = String(x.why || ""); } catch {} } } catch {} }
-          const cap2 = Number(ao2?.maxAsk) > 0 && Number(ao2.maxAsk) < 1 ? Number(ao2.maxAsk) : 0.72;
-          if (ao2?.on === true && ao?.on && !aoTwin && (!aoNp || bk2.includes("recon-np")) /* fix384 (Oct 28 2026 11:56 AM PT, Love: "let's do $10 with the $5 add on and the second $5 add on / for everything except the delayed entry model & 5M book"): the pure no-pink takes the second add-on when addOn.second.books names her */ && bk2.includes(own2) && (id === "btc" || id === "gold") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try2[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap2 && aoLeft >= (Number(ao2.minLeft) || Number(ao.minLeft) || 2)) {
-            const blm3 = await import("./bandlock");
-            const t2 = blm3.addOnTouchNow(id);
-            const bnd = (w: string) => { const m = /^(?:touched |came within \$[\d.]+ of )(.+?) \(/.exec(String(w || "")); return m ? m[1] : ""; };
-            const b2 = bnd(t2), b1 = bnd(w1[row.ticker] || "");
-            const tk2 = Number(quoteTick(id)?.c) || 0;
-            if (t2 && b2 && b2 !== b1 && tk2 > 0 && blm3.anyFlipMinNow(id, mySide, tk2)) {
-              try2[row.ticker] = Date.now();
-              const why2 = `${t2.replace(" - twin add-on, free", "")} and a candle flipped ${mySide === "up" ? "green" : "red"} there - second add-on (fix380)`;
-              void (async () => {
-                let r2: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
-                try { r2 = await live.addOnBuy(row.ticker, mySide, Number(ao2.dollars) || 3, cap2, true); } catch (err) { r2 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "second add-on failed" }; }
-                if (r2?.ok) add2[row.ticker] = Date.now();
-                try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: why2, bid, add2: true, book: own2, ...(r2 || {}) }) + "\n"); } catch {}
-              })();
-            }
-          }
-        } catch {}
       } catch {
       }
       // INSURANCE ON POLYMARKET (Love, Oct 3 ~11 PM PT: "you're not literally selling 25% of the position on kalshi? just
@@ -4654,8 +4617,6 @@ setLiveHook(() => {
 // once, in its own window, at liveBook.dollars. The wire guard still needs the live switch ON and caps size.
 async function copyLiveBook(assets, lane = "") {
   const runStart = Date.now();
-  // GOLD SLIDE UNDER PINK - sampler (fix371, Love Oct 27 2026 10:12 PM PT: "if gold is on a downslope like this and keeps rejecting pink and reversing like this, do longs into those lose more than they win? ... maybe in the event of this we should wait for a break" + card "Should gold longs wait for the pink break when gold slides under rejecting pink?" -> "Rejection + main + copy"): every 5 s keep gold price + the 5m pink (data/pivot-now.json) for the last 30 min.
-  try { const GS = ((globalThis as any).__slide371 ||= { s: [] as { t: number; p: number; pp: number }[], at: 0 }); if (Date.now() - GS.at >= 5000) { GS.at = Date.now(); const pv = JSON.parse(readFileSync(join(process.cwd(), "data", "pivot-now.json"), "utf8")); const pp = Number(pv?.gold?.["5m"]?.pp) || 0, p = Number(quoteTick("gold")?.c) || 0; if (pp > 0 && p > 0) GS.s.push({ t: Date.now(), p, pp }); GS.s = GS.s.filter((x: any) => Date.now() - x.t <= 1800000); } } catch {}
   let cfg = null;
   try {
     cfg = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook || null;
@@ -4663,9 +4624,6 @@ async function copyLiveBook(assets, lane = "") {
     cfg = null;
   }
   const books = cfg ? (Array.isArray(cfg.books) ? cfg.books : cfg.book ? [cfg.book] : []) : [];
-  // fix362b: the pure no-pink joins the Kalshi copier through live-switch npLive.on, NOT liveBook.books (Polymarket's 1H book follows liveBook.books; it must not move)
-  try { const npB = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.npLive; if (npB?.on === true && books.length && !books.includes("recon-np")) books.push("recon-np"); } catch {}
-  try { const svB = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.sovLive; if (svB?.on === true && books.length && !books.includes("recon-sov")) books.push("recon-sov"); } catch {} // fix383: the sovereign twin joins the Kalshi copier through sovLive.on (not liveBook.books)
   if (!books.length || !(Number(cfg.dollars) > 0) || entriesOff()) return;
   let live;
   try {
@@ -4962,12 +4920,6 @@ async function copyLiveBook(assets, lane = "") {
     // no live Kalshi order for the DELAYED twin before the window is 30 s old - her call waits (no record written) and is tried again after, meeting every wall then. Paper rows and Polymarket unchanged.
     if (String(row.book) === "recon-dly" && Date.now() % 900000 < 30000 && done[row.id]?.status !== "partial") continue;
     if (String(row.book) === "recon-dly" && done[row.id]?.status !== "partial") { const t2 = (globalThis as any).__twinTouch2?.[String(row.ticker)]; if (!t2 || t2.side !== row.side) continue; } // fix356 (Oct 27 2026 6:47 PM PT, Love: "its supposed to be the second band price touches after the initial move still hun , not just 30 seconds ... the first band price originated at in the window is null - the second band price comes into contact with is the trade she takes"): the twin goes live on Kalshi only at the second band touched after the initial move, on that touch's side; her call waits until then
-    // GOLD SLIDE UNDER PINK (fix371, Love Oct 27 2026 10:12 PM PT: "if gold is on a downslope like this and keeps rejecting pink and reversing like this, do longs into those lose more than they win? ... maybe in the event of this we should wait for a break" + card "Should gold longs wait for the pink break when gold slides under rejecting pink?" -> "Rejection + main + copy"; since Oct 11 in that spot gold longs went rejection 52 trades 27% -$447, main 49 27% -$535, copy 8 12% -$128):
-    // MAIN, REJECTION MODEL and NO-PINK COPY, gold LONGS, Kalshi only - when gold is sliding (more than $2 lower than 30 min ago), pink rejected price down in that time
-    // (touched within 30c from below, then pushed 50c off) and price hasn't broken back up through pink by 25c since, the long waits (no record written, tried again)
-    // until pink breaks. Shorts, BTC, the twin, the pure no-pink, Polymarket untouched. Needs 20 min of samples after a restart before it judges.
-    if (row.asset === "gold" && row.side === "up" && ["recon-rej", "recon-tog", "recon-togp"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let hold371 = ""; try { hold371 = slideHold403(((globalThis as any).__slide371?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide403 ||= { on: false }), Date.now()); /* fix403: no touch needed, sticky until pink breaks */ } catch {}
-      if (hold371) { try { const GL = ((globalThis as any).__slide371Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, why: hold371 }) + "\n"); } } catch {} continue; } }
     // LIVE SIT-OUT HOURS (Love, Oct 8 ~12:45 AM PT: "yess let's pause her on gold for those hours for sure"). Gold's 6 PM PT
     // hour (the session open, bands bunched) lost on paper (-$5,092, 41%) and live (31% of 13). live-switch
     // "liveSkipHours": { gold: [18] } (Pacific hours). Live copies only; paper keeps booking so we keep measuring.
@@ -4987,25 +4939,14 @@ async function copyLiveBook(assets, lane = "") {
       // main book and the rejection model sit out live.
       { const dS = skipHrsA(sw, "recon-dly", row.asset); const lbB = sw?.liveBook?.books; // fix278: per asset
         const twH = Array.isArray(lbB) && lbB.includes("recon-dly") && Array.isArray(dS) && !dS.map(Number).includes(hNow);
-        if (twH && (row.book === "recon-tog" || row.book === "recon-rej" || row.book === "recon-togp" || row.book === "recon-sov" /* fix383 */) && done[row.id]?.status !== "partial") { // fix281: the no-pink copy sits the twin hours out too
+        if (twH && (row.book === "recon-tog" || row.book === "recon-rej" || row.book === "recon-togp") && done[row.id]?.status !== "partial") { // fix281: the no-pink copy sits the twin hours out too
           done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: "the DELAYED twin takes this hour live (Love, Oct 23)" };
           continue;
         } }
-      // THE PURE NO-PINK'S LIVE HOUR (fix362, Love Oct 27 2026 8:17 PM PT: "let’s go ahead and try running the new no-pink now at $3 & $5 add ons pls" + card "New one at 9 PM only"): with recon-np on liveBook.books and live-switch npLive { on, hours: [21] }, the pure no-pink twin trades
-      // Kalshi only in npLive.hours (9 PM PT, BTC + gold) and main, the rejection model and the no-pink copy sit that hour out live. Every other hour she stays paper.
-      { const npC = sw?.npLive; const npOn = npC?.on === true; /* fix362b: npLive.on alone (liveBook.books untouched) */ const npHrs = Array.isArray(npC?.hoursByAsset?.[row.asset]) ? npC.hoursByAsset[row.asset] : npC?.hours; /* fix381 (Oct 28 2026 10:14 AM PT, Love: "i'm sold lol pure no pink it is now bb" + card "How should the pure no-pink take over live?" -> "BTC every hour, gold stays"): npLive.hoursByAsset - BTC every hour main/rejection/copy hold (the DELAYED twin keeps its own hours: yieldToTwin), gold stays on npLive.hours (9 PM) */ const npTw = npC?.yieldToTwin === true && ((): boolean => { try { const dS3 = skipHrsA(sw, "recon-dly", row.asset); const lb3 = sw?.liveBook?.books; return Array.isArray(lb3) && lb3.includes("recon-dly") && Array.isArray(dS3) && !dS3.map(Number).includes(hNow); } catch { return false; } })(); const npH = npOn && Array.isArray(npHrs) && npHrs.map(Number).includes(hNow) && !npTw;
-        if (row.book === "recon-np" && !npH && done[row.id]?.status !== "partial") { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: npTw ? "the DELAYED twin keeps this hour live (fix381)" : "THE PURE NO-PINK trades live only in her hours (Love)" }; continue; }
-        if (npH && (row.book === "recon-tog" || row.book === "recon-rej" || row.book === "recon-togp" || row.book === "recon-sov" /* fix383 */) && done[row.id]?.status !== "partial") { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: "the PURE NO-PINK takes this hour live (Love, Oct 27)" }; continue; } }
       { const omR = sw?.offHourMain; const rjH = omR?.on === true && rjA(omR, row.asset).includes(hNow); // fix243: per asset
         // fix281 (fix281, Oct 26 ~1:10 PM PT, Love: "copy paste the main book onto a fresh paper twin that excludes pink trades only ... same entry logic, speed and execution ... we will put that book on for the rejection models hours"): with recon-togp on liveBook.books, the no-pink copy of the main book takes her rejection hours live and recon-rej stays paper.
         const tpOn = Array.isArray(sw?.liveBook?.books) && sw.liveBook.books.includes("recon-togp");
-        const rjSeat = rjH && Array.isArray(omR?.rejSeatHours) && omR.rejSeatHours.map(Number).includes(hNow); // fix374 (Oct 27 2026 11:17 PM PT, Love: "how is she doing on the rejection model for 11 so far? if you think it’s safe to put on the rejection model for the hour i’m widdit bb it seems nice and slow"): in offHourMain.rejSeatHours the REJECTION MODEL takes the rejection hour live instead of the no-pink copy
-        // THE SOVEREIGN TWIN'S SEAT (fix383, Love Oct 28 2026 10:45 AM PT: "let's put her on the pure no pink for the best hours , and the sovereign twin for golds other rejection hours, and keep her on main for mains best hours on gold"): with live-switch sovLive { on, assets }, the sovereign twin (recon-sov) takes the rejection hours live
-        // on those assets in place of the no-pink copy (the 11 PM rejection seat and the pure no-pink's hours still come first). Every other hour she stays paper.
-        { const svC = sw?.sovLive; const svH = svC?.on === true && Array.isArray(svC.assets) && svC.assets.includes(row.asset) && rjH && !rjSeat;
-          if (row.book === "recon-sov" && !svH && done[row.id]?.status !== "partial") { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: "THE SOVEREIGN TWIN trades live only in gold's rejection hours (Love, Oct 28)" }; continue; }
-          if (svH && row.book === "recon-togp" && done[row.id]?.status !== "partial") { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: "the SOVEREIGN TWIN takes this hour live (Love, Oct 28)" }; continue; } }
-        if (((row.book === "recon-rej" && (!rjH || (tpOn && !rjSeat))) || (row.book === "recon-togp" && (!rjH || rjSeat)) || (row.book === "recon-tog" && rjH)) && done[row.id]?.status !== "partial") {
+        if (((row.book === "recon-rej" && (!rjH || tpOn)) || (row.book === "recon-togp" && !rjH) || (row.book === "recon-tog" && rjH)) && done[row.id]?.status !== "partial") {
           done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: row.book === "recon-togp" ? "THE NO-PINK COPY trades live only in Love's rejection hours" : row.book === "recon-rej" && rjH ? "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)" : rjH ? (tpOn ? "the NO-PINK copy takes this hour live (Love, Oct 26)" : "the REJECTION model takes this hour live (Love, Oct 23)") : "REJECTION trades live only in Love's rejection hours" };
           continue;
         } }
@@ -5426,10 +5367,6 @@ async function copyLiveBook(assets, lane = "") {
         }
       }
     }
-    // STALE CALL GUARD (fix375, Oct 27 2026 11:21 PM PT, Love: "yesss pls" to "add a guard so a call that's over a minute old can never fire right after a seat opens" - 11:20 PM the rejection
-    // model's 11:15:11 gold long filled at 64c up at the red the moment her 11 PM seat was switched on): a call that reaches the wire with NO earlier try on Kalshi (no record yet) and is more
-    // than 90 s old is written down skipped, never sent. The delayed twin (waits for its touch on purpose) and gold-slide holds (fix371) are exempt.
-    if (!done[row.id] && String(row.book) !== "recon-dly" && !((globalThis as any).__slide371Log || {})[row.id] && Date.parse(String(row.at)) > 0 && Date.now() - Date.parse(String(row.at)) > 90000) { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: `STALE CALL: booked ${Math.round((Date.now() - Date.parse(String(row.at))) / 1000)} s ago and never tried on Kalshi - a seat that just opened never fires an old call (fix375)` }; continue; }
     const frame = asset?.vwap1m?.vwap ? asset.vwap1m : asset?.vwap5m;
     let placed = null;
     const tOrder = Date.now();
@@ -5705,19 +5642,3 @@ export {
   sendKalshi,
   sendLive
 };
-
-/** fix403 (Oct 28 2026 4:03 PM PT, Love card "How should the gold downslope-under-pink hold work now?" -> "No longs till pink breaks" (While gold is sliding under an unbroken pink, no gold long at all until price breaks up through pink by 25c. No touch needed, no time-out.)
- *  + Love 4:04 PM: "that was already how we structured that downslope rule hun / can you make sure everything stays when we make a rule?"; fix371 words (Oct 27 10:12 PM PT): "maybe in the event of this we should wait for a break").
- *  sm = 5 s samples of gold price + 5m pink for the last 30 min (__slide371 sampler). Sliding = more than $2 lower than 30 min ago while under pink (pink + 25c).
- *  No pink touch needed. Once on, the hold stays on (S.on, no time-out) until price breaks up through pink by 25c. Tested by tools/slide-test.js (umpire). */
-export function slideHold403(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
-  const last = sm[sm.length - 1];
-  if (!last || now - last.t >= 30000) return "";
-  if (last.p > last.pp + 0.25) { S.on = false; return ""; }
-  let broke = false;
-  for (const x of sm) { if (x.p > x.pp + 0.25) broke = true; else if (x.p >= x.pp - 0.30) broke = false; }
-  if (broke) { S.on = false; return ""; }
-  if (sm.length > 10 && now - sm[0].t >= 1200000 && last.p < sm[0].p - 2) { S.on = true; return `GOLD SLIDE UNDER PINK: gold ${last.p.toFixed(2)} is $${(sm[0].p - last.p).toFixed(2)} lower than 30 min ago under the unbroken pink (${last.pp.toFixed(2)}) - no long until price breaks up through pink by 25c (fix371/fix403).`; }
-  if (S.on) return `GOLD SLIDE UNDER PINK: gold ${last.p.toFixed(2)} is still under the unbroken pink (${last.pp.toFixed(2)}) since the slide - no long until price breaks up through pink by 25c (fix403).`;
-  return "";
-}

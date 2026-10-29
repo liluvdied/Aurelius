@@ -1,20 +1,20 @@
 {
   "gold": {
-    "key": "held-KXGOLD15M-26OCT282115-15|held-KXGOLD15M-26OCT282100-00",
-    "at": "2026-10-29T01:15:38.228Z",
+    "key": "held-KXGOLD15M-26OCT282200-00|mvsvv4cc-jd6tro",
+    "at": "2026-10-29T02:00:43.081Z",
     "cause": "market",
-    "note": "Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked."
+    "note": "Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked. Tap-reject at +0.5σ lost. Nothing on the entry to change. It stays."
   },
   "btc": {
-    "key": "held-KXBTC15M-26OCT282030-30|held-KXBTC15M-26OCT282015-15",
-    "at": "2026-10-29T00:30:21.174Z",
+    "key": "mvsurwrq-xhsalf|held-KXBTC15M-26OCT282100-00",
+    "at": "2026-10-29T01:30:02.840Z",
     "cause": "market",
-    "note": "Tap-reject at -0.5σ finished right on the book and the cash lost at the bell. Not an entry error. It stays. Tap-reject at -0.5σ finished right on the book and the cash lost at the bell. Not an entry error. It stays."
+    "note": "Tap-reject at -2.5σ lost. Nothing on the entry to change. It stays. Live lost, and the cash ticket had no chart, so it is not scored as a clean market loss. The setup stays. A band in front is already blocked."
   },
   "silver": {
-    "key": "mvshcidj-b1adih|mvsgvg7i-4r3obb",
-    "at": "2026-10-28T19:15:02.236Z",
+    "key": "mvsvyuk1-bbfri9|mvsuqusu-nxum6w",
+    "at": "2026-10-29T02:00:02.505Z",
     "cause": "market",
-    "note": "Tap-reject at −1σ lost. Nothing on the entry to change. It stays. Tap-reject at +1σ lost. Nothing on the entry to change. It stays."
+    "note": "Tap-reject at −0.5σ lost. Nothing on the entry to change. It stays. Tap-reject at +2.5σ lost. Nothing on the entry to change. It stays."
   }
 }

@@ -1,5 +1,123 @@
 [
  {
+  "id": "KXBTC15M-26OCT282215-15:up",
+  "at": "2026-10-29T02:00:19.551Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT282215-15",
+  "side": "up",
+  "sigma": -3.85,
+  "spot": 79802.84,
+  "vwap": 81052.51,
+  "stdev": 324.27,
+  "target": 79896.51,
+  "secondsLeft": 884,
+  "ask": 0.31,
+  "multiple": 3.23,
+  "peakBid": 0.42,
+  "peakPct": 35,
+  "exits": {
+   "+50": null,
+   "+100": null,
+   "+200": null,
+   "+300": null
+  },
+  "result": "open",
+  "profits": null
+ },
+ {
+  "id": "KXBTC15M-26OCT282200-00:up",
+  "at": "2026-10-29T01:45:55.875Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT282200-00",
+  "side": "up",
+  "sigma": -3.64,
+  "spot": 80395.75,
+  "vwap": 81120.38,
+  "stdev": 199.27,
+  "target": 80457.45,
+  "secondsLeft": 845,
+  "ask": 0.31,
+  "multiple": 3.23,
+  "peakBid": 0.53,
+  "peakPct": 71,
+  "exits": {
+   "+50": 0.53,
+   "+100": null,
+   "+200": null,
+   "+300": null
+  },
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": 3.55,
+   "+100": -5,
+   "+200": -5,
+   "+300": -5
+  }
+ },
+ {
+  "id": "KXBTC15M-26OCT282145-45:up",
+  "at": "2026-10-29T01:30:41.119Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT282145-45",
+  "side": "up",
+  "sigma": -2.97,
+  "spot": 80765.39,
+  "vwap": 81159.96,
+  "stdev": 132.85,
+  "target": 80827.12,
+  "secondsLeft": 860,
+  "ask": 0.29,
+  "multiple": 3.45,
+  "peakBid": 0.28,
+  "peakPct": -3,
+  "exits": {
+   "+50": null,
+   "+100": null,
+   "+200": null,
+   "+300": null
+  },
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": -5,
+   "+100": -5,
+   "+200": -5,
+   "+300": -5
+  }
+ },
+ {
+  "id": "KXBTC15M-26OCT282130-30:up",
+  "at": "2026-10-29T01:19:33.830Z",
+  "asset": "btc",
+  "ticker": "KXBTC15M-26OCT282130-30",
+  "side": "up",
+  "sigma": -2.98,
+  "spot": 80835.4,
+  "vwap": 81175.34,
+  "stdev": 114.23,
+  "target": 80890.86,
+  "secondsLeft": 627,
+  "ask": 0.33,
+  "multiple": 3.03,
+  "peakBid": 0.6,
+  "peakPct": 82,
+  "exits": {
+   "+50": 0.59,
+   "+100": null,
+   "+200": null,
+   "+300": null
+  },
+  "result": "loss",
+  "profits": {
+   "hold": -5,
+   "+50": 3.94,
+   "+100": -5,
+   "+200": -5,
+   "+300": -5
+  }
+ },
+ {
   "id": "KXBTC15M-26OCT282115-15:up",
   "at": "2026-10-29T01:02:13.448Z",
   "asset": "btc",
