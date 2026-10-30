@@ -1,0 +1,70 @@
+// Server only. OWN CLOSE LANE (Oct 16 ~3:55 AM PT, Love: "the close buttons... it's closing at the old speed again, pls get her to close at
+// market when i click again, no latency pls"). Her click took 2.3 s to REACH the server (recvMs) while the sell itself took
+// 0.4 s: the page keeps ~70 polling requests going, and the browser lets only 6 run per server at once, so a close waited in
+// line behind them. The close button now goes to its own little door (port 8091, its own line in the browser), straight to
+// this same market close. If that door can't be reached, the old path is used.
+import { appendFileSync } from "node:fs";
+import { join } from "node:path";
+import { ensureEngine } from "./engine";
+
+const closeLocks: Map<string, Promise<any>> = ((globalThis as any).__closeLocks ||= new Map());
+async function withCloseLock<T>(ticker: string, run: () => Promise<T>): Promise<T> {
+  const inFlight = closeLocks.get(ticker);
+  if (inFlight) return inFlight as Promise<T>;
+  const p = run().finally(() => closeLocks.delete(ticker));
+  closeLocks.set(ticker, p);
+  return p;
+}
+
+export async function closeTicker(ticker: string, clickAt?: number, tapAt?: number): Promise<{ line: string }> {
+  const recvMs = Number(clickAt) > 0 ? Date.now() - Number(clickAt) : null;
+  // tapMs = her finger to the button's code running (the page's own delay); recvMs = that code to the server
+  const tapMs = Number(tapAt) > 0 && Number(clickAt) > 0 ? Number(clickAt) - Number(tapAt) : null;
+  ensureEngine();
+  const live = await import("./kalshi-live.server");
+  const data = { ticker };
+  return withCloseLock(ticker, async () => {
+      // FAST CLOSE (Oct 14): one ticker = sell it now (no full position list first). Timing kept in data/close-timing.jsonl.
+      const tC = Date.now();
+      const payout = await live.flattenTicker(data.ticker, true);
+      try { appendFileSync(join(process.cwd(), "data", "close-timing.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: data.ticker, ms: Date.now() - tC, recvMs, tapMs, payout }) + "\n"); } catch {}
+      const note = live.closeResult(data.ticker);
+      const name = data.ticker.includes("BTC") ? "BTC" : data.ticker.includes("GOLD") ? "GOLD" : data.ticker.includes("ETH") ? "ETH" : data.ticker.includes("SOL") ? "SOL" : "SILVER";
+      if (!(payout != null && payout > 0)) {
+        // Oct 15 (Love): extra clicks after a successful close used to answer "didn't sell" and read as a failed close.
+        try { const still = (await live.heldFifteens()).some((r) => r.ticker === data.ticker); if (!still) return { line: `${name} is closed - nothing left to sell.` }; } catch {}
+        return { line: `${name} didn't sell. Press close again.` };
+      }
+      const profit = note && typeof note.profit === "number" ? note.profit : null;
+      if (profit == null) return { line: `${name} closed. $${payout.toFixed(2)} back.` };
+      const sign = profit > 0.005 ? "+" : profit < -0.005 ? "−" : "";
+      return { line: `${name} closed ${sign}$${Math.abs(profit).toFixed(2)}.` };
+  });
+}
+export async function startCloseLane() {
+  const G = globalThis as any;
+  G.__closeFn = closeTicker;
+  if (G.__closeLane) return;
+  G.__closeLane = true;
+  try {
+    const http = await import("node:http");
+    const srv = http.createServer((req: any, res: any) => {
+      const head = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "POST, OPTIONS", "Access-Control-Allow-Headers": "Content-Type", "Content-Type": "application/json" };
+      if (req.method === "OPTIONS") { res.writeHead(204, head); res.end(); return; }
+      if (req.method !== "POST" || !String(req.url || "").startsWith("/close")) { res.writeHead(404, head); res.end("{}"); return; }
+      let b = "";
+      req.on("data", (c: any) => { b += c; if (b.length > 4096) req.destroy(); });
+      req.on("end", async () => {
+        try {
+          const d = JSON.parse(b || "{}");
+          const t = String(d.ticker || "");
+          if (!/^KX[A-Z0-9]+15M-[0-9A-Z-]+$/.test(t)) { res.writeHead(400, head); res.end(JSON.stringify({ line: "Close didn't send. Press it again." })); return; }
+          const out = await G.__closeFn(t, Number(d.clickAt) || 0, Number(d.tapAt) || 0);
+          res.writeHead(200, head); res.end(JSON.stringify(out));
+        } catch { res.writeHead(500, head); res.end(JSON.stringify({ line: "Close didn't send. Press it again." })); }
+      });
+    });
+    srv.on("error", (e: any) => { G.__closeLane = false; try { appendFileSync(join(process.cwd(), "data", "close-lane.log"), `${new Date().toISOString()} error ${String(e?.code || e)}\n`); } catch {} });
+    srv.listen(8091, "0.0.0.0", () => { try { appendFileSync(join(process.cwd(), "data", "close-lane.log"), `${new Date().toISOString()} listening 8091\n`); } catch {} });
+  } catch { G.__closeLane = false; }
+}

@@ -1,0 +1,54 @@
+{
+ "at": "2026-10-29T04:30:50.706Z",
+ "leagues": {
+  "NFL": {
+   "live": 0,
+   "late": 0,
+   "matched": 0
+  },
+  "NCAAF": {
+   "live": 0,
+   "late": 0,
+   "matched": 0
+  },
+  "NBA": {
+   "live": 1,
+   "late": 0,
+   "matched": 0
+  },
+  "WNBA": {
+   "live": 0,
+   "late": 0,
+   "matched": 0
+  },
+  "NCAAMB": {
+   "live": 0,
+   "late": 0,
+   "matched": 0
+  },
+  "NHL": {
+   "live": 1,
+   "late": 1,
+   "matched": 1
+  },
+  "MLB": {
+   "live": 0,
+   "late": 0,
+   "matched": 0
+  }
+ },
+ "watching": [
+  {
+   "league": "NHL",
+   "game": "Maple Leafs 3 @ Kraken 4",
+   "period": 3,
+   "clock": "3:17",
+   "fav": "Kraken",
+   "wp": null,
+   "ask": 0.89,
+   "ticker": "KXNHLGAME-26OCT28TORSEA-SEA",
+   "matched": true
+  }
+ ],
+ "errors": []
+}

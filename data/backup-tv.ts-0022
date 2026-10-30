@@ -1,0 +1,229 @@
+import crypto from "node:crypto";
+import tls from "node:tls";
+import type { Candle } from "./types";
+
+const CHARTS = {
+  // Love's chart (checked 2026-10-02 against her screen to the dollar): OANDA, session resets 17:00 ET.
+  btc: { symbol: "OANDA:BTCUSD", resolution: "5", count: 400, session: "ny" },
+  gold: { symbol: "OANDA:XAUUSD", resolution: "15", count: 300, session: "ny" },
+  // Gold bands come from 5-minute bars like her chart; gold setups still read the 15-minute bars.
+  gold5: { symbol: "OANDA:XAUUSD", resolution: "5", count: 300, session: "ny" },
+  silver: { symbol: "OANDA:XAGUSD", resolution: "5", count: 400, session: "ny" },
+  // GOLDEN WINDOW (Claude, 2026-10-02): the exact feeds the desk ran on Oct 1, 12:45–3:30 PM PT
+  // (frozen spine/THIS-ONE). Paper ledger only; the live desk never reads these.
+  // Proven against the desk's own Oct 1 log (data/golden-proof.json): OANDA 5m, session from 00:00 UTC.
+  btcGolden: { symbol: "OANDA:BTCUSD", resolution: "5", count: 400, session: "utc" },
+  // Gold that afternoon: 15m bars for setups AND bands (matched the logged 4167.24 / σ 9.732 to the cent).
+  goldGolden: { symbol: "OANDA:XAUUSD", resolution: "15", count: 300, session: "ny" },
+} as const;
+
+export type ChartId = keyof typeof CHARTS;
+
+const memory = new Map<ChartId, { at: number; candles: Candle[] }>();
+
+function sessionStart(kind: "ny" | "utc"): number {
+  if (kind === "utc") {
+    const now = new Date();
+    return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) / 1000;
+  }
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(new Date());
+  const bit = (type: string) => Number(parts.find((part) => part.type === type)?.value ?? "0");
+  const day = new Date(Date.UTC(bit("year"), bit("month") - 1, bit("day"), 21, 0, 0));
+  if (bit("hour") < 17) day.setUTCDate(day.getUTCDate() - 1);
+  return day.getTime() / 1000;
+}
+
+function frame(payload: string): Buffer {
+  const data = Buffer.from(payload);
+  const mask = crypto.randomBytes(4);
+  const head = Buffer.alloc(data.length < 126 ? 2 : 4);
+  head[0] = 0x81;
+  if (data.length < 126) {
+    head[1] = 0x80 | data.length;
+  } else {
+    head[1] = 0x80 | 126;
+    head.writeUInt16BE(data.length, 2);
+  }
+  const masked = Buffer.alloc(data.length);
+  for (let i = 0; i < data.length; i += 1) masked[i] = data[i] ^ mask[i % 4];
+  return Buffer.concat([head, mask, masked]);
+}
+
+function packet(method: string, params: unknown[]): string {
+  const body = JSON.stringify({ m: method, p: params });
+  return `~m~${body.length}~m~${body}`;
+}
+
+function connect(): Promise<tls.TLSSocket> {
+  return new Promise((resolve, reject) => {
+    const sock = tls.connect(443, "data.tradingview.com", { servername: "data.tradingview.com" }, () => {
+      const key = crypto.randomBytes(16).toString("base64");
+      sock.write(
+        "GET /socket.io/websocket?from=chart%2F&type=chart HTTP/1.1\r\n" +
+          "Host: data.tradingview.com\r\n" +
+          "Upgrade: websocket\r\n" +
+          "Connection: Upgrade\r\n" +
+          `Sec-WebSocket-Key: ${key}\r\n` +
+          "Sec-WebSocket-Version: 13\r\n" +
+          "Origin: https://www.tradingview.com\r\n\r\n",
+      );
+    });
+    const timer = setTimeout(() => {
+      sock.destroy();
+      reject(new Error("chart handshake"));
+    }, 8000);
+    let buf = Buffer.alloc(0);
+    const onData = (chunk: Buffer) => {
+      buf = Buffer.concat([buf, chunk]);
+      const split = buf.indexOf("\r\n\r\n");
+      if (split < 0) return;
+      clearTimeout(timer);
+      sock.off("data", onData);
+      const rest = buf.subarray(split + 4);
+      if (rest.length) sock.unshift(rest);
+      resolve(sock);
+    };
+    sock.on("data", onData);
+    sock.once("error", (err) => {
+      clearTimeout(timer);
+      reject(err);
+    });
+  });
+}
+
+function readText(sock: tls.TLSSocket): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let buf = Buffer.alloc(0);
+    const texts: string[] = [];
+    const timer = setTimeout(() => finish(), 8000);
+    const finish = () => {
+      clearTimeout(timer);
+      sock.off("data", onData);
+      resolve(texts.join("\n"));
+    };
+    const onData = (chunk: Buffer) => {
+      buf = Buffer.concat([buf, chunk]);
+      while (buf.length >= 2) {
+        const opcode = buf[0] & 0x0f;
+        let length = buf[1] & 0x7f;
+        let offset = 2;
+        if (length === 126) {
+          if (buf.length < 4) return;
+          length = buf.readUInt16BE(2);
+          offset = 4;
+        } else if (length === 127) {
+          if (buf.length < 10) return;
+          length = Number(buf.readBigUInt64BE(2));
+          offset = 10;
+        }
+        if (buf.length < offset + length) return;
+        const data = buf.subarray(offset, offset + length);
+        buf = buf.subarray(offset + length);
+        if (opcode === 1) {
+          const text = data.toString("utf8");
+          if (text.includes("~h~")) sock.write(frame("~m~4~m~~h~1"));
+          texts.push(text);
+          if (text.includes("series_completed")) {
+            setTimeout(finish, 250);
+          }
+        } else if (opcode === 8) {
+          finish();
+          return;
+        }
+      }
+    };
+    sock.on("data", onData);
+    sock.once("error", (err) => {
+      clearTimeout(timer);
+      reject(err);
+    });
+  });
+}
+
+function parseBars(blob: string, start: number): Candle[] {
+  const rows = new Map<number, Candle>();
+  const re = /"v":\[(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)\]/g;
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(blob))) {
+    const t = Number(match[1]);
+    if (!(t >= start)) continue;
+    rows.set(t, {
+      t,
+      o: Number(match[2]),
+      h: Number(match[3]),
+      l: Number(match[4]),
+      c: Number(match[5]),
+      v: Number(match[6]) || 0,
+    });
+  }
+  return [...rows.values()].sort((a, b) => a.t - b.t);
+}
+
+async function pull(id: ChartId): Promise<Candle[]> {
+  const chart = CHARTS[id];
+  const sock = await connect();
+  const session = `cs_${id}`;
+  const spec = JSON.stringify({ symbol: chart.symbol, adjustment: "splits", session: "regular" });
+  const messages = [
+    packet("set_auth_token", ["unauthorized_user_token"]),
+    packet("chart_create_session", [session, ""]),
+    packet("resolve_symbol", [session, "sym_1", `=${spec}`]),
+    packet("create_series", [session, "sds_1", "s1", "sym_1", chart.resolution, chart.count, ""]),
+  ];
+  for (const message of messages) sock.write(frame(message));
+  const blob = await readText(sock);
+  sock.destroy();
+  const candles = parseBars(blob, sessionStart(chart.session));
+  if (candles.length < 8) throw new Error(`${chart.symbol} short`);
+  return candles;
+}
+
+// Diagnostic (Claude): every bar the chart returns, no session filter. Used only by band-check.ts.
+export async function chartRaw(symbol: string, resolution: string, count: number): Promise<Candle[]> {
+  const sock = await connect();
+  const session = `cs_raw_${Math.random().toString(36).slice(2, 8)}`;
+  const spec = JSON.stringify({ symbol, adjustment: "splits", session: "regular" });
+  const messages = [
+    packet("set_auth_token", ["unauthorized_user_token"]),
+    packet("chart_create_session", [session, ""]),
+    packet("resolve_symbol", [session, "sym_1", `=${spec}`]),
+    packet("create_series", [session, "sds_1", "s1", "sym_1", resolution, count, ""]),
+  ];
+  for (const message of messages) sock.write(frame(message));
+  const blob = await readText(sock);
+  sock.destroy();
+  return parseBars(blob, 0);
+}
+
+export async function chartCandles(id: ChartId): Promise<{ candles: Candle[]; product: string }> {
+  const chart = CHARTS[id];
+  const hit = memory.get(id);
+  if (hit && Date.now() - hit.at < 15000) return { candles: hit.candles, product: chart.symbol };
+  try {
+    const candles = await pull(id);
+    memory.set(id, { at: Date.now(), candles });
+    return { candles, product: chart.symbol };
+  } catch (err) {
+    if (hit) return { candles: hit.candles, product: chart.symbol };
+    throw err;
+  }
+}
+
+export async function chartQuote(symbol: string): Promise<number> {
+  const res = await fetch(`https://scanner.tradingview.com/symbol?symbol=${encodeURIComponent(symbol)}&fields=close`, {
+    headers: { Accept: "application/json", Origin: "https://www.tradingview.com" },
+    signal: AbortSignal.timeout(5000),
+  });
+  if (!res.ok) throw new Error("quote");
+  const body = (await res.json()) as { close?: number };
+  const close = Number(body.close);
+  if (!(close > 0)) throw new Error("quote");
+  return close;
+}

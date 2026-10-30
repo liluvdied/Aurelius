@@ -1,0 +1,942 @@
+[
+ {
+  "lane": "2m",
+  "at": "2026-10-25T23:22:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.56,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T00:02:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.54,
+  "left": 180,
+  "result": "win",
+  "pnl": 4.26
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T00:32:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.64,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.81
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T02:32:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.35,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T02:36:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.48,
+  "left": 240,
+  "result": "win",
+  "pnl": 5.42
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T03:32:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.64,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.81
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T04:21:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.68,
+  "left": 240,
+  "result": "win",
+  "pnl": 2.35
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T05:32:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.39,
+  "left": 180,
+  "result": "win",
+  "pnl": 7.82
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T05:51:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.68,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T05:50:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.66,
+  "left": 300,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T06:56:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.56,
+  "left": 240,
+  "result": "open",
+  "pnl": 0.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T06:57:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.39,
+  "left": 180,
+  "result": "open",
+  "pnl": 0.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T07:36:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.58,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.62
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T07:36:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.58,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.62
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T09:52:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.32,
+  "left": 180,
+  "result": "win",
+  "pnl": 10.62
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T09:51:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.5,
+  "left": 240,
+  "result": "win",
+  "pnl": 5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T11:22:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.61,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T12:36:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.32,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T12:51:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.53,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T13:51:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.53,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T14:06:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.6,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.33
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T15:26:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.67,
+  "left": 240,
+  "result": "open",
+  "pnl": 0.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T16:21:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.58,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.62
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T17:36:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.45,
+  "left": 240,
+  "result": "win",
+  "pnl": 6.11
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T18:06:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.58,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.62
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T18:06:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.58,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.62
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T18:32:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.66,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.58
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T18:50:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.65,
+  "left": 300,
+  "result": "win",
+  "pnl": 2.69
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T19:51:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.64,
+  "left": 240,
+  "result": "win",
+  "pnl": 2.81
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T20:51:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.57,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T21:32:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.6,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-26T22:06:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.56,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.93
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-26T22:22:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.35,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T00:02:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.65,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T00:21:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.37,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T00:51:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.57,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T03:51:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.61,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T04:02:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.7,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.14
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T04:51:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.31,
+  "left": 240,
+  "result": "win",
+  "pnl": 11.13
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T07:06:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.56,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.93
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T09:02:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.61,
+  "left": 180,
+  "result": "win",
+  "pnl": 3.2
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T09:20:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.5,
+  "left": 300,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T09:57:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.54,
+  "left": 180,
+  "result": "open",
+  "pnl": 0.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T11:40:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.52,
+  "left": 300,
+  "result": "open",
+  "pnl": 0.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T12:22:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.33,
+  "left": 180,
+  "result": "win",
+  "pnl": 10.15
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T13:21:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.47,
+  "left": 240,
+  "result": "win",
+  "pnl": 5.64
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T13:32:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.61,
+  "left": 180,
+  "result": "win",
+  "pnl": 3.2
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T17:21:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.43,
+  "left": 240,
+  "result": "win",
+  "pnl": 6.63
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T18:21:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.64,
+  "left": 240,
+  "result": "win",
+  "pnl": 2.81
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T20:32:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.54,
+  "left": 180,
+  "result": "win",
+  "pnl": 4.26
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T21:36:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.7,
+  "left": 240,
+  "result": "win",
+  "pnl": 2.14
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T21:36:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.7,
+  "left": 240,
+  "result": "win",
+  "pnl": 2.14
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T21:52:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.6,
+  "left": 180,
+  "result": "win",
+  "pnl": 3.33
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T21:51:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.6,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.33
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-27T23:06:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.5,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T23:02:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.61,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-27T23:32:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.68,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.35
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T00:21:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.46,
+  "left": 240,
+  "result": "win",
+  "pnl": 5.87
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T00:36:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.42,
+  "left": 240,
+  "result": "win",
+  "pnl": 6.9
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T00:51:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.36,
+  "left": 240,
+  "result": "win",
+  "pnl": 8.89
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T01:32:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.69,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.25
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T03:36:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.6,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T03:52:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.54,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T03:51:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.5,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T05:02:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.64,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.81
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T06:36:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.68,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T06:51:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.5,
+  "left": 240,
+  "result": "win",
+  "pnl": 5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T07:26:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.52,
+  "left": 240,
+  "result": "win",
+  "pnl": 4.62
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T07:27:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.53,
+  "left": 180,
+  "result": "win",
+  "pnl": 4.43
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T08:26:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.48,
+  "left": 240,
+  "result": "open",
+  "pnl": 0.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T09:32:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.4,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T10:32:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.55,
+  "left": 180,
+  "result": "win",
+  "pnl": 4.09
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T11:21:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.43,
+  "left": 240,
+  "result": "win",
+  "pnl": 6.63
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T11:32:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.69,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.25
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T12:21:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.59,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.47
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T13:06:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.6,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T13:06:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.6,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T13:32:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.66,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.58
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T15:40:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.66,
+  "left": 300,
+  "result": "open",
+  "pnl": 0.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T15:52:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.46,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T16:06:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.63,
+  "left": 240,
+  "result": "win",
+  "pnl": 2.94
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T16:32:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.64,
+  "left": 180,
+  "result": "win",
+  "pnl": 2.81
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T16:51:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.6,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.33
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T17:20:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.64,
+  "left": 300,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T17:21:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.48,
+  "left": 240,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T18:32:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.42,
+  "left": 180,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-28T19:27:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.47,
+  "left": 180,
+  "result": "open",
+  "pnl": 0.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T21:06:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.51,
+  "left": 240,
+  "result": "win",
+  "pnl": 4.8
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-28T21:20:00+00:00",
+  "book": "recon-tog",
+  "side": "down",
+  "ask": 0.56,
+  "left": 300,
+  "result": "win",
+  "pnl": 3.93
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-29T02:02:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.43,
+  "left": 180,
+  "result": "win",
+  "pnl": 6.63
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-29T02:50:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.49,
+  "left": 300,
+  "result": "win",
+  "pnl": 5.2
+ },
+ {
+  "lane": "3m",
+  "at": "2026-10-29T02:51:00+00:00",
+  "book": "recon-tog",
+  "side": "up",
+  "ask": 0.59,
+  "left": 240,
+  "result": "win",
+  "pnl": 3.47
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-29T03:20:00+00:00",
+  "book": "recon-rej",
+  "side": "up",
+  "ask": 0.63,
+  "left": 300,
+  "result": "loss",
+  "pnl": -5.0
+ },
+ {
+  "lane": "2m",
+  "at": "2026-10-29T03:50:00+00:00",
+  "book": "recon-rej",
+  "side": "down",
+  "ask": 0.66,
+  "left": 300,
+  "result": "win",
+  "pnl": 2.58
+ }
+]

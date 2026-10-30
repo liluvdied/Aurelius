@@ -1,0 +1,705 @@
+# Week tracker - week of Sat Oct 24 (updated Wed 09:21 PM PT)
+
+Paper = $20 a trade per book. Live = what the desk actually did that window.
+
+## 1. Paper vs live (per book)
+
+| Book | Paper trades | Paper P&L | Live filled | Not its hour | Held by a wall | Price cap / unfilled | Price floor |
+|---|---|---|---|---|---|---|---|
+| main book | 2016 | -$12,075.66 | 175 | 22 | 2 | 0 | 0 |
+| rejection model | 3441 | -$16,658.42 | 124 | 17 | 5 | 0 | 0 |
+| rejection twin +BB/zones (paper) | 680 | +$341.78 | 0 | 0 | 0 | 0 | 0 |
+| delayed twin | 740 | -$1,246.93 | 84 | 22 | 0 | 0 | 0 |
+| twin add-on (paper $5) | 211 | +$196.73 | 0 | 0 | 0 | 0 | 0 |
+
+Live fills vs paper price: average +1.8c over 385 fills (positive = live paid more).
+
+## 2. Walls on trial (live hours only)
+
+| Wall | Times it held a trade | Saved a loser | Cost a winner | Net for her |
+|---|---|---|---|---|
+| TARGET PAST A BAND | 1 | 1 (+$21.22) | 0 (+$0.00) | +$21.22 |
+| only 1.58 of 7.93 filled; trying for the rest at 72c or bett | 1 | 1 (+$20.52) | 0 (+$0.00) | +$20.52 |
+| SESSION BAND AHEAD | 1 | 1 (+$4.61) | 0 (+$0.00) | +$4.61 |
+| NO SHORTS IN THE BOTTOM RUNG | 1 | 0 (+$0.00) | 1 (+$16.48) | -$16.48 |
+| PINK TO GREEN | 3 | 0 (+$0.00) | 3 (+$66.06) | -$66.06 |
+
+Net for her: positive = the wall saved more than it cost on paper; negative = it cost more than it saved.
+
+## 3. Your hand trades
+
+| When | Asset | Side | Buys | Contracts | First stake | Sold for | Held to settle |
+|---|---|---|---|---|---|---|---|
+| ? | btc | up | 0 | 0 | $0.00 | +$1.85 | unknown |
+| Mon 10-26 01:00 PM | btc | down | 0 | 0 | $12.42 | +$3.51 | unknown |
+| Mon 10-26 01:05 AM | btc | up | 0 | 0 | $2.01 | -$7.44 | unknown |
+| Mon 10-26 01:10 PM | gold | up | 5 | 93.78 | $2.84 | -$10.94 | lost |
+| Mon 10-26 01:17 AM | gold | down | 2 | 14.77 | $2.74 | +$9.40 | unknown |
+| Mon 10-26 01:18 AM | btc | down | 1 | 68.56 | $2.81 | -$3.00 | lost |
+| Mon 10-26 01:21 PM | btc | up | 4 | 42.42 | $9.46 | -$13.80 | lost |
+| Mon 10-26 01:22 PM | gold | down | 4 | 85.99 | $4.72 | +$42.38 | unknown |
+| Mon 10-26 01:33 AM | gold | up | 2 | 18.03 | $4.83 | +$7.13 | won |
+| Mon 10-26 01:33 AM | btc | down | 0 | 0 | $2.04 | -$6.54 | unknown |
+| Mon 10-26 01:35 PM | gold | down | 4 | 29.42 | $1.91 | -$9.94 | lost |
+| Mon 10-26 01:35 PM | btc | down | 4 | 46.58 | $2.84 | +$24.87 | unknown |
+| Mon 10-26 01:49 PM | gold | down | 2 | 53.9 | $4.72 | -$7.00 | lost |
+| Mon 10-26 01:50 AM | btc | down | 0 | 0 | $2.00 | +$3.52 | unknown |
+| Mon 10-26 01:51 PM | btc | down | 0 | 0 | $11.26 | -$16.95 | unknown |
+| Mon 10-26 01:54 AM | gold | down | 1 | 334.08 | $4.68 | -$5.00 | lost |
+| Mon 10-26 02:00 AM | btc | down | 0 | 0 | $10.47 | +$18.73 | unknown |
+| Mon 10-26 02:02 PM | btc | down | 0 | 0 | $4.26 | -$9.69 | unknown |
+| Mon 10-26 02:03 AM | gold | down | 0 | 0 | $8.86 | +$9.20 | unknown |
+| Mon 10-26 02:15 AM | btc | down | 2 | 66.13 | $9.22 | -$19.36 | lost |
+| Mon 10-26 02:17 AM | gold | up | 0 | 0 | $11.33 | +$13.44 | unknown |
+| Mon 10-26 02:20 PM | btc | down | 0 | 0 | $2.48 | -$7.93 | unknown |
+| Mon 10-26 02:30 AM | gold | up | 0 | 0 | $12.63 | +$6.67 | unknown |
+| Mon 10-26 02:30 PM | btc | down | 3 | 36.46 | $12.79 | -$22.34 | lost |
+| Mon 10-26 02:31 AM | btc | down | 0 | 0 | $11.17 | +$3.55 | unknown |
+| Mon 10-26 02:45 PM | btc | down | 3 | 22.94 | $5.09 | +$20.02 | won |
+| Mon 10-26 02:46 AM | gold | down | 0 | 0 | $10.11 | +$6.96 | unknown |
+| Mon 10-26 02:46 AM | btc | down | 0 | 0 | $11.00 | +$20.89 | unknown |
+| Mon 10-26 03:00 AM | gold | down | 0 | 0 | $9.93 | +$21.48 | unknown |
+| Mon 10-26 03:00 AM | btc | down | 0 | 0 | $12.15 | +$5.50 | unknown |
+| Mon 10-26 03:00 PM | btc | down | 0 | 0 | $11.21 | +$3.35 | unknown |
+| Mon 10-26 03:15 AM | gold | up | 0 | 0 | $11.88 | -$17.49 | unknown |
+| Mon 10-26 03:18 PM | btc | down | 0 | 0 | $11.00 | +$20.89 | unknown |
+| Mon 10-26 03:30 AM | btc | up | 0 | 0 | $11.00 | +$5.70 | unknown |
+| Mon 10-26 03:30 PM | btc | down | 0 | 0 | $11.00 | -$11.30 | unknown |
+| Mon 10-26 03:45 PM | gold | down | 0 | 0 | $10.50 | +$4.97 | unknown |
+| Mon 10-26 03:46 AM | btc | up | 0 | 0 | $11.01 | -$16.64 | unknown |
+| Mon 10-26 03:46 PM | btc | down | 0 | 0 | $11.71 | +$14.37 | unknown |
+| Mon 10-26 03:49 AM | gold | down | 0 | 0 | $10.14 | -$16.43 | unknown |
+| Mon 10-26 04:00 AM | btc | up | 0 | 0 | $1.99 | -$6.72 | unknown |
+| Mon 10-26 04:00 PM | btc | up | 0 | 0 | $2.50 | -$7.59 | unknown |
+| Mon 10-26 04:04 AM | gold | up | 0 | 0 | $2.14 | -$7.49 | unknown |
+| Mon 10-26 04:15 PM | btc | up | 0 | 0 | $2.45 | +$2.30 | unknown |
+| Mon 10-26 04:20 AM | gold | up | 0 | 0 | $2.00 | +$3.04 | unknown |
+| Mon 10-26 04:20 AM | btc | down | 0 | 0 | $2.38 | -$6.40 | unknown |
+| Mon 10-26 04:31 PM | btc | down | 2 | 48.64 | $2.95 | -$12.31 | lost |
+| Mon 10-26 04:34 AM | btc | up | 0 | 0 | $2.00 | +$2.47 | unknown |
+| Mon 10-26 04:36 PM | gold | up | 5 | 72.21 | $2.85 | -$6.96 | lost |
+| Mon 10-26 04:47 AM | btc | up | 0 | 0 | $1.95 | +$14.67 | unknown |
+| Mon 10-26 04:48 PM | btc | down | 0 | 0 | $2.49 | +$3.42 | unknown |
+| Mon 10-26 05:00 PM | btc | down | 0 | 0 | $11.20 | -$16.58 | unknown |
+| Mon 10-26 05:10 AM | btc | up | 0 | 0 | $1.97 | -$7.21 | unknown |
+| Mon 10-26 05:15 PM | btc | down | 0 | 0 | $11.16 | -$16.62 | unknown |
+| Mon 10-26 05:18 PM | gold | down | 0 | 0 | $13.20 | +$4.68 | unknown |
+| Mon 10-26 05:20 AM | gold | up | 0 | 0 | $2.42 | +$3.27 | unknown |
+| Mon 10-26 05:20 AM | btc | up | 0 | 0 | $2.04 | +$46.53 | unknown |
+| Mon 10-26 05:30 PM | gold | down | 0 | 0 | $11.00 | +$8.03 | unknown |
+| Mon 10-26 05:30 PM | btc | down | 0 | 0 | $11.01 | +$17.15 | unknown |
+| Mon 10-26 05:43 AM | gold | up | 0 | 0 | $2.31 | -$2.44 | unknown |
+| Mon 10-26 05:45 PM | btc | down | 0 | 0 | $11.67 | +$9.76 | unknown |
+| Mon 10-26 05:46 AM | btc | down | 0 | 0 | $2.09 | +$16.32 | unknown |
+| Mon 10-26 06:00 AM | btc | up | 0 | 0 | $2.00 | -$7.32 | unknown |
+| Mon 10-26 06:00 PM | gold | up | 0 | 0 | $9.20 | +$23.12 | unknown |
+| Mon 10-26 06:02 AM | gold | down | 0 | 0 | $2.00 | +$13.60 | unknown |
+| Mon 10-26 06:16 AM | btc | up | 0 | 0 | $2.00 | -$7.35 | unknown |
+| Mon 10-26 06:16 PM | gold | down | 0 | 0 | $11.87 | +$4.42 | unknown |
+| Mon 10-26 06:25 AM | gold | up | 0 | 0 | $2.00 | -$7.42 | unknown |
+| Mon 10-26 06:30 PM | gold | down | 0 | 0 | $11.77 | -$17.34 | unknown |
+| Mon 10-26 06:35 AM | btc | up | 0 | 0 | $2.20 | +$6.63 | unknown |
+| Mon 10-26 06:45 PM | gold | up | 0 | 0 | $10.77 | -$16.67 | unknown |
+| Mon 10-26 06:46 AM | btc | down | 0 | 0 | $2.86 | +$3.37 | unknown |
+| Mon 10-26 07:00 AM | btc | up | 0 | 0 | $11.85 | +$4.45 | unknown |
+| Mon 10-26 07:01 PM | gold | up | 1 | 5.78 | $10.19 | +$6.94 | unknown |
+| Mon 10-26 07:01 PM | btc | down | 1 | 91.62 | $11.24 | -$16.95 | lost |
+| Mon 10-26 07:15 AM | btc | up | 0 | 0 | $11.48 | -$11.36 | unknown |
+| Mon 10-26 07:15 AM | gold | down | 0 | 0 | $11.02 | -$13.89 | unknown |
+| Mon 10-26 07:15 PM | gold | down | 0 | 0 | $9.56 | +$7.33 | unknown |
+| Mon 10-26 07:15 PM | btc | down | 0 | 0 | $11.78 | +$5.71 | unknown |
+| Mon 10-26 07:30 AM | gold | up | 0 | 0 | $12.00 | +$6.51 | unknown |
+| Mon 10-26 07:30 AM | btc | down | 0 | 0 | $11.00 | -$16.53 | unknown |
+| Mon 10-26 07:30 PM | btc | up | 0 | 0 | $11.20 | -$16.77 | unknown |
+| Mon 10-26 07:31 PM | gold | up | 0 | 0 | $10.60 | -$15.15 | unknown |
+| Mon 10-26 07:45 AM | gold | down | 0 | 0 | $11.94 | -$16.30 | unknown |
+| Mon 10-26 07:45 AM | btc | down | 0 | 0 | $11.64 | -$16.90 | unknown |
+| Mon 10-26 07:45 PM | gold | down | 0 | 0 | $11.01 | +$8.89 | unknown |
+| Mon 10-26 07:45 PM | btc | down | 0 | 0 | $11.00 | +$17.37 | unknown |
+| Mon 10-26 08:00 AM | gold | down | 0 | 0 | $11.94 | +$6.34 | unknown |
+| Mon 10-26 08:03 PM | btc | down | 1 | 133.63 | $10.99 | -$0.08 | unknown |
+| Mon 10-26 08:07 PM | gold | up | 1 | 19.78 | $4.55 | -$4.79 | lost |
+| Mon 10-26 08:15 AM | gold | up | 0 | 0 | $11.22 | -$16.74 | unknown |
+| Mon 10-26 08:15 PM | gold | down | 1 | 7.6 | $10.98 | -$13.20 | lost |
+| Mon 10-26 08:15 PM | btc | up | 0 | 0 | $11.00 | +$16.35 | unknown |
+| Mon 10-26 08:30 AM | gold | down | 0 | 0 | $11.20 | -$16.73 | unknown |
+| Mon 10-26 08:30 PM | btc | up | 0 | 0 | $11.00 | +$9.13 | unknown |
+| Mon 10-26 08:37 PM | gold | down | 2 | 93.63 | $1.87 | -$3.00 | lost |
+| Mon 10-26 08:45 AM | gold | down | 0 | 0 | $12.06 | +$17.54 | unknown |
+| Mon 10-26 08:46 PM | gold | down | 0 | 0 | $9.62 | +$4.66 | unknown |
+| Mon 10-26 08:46 PM | btc | up | 0 | 0 | $10.98 | -$16.62 | unknown |
+| Mon 10-26 08:50 AM | btc | up | 3 | 91.94 | $4.77 | -$9.00 | lost |
+| Mon 10-26 09:00 AM | gold | down | 2 | 259.04 | $8.56 | -$17.98 | lost |
+| Mon 10-26 09:00 AM | btc | down | 0 | 0 | $10.02 | +$7.80 | unknown |
+| Mon 10-26 09:01 PM | btc | down | 0 | 0 | $12.20 | -$17.95 | unknown |
+| Mon 10-26 09:15 AM | btc | up | 0 | 0 | $9.20 | -$13.72 | unknown |
+| Mon 10-26 09:16 AM | gold | up | 0 | 0 | $13.16 | +$1.47 | unknown |
+| Mon 10-26 09:17 PM | btc | down | 2 | 72.1 | $10.99 | +$0.31 | won |
+| Mon 10-26 09:26 PM | gold | up | 2 | 19.35 | $4.80 | -$6.75 | unknown |
+| Mon 10-26 09:30 AM | btc | up | 1 | 12.19 | $11.01 | -$16.48 | lost |
+| Mon 10-26 09:30 PM | btc | up | 0 | 0 | $10.50 | -$16.69 | unknown |
+| Mon 10-26 09:30 PM | gold | down | 0 | 0 | $10.79 | +$17.08 | unknown |
+| Mon 10-26 09:31 AM | gold | up | 0 | 0 | $11.19 | +$13.26 | unknown |
+| Mon 10-26 09:45 AM | gold | up | 1 | 12.58 | $11.98 | +$12.92 | won |
+| Mon 10-26 09:45 AM | btc | up | 0 | 0 | $9.70 | +$5.87 | unknown |
+| Mon 10-26 09:45 PM | gold | up | 0 | 0 | $12.79 | -$18.40 | unknown |
+| Mon 10-26 09:45 PM | btc | down | 0 | 0 | $11.00 | -$16.65 | unknown |
+| Mon 10-26 10:00 AM | gold | down | 5 | 42.89 | $4.69 | -$11.79 | lost |
+| Mon 10-26 10:00 AM | btc | up | 0 | 0 | $13.20 | +$7.67 | unknown |
+| Mon 10-26 10:00 PM | gold | up | 1 | 9.59 | $9.66 | -$15.10 | lost |
+| Mon 10-26 10:03 PM | btc | down | 3 | 44.05 | $4.74 | -$7.98 | lost |
+| Mon 10-26 10:15 AM | btc | up | 0 | 0 | $10.50 | -$16.57 | unknown |
+| Mon 10-26 10:16 PM | gold | down | 2 | 12.23 | $9.82 | +$5.13 | won |
+| Mon 10-26 10:16 PM | btc | down | 0 | 0 | $11.00 | +$0.12 | unknown |
+| Mon 10-26 10:21 AM | gold | down | 0 | 0 | $8.81 | +$27.34 | unknown |
+| Mon 10-26 10:30 AM | gold | down | 0 | 0 | $10.84 | +$7.15 | unknown |
+| Mon 10-26 10:30 AM | btc | down | 0 | 0 | $11.18 | +$14.12 | unknown |
+| Mon 10-26 10:30 PM | btc | down | 1 | 50.64 | $10.38 | -$17.75 | lost |
+| Mon 10-26 10:33 PM | gold | up | 2 | 57.76 | $10.69 | -$4.83 | unknown |
+| Mon 10-26 10:45 AM | gold | up | 0 | 0 | $9.62 | +$16.17 | unknown |
+| Mon 10-26 10:45 AM | btc | up | 0 | 0 | $11.01 | +$17.34 | unknown |
+| Mon 10-26 10:45 PM | gold | down | 1 | 20.37 | $10.99 | -$16.41 | lost |
+| Mon 10-26 10:45 PM | btc | up | 4 | 65.58 | $10.05 | -$7.76 | won |
+| Mon 10-26 11:01 AM | gold | up | 0 | 0 | $10.97 | +$6.80 | unknown |
+| Mon 10-26 11:04 AM | btc | up | 1 | 9.3 | $4.84 | -$5.00 | lost |
+| Mon 10-26 11:12 PM | btc | up | 1 | 9.5 | $0.89 | -$0.95 | lost |
+| Mon 10-26 11:15 AM | btc | down | 0 | 0 | $11.00 | +$8.73 | unknown |
+| Mon 10-26 11:15 AM | gold | up | 0 | 0 | $10.02 | -$14.58 | unknown |
+| Mon 10-26 11:30 AM | gold | down | 0 | 0 | $9.45 | +$6.12 | unknown |
+| Mon 10-26 11:30 AM | btc | up | 1 | 21.79 | $9.47 | -$1.30 | lost |
+| Mon 10-26 11:46 AM | gold | up | 0 | 0 | $8.47 | -$12.99 | unknown |
+| Mon 10-26 11:47 AM | btc | down | 0 | 0 | $10.99 | +$5.37 | unknown |
+| Mon 10-26 12:00 AM | btc | up | 0 | 0 | $16.91 | +$9.45 | unknown |
+| Mon 10-26 12:00 PM | gold | up | 2 | 37.37 | $1.98 | -$14.33 | lost |
+| Mon 10-26 12:01 PM | btc | down | 3 | 14.71 | $1.80 | -$13.01 | lost |
+| Mon 10-26 12:04 AM | gold | down | 2 | 17.72 | $2.87 | +$10.48 | unknown |
+| Mon 10-26 12:15 AM | btc | up | 0 | 0 | $14.97 | -$19.91 | unknown |
+| Mon 10-26 12:15 PM | gold | up | 0 | 0 | $11.01 | +$6.69 | unknown |
+| Mon 10-26 12:16 PM | btc | down | 0 | 0 | $11.02 | +$6.54 | unknown |
+| Mon 10-26 12:20 AM | gold | up | 0 | 0 | $15.50 | +$8.08 | unknown |
+| Mon 10-26 12:30 AM | btc | down | 0 | 0 | $15.72 | -$21.11 | unknown |
+| Mon 10-26 12:30 PM | btc | up | 0 | 0 | $10.01 | +$16.79 | unknown |
+| Mon 10-26 12:33 PM | gold | up | 0 | 0 | $8.46 | +$34.80 | unknown |
+| Mon 10-26 12:45 AM | btc | up | 2 | 50.15 | $14.94 | -$23.72 | lost |
+| Mon 10-26 12:45 PM | btc | up | 2 | 22.47 | $9.06 | -$18.48 | lost |
+| Mon 10-26 12:50 PM | gold | up | 0 | 0 | $9.20 | +$9.70 | unknown |
+| Sat 10-24 01:17 PM | btc | down | 2 | 14.88 | $4.84 | +$5.99 | won |
+| Sat 10-24 01:30 PM | btc | down | 0 | 0 | $8.28 | -$13.05 | unknown |
+| Sat 10-24 01:45 PM | btc | down | 0 | 0 | $8.75 | +$11.41 | unknown |
+| Sat 10-24 02:02 PM | btc | up | 2 | 511.69 | $2.54 | -$7.29 | lost |
+| Sat 10-24 02:15 PM | btc | up | 0 | 0 | $13.98 | +$11.09 | unknown |
+| Sat 10-24 02:30 PM | btc | up | 2 | 14.2 | $13.96 | -$19.58 | lost |
+| Sat 10-24 02:45 PM | btc | up | 0 | 0 | $10.50 | +$13.39 | unknown |
+| Sat 10-24 02:49 AM | btc | down | 0 | 0 | $2.00 | -$5.25 | unknown |
+| Sat 10-24 03:00 AM | btc | down | 0 | 0 | $2.00 | +$6.94 | unknown |
+| Sat 10-24 03:00 PM | btc | up | 0 | 0 | $14.02 | +$6.15 | unknown |
+| Sat 10-24 03:15 AM | btc | down | 0 | 0 | $2.00 | +$7.21 | unknown |
+| Sat 10-24 03:23 PM | btc | up | 1 | 17.0 | $4.76 | +$10.19 | won |
+| Sat 10-24 03:30 AM | btc | down | 0 | 0 | $1.98 | -$5.11 | unknown |
+| Sat 10-24 03:32 PM | btc | down | 4 | 99.8 | $4.70 | -$12.76 | lost |
+| Sat 10-24 03:45 AM | btc | up | 0 | 0 | $2.26 | -$5.46 | unknown |
+| Sat 10-24 03:46 PM | btc | up | 2 | 28.78 | $4.79 | +$6.93 | unknown |
+| Sat 10-24 04:00 AM | btc | up | 0 | 0 | $2.00 | +$1.59 | unknown |
+| Sat 10-24 04:04 PM | btc | down | 2 | 17.13 | $2.00 | -$11.24 | lost |
+| Sat 10-24 04:15 AM | btc | up | 0 | 0 | $1.96 | -$5.07 | unknown |
+| Sat 10-24 04:15 PM | btc | up | 0 | 0 | $2.00 | +$13.00 | unknown |
+| Sat 10-24 04:30 AM | btc | down | 0 | 0 | $1.96 | -$5.19 | unknown |
+| Sat 10-24 04:31 PM | btc | down | 1 | 7.31 | $1.93 | -$7.11 | lost |
+| Sat 10-24 04:45 AM | btc | down | 0 | 0 | $1.96 | +$1.83 | unknown |
+| Sat 10-24 05:02 PM | btc | down | 0 | 0 | $12.40 | +$3.58 | unknown |
+| Sat 10-24 05:20 PM | btc | down | 1 | 91.62 | $12.64 | -$15.15 | lost |
+| Sat 10-24 05:30 PM | btc | up | 0 | 0 | $10.86 | -$14.54 | unknown |
+| Sat 10-24 05:45 PM | btc | up | 0 | 0 | $11.39 | +$12.05 | unknown |
+| Sat 10-24 06:00 AM | btc | down | 0 | 0 | $2.08 | +$6.93 | unknown |
+| Sat 10-24 06:00 PM | btc | up | 4 | 71.61 | $2.00 | -$12.07 | lost |
+| Sat 10-24 06:15 PM | btc | down | 0 | 0 | $2.07 | -$5.29 | unknown |
+| Sat 10-24 06:18 AM | btc | up | 0 | 0 | $2.00 | +$15.25 | unknown |
+| Sat 10-24 06:30 PM | btc | down | 3 | 83.08 | $2.32 | -$9.45 | lost |
+| Sat 10-24 06:31 AM | btc | up | 0 | 0 | $1.98 | -$5.23 | unknown |
+| Sat 10-24 06:58 AM | btc | down | 0 | 0 | $2.13 | +$3.95 | unknown |
+| Sat 10-24 07:00 AM | btc | up | 0 | 0 | $14.02 | +$5.10 | unknown |
+| Sat 10-24 07:15 AM | btc | up | 1 | 152.71 | $10.42 | -$13.99 | lost |
+| Sat 10-24 07:15 PM | btc | down | 0 | 0 | $10.54 | +$3.74 | unknown |
+| Sat 10-24 07:30 AM | btc | up | 2 | 13.2 | $13.98 | -$14.23 | lost |
+| Sat 10-24 07:30 PM | btc | down | 2 | 56.25 | $8.72 | -$18.47 | lost |
+| Sat 10-24 07:45 AM | btc | up | 0 | 0 | $13.98 | -$14.41 | unknown |
+| Sat 10-24 07:45 PM | btc | up | 2 | 14.91 | $8.27 | +$19.26 | lost |
+| Sat 10-24 08:03 PM | btc | up | 0 | 0 | $10.90 | +$11.42 | unknown |
+| Sat 10-24 08:15 PM | btc | up | 0 | 0 | $10.66 | -$7.19 | unknown |
+| Sat 10-24 08:30 PM | btc | up | 0 | 0 | $10.20 | -$14.75 | unknown |
+| Sat 10-24 08:32 AM | btc | down | 7 | 87.99 | $2.87 | -$0.37 | lost |
+| Sat 10-24 08:46 PM | btc | down | 0 | 0 | $10.99 | +$6.19 | unknown |
+| Sat 10-24 08:47 AM | btc | down | 4 | 490.3 | $2.86 | -$7.98 | lost |
+| Sat 10-24 09:01 PM | btc | down | 0 | 0 | $2.07 | +$10.03 | unknown |
+| Sat 10-24 09:02 AM | btc | down | 1 | 32.28 | $2.29 | -$6.48 | lost |
+| Sat 10-24 09:15 AM | btc | down | 0 | 0 | $2.14 | +$1.17 | unknown |
+| Sat 10-24 09:21 PM | btc | up | 0 | 0 | $2.12 | +$0.75 | unknown |
+| Sat 10-24 09:31 AM | btc | down | 0 | 0 | $2.04 | -$5.16 | unknown |
+| Sat 10-24 09:40 PM | btc | down | 0 | 0 | $4.56 | -$5.26 | unknown |
+| Sat 10-24 09:45 AM | btc | up | 0 | 0 | $2.07 | +$1.45 | unknown |
+| Sat 10-24 09:45 PM | btc | down | 0 | 0 | $1.96 | +$8.42 | unknown |
+| Sat 10-24 10:00 AM | btc | down | 0 | 0 | $10.98 | +$8.90 | unknown |
+| Sat 10-24 10:00 PM | btc | down | 0 | 0 | $8.23 | +$11.77 | unknown |
+| Sat 10-24 10:15 AM | btc | down | 1 | 6.35 | $13.98 | -$18.42 | lost |
+| Sat 10-24 10:20 PM | btc | down | 0 | 0 | $11.01 | +$4.23 | unknown |
+| Sat 10-24 10:30 AM | btc | down | 0 | 0 | $13.82 | +$9.76 | unknown |
+| Sat 10-24 10:30 PM | btc | up | 2 | 108.21 | $9.29 | -$18.46 | lost |
+| Sat 10-24 10:45 AM | btc | down | 0 | 0 | $11.74 | -$16.44 | unknown |
+| Sat 10-24 10:45 PM | btc | up | 1 | 11.8 | $9.51 | +$27.83 | won |
+| Sat 10-24 11:00 AM | btc | up | 0 | 0 | $1.96 | +$1.53 | unknown |
+| Sat 10-24 11:03 PM | btc | down | 0 | 0 | $2.02 | -$6.24 | unknown |
+| Sat 10-24 11:15 AM | btc | up | 0 | 0 | $2.36 | +$7.03 | unknown |
+| Sat 10-24 11:20 PM | btc | down | 0 | 0 | $2.00 | -$6.30 | unknown |
+| Sat 10-24 11:30 AM | btc | down | 0 | 0 | $2.09 | +$2.05 | unknown |
+| Sat 10-24 11:40 PM | btc | up | 0 | 0 | $2.05 | -$6.50 | unknown |
+| Sat 10-24 11:45 AM | btc | up | 0 | 0 | $1.92 | +$1.51 | unknown |
+| Sat 10-24 12:00 AM | btc | up | 0 | 0 | $1.96 | +$1.41 | unknown |
+| Sat 10-24 12:03 PM | btc | up | 0 | 0 | $1.94 | -$5.13 | unknown |
+| Sat 10-24 12:20 AM | btc | down | 0 | 0 | $1.74 | +$17.61 | unknown |
+| Sat 10-24 12:23 PM | btc | up | 1 | 7.85 | $4.87 | +$2.48 | won |
+| Sat 10-24 12:31 PM | btc | up | 0 | 0 | $1.94 | +$3.61 | unknown |
+| Sat 10-24 12:34 AM | btc | up | 0 | 0 | $2.00 | +$1.60 | unknown |
+| Sat 10-24 12:46 AM | btc | down | 0 | 0 | $2.21 | +$1.09 | unknown |
+| Sat 10-24 12:47 PM | btc | up | 0 | 0 | $2.00 | -$5.26 | unknown |
+| Sun 10-25 01:00 PM | btc | down | 0 | 0 | $8.85 | -$8.89 | unknown |
+| Sun 10-25 01:06 AM | btc | up | 0 | 0 | $2.20 | -$6.33 | unknown |
+| Sun 10-25 01:17 PM | btc | down | 0 | 0 | $10.84 | +$3.60 | unknown |
+| Sun 10-25 01:20 AM | btc | up | 1 | 62.36 | $2.00 | -$7.34 | lost |
+| Sun 10-25 01:30 AM | btc | up | 1 | 32.95 | $19.44 | +$5.11 | won |
+| Sun 10-25 01:30 PM | btc | down | 0 | 0 | $10.94 | +$9.42 | unknown |
+| Sun 10-25 01:46 PM | btc | up | 1 | 6.8 | $8.96 | -$15.52 | lost |
+| Sun 10-25 01:55 AM | btc | up | 0 | 0 | $2.33 | -$2.49 | unknown |
+| Sun 10-25 02:07 PM | btc | down | 1 | 6.73 | $2.18 | -$8.38 | lost |
+| Sun 10-25 02:12 AM | btc | up | 0 | 0 | $1.69 | -$7.03 | unknown |
+| Sun 10-25 02:15 AM | btc | up | 1 | 22.36 | $9.61 | +$8.93 | lost |
+| Sun 10-25 02:16 PM | btc | up | 2 | 16.91 | $2.86 | +$10.52 | won |
+| Sun 10-25 02:30 AM | btc | down | 3 | 37.53 | $2.04 | -$11.15 | lost |
+| Sun 10-25 02:32 PM | btc | up | 4 | 58.37 | $2.84 | -$8.79 | lost |
+| Sun 10-25 02:45 AM | btc | up | 2 | 12.91 | $2.03 | +$5.86 | won |
+| Sun 10-25 02:48 PM | btc | up | 3 | 61.0 | $2.63 | -$5.71 | lost |
+| Sun 10-25 03:00 PM | btc | up | 2 | 127.15 | $5.79 | +$0.63 | won |
+| Sun 10-25 03:07 AM | btc | down | 0 | 0 | $2.00 | -$6.27 | unknown |
+| Sun 10-25 03:15 AM | btc | down | 0 | 0 | $2.00 | +$1.41 | unknown |
+| Sun 10-25 03:15 PM | btc | up | 0 | 0 | $5.48 | +$3.45 | unknown |
+| Sun 10-25 03:30 AM | btc | down | 0 | 0 | $2.24 | +$1.42 | unknown |
+| Sun 10-25 03:30 PM | btc | up | 0 | 0 | $4.38 | +$2.35 | unknown |
+| Sun 10-25 03:42 PM | gold | down | 1 | 152.71 | $0.92 | -$0.98 | lost |
+| Sun 10-25 03:45 AM | btc | down | 0 | 0 | $2.02 | +$0.77 | unknown |
+| Sun 10-25 03:46 PM | gold | down | 2 | 12.45 | $4.85 | +$4.96 | won |
+| Sun 10-25 03:46 PM | btc | down | 0 | 0 | $5.00 | +$3.80 | unknown |
+| Sun 10-25 04:01 PM | gold | down | 1 | 10.2 | $2.86 | +$5.71 | won |
+| Sun 10-25 04:04 AM | btc | down | 4 | 812.77 | $4.59 | -$15.89 | lost |
+| Sun 10-25 04:19 AM | btc | down | 1 | 40.23 | $2.78 | -$2.96 | lost |
+| Sun 10-25 04:20 PM | btc | up | 1 | 23.54 | $2.82 | -$3.00 | lost |
+| Sun 10-25 04:21 PM | gold | up | 2 | 43.27 | $1.64 | +$28.32 | won |
+| Sun 10-25 04:30 AM | btc | down | 0 | 0 | $2.38 | -$7.74 | unknown |
+| Sun 10-25 04:30 PM | gold | down | 2 | 29.77 | $2.07 | +$30.13 | unknown |
+| Sun 10-25 04:33 PM | btc | up | 0 | 0 | $2.05 | +$2.10 | unknown |
+| Sun 10-25 04:45 AM | btc | up | 0 | 0 | $5.23 | +$2.19 | unknown |
+| Sun 10-25 04:45 PM | btc | up | 0 | 0 | $2.05 | +$16.44 | unknown |
+| Sun 10-25 04:48 PM | gold | up | 3 | 24.79 | $2.87 | -$5.65 | lost |
+| Sun 10-25 05:00 PM | btc | down | 0 | 0 | $11.01 | -$15.58 | unknown |
+| Sun 10-25 05:05 AM | btc | up | 0 | 0 | $2.28 | -$7.63 | unknown |
+| Sun 10-25 05:17 PM | gold | down | 0 | 0 | $9.93 | +$14.79 | unknown |
+| Sun 10-25 05:18 PM | btc | down | 0 | 0 | $10.95 | -$11.27 | unknown |
+| Sun 10-25 05:30 PM | gold | up | 1 | 15.69 | $11.02 | +$20.20 | lost |
+| Sun 10-25 05:31 PM | btc | up | 0 | 0 | $11.01 | -$15.61 | unknown |
+| Sun 10-25 05:45 PM | gold | down | 0 | 0 | $9.45 | +$5.16 | unknown |
+| Sun 10-25 05:45 PM | btc | up | 1 | 9.96 | $10.94 | -$17.56 | lost |
+| Sun 10-25 06:00 AM | btc | down | 0 | 0 | $1.75 | +$2.75 | unknown |
+| Sun 10-25 06:03 PM | btc | down | 1 | 21.55 | $4.74 | +$12.87 | won |
+| Sun 10-25 06:09 PM | gold | up | 1 | 50.64 | $5.00 | +$1.00 | won |
+| Sun 10-25 06:15 AM | btc | down | 0 | 0 | $2.00 | +$2.15 | unknown |
+| Sun 10-25 06:15 PM | gold | up | 0 | 0 | $5.07 | -$10.47 | unknown |
+| Sun 10-25 06:25 PM | btc | down | 2 | 42.65 | $1.78 | +$25.50 | unknown |
+| Sun 10-25 06:30 PM | gold | up | 0 | 0 | $5.90 | -$11.28 | unknown |
+| Sun 10-25 06:32 AM | btc | down | 0 | 0 | $2.09 | -$7.24 | unknown |
+| Sun 10-25 06:36 PM | btc | up | 2 | 191.22 | $2.79 | -$3.11 | lost |
+| Sun 10-25 06:45 AM | btc | down | 0 | 0 | $1.78 | +$2.80 | unknown |
+| Sun 10-25 06:45 PM | gold | down | 1 | 19.53 | $5.09 | -$1.62 | lost |
+| Sun 10-25 07:00 AM | btc | down | 0 | 0 | $5.94 | +$2.53 | unknown |
+| Sun 10-25 07:00 PM | gold | up | 0 | 0 | $9.81 | +$4.84 | unknown |
+| Sun 10-25 07:02 PM | btc | up | 0 | 0 | $11.00 | +$6.76 | unknown |
+| Sun 10-25 07:15 PM | gold | up | 0 | 0 | $10.94 | -$15.51 | unknown |
+| Sun 10-25 07:15 PM | btc | up | 0 | 0 | $9.97 | -$14.26 | unknown |
+| Sun 10-25 07:30 AM | btc | down | 0 | 0 | $5.01 | -$10.43 | unknown |
+| Sun 10-25 07:30 PM | gold | up | 0 | 0 | $9.20 | +$9.07 | unknown |
+| Sun 10-25 07:30 PM | btc | up | 0 | 0 | $8.98 | -$13.53 | unknown |
+| Sun 10-25 07:45 PM | gold | up | 0 | 0 | $7.66 | +$15.14 | unknown |
+| Sun 10-25 07:47 PM | btc | up | 0 | 0 | $10.03 | -$14.51 | unknown |
+| Sun 10-25 08:00 AM | btc | up | 0 | 0 | $5.18 | +$3.40 | unknown |
+| Sun 10-25 08:00 PM | gold | up | 0 | 0 | $9.69 | +$6.94 | unknown |
+| Sun 10-25 08:00 PM | btc | up | 0 | 0 | $11.02 | +$6.41 | unknown |
+| Sun 10-25 08:17 PM | btc | down | 1 | 11.11 | $9.54 | +$22.42 | unknown |
+| Sun 10-25 08:19 PM | gold | down | 3 | 36.14 | $10.47 | -$18.78 | lost |
+| Sun 10-25 08:20 AM | btc | up | 0 | 0 | $4.98 | -$10.48 | unknown |
+| Sun 10-25 08:30 PM | gold | down | 4 | 39.63 | $11.02 | -$6.76 | won |
+| Sun 10-25 08:30 PM | btc | down | 0 | 0 | $11.00 | +$13.41 | unknown |
+| Sun 10-25 08:32 AM | btc | up | 0 | 0 | $4.31 | +$1.61 | unknown |
+| Sun 10-25 08:45 AM | btc | up | 0 | 0 | $5.62 | -$10.52 | unknown |
+| Sun 10-25 08:45 PM | gold | up | 1 | 13.47 | $9.69 | -$16.18 | lost |
+| Sun 10-25 08:45 PM | btc | down | 0 | 0 | $9.98 | +$5.68 | unknown |
+| Sun 10-25 09:00 AM | btc | down | 0 | 0 | $9.66 | +$4.48 | unknown |
+| Sun 10-25 09:01 PM | btc | down | 3 | 24.27 | $5.00 | -$15.29 | lost |
+| Sun 10-25 09:03 PM | gold | up | 6 | 92.09 | $4.84 | -$4.36 | won |
+| Sun 10-25 09:17 AM | btc | down | 0 | 0 | $7.83 | +$7.77 | unknown |
+| Sun 10-25 09:17 PM | btc | up | 2 | 15.59 | $4.86 | -$14.26 | lost |
+| Sun 10-25 09:20 PM | gold | down | 0 | 0 | $5.02 | -$3.76 | unknown |
+| Sun 10-25 09:30 PM | btc | up | 1 | 49.01 | $5.00 | -$2.87 | won |
+| Sun 10-25 09:35 AM | btc | down | 0 | 0 | $10.00 | -$3.52 | unknown |
+| Sun 10-25 09:45 AM | btc | down | 0 | 0 | $9.54 | -$15.54 | unknown |
+| Sun 10-25 09:46 PM | btc | down | 0 | 0 | $5.00 | -$10.36 | unknown |
+| Sun 10-25 10:00 PM | btc | up | 0 | 0 | $10.97 | +$20.16 | unknown |
+| Sun 10-25 10:01 AM | btc | down | 0 | 0 | $10.82 | +$6.51 | unknown |
+| Sun 10-25 10:01 PM | gold | up | 1 | 22.31 | $11.02 | -$16.54 | lost |
+| Sun 10-25 10:15 PM | gold | down | 1 | 15.38 | $9.80 | -$15.33 | lost |
+| Sun 10-25 10:15 PM | btc | up | 0 | 0 | $9.80 | +$19.22 | unknown |
+| Sun 10-25 10:18 AM | btc | down | 0 | 0 | $9.96 | +$31.54 | unknown |
+| Sun 10-25 10:30 AM | btc | down | 0 | 0 | $9.40 | -$15.47 | unknown |
+| Sun 10-25 10:30 PM | gold | down | 0 | 0 | $10.84 | +$3.93 | unknown |
+| Sun 10-25 10:31 PM | btc | up | 0 | 0 | $15.41 | +$23.98 | unknown |
+| Sun 10-25 10:45 PM | gold | up | 0 | 0 | $9.48 | +$8.52 | unknown |
+| Sun 10-25 10:46 AM | btc | down | 0 | 0 | $10.98 | +$32.60 | unknown |
+| Sun 10-25 10:49 PM | btc | up | 0 | 0 | $15.69 | +$16.25 | unknown |
+| Sun 10-25 11:00 AM | btc | down | 0 | 0 | $5.75 | +$12.16 | unknown |
+| Sun 10-25 11:04 PM | gold | up | 1 | 8.33 | $2.83 | -$2.96 | lost |
+| Sun 10-25 11:11 PM | btc | up | 0 | 0 | $9.36 | -$15.88 | unknown |
+| Sun 10-25 11:15 AM | btc | down | 0 | 0 | $5.00 | +$14.75 | unknown |
+| Sun 10-25 11:15 PM | btc | up | 1 | 6.15 | $15.52 | -$23.08 | lost |
+| Sun 10-25 11:17 PM | gold | down | 1 | 46.85 | $15.94 | +$4.75 | unknown |
+| Sun 10-25 11:37 PM | btc | down | 1 | 10.5 | $15.00 | -$22.51 | lost |
+| Sun 10-25 11:39 AM | btc | up | 0 | 0 | $5.54 | +$1.68 | unknown |
+| Sun 10-25 11:45 AM | btc | up | 0 | 0 | $5.08 | +$2.58 | unknown |
+| Sun 10-25 11:48 PM | btc | down | 2 | 43.95 | $4.75 | -$8.00 | lost |
+| Sun 10-25 11:49 PM | gold | down | 2 | 33.3 | $4.58 | -$6.81 | lost |
+| Sun 10-25 12:03 PM | btc | up | 5 | 53.87 | $2.04 | -$24.14 | lost |
+| Sun 10-25 12:16 AM | btc | up | 0 | 0 | $2.00 | -$6.26 | unknown |
+| Sun 10-25 12:17 PM | btc | down | 3 | 181.56 | $4.84 | +$4.01 | won |
+| Sun 10-25 12:30 AM | btc | up | 0 | 0 | $2.04 | +$2.10 | unknown |
+| Sun 10-25 12:31 PM | btc | down | 8 | 136.91 | $2.85 | -$15.75 | lost |
+| Sun 10-25 12:45 AM | btc | down | 0 | 0 | $2.00 | +$1.82 | unknown |
+| Sun 10-25 12:45 PM | btc | down | 0 | 0 | $1.95 | +$2.13 | unknown |
+| Tue 10-27 01:01 AM | btc | down | 5 | 89.25 | $2.64 | -$9.77 | lost |
+| Tue 10-27 01:02 AM | gold | down | 2 | 13.66 | $2.87 | +$8.02 | won |
+| Tue 10-27 01:05 PM | btc | down | 0 | 0 | $2.33 | +$0.78 | unknown |
+| Tue 10-27 01:15 AM | btc | up | 0 | 0 | $2.79 | -$8.15 | unknown |
+| Tue 10-27 01:15 PM | btc | down | 0 | 0 | $2.50 | +$2.30 | unknown |
+| Tue 10-27 01:16 PM | gold | down | 0 | 0 | $2.50 | +$0.79 | unknown |
+| Tue 10-27 01:30 AM | btc | down | 0 | 0 | $2.50 | +$20.88 | unknown |
+| Tue 10-27 01:30 PM | gold | down | 0 | 0 | $2.15 | -$7.45 | unknown |
+| Tue 10-27 01:30 PM | btc | down | 0 | 0 | $2.50 | +$1.70 | unknown |
+| Tue 10-27 01:33 AM | gold | down | 1 | 311.71 | $2.74 | -$0.49 | unknown |
+| Tue 10-27 01:45 PM | gold | up | 0 | 0 | $2.34 | +$1.09 | unknown |
+| Tue 10-27 01:46 AM | btc | down | 0 | 0 | $2.55 | -$7.91 | unknown |
+| Tue 10-27 01:48 AM | gold | down | 3 | 26.17 | $2.85 | +$13.94 | unknown |
+| Tue 10-27 02:01 PM | btc | down | 0 | 0 | $2.56 | +$3.18 | unknown |
+| Tue 10-27 02:02 AM | btc | down | 0 | 0 | $11.51 | +$4.22 | unknown |
+| Tue 10-27 02:03 AM | gold | down | 5 | 233.34 | $2.90 | -$9.96 | unknown |
+| Tue 10-27 02:15 PM | btc | down | 0 | 0 | $2.54 | +$1.82 | unknown |
+| Tue 10-27 02:18 AM | btc | up | 0 | 0 | $11.00 | -$16.57 | unknown |
+| Tue 10-27 02:19 AM | gold | up | 0 | 0 | $11.67 | +$21.95 | unknown |
+| Tue 10-27 02:30 PM | btc | down | 1 | 229.04 | $2.44 | -$8.72 | lost |
+| Tue 10-27 02:31 AM | gold | down | 0 | 0 | $11.38 | -$16.93 | unknown |
+| Tue 10-27 02:32 AM | btc | up | 0 | 0 | $12.01 | -$8.55 | unknown |
+| Tue 10-27 02:50 PM | btc | down | 0 | 0 | $2.41 | +$16.74 | unknown |
+| Tue 10-27 02:54 AM | btc | down | 0 | 0 | $11.01 | -$16.73 | unknown |
+| Tue 10-27 03:00 AM | gold | up | 0 | 0 | $10.59 | -$16.37 | unknown |
+| Tue 10-27 03:00 AM | btc | up | 0 | 0 | $11.00 | -$16.48 | unknown |
+| Tue 10-27 03:10 PM | btc | down | 0 | 0 | $2.42 | -$7.73 | unknown |
+| Tue 10-27 03:15 PM | btc | up | 0 | 0 | $2.51 | +$2.55 | unknown |
+| Tue 10-27 03:30 PM | btc | up | 0 | 0 | $2.50 | -$7.85 | unknown |
+| Tue 10-27 03:31 AM | gold | up | 0 | 0 | $0.97 | +$0.34 | unknown |
+| Tue 10-27 03:33 AM | btc | down | 1 | 116.88 | $1.00 | -$2.92 | lost |
+| Tue 10-27 03:45 AM | btc | up | 0 | 0 | $0.89 | +$0.28 | unknown |
+| Tue 10-27 03:46 PM | btc | up | 0 | 0 | $2.41 | +$10.29 | unknown |
+| Tue 10-27 04:00 PM | btc | down | 0 | 0 | $2.72 | -$7.98 | unknown |
+| Tue 10-27 04:06 AM | btc | down | 0 | 0 | $0.55 | -$1.65 | unknown |
+| Tue 10-27 04:07 AM | gold | down | 0 | 0 | $0.99 | -$2.05 | unknown |
+| Tue 10-27 04:15 AM | gold | up | 0 | 0 | $1.01 | +$0.60 | unknown |
+| Tue 10-27 04:15 AM | btc | down | 0 | 0 | $1.01 | +$0.48 | unknown |
+| Tue 10-27 04:15 PM | btc | up | 0 | 0 | $2.50 | +$28.36 | unknown |
+| Tue 10-27 04:33 PM | btc | up | 0 | 0 | $2.51 | +$28.61 | unknown |
+| Tue 10-27 04:35 AM | btc | up | 0 | 0 | $5.44 | -$5.59 | unknown |
+| Tue 10-27 04:39 AM | gold | up | 0 | 0 | $5.61 | -$5.75 | unknown |
+| Tue 10-27 04:44 PM | gold | up | 1 | 21.75 | $2.83 | -$3.00 | lost |
+| Tue 10-27 04:48 PM | gold | down | 4 | 85.55 | $4.73 | -$11.00 | lost |
+| Tue 10-27 04:48 PM | btc | down | 0 | 0 | $2.51 | +$17.06 | unknown |
+| Tue 10-27 05:00 PM | btc | down | 0 | 0 | $2.50 | +$1.70 | unknown |
+| Tue 10-27 05:02 PM | gold | down | 8 | 596.18 | $2.84 | -$13.94 | lost |
+| Tue 10-27 05:10 AM | btc | down | 0 | 0 | $0.88 | +$0.33 | unknown |
+| Tue 10-27 05:15 AM | gold | down | 0 | 0 | $1.08 | -$2.16 | unknown |
+| Tue 10-27 05:15 PM | btc | up | 0 | 0 | $2.57 | -$7.59 | unknown |
+| Tue 10-27 05:16 PM | gold | down | 0 | 0 | $2.40 | +$0.62 | unknown |
+| Tue 10-27 05:20 AM | btc | down | 0 | 0 | $0.93 | -$2.06 | unknown |
+| Tue 10-27 05:30 AM | gold | down | 0 | 0 | $1.10 | +$2.88 | unknown |
+| Tue 10-27 05:30 AM | btc | down | 0 | 0 | $0.89 | -$1.97 | unknown |
+| Tue 10-27 05:30 PM | gold | up | 0 | 0 | $2.66 | +$1.08 | unknown |
+| Tue 10-27 05:30 PM | btc | down | 0 | 0 | $2.27 | +$9.94 | unknown |
+| Tue 10-27 05:45 AM | gold | down | 0 | 0 | $1.07 | -$2.14 | unknown |
+| Tue 10-27 05:45 PM | btc | down | 0 | 0 | $2.51 | +$12.18 | unknown |
+| Tue 10-27 05:46 AM | btc | up | 0 | 0 | $1.01 | +$0.68 | unknown |
+| Tue 10-27 05:46 PM | gold | up | 1 | 19.0 | $2.51 | +$8.42 | unknown |
+| Tue 10-27 06:00 AM | btc | down | 0 | 0 | $1.10 | +$0.74 | unknown |
+| Tue 10-27 06:00 PM | gold | up | 2 | 20.62 | $2.50 | -$12.67 | lost |
+| Tue 10-27 06:01 AM | gold | down | 0 | 0 | $1.10 | +$0.74 | unknown |
+| Tue 10-27 06:01 PM | btc | up | 2 | 22.02 | $2.87 | -$8.00 | lost |
+| Tue 10-27 06:15 AM | gold | down | 0 | 0 | $1.04 | +$2.60 | unknown |
+| Tue 10-27 06:15 AM | btc | down | 0 | 0 | $1.01 | +$0.53 | unknown |
+| Tue 10-27 06:15 PM | btc | down | 1 | 166.64 | $2.04 | -$9.80 | lost |
+| Tue 10-27 06:16 PM | gold | down | 1 | 17.11 | $2.50 | +$5.37 | lost |
+| Tue 10-27 06:30 AM | btc | down | 0 | 0 | $1.10 | -$2.15 | unknown |
+| Tue 10-27 06:30 PM | gold | down | 0 | 0 | $2.59 | +$1.46 | unknown |
+| Tue 10-27 06:30 PM | btc | down | 2 | 26.69 | $2.79 | -$11.11 | lost |
+| Tue 10-27 06:32 AM | gold | down | 0 | 0 | $1.02 | -$2.08 | unknown |
+| Tue 10-27 06:45 AM | btc | up | 0 | 0 | $1.14 | -$2.22 | unknown |
+| Tue 10-27 06:45 AM | gold | down | 0 | 0 | $1.07 | -$0.74 | unknown |
+| Tue 10-27 06:45 PM | gold | down | 0 | 0 | $2.45 | +$1.77 | unknown |
+| Tue 10-27 06:45 PM | btc | down | 1 | 6.8 | $2.60 | -$6.96 | lost |
+| Tue 10-27 07:00 AM | gold | down | 0 | 0 | $1.02 | -$2.06 | unknown |
+| Tue 10-27 07:00 PM | btc | down | 0 | 0 | $2.50 | -$7.77 | unknown |
+| Tue 10-27 07:04 AM | btc | down | 0 | 0 | $1.00 | -$2.03 | unknown |
+| Tue 10-27 07:07 PM | gold | down | 0 | 0 | $2.45 | +$1.29 | unknown |
+| Tue 10-27 07:15 AM | btc | up | 0 | 0 | $0.86 | +$4.11 | unknown |
+| Tue 10-27 07:15 PM | btc | down | 0 | 0 | $2.48 | +$9.24 | unknown |
+| Tue 10-27 07:24 AM | gold | up | 0 | 0 | $1.00 | +$1.22 | unknown |
+| Tue 10-27 07:27 PM | gold | up | 0 | 0 | $2.22 | -$7.59 | unknown |
+| Tue 10-27 07:30 AM | btc | down | 0 | 0 | $0.94 | -$2.01 | unknown |
+| Tue 10-27 07:30 PM | gold | up | 0 | 0 | $2.52 | +$0.95 | unknown |
+| Tue 10-27 07:30 PM | btc | down | 0 | 0 | $2.77 | +$1.49 | unknown |
+| Tue 10-27 07:32 AM | gold | down | 0 | 0 | $1.02 | -$2.08 | unknown |
+| Tue 10-27 07:45 AM | btc | down | 0 | 0 | $0.81 | -$2.09 | unknown |
+| Tue 10-27 07:45 PM | btc | down | 1 | 22.18 | $2.21 | -$12.88 | lost |
+| Tue 10-27 07:49 AM | gold | down | 0 | 0 | $1.12 | -$2.17 | unknown |
+| Tue 10-27 07:55 PM | gold | down | 0 | 0 | $4.50 | +$26.16 | unknown |
+| Tue 10-27 08:00 PM | gold | down | 1 | 19.53 | $4.40 | -$13.66 | lost |
+| Tue 10-27 08:01 PM | btc | down | 0 | 0 | $5.15 | +$2.25 | unknown |
+| Tue 10-27 08:16 PM | btc | up | 0 | 0 | $5.00 | +$4.36 | unknown |
+| Tue 10-27 08:22 AM | gold | down | 0 | 0 | $1.01 | -$1.04 | unknown |
+| Tue 10-27 08:30 AM | gold | down | 0 | 0 | $1.00 | -$2.04 | unknown |
+| Tue 10-27 08:31 PM | gold | down | 0 | 0 | $4.04 | -$3.15 | unknown |
+| Tue 10-27 08:35 PM | btc | down | 0 | 0 | $5.00 | -$14.02 | unknown |
+| Tue 10-27 08:45 AM | gold | down | 0 | 0 | $1.09 | -$2.13 | unknown |
+| Tue 10-27 08:46 PM | gold | down | 0 | 0 | $4.99 | +$3.57 | unknown |
+| Tue 10-27 08:51 PM | btc | up | 0 | 0 | $5.00 | -$13.58 | unknown |
+| Tue 10-27 09:00 AM | btc | up | 0 | 0 | $0.88 | -$1.87 | unknown |
+| Tue 10-27 09:00 PM | btc | down | 0 | 0 | $2.71 | +$11.17 | unknown |
+| Tue 10-27 09:25 PM | btc | up | 0 | 0 | $3.00 | -$8.43 | unknown |
+| Tue 10-27 09:28 PM | gold | up | 0 | 0 | $2.23 | +$0.47 | unknown |
+| Tue 10-27 09:30 AM | btc | up | 0 | 0 | $0.89 | +$0.40 | unknown |
+| Tue 10-27 09:33 PM | btc | down | 3 | 66.57 | $2.82 | -$6.00 | lost |
+| Tue 10-27 09:36 PM | gold | up | 0 | 0 | $3.00 | +$0.92 | unknown |
+| Tue 10-27 09:45 AM | btc | up | 0 | 0 | $1.02 | +$3.89 | unknown |
+| Tue 10-27 09:47 PM | btc | down | 0 | 0 | $3.02 | +$2.34 | unknown |
+| Tue 10-27 10:00 AM | btc | up | 0 | 0 | $1.01 | -$0.77 | unknown |
+| Tue 10-27 10:00 PM | btc | down | 0 | 0 | $5.53 | +$3.40 | unknown |
+| Tue 10-27 10:01 AM | gold | up | 0 | 0 | $1.05 | +$2.34 | unknown |
+| Tue 10-27 10:04 PM | gold | up | 0 | 0 | $5.08 | +$14.66 | unknown |
+| Tue 10-27 10:15 AM | gold | up | 0 | 0 | $1.05 | +$0.55 | unknown |
+| Tue 10-27 10:15 AM | btc | up | 0 | 0 | $1.01 | +$0.87 | unknown |
+| Tue 10-27 10:15 PM | btc | up | 0 | 0 | $5.07 | -$13.52 | unknown |
+| Tue 10-27 10:26 PM | gold | up | 2 | 101.15 | $1.87 | -$3.97 | lost |
+| Tue 10-27 10:30 AM | gold | up | 0 | 0 | $0.97 | +$0.92 | unknown |
+| Tue 10-27 10:30 PM | btc | up | 0 | 0 | $5.21 | +$18.45 | unknown |
+| Tue 10-27 10:31 PM | gold | up | 0 | 0 | $5.40 | +$2.91 | unknown |
+| Tue 10-27 10:32 AM | btc | down | 0 | 0 | $0.86 | +$1.01 | unknown |
+| Tue 10-27 10:45 AM | btc | up | 2 | 123.95 | $0.91 | -$8.13 | lost |
+| Tue 10-27 10:45 PM | btc | up | 0 | 0 | $5.48 | -$13.90 | unknown |
+| Tue 10-27 10:48 PM | gold | up | 0 | 0 | $4.08 | -$12.26 | unknown |
+| Tue 10-27 10:55 AM | gold | up | 2 | 287.8 | $1.87 | -$4.00 | lost |
+| Tue 10-27 11:00 AM | btc | down | 0 | 0 | $4.44 | -$9.57 | unknown |
+| Tue 10-27 11:05 AM | gold | down | 0 | 0 | $2.41 | -$7.80 | unknown |
+| Tue 10-27 11:15 AM | gold | down | 0 | 0 | $2.37 | +$1.65 | unknown |
+| Tue 10-27 11:15 AM | btc | up | 0 | 0 | $2.26 | +$0.94 | unknown |
+| Tue 10-27 11:20 PM | gold | up | 1 | 8.68 | $5.02 | -$2.85 | unknown |
+| Tue 10-27 11:20 PM | btc | down | 2 | 48.0 | $4.45 | +$30.21 | unknown |
+| Tue 10-27 11:30 AM | gold | down | 0 | 0 | $2.21 | +$11.73 | unknown |
+| Tue 10-27 11:30 AM | btc | down | 0 | 0 | $2.54 | -$7.74 | unknown |
+| Tue 10-27 11:30 PM | btc | down | 0 | 0 | $5.59 | +$3.74 | unknown |
+| Tue 10-27 11:31 PM | gold | down | 0 | 0 | $5.00 | +$4.04 | unknown |
+| Tue 10-27 11:45 PM | gold | up | 0 | 0 | $5.48 | -$14.13 | unknown |
+| Tue 10-27 11:48 AM | btc | down | 0 | 0 | $2.54 | +$1.94 | unknown |
+| Tue 10-27 11:49 AM | gold | up | 0 | 0 | $2.43 | +$0.80 | unknown |
+| Tue 10-27 11:50 PM | btc | up | 0 | 0 | $5.01 | -$13.66 | unknown |
+| Tue 10-27 12:01 AM | gold | down | 0 | 0 | $11.84 | -$17.45 | unknown |
+| Tue 10-27 12:08 AM | btc | up | 0 | 0 | $11.00 | -$12.38 | unknown |
+| Tue 10-27 12:12 PM | btc | down | 0 | 0 | $2.06 | -$2.20 | unknown |
+| Tue 10-27 12:15 AM | btc | up | 0 | 0 | $11.01 | +$9.11 | unknown |
+| Tue 10-27 12:15 AM | gold | down | 0 | 0 | $11.00 | +$20.89 | unknown |
+| Tue 10-27 12:15 PM | gold | down | 0 | 0 | $2.14 | +$17.35 | unknown |
+| Tue 10-27 12:15 PM | btc | down | 0 | 0 | $2.51 | +$2.26 | unknown |
+| Tue 10-27 12:30 PM | btc | down | 0 | 0 | $2.15 | -$7.43 | unknown |
+| Tue 10-27 12:32 AM | btc | up | 0 | 0 | $12.32 | -$17.69 | unknown |
+| Tue 10-27 12:40 AM | gold | down | 0 | 0 | $11.34 | -$11.61 | unknown |
+| Tue 10-27 12:46 PM | btc | up | 0 | 0 | $2.51 | +$14.86 | unknown |
+| Tue 10-27 12:47 AM | gold | down | 0 | 0 | $9.86 | +$8.51 | unknown |
+| Tue 10-27 12:51 AM | btc | down | 3 | 361.14 | $2.75 | -$5.04 | lost |
+| Wed 10-28 01:00 PM | gold | down | 1 | 11.44 | $4.35 | +$5.30 | won |
+| Wed 10-28 01:01 AM | gold | down | 1 | 14.94 | $5.01 | -$16.54 | lost |
+| Wed 10-28 01:01 AM | btc | up | 0 | 0 | $5.00 | +$1.91 | unknown |
+| Wed 10-28 01:07 PM | btc | down | 0 | 0 | $8.74 | +$0.97 | unknown |
+| Wed 10-28 01:15 PM | gold | up | 0 | 0 | $9.28 | -$14.85 | unknown |
+| Wed 10-28 01:15 PM | btc | up | 0 | 0 | $9.17 | -$14.74 | unknown |
+| Wed 10-28 01:16 AM | gold | down | 5 | 47.17 | $2.66 | -$9.67 | unknown |
+| Wed 10-28 01:21 AM | btc | down | 0 | 0 | $5.18 | -$14.60 | unknown |
+| Wed 10-28 01:30 AM | gold | down | 0 | 0 | $4.99 | -$12.53 | unknown |
+| Wed 10-28 01:45 AM | gold | down | 0 | 0 | $4.91 | +$21.06 | unknown |
+| Wed 10-28 01:50 PM | btc | down | 0 | 0 | $10.02 | -$14.34 | unknown |
+| Wed 10-28 01:51 PM | gold | up | 2 | 15.38 | $4.32 | -$6.47 | lost |
+| Wed 10-28 02:00 AM | gold | down | 0 | 0 | $4.99 | +$11.52 | unknown |
+| Wed 10-28 02:01 AM | btc | down | 0 | 0 | $5.02 | -$15.67 | unknown |
+| Wed 10-28 02:05 PM | btc | down | 0 | 0 | $9.97 | +$19.59 | unknown |
+| Wed 10-28 02:16 AM | btc | down | 0 | 0 | $5.00 | +$2.82 | unknown |
+| Wed 10-28 02:17 PM | btc | down | 1 | 7.04 | $9.07 | +$13.28 | won |
+| Wed 10-28 02:30 AM | btc | up | 0 | 0 | $5.01 | +$34.83 | unknown |
+| Wed 10-28 02:31 AM | gold | up | 0 | 0 | $5.00 | +$2.53 | unknown |
+| Wed 10-28 02:36 PM | btc | down | 3 | 253.06 | $10.02 | +$11.62 | lost |
+| Wed 10-28 02:45 AM | btc | up | 0 | 0 | $5.00 | +$29.50 | unknown |
+| Wed 10-28 02:45 PM | btc | up | 0 | 0 | $9.30 | +$2.32 | unknown |
+| Wed 10-28 02:48 AM | gold | down | 0 | 0 | $5.00 | -$3.48 | unknown |
+| Wed 10-28 03:00 AM | btc | up | 0 | 0 | $5.40 | -$16.05 | unknown |
+| Wed 10-28 03:00 PM | btc | down | 1 | 17.7 | $7.99 | +$2.19 | unknown |
+| Wed 10-28 03:15 AM | btc | up | 0 | 0 | $5.79 | +$2.62 | unknown |
+| Wed 10-28 03:16 PM | btc | up | 0 | 0 | $9.92 | -$20.80 | unknown |
+| Wed 10-28 03:21 PM | gold | up | 1 | 63.03 | $4.64 | -$4.94 | lost |
+| Wed 10-28 03:30 AM | btc | up | 0 | 0 | $5.09 | +$20.27 | unknown |
+| Wed 10-28 03:31 PM | btc | up | 0 | 0 | $11.00 | +$3.46 | unknown |
+| Wed 10-28 03:40 PM | gold | up | 0 | 0 | $9.67 | +$3.96 | unknown |
+| Wed 10-28 03:41 AM | gold | down | 0 | 0 | $5.55 | -$15.98 | unknown |
+| Wed 10-28 03:45 AM | gold | down | 0 | 0 | $5.17 | +$3.45 | unknown |
+| Wed 10-28 03:45 AM | btc | up | 0 | 0 | $5.00 | -$12.52 | unknown |
+| Wed 10-28 03:45 PM | btc | up | 0 | 0 | $10.15 | -$20.89 | unknown |
+| Wed 10-28 03:54 PM | gold | up | 0 | 0 | $8.60 | -$15.70 | unknown |
+| Wed 10-28 04:01 PM | btc | up | 1 | 31.46 | $4.72 | +$17.86 | won |
+| Wed 10-28 04:02 AM | gold | up | 0 | 0 | $2.51 | +$19.56 | unknown |
+| Wed 10-28 04:05 AM | btc | up | 0 | 0 | $2.04 | -$7.80 | unknown |
+| Wed 10-28 04:09 PM | gold | down | 2 | 188.96 | $4.35 | -$5.60 | lost |
+| Wed 10-28 04:17 AM | gold | up | 0 | 0 | $2.50 | +$17.02 | unknown |
+| Wed 10-28 04:18 PM | gold | down | 1 | 8.43 | $2.87 | +$4.72 | won |
+| Wed 10-28 04:18 PM | btc | up | 2 | 28.3 | $4.79 | +$17.34 | unknown |
+| Wed 10-28 04:22 AM | btc | down | 0 | 0 | $2.61 | -$7.66 | unknown |
+| Wed 10-28 04:31 AM | gold | down | 0 | 0 | $2.50 | -$7.80 | unknown |
+| Wed 10-28 04:33 AM | btc | down | 0 | 0 | $2.59 | +$6.15 | unknown |
+| Wed 10-28 04:36 PM | btc | up | 2 | 17.45 | $4.83 | +$7.83 | unknown |
+| Wed 10-28 04:37 PM | gold | down | 2 | 27.17 | $2.83 | +$19.46 | unknown |
+| Wed 10-28 04:45 PM | gold | up | 0 | 0 | $5.86 | +$3.07 | unknown |
+| Wed 10-28 04:45 PM | btc | up | 0 | 0 | $4.61 | +$13.85 | unknown |
+| Wed 10-28 04:48 AM | gold | up | 0 | 0 | $2.49 | -$7.87 | unknown |
+| Wed 10-28 04:48 AM | btc | down | 0 | 0 | $2.50 | +$2.19 | unknown |
+| Wed 10-28 05:00 AM | btc | up | 0 | 0 | $2.56 | -$7.95 | unknown |
+| Wed 10-28 05:00 PM | gold | down | 0 | 0 | $5.66 | +$3.03 | unknown |
+| Wed 10-28 05:01 PM | btc | up | 0 | 0 | $5.00 | -$10.36 | unknown |
+| Wed 10-28 05:03 AM | gold | down | 0 | 0 | $2.56 | -$7.92 | unknown |
+| Wed 10-28 05:15 AM | btc | down | 0 | 0 | $2.33 | +$2.78 | unknown |
+| Wed 10-28 05:18 AM | gold | down | 0 | 0 | $2.49 | -$7.91 | unknown |
+| Wed 10-28 05:19 PM | btc | up | 6 | 123.74 | $2.86 | -$10.79 | lost |
+| Wed 10-28 05:21 PM | gold | up | 2 | 14.3 | $2.86 | +$8.16 | unknown |
+| Wed 10-28 05:31 PM | btc | down | 0 | 0 | $5.52 | +$2.14 | unknown |
+| Wed 10-28 05:32 AM | btc | up | 0 | 0 | $2.50 | -$7.85 | unknown |
+| Wed 10-28 05:35 PM | gold | up | 1 | 26.26 | $4.73 | -$5.00 | lost |
+| Wed 10-28 05:42 AM | gold | up | 0 | 0 | $2.50 | -$2.66 | unknown |
+| Wed 10-28 05:50 PM | btc | up | 0 | 0 | $4.99 | -$10.41 | unknown |
+| Wed 10-28 05:58 PM | gold | up | 1 | 11.16 | $1.90 | -$2.01 | lost |
+| Wed 10-28 06:01 AM | gold | down | 0 | 0 | $2.51 | -$7.89 | unknown |
+| Wed 10-28 06:01 PM | gold | down | 2 | 29.5 | $2.66 | -$4.81 | lost |
+| Wed 10-28 06:04 AM | btc | down | 0 | 0 | $2.50 | +$3.48 | unknown |
+| Wed 10-28 06:15 AM | btc | down | 0 | 0 | $2.50 | +$3.21 | unknown |
+| Wed 10-28 06:16 PM | gold | down | 0 | 0 | $5.00 | -$10.37 | unknown |
+| Wed 10-28 06:30 AM | btc | down | 0 | 0 | $2.49 | -$7.86 | unknown |
+| Wed 10-28 06:31 AM | gold | up | 0 | 0 | $2.10 | -$7.36 | unknown |
+| Wed 10-28 06:52 PM | gold | down | 1 | 12.93 | $2.72 | -$2.87 | lost |
+| Wed 10-28 07:00 AM | btc | down | 0 | 0 | $5.15 | +$19.23 | unknown |
+| Wed 10-28 07:02 PM | gold | up | 1 | 186.97 | $4.50 | -$13.93 | lost |
+| Wed 10-28 07:02 PM | btc | up | 0 | 0 | $4.92 | +$0.31 | unknown |
+| Wed 10-28 07:03 AM | gold | up | 0 | 0 | $5.27 | -$15.77 | unknown |
+| Wed 10-28 07:15 AM | gold | down | 0 | 0 | $5.48 | +$4.15 | unknown |
+| Wed 10-28 07:15 AM | btc | down | 0 | 0 | $5.61 | +$2.53 | unknown |
+| Wed 10-28 07:15 PM | gold | up | 2 | 15.23 | $4.98 | -$17.31 | lost |
+| Wed 10-28 07:15 PM | btc | up | 1 | 3.52 | $5.00 | -$3.67 | lost |
+| Wed 10-28 07:30 AM | gold | up | 0 | 0 | $5.40 | -$3.98 | unknown |
+| Wed 10-28 07:30 AM | btc | up | 0 | 0 | $5.07 | +$17.94 | unknown |
+| Wed 10-28 07:40 PM | gold | up | 0 | 0 | $4.65 | -$13.12 | unknown |
+| Wed 10-28 07:45 AM | btc | up | 0 | 0 | $5.08 | +$16.04 | unknown |
+| Wed 10-28 07:48 AM | gold | up | 0 | 0 | $5.14 | +$1.74 | unknown |
+| Wed 10-28 08:00 AM | gold | up | 0 | 0 | $4.66 | +$1.72 | unknown |
+| Wed 10-28 08:00 PM | btc | up | 0 | 0 | $1.00 | -$2.84 | unknown |
+| Wed 10-28 08:16 PM | btc | up | 0 | 0 | $0.94 | -$0.96 | unknown |
+| Wed 10-28 08:30 PM | btc | down | 0 | 0 | $1.01 | -$0.62 | unknown |
+| Wed 10-28 08:34 AM | gold | up | 0 | 0 | $5.43 | +$3.80 | unknown |
+| Wed 10-28 08:46 AM | gold | down | 0 | 0 | $5.30 | +$1.67 | unknown |
+| Wed 10-28 08:46 PM | btc | down | 0 | 0 | $1.06 | +$0.42 | unknown |
+| Wed 10-28 09:00 AM | btc | down | 0 | 0 | $4.17 | -$5.16 | unknown |
+| Wed 10-28 09:15 AM | btc | down | 0 | 0 | $4.69 | +$2.41 | unknown |
+| Wed 10-28 09:15 PM | btc | down | 0 | 0 | $0.96 | open | unknown |
+| Wed 10-28 09:20 PM | gold | down | 0 | 0 | $0.99 | open | unknown |
+| Wed 10-28 09:30 AM | btc | up | 0 | 0 | $4.07 | -$11.68 | unknown |
+| Wed 10-28 09:47 AM | btc | up | 0 | 0 | $4.99 | +$3.31 | unknown |
+| Wed 10-28 10:00 AM | btc | down | 0 | 0 | $4.79 | +$1.97 | unknown |
+| Wed 10-28 10:01 AM | gold | up | 0 | 0 | $4.63 | -$4.79 | unknown |
+| Wed 10-28 10:16 AM | gold | up | 0 | 0 | $4.24 | -$15.59 | unknown |
+| Wed 10-28 10:25 AM | btc | down | 1 | 23.37 | $2.04 | -$2.28 | lost |
+| Wed 10-28 10:31 AM | gold | up | 0 | 0 | $4.73 | -$4.82 | unknown |
+| Wed 10-28 10:37 AM | btc | down | 0 | 0 | $2.99 | -$7.68 | unknown |
+| Wed 10-28 10:48 AM | gold | up | 0 | 0 | $4.44 | +$2.42 | unknown |
+| Wed 10-28 11:01 AM | gold | up | 0 | 0 | $5.02 | -$15.68 | unknown |
+| Wed 10-28 11:03 AM | btc | down | 2 | 249.66 | $4.74 | +$11.47 | won |
+| Wed 10-28 11:20 AM | gold | down | 0 | 0 | $4.03 | -$11.97 | unknown |
+| Wed 10-28 11:30 AM | gold | up | 0 | 0 | $4.76 | +$20.78 | unknown |
+| Wed 10-28 11:31 AM | btc | down | 0 | 0 | $3.01 | -$8.38 | unknown |
+| Wed 10-28 11:45 AM | gold | down | 0 | 0 | $5.02 | +$3.27 | unknown |
+| Wed 10-28 11:45 AM | btc | down | 0 | 0 | $2.75 | +$1.21 | unknown |
+| Wed 10-28 12:01 PM | gold | up | 0 | 0 | $10.00 | +$9.27 | unknown |
+| Wed 10-28 12:02 AM | btc | up | 0 | 0 | $5.01 | +$2.48 | unknown |
+| Wed 10-28 12:03 AM | gold | up | 1 | 152.77 | $5.08 | +$1.09 | won |
+| Wed 10-28 12:04 PM | btc | down | 2 | 22.77 | $2.74 | +$9.68 | lost |
+| Wed 10-28 12:15 AM | gold | down | 0 | 0 | $5.66 | -$14.02 | unknown |
+| Wed 10-28 12:15 PM | gold | up | 0 | 0 | $9.99 | +$19.73 | unknown |
+| Wed 10-28 12:30 AM | gold | up | 0 | 0 | $4.90 | +$15.75 | unknown |
+| Wed 10-28 12:30 PM | gold | down | 0 | 0 | $10.02 | +$24.44 | unknown |
+| Wed 10-28 12:30 PM | btc | down | 0 | 0 | $9.40 | -$19.91 | unknown |
+| Wed 10-28 12:39 AM | btc | down | 2 | 12.83 | $2.87 | +$6.62 | won |
+| Wed 10-28 12:46 AM | btc | down | 5 | 236.4 | $4.72 | -$11.85 | lost |
+| Wed 10-28 12:47 PM | gold | down | 1 | 5.31 | $8.64 | -$21.41 | lost |
+| Wed 10-28 12:48 AM | gold | up | 2 | 28.12 | $4.76 | +$10.02 | won |
+| Wed 10-28 12:49 PM | btc | down | 1 | 17.61 | $4.75 | -$5.00 | lost |
+
+## 4. Hours x books (paper P&L, PT)
+
+| Hour | main book | rejection model | delayed twin |
+|---|---|---|---|
+| 12 AM | 20-12 +$88.52 | 21-11 +$156.88 | 15-12 +$56.72 | 15-17 -$12.17 | 1-7 -$29.29 |
+| 1 AM | 18-13 +$66.53 | 18-13 +$78.00 | 15-12 +$144.89 | 12-18 -$100.00 | 2-10 -$31.57 |
+| 2 AM | 18-14 +$63.74 | 21-11 +$217.07 | 18-10 +$353.40 | 19-13 +$166.68 | 6-3 +$87.25 |
+| 3 AM | 16-17 -$99.10 | 17-16 -$66.19 | 13-15 -$108.86 | 10-21 -$271.85 | 0-10 -$52.95 |
+| 4 AM | 12-20 -$209.45 | 12-20 -$203.87 | 11-17 -$140.63 | 14-17 -$27.80 | 3-9 +$15.37 |
+| 5 AM | 16-16 -$72.27 | 18-14 +$7.57 | 14-14 -$41.92 | 17-13 +$116.12 | 3-7 +$45.57 |
+| 6 AM | 18-15 -$4.94 | 16-17 -$27.23 | 14-14 -$20.40 | 16-15 +$135.88 | 0-9 -$47.75 |
+| 7 AM | 12-20 -$167.03 | 15-17 -$44.89 | 16-12 +$36.40 | 21-10 +$224.59 | 3-5 +$57.34 |
+| 8 AM | 16-16 +$93.07 | 12-17 -$33.36 | 11-17 -$118.53 | 12-18 -$88.22 | 3-10 -$5.85 |
+| 9 AM | 18-15 +$23.26 | 17-16 -$18.21 | 15-13 +$2.43 | 15-16 +$36.65 | 2-5 +$4.70 |
+| 10 AM | 20-13 +$99.16 | 18-14 +$49.08 | 16-11 +$80.44 | 13-18 -$115.02 | 4-4 +$60.92 |
+| 11 AM | 21-11 +$86.54 | 19-13 +$3.92 | 15-13 -$26.99 | 11-21 -$187.20 | 1-6 -$10.75 |
+| 12 PM | 17-16 +$53.31 | 17-16 +$62.29 | 14-13 +$57.57 | 11-20 -$120.97 | 2-11 -$8.04 |
+| 1 PM | 15-16 -$47.92 | 16-14 +$125.70 | 15-11 +$25.74 | 10-19 -$116.28 | 3-11 -$2.80 |
+| 2 PM | 12-259 -$5,104.63 | 11-316 -$6,264.46 | 8-7 +$44.32 | 7-11 -$89.36 | 0-2 -$10.63 |
+| 3 PM | 295-509 -$6,223.49 | 863-1311 -$10,686.13 | 15-13 +$50.97 | 13-19 -$84.76 | - |
+| 4 PM | 166-95 -$302.73 | 167-101 -$356.26 | 11-21 -$95.67 | 18-18 +$113.57 | 3-3 +$37.24 |
+| 5 PM | 18-18 -$54.75 | 19-16 +$7.55 | 15-17 -$55.60 | 16-20 -$30.00 | 2-6 +$22.49 |
+| 6 PM | 11-24 -$305.35 | 12-23 -$113.10 | 13-19 -$42.48 | 15-20 -$112.23 | 1-3 +$6.50 |
+| 7 PM | 17-18 -$43.67 | 18-17 -$0.63 | 17-16 +$11.26 | 16-16 -$45.80 | 3-8 +$20.95 |
+| 8 PM | 18-19 -$48.94 | 17-19 +$462.70 | 17-19 +$183.81 | 14-21 -$207.89 | 4-8 +$34.75 |
+| 9 PM | 12-18 -$51.77 | 13-17 -$13.06 | 14-16 -$10.77 | 12-17 -$143.25 | 3-6 +$35.23 |
+| 10 PM | 17-11 +$88.48 | 17-11 +$108.78 | 18-10 +$116.38 | 9-19 -$199.68 | 1-5 -$8.58 |
+| 11 PM | 13-15 -$2.23 | 9-18 -$110.57 | 8-20 -$160.70 | 9-18 -$87.94 | 2-11 -$23.37 |
+
+## 5. Carried vs fresh session bands (paper P&L)
+
+- main book, carried bands: 303-164, +$478.98
+- main book, fresh bands: 478-996, -$12,430.89
+- rejection model, carried bands: 815-953, -$4,072.77
+- rejection model, fresh bands: 529-1075, -$12,696.42
+- rejection twin +BB/zones (paper), carried bands: 79-86, -$124.18
+- rejection twin +BB/zones (paper), fresh bands: 259-256, +$465.96
+- delayed twin, carried bands: 75-90, -$219.35
+- delayed twin, fresh bands: 212-289, -$995.07
+- twin add-on (paper $5), carried bands: 11-27, +$100.62
+- twin add-on (paper $5), fresh bands: 41-132, +$96.11

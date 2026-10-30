@@ -1,0 +1,40 @@
+// SCHEDULE PILL (Claude, Oct 10 ~1:15 AM PT, Love: "a lil schedule pill like the one that says INSURANCE... just under that
+// one with the lineup & schedule for each one"). Tap to open: every book on RUN with its live hours (Pacific) on BTC and gold.
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getSchedule } from "@/lib/desk/fns";
+
+export function SchedulePill() {
+  const [open, setOpen] = useState(false);
+  const q = useQuery({ queryKey: ["schedule-pill"], queryFn: () => getSchedule(), refetchInterval: 60000 });
+  const d: any = q.data;
+  return (
+    <div className="mt-2 w-full">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="w-full rounded-2xl border px-4 py-2 text-left text-[10px] tracking-[0.2em]"
+        style={{ borderColor: open ? "#a78bfa" : "rgba(255,255,255,0.3)", color: open ? "#c4b5fd" : "#ffffff", boxShadow: open ? "0 0 14px #a78bfa33" : "none" }}
+      >
+        SCHEDULE · {d ? `${d.rows.length} BOOKS ON RUN · PACIFIC HOURS` : "loading"} · TAP
+      </button>
+      {open && d ? (
+        <div className="mt-2 rounded-2xl border px-4 py-3 font-mono text-[10px] leading-relaxed" style={{ borderColor: "rgba(167,139,250,0.45)" }}>
+          {d.rows.map((r: any) => (
+            <div key={r.book} className="py-1.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+              <p className="tracking-[0.18em] text-white/90">{r.name}</p>
+              <p className="text-white/70">
+                BTC <span className="text-white">{r.btc}</span> · GOLD <span className="text-white">{r.gold}</span>
+              </p>
+              {r.notes.length ? <p className="text-[9px] text-[#c4b5fd]">{r.notes.join(" · ")}</p> : null}
+            </div>
+          ))}
+          <p className="pt-2 text-[9px] text-white/50">
+            Nobody live · BTC {d.dark.btc} · GOLD {d.dark.gold}
+            {d.goldMap ? ` · gold map: ${String(d.goldMap).toUpperCase()}` : ""}. Gold is shut weekends and 2-3 PM daily.
+          </p>
+        </div>
+      ) : null}
+    </div>
+  );
+}

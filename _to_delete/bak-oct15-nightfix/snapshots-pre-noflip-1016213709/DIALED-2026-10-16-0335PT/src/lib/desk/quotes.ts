@@ -1,0 +1,196 @@
+// QUOTE STREAM (Love, Oct 15 ~12:40 PM PT: "we need her to be able to fire with speed without firing backwards...
+// get to the root of that"). THE ROOT: her decision price was a cached chart READ (nav/tv poll every 4-8 s), so in the
+// first seconds of any fast move she was pricing the move off its FIRST tick - at a window open, the strike itself.
+// THE FIX: one persistent TradingView websocket (the same data.tradingview.com her lines come from) with a quote
+// session pushes every tick for PEPPERSTONE:BTCUSD and TVC:GOLD. No polling, no cache: quoteTick() hands back the
+// newest pushed price and when it arrived. Reconnects itself (2 s backoff, doubling to 30 s), forces a reconnect if
+// 25 s pass without a tick, and writes data/quote-stream.json so its health is visible on the desk.
+import * as tls from "node:tls";
+import * as crypto from "node:crypto";
+import { writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+const SYM: Record<string, string> = { "PEPPERSTONE:BTCUSD": "btc", "TVC:GOLD": "gold" };
+type Tick = { c: number; at: number };
+const g = globalThis as unknown as { __qtk?: Record<string, Tick>; __qtrail?: Record<string, { t: number; c: number }[]>; __qsOn?: boolean; __qsSock?: tls.TLSSocket | null; __qsSocks?: (tls.TLSSocket | null)[]; __qsBackoffs?: number[]; __qsSlotTick?: number[]; __qsBackoff?: number; __qsLastTick?: number; __qsStatAt?: number; __qsErr?: string; __qsVer?: number; __qsTimer?: ReturnType<typeof setInterval> };
+
+function frame(text: string): Buffer {
+  const data = Buffer.from(text);
+  const mask = crypto.randomBytes(4);
+  const head = Buffer.alloc(data.length < 126 ? 2 : 4);
+  head[0] = 0x81;
+  if (data.length < 126) head[1] = 0x80 | data.length;
+  else { head[1] = 0x80 | 126; head.writeUInt16BE(data.length, 2); }
+  const masked = Buffer.alloc(data.length);
+  for (let i = 0; i < data.length; i += 1) masked[i] = data[i] ^ mask[i % 4];
+  return Buffer.concat([head, mask, masked]);
+}
+function packet(method: string, params: unknown[]): string {
+  const body = JSON.stringify({ m: method, p: params });
+  return `~m~${body.length}~m~${body}`;
+}
+
+function status(extra?: string) {
+  const now = Date.now();
+  if (g.__qsStatAt && now - g.__qsStatAt < 4000 && !extra) return;
+  g.__qsStatAt = now;
+  try {
+    const t = g.__qtk || {};
+    writeFileSync(join(process.cwd(), "data", "quote-stream.json"), JSON.stringify({
+      at: new Date().toISOString(),
+      connected: Boolean((g.__qsSocks || []).some(Boolean) || g.__qsSock),
+      sockets: (g.__qsSocks || []).map(Boolean),
+      btc: t.btc ? { c: t.btc.c, ageMs: now - t.btc.at } : null,
+      gold: t.gold ? { c: t.gold.c, ageMs: now - t.gold.at } : null,
+      note: extra || g.__qsErr || "",
+    }, null, 1));
+  } catch {}
+}
+
+function connectStream(slot = 0) {
+  const sock = tls.connect(443, "data.tradingview.com", { servername: "data.tradingview.com" }, () => {
+    const key = crypto.randomBytes(16).toString("base64");
+    sock.write(
+      "GET /socket.io/websocket?from=chart%2F&type=chart HTTP/1.1\r\n" +
+        "Host: data.tradingview.com\r\n" +
+        "Upgrade: websocket\r\n" +
+        "Connection: Upgrade\r\n" +
+        `Sec-WebSocket-Key: ${key}\r\n` +
+        "Sec-WebSocket-Version: 13\r\n" +
+        "Origin: https://www.tradingview.com\r\n\r\n",
+    );
+  });
+  let shook = false;
+  let buf = Buffer.alloc(0);
+  const die = (why: string) => {
+    g.__qsErr = `[${slot}] ${why}`;
+    try { sock.destroy(); } catch {}
+    const socks = (g.__qsSocks ||= [null, null]);
+    if (socks[slot] === sock) socks[slot] = null;
+    g.__qsSock = socks[0] || socks[1] || null;
+    status(why);
+    const backs = (g.__qsBackoffs ||= [2000, 2000]);
+    const wait = Math.min(backs[slot] || 2000, 30000);
+    backs[slot] = wait * 2;
+    setTimeout(() => { if (!(g.__qsSocks || [])[slot]) connectStream(slot); }, wait);
+  };
+  sock.once("error", (e) => die(`socket error: ${String(e).slice(0, 120)}`));
+  sock.once("close", () => die("socket closed"));
+  sock.setTimeout(40000, () => die("socket timeout"));
+  sock.on("data", (chunk: Buffer) => {
+    if (!shook) {
+      buf = Buffer.concat([buf, chunk]);
+      const split = buf.indexOf("\r\n\r\n");
+      if (split < 0) return;
+      shook = true;
+      const socks = (g.__qsSocks ||= [null, null]);
+      socks[slot] = sock;
+      g.__qsSock = socks[0] || socks[1] || null;
+      (g.__qsBackoffs ||= [2000, 2000])[slot] = 2000;
+      g.__qsErr = "";
+      const qs = `qs_${crypto.randomBytes(4).toString("hex")}`;
+      sock.write(frame(packet("set_auth_token", ["unauthorized_user_token"])));
+      sock.write(frame(packet("quote_create_session", [qs])));
+      sock.write(frame(packet("quote_set_fields", [qs, "lp", "lp_time"])));
+      for (const sym of Object.keys(SYM)) sock.write(frame(packet("quote_add_symbols", [qs, sym])));
+      status("connected");
+      buf = buf.subarray(split + 4);
+      chunk = Buffer.alloc(0);
+    }
+    buf = Buffer.concat([buf, chunk]);
+    while (buf.length >= 2) {
+      const opcode = buf[0] & 0x0f;
+      let length = buf[1] & 0x7f;
+      let offset = 2;
+      if (length === 126) { if (buf.length < 4) return; length = buf.readUInt16BE(2); offset = 4; }
+      else if (length === 127) { if (buf.length < 10) return; length = Number(buf.readBigUInt64BE(2)); offset = 10; }
+      if (buf.length < offset + length) return;
+      const data = buf.subarray(offset, offset + length);
+      buf = buf.subarray(offset + length);
+      if (opcode === 8) { die("server close frame"); return; }
+      if (opcode !== 1) continue;
+      const text = data.toString("utf8");
+      for (const part of text.split(/~m~\d+~m~/)) {
+        if (!part) continue;
+        if (/^~h~\d+$/.test(part)) { sock.write(frame(`~m~${part.length}~m~${part}`)); continue; }
+        if (!part.includes('"qsd"')) continue;
+        try {
+          const msg = JSON.parse(part);
+          if (msg.m !== "qsd") continue;
+          const d = msg.p?.[1];
+          const asset = SYM[String(d?.n)];
+          const lp = Number(d?.v?.lp);
+          if (asset && Number.isFinite(lp) && lp > 0) {
+            const now = Date.now();
+            (g.__qtk ||= {})[asset] = { c: lp, at: now };
+            const tr = ((g.__qtrail ||= {}) as Record<string, { t: number; c: number }[]>)[asset] ||= [];
+            tr.push({ t: now, c: lp });
+            if (tr.length > 600) tr.splice(0, tr.length - 600);
+            g.__qsLastTick = now;
+          }
+        } catch {}
+      }
+    }
+    status();
+  });
+}
+
+/** Newest pushed price for btc/gold, with when it arrived. Null until the stream has ticked. */
+export function quoteTick(asset: string): Tick | null {
+  ensureQuoteStream();
+  const t = g.__qtk?.[asset];
+  return t && t.c > 0 ? t : null;
+}
+
+/** The tick-to-tick push over the last backMs: d > 0 = price pushing up right now. Null until the trail has depth. */
+export function tickPush(asset: string, backMs = 3000): { d: number; from: number; to: number; spanMs: number } | null {
+  ensureQuoteStream();
+  const tr = g.__qtrail?.[asset];
+  if (!tr || tr.length < 2) return null;
+  const now = Date.now();
+  const to = tr[tr.length - 1];
+  if (now - to.t > 2500) return null; // trail itself is stale: say nothing rather than something old
+  let from = tr[0];
+  for (let i = tr.length - 1; i >= 0; i -= 1) { from = tr[i]; if (now - tr[i].t >= backMs) break; }
+  return { d: to.c - from.c, from: from.c, to: to.c, spanMs: to.t - from.t };
+}
+
+const QS_VER = 3; // v3 (Oct 15 ~3:15 PM PT, Love: "this execution speed is untenable, she will miss nearly every entry"):
+// TWO redundant TradingView connections per desk - the ticker takes the newest tick across both, so one connection going
+// quiet (the gold silences, the BTC 83 s gap) no longer stalls the freshness gates and the entries behind them. // bump on any change to the stream/watchdog: the globalThis guards outlive module reloads,
+// so without a version the OLD watchdog interval keeps running and the new code never arms (found at the 2 PM audit).
+export function ensureQuoteStream() {
+  if (g.__qsVer !== QS_VER) {
+    g.__qsVer = QS_VER;
+    try { if (g.__qsTimer) clearInterval(g.__qsTimer); } catch {}
+    try { g.__qsSock?.destroy(); } catch {}
+    for (const old of g.__qsSocks || []) { try { old?.destroy(); } catch {} }
+    g.__qsSocks = [null, null];
+    g.__qsSock = null;
+    g.__qsOn = false;
+  }
+  if (!g.__qsOn) {
+    g.__qsOn = true;
+    g.__qsBackoffs = [2000, 2000];
+    connectStream(0);
+    setTimeout(() => { if (!(g.__qsSocks || [])[1]) connectStream(1); }, 400);
+    // tick watchdog: a connected socket that stops pushing is as stale as a cache - recycle it.
+    g.__qsTimer = setInterval(() => {
+      // Oct 15 2:00 PM audit: BTC went 80+ s without a tick while gold kept flowing, and the ANY-asset watchdog never
+      // fired. Per-asset now: any subscribed symbol silent 45 s while the socket lives = recycle the whole connection.
+      const now = Date.now();
+      const t = g.__qtk || {};
+      const stalest = Math.max(...Object.values(SYM).map((a) => now - (t[a]?.at || g.__qsLastTick || now)));
+      if (g.__qsLastTick && stalest > 45000) {
+        for (let i = 0; i < 2; i += 1) {
+          const old = (g.__qsSocks || [])[i];
+          if (old) { try { old.destroy(); } catch {} (g.__qsSocks as (tls.TLSSocket | null)[])[i] = null; }
+          connectStream(i);
+        }
+        g.__qsSock = null;
+        g.__qsErr = `an asset went ${Math.round(stalest / 1000)} s without a tick: recycling both connections`;
+      }
+      status();
+    }, 8000).unref?.();
+  }
+}

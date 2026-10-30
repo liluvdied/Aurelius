@@ -1,0 +1,6 @@
+{"at":"2026-10-05T08:22:07.512Z","status":"missed","id":"KXBTC15M-26OCT050430-30:cotc","side":"down","why":"Polymarket down at 0.76 is outside 0.05-0.75"}
+{"at":"2026-10-05T10:37:11.601Z","status":"filled","id":"KXBTC15M-26OCT050645-45:cotc","book":"cotc","setup":"Tap-reject at +1.5σ","side":"down","slug":"cpc-btc-updown-15m-2026-10-05-1030z","contracts":16.66,"price":0.47,"paperAsk":0.58}
+{"at":"2026-10-05T10:40:38.031Z","status":"sold","id":"KXBTC15M-26OCT050645-45:cotc","slug":"cpc-btc-updown-15m-2026-10-05-1030z","side":"down","filled":16.66,"price":0.65,"cost":0.47,"profit":3,"why":"paper COTC sold: take-profit gate +43.2% (peaked +44.83%)"}
+{"at":"2026-10-05T13:16:14.968Z","status":"filled","id":"KXBTC15M-26OCT050930-30:cotc","book":"cotc","setup":"Tap-reject at +1.5σ","side":"down","slug":"cpc-btc-updown-15m-2026-10-05-1315z","contracts":15.15,"price":0.64,"paperAsk":0.64}
+{"at":"2026-10-05T13:26:52.558Z","status":"sold","id":"KXBTC15M-26OCT050930-30:cotc","slug":"cpc-btc-updown-15m-2026-10-05-1315z","side":"down","filled":15.15,"price":0.95,"cost":0.64,"profit":4.7,"why":"paper COTC sold: take profit: peaked +52%, 1% trail"}
+{"at":"2026-10-05T13:36:23.989Z","status":"missed","id":"KXBTC15M-26OCT050945-45:cotc","side":"down","why":"sent at 0.55, nothing filled (book moved)"}

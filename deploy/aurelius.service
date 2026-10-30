@@ -1,0 +1,16 @@
+[Unit]
+Description=Aurelius desk (engine + desk page on :8080)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=aurelius
+WorkingDirectory=/opt/aurelius
+Environment=__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=.ts.net
+Environment=PATH=/opt/aurelius/node_modules/.bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/node scripts/with-app-env.mjs vite dev --host 0.0.0.0 --port 8080
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

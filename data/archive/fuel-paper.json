@@ -1,0 +1,110 @@
+[
+  {
+    "id": "KXWTI15M-26SEP281415-15:down:Open -0.5σ",
+    "at": "2026-09-28T18:02:02.821Z",
+    "asset": "oil",
+    "side": "down",
+    "pattern": "Open -0.5σ",
+    "result": "yes",
+    "ticker": "KXWTI15M-26SEP281415-15",
+    "hits": 4,
+    "multiple": 2.04,
+    "profit": 26
+  },
+  {
+    "id": "KXWTI15M-26SEP281400-00:up:Open -0.5σ",
+    "at": "2026-09-28T17:45:14.914Z",
+    "asset": "oil",
+    "side": "up",
+    "pattern": "Open -0.5σ",
+    "result": "no",
+    "ticker": "KXWTI15M-26SEP281400-00",
+    "hits": 21,
+    "multiple": 2.13,
+    "profit": -25
+  },
+  {
+    "id": "KXWTI15M-26SEP281330-30:up:Open -0.5σ",
+    "at": "2026-09-28T17:15:38.314Z",
+    "asset": "oil",
+    "side": "up",
+    "pattern": "Open -0.5σ",
+    "result": "yes",
+    "ticker": "KXWTI15M-26SEP281330-30",
+    "hits": 21,
+    "multiple": 1.47,
+    "profit": 11.75
+  },
+  {
+    "id": "KXWTI15M-26SEP281315-15:down:Open -0.5σ",
+    "at": "2026-09-28T17:00:35.337Z",
+    "asset": "oil",
+    "side": "down",
+    "pattern": "Open -0.5σ",
+    "result": "no",
+    "ticker": "KXWTI15M-26SEP281315-15",
+    "hits": 4,
+    "multiple": 4.17,
+    "profit": -25
+  },
+  {
+    "id": "KXWTI15M-26SEP281300-00:down:Tap-reject at -1.5σ",
+    "at": "2026-09-28T16:45:09.357Z",
+    "asset": "oil",
+    "side": "down",
+    "pattern": "Tap-reject at −1.5σ",
+    "result": "no",
+    "ticker": "KXWTI15M-26SEP281300-00",
+    "hits": 7,
+    "multiple": 1.82,
+    "profit": -25
+  },
+  {
+    "id": "KXWTI15M-26SEP281245-45:down:Tap-reject at -2σ",
+    "at": "2026-09-28T16:40:57.505Z",
+    "asset": "oil",
+    "side": "down",
+    "pattern": "Tap-reject at −2σ",
+    "result": "no",
+    "ticker": "KXWTI15M-26SEP281245-45",
+    "hits": 3,
+    "multiple": 24.39,
+    "profit": -25
+  },
+  {
+    "id": "KXWTI15M-26SEP281145-45:down:Open +0.5σ",
+    "at": "2026-09-28T15:30:19.142Z",
+    "asset": "oil",
+    "side": "down",
+    "pattern": "Open +0.5σ",
+    "result": "no",
+    "ticker": "KXWTI15M-26SEP281145-45",
+    "hits": 10,
+    "multiple": 1.85,
+    "profit": -25
+  },
+  {
+    "id": "KXWTI15M-26SEP281130-30:down:Tap-reject at +1.5σ",
+    "at": "2026-09-28T15:15:21.611Z",
+    "asset": "oil",
+    "side": "down",
+    "pattern": "Tap-reject at +1.5σ",
+    "result": "yes",
+    "ticker": "KXWTI15M-26SEP281130-30",
+    "hits": 11,
+    "multiple": 1.96,
+    "profit": 24
+  },
+  {
+    "id": "KXWTI15M-26SEP281115-15:down:Open +2σ",
+    "at": "2026-09-28T15:02:40.364Z",
+    "asset": "oil",
+    "side": "down",
+    "pattern": "Open +2σ",
+    "result": "yes",
+    "ticker": "KXWTI15M-26SEP281115-15",
+    "hits": 6,
+    "multiple": 1.96,
+    "profit": 24
+  }
+]

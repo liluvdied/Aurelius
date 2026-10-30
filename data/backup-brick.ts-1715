@@ -1,0 +1,136 @@
+// BRICK (Claude, 2026-10-02). Love: "rewrite the entry logic from the ground up — brick, not matchsticks."
+// Written from scratch. It does NOT use Grok's setup.ts / auto.ts / spine-ready.ts / bandInWay. It reads
+// only her own lines: the session VWAP bands on her chart (17:00 ET, ±0.5σ steps), the purple nav
+// centers on 5m / 10m / 15m, and for BTC the nav upper / lower (Bollinger) lines.
+//
+// The audit behind it (scripts/wrong-side-audit.py, every Kalshi BTC/gold trade since Sep 21, 829 trades):
+//   • 617 entries had a line right in front of them (long under one / short over one): 80% of all
+//     dollars lost (-$4,074 of -$5,104). The worst: BTC with a purple/Bollinger line within $100
+//     (-$484 net), BTC with any line within $25 (-$410), gold with a line $0.75-2.50 ahead (-$223).
+//   • 156 entries still had to cross the strike to win: 29-38% winners, -$462 net.
+//   Blocking exactly those leaves 245 trades: 163W-82L, +$423 (in-sample; paper proves it forward).
+//
+// ENTRIES (a closed 5-minute candle decides, never a wiggle):
+//   REJECTION: the last closed 5m candle wicked through a line and closed back → trade away from it.
+//   BREAK:     the last closed 5m candle closed through a line the candle before closed on the other
+//              side of, and the latest 1m close is still through it → trade the break.
+// BRICK GATES (all must pass, no exceptions, no "precedence" overrides):
+//   1. Price is already through the strike the right way (long above it, short below it).
+//   2. Nothing in front: BTC no purple/Bollinger line within $100 and no session band within $25 in
+//      the trade's direction; gold no line $0.75-$2.50 in the trade's direction.
+//   3. 1.38x-2.5x (BTC 1.38x-1.8x), more than 2 minutes left, one trade per window, no conflict
+//      (a long and a short signal at once = no trade).
+// Paper only. It books on the night ledger as BRICK and never sends an order.
+import { writeFileSync } from "node:fs";
+import { join } from "node:path";
+import type { AssetSnapshot } from "./types";
+import { brickConsider } from "./nightbook";
+
+type Line = { name: string; kind: "session" | "purple" | "bollinger"; price: number; rank: number };
+type Signal = { side: "up" | "down"; label: string; line: Line };
+
+export function herLines(a: AssetSnapshot, asset: "btc" | "gold"): Line[] {
+  const out: Line[] = [];
+  const vw = a.vwap1m?.vwap ?? 0;
+  const sd = a.vwap1m?.stdev ?? 0;
+  if (vw > 0 && sd > 0) {
+    for (let k = -6; k <= 6; k += 1) out.push({ name: k === 0 ? "session VWAP" : `${k > 0 ? "+" : ""}${k / 2}σ`, kind: "session", price: vw + (k / 2) * sd, rank: k === 0 ? 3 : 1 });
+  }
+  const nav = a.nav;
+  for (const [key, label, rank] of [["m5", "5m", 4], ["m10", "10m", 5], ["m15", "15m", 6]] as const) {
+    const f = nav?.[key];
+    if (!f) continue;
+    out.push({ name: `${label} purple`, kind: "purple", price: f.c, rank });
+    if (asset === "btc") {
+      out.push({ name: `${label} upper`, kind: "bollinger", price: f.up, rank: rank - 1 });
+      out.push({ name: `${label} lower`, kind: "bollinger", price: f.dn, rank: rank - 1 });
+    }
+  }
+  return out.filter((l) => Number.isFinite(l.price) && l.price > 0);
+}
+
+/** Gate 2: the line in front of the trade, or null when the road is clear. */
+export function lineInFront(asset: "btc" | "gold", side: "up" | "down", spot: number, lines: Line[]): Line | null {
+  for (const l of lines) {
+    const ahead = side === "up" ? l.price - spot : spot - l.price;
+    if (!(ahead > 0)) continue;
+    if (asset === "btc") {
+      if ((l.kind === "purple" || l.kind === "bollinger") && ahead <= 100) return l;
+      if (l.kind === "session" && ahead <= 25) return l;
+    } else if (ahead > 0.75 && ahead <= 2.5) return l;
+  }
+  return null;
+}
+
+function signals(a: AssetSnapshot, lines: Line[]): Signal[] {
+  const nav = a.nav;
+  const bar = nav?.bar5m;
+  const prev = nav?.prev5m;
+  const c1 = nav?.close1m;
+  if (!bar || !(bar.c > 0)) return [];
+  const out: Signal[] = [];
+  for (const l of lines) {
+    const L = l.price;
+    if (bar.l < L && bar.c > L && bar.o >= L) out.push({ side: "up", label: `BRICK rejection up off the ${l.name}`, line: l });
+    else if (bar.h > L && bar.c < L && bar.o <= L) out.push({ side: "down", label: `BRICK rejection down off the ${l.name}`, line: l });
+    else if (prev != null && prev < L && bar.c > L && (c1 == null || c1 > L)) out.push({ side: "up", label: `BRICK 5m close above the ${l.name}`, line: l });
+    else if (prev != null && prev > L && bar.c < L && (c1 == null || c1 < L)) out.push({ side: "down", label: `BRICK 5m close below the ${l.name}`, line: l });
+  }
+  return out.sort((x, y) => y.line.rank - x.line.rank);
+}
+
+export type BrickLook = { asset: string; at: string; spot: number; target: number | null; signal: string | null; side: string | null; verdict: string };
+const g = globalThis as unknown as { __brickLook?: Record<string, BrickLook> };
+
+/** Every desk tick: look for a BRICK entry on BTC and gold; book it on paper if every gate passes. */
+export function brickTick(assets: Record<string, AssetSnapshot> | null | undefined) {
+  if (!assets) return;
+  const looks = g.__brickLook || (g.__brickLook = {});
+  setTimeout(brickWrite, 0);
+  for (const id of ["btc", "gold"] as const) {
+    const a = assets[id];
+    const m = a?.market;
+    if (!a || !m?.ticker || !(a.spot > 0)) continue;
+    const spot = a.nav?.close1m && a.nav.close1m > 0 ? a.nav.close1m : a.spot;
+    const look: BrickLook = { asset: id, at: new Date().toISOString(), spot, target: a.target, signal: null, side: null, verdict: "no 5m signal" };
+    looks[id] = look;
+    const lines = herLines(a, id);
+    const sig = signals(a, lines);
+    if (!sig.length) continue;
+    const sides = new Set(sig.map((s) => s.side));
+    if (sides.size > 1) {
+      look.verdict = "long and short signals at once: no trade";
+      continue;
+    }
+    const s = sig[0];
+    look.signal = s.label;
+    look.side = s.side;
+    if (!(a.secondsLeft > 120)) { look.verdict = "under 2 minutes left"; continue; }
+    const target = a.target;
+    if (target == null || !(target > 0)) { look.verdict = "no strike yet"; continue; }
+    if (s.side === "up" ? !(spot > target) : !(spot < target)) { look.verdict = `gate 1: still has to cross the strike ${target}`; continue; }
+    const front = lineInFront(id, s.side, spot, lines);
+    if (front) { look.verdict = `gate 2: ${front.name} ${front.price.toFixed(2)} right ${s.side === "up" ? "above the long" : "below the short"}`; continue; }
+    const ask = s.side === "up" ? m.yesAsk : m.noAsk;
+    if (!(ask > 0.02 && ask < 0.98)) { look.verdict = "no ask"; continue; }
+    const mult = 1 / ask;
+    const hi = id === "btc" ? 1.8 : 2.5;
+    if (mult < 1.38 || mult > hi) { look.verdict = `gate 3: ${mult.toFixed(2)}x is outside 1.38-${hi}x`; continue; }
+    look.verdict = "TAKEN";
+    const vw = a.vwap1m?.vwap ?? null;
+    const sd = a.vwap1m?.stdev ?? null;
+    brickConsider({ ticker: m.ticker, side: s.side, ask, label: s.label }, id, { spot, vwap: vw, sd, nav: a.nav ?? null, target });
+  }
+}
+
+export function brickLooks() {
+  return g.__brickLook ?? {};
+}
+// What BRICK saw on its last look (diagnostic, read only).
+export function brickWrite() {
+  try {
+    writeFileSync(join(process.cwd(), "data", "brick-now.json"), JSON.stringify(g.__brickLook ?? {}, null, 1));
+  } catch {
+    // diagnostic only
+  }
+}

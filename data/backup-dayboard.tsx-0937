@@ -1,0 +1,212 @@
+// DAY TAB, ALL BOOKS (Claude, Oct 7 ~10:50 PM PT, Love: "make it display all of our books on all of their days... 4 even
+// rows: Best | Mean | Below Mean | Worst... best and worst times for each symbol... one card for kalshi itself... and one
+// for Combined · Prime"). Tap any card: its calendar, its best / worst hours for BTC and gold, and its trades.
+import { useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getBoardTrades, getDayBoard } from "@/lib/desk/fns";
+
+type Cell = { n: number; w: number; p: number };
+type Block = Cell & { days: Record<string, Cell>; hours: Record<string, Record<number, Cell>>; f?: number };
+
+const usd = (n: number) => `${n >= 0 ? "+" : "-"}$${Math.abs(n).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+const rate = (c: Cell) => (c.n ? Math.round((c.w / c.n) * 100) : 0);
+const tone = (n: number) => (n > 0.5 ? "#3ddc84" : n < -0.5 ? "#ff5c5c" : "rgba(255,255,255,0.7)");
+const hourName = (h: number) => `${h % 12 === 0 ? 12 : h % 12} ${h < 12 ? "AM" : "PM"}`;
+const TIERS = ["BEST", "MEAN", "BELOW MEAN", "WORST"] as const;
+// The CURRENT paper scoreboards (Oct 8): what each one does. Judge them on the days from Oct 8 on; Oct 4-7 is the lab.
+const RULES: Record<string, string> = {
+  clover: "EVERY 4 LEAF CLOVER TRADE · ONE PER WINDOW · THE BASELINE THE OTHERS ARE MEASURED AGAINST",
+  cur: "LOVE'S RULE · 3 CLOSED LOSSES IN A ROW = SITS OUT THE REST OF THE DAY · BACK AT MIDNIGHT PT",
+  flow: "CLAUDE'S RULE · TRADES ONLY WHILE 2 OF THE LAST 3 CLOSED TRADES THAT DAY WON · BACK IN WHEN THE CURRENT TURNS",
+  select: "CLAUDE'S RULE · 1ST BREAK + CONFIRM ONLY · UNDER 2.2X · NO GOLD 6 PM PT · FEWER, CLEANER TRADES",
+};
+
+function Card({ title, c, on, live, sub, onClick }: { title: string; c: Cell; on: boolean; live?: boolean; sub?: string; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="flex min-w-0 flex-col gap-1 rounded-[10px] px-3 py-2 text-left"
+      style={{ border: `1px solid ${on ? "#ffffff" : "rgba(255,255,255,0.18)"}`, background: "#000", boxShadow: on ? "0 0 14px rgba(255,255,255,0.25)" : "none" }}
+    >
+      <span className="flex items-center gap-1.5 truncate text-[9px] tracking-[0.18em] text-white/80">
+        {live ? <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "#3ddc84", boxShadow: "0 0 6px #3ddc84" }} /> : null}
+        <span className="truncate">{title}</span>
+      </span>
+      <span className="font-mono text-sm tabular-nums" style={{ color: tone(c.p) }}>{usd(c.p)}</span>
+      <span className="font-mono text-[9px] text-white/55">
+        {rate(c)}% · {c.w}/{c.n}
+        {sub ? ` · ${sub}` : ""}
+      </span>
+    </button>
+  );
+}
+
+function Calendar({ days }: { days: Record<string, Cell> }) {
+  const keys = Object.keys(days).sort();
+  const [shift, setShift] = useState(0);
+  const base = keys.length ? new Date(`${keys[keys.length - 1]}T12:00:00`) : new Date();
+  const month = new Date(base.getFullYear(), base.getMonth() + shift, 1);
+  const end = new Date(month.getFullYear(), month.getMonth() + 1, 0);
+  const cells: { key: string; day: number }[] = [];
+  for (let i = 0; i < month.getDay(); i += 1) cells.push({ key: `pad-${i}`, day: 0 });
+  for (let d = 1; d <= end.getDate(); d += 1) cells.push({ key: `${month.getFullYear()}-${String(month.getMonth() + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`, day: d });
+  const inMonth = keys.filter((k) => k.startsWith(`${month.getFullYear()}-${String(month.getMonth() + 1).padStart(2, "0")}`));
+  const green = inMonth.filter((k) => days[k].p > 0.5).length;
+  const red = inMonth.filter((k) => days[k].p < -0.5).length;
+  return (
+    <div className="mt-3">
+      <div className="flex items-center justify-between text-[10px] tracking-[0.2em] text-white/70">
+        <button type="button" onClick={() => setShift((s) => s - 1)} className="px-2">‹</button>
+        <span>
+          {month.toLocaleDateString("en-US", { month: "long", year: "numeric" }).toUpperCase()} · <span style={{ color: "#3ddc84" }}>{green} GREEN</span> · <span style={{ color: "#ff5c5c" }}>{red} RED</span>
+        </span>
+        <button type="button" onClick={() => setShift((s) => Math.min(0, s + 1))} className="px-2">›</button>
+      </div>
+      <div className="mt-2 grid grid-cols-7 gap-1 text-center text-[9px] tracking-[0.12em] text-white/45">
+        {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => <span key={`${d}${i}`}>{d}</span>)}
+      </div>
+      <div className="mt-1 grid grid-cols-7 gap-1">
+        {cells.map((cell) => {
+          const row = cell.day ? days[cell.key] : undefined;
+          return (
+            <div key={cell.key} className="min-h-14 rounded-md px-1 py-1" style={{ border: `1px solid ${row ? (row.p >= 0 ? "rgba(61,220,132,0.45)" : "rgba(255,92,92,0.45)") : "rgba(255,255,255,0.1)"}`, background: "#000" }}>
+              {cell.day ? <p className="text-[9px] text-white/45">{cell.day}</p> : null}
+              {row ? (
+                <>
+                  <p className="font-mono text-[10px] tabular-nums" style={{ color: tone(row.p) }}>{usd(row.p)}</p>
+                  <p className="font-mono text-[9px] text-white/60">{rate(row)}% · {row.n}</p>
+                </>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function Hours({ hours }: { hours: Record<string, Record<number, Cell>> }) {
+  return (
+    <div className="mt-4 grid gap-3">
+      {(["btc", "gold"] as const).map((a) => {
+        const h = hours[a] || {};
+        const list = Object.entries(h).map(([k, c]) => ({ hr: Number(k), ...c })).filter((x) => x.n >= 3);
+        const max = Math.max(1, ...list.map((x) => Math.abs(x.p)));
+        const best = [...list].sort((x, y) => y.p - x.p).slice(0, 3).filter((x) => x.p > 0);
+        const worst = [...list].sort((x, y) => x.p - y.p).slice(0, 3).filter((x) => x.p < 0);
+        return (
+          <div key={a} className="rounded-[10px] px-3 py-2" style={{ border: "1px solid rgba(255,255,255,0.15)" }}>
+            <p className="text-[10px] tracking-[0.22em] text-white/80">{a === "btc" ? "BTC" : "GOLD"} · BY HOUR (PT)</p>
+            <div className="mt-2 grid grid-cols-12 gap-[2px] sm:grid-cols-24" style={{ gridTemplateColumns: "repeat(24, minmax(0, 1fr))" }}>
+              {Array.from({ length: 24 }, (_, i) => {
+                const c = h[i];
+                const k = c && c.n >= 3 ? Math.min(1, Math.abs(c.p) / max) : 0;
+                const bg = !c || c.n < 3 ? "rgba(255,255,255,0.05)" : c.p >= 0 ? `rgba(61,220,132,${0.15 + 0.75 * k})` : `rgba(255,92,92,${0.15 + 0.75 * k})`;
+                return <div key={i} title={c ? `${hourName(i)}: ${usd(c.p)} · ${rate(c)}% · ${c.n} trades` : `${hourName(i)}: no trades`} className="h-6 rounded-[3px]" style={{ background: bg }} />;
+              })}
+            </div>
+            <div className="mt-1 flex justify-between font-mono text-[8px] text-white/35">
+              <span>12A</span><span>6A</span><span>12P</span><span>6P</span><span>11P</span>
+            </div>
+            <p className="mt-2 font-mono text-[10px] text-white/75">
+              <span style={{ color: "#3ddc84" }}>BEST</span> {best.length ? best.map((x) => `${hourName(x.hr)} ${usd(x.p)} (${rate(x)}%)`).join(" · ") : "—"}
+            </p>
+            <p className="mt-1 font-mono text-[10px] text-white/75">
+              <span style={{ color: "#ff5c5c" }}>WORST</span> {worst.length ? worst.map((x) => `${hourName(x.hr)} ${usd(x.p)} (${rate(x)}%)`).join(" · ") : "—"}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export function DayBoardTab() {
+  const q = useQuery({ queryKey: ["day-board"], queryFn: () => getDayBoard(), refetchInterval: 60000 });
+  const [sel, setSel] = useState<string>("all");
+  const tq = useQuery({ queryKey: ["day-board-trades", sel], queryFn: () => getBoardTrades({ data: { key: sel } }), refetchInterval: 60000 });
+  const b = q.data;
+  const tiers = useMemo(() => {
+    if (!b) return [] as [string, Block][][];
+    const ranked = Object.entries(b.books).filter(([, x]) => x.n >= 5).sort((x, y) => y[1].p - x[1].p) as [string, Block][];
+    const size = Math.ceil(ranked.length / 4);
+    return [0, 1, 2, 3].map((i) => ranked.slice(i * size, (i + 1) * size));
+  }, [b]);
+  if (!b) return <section className="rounded-[22px] border border-white/25 px-5 py-4 text-[10px] tracking-[0.22em] text-white/60">DAY · LOADING EVERY BOOK…</section>;
+  const running = new Set(b.kalshi.running);
+  const detail: { title: string; block: Block } =
+    sel === "kalshi" ? { title: "KALSHI · THE WHOLE ACCOUNT (LIVE, AFTER FEES)", block: b.kalshi }
+      : sel === "desk" ? { title: "KALSHI · THE DESK'S BOOKS ONLY", block: b.kalshi.desk }
+      : sel === "you" ? { title: "KALSHI · YOUR OWN TRADES", block: b.kalshi.you }
+      : sel === "combo" ? { title: `COMBINED · PRIME · ${b.combo.name ?? "CURRENT RUN"} (PAPER, ONE TRADE PER WINDOW)`, block: b.combo }
+      : sel === "all" ? { title: "ALL BOOKS (PAPER)", block: b.all }
+      : { title: `${b.names[sel] ?? sel.toUpperCase()} (PAPER)`, block: b.books[sel] };
+  return (
+    <section className="rounded-[22px] border border-white/25 px-4 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
+      <div className="flex items-baseline justify-between gap-2">
+        <p className="text-[10px] tracking-[0.28em] text-white/90">DAY · EVERY BOOK · EVERY DAY</p>
+        <button type="button" onClick={() => setSel("all")} className="rounded-[5px] px-2 py-1 font-mono text-[9px] tracking-[0.18em]" style={{ border: `1px solid ${sel === "all" ? "#fff" : "rgba(255,255,255,0.3)"}`, color: "#fff" }}>
+          ALL BOOKS · {usd(b.all.p)} · {rate(b.all)}%
+        </button>
+      </div>
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        <Card title="KALSHI · LIVE" c={b.kalshi} on={sel === "kalshi" || sel === "desk" || sel === "you"} live sub={`desk ${usd(b.kalshi.desk.p)} · you ${usd(b.kalshi.you.p)}`} onClick={() => setSel("kalshi")} />
+        <Card title={`COMBINED · PRIME${b.combo.name ? ` · ${b.combo.name}` : ""}`} c={b.combo} on={sel === "combo"} sub={`${b.combo.books.length} books · after fees ${usd(b.combo.p - (b.combo.f ?? 0))}`} onClick={() => setSel("combo")} />
+      </div>
+      <div className="mt-3">
+        {tiers.map((row, i) => (
+          <div key={TIERS[i]} className="py-2" style={{ borderTop: "1px solid rgba(255,255,255,0.15)" }}>
+            <p className="mb-2 text-[9px] tracking-[0.28em]" style={{ color: i === 0 ? "#3ddc84" : i === 3 ? "#ff5c5c" : "rgba(255,255,255,0.6)" }}>{TIERS[i]}</p>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {row.map(([book, x]) => <Card key={book} title={b.names[book] ?? book.toUpperCase()} c={x} on={sel === book} live={running.has(book)} sub={x.f ? `after fees ${usd(x.p - x.f)}` : undefined} onClick={() => setSel(book)} />)}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-2 rounded-[14px] px-3 py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.15)" }}>
+        <p className="text-[10px] tracking-[0.22em] text-white">{detail.title}</p>
+        <p className="mt-1 font-mono text-xs" style={{ color: tone(detail.block.p) }}>
+          {usd(detail.block.p)} <span className="text-white/60">· {rate(detail.block)}% · {detail.block.w}/{detail.block.n}{detail.block.f ? ` · after est. Kalshi fees ${usd(detail.block.p - detail.block.f)}` : ""}</span>
+        </p>
+        {sel === "kalshi" || sel === "desk" || sel === "you" ? (
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {(["kalshi", "desk", "you"] as const).map((k) => (
+              <button key={k} type="button" onClick={() => setSel(k)} className="rounded-full px-3 py-1 text-[9px] tracking-[0.2em]" style={{ border: `1px solid ${sel === k ? "#fff" : "rgba(255,255,255,0.25)"}`, color: "#fff" }}>
+                {k === "kalshi" ? "WHOLE ACCOUNT" : k === "desk" ? "DESK'S BOOKS" : "YOUR TRADES"}
+              </button>
+            ))}
+            <div className="mt-1 w-full font-mono text-[10px] text-white/70">
+              RUNNING NOW: {b.kalshi.running.map((x) => b.names[x] ?? x.toUpperCase()).join(" · ") || "none"}
+            </div>
+            <div className="w-full font-mono text-[10px] text-white/60">
+              LIVE BY BOOK: {Object.entries(b.kalshi.byBook).sort((x, y) => y[1].p - x[1].p).map(([k, c]) => `${b.names[k] ?? k.toUpperCase()} ${usd(c.p)} (${rate(c)}% of ${c.n})`).join(" · ")}
+            </div>
+          </div>
+        ) : null}
+        {sel === "combo" ? <p className="mt-1 font-mono text-[10px] text-white/60">BOOKS: {b.combo.books.map((x) => b.names[x] ?? x.toUpperCase()).join(" · ")}</p> : null}
+        {RULES[sel] ? <p className="mt-1 font-mono text-[10px] text-white/60">{RULES[sel]}</p> : null}
+        <Calendar days={detail.block.days} />
+        <Hours hours={detail.block.hours} />
+        <div className="mt-4">
+          <p className="text-[10px] tracking-[0.22em] text-white/80">TRADES · NEWEST FIRST</p>
+          <div className="mt-2 max-h-96 overflow-y-auto">
+            <table className="w-full text-left font-mono text-[10px]">
+              <tbody>
+                {(tq.data ?? []).map((t, i) => (
+                  <tr key={`${t.ticker}${t.at}${i}`} style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                    <td className="whitespace-nowrap py-1 pr-2 text-white/55">{new Date(t.at).toLocaleString("en-US", { timeZone: "America/Los_Angeles", month: "numeric", day: "numeric", hour: "numeric", minute: "2-digit" })}</td>
+                    <td className="pr-2 text-white/80">{t.book}</td>
+                    <td className="pr-2 text-white/70">{t.asset.toUpperCase()} {t.side === "up" ? "▲" : t.side === "down" ? "▼" : ""}</td>
+                    <td className="max-w-[12rem] truncate pr-2 text-white/50">{t.setup}</td>
+                    <td className="whitespace-nowrap text-right tabular-nums" style={{ color: tone(t.pnl) }}>{usd(t.pnl)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

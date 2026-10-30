@@ -1,0 +1,1178 @@
+[
+ {
+  "at": "2026-10-28T07:00:04.981Z",
+  "pt": "12:00 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off Green zone",
+  "spot": 80744.83,
+  "result": "sold",
+  "pnl": 12.29,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 80750.67, price 80744.83)"
+  ]
+ },
+ {
+  "at": "2026-10-28T07:05:00.243Z",
+  "pt": "12:05 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off Bollinger lower",
+  "spot": 4031.67,
+  "result": "sold",
+  "pnl": 7.47,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T07:15:06.289Z",
+  "pt": "12:15 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off fresh VWAP",
+  "spot": 80801.15,
+  "result": "loss",
+  "pnl": -20.61,
+  "flags": [
+   "SHORT INTO AN UNBROKEN BAND (5m PP 80800.69 only 0.46 below)",
+   "SHORT IN THE BOTTOM 20% (5m PP 80800.69 to fresh VWAP 80814.37, at 3%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T07:15:25.590Z",
+  "pt": "12:15 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off Red zone",
+  "spot": 4034.43,
+  "result": "loss",
+  "pnl": -20.79,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T07:30:06.053Z",
+  "pt": "12:30 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off fresh VWAP",
+  "spot": 80837.14,
+  "result": "loss",
+  "pnl": -20.62,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T07:50:00.751Z",
+  "pt": "12:50 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off fresh +1\u03c3",
+  "spot": 80881.48,
+  "result": "loss",
+  "pnl": -21.3,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T07:57:01.105Z",
+  "pt": "12:57 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off Red zone",
+  "spot": 4039.51,
+  "result": "loss",
+  "pnl": -21.13,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T08:21:10.862Z",
+  "pt": "1:21 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Failed break above Red zone - rejected down",
+  "spot": 81040.78,
+  "result": "loss",
+  "pnl": -21.18,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 81036.24, price 81040.78)",
+   "SHORT INTO AN UNBROKEN BAND (5m PP 81017.44 only 23.34 below)"
+  ]
+ },
+ {
+  "at": "2026-10-28T08:30:09.211Z",
+  "pt": "1:30 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off Red zone",
+  "spot": 4050.54,
+  "result": "loss",
+  "pnl": -20.63,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 4049.99, price 4050.54)"
+  ]
+ },
+ {
+  "at": "2026-10-28T08:50:23.640Z",
+  "pt": "1:50 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off +1\u03c3",
+  "spot": 4056.06,
+  "result": "sold",
+  "pnl": 21.78,
+  "flags": [
+   "SHORT INTO AN UNBROKEN BAND (5m R1 4055.7 only 0.36 below)",
+   "SHORT IN THE BOTTOM 33% (5m R1 4055.7 to +1\u03c3 4058.4, at 13%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T09:00:09.617Z",
+  "pt": "2:00 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off Red zone",
+  "spot": 4052.47,
+  "result": "sold",
+  "pnl": 11.62,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T09:05:18.072Z",
+  "pt": "2:05 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off +3\u03c3",
+  "spot": 81385.61,
+  "result": "loss",
+  "pnl": -20.7,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 81347.01, price 81385.61)",
+   "SHORT INTO AN UNBROKEN BAND (5m PP 81373.73 only 11.88 below)"
+  ]
+ },
+ {
+  "at": "2026-10-28T09:15:05.696Z",
+  "pt": "2:15 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off +3\u03c3",
+  "spot": 81419.41,
+  "result": "sold",
+  "pnl": 18.04,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T09:35:34.717Z",
+  "pt": "2:35 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Failed break below Green zone - rejected up",
+  "spot": 81298.55,
+  "result": "sold",
+  "pnl": 163.85,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 81321.32, price 81298.55)"
+  ]
+ },
+ {
+  "at": "2026-10-28T09:45:22.111Z",
+  "pt": "2:45 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off +2\u03c3",
+  "spot": 81403.78,
+  "result": "sold",
+  "pnl": 13.2,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T10:10:03.594Z",
+  "pt": "3:10 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off Bollinger lower",
+  "spot": 4051.65,
+  "result": "loss",
+  "pnl": -21.36,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T10:11:16.508Z",
+  "pt": "3:11 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off +2\u03c3",
+  "spot": 81392.2,
+  "result": "loss",
+  "pnl": -21.25,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T10:15:07.974Z",
+  "pt": "3:15 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off Bollinger lower",
+  "spot": 4049.72,
+  "result": "loss",
+  "pnl": -20.76,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T10:20:22.510Z",
+  "pt": "3:20 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Failed break below +2\u03c3 - rejected up",
+  "spot": 81390.17,
+  "result": "sold",
+  "pnl": 19.41,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 81402.41, price 81390.17)",
+   "LONG INTO AN UNBROKEN BAND (5m PP 81399.12 only 8.95 above)"
+  ]
+ },
+ {
+  "at": "2026-10-28T10:30:10.268Z",
+  "pt": "3:30 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off session VWAP",
+  "spot": 4046.39,
+  "result": "loss",
+  "pnl": -20.58,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T10:31:00.669Z",
+  "pt": "3:31 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off +2\u03c3",
+  "spot": 81407.41,
+  "result": "sold",
+  "pnl": 16.31,
+  "flags": [
+   "LONG INTO AN UNBROKEN BAND (5m PP 81408.42 only 1.01 above)",
+   "LONG IN THE TOP 33% (+2\u03c3 81391.89 to 5m PP 81408.42, at 94%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T11:05:00.333Z",
+  "pt": "4:05 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off Bollinger lower",
+  "spot": 4043.77,
+  "result": "sold",
+  "pnl": 48.23,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T11:05:12.875Z",
+  "pt": "4:05 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off Green zone",
+  "spot": 81353.58,
+  "result": "loss",
+  "pnl": -20.99,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T11:15:35.893Z",
+  "pt": "4:15 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off session VWAP",
+  "spot": 4046.58,
+  "result": "loss",
+  "pnl": -20.76,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 4045.59, price 4046.58)",
+   "SHORT INTO AN UNBROKEN BAND (5m PP 4045.6 only 0.98 below)"
+  ]
+ },
+ {
+  "at": "2026-10-28T11:16:34.954Z",
+  "pt": "4:16 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off +1\u03c3",
+  "spot": 81251.72,
+  "result": "sold",
+  "pnl": 22.87,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T11:30:06.808Z",
+  "pt": "4:30 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off session VWAP",
+  "spot": 4047.33,
+  "result": "loss",
+  "pnl": -20.76,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 4047.18, price 4047.33)"
+  ]
+ },
+ {
+  "at": "2026-10-28T12:00:11.896Z",
+  "pt": "5:00 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off +1\u03c3",
+  "spot": 81234.62,
+  "result": "loss",
+  "pnl": -20.73,
+  "flags": [
+   "LONG INTO AN UNBROKEN BAND (5m PP 81256.96 only 22.34 above)"
+  ]
+ },
+ {
+  "at": "2026-10-28T12:20:02.116Z",
+  "pt": "5:20 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off Bollinger lower",
+  "spot": 80914.97,
+  "result": "sold",
+  "pnl": 26.65,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 80894.81, price 80914.97)",
+   "SHORT INTO AN UNBROKEN BAND (5m S1 80900.31 only 14.66 below)",
+   "SHORT IN THE BOTTOM 33% (5m S1 80900.31 to session VWAP 80952.67, at 28%)",
+   "BTC SHORT NEARER GREEN THAN PINK (91% of the way pink 81060 to S1 80900.31)"
+  ]
+ },
+ {
+  "at": "2026-10-28T12:20:02.892Z",
+  "pt": "5:20 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off +1\u03c3",
+  "spot": 4056.8,
+  "result": "loss",
+  "pnl": -21.24,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T12:51:27.347Z",
+  "pt": "5:51 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off -1\u03c3",
+  "spot": 80649.88,
+  "result": "sold",
+  "pnl": 6.27,
+  "flags": [
+   "BTC SHORT NEARER GREEN THAN PINK (62% of the way pink 80737.67 to S1 80595.83)"
+  ]
+ },
+ {
+  "at": "2026-10-28T13:05:00.591Z",
+  "pt": "6:05 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off +1\u03c3",
+  "spot": 4054.7,
+  "result": "loss",
+  "pnl": -20.87,
+  "flags": [
+   "SHORT IN THE BOTTOM 33% (5m PP 4053.43 to 5m R1 4057.66, at 30%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T13:05:01.573Z",
+  "pt": "6:05 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off -1\u03c3",
+  "spot": 80646.57,
+  "result": "sold",
+  "pnl": 21.71,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 80585.9, price 80646.57)"
+  ]
+ },
+ {
+  "at": "2026-10-28T13:21:52.204Z",
+  "pt": "6:21 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off Green zone",
+  "spot": 4051.96,
+  "result": "loss",
+  "pnl": -21.22,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T13:25:02.087Z",
+  "pt": "6:25 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off Green zone",
+  "spot": 80537.5,
+  "result": "loss",
+  "pnl": -21.24,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 80555.18, price 80537.5)"
+  ]
+ },
+ {
+  "at": "2026-10-28T13:30:32.366Z",
+  "pt": "6:30 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Failed break below Green zone - rejected up",
+  "spot": 80546.77,
+  "result": "sold",
+  "pnl": 25.36,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T13:35:15.020Z",
+  "pt": "6:35 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Failed break below Green zone - rejected up",
+  "spot": 4048.52,
+  "result": "loss",
+  "pnl": -21.15,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T13:45:27.860Z",
+  "pt": "6:45 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Failed break below session VWAP - rejected up",
+  "spot": 4050.31,
+  "result": "win",
+  "pnl": 21.8,
+  "flags": [
+   "LONG INTO AN UNBROKEN BAND (5m PP 4050.48 only 0.17 above)",
+   "LONG IN THE TOP 33% (session VWAP 4048.43 to 5m PP 4050.48, at 92%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T14:02:29.691Z",
+  "pt": "7:02 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Failed break above -1\u03c3 - rejected down",
+  "spot": 80618.45,
+  "result": "sold",
+  "pnl": 14.95,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 80565.91, price 80618.45)"
+  ]
+ },
+ {
+  "at": "2026-10-28T14:03:45.143Z",
+  "pt": "7:03 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Failed break below session VWAP - rejected up",
+  "spot": 4049.55,
+  "result": "loss",
+  "pnl": -20.86,
+  "flags": [
+   "LONG INTO AN UNBROKEN BAND (5m PP 4049.64 only 0.09 above)",
+   "LONG IN THE TOP 33% (session VWAP 4048.46 to 5m PP 4049.64, at 92%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T14:16:01.872Z",
+  "pt": "7:16 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off session VWAP",
+  "spot": 4047.23,
+  "result": "sold",
+  "pnl": 16.23,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T14:25:02.115Z",
+  "pt": "7:25 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off Bollinger lower",
+  "spot": 80439.72,
+  "result": "loss",
+  "pnl": -21.31,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T14:30:12.410Z",
+  "pt": "7:30 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Failed break below Green zone - rejected up",
+  "spot": 4041.97,
+  "result": "loss",
+  "pnl": -4.3,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 4043.22, price 4041.97)"
+  ]
+ },
+ {
+  "at": "2026-10-28T14:34:41.200Z",
+  "pt": "7:34 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off Bollinger lower",
+  "spot": 80463.35,
+  "result": "sold",
+  "pnl": 15.97,
+  "flags": [
+   "LONG INTO AN UNBROKEN BAND (5m PP 80487.38 only 24.03 above)",
+   "LONG IN THE TOP 33% (-2\u03c3 80365.2 to 5m PP 80487.38, at 80%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T14:46:02.694Z",
+  "pt": "7:46 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off -1\u03c3",
+  "spot": 4040.48,
+  "result": "sold",
+  "pnl": 19.4,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T14:56:52.717Z",
+  "pt": "7:56 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off -2\u03c3",
+  "spot": 80419.38,
+  "result": "sold",
+  "pnl": 220.05,
+  "flags": [
+   "LONG IN THE TOP 33% (-2\u03c3 80343.68 to 5m PP 80447.36, at 73%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T15:00:06.532Z",
+  "pt": "8:00 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off -1\u03c3",
+  "spot": 4041.76,
+  "result": "sold",
+  "pnl": 15.33,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T15:06:49.924Z",
+  "pt": "8:06 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off -1\u03c3",
+  "spot": 80529.63,
+  "result": "loss",
+  "pnl": -21.24,
+  "flags": [
+   "SHORT IN THE BOTTOM 33% (5m PP 80488.72 to -1\u03c3 80613.63, at 33%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T15:15:33.313Z",
+  "pt": "8:15 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off -1\u03c3",
+  "spot": 80549.34,
+  "result": "loss",
+  "pnl": -20.69,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T15:21:21.772Z",
+  "pt": "8:21 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off Red zone",
+  "spot": 4044.64,
+  "result": "win",
+  "pnl": 34.66,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T15:34:24.217Z",
+  "pt": "8:34 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off Green zone",
+  "spot": 4043.26,
+  "result": "sold",
+  "pnl": 17.83,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T15:35:02.947Z",
+  "pt": "8:35 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off Green zone",
+  "spot": 80569.5,
+  "result": "loss",
+  "pnl": -21.24,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 80596.53, price 80569.5)"
+  ]
+ },
+ {
+  "at": "2026-10-28T15:50:01.159Z",
+  "pt": "8:50 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off Bollinger lower",
+  "spot": 80385.15,
+  "result": "loss",
+  "pnl": -21.24,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 80406.7, price 80385.15)",
+   "LONG INTO AN UNBROKEN BAND (5m S1 80386.86 only 1.71 above)",
+   "LONG IN THE TOP 33% (-2\u03c3 80318.13 to 5m S1 80386.86, at 98%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T15:50:08.632Z",
+  "pt": "8:50 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off Green zone",
+  "spot": 4041.53,
+  "result": "loss",
+  "pnl": -21.29,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T16:15:35.826Z",
+  "pt": "9:15 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off Bollinger lower",
+  "spot": 4038.77,
+  "result": "sold",
+  "pnl": 11.82,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 4038.91, price 4038.77)",
+   "LONG INTO AN UNBROKEN BAND (5m PP 4039.37 only 0.60 above)"
+  ]
+ },
+ {
+  "at": "2026-10-28T16:25:05.173Z",
+  "pt": "9:25 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off Green zone",
+  "spot": 80360.47,
+  "result": "loss",
+  "pnl": -21.32,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 80379.07, price 80360.47)"
+  ]
+ },
+ {
+  "at": "2026-10-28T16:30:14.750Z",
+  "pt": "9:30 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off -1\u03c3",
+  "spot": 4040.03,
+  "result": "win",
+  "pnl": 20.1,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 4040.3, price 4040.03)"
+  ]
+ },
+ {
+  "at": "2026-10-28T16:45:11.143Z",
+  "pt": "9:45 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off -1\u03c3",
+  "spot": 4040.42,
+  "result": "sold",
+  "pnl": 17.65,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T16:45:38.870Z",
+  "pt": "9:45 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off Green zone",
+  "spot": 80364.23,
+  "result": "sold",
+  "pnl": 16.32,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T17:21:01.627Z",
+  "pt": "10:21 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off -1\u03c3",
+  "spot": 4040.0,
+  "result": "loss",
+  "pnl": -20.99,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 4040.19, price 4040.0)",
+   "LONG INTO AN UNBROKEN BAND (5m PP 4040.93 only 0.93 above)"
+  ]
+ },
+ {
+  "at": "2026-10-28T17:25:19.673Z",
+  "pt": "10:25 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off -1\u03c3",
+  "spot": 80500.59,
+  "result": "loss",
+  "pnl": -21.37,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 80491.48, price 80500.59)"
+  ]
+ },
+ {
+  "at": "2026-10-28T17:30:13.259Z",
+  "pt": "10:30 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off -1\u03c3",
+  "spot": 4038.54,
+  "result": "loss",
+  "pnl": -3.25,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 4039.03, price 4038.54)"
+  ]
+ },
+ {
+  "at": "2026-10-28T17:37:32.394Z",
+  "pt": "10:37 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Failed break above Red zone - rejected down",
+  "spot": 80544.3,
+  "result": "loss",
+  "pnl": -21.22,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T17:46:04.199Z",
+  "pt": "10:46 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off Green zone",
+  "spot": 4037.46,
+  "result": "sold",
+  "pnl": 15.29,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 4037.9, price 4037.46)",
+   "LONG INTO AN UNBROKEN BAND (-1\u03c3 4038.29 only 0.83 above)"
+  ]
+ },
+ {
+  "at": "2026-10-28T18:01:12.906Z",
+  "pt": "11:01 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Failed break below -1\u03c3 - rejected up",
+  "spot": 4040.49,
+  "result": "loss",
+  "pnl": -20.85,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T18:17:51.560Z",
+  "pt": "11:17 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Failed break below Bollinger lower - rejected up",
+  "spot": 4033.76,
+  "result": "sold",
+  "pnl": 26.43,
+  "flags": [
+   "LONG IN THE TOP 33% (5m S1 4029.92 to 5m PP 4035.62, at 67%)"
+  ]
+ },
+ {
+  "at": "2026-10-28T18:30:27.053Z",
+  "pt": "11:30 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off Bollinger lower",
+  "spot": 4037.71,
+  "result": "sold",
+  "pnl": 10.05,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T18:31:48.896Z",
+  "pt": "11:31 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Failed break above session VWAP - rejected down",
+  "spot": 80820.29,
+  "result": "loss",
+  "pnl": -20.72,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T18:45:11.481Z",
+  "pt": "11:45 AM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off +1\u03c3",
+  "spot": 81094.22,
+  "result": "sold",
+  "pnl": 9.99,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T18:45:11.549Z",
+  "pt": "11:45 AM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off +1\u03c3",
+  "spot": 4053.66,
+  "result": "sold",
+  "pnl": 13.02,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T19:00:56.983Z",
+  "pt": "12:00 PM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off -2\u03c3",
+  "spot": 4033.85,
+  "result": "sold",
+  "pnl": 26.43,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 4039.89, price 4033.85)"
+  ]
+ },
+ {
+  "at": "2026-10-28T19:21:15.579Z",
+  "pt": "12:21 PM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Rejected up off session VWAP",
+  "spot": 4050.93,
+  "result": "sold",
+  "pnl": 28.52,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T19:30:13.302Z",
+  "pt": "12:30 PM",
+  "lane": "recon-np",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off +1\u03c3",
+  "spot": 81104.91,
+  "result": "loss",
+  "pnl": -20.82,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 81100.63, price 81104.91)"
+  ]
+ },
+ {
+  "at": "2026-10-28T19:30:14.679Z",
+  "pt": "12:30 PM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Failed break above +1\u03c3 - rejected down",
+  "spot": 4054.65,
+  "result": "loss",
+  "pnl": -2.92,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 4053.12, price 4054.65)"
+  ]
+ },
+ {
+  "at": "2026-10-28T19:56:28.317Z",
+  "pt": "12:56 PM",
+  "lane": "recon-np",
+  "asset": "gold",
+  "side": "short",
+  "label": "Rejected down off +2\u03c3",
+  "spot": 4063.09,
+  "result": "loss",
+  "pnl": -21.18,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T20:06:26.289Z",
+  "pt": "1:06 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "btc",
+  "side": "short",
+  "label": "1m rejection off Red zone",
+  "spot": 81445.17,
+  "result": "sold",
+  "pnl": 10.34,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T20:08:04.988Z",
+  "pt": "1:08 PM",
+  "lane": "recon-npo+recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "Launched from the bottom third (low 4068.20) - a long until the top third",
+  "spot": 4071.37,
+  "result": "loss",
+  "pnl": -21.1,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T20:15:24.128Z",
+  "pt": "1:15 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "btc",
+  "side": "long",
+  "label": "Candle rising from the bottom third",
+  "spot": 81244.25,
+  "result": "loss",
+  "pnl": -20.85,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T20:19:02.955Z",
+  "pt": "1:19 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "gold",
+  "side": "short",
+  "label": "Launched from the top third (high 4070.95) - a short until the bottom third",
+  "spot": 4066.55,
+  "result": "win",
+  "pnl": 10.74,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T20:50:00.691Z",
+  "pt": "1:50 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "btc",
+  "side": "long",
+  "label": "Rejected up off Bollinger lower",
+  "spot": 80987.34,
+  "result": "sold",
+  "pnl": 20.37,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T20:57:49.223Z",
+  "pt": "1:57 PM",
+  "lane": "recon-npo+recon-np",
+  "asset": "gold",
+  "side": "long",
+  "label": "1m rejection off +2\u03c3",
+  "spot": 4069.62,
+  "result": "loss",
+  "pnl": -21.04,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T21:05:22.527Z",
+  "pt": "2:05 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "btc",
+  "side": "short",
+  "label": "Failed break above Red zone - rejected down",
+  "spot": 81304.96,
+  "result": "loss",
+  "pnl": -20.9,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 81292.02, price 81304.96)"
+  ]
+ },
+ {
+  "at": "2026-10-28T21:17:54.842Z",
+  "pt": "2:17 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "btc",
+  "side": "short",
+  "label": "1m rejection off Red zone",
+  "spot": 81313.76,
+  "result": "sold",
+  "pnl": 21.55,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T21:35:39.285Z",
+  "pt": "2:35 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off +1\u03c3",
+  "spot": 81125.8,
+  "result": "loss",
+  "pnl": -20.79,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 81082.49, price 81125.8)",
+   "BTC SHORT NEARER GREEN THAN PINK (54% of the way pink 81211.66 to S1 81053.21)"
+  ]
+ },
+ {
+  "at": "2026-10-28T21:45:15.413Z",
+  "pt": "2:45 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "btc",
+  "side": "long",
+  "label": "Tap-reject at fresh -1\u03c3",
+  "spot": 81164.13,
+  "result": "sold",
+  "pnl": 8.46,
+  "flags": [
+   "LONG INTO AN UNBROKEN BAND (5m PP 81180.52 only 16.39 above)"
+  ]
+ },
+ {
+  "at": "2026-10-28T22:00:24.376Z",
+  "pt": "3:00 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "btc",
+  "side": "short",
+  "label": "Rejected down off fresh +1\u03c3",
+  "spot": 81240.82,
+  "result": "sold",
+  "pnl": 10.5,
+  "flags": []
+ },
+ {
+  "at": "2026-10-28T22:16:08.594Z",
+  "pt": "3:16 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "btc",
+  "side": "long",
+  "label": "Tap-reject at +1\u03c3",
+  "spot": 81172.95,
+  "result": "loss",
+  "pnl": -20.97,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 81221.79, price 81172.95)"
+  ]
+ },
+ {
+  "at": "2026-10-28T22:21:24.702Z",
+  "pt": "3:21 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "gold",
+  "side": "long",
+  "label": "Tap-reject at +1\u03c3",
+  "spot": 4059.16,
+  "result": "loss",
+  "pnl": -21.35,
+  "flags": [
+   "LONG ON A FALLING RED CANDLE (5m open 4060.28, price 4059.16)",
+   "LONG INTO AN UNBROKEN BAND (5m S1 4059.98 only 0.82 above)"
+  ]
+ },
+ {
+  "at": "2026-10-28T22:31:07.047Z",
+  "pt": "3:31 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "btc",
+  "side": "short",
+  "label": "Tap-reject at fresh VWAP",
+  "spot": 81215.58,
+  "result": "open",
+  "pnl": null,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 81188.05, price 81215.58)"
+  ]
+ },
+ {
+  "at": "2026-10-28T22:38:02.082Z",
+  "pt": "3:38 PM",
+  "lane": "recon-np+recon-npo",
+  "asset": "gold",
+  "side": "short",
+  "label": "Tap-reject at fresh -1\u03c3",
+  "spot": 4054.46,
+  "result": "open",
+  "pnl": null,
+  "flags": [
+   "SHORT ON A RISING GREEN CANDLE (5m open 4053.9, price 4054.46)"
+  ]
+ }
+]

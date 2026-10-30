@@ -1,0 +1,19 @@
+# Love Oct 27 2026 1:41 PM PT: "6 & 7 no / the rest, full yes 💓 nothingggg left out pls."
+# 6 = downloaded libraries (reinstall with npm install). 7 = her keys (stay on her Mac only).
+# (Her desk's own .gitignore said ".secrets/ attachments/ tools/" - attachments/ does not exist; tools/ is now included.)
+node_modules/
+.secrets/
+*.pem
+*.secret
+.env*
+# The five logs over GitHub's 100 MB limit are NOT left out: they live compressed and split in data/big-logs/
+# (restore: python3 tools/restore-big-logs.py). Only their raw copies are skipped here.
+data/other-side.jsonl
+data/gold-law.jsonl
+data/copy-timing.jsonl
+data/band-lock.jsonl
+data/grok-og-archive.jsonl
+1ZuhHAqjqznYeJvp-grok-workspace/
+Aurelius 2/
+Aurelius/
+*.zip

@@ -1,0 +1,162 @@
+{
+ "frozen": true,
+ "since": "2026-10-19T07:16:00Z",
+ "sincePT": "Mon Oct 19 2026 12:16 AM PT",
+ "until": "Love says thaw",
+ "quote": "yo, can you lock that shit in? that she just did with gold... can you freeze that in place for these books? i want to compare the hit rates to other models... i don't want her to deviate from that luv that's what i've been aiming for. freeze it til it's frozen - until i say to thaw it",
+ "snapshot": "data/FROZEN-2026-10-19-1216AM",
+ "fingerprints": {
+  "bandlock.ts": "b16c073e4873b77a",
+  "charttwins.ts": "6d57a11865aa4240",
+  "engine.ts": "fac398f948130107",
+  "golden.ts": "9ffef369c617d291",
+  "goldlaw.ts": "dcc1fd1002ef2c2d",
+  "kalshi-live.server.ts": "498ef32cf0189e86",
+  "kalshi.ts": "a9f8d49b27a30ce7",
+  "nav.ts": "ab2f6ccd1c3a193d",
+  "pivotbooks.ts": "c36fc7b0164dd2c8",
+  "quotes.ts": "ff2f58a38f2bd5c8",
+  "tv.ts": "3662dce61c44644b",
+  "live-switch.json": "b8a934ad5646dff8"
+ },
+ "books": [
+  "ogp5-inv",
+  "pap247",
+  "ogp5",
+  "ogp5-dly",
+  "ogp5-bbsr"
+ ],
+ "sizes": {
+  "btc": 5,
+  "gold": 5
+ },
+ "settings": {
+  "bandReach": {
+   "gold": 1.5,
+   "note": "Oct 18 ~10:05 PM PT, Love: \"i literally just told you $1.50\" (gold range: session bands + the pink within $1.50 in front block; set ~8:22 PM). Red/green pivots keep zoneReach $1.11. BTC $25 default. Self-test runs on defaults."
+  },
+  "zoneReach": {
+   "gold": 1.11,
+   "note": "Oct 18 ~8:58 PM PT, Love: \"make the red/green pivots $1.11 pls\" (R1/R2/S1/S2 as walls in front; pink + others keep bandReach $1.50)"
+  },
+  "channelPct": {
+   "gold": 0.3,
+   "note": "Oct 18 ~10:16 PM PT, Love: \"we can make the channel on gold from 20% to 30% right now\" (BTC default 20%) | Oct 18 ~11:48 PM PT BTC 30% too (Love: \"i want her to do the same thing for btc. exactly.\")",
+   "btc": 0.3
+  },
+  "liveBreakDist": {
+   "btc": 5,
+   "gold": 0.33
+  },
+  "bookSkipHours": {
+   "ogp5": [
+    2,
+    4,
+    6,
+    7,
+    10,
+    11,
+    14,
+    16,
+    18
+   ],
+   "pap247": [
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    14,
+    16,
+    18,
+    22
+   ],
+   "ogp5-dly": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    12,
+    13,
+    15,
+    17,
+    20,
+    21,
+    22,
+    23
+   ],
+   "ogp5-bbsr": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+   ],
+   "ogp5-inv": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+   ]
+  }
+ },
+ "rule": "No change to the top/bottom-third rule or its flip while frozen. To change it: Love must say thaw first. Other rules can still be tuned.",
+ "scope": "ONLY the top/bottom-third rule + its flip, on BTC and gold (Love, Oct 19 ~12:19 AM PT: \"no i was talking specificallyyy about the new 33% rule, and how you instituted into bitcoin too\"). Everything else stays adjustable.",
+ "frozenRule": {
+  "what": "Price actively FALLING from the top 33% of her channel (this 5m candle's high, open included, in the top third; price at least half the break distance under that high and not yet bounced the break distance off its low) = NO LONG -> FLIP to the SHORT if the short passes every other rule. Mirror: RISING from the bottom 33% = NO SHORT -> flip to the LONG.",
+  "where": "bandlock.ts awayVerdict (\"FALLING FROM THE TOP THIRD\") + pivotbooks.ts (\"THIRD-OF-CHANNEL FLIP\")",
+  "assets": [
+   "btc",
+   "gold"
+  ],
+  "breakDistance": {
+   "btc": 8,
+   "gold": 0.33
+  },
+  "note": "Oct 19 ~12:26 AM PT: BTC break elsewhere went $8 -> $6 (Love); this frozen rule keeps its own BTC $8 / gold 33c (FROZEN_THIRD_DIST in bandlock.ts)."
+ }
+}

@@ -1,0 +1,9 @@
+{
+  "from": "2026-09-28T19:39:00.000Z",
+  "decideAt": "2026-09-28T21:09:00.000Z",
+  "dollars": 5,
+  "raiseTo": 10,
+  "raised": false,
+  "rule": "Raise the prime-book Kalshi size from 5 to 10 only if the net of prime-book live trades since `from` is green at `decideAt`. A red hour means do not raise. Check every trade. Leave the size at 5 unless the book is actually broken.",
+  "openAtStart": "KXBTC15M-26SEP281545-45 short, about $5, prime Tap-reject at -1.5\u03c3"
+}

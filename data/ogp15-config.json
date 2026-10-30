@@ -1,0 +1,30 @@
+{
+ "name": "OG 👑 PIVOT 15M (lane ogp15, book ogp15)",
+ "frozenAt": "2026-10-12T00:31:43Z",
+ "why": "Love, Oct 11 ~5:30 PM PT: 'isolate the configuration from this morning and see what HER best hours are... we'll get the data on that this week'. This is the exact config she has run since ~4:50 AM PT Oct 11; any later change to pivotbooks.ts shows up as a different codeHash.",
+ "codeFile": "src/lib/desk/pivotbooks.ts",
+ "codeHash": "0c43a0ca8997b267",
+ "lines": "Session VWAP bands (PEPPERSTONE BTCUSD / TVC GOLD, session from 5 PM ET: VWAP, ±0.5…±3σ) + 15-minute CM Pivot Bands (PP = EMA7 of hlc3; R1/S1 = PP ± avg7(H−L); R2/S2 = ± 2×), built from 1m bars resampled to 15m.",
+ "entry": [
+  "Checked every tick from window open until 2:00 left, once per window.",
+  "First: the last CLOSED 1m candle opened on one side of a line and closed on the other = 'Close above X' (long) / 'Close below X' (short).",
+  "Else: price within 0.35 of that line's unit (σ for session lines, 15m pivot range for pivot lines) of the nearest line = 'On X', long if at/above it, short if below.",
+  "Skip if another line sits between price and the strike (more than 0.2 unit away from price).",
+  "Skip if the session VWAP is on the wrong side of both price and the strike.",
+  "Price: 1.38x and up (ask ≤ 72.5c), no upper cap; ask > 2c."
+ ],
+ "exits": "Paper: half at 75% of the max, rest arms at 90% with a 1-point trail, sells at 97c, else the bell. Live: the same (half 75 / trail 90) + wide lock (+60% then back to +30%) + gold cut-out ($2.50 past the strike). LOCK THE WIN / TP gates / paper mirroring off.",
+ "stake": "$20 paper, live dollars per desk setting",
+ "liveSkipHoursPT": [
+  6,
+  7,
+  10,
+  11,
+  12,
+  13
+ ],
+ "assets": [
+  "btc",
+  "gold"
+ ]
+}

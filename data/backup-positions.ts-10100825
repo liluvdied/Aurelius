@@ -1,0 +1,140 @@
+// POSITIONS (Claude, Oct 9 ~9 AM PT, Love: "kalshi doesn't have an autosell feature for the combos... i want to set up an
+// autosell terminal in here, let's make a POSITIONS tab where we can do everything there... for all positions held on
+// kalshi... it doesn't notify you or anything when it's green so you literally have to watch it 24/7").
+// Every open Kalshi position (any market), its live value and P&L, and HER autosell rules:
+//   sell when the held side's bid reaches a % gain on cost, or a price (e.g. 50c). Checked every ~20 s by the desk;
+//   when it hits, the desk sells the whole position (the same close the SELL button uses) and posts an alert.
+//   It also posts a one-time alert the first time a position turns green.
+// Rules live in data/autosell-rules.json. Nothing sells unless she set a rule (or pressed SELL).
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+const ROOT = "https://external-api.kalshi.com/trade-api/v2";
+const RULES = () => join(process.cwd(), "data", "autosell-rules.json");
+export type Rule = { mode: "pct" | "price"; value: number; at: string; done?: { at: string; why: string } | null };
+export type PosRow = { ticker: string; title: string; side: "yes" | "no"; qty: number; cost: number; entry: number; bid: number; ask: number; value: number; pnl: number; pct: number; closes: string; status: string; rule: Rule | null };
+const g = globalThis as unknown as { __posAt?: number; __posBusy?: boolean; __posCache?: { at: number; rows: PosRow[] }; __posGreen?: Record<string, boolean>; __posMk?: Record<string, { at: number; m: any }> };
+const r2 = (n: number) => Math.round(n * 100) / 100;
+
+export function readRules(): Record<string, Rule> {
+  try {
+    return existsSync(RULES()) ? JSON.parse(readFileSync(RULES(), "utf8")) : {};
+  } catch {
+    return {};
+  }
+}
+function writeRules(r: Record<string, Rule>) {
+  writeFileSync(RULES(), JSON.stringify(r, null, 1));
+}
+function alarm(text: string) {
+  try {
+    const af = join(process.cwd(), "data", "alarm.json");
+    let rows: unknown[] = [];
+    try {
+      const prev = JSON.parse(readFileSync(af, "utf8"));
+      if (Array.isArray(prev)) rows = prev;
+    } catch {
+    }
+    rows.unshift({ at: new Date().toISOString(), text });
+    writeFileSync(af, JSON.stringify(rows.slice(0, 20)));
+    appendFileSync(join(process.cwd(), "data", "positions-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), text }) + "\n");
+  } catch {
+  }
+}
+async function market(ticker: string): Promise<any> {
+  const c = (g.__posMk ||= {});
+  if (c[ticker] && Date.now() - c[ticker].at < 18000) return c[ticker].m;
+  const res = await fetch(`${ROOT}/markets/${encodeURIComponent(ticker)}`, { signal: AbortSignal.timeout(8000) });
+  const m = res.ok ? (await res.json())?.market : null;
+  c[ticker] = { at: Date.now(), m };
+  return m;
+}
+const num = (v: unknown) => {
+  const n = Number.parseFloat(String(v ?? ""));
+  return Number.isFinite(n) ? n : 0;
+};
+
+export async function listPositions(fresh = false): Promise<PosRow[]> {
+  if (!fresh && g.__posCache && Date.now() - g.__posCache.at < 8000) return g.__posCache.rows;
+  const live = await import("./kalshi-live.server");
+  const held: { ticker: string; pos: number; cost: number }[] = await (live as any).allPositions();
+  const rules = readRules();
+  const rows: PosRow[] = [];
+  for (const h of held) {
+    let m: any = null;
+    try {
+      m = await market(h.ticker);
+    } catch {
+      m = null;
+    }
+    const side: "yes" | "no" = h.pos > 0 ? "yes" : "no";
+    const qty = Math.abs(h.pos);
+    const bid = side === "yes" ? num(m?.yes_bid_dollars) : num(m?.no_bid_dollars);
+    const ask = side === "yes" ? num(m?.yes_ask_dollars) : num(m?.no_ask_dollars);
+    const entry = qty > 0 ? h.cost / qty : 0;
+    const value = r2(qty * bid);
+    const title = [m?.title, m?.yes_sub_title || m?.subtitle].filter(Boolean).join(" · ") || h.ticker;
+    rows.push({ ticker: h.ticker, title, side, qty: r2(qty), cost: r2(h.cost), entry: r2(entry), bid, ask, value, pnl: r2(value - h.cost), pct: h.cost > 0 ? Math.round((value / h.cost - 1) * 100) : 0, closes: String(m?.close_time || ""), status: String(m?.status || ""), rule: rules[h.ticker] && !rules[h.ticker].done ? rules[h.ticker] : null });
+  }
+  rows.sort((a, b) => (a.closes < b.closes ? -1 : 1));
+  g.__posCache = { at: Date.now(), rows };
+  return rows;
+}
+
+export function setRule(ticker: string, rule: { mode: "pct" | "price"; value: number } | null) {
+  const rules = readRules();
+  if (!rule) delete rules[ticker];
+  else rules[ticker] = { mode: rule.mode, value: rule.value, at: new Date().toISOString(), done: null };
+  writeRules(rules);
+  g.__posCache = undefined;
+  return rules;
+}
+
+export async function sellNow(ticker: string, why: string) {
+  const live = await import("./kalshi-live.server");
+  const cash = await (live as any).flattenTicker(ticker, true);
+  alarm(`POSITIONS: sold ${ticker} (${why})${cash ? `, about $${Number(cash).toFixed(2)} back` : ""}.`);
+  g.__posCache = undefined;
+  return cash ?? null;
+}
+
+/** Every ~20 s from the desk loop: run her autosell rules and the "it's green" alert. */
+export async function positionsTick() {
+  if (g.__posBusy || (g.__posAt && Date.now() - g.__posAt < 20000)) return;
+  const rules = readRules();
+  const active = Object.entries(rules).filter(([, r]) => !r.done);
+  g.__posAt = Date.now();
+  g.__posBusy = true;
+  try {
+    const rows = await listPositions(true);
+    const green = (g.__posGreen ||= {});
+    for (const p of rows) {
+      if (p.pnl > 0.01 && p.bid > 0 && !green[p.ticker]) {
+        green[p.ticker] = true;
+        alarm(`POSITIONS: ${p.title} (${p.side.toUpperCase()}) is GREEN: worth $${p.value.toFixed(2)} on $${p.cost.toFixed(2)} (${p.pct >= 0 ? "+" : ""}${p.pct}%).`);
+      }
+    }
+    if (!active.length) return;
+    let changed = false;
+    for (const [ticker, r] of active) {
+      const p = rows.find((x) => x.ticker === ticker);
+      if (!p) {
+        r.done = { at: new Date().toISOString(), why: "position closed or settled" };
+        changed = true;
+        continue;
+      }
+      if (!(p.bid > 0)) continue;
+      const hit = r.mode === "pct" ? p.cost > 0 && (p.value / p.cost - 1) * 100 >= r.value : p.bid >= r.value;
+      if (!hit) continue;
+      const why = r.mode === "pct" ? `autosell at +${r.value}%: bid ${Math.round(p.bid * 100)}c = ${p.pct >= 0 ? "+" : ""}${p.pct}%` : `autosell at ${Math.round(r.value * 100)}c: bid ${Math.round(p.bid * 100)}c`;
+      r.done = { at: new Date().toISOString(), why };
+      changed = true;
+      writeRules(rules);
+      await sellNow(ticker, why);
+    }
+    if (changed) writeRules(rules);
+  } catch {
+  } finally {
+    g.__posBusy = false;
+  }
+}

@@ -1,0 +1,191 @@
+// COMBO GUARD (Claude, Oct 11 ~8:15 PM PT, Love: "yesss i would like, can we do both?... absolutely let's build that for all
+// combos in profit"). Kalshi publishes no live price for combos (the app's Cash out is a quote on request), so the desk worked
+// out nothing for them. Now, every ~30 s, for every combo she holds on Kalshi (KXMVE...):
+//  - its value is estimated from its own legs: settled legs count 1 (won) or 0 (lost), open legs at their live bid; the
+//    product is what one contract is worth if every remaining leg is priced fairly. Kalshi's real cash-out quote is usually
+//    LOWER than this (makers take a spread), so this is the guide, not the price she'd get;
+//  - her gate: ARMS once the estimate has been +60% over what she paid; the floor starts at +40% and rises 5 points for every
+//    5 points of best gain (the paper combo gate). The estimate back at the floor = an ALERT on the desk ("cash it out now").
+//  - auto cash-out (Kalshi RFQ) is built but OFF until we confirm on one live quote which side means "sell":
+//    live-switch comboGuard { on, autoCashOut }. Status: data/combo-guard.json.
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { kget } from "./scanner";
+
+const D = (f: string) => join(process.cwd(), "data", f);
+const r2 = (n: number) => Math.round(n * 100) / 100;
+const num = (v: unknown) => { const n = Number.parseFloat(String(v ?? "")); return Number.isFinite(n) ? n : NaN; };
+const g = globalThis as unknown as { __cgAt?: number; __cgBusy?: boolean };
+type LH = { fifth?: number; key: string; combo: string; leg: string; side: string; at: string; a: number; legPx: number; cover: number; result?: string; pnl5?: number; pnlCover?: number; settled?: string };
+type St = { half?: string; lockFloor?: number | null; scale?: boolean; armAt?: number; maxG?: number; lastTry?: string; auto?: string; ticker: string; title: string; qty: number; entry: number; cost: number; est: number; gainPct: number; best: number; armed: boolean; floor: number | null; legs: { t: string; side: string; state: string; px: number }[]; alerted?: string; at: string };
+
+function alarm(text: string) {
+  try {
+    const f = D("alarm.json");
+    const rows = existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : [];
+    const list = Array.isArray(rows) ? rows : [];
+    if (!list.some((r: any) => r.text === text)) list.unshift({ at: new Date().toISOString(), text });
+    writeFileSync(f, JSON.stringify(list.slice(0, 200)));
+  } catch {
+  }
+}
+
+export async function comboGuardTick() {
+  if (g.__cgBusy || (g.__cgAt && Date.now() - g.__cgAt < 30000)) return;
+  g.__cgAt = Date.now();
+  g.__cgBusy = true;
+  try {
+    // one-shot RFQ probe (never accepts): data/rfq-probe-req.json {ticker, contracts} -> data/rfq-probe.json
+    try {
+      const rq = D("rfq-probe-req.json");
+      if (existsSync(rq)) {
+        const req = JSON.parse(readFileSync(rq, "utf8"));
+        if (req?.ticker && !req.done) {
+          writeFileSync(rq, JSON.stringify({ ...req, done: new Date().toISOString() }));
+          const live: any = await import("./kalshi-live.server");
+          const res = await live.rfqProbe(String(req.ticker), Number(req.contracts) || 1);
+          writeFileSync(D("rfq-probe.json"), JSON.stringify(res, null, 1));
+        }
+      }
+    } catch (e) {
+      try { writeFileSync(D("rfq-probe.json"), JSON.stringify({ error: String(e).slice(0, 300) })); } catch {}
+    }
+    let cfg: any = {};
+    try { cfg = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.comboGuard ?? {}; } catch {}
+    if (cfg.on === false) return;
+    const prev: Record<string, St> = (() => { try { return Object.fromEntries((JSON.parse(readFileSync(D("combo-guard.json"), "utf8"))?.rows ?? []).map((r: St) => [r.ticker, r])); } catch { return {}; } })();
+    const hedges: Record<string, LH> = (() => { try { return JSON.parse(readFileSync(D("combo-hedges.json"), "utf8")); } catch { return {}; } })();
+    let hedgesChanged = false;
+    for (const h of Object.values(hedges)) {
+      if (h.settled) continue;
+      try {
+        const res = (await kget(`/trade-api/v2/markets/${h.leg}`))?.market?.result;
+        if (res === "yes" || res === "no") {
+          const flip = res !== h.side;
+          h.fifth ??= 5;
+          h.result = flip ? "flipped" : "held";
+          h.pnl5 = r2(flip ? h.fifth! / h.a - h.fifth! : -h.fifth!);
+          h.pnlCover = r2(flip ? h.cover / h.a - h.cover : -h.cover);
+          h.settled = new Date().toISOString();
+          hedgesChanged = true;
+        }
+      } catch {
+      }
+    }
+    const { listPositions, readRules, ruleDone } = await import("./positions");
+    const rules = readRules();
+    const hist = (() => { try { return readFileSync(D("rfq-cashout.jsonl"), "utf8").trim().split("\n").map((x) => JSON.parse(x)); } catch { return [] as any[]; } })();
+    const wrongWay = hist.some((h: any) => /^WRONG WAY/.test(String(h.result)));
+    const learned = [...hist].reverse().find((h: any) => /^cashed out/.test(String(h.result)))?.acceptedSide as "yes" | "no" | undefined;
+    const pos = (await listPositions(true)).filter((p) => /^KXMVE/.test(p.ticker) && p.qty > 0);
+    const out: St[] = [];
+    for (const p of pos) {
+      let legs: { t: string; side: string; state: string; px: number }[] = [];
+      let nLegs = -1;
+      try {
+        const m = (await kget(`/trade-api/v2/markets/${p.ticker}`))?.market;
+        const sel: any[] = m?.mve_selected_legs ?? [];
+        nLegs = sel.length;
+        for (const l of sel) {
+          const t = String(l.market_ticker || l.ticker || "");
+          const side = String(l.side || "yes").toLowerCase();
+          if (!t) continue;
+          const lm = (await kget(`/trade-api/v2/markets/${t}`))?.market;
+          if (!lm) throw new Error(`no market ${t}`);
+          const res = lm?.result;
+          if (res === "yes" || res === "no") legs.push({ t, side, state: res === side ? "won" : "lost", px: res === side ? 1 : 0 });
+          else legs.push({ t, side, state: "open", px: num(side === "yes" ? lm?.yes_bid_dollars : lm?.no_bid_dollars) || 0, oa: num(side === "yes" ? lm?.no_ask_dollars : lm?.yes_ask_dollars), first: undefined } as any);
+          await new Promise((r) => setTimeout(r, 150));
+        }
+      } catch {
+      }
+      // every leg must be read this tick, or the estimate is skipped (a half-read combo once looked like +286%: Oct 12 AM)
+      if (!legs.length || legs.length !== nLegs || legs.some((l) => l.state === "open" && !(l.px > 0))) { if (prev[p.ticker]) out.push({ ...prev[p.ticker], stale: true } as any); continue; }
+      const est = legs.reduce((a, l) => a * l.px, 1);
+      // HEDGE LAB on her real combos (paper only, Love Oct 12 AM): a leg that slips 8c+ from where the guard first saw it, to
+      // 85c or less, gets a paper hedge on its other side at that side's ask: a fifth of what she paid, and a "cover" size that pays back what
+      // she paid for the combo if that leg flips. Settled on the leg's own result in data/combo-hedges.json.
+      for (const l of legs as any[]) {
+        const pl: any = (prev[p.ticker]?.legs ?? []).find((x: any) => x.t === l.t);
+        l.first = pl?.first ?? (l.state === "open" ? l.px : undefined);
+        const key = `${p.ticker}|${l.t}`;
+        if (l.state === "open" && !hedges[key] && l.px > 0 && l.px <= 0.85 && (l.first ?? 0) - l.px >= 0.08 && l.oa > 0.01 && l.oa < 0.5) {
+          hedges[key] = { key, combo: p.ticker, leg: l.t, side: l.side, at: new Date().toISOString(), a: l.oa, legPx: l.px, cover: r2((p.cost * l.oa) / (1 - l.oa)), fifth: r2(p.cost / 5) };
+          hedgesChanged = true;
+          alarm(`COMBO HEDGE LAB (paper): ${l.t} slipped to ${Math.round(l.px * 100)}c, paper hedge on the other side at ${Math.round(l.oa * 100)}c (${(1 / l.oa).toFixed(1)}x).`);
+        }
+      }
+      const entry = p.entry > 0 ? p.entry : p.cost / p.qty;
+      const gain = entry > 0 ? (est / entry - 1) * 100 : 0;
+      const was = prev[p.ticker];
+      // SCALE GATE (Love, Oct 12 ~4 PM PT: "shift it from 60% total to 50% of the scale, with the gate at 30%... the combos
+      // spike really high and then drop with no event checked off"). The gate now reads % OF THE MAX the combo can pay:
+      // arms at 50% of the way to $1, floor at 30% of the way, rising 5 points for every 5 points of best above the arm.
+      // SPIKE FILTER: a new best only counts once it has held for two readings in a row (~30 s apart), so a one-tick blip in
+      // a live game's odds can't set a sky-high best and then "cash out" at a floor the combo never really earned.
+      const maxG = entry > 0 && entry < 1 ? (1 / entry - 1) * 100 : 0;
+      const armS = Number(cfg.armScale) || 0.5, floorS = Number(cfg.floorScale) || 0.3;
+      const heldGain = was?.gainPct != null ? Math.min(gain, Number(was.gainPct)) : gain;
+      const best = Math.max(was?.scale ? (was?.best ?? -100) : -100, heldGain);
+      const armAt = armS * maxG;
+      const armedGate = maxG > 0 && best >= armAt;
+      const armed = armedGate || (was?.lockFloor != null);
+      // LEG-LOCK RATCHET (Love, Oct 12 ~7:45 PM PT: "yesss thatttt sounds brilliant"): when a leg settles her way and the combo
+      // is then worth 30%+ of the way to its max, the floor jumps to that gain minus 10% of the scale (a settled leg can't spike
+      // or fade, so that progress is banked). It only ever moves up, and it arms the guard.
+      const prevLegs: any[] = was?.legs ?? [];
+      const newlyWon = legs.some((l: any) => l.state === "won" && prevLegs.some((x: any) => x.t === l.t && x.state === "open"));
+      let lockFloor: number | null = was?.lockFloor ?? null;
+      if (newlyWon && maxG > 0 && gain >= floorS * maxG) lockFloor = Math.max(lockFloor ?? -Infinity, r2(gain - 0.1 * maxG));
+      const gateFloor = armed ? r2(floorS * maxG + 5 * Math.floor((best - armAt) / 5)) : null;
+      const floor = gateFloor != null || lockFloor != null ? Math.max(gateFloor ?? -Infinity, lockFloor ?? -Infinity) : null;
+      const row: St & { scale?: boolean; armAt?: number; maxG?: number } = { half: was?.half, lockFloor, scale: true, armAt: r2(armAt), maxG: r2(maxG), ticker: p.ticker, title: p.title, qty: p.qty, entry: r2(entry), cost: p.cost, est: Math.round(est * 1000) / 1000, gainPct: r2(gain), best: r2(best), armed, floor, legs, alerted: was?.alerted, at: new Date().toISOString() };
+      if (floor != null && gain <= floor && !was?.alerted) {
+        row.alerted = new Date().toISOString();
+        const open = legs.filter((l) => l.state === "open").map((l) => `${l.t} ${Math.round(l.px * 100)}c`).join(", ");
+        alarm(`RED: COMBO GUARD · cash it out now: ${p.title.slice(0, 60)} was up +${Math.round(best)}% (est.), back to +${Math.round(gain)}% (floor +${floor}%). Open legs: ${open || "none"}.`);
+      } else if (armed && !(was?.armed && was?.scale)) {
+        alarm(`COMBO GUARD · armed: ${p.title.slice(0, 60)} is up +${Math.round(gain)}% (est.), half the way to its max. Floor +${floor}% (30% of the way) and rising.`);
+      }
+      // AUTO CASH OUT (Love, Oct 12 AM: "i'd like to have a default autosell setting for those"). Her own POSITIONS rule wins
+      // (pct = estimate up that much, price = estimate per contract reaches it); with no rule, the guard's gate is the default
+      // (armed at +60%, cash out when it falls back to the floor). Takes a real Kalshi quote only (>= what she paid and >= 90%
+      // of the estimate), one try per 2 minutes, never if a cash out ever went the wrong way.
+      const rule = rules[p.ticker] && !rules[p.ticker].done ? rules[p.ticker] : null;
+      const why = rule ? (rule.mode === "pct" ? (gain >= rule.value ? `her rule: up ${rule.value}%` : "") : (est >= rule.value ? `her rule: ${Math.round(rule.value * 100)}c` : "")) : (floor != null && gain <= floor ? `${lockFloor != null && floor === lockFloor ? "leg-lock" : "gate"}: best +${Math.round(best)}%, floor +${floor}%` : "");
+      // HALF AT THE ARM (Love, Oct 12 ~7:45 PM PT): the first time the gate arms, half of the combo is cashed into a real maker
+      // quote; the rest rides under the gate / leg-lock. Once per combo, not on "ride" combos or ones with her own rule.
+      if (cfg.autoCashOut === true && !rule && armedGate && !was?.half && !row.half && !(cfg.ride ?? []).includes(p.ticker) && !wrongWay && p.qty >= 2 && !(was?.lastTry && Date.now() - Date.parse(was.lastTry) < 120000)) {
+        row.lastTry = new Date().toISOString();
+        try {
+          const live: any = await import("./kalshi-live.server");
+          const res = await live.rfqCashOut(p.ticker, Math.max(entry, est * 0.9, 0.01), learned ?? "no", p.qty / 2);
+          if (/^cashed out/.test(String(res?.result))) { row.half = new Date().toISOString(); alarm(`COMBO HALF AT THE ARM: ${p.title.slice(0, 60)} · ${res.result}; the rest rides with floor +${floor}%.`); }
+          row.auto = `half at the arm -> ${res?.result ?? "no result"}`;
+        } catch (e) { row.auto = `half at the arm -> error ${String(e).slice(0, 100)}`; }
+      }
+      row.lastTry = row.lastTry ?? was?.lastTry;
+      if (cfg.autoCashOut === true && why && !(cfg.ride ?? []).includes(p.ticker) && !wrongWay && !(row.lastTry && Date.now() - Date.parse(row.lastTry) < 120000)) {
+        row.lastTry = new Date().toISOString();
+        try {
+          const live: any = await import("./kalshi-live.server");
+          const res = await live.rfqCashOut(p.ticker, Math.max(entry, est * 0.9, 0.01), learned ?? "no");
+          row.auto = `${why} -> ${res?.result ?? "no result"}`;
+          if (/^cashed out/.test(String(res?.result))) { ruleDone(p.ticker, `combo auto cash out (${why})`); alarm(`COMBO AUTO CASH OUT: ${p.title.slice(0, 60)} · ${why} · ${res.result}.`); }
+        } catch (e) {
+          row.auto = `${why} -> error ${String(e).slice(0, 120)}`;
+        }
+      }
+      out.push(row);
+    }
+    if (hedgesChanged) try { writeFileSync(D("combo-hedges.json"), JSON.stringify(hedges, null, 1)); } catch {}
+    writeFileSync(D("combo-guard.json"), JSON.stringify({ at: new Date().toISOString(), autoCashOut: cfg.autoCashOut === true, wrongWay, learnedSide: learned ?? null, rows: out }, null, 1));
+  } catch (e) {
+    try { writeFileSync(D("combo-guard.json"), JSON.stringify({ at: new Date().toISOString(), error: String(e).slice(0, 200) })); } catch {}
+  } finally {
+    g.__cgBusy = false;
+  }
+}
+export function comboGuard() {
+  try { return JSON.parse(readFileSync(D("combo-guard.json"), "utf8")); } catch { return null; }
+}

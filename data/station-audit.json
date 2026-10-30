@@ -1,0 +1,749 @@
+{
+ "at": "2026-10-20T19:27:27.311Z",
+ "rows": [
+  {
+   "series": "KXHIGHTSFO",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTSFO&status=open&l"
+  },
+  {
+   "series": "KXLOWTPHIL",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTPHIL&status=open&l"
+  },
+  {
+   "series": "KXHIGHTZSPD",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTZSPD&status=open&"
+  },
+  {
+   "series": "KXLOWTLTFM",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTLTFM&status=open&l"
+  },
+  {
+   "series": "KXLOWTLV",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTLV&status=open&lim"
+  },
+  {
+   "series": "KXLOWTSAN",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTSAN&status=open&li"
+  },
+  {
+   "series": "KXLOWTMIA",
+   "title": "Lowest temperature in Miami",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Miami (CLIMIA) for Oct 21, 2026, is greater than 73° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KMIA",
+   "stationName": "Miami, Miami International Airport",
+   "lat": 25.79056,
+   "lon": -80.31639
+  },
+  {
+   "series": "KXLOWTSEA",
+   "title": "Low Temperature Seattle",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Seattle (CLISEA) for Oct 21, 2026, is greater than 45° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSEA",
+   "stationName": "Seattle, Seattle-Tacoma International Airport",
+   "lat": 47.44472,
+   "lon": -122.31361
+  },
+  {
+   "series": "KXTEMPLAXHS",
+   "title": "Hourly Directional Coastal LA Temperature",
+   "settlement": [
+    {
+     "name": "Synoptic Data",
+     "url": "https://synopticdata.com/"
+    }
+   ],
+   "rules": "If the temperature recorded at Coastal Los Angeles for Oct 20, 2026 at 4 PM EDT as reported by Synoptic Data, is above 80.99°, then the market resolves to Yes.",
+   "deskStation": "KLAX",
+   "stationName": "Los Angeles, Los Angeles International Airport",
+   "lat": 33.93806,
+   "lon": -118.38889
+  },
+  {
+   "series": "KXHIGHTMIN",
+   "title": "Minneapolis Daily High Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Minneapolis (CLIMSP) for Oct 21, 2026, is greater than 74° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KMSP",
+   "stationName": "Minneapolis, Minneapolis-St. Paul International Airport",
+   "lat": 44.88306,
+   "lon": -93.22889
+  },
+  {
+   "series": "KXTEMPMIAH",
+   "title": "Hourly Directional Miami Temperature",
+   "settlement": [
+    {
+     "name": "Synoptic Data",
+     "url": "https://synopticdata.com/"
+    }
+   ],
+   "rules": "If the temperature recorded at Miami, FL for Oct 20, 2026 at 4 PM EDT as reported by Synoptic Data, is above 85.99°, then the market resolves to Yes.",
+   "deskStation": "KMIA",
+   "stationName": "Miami, Miami International Airport",
+   "lat": 25.79056,
+   "lon": -80.31639
+  },
+  {
+   "series": "KXHIGHTHOU",
+   "title": "Daily High Temperature Houston",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Houston (CLIHOU) for Oct 21, 2026, is greater than 88° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KHOU",
+   "stationName": "Houston, Houston Hobby Airport",
+   "lat": 29.6375,
+   "lon": -95.2825
+  },
+  {
+   "series": "KXLOWTDEN",
+   "title": "Lowest temperature in Denver",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Denver (CLIDEN) for Oct 21, 2026, is greater than 49° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KDEN",
+   "stationName": "Denver, Denver International Airport",
+   "lat": 39.84658,
+   "lon": -104.65622
+  },
+  {
+   "series": "KXHIGHTLV",
+   "title": "Las Vegas Max Daily Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Las Vegas (CLILAS) for Oct 21, 2026, is greater than 83° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KLAS",
+   "stationName": "Harry Reid International Airport",
+   "lat": 36.07188,
+   "lon": -115.1634
+  },
+  {
+   "series": "KXLOWTDAL",
+   "title": "Lowest temperature Dallas",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Dallas (CLIDFW) for Oct 21, 2026, is greater than 57° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KDFW",
+   "stationName": "Dallas/Fort Worth International Airport",
+   "lat": 32.89743,
+   "lon": -97.02196
+  },
+  {
+   "series": "KXLOWTAUS",
+   "title": "Lowest temperature in Austin",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Austin (CLIAUS) for Oct 21, 2026, is greater than 57° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KAUS",
+   "stationName": "Austin-Bergstrom International Airport",
+   "lat": 30.18304,
+   "lon": -97.67987
+  },
+  {
+   "series": "KXLOWTOKC",
+   "title": "Low Temperature Oklahoma City",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Oklahoma City (CLIOKC) for Oct 21, 2026, is greater than 54° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KOKC",
+   "stationName": "Oklahoma City, Will Rogers World Airport",
+   "lat": 35.38861,
+   "lon": -97.60028
+  },
+  {
+   "series": "KXHIGHTDC",
+   "title": "Washington DC Daily Max Temp",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Washington DC (CLIDCA) for Oct 21, 2026, is greater than 71° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KDCA",
+   "stationName": "Washington/Reagan National Airport, DC",
+   "lat": 38.84833,
+   "lon": -77.03417
+  },
+  {
+   "series": "KXHIGHTOKC",
+   "title": "Oklahoma City Maximum High Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Oklahoma City (CLIOKC) for Oct 21, 2026, is greater than 81° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KOKC",
+   "stationName": "Oklahoma City, Will Rogers World Airport",
+   "lat": 35.38861,
+   "lon": -97.60028
+  },
+  {
+   "series": "KXLOWTSFO",
+   "title": "Lowest Temperature San Francisco",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at San Francisco (CLISFO) for Oct 21, 2026, is greater than 58° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSFO",
+   "stationName": "San Francisco, San Francisco International Airport",
+   "lat": 37.61961,
+   "lon": -122.36558
+  },
+  {
+   "series": "KXLOWTPHX",
+   "title": "Low Temperature Phoenix",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Phoenix (CLIPHX) for Oct 21, 2026, is greater than 75° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KPHX",
+   "stationName": "Phoenix, Phoenix Sky Harbor International Airport",
+   "lat": 33.427799,
+   "lon": -112.003465
+  },
+  {
+   "series": "KXLOWTEWR",
+   "title": "Newark, NJ (EWR) Daily Low Temp",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Newark (CLIEWR) for Oct 21, 2026, is greater than 49° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KEWR",
+   "stationName": "Newark, Newark International Airport",
+   "lat": 40.6825,
+   "lon": -74.16944
+  },
+  {
+   "series": "KXHIGHTATL",
+   "title": "Atlanta Max Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Atlanta (CLIATL) for Oct 21, 2026, is greater than 79° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KATL",
+   "stationName": "Atlanta, Hartsfield - Jackson Atlanta International Airport",
+   "lat": 33.64028,
+   "lon": -84.42694
+  },
+  {
+   "series": "KXHIGHTSATX",
+   "title": "San Antonio Daily Maximum Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at San Antonio (CLISAT) for Oct 21, 2026, is greater than 90° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSAT",
+   "stationName": "San Antonio, San Antonio International Airport",
+   "lat": 29.53278,
+   "lon": -98.46361
+  },
+  {
+   "series": "KXHIGHTSEA",
+   "title": "Seattle Maximum Temperature Daily",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Seattle (CLISEA) for Oct 21, 2026, is greater than 70° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSEA",
+   "stationName": "Seattle, Seattle-Tacoma International Airport",
+   "lat": 47.44472,
+   "lon": -122.31361
+  },
+  {
+   "series": "KXHIGHPHIL",
+   "title": "Highest temperature in Philadelphia",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Philadelphia (CLIPHL) for Oct 21, 2026, is greater than 68° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KPHL",
+   "stationName": "Philadelphia, Philadelphia International Airport",
+   "lat": 39.87327,
+   "lon": -75.22678
+  },
+  {
+   "series": "KXLOWTNOLA",
+   "title": "NOLA Low Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at New Orleans (CLIMSY) for Oct 21, 2026, is greater than 60° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KMSY",
+   "stationName": "New Orleans, New Orleans International Airport",
+   "lat": 29.99278,
+   "lon": -90.25083
+  },
+  {
+   "series": "KXHIGHTNOLA",
+   "title": "New Orleans Max temp Daily",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at New Orleans (CLIMSY) for Oct 21, 2026, is greater than 84° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KMSY",
+   "stationName": "New Orleans, New Orleans International Airport",
+   "lat": 29.99278,
+   "lon": -90.25083
+  },
+  {
+   "series": "KXHIGHAUS",
+   "title": "Highest temperature in Austin",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Austin (CLIAUS) for Oct 21, 2026, is greater than 90° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KAUS",
+   "stationName": "Austin-Bergstrom International Airport",
+   "lat": 30.18304,
+   "lon": -97.67987
+  },
+  {
+   "series": "KXLOWTTTN",
+   "title": "Trenton Daily low temp ",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Trenton (CLITTN) for Oct 21, 2026, is greater than 46° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KTTN",
+   "stationName": "Trenton-Mercer Airport",
+   "lat": 40.27639,
+   "lon": -74.81639
+  },
+  {
+   "series": "KXLOWTSATX",
+   "title": "Lowest Temperature SATX",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at San Antonio (CLISAT) for Oct 21, 2026, is greater than 60° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSAT",
+   "stationName": "San Antonio, San Antonio International Airport",
+   "lat": 29.53278,
+   "lon": -98.46361
+  },
+  {
+   "series": "KXLOWTNYC",
+   "title": "Lowest temperature in NYC",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at New York City (CLINYC) for Oct 21, 2026, is greater than 51° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KNYC",
+   "stationName": "New York City, Central Park",
+   "lat": 40.78333,
+   "lon": -73.96667
+  },
+  {
+   "series": "KXLOWTLAX",
+   "title": "Lowest Temperature in LA",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Los Angeles (CLILAX) for Oct 21, 2026, is greater than 63° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KLAX",
+   "stationName": "Los Angeles, Los Angeles International Airport",
+   "lat": 33.93806,
+   "lon": -118.38889
+  },
+  {
+   "series": "KXTEMPNYCHS",
+   "title": "Hourly Directional NYC Temperature",
+   "settlement": [
+    {
+     "name": "Synoptic Data",
+     "url": "https://synopticdata.com/"
+    }
+   ],
+   "rules": "If the temperature recorded at New York City for Oct 20, 2026 at 4 PM EDT as reported by Synoptic Data, is above 72.99°, then the market resolves to Yes.",
+   "deskStation": "KNYC",
+   "stationName": "New York City, Central Park",
+   "lat": 40.78333,
+   "lon": -73.96667
+  },
+  {
+   "series": "KXHIGHTSAN",
+   "title": "High Temperature San Diego",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at San Diego (CLISAN) for Oct 21, 2026, is greater than 81° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSAN",
+   "stationName": "San Diego International Airport",
+   "lat": 32.73361,
+   "lon": -117.18306
+  },
+  {
+   "series": "KXLOWTDC",
+   "title": "Lowest Temperature DC ",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Washington DC (CLIDCA) for Oct 21, 2026, is greater than 51° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KDCA",
+   "stationName": "Washington/Reagan National Airport, DC",
+   "lat": 38.84833,
+   "lon": -77.03417
+  },
+  {
+   "series": "KXLOWTBOS",
+   "title": "Low Temperature Boston",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Boston (CLIBOS) for Oct 21, 2026, is greater than 52° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KBOS",
+   "stationName": "Boston, Logan International Airport",
+   "lat": 42.36056,
+   "lon": -71.01056
+  },
+  {
+   "series": "KXLOWTMIN",
+   "title": "Low  temperature Minnesota",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Minneapolis (CLIMSP) for Oct 21, 2026, is greater than 49° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KMSP",
+   "stationName": "Minneapolis, Minneapolis-St. Paul International Airport",
+   "lat": 44.88306,
+   "lon": -93.22889
+  },
+  {
+   "series": "KXHIGHTEWR",
+   "title": "Newark, NJ (EWR) Daily Max Temp",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Newark (CLIEWR) for Oct 21, 2026, is greater than 67° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KEWR",
+   "stationName": "Newark, Newark International Airport",
+   "lat": 40.6825,
+   "lon": -74.16944
+  },
+  {
+   "series": "KXHIGHTBOS",
+   "title": "Boston Maximum Daily Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Boston (CLIBOS) for Oct 21, 2026, is greater than 57° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KBOS",
+   "stationName": "Boston, Logan International Airport",
+   "lat": 42.36056,
+   "lon": -71.01056
+  },
+  {
+   "series": "KXTEMPCHIHS",
+   "title": "Hourly Directional Chicago Metro Temperature",
+   "settlement": [
+    {
+     "name": "Kalshi",
+     "url": "https://kalshi.com"
+    }
+   ],
+   "rules": "If the temperature recorded at Chicago Metro Area for Oct 20, 2026 at 4 PM EDT as reported by Synoptic Data, is above 72.99°, then the market resolves to Yes.",
+   "deskStation": "KORD",
+   "stationName": "Chicago, Chicago-O'Hare International Airport",
+   "lat": 41.97972,
+   "lon": -87.90444
+  },
+  {
+   "series": "KXHIGHMIA",
+   "title": "Highest temperature in Miami",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Miami (CLIMIA) for Oct 21, 2026, is greater than 88° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KMIA",
+   "stationName": "Miami, Miami International Airport",
+   "lat": 25.79056,
+   "lon": -80.31639
+  },
+  {
+   "series": "KXLOWTATL",
+   "title": "Low Temperature Atlanta",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Atlanta (CLIATL) for Oct 21, 2026, is greater than 51° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KATL",
+   "stationName": "Atlanta, Hartsfield - Jackson Atlanta International Airport",
+   "lat": 33.64028,
+   "lon": -84.42694
+  },
+  {
+   "series": "KXHIGHNY",
+   "title": "Highest temperature in NYC",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at New York City (CLINYC) for Oct 21, 2026, is greater than 66° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KNYC",
+   "stationName": "New York City, Central Park",
+   "lat": 40.78333,
+   "lon": -73.96667
+  },
+  {
+   "series": "KXHIGHDEN",
+   "title": "Highest temperature in Denver",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Denver (CLIDEN) for Oct 21, 2026, is greater than 81° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KDEN",
+   "stationName": "Denver, Denver International Airport",
+   "lat": 39.84658,
+   "lon": -104.65622
+  },
+  {
+   "series": "KXHIGHTDAL",
+   "title": "Dallas Maximum Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Dallas (CLIDFW) for Oct 21, 2026, is greater than 86° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KDFW",
+   "stationName": "Dallas/Fort Worth International Airport",
+   "lat": 32.89743,
+   "lon": -97.02196
+  },
+  {
+   "series": "KXLOWTCHI",
+   "title": "Lowest Temperature Chicago",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Chicago (CLIMDW) for Oct 21, 2026, is greater than 48° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KMDW",
+   "stationName": "Chicago, Chicago Midway Airport",
+   "lat": 41.78417,
+   "lon": -87.75528
+  },
+  {
+   "series": "KXHIGHTPHX",
+   "title": "Phoenix High Temperature Daily",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Phoenix (CLIPHX) for Oct 21, 2026, is greater than 91° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KPHX",
+   "stationName": "Phoenix, Phoenix Sky Harbor International Airport",
+   "lat": 33.427799,
+   "lon": -112.003465
+  },
+  {
+   "series": "KXHIGHTTTN",
+   "title": "Trenton, NJ Daily Max Temp",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Trenton (CLITTN) for Oct 21, 2026, is greater than 67° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KTTN",
+   "stationName": "Trenton-Mercer Airport",
+   "lat": 40.27639,
+   "lon": -74.81639
+  },
+  {
+   "series": "KXHIGHTSDF",
+   "title": "HIGHEST Temperature SATX",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Louisville (CLISDF) for Oct 21, 2026, is greater than 77° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSDF",
+   "stationName": "Louisville Muhammad Ali International Airport",
+   "lat": 38.17406,
+   "lon": -85.7365
+  },
+  {
+   "series": "KXLOWTHOU",
+   "title": "Low Temperature Houston",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Houston (CLIHOU) for Oct 21, 2026, is greater than 65° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KHOU",
+   "stationName": "Houston, Houston Hobby Airport",
+   "lat": 29.6375,
+   "lon": -95.2825
+  },
+  {
+   "series": "KXHIGHLAX",
+   "title": "Highest temperature in Los Angeles",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Los Angeles (CLILAX) for Oct 21, 2026, is greater than 74° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KLAX",
+   "stationName": "Los Angeles, Los Angeles International Airport",
+   "lat": 33.93806,
+   "lon": -118.38889
+  },
+  {
+   "series": "KXHIGHCHI",
+   "title": "Highest temperature in Chicago",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Chicago (CLIMDW) for Oct 21, 2026, is greater than 75° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KMDW",
+   "stationName": "Chicago, Chicago Midway Airport",
+   "lat": 41.78417,
+   "lon": -87.75528
+  },
+  {
+   "series": "KXLOWTSDF",
+   "title": "Lowest Temperature SDX",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Louisville (CLISDF) for Oct 21, 2026, is greater than 46° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSDF",
+   "stationName": "Louisville Muhammad Ali International Airport",
+   "lat": 38.17406,
+   "lon": -85.7365
+  }
+ ]
+}

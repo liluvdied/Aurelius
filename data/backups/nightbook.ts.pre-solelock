@@ -1,0 +1,805 @@
+// NIGHT BOOK (Love, 2026-10-02): LIVE is off for the night and she trades two paper ledgers side
+// by side on the SAME setups, with real Kalshi bids for exits and Kalshi's own result at the bell.
+//   ORIGINAL = how she was right after the bug fixes: her setups, band-in-the-way, 1.38x minimum,
+//              one trade per window, her original take-profit table (33 / 44 / 50 / 60 / max-15).
+//              No nav skip, no worst hours, no nav-close entries, no LOCK THE WIN, no channel rule.
+//   NEW      = everything tonight: every live rule (nav skip on 1m/5m/10m/15m purple with the 1m
+//              close, worst hours, blocked setups, 1.38x), nav-close entries, take profit +50% (under
+//              1.65x) / 75% of the max, LOCK THE WIN (+20 arm / +10 floor), $5 on anything paying 3x+.
+// $10 a trade (NEW: $5 at 3x+). Paper only. Never sends an order.
+// Added 2026-10-02 8:20 AM PT (Love: "run those on another paper ledger alongside ours"):
+//   REFINED = NEW + the morning refinements: no BTC purple-line close entries, and a gate / LOCK THE
+//             WIN never sells below breakeven after a gap (it holds for the bell instead).
+//   GOLDEN  = the Oct 1 12:45–3:30 PM PT model, rebuilt from its own feeds (golden.ts): BTC bands
+//             from 00:00 UTC, gold bands on 15m, her table exits, none of the new rules.
+// Added 2026-10-02 8:45 AM PT (Love: "run all of the options side by side + one you custom tailor"):
+//   OPTION A = NEW, but BTC entries come from the 5 PM-start bands (golden feed); her 2 PM bands still
+//              run the nav / path / hour rules. Gold = NEW.
+//   OPTION B = NEW, but no BTC entries in the 2 hours after the 2 PM PT session reset (14:00-15:59).
+//   CLAUDE   = Claude's pick from 1,000+ recorded trades (Sep 24 - Oct 2), only setups that held up in
+//              BOTH halves of that data: gold LONG tap-rejects / break-retests / gold clock / gold nav
+//              close longs; BTC SHORT tap-rejects; BTC LONG close-above. Everything else is skipped
+//              (BTC tap-reject longs -25%, gold shorts -8%, BTC/gold "Open" entries flip-flopped).
+//              Nav + path guards on, its own worst hours, BTC 1.38-1.8x, gold 1.38-2.5x, REFINED exits.
+// Added 2026-10-02 10:10 AM PT (Love):
+//   TREND = CLAUDE, but gold follows the trend: in a downtrend (price under the session VWAP AND under
+//           the 15m purple) gold SHORTS on the same setups and no gold longs; in an uptrend longs only;
+//           in between, CLAUDE's gold longs.
+//   BRICK = entry logic rewritten from scratch (brick.ts), audited against every Kalshi trade.
+//   COTC  = cream of the crop: only the 8 exact setups that won 75%+ over 15+ trades, nothing else.
+// Added 2026-10-02 10:30 AM PT (Love: "deconstruct her best periods, reinforce them, shed the rest"):
+//   DIAMOND = what her best stretches had in common (scripts/wrong-side-audit.py, 829 trades; her six
+//             best 20-trade runs won 74%, the six worst 32%). Keeps: already through the strike, so no
+//             band sits between her and it; no purple / Bollinger line right in front (BTC $100, gold
+//             $2.50); bands open (BTC session σ ≥ $150, gold ≥ $5 — squeezed bands were -$513); and not
+//             2:00-7:59 PM PT (the chop after the 2 PM reset, -$643). Over the record that kept 245
+//             trades at 66% wins, +$481, green in both halves. REFINED exits.
+// Added 2026-10-02 2:45 PM PT (Love: "run another book with the bank in place"):
+//   BANK = ORIGINAL's entries (every DNA-clean setup), with Love's banking exits:
+//          • take profit +50% under 1.65x / 75% of the max, riding with a 1% trail (as NEW);
+//          • TRAILING GATE: once she has been up +30%, sell when the bid falls 5% below the highest
+//            bid she reached (a flash higher that reverses gets banked);
+//          • BAND TAP: when price taps one of her lines in the trade's direction, she waits for that
+//            1-minute candle to close. Closed THROUGH the line = it broke, she holds. Closed BACK =
+//            it rejected, she banks right there if she is in profit.
+//          Never sells at a loss (no stop: the -50% flush before the strike is the trap).
+// Added 2026-10-02 6:30 PM PT (Love: "it's way too sensitive, toy with it on another book"):
+//   BANK2 = same entries, gentler bank from the lab (scripts/bank-lab.py, 152 trades): winners that
+//           pay at the bell dip a median 4% (75th pct 15%, 90th pct 31%) from their peak bid after
+//           being up 30%, so a 5% giveback sold half of them. BANK2 arms at +40% and gives back 10%,
+//           no band-tap (it cut 30 winners on its own). Best of the first day's grid: +$51 vs -$31.
+// Added 2026-10-02 6:50 PM PT (Love):
+//   BREAK  = every entry ANY ledger takes (first one per window), one exit idea: "if we enter above a band
+//            and it breaks through with a strong push, we exit immediately — we don't hope it comes back."
+//            The band she entered on = her nearest line behind the trade at entry (below a long, above a
+//            short). A 1-minute CLOSE through it by a strong margin (BTC $20 / gold $0.40) = out now; a
+//            love tap (wick through, or a close barely through) gets one more minute — two closes in a
+//            row through it = out. Everything else: hard take profit (+50% under 1.65x, 75% of the max).
+//   HOLD90 = ORIGINAL's entries; hard take profit, except on a CLEAR WINNER: at the take-profit touch, if
+//            price is past the strike by a solid cushion (BTC $100 / gold $1.50) with none of her lines
+//            between price and the strike, she holds for 90% of the max instead — and if it falls back to
+//            the take-profit line first, she takes that.
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { dnaLines, type DnaMode } from "./dna";
+
+// DNA MODE (Love, Oct 2 ~midnight: run every book on her fix AND on DNA x ATR, side by side, toggle on SHIFT).
+// Callers set the mode around a SYNCHRONOUS consider call (never across an await) and put it back to "fixed".
+// Rows booked in "atr" mode carry dnaMode "atr" and their own id, so the two twins never collide.
+// Oct 3 ~1:15 AM PT (Love: "I want it before the fix at 11:55 AM... she was good all night"): untagged rows = the
+// main books exactly as before 11:55 AM; "fix" = her 11:55 fix as a twin; "atr" = DNA x ATR twin.
+type BookTag = "" | "fix" | "atr";
+let TAG: BookTag = "";
+export function setBookTag(t: BookTag) {
+  TAG = t;
+}
+export function setDnaMode(m: DnaMode) {
+  TAG = m === "atr" ? "atr" : "";
+}
+// DIRECT WIRE (Love, Oct 3 ~4 PM PT: "wire the kalshi account to brick and COTC period so the copier isn't even a
+// factor"): the instant a main-book row is booked, the desk's live hook fires (engine.ts sends it to Kalshi if that book
+// is live). The 2-second copier stays only as a backup.
+let liveHook: ((r: NightRow) => void) | null = null;
+export function setLiveHook(fn: (r: NightRow) => void) {
+  liveHook = fn;
+}
+function fireLive(r: NightRow) {
+  try {
+    if (liveHook && !r.dnaMode && !r.stale) liveHook(r);
+  } catch {
+    // the backup copier still runs
+  }
+}
+const tagMode = () => (TAG ? { dnaMode: TAG } : {});
+const sameMode = (r: { dnaMode?: string }) => (r.dnaMode ?? "") === TAG;
+
+export type NightRow = {
+  id: string;
+  dnaMode?: "atr" | "free" | "fix";
+  book: "original" | "new" | "refined" | "golden" | "optA" | "optB" | "claude" | "trend" | "brick" | "cotc" | "diamond" | "diamond25" | "confirm" | "brk1" | "sole5" | "sole10" | "sole15" | "lastmin" | "lastgrant" | "bank" | "bank2" | "brk" | "hold90" | "tap3x" | "taphold" | "rescue" | "hour";
+  at: string;
+  asset: string;
+  ticker: string;
+  side: "up" | "down";
+  setup: string;
+  ask: number;
+  multiple: number;
+  stake: number;
+  tpPct: number;
+  peakPct: number;
+  exit: string | null;
+  sellBid: number | null;
+  result: "open" | "win" | "loss" | "sold";
+  pnl: number | null;
+  /** Every band at the moment of entry: her session VWAP bands + nav lines on 1m/5m/10m/15m. */
+  bands?: Record<string, any> | null;
+  spot?: number | null;
+  /** Kalshi's result at the bell (also for trades she sold early). */
+  bell?: "yes" | "no" | null;
+  /** A scheduled market event in progress at entry (data/events.json), e.g. the jobs report. */
+  event?: string | null;
+  /** Pacific hour of the entry, for "which hours respect the bands" stats. */
+  hourPT?: number;
+  /** Claude's review once the trade is done: what worked, what to do better, what to keep. */
+  notes?: { worked: string[]; better: string[]; keep: string[] } | null;
+  /** What BANK's exits would have made on this same trade (bankreplay.ts; added by getNight). */
+  bankPnl?: number | null;
+  bankExit?: string;
+  /** Booked while the BTC price feed was frozen (Fri 2:00-5:24 PM PT): shown, never counted. */
+  stale?: boolean;
+  /** BREAK: the line she entered on (nearest of her lines behind the trade at entry). */
+  entryLine?: { name: string; price: number } | null;
+};
+
+const FILE = () => join(process.cwd(), "data", "night-book.json");
+const g = globalThis as unknown as { __nightSettling?: boolean; __nightLock?: Record<string, number> };
+
+function read(): NightRow[] {
+  try {
+    const rows = JSON.parse(readFileSync(FILE(), "utf8"));
+    return Array.isArray(rows) ? rows : [];
+  } catch {
+    return [];
+  }
+}
+function write(rows: NightRow[]) {
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(FILE(), JSON.stringify(rows.slice(0, 2000), null, 1));
+  } catch {
+    // paper only
+  }
+}
+export function listNight(): NightRow[] {
+  return read();
+}
+const r2 = (n: number) => Math.round(n * 100) / 100;
+// Love (2026-10-02 10:55 AM PT): every paper ledger runs at $50 a trade ($25 on 3x+), her sweet spot.
+// Rows booked earlier at $10 / $5 were rescaled x5 (marked x50) so every record reads at the same size.
+export const PAPER_STAKE = 50;
+
+// Her original table, exactly as it was before tonight.
+function originalTp(mult: number) {
+  const maxPct = (mult - 1) * 100;
+  if (!(maxPct > 0)) return 0;
+  let arm = mult <= 1.4 ? 33 : mult <= 1.5 ? 44 : mult <= 1.6 ? 50 : mult <= 1.7 ? 60 : maxPct - 15;
+  if (arm > maxPct - 5) arm = maxPct - 5; // 5% under the max when the table line can't be reached (Oct 3)
+  if (arm < 1) arm = maxPct * 0.5;
+  return r2(arm);
+}
+function newTp(mult: number) {
+  const maxPct = (mult - 1) * 100;
+  if (!(maxPct > 0)) return 0;
+  // 90% OF THE MAX AVAILABLE (Love, Oct 3 ~6:20 PM PT: "same 90% max (available)... on a trade with 50% available it
+  // will take 45%"). Replaces +50% / 75% of max / max-5. Real Kalshi paths: 90% beat every lower line, none got worse.
+  return r2(Math.max(1, maxPct * 0.9));
+}
+
+const CLAUDE_SKIP_HOURS: Record<string, number[]> = { btc: [9, 12, 16, 19, 21], gold: [6, 12, 16, 23] };
+/** Claude's setup pick. Returns why it passes on a setup, or null to take it. */
+export function claudePick(asset: string, side: "up" | "down", label: string, mult: number, hourPT: number, navCross: boolean, guard: string | null, trend: "up" | "down" | "flat" | null = null): string | null {
+  const l = label.replace(/\u2212/g, "-");
+  if (guard) return guard;
+  if ((CLAUDE_SKIP_HOURS[asset] ?? []).includes(hourPT)) return `${hourPT}:00 PT is one of ${asset}'s worst hours`;
+  if (asset === "gold") {
+    // TREND ledger: gold goes with the trend (null = plain CLAUDE: longs only).
+    if (trend === "down" && side === "up") return "gold downtrend: no longs";
+    if (trend === "up" && side === "down") return "gold uptrend: no shorts";
+    if (side !== "up" && trend !== "down") return "gold shorts have no edge (-8% over 109 trades)";
+    if (mult < 1.38 || mult > 2.5) return "outside 1.38-2.5x";
+    if (navCross || /^Tap-reject/.test(l) || /^Break-retest/.test(l) || /^Gold clock/.test(l)) return null;
+    return `gold ${l} is not on Claude's list`;
+  }
+  if (asset === "btc") {
+    if (navCross) return "BTC purple-line closes went 0-2";
+    if (mult < 1.38 || mult > 1.8) return "BTC outside 1.38-1.8x";
+    if (side === "down" && /^Tap-reject/.test(l)) return null;
+    if (side === "up" && /^Close above/.test(l)) return null;
+    return `BTC ${side === "up" ? "long" : "short"} ${l} is not on Claude's list`;
+  }
+  return "not BTC or gold";
+}
+
+// COTC: the exact setups that won 75%+ over 15+ trades (fill-log Sep 24 - Oct 2), nothing else.
+const COTC: { asset: string; side: "up" | "down"; re: RegExp }[] = [
+  { asset: "gold", side: "up", re: /^Tap-reject at -1\.5σ/ }, // 79% · +51% · both halves
+  { asset: "gold", side: "up", re: /^Tap-reject at -2σ/ }, // 75% · +68%
+  { asset: "gold", side: "up", re: /^Open -0\.5σ/ }, // 83% · +75%
+  { asset: "gold", side: "up", re: /^Tap-reject at \+1\.5σ/ }, // 88% · +37%
+  { asset: "gold", side: "up", re: /^Break-retest continuation/ }, // 84% · +42%
+  { asset: "btc", side: "down", re: /^Tap-reject at \+1σ/ }, // 81% · +46% · both halves
+  { asset: "btc", side: "down", re: /^Tap-reject at \+1\.5σ/ }, // 78% · +41% · both halves
+  { asset: "btc", side: "up", re: /^Close above \+1σ/ }, // 75% · +33% · both halves
+];
+export function cotcPick(asset: string, side: "up" | "down", label: string): boolean {
+  const l = label.replace(/\u2212/g, "-");
+  return COTC.some((c) => c.asset === asset && c.side === side && c.re.test(l));
+}
+function trendOf(bands: Record<string, unknown> | null): "up" | "down" | "flat" {
+  const b = (bands ?? {}) as { vwap?: number; spot?: number; nav?: { m15?: { c: number } | null } | null };
+  const spot = Number(b.spot) || 0;
+  const vw = Number(b.vwap) || 0;
+  const p15 = Number(b.nav?.m15?.c) || 0;
+  if (!(spot > 0 && vw > 0 && p15 > 0)) return "flat";
+  if (spot < vw && spot < p15) return "down";
+  if (spot > vw && spot > p15) return "up";
+  return "flat";
+}
+
+type Candidate = { ticker: string; side: "up" | "down"; ask: number; label: string; navCross?: boolean; target?: number | null };
+
+// BREAK: the first entry of each window from any ledger, plus the line it was entered on.
+function entryLineOf(asset: string, side: "up" | "down", spot: number, bands: Record<string, unknown> | null): { name: string; price: number } | null {
+  if (!(spot > 0) || !bands) return null;
+  const ls = dnaLines(asset, bands as Parameters<typeof dnaLines>[1]);
+  const behind = ls.filter((l) => (side === "up" ? l.price < spot : l.price > spot));
+  if (!behind.length) return null;
+  return behind.sort((a, b) => (side === "up" ? b.price - a.price : a.price - b.price))[0];
+}
+function brkAlso(c: { ticker: string; side: "up" | "down"; ask: number; label: string }, asset: string, bands: Record<string, unknown> | null, spotIn?: number) {
+  if (asset !== "btc" && asset !== "gold") return;
+  if (!(c.ask > 0.02 && c.ask < 0.98)) return;
+  const rows = read();
+  if (rows.some((r) => r.book === "brk" && r.ticker === c.ticker && sameMode(r))) return;
+  const mult = 1 / c.ask;
+  const spot = Number(spotIn ?? (bands as { spot?: number } | null)?.spot) || 0;
+  const line = entryLineOf(asset, c.side, spot, bands);
+  const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:brk`, book: "brk", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: `${c.label}${line ? ` · entered on the ${line.name} ${line.price.toFixed(2)}` : ""}`, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT, entryLine: line });
+  write(rows);
+}
+
+type NavF = { c: number; up: number; dn: number } | null | undefined;
+type BandSnap = { spot?: number; vwap?: number; sd?: number; nav?: { m5?: NavF; m10?: NavF; m15?: NavF } | null };
+/** DIAMOND's gates. Returns why she passes, or null to take it. */
+// DIAMOND · 25% (Love, Oct 3 ~1:30 AM PT: "run her on both with a toggle... she'd do even better on the 25% logic"):
+// flavor "25" drops the σ ≥ $150 open-bands gate and the $100 nav check; her 25% channel rule (DNA chan) guards instead.
+export function diamondPick(asset: string, side: "up" | "down", spot: number, target: number | null | undefined, bandsIn: Record<string, unknown> | null, hourPT: number, mult: number, flavor: "classic" | "25" = "classic"): string | null {
+  const b = (bandsIn ?? {}) as BandSnap;
+  if (asset !== "btc" && asset !== "gold") return "not BTC or gold";
+  if (!(spot > 0) || !(Number(target) > 0)) return "no price or strike";
+  const t = Number(target);
+  if (side === "up" ? !(spot > t) : !(spot < t)) return "still has to cross the strike";
+  if (hourPT >= 14 && hourPT <= 19) return "2-7 PM PT chop after the reset";
+  const sd = Number(b.sd) || 0;
+  if (flavor === "classic" && sd < (asset === "btc" ? 150 : 5)) return `bands squeezed (σ ${sd.toFixed(asset === "btc" ? 0 : 2)})`;
+  const reach = flavor === "25" ? 0 : asset === "btc" ? 100 : 2.5; // DIAMOND classic keeps her $100 / $2.50
+  for (const k of ["m5", "m10", "m15"] as const) {
+    const f = b.nav?.[k];
+    if (!f) continue;
+    const ls: [string, number][] = [[`${k.slice(1)}m purple`, f.c]];
+    if (asset === "btc") ls.push([`${k.slice(1)}m upper`, f.up], [`${k.slice(1)}m lower`, f.dn]);
+    for (const [n, L] of ls) {
+      const ahead = side === "up" ? L - spot : spot - L;
+      if (ahead > 0 && ahead <= reach) return `${n} right ${side === "up" ? "above the long" : "below the short"}`;
+    }
+  }
+  if (mult < 1.38 || mult > 2.5) return "outside 1.38-2.5x";
+  return null;
+}
+const ptHourNow = () => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+/** DIAMOND from any source (desk setups or BRICK's 5m signals). One trade per window, $10. */
+export function diamondConsider(c: { ticker: string; side: "up" | "down"; ask: number; label: string; target?: number | null }, asset: "btc" | "gold", bands: Record<string, unknown> | null, spotIn?: number) {
+  if (!c || !(c.ask > 0.02 && c.ask < 0.98)) return;
+  const mult = 1 / c.ask;
+  const spot = Number(spotIn ?? (bands as BandSnap | null)?.spot) || 0;
+  const hourPT = ptHourNow();
+  const rows = read();
+  // DIAMOND · 25%: main book only (her channel rule already cleared this setup upstream).
+  if (TAG === "" && !diamondPick(asset, c.side, spot, c.target, bands, hourPT, mult, "25") && !rows.some((r) => r.book === "diamond25" && r.ticker === c.ticker && sameMode(r))) {
+    rows.unshift({ id: `${c.ticker}:diamond25`, book: "diamond25", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT });
+    write(rows);
+  }
+  if (diamondPick(asset, c.side, spot, c.target, bands, hourPT, mult)) return;
+  if (rows.some((r) => r.book === "diamond" && r.ticker === c.ticker && sameMode(r))) return;
+  setTimeout(() => brkAlso(c, asset, bands, spot), 0);
+  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:diamond`, book: "diamond", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT });
+  write(rows);
+}
+
+/** Called for every setup the engine is about to consider (before any live rule). */
+export function nightConsider(c: Candidate | null, originalOk: boolean, newRefusal: string | null, claudeGuard: string | null = null) {
+  if (!c || !(c.ask > 0.02 && c.ask < 0.98)) return;
+  const mult = 1 / c.ask;
+  if (mult < 1.38) return;
+  const asset = /GOLD/.test(c.ticker) ? "gold" : /BTC/.test(c.ticker) ? "btc" : "other";
+  if (asset === "other") return;
+  const rows = read();
+  let changed = false;
+  let bands: Record<string, unknown> | null = null;
+  try {
+    const now = JSON.parse(readFileSync(join(process.cwd(), "data", "bands-now.json"), "utf8"));
+    bands = now?.[asset] ?? null;
+  } catch {
+    bands = null;
+  }
+  let event: string | null = null;
+  try {
+    const evs = JSON.parse(readFileSync(join(process.cwd(), "data", "events.json"), "utf8"));
+    const now = Date.now();
+    const hit = Array.isArray(evs) ? evs.find((e: { from: string; to: string }) => now >= Date.parse(e.from) && now <= Date.parse(e.to)) : null;
+    event = hit ? String(hit.name) : null;
+  } catch {
+    event = null;
+  }
+  const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+  const extra = { bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event, hourPT };
+  const open = (book: NightRow["book"]) => rows.some((r) => r.book === book && r.ticker === c.ticker && sameMode(r));
+  const created: string[] = [];
+  // HOLD90: ORIGINAL's entries, hard take profit, clear winners held for 90% of the max.
+  if (originalOk && !c.navCross && !open("hold90")) {
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:hold90`, book: "hold90", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    changed = true;
+  }
+  // BANK2: same entries, the lab's gentler bank (arm +40%, give back 10%, no band tap).
+  if (originalOk && !c.navCross && !open("bank2")) {
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:bank2`, book: "bank2", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    changed = true;
+  }
+  // BANK: ORIGINAL's entries with Love's banking exits.
+  if (originalOk && !c.navCross && !open("bank")) {
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:bank`, book: "bank", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    changed = true;
+  }
+  if (originalOk && !c.navCross && !open("original")) {
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:original`, book: "original", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE, tpPct: originalTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    changed = true;
+  }
+  if (!newRefusal && !open("new")) {
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:new`, book: "new", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    changed = true;
+  }
+  // REFINED: same as NEW, minus BTC purple-line close entries (0-2 overnight).
+  if (!newRefusal && !(c.navCross && asset === "btc") && !open("refined")) {
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:refined`, book: "refined", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    changed = true;
+  }
+  const mk = (book: NightRow["book"]) => {
+    created.push(book);
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    changed = true;
+  };
+  // OPTION A: gold exactly as NEW (BTC arrives from golden.ts on the 5 PM-start bands).
+  if (asset === "gold" && !newRefusal && !open("optA")) mk("optA");
+  // OPTION B: NEW, minus BTC in the two hours after the 2 PM PT reset.
+  if (!newRefusal && !(asset === "btc" && (hourPT === 14 || hourPT === 15)) && !open("optB")) mk("optB");
+  // CLAUDE: her own list.
+  if (!open("claude") && !claudePick(asset, c.side, c.label, mult, hourPT, Boolean(c.navCross), claudeGuard)) mk("claude");
+  // TREND: CLAUDE with gold following the trend.
+  if (!open("trend") && !claudePick(asset, c.side, c.label, mult, hourPT, Boolean(c.navCross), claudeGuard, asset === "gold" ? trendOf(bands) : null)) mk("trend");
+  // COTC: the cream of the crop only.
+  if (!open("cotc") && !c.navCross && mult >= 1.38 && cotcPick(asset, c.side, c.label)) mk("cotc");
+  if (changed) write(rows);
+  if (changed && TAG === "") for (const r of rows.filter((x) => x.ticker === c.ticker && created.includes(x.book) && !x.dnaMode)) fireLive(r);
+  // DIAMOND: her best stretches, reinforced (reads the file fresh, so it never clobbers the rows above).
+  if (asset === "btc" || asset === "gold") diamondConsider({ ticker: c.ticker, side: c.side, ask: c.ask, label: c.label, target: c.target }, asset, bands);
+  // BREAK takes the first entry of the window that any ledger took.
+  if (changed) brkAlso(c, asset, bands);
+}
+
+type AssetLike = { spot?: number; target?: number | null; market: { ticker: string; yesBid: number; noBid: number } | null };
+
+/** BRICK (brick.ts): one paper trade per window, $10, REFINED exits. */
+export function brickConsider(c: { ticker: string; side: "up" | "down"; ask: number; label: string }, asset: "btc" | "gold", bands: Record<string, unknown> | null) {
+  if (!c || !(c.ask > 0.02 && c.ask < 0.98)) return;
+  const mult = 1 / c.ask;
+  const rows = read();
+  if (rows.some((r) => r.book === "brick" && r.ticker === c.ticker && sameMode(r))) return;
+  const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+  setTimeout(() => brkAlso(c, asset, bands), 0);
+  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:brick`, book: "brick", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT });
+  write(rows);
+  if (TAG === "") fireLive(rows[0]);
+}
+
+/** TAP / RESCUE tickets (tap.ts): small paper stakes, one per window per book. */
+export function tapConsider(c: { ticker: string; side: "up" | "down"; ask: number; label: string }, asset: "btc" | "gold", kind: "tap" | "rescue", bands: Record<string, unknown> | null) {
+  if (!(c.ask > 0.01 && c.ask < 0.98)) return;
+  const rows = read();
+  const books: NightRow["book"][] = kind === "tap" ? ["tap3x", "taphold"] : ["rescue"];
+  const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+  let changed = false;
+  for (const book of books) {
+    if (rows.some((r) => r.book === book && r.ticker === c.ticker && sameMode(r))) continue;
+    const stake = kind === "tap" ? 2.5 : 5;
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(1 / c.ask), stake, tpPct: book === "tap3x" ? 200 : 0, peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT });
+    changed = true;
+  }
+  if (changed) write(rows);
+}
+
+/** CONFIRM / FIRST BREAK (confirm.ts, Love Oct 3 ~1:15 PM PT): one paper trade per window per book, $50 ($25 at 3x+). */
+export function confirmConsider(c: { ticker: string; side: "up" | "down"; ask: number; label: string }, book: "confirm" | "brk1", bands: Record<string, unknown> | null, spot: number) {
+  if (!(c.ask > 0.02 && c.ask < 0.98)) return;
+  const rows = read();
+  if (rows.some((r) => r.book === book && r.ticker === c.ticker && !r.dnaMode)) return;
+  const mult = 1 / c.ask;
+  const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+  rows.unshift({ id: `${c.ticker}:${book}`, book, at: new Date().toISOString(), asset: "btc", ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT });
+  write(rows);
+}
+
+/** 5M / 10M / 15M SOLE (Love, Oct 3): every desk setup that clears her 25% channel rule on the session bands + ONE nav
+ *  frame only. One trade per window per book, $50 ($25 at 3x+), 1.38x+, same take-profit table as NEW. */
+export function soleConsider(c: { ticker: string; side: "up" | "down"; ask: number; label: string }, asset: string, book: "sole5" | "sole10" | "sole15") {
+  if (!(c.ask > 0.02 && c.ask <= 0.725)) return;
+  const rows = read();
+  if (rows.some((r) => r.book === book && r.ticker === c.ticker && !r.dnaMode)) return;
+  let bands: Record<string, unknown> | null = null;
+  try {
+    bands = JSON.parse(readFileSync(join(process.cwd(), "data", "bands-now.json"), "utf8"))?.[asset] ?? null;
+  } catch {
+    bands = null;
+  }
+  const mult = 1 / c.ask;
+  const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+  const row: NightRow = { id: `${c.ticker}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT };
+  rows.unshift(row);
+  write(rows);
+  fireLive(row);
+}
+
+/** LAST MINUTE (Love, Oct 3 ~6:10 PM PT: "within minutes of the window ending, on the right side of the target, and
+ *  still 1.5-1.37x... lower it to 1.32x for this book... take the set up if she can"). Paper only. One per window per
+ *  asset, $50, hard take profit (newTp: 5% under the max when +50% can't be reached). */
+export function lastConsider(c: { ticker: string; side: "up" | "down"; ask: number; label: string }, asset: string, book: "lastmin" | "lastgrant" = "lastmin") {
+  if (!(c.ask > 0.39 && c.ask < 0.77)) return;
+  const rows = read();
+  if (rows.some((r) => r.book === book && r.ticker === c.ticker && !r.dnaMode)) return;
+  let bands: Record<string, unknown> | null = null;
+  try {
+    bands = JSON.parse(readFileSync(join(process.cwd(), "data", "bands-now.json"), "utf8"))?.[asset] ?? null;
+  } catch {
+    bands = null;
+  }
+  const mult = 1 / c.ask;
+  const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+  rows.unshift({ id: `${c.ticker}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT });
+  write(rows);
+}
+
+/** BTC HOURLY (hourly.ts): one trade per hour, $50, hard take profit, else the hour's result. */
+export function hourConsider(c: { ticker: string; event: string; side: "up" | "down"; ask: number; label: string }, bands: Record<string, unknown> | null, spot: number) {
+  const rows = read();
+  if (rows.some((r) => r.book === "hour" && (r.ticker.split("-").slice(0, 2).join("-") === c.event || r.ticker === c.ticker))) return;
+  const mult = 1 / c.ask;
+  const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:hour`, book: "hour", at: new Date().toISOString(), asset: "btc", ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT });
+  write(rows);
+}
+export function hourOpen(): NightRow[] {
+  return read().filter((r) => r.book === "hour" && r.result === "open");
+}
+export function hourSell(id: string, bid: number, pct: number) {
+  const rows = read();
+  const r = rows.find((x) => x.id === id);
+  if (!r || r.result !== "open") return;
+  let changed = false;
+  if (pct > r.peakPct) {
+    r.peakPct = r2(pct);
+    changed = true;
+  }
+  const tpH = paperTp() ?? r.tpPct;
+  if (tpH > 0 && pct + 1e-9 >= tpH) {
+    r.result = "sold";
+    r.exit = `take profit +${tpH}%`;
+    r.sellBid = bid;
+    r.pnl = r2((r.stake / r.ask) * bid - r.stake);
+    changed = true;
+  }
+  if (changed) write(rows);
+}
+
+/** GOLDEN (golden.ts): one paper trade per window, $10, on the Oct 1 afternoon model's own setups. */
+export function goldenConsider(c: { ticker: string; side: "up" | "down"; ask: number; label: string }, asset: "btc" | "gold", bands: Record<string, unknown> | null, book: "golden" | "optA" = "golden") {
+  if (!c || !(c.ask > 0.02 && c.ask < 0.98)) return;
+  const mult = 1 / c.ask;
+  if (mult < 1.38) return;
+  const rows = read();
+  if (rows.some((r) => r.book === book && r.ticker === c.ticker && sameMode(r))) return;
+  const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
+  setTimeout(() => brkAlso(c, asset, bands), 0);
+  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: book === "optA" && mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: book === "optA" ? newTp(mult) : originalTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT });
+  write(rows);
+}
+
+/** Every tick: real bids → take profit (both books), LOCK THE WIN (new book only). */
+// PAPER TAKE PROFIT (Love, Oct 3 ~1:45 PM PT: "raise that in the settings up to 200%... the gate is costing us the
+// whole thing"). data/paper-exit.json { tpPct }: when set, every paper book (not taps / BANK) uses this one hard take
+// profit instead of its own table, and the paper gates + LOCK THE WIN stand down. Above a trade's max = held to the bell.
+export function paperTp(): number | null {
+  try {
+    const v = Number(JSON.parse(readFileSync(join(process.cwd(), "data", "paper-exit.json"), "utf8")).tpPct);
+    return v > 0 ? v : null;
+  } catch {
+    return null;
+  }
+}
+export function nightTick(assets: Record<string, AssetLike> | null | undefined) {
+  if (!assets) return;
+  const ov = paperTp();
+  const rows = read();
+  if (!rows.some((r) => r.result === "open")) return;
+  const lock = g.__nightLock || (g.__nightLock = {});
+  const bankSt = ((g as unknown as { __bank?: Record<string, { peakBid: number; touch: { L: number; name: string; minute: number } | null }> }).__bank ||= {});
+  let bandsNow: Record<string, any> | null = null;
+  if (rows.some((r) => r.result === "open" && ["bank", "bank2", "brk", "hold90"].includes(r.book))) {
+    try {
+      bandsNow = JSON.parse(readFileSync(join(process.cwd(), "data", "bands-now.json"), "utf8"));
+    } catch {
+      bandsNow = null;
+    }
+  }
+  let changed = false;
+  for (const id of ["btc", "gold"]) {
+    const m = assets[id]?.market;
+    if (!m?.ticker) continue;
+    for (const r of rows) {
+      if (r.result !== "open" || r.ticker !== m.ticker) continue;
+      const bid = r.side === "up" ? m.yesBid : m.noBid;
+      if (!(bid > 0)) continue;
+      const pct = (bid / r.ask - 1) * 100;
+      if (pct > r.peakPct) {
+        r.peakPct = r2(pct);
+        changed = true;
+      }
+      let why: string | null = null;
+      const tpPeak = g as unknown as { __nightTpPeak?: Record<string, number> };
+      const tpp = tpPeak.__nightTpPeak || (tpPeak.__nightTpPeak = {});
+      // TAP 3x sells at +200%; TAP HOLD and RESCUE ride to the bell. Nothing else touches them.
+      if (r.book === "tap3x" || r.book === "taphold" || r.book === "rescue") {
+        if (r.book === "tap3x" && pct + 1e-9 >= 200) {
+          r.result = "sold";
+          r.exit = `take profit +200% (${Math.round(pct)}%)`;
+          r.sellBid = bid;
+          r.pnl = r2((r.stake / r.ask) * bid - r.stake);
+          changed = true;
+        }
+        continue;
+      }
+      // BREAK + HOLD90 run their own exits (below), nothing else.
+      if (r.book === "brk" || r.book === "hold90") {
+        const rr = ov ? { ...r, tpPct: ov } : r;
+        const ex = r.book === "brk" ? breakExit(rr, id, bid, pct, bandsNow) : hold90Exit(rr, id, bid, pct, assets[id], bandsNow);
+        if (ex) {
+          r.result = "sold";
+          r.exit = ex;
+          r.sellBid = bid;
+          r.pnl = r2((r.stake / r.ask) * bid - r.stake);
+          changed = true;
+        }
+        continue;
+      }
+      const newish = r.book !== "original" && r.book !== "golden";
+      // REFINED + CLAUDE + TREND + BRICK + COTC: a gate / lock never sells under breakeven after a gap.
+      const aboveWater = !["refined", "claude", "trend", "brick", "cotc", "diamond", "bank", "bank2"].includes(r.book) || pct > 0;
+      if (ov && r.book !== "bank" && r.book !== "bank2") {
+        if (pct + 1e-9 >= ov) why = `hard take profit +${ov}%`;
+      } else if (r.book === "original" || r.book === "golden") {
+        if (r.tpPct > 0 && pct + 1e-9 >= r.tpPct) why = `take profit +${r.tpPct}%`;
+      } else if (r.tpPct > 0 && (pct + 1e-9 >= r.tpPct || tpp[r.id] != null)) {
+        // NEW: ride past the take profit, trail 1% under the best quote, never below the line.
+        tpp[r.id] = Math.max(tpp[r.id] ?? pct, pct);
+        const trail = Math.max(r.tpPct, Math.floor(tpp[r.id]) - 1);
+        if (bid >= 0.97 || pct < trail) why = `take profit: peaked +${Math.round(tpp[r.id])}%, 1% trail`;
+      }
+      // NEW only sells a winner early with a reason: within $1.50 (gold) / $100 (BTC) of the target.
+      const a = assets[id];
+      const clear = id === "gold" ? 1.5 : id === "btc" ? 100 : 0;
+      const cushion = a?.spot && a?.target ? (r.side === "up" ? a.spot - a.target : a.target - a.spot) : null;
+      const reason = !(clear > 0) || cushion == null || cushion <= clear;
+      const gated = !ov && newish && r.book !== "bank" && r.book !== "bank2";
+      if (!why && gated && reason && aboveWater) {
+        // Love's gates: under 1.65x keep a literal +40% once reached; 1.65x+ keep 55% / 60% of the max.
+        const maxPct = (r.multiple - 1) * 100;
+        const gates = r.multiple < 1.65 ? (40 < maxPct ? [40] : []) : [0.55, 0.6].map((x) => r2(maxPct * x));
+        const floor = gates.filter((gp) => r.peakPct + 1e-9 >= gp).pop();
+        if (floor != null && pct < floor) why = `take-profit gate +${floor}% (peaked +${r.peakPct}%)`;
+      }
+      if (gated) lock[r.id] = Math.max(lock[r.id] ?? -100, pct);
+      if (!why && r.book === "bank") why = bankExit(r, id, bid, pct, bankSt, bandsNow);
+      if (!why && r.book === "bank2") why = bankExit(r, id, bid, pct, bankSt, bandsNow, { arm: 40, give: 10, band: false });
+      if (!why && gated && reason && aboveWater) {
+        if (lock[r.id] >= 30 && pct <= 20) why = `locked the win (was +${Math.round(lock[r.id])}%, back to +${Math.round(pct)}%)`;
+      }
+      if (why) {
+        r.result = "sold";
+        r.exit = why;
+        r.sellBid = bid;
+        r.pnl = r2((r.stake / r.ask) * bid - r.stake);
+        changed = true;
+      }
+    }
+  }
+  if (changed) write(rows);
+}
+
+const brkSt: Record<string, { lastAt: number; through: number }> = {};
+/** BREAK: hard take profit, or out the moment the line she entered on breaks with a strong push. */
+function breakExit(r: NightRow, asset: string, bid: number, pct: number, bandsNow: Record<string, any> | null): string | null {
+  if (r.tpPct > 0 && pct + 1e-9 >= r.tpPct) return `take profit +${r.tpPct}%`;
+  const L = (r as NightRow & { entryLine?: { name: string; price: number } | null }).entryLine;
+  const nav = bandsNow?.[asset]?.nav;
+  const c1 = Number(nav?.close1m) || 0;
+  const at = Number(nav?.close1mAt) || 0;
+  if (!L || !(c1 > 0) || !at) return null;
+  const s = (brkSt[r.id] ||= { lastAt: Math.floor(Date.parse(r.at) / 1000) - 60, through: 0 });
+  if (at <= s.lastAt) return null;
+  s.lastAt = at;
+  const depth = r.side === "up" ? L.price - c1 : c1 - L.price;
+  if (depth > 0) {
+    s.through += 1;
+    const strong = asset === "btc" ? 20 : 0.4;
+    if (depth >= strong) return `strong break of the ${L.name} (${L.price.toFixed(2)}): closed ${depth.toFixed(2)} through, out at ${Math.round(pct)}%`;
+    if (s.through >= 2) return `two closes through the ${L.name} (${L.price.toFixed(2)}): out at ${Math.round(pct)}%`;
+  } else s.through = 0;
+  return null;
+}
+const h90: Record<string, boolean> = {};
+/** HOLD90: hard take profit; a clear winner rides for 90% of the max, backstopped at the TP line. */
+function hold90Exit(r: NightRow, asset: string, bid: number, pct: number, a: AssetLike | undefined, bandsNow: Record<string, any> | null): string | null {
+  const maxPct = (r.multiple - 1) * 100;
+  if (h90[r.id]) {
+    if (pct + 1e-9 >= maxPct * 0.9 || bid >= 0.97) return `clear winner held: banked +${Math.round(pct)}% (90% of the max)`;
+    if (pct < r.tpPct) return `clear winner faded back to the +${r.tpPct}% line: banked it`;
+    return null;
+  }
+  if (!(r.tpPct > 0 && pct + 1e-9 >= r.tpPct)) return null;
+  const spot = Number(a?.spot) || 0;
+  const tgt = Number(a?.target) || 0;
+  const cushion = asset === "btc" ? 100 : 1.5;
+  const past = spot > 0 && tgt > 0 ? (r.side === "up" ? spot - tgt : tgt - spot) : -1;
+  let roadClear = false;
+  if (past >= cushion && bandsNow?.[asset]) {
+    const lo = Math.min(spot, tgt);
+    const hi = Math.max(spot, tgt);
+    roadClear = !dnaLines(asset, bandsNow[asset]).some((l) => l.price > lo && l.price < hi);
+  }
+  if (roadClear && maxPct * 0.9 > r.tpPct) {
+    h90[r.id] = true;
+    return null;
+  }
+  return `take profit +${r.tpPct}%${past >= cushion ? " (a line sits between price and the strike)" : " (not clear enough to hold)"}`;
+}
+
+/** BANK's exits beyond the take profit. Returns a reason to sell, or null to hold. */
+function bankExit(r: NightRow, asset: string, bid: number, pct: number, st: Record<string, { peakBid: number; touch: { L: number; name: string; minute: number } | null }>, bandsNow: Record<string, any> | null, cfg: { arm: number; give: number; band: boolean } = { arm: 30, give: 5, band: true }): string | null {
+  const s = (st[r.id] ||= { peakBid: 0, touch: null });
+  s.peakBid = Math.max(s.peakBid, bid);
+  // 1. Trailing gate: armed at +arm%, sells give% under the highest bid she reached.
+  if (r.peakPct >= cfg.arm && pct > 0 && bid <= s.peakBid * (1 - cfg.give / 100)) {
+    const peakPct = Math.round((s.peakBid / r.ask - 1) * 100);
+    return `trailing gate: peaked +${peakPct}%, banked ${cfg.give}% off the high (+${Math.round(pct)}%)`;
+  }
+  if (!cfg.band) return null;
+  // 2. Band tap: break = hold, rejection = bank (only in profit).
+  const b = bandsNow?.[asset];
+  const nav = b?.nav;
+  const live = nav?.live1m as { t: number; h: number; l: number; c: number } | null | undefined;
+  const c1 = Number(nav?.close1m) || 0;
+  const c1At = Number(nav?.close1mAt) || 0;
+  if (!b || !live || !(c1 > 0)) return null;
+  const tol = asset === "btc" ? 15 : 0.3;
+  const up = r.side === "up";
+  if (s.touch && c1At >= s.touch.minute) {
+    const L = s.touch.L;
+    const broke = up ? c1 > L : c1 < L;
+    const name = s.touch.name;
+    s.touch = null;
+    if (!broke && pct > 0) return `band rejection at the ${name}: banked +${Math.round(pct)}%`;
+    if (broke) return null; // broke through: hold
+  }
+  if (!s.touch) {
+    const lines = dnaLines(asset, b);
+    const hit = lines
+      .filter((l) => (up ? l.price > c1 && live.h >= l.price - tol : l.price < c1 && live.l <= l.price + tol))
+      .sort((x, y) => (up ? x.price - y.price : y.price - x.price))[0];
+    if (hit) s.touch = { L: hit.price, name: hit.name, minute: live.t };
+  }
+  return null;
+}
+
+/** Settle what was held to the bell with Kalshi's real result. */
+// Love (4:35 AM): a short review on every closed trade.
+function review(r: NightRow): NonNullable<NightRow["notes"]> {
+  const worked: string[] = [];
+  const better: string[] = [];
+  const keep: string[] = [];
+  const b = (r.bands ?? null) as { vwap?: number; sd?: number; nav?: Record<string, { c: number; up: number; dn: number } | null> } | null;
+  const spot = Number(r.spot) || 0;
+  const thr = r.asset === "btc" ? 100 : 2.5;
+  const wonAtBell = r.bell ? (r.side === "up" ? r.bell === "yes" : r.bell === "no") : null;
+  const maxPct = (r.multiple - 1) * 100;
+  // Entry against the lines she watches
+  if (b && spot > 0) {
+    const lines: [string, number][] = [];
+    if (b.vwap && b.sd) for (const m of [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2]) lines.push([m === 0 ? "session VWAP" : `${m > 0 ? "+" : ""}${m}σ`, b.vwap + m * b.sd]);
+    for (const k of ["m5", "m10", "m15"]) if (b.nav?.[k]) lines.push([`${k.slice(1)}m purple`, b.nav[k]!.c]);
+    const against = lines.filter(([, L]) => (r.side === "up" ? L >= spot && L - spot <= thr : L <= spot && spot - L <= thr));
+    const support = lines.filter(([, L]) => (r.side === "up" ? L < spot && spot - L <= thr : L > spot && L - spot <= thr));
+    if (against.length) better.push(`Entered with the ${against.map(([n]) => n).join(" + ")} right ${r.side === "up" ? "above" : "below"} her. ${r.book === "golden" && r.at < "2026-10-02T22:02:00Z" ? "GOLDEN ran without her DNA until 3:02 PM; it carries it now." : "Her DNA blocks this now."}`);
+    else worked.push(`Clean entry: no band right ${r.side === "up" ? "above the long" : "below the short"}.`);
+    if (support.length) worked.push(`Had the ${support.map(([n]) => n).join(" + ")} ${r.side === "up" ? "under her as a floor" : "over her as a ceiling"}.`);
+  }
+  if (r.multiple >= 3) better.push(`${r.multiple.toFixed(2)}x is a long shot; these need a strong reason.`);
+  // Exit
+  const pnl = Number(r.pnl) || 0;
+  if (r.result === "sold") {
+    const gaveBack = r.peakPct - (r.sellBid && r.ask ? (r.sellBid / r.ask - 1) * 100 : 0);
+    const tp = /take profit/.test(r.exit ?? "");
+    if (wonAtBell === true && tp) worked.push(`Take profit banked ${pnl >= 0 ? "+" : ""}${pnl} of the ${r2(r.stake / r.ask - r.stake)} it paid at the bell.`);
+    else if (wonAtBell === true) better.push(`Sold early but it won at the bell: holding paid ${r2(r.stake / r.ask - r.stake)} vs ${pnl >= 0 ? "+" : ""}${pnl}. That exit had no good reason.`);
+    else if (wonAtBell === false) worked.push(`Exit saved it: it lost at the bell, she banked ${pnl >= 0 ? "+" : ""}${pnl} instead of -${r.stake}.`);
+    if (gaveBack > 15) better.push(`Peaked +${Math.round(r.peakPct)}% but sold ${Math.round(gaveBack)} points lower.`);
+    if (/take profit/.test(r.exit ?? "")) keep.push("Take profit + trail did its job.");
+  } else if (r.result === "win") {
+    worked.push(`Held to the bell and won ${pnl >= 0 ? "+" : ""}${pnl}.`);
+    if (r.peakPct >= maxPct * 0.75) keep.push("Riding winners past the line pays.");
+  } else if (r.result === "loss") {
+    if (r.peakPct >= 20) better.push(`Was up +${Math.round(r.peakPct)}% and still lost: a gate/lock with a reason should bank these.`);
+    else better.push("Never went green: the setup didn't follow through.");
+  }
+  if (r.event) better.push(`Taken during the ${r.event}: news windows whip both ways.`);
+  if (!worked.length && !better.length) keep.push("Nothing stood out; keep watching.");
+  if (r.book !== "original" && !better.length) keep.push("Do more of exactly this.");
+  return { worked, better, keep, v: 2 } as NonNullable<NightRow["notes"]>;
+}
+
+// SETTLE (Claude, Oct 3 ~4:30 PM PT, Love: "SHIFT still shows open on positions that closed last window"): windows that
+// closed settle FIRST, every pass; the old-review backfill is capped per pass. Updates are applied to a FRESH read of the
+// ledger by id, so a slow pass can never overwrite trades booked while it was waiting on Kalshi.
+function closedWindow(ticker: string): boolean {
+  const m = ticker.match(/-(\d\d)([A-Z]{3})(\d\d)(\d\d)(\d\d)/);
+  if (!m) return true;
+  const mon = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"].indexOf(m[2]);
+  if (mon < 0) return true;
+  // Kalshi tickers are New York time: EDT (UTC-4) Mar-Oct, EST (UTC-5) otherwise (close enough for "has it closed").
+  const off = mon >= 2 && mon <= 9 ? 4 : 5;
+  const close = Date.UTC(2000 + Number(m[1]), mon, Number(m[3]), Number(m[4]) + off, Number(m[5]));
+  return Date.now() >= close;
+}
+export async function nightSettle(result: (ticker: string) => Promise<"yes" | "no" | null>) {
+  if (g.__nightSettling) return;
+  g.__nightSettling = true;
+  try {
+    const snapshot = read();
+    const updates = new Map<string, Partial<NightRow>>();
+    const cache = new Map<string, "yes" | "no" | null>();
+    const ask = async (tk: string) => {
+      if (!cache.has(tk)) cache.set(tk, await result(tk).catch(() => null));
+      return cache.get(tk) ?? null;
+    };
+    // 1. Open trades whose window has closed: settle them now.
+    for (const r of snapshot) {
+      if (r.result !== "open" || !closedWindow(r.ticker)) continue;
+      const res = await ask(r.ticker);
+      if (!res) continue;
+      const won = (r.side === "up" && res === "yes") || (r.side === "down" && res === "no");
+      const done = { ...r, result: (won ? "win" : "loss") as NightRow["result"], exit: "held to the bell", pnl: won ? r2(r.stake / r.ask - r.stake) : -r.stake, bell: res };
+      updates.set(r.id, { result: done.result, exit: done.exit, pnl: done.pnl, bell: res, notes: review(done as NightRow) });
+    }
+    // 2. Sold-early trades still waiting on the bell's answer / a review: a few per pass.
+    let budget = 15;
+    for (const r of snapshot) {
+      if (budget <= 0) break;
+      if (r.result === "open" || !closedWindow(r.ticker)) continue;
+      if (r.notes && r.bell != null && (r.notes as { v?: number }).v === 2) continue;
+      budget -= 1;
+      const res = r.bell ?? (await ask(r.ticker));
+      if (!res) continue;
+      updates.set(r.id, { bell: res, notes: review({ ...r, bell: res } as NightRow) });
+    }
+    if (updates.size) {
+      const fresh = read();
+      for (const r of fresh) {
+        const u = updates.get(r.id);
+        if (!u) continue;
+        if (u.result && r.result !== "open") continue; // it was sold meanwhile: keep that
+        Object.assign(r, u);
+      }
+      write(fresh);
+    }
+  } finally {
+    g.__nightSettling = false;
+  }
+}

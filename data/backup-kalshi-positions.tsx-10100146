@@ -1,0 +1,118 @@
+// (file: kalshi-positions.tsx; positions.tsx is the desk's original open-trade list) POSITIONS tab (Claude, Oct 9, Love: "let's make a POSITIONS tab where we can do everything there, not just for trading,
+// for all positions held on kalshi" + autosell). Every open Kalshi position, its value, and her autosell rule.
+import { useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getPositions, sellPosition, setAutosell } from "@/lib/desk/fns";
+
+const UP = "#3ddc84";
+const DOWN = "#ff5c5c";
+const usd = (n: number) => `${n >= 0 ? "+" : "−"}$${Math.abs(n).toFixed(2)}`;
+const when = (iso: string) => (iso ? new Date(iso).toLocaleString("en-US", { timeZone: "America/Los_Angeles", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "");
+
+function Row({ p, onSet, onSell }: { p: any; onSet: (mode: "pct" | "price", v: number | null) => void; onSell: () => void }) {
+  // SLIDER (Love, Oct 9: "make it a slider style... with the max payout and max percentage available... i'd just be
+  // guessing here"). The slider is the sell price for her side, 1c to 99c; it shows what she'd get back and the gain.
+  const lo = Math.max(1, Math.min(98, Math.round(Math.max(p.bid, p.entry) * 100) + 1));
+  const start = p.rule ? (p.rule.mode === "price" ? Math.round(p.rule.value * 100) : Math.min(99, Math.round(p.entry * (1 + p.rule.value / 100) * 100))) : Math.min(99, Math.max(lo, Math.round(p.entry * 200)));
+  const [c, setC] = useState<number>(start);
+  const [confirm, setConfirm] = useState(false);
+  const back = p.qty * (c / 100);
+  const gain = back - p.cost;
+  const gainPct = p.cost > 0 ? Math.round((back / p.cost - 1) * 100) : 0;
+  const maxBack = p.qty * 1;
+  const maxPct = p.cost > 0 ? Math.round((maxBack / p.cost - 1) * 100) : 0;
+  const col = p.pnl >= 0 ? UP : DOWN;
+  return (
+    <div className="rounded-[12px] border px-3 py-2" style={{ borderColor: p.rule ? "rgba(179,136,255,0.6)" : "rgba(255,255,255,0.15)" }}>
+      <p className="font-mono text-[10px] leading-snug text-white/90">{p.title}</p>
+      <p className="font-mono text-[9px] text-white/50">
+        {p.side.toUpperCase()} · {p.qty} @ {Math.round(p.entry * 100)}c · cost ${p.cost.toFixed(2)} · bid now {Math.round(p.bid * 100)}c · closes {when(p.closes)}
+      </p>
+      <p className="mt-0.5 font-mono text-[13px] tabular-nums" style={{ color: col }}>
+        ${p.value.toFixed(2)} <span className="text-[10px]">{usd(p.pnl)} ({p.pct >= 0 ? "+" : ""}{p.pct}%)</span>
+        <span className="ml-2 text-[9px] text-white/45">MAX IF IT WINS ${maxBack.toFixed(2)} (+{maxPct}%)</span>
+      </p>
+      <div className="mt-2">
+        <div className="flex items-baseline justify-between font-mono text-[10px]">
+          <span className="text-[8px] tracking-[0.2em] text-white/50">AUTOSELL AT</span>
+          <span style={{ color: "#B388FF" }}>
+            {c}c → ${back.toFixed(2)} back · {gain >= 0 ? "+" : "−"}${Math.abs(gain).toFixed(2)} ({gainPct >= 0 ? "+" : ""}{gainPct}%)
+          </span>
+        </div>
+        <input type="range" min={1} max={99} step={1} value={c} onChange={(e) => setC(Number(e.target.value))} className="glass-range mt-1 w-full cursor-pointer" style={{ touchAction: "none" }} aria-label="Autosell price" />
+        <div className="flex justify-between font-mono text-[8px] text-white/35">
+          <span>1c</span>
+          <span>paid {Math.round(p.entry * 100)}c</span>
+          <span>99c · ${(p.qty * 0.99).toFixed(2)}</span>
+        </div>
+      </div>
+      <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+        <button type="button" onClick={() => onSet("price", c)} className="rounded-full border px-3 py-0.5 font-mono text-[9px]" style={{ borderColor: "#B388FF", color: "#B388FF" }}>
+          {p.rule ? `UPDATE TO ${c}c` : `SET AUTOSELL AT ${c}c`}
+        </button>
+        {p.rule ? (
+          <button type="button" onClick={() => onSet("price", null)} className="rounded-full border px-2 py-0.5 font-mono text-[9px] text-white/60" style={{ borderColor: "rgba(255,255,255,0.3)" }}>
+            CLEAR
+          </button>
+        ) : null}
+        <span className="flex-1" />
+        {confirm ? (
+          <>
+            <button type="button" onClick={() => { setConfirm(false); onSell(); }} className="rounded-full border px-2 py-0.5 font-mono text-[9px]" style={{ borderColor: DOWN, color: DOWN }}>
+              CONFIRM SELL · ~${p.value.toFixed(2)}
+            </button>
+            <button type="button" onClick={() => setConfirm(false)} className="font-mono text-[9px] text-white/50">cancel</button>
+          </>
+        ) : (
+          <button type="button" onClick={() => setConfirm(true)} className="rounded-full border px-2 py-0.5 font-mono text-[9px] text-white/80" style={{ borderColor: "rgba(255,255,255,0.4)" }}>
+            SELL NOW
+          </button>
+        )}
+      </div>
+      {p.rule ? (
+        <p className="mt-1 font-mono text-[9px]" style={{ color: "#B388FF" }}>
+          ● sells automatically when {p.rule.mode === "pct" ? `it's up ${p.rule.value}%` : `the bid reaches ${Math.round(p.rule.value * 100)}c (~$${(p.qty * p.rule.value).toFixed(2)} back)`}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+export function PositionsTab() {
+  const qc = useQueryClient();
+  const q = useQuery({ queryKey: ["positions"], queryFn: () => getPositions(), refetchInterval: 15000 });
+  const rows = q.data?.rows ?? [];
+  const total = rows.reduce((s: number, p: any) => s + p.value, 0);
+  const cost = rows.reduce((s: number, p: any) => s + p.cost, 0);
+  const refresh = (r: { rows: any[] }) => qc.setQueryData(["positions"], (old: any) => ({ ...(old || {}), rows: r.rows }));
+  return (
+    <section className="mx-3 mt-3 rounded-[14px] px-3 py-3" style={{ border: "1px solid rgba(255,255,255,0.18)", background: "#000" }}>
+      <div className="flex items-baseline justify-between gap-2">
+        <p className="text-[10px] tracking-[0.28em] text-white/90">POSITIONS · EVERYTHING ON KALSHI</p>
+        <p className="font-mono text-[10px]" style={{ color: total - cost >= 0 ? UP : DOWN }}>
+          ${total.toFixed(2)} <span className="text-white/50">on ${cost.toFixed(2)}</span>
+        </p>
+      </div>
+      <p className="mt-1 font-mono text-[9px] leading-snug text-white/50">
+        Slide to the price you'd sell at: it shows what you'd get back and your gain, next to the most it can pay if it wins. The desk checks every ~20 s and sells the
+        whole position when it's reached, then alerts you. You'll also get an alert the first time a position turns green.
+      </p>
+      <div className="mt-2 flex flex-col gap-2">
+        {!q.data ? (
+          <p className="font-mono text-[10px] text-white/50">loading your positions…</p>
+        ) : rows.length ? (
+          rows.map((p: any) => (
+            <Row
+              key={`${p.ticker}:${p.rule?.at ?? ""}`}
+              p={p}
+              onSet={(mode, v) => void setAutosell({ data: v == null ? { ticker: p.ticker, clear: true } : { ticker: p.ticker, mode, value: v } }).then(refresh)}
+              onSell={() => void sellPosition({ data: { ticker: p.ticker } }).then(refresh)}
+            />
+          ))
+        ) : (
+          <p className="font-mono text-[10px] text-white/50">No open positions.</p>
+        )}
+      </div>
+    </section>
+  );
+}

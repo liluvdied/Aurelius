@@ -1,0 +1,2777 @@
+import { appendFileSync, renameSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { createPrivateKey, randomUUID, sign, constants } from "node:crypto";
+import { closeCash, halfCuts, screenBid } from "./paper";
+import { bandInWay, bandOnPath, bandReach, centerWrong, shortBandOnTarget, shortTap, survivalBlock } from "./auto";
+import { listPrimePaper, onPrimeBook, primeOwns, primeProven } from "./prime-book";
+import { readBook } from "./book";
+import { bandLevels, liveOn, loveSkip, maxDollars, noteBlock, recordFire } from "./live-guard";
+const ROOT = "https://external-api.kalshi.com";
+const LIVE_DOLLARS = 10;
+let cachedKey = null;
+function keyId() {
+  return readFileSync(join(process.cwd(), ".secrets", "kalshi.id"), "utf8").trim();
+}
+function privateKey() {
+  if (!cachedKey) cachedKey = createPrivateKey(readFileSync(join(process.cwd(), ".secrets", "kalshi.pem"), "utf8"));
+  return cachedKey;
+}
+function kalshiArmed() {
+  try {
+    return keyId().length > 0 && Boolean(privateKey());
+  } catch {
+    return false;
+  }
+}
+// LIVE GUARD at the wire (Claude). Every Kalshi order passes here. An opening order is refused
+// while the live switch is off and is cut to the size ceiling. Exits always go through.
+// This is a safety layer only. It does not change which trades the model takes.
+function guardKalshiOrder(method, path, body) {
+  if (method !== "POST" || !/\/portfolio\/(events\/)?orders/.test(path) || !body || body.reduce_only === true) return { body };
+  if (!liveOn()) {
+    noteBlock({ venue: "kalshi", ticker: body.ticker, reason: "Live switch is OFF" });
+    return { refused: "Live switch is OFF. No new Kalshi order was sent." };
+  }
+  const yes = Number(body.price);
+  const px = body.side === "bid" ? yes : 1 - yes;
+  const count = Number.parseFloat(body.count);
+  let cap = maxDollars();
+  // REACH (Oct 6 ~7:40 AM PT): a live-book copy bids a little over the ask so a fast tape still fills. Its size and the
+  // 3x+ cap are judged on the TRUE ask it was sized on; the limit itself may run at most 20% over her ceiling.
+  const reach = (globalThis as any).__aureliusReach?.[body.ticker];
+  const askPx = reach && Date.now() - reach.at < 10000 && reach.ask > 0 ? reach.ask : 0;
+  // Love (2026-10-01): anything paying 3x or more goes on at $5 max (live-switch "bigMultipleCap").
+  let capWhy = "ceiling";
+  try {
+    const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+    const big = sw.bigMultipleCap || { x: 3, dollars: 5 };
+    if (big && big.on !== false && (askPx || px) > 0 && 1 / (askPx || px) >= Number(big.x) - 1e-9 && Number(big.dollars) > 0 && Number(big.dollars) < cap) {
+      cap = Number(big.dollars);
+      capWhy = `${Number(big.x)}x+ cap`;
+    }
+  } catch {
+  }
+  if (askPx > 0) {
+    const room = cap * 1.2;
+    if (count > 0 && (count * askPx > cap + 0.05 || count * px > room + 1e-6)) {
+      const fixed = Math.floor(Math.min(cap / askPx, room / px) * 100) / 100;
+      noteBlock({ venue: "kalshi", ticker: body.ticker, reason: `Size cut to ${fixed} (the $${cap} ${capWhy} on the ask)` });
+      if (!(fixed >= 0.01)) return { refused: "Size under the ceiling rounds to zero." };
+      return { body: { ...body, count: fixed.toFixed(2) } };
+    }
+    return { body };
+  }
+  if (px > 0 && count > 0 && count * px > cap + 1e-6) {
+    const fixed = Math.floor(cap / px * 100) / 100;
+    noteBlock({ venue: "kalshi", ticker: body.ticker, reason: `Size cut from $${(count * px).toFixed(2)} to the $${cap} ${capWhy}` });
+    if (!(fixed >= 0.01)) return { refused: "Size under the ceiling rounds to zero." };
+    return { body: { ...body, count: fixed.toFixed(2) } };
+  }
+  return { body };
+}
+async function kalshi(method, path, query = "", body) {
+  const guarded = guardKalshiOrder(method, path, body);
+  if (guarded.refused) return new Response(JSON.stringify({ error: guarded.refused }), { status: 403, headers: { "Content-Type": "application/json" } });
+  body = guarded.body;
+  const timestamp = Date.now().toString();
+  const signature = sign("sha256", Buffer.from(`${timestamp}${method}${path}`), {
+    key: privateKey(),
+    padding: constants.RSA_PKCS1_PSS_PADDING,
+    saltLength: constants.RSA_PSS_SALTLEN_DIGEST
+  }).toString("base64");
+  // LAG FIX (Oct 15, Love: "both. immediately both pls"): the 06:00 window lost 8.5 s and 8.4 s - one Kalshi read that
+  // stalled and sat out the full 8 s timeout before failing. Reads (GET) now give up after 2.5 s and ask again once, right
+  // away. Orders and cancels (POST/DELETE) keep 8 s, so an order is never sent twice on a slow answer.
+  const go = () => fetch(ROOT + path + query, {
+    method,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "KALSHI-ACCESS-KEY": keyId(),
+      "KALSHI-ACCESS-TIMESTAMP": timestamp,
+      "KALSHI-ACCESS-SIGNATURE": signature
+    },
+    body: body === void 0 ? void 0 : JSON.stringify(body),
+    signal: AbortSignal.timeout(method === "GET" ? 2500 : 8000)
+  });
+  if (method !== "GET") return go();
+  return go().catch(() => go());
+}
+async function marketResult(ticker) {
+  const res = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(8000) });
+  if (!res.ok) return null;
+  const data = await res.json();
+  const result = data.market?.result;
+  return result === "yes" || result === "no" ? result : null;
+}
+function settlementProfitOf(row) {
+  const yesCount = Number.parseFloat(row.yes_count_fp ?? "");
+  const noCount = Number.parseFloat(row.no_count_fp ?? "");
+  const yesCost = Number.parseFloat(row.yes_total_cost_dollars ?? "");
+  const noCost = Number.parseFloat(row.no_total_cost_dollars ?? "");
+  const fee = Number.parseFloat(row.fee_cost ?? "0");
+  const value = Number(row.value ?? NaN);
+  if (![yesCount, noCount, yesCost, noCost, value].every(Number.isFinite)) return null;
+  const yesPay = value / 100 * yesCount;
+  const noPay = (1 - value / 100) * noCount;
+  return Math.round((yesPay + noPay - yesCost - noCost - (Number.isFinite(fee) ? fee : 0)) * 100) / 100;
+}
+const settleCache = globalThis;
+async function settlementProfits() {
+  const hit = settleCache.__aureliusSettle;
+  if (hit && Date.now() - hit.at < 2e4) return hit.map;
+  const map = /* @__PURE__ */ new Map();
+  let cursor = "";
+  for (let page = 0; page < 4; page += 1) {
+    const res = await kalshi("GET", "/trade-api/v2/portfolio/settlements", `?limit=200${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`);
+    if (!res.ok) break;
+    const data = await res.json();
+    for (const row of data.settlements ?? []) {
+      if (!row.ticker || map.has(row.ticker)) continue;
+      const profit = settlementProfitOf(row);
+      if (profit == null) continue;
+      map.set(row.ticker, profit);
+    }
+    if (!data.cursor) break;
+    cursor = data.cursor;
+  }
+  settleCache.__aureliusSettle = { at: Date.now(), map };
+  return map;
+}
+async function kalshiBooks() {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/balance");
+  if (!res.ok) return null;
+  const data = await res.json();
+  const total = Number.parseFloat(data.balance_dollars ?? "");
+  const rows = Array.isArray(data.balance_breakdown) ? data.balance_breakdown : [];
+  const shard = rows.find((row) => Number(row.exchange_index) === 2);
+  const tradable = Number.parseFloat(shard?.balance ?? "");
+  return {
+    total: Number.isFinite(total) ? total : null,
+    tradable: Number.isFinite(tradable) ? tradable : null
+  };
+}
+async function kalshiCash() {
+  const books = await kalshiBooks();
+  if (!books) return null;
+  return books.total;
+}
+async function signedPosition(ticker) {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position");
+  if (!res.ok) return 0;
+  const data = await res.json();
+  const row = data.market_positions?.find((p) => p.ticker === ticker);
+  const n = Number.parseFloat(row?.position_fp ?? "0");
+  return Number.isFinite(n) ? n : 0;
+}
+function money(n) {
+  return n.toFixed(4);
+}
+function contractsFor(price, dollars) {
+  if (!(price > 0.02 && price < 0.98)) return null;
+  const count = Math.floor(dollars / price * 100) / 100;
+  if (count < 0.01) return null;
+  if (count * price > dollars + 1e-3) return null;
+  return count.toFixed(2);
+}
+// POSITIONS tab (Love, Oct 9 ~9 AM PT: "a POSITIONS tab... for all positions held on kalshi" + autosell). Read only:
+// every open position on the account, any market (combos, weather, hourly...). position_fp > 0 = YES, < 0 = NO.
+async function allPositions() {
+  const out = [];
+  let cursor = "";
+  for (let page = 0; page < 5; page++) {
+    const res = await kalshi("GET", "/trade-api/v2/portfolio/positions", `?limit=200&count_filter=position${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`);
+    if (!res.ok) break;
+    const data = await res.json();
+    for (const row of data.market_positions ?? []) {
+      const pos = Number.parseFloat(row.position_fp ?? "0");
+      if (!row.ticker || !Number.isFinite(pos) || Math.abs(pos) < 0.01) continue;
+      const cost = Math.abs(Number.parseFloat(row.market_exposure_dollars ?? "0")) || 0;
+      out.push({ ticker: row.ticker, pos, cost, realized: Number.parseFloat(row.realized_pnl_dollars ?? "0") || 0, fees: Number.parseFloat(row.fees_paid_dollars ?? "0") || 0, updated: row.last_updated_ts ?? null });
+    }
+    cursor = data.cursor || "";
+    if (!cursor) break;
+  }
+  return out;
+}
+async function fifteenOpen() {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position");
+  if (!res.ok) return [];
+  const data = await res.json();
+  const rows = [];
+  for (const row of data.market_positions ?? []) {
+    if (!row.ticker || !row.ticker.includes("15M")) continue;
+    const pos = Number.parseFloat(row.position_fp ?? "0");
+    const cost = Number.parseFloat(row.market_exposure_dollars ?? "0");
+    if (Number.isFinite(pos) && Math.abs(pos) >= 0.01) rows.push({ ticker: row.ticker, pos, cost: Number.isFinite(cost) ? Math.abs(cost) : 0 });
+  }
+  return rows;
+}
+let entryGate = Promise.resolve();
+function symbolOf(ticker) {
+  if (ticker.includes("BTC")) return "btc";
+  if (ticker.includes("GOLD")) return "gold";
+  if (ticker.includes("ETH")) return "eth";
+  if (ticker.includes("SOL")) return "sol";
+  if (ticker.includes("WTI")) return "wti";
+  if (ticker.includes("NATGAS")) return "natgas";
+  if (ticker.includes("SILVER")) return "silver";
+  if (ticker.includes("COPPER")) return "copper";
+  return ticker;
+}
+function paperOnly() {
+  try {
+    return JSON.parse(readFileSync(join(process.cwd(), "data", "live-manual.json"), "utf8")).off === true;
+  } catch {
+    return false;
+  }
+}
+// ONE BOOK (Claude): the same live rules, asked BEFORE the paper book takes a trade, so paper only
+// takes what Kalshi would take. Returns a reason when Kalshi would refuse, or null.
+function wouldRefuse(ticker, side, line, ask) {
+  const sym = symbolOf(ticker);
+  let sw = {};
+  try {
+    sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+  } catch {
+    sw = {};
+  }
+  // Love's blocked symbols are off BOTH books: paper does not take what Kalshi will not.
+  if (Array.isArray(sw.blockedAssets) && sw.blockedAssets.includes(sym)) return `${sym} is off (Love's call)`;
+  const skip = loveSkip(sym, side, Number(line?.spot), Date.now(), Number(line?.target) || 0, ["atr", "free", "chan"].includes(line?.dnaMode) ? line.dnaMode : "fixed", line?.noHours !== true);
+  if (skip) return skip.replace(/\.$/, "");
+  const mult = ask > 0 ? 1 / ask : 0;
+  if (!(mult + 1e-9 >= 1.38)) return `${mult.toFixed(2)}x under 1.38`;
+  const key = `${String(line?.label || "").replace(/−/g, "-").replace(/\s+/g, " ").trim()}|${side}|${sym}`;
+  if (Array.isArray(sw.blockedSetups) && sw.blockedSetups.includes(key)) return `${key.split("|")[0]} is off the list (Love's call)`;
+  const spot = Number(line?.spot), vwap = Number(line?.vwap), stdev = Number(line?.stdev);
+  if (!(spot > 0) || !(vwap > 0) || !(stdev > 0)) return "the bands could not be read";
+  const edge = Number(sw.channelEdge ?? 0.25);
+  if (sw.channelRule !== false && edge > 0 && edge < 0.5) {
+    const levels = [vwap];
+    for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(vwap + step * stdev, vwap - step * stdev);
+    const below = Math.max(...levels.filter((v) => v <= spot), spot - stdev * 0.5);
+    const above = Math.min(...levels.filter((v) => v > spot), spot + stdev * 0.5);
+    const pos = above - below > 0 ? (spot - below) / (above - below) : 0.5;
+    if (side === "up" ? pos > edge : pos < 1 - edge) return `price is ${Math.round(pos * 100)}% up its channel`;
+  }
+  // Paper twins only (Oct 3, Love): "free" books trade unrestricted, the ATR twin's DNA replaces this $40 guard.
+  const paperMode = line?.dnaMode === "atr" || line?.dnaMode === "chan"; // her channel rule / ATR replace this guard
+  if (!paperMode && bandInWay(side, spot, vwap, stdev, sym)) return side === "up" ? "a band is directly above" : "a band is directly below";
+  const wb = wireBreaks({ ...line, paperCopy: true, paperBook: true }, side === "up" ? "bid" : "ask", sym);
+  if (wb) return wb.replace(/^Blocked\. /, "");
+  return null;
+}
+async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding = false, forceExit = false) {
+  // LIVE BOOK lock (Love, Oct 3): while a live book is named, no other route may OPEN a position. Exits always pass.
+  if (!reduceOnly) {
+    try {
+      const lb = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook;
+      const books = lb ? (Array.isArray(lb.books) ? lb.books : lb.book ? [lb.book] : []) : [];
+      if (books.length && !books.includes(line?.bookCopy)) {
+        sent.__aureliusBlock = `Blocked. Only ${books.map((b) => String(b).toUpperCase()).join(" + ")} go live right now.`;
+        return null;
+      }
+    } catch {
+    }
+  }
+  // CONTROL-ALT-DELETE (Claude, Oct 3 ~4:10 PM PT, Love: "remove any trace of her blocks entirely"): Grok's order-path
+  // gates were deleted here (paper-only, worst-hours/DNA skip, channel rule, band-in-the-way). Her own lists stay.
+  // Love's blocked symbols (data/live-switch.json "blockedAssets"). Paper can still record them.
+  if (!reduceOnly && !line?.gateTest) {
+    try {
+      const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+      if (Array.isArray(sw.blockedAssets) && sw.blockedAssets.includes(symbolOf(ticker)) && !silverPass(ticker, line?.bookCopy)) {
+        const why = `Blocked. ${symbolOf(ticker)} is off Kalshi (Love's call). Paper only.`;
+        sent.__aureliusBlock = why;
+        noteGate(ticker, "before", false, why);
+        noteBlock({ venue: "kalshi", ticker, setup: line?.label || "", reason: why });
+        return null;
+      }
+    } catch {
+    }
+  }
+  // Love's blocked setups (data/live-switch.json "blockedSetups", "label|side|asset").
+  // These never go to Kalshi. The paper book can still record them so we keep measuring.
+  if (!reduceOnly && !line?.gateTest) {
+    try {
+      const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
+      const blocked = Array.isArray(sw.blockedSetups) ? sw.blockedSetups : [];
+      const wantSide = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+      const key = `${String(line?.label || "").replace(/−/g, "-").replace(/\s+/g, " ").trim()}|${wantSide}|${symbolOf(ticker)}`;
+      if (blocked.includes(key)) {
+        const why = `Blocked. ${key.split("|")[0]} ${wantSide === "up" ? "long" : "short"} on ${symbolOf(ticker)} is off the list (Love's call).`;
+        sent.__aureliusBlock = why;
+        noteGate(ticker, "before", false, why);
+        noteBlock({ venue: "kalshi", ticker, side: wantSide, setup: line?.label || "", reason: why });
+        return null;
+      }
+    } catch {
+    }
+  }
+  if (!reduceOnly) {
+    let release2 = () => {
+    };
+    const previous = entryGate;
+    entryGate = new Promise((resolve) => {
+      release2 = resolve;
+    });
+    await previous;
+    try {
+      if (!adding && doneSet().has(ticker)) return null;
+      const open = await fifteenOpen();
+      if (!line?.bookCopy && open.some((row) => symbolOf(row.ticker) === symbolOf(ticker) && row.ticker !== ticker)) return null;
+      return await sendOrder(ticker, bookSide, yesPrice, count, false, line, adding);
+    } finally {
+      release2();
+    }
+  }
+  return sendOrder(ticker, bookSide, yesPrice, count, true, undefined, false, forceExit);
+}
+const heldSymbol = /* @__PURE__ */ new Map();
+async function symbolOpen(sym) {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position");
+  if (!res.ok) return null;
+  const data = await res.json();
+  for (const row of data.market_positions ?? []) {
+    if (!row.ticker || !row.ticker.includes("15M") || symbolOf(row.ticker) !== sym) continue;
+    const pos = Number.parseFloat(row.position_fp ?? "0");
+    if (Number.isFinite(pos) && Math.abs(pos) >= 0.01) return true;
+  }
+  return false;
+}
+const FIRE_PATH = join(process.cwd(), "data", "firewall.json");
+const SIZE_PATH = join(process.cwd(), "data", "live-size.json");
+const FIRED_PATH = join(process.cwd(), "data", "fired.json");
+function prime75() {
+  try {
+    return JSON.parse(readFileSync(join(process.cwd(), "data", "book-mode.json"), "utf8")).mode === "prime75";
+  } catch {
+    return false;
+  }
+}
+function pacificHourNum() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Los_Angeles",
+    hour: "numeric",
+    hourCycle: "h23",
+  }).formatToParts(new Date());
+  return Number(parts.find((part) => part.type === "hour")?.value ?? "12");
+}
+function hourOpen(asset) {
+  const name = String(asset || "").toLowerCase();
+  return name === "gold" || name === "btc";
+}
+function btcPaused() {
+  try {
+    const until = Date.parse(JSON.parse(readFileSync(join(process.cwd(), "data", "btc-pause.json"), "utf8")).until || "");
+    return Number.isFinite(until) && Date.now() < until;
+  } catch {
+    return false;
+  }
+}
+// GOLD SIZE (Love, Oct 6 ~2:55 AM PT: "gold for $25 overnight"): live-size.json "goldBook" sizes the live books' gold trades.
+// SILVER, SNAPBACK ONLY (Love, Oct 9 ~11:30 AM PT: "let's throw it on provisionally, half sizes as gold, if she does well
+// on them we'll bring them up to match"). live-switch "liveSilverBooks": the only books whose silver rows may reach Kalshi
+// (silver stays in blockedAssets for every other book). Sized by live-size.json "silverBook".
+function silverLiveBooks() {
+  try {
+    const v = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveSilverBooks;
+    return Array.isArray(v) ? v.map(String) : [];
+  } catch {
+    return [];
+  }
+}
+function silverPass(ticker, book) {
+  return symbolOf(ticker) === "silver" && !!book && silverLiveBooks().includes(String(book));
+}
+// AN ASSET'S OWN SIZE (Oct 16 ~12:52 PM PT, Love: "trade gold again at the next window for $5 position sizes"):
+// live-switch assetDollars[asset] sizes every live book's copy on that asset flat, ahead of everything else.
+function assetDollarsFor(ticker) {
+  try {
+    const v = Number(JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.assetDollars?.[symbolOf(String(ticker))]);
+    return v >= 1 && v <= 100 ? v : 0;
+  } catch {
+    return 0;
+  }
+}
+function bookDollarsFor(ticker) {
+  try {
+    if (String(ticker).includes("SILVER")) {
+      const sv = Number(JSON.parse(readFileSync(SIZE_PATH, "utf8")).silverBook);
+      if (sv >= 1 && sv <= 100) return sv;
+    }
+    if (String(ticker).includes("GOLD")) {
+      const g = Number(JSON.parse(readFileSync(SIZE_PATH, "utf8")).goldBook);
+      if (g >= 1 && g <= 100) return g;
+    }
+  } catch {
+  }
+  return liveDollars();
+}
+function liveDollars() {
+  let n = 20;
+  try {
+    const parsed = Number(JSON.parse(readFileSync(SIZE_PATH, "utf8")).dollars);
+    if (parsed >= 1 && parsed <= 100) n = parsed;
+  } catch {
+  }
+  return n;
+}
+function sizeFor(asset, ignoreSit = false) {
+  const name = String(asset || "").toLowerCase();
+  if (name === "btc" && !ignoreSit && btcPaused()) return 0;
+  let row = {};
+  try {
+    row = JSON.parse(readFileSync(SIZE_PATH, "utf8"));
+  } catch {
+    row = {};
+  }
+  if (name === "gold") {
+    const gold = Number(row.gold);
+    if (gold >= 1 && gold <= 100) return gold;
+  }
+  return liveDollars();
+}
+function budgetFor(full, multiple) {
+  const base = Number(full);
+  if (!(base > 0)) return base;
+  const m = Number(multiple);
+  if (m > 10.8) return 1;
+  if (m > 2.2) return Math.round(base * 0.75 * 100) / 100;
+  return base;
+}
+function cappedCount(count, bookSide, yesPrice, line, reduceOnly) {
+  if (reduceOnly) return count;
+  // SIZE FIX (Love, Oct 6 ~7:40 AM PT: "gold went out at $10"): a live-book copy arrives already sized by budgetFor on the
+  // ask. Re-capping it here took 75% off a second time and divided by the limit price (72c), so a $30 slider at 2.27x went
+  // out at $9.61. Live-book copies keep their size; the wire guard still holds the ceiling.
+  if (line?.bookCopy && Number(line?.askPx) > 0 && Number(line?.dollars) > 0) {
+    const maxCount = Math.floor(Number(line.dollars) / Number(line.askPx) * 100) / 100;
+    const wanted = Number.parseFloat(count);
+    return wanted > maxCount + 1e-9 ? maxCount.toFixed(2) : count;
+  }
+  const px = bookSide === "bid" ? Number(yesPrice) : Math.max(0.01, 1 - Number(yesPrice));
+  if (!(px > 0)) return count;
+  const implied = 1 / px;
+  const multiple = Number(line?.multiple);
+  const cap = budgetFor(Number(line?.dollars) > 0 ? Number(line.dollars) : liveDollars(), Math.max(multiple || 0, implied));
+  const maxCount = Math.floor(cap / px * 100) / 100;
+  const wanted = Number.parseFloat(count);
+  if (!(wanted > maxCount + 1e-9)) return count;
+  return maxCount.toFixed(2);
+}
+function writeLiveDollars(dollars) {
+  const n = Math.max(1, Math.min(100, Math.round(dollars * 10) / 10));
+  let prev = {};
+  try {
+    prev = JSON.parse(readFileSync(SIZE_PATH, "utf8"));
+  } catch {
+    prev = {};
+  }
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(SIZE_PATH, JSON.stringify({ ...prev, dollars: n, gold: n }));
+  } catch {
+  }
+}
+function noteGate(ticker, stage, ok, reason) {
+  const row = { at: (/* @__PURE__ */ new Date()).toISOString(), ticker, stage, ok, reason };
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    const path = join(process.cwd(), "data", "firewall-check.json");
+    let prev = [];
+    try {
+      const parsed = JSON.parse(readFileSync(path, "utf8"));
+      if (Array.isArray(parsed)) prev = parsed;
+    } catch {
+      prev = [];
+    }
+    writeFileSync(path, JSON.stringify([row, ...prev].slice(0, 80)));
+  } catch {
+  }
+}
+function firedSet() {
+  try {
+    const disk = JSON.parse(readFileSync(FIRED_PATH, "utf8"));
+    return new Set(Array.isArray(disk) ? disk : []);
+  } catch {
+    return /* @__PURE__ */ new Set();
+  }
+}
+function fireOnce(ticker) {
+  const set = firedSet();
+  set.add(ticker);
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(FIRED_PATH, JSON.stringify([...set]));
+  } catch {
+  }
+}
+async function freshLine(ticker) {
+  const inst = ticker.includes("GOLD") ? "XAU-USDT-SWAP" : ticker.includes("BTC") ? "BTC-USDT-SWAP" : "";
+  if (!inst) return null;
+  try {
+    const [tape, market] = await Promise.all([
+      fetch(`https://www.okx.com/api/v5/market/candles?instId=${inst}&bar=1m&limit=60`).then((res) => res.json()),
+      kalshi("GET", `/trade-api/v2/markets/${ticker}`).then((res) => res.json())
+    ]);
+    const rows = Array.isArray(tape?.data) ? tape.data : [];
+    let pv = 0;
+    let vol = 0;
+    let spot = 0;
+    for (const row of rows) {
+      const high = Number(row[2]);
+      const low = Number(row[3]);
+      const close = Number(row[4]);
+      const size = Number(row[5]) || 1;
+      pv += (high + low + close) / 3 * size;
+      vol += size;
+      if (!spot) spot = close;
+    }
+    let dev = 0;
+    const vwap = pv / vol;
+    for (const row of rows) {
+      const typical = (Number(row[2]) + Number(row[3]) + Number(row[4])) / 3;
+      const size = Number(row[5]) || 1;
+      dev += (typical - vwap) ** 2 * size;
+    }
+    const target = Number(market?.market?.floor_strike);
+    if (!(spot > 0) || !(vol > 0) || !(target > 0)) return null;
+    return { spot, vwap, target, stdev: Math.sqrt(dev / vol) };
+  } catch {
+    return null;
+  }
+}
+function towardBand(spot, vwap, stdev) {
+  const width = Math.max(stdev || 0, vwap * 0.00015);
+  let best = Math.abs(spot - vwap);
+  for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) {
+    best = Math.min(best, Math.abs(spot - (vwap + step * width)), Math.abs(spot - (vwap - step * width)));
+  }
+  return Math.max(0, Math.min(1, 1 - best / (width * 0.5)));
+}
+function wireBreaks(line, bookSide, asset) {
+  const side = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+  const spot = Number(line?.spot);
+  const vwap = Number(line?.vwap);
+  const stdev = Number(line?.stdev);
+  if (line?.paperCopy || line?.primeCopy) {
+    if (!(spot > 0) || !(vwap > 0) || !(stdev > 0)) {
+      return "Blocked. The bands could not be read, so the order was not sent.";
+    }
+    const target = Number(line.target);
+    if (!(target > 0)) return "Blocked. The target could not be read, so the order was not sent.";
+    // Spine rule: a band blocks only the side that still has to cross it to reach the strike.
+    // A trade already through its target has nothing left to cross.
+    const through = side === "down" ? spot < target : spot > target;
+    if (!through) {
+      const touch = stdev * 0.2;
+      const levels = [vwap];
+      for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(vwap + step * stdev, vwap - step * stdev);
+      const crossing = levels.some((level) => {
+        if (Math.abs(spot - level) <= touch) return false;
+        return side === "down" ? spot > level && level > target : spot < level && level < target;
+      });
+      if (crossing) return "Blocked. A VWAP band sits between price and the target, and this side still has to cross it.";
+    }
+    if (bandInWay(side, spot, vwap, stdev, asset)) {
+      return side === "down"
+        ? "Blocked. A VWAP band is below. The short was not sent."
+        : "Blocked. A VWAP band is above. The long was not sent.";
+    }
+    // Spine rule: price and target on the wrong side of VWAP blocks only until price reaches the target.
+    if (!through && centerWrong(side, spot, target, vwap)) {
+      const where = side === "up" ? "above" : "below";
+      return `Blocked. VWAP is ${where} the price and the target, and price has not reached the target.`;
+    }
+    return null;
+  }
+  if (!line || !(spot > 0) || !(vwap > 0) || !(Number(line.target) > 0)) {
+    return "Blocked. The VWAP could not be read, so the order was not sent.";
+  }
+  const target = Number(line.target);
+  if (line.primeCopy) {
+    if (!line.label || !onPrimeBook(line.label, side, asset)) return "Blocked. That setup is not on the prime book.";
+    return null;
+  }
+  if (!(stdev > 0)) {
+    return "Blocked. The bands could not be read, so the order was not sent.";
+  }
+  const near = bandReach(String(asset || ""), stdev);
+  const levels = [vwap];
+  for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(vwap + step * stdev, vwap - step * stdev);
+  if (side === "up" && levels.some((level) => level > spot && level - spot <= near)) {
+    return "Blocked. A VWAP band is above. The long was not sent.";
+  }
+  if (side === "down" && levels.some((level) => level < spot && spot - level <= near)) {
+    return "Blocked. A VWAP band is below. The short was not sent.";
+  }
+  if (!line.label || !onPrimeBook(line.label, side, asset)) return "Blocked. That setup is not on the prime book.";
+  if (line.primeCopy) {
+    if (side === "up" && levels.some((level) => level > spot && level - spot <= near)) {
+      return "Blocked. A VWAP band is above. The long was not sent.";
+    }
+    if (side === "down" && levels.some((level) => level < spot && spot - level <= near)) {
+      return "Blocked. A VWAP band is below. The short was not sent.";
+    }
+    return null;
+  }
+  const spineName = /btc|gold|silver/i.test(String(asset));
+  const bandBreak = /close below|tap-reject|broke/i.test(String(line.label || ""));
+  if (!spineName) {
+    const onTarget = shortBandOnTarget(asset, side, target, vwap, line.stdev, spot);
+    if (onTarget) return onTarget;
+  }
+  const above = spot > vwap && target > vwap;
+  const below = spot < vwap && target < vwap;
+  const longCross = side === "up" && spot < vwap && target > vwap;
+  if (side === "down" && spot > vwap && target < vwap && !bandBreak) return "Blocked. A short has to cross the VWAP.";
+  if (side === "down" && spot > target && above && !shortTap(line.label, side)) return "Blocked. Price and the target are above the VWAP. A short is not allowed.";
+  if (side === "up" && spot < target && below) return "Blocked. Price and the target are below the VWAP. A long is not allowed.";
+  if (longCross) return "Blocked. A long has to cross the main VWAP to reach the target.";
+  if (spot < vwap && side === "up" && !shortTap(line.label, side)) return "Blocked. Price is under the VWAP. A long is not allowed.";
+  if (spot > vwap && side === "down" && !(target < vwap) && !shortTap(line.label, side)) return "Blocked. Price is over the VWAP. A short is not allowed.";
+  const alive = survivalBlock(spot, vwap, line.stdev, side, line.label, target, asset);
+  if (alive) return alive;
+  if (!spineName) {
+    const width = Math.max(line.stdev || 0, vwap * 0.00015);
+    const pad = vwap > 20000 ? Math.max(25, width * 0.12) : Math.max(vwap * 0.0004, width * 0.2);
+    const levels = [vwap];
+    for (const step of [0.5, 1, 1.5, 2, 2.5, 3]) levels.push(vwap + step * width, vwap - step * width);
+    const blocked = levels.some((level) => {
+      if (Math.abs(level - target) <= pad || Math.abs(level - spot) <= pad) return false;
+      if (side === "down" && level === vwap) return false;
+      return side === "down" ? spot > level && target < level : spot < level && target > level;
+    });
+    if (blocked) return "Blocked. A VWAP band sits between price and the target.";
+  }
+  return null;
+}
+// TERMINAL GATE (Love, Oct 14 ~6:05 AM PT: "put that guard on for every gold trade that ever leaves the terminal"). Every new
+// Kalshi buy the desk sends (any book, any path through sendOrder or addOnBuy; exits are never touched) is checked here:
+//  - GOLD PIVOTS: no long with a 5m red R1/R2 or the pink PP just above price, no short with a 5m green S1/S2 or the PP just
+//    below, inside the ATR x ADX zone (pivotbooks pivotZoneCheck, live-switch pivotZone.gold). live-switch pivotZoneTerminal.gold.
+//  - ABNORMAL SWING (gold + BTC): no short after price fell swingGuard.gold / .btc inside swingGuard.minutes, no long after it
+//    rose that much (5:45 AM PT: gold -$61 / BTC -$1,155 in 15 min, then shorts on both).
+// No fresh chart read (older than 3 min) = no order, never a free pass.
+async function terminalGate(ticker, bookSide, sameLine) {
+  const a = /^KXGOLD15M/.test(String(ticker)) ? "gold" : /^KXBTC15M/.test(String(ticker)) ? "btc" : "";
+  if (!a) return null;
+  let sw = {};
+  try { sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")); } catch { sw = {}; }
+  const side = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+  const wantPiv = a === "gold" && sw?.pivotZoneTerminal?.gold === true;
+  const sg = sw?.swingGuard;
+  const wantSwing = !!(sg?.on && Number(sg?.[a]) > 0);
+  if (!wantPiv && !wantSwing) return null;
+  const c = globalThis.__pivBars?.[a];
+  if (!c?.bars?.length || Date.now() - Number(c.at || 0) > 180000) return `${a} terminal gate: no fresh chart read, no order`;
+  const spot = Number(sameLine?.spot) || Number(globalThis.__lastAssets?.[a]?.spot) || Number(c.bars[c.bars.length - 1]?.c) || 0;
+  if (!(spot > 0)) return `${a} terminal gate: no price, no order`;
+  if (wantSwing) {
+    const mins = Number(sg.minutes) || 15;
+    const win = c.bars.filter((x) => x.t * 1000 >= Date.now() - mins * 60000);
+    if (win.length) {
+      const ran = side === "down" ? Math.max(...win.map((x) => x.h)) - spot : spot - Math.min(...win.map((x) => x.l));
+      if (ran >= Number(sg[a])) return `abnormal swing: ${a} already ${side === "down" ? "fell" : "rose"} $${ran.toFixed(a === "btc" ? 0 : 2)} in ${mins} min (limit $${sg[a]}), no ${side === "down" ? "short" : "long"} into that`;
+    }
+  }
+  if (wantPiv) {
+    const pb = await import("./pivotbooks");
+    const ck = pb.pivotZoneCheck("gold", side, spot, sw?.pivotZone?.gold);
+    if (!ck) return "gold terminal gate: no pivot read, no order";
+    if (ck.block) return `5m pivot in her way: ${ck.why}`;
+  }
+  return null;
+}
+async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine, adding = false, forceExit = false) {
+  // Grok's paper-only / symbol-open / too-soon / wire-break / prime-seat gates: deleted (Oct 3, Love).
+  if (!reduceOnly && !sameLine?.primeCopy && !sameLine?.paperBook && !sameLine?.gateTest) {
+    try {
+      const halt = JSON.parse(readFileSync(join(process.cwd(), "data", "halt.json"), "utf8"));
+      if (halt.off === true) return null;
+    } catch {
+    }
+  }
+  const sym = symbolOf(ticker);
+  if (!reduceOnly) {
+    if (firedSet().has(ticker) || doneSet().has(ticker)) {
+      noteGate(ticker, "before", false, "already fired this window");
+      return null;
+    }
+    heldSymbol.set(sym, Date.now());
+    noteGate(ticker, "before", true, sameLine?.primeCopy ? "prime copy" : "clear");
+  } else {
+    let paperHeld = false;
+    try {
+      paperHeld = JSON.parse(readFileSync(join(process.cwd(), "data", "paper-live.json"), "utf8")).ticker === ticker;
+    } catch {
+      paperHeld = false;
+    }
+    if (!forceExit && !primeOwns(ticker) && !paperHeld) {
+      noteGate(ticker, "before", false, "exit is not an open book");
+      return null;
+    }
+    const pos = await signedPosition(ticker);
+    const qty = Number.parseFloat(count);
+    if (bookSide === "ask" && !(pos > 0)) return null;
+    if (bookSide === "bid" && !(pos < 0)) return null;
+    if (!(qty > 0) || qty > Math.abs(pos) + 1e-3) return null;
+  }
+  if (!reduceOnly) {
+    const tg = await terminalGate(ticker, bookSide, sameLine).catch(() => "terminal gate error, no order");
+    if (tg) {
+      noteGate(ticker, "before", false, tg);
+      try { noteBlock({ venue: "kalshi", ticker, setup: sameLine?.label || "", reason: tg }); } catch {}
+      return null;
+    }
+  }
+  if (!reduceOnly) {
+    noteGate(ticker, "before", true, sameLine?.bookCopy ? `${String(sameLine.bookCopy).toUpperCase()} live book` : "clear");
+  }
+  if (!reduceOnly) {
+    const paid = bookSide === "bid" || bookSide === "up" ? Number(yesPrice) : Math.round((1 - Number(yesPrice)) * 1e4) / 1e4;
+    const multiple = paid > 0 ? 1 / paid : 0;
+    const closeAt = windowClose(ticker);
+    const left = closeAt != null ? (closeAt - Date.now()) / 1000 : 9999;
+    const side = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+    const spot = Number(sameLine?.spot);
+    const target = Number(sameLine?.target);
+    const reject = /tap-reject/i.test(String(sameLine?.label || ""));
+    const right = side === "up" ? spot > target : spot < target;
+    const late = left > 0 && left <= 300 && reject && right && spot > 0 && target > 0;
+    // Paper-book copies follow the paper book: if paper took it, the copy only needs 1.2x
+    // (the spine's lowest), since the price check upstream already proves it is the same trade.
+    // Love: 1.38x is the minimum for any Kalshi order. Below that the payout isn't worth the risk.
+    // A live-book copy is checked on the limit price (ask + 2c slip room); its paper book already took it at 1.38x+ on the ask.
+    const floor = sameLine?.bookCopy ? 1.37 : 1.38;
+    const ok = multiple + 1e-9 >= floor;
+    if (!ok) {
+      noteGate(ticker, "before", false, `${multiple.toFixed(2)}x under ${floor}`);
+      return null;
+    }
+    if (!(sent.__oneDoor instanceof Set)) sent.__oneDoor = new Set();
+    if (sent.__oneDoor.has(ticker) || firedSet().has(ticker) || doneSet().has(ticker) || sealBlocks(ticker)) {
+      noteGate(ticker, "before", false, "duplicate door shut");
+      return null;
+    }
+    sent.__oneDoor.add(ticker);
+  }
+  if (!reduceOnly && sameLine?.bookCopy && Number(sameLine?.askPx) > 0) {
+    const reg = (sent.__aureliusReach ||= {});
+    reg[ticker] = { ask: Number(sameLine.askPx), at: Date.now() };
+  }
+  const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
+    ticker,
+    client_order_id: randomUUID(),
+    side: bookSide,
+    count: cappedCount(count, bookSide, yesPrice, sameLine, reduceOnly),
+    price: money(yesPrice),
+    // RESTING ORDER (Love, Oct 3 ~6:45 PM PT: "YES resting order at the same price"): a live-book copy whose price ran
+    // past her floor rests on Kalshi at the paper book's price until 20 s before the bell, so a dip fills it.
+    time_in_force: !reduceOnly && Number(sameLine?.restUntil) > 0 ? "good_till_canceled" : "immediate_or_cancel",
+    ...(!reduceOnly && Number(sameLine?.restUntil) > 0 ? { expiration_time: Math.floor(Number(sameLine.restUntil)) } : {}),
+    self_trade_prevention_type: "taker_at_cross",
+    post_only: false,
+    reduce_only: reduceOnly,
+    cancel_order_on_pause: true,
+    exchange_index: 2
+  });
+  if (!res.ok) {
+    if (!reduceOnly) {
+      heldSymbol.delete(sym);
+      sent.__oneDoor?.delete(ticker);
+    }
+    const text = await res.text();
+    noteGate(ticker, "after", false, text.slice(0, 140) || "rejected");
+    throw new Error(text.slice(0, 180));
+  }
+  const data = await res.json();
+  const filled = Number.parseFloat(data.fill_count ?? "0");
+  if (!reduceOnly && Number(sameLine?.restUntil) > 0 && data.order_id && !(filled > 0)) {
+    // Resting with nothing filled yet: the door stays shut for this window (no second order), and the tend loop picks
+    // the position up the moment Kalshi fills it.
+    fireOnce(ticker);
+    noteGate(ticker, "after", true, `resting at ${money(yesPrice)} until the window ends`);
+    // HAND GUARD record (Oct 14 ~3:25 AM PT): remember every resting book order so it can be pulled if Love trades by hand.
+    try { (sent.__restBook ||= {})[ticker] = { orderId: data.order_id, side: bookSide === "bid" || bookSide === "up" ? "up" : "down", at: Date.now() }; } catch {}
+    return { orderId: data.order_id, filled: 0, yesPrice: Number(yesPrice), resting: true };
+  }
+  if (!data.order_id || !(filled > 0)) {
+    if (!reduceOnly) {
+      heldSymbol.delete(sym);
+      sent.__oneDoor?.delete(ticker);
+      noteGate(ticker, "after", false, "unfilled");
+    }
+    return null;
+  }
+  if (!reduceOnly && !adding) fireOnce(ticker);
+  const yes = Number.parseFloat(data.average_fill_price ?? "") || yesPrice;
+  if (!reduceOnly) {
+    const fside = bookSide === "bid" || bookSide === "up" ? "up" : "down";
+    const paidNow = fside === "up" ? Number(yes) : Math.round((1 - Number(yes)) * 1e4) / 1e4;
+    const closeAt = windowClose(ticker);
+    recordFire({
+      ticker, asset: sym, side: fside, setup: sameLine?.label || "",
+      book: sameLine?.primeCopy ? "prime" : sameLine?.paperBook ? "paper book" : sameLine?.paperCopy ? "paper copy" : sameLine?.gateTest ? "gate test" : "other",
+      spot: Number(sameLine?.spot) || null, target: Number(sameLine?.target) || null,
+      vwap: Number(sameLine?.vwap) || null, stdev: Number(sameLine?.stdev) || null,
+      bands: bandLevels(Number(sameLine?.vwap), Number(sameLine?.stdev)),
+      contracts: filled, paid: paidNow, cost: Math.round(filled * paidNow * 100) / 100,
+      multiple: paidNow > 0 ? Math.round(100 / paidNow) / 100 : null,
+      secondsLeft: closeAt != null ? Math.round((closeAt - Date.now()) / 1000) : null,
+      cap: maxDollars(), orderId: data.order_id,
+    });
+  }
+  if (!reduceOnly) {
+    const again = await symbolOpen(sym);
+    const rows = await fifteenOpen();
+    const same = rows.filter((row) => symbolOf(row.ticker) === sym);
+    if (!again || same.length > 1) {
+      noteGate(ticker, "after", false, "position did not match one open trade");
+    } else {
+      noteGate(ticker, "after", true, "one position");
+    }
+  }
+  return { orderId: data.order_id, filled, yesPrice: yes };
+}
+const sided = globalThis;
+const LOCK_PATH = join(process.cwd(), ".secrets", "side-lock.json");
+function locks() {
+  let disk = {};
+  try {
+    disk = JSON.parse(readFileSync(LOCK_PATH, "utf8"));
+  } catch {
+    disk = {};
+  }
+  if (!sided.__aureliusSide) sided.__aureliusSide = {};
+  const next = {};
+  for (const [ticker, side] of Object.entries(disk)) next[ticker] = side;
+  sided.__aureliusSide = next;
+  return sided.__aureliusSide;
+}
+function lockSide(ticker, side, force = false) {
+  const book = locks();
+  if (book[ticker] === side) return;
+  if (book[ticker] && !force) return;
+  book[ticker] = side;
+  try {
+    writeFileSync(LOCK_PATH, JSON.stringify(book));
+  } catch {
+  }
+}
+function unlockSide(ticker) {
+  const book = locks();
+  if (!book[ticker]) return;
+  delete book[ticker];
+  try {
+    writeFileSync(LOCK_PATH, JSON.stringify(book));
+  } catch {
+  }
+}
+function allLocks() {
+  return { ...locks() };
+}
+function sideLock(ticker) {
+  return locks()[ticker] ?? null;
+}
+async function openingSide(ticker) {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/fills", `?limit=80&ticker=${encodeURIComponent(ticker)}`);
+  if (!res.ok) return sideLock(ticker);
+  const data = await res.json();
+  const fills = (data.fills ?? []).filter((f) => f.ticker === ticker).sort((a, b) => Date.parse(a.created_time ?? "") - Date.parse(b.created_time ?? ""));
+  const first = fills[0];
+  if (!first?.action || !first.side) return sideLock(ticker);
+  if (first.action === "buy" && first.side === "yes") return "up";
+  if (first.action === "sell" && first.side === "yes") return "down";
+  if (first.action === "buy" && first.side === "no") return "down";
+  if (first.action === "sell" && first.side === "no") return "down";
+  return sideLock(ticker);
+}
+const sent = globalThis;
+const finishedMem = globalThis;
+const DONE_PATH = join(process.cwd(), ".secrets", "side-done.json");
+function doneSet() {
+  let disk = [];
+  try {
+    const parsed = JSON.parse(readFileSync(DONE_PATH, "utf8"));
+    if (Array.isArray(parsed)) disk = parsed.filter((ticker) => typeof ticker === "string");
+  } catch {
+    disk = [];
+  }
+  const set = new Set(disk);
+  finishedMem.__aureliusDone = set;
+  return set;
+}
+function releaseTicker(ticker) {
+  heldSymbol.delete(symbolOf(ticker));
+  const fired = firedSet();
+  fired.delete(ticker);
+  try {
+    writeFileSync(FIRED_PATH, JSON.stringify([...fired]));
+  } catch {
+  }
+  const done = doneSet();
+  done.delete(ticker);
+  try {
+    writeFileSync(DONE_PATH, JSON.stringify([...done]));
+  } catch {
+  }
+  finishedMem.__aureliusDone?.delete(ticker);
+  unlockSide(ticker);
+  const seals = readSeals();
+  delete seals[symbolOf(ticker)];
+  try {
+    writeFileSync(SEAL_PATH, JSON.stringify(seals));
+  } catch {
+  }
+}
+function markDone(ticker) {
+  const done = doneSet();
+  done.add(ticker);
+  try {
+    writeFileSync(DONE_PATH, JSON.stringify([...done]));
+  } catch {
+  }
+}
+const SEAL_PATH = join(process.cwd(), "data", "order-seal.json");
+const SEAL_MS = 30 * 60 * 1e3;
+function readSeals() {
+  try {
+    const parsed = JSON.parse(readFileSync(SEAL_PATH, "utf8"));
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+function windowClose(ticker) {
+  const match = ticker.match(/(\d{2})([A-Z]{3})(\d{2})(\d{2})(\d{2})/);
+  if (!match) return null;
+  const months = {
+    JAN: 0,
+    FEB: 1,
+    MAR: 2,
+    APR: 3,
+    MAY: 4,
+    JUN: 5,
+    JUL: 6,
+    AUG: 7,
+    SEP: 8,
+    OCT: 9,
+    NOV: 10,
+    DEC: 11
+  };
+  const month = months[match[2]];
+  if (month == null) return null;
+  const year = 2e3 + Number(match[1]);
+  const day = Number(match[3]);
+  const hour = Number(match[4]);
+  const minute = Number(match[5]);
+  const guess = Date.UTC(year, month, day, hour + 4, minute);
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(new Date(guess));
+  const gotH = Number(parts.find((part) => part.type === "hour")?.value);
+  const gotM = Number(parts.find((part) => part.type === "minute")?.value);
+  return guess - (gotH * 60 + gotM - (hour * 60 + minute)) * 6e4;
+}
+function sealBlocks(ticker) {
+  const row = readSeals()[symbolOf(ticker)];
+  if (!row?.ticker) return false;
+  if (row.ticker === ticker) return true;
+  const close = windowClose(row.ticker);
+  return close != null && Date.now() < close;
+}
+function writeSeal(ticker, side) {
+  const all = readSeals();
+  all[symbolOf(ticker)] = { ticker, side, at: (/* @__PURE__ */ new Date()).toISOString() };
+  mkdirSync(join(process.cwd(), "data"), { recursive: true });
+  writeFileSync(SEAL_PATH, JSON.stringify(all));
+}
+function hold(key) {
+  if (!(sent.__aureliusSent instanceof Map)) sent.__aureliusSent = /* @__PURE__ */ new Map();
+  const book = sent.__aureliusSent;
+  const at = book.get(key);
+  if (at != null && Date.now() - at < 12000) return false;
+  book.set(key, Date.now());
+  return true;
+}
+function release(key) {
+  sent.__aureliusSent?.delete(key);
+}
+async function liveAsks(ticker) {
+  const res = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(2500) }).catch(() => fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(2500) }));
+  if (!res.ok) return null;
+  const data = await res.json();
+  const yes = Number.parseFloat(data.market?.yes_ask_dollars ?? "");
+  const no = Number.parseFloat(data.market?.no_ask_dollars ?? "");
+  if (!(yes > 0) || !(no > 0)) return null;
+  return { yesAsk: yes, noAsk: no };
+}
+function paperShape(label) {
+  const text = String(label || "").replace(/−/g, "-").replace(/\s+/g, " ").trim();
+  return /^tap-reject at /i.test(text) || /^close above /i.test(text) || /^close below /i.test(text);
+}
+function paperSeat(ticker, side) {
+  let trades = [];
+  try {
+    trades = readBook().trades;
+  } catch {
+    return null;
+  }
+  const mine = trades.filter((t) => t && t.ticker === ticker && t.source !== "live" && t.venue !== "polymarket" && !t.probe);
+  const sides = new Set(mine.map((t) => t.side));
+  if (sides.size !== 1 || !sides.has(side)) return null;
+  return mine.find((t) => t.result === "open" && t.side === side && (t.asset === "btc" || t.asset === "gold") && paperShape(t.patternLabel)) || null;
+}
+function readPaperLive() {
+  try {
+    const row = JSON.parse(readFileSync(join(process.cwd(), "data", "paper-live.json"), "utf8"));
+    return row && typeof row === "object" ? row : {};
+  } catch {
+    return {};
+  }
+}
+async function sendPaperBook(side, ticker, yesAsk, noAsk, opts) {
+  const sym = symbolOf(ticker);
+  if (sym !== "btc" && sym !== "gold") return { status: "blocked", reason: "paper book is bitcoin and gold" };
+  const open = await fifteenOpen();
+  const here = open.find((row) => row.ticker === ticker);
+  if (here) {
+    const held = here.pos > 0 ? "up" : "down";
+    if (held === side) return { status: "filled", reason: "already", filled: Math.abs(here.pos) };
+    return { status: "blocked", reason: "you already hold the other side" };
+  }
+  const other = open.find((row) => symbolOf(row.ticker) === sym && row.ticker !== ticker);
+  if (other) return { status: "blocked", reason: "symbol already open" };
+  if (doneSet().has(ticker) || firedSet().has(ticker) || sealBlocks(ticker)) {
+    return { status: "blocked", reason: "this window already traded" };
+  }
+  const spot = Number(opts?.line?.spot);
+  const vwap = Number(opts?.line?.vwap);
+  const stdev = Number(opts?.line?.stdev);
+  const target = Number(opts?.line?.target);
+  if (spot > 0 && vwap > 0 && stdev > 0 && target > 0 && bandOnPath(side, spot, target, vwap, stdev)) {
+    return { status: "blocked", reason: "a band is in front" };
+  }
+  if (spot > 0 && vwap > 0 && stdev > 0 && bandInWay(side, spot, vwap, stdev, sym)) {
+    return { status: "blocked", reason: side === "down" ? "a band is below" : "a band is above" };
+  }
+  const quote = await liveAsks(ticker);
+  const yes = quote?.yesAsk ?? yesAsk;
+  const no = quote?.noAsk ?? noAsk;
+  const ask = side === "up" ? yes : no;
+  if (!(ask > 0.01) || !(ask < 0.99)) return { status: "blocked", reason: "no quote" };
+  const multiple = Math.round((1 / ask) * 100) / 100;
+  const left = Number(opts?.secondsLeft);
+  const known = Number.isFinite(left) && left > 0;
+  const label = opts?.line?.label || "";
+  const reject = /tap-reject/i.test(String(label));
+  const right = side === "up" ? spot > target : spot < target;
+  const late = known && left <= 300 && reject && right;
+  if (!(multiple + 1e-9 >= 1.38)) {
+    const why = `${multiple.toFixed(2)}x under 1.38`;
+    return { status: "blocked", reason: why };
+  }
+  const full = sizeFor(sym, true);
+  const budget = budgetFor(full, multiple);
+  const count = Math.floor(budget / ask * 100) / 100;
+  if (!(count >= 0.01)) return { status: "blocked", reason: "size" };
+  const bookSide = side === "up" ? "bid" : "ask";
+  const yesPrice = side === "up"
+    ? Math.min(0.99, Math.round((ask + 0.02) * 100) / 100)
+    : Math.max(0.01, Math.round((1 - ask - 0.02) * 100) / 100);
+  const line = { ...(opts?.line || {}), paperBook: true, paperCopy: true, multiple, dollars: full, label: opts?.line?.label || "paper" };
+  let placed = null;
+  try {
+    placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, line, true);
+  } catch (err) {
+    return { status: "blocked", reason: err instanceof Error ? err.message.slice(0, 140) : "paper book failed" };
+  }
+  if (!placed || !(placed.filled > 0)) return { status: "blocked", reason: sent.__aureliusBlock || "unfilled" };
+  lockSide(ticker, side);
+  markDone(ticker);
+  fireOnce(ticker);
+  writeSeal(ticker, side);
+  const paid = side === "up" ? placed.yesPrice : Math.round((1 - placed.yesPrice) * 1e4) / 1e4;
+  return { status: "filled", orderId: placed.orderId, filled: placed.filled, yesPrice: placed.yesPrice, paid };
+}
+async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, opts) {
+  if (opts?.paperBook) {
+    try {
+      const lb = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook;
+      if (lb?.book || (Array.isArray(lb?.books) && lb.books.length)) return { status: "blocked", reason: "live books only right now (Love's call)" };
+    } catch {
+    }
+    return sendPaperBook(side, ticker, yesAsk, noAsk, opts);
+  }
+  const paperCopy = opts?.paperCopy === true;
+  const symEarly = symbolOf(ticker);
+  const full = sizeFor(symEarly);
+  const isBookCopy = typeof opts?.bookCopy === "string" && opts.bookCopy !== "";
+  // Grok's "BTC sits until 2pm" pause never applies to a live book (Oct 3, Love: "grok code is rejecting claude entries").
+  if (!isBookCopy && !(full >= 1)) return { status: "blocked", reason: "bitcoin is sitting until 2pm" };
+  if (!(typeof opts?.bookCopy === "string" && opts.bookCopy) && (symEarly === "btc" || symEarly === "gold") && !hourOpen(symEarly)) {
+    return { status: "blocked", reason: `${symEarly} sits this hour` };
+  }
+  // LIVE BOOK (Love, Oct 3 ~1:45 PM PT: "let's run BRICK on kalshi... @ $22 position sizes"). While live-switch
+  // "liveBook" names a paper book, ONLY that book's trades go to Kalshi; the prime and paper copiers stand down.
+  let liveBook = null;
+  try {
+    liveBook = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook || null;
+  } catch {
+    liveBook = null;
+  }
+  const bookCopy = typeof opts?.bookCopy === "string" ? opts.bookCopy : "";
+  const liveBooks = liveBook ? (Array.isArray(liveBook.books) ? liveBook.books : liveBook.book ? [liveBook.book] : []) : [];
+  if (liveBooks.length && !bookCopy) return { status: "blocked", reason: `${liveBooks.map((b) => String(b).toUpperCase()).join(" + ")} only right now (Love's call)` };
+  if (bookCopy && !liveBooks.includes(bookCopy)) return { status: "blocked", reason: `${bookCopy} is not a live book` };
+  // New lock (Oct 3, Love): ONLY a named live book can open a position. The Grok-era prime / paper copy routes are gone.
+  if (!bookCopy) return { status: "blocked", reason: "only a named live book opens positions" };
+  if (opts?.primeCopy && paperCopy) return { status: "blocked", reason: "one book at a time" };
+  if (!(opts?.flip === true && bookCopy) && (doneSet().has(ticker) || firedSet().has(ticker) || sealBlocks(ticker))) {
+    // PAPER FIRES (Oct 15, Love: "if she enters in on the fast twin that is running on paper, she enters"): for books in
+    // live-switch paperFires a sent-but-unfilled try does not seal the window - only a FILL (the seal) or a settled ticker
+    // does, so ticket-back setups reach Kalshi. One position per window still holds: fills seal; opposite sides stay blocked.
+    const pfSeal = (() => { try { const v = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.paperFires; return Array.isArray(v) && v.includes(bookCopy); } catch { return false; } })();
+    if (!pfSeal || doneSet().has(ticker) || sealBlocks(ticker)) {
+      return { status: "blocked", reason: "this window already traded" };
+    }
+  }
+  let label = opts?.line?.label || "";
+  if (bookCopy) {
+    const sym = symbolOf(ticker);
+    if (sym !== "btc" && sym !== "gold" && !silverPass(ticker, bookCopy)) return { status: "blocked", reason: sym === "silver" ? `silver is live for ${silverLiveBooks().map((x) => x.toUpperCase()).join(" + ") || "no book"} only` : "the live book is bitcoin and gold only" };
+  } else if (paperCopy) {
+    const sym = symbolOf(ticker);
+    if (sym !== "btc" && sym !== "gold") return { status: "blocked", reason: "paper live is bitcoin and gold only" };
+    const seat = opts?.line?.ownBook ? { patternLabel: label } : paperSeat(ticker, side);
+    if (!seat) return { status: "blocked", reason: "not the single paper trade" };
+    label = seat.patternLabel || label;
+    const otherWay = listPrimePaper().some((row) => row.result === "open" && row.ticker === ticker && row.side !== side);
+    if (otherWay) return { status: "blocked", reason: "prime book is the other way" };
+    const openNow = await fifteenOpen();
+    const mark = readPaperLive();
+    if (mark.ticker && symbolOf(mark.ticker) === sym && openNow.some((row) => row.ticker === mark.ticker)) {
+      return { status: "blocked", reason: "paper book already has one order out" };
+    }
+  } else {
+    const book = listPrimePaper().find((row) => row.result === "open" && row.ticker === ticker && row.side === side);
+    if (!book) {
+      return { status: "blocked", reason: "prime book is not in this trade" };
+    }
+    const otherWay = listPrimePaper().some((row) => row.result === "open" && row.ticker === ticker && row.side !== side && row.live !== "filled");
+    if (otherWay) {
+      return { status: "blocked", reason: "prime book is the other way" };
+    }
+    if (!primeProven(book.pattern || "", book.side, book.asset)) {
+      return { status: "blocked", reason: "the prime book has not approved this" };
+    }
+    label = book.pattern || label;
+  }
+  // BAND LOCK (Oct 16 ~1:05 PM PT, Love: "make sure that it is a physical impossibility to ever occur again"): the last gate
+  // before Kalshi. A twin order on gold/BTC that isn't on the closest band's side - or can't be verified - never goes out.
+  if (bookCopy) {
+    try {
+      const bl = (await import("./bandlock")).bandLockCheck(bookCopy, symbolOf(ticker), side);
+      if (!bl.ok) return { status: "blocked", reason: bl.reason };
+    } catch {
+      return { status: "blocked", reason: "band lock unavailable - no order" };
+    }
+  }
+  const key = `${ticker}:${side}`;
+  if (!hold(key)) return { status: "blocked", reason: "working" };
+  // SPEED PASS (Claude, Oct 8 ~7:15 PM PT, Love: "yes please" to the speed pass): the quote read used to wait for the
+  // positions read to finish (~75 ms each, one after the other). Both are reads, so they now go out together; every check
+  // below still runs in the same order before any order is sent.
+  const quoteP = liveAsks(ticker).catch(() => null);
+  const open = await fifteenOpen();
+  const here = open.find((row) => row.ticker === ticker);
+  // FILL FIX (Love, Oct 5 ~9 PM PT: "yes to the fill fix"): at 8:48 PM BRICK's $20 BTC order found only 0.02 contracts at
+  // her 72c cap, and that 1c crumb counted as "filled" for the whole window. A live-book fill under half the size it wanted
+  // is a PARTIAL now: she keeps trying for the rest (same 72c cap) until 2 minutes before the bell.
+  const partials = sent.__aureliusPartial || (sent.__aureliusPartial = {});
+  let topUp = 0;
+  // CHANGE HER MIND (Oct 15 ~4:10 AM PT, Love: "i want her to be able to change her mind if the set up changes, not one
+  // trade per window"): a book row flagged flip (its paper row ":m2"/":m3") on the OTHER side of a position THIS BOOK opened
+  // in this window closes that position (flattenTicker, manual) and opens the new side. Never on a position Love started or
+  // added to by hand (data/outside-orders.json executed on this ticker) - hand trades are hers.
+  const flip = opts?.flip === true && bookCopy;
+  let flipped = false;
+  if (flip && here && (here.pos > 0 ? "up" : "down") !== side) {
+    const botWindow = doneSet().has(ticker) || firedSet().has(ticker);
+    let hand = false;
+    try { const oo = JSON.parse(readFileSync(join(process.cwd(), "data", "outside-orders.json"), "utf8")); hand = Array.isArray(oo) && oo.some((o) => o?.ticker === ticker && o?.status === "executed"); } catch {}
+    if (!botWindow || hand) { release(key); return { status: "blocked", reason: hand ? "you added by hand on this window, she won't close it" : "you hold the other side by hand (she goes in if you exit)" }; }
+    try {
+      const out = await flattenTicker(ticker, true);
+      try { appendFileSync(join(process.cwd(), "data", "change-mind-live.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker, book: bookCopy, closed: here.pos > 0 ? "up" : "down", qty: Math.abs(here.pos), payout: out, opening: side, label: opts?.line?.label || "" }) + "\n"); } catch {}
+    } catch (e) {
+      release(key); return { status: "blocked", reason: `changed her mind but the close failed: ${e instanceof Error ? e.message.slice(0, 80) : "close failed"}` };
+    }
+    flipped = true;
+  }
+  // HER WINDOW, PERIOD (Oct 15 ~6:50 PM PT, Love: "she longed, i had a short open, it closed it... i do not want her
+  // to be able to get a second order out again"). Her 4x hand short's own parked take-profit banked at 3c, and five
+  // seconds later a 13-minute-old UP copy - freed by the Oct 10 "she goes in if you exit" rule - bought junk YES into
+  // the dead market. Any window Love traded by hand (an EXECUTED order in data/outside-orders.json) is now hers
+  // completely: no book entry there, while she holds it AND after she exits. This retires "she goes in if you exit"
+  // for hand-touched windows, and the hand ledger cannot race the way a positions read can.
+  if (bookCopy) {
+    try {
+      const ooH = JSON.parse(readFileSync(join(process.cwd(), "data", "outside-orders.json"), "utf8"));
+      if (Array.isArray(ooH) && ooH.some((o) => o?.ticker === ticker && o?.status === "executed")) {
+        release(key);
+        return { status: "blocked", reason: "your hand traded this window - it stays yours" };
+      }
+    } catch {
+    }
+  }
+  if (here && !flipped) {
+    const held = here.pos > 0 ? "up" : "down";
+    const pr = partials[ticker];
+    const leftNow = Number(opts?.secondsLeft);
+    if (bookCopy && pr && pr.side === side && held === side && Math.abs(here.pos) < pr.want * 0.5 && !(Number.isFinite(leftNow) && leftNow <= 120)) {
+      topUp = Math.max(0, Math.floor((pr.want - Math.abs(here.pos)) * 100) / 100);
+    } else {
+      // A position this book started (a partial it was topping up) is the bot's, never "her hand trade" (Oct 11 fix).
+      const botStarted = Boolean(pr);
+      if (pr) delete partials[ticker];
+      release(key);
+      // AFTER YOUR EXIT (Love, Oct 10 ~7:05 PM PT: "allow her to enter into a position after i've exited one if it presents
+      // itself... she can long if one comes, or short... goes for the future too"). A position the bot never opened is
+      // HERS (a hand trade). It used to count as the book's fill ("already") or end the window ("other side"), so after she
+      // closed it the book never went in. Now the book waits while she holds it and goes in once she's out, same gates,
+      // same price caps. A window the book itself traded is still one-and-done.
+      if (bookCopy && !botStarted && !doneSet().has(ticker) && !firedSet().has(ticker)) {
+        return { status: "blocked", reason: held === side ? "your hand trade holds this window (she goes in if you exit)" : "you hold the other side by hand (she goes in if you exit)" };
+      }
+      return { status: "blocked", reason: held === side ? "already" : "you already hold the other side" };
+    }
+  }
+  // A live book only cares about THIS window; an older BTC window still settling must not block it (Oct 3).
+  const other = isBookCopy ? undefined : open.find((row) => symbolOf(row.ticker) === symbolOf(ticker) && row.ticker !== ticker);
+  if (other) {
+    release(key);
+    return { status: "blocked", reason: "symbol already open" };
+  }
+  const quote = await quoteP;
+  const yes = quote?.yesAsk ?? yesAsk;
+  const no = quote?.noAsk ?? noAsk;
+  const ask = side === "up" ? yes : no;
+  if (!(ask > 0.01) || !(ask < 0.99)) {
+    release(key);
+    return { status: "blocked", reason: "no quote" };
+  }
+  const multiple = ask > 0 ? Math.round((1 / ask) * 100) / 100 : 0;
+  const left = Number(opts?.secondsLeft);
+  const known = Number.isFinite(left) && left > 0;
+  const spotNow = Number(opts?.line?.spot);
+  const targetNow = Number(opts?.line?.target);
+  const reject = /tap-reject/i.test(String(opts?.line?.label || ""));
+  const right = side === "up" ? spotNow > targetNow : spotNow < targetNow;
+  const late = known && left <= 300 && reject && right && spotNow > 0 && targetNow > 0;
+  // Live books: Love's floor is 1.37x (Oct 3: "1.3x isn't worth the risk").
+  // OPEN ON THE CARD = OPEN ON KALSHI. PERIOD. (Oct 15, Love: "she only takes the trades she loses on here and every
+  // trade that wins is getting skipped or not getting filled... IF THERE IS A POSITION OPEN ON THE CARD - IT IS OPEN ON
+  // KALSHI. PERIOD."): for books in live-switch paperFires, the 1.38x floor already did its job at paper's booking - the
+  // live copy pays the market's ask (exchange bounds above) instead of resting at paper's price or refusing over the
+  // floor. The 05:00 BTC long rested at 72c, her hand guard then pulled it, and the winner never filled - never again.
+  const pfFill = (() => { try { const v = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.paperFires; return Array.isArray(v) && v.includes(bookCopy); } catch { return false; } })();
+  const minMult = bookCopy ? 1.37 : 1.38;
+  if (!pfFill && !(multiple + 1e-9 >= minMult) && bookCopy && Number(opts?.paperAsk) > 0.02) {
+    // RESTING ORDER (Love, Oct 3 ~6:45 PM PT): the price ran past her floor before the copy got there. Instead of giving
+    // up, rest a buy at the paper book's own price (never worse than 72c = 1.39x) until 20 s before the bell.
+    const restPx = Math.min(Math.floor((1 / 1.37) * 100) / 100, Math.round(Number(opts.paperAsk) * 100) / 100);
+    const closeAt = windowClose(ticker);
+    const until = closeAt != null ? Math.floor(closeAt / 1000) - 20 : 0;
+    if (restPx > 0.02 && until - Date.now() / 1000 > 20) {
+      const restBudget = budgetFor(Math.min(assetDollarsFor(ticker) || bookDollarsFor(ticker) || Number(liveBook?.dollars) || 0, maxDollars()), 1 / restPx);
+      const restCount = Math.floor(restBudget / restPx * 100) / 100;
+      if (restCount >= 0.01) {
+        const restYes = side === "up" ? restPx : Math.round((1 - restPx) * 100) / 100;
+        const restLine = { ...(opts?.line || {}), primeCopy: false, paperCopy: false, bookCopy, multiple: Math.round(100 / restPx) / 100, dollars: restBudget, askPx: restPx, label: label || bookCopy, restUntil: until };
+        let rested = null;
+        try {
+          rested = await place(ticker, side === "up" ? "bid" : "ask", restYes, restCount.toFixed(2), false, restLine, true);
+        } catch (err) {
+          release(key);
+          return { status: "blocked", reason: err instanceof Error ? err.message.slice(0, 140) : "resting order failed" };
+        }
+        if (rested?.orderId) {
+          lockSide(ticker, side);
+          markDone(ticker);
+          fireOnce(ticker);
+          writeSeal(ticker, side);
+          const c = Math.round(restPx * 100);
+          if (rested.filled > 0) return { status: "filled", orderId: rested.orderId, filled: rested.filled, yesPrice: rested.yesPrice, paid: restPx };
+          return { status: "resting", reason: `resting at ${c}c (paper's price) until the window ends`, orderId: rested.orderId, filled: 0, paid: restPx };
+        }
+      }
+    }
+  }
+  if (!pfFill && !(multiple + 1e-9 >= minMult)) {
+    release(key);
+    const why = `${multiple.toFixed(2)}x under ${minMult}`;
+    return { status: "blocked", reason: why };
+  }
+  // Live books size off Love's Position size slider (data/live-size.json "dollars"), capped by the switch ceiling (Oct 3).
+  // $12 ON THE CHEAP ONES (Oct 15, Love: "if it's a 2.8x + i want her to do $12 okay"): a paperFires book entry at
+  // 2.8x or better sizes live-switch cheapSize.dollars instead of the slider.
+  const cheapCfg = (() => { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.cheapSize; } catch { return null; } })();
+  const cheapDollars = pfFill && cheapCfg && Number(cheapCfg.minMult) > 0 && multiple + 1e-9 >= Number(cheapCfg.minMult) && Number(cheapCfg.dollars) > 0 ? Number(cheapCfg.dollars) : 0;
+  // A BOOK'S OWN SIZE (Oct 16 ~2:05 AM PT, Love: "let's have her trade the inverse book @ $5 position sizes" - bench hours only):
+  // live-switch bookDollars[book] sizes that book flat, ahead of the slider and the cheap-size rule.
+  const ownDollars = (() => { try { const v = Number(JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.bookDollars?.[String(bookCopy)]); return v >= 1 && v <= 100 ? v : 0; } catch { return 0; } })();
+  const assetOwn = assetDollarsFor(ticker);
+  const budget = bookCopy ? budgetFor(Math.min(assetOwn > 0 ? assetOwn : ownDollars > 0 ? ownDollars : cheapDollars > 0 ? cheapDollars : (bookDollarsFor(ticker) || Number(liveBook?.dollars) || 0), maxDollars()), multiple) : budgetFor(full, multiple);
+  // FLAT SIZE (Oct 7 ~10:45 PM PT, Love: "lower position sizes down to $30 flat... tried on my end and it didn't lower them").
+  // The slider was already $30, but a live-book copy was counted off the ask and allowed to fill up to 20% higher (the
+  // fast-tape reach), so a $30 trade could cost $33-36. Now it is counted off the highest price it may pay: never over
+  // the slider (a fill at the ask comes in a little under).
+  const reachPx = bookCopy ? Math.min(Math.floor((1 / 1.37) * 100) / 100, Math.round(Math.max(ask + 0.03, ask * 1.2) * 100) / 100) : ask;
+  const count0 = Math.floor(budget / Math.max(ask, reachPx) * 100) / 100;
+  const count = topUp > 0 ? Math.min(count0, topUp) : count0;
+  if (!(count >= 0.01)) {
+    release(key);
+    return { status: "blocked", reason: "size" };
+  }
+  const bookSide = side === "up" ? "bid" : "ask";
+  // Live books get 3c of room so a fast tape doesn't leave the order unfilled (still floored at 1.30x on the limit).
+  const slip = bookCopy ? 0.03 : 0.02;
+  // Live books never pay worse than 1.37x: the limit is capped at 73c even with the 3c of room.
+  const capPx = bookCopy ? Math.floor((1 / 1.37) * 100) / 100 : 0.99;
+  // PAY UP TO HER FLOOR (Love, Oct 6 ~7:30 AM PT, "yess to both"): the 10:30 ET BTC short was sent 0.3 s after paper booked
+  // it at 61c, but three IOCs at 63c (ask + 3c) found nothing while NO repriced past 73c, so it never filled and paper won
+  // +60% without her. A live-book copy now bids all the way to her 1.37x floor (73c). Kalshi fills at the real asks, so a
+  // calm book still fills at the ask; only a running tape pays more. Count stays sized off the ask (worst case ~$36 on $30).
+  // Reach = ask + 20% (at least 3c), never past the 72c floor: the 61c short would have bid 72c; a 42c gold 50c.
+  const reach = bookCopy ? Math.min(capPx, Math.round(Math.max(ask + slip, ask * 1.2) * 100) / 100) : Math.round((ask + slip) * 100) / 100;
+  const yesPrice = side === "up"
+    ? Math.min(0.99, capPx, reach)
+    : Math.max(0.01, 1 - capPx, Math.round((1 - reach) * 100) / 100);
+  const line = bookCopy
+    ? { ...(opts?.line || {}), primeCopy: false, paperCopy: false, bookCopy, multiple, dollars: budget, askPx: ask, label: label || bookCopy }
+    : { ...(opts?.line || {}), primeCopy: !paperCopy, paperCopy, multiple, dollars: full, label: label || (paperCopy ? "paper" : "prime") };
+  let placed = null;
+  // Oct 6: clear the last block reason first; a stale "gold is off Kalshi" from hours ago was being reported on BTC misses.
+  sent.__aureliusBlock = "";
+  try {
+    placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, line, true);
+  } catch (err) {
+    release(key);
+    return { status: "blocked", reason: err instanceof Error ? err.message.slice(0, 140) : "copy failed" };
+  }
+  if (!placed || !(placed.filled > 0)) {
+    release(key);
+    if (topUp > 0) return { status: "partial", reason: `holding ${Math.abs(here.pos)} of ${partials[ticker]?.want}; trying for the rest at ${Math.round(capPx * 100)}c or better` };
+    return { status: "blocked", reason: sent.__aureliusBlock || "unfilled" };
+  }
+  lockSide(ticker, side);
+  if (bookCopy) {
+    const want = topUp > 0 ? partials[ticker]?.want ?? count0 : count0;
+    const have = (topUp > 0 ? Math.abs(here.pos) : 0) + Number(placed.filled);
+    if (have < want * 0.5) {
+      partials[ticker] = { side, want };
+      release(key);
+      const paidP = side === "up" ? placed.yesPrice : Math.round((1 - placed.yesPrice) * 1e4) / 1e4;
+      return { status: "partial", reason: `only ${have.toFixed(2)} of ${want.toFixed(2)} filled; trying for the rest at ${Math.round(capPx * 100)}c or better`, filled: placed.filled, paid: paidP };
+    }
+    delete partials[ticker];
+  }
+  markDone(ticker);
+  fireOnce(ticker);
+  writeSeal(ticker, side);
+  const paid = side === "up" ? placed.yesPrice : Math.round((1 - placed.yesPrice) * 1e4) / 1e4;
+  return { status: "filled", orderId: placed.orderId, filled: placed.filled, yesPrice: placed.yesPrice, paid };
+}
+// RESTING TAKE PROFIT (Love, Oct 4 ~12:55 AM PT: "the take profit didnt work again"). The desk used to wait for the BID
+// to reach the take-profit price and then sell into it; near the bell Kalshi's bid often stalls a cent or two under it
+// while buyers are paying that price. Now a sell order rests AT the take-profit price for the whole window, so the first
+// buyer who pays it fills us. Registry on globalThis so every exit path can cancel it first.
+const tpReg = globalThis;
+function tpRegistry() {
+  return tpReg.__aureliusTpRest || (tpReg.__aureliusTpRest = {});
+}
+async function cancelTpRest(ticker) {
+  const reg = tpRegistry();
+  const cur = reg[ticker];
+  delete reg[ticker];
+  if (cur?.id) {
+    try {
+      await cancelOrder(cur.id, ticker);
+    } catch {
+    }
+  }
+}
+// CLOSED-WINDOW GUARD (Claude, Oct 4 ~11:35 AM PT, Love: "what just happened to the btc profit"): at 11:29:13 the take
+// profit sold 37.31, and a resting take-profit order that was being re-placed in that same second landed after the sale and
+// filled at 11:29:15, selling 37.31 she no longer had (a short; cost $3.37). Once a window is sold, no resting order may be
+// placed on it, one already in flight is cancelled the moment it lands, and a sweep closes any flip.
+function tpClosedReg() {
+  return tpReg.__aureliusTpClosed || (tpReg.__aureliusTpClosed = {});
+}
+function tpClosedRecently(ticker) {
+  const at = tpClosedReg()[ticker];
+  return Boolean(at && Date.now() - at < 20 * 60 * 1000);
+}
+async function cancelRestingOn(ticker, wantAction) {
+  try {
+    const res = await kalshi("GET", "/trade-api/v2/portfolio/orders", `?ticker=${encodeURIComponent(ticker)}&status=resting&limit=40`);
+    if (!res.ok) return;
+    const data = await res.json();
+    for (const order of data.orders ?? []) {
+      if (order.ticker !== ticker || order.status !== "resting" || !order.order_id) continue;
+      if (wantAction && order.action !== wantAction) continue;
+      await cancelOrder(order.order_id, ticker).catch(() => {});
+    }
+  } catch {
+  }
+}
+async function restTakeProfit(ticker, pos, sellPx, closeTimeIso) {
+  if (tpClosedRecently(ticker)) return null;
+  const startedAt = Date.now();
+  const qty = Math.floor(Math.abs(Number(pos)) * 100) / 100;
+  if (!(qty >= 0.01) || !(sellPx > 0.02 && sellPx < 1)) return null;
+  const exp = closeTimeIso ? Math.floor(Date.parse(closeTimeIso) / 1000) - 3 : 0;
+  if (!(exp - Date.now() / 1000 > 5)) return null;
+  const bookSide = pos > 0 ? "ask" : "bid";
+  const yesPrice = pos > 0 ? sellPx : Math.round((1 - sellPx) * 100) / 100;
+  const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
+    ticker,
+    client_order_id: randomUUID(),
+    side: bookSide,
+    count: qty.toFixed(2),
+    price: money(yesPrice),
+    time_in_force: "good_till_canceled",
+    expiration_time: exp,
+    self_trade_prevention_type: "taker_at_cross",
+    post_only: false,
+    reduce_only: false,
+    cancel_order_on_pause: true,
+    exchange_index: 2
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    noteGate(ticker, "tp", false, `resting take profit refused: ${text.slice(0, 120)}`);
+    return null;
+  }
+  const data = await res.json();
+  // The window was sold while this order was on its way: pull it straight back.
+  const closedAt = tpClosedReg()[ticker];
+  if (closedAt && closedAt >= startedAt - 1000 && data.order_id) {
+    await cancelOrder(data.order_id, ticker).catch(() => {});
+    return null;
+  }
+  return { orderId: data.order_id, filled: Number.parseFloat(data.fill_count ?? "0") || 0, px: sellPx, qty };
+}
+// ADD-ON (Love, Oct 4 ~2:45 AM PT: "just add in the $5 positions at a rejection of a band if price rejects, that way price
+// going down is happy thing"). One $5 IOC buy on the side she already holds, never above maxAsk. Its own path because the
+// one-order-per-window lock in sendOrder would refuse it; it still goes through kalshi(), so the live switch guards it.
+async function addOnBuy(ticker, side, dollars, maxAsk) {
+  const tg0 = await terminalGate(ticker, side, null).catch(() => "terminal gate error, no order");
+  if (tg0) return { ok: false, reason: tg0 };
+  const quote = await liveAsks(ticker);
+  const ask = side === "up" ? quote?.yesAsk : quote?.noAsk;
+  if (!(ask > 0.02) || ask > maxAsk + 1e-9) return { ok: false, reason: `ask ${ask ?? "?"} over ${maxAsk}` };
+  const px = Math.min(maxAsk, Math.round((ask + 0.01) * 100) / 100);
+  const count = Math.floor(Number(dollars) / px * 100) / 100;
+  if (!(count >= 0.01)) return { ok: false, reason: "size" };
+  const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
+    ticker,
+    client_order_id: randomUUID(),
+    side: side === "up" ? "bid" : "ask",
+    count: count.toFixed(2),
+    price: money(side === "up" ? px : Math.round((1 - px) * 100) / 100),
+    time_in_force: "immediate_or_cancel",
+    self_trade_prevention_type: "taker_at_cross",
+    post_only: false,
+    reduce_only: false,
+    cancel_order_on_pause: true,
+    exchange_index: 2
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    return { ok: false, reason: `refused: ${text.slice(0, 120)}` };
+  }
+  const data = await res.json();
+  const filled = Number.parseFloat(data.fill_count ?? "0") || 0;
+  return { ok: filled > 0, filled, px, ask, orderId: data.order_id, reason: filled > 0 ? "" : "no fill" };
+}
+async function clearResting(ticker, keepTp = false) {
+  // keepTp (Oct 4): the account watch runs every ~30 s and used to wipe her resting take profit each time, so it was
+  // cancelled and re-placed all window long (lost its place in line, and opened the 11:29 AM PT race).
+  if (!keepTp) await cancelTpRest(ticker);
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/orders", "?limit=40");
+  if (!res.ok) return;
+  const data = await res.json();
+  for (const order of data.orders ?? []) {
+    if (order.ticker !== ticker || order.status !== "resting" || !order.order_id) continue;
+    if (order.client_order_id) continue;
+    await cancelOrder(order.order_id, ticker);
+  }
+}
+async function closeAtBand(trade, yesBid, yesAsk, force = false, protect = false, floorPct) {
+  void trade;
+  void yesBid;
+  void yesAsk;
+  void force;
+  void protect;
+  void floorPct;
+  return null;
+}
+const AUTO_PATH = join(process.cwd(), "data", "autosell.json");
+// Cancel one desk order by id (engine: a parked live-book order comes off when paper closes the trade).
+async function cancelLiveOrder(orderId, ticker) {
+  if (!orderId || !ticker) return;
+  await cancelOrder(orderId, ticker);
+}
+// HAND GUARD (Oct 14 ~3:25 AM PT, Love: "that was so not okay"; 3:00 AM gold: PAPER 24/7's resting 63c short sat on Kalshi,
+// she went long by hand at 3:01, and at 3:09 the resting short filled and closed her long). A book order resting on Kalshi is
+// pulled the moment a position shows up on that market that the order did not make: Love's hand trade always wins the
+// window. Checked every couple of seconds; no other change to how books enter or exit.
+export async function guardRestsAgainstHand() {
+  const rb = sent.__restBook || {};
+  const keys = Object.keys(rb);
+  if (!keys.length) return [];
+  const pulled = [];
+  let open = [];
+  try { open = await fifteenOpen(); } catch { return []; }
+  for (const ticker of keys) {
+    const r = rb[ticker];
+    if (!r || Date.now() - r.at > 16 * 60 * 1000) { delete rb[ticker]; continue; }
+    const here = open.find((row) => row.ticker === ticker);
+    if (!here) continue;
+    const held = here.pos > 0 ? "up" : "down";
+    // NO DOUBLING (Oct 15 ~6:25 PM PT, Love: "if i enter a trade myself please do not double the position size" — her
+    // 9:30 hand long at 59c was stacked 70 s later by the book's resting 45c buy, ~33 -> ~88 contracts; the old guard
+    // only pulled OPPOSITE-side rests, Oct 14 rule). A resting book order is now pulled the moment ANY position shows
+    // up on that market that the order did not make — same side included. Our own rest's full fill leaves no order to
+    // cancel (the pull no-ops); a partial fill cancels the remainder so nothing keeps adding on top of her.
+    try { await cancelOrder(r.orderId, ticker); } catch {}
+    delete rb[ticker];
+    pulled.push(ticker);
+    try { noteGate(ticker, "after", false, `pulled the resting ${r.side === "up" ? "long" : "short"}: a ${held === "up" ? "long" : "short"} is on this market that the order did not make`); } catch {}
+  }
+  return pulled;
+}
+async function cancelOrder(orderId, ticker) {
+  const path = `/trade-api/v2/portfolio/events/orders/${orderId}`;
+  await kalshi("DELETE", path, `?market_ticker=${encodeURIComponent(ticker)}&exchange_index=-1`);
+}
+async function restAutoSell(trade, floorPct) {
+  void trade;
+  void floorPct;
+}
+const OUTSIDE_PATH = join(process.cwd(), "data", "outside-orders.json");
+function readOutside() {
+  try {
+    const parsed = JSON.parse(readFileSync(OUTSIDE_PATH, "utf8"));
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+async function outsideOrders() {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/orders", "?limit=40");
+  if (!res.ok) return [];
+  const data = await res.json();
+  const rows = [];
+  const lines = [];
+  for (const order of data.orders ?? []) {
+    if (!order.ticker?.includes("15M")) continue;
+    if (order.client_order_id) continue;
+    const age = Date.now() - Date.parse(order.created_time ?? "");
+    if (!Number.isFinite(age) || age > 6 * 60 * 60 * 1e3) continue;
+    const qty = order.fill_count_fp && Number(order.fill_count_fp) > 0 ? order.fill_count_fp : order.initial_count_fp ?? "";
+    rows.push({
+      at: order.created_time ?? "",
+      ticker: order.ticker,
+      action: order.action ?? "",
+      side: order.side ?? "",
+      qty,
+      yes: order.yes_price_dollars ?? "",
+      status: order.status ?? ""
+    });
+    if (age <= 3 * 60 * 1e3 || order.status === "resting") {
+      lines.push(
+        `RED: No desk id. ${order.ticker} ${order.action ?? ""} ${order.side ?? ""} ${qty} at ${(order.created_time ?? "").slice(11, 19)} (${order.status ?? "open"}).`
+      );
+    }
+    if (order.status === "executed" && order.action === "sell" && order.ticker) {
+      const prev = readSeals()[symbolOf(order.ticker)];
+      const soldAt = Date.parse(order.created_time ?? "");
+      if (!prev?.at || Date.parse(prev.at) < soldAt) {
+        const all = readSeals();
+        all[symbolOf(order.ticker)] = {
+          ticker: order.ticker,
+          side: order.side === "no" ? "down" : "up",
+          at: order.created_time ?? (/* @__PURE__ */ new Date()).toISOString()
+        };
+        try {
+          mkdirSync(join(process.cwd(), "data"), { recursive: true });
+          writeFileSync(SEAL_PATH, JSON.stringify(all));
+        } catch {
+        }
+      }
+    }
+  }
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(OUTSIDE_PATH, JSON.stringify(rows));
+  } catch {
+  }
+  return lines;
+}
+async function kickForbidden() {
+  return;
+}
+async function watchAccount(trades) {
+  try {
+    await kickForbidden();
+  } catch {
+  }
+  const open = await fifteenOpen();
+  const nets = await settlementProfits();
+  const alerts = [];
+  const mismatches = [];
+  try {
+    alerts.push(...await outsideOrders());
+  } catch {
+  }
+  const btc = open.filter((row) => symbolOf(row.ticker) === "btc");
+  const gold = open.filter((row) => symbolOf(row.ticker) === "gold");
+  for (const row of open) {
+    try {
+      await clearResting(row.ticker, true);
+    } catch {
+    }
+  }
+  if (btc.length > 1) alerts.push(`RED: ${btc.length} Bitcoin positions are open at once.`);
+  if (gold.length > 1) alerts.push(`RED: ${gold.length} gold positions are open at once.`);
+  for (const row of gold) {
+    const line = await freshLine(row.ticker);
+    if (!line) {
+      alerts.push("RED: Gold is open and the VWAP could not be read.");
+      continue;
+    }
+    const side = row.pos > 0 ? "bid" : "ask";
+    const broken = wireBreaks(line, side, "gold");
+    if (broken) alerts.push(`RED: ${broken} ${row.ticker} is still open.`);
+  }
+  for (const row of open) {
+    const side = row.pos > 0 ? "up" : "down";
+    const locked = sideLock(row.ticker);
+    const banked = trades.find(
+      (t) => t.source === "live" && t.venue !== "polymarket" && t.ticker === row.ticker && t.result !== "open" && (t.profit ?? 0) > 0
+    );
+    if (banked && banked.side !== side) {
+      alerts.push(
+        `RED: ${row.ticker} opened ${side.toUpperCase()} after ${banked.side.toUpperCase()} banked $${banked.profit}.`
+      );
+    } else if (locked && locked !== side) {
+      alerts.push(`RED: ${row.ticker} is ${side.toUpperCase()} after it was sealed ${locked.toUpperCase()}.`);
+    }
+  }
+  for (const trade of trades) {
+    if (trade.source !== "live" || trade.venue === "polymarket" || trade.result === "open" || trade.profit == null) continue;
+    const net = nets.get(trade.ticker);
+    if (net == null || Math.abs(trade.profit - net) <= 0.5) continue;
+    mismatches.push(`${trade.ticker} shows $${trade.profit.toFixed(2)} on the desk and $${net.toFixed(2)} on Kalshi.`);
+  }
+  try {
+    const logged = JSON.parse(readFileSync(join(process.cwd(), "data", "exit-log.json"), "utf8"));
+    if (Array.isArray(logged)) {
+      for (const row of logged) {
+        const age = Date.now() - Date.parse(row.at ?? "");
+        if (!Number.isFinite(age) || age > 2 * 60 * 60 * 1e3) continue;
+        if (row.line) {
+          alerts.push(row.line);
+        } else if (row.short) {
+          alerts.push(
+            `RED: ${row.ticker} sold under its target. Bid was ${row.bidPct ?? "?"}% and the target was ${row.targetPct ?? "?"}%.`
+          );
+        } else if (row.reason === "salvage-missed") {
+          alerts.push(`RED: ${row.ticker} was a sure loss and did not cash out.`);
+        } else if (typeof row.profit === "number" && row.profit < 0 && row.reason !== "salvage" && age < 30 * 60 * 1e3) {
+          alerts.push(`RED: ${row.ticker} was sold while it was negative.`);
+        }
+      }
+    }
+  } catch {
+  }
+  for (const trade of trades) {
+    if (trade.result !== "open" || trade.source === "live" || trade.probe || !trade.ticker?.includes("15M")) continue;
+    const sym = symbolOf(trade.ticker);
+    if (open.some((row) => symbolOf(row.ticker) === sym)) continue;
+    const seal = readSeals()[sym];
+    const sealed = seal?.at != null && Date.now() - Date.parse(seal.at) < SEAL_MS;
+    const paperAge = Date.now() - Date.parse(trade.openedAt);
+    if (!sealed && paperAge > 9e4) {
+      alerts.push(`RED: Paper ${sym.toUpperCase()} ${trade.side.toUpperCase()} filled and Kalshi did not.`);
+    }
+  }
+  for (const line of betweenFlags()) alerts.push(line);
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(
+      join(process.cwd(), "data", "red-alert.json"),
+      JSON.stringify({ at: (/* @__PURE__ */ new Date()).toISOString(), alerts, mismatches, open })
+    );
+  } catch {
+  }
+  try {
+    const cash = await kalshiCash();
+    if (cash != null) rememberKalshiCash(cash);
+  } catch {
+  }
+}
+const CASH_PATH = join(process.cwd(), "data", "kalshi-cash.json");
+function readKalshiCash() {
+  try {
+    const parsed = JSON.parse(readFileSync(CASH_PATH, "utf8"));
+    return {
+      cash: parsed.cash ?? null,
+      anchor: parsed.anchor ?? null,
+      trail: Array.isArray(parsed.trail) ? parsed.trail.filter((p) => p && Number.isFinite(p.cash)) : []
+    };
+  } catch {
+    return { cash: null, anchor: null, trail: [] };
+  }
+}
+async function refreshKalshiCash() {
+  const cash = await kalshiCash();
+  if (cash != null && cash >= 0) rememberKalshiCash(cash);
+  return readKalshiCash();
+}
+function rememberKalshiCash(cash) {
+  const book = readKalshiCash();
+  if (book.anchor == null) book.anchor = cash;
+  book.cash = cash;
+  const last = book.trail[book.trail.length - 1];
+  const age = last ? Date.now() - Date.parse(last.t) : Infinity;
+  if (!last || Math.abs(last.cash - cash) >= 0.01 || age > 2e4) {
+    book.trail.push({ t: (/* @__PURE__ */ new Date()).toISOString(), cash });
+  }
+  book.trail = book.trail.slice(-400);
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(CASH_PATH, JSON.stringify(book));
+  } catch {
+  }
+}
+async function flattenLive(trade, yesBid, yesAsk) {
+  let pct = 45;
+  try {
+    const n = Number(JSON.parse(readFileSync(join(process.cwd(), "data", "trail-floor.json"), "utf8")).pct);
+    if (Number.isFinite(n)) pct = Math.min(65, Math.max(35, Math.round(n)));
+  } catch {
+    pct = 45;
+  }
+  return closeAtBand(trade, yesBid, yesAsk, true, false, pct);
+}
+let lastHeldRows = [];
+let heldAt = 0;
+let heldFlight = null;
+async function heldFifteens() {
+  if (heldFlight) return heldFlight;
+  if (Date.now() - heldAt < 2000) return lastHeldRows;
+  heldFlight = loadHeld().finally(() => {
+    heldFlight = null;
+    heldAt = Date.now();
+  });
+  return heldFlight;
+}
+async function loadHeld() {
+  const rows = [];
+  let cursor = "";
+  for (let page = 0; page < 6; page += 1) {
+    const query = `?limit=200&count_filter=position${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`;
+    const res = await kalshi("GET", "/trade-api/v2/portfolio/positions", query);
+    if (!res.ok) return lastHeldRows;
+    const data = await res.json();
+    for (const row of data.market_positions ?? []) {
+      if (!row.ticker || !String(row.ticker).includes("15M")) continue;
+      const pos = Number.parseFloat(row.position_fp ?? row.position ?? "0");
+      const cost = Number.parseFloat(row.market_exposure_dollars ?? "0");
+      if (Number.isFinite(pos) && Math.abs(pos) >= 0.01) {
+        rows.push({ ticker: row.ticker, pos, cost: Number.isFinite(cost) ? cost : 0 });
+      }
+    }
+    if (!data.cursor) break;
+    cursor = data.cursor;
+  }
+  lastHeldRows = rows;
+  return rows;
+}
+async function restingFifteens() {
+  const res = await kalshi("GET", "/trade-api/v2/portfolio/orders", "?status=resting&limit=50");
+  if (!res.ok) return [];
+  const data = await res.json();
+  const rows = [];
+  for (const order of data.orders ?? []) {
+    if (!order.ticker || !order.ticker.includes("15M") || order.status !== "resting") continue;
+    if (order.action === "sell") continue;
+    const contracts = Number.parseFloat(order.remaining_count_fp ?? order.initial_count_fp ?? "0");
+    const yes = Number.parseFloat(order.yes_price_dollars ?? "0");
+    if (!(contracts >= 0.01) || !(yes > 0)) continue;
+    const side = order.side === "no" ? "down" : "up";
+    const px = side === "up" ? yes : Math.max(0.01, 1 - yes);
+    rows.push({
+      ticker: order.ticker,
+      side,
+      contracts,
+      cost: Math.round(contracts * px * 100) / 100,
+    });
+  }
+  return rows;
+}
+const closeBook = globalThis;
+function rememberClose(ticker, payout, profit) {
+  if (!closeBook.__aureliusClose) closeBook.__aureliusClose = {};
+  closeBook.__aureliusClose[ticker] = { payout, profit, at: Date.now() };
+}
+function closeResult(ticker) {
+  const row = closeBook.__aureliusClose?.[ticker];
+  if (!row || Date.now() - row.at > 20000) return null;
+  return row;
+}
+function finishClose(ticker, payout, basis) {
+  if (!(payout > 0)) return null;
+  const cash = Math.round(payout * 100) / 100;
+  const profit = Math.round((payout - basis) * 100) / 100;
+  rememberClose(ticker, cash, profit);
+  return cash;
+}
+async function flattenTicker(ticker, manual = false, minPct = 0, gate = false, minPrice = 0, sweep = true) {
+  if (!manual && !gate && paperOnly()) return null;
+  tpClosedReg()[ticker] = Date.now();
+  // MARKET CLOSE (Oct 15, Love: "saying market"): her close button sends ONE reduce-only, immediate-or-cancel sell the
+  // instant the click lands - no quote fetch, no 5c floor. It fills against the bids standing at that moment, top first.
+  // Position comes from the dock's own poll (under 10 s old) or one quick read. Take-profit / resting cancels run alongside,
+  // not before. live-switch closeMode: "market" (any other value = the old bid-minus-5c path below).
+  let cmMarket = false;
+  try { cmMarket = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.closeMode === "market"; } catch {}
+  if (manual && cmMarket && !(minPrice > 0.02)) {
+    const tM = Date.now();
+    let posM = 0, costM = 0, src = "dock";
+    try { const hp = globalThis.__hotClose?.pos?.[ticker]; if (hp && Date.now() - hp.at < 10000) { posM = Number(hp.pos) || 0; costM = Number(hp.cost) || 0; } } catch {}
+    if (!(Math.abs(posM) >= 0.01)) {
+      src = "read";
+      try {
+        const r0 = await kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position");
+        if (r0.ok) { const b0 = await r0.json(); const pr = b0.market_positions?.find((p) => p.ticker === ticker); posM = Number.parseFloat(pr?.position_fp ?? "0"); costM = Number.parseFloat(pr?.market_exposure_dollars ?? "0"); }
+      } catch {}
+    }
+    if (!(Math.abs(posM) >= 0.01)) return finishClose(ticker, 0, 0);
+    void cancelTpRest(ticker).catch(() => {});
+    void cancelRestingOn(ticker, posM > 0 ? "sell" : "buy").catch(() => {});
+    const qtyM = Math.abs(posM);
+    const pxM = posM > 0 ? 0.01 : 0.99;
+    let payM = 0, basisM = 0, filledM = 0, avgM = null;
+    try {
+      const resM = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
+        ticker, client_order_id: randomUUID(), side: posM > 0 ? "ask" : "bid", count: qtyM.toFixed(2), price: money(pxM),
+        time_in_force: "immediate_or_cancel", self_trade_prevention_type: "taker_at_cross", post_only: false,
+        reduce_only: true, cancel_order_on_pause: true, exchange_index: 2
+      });
+      if (resM.ok) {
+        const dM = await resM.json();
+        filledM = Number.parseFloat(dM.fill_count ?? "0");
+        if (filledM >= 0.01) {
+          avgM = Number.parseFloat(dM.average_fill_price ?? "") || pxM;
+          payM = closeCash(posM, pxM, avgM, filledM);
+          basisM = (costM > 0 ? costM / qtyM : 0) * filledM;
+        }
+      } else noteGate(ticker, "after", false, (await resM.text()).slice(0, 140) || "market close rejected");
+    } catch {}
+    try { appendFileSync(join(process.cwd(), "data", "market-close.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker, pos: posM, src, filled: filledM, avgYes: avgM, payout: Math.round(payM * 100) / 100, ms: Date.now() - tM }) + "\n"); } catch {}
+    return finishClose(ticker, payM, basisM);
+  }
+  // FAST CLOSE (Oct 14 ~12:55 PM PT, Love: "it doesn't close immediately... if price snaps in that timeframe it will sell for
+  // considerably less"). The take-profit cancel, her position, her resting orders and the market quote are now read at the
+  // same time (they used to go one after another, ~7 round trips before the first sell), and the first sell uses them.
+  let startSign = 0;
+  let pre = null;
+  // INSTANT CLOSE (Oct 15 ~4:15 PM PT, Love: "the close buttons are still not closing when i hit close... can you just
+  // have it close instantly when i click? this lag window isn't particularly optimal"). When the KALSHI tab's own 4 s
+  // poll (getHeldOrders -> globalThis.__hotClose) already knows her position and the live quote (both under 5 s old),
+  // the first crossing sell goes out IMMEDIATELY from that, with the take-profit / resting cancels fired in parallel
+  // instead of awaited first (the 23:12 gold close measured 2.1 s of reads while gold bounced off the band). The sell
+  // itself is unchanged: ONE reduce-only order at the live bid minus her standing 5 c, re-quoted at the current bid on
+  // a miss. Off the tab or stale cache -> the read-first path below runs exactly as before.
+  let hotShot = false;
+  if (manual) {
+    try {
+      const hc = globalThis.__hotClose || {};
+      const hp = hc.pos ? hc.pos[ticker] : null;
+      const hm = hc.mk ? hc.mk[ticker] : null;
+      if (hp && hm && Date.now() - hp.at < 5000 && Date.now() - hm.at < 5000 && Math.abs(hp.pos) >= 0.01) {
+        startSign = hp.pos > 0 ? 1 : -1;
+        pre = { book: { market_positions: [{ ticker, position_fp: String(hp.pos), market_exposure_dollars: String(hp.cost ?? 0) }] }, market: { market: hm.market } };
+        hotShot = true;
+        void cancelTpRest(ticker).catch(() => {});
+        void cancelRestingOn(ticker, startSign > 0 ? "sell" : "buy").catch(() => {});
+      }
+    } catch {
+    }
+  }
+  if (!hotShot) {
+  const [, r0, rOrd, mk0] = await Promise.all([
+    cancelTpRest(ticker).catch(() => {}),
+    kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position").catch(() => null),
+    kalshi("GET", "/trade-api/v2/portfolio/orders", `?ticker=${encodeURIComponent(ticker)}&status=resting&limit=40`).catch(() => null),
+    fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(2500) }).catch(() => null)
+  ]);
+  try {
+    if (r0 && r0.ok) {
+      const b0 = await r0.json();
+      const p0 = Number.parseFloat(b0.market_positions?.find((p) => p.ticker === ticker)?.position_fp ?? "0");
+      startSign = p0 > 0 ? 1 : p0 < 0 ? -1 : 0;
+      pre = { book: b0, market: null };
+      if (mk0 && mk0.ok) pre.market = await mk0.json();
+    }
+  } catch {
+  }
+  if (startSign !== 0) {
+    try {
+      if (rOrd && rOrd.ok) {
+        const od = await rOrd.json();
+        const want = startSign > 0 ? "sell" : "buy";
+        await Promise.all((od.orders ?? []).filter((o) => o.ticker === ticker && o.status === "resting" && o.order_id && o.action === want).map((o) => cancelOrder(o.order_id, ticker).catch(() => {})));
+      } else await cancelRestingOn(ticker, startSign > 0 ? "sell" : "buy");
+    } catch {
+    }
+  }
+  }
+  if (sweep && startSign !== 0) {
+    // SWEEP: 2.5 s and 8 s after the sale, cancel any straggler and close a position that flipped to the other side.
+    for (const ms of [2500, 8000]) {
+      setTimeout(() => {
+        void (async () => {
+          try {
+            await cancelRestingOn(ticker, startSign > 0 ? "sell" : "buy");
+            const r1 = await kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position");
+            if (!r1.ok) return;
+            const p1 = Number.parseFloat((await r1.json()).market_positions?.find((p) => p.ticker === ticker)?.position_fp ?? "0");
+            if (Math.abs(p1) >= 0.01 && Math.sign(p1) === -startSign) {
+              noteGate(ticker, "tp", true, `flip guard: a straggler order flipped the position to ${p1}; closing it`);
+              await flattenTicker(ticker, true, 0, false, 0, false);
+            }
+          } catch {
+          }
+        })();
+      }, ms);
+    }
+  }
+  let payout = 0;
+  let basis = 0;
+  // RETRY AT THE LIVE PRICE (Oct 15): a one-shot that fills nothing re-quotes and tries again at the CURRENT bid
+  // (same 5c protection every time, never deeper - Love: "the price that is there, not 25 cents less"), up to 3 tries
+  // in the one click. Her explicit floor (minPrice) still ends it after one try.
+  let misses = 0;
+  for (let guard = 0; guard < 5; guard += 1) {
+    let book = null;
+    let data = null;
+    if (guard === 0 && pre && pre.book && pre.market) {
+      book = pre.book;
+      data = pre.market;
+    } else {
+      const resPos = await kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position");
+      if (!resPos.ok) return finishClose(ticker, payout, basis);
+      book = await resPos.json();
+    }
+    const row = book.market_positions?.find((p) => p.ticker === ticker);
+    const pos = Number.parseFloat(row?.position_fp ?? "0");
+    if (!(Math.abs(pos) >= 0.01)) return finishClose(ticker, payout, basis);
+    const sign = pos > 0 ? 1 : -1;
+    if (!data) {
+      // Oct 15 ~7:40 PM PT (Love: "it just took 10 seconds"): a re-quote gets 2.5 s, not 8 - a stall moves to the next try sooner.
+      const res = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(2500) });
+      if (!res.ok) return finishClose(ticker, payout, basis);
+      data = await res.json();
+    }
+    const yesBid = Number.parseFloat(data.market?.yes_bid_dollars ?? "0");
+    const noBid = Number.parseFloat(data.market?.no_bid_dollars ?? "0");
+    const yesAsk = Number.parseFloat(data.market?.yes_ask_dollars ?? "0");
+    const noAsk = Number.parseFloat(data.market?.no_ask_dollars ?? "0");
+    const qty = Math.abs(pos);
+    const cost = Number.parseFloat(row?.market_exposure_dollars ?? "0");
+    const entry = cost > 0 ? cost / qty : 0;
+    // Oct 15 ~2:55 PM PT (Love: "do NOT make it sell 25c less than the price i clicked at... just have it close. the
+    // price that is there"): every attempt sells at the CURRENT bid with the same 5c protection it has always had -
+    // a missed shot re-quotes and tries again at the live price, never at a deeper discount.
+    const slip = manual ? 0.05 : 0.01;
+    const liveBid = screenBid(pos, yesBid, yesAsk, noBid, noAsk);
+    if (gate) return finishClose(ticker, payout, basis);
+    if (!(liveBid > 0.02)) return finishClose(ticker, payout, basis);
+    if (manual && minPrice > 0.02 && liveBid + 0.005 < minPrice) return finishClose(ticker, payout, basis);
+    if (!manual) return finishClose(ticker, payout, basis);
+    const rung = null;
+    const asked = 0;
+    const triggerPct = 0;
+    const triggerBid = 0;
+    const floorBid = minPrice > 0.02 ? Math.round(minPrice * 100) / 100 : Math.round((liveBid - slip) * 100) / 100;
+    const low = floorBid;
+    // ONE-SHOT CLOSE (Oct 15 ~2:05 PM PT, Love: "make it close when i click close and not 5 seconds later"). The old
+    // ladder walked DOWN from the bid one cent per order, one round trip each - in a snap the bid ran away from it
+    // (her click: 3.0 s, $18 -> $8). Kalshi fills a crossing limit against the book at the BOOK's prices (the buy path
+    // has always relied on exactly that), so ONE order at the floor takes every bid between the top and the floor in a
+    // single round trip. The floor is unchanged: her minPrice if set, else the live bid minus the manual 5c slip.
+    const oneCash = Math.round(Math.max(0.02, Math.min(0.99, low)) * 100) / 100;
+    const prices = pos > 0 ? [oneCash] : [Math.round((1 - oneCash) * 100) / 100].filter((px) => px > 0.01 && px < 0.99);
+    const bookSide = pos > 0 ? "ask" : "bid";
+    let filledThis = false;
+    for (const px of prices) {
+      try {
+        const placed = await place(ticker, bookSide, px, qty.toFixed(2), true, undefined, false, true);
+        if (!placed || !(placed.filled >= 0.01)) continue;
+        const cash = closeCash(pos, px, placed.yesPrice, placed.filled);
+        payout += cash;
+        basis += entry * placed.filled;
+        filledThis = true;
+        const after = await signedPosition(ticker);
+        if (after * sign < -0.01) {
+          noteGate(ticker, "flip", false, "exit opened the other side");
+          const back = Math.abs(after);
+          const undoSide = after > 0 ? "ask" : "bid";
+          const quote = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(8000) });
+          const undone = quote.ok ? await quote.json() : {};
+          const undoBid = screenBid(
+            after,
+            Number.parseFloat(undone.market?.yes_bid_dollars ?? "0"),
+            Number.parseFloat(undone.market?.yes_ask_dollars ?? "0"),
+            Number.parseFloat(undone.market?.no_bid_dollars ?? "0"),
+            Number.parseFloat(undone.market?.no_ask_dollars ?? "0"),
+          );
+          if (undoBid > 0.02) {
+            const undoStart = Math.round(Math.min(0.99, undoBid) * 100) / 100;
+            for (let i = 0; i < 3; i += 1) {
+              const raw = Math.round((undoStart - i * 0.01) * 100) / 100;
+              const undoPx = undoSide === "ask" ? raw : Math.round((1 - raw) * 100) / 100;
+              if (!(undoPx > 0.01) || !(undoPx < 0.99)) continue;
+              try {
+                await place(ticker, undoSide, undoPx, back.toFixed(2), true, undefined, false, true);
+              } catch {
+              }
+              const left = await signedPosition(ticker);
+              if (Math.abs(left) < 0.01 || left * after < 0) break;
+            }
+          }
+          markDone(ticker);
+          fireOnce(ticker);
+        }
+        break;
+      } catch {
+      }
+    }
+    if (!filledThis) {
+      misses += 1;
+      if (!manual || minPrice > 0.02 || misses >= 3) return finishClose(ticker, payout, basis);
+      continue;
+    }
+  }
+  return finishClose(ticker, payout, basis);
+}
+const GATE_TEST = join(process.cwd(), "data", "gate-test.json");
+function readGateTest() {
+  try {
+    const row = JSON.parse(readFileSync(GATE_TEST, "utf8"));
+    return row && typeof row === "object" ? row : {};
+  } catch {
+    return {};
+  }
+}
+async function seedGate(side, ticker, yesAsk, noAsk, label) {
+  const sym = symbolOf(ticker);
+  if (sym !== "silver") return { status: "blocked", reason: "the one-dollar test is silver only" };
+  if (side !== "up" && side !== "down") return { status: "blocked", reason: "no side" };
+  const open = await fifteenOpen();
+  if (open.some((row) => symbolOf(row.ticker) === "silver")) return { status: "blocked", reason: "silver is already open" };
+  const quote = await liveAsks(ticker);
+  const yes = quote?.yesAsk ?? yesAsk;
+  const no = quote?.noAsk ?? noAsk;
+  const ask = side === "up" ? yes : no;
+  if (!(ask > 0.02) || !(ask < 0.99)) return { status: "blocked", reason: "no quote" };
+  const count = Math.floor(1 / ask * 100) / 100;
+  if (!(count >= 0.01)) return { status: "blocked", reason: "size" };
+  const bookSide = side === "up" ? "bid" : "ask";
+  const yesPrice = side === "up"
+    ? Math.min(0.99, Math.round((ask + 0.01) * 100) / 100)
+    : Math.max(0.01, Math.round((1 - ask - 0.01) * 100) / 100);
+  let placed = null;
+  try {
+    placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, { gateTest: true, label: label || "gate test" }, true);
+  } catch (err) {
+    return { status: "blocked", reason: err instanceof Error ? err.message.slice(0, 140) : "test failed" };
+  }
+  if (!placed || !(placed.filled > 0)) return { status: "blocked", reason: sent.__aureliusBlock || "unfilled" };
+  const paid = side === "up" ? placed.yesPrice : Math.round((1 - placed.yesPrice) * 1e4) / 1e4;
+  const row = {
+    on: true,
+    ticker,
+    side,
+    dollars: 1,
+    asset: "silver",
+    label: label || "gate test",
+    at: new Date().toISOString(),
+    filled: placed.filled,
+    paid,
+  };
+  writeFileSync(GATE_TEST, JSON.stringify(row, null, 2));
+  return { status: "filled", ...row };
+}
+async function alignPrime() {
+  const open = await fifteenOpen();
+  let paper = {};
+  try {
+    paper = JSON.parse(readFileSync(join(process.cwd(), "data", "paper-live.json"), "utf8"));
+  } catch {
+    paper = {};
+  }
+  const test = readGateTest();
+  for (const held of open) {
+    const side = held.pos > 0 ? "up" : "down";
+    if (test.on === true && test.ticker === held.ticker && test.side === side) continue;
+    if (paper.on === true && paper.ticker === held.ticker && paper.side === side) continue;
+    if (paperSeat(held.ticker, side)) continue;
+    const rows = listPrimePaper().filter((row) => row.ticker === held.ticker);
+    const live = rows.find((row) => row.result === "open");
+    const approved = live || rows[0];
+    if (approved && approved.side === side) continue;
+    if (approved && approved.side !== side) await flattenTicker(held.ticker);
+    else if (!approved) await flattenTicker(held.ticker);
+  }
+}
+async function halfLive(ticker) {
+  await clearResting(ticker);
+  for (let pass = 0; pass < 3; pass += 1) {
+    const open = await fifteenOpen();
+    const row = open.find((item) => item.ticker === ticker);
+    const pos = row?.pos ?? await signedPosition(ticker);
+    if (!(Math.abs(pos) >= 0.02)) return null;
+    const res = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) continue;
+    const data = await res.json();
+    const yesBid = Number.parseFloat(data.market?.yes_bid_dollars ?? "0");
+    const noBid = Number.parseFloat(data.market?.no_bid_dollars ?? "0");
+    const yesAsk = Number.parseFloat(data.market?.yes_ask_dollars ?? "0");
+    const cost = row?.cost ?? 0;
+    const quote = screenBid(pos, yesBid, yesAsk, noBid, Number.parseFloat(data.market?.no_ask_dollars ?? "0"));
+    const floor = Math.max(0.02, Math.round((quote - 0.05) * 100) / 100);
+    const plan = halfCuts(pos, yesBid, noBid, yesAsk, 0, floor);
+    if (!plan) continue;
+    for (const px of plan.prices) {
+      try {
+        const placed = await place(ticker, plan.bookSide, px, plan.count, true, undefined, false, true);
+        if (!placed || !(placed.filled >= 0.01)) continue;
+        const payout = closeCash(pos, px, placed.yesPrice, placed.filled);
+        const left = Math.round((Math.abs(pos) - placed.filled) * 100) / 100;
+        return { filled: placed.filled, payout: Math.round(payout * 100) / 100, left };
+      } catch (err) {
+        noteGate(ticker, "half", false, err instanceof Error ? err.message.slice(0, 140) : "half rejected");
+      }
+    }
+  }
+  return null;
+}
+async function trimLive() {
+  return null;
+}
+// PART SELL (Love, Oct 3 ~2:50 PM PT: "25 - 50 - 75 - 100% buttons on the lil black ones at the bottom"). Sells that
+// share of the open position right now (reduce-only, walks the bid down up to 5c like HALF). 100% uses CLOSE.
+async function partLive(ticker, pct) {
+  const frac = Math.max(0.01, Math.min(1, Number(pct) / 100));
+  // FAST PART SELL (Oct 15, Love: "still very laggy on the 25% and 50%"): the three reads run together and the sell is
+  // ONE order at the current bid with the standing 5c protection; a miss re-quotes and tries again at the live price.
+  // INSTANT 25/50% (Oct 15 ~4:15 PM PT, same Love ask; her 23:11-23:12 gold clicks spent ~2 s on reads while gold
+  // bounced): the first sell fires from the KALSHI tab's own 4 s poll (position + quote under 5 s old), resting orders
+  // cancelled in parallel. Reduce-only as always; a miss or stale cache falls straight through to the passes below.
+  try {
+    const hc = globalThis.__hotClose || {};
+    const hp = hc.pos ? hc.pos[ticker] : null;
+    const hm = hc.mk ? hc.mk[ticker] : null;
+    if (hp && hm && Date.now() - hp.at < 5000 && Date.now() - hm.at < 5000 && Math.abs(hp.pos) >= 0.02) {
+      const pos0 = hp.pos;
+      const m = hm.market || {};
+      void clearResting(ticker).catch(() => {});
+      const quote = screenBid(pos0, Number.parseFloat(m.yes_bid_dollars ?? "0"), Number.parseFloat(m.yes_ask_dollars ?? "0"), Number.parseFloat(m.no_bid_dollars ?? "0"), Number.parseFloat(m.no_ask_dollars ?? "0"));
+      if (quote > 0.02) {
+        const floor = Math.max(0.02, Math.round((quote - 0.05) * 100) / 100);
+        const want = Math.floor(Math.abs(pos0) * frac * 100) / 100;
+        const px = pos0 > 0 ? floor : Math.round((1 - floor) * 100) / 100;
+        if (want >= 0.01 && px > 0.01 && px < 0.99) {
+          const placed = await place(ticker, pos0 > 0 ? "ask" : "bid", px, want.toFixed(2), true, undefined, false, true);
+          if (placed && placed.filled >= 0.01) {
+            hp.pos = pos0 > 0 ? pos0 - placed.filled : pos0 + placed.filled;
+            hp.at = Date.now();
+            const payout = closeCash(pos0, px, placed.yesPrice, placed.filled);
+            const left = Math.round((Math.abs(pos0) - placed.filled) * 100) / 100;
+            return { filled: placed.filled, payout: Math.round(payout * 100) / 100, left };
+          }
+        }
+      }
+    }
+  } catch {
+  }
+  for (let pass = 0; pass < 3; pass += 1) {
+    const [, open, res] = await Promise.all([
+      clearResting(ticker).catch(() => {}),
+      fifteenOpen(),
+      fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(2500) }).catch(() => null),
+    ]);
+    const row = open.find((item) => item.ticker === ticker);
+    const pos = row?.pos ?? await signedPosition(ticker);
+    if (!(Math.abs(pos) >= 0.02)) return null;
+    if (!res || !res.ok) continue;
+    const data = await res.json();
+    const yesBid = Number.parseFloat(data.market?.yes_bid_dollars ?? "0");
+    const noBid = Number.parseFloat(data.market?.no_bid_dollars ?? "0");
+    const yesAsk = Number.parseFloat(data.market?.yes_ask_dollars ?? "0");
+    const quote = screenBid(pos, yesBid, yesAsk, noBid, Number.parseFloat(data.market?.no_ask_dollars ?? "0"));
+    if (!(quote > 0.02)) continue;
+    const floor = Math.max(0.02, Math.round((quote - 0.05) * 100) / 100);
+    const want = Math.floor(Math.abs(pos) * frac * 100) / 100;
+    if (!(want >= 0.01)) return null;
+    const px = pos > 0 ? floor : Math.round((1 - floor) * 100) / 100;
+    if (!(px > 0.01 && px < 0.99)) continue;
+    try {
+      const placed = await place(ticker, pos > 0 ? "ask" : "bid", px, want.toFixed(2), true, undefined, false, true);
+      if (placed && placed.filled >= 0.01) {
+        const payout = closeCash(pos, px, placed.yesPrice, placed.filled);
+        const left = Math.round((Math.abs(pos) - placed.filled) * 100) / 100;
+        return { filled: placed.filled, payout: Math.round(payout * 100) / 100, left };
+      }
+    } catch (err) {
+      noteGate(ticker, "part", false, err instanceof Error ? err.message.slice(0, 140) : "part sell rejected");
+    }
+  }
+  return null;
+}
+// AUDIT (Claude, read only): Kalshi's own record of every fill and order, so the desk's ledger
+// can be checked against the exchange. Writes data/kalshi-audit.json. Never sends anything.
+async function auditKalshi() {
+  const out = { at: new Date().toISOString(), fills: [], orders: [] };
+  try {
+    let cursor = "";
+    for (let page = 0; page < 5; page += 1) {
+      const f = await kalshi("GET", "/trade-api/v2/portfolio/fills", `?limit=200${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`);
+      if (!f.ok) {
+        out.fillsError = f.status;
+        break;
+      }
+      const data = await f.json();
+      out.fills.push(...(data.fills ?? []).map((x) => ({ t: x.created_time, ticker: x.ticker, action: x.action, side: x.side, count: x.count_fp ?? x.count, yes: x.yes_price_dollars ?? x.yes_price, no: x.no_price_dollars ?? x.no_price, fee: x.fee_cost ?? null, order: String(x.order_id ?? "").slice(0, 13), taker: x.is_taker })));
+      if (!data.cursor || !(data.fills ?? []).length) break;
+      cursor = data.cursor;
+    }
+  } catch (err) {
+    out.fillsError = String(err?.message || err);
+  }
+  try {
+    const st = await kalshi("GET", "/trade-api/v2/portfolio/settlements", "?limit=200");
+    if (st.ok) out.settlements = ((await st.json()).settlements ?? []).map((x) => ({ t: x.settled_time, ticker: x.ticker, result: x.market_result, value: x.value, revenue: x.revenue, fee: x.fee_cost ?? null, yesCount: x.yes_count_fp ?? x.yes_count, noCount: x.no_count_fp ?? x.no_count }));
+  } catch {
+  }
+  try {
+    const o = await kalshi("GET", "/trade-api/v2/portfolio/orders", "?limit=200");
+    if (o.ok) out.orders = ((await o.json()).orders ?? []).map((x) => ({ t: x.created_time, ticker: x.ticker, action: x.action, side: x.side, status: x.status, type: x.type, count: x.fill_count_fp ?? x.fill_count, initial: x.initial_count_fp ?? x.initial_count, yes: x.yes_price_dollars ?? x.yes_price, id: String(x.order_id ?? "").slice(0, 13), client: x.client_order_id }));
+    else out.ordersError = o.status;
+  } catch (err) {
+    out.ordersError = String(err?.message || err);
+  }
+  try {
+    // Atomic (Oct 7): the daily stop / LIVE lines read this file; a half-written file read as $0.
+    const auFile = join(process.cwd(), "data", "kalshi-audit.json");
+    writeFileSync(`${auFile}.tmp`, JSON.stringify(out, null, 1));
+    renameSync(`${auFile}.tmp`, auFile);
+  } catch {
+  }
+  return out;
+}
+// HISTORY (Claude, read only): every Kalshi fill + settlement we can page back through.
+async function kalshiHistory() {
+  const out = { at: new Date().toISOString(), fills: [], settlements: [] };
+  for (const [path, key] of [["/trade-api/v2/portfolio/fills", "fills"], ["/trade-api/v2/portfolio/settlements", "settlements"]]) {
+    let cursor = "";
+    for (let page = 0; page < 40; page += 1) {
+      const res = await kalshi("GET", path, `?limit=200${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`);
+      if (!res.ok) break;
+      const data = await res.json();
+      const rows = data[key] ?? [];
+      // Oct 7: side kept (a NO buy is priced at the NO price), settlement revenue kept, so day-by-day P&L can be rebuilt.
+      if (key === "fills") out.fills.push(...rows.map((x) => ({ t: x.created_time, ticker: x.ticker, action: x.action, side: x.side, count: x.count_fp ?? x.count, yes: x.yes_price_dollars ?? x.yes_price, fee: x.fee_cost ?? null, order: x.order_id })));
+      else out.settlements.push(...rows.map((x) => ({ t: x.settled_time, ticker: x.ticker, result: x.market_result, revenue: x.revenue, yesCount: x.yes_count_fp ?? x.yes_count, noCount: x.no_count_fp ?? x.no_count })));
+      if (!data.cursor || !rows.length) break;
+      cursor = data.cursor;
+    }
+  }
+  try {
+    writeFileSync(join(process.cwd(), "data", "kalshi-history.json"), JSON.stringify(out));
+  } catch {
+  }
+  return { fills: out.fills.length, settlements: out.settlements.length };
+}
+async function resizeLive(_trade, _dollars, _yesBid, _yesAsk) {
+  return null;
+}
+try {
+  writeFileSync(join(process.cwd(), "data", "route-shut.json"), JSON.stringify({
+    at: new Date().toISOString(),
+    door: "one order per window, 1.36x, band in front blocked",
+  }));
+} catch {
+}
+// RFQ PROBE (Claude, Oct 11 ~8:35 PM PT, Love: "yes you can send the request"). Asks Kalshi for cash-out quotes on a combo
+// she holds WITHOUT accepting anything: creates the request, reads every quote that comes back for ~15 s, then cancels the
+// request. Used once to learn which quote side means "sell", before auto cash-out is ever switched on.
+async function rfqProbe(ticker: string, contracts: number) {
+  const out: any = { at: new Date().toISOString(), ticker, contracts, tries: [], quotes: [], cancelled: null };
+  let rfqId = "";
+  for (const body of [{ market_ticker: ticker, contracts_fp: contracts.toFixed(2), rest_remainder: false }, { market_ticker: ticker, contracts: Math.floor(contracts), rest_remainder: false }]) {
+    try {
+      const res = await kalshi("POST", "/trade-api/v2/communications/rfqs", "", body);
+      const txt = await res.text();
+      out.tries.push({ body, status: res.status, resp: txt.slice(0, 600) });
+      if (res.ok) { try { const j = JSON.parse(txt); rfqId = j?.id || j?.rfq_id || j?.rfq?.id || ""; } catch {} if (rfqId) break; }
+    } catch (e) {
+      out.tries.push({ body, error: String(e).slice(0, 200) });
+    }
+  }
+  out.rfqId = rfqId;
+  if (rfqId) {
+    out.raw = [];
+    let uid = "";
+    try { const r0 = await kalshi("GET", `/trade-api/v2/communications/rfqs/${rfqId}`); const j0 = await r0.json().catch(() => null); uid = j0?.rfq?.creator_user_id || ""; } catch {}
+    out.uid = uid ? "yes" : "no";
+    for (let i = 0; i < 40; i++) {
+      await new Promise((r) => setTimeout(r, 1000));
+      try {
+        const res = await kalshi("GET", "/trade-api/v2/communications/quotes", `?rfq_id=${encodeURIComponent(rfqId)}&rfq_creator_user_id=${encodeURIComponent(uid)}`);
+        const txt = await res.text();
+        if (i === 0 || i === 39 || out.raw.length < 3 && txt.length > 20) out.raw.push({ i, status: res.status, txt: txt.slice(0, 500) });
+        if (i === 20) { try { const r2 = await kalshi("GET", `/trade-api/v2/communications/rfqs/${rfqId}`); out.rfq = { status: r2.status, txt: (await r2.text()).slice(0, 800) }; } catch {} }
+        const j = (() => { try { return JSON.parse(txt); } catch { return null; } })();
+        for (const q of j?.quotes ?? []) if (!out.quotes.some((x: any) => x.id === q.id)) out.quotes.push({ id: q.id, yes_bid: q.yes_bid_dollars ?? q.yes_bid, no_bid: q.no_bid_dollars ?? q.no_bid, yes_contracts: q.yes_contracts_fp, no_contracts: q.no_contracts_fp, status: q.status, at: new Date().toISOString() });
+      } catch {
+      }
+    }
+    try { const res = await kalshi("DELETE", `/trade-api/v2/communications/rfqs/${rfqId}`); out.cancelled = res.status; } catch (e) { out.cancelled = String(e).slice(0, 100); }
+  }
+  return out;
+}
+
+// COMBO CASH OUT (Claude, Oct 12 ~6:30 AM PT, Love: "yesss please... let's do that now"). Only ever runs when SHE taps
+// SELL NOW -> CONFIRM on a combo row in POSITIONS. Kalshi combos have no order book, so this asks for quotes (RFQ) and
+// takes the best one that ONLY bids for her YES (no_bid 0, no NO size offered): on a quote like that the only trade that can
+// exist is the maker buying her YES, so the wrong side word cannot fill. Tries "no" first (buy NO against her YES = sell),
+// then "yes" if Kalshi rejects it; records which word worked. Refuses quotes below minPx. Checks her position before and
+// after: if it ever GROWS, RED alarm. Result: data/rfq-cashout.json (history in data/rfq-cashout.jsonl).
+const cr2 = (n: number) => Math.round(n * 100) / 100;
+async function rfqCashOut(ticker: string, minPx: number, first: "yes" | "no" = "no", qty?: number) {
+  const fs = await import("node:fs");
+  const path = await import("node:path");
+  const F = (f: string) => path.join(process.cwd(), "data", f);
+  const out: any = { at: new Date().toISOString(), ticker, minPx, quotes: [], tries: [] };
+  const held = async () => { try { const rows = await allPositions(); const r = rows.find((x: any) => x.ticker === ticker); return r ? r.pos : 0; } catch { return NaN; } };
+  const save = () => { try { fs.writeFileSync(F("rfq-cashout.json"), JSON.stringify(out, null, 1)); fs.appendFileSync(F("rfq-cashout.jsonl"), JSON.stringify(out) + "\n"); } catch {} };
+  const before = await held();
+  out.before = before;
+  if (!(before > 0.01)) { out.result = "no YES position held"; save(); return out; }
+  // qty (Oct 12, "half at the arm"): sell only that many; never more than she holds.
+  const sellN = qty && qty > 0.01 ? Math.min(before, Math.floor(qty * 100) / 100) : before;
+  out.sellN = sellN;
+  const res0 = await kalshi("POST", "/trade-api/v2/communications/rfqs", "", { market_ticker: ticker, contracts_fp: sellN.toFixed(2), rest_remainder: false });
+  const t0 = await res0.text();
+  let rfqId = ""; try { rfqId = JSON.parse(t0)?.id || ""; } catch {}
+  out.rfqId = rfqId;
+  if (!rfqId) { out.result = `RFQ refused ${res0.status}: ${t0.slice(0, 200)}`; save(); return out; }
+  let uid = "";
+  try { const r = await kalshi("GET", `/trade-api/v2/communications/rfqs/${rfqId}`); uid = (await r.json())?.rfq?.creator_user_id || ""; } catch {}
+  let best: any = null;
+  for (let i = 0; i < 8; i++) {
+    await new Promise((r) => setTimeout(r, 1000));
+    try {
+      const r = await kalshi("GET", "/trade-api/v2/communications/quotes", `?rfq_id=${encodeURIComponent(rfqId)}&rfq_creator_user_id=${encodeURIComponent(uid)}`);
+      const j = await r.json().catch(() => null);
+      for (const q of j?.quotes ?? []) {
+        if (q.status && q.status !== "open") continue;
+        const yb = Number.parseFloat(q.yes_bid_dollars ?? "0"), nb = Number.parseFloat(q.no_bid_dollars ?? "0");
+        const nc = Number.parseFloat(q.no_contracts_fp ?? "0");
+        const clean = yb > 0 && !(nb > 0) && !(nc > 0);
+        if (!out.quotes.some((x: any) => x.id === q.id)) out.quotes.push({ id: q.id, yes_bid: yb, no_bid: nb, clean });
+        if (clean && yb >= minPx && (!best || yb > best.yb)) best = { id: q.id, yb };
+      }
+    } catch {
+    }
+    if (best && i >= 2) break;
+  }
+  if (!best) {
+    out.result = `no clean quote at or above ${Math.round(minPx * 1000) / 10}c (best seen ${Math.max(0, ...out.quotes.map((q: any) => q.yes_bid))})`;
+    try { await kalshi("DELETE", `/trade-api/v2/communications/rfqs/${rfqId}`); } catch {}
+    save();
+    return out;
+  }
+  out.quote = best;
+  for (const side of [first, first === "no" ? "yes" : "no"]) {
+    try {
+      const r = await kalshi("PUT", `/trade-api/v2/communications/rfqs/${rfqId}/quotes/${best.id}/accept`, "", { accepted_side: side });
+      const txt = await r.text();
+      out.tries.push({ side, status: r.status, resp: txt.slice(0, 300) });
+      if (r.ok) { out.acceptedSide = side; break; }
+    } catch (e) {
+      out.tries.push({ side, error: String(e).slice(0, 200) });
+    }
+  }
+  let after = before;
+  for (let i = 0; i < 12 && out.acceptedSide; i++) {
+    await new Promise((r) => setTimeout(r, 1000));
+    after = await held();
+    if (Number.isFinite(after) && Math.abs(after - before) > 0.01) break;
+  }
+  out.after = after;
+  if (Number.isFinite(after) && after > before + 0.01) {
+    out.result = `WRONG WAY: position grew ${before} -> ${after}`;
+    try { const f = F("alarm.json"); const rows = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : []; rows.unshift({ at: new Date().toISOString(), text: `RED: combo cash out on ${ticker} ADDED contracts (${before} -> ${after}) with side "${out.acceptedSide}". Check Kalshi now.` }); fs.writeFileSync(f, JSON.stringify(rows.slice(0, 200))); } catch {}
+  } else if (Number.isFinite(after) && after < before - 0.01) {
+    out.result = `cashed out ${cr2(before - after)} at ${best.yb} (~$${cr2((before - after) * best.yb)}) with side "${out.acceptedSide}"`;
+  } else {
+    out.result = out.acceptedSide ? `accepted with side "${out.acceptedSide}", waiting on the maker's confirm (position unchanged so far)` : "Kalshi refused both sides";
+  }
+  if (!(after < before - 0.01)) { try { await kalshi("DELETE", `/trade-api/v2/communications/rfqs/${rfqId}`); } catch {} }
+  save();
+  return out;
+}
+
+// COMBO BUY QUOTE (Claude, Oct 12 ~1 PM PT, Love: "we can go ahead and have her do those [last-5-min combos] on kalshi now").
+// SHADOW ONLY, nothing is bought: builds the real Kalshi combo market for a paper combo's legs, asks market makers for a
+// price to BUY it (RFQ), records every quote, and cancels. Answers the one question paper can't: what the combo really
+// costs. A quote's no_bid is a maker buying NO = selling YES, so YES costs 1 - no_bid.
+// COMBO-ELIGIBLE EVENTS (Claude, Oct 12 ~9:50 PM PT, Love: "keep digging, see why it's giving you invalid parameters").
+// The cause: Kalshi's cross-category collection lists exactly which events can sit in a combo right now
+// (associated_event_tickers), and that list rolls. A coin's CURRENT 15M window can be missing while its next ones are in
+// (at 3:32 PM ET, ETH 3:45 was out while BTC/XRP/HYPE 3:45 were in, and that exact combo came back 400 invalid_parameters).
+// So before building a combo: read the list (cached 20 s) and drop any leg Kalshi isn't offering. Paper's price ceiling is
+// raised by each dropped leg's own price (same bet, one leg fewer), never past the cap. Under 2 legs left = no combo.
+async function comboEvents(): Promise<Set<string> | null> {
+  const g: any = globalThis as any;
+  if (g.__cbEv && Date.now() - g.__cbEv.at < 20000) return g.__cbEv.set;
+  try {
+    const r = await kalshi("GET", "/trade-api/v2/multivariate_event_collections/KXMVECROSSCATEGORY-R");
+    const j: any = await r.json();
+    const c: any = j?.multivariate_contract ?? j?.collection ?? Object.values(j || {}).find((v: any) => v && typeof v === "object" && (v.associated_event_tickers || v.associated_events)) ?? j;
+    const list: any[] = c?.associated_event_tickers ?? (c?.associated_events ?? []).map((e: any) => e.ticker);
+    if (!Array.isArray(list) || !list.length) return null;
+    const set = new Set<string>(list.map(String));
+    g.__cbEv = { at: Date.now(), set };
+    return set;
+  } catch { return null; }
+}
+async function comboFit(legs: any[], maxPx: number, cap: number) {
+  const strip = (l: any) => ({ market_ticker: l.market_ticker, event_ticker: l.event_ticker, side: l.side });
+  const ev = await comboEvents();
+  if (!ev) return { legs: legs.map(strip), maxPx, dropped: [] as string[], listRead: false };
+  const keep = legs.filter((l) => ev.has(l.event_ticker));
+  const drop = legs.filter((l) => !ev.has(l.event_ticker));
+  let px = maxPx;
+  for (const d of drop) { const a = Number(d.ask); if (a > 0 && a < 1) px = px / a; }
+  return { legs: keep.map(strip), maxPx: Math.min(cap, px), dropped: drop.map((d) => String(d.event_ticker)), listRead: true };
+}
+
+async function comboBuyQuote(legsIn: { market_ticker: string; event_ticker: string; side: string; ask?: number }[], dollars: number, est: number) {
+  const out: any = { at: new Date().toISOString(), legs: legsIn.length, est, quotes: [], tries: [] };
+  const fit = await comboFit(legsIn, est, 0.99);
+  const legs = fit.legs;
+  out.dropped = fit.dropped; out.est = est = fit.maxPx; out.legs = legs.length;
+  if (legs.length < 2) { out.result = `Kalshi isn't offering these legs in combos right now (${fit.dropped.join(", ")})`; return out; }
+  // The create call's exact shape isn't in her notes yet: try the documented forms in order, keep every answer.
+  const C = "/trade-api/v2/multivariate_event_collections/KXMVECROSSCATEGORY-R";
+  const tries: [string, string, any][] = [
+    ["POST", C, { selected_markets: legs }],
+    ["PUT", `${C}/lookup`, { selected_markets: legs }],
+    ["POST", C, { selected_markets: legs.map((l) => ({ market_ticker: l.market_ticker, event_ticker: l.event_ticker, side: l.side })), with_market_payload: false }],
+    ["POST", C, { selected_markets: legs.map((l) => ({ ticker: l.market_ticker, side: l.side })) }],
+  ];
+  const first = tries[0];
+  for (let k = 0; k < 5; k++) tries.splice(1, 0, first); // retry the documented form first (near-expiry refusals), then the others
+  for (const [m, path, body] of tries) {
+    if (out.ticker) break;
+    if (out.tries.length) await new Promise((r) => setTimeout(r, 1500));
+    try {
+      const res = await kalshi(m, path, "", body);
+      const txt = await res.text();
+      out.tries.push({ m, path: path.replace(C, "C"), status: res.status, resp: txt.slice(0, 260) });
+      let j: any = null; try { j = JSON.parse(txt); } catch {}
+      out.ticker = res.ok ? j?.market_ticker || j?.market?.ticker || "" : "";
+    } catch (e) { out.tries.push({ m, error: String(e).slice(0, 160) }); }
+  }
+  out.create = out.tries[out.tries.length - 1];
+  if (!out.ticker) return out;
+  const contracts = Math.max(1, Math.floor(dollars / Math.max(0.05, est)));
+  out.contracts = contracts;
+  let rfqId = "";
+  try {
+    const res = await kalshi("POST", "/trade-api/v2/communications/rfqs", "", { market_ticker: out.ticker, contracts_fp: contracts.toFixed(2), rest_remainder: false });
+    const txt = await res.text();
+    out.rfq = { status: res.status, resp: txt.slice(0, 200) };
+    try { rfqId = JSON.parse(txt)?.id || ""; } catch {}
+  } catch (e) { out.rfq = { error: String(e).slice(0, 200) }; }
+  if (!rfqId) return out;
+  let uid = "";
+  try { const r = await kalshi("GET", `/trade-api/v2/communications/rfqs/${rfqId}`); uid = (await r.json())?.rfq?.creator_user_id || ""; } catch {}
+  for (let i = 0; i < 6; i++) {
+    await new Promise((r) => setTimeout(r, 1000));
+    try {
+      const r = await kalshi("GET", "/trade-api/v2/communications/quotes", `?rfq_id=${encodeURIComponent(rfqId)}&rfq_creator_user_id=${encodeURIComponent(uid)}`);
+      const j = await r.json().catch(() => null);
+      for (const q of j?.quotes ?? []) if (!out.quotes.some((x: any) => x.id === q.id)) out.quotes.push({ id: q.id, yes_bid: Number.parseFloat(q.yes_bid_dollars ?? "0"), no_bid: Number.parseFloat(q.no_bid_dollars ?? "0") });
+    } catch {}
+  }
+  try { await kalshi("DELETE", `/trade-api/v2/communications/rfqs/${rfqId}`); } catch {}
+  const nb = Math.max(0, ...out.quotes.map((q: any) => q.no_bid || 0));
+  out.bestYesAsk = nb > 0 ? Math.round((1 - nb) * 10000) / 10000 : null;
+  return out;
+}
+
+// COMBO BUY (Claude, Oct 12 ~1 PM PT, Love: "we can go ahead and have her do those on kalshi now... $20 position sizes
+// provisionally"). Buys ONE combo for a paper CRYPTO · LAST 5 MIN pick, only on these terms:
+//  - the real Kalshi combo market for exactly those legs, sized $dollars at the quote;
+//  - only a quote whose maker bids ONLY on NO (no YES price offered): the one trade that can exist on it is her getting YES,
+//    so the accept word can't buy the wrong side; the price is 1 - no_bid and must be <= maxPx (never above what paper paid);
+//  - accepts "yes" first, then "no" if Kalshi refuses the word; then checks her position: YES contracts must appear.
+// Everything is logged to data/combo-live.jsonl.
+async function comboBuy(legsIn: { market_ticker: string; event_ticker: string; side: string; ask?: number }[], dollars: number, maxPx: number, opts: { cap?: number; tag?: string; sizePx?: number; noTopUp?: boolean } = {}) {
+  const out: any = { at: new Date().toISOString(), legs: legsIn.length, dollars, maxPx, quotes: [], tries: [], tag: opts.tag };
+  const fs = await import("node:fs");
+  const path = await import("node:path");
+  const log = () => { try { fs.appendFileSync(path.join(process.cwd(), "data", "combo-live.jsonl"), JSON.stringify(out) + "\n"); } catch {} };
+  const fit = await comboFit(legsIn, maxPx, opts.cap ?? 0.9);
+  const legs = fit.legs;
+  out.dropped = fit.dropped; out.maxPx = maxPx = fit.maxPx; out.legs = legs.length; out.legTickers = legs.map((l) => `${l.market_ticker}:${l.side}`);
+  if (legs.length < 2) { out.result = `Kalshi isn't offering these legs in combos right now (${fit.dropped.join(", ")})`; log(); return out; }
+  // RETRY (Love, Oct 12 ~3:35 PM PT: "kalshi does have an issue with filling combos close to expiry... have her keep trying
+  // until it goes thru"): Kalshi often refuses to build a combo near expiry the first time; up to 6 tries, 1.5 s apart.
+  // Live keeps ONE try for now (Love: "let's try both of those options on paper for now"); the shadow quote retries.
+  const liveTries = 1;
+  for (let k = 0; k < liveTries && !out.ticker; k++) {
+    if (k) await new Promise((r) => setTimeout(r, 1500));
+    try {
+      const res = await kalshi("POST", "/trade-api/v2/multivariate_event_collections/KXMVECROSSCATEGORY-R", "", { selected_markets: legs });
+      const txt = await res.text();
+      out.create = { status: res.status, resp: txt.slice(0, 200), tries: k + 1 };
+      if (res.ok) { try { out.ticker = JSON.parse(txt)?.market_ticker || ""; } catch {} }
+    } catch (e) { out.create = { error: String(e).slice(0, 160), tries: k + 1 }; }
+  }
+  if (!out.ticker) { out.result = "combo market not created"; log(); return out; }
+  // SIZE (Oct 12 ~10:35 PM PT, Love: her $10 JOIN went in at $6.91): contracts were dollars / the 95c CEILING, so a 64c fill
+  // cost $6.74. Size by the price she was actually shown (opts.sizePx) when there is one, so a join spends about $10.
+  const contracts = Math.max(1, Math.floor((dollars / Math.max(0.05, opts.sizePx && opts.sizePx > 0.05 ? Math.min(opts.sizePx, maxPx) : maxPx)) * 100) / 100);
+  out.contracts = contracts;
+  let rfqId = "";
+  try {
+    const res = await kalshi("POST", "/trade-api/v2/communications/rfqs", "", { market_ticker: out.ticker, contracts_fp: contracts.toFixed(2), rest_remainder: false });
+    try { rfqId = JSON.parse(await res.text())?.id || ""; } catch {}
+  } catch {}
+  if (!rfqId) { out.result = "RFQ refused"; log(); return out; }
+  let uid = "";
+  try { const r = await kalshi("GET", `/trade-api/v2/communications/rfqs/${rfqId}`); uid = (await r.json())?.rfq?.creator_user_id || ""; } catch {}
+  let best: any = null;
+  for (let i = 0; i < 6; i++) {
+    await new Promise((r) => setTimeout(r, 800));
+    try {
+      const r = await kalshi("GET", "/trade-api/v2/communications/quotes", `?rfq_id=${encodeURIComponent(rfqId)}&rfq_creator_user_id=${encodeURIComponent(uid)}`);
+      const j = await r.json().catch(() => null);
+      for (const q of j?.quotes ?? []) {
+        if (q.status && q.status !== "open") continue;
+        const yb = Number.parseFloat(q.yes_bid_dollars ?? "0"), nb = Number.parseFloat(q.no_bid_dollars ?? "0"), yc = Number.parseFloat(q.yes_contracts_fp ?? "0");
+        const px = 1 - nb;
+        const clean = nb > 0 && !(yb > 0) && !(yc > 0);
+        if (!out.quotes.some((x: any) => x.id === q.id)) out.quotes.push({ id: q.id, yes_bid: yb, no_bid: nb, clean });
+        // TWO-SIDED QUOTES (Oct 12 ~9:50 PM PT): most makers quote both sides, and "clean only" threw away real fills (2:40 PM:
+        // 79.4c under an 84c ceiling; 9:38 PM: 59.5c under 61c). The accept word is now proven by her cash-outs: "yes" hits the
+        // maker's YES bid (she SOLD YES), "no" on a YES-only quote was refused. So buying YES = accept "no" (hit the NO bid),
+        // and ONLY "no" is ever sent, so the wrong side can't fill. The position check below still guards it.
+        if (nb > 0 && px <= maxPx && (!best || px < best.px)) best = { id: q.id, px, clean };
+      }
+    } catch {}
+    if (best && i >= 1) break;
+  }
+  const held = async () => { try { const rows = await allPositions(); const r = rows.find((x: any) => x.ticker === out.ticker); return r ? r.pos : 0; } catch { return NaN; } };
+  if (!best) {
+    try { await kalshi("DELETE", `/trade-api/v2/communications/rfqs/${rfqId}`); } catch {}
+    const nb = Math.max(0, ...out.quotes.map((q: any) => q.no_bid || 0));
+    out.bestAny = nb > 0 ? 1 - nb : null;
+    out.result = `no quote at or under ${Math.round(maxPx * 100)}c (best ${out.bestAny != null ? Math.round(out.bestAny * 1000) / 10 + "c" : "none"})`;
+    log();
+    return out;
+  }
+  out.quote = best;
+  // MAKER CONFIRM (Oct 12 ~10 PM PT): the first live accept (ZEC+NATGAS at 82c) came back 204 but the maker hadn't confirmed
+  // after 12 s, and we cancelled the RFQ right then, which may have killed it. Now: wait up to 25 s per accept, reading her
+  // position AND the quote's own status. If that maker clearly backs out (cancelled/expired/rejected), try the next-best
+  // quote still under the ceiling (3 at most). If the status is unclear, stop: never stack a second accept on a pending one.
+  const cands = out.quotes.filter((q: any) => q.no_bid > 0 && 1 - q.no_bid <= maxPx).sort((a: any, b: any) => b.no_bid - a.no_bid).slice(0, 3);
+  const before = await held();
+  let after = before;
+  out.confirm = [];
+  for (const c of cands) {
+    const px = Math.round((1 - c.no_bid) * 10000) / 10000;
+    let okAcc = false;
+    try {
+      const r = await kalshi("PUT", `/trade-api/v2/communications/rfqs/${rfqId}/quotes/${c.id}/accept`, "", { accepted_side: "no" });
+      const txt = await r.text();
+      out.tries.push({ side: "no", quote: c.id, px, status: r.status, resp: txt.slice(0, 200) });
+      okAcc = r.ok;
+    } catch (e) { out.tries.push({ side: "no", quote: c.id, error: String(e).slice(0, 120) }); }
+    if (!okAcc) continue;
+    out.acceptedSide = "no"; out.quote = { id: c.id, px, clean: c.clean };
+    let qs = "";
+    for (let i = 0; i < 25; i++) {
+      await new Promise((r) => setTimeout(r, 1000));
+      after = await held();
+      if (Number.isFinite(after) && Math.abs(after - before) > 0.01) break;
+      if (i % 3 === 2) { try { const r = await kalshi("GET", `/trade-api/v2/communications/quotes/${c.id}`); const j: any = await r.json().catch(() => null); qs = String(j?.quote?.status ?? j?.status ?? qs); } catch {} }
+      if (/cancel|expire|reject|decline/i.test(qs)) break;
+    }
+    out.confirm.push({ quote: c.id, px, status: qs || "unknown", filled: Number.isFinite(after) && Math.abs(after - before) > 0.01 });
+    if (Number.isFinite(after) && Math.abs(after - before) > 0.01) break;
+    if (!/cancel|expire|reject|decline/i.test(qs)) break;
+  }
+  // TOP-UP (Oct 13 ~1:55 AM PT, Love: "make sure they're going out at $20"): contracts are sized at the CEILING, so a fill under
+  // it spends less ($16.88 at 40.5c on a 48c ceiling). After a real fill, whatever is left of the dollars is asked for once
+  // more on the same combo, at no more than the ceiling and never past the dollars + 5%.
+  if (Number.isFinite(after) && after > before + 0.01 && !opts.noTopUp) {
+    const spent = (after - before) * out.quote.px;
+    const left = dollars - spent;
+    if (left >= 2) {
+      try {
+        const n2 = Math.floor((left / out.quote.px) * 100) / 100;
+        const r0 = await kalshi("POST", "/trade-api/v2/communications/rfqs", "", { market_ticker: out.ticker, contracts_fp: n2.toFixed(2), rest_remainder: false });
+        let id2 = ""; try { id2 = JSON.parse(await r0.text())?.id || ""; } catch {}
+        out.topUp = { want: n2, rfq: !!id2 };
+        if (id2) {
+          let uid2 = "";
+          try { const r = await kalshi("GET", `/trade-api/v2/communications/rfqs/${id2}`); uid2 = (await r.json())?.rfq?.creator_user_id || ""; } catch {}
+          let b2: any = null;
+          for (let i = 0; i < 5 && !b2; i++) {
+            await new Promise((r) => setTimeout(r, 900));
+            try {
+              const r = await kalshi("GET", "/trade-api/v2/communications/quotes", `?rfq_id=${encodeURIComponent(id2)}&rfq_creator_user_id=${encodeURIComponent(uid2)}`);
+              const j = await r.json().catch(() => null);
+              for (const q of j?.quotes ?? []) {
+                if (q.status && q.status !== "open") continue;
+                const nb = Number.parseFloat(q.no_bid_dollars ?? "0"), px = 1 - nb;
+                if (nb > 0 && px <= maxPx && n2 * px <= left * 1.05 && (!b2 || px < b2.px)) b2 = { id: q.id, px };
+              }
+            } catch {}
+          }
+          if (b2) {
+            const mid = after;
+            try { const r = await kalshi("PUT", `/trade-api/v2/communications/rfqs/${id2}/quotes/${b2.id}/accept`, "", { accepted_side: "no" }); out.topUp.accept = r.status; } catch {}
+            for (let i = 0; i < 20; i++) { await new Promise((r) => setTimeout(r, 1000)); const h = await held(); if (Number.isFinite(h) && Math.abs(h - mid) > 0.01) { after = h; break; } }
+            out.topUp.px = b2.px; out.topUp.got = Math.round((after - mid) * 100) / 100;
+          }
+          if (!(after > before + 0.01 && out.topUp.got > 0)) { try { await kalshi("DELETE", `/trade-api/v2/communications/rfqs/${id2}`); } catch {} }
+        }
+      } catch (e) { out.topUp = { error: String(e).slice(0, 120) }; }
+    }
+  }
+  out.before = before; out.after = after;
+  if (Number.isFinite(after) && after < before - 0.01) out.result = `WRONG WAY: position went ${before} -> ${after}`;
+  else if (Number.isFinite(after) && after > before + 0.01) out.result = `bought ${Math.round((after - before) * 100) / 100} YES at ${out.topUp?.got > 0 ? Math.round((((after - before - out.topUp.got) * out.quote.px + out.topUp.got * out.topUp.px) / (after - before)) * 10000) / 10000 : out.quote.px}`;
+  else if (Number.isFinite(after) && after < before - 0.01) out.result = `WRONG WAY: position went ${before} -> ${after}`;
+  else out.result = out.acceptedSide ? `accepted, maker did not confirm (${out.confirm.map((x: any) => `${Math.round(x.px * 1000) / 10}c ${x.status}`).join(", ")})` : `Kalshi refused the accept (${out.tries.map((t: any) => t.status).join("/")})`;
+  if (!(after > before + 0.01)) { try { await kalshi("DELETE", `/trade-api/v2/communications/rfqs/${rfqId}`); } catch {} }
+  log();
+  return out;
+}
+
+// COMBO TEST · $1 (Claude, Oct 12 ~9:55 PM PT, Love: "have her try to place one on whatever is available for $1 as a test").
+// Runs ONLY from her tap on the SCANNER tab. Picks the next 15M window with 4 to 12 minutes left, takes the 2-3 strongest
+// favorites among legs Kalshi is offering in combos (60c to 95c each, no palladium/platinum), and buys the combo for about
+// $1 at the best real maker price up to 95c. The point is to prove a real combo fill end to end, not to make money.
+async function comboTest(dollars = 1) {
+  const fs = await import("node:fs");
+  const path = await import("node:path");
+  const D = (f: string) => path.join(process.cwd(), "data", f);
+  let cs: any = {};
+  try { cs = JSON.parse(fs.readFileSync(D("combos-status.json"), "utf8")); } catch {}
+  const ev = await comboEvents();
+  const now = Date.now();
+  const byClose = new Map<string, any[]>();
+  for (const m of cs?.markets ?? []) {
+    const t = String(m.t || "");
+    if (!/^KX[A-Z]+15M-/.test(t) || /PALLADIUM|PLATINUM/.test(t)) continue;
+    const left = (Date.parse(m.close) - now) / 1000;
+    if (!(left >= 240 && left <= 720)) continue;
+    const ya = Number(m.ya), na = Number(m.na);
+    const side = ya >= na ? "yes" : "no", ask = Math.max(ya, na);
+    if (!(ask >= 0.6 && ask <= 0.95)) continue;
+    const event_ticker = t.replace(/-[^-]+$/, "");
+    if (ev && !ev.has(event_ticker)) continue;
+    const arr = byClose.get(m.close) ?? [];
+    arr.push({ market_ticker: t, event_ticker, side, ask });
+    byClose.set(m.close, arr);
+  }
+  const win = [...byClose.entries()].filter(([, a]) => a.length >= 2).sort((a, b) => Date.parse(a[0]) - Date.parse(b[0]))[0];
+  if (!win) {
+    const out = { at: new Date().toISOString(), tag: "test-$1", result: `no window with 4-12 min left and 2+ combo-eligible favorites right now (${(cs?.markets ?? []).length} markets read, eligible list ${ev ? "read" : "not read"}). Try again in a few minutes.` };
+    try { fs.appendFileSync(D("combo-live.jsonl"), JSON.stringify(out) + "\n"); } catch {}
+    return out;
+  }
+  const legs = win[1].sort((a, b) => b.ask - a.ask).slice(0, 3);
+  const r: any = await comboBuy(legs, dollars, 0.95, { cap: 0.95, tag: "test-$1" });
+  r.paperEst = Math.round(legs.reduce((p, l) => p * l.ask, 1) * 1000) / 1000;
+  r.window = win[0];
+  return r;
+}
+
+export {
+  comboBuy,
+  comboTest,
+  comboEvents,
+  comboBuyQuote,
+  rfqCashOut,
+  rfqProbe,
+  allPositions,
+  addOnBuy,
+  cancelLiveOrder,
+  restTakeProfit,
+  cancelTpRest,
+  auditKalshi,
+  kalshiHistory,
+  allLocks,
+  closeAtBand,
+  closeResult,
+  releaseTicker,
+  enterLive,
+  partLive,
+  seedGate,
+  alignPrime,
+  flattenLive,
+  flattenTicker,
+  halfLive,
+  heldFifteens,
+  restingFifteens,
+  kalshiArmed,
+  kalshiCash,
+  refreshKalshiCash,
+  liveDollars,
+  lockSide,
+  marketResult,
+  readKalshiCash,
+  readOutside,
+  resizeLive,
+  restAutoSell,
+  settlementProfits,
+  sideLock,
+  trimLive,
+  watchAccount,
+  wireBreaks,
+  wouldRefuse,
+  writeLiveDollars
+};

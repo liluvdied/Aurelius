@@ -1,0 +1,365 @@
+// BAND LOCK (Oct 16 ~1:05 PM PT, Love: "i need you to make sure this sticks and doesn't fire again backwards in an hour. or the
+// next window... please make sure that it is a physical impossibility to ever occur again").
+// The last gate before a twin order reaches Kalshi, separate from goldlaw.ts / pivotbooks.ts / engine.ts so a change in any of
+// them can't open the hole again. Every book, every asset (was: law books only): the order must be on
+// the side of the CLOSEST band price is on right now (over it = long, under it = short). If that can't be verified (no fresh
+// price, no fresh band list) or the law fails its self-test, the order is refused. The inverse (ogp5-inv) is not covered:
+// trading against the twin is its job.
+import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { quoteTick, feedHealth } from "./quotes";
+
+type Line = { name: string; price: number; unit?: number };
+const LAW_BOOKS = /^ogp5-(fast|gw|boll|lock)$/;
+const G = globalThis as any;
+const D = (f: string) => join(process.cwd(), "data", f);
+
+// Its own closest-band math (not imported), so a regression elsewhere can't fool it.
+function nearSide(L: Line[], tick: number): { side: "up" | "down" | null; band: Line } | null {
+  const ls = L.filter((l) => Number(l.price) > 0);
+  if (!(tick > 0) || !ls.length) return null;
+  let near = ls[0];
+  for (const l of ls) if (Math.abs(tick - l.price) < Math.abs(tick - near.price)) near = l;
+  return { side: tick < near.price ? "down" : tick > near.price ? "up" : null, band: near };
+}
+
+// HER SIDE-OF-THE-BAND RULE (Oct 16 ~2:22 PM PT, Love: "PRICE = REJECTING UP AWAY FROM BAND ===== LONG / PRICE = FALLING DOWN
+// AWAY FROM A BAND = SHORT"): the band that matters is the band her setup is about (the one price broke or rejected), not
+// whichever band happens to be a few dollars closer. Long only while price is ABOVE that band, short only while BELOW it.
+// A row with no setup band (the inverse) falls back to the closest band.
+function setupBand(ticker: string, book: string, side = ""): { name: string; price: number } | null {
+  if (!ticker || !book) return null;
+  try {
+    const c = (G.__setupRows ||= { at: 0, rows: [] as any[] });
+    if (Date.now() - c.at > 2000) { const rs = JSON.parse(readFileSync(D("grok-og.json"), "utf8")); c.rows = Array.isArray(rs) ? rs.slice(0, 400) : []; c.at = Date.now(); }
+    // same side only (Oct 16 ~11:15 PM PT): an "other side" row carries no setup band, and must not be judged by the refused side's band
+    const r = c.rows.find((x: any) => x && x.ticker === ticker && x.lane === book && (!side || x.side === side) && x.band && Number(x.band.price) > 0);
+    if (!r) return null;
+    // ZONES (Oct 16 ~2:24 PM PT, Love: "why would a short off of the red zone be refused ???"): the red zone is R1 up to R2 and
+    // the green zone S1 down to S2 - a rejection anywhere in the zone is the trade. So a red-zone short is judged against the
+    // TOP of the zone (short while price is under R2) and a green-zone long against its BOTTOM (long while price is over S2).
+    const gl = r.goldLaw || {};
+    if (r.side === "down" && Number(gl.ceil) > 0) return { name: `${r.band.name} zone top`, price: Number(gl.ceil) };
+    if (r.side === "up" && Number(gl.floor) > 0) return { name: `${r.band.name} zone bottom`, price: Number(gl.floor) };
+    return { name: String(r.band.name), price: Number(r.band.price) };
+  } catch { return null; }
+}
+export function sideOfBandOk(bandPx: number, tick: number, side: string): boolean {
+  return side === "up" ? tick > bandPx : side === "down" ? tick < bandPx : false;
+}
+export function bandLockCheck(book: string, asset: string, side: string, ticker = ""): { ok: true } | { ok: false; reason: string } {
+  // EVERY BOOK (Oct 16 ~1:10 PM PT, Love: "EVERY FUCKING BOOK WE OWN. EVERYTHING THAT EVER RUNS."): no exemptions - the
+  // inverse included, any asset. An asset with no band feed can't be verified, so it can't open.
+  void LAW_BOOKS;
+  const deny = (reason: string, extra: Record<string, unknown> = {}) => {
+    try { appendFileSync(D("band-lock.jsonl"), JSON.stringify({ at: new Date().toISOString(), book, asset, side, reason, ...extra }) + "\n"); } catch {}
+    return { ok: false as const, reason };
+  };
+  if (!(asset === "gold" || asset === "btc")) return deny(`no band feed for ${asset} to verify against - it can't open`);
+  if (G.__bandLawBroken) return deny("band law failed its self-test - no orders until it passes");
+  const lb = G.__lawBands?.[asset];
+  if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > 15000) return deny("can't verify the closest band right now (band list not fresh)");
+  const q = quoteTick(asset);
+  if (!q || !(q.c > 0) || Date.now() - q.at > 3000) return deny("can't verify the closest band right now (no fresh price)");
+  const fh = feedHealth(asset);
+  if (!fh.ok) return deny(`price feed not healthy (${fh.why})`);
+  // NO TRADE AGAINST A BREAK IN THIS CANDLE (Oct 16 ~2:52 PM PT, Love: "SHE SHOULD NOT SHORT A RISING CANDLE THAT BROKE UP
+  // THRU A BAND"): if the live 5m candle is rising and price has crossed up through a band since it opened, no short; if it is
+  // falling and has crossed down through a band, no long. Checked on every order, whatever the setup was.
+  // INVERSE TEST (Oct 16 ~4:05 PM PT, Love: "run the inverse book on the next windows @ $5 up through to 5pm... if she correctly
+  // fires on the inverse book, that is a backwards fire on our main ones"). The inverse trades AGAINST the twin's call, so the
+  // band rules below would refuse every order it makes; for her test it skips them (feed health still applies). Off at 5 PM.
+  if (book === "ogp5-inv") { try { if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.invTest4pm) return { ok: true }; } catch {} }
+  const brk = candleBreakAgainst(asset, lb.L, q.c, side);
+  if (brk) return deny(brk, { tick: q.c });
+  const pr = pinkInFront(asset, lb.L, q.c, side, fiveOpenNow(asset));
+  if (pr) return deny(pr, { tick: q.c });
+  const zg = zoneGate(asset, lb.L, q.c, side);
+  if (zg) return deny(zg, { tick: q.c });
+  const sb = setupBand(ticker, book, side);
+  if (sb) {
+    if (!sideOfBandOk(sb.price, q.c, side)) return deny(`would ${side === "up" ? "long" : "short"} on the wrong side of ${sb.name} (her setup band) - price ${q.c} vs band ${sb.price}`, { tick: q.c, band: sb });
+  }
+  // CLOSEST BAND DECIDES, EVERY ORDER (Oct 16 ~10:30 PM PT, Love: "when an unbroken band is closer in front of her than it is the
+  // band behind it, she is to trade THAT band"): a setup band no longer skips this check. Closest band above price = short only,
+  // closest band below = long only. Replay of Oct 14-16 live fills: 68 main-book fills went against the closest band, 44% right.
+  const ns = nearSide(lb.L, q.c);
+  if (!ns) return deny("can't verify the closest band right now");
+  if (!gateAllows(lb.L, q.c, side)) return deny(`would ${side === "up" ? "long" : "short"} into ${ns.band.name} (unbroken, closest band)`, { tick: q.c, band: ns.band });
+  return { ok: true };
+}
+
+/** The gate's own rule: may an order on `side` go out with price `tick` and these bands? */
+export function gateAllows(L: Line[], tick: number, side: string): boolean {
+  const ns = nearSide(L, tick);
+  return !!ns && (!ns.side || ns.side === side);
+}
+/** Self-test (no-flip version, Oct 16 ~2:20 PM PT): her setups may now disagree with the closest band - the GATE must refuse
+ * every such order and pass every agreeing one. Random scenarios through the live goldLaw + the gate. Sets __bandLawBroken. */
+export function bandSelfTest(goldLaw: (...a: any[]) => any, n = 2000): number {
+  let seed = (Date.now() % 100000) + 7;
+  const rnd = () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
+  const bars = (open: number, k: number, vol: number) => { const out: any[] = []; let p = open; for (let i = 0; i < k; i++) { const o = p, c = o + (rnd() - 0.5) * vol; out.push({ o, c, h: Math.max(o, c) + rnd() * vol * 0.6, l: Math.min(o, c) - rnd() * vol * 0.6, t: i * 60 }); p = c; } return out; };
+  const extra = ["+1σ", "-1σ", "+1.5σ", "-1.5σ", "+2σ", "-2σ", "session VWAP", "2m PP", "10m PP", "15m R1", "15m S1"];
+  let bad = 0, calls = 0;
+  for (let i = 0; i < n; i++) {
+    const base = 4000 + rnd() * 80000, sp = base * (0.0002 + rnd() * 0.003), pp = base + (rnd() - 0.5) * sp * 2, st = sp * (0.5 + rnd());
+    const L: Line[] = [{ name: "5m PP", price: pp }, { name: "5m R1", price: pp + st }, { name: "5m R2", price: pp + 2 * st }, { name: "5m S1", price: pp - st }, { name: "5m S2", price: pp - 2 * st }];
+    for (const nm of extra) if (rnd() < 0.5) L.push({ name: nm, price: base + (rnd() - 0.5) * sp * 6 });
+    const vol = sp * (0.2 + rnd() * 1.5), po = base + (rnd() - 0.5) * sp * 3, pb = bars(po, 5, vol), co = pb[4].c, nc = Math.floor(rnd() * 5), cb = bars(co, nc, vol);
+    const tick = (nc ? cb[nc - 1].c : co) + (rnd() - 0.5) * vol * 2;
+    const broken = L.filter(() => rnd() < 0.15).map((l) => ({ name: l.name, side: rnd() < 0.5 ? "up" : "down" }));
+    let call: any = null;
+    try { call = goldLaw(L, tick, { open: co, bars: cb }, { open: po, bars: pb }, nc ? cb[nc - 1] : pb[4], broken, null, false); } catch { bad++; continue; }
+    if (!call) continue;
+    calls++;
+    const ns = nearSide(L, tick);
+    const into = !!(ns && ns.side && ns.side !== call.side);
+    if (gateAllows(L, tick, call.side) === into) bad++; // fallback gate must refuse exactly the into-band orders
+    const bp = Number(call.band?.price);
+    if (bp > 0 && sideOfBandOk(bp, tick, call.side) !== (call.side === "up" ? tick > bp : tick < bp)) bad++; // setup-band gate
+  }
+  { const T: Line[] = [{ name: "5m PP", price: 100 }];
+    if (!candleBreakAgainst("x", T, 101, "down", 99)) bad++;   // rising candle broke up through PP -> short refused
+    if (!candleBreakAgainst("x", T, 99, "up", 101)) bad++;     // falling candle broke down through PP -> long refused
+    if (candleBreakAgainst("x", T, 101, "up", 99)) bad++;      // with the break -> allowed
+    if (candleBreakAgainst("x", T, 99, "down", 101)) bad++; }
+  { const Q: Line[] = [{ name: "session VWAP", price: 200, unit: 100 }, { name: "+1σ", price: 300, unit: 100 }, { name: "5m R1", price: 212 }];
+    if (!pinkInFront("btc", Q, 200.5, "up")) bad++;    // $100 bands -> $15 room; R1 $11.50 above -> long refused
+    if (pinkInFront("btc", Q, 170, "up")) bad++;       // VWAP $30 above -> ok
+    if (!pinkInFront("btc", Q, 205, "down")) bad++;    // VWAP $5 below -> short refused
+    if (pinkInFront("btc", Q, 250, "down")) bad++; }   // nearest band below $38 -> ok
+  { const P: Line[] = [{ name: "5m PP", price: 100 }, { name: "5m R1", price: 123 }]; // no session unit -> flat fallback $25 / $1.50
+    if (!pinkInFront("btc", P, 101, "up")) bad++;      // R1 $22 above (3:30 PM case) -> long refused
+    if (!pinkInFront("btc", P, 90, "up")) bad++;      // pink $10 above -> long refused
+    if (pinkInFront("btc", P, 70, "up")) bad++;       // pink $30 above -> long ok
+    if (!pinkInFront("btc", P, 110, "down")) bad++;   // pink $10 below -> short refused
+    if (pinkInFront("btc", P, 150, "up")) bad++;      // bands below a long -> ok
+    if (!pinkInFront("gold", P, 99.5, "up")) bad++;   // gold $0.50 under pink -> long refused
+    if (!pinkInFront("gold", P, 98.61, "up")) bad++;  // gold $1.39 under (the 12:45 PM case) -> refused
+    if (pinkInFront("gold", P, 98.3, "up")) bad++; }  // gold $1.70 under -> ok
+  { const Z = { pp: 100, r1: 110, r2: 120, s1: 90, s2: 80 }, V1 = { cur: 1, avg: 1, frac: 1 }, V3 = { cur: 3, avg: 1, frac: 1 };
+    const S: Line[] = [{ name: "session VWAP", price: 115 }], F: Line[] = [{ name: "session VWAP", price: 50 }], G2: Line[] = [{ name: "session VWAP", price: 85 }];
+    if (!zoneGate("x", S, 112, "up", { zones: Z, open: 108, vol: V1 })) bad++;   // long IN the red, band unbroken, weak volume -> refused
+    if (zoneGate("x", S, 112, "up", { zones: Z, open: 108, vol: V3 })) bad++;    // same with strong volume -> long ok
+    if (zoneGate("x", S, 116, "up", { zones: Z, open: 112, vol: V1 })) bad++;    // long IN the red after VWAP inside it broke up -> ok
+    if (zoneGate("x", S, 112, "down", { zones: Z, open: 113, vol: V1 })) bad++;  // short IN the red (rejection, away from it) -> ok
+    if (!zoneGate("x", F, 103, "up", { zones: Z, open: 101, vol: V1 })) bad++;   // R1 closest line above, weak volume -> long refused
+    if (zoneGate("x", F, 103, "up", { zones: Z, open: 101, vol: V3 })) bad++;    // same with strong volume -> long ok
+    if (zoneGate("x", F, 103, "down", { zones: Z, open: 104, vol: V1 })) bad++;  // short under the red -> ok
+    if (zoneGate("x", F, 95, "up", { zones: Z, open: 94, vol: V1 })) bad++;      // long with S1 behind -> ok
+    if (!zoneGate("x", F, 93, "down", { zones: Z, open: 95, vol: V1 })) bad++;   // S1 closest line below, weak volume -> short refused
+    if (!zoneGate("x", G2, 87, "down", { zones: Z, open: 88, vol: V1 })) bad++;  // short IN the green, unbroken -> refused
+    if (zoneGate("x", G2, 84, "down", { zones: Z, open: 88, vol: V1 })) bad++;   // short IN the green after VWAP inside it broke down -> ok
+    if (zoneGate("x", F, 85, "up", { zones: Z, open: 84, vol: V1 })) bad++; }    // long IN the green (rejection, away) -> ok
+  G.__bandLawBroken = bad > 0;
+  try { writeFileSync(D("band-lock-selftest.json"), JSON.stringify({ at: new Date().toISOString(), scenarios: n, calls, intoUnbrokenBand: bad, ok: bad === 0, zoneGate: "into-vs-away v2 (12 cases)" }, null, 1)); } catch {}
+  return bad;
+}
+
+/** PAPER DNA (Oct 16 ~1:12 PM PT, Love: "0 OF OUR BOOKS ARE TO NOT HAVE THAT INCLUDED IN THEIR DNA. NEVER AGAIN. STAPLE THAT
+ * SHUT AND BURY IT."): every paper book's NEW trade (open, booked in the last 2 min, not yet checked on this side) on gold
+ * (incl. micro gold) or BTC must be on the closest band's side right now, or it is not recorded - the book books again on a
+ * later pass if it still wants to. Can't verify (no fresh price / band list) = not recorded. Drops -> data/band-lock.jsonl. */
+export function paperBandFilter<T>(rows: T[], tag: string): T[] {
+  const seen: Map<string, string> = (G.__bandSeen ||= new Map());
+  const now = Date.now();
+  const out: T[] = [];
+  for (const r0 of rows as any[]) {
+    const r = r0 as any;
+    if (!r || typeof r !== "object") { out.push(r0); continue; }
+    const id = String(r.id ?? ""), side = String(r.side ?? ""), at = Date.parse(String(r.at ?? ""));
+    const open = r.result === undefined || r.result === null || r.result === "open";
+    if (!id || !(side === "up" || side === "down") || !open || !(now - at < 120000) || seen.get(id) === side) { out.push(r0); continue; }
+    const a0 = String(r.asset ?? "").toLowerCase();
+    const asset = a0 === "mgold" ? "gold" : a0;
+    // INVERSE TEST (Oct 16 ~4:19 PM PT): while live-switch.invTest4pm is set the inverse's paper row is kept too (it is the
+    // twin's call mirrored, so the band rules always drop it) - otherwise the copier has nothing to send for her test.
+    if (String(r.lane ?? r.book ?? "") === "ogp5-inv") { try { if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.invTest4pm) { seen.set(id, side); out.push(r0); continue; } } catch {} }
+    if (!(asset === "gold" || asset === "btc")) { out.push(r0); continue; }
+    const lb = G.__lawBands?.[asset];
+    const q = quoteTick(asset);
+    let why = "";
+    if (G.__bandLawBroken) why = "band law failed its self-test";
+    else if (!lb || !Array.isArray(lb.L) || !lb.L.length || now - Number(lb.at) > 15000) why = "can't verify (band list not fresh)";
+    else if (!q || !(q.c > 0) || now - q.at > 3000) why = "can't verify (no fresh price)";
+    else if (r.band && Number(r.band.price) > 0) { const zc = Number(r.goldLaw?.ceil), zf = Number(r.goldLaw?.floor); const bp = side === "down" && zc > 0 ? zc : side === "up" && zf > 0 ? zf : Number(r.band.price); if (!sideOfBandOk(bp, q.c, side)) why = `${side === "up" ? "long" : "short"} on the wrong side of ${r.band.name} (its setup band)`; }
+    // CLOSEST BAND DECIDES on paper too (Oct 16 ~10:30 PM PT, Love) - the setup band no longer skips it.
+    if (!why && lb && Array.isArray(lb.L) && lb.L.length && q && q.c > 0) { const ns = nearSide(lb.L, q.c); if (!ns) why = "can't verify"; else if (ns.side && ns.side !== side) why = `${side === "up" ? "long" : "short"} into ${ns.band.name} (unbroken, closest band)`; }
+    if (!why && lb && Array.isArray(lb.L) && q && q.c > 0) why = candleBreakAgainst(asset, lb.L, q.c, side) || pinkInFront(asset, lb.L, q.c, side, fiveOpenNow(asset)) || zoneGate(asset, lb.L, q.c, side);
+    if (why) { const LA: Map<string, number> = (G.__bandLogAt ||= new Map()); const k = `${id}:${side}`; if (!LA.has(k) || now - (LA.get(k) as number) > 30000) { LA.set(k, now); if (LA.size > 5000) LA.clear(); } else continue; try { appendFileSync(D("band-lock.jsonl"), JSON.stringify({ at: new Date().toISOString(), paper: tag, id, book: r.lane ?? r.book ?? "", asset: a0, side, reason: why, tick: q?.c ?? null }) + "\n"); } catch {} continue; }
+    seen.set(id, side);
+    out.push(r0);
+  }
+  if (seen.size > 20000) { let i = 0; for (const k of seen.keys()) { if (i++ > 5000) break; seen.delete(k); } }
+  return out;
+}
+
+/** The live book that holds this window (from live-book-done.json), for top-ups. */
+export function ownerBook(ticker: string): string {
+  try {
+    const c = (G.__ownerDone ||= { at: 0, d: {} as Record<string, any> });
+    if (Date.now() - c.at > 2000) { c.d = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); c.at = Date.now(); }
+    for (const [k, v] of Object.entries(c.d)) if (k.startsWith(ticker + ":") && (v as any)?.status === "filled") return k.split(":").pop() || "";
+  } catch {}
+  return "";
+}
+
+/** The live 5m candle's open from the desk's own 1m bars (pivotbooks __pivBars). */
+function fiveOpenNow(asset: string): number {
+  try {
+    const bars: any[] = G.__pivBars?.[asset]?.bars ?? [];
+    const f0 = Math.floor(Date.now() / 300000) * 300;
+    const inF = bars.filter((x) => Number(x.t) >= f0).sort((x, y) => x.t - y.t);
+    return inF.length ? Number(inF[0].o) : 0;
+  } catch { return 0; }
+}
+function fiveHLNow(asset: string): { h: number; l: number } | null {
+  try {
+    const bars: any[] = G.__pivBars?.[asset]?.bars ?? [];
+    const f0 = Math.floor(Date.now() / 300000) * 300;
+    const inF = bars.filter((x) => Number(x.t) >= f0);
+    if (!inF.length) return null;
+    return { h: Math.max(...inF.map((x) => Number(x.h))), l: Math.min(...inF.map((x) => Number(x.l))) };
+  } catch { return null; }
+}
+/** A reason string if `side` trades against a band break made in the live 5m candle, else "". */
+export function candleBreakAgainst(asset: string, L: Line[], tick: number, side: string, openOverride = 0, hlOverride?: { h: number; l: number } | null): string {
+  const o = openOverride > 0 ? openOverride : fiveOpenNow(asset);
+  if (!(o > 0) || !(tick > 0)) return "";
+  // TAP AFTER A BREAK (Oct 16 ~4:55 PM PT, Love: "trade the rejection off of a band if it does reject, and ... the break if it
+  // does break"): the candle broke a band, then reached the NEXT band beyond it and price is back under/over that band - that
+  // rejection is the trade, so it isn't refused as "against the break".
+  const hl = hlOverride ?? (openOverride > 0 ? null : fiveHLNow(asset));
+  const tapped = (dn: boolean) => !!hl && L.some((l) => (dn ? l.price > tick && hl.h >= l.price : l.price < tick && hl.l <= l.price));
+  if (side === "down" && tick > o) { const b = L.find((l) => o < l.price && tick > l.price); if (b && !tapped(true)) return `would short a rising 5m candle that broke up through ${b.name} (${b.price})`; }
+  if (side === "up" && tick < o) { const b = L.find((l) => o > l.price && tick < l.price); if (b && !tapped(false)) return `would long a falling 5m candle that broke down through ${b.name} (${b.price})`; }
+  return "";
+}
+
+// PINK ROOM (Oct 16 ~2:55 PM PT, Love: "$25 for btc on the pink pivot band. $1 for gold. no long into it. no short into it.
+// price breaks = get in. price rejects = GET IN."): no long while the unbroken pink (5m PP) sits above price within $25 BTC /
+// $1 gold, no short while it sits below price within that. Broke it or rejected off it = it's behind her, she gets in.
+export const PINK_ROOM: Record<string, number> = { btc: 25, gold: 1.5 }; // fallback only, when the session bands are missing
+// ROOM = 15% OF THE SESSION BAND SPACING (Oct 16 ~3:36 PM PT, Love: "keep it 15% of the bands distance. the distance between
+// each band right now = band tolerance ===== 15%. if it's $100 between SESSION bands, $15 block on any LONG WITH A BAND IN
+// FRONT OF IT IN THAT $$$ DISTANCE / same for a SHORT"). Session bands sit one sigma apart, so room = 0.15 x sigma.
+export function roomFor(asset: string, L: Line[]): number {
+  const u = L.find((l) => l.unit && l.unit > 0)?.unit || 0;
+  return u > 0 ? 0.15 * u : PINK_ROOM[asset] || 0;
+}
+// EVERY BAND, NOT JUST PINK (Oct 16 ~3:33 PM PT, Love: "price was stilllllll under the band when she fired that... what is making
+// it impossible for you to not have her long into an unbroken band?" - the 3:30 PM BTC long had R1 $23 overhead). No long with
+// ANY unbroken band (pivot or session) above price within the room; no short with any band that close below.
+export function pinkInFront(asset: string, L: Line[], tick: number, side: string, open = 0): string {
+  const room = roomFor(asset, L);
+  if (!(room > 0) || !(tick > 0)) return "";
+  let hit: Line | null = null;
+  for (const l of L) {
+    if (!(l.price > 0)) continue;
+    // A band this 5m candle just BROKE isn't an unbroken band in front (Love: "never long or short INTO an unbroken band") - after
+    // a tap of the next band, the short back toward the band it broke up through is allowed (mirror for longs). open = live 5m open.
+    if (open > 0 && (side === "down" ? open < l.price && tick > l.price : open > l.price && tick < l.price)) continue;
+    if (side === "up" && l.price > tick && l.price - tick <= room && (!hit || l.price < hit.price)) hit = l;
+    if (side === "down" && l.price < tick && tick - l.price <= room && (!hit || l.price > hit.price)) hit = l;
+  }
+  if (!hit) return "";
+  return side === "up" ? `would long into ${hit.name} ${(hit.price - tick).toFixed(2)} above (needs more than ${room.toFixed(2)})` : `would short into ${hit.name} ${(tick - hit.price).toFixed(2)} below (needs more than ${room.toFixed(2)})`;
+}
+
+// RED / GREEN ZONES (Oct 16 ~10:55 PM PT, Love: "if price is currently in the red, or currently in the green, she is not to long or
+// to short under any circumstances. UNLESS. A session band lies within them, and that band has been broken" + "she cannnn trade
+// into a red or green, if price breaks the band within it, or on trades with very strong volume. weak volume trades into red or
+// green without a band break are not allowed" + "when the line is closest to price. absolutely not while it is IN the red, or IN
+// the green" + yes to: very strong volume = the live 5m candle's volume at least 2x the average of the last 20 five-minute candles).
+// Zones = CM Pivot Bands on 5m bars, forming candle included like her chart: red R1..R2, green S2..S1. Own math (no import).
+type Zones = { pp: number; r1: number; r2: number; s1: number; s2: number };
+function fiveBars(asset: string): { t: number; o: number; h: number; l: number; c: number; v: number }[] {
+  const bars: any[] = G.__pivBars?.[asset]?.bars ?? [];
+  const m = new Map<number, { t: number; o: number; h: number; l: number; c: number; v: number }>();
+  for (const x of [...bars].sort((a, b) => Number(a.t) - Number(b.t))) {
+    const k = Math.floor(Number(x.t) / 300) * 300;
+    const y = m.get(k);
+    if (!y) m.set(k, { t: k, o: Number(x.o), h: Number(x.h), l: Number(x.l), c: Number(x.c), v: Number(x.v) || 0 });
+    else { y.h = Math.max(y.h, Number(x.h)); y.l = Math.min(y.l, Number(x.l)); y.c = Number(x.c); y.v += Number(x.v) || 0; }
+  }
+  return [...m.values()];
+}
+export function zonesNow(asset: string): Zones | null {
+  const b = fiveBars(asset);
+  if (b.length < 10) return null;
+  const k = 2 / 8;
+  let ema = 0;
+  const rng: number[] = [];
+  b.forEach((x, i) => { const pp = (x.h + x.l + x.c) / 3; ema = i === 0 ? pp : pp * k + ema * (1 - k); rng.push(x.h - x.l); });
+  const a = rng.slice(-7).reduce((q, v) => q + v, 0) / 7;
+  return { pp: ema, r1: ema + a, s1: ema - a, r2: ema + 2 * a, s2: ema - 2 * a };
+}
+export function volNow(asset: string): { cur: number; avg: number; frac: number } | null {
+  const b = fiveBars(asset);
+  if (b.length < 21) return null;
+  const cur = b[b.length - 1];
+  const now = Date.now() / 1000;
+  if (cur.t !== Math.floor(now / 300) * 300) return null; // the live 5m candle must be this one
+  const prev = b.slice(-21, -1);
+  return { cur: cur.v, avg: prev.reduce((q, x) => q + x.v, 0) / prev.length, frac: Math.min(1, (now - cur.t) / 300) };
+}
+// STRONG VOLUME (Love ~10:58 PM PT: "ill let you be the judge... it just needs to be enough to push through"): the live 5m candle on
+// pace for 2x the last 20 candles' average (pace = volume so far / share of the candle gone, judged after its first minute).
+// Study (Claude outputs/zone_volume_study.py, Pepperstone Oct 11-14 + Oct 16): no volume level told a push-through from a reversal
+// (into-zone entries 44-45% at every level, 1.5-2x worse), and Pepperstone's 5m volume almost never reaches 2x - so in practice
+// a band break is what lets her trade into a zone. Her call to change it.
+export const ZONE_VOL_X = 2;
+function strongVol(v: { cur: number; avg: number; frac?: number } | null | undefined): boolean {
+  if (!v || !(v.avg > 0)) return false;
+  const f = v.frac ?? 1;
+  if (f < 0.2) return false;
+  return v.cur / f >= ZONE_VOL_X * v.avg;
+}
+// INTO vs AWAY (Love ~10:58 PM PT: "not NO TRADE at all? she jhust cant short into green without the other criteria, and cant long
+// into red without the other requirements either. if price rejects off of the red zone, the trade is SHORT. if price rejects off of
+// the green, the trade is LONG... away from them is more than allowed it is requested"). Into the red = a long while price is IN the
+// red or R1 is the closest line above; into the green = a short while price is IN the green or S1 is the closest line below.
+// Allowed into a zone only if a session band inside it broke this 5m candle in the trade's direction, or strong volume.
+export function zoneGate(asset: string, L: Line[], tick: number, side: string, o: { zones?: Zones; open?: number; vol?: { cur: number; avg: number; frac?: number } | null } = {}): string {
+  if (!(tick > 0) || !(side === "up" || side === "down")) return "";
+  const Z = o.zones ?? zonesNow(asset);
+  if (!Z) return "can't verify the red/green zones right now";
+  const inRed = tick >= Z.r1 && tick <= Z.r2;
+  const inGreen = tick <= Z.s1 && tick >= Z.s2;
+  const lines = [...L.map((l) => Number(l.price)), Z.r1, Z.r2, Z.s1, Z.s2].filter((p) => p > 0);
+  let nearest = lines[0];
+  for (const p of lines) if (Math.abs(p - tick) < Math.abs(nearest - tick)) nearest = p;
+  const intoRed = side === "up" && (inRed || (tick < Z.r1 && nearest === Z.r1));
+  const intoGreen = side === "down" && (inGreen || (tick > Z.s1 && nearest === Z.s1));
+  if (!intoRed && !intoGreen) return ""; // away from a zone: always allowed
+  const open = o.open ?? fiveOpenNow(asset);
+  const sess = L.filter((l) => /σ|VWAP/i.test(l.name) && Number(l.price) > 0);
+  const lo = intoRed ? Z.r1 : Z.s2, hi = intoRed ? Z.r2 : Z.s1;
+  const broke = open > 0 && sess.some((l) => l.price >= lo && l.price <= hi && (side === "up" ? open < l.price && tick > l.price : open > l.price && tick < l.price));
+  if (broke) return "";
+  const v = o.vol !== undefined ? o.vol : volNow(asset);
+  if (strongVol(v)) return "";
+  const x = v && v.avg > 0 ? `${(v.cur / Math.max(v.frac ?? 1, 0.2) / v.avg).toFixed(1)}x` : "unknown";
+  const where = intoRed ? (inRed ? "IN the red zone" : `R1 ${Z.r1.toFixed(2)} the closest line above`) : (inGreen ? "IN the green zone" : `S1 ${Z.s1.toFixed(2)} the closest line below`);
+  return `would ${side === "up" ? "long into the red" : "short into the green"} (${where}) - no session band broke inside it and volume ${x} (needs ${ZONE_VOL_X}x)`;
+}
+
+// THE OTHER SIDE (Oct 16 ~11:12 PM PT, Love: "if a trade is rejected for being against the rules, i dont want her to ignore it. i want
+// her to take the short if a long is rejected. long if a short is rejected" + "yes, if the other side fits the criteria. just not to
+// completely ignore the other direction entirely"). Her band rules only - closest band, into a band (15% room), into the red/green,
+// against a 5m candle break - on the live tick and band list. cantVerify (no fresh price / bands / zones, feed not healthy, self-test
+// failed) = wait, never flip.
+export function bandRulesVerdict(asset: string, side: string): { rule: string; cantVerify: boolean } {
+  if (!(asset === "gold" || asset === "btc") || !(side === "up" || side === "down")) return { rule: "", cantVerify: true };
+  const lb = G.__lawBands?.[asset];
+  const q = quoteTick(asset);
+  if (G.__bandLawBroken || !lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > 15000 || !q || !(q.c > 0) || Date.now() - q.at > 3000) return { rule: "", cantVerify: true };
+  if (!feedHealth(asset).ok) return { rule: "", cantVerify: true };
+  const r = candleBreakAgainst(asset, lb.L, q.c, side) || pinkInFront(asset, lb.L, q.c, side, fiveOpenNow(asset)) || zoneGate(asset, lb.L, q.c, side);
+  if (r) return { rule: r, cantVerify: /can't verify/.test(r) };
+  const ns = nearSide(lb.L, q.c);
+  if (!ns) return { rule: "", cantVerify: true };
+  if (ns.side && ns.side !== side) return { rule: `${side === "up" ? "long" : "short"} into ${ns.band.name} (unbroken, closest band)`, cantVerify: false };
+  return { rule: "", cantVerify: false };
+}

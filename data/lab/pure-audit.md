@@ -1,0 +1,112 @@
+# pure rule audit (paper + live rows, since 2026-10-28T07:00Z)
+
+- 12:00 AM PT BTC long (recon-np, Rejected up off Green zone) sold 12.29
+  - LONG ON A FALLING RED CANDLE (5m open 80750.67, price 80744.83)
+- 12:15 AM PT BTC short (recon-np, Rejected down off fresh VWAP) loss -20.61
+  - SHORT INTO AN UNBROKEN BAND (5m PP 80800.69 only 0.46 below)
+  - SHORT IN THE BOTTOM 20% (5m PP 80800.69 to fresh VWAP 80814.37, at 3%)
+- 1:21 AM PT BTC short (recon-np, Failed break above Red zone - rejected down) loss -21.18
+  - SHORT ON A RISING GREEN CANDLE (5m open 81036.24, price 81040.78)
+  - SHORT INTO AN UNBROKEN BAND (5m PP 81017.44 only 23.34 below)
+- 1:30 AM PT GOLD short (recon-np, Rejected down off Red zone) loss -20.63
+  - SHORT ON A RISING GREEN CANDLE (5m open 4049.99, price 4050.54)
+- 1:50 AM PT GOLD short (recon-np, Rejected down off +1σ) sold 21.78
+  - SHORT INTO AN UNBROKEN BAND (5m R1 4055.7 only 0.36 below)
+  - SHORT IN THE BOTTOM 33% (5m R1 4055.7 to +1σ 4058.4, at 13%)
+- 2:05 AM PT BTC short (recon-np, Rejected down off +3σ) loss -20.7
+  - SHORT ON A RISING GREEN CANDLE (5m open 81347.01, price 81385.61)
+  - SHORT INTO AN UNBROKEN BAND (5m PP 81373.73 only 11.88 below)
+- 2:35 AM PT BTC long (recon-np, Failed break below Green zone - rejected up) sold 163.85
+  - LONG ON A FALLING RED CANDLE (5m open 81321.32, price 81298.55)
+- 3:20 AM PT BTC long (recon-np, Failed break below +2σ - rejected up) sold 19.41
+  - LONG ON A FALLING RED CANDLE (5m open 81402.41, price 81390.17)
+  - LONG INTO AN UNBROKEN BAND (5m PP 81399.12 only 8.95 above)
+- 3:31 AM PT BTC long (recon-np, Rejected up off +2σ) sold 16.31
+  - LONG INTO AN UNBROKEN BAND (5m PP 81408.42 only 1.01 above)
+  - LONG IN THE TOP 33% (+2σ 81391.89 to 5m PP 81408.42, at 94%)
+- 4:15 AM PT GOLD short (recon-np, Rejected down off session VWAP) loss -20.76
+  - SHORT ON A RISING GREEN CANDLE (5m open 4045.59, price 4046.58)
+  - SHORT INTO AN UNBROKEN BAND (5m PP 4045.6 only 0.98 below)
+- 4:30 AM PT GOLD short (recon-np, Rejected down off session VWAP) loss -20.76
+  - SHORT ON A RISING GREEN CANDLE (5m open 4047.18, price 4047.33)
+- 5:00 AM PT BTC long (recon-np, Rejected up off +1σ) loss -20.73
+  - LONG INTO AN UNBROKEN BAND (5m PP 81256.96 only 22.34 above)
+- 5:20 AM PT BTC short (recon-np, Rejected down off Bollinger lower) sold 26.65
+  - SHORT ON A RISING GREEN CANDLE (5m open 80894.81, price 80914.97)
+  - SHORT INTO AN UNBROKEN BAND (5m S1 80900.31 only 14.66 below)
+  - SHORT IN THE BOTTOM 33% (5m S1 80900.31 to session VWAP 80952.67, at 28%)
+  - BTC SHORT NEARER GREEN THAN PINK (91% of the way pink 81060 to S1 80900.31)
+- 5:51 AM PT BTC short (recon-np, Rejected down off -1σ) sold 6.27
+  - BTC SHORT NEARER GREEN THAN PINK (62% of the way pink 80737.67 to S1 80595.83)
+- 6:05 AM PT GOLD short (recon-np, Rejected down off +1σ) loss -20.87
+  - SHORT IN THE BOTTOM 33% (5m PP 4053.43 to 5m R1 4057.66, at 30%)
+- 6:05 AM PT BTC short (recon-np, Rejected down off -1σ) sold 21.71
+  - SHORT ON A RISING GREEN CANDLE (5m open 80585.9, price 80646.57)
+- 6:25 AM PT BTC long (recon-np, Rejected up off Green zone) loss -21.24
+  - LONG ON A FALLING RED CANDLE (5m open 80555.18, price 80537.5)
+- 6:45 AM PT GOLD long (recon-np, Failed break below session VWAP - rejected up) win 21.8
+  - LONG INTO AN UNBROKEN BAND (5m PP 4050.48 only 0.17 above)
+  - LONG IN THE TOP 33% (session VWAP 4048.43 to 5m PP 4050.48, at 92%)
+- 7:02 AM PT BTC short (recon-np, Failed break above -1σ - rejected down) sold 14.95
+  - SHORT ON A RISING GREEN CANDLE (5m open 80565.91, price 80618.45)
+- 7:03 AM PT GOLD long (recon-np, Failed break below session VWAP - rejected up) loss -20.86
+  - LONG INTO AN UNBROKEN BAND (5m PP 4049.64 only 0.09 above)
+  - LONG IN THE TOP 33% (session VWAP 4048.46 to 5m PP 4049.64, at 92%)
+- 7:30 AM PT GOLD long (recon-np, Failed break below Green zone - rejected up) loss -4.3
+  - LONG ON A FALLING RED CANDLE (5m open 4043.22, price 4041.97)
+- 7:34 AM PT BTC long (recon-np, Rejected up off Bollinger lower) sold 15.97
+  - LONG INTO AN UNBROKEN BAND (5m PP 80487.38 only 24.03 above)
+  - LONG IN THE TOP 33% (-2σ 80365.2 to 5m PP 80487.38, at 80%)
+- 7:56 AM PT BTC long (recon-np, Rejected up off -2σ) sold 220.05
+  - LONG IN THE TOP 33% (-2σ 80343.68 to 5m PP 80447.36, at 73%)
+- 8:06 AM PT BTC short (recon-np, Rejected down off -1σ) loss -21.24
+  - SHORT IN THE BOTTOM 33% (5m PP 80488.72 to -1σ 80613.63, at 33%)
+- 8:35 AM PT BTC long (recon-np, Rejected up off Green zone) loss -21.24
+  - LONG ON A FALLING RED CANDLE (5m open 80596.53, price 80569.5)
+- 8:50 AM PT BTC long (recon-np, Rejected up off Bollinger lower) loss -21.24
+  - LONG ON A FALLING RED CANDLE (5m open 80406.7, price 80385.15)
+  - LONG INTO AN UNBROKEN BAND (5m S1 80386.86 only 1.71 above)
+  - LONG IN THE TOP 33% (-2σ 80318.13 to 5m S1 80386.86, at 98%)
+- 9:15 AM PT GOLD long (recon-np, Rejected up off Bollinger lower) sold 11.82
+  - LONG ON A FALLING RED CANDLE (5m open 4038.91, price 4038.77)
+  - LONG INTO AN UNBROKEN BAND (5m PP 4039.37 only 0.60 above)
+- 9:25 AM PT BTC long (recon-np, Rejected up off Green zone) loss -21.32
+  - LONG ON A FALLING RED CANDLE (5m open 80379.07, price 80360.47)
+- 9:30 AM PT GOLD long (recon-np, Rejected up off -1σ) win 20.1
+  - LONG ON A FALLING RED CANDLE (5m open 4040.3, price 4040.03)
+- 10:21 AM PT GOLD long (recon-np, Rejected up off -1σ) loss -20.99
+  - LONG ON A FALLING RED CANDLE (5m open 4040.19, price 4040.0)
+  - LONG INTO AN UNBROKEN BAND (5m PP 4040.93 only 0.93 above)
+- 10:25 AM PT BTC short (recon-np, Rejected down off -1σ) loss -21.37
+  - SHORT ON A RISING GREEN CANDLE (5m open 80491.48, price 80500.59)
+- 10:30 AM PT GOLD long (recon-np, Rejected up off -1σ) loss -3.25
+  - LONG ON A FALLING RED CANDLE (5m open 4039.03, price 4038.54)
+- 10:46 AM PT GOLD long (recon-np, Rejected up off Green zone) sold 15.29
+  - LONG ON A FALLING RED CANDLE (5m open 4037.9, price 4037.46)
+  - LONG INTO AN UNBROKEN BAND (-1σ 4038.29 only 0.83 above)
+- 11:17 AM PT GOLD long (recon-np, Failed break below Bollinger lower - rejected up) sold 26.43
+  - LONG IN THE TOP 33% (5m S1 4029.92 to 5m PP 4035.62, at 67%)
+- 12:00 PM PT GOLD long (recon-np, Rejected up off -2σ) sold 26.43
+  - LONG ON A FALLING RED CANDLE (5m open 4039.89, price 4033.85)
+- 12:30 PM PT BTC short (recon-np, Rejected down off +1σ) loss -20.82
+  - SHORT ON A RISING GREEN CANDLE (5m open 81100.63, price 81104.91)
+- 12:30 PM PT GOLD short (recon-np, Failed break above +1σ - rejected down) loss -2.92
+  - SHORT ON A RISING GREEN CANDLE (5m open 4053.12, price 4054.65)
+- 2:05 PM PT BTC short (recon-np+recon-npo, Failed break above Red zone - rejected down) loss -20.9
+  - SHORT ON A RISING GREEN CANDLE (5m open 81292.02, price 81304.96)
+- 2:35 PM PT BTC short (recon-np+recon-npo, Rejected down off +1σ) loss -20.79
+  - SHORT ON A RISING GREEN CANDLE (5m open 81082.49, price 81125.8)
+  - BTC SHORT NEARER GREEN THAN PINK (54% of the way pink 81211.66 to S1 81053.21)
+- 2:45 PM PT BTC long (recon-np+recon-npo, Tap-reject at fresh -1σ) sold 8.46
+  - LONG INTO AN UNBROKEN BAND (5m PP 81180.52 only 16.39 above)
+- 3:16 PM PT BTC long (recon-np+recon-npo, Tap-reject at +1σ) loss -20.97
+  - LONG ON A FALLING RED CANDLE (5m open 81221.79, price 81172.95)
+- 3:21 PM PT GOLD long (recon-np+recon-npo, Tap-reject at +1σ) loss -21.35
+  - LONG ON A FALLING RED CANDLE (5m open 4060.28, price 4059.16)
+  - LONG INTO AN UNBROKEN BAND (5m S1 4059.98 only 0.82 above)
+- 3:31 PM PT BTC short (recon-np+recon-npo, Tap-reject at fresh VWAP) open None
+  - SHORT ON A RISING GREEN CANDLE (5m open 81188.05, price 81215.58)
+- 3:38 PM PT GOLD short (recon-np+recon-npo, Tap-reject at fresh -1σ) open None
+  - SHORT ON A RISING GREEN CANDLE (5m open 4053.9, price 4054.46)
+
+89 trades, 44 flagged, flagged P&L +218.53, clean P&L -43.35

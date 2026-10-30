@@ -1,0 +1,38 @@
+{
+ "breaks": {
+  "PEP broke first": {
+   "n": 494,
+   "settled_that_way": 0.522
+  },
+  "PEP broke, other did NOT follow": {
+   "n": 412,
+   "settled_that_way": 0.498
+  },
+  "PEP first, other FOLLOWED": {
+   "n": 81,
+   "settled_that_way": 0.654
+  },
+  "VAN broke first": {
+   "n": 100,
+   "settled_that_way": 0.55
+  },
+  "VAN broke, other did NOT follow": {
+   "n": 59,
+   "settled_that_way": 0.508
+  },
+  "VAN first, other FOLLOWED": {
+   "n": 41,
+   "settled_that_way": 0.61
+  }
+ },
+ "sixteen_x": {
+  "3+ min left": {
+   "n": 85,
+   "came_back": 6
+  },
+  "under 3 min": {
+   "n": 84,
+   "came_back": 3
+  }
+ }
+}

@@ -1,0 +1,200 @@
+// BRICK ON POLYMARKET 1H (Claude, Oct 5 ~1 PM PT, Love: "you can put her on brick for polymarket 1H positions too, $15 on
+// those, i will watch how she does").
+//   ENTRY: the first BRICK BTC paper signal inside an open Polymarket BTC 1-hour Up/Down market buys that side, $15, never
+//          above 75c, once per hour, only with 15+ minutes left in the hour. Never against Love's own other-side position.
+//   EXIT:  BRICK's own paper exits, read off the Polymarket bid against the hour's price to beat:
+//          take profit at 90% of the max then a 1% trail under the best bid (97c+ sells), the take-profit gates
+//          (under 1.65x keep +40% once reached; 1.65x+ keep 55% / 60% of the max) and LOCK THE WIN (+30% then back to +20%).
+//          Gates and lock only with a reason (BTC within $100 of the price to beat, or past it the wrong way) and never
+//          under breakeven. Otherwise it rides to the hour's bell.
+// live-switch "polyHour": { on, books, dollars, maxAsk, minLeftMin, since }. State data/poly-hour-brick.json, log
+// data/poly-hour-log.jsonl. This is untested on hourly markets: paper BRICK is a 15-minute book.
+import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { listNight } from "./nightbook";
+
+type Pos = {
+  slug: string;
+  id: string;
+  side: "up" | "down";
+  contracts: number;
+  cost: number;
+  target: number | null;
+  closesAt: string;
+  at: string;
+  status: "open" | "sold" | "bell" | "skipped" | "missed";
+  peakPct: number;
+  peakBid: number;
+  armed?: boolean;
+  profit?: number;
+  why?: string;
+  lastTry?: number;
+};
+const FILE = () => join(process.cwd(), "data", "poly-hour-brick.json");
+const g = globalThis as unknown as { __polyHourBusy?: boolean; __polyHourLast?: number };
+const r2 = (n: number) => Math.round(n * 100) / 100;
+
+function read(): Record<string, Pos> {
+  try {
+    const x = JSON.parse(readFileSync(FILE(), "utf8"));
+    return x && typeof x === "object" ? x : {};
+  } catch {
+    return {};
+  }
+}
+function write(m: Record<string, Pos>) {
+  try {
+    const keep = Object.values(m).sort((a, b) => (a.at < b.at ? 1 : -1)).slice(0, 300);
+    writeFileSync(FILE(), JSON.stringify(Object.fromEntries(keep.map((e) => [e.slug, e])), null, 1));
+  } catch {
+  }
+}
+function log(x: Record<string, unknown>) {
+  try {
+    appendFileSync(join(process.cwd(), "data", "poly-hour-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ...x }) + "\n");
+  } catch {
+  }
+}
+
+/** BRICK's paper exit rules on one Polymarket position. Returns why to sell, or null to hold. */
+function exitWhy(e: Pos, bid: number, spot: number): string | null {
+  const pct = (bid / e.cost - 1) * 100;
+  const mult = 1 / e.cost;
+  const maxPct = (mult - 1) * 100;
+  if (pct > e.peakPct) e.peakPct = r2(pct);
+  if (bid > e.peakBid) e.peakBid = bid;
+  const tp = Math.max(1, maxPct * 0.9);
+  if (pct + 1e-9 >= tp) e.armed = true;
+  if (e.armed) {
+    const trail = Math.max(tp, Math.floor(e.peakPct) - 1);
+    if (bid >= 0.97 || pct < trail) return `take profit: peaked +${Math.round(e.peakPct)}%, 1% trail`;
+    return null;
+  }
+  const cushion = e.target && spot > 0 ? (e.side === "up" ? spot - e.target : e.target - spot) : null;
+  const reason = cushion == null || cushion <= 100;
+  if (!reason || !(pct > 0)) return null;
+  const gates = mult < 1.65 ? (40 < maxPct ? [40] : []) : [0.55, 0.6].map((x) => r2(maxPct * x));
+  const floor = gates.filter((gp) => e.peakPct + 1e-9 >= gp).pop();
+  if (floor != null && pct < floor) return `take-profit gate +${floor}% (peaked +${Math.round(e.peakPct)}%)`;
+  if (e.peakPct >= 30 && pct <= 20) return `locked the win (was +${Math.round(e.peakPct)}%, back to +${Math.round(pct)}%)`;
+  return null;
+}
+
+export async function polyHourTick(assets: any) {
+  if (g.__polyHourBusy) return;
+  if (g.__polyHourLast && Date.now() - g.__polyHourLast < 1500) return;
+  g.__polyHourBusy = true;
+  g.__polyHourLast = Date.now();
+  try {
+    let cfg: any = null;
+    try {
+      cfg = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).polyHour;
+    } catch {
+      cfg = null;
+    }
+    const reg = read();
+    const anyOpen = Object.values(reg).some((e) => e.status === "open");
+    if (!cfg?.on && !anyOpen) return; // switched off: still finish managing anything already open
+    const pm = await import("./poly-live.server");
+    if (!pm.polymarketArmed()) {
+      try {
+        writeFileSync(join(process.cwd(), "data", "poly-hour-status.json"), JSON.stringify({ at: new Date().toISOString(), hour: null, note: "Polymarket keys not loaded" }));
+      } catch {
+      }
+      return;
+    }
+    const spot = Number(assets?.btc?.spot) || 0;
+    let changed = false;
+
+    // EXITS
+    for (const e of Object.values(reg)) {
+      if (e.status !== "open") continue;
+      if (Date.now() >= Date.parse(e.closesAt) - 5000) {
+        e.status = "bell";
+        changed = true;
+        log({ status: "to the bell", slug: e.slug, side: e.side, contracts: e.contracts, cost: e.cost, peakPct: e.peakPct });
+        continue;
+      }
+      const top = await pm.bookTop(e.slug).catch(() => null);
+      if (!top) continue;
+      const bid = e.side === "up" ? top.bid : Math.round((1 - top.ask) * 100) / 100;
+      if (!(bid > 0 && bid < 1)) continue;
+      const before = `${e.peakPct}|${e.armed}`;
+      const why = exitWhy(e, bid, spot);
+      if (`${e.peakPct}|${e.armed}` !== before) changed = true;
+      if (!why) continue;
+      if (e.lastTry && Date.now() - e.lastTry < 3000) continue;
+      e.lastTry = Date.now();
+      changed = true;
+      const sold = await pm.sellSide(e.side, e.slug, e.contracts).catch(() => null);
+      if (sold && sold.filled > 0) {
+        e.profit = r2((e.profit || 0) + sold.filled * (sold.price - e.cost));
+        e.contracts = r2(e.contracts - sold.filled);
+        e.why = why;
+        if (!(e.contracts >= 0.01)) e.status = "sold";
+        log({ status: "sold", slug: e.slug, side: e.side, filled: sold.filled, price: sold.price, cost: e.cost, profit: e.profit, why });
+      }
+    }
+
+    // ENTRY: first BRICK BTC signal of this hour.
+    if (cfg?.on) {
+      const hour = await pm.currentHour().catch(() => null);
+      const minLeft = (Number(cfg.minLeftMin) > 0 ? Number(cfg.minLeftMin) : 15) * 60000;
+      try {
+        writeFileSync(join(process.cwd(), "data", "poly-hour-status.json"), JSON.stringify({ at: new Date().toISOString(), hour: hour ? { slug: hour.slug, target: hour.target, closesAt: hour.closesAt } : null, note: hour ? "watching for BRICK's first BTC signal this hour" : "no open BTC 1-hour market found on Polymarket" }));
+      } catch {
+      }
+      const prev = hour ? reg[hour.slug] : undefined;
+      // A miss (price too high) lets the hour's NEXT BRICK signal try again; anything else = this hour is done.
+      if (hour && (!prev || prev.status === "missed") && Date.parse(hour.closesAt) - Date.now() >= minLeft) {
+        // FOLLOW RUN (Love, Oct 5 ~11:10 PM PT: "she can be on the hourly too... if i put it on here thru the cards is that one
+        // for polymarket?"): with polyHour.followRun, the books whose RUN pill is green on SHIFT also trade the 1H market here.
+        let books: string[] = Array.isArray(cfg.books) && cfg.books.length ? cfg.books : ["brick"];
+        if (cfg.followRun) {
+          try {
+            const lb = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook;
+            if (Array.isArray(lb?.books) && lb.books.length) books = lb.books.map(String);
+          } catch {
+          }
+        }
+        const since = Math.max(Date.parse(String(cfg.since || 0)) || 0, Date.parse(hour.startsAt));
+        const row = listNight()
+          .filter((r) => books.includes(r.book) && r.asset === "btc" && !r.dnaMode && !(r as any).stale && Date.parse(r.at) >= since && (!prev || Date.parse(r.at) > Date.parse(prev.at)) && Date.now() - Date.parse(r.at) < 90000)
+          .sort((x, y) => (x.at < y.at ? -1 : 1))[0];
+        if (row) {
+          const side = row.side as "up" | "down";
+          const dollars = Number(cfg.dollars) > 0 ? Number(cfg.dollars) : 15;
+          const maxAsk = Number(cfg.maxAsk) > 0 ? Number(cfg.maxAsk) : 0.75;
+          const base: Pos = { slug: hour.slug, id: row.id, side, contracts: 0, cost: 0, target: hour.target, closesAt: hour.closesAt, at: new Date().toISOString(), status: "missed", peakPct: 0, peakBid: 0 };
+          const mine = await pm.polymarketHoldings().catch(() => []);
+          const hers = mine.find((h: any) => h.slug === hour.slug && Math.abs(h.net) > 0.01);
+          if (hers && Math.sign(hers.net) !== (side === "up" ? 1 : -1)) {
+            reg[hour.slug] = { ...base, status: "skipped", why: "you hold the other side of this hour on Polymarket" };
+            log({ status: "skipped", slug: hour.slug, id: row.id, why: reg[hour.slug].why });
+          } else {
+            const fill = await pm.buySlug(side, hour.slug, dollars, maxAsk, hour.target).catch((err: any) => {
+              log({ status: "error", slug: hour.slug, why: String(err?.message || err).slice(0, 160) });
+              return null;
+            });
+            if (fill) {
+              reg[hour.slug] = { ...base, contracts: fill.filled, cost: fill.price, status: "open" };
+              log({ status: "filled", slug: hour.slug, id: row.id, setup: row.setup, side, contracts: fill.filled, price: fill.price, target: hour.target, spot });
+            } else {
+              reg[hour.slug] = { ...base, why: `no fill (ask over ${Math.round(maxAsk * 100)}c or under 8c, cash, or the hour already has a desk trade)` };
+              log({ status: "missed", slug: hour.slug, id: row.id, side, why: reg[hour.slug].why });
+            }
+          }
+          changed = true;
+        }
+      }
+    }
+    if (changed) write(reg);
+  } catch (err) {
+    try {
+      writeFileSync(join(process.cwd(), "data", "poly-hour-status.json"), JSON.stringify({ at: new Date().toISOString(), error: String((err as Error)?.message || err).slice(0, 200) }));
+    } catch {
+    }
+  } finally {
+    g.__polyHourBusy = false;
+  }
+}

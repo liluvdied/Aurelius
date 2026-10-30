@@ -1,0 +1,1226 @@
+{
+ "rule": "a badge for Aurelius and Claude for every 24 h she stays on one spot - no unplanned change in code or settings, no execution slip",
+ "chapter": {
+  "since": "2026-10-29T04:21:30.552574Z",
+  "reason": "after Love's revision",
+  "baselineSha": "dd508321e26e5e83",
+  "cfg": {
+   "cooldownAfterLoss": "b5bea41b6c",
+   "route": "9d53f79e71",
+   "cooldownExcuse": "1570b63708",
+   "shiftStart": "3a2984a939",
+   "blockedSetups": "e7e3e4e2e8",
+   "lockWin": "4f19e97c70",
+   "channelRule": "fcbcf16590",
+   "channelEdge": "a30a043314",
+   "blockedAssets": "5aa1d253cd",
+   "bigMultipleCap": "f4ba3b4df4",
+   "skipHours": "1bd9ca0ecc",
+   "navSkip": "23481db946",
+   "navCross": "2a3783d18c",
+   "tpGates": "1f7dcf38d7",
+   "primeFortyRule": "fcbcf16590",
+   "pathSkip": "03ee52857c",
+   "model": "80270e39ab",
+   "autoExits": "b5bea41b6c",
+   "tpHard": "b5bea41b6c",
+   "liveBook": "c8cfbbf7f9",
+   "tpOfMax": "69f59c273b",
+   "netBelow": "4f53cda18c",
+   "insurance": "7e56fa5011",
+   "tpLadder": "b5bea41b6c",
+   "polyTwin": "3b9b7879cb",
+   "addOn": "7731293eb7",
+   "timeGate": "3e5d05e3eb",
+   "snipe": "08fadc84ae",
+   "polyLive": "fcbcf16590",
+   "polyMirror": "41bcbfd745",
+   "paperLocks": "b5bea41b6c",
+   "bookLikePaper": "b5bea41b6c",
+   "polyHour": "4c1855d3f2",
+   "autoRoll": "156daa06c7",
+   "ripTap": "0f6b09ab78",
+   "silverHedge": "a4fa4494d3",
+   "btcHeadroom": "624b60c58c",
+   "dailyLossLimit": "5feceb66ff",
+   "breaker": "de26f74578",
+   "presets": "8ee40259f0",
+   "halfAt75": "b5bea41b6c",
+   "liveSkipHours": "9c45d2fa7a",
+   "brokenBy": "5676444012",
+   "followPaperExit": "b5bea41b6c",
+   "btcHeadroomSession": "624b60c58c",
+   "goldAtTarget": "5cf86ee36e",
+   "mirrorPaper": "fcbcf16590",
+   "goldSessionGap": "be460fb8ec",
+   "new24Live": "4df5d49d4e",
+   "riskExempt": "cfb4021b3a",
+   "riskReset": "fef1efeece",
+   "liveSilverBooks": "b47b144b78",
+   "liveSilverNote": "af3e3b7183",
+   "goldNavFront": "5feceb66ff",
+   "goldNavFrontNote": "8fe1c3be22",
+   "shifts": "6ec8d37153",
+   "bandExempt": "25b44e757c",
+   "squeezeTrialDone": "1b076e2ccd",
+   "bookSkipHours": "1ecf694199",
+   "bookSkipHoursNote": "1c5d4064cc",
+   "noLocksBooks": "af9b51126f",
+   "noLocksNote": "7a3cd157af",
+   "reversalGuard": "8f098a2af6",
+   "road20MaxSd": "ad57366865",
+   "road20Note": "077e95911a",
+   "mirrorPaperNote": "7af29416e9",
+   "liveSkipExempt": "f0b6ddf085",
+   "liveSkipExemptNote": "b4a5fb4781",
+   "goldGateExempt": "aa62a4310a",
+   "goldGateExemptNote": "c52311c6de",
+   "comboGuard": "91abb4d93d",
+   "comboLive": "f008195f67",
+   "bookSkipHoursPrev": "de903b2434",
+   "bookSkipHoursPrevNote": "ccac51e312",
+   "archivedBooks": "7c1a3e801c",
+   "archivedAt": "5bf7e8807e",
+   "lineupMode": "4a27f91df4",
+   "bounceRules": "b5bea41b6c",
+   "hybridConfirm": "4e07408562",
+   "benchUnlock": "dcccb87fb3",
+   "goldBandRoom": "3cd13c09cc",
+   "pivotZone": "611ff06c7a",
+   "pivotZoneLive": "99f5bd000c",
+   "swingGuard": "c8a3a9cfcd",
+   "pivotZoneTerminal": "d1323fa376",
+   "benchBreaker": "6c52852cf8",
+   "offNote": "342852ef06",
+   "refinedRulesOct14": "9124b6bde0",
+   "ticketBack": "b5bea41b6c",
+   "pivotClock": "b5bea41b6c",
+   "lineupModeByAsset": "a7d1f23934",
+   "liveBreak": "b5bea41b6c",
+   "liveBreakDist": "671c333bb9",
+   "goldOffNote": "60d95f6c92",
+   "newWindowAtOnce": "b5bea41b6c",
+   "newWindowAtOnceNote": "eb5a2029de",
+   "openFloorSec": "624b60c58c",
+   "spotMaxAgeSec": "4e07408562",
+   "spotAfterOpenSec": "d4735e3a26",
+   "pinkBreak": "b5bea41b6c",
+   "pinkBreakMin": "4e07408562",
+   "changeMind": "fcbcf16590",
+   "changeMindMax": "d4735e3a26",
+   "nextOpportunity": "b5bea41b6c",
+   "nextOpportunityMax": "4e07408562",
+   "nextOpportunityNote": "1bab1818f3",
+   "dailyLossLimitNote": "ebbbd578e3",
+   "mirrorPaperBooks": "8c515e8175",
+   "paperFires": "5d9015090a",
+   "cheapSize": "8708b403e3",
+   "closeMode": "7fab8b6012",
+   "bookDollars": "f2228944c5",
+   "liveSkipHoursPrev": "1d01ea120d",
+   "sizingPrev": "853784e1f0",
+   "restHourDollars": "6b2ee0dfb0",
+   "halfAt75Hand": "b5bea41b6c",
+   "addOnPrev": "87cbee61f0",
+   "handLikePaper": "b5bea41b6c",
+   "togetherFast": "b5bea41b6c",
+   "scheduleNote2pm4pm": "d8ab49bfe6",
+   "bandReach": "fc244e9d58",
+   "zoneReach": "37227b0103",
+   "size1Note": "fe65a6de47",
+   "channelPct": "fc1bf81b0a",
+   "size5Note": "ce7eaa5fe4",
+   "ticketBackNote": "23f9aa55ba",
+   "dlyHoursNote": "622bc81420",
+   "elevenAmTestNote": "5b6a2de110",
+   "brkSessLiveNote": "bff419f76c",
+   "brkSesspkNote": "a6135e6270",
+   "brkSessOnlyNote": "29c30414f9",
+   "together1pmNote": "995498c7e2",
+   "brkAloneNote": "c37cebeb18",
+   "sizeNote": "b1a9017c07",
+   "reconNote": "e94020a29d",
+   "size5Note2": "206a4996b6",
+   "addOnPrev2": "fc97834431",
+   "addOnRed1": "560bc348c7",
+   "channelPctNote": "262af6bf8e",
+   "channelPctTop": "fc1bf81b0a",
+   "recon1Note": "5081549e28",
+   "assetDollarsOff": "8a3eed3ef7",
+   "polyLiveNote": "40671f92fd",
+   "dlyLiveNote": "0c40f78c42",
+   "offHourMain": "6033634f47",
+   "bookSkipHoursByAsset": "d913a1d9d9",
+   "fix313Prev": "c1e29a6fd6",
+   "liveSkipHoursPrev315": "a7a12423e8",
+   "fix316Prev": "1dd8ebb1a1",
+   "fix320Prev": "27b0385d4b",
+   "fix321Prev": "1bfaae9ab3",
+   "fix352Prev": "23d7ac15bf",
+   "fix360Prev": "ac6d740e35",
+   "fix374Prev": "f6fa805c30",
+   "fix380Prev": "9fa58145d8",
+   "fix381Prev": "ef07c198b4",
+   "fix383Prev": "2f15a497e5",
+   "fix384Prev": "e34cc56df8",
+   "fix388Prev": "6a35a83049",
+   "fix393Prev": "0332b02eaf",
+   "fix398Prev": "c722fa0f28",
+   "fix400Prev": "7dd8b0ae05",
+   "fix402Prev": "058afe6f24",
+   "note402": "0d8e7717b9",
+   "fix405Prev": "d396e7b5bf",
+   "note405": "c152437af2",
+   "fix412Prev": "cc2998e771",
+   "note412": "ce19eee58c",
+   "checkpointRestore": "0d4581c4b2",
+   "fix421Prev": "99ed749af3",
+   "note421": "2eaea48549",
+   "fix427Prev": "bb6db682f5",
+   "fix428Prev": "7f74fa8c12",
+   "fix436Prev": "b454bfa0f5",
+   "fix437Prev": "5458d7e3aa"
+  },
+  "badgesThisChapter": 0,
+  "heartsThisChapter": 0
+ },
+ "badges": [],
+ "chapters": [
+  {
+   "since": "2026-10-21T05:49:00Z",
+   "reason": "first chapter - opened after Love's 10:47 PM PT \"No chase past 2\u03c3\" revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T06:08:37.824483Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-21T06:08:37.824483Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T06:20:09.873734Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-21T06:20:09.873734Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T07:21:42.058623Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-21T07:21:42.058623Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T10:22:55.052912Z",
+   "how": "BROKEN - rule breach 2026-10-21T09:34:00.060Z KXBTC15M-26OCT210545-45 down: DELAYED twin short on a rising 5m candle (83529.55 over its 83495.72 open), price above every band so the wire skipped her candle check"
+  },
+  {
+   "since": "2026-10-21T10:22:55.052912Z",
+   "reason": "restarted after a break",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T17:21:39.343199Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-21T17:21:39.343199Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T18:15:36.646336Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-21T18:15:36.646336Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T18:25:26.475856Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-21T18:25:26.475856Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T19:21:25.486238Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-21T19:21:25.486238Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T20:21:48.154545Z",
+   "how": "BROKEN - rule breach 2026-10-21T20:00:05.726Z KXBTC15M-26OCT211615-15 down: short on a rising 5m candle (84428.20 over its 84404.58 open)"
+  },
+  {
+   "since": "2026-10-21T20:21:48.154545Z",
+   "reason": "restarted after a break",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T21:24:08.093281Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-21T21:24:08.093281Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T22:04:56.952036Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-21T22:04:56.952036Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-21T23:23:36.699814Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-21T23:23:36.699814Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T00:21:41.163004Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T00:21:41.163004Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T02:22:55.702719Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T02:22:55.702719Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T03:21:27.257697Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T03:21:27.257697Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T04:21:28.363720Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T04:21:28.363720Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T05:23:11.406885Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T05:23:11.406885Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T06:24:46.726442Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T06:24:46.726442Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T07:22:42.690672Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T07:22:42.690672Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T09:21:55.774290Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T09:21:55.774290Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T10:23:11.309885Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T10:23:11.309885Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T11:22:59.737078Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T11:22:59.737078Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T12:22:50.183814Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T12:22:50.183814Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T13:26:06.072659Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T13:26:06.072659Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T14:27:55.584983Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T14:27:55.584983Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T15:23:59.334792Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T15:23:59.334792Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T16:22:50.796800Z",
+   "how": "BROKEN - rule breach 2026-10-22T16:19:49.867Z KXBTC15M-26OCT221230-30 up: long at 100% of the channel (top third)"
+  },
+  {
+   "since": "2026-10-22T16:22:50.796800Z",
+   "reason": "restarted after a break",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T17:24:07.626849Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T17:24:07.626849Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T18:21:44.665750Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T18:21:44.665750Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T19:21:49.054032Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T19:21:49.054032Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T20:22:11.947344Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T20:22:11.947344Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T21:21:50.038493Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-22T21:21:50.038493Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T22:21:26.365362Z",
+   "how": "BROKEN - rule breach 2026-10-22T21:46:41.166Z KXBTC15M-26OCT221800-00 down: short at 8% of the channel (bottom third)"
+  },
+  {
+   "since": "2026-10-22T22:21:26.365362Z",
+   "reason": "restarted after a break",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-22T23:21:53.768104Z",
+   "how": "BROKEN - rule breach 2026-10-22T23:07:24.897Z KXBTC15M-26OCT221915-15 down: did not pass through the wire; short on a rising 5m candle (81280.19 over its 81264.20 open)"
+  },
+  {
+   "since": "2026-10-22T23:21:53.768104Z",
+   "reason": "restarted after a break",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T00:21:57.748828Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T00:21:57.748828Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T01:22:05.778307Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T01:22:05.778307Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T02:21:18.674237Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T02:21:18.674237Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T03:21:35.520839Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T03:21:35.520839Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T04:21:15.012066Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T04:21:15.012066Z",
+   "reason": "after Love's revision (10:21 PM free add-on flag exempted by Love 10:39 PM)",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T05:40:43.682368Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T05:40:43.682368Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T06:24:49.742054Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T06:24:49.742054Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T07:21:50.548164Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T07:21:50.548164Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T08:22:06.595412Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T08:22:06.595412Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T09:21:53.977729Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T09:21:53.977729Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T16:34:34.648396Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T16:34:34.648396Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T17:22:12.614615Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T17:22:12.614615Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T20:25:12.270710Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T20:25:12.270710Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T21:22:30.064989Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T21:22:30.064989Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T22:23:25.454614Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T22:23:25.454614Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-23T23:22:10.980351Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-23T23:22:10.980351Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-24T01:21:51.466332Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-24T01:21:51.466332Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-24T02:21:48.438455Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-24T02:21:48.438455Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-24T04:21:17.317488Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-24T04:21:17.317488Z",
+   "reason": "after Love's revision (restored: 10:30 PM fake-out turn was a rule-audit false positive)",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-24T13:21:44.574315Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-24T13:21:44.574315Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-24T15:21:32.621659Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-24T15:21:32.621659Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-24T17:21:33.082245Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-24T17:21:33.082245Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-24T18:22:02.803998Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-24T18:22:02.803998Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-24T21:21:33.288286Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-24T21:21:33.288286Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-24T22:21:55.683793Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-24T22:21:55.683793Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-24T23:21:31.197677Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-24T23:21:31.197677Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T00:21:37.646861Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T00:21:37.646861Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T01:21:24.089350Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T01:21:24.089350Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T02:21:28.214935Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T02:21:28.214935Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T03:21:27.431084Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T03:21:27.431084Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T04:21:43.208098Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T04:21:43.208098Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T05:22:33.897750Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T05:22:33.897750Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T06:22:28.974053Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T06:22:28.974053Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T07:23:06.553774Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T07:23:06.553774Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T09:22:39.862385Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T09:22:39.862385Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T10:21:43.703357Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T10:21:43.703357Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T11:21:39.227664Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T11:21:39.227664Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T12:23:05.209588Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T12:23:05.209588Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T20:25:37.162146Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T20:25:37.162146Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T21:32:16.404192Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T21:32:16.404192Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T22:22:43.118175Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T22:22:43.118175Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-25T23:21:57.576303Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-25T23:21:57.576303Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T00:21:53.237651Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T00:21:53.237651Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T01:22:34.227410Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T01:22:34.227410Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T02:21:55.410907Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T02:21:55.410907Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T03:32:16.903161Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T03:32:16.903161Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T04:23:04.631368Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T04:23:04.631368Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T05:21:50.826904Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T05:21:50.826904Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T06:22:25.323686Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T06:22:25.323686Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T07:23:56.866450Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T07:23:56.866450Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T08:23:33.913719Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T08:23:33.913719Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T09:22:27.588489Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T09:22:27.588489Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T10:21:48.829952Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T10:21:48.829952Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T16:22:10.183653Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T16:22:10.183653Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T17:23:22.798937Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T17:23:22.798937Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T18:21:48.050939Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T18:21:48.050939Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T19:22:10.416483Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T19:22:10.416483Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T20:22:38.207082Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T20:22:38.207082Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T21:23:01.288529Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T21:23:01.288529Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T22:21:38.327586Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T22:21:38.327586Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-26T23:22:01.075900Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-26T23:22:01.075900Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T00:22:31.969976Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T00:22:31.969976Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T01:22:14.696316Z",
+   "how": "BROKEN - rule breach 2026-10-27T00:50:33.734Z KXGOLD15M-26OCT262100-00 down: short at 12% of the channel (bottom third)"
+  },
+  {
+   "since": "2026-10-27T01:22:14.696316Z",
+   "reason": "restarted after a break",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T05:21:27.163056Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T05:21:27.163056Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T06:22:26.603082Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T06:22:26.603082Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T08:22:40.847704Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T08:22:40.847704Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T09:21:45.769391Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T09:21:45.769391Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T10:21:39.058790Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T10:21:39.058790Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T11:22:40.888950Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T11:22:40.888950Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T12:23:28.344980Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T12:23:28.344980Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T13:42:24.606049Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T13:42:24.606049Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T16:31:02.524936Z",
+   "how": "BROKEN - rule breach 2026-10-27T16:23:14.695Z KXBTC15M-26OCT271230-30 up: long on a falling 5m candle (80434.09 under its 80443.05 open)"
+  },
+  {
+   "since": "2026-10-27T16:31:02.524936Z",
+   "reason": "restarted after a break",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T18:22:06.525269Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T18:22:06.525269Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T19:22:10.243277Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T19:22:10.243277Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T20:22:21.862824Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T20:22:21.862824Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T21:22:28.751850Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T21:22:28.751850Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T22:22:22.803592Z",
+   "how": "BROKEN - rule breach 2026-10-27T22:15:11.986Z KXBTC15M-26OCT271830-30 up: long at 93% of the channel (top third)"
+  },
+  {
+   "since": "2026-10-27T22:22:22.803592Z",
+   "reason": "restarted after a break",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-27T23:21:32.160192Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-27T23:21:32.160192Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T00:22:17.427249Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T00:22:17.427249Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T01:21:39.649996Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T01:21:39.649996Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T02:21:50.341314Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T02:21:50.341314Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T03:21:36.163510Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T03:21:36.163510Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T04:22:22.875507Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T04:22:22.875507Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T05:21:55.082904Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T05:21:55.082904Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T06:21:55.071666Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T06:21:55.071666Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T07:22:17.125936Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T07:22:17.125936Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T08:22:09.058143Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T08:22:09.058143Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T17:21:49.751991Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T17:21:49.751991Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T18:22:07.571262Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T18:22:07.571262Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T19:22:08.675009Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T19:22:08.675009Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T20:22:42.090972Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T20:22:42.090972Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T21:21:40.067715Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T21:21:40.067715Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T22:21:33.535342Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T22:21:33.535342Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-28T23:21:33.772177Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-28T23:21:33.772177Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T00:22:00.524458Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-29T00:22:00.524458Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T01:21:42.131246Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-29T01:21:42.131246Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T02:21:56.535700Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-29T02:21:56.535700Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T03:21:39.396204Z",
+   "how": "Love's revision (baseline moved with her words)"
+  },
+  {
+   "since": "2026-10-29T03:21:39.396204Z",
+   "reason": "after Love's revision",
+   "badgesThisChapter": 0,
+   "ended": "2026-10-29T04:21:30.552574Z",
+   "how": "Love's revision (baseline moved with her words)"
+  }
+ ],
+ "breaks": [
+  {
+   "at": "2026-10-21T10:22:55.052912Z",
+   "why": "rule breach 2026-10-21T09:34:00.060Z KXBTC15M-26OCT210545-45 down: DELAYED twin short on a rising 5m candle (83529.55 over its 83495.72 open), price above every band so the wire skipped her candle check",
+   "streakHours": 3.0
+  },
+  {
+   "at": "2026-10-21T20:21:48.154545Z",
+   "why": "rule breach 2026-10-21T20:00:05.726Z KXBTC15M-26OCT211615-15 down: short on a rising 5m candle (84428.20 over its 84404.58 open)",
+   "streakHours": 1.0
+  },
+  {
+   "at": "2026-10-22T16:22:50.796800Z",
+   "why": "rule breach 2026-10-22T16:19:49.867Z KXBTC15M-26OCT221230-30 up: long at 100% of the channel (top third)",
+   "streakHours": 1.0
+  },
+  {
+   "at": "2026-10-22T22:21:26.365362Z",
+   "why": "rule breach 2026-10-22T21:46:41.166Z KXBTC15M-26OCT221800-00 down: short at 8% of the channel (bottom third)",
+   "streakHours": 1.0
+  },
+  {
+   "at": "2026-10-22T23:21:53.768104Z",
+   "why": "rule breach 2026-10-22T23:07:24.897Z KXBTC15M-26OCT221915-15 down: did not pass through the wire; short on a rising 5m candle (81280.19 over its 81264.20 open)",
+   "streakHours": 1.0
+  },
+  {
+   "at": "2026-10-27T01:22:14.696316Z",
+   "why": "rule breach 2026-10-27T00:50:33.734Z KXGOLD15M-26OCT262100-00 down: short at 12% of the channel (bottom third)",
+   "streakHours": 1.0
+  },
+  {
+   "at": "2026-10-27T16:31:02.524936Z",
+   "why": "rule breach 2026-10-27T16:23:14.695Z KXBTC15M-26OCT271230-30 up: long on a falling 5m candle (80434.09 under its 80443.05 open)",
+   "streakHours": 2.8
+  },
+  {
+   "at": "2026-10-27T22:22:22.803592Z",
+   "why": "rule breach 2026-10-27T22:15:11.986Z KXBTC15M-26OCT271830-30 up: long at 93% of the channel (top third)",
+   "streakHours": 1.0
+  }
+ ],
+ "lastSeen": "2026-10-29T04:21:30.552574Z",
+ "drifting": false,
+ "now": {
+  "streakHours": 0.0,
+  "nextBadgeInHours": 24.0,
+  "badgesTotal": 0,
+  "heartsTotal": 7,
+  "nextHeartInHours": 4.0,
+  "weeks": 0,
+  "months": 0,
+  "drifting": false
+ },
+ "hearts": [
+  {
+   "at": "2026-10-21T15:22:21.189715Z",
+   "n": 1,
+   "label": "\u2764\ufe0f\u200d\ud83d\udd25 4 h on one spot",
+   "for": "Love",
+   "chapterSince": "2026-10-21T10:22:55.052912Z"
+  },
+  {
+   "at": "2026-10-24T08:22:05.315477Z",
+   "n": 1,
+   "label": "\u2764\ufe0f\u200d\ud83d\udd25 4 h on one spot",
+   "for": "Love",
+   "chapterSince": "2026-10-24T04:21:17.317488Z"
+  },
+  {
+   "at": "2026-10-24T12:21:45.225042Z",
+   "n": 2,
+   "label": "\u2764\ufe0f\u200d\ud83d\udd25 8 h on one spot",
+   "for": "Love",
+   "chapterSince": "2026-10-24T04:21:17.317488Z"
+  },
+  {
+   "at": "2026-10-25T17:22:08.402745Z",
+   "n": 1,
+   "label": "\u2764\ufe0f\u200d\ud83d\udd25 4 h on one spot",
+   "for": "Love",
+   "chapterSince": "2026-10-25T12:23:05.209588Z"
+  },
+  {
+   "at": "2026-10-26T14:30:44.466902Z",
+   "n": 1,
+   "label": "\u2764\ufe0f\u200d\ud83d\udd25 4 h on one spot",
+   "for": "Love",
+   "chapterSince": "2026-10-26T10:21:48.829952Z"
+  },
+  {
+   "at": "2026-10-28T12:31:22.410680Z",
+   "n": 1,
+   "label": "\u2764\ufe0f\u200d\ud83d\udd25 4 h on one spot",
+   "for": "Love",
+   "chapterSince": "2026-10-28T08:22:09.058143Z"
+  },
+  {
+   "at": "2026-10-28T16:23:12.861221Z",
+   "n": 2,
+   "label": "\u2764\ufe0f\u200d\ud83d\udd25 8 h on one spot",
+   "for": "Love",
+   "chapterSince": "2026-10-28T08:22:09.058143Z"
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+// FEED MATCH (Claude, 2026-10-02, Love: "go through all the symbols and match Kalshi's price as close as
+// possible"). One-shot, read only. Pulls Kalshi's recently settled 15-minute BTC and gold markets (their
+// strike = the index price at the window's open; expiration_value = the settlement price) and 1-minute bars
+// from every candidate chart feed, and saves both to data/feedmatch.json for scripts/feedmatch.py.
+import { writeFileSync, statSync } from "node:fs";
+import { join } from "node:path";
+import { chartRaw } from "./tv";
+const BASE = "https://external-api.kalshi.com/trade-api/v2";
+const g = globalThis as unknown as { __feedMatch?: boolean; __feedMatchBusy?: boolean };
+// Love, Oct 2 night: "can we see how the best ones perform overnight?" -> re-pull every 6h so the
+// morning lab (scripts/feed-overnight.py) can score each feed on the night's candles only.
+const SIX_H = 6 * 3600 * 1000;
+export const FEEDS: Record<string, string[]> = {
+  btc: ["VANTAGE:BTCUSD", "COINBASE:BTCUSD", "BITSTAMP:BTCUSD", "KRAKEN:BTCUSD", "INDEX:BTCUSD", "PEPPERSTONE:BTCUSD", "CRYPTO:BTCUSD", "BINANCE:BTCUSDT", "GEMINI:BTCUSD", "BITFINEX:BTCUSD", "OANDA:BTCUSD"],
+  gold: ["OANDA:XAUUSD", "VANTAGE:XAUUSD", "PEPPERSTONE:XAUUSD", "FOREXCOM:XAUUSD", "FX:XAUUSD", "TVC:GOLD", "FXOPEN:XAUUSD", "SAXO:XAUUSD", "ICMARKETS:XAUUSD", "CAPITALCOM:GOLD"],
+};
+export async function feedMatchOnce() {
+  if (g.__feedMatchBusy) return;
+  let age = Infinity;
+  try { age = Date.now() - statSync(join(process.cwd(), "data", "feedmatch.json")).mtimeMs; } catch {}
+  if (g.__feedMatch && age < SIX_H) return;
+  g.__feedMatch = true;
+  g.__feedMatchBusy = true;
+  try { await pullAll(); } finally { g.__feedMatchBusy = false; }
+}
+async function pullAll() {
+  const out: Record<string, unknown> = { at: new Date().toISOString(), markets: {}, bars: {} };
+  for (const [asset, series] of [["btc", "KXBTC15M"], ["gold", "KXGOLD15M"]] as const) {
+    const ms: unknown[] = [];
+    let cursor = "";
+    for (let page = 0; page < 5; page += 1) {
+      try {
+        const res = await fetch(`${BASE}/markets?series_ticker=${series}&status=settled&limit=200${cursor ? `&cursor=${cursor}` : ""}`, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(15000) });
+        const body = (await res.json()) as { markets?: Record<string, unknown>[]; cursor?: string };
+        for (const m of body.markets ?? []) ms.push({ tk: m.ticker, open: m.open_time, close: m.close_time, strike: m.floor_strike, settle: m.expiration_value, result: m.result });
+        cursor = body.cursor ?? "";
+        if (!cursor) break;
+      } catch {
+        break;
+      }
+    }
+    (out.markets as Record<string, unknown>)[asset] = ms;
+    for (const sym of FEEDS[asset]) {
+      try {
+        const bars = await chartRaw(sym, "1", 5000);
+        (out.bars as Record<string, unknown>)[sym] = bars.map((b) => [b.t, b.o, b.h, b.l, b.c, b.v]);
+      } catch (e) {
+        (out.bars as Record<string, unknown>)[sym] = { error: String(e) };
+      }
+    }
+  }
+  writeFileSync(join(process.cwd(), "data", "feedmatch.json"), JSON.stringify(out));
+}

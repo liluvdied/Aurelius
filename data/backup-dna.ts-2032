@@ -1,0 +1,122 @@
+// HER DNA (Claude, 2026-10-02, Love: "wire the logic into her dna, write it in yourself").
+// One law, one place, every book. Nothing in the desk may open a trade that breaks it.
+//
+//   1. NOTHING IN FRONT. A long never has one of her lines just ABOVE it. A short never has one
+//      just BELOW it. "Just" = BTC $100, gold $2.50 (her numbers).
+//   2. CLEAR ROAD. No line sits between price and the strike the trade has to reach.
+//
+// Her lines, from her own chart (data/bands-now.json, refreshed every 10 seconds):
+//   session VWAP and every ±0.5σ band out to ±3σ; the purple nav line on 5m / 10m / 15m;
+//   and for BTC the nav upper / lower (Bollinger) on 5m / 10m / 15m.
+//
+// Why it is written fresh instead of patching Grok's guard: Grok's bandInWay only ever looked at
+// the σ bands. It never saw the session VWAP itself and never saw a purple or Bollinger line, so a
+// long sitting right under the 5m purple sailed through it. ORIGINAL's own notes flagged 33 entries
+// with a line right in front of her since last night; 23 of them were purple lines Grok's guard
+// could not see.
+//
+// Price (Claude, 12:10 PM, Love: "top of the candle is where she entered long on gold, band is $1.38
+// above"): the desk's quote can be up to 15 seconds old. A long is now measured from the HIGHEST
+// price the desk can see in the minute she is buying (live 1m candle high, latest quote, last
+// close); a short from the LOWEST. The worst one wins.
+import { appendFileSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+
+export const DNA_REACH: Record<string, number> = { btc: 100, gold: 2.5 };
+type Nav = { c: number; up: number; dn: number } | null | undefined;
+export type DnaBands = { vwap?: number | null; sd?: number | null; spot?: number | null; nav?: { m5?: Nav; m10?: Nav; m15?: Nav; close1m?: number | null; live1m?: { h: number; l: number; c: number } | null } | null };
+
+/** Her entry price, measured the hard way: a long is measured from the TOP of the candle she is
+ *  buying into, a short from the BOTTOM. Every price the desk has is checked and the worst one wins,
+ *  so a quote that is a few seconds old can never sneak a long in under a band. */
+export function dnaPrice(side: "up" | "down", spot: number, b: DnaBands | null | undefined): number {
+  const xs = [spot, Number(b?.spot) || 0, Number(b?.nav?.close1m) || 0, Number(b?.nav?.live1m?.c) || 0].filter((x) => x > 0);
+  if (side === "up") {
+    const hi = Number(b?.nav?.live1m?.h) || 0;
+    if (hi > 0) xs.push(hi);
+    return xs.length ? Math.max(...xs) : spot;
+  }
+  const lo = Number(b?.nav?.live1m?.l) || 0;
+  if (lo > 0) xs.push(lo);
+  return xs.length ? Math.min(...xs) : spot;
+}
+export type DnaLine = { name: string; price: number };
+
+export function dnaLines(asset: string, b: DnaBands | null | undefined): DnaLine[] {
+  const out: DnaLine[] = [];
+  const vw = Number(b?.vwap) || 0;
+  const sd = Number(b?.sd) || 0;
+  if (vw > 0) out.push({ name: "session VWAP", price: vw });
+  if (vw > 0 && sd > 0) {
+    for (const k of [0.5, 1, 1.5, 2, 2.5, 3]) {
+      out.push({ name: `+${k}σ`, price: vw + k * sd });
+      out.push({ name: `-${k}σ`, price: vw - k * sd });
+    }
+  }
+  for (const [key, label] of [["m5", "5m"], ["m10", "10m"], ["m15", "15m"]] as const) {
+    const f = b?.nav?.[key];
+    if (!f) continue;
+    if (f.c > 0) out.push({ name: `${label} purple`, price: f.c });
+    if (asset === "btc") {
+      if (f.up > 0) out.push({ name: `${label} upper`, price: f.up });
+      if (f.dn > 0) out.push({ name: `${label} lower`, price: f.dn });
+    }
+  }
+  return out;
+}
+
+/** The whole law. Returns the reason she must pass, or null when the trade is clean. */
+export function dnaCheck(asset: string, side: "up" | "down", spotIn: number, target: number | null | undefined, b: DnaBands | null | undefined): string | null {
+  const reach = DNA_REACH[asset];
+  if (!reach) return null; // only BTC and gold carry the law
+  const spot = dnaPrice(side, spotIn, b);
+  if (!(spot > 0)) return "DNA: no price";
+  const lines = dnaLines(asset, b);
+  if (!lines.length) return "DNA: her lines could not be read";
+  // 1. Nothing in front.
+  for (const l of lines) {
+    const ahead = side === "up" ? l.price - spot : spot - l.price;
+    if (ahead > 0 && ahead <= reach) return `DNA: the ${l.name} (${l.price.toFixed(2)}) is right ${side === "up" ? "above the long" : "below the short"}`;
+  }
+  // 2. Clear road to the strike.
+  // (the road is measured from the price she is actually at, not the candle's extreme)
+  const t = Number(target) || 0;
+  const at = spotIn > 0 ? spotIn : spot;
+  if (t > 0) {
+    const mustCross = side === "up" ? t > at : t < at;
+    if (mustCross) {
+      const lo = Math.min(at, t);
+      const hi = Math.max(at, t);
+      const wall = lines.find((l) => l.price > lo && l.price < hi);
+      if (wall) return `DNA: the ${wall.name} (${wall.price.toFixed(2)}) sits between price and the strike ${t.toFixed(2)}`;
+    }
+  }
+  return null;
+}
+
+/** The same law against her live lines (data/bands-now.json). */
+export function dnaNow(asset: string, side: "up" | "down", spot: number, target: number | null | undefined): string | null {
+  if (!DNA_REACH[asset]) return null;
+  let b: DnaBands | null = null;
+  try {
+    const now = JSON.parse(readFileSync(join(process.cwd(), "data", "bands-now.json"), "utf8"));
+    if (now?.at && Date.now() - Date.parse(now.at) > 90000) return "DNA: her lines are stale";
+    b = now?.[asset] ?? null;
+  } catch {
+    return "DNA: her lines could not be read";
+  }
+  return dnaCheck(asset, side, spot, target, b);
+}
+
+let lastLog = "";
+/** Every DNA block, one line each, so you can see exactly what she refused and why. */
+export function dnaLog(asset: string, side: string, label: string, ticker: string, why: string, where: string) {
+  const key = `${ticker}|${side}|${why}`;
+  if (key === lastLog) return;
+  lastLog = key;
+  try {
+    appendFileSync(join(process.cwd(), "data", "dna-blocks.jsonl"), JSON.stringify({ at: new Date().toISOString(), where, asset, side, label, ticker, why }) + "\n");
+  } catch {
+    // log only
+  }
+}

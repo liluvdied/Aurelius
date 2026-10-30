@@ -1,0 +1,21 @@
+{
+ "at": "2026-10-20T04:25:47Z",
+ "lockedBy": "Love",
+ "quote": "Love, Oct 19 ~9:18 PM PT: picked \"Until a close back across\" - a break stays an entry while price holds beyond the line, until a 1m candle closes back across it (her broken-wall law as an entry). v6, re-signed.",
+ "files": {
+  "recon.ts": "907e5c7f32ecbb4b"
+ },
+ "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
+ "signedBy": [
+  {
+   "at": "2026-10-20T00:25:47.125091-07:00",
+   "by": "Love",
+   "quote": "a green candle rising from the bottom 33% of the channel is a long, not just a tap within 30c. a red candle falling from the top 33% of the channel is a short as well. the ideal red/green zones would be $1.50."
+  },
+  {
+   "at": "2026-10-20T02:34:11.454455-07:00",
+   "by": "Love",
+   "quote": "in the event she either misses the entry because the multiple was too low, or because there is a red zone above her that her code rejects the long/short under, if price rejects from that zone and the candle flips, have her enter a trade in the direction of the rejection and she is solid"
+  }
+ ]
+}

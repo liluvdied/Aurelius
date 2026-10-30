@@ -1,0 +1,132 @@
+// MENTIONS · BASE RATES (Claude, Oct 9 ~2:30 PM PT, Love: "can we have the scanner look for inherently obvious stuff like
+// this and paper trade it too... as long as whatever we're trading has a specific reason"). Paper only, $10.
+// The reason is Kalshi's own record: for every word, how often the speaker actually said it across settled events of the
+// same kind (rallies vs everything else). Lesson that started it: "Israel / Israeli" at Trump's Syracuse rally was 52c,
+// but he said it at 2 of his last 5 rallies (40%) and 6 of 22 Trump events overall (27%) - "obvious" was a coin flip.
+// Rules:
+//  - BEFORE the event only: if any word in that event already trades 93c+ (he has said it) the event is live; skip it all.
+//  - 8+ settled events for that word (same kind if it has 8+, else all events of the speaker), and the record has to sit
+//    20+ points away from the price, the side bought costs 10-85c.
+//  - Learning: every settled paper trade is scored; data/mentions-learn.json keeps hit rate by edge size, and the gap
+//    needed rises to 30 points if the 20-30 point bucket is losing after 15+ trades.
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { join } from "node:path";
+const BASE = "https://external-api.kalshi.com/trade-api/v2";
+const STAKE = 100; // Oct 10 (Love: "do it at $100... same with the other scanners paper trades")
+const g = globalThis as unknown as { __mnBusy?: boolean; __mnAt?: number; __mnStatus?: any };
+const D = (f: string) => join(process.cwd(), "data", f);
+const rd = (f: string, dflt: any) => { try { return existsSync(D(f)) ? JSON.parse(readFileSync(D(f), "utf8")) : dflt; } catch { return dflt; } };
+const r2 = (x: number) => Math.round(x * 100) / 100;
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const fee = (p: number, stake: number) => r2(0.07 * p * (1 - p) * (stake / p));
+const norm = (w: string) => String(w || "").toLowerCase().replace(/\s+/g, " ").trim();
+const speaker = (s: string) => (/trump|djt/i.test(s) ? "trump" : s);
+const kind = (title: string) => (/rally/i.test(title) ? "rally" : "other");
+async function get(path: string) {
+  const res = await fetch(BASE + path, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(15000) });
+  if (res.status === 429) { await sleep(4000); throw new Error("429"); }
+  if (!res.ok) throw new Error(String(res.status));
+  return res.json() as Promise<any>;
+}
+type Row = { id: string; ticker: string; event: string; word: string; title: string; side: "yes" | "no"; ask: number; rate: number; n: number; basis: string; at: string; stake: number; fee: number; result: "open" | "win" | "loss" | "void"; pnl: number | null };
+function gapNeeded(): number {
+  const L = rd("mentions-learn.json", {});
+  const b = L?.buckets?.["20-30"];
+  return b && b.n >= 15 && b.p < 0 ? 0.3 : 0.2;
+}
+function learn(rows: Row[]) {
+  const buckets: Record<string, { n: number; w: number; p: number }> = {};
+  for (const r of rows) {
+    if (r.result !== "win" && r.result !== "loss") continue;
+    const gap = Math.abs(r.rate - (r.side === "yes" ? r.ask : 1 - r.ask));
+    const k = gap < 0.3 ? "20-30" : gap < 0.4 ? "30-40" : "40+";
+    const c = (buckets[k] ||= { n: 0, w: 0, p: 0 });
+    c.n++; if (r.result === "win") c.w++; c.p = r2(c.p + (r.pnl || 0));
+  }
+  writeFileSync(D("mentions-learn.json"), JSON.stringify({ at: new Date().toISOString(), buckets, gapNow: gapNeeded() }));
+}
+export async function mentionsTick() {
+  if (g.__mnBusy || Date.now() - (g.__mnAt || 0) < 30 * 60000) return;
+  const H = rd("mentions-history.json", null);
+  if (!H?.markets?.length) return;
+  g.__mnBusy = true;
+  g.__mnAt = Date.now();
+  const status: any = { at: new Date().toISOString(), events: 0, checked: 0, live: [], flags: [], errors: [] };
+  try {
+    // base rates from settled history
+    const stats: Record<string, { y: number; n: number }> = {};
+    for (const m of H.markets) {
+      if (m.st !== "settled" || (m.r !== "yes" && m.r !== "no")) continue;
+      const sp = speaker(m.s), w = norm(m.w);
+      for (const k of [`${sp}|${kind(m.t)}|${w}`, `${sp}|all|${w}`]) { const c = (stats[k] ||= { y: 0, n: 0 }); c.n++; if (m.r === "yes") c.y++; }
+    }
+    const rows: Row[] = rd("mentions-paper.json", []);
+    // settle
+    for (const r of rows.filter((x) => x.result === "open").slice(0, 20)) {
+      try {
+        await sleep(600);
+        const j = await get(`/markets/${encodeURIComponent(r.ticker)}`);
+        const res = String(j?.market?.result || "");
+        if (res !== "yes" && res !== "no") continue;
+        const won = res === r.side;
+        r.result = won ? "win" : "loss";
+        r.pnl = r2(won ? (r.stake / r.ask) * (1 - r.ask) - r.fee : -r.stake - r.fee);
+      } catch (e) { status.errors.push(String(e).slice(0, 80)); }
+    }
+    // open events, fresh prices: only series that had open markets in the last history pull
+    const series = [...new Set(H.markets.filter((m: any) => m.st === "open").map((m: any) => m.s))] as string[];
+    const gap = gapNeeded();
+    for (const s of series) {
+      await sleep(1500);
+      let ms: any[] = [];
+      try { ms = (await get(`/markets?series_ticker=${encodeURIComponent(s)}&status=open&limit=200`))?.markets ?? []; } catch (e) { status.errors.push(String(e).slice(0, 80)); continue; }
+      const byEv: Record<string, any[]> = {};
+      for (const m of ms) (byEv[m.event_ticker] ||= []).push(m);
+      for (const [ev, list] of Object.entries(byEv)) {
+        status.events++;
+        const ya = (m: any) => Number(m.yes_ask_dollars ?? (m.yes_ask != null ? m.yes_ask / 100 : NaN));
+        const na = (m: any) => Number(m.no_ask_dollars ?? (m.no_ask != null ? m.no_ask / 100 : NaN));
+        const live = list.some((m) => !/does not qualify/i.test(String(m.yes_sub_title || "")) && ya(m) >= 0.93);
+        if (live) { status.live.push(ev); continue; }
+        for (const m of list) {
+          status.checked++;
+          const w = norm(m.yes_sub_title || m.subtitle || "");
+          if (!w || /does not qualify/.test(w)) continue;
+          const sp = speaker(s), kd = kind(String(m.title || ""));
+          const same = stats[`${sp}|${kd}|${w}`], all = stats[`${sp}|all|${w}`];
+          const use = same && same.n >= 8 ? { ...same, basis: `${same.y} of ${same.n} ${kd === "rally" ? "rallies" : "events"}` } : all && all.n >= 8 ? { ...all, basis: `${all.y} of ${all.n} events` } : null;
+          if (!use) continue;
+          const rate = use.y / use.n, y = ya(m), no = na(m);
+          let side: "yes" | "no" | null = null, ask = 0;
+          if (rate - y >= gap && y >= 0.1 && y <= 0.85) { side = "yes"; ask = y; }
+          else if (y - rate >= gap && no >= 0.1 && no <= 0.85) { side = "no"; ask = no; }
+          if (!side) continue;
+          const flag = { ticker: m.ticker, event: ev, word: m.yes_sub_title, title: String(m.title || ""), side, ask: r2(ask), rate: r2(rate), n: use.n, basis: use.basis };
+          status.flags.push(flag);
+          const id = `${m.ticker}:${side}`;
+          if (rows.some((r) => r.id === id)) continue;
+          rows.unshift({ ...flag, id, at: new Date().toISOString(), stake: STAKE, fee: fee(ask, STAKE), result: "open", pnl: null });
+        }
+      }
+    }
+    writeFileSync(D("mentions-paper.json"), JSON.stringify(rows.slice(0, 500), null, 1));
+    learn(rows);
+  } catch (e) {
+    status.errors.push(String(e).slice(0, 120));
+  } finally {
+    g.__mnStatus = status;
+    try { writeFileSync(D("mentions-status.json"), JSON.stringify(status, null, 1)); } catch {}
+    g.__mnBusy = false;
+  }
+}
+export function mentions() {
+  const rows: Row[] = rd("mentions-paper.json", []);
+  const done = rows.filter((r) => r.result === "win" || r.result === "loss");
+  return {
+    status: g.__mnStatus || rd("mentions-status.json", null),
+    learn: rd("mentions-learn.json", null),
+    paper: rows.slice(0, 40),
+    open: rows.filter((r) => r.result === "open").length,
+    total: { n: done.length, w: done.filter((r) => r.result === "win").length, p: r2(done.reduce((a, r) => a + (r.pnl || 0), 0)) },
+  };
+}

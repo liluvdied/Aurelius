@@ -1,0 +1,84 @@
+{
+ "at": "2026-10-17T15:56:25.311Z",
+ "ticker": "KXMVECROSSCATEGORY-S2026VCHNI2LQ6FQOXL47-RFJRRIJGA",
+ "minPx": 0.6236999999999999,
+ "quotes": [
+  {
+   "id": "81b43490-ff05-4799-a791-ec17b04d07e8",
+   "yes_bid": 0.702,
+   "no_bid": 0.261,
+   "clean": false
+  },
+  {
+   "id": "246cb8df-bfdc-4c80-8a84-db72a060c263",
+   "yes_bid": 0.687,
+   "no_bid": 0.256,
+   "clean": false
+  },
+  {
+   "id": "caa39949-c1d3-3a54-ca24-b980a66b8841",
+   "yes_bid": 0.685,
+   "no_bid": 0,
+   "clean": true
+  },
+  {
+   "id": "1b836a27-c7a8-418b-9b7a-6fd4a1c527d5",
+   "yes_bid": 0.684,
+   "no_bid": 0,
+   "clean": true
+  },
+  {
+   "id": "168bb8bc-bc20-438a-a2d8-c69f13fbda99",
+   "yes_bid": 0.683,
+   "no_bid": 0,
+   "clean": true
+  },
+  {
+   "id": "14ec84c1-f566-45a6-8cc0-0bb969d2bfc7",
+   "yes_bid": 0.585,
+   "no_bid": 0.157,
+   "clean": false
+  },
+  {
+   "id": "c4396ab2-ffe8-4f88-8c3a-715aa287fdd7",
+   "yes_bid": 0.461,
+   "no_bid": 0,
+   "clean": true
+  },
+  {
+   "id": "93202a26-2e07-4820-8179-70e341b138c4",
+   "yes_bid": 0,
+   "no_bid": 0.092,
+   "clean": false
+  },
+  {
+   "id": "e1a03ee3-2ddd-4dd4-8420-f2e19baffab9",
+   "yes_bid": 0,
+   "no_bid": 0.27,
+   "clean": false
+  },
+  {
+   "id": "e00578bb-593f-4347-ba33-8cba822ef984",
+   "yes_bid": 0,
+   "no_bid": 0.28,
+   "clean": false
+  }
+ ],
+ "tries": [
+  {
+   "side": "yes",
+   "status": 204,
+   "resp": ""
+  }
+ ],
+ "before": 4.59,
+ "sellN": 4.59,
+ "rfqId": "10ad36e5-2ad0-49aa-a9e5-4772966a391f",
+ "quote": {
+  "id": "caa39949-c1d3-3a54-ca24-b980a66b8841",
+  "yb": 0.685
+ },
+ "acceptedSide": "yes",
+ "after": 0,
+ "result": "cashed out 4.59 at 0.685 (~$3.14) with side \"yes\""
+}

@@ -1,0 +1,112 @@
+{
+ "RUN books btc: BTC clear $75 (gates only fire inside $75)": {
+  "n": 88,
+  "changed": 14,
+  "better": 8,
+  "worse": 6,
+  "base": 1179.14,
+  "alt": 999.53,
+  "diff": -179.6
+ },
+ "RUN books btc: no gate exit under 1.25x": {
+  "n": 88,
+  "changed": 12,
+  "better": 8,
+  "worse": 4,
+  "base": 1179.14,
+  "alt": 1070.18,
+  "diff": -108.95
+ },
+ "RUN books btc: no profit exit of ANY kind under 1.25x (hold to the bell)": {
+  "n": 88,
+  "changed": 57,
+  "better": 53,
+  "worse": 4,
+  "base": 1179.14,
+  "alt": 1125.78,
+  "diff": -53.36
+ },
+ "RUN books btc: BOTH ($75 + 1.25x gate floor)": {
+  "n": 88,
+  "changed": 19,
+  "better": 12,
+  "worse": 7,
+  "base": 1179.14,
+  "alt": 986.69,
+  "diff": -192.45
+ },
+ "RUN books gold: BTC clear $75 (gates only fire inside $75)": null,
+ "RUN books gold: no gate exit under 1.25x": {
+  "n": 105,
+  "changed": 1,
+  "better": 1,
+  "worse": 0,
+  "base": 1492.29,
+  "alt": 1498.39,
+  "diff": 6.1
+ },
+ "RUN books gold: no profit exit of ANY kind under 1.25x (hold to the bell)": {
+  "n": 105,
+  "changed": 68,
+  "better": 68,
+  "worse": 0,
+  "base": 1492.29,
+  "alt": 1606.25,
+  "diff": 113.96
+ },
+ "all books btc: BTC clear $75 (gates only fire inside $75)": {
+  "n": 619,
+  "changed": 56,
+  "better": 37,
+  "worse": 19,
+  "base": 7676.9,
+  "alt": 7191.97,
+  "diff": -484.94
+ },
+ "all books btc: no gate exit under 1.25x": {
+  "n": 619,
+  "changed": 46,
+  "better": 35,
+  "worse": 11,
+  "base": 7676.9,
+  "alt": 7459.67,
+  "diff": -217.24
+ },
+ "all books btc: no profit exit of ANY kind under 1.25x (hold to the bell)": {
+  "n": 619,
+  "changed": 420,
+  "better": 408,
+  "worse": 12,
+  "base": 7676.9,
+  "alt": 7940.42,
+  "diff": 263.51
+ },
+ "all books btc: BOTH ($75 + 1.25x gate floor)": {
+  "n": 619,
+  "changed": 74,
+  "better": 53,
+  "worse": 21,
+  "base": 7676.9,
+  "alt": 7226.35,
+  "diff": -450.56
+ },
+ "all books gold: BTC clear $75 (gates only fire inside $75)": null,
+ "all books gold: no gate exit under 1.25x": {
+  "n": 770,
+  "changed": 8,
+  "better": 8,
+  "worse": 0,
+  "base": 9768.66,
+  "alt": 9818.43,
+  "diff": 49.77
+ },
+ "all books gold: no profit exit of ANY kind under 1.25x (hold to the bell)": {
+  "n": 770,
+  "changed": 520,
+  "better": 519,
+  "worse": 1,
+  "base": 9768.66,
+  "alt": 10611.33,
+  "diff": 842.67
+ }
+}

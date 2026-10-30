@@ -1,0 +1,25 @@
+{
+ "btcTradesThisWeek": 187,
+ "losers": 85,
+ "losersDollars": -1060.39,
+ "winners": 102,
+ "losersBlockedOnOanda": 71,
+ "losersBlockedOnPep": 10,
+ "pepCaughtLosersOandaMissed": {
+  "n": 0,
+  "dollars": 0
+ },
+ "pepWouldAlsoBlockWinners": {
+  "n": 0,
+  "dollars": 0
+ },
+ "oandaBlockedButPepClearLosers": {
+  "n": 61,
+  "dollars": -833.6
+ },
+ "oandaBlockedButPepClearWinners": {
+  "n": 78,
+  "dollars": 730.84
+ },
+ "caught": []
+}

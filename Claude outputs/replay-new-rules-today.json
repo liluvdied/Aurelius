@@ -1,0 +1,242 @@
+[
+ {
+  "pt": "10:31 AM",
+  "side": "up",
+  "pnl": -0.35,
+  "label": "Rising, broke up through 5m PP",
+  "new": "same trade",
+  "newW": false
+ },
+ {
+  "pt": "10:15 AM",
+  "side": "down",
+  "pnl": 0.12,
+  "label": "Falling, broke down through -2.5σ",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "09:45 AM",
+  "side": "down",
+  "pnl": 0.69,
+  "label": "Broken -2.5σ (price still below)",
+  "new": "B: waits at -2.5σ, then LONG at 09:48",
+  "newW": false
+ },
+ {
+  "pt": "09:30 AM",
+  "side": "up",
+  "pnl": -0.6,
+  "label": "LONG - the other side (short refused: short into -3σ (unbroken, closest band); was: Broken",
+  "new": "same trade",
+  "newW": false
+ },
+ {
+  "pt": "09:15 AM",
+  "side": "up",
+  "pnl": -0.6,
+  "label": "LONG - the other side (short refused: would short into -2.5σ 0.44 below (needs more than 1",
+  "new": "A: waits (too-close flip)",
+  "newW": null
+ },
+ {
+  "pt": "09:03 AM",
+  "side": "up",
+  "pnl": 0.35,
+  "label": "Rising, broke up through -2.5σ",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "08:45 AM",
+  "side": "down",
+  "pnl": 0.56,
+  "label": "Falling, broke down through -1.5σ (since last 5m)",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "08:30 AM",
+  "side": "down",
+  "pnl": 0.9,
+  "label": "Broken -1σ (price still below)",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "08:15 AM",
+  "side": "down",
+  "pnl": 0.93,
+  "label": "SHORT - the other side (long refused: long into session VWAP (unbroken, closest band); was",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "08:00 AM",
+  "side": "down",
+  "pnl": -0.99,
+  "label": "Falling, broke down through 5m PP",
+  "new": "same trade",
+  "newW": false
+ },
+ {
+  "pt": "07:52 AM",
+  "side": "up",
+  "pnl": 0.53,
+  "label": "Rising, broke up through -0.5σ",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "07:30 AM",
+  "side": "down",
+  "pnl": -0.84,
+  "label": "SHORT - the other side (long refused: would long into -0.5σ 12.04 above (needs more than 1",
+  "new": "A: waits (too-close flip)",
+  "newW": null
+ },
+ {
+  "pt": "07:15 AM",
+  "side": "down",
+  "pnl": -0.81,
+  "label": "Falling, broke down through -1.5σ (since last 5m)",
+  "new": "B: waits at -1.5σ, then SHORT at 07:17",
+  "newW": false
+ },
+ {
+  "pt": "07:02 AM",
+  "side": "down",
+  "pnl": 0.72,
+  "label": "Falling, broke down through 5m PP (since last 5m)",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "06:45 AM",
+  "side": "down",
+  "pnl": -0.8,
+  "label": "Broken -1.5σ (price still below)",
+  "new": "B: waits at -1.5σ, then LONG at 06:51",
+  "newW": true
+ },
+ {
+  "pt": "06:30 AM",
+  "side": "up",
+  "pnl": -0.65,
+  "label": "LONG - the other side (short refused: would short into 5m PP 0.71 below (needs more than 1",
+  "new": "A: waits (too-close flip)",
+  "newW": null
+ },
+ {
+  "pt": "06:15 AM",
+  "side": "up",
+  "pnl": 0.43,
+  "label": "Rising, broke up through 5m PP",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "06:00 AM",
+  "side": "down",
+  "pnl": 0.87,
+  "label": "SHORT - the other side (long refused: would long into 5m PP 4.44 above (needs more than 12",
+  "new": "A: waits (too-close flip)",
+  "newW": null
+ },
+ {
+  "pt": "05:45 AM",
+  "side": "down",
+  "pnl": 0.86,
+  "label": "SHORT - the other side (long refused: would long into -1σ 9.08 above (needs more than 12.4",
+  "new": "A: waits (too-close flip)",
+  "newW": null
+ },
+ {
+  "pt": "05:30 AM",
+  "side": "up",
+  "pnl": -0.95,
+  "label": "Rising, broke up through 5m PP",
+  "new": "same trade",
+  "newW": false
+ },
+ {
+  "pt": "05:15 AM",
+  "side": "up",
+  "pnl": -0.73,
+  "label": "LONG - the other side (short refused: would short into -1σ 3.40 below (needs more than 12.",
+  "new": "A: waits (too-close flip)",
+  "newW": null
+ },
+ {
+  "pt": "05:00 AM",
+  "side": "down",
+  "pnl": 0.77,
+  "label": "SHORT - the other side (long refused: would long into 5m PP 12.35 above (needs more than 1",
+  "new": "A: waits (too-close flip)",
+  "newW": null
+ },
+ {
+  "pt": "04:45 AM",
+  "side": "down",
+  "pnl": 0.82,
+  "label": "Rejected down off -0.5σ",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "04:30 AM",
+  "side": "up",
+  "pnl": 0.91,
+  "label": "LONG - the other side (short refused: short into -1σ (unbroken, closest band); was: Fallin",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "04:15 AM",
+  "side": "down",
+  "pnl": 0.68,
+  "label": "Rejected down off 5m PP",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "04:00 AM",
+  "side": "up",
+  "pnl": 0.61,
+  "label": "Rising, broke up through 5m PP",
+  "new": "B: waits at +0.5σ, then LONG at 04:02",
+  "newW": true
+ },
+ {
+  "pt": "03:45 AM",
+  "side": "up",
+  "pnl": -0.91,
+  "label": "LONG - the other side (short refused: would short into 5m PP 5.53 below (needs more than 1",
+  "new": "A: waits (too-close flip)",
+  "newW": null
+ },
+ {
+  "pt": "03:30 AM",
+  "side": "up",
+  "pnl": 0.59,
+  "label": "Rising, broke up through 5m PP (since last 5m)",
+  "new": "same trade",
+  "newW": true
+ },
+ {
+  "pt": "03:15 AM",
+  "side": "up",
+  "pnl": 0.61,
+  "label": "Rejected up off -0.5σ",
+  "new": "B: waits at -0.5σ, then LONG at 03:18",
+  "newW": true
+ },
+ {
+  "pt": "02:45 AM",
+  "side": "down",
+  "pnl": 5.92,
+  "label": "Rejected down off +0.5σ",
+  "new": "B: waits at +0.5σ, then LONG at 02:49",
+  "newW": false
+ }
+]

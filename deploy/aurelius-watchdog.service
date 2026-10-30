@@ -1,0 +1,6 @@
+[Unit]
+Description=Aurelius heartbeat check
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/aurelius-watchdog

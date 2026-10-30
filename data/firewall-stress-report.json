@@ -1,0 +1,55 @@
+{
+ "at": "2026-10-20T02:02:21.617714-07:00",
+ "firewall": "chmod 444 files / 555 dirs across src/**, snapshots/**, tools/**, AGENTS.project.md, package.json, and the law files",
+ "wall_tests": "15 attack vectors attempted against the LIVE walls: append, overwrite, delete, rename-over (.bak restore), plant-new-file, vault tamper, sentinel rewrite, verify-tool edit - ALL blocked (PermissionError). Runtime state, logs, her UI levers, and code reads all still work.",
+ "horizons": {
+  "one week": {
+   "mutation_attempts_blocked": "15/15 - file modes do not expire; the walls at day 7 are the walls of tonight",
+   "autonomous_writers_into_frozen_set": "0 of 177 write sites in her code target any frozen file - over 7 days the desk cannot touch its own law even once",
+   "date_triggered_behavior_flips": "0 - no hard-coded future-date branches exist in src/lib/desk; hour/day scheduling comes only from her baseline-locked config",
+   "time_driven_mechanisms": {
+    "quietWatch (20-min janitor)": "sealed Oct 20 1:41 AM: may clear only the hit-rate pause, never a breaker halt; writes runtime state only",
+    "breaker (2h loss / 9-streak / backwards / model sentinel)": "halts only - the safe direction; checks all 113 fingerprints every pass",
+    "paceGuard (hit-rate pause)": "pauses entries only - safe direction; her configured safety",
+    "session-band 4 PM handover": "reads market data, writes runtime band state only - never code or config",
+    "recon-top 5-min 70% recompute": "reads the shared book, recomputes in memory - writes nothing frozen",
+    "add-on registry / half75 / window locks": "runtime state in data/ only",
+    "her scheduled checks (hourly, noon/midnight)": "READ ONLY by prompt; compare against the frozen baseline; editing them requires her account = her side of the desk",
+    "npm / OS / build cache": "node_modules and .next are never law; changing dependencies requires her shell = her side of the desk"
+   },
+   "verdict": "NO un-permitted shift in code, entry logic, execution, or baseline is reachable in one week - every mutation path ends at a PermissionError, a breaker halt, or a loud alert to Love"
+  },
+  "one month": {
+   "mutation_attempts_blocked": "15/15 - file modes do not expire; the walls at day 30 are the walls of tonight",
+   "autonomous_writers_into_frozen_set": "0 of 177 write sites in her code target any frozen file - over 30 days the desk cannot touch its own law even once",
+   "date_triggered_behavior_flips": "0 - no hard-coded future-date branches exist in src/lib/desk; hour/day scheduling comes only from her baseline-locked config",
+   "time_driven_mechanisms": {
+    "quietWatch (20-min janitor)": "sealed Oct 20 1:41 AM: may clear only the hit-rate pause, never a breaker halt; writes runtime state only",
+    "breaker (2h loss / 9-streak / backwards / model sentinel)": "halts only - the safe direction; checks all 113 fingerprints every pass",
+    "paceGuard (hit-rate pause)": "pauses entries only - safe direction; her configured safety",
+    "session-band 4 PM handover": "reads market data, writes runtime band state only - never code or config",
+    "recon-top 5-min 70% recompute": "reads the shared book, recomputes in memory - writes nothing frozen",
+    "add-on registry / half75 / window locks": "runtime state in data/ only",
+    "her scheduled checks (hourly, noon/midnight)": "READ ONLY by prompt; compare against the frozen baseline; editing them requires her account = her side of the desk",
+    "npm / OS / build cache": "node_modules and .next are never law; changing dependencies requires her shell = her side of the desk"
+   },
+   "verdict": "NO un-permitted shift in code, entry logic, execution, or baseline is reachable in one month - every mutation path ends at a PermissionError, a breaker halt, or a loud alert to Love"
+  },
+  "one year": {
+   "mutation_attempts_blocked": "15/15 - file modes do not expire; the walls at day 365 are the walls of tonight",
+   "autonomous_writers_into_frozen_set": "0 of 177 write sites in her code target any frozen file - over 365 days the desk cannot touch its own law even once",
+   "date_triggered_behavior_flips": "0 - no hard-coded future-date branches exist in src/lib/desk; hour/day scheduling comes only from her baseline-locked config",
+   "time_driven_mechanisms": {
+    "quietWatch (20-min janitor)": "sealed Oct 20 1:41 AM: may clear only the hit-rate pause, never a breaker halt; writes runtime state only",
+    "breaker (2h loss / 9-streak / backwards / model sentinel)": "halts only - the safe direction; checks all 113 fingerprints every pass",
+    "paceGuard (hit-rate pause)": "pauses entries only - safe direction; her configured safety",
+    "session-band 4 PM handover": "reads market data, writes runtime band state only - never code or config",
+    "recon-top 5-min 70% recompute": "reads the shared book, recomputes in memory - writes nothing frozen",
+    "add-on registry / half75 / window locks": "runtime state in data/ only",
+    "her scheduled checks (hourly, noon/midnight)": "READ ONLY by prompt; compare against the frozen baseline; editing them requires her account = her side of the desk",
+    "npm / OS / build cache": "node_modules and .next are never law; changing dependencies requires her shell = her side of the desk"
+   },
+   "verdict": "NO un-permitted shift in code, entry logic, execution, or baseline is reachable in one year - every mutation path ends at a PermissionError, a breaker halt, or a loud alert to Love"
+  }
+ }
+}

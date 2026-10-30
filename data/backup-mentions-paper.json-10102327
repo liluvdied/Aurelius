@@ -1,0 +1,53 @@
+[
+ {
+  "ticker": "KXDEBATEMENTION-26OCT21-CORR",
+  "event": "KXDEBATEMENTION-26OCT21",
+  "word": "Corrupt / Corruption",
+  "title": "What will any participating candidate say during Iowa Press Debates: Governor originally scheduled for October 21, 2026?",
+  "side": "no",
+  "ask": 0.29,
+  "rate": 0.5,
+  "n": 8,
+  "basis": "4 of 8 events",
+  "id": "KXDEBATEMENTION-26OCT21-CORR:no",
+  "at": "2026-10-09T21:24:04.644Z",
+  "stake": 10,
+  "fee": 0.5,
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "ticker": "KXDEBATEMENTION-26OCT13-CORR",
+  "event": "KXDEBATEMENTION-26OCT13",
+  "word": "Corrupt / Corruption",
+  "title": "What will any participating candidate say during Atlanta Press Club debate for Georgia U.S. Senate originally scheduled for October 13, 2026?",
+  "side": "no",
+  "ask": 0.27,
+  "rate": 0.5,
+  "n": 8,
+  "basis": "4 of 8 events",
+  "id": "KXDEBATEMENTION-26OCT13-CORR:no",
+  "at": "2026-10-09T21:24:04.644Z",
+  "stake": 10,
+  "fee": 0.51,
+  "result": "open",
+  "pnl": null
+ },
+ {
+  "ticker": "KXDEBATEMENTION-26OCT13-DATA",
+  "event": "KXDEBATEMENTION-26OCT13",
+  "word": "Data Center",
+  "title": "What will any participating candidate say during Atlanta Press Club debate for Georgia U.S. Senate originally scheduled for October 13, 2026?",
+  "side": "yes",
+  "ask": 0.79,
+  "rate": 1,
+  "n": 9,
+  "basis": "9 of 9 events",
+  "id": "KXDEBATEMENTION-26OCT13-DATA:yes",
+  "at": "2026-10-09T21:24:04.644Z",
+  "stake": 10,
+  "fee": 0.15,
+  "result": "open",
+  "pnl": null
+ }
+]

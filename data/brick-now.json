@@ -1,0 +1,20 @@
+{
+ "btc": {
+  "asset": "btc",
+  "at": "2026-10-29T04:31:13.295Z",
+  "spot": 79808.71,
+  "target": 79822.98,
+  "signal": null,
+  "side": null,
+  "verdict": "long and short signals at once: no trade"
+ },
+ "gold": {
+  "asset": "gold",
+  "at": "2026-10-29T04:31:13.295Z",
+  "spot": 4036.743,
+  "target": 4036.87,
+  "signal": null,
+  "side": null,
+  "verdict": "long and short signals at once: no trade"
+ }
+}

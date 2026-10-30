@@ -1,0 +1,375 @@
+{
+  "at": "2026-10-23T04:16:19.712268+00:00",
+  "lockedBy": "Love",
+  "quote": "Love, Oct 19 ~9:18 PM PT: picked \"Until a close back across\" - a break stays an entry while price holds beyond the line, until a 1m candle closes back across it (her broken-wall law as an entry). v6, re-signed.",
+  "files": {
+    "recon.ts": "5b48e5b0a98245e1"
+  },
+  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
+  "signedBy": [
+    {
+      "at": "2026-10-20T00:25:47.125091-07:00",
+      "by": "Love",
+      "quote": "a green candle rising from the bottom 33% of the channel is a long, not just a tap within 30c. a red candle falling from the top 33% of the channel is a short as well. the ideal red/green zones would be $1.50."
+    },
+    {
+      "at": "2026-10-20T02:34:11.454455-07:00",
+      "by": "Love",
+      "quote": "in the event she either misses the entry because the multiple was too low, or because there is a red zone above her that her code rejects the long/short under, if price rejects from that zone and the candle flips, have her enter a trade in the direction of the rejection and she is solid"
+    },
+    {
+      "at": "2026-10-20T07:42:58.329413-07:00",
+      "by": "Love",
+      "quote": "keep a snapshot of this model entirely as she is. make a twin that only does rejections - shorts top band, longs bottom band - that is what the first model did and it was the most successful bc every trade ends up coming back most of the time"
+    },
+    {
+      "at": "2026-10-20T07:51:08.181874-07:00",
+      "by": "Love",
+      "quote": "remember i asked you to have her short a candle falling in the top 33% and long a rising candle in the bottom 33%? not the 30c tap. we talked about this last night. that would have made her short"
+    },
+    {
+      "at": "2026-10-20T08:01:43.523929-07:00",
+      "by": "Love",
+      "quote": "she is clear to take the other side if she doesn't execute a decision in the other. only one EXECUTED direction per window. if she doesn't take a long initially, she is clear to short afterwards. vis versa"
+    },
+    {
+      "at": "2026-10-20T08:58:18.842096-07:00",
+      "by": "Love",
+      "quote": "30 cents is not a thing. bottom 33% = long, top 33% = short. does not need a candle flip. only the pink band needs a candle flip. just a rejection at the band."
+    },
+    {
+      "at": "2026-10-20T09:28:24.075657-07:00",
+      "by": "Love",
+      "quote": "yes. nothing else. (extend her entry retry to cover the empty-book seconds at every window open, for all her signals)"
+    },
+    {
+      "at": "2026-10-20T14:20:00-07:00",
+      "by": "Love",
+      "quote": "have her use the bollinger bands for btc until they widen back out in an hour or so ... session carry bands ... and the pink band as usual / make sure that my position sizing slider in the settings works (recon bones see BB upper/lower on BTC until 3:15 PM PT today)"
+    },
+    {
+      "at": "2026-10-20T15:22:00-07:00",
+      "by": "Love",
+      "quote": "can you implement the bollinger bands for gold while the bands are still small after-session? they should widen out within the hour for both. until then gold can trade off of those and the pink band as always (recon bones see BB upper/lower on gold + BTC until 4:20 PM PT)"
+    },
+    {
+      "at": "2026-10-20T15:40:00-07:00",
+      "by": "Love",
+      "quote": "only one EXECUTED direction per window (Oct 20 8:00 AM) + make sure nothing else can slip past her new code ... accurate read of her performance (2:37 PM) (no re-aim while an opening order for the market is on the wire)"
+    },
+    {
+      "at": "2026-10-20T16:51:00-07:00",
+      "by": "Love",
+      "quote": "please change a candle rising in the bottom 33% of the channel to a long / candle falling in the top 33% a short / no shorts in the bottom 33% of the channel / no longs in the top 33% of the channel / please reinforce it it didn't work (one channel incl. gold R/S + pink + BB; rising/falling thirds outrank breaks; no long top share / no short bottom share at the bones)"
+    },
+    {
+      "at": "2026-10-20T16:54:00-07:00",
+      "by": "Love",
+      "quote": "Both fixes (recommended) - Should I close the 'fake break' hole on gold and BTC?"
+    },
+    {
+      "at": "2026-10-20T17:03:00-07:00",
+      "by": "Love",
+      "quote": "longs only in the bottom 33% with an unbroken band / shorts only in the top 33% if there is an unbroken band there / price falling or rising in either is a trade in that direction please / reinforce that please"
+    },
+    {
+      "at": "2026-10-20T19:20:00-07:00",
+      "by": "Love (her words, Oct 20 7:12 PM PT)",
+      "sha": "7077d6bf0cd03e83",
+      "quote": "pls keep the band tolerance frozen into her arhcitecture, so she doesn't recognize a trade as a long into a band within 33% of the top of the channel , and only sees that trade as a short ... a green candle in the bottom 33% of the channel is only registered to her as a long, never a short"
+    },
+    {
+      "at": "2026-10-20T19:50:00-07:00",
+      "by": "Love (decision card, 7:48 PM PT)",
+      "sha": "ffe9d87647ab1ca0",
+      "quote": "picked \"Launch rule + drop the poke veto\" (Should a rise from the bottom third stay a long until the top third?)"
+    },
+    {
+      "at": "2026-10-20T19:52:00-07:00",
+      "by": "Love (her words, 7:49 PM PT)",
+      "sha": "7d109bf06a2dad59",
+      "quote": "yes shes clear to long the whole whole up, just not in the top 33% of the channel hun. same for shorts"
+    },
+    {
+      "at": "2026-10-20T19:53:00-07:00",
+      "by": "Love (her words, 7:51 PM PT)",
+      "sha": "0d2e59b70ef24d79",
+      "quote": "price now broke the vwap and pink down, she should short here"
+    },
+    {
+      "at": "2026-10-20T20:09:00-07:00",
+      "by": "Love (her words, 8:07 PM PT)",
+      "sha": "56fef21202dfe421",
+      "quote": "she is clear to long a rising candle ... anywhere but the top 33% of the channel, same for shorts on a falling candle ... til she reaches the bottom 33 % of the channel, that is her limit - hardwired into her architecture , no other method of operations"
+    },
+    {
+      "at": "2026-10-20T21:42:00-07:00",
+      "by": "Love (her words, 9:37 PM PT)",
+      "sha": "bc72989631cc156a",
+      "quote": "during her off hours i'd like to implement a delayed entry model to trade at $1 - same frame, same everything, just waits out the initial move, and enters on the other side of the window"
+    },
+    {
+      "at": "2026-10-21T04:57:57.819345+00:00",
+      "by": "Love (her words, 9:54 PM PT)",
+      "sha": "b278073fff308303",
+      "quote": "we can go ahead and do $2 for her off hours hun ... if price has broken the pink, but still hasn't broken the session band above , it's still a long into an unbroken band in the top 33% of the channel, inverse applies / she can trade the break if price is on the same side of the break at the time of her entry ok / if it breaks and comes back on the other side of the band, it's a rejection until price goes on the other side of the band in the direction it broke / can you wire that in?"
+    },
+    {
+      "at": "2026-10-21T05:47:47.551663+00:00",
+      "by": "Love (her pick, 10:47 PM PT)",
+      "sha": "ab786b5bc0b63e07",
+      "quote": "Picked \"No chase past 2\u03c3\" on \"Stop her chasing moves that are already stretched far from VWAP?\" (no long 2\u03c3+ above VWAP, no short 2\u03c3+ below; fades back toward VWAP stay allowed)"
+    },
+    {
+      "at": "2026-10-21T06:19:47.753826+00:00",
+      "by": "Love (her words, 11:18 PM PT)",
+      "sha": "00b22708889fcc33",
+      "quote": "$10 position sizes for the evening / $2 position sizes on the delayed entry model, ensure that she waits for the initial move that our main book took to run into the next band it encounters, after our main book has already entered / and to enter as she would at any other time, in the opposite direction"
+    },
+    {
+      "at": "2026-10-21T17:10:13.713872+00:00",
+      "by": "Love",
+      "quote": "she didn\u2019t enter on the delayed entry model bb / we will have her use the bollinger band extremes for those okay \u2763\ufe0f a rejection off of one ok\ud83e\ude77"
+    },
+    {
+      "at": "2026-10-21T17:17:50.998006+00:00",
+      "by": "Love",
+      "quote": "sorrrry i should clarify, if it hits a bollinger band and rejects that\u2019s an entry on the delayed book / if it hits a band and rejects that\u2019s also an entry on on that book as well / so just an extra point of reference for her on those ok \ud83e\ude77"
+    },
+    {
+      "at": "2026-10-21T17:28:35.651038+00:00",
+      "by": "Love",
+      "quote": "yes, on btc just now it rejected off the first band below, then rejected from the band above afterwards, so she\u2019d enter there on the second interaction with any of them - after the first interaction with a band passes ... then we keep the delayed entry model on for $2 during her off hours / (10:27 AM) so she\u2019d wait for the second rejection at the red ... just the second interaction with a band, they may line up with each other on occasion that\u2019s ok ... whichever the second band it interacts with dictates bb"
+    },
+    {
+      "at": "2026-10-21T17:32:19.478303+00:00",
+      "by": "Love",
+      "quote": "so now that btc broke the band up, our delayed entry book would long on that break when our main book went short"
+    },
+    {
+      "at": "2026-10-21T17:37:54.036903+00:00",
+      "by": "Love",
+      "quote": "yes pls \u2763\ufe0f [fresh slate for the delayed book\u2019s record] ... and gold should be shorted when it hits a 4x here if there is no band nearby , just once our main books trade has been in profit and the other side hits a 4x - only if there\u2019s no band nearby ok"
+    },
+    {
+      "at": "2026-10-21T17:48:34.963233+00:00",
+      "by": "Love",
+      "quote": "Love picked \"Last 5m candle only\" on \"Limit a standing break to this window?\" (10:48 AM PT) - after the 10:40 AM gold \"Break below +2\u03c3\" from a ~8:40 AM cross"
+    },
+    {
+      "at": "2026-10-21T17:50:09.566918+00:00",
+      "by": "Love",
+      "quote": "hun this is the same mistake that we\u2019ve been running into all week, a break only casts from the current candle. not two hours later. please ensure that it only counts for the current candle. and can never shift from that okay ... only the current candle can dictate a break. not hours later."
+    },
+    {
+      "at": "2026-10-21T17:55:50.239539+00:00",
+      "by": "Love",
+      "quote": "hun, trade the band where price CURRENTLY is ... if there is a 1m close above or below a band, trade as normal. that\u2019s it. nothing else to it. not a close from hours later. where price currently is."
+    },
+    {
+      "at": "2026-10-21T18:13:03.283440+00:00",
+      "by": "Love",
+      "quote": "Love picked \"Session bands + pink only\" on \"How should gold measure its thirds when pivots squeeze the channel?\" (11:12 AM PT) - gold\u2019s thirds measure like BTC\u2019s: VWAP, sigmas and pink; R1/R2/S1/S2 still count as bands for rejections and breaks"
+    },
+    {
+      "at": "2026-10-21T18:14:03.488951+00:00",
+      "by": "Love",
+      "quote": "Love picked \"Drop the 2\u03c3 rule\" on \"Past 2\u03c3, what should she do instead of shorting?\" (11:12 AM PT) - longs past 2\u03c3 open again under her normal thirds and candle rules"
+    },
+    {
+      "at": "2026-10-21T18:16:30.123661+00:00",
+      "by": "Love",
+      "quote": "yes the distance of 33% from the top or bottom of the channel was only ever supposed to apply to the session bands hun ... the TOP line, of the whole channel, and the BOTTOM line. of the whole channel. she can\u2019t trade the breaks in the direction of those. she can trade the rejections of the bottom line or top line of the whole channel, not the breaks of them."
+    },
+    {
+      "at": "2026-10-21T18:29:13.298355+00:00",
+      "by": "Love",
+      "quote": "it should be the next band price interacts with hun. ... if our main book went long, if price goes up and taps the next band, short. delayed entry. that's it / no longs in the top 33% get out under any circumstances / no shorts in the bottom 33% into an unbroken band, ever ever ever"
+    },
+    {
+      "at": "2026-10-21T18:37:21.877688+00:00",
+      "by": "Love",
+      "quote": "it should be the next band price interacts with hun ... the next band price interacts with. / she didn't enter anything on the rejections after the initial move hun. please see what's causing her to not enter on the delayed book"
+    },
+    {
+      "at": "2026-10-21T18:43:56.139381+00:00",
+      "by": "Love",
+      "quote": "please stop having it flip the trades it says she took ... i need it to stay the one trade she would have taken at the beginning of the window and stay there / and then wait for price to interact with the next band from the main books entry, and then enter in on the delayed model. that's all hun"
+    },
+    {
+      "at": "2026-10-21T19:08:36.053632+00:00",
+      "by": "Love",
+      "quote": "hun it just needs to be a 1m close off of a rejected band / picked \"Yes, 1m close off the band is enough\""
+    },
+    {
+      "at": "2026-10-21T20:25:47.166751+00:00",
+      "by": "Love",
+      "quote": "hun it just needs to be a 1m close off of a rejected band (bug fix: pivot lines rejected only inside their own 5m candle)"
+    },
+    {
+      "at": "2026-10-21T20:44:13.454551+00:00",
+      "by": "Love",
+      "quote": "in the event of a pink break, if there is a bollinger band before the green zone is ever reached, (like this one) have her skip the short. wait til price rejects off the bollinger band, when price breaks up past the pink line (if it does) enter in on the break"
+    },
+    {
+      "at": "2026-10-21T21:07:13.382271+00:00",
+      "by": "Love",
+      "quote": "Love picked \"Yes, wait for real ticks\" on: Have her wait out a frozen feed before making the opening call? (2:06 PM PT)"
+    },
+    {
+      "at": "2026-10-21T21:42:11.809981+00:00",
+      "by": "Love",
+      "quote": "Love 2:41 PM PT: \"yes the next band interaction after the initial move took place already (whether main book was in or not) is good hun\" + picked \"Yes, count from the open\""
+    },
+    {
+      "at": "2026-10-21T23:37:02.769511+00:00",
+      "by": "Love",
+      "quote": "Love picked \"Yes, a different band only\" and \"Rejection only, other side\": \"if the main book correctly went short, she should have longed when btc went down from the initial move, and tapped the next band (down for shorts, next band up for longs) and rejected - that's the model\" (4:35 PM PT)"
+    },
+    {
+      "at": "2026-10-22T01:23:03.484577+00:00",
+      "by": "Love",
+      "quote": "Love picked \"Yes, that's the model\" (open-space entry: first band in main's direction is the twin's) + \"just have her take the entry at the next band price reaches ... no need to wait for a rejection ... after the initial move, next band price touches\" (6:15 PM PT) + \"it still applies if it doesn't touch the band ... rising or falling in the top 33% or bottom 33%\" (6:18 PM PT)"
+    },
+    {
+      "at": "2026-10-22T01:52:38.336311+00:00",
+      "by": "Love",
+      "quote": "Love picked \"Yes, zones count for the twin\": the DELAYED twin's near-band turn measures her thirds with pink, red/green zones, session bands and Bollinger as edges (\"when it rejected near the red and reversed, she's clear to enter in the other direction\", 6:43 PM PT)"
+    },
+    {
+      "at": "2026-10-22T02:36:05.185032+00:00",
+      "by": "Love",
+      "quote": "Love: \"i'd like to have it not need the tap exactly ... price falling near the band is also acceptable for the delayed entry model ... she's good to short anywhere EXCEPT the bottom 33% of the channel, and good to long anywhere except the top 33% like we implemented for our main book\" (7:35 PM PT) + picked \"Any turn, outside the wrong third\""
+    },
+    {
+      "at": "2026-10-22T03:05:21.757530+00:00",
+      "by": "Love",
+      "quote": "Love: \"yess we can make it let's make it $33 for btc / nonetheless i do want her to be able to short a candle falling from the band above anywhere but the bottom 33% of the channel / and be able to long anywhere but the top 33% / if a candle has rejected a band and is moving off away from it / we can put that in place for the main book as well\" (7:54 PM PT) + \"stands for gold as well / but taps and rejections can be valid at a distance of $1.50 at the present moment\" (7:57 PM PT)"
+    },
+    {
+      "at": "2026-10-22T04:06:12.648854+00:00",
+      "by": "Love",
+      "quote": "Love 3:21 PM PT: \"and for 3-4 pm like we discussed yesterday she can use the pink band and the red /green zones and the bollingers until the session bands open up a bit more okay\" + picked \"Yes, exactly that\" (3:33 PM)"
+    },
+    {
+      "at": "2026-10-22T04:06:12.685166+00:00",
+      "by": "Love",
+      "quote": "Love picked \"Reach $50 on BTC\" on \"Widen how close counts as a pink rejection on BTC?\" (9:05 PM PT)"
+    },
+    {
+      "at": "2026-10-22T04:22:35.766228+00:00",
+      "by": "Love",
+      "quote": "Love: \"if price rejects near a band, red candle falling from the session band above, or red candle falling rejected from pink - she is clear to short anywhere in the channel, except the bottom 33% ... so a rejection doesn't need to be limited to $50 for btc\" (9:12 PM PT) + picked \"20% of channel width\""
+    },
+    {
+      "at": "2026-10-22T04:22:35.796756+00:00",
+      "by": "Love",
+      "quote": "Love: \"the trades didn't make it kalshi hun, and gold should be short - it says its long on paper\" (9:15 PM PT) + picked \"Yes, next passing call books\""
+    },
+    {
+      "at": "2026-10-22T04:52:02.921318+00:00",
+      "by": "Love",
+      "quote": "Love: \"let's keep that in place for session bands have her consider anything over $6 a break for the pink band and we should be good hun ... i really liked how she waited for a rejection or a break before\" (9:49 PM PT)"
+    },
+    {
+      "at": "2026-10-22T05:22:10.923963+00:00",
+      "by": "Love",
+      "quote": "Love 10:20 PM PT: \"let's keep everything as it is, only let's make it $10 for a tap near a pink for btc instead of $3\""
+    },
+    {
+      "at": "2026-10-22T05:39:41.279359+00:00",
+      "by": "Love",
+      "quote": "Love 10:36 PM PT: \"next time i do want her to long a candle rising in the bottom 33% and short a candle falling in the top 33%\" + picked \"Drop it, take her candle's side\" (10:38 PM)"
+    },
+    {
+      "at": "2026-10-22T05:46:47.839027+00:00",
+      "by": "Love",
+      "quote": "Love 10:45 PM PT: \"no we changed it, to a rejection with a green 1M candle push away from the band bc she longed into an actively red candle when we had the flip on. so no flip ok 1M green candle push off the band\""
+    },
+    {
+      "at": "2026-10-22T05:50:47.629715+00:00",
+      "by": "Love",
+      "quote": "Love 10:46 PM PT: \"she still just shorted btc while it was under the old regime ... she was far from the pink pls update it\" + 10:50 PM \"back to her tap hun, @ $10 instead of $3\" (\"$10 on BTC like the pink\""
+    },
+    {
+      "at": "2026-10-22T05:53:57.712358+00:00",
+      "by": "Love",
+      "quote": "Love 10:50 PM PT: \"i do want her to be able to trade a red candle that rejected & is falling from the top 33%, and a green candle rising from the bottom 33% at the same time ... if the green/red candle rising/falling didn't tap within $10 of the band i still want her to be able to trade those\" + picked \"Yes, exactly that\""
+    },
+    {
+      "at": "2026-10-22T06:08:47.448595+00:00",
+      "by": "Love",
+      "quote": "Love 11:07 PM PT: \"let's just update it to not trade the break of a pink downwards if a bollinger band is within $100 okay ... have her skip the short if the bollinger band below is within $100 of the pink band / if it breaks the pink up afterwards she is clear to long / or at the rejection of the bollinger band\""
+    },
+    {
+      "at": "2026-10-22T06:28:14.458384+00:00",
+      "by": "Love",
+      "quote": "Love 11:27 PM PT: \"just have her short the rejection of the bollinger bands like we talked about and we're good for tonight\" (11:07 PM: \"or at the rejection of the bollinger band like we talked about if it is in her clear zone and fits all her other rules\")"
+    },
+    {
+      "at": "2026-10-22T09:05:16.079960+00:00",
+      "by": "Love",
+      "quote": "Love 2:04 AM PT: \"let's have her only long off the green zone if the 5M candle is green from now on okay / session bands can remain the 1M close and push off of okay / red candle falling off of the pink band is still a short\""
+    },
+    {
+      "at": "2026-10-22T09:09:55.759882+00:00",
+      "by": "Love",
+      "quote": "Love 2:09 AM PT: \"she's good to do that on the delayed book, not the main one going forward okay ... the green candle pushing up is fine in the green zone for btc or red candle pushing off\""
+    },
+    {
+      "at": "2026-10-22T10:07:03.792823+00:00",
+      "by": "Love",
+      "quote": "Love 3:04 AM PT: \"she shorted btc on a pink rejection. that was supposed to be a long there\" + picked \"Both\" (candle rule respects the pink + BTC pink tap $15)"
+    },
+    {
+      "at": "2026-10-22T10:08:24.624543+00:00",
+      "by": "Love",
+      "quote": "Love 3:07 AM PT: \"make it $33 at this scale hun / we'll update it tomorrow\""
+    },
+    {
+      "at": "2026-10-22T10:28:27.805703+00:00",
+      "by": "Love",
+      "quote": "Love 3:27 AM PT: \"at its current scale we can make it a candle flip after price rejects the pink band within $$75\""
+    },
+    {
+      "at": "2026-10-22T13:18:33.788976+00:00",
+      "by": "Love",
+      "quote": "Love 6:17 AM PT: \"yes it can count as one of the rejections she takes / must be green for green and red for red / and she can trade the next one of those for either\" (after asking for green candle off the green = long, red off the red = short)"
+    },
+    {
+      "at": "2026-10-22T14:26:13.131057+00:00",
+      "by": "Love",
+      "quote": "Love 7:23 AM PT: \"let's also only have her short off of a pink band into a red candle, never a green one / let's wait for the candle to flip red, that will save us a lot of false rejections / and she can trade the break\" + card \"Both: red short, green long\""
+    },
+    {
+      "at": "2026-10-22T17:31:21.199723+00:00",
+      "by": "Love",
+      "quote": "Love 10:30 AM PT: \"yess absolutely let's structure it that way\" (to: the twin counts the main book's floor-missed call as the initial move)"
+    },
+    {
+      "at": "2026-10-22T18:03:28.001717+00:00",
+      "by": "Love",
+      "quote": "Love 11:02 AM PT: \"she's supposed to wait for a green candle off of it or to trade the break, let's get that back in for both btc and gold\""
+    },
+    {
+      "at": "2026-10-23T01:03:09.465576+00:00",
+      "by": "Love",
+      "quote": "Love 5:18 PM PT picked \"Yes, both guards\"; 5:55 PM: \"okay yes limit it to the current candle , live price only and pls make sure that is stitched up properly\" (fix98+fix99 re-sign, missed at install 5:55-5:57 PM)"
+    },
+    {
+      "at": "2026-10-23T01:49:51.245367+00:00",
+      "by": "Love",
+      "quote": "Love 6:48 PM PT: \"yes in the event that happens i want her to be in on the other side bb\" (twin takes the other side when price runs straight against the main call with no initial move)"
+    },
+    {
+      "at": "2026-10-23T01:52:31.486083+00:00",
+      "by": "Love",
+      "quote": "Love 6:52 PM PT: \"yes let's make it the way it was before idk how you had the rejections set up before but i know yours - they were better than this\" (card: Should a 1m rejection still override a rising or falling 5m candle? -> No, candle colour always wins)"
+    },
+    {
+      "at": "2026-10-23T04:16:19.712268+00:00",
+      "by": "Love",
+      "quote": "Love 9:15 PM PT: \"ahh ,, let's make her rejections 50 cents hun / then she good\""
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+// POSITIONS (Claude, Oct 9 ~9 AM PT, Love: "kalshi doesn't have an autosell feature for the combos... i want to set up an
+// autosell terminal in here, let's make a POSITIONS tab where we can do everything there... for all positions held on
+// kalshi... it doesn't notify you or anything when it's green so you literally have to watch it 24/7").
+// Every open Kalshi position (any market), its live value and P&L, and HER autosell rules:
+//   sell when the held side's bid reaches a % gain on cost, or a price (e.g. 50c). Checked every ~20 s by the desk;
+//   when it hits, the desk sells the whole position (the same close the SELL button uses) and posts an alert.
+//   It also posts a one-time alert the first time a position turns green.
+// Rules live in data/autosell-rules.json. Nothing sells unless she set a rule (or pressed SELL).
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+const ROOT = "https://external-api.kalshi.com/trade-api/v2";
+const RULES = () => join(process.cwd(), "data", "autosell-rules.json");
+export type Rule = { mode: "pct" | "price"; value: number; at: string; done?: { at: string; why: string } | null };
+export type PosRow = { updated?: string | null; ticker: string; title: string; side: "yes" | "no"; qty: number; cost: number; entry: number; bid: number; ask: number; value: number; pnl: number; pct: number; closes: string; status: string; rule: Rule | null };
+const g = globalThis as unknown as { __posAt?: number; __posBusy?: boolean; __posCache?: { at: number; rows: PosRow[] }; __posGreen?: Record<string, boolean>; __posMk?: Record<string, { at: number; m: any }> };
+const r2 = (n: number) => Math.round(n * 100) / 100;
+
+export function readRules(): Record<string, Rule> {
+  try {
+    return existsSync(RULES()) ? JSON.parse(readFileSync(RULES(), "utf8")) : {};
+  } catch {
+    return {};
+  }
+}
+function writeRules(r: Record<string, Rule>) {
+  writeFileSync(RULES(), JSON.stringify(r, null, 1));
+}
+function alarm(text: string) {
+  try {
+    const af = join(process.cwd(), "data", "alarm.json");
+    let rows: unknown[] = [];
+    try {
+      const prev = JSON.parse(readFileSync(af, "utf8"));
+      if (Array.isArray(prev)) rows = prev;
+    } catch {
+    }
+    rows.unshift({ at: new Date().toISOString(), text });
+    writeFileSync(af, JSON.stringify(rows.slice(0, 20)));
+    appendFileSync(join(process.cwd(), "data", "positions-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), text }) + "\n");
+  } catch {
+  }
+}
+async function market(ticker: string): Promise<any> {
+  const c = (g.__posMk ||= {});
+  if (c[ticker] && Date.now() - c[ticker].at < 18000) return c[ticker].m;
+  const res = await fetch(`${ROOT}/markets/${encodeURIComponent(ticker)}`, { signal: AbortSignal.timeout(8000) });
+  const m = res.ok ? (await res.json())?.market : null;
+  c[ticker] = { at: Date.now(), m };
+  return m;
+}
+const num = (v: unknown) => {
+  const n = Number.parseFloat(String(v ?? ""));
+  return Number.isFinite(n) ? n : 0;
+};
+
+export async function listPositions(fresh = false): Promise<PosRow[]> {
+  if (!fresh && g.__posCache && Date.now() - g.__posCache.at < 8000) return g.__posCache.rows;
+  const live = await import("./kalshi-live.server");
+  const held: { ticker: string; pos: number; cost: number; updated?: string | null }[] = await (live as any).allPositions();
+  const rules = readRules();
+  const rows: PosRow[] = [];
+  for (const h of held) {
+    let m: any = null;
+    try {
+      m = await market(h.ticker);
+    } catch {
+      m = null;
+    }
+    const side: "yes" | "no" = h.pos > 0 ? "yes" : "no";
+    const qty = Math.abs(h.pos);
+    const bid = side === "yes" ? num(m?.yes_bid_dollars) : num(m?.no_bid_dollars);
+    const ask = side === "yes" ? num(m?.yes_ask_dollars) : num(m?.no_ask_dollars);
+    const entry = qty > 0 ? h.cost / qty : 0;
+    const value = r2(qty * bid);
+    const title = [m?.title, m?.yes_sub_title || m?.subtitle].filter(Boolean).join(" · ") || h.ticker;
+    rows.push({ ticker: h.ticker, title, side, qty: r2(qty), cost: r2(h.cost), entry: r2(entry), bid, ask, value, pnl: r2(value - h.cost), pct: h.cost > 0 ? Math.round((value / h.cost - 1) * 100) : 0, closes: String(m?.close_time || ""), updated: h.updated || null, status: String(m?.status || ""), rule: rules[h.ticker] && !rules[h.ticker].done ? rules[h.ticker] : null });
+  }
+  // Oct 10 (Love: "have it be sorted by most recent positions... i'm trying to find stuff in here"): newest first, by the
+  // last time a fill touched that market (data/kalshi-audit.json); markets with no recent fill go last, by close time.
+  const last: Record<string, string> = {};
+  try {
+    const au = JSON.parse(readFileSync(join(process.cwd(), "data", "kalshi-audit.json"), "utf8"));
+    const fills: any[] = Array.isArray(au) ? au : (Object.values(au).find((v) => Array.isArray(v)) as any[]) || [];
+    for (const f of fills) if (f?.ticker && f?.t && (!last[f.ticker] || f.t > last[f.ticker])) last[f.ticker] = f.t;
+  } catch {
+  }
+  for (const r of rows) (r as any).lastFill = last[r.ticker] || null;
+  // Kalshi's own "last updated" per position comes first (it covers combos too); the last fill is the fallback.
+  for (const r of rows) if (r.updated && (!last[r.ticker] || r.updated > last[r.ticker])) last[r.ticker] = r.updated;
+  rows.sort((a, b) => {
+    const la = last[a.ticker] || "", lb = last[b.ticker] || "";
+    if (la || lb) return la === lb ? 0 : la > lb ? -1 : 1;
+    return a.closes < b.closes ? -1 : 1;
+  });
+  g.__posCache = { at: Date.now(), rows };
+  // snapshot for checks ("why did my balance drop?"): every refresh, atomically
+  try {
+    writeFileSync(join(process.cwd(), "data", "positions-now.json.tmp"), JSON.stringify({ at: new Date().toISOString(), rows }, null, 1));
+    (await import("node:fs")).renameSync(join(process.cwd(), "data", "positions-now.json.tmp"), join(process.cwd(), "data", "positions-now.json"));
+  } catch {
+  }
+  return rows;
+}
+
+export function setRule(ticker: string, rule: { mode: "pct" | "price"; value: number } | null) {
+  const rules = readRules();
+  if (!rule) delete rules[ticker];
+  else rules[ticker] = { mode: rule.mode, value: rule.value, at: new Date().toISOString(), done: null };
+  writeRules(rules);
+  g.__posCache = undefined;
+  return rules;
+}
+
+export async function sellNow(ticker: string, why: string) {
+  const live = await import("./kalshi-live.server");
+  const cash = await (live as any).flattenTicker(ticker, true);
+  alarm(`POSITIONS: sold ${ticker} (${why})${cash ? `, about $${Number(cash).toFixed(2)} back` : ""}.`);
+  g.__posCache = undefined;
+  return cash ?? null;
+}
+
+/** Every ~20 s from the desk loop: run her autosell rules and the "it's green" alert. */
+export async function positionsTick() {
+  if (g.__posBusy || (g.__posAt && Date.now() - g.__posAt < 20000)) return;
+  const rules = readRules();
+  const active = Object.entries(rules).filter(([, r]) => !r.done);
+  g.__posAt = Date.now();
+  g.__posBusy = true;
+  try {
+    const rows = await listPositions(true);
+    const green = (g.__posGreen ||= {});
+    for (const p of rows) {
+      if (p.pnl > 0.01 && p.bid > 0 && !green[p.ticker]) {
+        green[p.ticker] = true;
+        alarm(`POSITIONS: ${p.title} (${p.side.toUpperCase()}) is GREEN: worth $${p.value.toFixed(2)} on $${p.cost.toFixed(2)} (${p.pct >= 0 ? "+" : ""}${p.pct}%).`);
+      }
+    }
+    // TRAIL ON EVERYTHING (Love, Oct 10 ~1:40 AM PT: "can you place those on the climate ones and the hourly btc's and
+    // everything?!"). The same take-profit the books use, on every position she holds by hand (any market: weather,
+    // hourly BTC, mentions...). Book copies are skipped (they already follow their book's exits). Once the held side's
+    // bid reaches 90% of the max (entry + 90% of the way to $1) it ARMS; from there it rides and sells the whole position
+    // when the gain slips 1 point under its best, or the bid reaches 97c. data/trail-all.json { on } switches it.
+    try {
+      const cfg = existsSync(join(process.cwd(), "data", "trail-all.json")) ? JSON.parse(readFileSync(join(process.cwd(), "data", "trail-all.json"), "utf8")) : { on: true };
+      if (cfg?.on !== false) {
+        const done = JSON.parse(readFileSync(join(process.cwd(), "data", "live-book-done.json"), "utf8"));
+        const copied = new Set(Object.entries(done).filter(([, v]: any) => v && ["filled", "partial", "resting"].includes(v.status)).map(([k]) => k.split(":")[0]));
+        const st = (g as any).__trail ||= {};
+        for (const p of rows) {
+          if (copied.has(p.ticker) || !(p.bid > 0) || !(p.entry > 0) || p.entry >= 0.97) continue;
+          const key = `${p.ticker}:${p.side}`;
+          const arm = p.entry + 0.9 * (1 - p.entry);
+          const pct = (p.bid / p.entry - 1) * 100;
+          const t = (st[key] ||= { armed: false, peak: 0 });
+          // GATE (Love, Oct 10 ~4:15 PM PT: "if it passes 40% of its max can you set a gate there that will catch it if it
+          // does crash"; ~4:25 PM: "if we set the gate at the same number it may trigger immediately... 33%?... the best
+          // configuration to not give up a win hoping for more... for everything at every multiple"). ARMS when the bid has
+          // climbed 40% of the way from her entry to $1; the FLOOR is then 33% of that way, and it RATCHETS: it never sits
+          // below 70% of the best gain seen. Bid back at the floor = the whole position sells. Always above what she paid.
+          // From 90% of the max the 1-point trail below takes over. Every hand position, every market, every multiple.
+          const armOf = Number(cfg?.gateArm ?? 0.4), floorOf = Number(cfg?.gateFloor ?? 0.33), keep = Number(cfg?.keepOfPeak ?? 0.7);
+          const room = 1 - p.entry;
+          // Oct 10 ~4:30 PM (Love: "not the actual 15m positions... just those kind of contracts"): the gate skips the
+          // 15-minute BTC/gold markets; climate, combos, hourly and everything else get it. (The 90% trail stays on all.)
+          const no15 = /15M/.test(p.ticker);
+          if (armOf > 0 && !no15 && !t.gate && p.bid >= p.entry + armOf * room) {
+            t.gate = true;
+            alarm(`POSITIONS: ${p.title} (${p.side.toUpperCase()}) passed 40% of its max at ${Math.round(p.bid * 100)}c: the gate is guarding the win (floor ${Math.round((p.entry + floorOf * room) * 100)}c and rising with it).`);
+          }
+          if (t.gate) t.peakBid = Math.max(t.peakBid || 0, p.bid);
+          if (t.gate && !t.armed) {
+            const floor = p.entry + Math.max(floorOf * room, keep * ((t.peakBid || p.bid) - p.entry));
+            if (p.bid <= floor) {
+              const why = `gate: armed at 40% of the max, best ${Math.round((t.peakBid || 0) * 100)}c, sold at ${Math.round(p.bid * 100)}c (floor ${Math.round(floor * 100)}c, paid ${Math.round(p.entry * 100)}c)`;
+              delete st[key];
+              await sellNow(p.ticker, why);
+              continue;
+            }
+          }
+          if (!t.armed && p.bid >= arm) {
+            t.armed = true;
+            alarm(`POSITIONS: ${p.title} (${p.side.toUpperCase()}) reached 90% of its max at ${Math.round(p.bid * 100)}c: the trail is riding it now.`);
+          }
+          if (!t.armed) continue;
+          t.peak = Math.max(t.peak, pct);
+          const floor = Math.max((arm / p.entry - 1) * 100, Math.floor(t.peak) - 1);
+          if (p.bid >= 0.97 || pct < floor) {
+            const why = `trail: armed at ${Math.round(arm * 100)}c (90% of the max), peaked +${Math.round(t.peak)}%, sold at ${Math.round(p.bid * 100)}c`;
+            delete st[key];
+            await sellNow(p.ticker, why);
+          }
+        }
+      }
+    } catch {
+    }
+    if (!active.length) return;
+    let changed = false;
+    for (const [ticker, r] of active) {
+      const p = rows.find((x) => x.ticker === ticker);
+      if (!p) {
+        r.done = { at: new Date().toISOString(), why: "position closed or settled" };
+        changed = true;
+        continue;
+      }
+      if (!(p.bid > 0)) continue;
+      const hit = r.mode === "pct" ? p.cost > 0 && (p.value / p.cost - 1) * 100 >= r.value : p.bid >= r.value;
+      if (!hit) continue;
+      const why = r.mode === "pct" ? `autosell at +${r.value}%: bid ${Math.round(p.bid * 100)}c = ${p.pct >= 0 ? "+" : ""}${p.pct}%` : `autosell at ${Math.round(r.value * 100)}c: bid ${Math.round(p.bid * 100)}c`;
+      r.done = { at: new Date().toISOString(), why };
+      changed = true;
+      writeRules(rules);
+      await sellNow(ticker, why);
+    }
+    if (changed) writeRules(rules);
+  } catch {
+  } finally {
+    g.__posBusy = false;
+  }
+}

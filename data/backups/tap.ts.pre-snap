@@ -1,0 +1,58 @@
+// TAP + RESCUE (Claude, 2026-10-02, Love: "if price is at a band at like 12x, throw $2.50 at it" /
+// "if she enters legally and price reverses into the next band, she can throw an extra $5 in").
+// Paper only, never trades. Fed every desk tick.
+//   TAP:    price touches one of her lines and the bounce side costs 10c or less (10x+). A $2.50 ticket
+//           on the bounce side, one per window. Two books: TAP 3x sells at +200% (her idea), TAP HOLD
+//           rides to the bell (the replay favored that on BTC: rare 20-100x hits paid for the misses).
+//   RESCUE: one of ORIGINAL's open paper trades has turned against her, its side now costs 25c or less
+//           (4x+), and price has just pushed into one of her lines. A $5 add on the same side, held.
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import type { AssetSnapshot } from "./types";
+import { dnaLines } from "./dna";
+import { tapConsider } from "./nightbook";
+
+const prev: Record<string, number> = {};
+export function tapTick(assets: Record<string, AssetSnapshot> | null | undefined) {
+  if (!assets) return;
+  let bandsNow: Record<string, any> | null = null;
+  try {
+    bandsNow = JSON.parse(readFileSync(join(process.cwd(), "data", "bands-now.json"), "utf8"));
+  } catch {
+    return;
+  }
+  let night: { book: string; ticker: string; side: "up" | "down"; result: string; dnaMode?: string }[] = [];
+  try {
+    night = JSON.parse(readFileSync(join(process.cwd(), "data", "night-book.json"), "utf8"));
+  } catch {
+    night = [];
+  }
+  for (const id of ["btc", "gold"] as const) {
+    const a = assets[id];
+    const m = a?.market;
+    const spot = Number(a?.spot) || 0;
+    if (!m?.ticker || !(spot > 0) || !bandsNow?.[id]) continue;
+    const p0 = prev[id];
+    prev[id] = spot;
+    if (!(p0 > 0) || p0 === spot) continue;
+    if (!(a.secondsLeft > 20)) continue;
+    const tol = id === "btc" ? 15 : 0.3;
+    for (const l of dnaLines(id, bandsNow[id])) {
+      let bounce: "up" | "down" | null = null;
+      if (p0 > l.price && spot <= l.price + tol) bounce = "up";
+      else if (p0 < l.price && spot >= l.price - tol) bounce = "down";
+      if (!bounce) continue;
+      // TAP: bounce side at 10x+
+      const ask = bounce === "up" ? m.yesAsk : m.noAsk;
+      if (ask > 0.01 && ask <= 0.1) tapConsider({ ticker: m.ticker, side: bounce, ask, label: `TAP off the ${l.name} ${l.price.toFixed(2)}` }, id, "tap", { spot, line: l });
+      // RESCUE: an open ORIGINAL trade that price is now pushing against, into this line
+      const mine = night.find((r) => r.book === "original" && !r.dnaMode && r.result === "open" && r.ticker === m.ticker);
+      if (mine && mine.side === bounce) {
+        const addAsk = mine.side === "up" ? m.yesAsk : m.noAsk;
+        // Love, Oct 3 ~12:45 AM PT: "it will be at a 3-7x generally" -> RESCUE adds from 3x (was 4x).
+        if (addAsk > 0.01 && addAsk <= 1 / 3 + 1e-9) tapConsider({ ticker: m.ticker, side: mine.side, ask: addAsk, label: `RESCUE add into the ${l.name} ${l.price.toFixed(2)}` }, id, "rescue", { spot, line: l });
+      }
+      break;
+    }
+  }
+}

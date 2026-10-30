@@ -1,0 +1,24 @@
+{
+ "saved": "2026-10-17T19:28:54Z",
+ "label": "Oct 17 12:28 PM PT - Love: 'absolutely hun' - the working model (gate + target rule + Kalshi strike + flip-only-on-direction + at-band wait + session-ahead-of-pink wait)",
+ "files": {
+  "src/lib/desk/auto.ts": "ec817b827977b355",
+  "src/lib/desk/bandlock.ts": "8c18fe790fcb2533",
+  "src/lib/desk/engine.ts": "f4b64ea378b82eab",
+  "src/lib/desk/goldlaw.ts": "255a5da18d302c36",
+  "src/lib/desk/kalshi-live.server.ts": "c8cbb55e44ee90fe",
+  "src/lib/desk/kalshi.ts": "2bc4c51bec9be6f5",
+  "src/lib/desk/nav.ts": "126fe8adfe450fd8",
+  "src/lib/desk/paper.ts": "eaba2d666963f580",
+  "src/lib/desk/pivotbooks.ts": "b3512732d020a1f6",
+  "src/lib/desk/prime-book.ts": "a02496bc92dabc75",
+  "src/lib/desk/quotes.ts": "49dcab05aa22aa5e",
+  "src/lib/desk/scan.ts": "8b14f9fa3b7143c6",
+  "src/lib/desk/setup.ts": "c8dd52b18a164f8a",
+  "src/lib/desk/tv.ts": "9bb6df021232e7d1",
+  "src/lib/desk/vwap.ts": "78918a253309f5e0",
+  "data/live-switch.json": "9de172aa1a7185c9",
+  "data/approved-model.json": "912447b79851b2a2"
+ },
+ "restore": "Copy src/lib/desk/* back over the live folder's src/lib/desk/, then live-switch.json and approved-model.json back into data/ (same step, so the breaker sees an approved model)."
+}

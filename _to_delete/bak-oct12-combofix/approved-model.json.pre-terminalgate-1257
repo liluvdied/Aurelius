@@ -1,0 +1,15 @@
+{
+ "at": "2026-10-14T12:51:05.019282Z",
+ "note": "Oct 12 ~9:55 PM PT: combos skip legs Kalshi isn't offering (invalid_parameters fix), accept two-sided quotes with 'no' only, $1 combo test on her tap. Love: 'yess... try on the next ones @ the full $10... $1 as a test'. + maker-confirm wait (25 s, quote status, next-best only if the maker clearly backs out). + comboBuy sizes by the shown price (sizePx) so a $10 JOIN spends ~$10. + top-up after a fill so a combo spends ~its dollars (Oct 13 ~1:55 AM PT). | Oct 14 ~3:25 AM PT (Love: 'please make sure... that was so not okay'): HAND GUARD - a book's resting Kalshi order is pulled when Love holds the other side by hand. | Oct 14 ~4:40 AM PT (Love: 'gold fasho... get her at 74%'): GOLD 5M PIVOT GATE on PAPER 24/7's live gold copies. | Oct 14 ~5:55 AM PT (Love: 'she cannot short that'): ABNORMAL SWING GUARD in the copier.",
+ "files": {
+  "engine.ts": "4bf71e9240211ff2",
+  "prime-book.ts": "a02496bc92dabc75",
+  "kalshi-live.server.ts": "72d0f3bad526db99",
+  "paper.ts": "eaba2d666963f580",
+  "auto.ts": "ec817b827977b355",
+  "setup.ts": "c8dd52b18a164f8a",
+  "vwap.ts": "78918a253309f5e0",
+  "scan.ts": "35e2a15ab331bcfb",
+  "kalshi.ts": "163205f06ddfa973"
+ }
+}

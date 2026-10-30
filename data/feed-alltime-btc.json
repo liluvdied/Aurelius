@@ -1,0 +1,196 @@
+{
+ "bands": {
+  "VANTAGE:BTCUSD|ny": {
+   "touches": 498,
+   "respected": 214,
+   "blewThru": 242,
+   "kalshiSame": "92.9% of 197",
+   "gap": "$17.11"
+  },
+  "VANTAGE:BTCUSD|utc": {
+   "touches": 463,
+   "respected": 207,
+   "blewThru": 223,
+   "kalshiSame": "92.9% of 197",
+   "gap": "$17.11"
+  },
+  "COINBASE:BTCUSD|ny": {
+   "touches": 509,
+   "respected": 231,
+   "blewThru": 240,
+   "kalshiSame": "99.5% of 198",
+   "gap": "$5.19"
+  },
+  "COINBASE:BTCUSD|utc": {
+   "touches": 463,
+   "respected": 216,
+   "blewThru": 219,
+   "kalshiSame": "99.5% of 198",
+   "gap": "$5.19"
+  },
+  "BITSTAMP:BTCUSD|ny": {
+   "touches": 475,
+   "respected": 177,
+   "blewThru": 246,
+   "kalshiSame": "98.0% of 198",
+   "gap": "$5.58"
+  },
+  "BITSTAMP:BTCUSD|utc": {
+   "touches": 448,
+   "respected": 176,
+   "blewThru": 231,
+   "kalshiSame": "98.0% of 198",
+   "gap": "$5.58"
+  },
+  "KRAKEN:BTCUSD|ny": {
+   "touches": 466,
+   "respected": 191,
+   "blewThru": 231,
+   "kalshiSame": "99.0% of 198",
+   "gap": "$5.03"
+  },
+  "KRAKEN:BTCUSD|utc": {
+   "touches": 458,
+   "respected": 186,
+   "blewThru": 240,
+   "kalshiSame": "99.0% of 198",
+   "gap": "$5.03"
+  },
+  "INDEX:BTCUSD|ny": {
+   "touches": 497,
+   "respected": 206,
+   "blewThru": 250,
+   "kalshiSame": "95.5% of 198",
+   "gap": "$8.63"
+  },
+  "INDEX:BTCUSD|utc": {
+   "touches": 458,
+   "respected": 205,
+   "blewThru": 224,
+   "kalshiSame": "95.5% of 198",
+   "gap": "$8.63"
+  },
+  "PEPPERSTONE:BTCUSD|ny": {
+   "touches": 526,
+   "respected": 305,
+   "blewThru": 202,
+   "kalshiSame": "98.5% of 196",
+   "gap": "$7.70"
+  },
+  "PEPPERSTONE:BTCUSD|utc": {
+   "touches": 510,
+   "respected": 279,
+   "blewThru": 214,
+   "kalshiSame": "98.5% of 196",
+   "gap": "$7.70"
+  },
+  "BINANCE:BTCUSDT|ny": {
+   "touches": 486,
+   "respected": 197,
+   "blewThru": 241,
+   "kalshiSame": "88.9% of 198",
+   "gap": "$25.36"
+  },
+  "BINANCE:BTCUSDT|utc": {
+   "touches": 440,
+   "respected": 182,
+   "blewThru": 232,
+   "kalshiSame": "88.9% of 198",
+   "gap": "$25.36"
+  },
+  "GEMINI:BTCUSD|ny": {
+   "touches": 461,
+   "respected": 176,
+   "blewThru": 238,
+   "kalshiSame": "96.3% of 191",
+   "gap": "$5.32"
+  },
+  "GEMINI:BTCUSD|utc": {
+   "touches": 420,
+   "respected": 167,
+   "blewThru": 221,
+   "kalshiSame": "96.3% of 191",
+   "gap": "$5.32"
+  },
+  "BITFINEX:BTCUSD|ny": {
+   "touches": 508,
+   "respected": 237,
+   "blewThru": 237,
+   "kalshiSame": "86.4% of 198",
+   "gap": "$42.74"
+  },
+  "BITFINEX:BTCUSD|utc": {
+   "touches": 468,
+   "respected": 214,
+   "blewThru": 227,
+   "kalshiSame": "86.4% of 198",
+   "gap": "$42.74"
+  },
+  "OANDA:BTCUSD|ny": {
+   "touches": 439,
+   "respected": 229,
+   "blewThru": 195,
+   "kalshiSame": "98.8% of 172",
+   "gap": "$6.61"
+  },
+  "OANDA:BTCUSD|utc": {
+   "touches": 431,
+   "respected": 227,
+   "blewThru": 188,
+   "kalshiSame": "98.8% of 172",
+   "gap": "$6.61"
+  }
+ },
+ "firstToBreak": {
+  "VANTAGE:BTCUSD": {
+   "first": 9,
+   "followed": 4,
+   "ran": 7
+  },
+  "COINBASE:BTCUSD": {
+   "first": 7,
+   "followed": 6,
+   "ran": 6
+  },
+  "BITSTAMP:BTCUSD": {
+   "first": 27,
+   "followed": 11,
+   "ran": 18
+  },
+  "KRAKEN:BTCUSD": {
+   "first": 4,
+   "followed": 4,
+   "ran": 4
+  },
+  "INDEX:BTCUSD": {
+   "first": 3,
+   "followed": 2,
+   "ran": 3
+  },
+  "PEPPERSTONE:BTCUSD": {
+   "first": 13,
+   "followed": 7,
+   "ran": 6
+  },
+  "BINANCE:BTCUSDT": {
+   "first": 5,
+   "followed": 2,
+   "ran": 4
+  },
+  "GEMINI:BTCUSD": {
+   "first": 109,
+   "followed": 18,
+   "ran": 61
+  },
+  "BITFINEX:BTCUSD": {
+   "first": 81,
+   "followed": 17,
+   "ran": 52
+  },
+  "OANDA:BTCUSD": {
+   "first": 6,
+   "followed": 1,
+   "ran": 6
+  }
+ }
+}

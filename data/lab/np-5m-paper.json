@@ -1,0 +1,920 @@
+{
+ "made": "2026-10-29T00:46:37.134095+00:00",
+ "from": "2026-10-28T03:10:00.751Z",
+ "stake": 7.5,
+ "note": "fees not counted; settlement read from last quote before close",
+ "pureNoPinkOn5M": {
+  "trades": 69,
+  "wins": 41,
+  "winRate": 0.594,
+  "pnl": 111.18
+ },
+ "pureNoPinkOn5M_in5mHours": {
+  "trades": 50,
+  "wins": 26,
+  "winRate": 0.52,
+  "pnl": 41.34
+ },
+ "real5M": {
+  "trades": 42,
+  "settled": 42,
+  "wins": 20,
+  "winRate": 0.476,
+  "pnl": -42.96
+ },
+ "byHourPT": {
+  "0": {
+   "trades": 4,
+   "wins": 2,
+   "winRate": 0.5,
+   "pnl": -10.3
+  },
+  "1": {
+   "trades": 1,
+   "wins": 0,
+   "winRate": 0.0,
+   "pnl": -7.5
+  },
+  "2": {
+   "trades": 4,
+   "wins": 3,
+   "winRate": 0.75,
+   "pnl": 15.63
+  },
+  "3": {
+   "trades": 3,
+   "wins": 3,
+   "winRate": 1.0,
+   "pnl": 15.41
+  },
+  "4": {
+   "trades": 2,
+   "wins": 0,
+   "winRate": 0.0,
+   "pnl": -15.0
+  },
+  "5": {
+   "trades": 3,
+   "wins": 2,
+   "winRate": 0.667,
+   "pnl": 24.26
+  },
+  "6": {
+   "trades": 3,
+   "wins": 2,
+   "winRate": 0.667,
+   "pnl": 5.2
+  },
+  "7": {
+   "trades": 4,
+   "wins": 2,
+   "winRate": 0.5,
+   "pnl": 19.6
+  },
+  "8": {
+   "trades": 4,
+   "wins": 2,
+   "winRate": 0.5,
+   "pnl": 26.91
+  },
+  "9": {
+   "trades": 2,
+   "wins": 2,
+   "winRate": 1.0,
+   "pnl": 17.75
+  },
+  "10": {
+   "trades": 2,
+   "wins": 1,
+   "winRate": 0.5,
+   "pnl": -0.29
+  },
+  "11": {
+   "trades": 2,
+   "wins": 1,
+   "winRate": 0.5,
+   "pnl": -7.11
+  },
+  "12": {
+   "trades": 1,
+   "wins": 0,
+   "winRate": 0.0,
+   "pnl": -7.5
+  },
+  "13": {
+   "trades": 3,
+   "wins": 2,
+   "winRate": 0.667,
+   "pnl": -2.8
+  },
+  "14": {
+   "trades": 4,
+   "wins": 3,
+   "winRate": 0.75,
+   "pnl": 31.46
+  },
+  "15": {
+   "trades": 4,
+   "wins": 1,
+   "winRate": 0.25,
+   "pnl": -19.58
+  },
+  "16": {
+   "trades": 4,
+   "wins": 3,
+   "winRate": 0.75,
+   "pnl": 7.01
+  },
+  "17": {
+   "trades": 3,
+   "wins": 1,
+   "winRate": 0.333,
+   "pnl": -12.63
+  },
+  "20": {
+   "trades": 4,
+   "wins": 1,
+   "winRate": 0.25,
+   "pnl": -16.11
+  },
+  "21": {
+   "trades": 4,
+   "wins": 4,
+   "winRate": 1.0,
+   "pnl": 30.48
+  },
+  "22": {
+   "trades": 4,
+   "wins": 2,
+   "winRate": 0.5,
+   "pnl": -1.2
+  },
+  "23": {
+   "trades": 4,
+   "wins": 4,
+   "winRate": 1.0,
+   "pnl": 17.49
+  }
+ },
+ "trades": [
+  {
+   "at": "2026-10-28T03:10:00.751Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0310z",
+   "side": "up",
+   "label": "Rejected up off fresh VWAP",
+   "entry": 0.54,
+   "won": true,
+   "pnl": 6.39,
+   "hourPT": 20,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T03:20:00.855Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0320z",
+   "side": "down",
+   "label": "Rejected down off fresh +1\u03c3",
+   "entry": 0.53,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 20,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T03:35:02.847Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0335z",
+   "side": "down",
+   "label": "Rejected down off +3\u03c3",
+   "entry": 0.37,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 20,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T03:48:07.104Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0345z",
+   "side": "up",
+   "label": "Rejected up off +3\u03c3",
+   "entry": 0.09,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 20,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T04:00:12.566Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0400z",
+   "side": "down",
+   "label": "Rejected down off fresh +2\u03c3",
+   "entry": 0.34,
+   "won": true,
+   "pnl": 14.56,
+   "hourPT": 21,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T04:25:14.216Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0425z",
+   "side": "up",
+   "label": "Rejected up off Green zone",
+   "entry": 0.63,
+   "won": true,
+   "pnl": 4.4,
+   "hourPT": 21,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T04:41:12.940Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0440z",
+   "side": "down",
+   "label": "Rejected down off fresh +1\u03c3",
+   "entry": 0.52,
+   "won": true,
+   "pnl": 6.92,
+   "hourPT": 21,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T04:45:08.457Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0445z",
+   "side": "down",
+   "label": "Rejected down off fresh +1\u03c3",
+   "entry": 0.62,
+   "won": true,
+   "pnl": 4.6,
+   "hourPT": 21,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T05:06:01.218Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0505z",
+   "side": "up",
+   "label": "Rejected up off Green zone",
+   "entry": 0.43,
+   "won": true,
+   "pnl": 9.94,
+   "hourPT": 22,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T05:25:52.465Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0525z",
+   "side": "up",
+   "label": "Failed break below fresh VWAP - rejected up",
+   "entry": 0.41,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 22,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T05:30:05.255Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0530z",
+   "side": "up",
+   "label": "Failed break below fresh VWAP - rejected up",
+   "entry": 0.26,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 22,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T05:45:37.555Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0545z",
+   "side": "up",
+   "label": "Rejected up off Bollinger lower",
+   "entry": 0.66,
+   "won": true,
+   "pnl": 3.86,
+   "hourPT": 22,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T06:08:03.502Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0605z",
+   "side": "up",
+   "label": "Rejected up off Bollinger lower",
+   "entry": 0.86,
+   "won": true,
+   "pnl": 1.22,
+   "hourPT": 23,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T06:25:01.528Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0625z",
+   "side": "down",
+   "label": "Rejected down off fresh +1\u03c3",
+   "entry": 0.52,
+   "won": true,
+   "pnl": 6.92,
+   "hourPT": 23,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T06:30:14.968Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0630z",
+   "side": "down",
+   "label": "Rejected down off fresh VWAP",
+   "entry": 0.67,
+   "won": true,
+   "pnl": 3.69,
+   "hourPT": 23,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T06:45:12.180Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0645z",
+   "side": "down",
+   "label": "Rejected down off fresh VWAP",
+   "entry": 0.57,
+   "won": true,
+   "pnl": 5.66,
+   "hourPT": 23,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T07:00:04.981Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0700z",
+   "side": "up",
+   "label": "Rejected up off Green zone",
+   "entry": 0.64,
+   "won": true,
+   "pnl": 4.22,
+   "hourPT": 0,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T07:15:06.289Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0715z",
+   "side": "down",
+   "label": "Rejected down off fresh VWAP",
+   "entry": 0.94,
+   "won": true,
+   "pnl": 0.48,
+   "hourPT": 0,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T07:30:06.053Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0730z",
+   "side": "up",
+   "label": "Rejected up off fresh VWAP",
+   "entry": 0.71,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 0,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T07:50:00.751Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0750z",
+   "side": "down",
+   "label": "Rejected down off fresh +1\u03c3",
+   "entry": 0.49,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 0,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T08:21:10.862Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0820z",
+   "side": "down",
+   "label": "Failed break above Red zone - rejected down",
+   "entry": 0.17,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 1,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T09:05:18.072Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0905z",
+   "side": "down",
+   "label": "Rejected down off +3\u03c3",
+   "entry": 0.4,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 2,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T09:15:05.696Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0915z",
+   "side": "down",
+   "label": "Rejected down off +3\u03c3",
+   "entry": 0.55,
+   "won": true,
+   "pnl": 6.14,
+   "hourPT": 2,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T09:35:34.717Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0935z",
+   "side": "up",
+   "label": "Failed break below Green zone - rejected up",
+   "entry": 0.37,
+   "won": true,
+   "pnl": 12.77,
+   "hourPT": 2,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T09:45:22.111Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-0945z",
+   "side": "up",
+   "label": "Rejected up off +2\u03c3",
+   "entry": 0.64,
+   "won": true,
+   "pnl": 4.22,
+   "hourPT": 2,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T10:11:16.508Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1010z",
+   "side": "up",
+   "label": "Rejected up off +2\u03c3",
+   "entry": 0.71,
+   "won": true,
+   "pnl": 3.06,
+   "hourPT": 3,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T10:20:22.510Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1020z",
+   "side": "up",
+   "label": "Failed break below +2\u03c3 - rejected up",
+   "entry": 0.58,
+   "won": true,
+   "pnl": 5.43,
+   "hourPT": 3,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T10:31:00.669Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1030z",
+   "side": "up",
+   "label": "Rejected up off +2\u03c3",
+   "entry": 0.52,
+   "won": true,
+   "pnl": 6.92,
+   "hourPT": 3,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T11:05:12.875Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1105z",
+   "side": "up",
+   "label": "Rejected up off Green zone",
+   "entry": 0.53,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 4,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T11:16:34.954Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1115z",
+   "side": "up",
+   "label": "Rejected up off +1\u03c3",
+   "entry": 0.33,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 4,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T12:00:11.896Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1200z",
+   "side": "up",
+   "label": "Rejected up off +1\u03c3",
+   "entry": 0.44,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 5,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T12:20:02.116Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1220z",
+   "side": "down",
+   "label": "Rejected down off Bollinger lower",
+   "entry": 0.53,
+   "won": true,
+   "pnl": 6.65,
+   "hourPT": 5,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T12:51:27.347Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1250z",
+   "side": "down",
+   "label": "Rejected down off -1\u03c3",
+   "entry": 0.23,
+   "won": true,
+   "pnl": 25.11,
+   "hourPT": 5,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T13:05:01.573Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1305z",
+   "side": "down",
+   "label": "Rejected down off -1\u03c3",
+   "entry": 0.45,
+   "won": true,
+   "pnl": 9.17,
+   "hourPT": 6,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T13:25:02.087Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1325z",
+   "side": "up",
+   "label": "Rejected up off Green zone",
+   "entry": 0.54,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 6,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T13:30:32.366Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1330z",
+   "side": "up",
+   "label": "Failed break below Green zone - rejected up",
+   "entry": 0.68,
+   "won": true,
+   "pnl": 3.53,
+   "hourPT": 6,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T14:02:29.691Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1400z",
+   "side": "down",
+   "label": "Failed break above -1\u03c3 - rejected down",
+   "entry": 0.62,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 7,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T14:25:02.115Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1425z",
+   "side": "up",
+   "label": "Rejected up off Bollinger lower",
+   "entry": 0.54,
+   "won": true,
+   "pnl": 6.39,
+   "hourPT": 7,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T14:34:41.200Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1435z",
+   "side": "up",
+   "label": "Rejected up off Bollinger lower",
+   "entry": 0.48,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 7,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T14:56:52.717Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1455z",
+   "side": "up",
+   "label": "Rejected up off -2\u03c3",
+   "entry": 0.21,
+   "won": true,
+   "pnl": 28.21,
+   "hourPT": 7,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T15:06:49.924Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1505z",
+   "side": "down",
+   "label": "Rejected down off -1\u03c3",
+   "entry": 0.19,
+   "won": true,
+   "pnl": 31.97,
+   "hourPT": 8,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T15:15:33.313Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1515z",
+   "side": "down",
+   "label": "Rejected down off -1\u03c3",
+   "entry": 0.53,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 8,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T15:35:02.947Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1535z",
+   "side": "up",
+   "label": "Rejected up off Green zone",
+   "entry": 0.43,
+   "won": true,
+   "pnl": 9.94,
+   "hourPT": 8,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T15:50:01.159Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1550z",
+   "side": "up",
+   "label": "Rejected up off Bollinger lower",
+   "entry": 0.57,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 8,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T16:25:05.173Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1625z",
+   "side": "up",
+   "label": "Rejected up off Green zone",
+   "entry": 0.43,
+   "won": true,
+   "pnl": 9.94,
+   "hourPT": 9,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T16:45:38.870Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1645z",
+   "side": "up",
+   "label": "Rejected up off Green zone",
+   "entry": 0.49,
+   "won": true,
+   "pnl": 7.81,
+   "hourPT": 9,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T17:25:19.673Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1725z",
+   "side": "down",
+   "label": "Rejected down off -1\u03c3",
+   "entry": 0.51,
+   "won": true,
+   "pnl": 7.21,
+   "hourPT": 10,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T17:37:32.394Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1735z",
+   "side": "down",
+   "label": "Failed break above Red zone - rejected down",
+   "entry": 0.51,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 10,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T18:31:48.896Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1830z",
+   "side": "down",
+   "label": "Failed break above session VWAP - rejected down",
+   "entry": 0.42,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 11,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T18:45:11.481Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1845z",
+   "side": "down",
+   "label": "Rejected down off +1\u03c3",
+   "entry": 0.95,
+   "won": true,
+   "pnl": 0.39,
+   "hourPT": 11,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T19:30:13.302Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-1930z",
+   "side": "down",
+   "label": "Rejected down off +1\u03c3",
+   "entry": 0.48,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 12,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T20:06:26.289Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2005z",
+   "side": "down",
+   "label": "1m rejection off Red zone",
+   "entry": 0.94,
+   "won": true,
+   "pnl": 0.48,
+   "hourPT": 13,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T20:15:24.128Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2015z",
+   "side": "up",
+   "label": "Candle rising from the bottom third",
+   "entry": 0.45,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 13,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T20:50:00.691Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2050z",
+   "side": "up",
+   "label": "Rejected up off Bollinger lower",
+   "entry": 0.64,
+   "won": true,
+   "pnl": 4.22,
+   "hourPT": 13,
+   "in5mHours": false
+  },
+  {
+   "at": "2026-10-28T21:05:22.527Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2105z",
+   "side": "down",
+   "label": "Failed break above Red zone - rejected down",
+   "entry": 0.63,
+   "won": true,
+   "pnl": 4.4,
+   "hourPT": 14,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T21:17:54.842Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2115z",
+   "side": "down",
+   "label": "1m rejection off Red zone",
+   "entry": 0.09,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 14,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T21:35:39.285Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2135z",
+   "side": "down",
+   "label": "Rejected down off +1\u03c3",
+   "entry": 0.18,
+   "won": true,
+   "pnl": 34.17,
+   "hourPT": 14,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T21:45:15.413Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2145z",
+   "side": "up",
+   "label": "Tap-reject at fresh -1\u03c3",
+   "entry": 0.95,
+   "won": true,
+   "pnl": 0.39,
+   "hourPT": 14,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T22:00:24.376Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2200z",
+   "side": "down",
+   "label": "Rejected down off fresh +1\u03c3",
+   "entry": 0.72,
+   "won": true,
+   "pnl": 2.92,
+   "hourPT": 15,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T22:16:08.594Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2215z",
+   "side": "up",
+   "label": "Tap-reject at +1\u03c3",
+   "entry": 0.14,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 15,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T22:31:07.047Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2230z",
+   "side": "down",
+   "label": "Tap-reject at fresh VWAP",
+   "entry": 0.2,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 15,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T22:45:19.729Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2245z",
+   "side": "up",
+   "label": "Rejected up off fresh VWAP",
+   "entry": 0.6,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 15,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T23:05:04.912Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2305z",
+   "side": "up",
+   "label": "Tap-reject at fresh VWAP",
+   "entry": 0.64,
+   "won": true,
+   "pnl": 4.22,
+   "hourPT": 16,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T23:22:16.312Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2320z",
+   "side": "down",
+   "label": "Tap-reject at fresh +1\u03c3",
+   "entry": 0.17,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 16,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T23:40:24.684Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2340z",
+   "side": "up",
+   "label": "Rejected up off fresh VWAP",
+   "entry": 0.52,
+   "won": true,
+   "pnl": 6.92,
+   "hourPT": 16,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-28T23:45:16.688Z",
+   "slug": "cpc-btc-updown-5m-2026-10-28-2345z",
+   "side": "down",
+   "label": "Tap-reject at fresh VWAP",
+   "entry": 0.69,
+   "won": true,
+   "pnl": 3.37,
+   "hourPT": 16,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-29T00:02:37.581Z",
+   "slug": "cpc-btc-updown-5m-2026-10-29-0000z",
+   "side": "down",
+   "label": "1m rejection off fresh +1\u03c3",
+   "entry": 0.76,
+   "won": true,
+   "pnl": 2.37,
+   "hourPT": 17,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-29T00:18:03.199Z",
+   "slug": "cpc-btc-updown-5m-2026-10-29-0015z",
+   "side": "up",
+   "label": "Tap-reject at Bollinger lower",
+   "entry": 0.04,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 17,
+   "in5mHours": true
+  },
+  {
+   "at": "2026-10-29T00:31:41.105Z",
+   "slug": "cpc-btc-updown-5m-2026-10-29-0030z",
+   "side": "up",
+   "label": "1m rejection off fresh -2\u03c3",
+   "entry": 0.2,
+   "won": false,
+   "pnl": -7.5,
+   "hourPT": 17,
+   "in5mHours": true
+  }
+ ]
+}

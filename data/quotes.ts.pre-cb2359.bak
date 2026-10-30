@@ -1,0 +1,254 @@
+// QUOTE STREAM (Love, Oct 15 ~12:40 PM PT: "we need her to be able to fire with speed without firing backwards...
+// get to the root of that"). THE ROOT: her decision price was a cached chart READ (nav/tv poll every 4-8 s), so in the
+// first seconds of any fast move she was pricing the move off its FIRST tick - at a window open, the strike itself.
+// THE FIX: one persistent TradingView websocket (the same data.tradingview.com her lines come from) with a quote
+// session pushes every tick for PEPPERSTONE:BTCUSD and TVC:GOLD. No polling, no cache: quoteTick() hands back the
+// newest pushed price and when it arrived. Reconnects itself (2 s backoff, doubling to 30 s), forces a reconnect if
+// 25 s pass without a tick, and writes data/quote-stream.json so its health is visible on the desk.
+import * as tls from "node:tls";
+import * as crypto from "node:crypto";
+import { appendFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+// SECOND FEED (Oct 16 ~2:05 PM PT, Love: "use vantage as the second feed"): Vantage ticks ride the same socket as btc_v / gold_v.
+// SECOND FEED -> OANDA (Oct 16 ~3:10 PM PT, Love: "find a better alternative for the secondary feed... one that respects the pivots
+// and the session bands as closely as possible to pepperstone"): 3.5-day match vs Pepperstone/TVC: OANDA BTC price +$3.86, pink
+// +$5, VWAP -$4, +1σ -$7 (Vantage ran ~$97 off); OANDA gold price +$0.15, pink +$0.29, VWAP -$0.06.
+// PEPPERSTONE (Oct 16 ~10:25 PM PT, Love: "i want her on pepperstone if we can"): BTC back on Pepperstone - the chart her bands held
+// best on (Oct 2 lab: 59% of touches bounced $30, next best 49%; Kalshi same call 98.2%). Its "freezing" was the desk's own ~200
+// chart connections a minute choking her IP (fixed in tv.ts the same minute). Vantage stays as the logged-only second feed.
+// INDEX (Oct 16 ~11:58 PM PT, Love: "ommmmg YESSSSS PLSSSSSS" to INDEX:BTCUSD with the candle lock off): feed lab Oct 13-16 - fewest flip-backs
+// of the charts with volume (27.5%), Kalshi same-way 93.7%, ~$26 from the strike, 0 missing minutes in 3.5 days. Pepperstone was "untenable for the
+// break model" (Love). Vantage stays the logged-only second feed.
+// VANTAGE (Oct 17 ~12:03 AM PT, Love: "let's do vantage hun its the right choice"): BTC = VANTAGE (her chart); INDEX the logged-only second feed.
+const SYM: Record<string, string> = { "INDEX:BTCUSD": "btc", "TVC:GOLD": "gold", "COINBASE:BTCUSD": "btc_v", "OANDA:XAUUSD": "gold_v" }; // Love, Oct 18 ~4:36 PM PT: "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS" (Pepperstone = second feed) // // BTC on VANTAGE (Love ~3:25 PM PT: "oanda is freezing too. let's trade vantage"), Pepperstone second // Oct 18 ~4:31 PM PT: BTC back on PEPPERSTONE (Love: "vantages chart DEFINITELY flips more than pepperstones... pepperstone pls")
+type Tick = { c: number; at: number; ex?: number }; // ex = the exchange's own time on the price (lp_time), when sent
+const g = globalThis as unknown as { __qtk?: Record<string, Tick>; __qtrail?: Record<string, { t: number; c: number }[]>; __qsOn?: boolean; __qsSock?: tls.TLSSocket | null; __qsSocks?: (tls.TLSSocket | null)[]; __qsBackoffs?: number[]; __qsSlotTick?: number[]; __qsBackoff?: number; __qsLastTick?: number; __qsStatAt?: number; __qsErr?: string; __qsVer?: number; __qsTimer?: ReturnType<typeof setInterval> };
+
+function frame(text: string): Buffer {
+  const data = Buffer.from(text);
+  const mask = crypto.randomBytes(4);
+  const head = Buffer.alloc(data.length < 126 ? 2 : 4);
+  head[0] = 0x81;
+  if (data.length < 126) head[1] = 0x80 | data.length;
+  else { head[1] = 0x80 | 126; head.writeUInt16BE(data.length, 2); }
+  const masked = Buffer.alloc(data.length);
+  for (let i = 0; i < data.length; i += 1) masked[i] = data[i] ^ mask[i % 4];
+  return Buffer.concat([head, mask, masked]);
+}
+function packet(method: string, params: unknown[]): string {
+  const body = JSON.stringify({ m: method, p: params });
+  return `~m~${body.length}~m~${body}`;
+}
+
+function status(extra?: string) {
+  const now = Date.now();
+  if (g.__qsStatAt && now - g.__qsStatAt < 4000 && !extra) return;
+  g.__qsStatAt = now;
+  try {
+    const t = ((g as any)[`__qtk_${QS_VER}`] || {}) as Record<string, Tick>;
+    writeFileSync(join(process.cwd(), "data", "quote-stream.json"), JSON.stringify({
+      at: new Date().toISOString(),
+      ver: QS_VER,
+      connected: Boolean((g.__qsSocks || []).some(Boolean) || g.__qsSock),
+      sockets: (g.__qsSocks || []).map(Boolean),
+      btc: t.btc ? { c: t.btc.c, ageMs: now - t.btc.at, exAgeMs: t.btc.ex ? now - t.btc.ex : null } : null,
+      gold: t.gold ? { c: t.gold.c, ageMs: now - t.gold.at, exAgeMs: t.gold.ex ? now - t.gold.ex : null } : null,
+      btc_v: t.btc_v ? { c: t.btc_v.c, ageMs: now - t.btc_v.at } : null,
+      gold_v: t.gold_v ? { c: t.gold_v.c, ageMs: now - t.gold_v.at } : null,
+      note: extra || g.__qsErr || "",
+    }, null, 1));
+    // live Pepperstone-vs-Vantage gap, both fresh (Oct 16 ~2:07 PM PT, to set the second-feed check)
+    const fr = (x?: Tick) => !!x && now - x.at < 2000;
+    if ((fr(t.btc) && fr(t.btc_v)) || (fr(t.gold) && fr(t.gold_v))) appendFileSync(join(process.cwd(), "data", "feed-gap.jsonl"), JSON.stringify({ at: new Date().toISOString(), ver: QS_VER, btc: fr(t.btc) && fr(t.btc_v) ? Math.round((t.btc.c - t.btc_v.c) * 100) / 100 : null, gold: fr(t.gold) && fr(t.gold_v) ? Math.round((t.gold.c - t.gold_v.c) * 1000) / 1000 : null }) + "\n");
+  } catch {}
+}
+
+function connectStream(slot = 0) {
+  const sock = tls.connect(443, "data.tradingview.com", { servername: "data.tradingview.com" }, () => {
+    const key = crypto.randomBytes(16).toString("base64");
+    sock.write(
+      "GET /socket.io/websocket?from=chart%2F&type=chart HTTP/1.1\r\n" +
+        "Host: data.tradingview.com\r\n" +
+        "Upgrade: websocket\r\n" +
+        "Connection: Upgrade\r\n" +
+        `Sec-WebSocket-Key: ${key}\r\n` +
+        "Sec-WebSocket-Version: 13\r\n" +
+        "Origin: https://www.tradingview.com\r\n\r\n",
+    );
+  });
+  let shook = false;
+  let buf = Buffer.alloc(0);
+  const die = (why: string) => {
+    g.__qsErr = `[${slot}] ${why}`;
+    try { sock.destroy(); } catch {}
+    const socks = (g.__qsSocks ||= [null, null]);
+    if (socks[slot] === sock) socks[slot] = null;
+    g.__qsSock = socks[0] || socks[1] || null;
+    status(why);
+    const backs = (g.__qsBackoffs ||= [2000, 2000]);
+    const wait = Math.min(backs[slot] || 2000, 30000);
+    backs[slot] = wait * 2;
+    setTimeout(() => { if (!(g.__qsSocks || [])[slot]) connectStream(slot); }, wait);
+  };
+  sock.once("error", (e) => die(`socket error: ${String(e).slice(0, 120)}`));
+  sock.once("close", () => die("socket closed"));
+  sock.setTimeout(40000, () => die("socket timeout"));
+  sock.on("data", (chunk: Buffer) => {
+    if (!shook) {
+      buf = Buffer.concat([buf, chunk]);
+      const split = buf.indexOf("\r\n\r\n");
+      if (split < 0) return;
+      shook = true;
+      const socks = (g.__qsSocks ||= [null, null]);
+      socks[slot] = sock;
+      g.__qsSock = socks[0] || socks[1] || null;
+      (g.__qsBackoffs ||= [2000, 2000])[slot] = 2000;
+      g.__qsErr = "";
+      const qs = `qs_${crypto.randomBytes(4).toString("hex")}`;
+      sock.write(frame(packet("set_auth_token", ["unauthorized_user_token"])));
+      sock.write(frame(packet("quote_create_session", [qs])));
+      sock.write(frame(packet("quote_set_fields", [qs, "lp", "lp_time"])));
+      for (const sym of Object.keys(SYM)) sock.write(frame(packet("quote_add_symbols", [qs, sym])));
+      status("connected");
+      buf = buf.subarray(split + 4);
+      chunk = Buffer.alloc(0);
+    }
+    buf = Buffer.concat([buf, chunk]);
+    while (buf.length >= 2) {
+      const opcode = buf[0] & 0x0f;
+      let length = buf[1] & 0x7f;
+      let offset = 2;
+      if (length === 126) { if (buf.length < 4) return; length = buf.readUInt16BE(2); offset = 4; }
+      else if (length === 127) { if (buf.length < 10) return; length = Number(buf.readBigUInt64BE(2)); offset = 10; }
+      if (buf.length < offset + length) return;
+      const data = buf.subarray(offset, offset + length);
+      buf = buf.subarray(offset + length);
+      if (opcode === 8) { die("server close frame"); return; }
+      if (opcode !== 1) continue;
+      const text = data.toString("utf8");
+      for (const part of text.split(/~m~\d+~m~/)) {
+        if (!part) continue;
+        if (/^~h~\d+$/.test(part)) { sock.write(frame(`~m~${part.length}~m~${part}`)); continue; }
+        if (!part.includes('"qsd"')) continue;
+        try {
+          const msg = JSON.parse(part);
+          if (msg.m !== "qsd") continue;
+          // a socket from an older reload of this file must not write ticks (it still maps the OLD symbols) - Oct 16 ~3:13 PM PT
+          if (g.__qsVer !== QS_VER) { try { sock.destroy(); } catch {} return; }
+          const d = msg.p?.[1];
+          const asset = SYM[String(d?.n)];
+          const lp = Number(d?.v?.lp);
+          if (asset && Number.isFinite(lp) && lp > 0) {
+            const now = Date.now();
+            const lpt = Number(d?.v?.lp_time);
+            (((g as any)[`__qtk_${QS_VER}`] ||= {}) as Record<string, Tick>)[asset] = { c: lp, at: now, ...(Number.isFinite(lpt) && lpt > 0 ? { ex: lpt * 1000 } : {}) };
+            const tr = (((g as any)[`__qtrail_${QS_VER}`] ||= {}) as Record<string, { t: number; c: number }[]>)[asset] ||= [];
+            tr.push({ t: now, c: lp });
+            if (tr.length > 600) tr.splice(0, tr.length - 600);
+            g.__qsLastTick = now;
+            // FEED HEALTH (Oct 16 ~2:15 PM PT, Love: "your stale price guard does not function... make it bulletproof"): track
+            // per asset when ticks last arrived, when a quiet spell (>5 s, or a fresh connect) ended, and when the price last moved.
+            const H = (((g as any)[`__qhealth_${QS_VER}`] ||= {}) as Record<string, { lastAt: number; gapEndAt: number; lastC: number; changedAt: number }>)[asset] ||= { lastAt: 0, gapEndAt: 0, lastC: 0, changedAt: 0 };
+            if (!H.lastAt || now - H.lastAt > 5000) H.gapEndAt = now;
+            H.lastAt = now;
+            if (lp !== H.lastC) { H.lastC = lp; H.changedAt = now; }
+          }
+        } catch {}
+      }
+    }
+    status();
+  });
+}
+
+/** Newest pushed price for btc/gold, with when it arrived. Null until the stream has ticked. */
+export function quoteTick(asset: string): Tick | null {
+  ensureQuoteStream();
+  const t = ((g as any)[`__qtk_${QS_VER}`] as Record<string, Tick> | undefined)?.[asset];
+  return t && t.c > 0 ? t : null;
+}
+
+/** The tick-to-tick push over the last backMs: d > 0 = price pushing up right now. Null until the trail has depth. */
+export function tickPush(asset: string, backMs = 3000): { d: number; from: number; to: number; spanMs: number } | null {
+  ensureQuoteStream();
+  const tr = ((g as any)[`__qtrail_${QS_VER}`] as Record<string, { t: number; c: number }[]> | undefined)?.[asset];
+  if (!tr || tr.length < 2) return null;
+  const now = Date.now();
+  const to = tr[tr.length - 1];
+  if (now - to.t > 2500) return null; // trail itself is stale: say nothing rather than something old
+  let from = tr[0];
+  for (let i = tr.length - 1; i >= 0; i -= 1) { from = tr[i]; if (now - tr[i].t >= backMs) break; }
+  return { d: to.c - from.c, from: from.c, to: to.c, spanMs: to.t - from.t };
+}
+
+const QS_VER = 21; // v21 Oct 18 ~4:56 PM PT: second feed (logged only) = COINBASE to time its ticks (Love: "what about coinbase's chart... does it tick fast enough") // // v20 Oct 18 ~4:36 PM PT: BTC on INDEX (Love) // // v19 Oct 18 ~4:31 PM PT: BTC back on PEPPERSTONE (Love) // // v18 Oct 17 ~5:49 PM PT: BTC back on VANTAGE (Love) // v17 Oct 17 ~4:54 PM PT: BTC back on PEPPERSTONE (Love) // v16 Oct 17 ~12:04 AM PT: BTC = VANTAGE (Love), INDEX logged second // v15 Oct 16 ~11:59 PM PT: BTC = INDEX:BTCUSD (Love), Vantage the logged second feed // v14 Oct 16 ~10:30 PM PT: BTC = PEPPERSTONE again (Love), Vantage the logged second feed // v13 Oct 16 ~6:15 PM PT: watchdog counts only open markets (gold closed was recycling BTC every ~50 s) // v10 Oct 16 ~3:23 PM PT: per-version tick stores so sockets left over from older reloads can never feed her a price // +1 Oct 16 ~2:06 PM PT: reconnect so the Vantage second feed is subscribed (+ gap log) // v3 (Oct 15 ~3:15 PM PT, Love: "this execution speed is untenable, she will miss nearly every entry"):
+// TWO redundant TradingView connections per desk - the ticker takes the newest tick across both, so one connection going
+// quiet (the gold silences, the BTC 83 s gap) no longer stalls the freshness gates and the entries behind them. // bump on any change to the stream/watchdog: the globalThis guards outlive module reloads,
+// so without a version the OLD watchdog interval keeps running and the new code never arms (found at the 2 PM audit).
+/** Is this asset's live price trustworthy right now? (Love ~2:15 PM PT: "make it bulletproof"). Not if: no tick in 3 s; the
+ * feed went quiet 5 s+ (or reconnected) in the last 60 s - it must run clean for a full minute first; or the price hasn't moved
+ * in 15 s (frozen feed). The 2:01 PM BTC long came 1 s after Pepperstone woke from a 5-minute freeze, $90 off the market. */
+export function feedHealth(asset: string): { ok: boolean; why: string } {
+  ensureQuoteStream();
+  const H = (g as any)[`__qhealth_${QS_VER}`]?.[asset];
+  const now = Date.now();
+  if (!H || !H.lastAt) return { ok: false, why: "no ticks yet" };
+  if (now - H.lastAt > 3000) return { ok: false, why: `no tick for ${((now - H.lastAt) / 1000).toFixed(1)} s` };
+  // 15 S CLEAN (Oct 16 ~10:02 PM PT, Love: "make it 15."): was 60 s - the feed stutters in the first 2 minutes of most windows,
+  // so a full minute's wait kept her out of the window opens.
+  // 5 S CLEAN (Oct 17 ~1:33 AM PT, Love: "yes both" - the 1:31 AM +1 sigma break came while she sat out a 15 s hold): was 15 s.
+  if (now - H.gapEndAt < 5000) return { ok: false, why: `feed came back ${((now - H.gapEndAt) / 1000).toFixed(0)} s ago - needs 5 s clean` };
+  if (now - H.changedAt > 15000) return { ok: false, why: `price hasn't moved for ${((now - H.changedAt) / 1000).toFixed(0)} s (frozen)` };
+  return { ok: true, why: "" };
+}
+/** Gold (CME hours, Pacific): closed 2-3 PM daily, and from Friday 2 PM to Sunday 3 PM. */
+function goldMarketOpen(ms: number): boolean {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short", hour: "numeric", hourCycle: "h23" }).formatToParts(new Date(ms));
+  const wd = parts.find((x) => x.type === "weekday")?.value || "";
+  const h = Number(parts.find((x) => x.type === "hour")?.value);
+  if (h === 14) return false;
+  if (wd === "Sat") return false;
+  if (wd === "Fri" && h >= 14) return false;
+  if (wd === "Sun" && h < 15) return false;
+  return true;
+}
+export function ensureQuoteStream() {
+  if (g.__qsVer !== QS_VER) {
+    g.__qsVer = QS_VER;
+    try { if (g.__qsTimer) clearInterval(g.__qsTimer); } catch {}
+    try { g.__qsSock?.destroy(); } catch {}
+    for (const old of g.__qsSocks || []) { try { old?.destroy(); } catch {} }
+    g.__qsSocks = [null, null];
+    g.__qsSock = null;
+    g.__qsOn = false;
+  }
+  if (!g.__qsOn) {
+    g.__qsOn = true;
+    g.__qsBackoffs = [2000, 2000];
+    connectStream(0);
+    setTimeout(() => { if (!(g.__qsSocks || [])[1]) connectStream(1); }, 400);
+    // tick watchdog: a connected socket that stops pushing is as stale as a cache - recycle it.
+    g.__qsTimer = setInterval(() => {
+      // Oct 15 2:00 PM audit: BTC went 80+ s without a tick while gold kept flowing, and the ANY-asset watchdog never
+      // fired. Per-asset now: any subscribed symbol silent 45 s while the socket lives = recycle the whole connection.
+      const now = Date.now();
+      const t = ((g as any)[`__qtk_${QS_VER}`] || {}) as Record<string, Tick>;
+      // CLOSED MARKETS DON'T COUNT (Oct 16 ~6:15 PM PT, Love: "yes" to: the self-repair only counts a symbol whose market is open).
+      // Gold closed at 2 PM Friday; its silence tripped this 45 s rule every ~50 s and the restart cut BTC too, so her 60-s feed-health
+      // wait never cleared ("feed came back" holds 0/hr before 3 PM, ~49/hr after). Now: BTC (her decision feed, 24/7) always counts,
+      // gold only while gold trades; the second feeds (btc_v / gold_v, logged only) never restart her connection.
+      const watch = Object.values(SYM).filter((a) => a === "btc" || (a === "gold" && goldMarketOpen(now)));
+      const stalest = Math.max(0, ...watch.map((a) => now - (t[a]?.at || g.__qsLastTick || now)));
+      if (g.__qsLastTick && stalest > 45000) {
+        for (let i = 0; i < 2; i += 1) {
+          const old = (g.__qsSocks || [])[i];
+          if (old) { try { old.destroy(); } catch {} (g.__qsSocks as (tls.TLSSocket | null)[])[i] = null; }
+          connectStream(i);
+        }
+        g.__qsSock = null;
+        g.__qsErr = `an asset went ${Math.round(stalest / 1000)} s without a tick: recycling both connections`;
+      }
+      status();
+    }, 8000).unref?.();
+  }
+}

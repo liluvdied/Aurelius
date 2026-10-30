@@ -1,0 +1,44 @@
+{
+ "combo:crypto-10m:2026-10-13T05:30:00Z": {
+  "at": "2026-10-13T05:25:54.006Z",
+  "result": "bought 10.52 YES at 0.641",
+  "px": 0.641,
+  "n": 10.52,
+  "ticker": "KXMVECROSSCATEGORY-S20261AA51B94B2A-5E0D63CA1A1",
+  "dropped": [],
+  "bestAny": null,
+  "paper": 0.7104550000000001
+ },
+ "combo:mix-7x:2026-10-13T05:45:00Z": {
+  "at": "2026-10-13T05:37:10.417Z",
+  "result": "bought 10.52 YES at 0.879",
+  "px": 0.879,
+  "n": 10.52,
+  "ticker": "KXMVECROSSCATEGORY-S2026D4E7FDB4E7C-28A9FD45571",
+  "dropped": [
+   "KXNATGAS15M-26OCT130145"
+  ],
+  "bestAny": null,
+  "paper": 0.641917
+ },
+ "combo:crypto-10m:2026-10-13T05:45:00Z": {
+  "at": "2026-10-13T05:37:30.411Z",
+  "result": "bought 10.52 YES at 0.907",
+  "px": 0.907,
+  "n": 10.52,
+  "ticker": "KXMVECROSSCATEGORY-S2026814885FB333-51ABE2A705E",
+  "dropped": [],
+  "bestAny": null,
+  "paper": 0.7011689999999999
+ },
+ "combo:mix-5x:2026-10-15T10:00:00Z": {
+  "at": "2026-10-15T09:52:07.291Z",
+  "result": "bought 12.82 YES at 0.808",
+  "px": 0.808,
+  "n": 12.82,
+  "ticker": "KXMVECROSSCATEGORY-S2026KCYHCGP6ZPZWJNSG-4DKYPOVCX",
+  "dropped": [],
+  "bestAny": null,
+  "paper": 0.53882
+ }
+}

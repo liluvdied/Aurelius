@@ -1,0 +1,97 @@
+{
+ "at": "2026-10-20T19:23:12.020Z",
+ "BITSTAMP:BTCUSD": {
+  "bars": 300,
+  "first": 1792254600,
+  "20:46Z from 00:00Z": {
+   "n": 0,
+   "vwap": 0,
+   "sd": null
+  },
+  "21:46Z from 00:00Z": {
+   "n": 0,
+   "vwap": 0,
+   "sd": null
+  },
+  "22:52Z from 00:00Z": {
+   "n": 0,
+   "vwap": 0,
+   "sd": null
+  },
+  "21:46Z from 21:00Z": {
+   "n": 0,
+   "vwap": 0,
+   "sd": null
+  },
+  "22:52Z from 21:00Z": {
+   "n": 0,
+   "vwap": 0,
+   "sd": null
+  }
+ },
+ "OANDA:BTCUSD": {
+  "bars": 800,
+  "first": 1792111500,
+  "20:46Z from 00:00Z": {
+   "n": 0,
+   "vwap": 0,
+   "sd": null
+  },
+  "21:46Z from 00:00Z": {
+   "n": 0,
+   "vwap": 0,
+   "sd": null
+  },
+  "22:52Z from 00:00Z": {
+   "n": 0,
+   "vwap": 0,
+   "sd": null
+  },
+  "21:46Z from 21:00Z": {
+   "n": 0,
+   "vwap": 0,
+   "sd": null
+  },
+  "22:52Z from 21:00Z": {
+   "n": 0,
+   "vwap": 0,
+   "sd": null
+  }
+ },
+ "gold 15m with live bar": {
+  "n": 0,
+  "vwap": 0,
+  "sd": null,
+  "logged": {
+   "vwap": 4167.24,
+   "sd": 9.732
+  }
+ },
+ "gold 15m closed bars": {
+  "n": 0,
+  "vwap": 0,
+  "sd": null,
+  "logged": {
+   "vwap": 4167.24,
+   "sd": 9.732
+  }
+ },
+ "gold 5m with live bar": {
+  "n": 0,
+  "vwap": 0,
+  "sd": null,
+  "logged": {
+   "vwap": 4167.24,
+   "sd": 9.732
+  }
+ },
+ "gold 5m closed bars": {
+  "n": 0,
+  "vwap": 0,
+  "sd": null,
+  "logged": {
+   "vwap": 4167.24,
+   "sd": 9.732
+  }
+ }
+}
