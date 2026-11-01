@@ -1,0 +1,30 @@
+{
+ "words": "The 15/20% tolerance is not a 50% wait. If the pink is mid-channel, 15/20% only covers the band near the pink. Calculate the tolerance this way: Band channel width = $500 / 20% of that = $100 / The cushion is the distance from the current price to the pink. If the current price is inside that $100, the tolerance holds. If the current price is outside that $100, the tolerance does not hold. ... please go over every trade and you'll see the pattern. apply the pink tolerance as i described and calculate it that way for all of them if it isn't already. it should be",
+ "what": "fix585 PINK-20-OF-CHANNEL: her pink tolerance = channel width (session band under price to session band over it) x 20% BTC / 15% gold, held only while |price - pink| is inside it, at EVERY width. bandlock pinkSlide580 + recon pinkSlide580R: BTC was $25 under $100 wide and 15% over $500 - now 20% at every width. reachWall429 pink: gold now reads the same 15% scale (was max($1 reach, 15%)). Every pink site (reachWall429, pinkFar503, pinkBeyond459, upslope wall, cush514, recon pinkRead464) reads the one scale. __PINKFLAT25 weekend overlay untouched (still off). $5 break, 55% ceiling, thirds, same side, 1.5x floor, zones, Bollingers, flips - untouched. Both sides, main + rejection + every book except delayed; the walled-off 5M not touched.",
+ "books": "recon-tog (main), recon-rej (rejection), and every other book except the delayed copy (DLY465) and the walled-off 5M (recon5m/bandlock5m untouched)",
+ "proof": [
+  {
+   "code": "src/lib/desk/bandlock.ts",
+   "has": "export function pinkSlide580(asset: string, W: number): number { return asset === \"btc\" ? 0.2 * W :"
+  },
+  {
+   "code": "src/lib/desk/recon.ts",
+   "has": "function pinkSlide580R(asset: string, W: number, pct: number): number { return asset === \"btc\" ? 0.2 * W : pct * W; }"
+  },
+  {
+   "test": "tools/pink-20-channel-585.cjs"
+  },
+  {
+   "test": "tools/pink-flag-25-test.cjs"
+  },
+  {
+   "test": "tools/pink-15-20-test-459.cjs"
+  },
+  {
+   "test": "tools/pink-far-test-503.cjs"
+  },
+  {
+   "test": "tools/pink-break-casts-580.cjs"
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+--- f584/tools/pink-flag-25-test.cjs	2026-11-01 10:32:43.904160276 +0000
++++ f585/tools/pink-flag-25-test.cjs	2026-11-01 10:45:02.679189220 +0000
+@@ -20,11 +20,12 @@
+ const near = (x, y, m) => Math.abs(x - y) <= (m || 0.02);
+ // faithful replica of her LIVE pink law (the overlay's else-branch), day-robust
+ const weekend = /Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date()));
+-const live = (asset, W) => hasSlide580 ? Math.round((asset === "btc" ? (W < 100 ? 25 : W <= 500 ? 0.2 * W : 0.15 * W) : 0.15 * W) * 100) / 100 : asset === "btc" ? Math.round(Math.min(25, Math.max(weekend ? 0 : 75, (W < 180 && W >= 75) ? 0.75 * W : 0.2 * W)) * 100) / 100 : Math.round(0.15 * W * 100) / 100;
++const has585 = /fix585 PINK-20-OF-CHANNEL/.test(src); // fix585 (Love Nov 1 2026 10:34 UTC: "Band channel width = $500 / 20% of that = $100"): BTC 20% of the channel at every width
++const live = (asset, W) => hasSlide580 ? Math.round((asset === "btc" ? (has585 ? 0.2 * W : W < 100 ? 25 : W <= 500 ? 0.2 * W : 0.15 * W) : 0.15 * W) * 100) / 100 : asset === "btc" ? Math.round(Math.min(25, Math.max(weekend ? 0 : 75, (W < 180 && W >= 75) ? 0.75 * W : 0.2 * W)) * 100) / 100 : Math.round(0.15 * W * 100) / 100;
+ const WIDTHS = [["gold", 3997.5, 4002.5, 5], ["gold", 4040, 4080, 40], ["gold", 3900, 4100, 200], ["btc", 79975, 80025, 50], ["btc", 80000, 80300, 300], ["btc", 79650, 80350, 700]];
+ // FLAG TRUE => flat $25 both assets, every width
+ for (const [asset, lo, hi, W] of WIDTHS) { const got = readTol(Ftrue, asset, lo, hi); t(near(got, 25), `flag TRUE: ${asset} W=$${W} should be a flat $25, got $${got.toFixed(3)}`); }
+ // FLAG FALSE => her untouched live law, exactly
+ for (const [asset, lo, hi, W] of WIDTHS) { const got = readTol(Ffalse, asset, lo, hi), want = live(asset, W); t(near(got, want, 0.03), `flag FALSE: ${asset} W=$${W} should be her live $${want.toFixed(3)}, got $${got.toFixed(3)}`); }
+-console.log(ok ? "PINK FLAG25 TEST ✓ - __PINKFLAT25 true = a flat $25 pink both assets at every width; false = her pink scale exactly (gold 15%; BTC $25 under $100, 20% $100-$500, 15% over $500 - fix580). The overlay changes her only when the flag is set." : "PINK FLAG25 TEST: FAIL");
++console.log(ok ? "PINK FLAG25 TEST ✓ - __PINKFLAT25 true = a flat $25 pink both assets at every width; false = her pink scale exactly (" + (has585 ? "gold 15%, BTC 20% of the channel at every width - fix585" : "gold 15%; BTC $25 under $100, 20% $100-$500, 15% over $500 - fix580") + "). The overlay changes her only when the flag is set." : "PINK FLAG25 TEST: FAIL");
+ process.exit(ok ? 0 : 1);

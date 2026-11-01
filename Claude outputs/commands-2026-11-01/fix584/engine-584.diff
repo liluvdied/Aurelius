@@ -1,0 +1,62 @@
+--- f583/src/lib/desk/engine.ts	2026-11-01 10:31:27.354930387 +0000
++++ f584/src/lib/desk/engine.ts	2026-11-01 10:33:03.572081707 +0000
+@@ -5806,10 +5806,25 @@
+   if (last && (dir === "down" ? last.p >= last.pp + rst : last.p <= last.pp - rst)) return false; // the live tick through by her reset ends it at once
+   return run >= 3;
+ }
++// fix584 PINK SLIDE HER WAY (Love Nov 1 2026: "The pink slide rule only applies in this case: Price has rejected the pink three times on the way down. And pink is in the bottom/top 33% of the channel. Only then are longs/shorts blocked ... In every other case the slide rule does nothing." + 10:29 AM: "i did not ask for pink slide off. i asked for it to be revised."): the slide holds only while the pink sits in the bottom 33% (long slide) / top 33% (short climb) of its session channel
++// (adjacent session bands around the pink, band to band). Unreadable channel = the slide does nothing. Her 3-rejections count (fix494/fix503c) and her 10% reset are untouched.
++export const __PINKSLIDE_HERWAY584 = true;
++export function pinkThird584(asset: string, pp: number, dir: "down" | "up"): boolean {
++  try {
++    if (!(pp > 0)) return false;
++    const L0 = (((globalThis as any).__lawBands || {})[asset] || {}).L || [];
++    const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
++    const a = S0.filter((l: any) => Number(l.price) > pp).sort((x: any, y: any) => x.price - y.price)[0], b = S0.filter((l: any) => Number(l.price) < pp).sort((x: any, y: any) => y.price - x.price)[0];
++    if (!a || !b || !(a.price > b.price)) return false;
++    const W = a.price - b.price;
++    return dir === "down" ? (pp - b.price) / W <= 1 / 3 : (a.price - pp) / W <= 1 / 3;
++  } catch { return false; }
++}
+ export function climbHold464(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number, asset: string): string {
+   const last = sm[sm.length - 1];
+   const brk = asset === "btc" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, nm = asset === "btc" ? "BTC" : "GOLD";
+   if (!last || now - last.t >= 30000) return "";
++  if (typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584 && !pinkThird584(asset, last.pp, "up")) { S.on = false; return ""; } // fix584: the pink is not in her bottom/top 33% - the slide does nothing
+   if (last.p < last.pp - ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[asset] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return brk; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494: her break (25c / $8 down through pink) frees the short
+   const C494: { hit: boolean; p: number; pp: number }[] = []; let b494 = -1; // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope."): her 5m candles, read off the samples
+   for (const x of sm) { const b = Math.floor(x.t / 300000); if (b !== b494) { b494 = b; C494.push({ hit: false, p: x.p, pp: x.pp }); } const k = C494[C494.length - 1]; if (x.p <= x.pp) k.hit = true; k.p = x.p; k.pp = x.pp; }
+@@ -5822,6 +5837,7 @@
+ export function slideHold403(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
+   const last = sm[sm.length - 1];
+   if (!last || now - last.t >= 30000) return "";
++  if (typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584 && !pinkThird584("gold", last.pp, "down")) { S.on = false; return ""; } // fix584: the pink is not in her bottom/top 33% - the slide does nothing
+   if (last.p > last.pp + ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})["gold"] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return 0.25; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494 + fix560 (Love Oct 31 2026 1:11 AM PT: "when the longs are blocked on the pink downslope she is to SHORT there ONLY until price breaks pink by 10% of the channel width for gold and 10% for btc"): her break (10% of the channel up through pink) frees the long
+   const C494: { hit: boolean; p: number; pp: number }[] = []; let b494 = -1; // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope."): her 5m candles, read off the samples
+   for (const x of sm) { const b = Math.floor(x.t / 300000); if (b !== b494) { b494 = b; C494.push({ hit: false, p: x.p, pp: x.pp }); } const k = C494[C494.length - 1]; if (x.p >= x.pp) k.hit = true; k.p = x.p; k.pp = x.pp; }
+@@ -5830,7 +5846,7 @@
+   if (run494 >= 3) { S.on = true; return `GOLD SLIDE UNDER PINK: ${run494} candles hit the pink and rejected on a down slope (last at ${rejPp494.toFixed(2)}) with gold ${last.p.toFixed(2)} under it - no long until price breaks up through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.")
+   // fix521 (12:32 PM: "Falling = the running 2-5m candle is red and falling (tick under its high/open). Trail test = price lower than it was 2 minutes ago. pink down to the...): under the pink and lower than 2 minutes ago = sliding, no touches required
+   { const ago521 = sm.filter((x) => now - x.t >= 120000).slice(-1)[0];
+-    if (last.p < last.pp && ago521 && last.p < ago521.p) { S.on = true; return `GOLD SLIDE UNDER PINK: price ${last.p.toFixed(2)} is under the pink (${last.pp.toFixed(2)}) and lower than 2 minutes ago - no long until her reset (fix521; frees on the 10%-of-the-channel break up)`; } }
++    if (!(typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584) /* fix584: no blanket "under the pink = no longs" - her slide needs 3 rejections + the bottom 33% */ && last.p < last.pp && ago521 && last.p < ago521.p) { S.on = true; return `GOLD SLIDE UNDER PINK: price ${last.p.toFixed(2)} is under the pink (${last.pp.toFixed(2)}) and lower than 2 minutes ago - no long until her reset (fix521; frees on the 10%-of-the-channel break up)`; } }
+   if (S.on) return `GOLD SLIDE UNDER PINK: gold ${last.p.toFixed(2)} is still under the pink (${last.pp.toFixed(2)}) since her slide - no long until price breaks up through pink by 10% of the channel (fix560).`;
+   return "";
+ }
+@@ -5840,6 +5856,7 @@
+ export function slideHoldBtc423(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
+   const last = sm[sm.length - 1];
+   if (!last || now - last.t >= 30000) return "";
++  if (typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584 && !pinkThird584("btc", last.pp, "down")) { S.on = false; return ""; } // fix584: the pink is not in her bottom/top 33% - the slide does nothing
+   if (last.p > last.pp + ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})["btc"] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return 8; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494: her break ($8 up through pink) frees the long
+   const C494: { hit: boolean; p: number; pp: number }[] = []; let b494 = -1; // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope."): her 5m candles, read off the samples
+   for (const x of sm) { const b = Math.floor(x.t / 300000); if (b !== b494) { b494 = b; C494.push({ hit: false, p: x.p, pp: x.pp }); } const k = C494[C494.length - 1]; if (x.p >= x.pp) k.hit = true; k.p = x.p; k.pp = x.pp; }
+@@ -5848,7 +5865,7 @@
+   if (run494 >= 3) { S.on = true; return `BTC SLIDE UNDER PINK: ${run494} candles hit the pink and rejected on a down slope (last at ${rejPp494.toFixed(2)}) with btc ${last.p.toFixed(2)} under it - no long until price breaks up through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.")
+   // fix521 (12:32 PM: "Falling = the running 2-5m candle is red and falling (tick under its high/open). Trail test = price lower than it was 2 minutes ago. pink down to the...): under the pink and lower than 2 minutes ago = sliding, no touches required
+   { const ago521 = sm.filter((x) => now - x.t >= 120000).slice(-1)[0];
+-    if (last.p < last.pp && ago521 && last.p < ago521.p) { S.on = true; return `BTC SLIDE UNDER PINK: price ${last.p.toFixed(2)} is under the pink (${last.pp.toFixed(2)}) and lower than 2 minutes ago - no long until her reset (fix521; frees on the 10%-of-the-channel break up)`; } }
++    if (!(typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584) /* fix584: no blanket "under the pink = no longs" - her slide needs 3 rejections + the bottom 33% */ && last.p < last.pp && ago521 && last.p < ago521.p) { S.on = true; return `BTC SLIDE UNDER PINK: price ${last.p.toFixed(2)} is under the pink (${last.pp.toFixed(2)}) and lower than 2 minutes ago - no long until her reset (fix521; frees on the 10%-of-the-channel break up)`; } }
+   if (S.on) return `BTC SLIDE UNDER PINK: btc ${last.p.toFixed(2)} is still under the pink (${last.pp.toFixed(2)}) since her slide - no long until price breaks up through pink by 10% of the channel (fix560).`;
+   return "";
+ }

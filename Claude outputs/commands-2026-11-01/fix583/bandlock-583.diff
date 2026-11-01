@@ -1,0 +1,49 @@
+--- live/src/lib/desk/bandlock.ts	2026-11-01 10:08:36.043720000 +0000
++++ f583/src/lib/desk/bandlock.ts	2026-11-01 10:31:43.931792740 +0000
+@@ -436,7 +436,7 @@
+     // FROZEN (Oct 19 ~12:19 AM PT, Love: "freeze it til it's frozen - until i say to thaw it" - data/FROZEN.json): this rule keeps its own distances,
+     // BTC $8 / gold 33c, whatever the break distance elsewhere becomes.
+     const FROZEN_THIRD_DIST: Record<string, number> = { btc: 8, gold: 0.33 };
+-    const dist = FROZEN_THIRD_DIST[asset] ?? 0, w = up.price - dn.price;
++    const dist = FROZEN_THIRD_DIST[asset] ?? 0, w = up.price - dn.price; const rel583 = asset === "btc" ? 5 : dist; // fix583 (Love Nov 1 2026: "Find the line that is still waiting past $5 and make $5 the cast. Nothing else."): the thirds wall frees on her $5 BTC break off the low/high (was $8); gold 33c and the arming distance untouched
+     let tr = o.trail;
+     if (!tr && G.__stDefaultReach) tr = []; // the self-test never reads her live prices
+     if (!tr) { const tk = Object.keys(G).filter((k) => /^__qtrail_\d+$/.test(k)).sort((a, b) => Number(b.slice(9)) - Number(a.slice(9)))[0]; const f0 = Math.floor(Date.now() / 300000) * 300000; tr = ((tk && G[tk]?.[asset]) || []).filter((x: any) => x && x.c > 0 && x.t >= f0); }
+@@ -446,11 +446,11 @@
+       if (side === "up") {
+         let hi = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c >= hi.c) { hi = p; i0 = i; } });
+         const loAfter = Math.min(...pts.slice(i0).map((p) => p.c));
+-        if ((hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < dist) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no long while it falls`;
++        if ((hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < rel583) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no long while it falls`;
+       } else {
+         let lo = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c <= lo.c) { lo = p; i0 = i; } });
+         const hiAfter = Math.max(...pts.slice(i0).map((p) => p.c));
+-        if ((lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < dist) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no short while it rises`;
++        if ((lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < rel583) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no short while it rises`;
+       }
+     }
+   }
+@@ -845,7 +845,7 @@
+ export function reconThirdAgainst(asset: string, L: Line[], tick: number, side: string, Bk: Map<string, "up" | "down">): string {
+   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
+   const RT_DIST: Record<string, number> = { btc: 8, gold: 0.33 };
+-  const dist = RT_DIST[asset] ?? 0;
++  const dist = RT_DIST[asset] ?? 0; const rel583 = asset === "btc" ? 5 : dist; // fix583 (Love Nov 1 2026: "Find the line that is still waiting past $5 and make $5 the cast. Nothing else."): the thirds wall frees on her $5 BTC break off the low/high (was $8); gold 33c and the arming distance untouched
+   const o = fiveOpenNow(asset);
+   const S = wallFor(wallLines(asset, L).filter((l) => Number(l.price) > 0 && isSessBand(l)), Bk, tick, side);
+   // CHANNEL EDGES ARE UNBROKEN ONLY (Oct 20 ~8:02 AM PT, Love): a standing-broken band is not a barrier and not a channel edge -
+@@ -862,12 +862,12 @@
+   if (side === "up") {
+     let hi = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c >= hi.c) { hi = p; i0 = i; } });
+     const loAfter = Math.min(...pts.slice(i0).map((p) => p.c));
+-    if ((hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < dist) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a short, not a long`;
++    if ((hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < rel583) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a short, not a long`;
+   }
+   if (side === "down") {
+     let lo = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c <= lo.c) { lo = p; i0 = i; } });
+     const hiAfter = Math.max(...pts.slice(i0).map((p) => p.c));
+-    if ((lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < dist) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a long, not a short`;
++    if ((lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < rel583) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a long, not a short`;
+   }
+   return "";
+ }

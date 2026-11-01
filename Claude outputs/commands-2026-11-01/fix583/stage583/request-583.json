@@ -1,0 +1,14 @@
+{
+ "words": "Find the line that is still waiting past $5 and make $5 the cast. Nothing else. ... The entry is $5 past the pink or session band on a valid flip. The 15/20% tolerance stays in force for every other case.",
+ "what": "fix583 THIRDS FREE AT $5: the falling-from-the-top-third / rising-from-the-bottom-third walls (bandlock awayVerdict FROZEN_THIRD_DIST + reconThirdAgainst RT_DIST) free on her $5 BTC move off the high/low (was $8). Arming distance and gold 33c untouched. Pink tolerance untouched.",
+ "books": "every book that reads these two walls (main, rejection and the rest); 5M (bandlock5m) untouched",
+ "proof": [
+  {
+   "code": "src/lib/desk/bandlock.ts",
+   "has": "const rel583 = asset === \"btc\" ? 5 : dist;"
+  },
+  {
+   "test": "tools/thirds-five-583.cjs"
+  }
+ ]
+}
