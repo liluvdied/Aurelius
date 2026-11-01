@@ -1,9 +1,708 @@
-# Every decision Love has made - rebuilt 2026-11-01T14:31:44.788969+00:00
+# Every decision Love has made - rebuilt 2026-11-01T18:16:28.164163+00:00
 
-1301 decisions with Love's words or card picks, out of 2043 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1468 decisions with Love's words or card picks, out of 2222 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-01T18:15:58Z  ·  diary line 2689  ·  fix592
+- fix592 IN HER CODE
+- Full entry: 2026-11-01T18:15:58Z R308 fix592 (Love, HER-FLIP-BAND-ZONE-AT-THE-SEND.command): flip path + born path stay; her session-band scale at the door and last line; her zone check at the door and last line; last-line check on the live tick; fake-out waiver out of the flip and candle tests
+
+## 2026-11-01T16:19:41.819137Z  ·  diary line 2688
+- Full entry: 2026-11-01T16:19:41.819137Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-11-01T11:09:34Z  ·  diary line 2687  ·  fix521, fix584
+- fix521 IN HER CODE
+- fix584 IN HER CODE
+- Full entry: 2026-11-01T11:09:34Z R307 fix584 (Love, PINK-SLIDE-YOUR-WAY.command): engine slide/climb hold only after 3 rejections + pink in the bottom/top 33% of its session channel (pinkThird584); fix521 blanket holds + bandlock UNDER/OVER THE PINK stand down; 10% reset + tolerance untouched; 5M untouched; new test tools/slide-her-way-584.cjs
+
+## 2026-11-01T11:08:19Z  ·  diary line 2686  ·  fix583
+- fix583 IN HER CODE
+- Full entry: 2026-11-01T11:08:19Z R306 fix583 (Love, THIRDS-FREE-AT-5.command): bandlock awayVerdict + reconThirdAgainst thirds walls free on her $5 BTC move off the high/low (rel583, was $8); arming + gold 33c untouched; new test tools/thirds-five-583.cjs
+
+## 2026-11-01T09:26:09.621877Z  ·  diary line 2685
+- Full entry: 2026-11-01T09:26:09.621877Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-11-01T09:23:15Z  ·  diary line 2684  ·  fix580
+- fix580 IN HER CODE
+- Full entry: 2026-11-01T09:23:15Z R305 fix580 (Love, GAP-CLOSED.command): recon bonesDecide break candidate casts the pink at her $5 BTC / 25c gold and session bands at $5 BTC (BREAK + bandlock BREAK_DIST + PINK_BREAK btc $6 -> $5; gold 33c session untouched); __PINKFLAT25 off - pink tolerance back on the channel (gold 15%; BTC $25<$100 / 20% $100-$500 / 15% >$500, pinkSlide580) at every pink site; $25 returns tomorrow 2-3 pm via WEEKEND-PINK-25; spine re-signed; new test tools/pink-break-casts-580.cjs
+
+## 2026-11-01T07:48:09Z  ·  diary line 2683  ·  fix579
+- fix579 IN HER CODE
+- Full entry: 2026-11-01T07:48:09Z R304 fix579 (Love, MAKE-THE-5-BREAK-HER-ENTRY.command): reachWall429 pink (5m PP) counts as broken behind her at HER pink break (PINK_BREAK432 - BTC $5 / gold 25c) not the $6/33c band break, so a clean $5 break clears the $25 reach and she enters; the $25/$1 reach still holds an unbroken pink; main + rejection + every book but delayed; both sides; no reach value / session band / zone / other rule changed; new test tools/five-break-enters-579.cjs locks it
+
+## 2026-11-01T07:28:50.262Z  ·  diary line 2682
+- Full entry: 2026-11-01T07:28:50.262Z HOURS (Love, in-app schedule pill): 1 AM PT -> MAIN book (BTC only)
+
+## 2026-11-01T07:15:27.271729Z  ·  diary line 2681
+- Full entry: 2026-11-01T07:15:27.271729Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-11-01T07:11:30Z  ·  diary line 2680  ·  fix578
+- fix578 IN HER CODE
+- Full entry: 2026-11-01T07:11:30Z R303 fix578 (Love, REMOVE-THE-ARM.command): armGate524 no longer refuses - the 4-hour arm requirement is lifted from every fns writer/button (hook + log + all 40 call sites kept; cornerstone 51 >=40 and R268 still hold); no rule/book/wall/src-other-than-this-one-function changed; desk stays on overnight
+
+## 2026-11-01T07:07:33Z  ·  diary line 2679  ·  fix577
+- fix577 in her code without its number (see her words in the code comments)
+- Full entry: 2026-11-01T07:07:33Z R301 fix577 (Love, REPAIR-REQUEST-LOG.command): requests.py reads a single prose proof (1 line, mirrors the R044 one-object case); R299/R300 kept ACTIVE, their sentence-proof superseded by R301/R302 which carry real checkable proof; R301 also locks the fix in; no src change, no rule change - clears the umpire NOT-SAFE
+
+## 2026-11-01T04:33:36Z  ·  diary line 2677  ·  fix576
+- fix576 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-11-01T04:33:36Z R300 fix576 (Love, FREEZE-SHOWS-THE-CAUSE.command): on spine drift recon writes the reason to recon-skips.jsonl before it holds the books - the freeze can no longer hide its cause; the hold itself is unchanged; one additive line, no rule touched; spine re-signed
+
+## 2026-11-01T04:31:55Z  ·  diary line 2676
+- Full entry: 2026-11-01T04:31:55Z R299 fix575a (Love, UNFREEZE-HER-BOOKS.command): re-signed the spine to the recon.ts R297 approved (092ef8b41624bbaf) - WEEKEND-PINK-25 changed recon.ts without re-signing and froze the reconstructed books; no rule changed, recon.ts byte-identical
+
+## 2026-11-01T02:50:47Z  ·  diary line 2675  ·  fix573
+- fix573 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-11-01T02:50:47Z R298 fix573 (Love, UMPIRE-ACCEPTS-25.command): behaviour umpire made __PINKFLAT25-aware - the 2 pink scenes expect the flat $25 when the overlay is on (gold $1.60 HELD; doji short still refused); her 15%/20% law unchanged when off; no src change
+
+## 2026-11-01T02:33:48Z  ·  diary line 2673
+- Full entry: 2026-11-01T02:33:48Z TIDY (Love, TIDY-THE-DESK.command): 50 spent clicks filed into data/USED-CLICKS/ - nothing deleted, all sealed (uchg)
+
+## 2026-11-01T02:15:35Z  ·  diary line 2672  ·  fix571
+- fix571 IN HER CODE
+- Full entry: 2026-11-01T02:15:35Z R297 fix571 (Love, WEEKEND-PINK-25.command): a flat $25 pink overlay on both books (__PINKFLAT25), her full law byte-identical under the flag, reversible with PINK-BACK-TO-SLIDING
+
+## 2026-10-31T21:18:39.448Z  ·  diary line 2670
+- Full entry: 2026-10-31T21:18:39.448Z HOURS (Love, in-app schedule pill): 2 PM PT -> MAIN book (BTC only)
+
+## 2026-10-31T21:11:19.643Z  ·  diary line 2669
+- Full entry: 2026-10-31T21:11:19.643Z HOURS (Love, in-app schedule pill): 2 PM PT -> REJECTION model (BTC only)
+
+## 2026-10-31T21:01:53Z  ·  diary line 2667  ·  fix565
+- fix565 IN HER CODE
+- Full entry: 2026-10-31T21:01:53Z R296 fix565 (Love, ONE-PINK.command): onePink565 = chart CM_Pivot Bands 5m incl forming candle + live ticks; every read/wall/cushion/reach/zone/slide incl the 5M; walls fresh on every read + final gate; closed-candle pink deleted; 5M refrozen; spine re-signed; cornerstone 74
+
+## 2026-10-31T20:37:14.679518Z  ·  diary line 2666
+- Full entry: 2026-10-31T20:37:14.679518Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-31T14:22:32Z  ·  diary line 2664
+- Full entry: 2026-10-31T14:22:32Z R295 fix-pro (Love, SIGNED-IN-PRO.command): quotes.ts fetches her Pro token from quote_token through /usr/bin/curl with her full cookie, matched by JWT shape; no free-feed fallback; QS_VER 33; no rule changes; cornerstone 73
+
+## 2026-10-31T13:43:51.372384Z  ·  diary line 2663
+- Full entry: 2026-10-31T13:43:51.372384Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-31T08:37:58Z  ·  diary line 2661  ·  fix561
+- fix561 IN HER CODE
+- Full entry: 2026-10-31T08:37:58Z R294 fix561 (Love, PINK-BREAK-5.command): the unbroken-pink long/short walls (PINK_BREAK432) break at 5 dollars BTC like every other site, was 8; not delayed, not 5M; cornerstone 70
+
+## 2026-10-31T08:21:40Z  ·  diary line 2660  ·  fix560
+- fix560 IN HER CODE
+- Full entry: 2026-10-31T08:21:40Z R293 fix560 (Love, SHORTS-ONLY-TIL-10.command): pink downslope = shorts only (climb = longs only) until price breaks pink by 10% of the channel width, gold + BTC; slope reset 10% BTC too; main + rejection + copies, not delayed, not 5M; cornerstone 69
+
+## 2026-10-31T08:12:12.923Z  ·  diary line 2659
+- Full entry: 2026-10-31T08:12:12.923Z HOURS (Love, in-app schedule pill): 1 AM PT -> REJECTION model (BTC only)
+
+## 2026-10-31T08:12:03.417Z  ·  diary line 2658
+- Full entry: 2026-10-31T08:12:03.417Z HOURS (Love, in-app schedule pill): 1 AM PT -> DELAYED twin
+
+## 2026-10-31T08:06:16Z  ·  diary line 2657  ·  fix559
+- fix559 IN HER CODE
+- Full entry: 2026-10-31T08:06:16Z R292 fix559 (Love, BTC-ZONES-55-ONLY.command): the 50-dollar BTC zone distance out - her 55% only, every book but delayed incl. 5M; cornerstone 68
+
+## 2026-10-31T07:36:53Z  ·  diary line 2656  ·  fix558
+- fix558 IN HER CODE
+- Full entry: 2026-10-31T07:36:53Z R291 fix558 (Love, HER-RULES-ENFORCED.command): no report-only - SAFE fails on any missing rule/request; every book behind SAFE; unknown book refused; delayed own door; her marks on file; cornerstone 67
+
+## 2026-10-31T07:36:12Z  ·  diary line 2655  ·  fix557
+- fix557 IN HER CODE
+- Full entry: 2026-10-31T07:36:12Z R290 fix557 (Love, ONE-FEED-EVERYWHERE.command): INDEX + OANDA out of her price stream, the 5M and gold backups - one feed everywhere; cornerstone 66
+
+## 2026-10-31T07:34:33.889936Z  ·  diary line 2654
+- Full entry: 2026-10-31T07:34:33.889936Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-31T07:01:20.380375Z  ·  diary line 2652
+- Full entry: 2026-10-31T07:01:20.380375Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-31T05:36:18Z  ·  diary line 2651  ·  fix552
+- fix552 IN HER CODE
+- Full entry: 2026-10-31T05:36:18Z R289 fix552 (Love, BOLLINGER-25.command): the BTC Bollinger cushion is a flat 25 dollars, same as her pink - the 50-dollar floor / 10 percent archived; cornerstone 43 reworded
+
+## 2026-10-31T05:20:08Z  ·  diary line 2650  ·  fix550
+- fix550 IN HER CODE
+- Full entry: 2026-10-31T05:20:08Z RE-SIGN-HER-SPINE (Love): spine + golden re-signed for her R288 fix550 recon.ts - Claude's click missed it; books read again
+
+## 2026-10-31T05:15:23Z  ·  diary line 2649  ·  fix550
+- fix550 IN HER CODE
+- Full entry: 2026-10-31T05:15:23Z RE-SIGN-HER-SPINE (Love): spine + golden re-signed for her R288 fix550 recon.ts - Claude's click missed it; books read again
+
+## 2026-10-31T05:10:21Z  ·  diary line 2648  ·  fix550
+- fix550 IN HER CODE
+- Full entry: 2026-10-31T05:10:21Z R288 fix550 (Love, PINK-CAP-ON-THE-READ.command): the recon read-side pink wall runs her tolerance law + temporary 25-dollar cap - the sixth and last pink site covered; cornerstones 53/63 extended
+
+## 2026-10-31T05:04:45.909Z  ·  diary line 2647
+- Full entry: 2026-10-31T05:04:45.909Z HOURS (Love, in-app schedule pill): 10 PM PT -> MAIN book (BTC only)
+
+## 2026-10-31T05:00:34.226937Z  ·  diary line 2646
+- Full entry: 2026-10-31T05:00:34.226937Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-31T04:34:49Z  ·  diary line 2645  ·  fix548
+- fix548 IN HER CODE
+- Full entry: 2026-10-31T04:34:49Z R287 fix548 (Love, THE-3PM-RULE-IS-GONE.command): the 3 PM time rule deleted outright, its test and replay retired - her width carry is the only narrow-band rule; cornerstones 27 + 65 reworded
+
+## 2026-10-31T04:27:52.660887Z  ·  diary line 2644
+- Full entry: 2026-10-31T04:27:52.660887Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-31T04:25:56Z  ·  diary line 2643  ·  fix547
+- fix547 IN HER CODE
+- Full entry: 2026-10-31T04:25:56Z R286 fix547 (Love, UNTIL-THE-BANDS-WIDEN.command): the 3 PM zones-and-Bollingers hold releases at her 100 dollar BTC / 5 dollar gold width; cornerstone 65
+
+## 2026-10-31T04:24:49Z  ·  diary line 2642  ·  fix541, fix545
+- fix541 IN HER CODE
+- fix545 in her code without its number (see her words in the code comments)
+- Full entry: 2026-10-31T04:24:49Z R285 fix545 (Love, LET-HER-BOOKS-BREATHE.command): spine re-signed for her fix541 recon.ts, the three pink tests on her temporary 25-dollar cap, her 9:08 PM hour flip recorded - her books read again
+
+## 2026-10-31T04:08:23.229Z  ·  diary line 2641
+- Full entry: 2026-10-31T04:08:23.229Z HOURS (Love, in-app schedule pill): 9 PM PT -> MAIN book (BTC only)
+
+## 2026-10-31T04:08:17.837Z  ·  diary line 2640
+- Full entry: 2026-10-31T04:08:17.837Z HOURS (Love, in-app schedule pill): 9 PM PT -> REJECTION model (BTC only)
+
+## 2026-10-31T04:00:05Z  ·  diary line 2639  ·  fix544
+- fix544 IN HER CODE
+- Full entry: 2026-10-31T04:00:05Z R284 fix544 (Love, BOTH-ENTRIES.command): her flip law carries both paths - the turn AND born-her-colour, immediate on the next tick, hard blocks kept; cornerstone 64
+
+## 2026-10-31T03:31:33Z  ·  diary line 2638  ·  fix542
+- fix542 IN HER CODE
+- Full entry: 2026-10-31T03:31:33Z R283 fix542 (Love, PINK-25-FOR-NOW.command): every BTC pink tolerance capped at a flat 25 dollars, temporary by her word; cornerstone 63
+
+## 2026-10-31T03:30:34Z  ·  diary line 2637  ·  fix541
+- fix541 IN HER CODE
+- Full entry: 2026-10-31T03:30:34Z R282 fix541 (Love, BREAK-AT-5.command): the BTC pink break is 5 dollars at every site, was 8; cornerstone 62
+
+## 2026-10-31T02:42:39Z  ·  diary line 2636  ·  fix539
+- fix539 IN HER CODE
+- Full entry: 2026-10-31T02:42:39Z R281 fix539 (Love, FAST-AT-THE-BREAK.command): every door distance reads the live wire when fresh - the post-break seconds are gone; cornerstone 61
+
+## 2026-10-31T02:37:35Z  ·  diary line 2635  ·  fix514, fix526, fix538
+- fix514 IN HER CODE
+- fix526 IN HER CODE
+- fix538 IN HER CODE
+- Full entry: 2026-10-31T02:37:35Z R280 fix538 (Love, PINK-FLOOR-EVERYWHERE.command): her 75-dollar weekday floor + 3/4 law reaches the fix514 pink cushion, the one site fix526 missed; cornerstone 53 covers it
+
+## 2026-10-31T02:26:23Z  ·  diary line 2634
+- Full entry: 2026-10-31T02:26:23Z TIDY (Love, TIDY-THE-DESK.command): 7 spent clicks filed into data/USED-CLICKS/ - nothing deleted, all sealed (uchg)
+
+## 2026-10-31T02:24:19Z  ·  diary line 2633
+- Full entry: 2026-10-31T02:24:19Z CACHE CLEARED BY HAND (Love, CLEAR-HER-CACHE.command): 19 rows to the archive, 116 stay
+
+## 2026-10-31T02:05:19Z  ·  diary line 2632  ·  fix536
+- fix536 IN HER CODE
+- Full entry: 2026-10-31T02:05:19Z R279 fix536 (Love, LET-HER-RUN.command): the fill-auditor shut-off is lifted by her word - every refused fill recorded in would-have-halted.jsonl, entries stay on at 1 dollar; cornerstone 60
+
+## 2026-10-31T02:03:20Z  ·  diary line 2631  ·  fix535
+- fix535 IN HER CODE
+- Full entry: 2026-10-31T02:03:20Z R278 fix535 (Love, HOURLY-CLEAR-THE-CARDS.command): settled card rows older than a day leave grok-og + night-book into their archives every hour - nothing deleted; cornerstone 59
+
+## 2026-10-31T02:02:41Z  ·  diary line 2630  ·  fix534
+- fix534 IN HER CODE
+- Full entry: 2026-10-31T02:02:41Z R277 fix534 (Love, SPEED-HER-LOOP.command): the card file parses only on change and the night book writes compact - speed only, zero behavior change; cornerstone 58
+
+## 2026-10-31T01:56:39Z  ·  diary line 2629  ·  fix533
+- fix533 IN HER CODE
+- Full entry: 2026-10-31T01:56:39Z R276 fix533 (Love, ONE-FEED-ONLY.command): the Oct 3 Vantage paper lanes retired, kept on file - Pepperstone alone feeds every book; cornerstone 57
+
+## 2026-10-31T01:54:57Z  ·  diary line 2628  ·  fix532
+- fix532 in her code without its number (see her words in the code comments)
+- Full entry: 2026-10-31T01:54:57Z R275 fix532 (Love, THE-CANDLE-FLIP.command): HER FLIP = a 2-5m colour TURN at her rejection, no minimum, no close wait, immediate next tick, no at-send re-test; the fill auditor still stops a flip-back; cornerstones 1/50/55 re-worded
+
+## 2026-10-31T01:51:31Z  ·  diary line 2627  ·  fix519, fix531
+- fix519 IN HER CODE
+- fix531 in her code without its number (see her words in the code comments)
+- Full entry: 2026-10-31T01:51:31Z R274 fix531 (Love, DELETE-THE-INDEX.command): the Oct 18 index-gap translation deleted - her fix519 window-open deduction is the only one; cornerstone 56 NO INDEX
+
+## 2026-10-31T01:47:08.415597Z  ·  diary line 2625
+- Full entry: 2026-10-31T01:47:08.415597Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-31T00:12:42Z  ·  diary line 2624
+- Full entry: 2026-10-31T00:12:42Z CACHE CLEARED BY HAND (Love, CLEAR-HER-CACHE.command): 9 rows to the archive, 118 stay
+
+## 2026-10-31T00:11:59Z  ·  diary line 2623
+- Full entry: 2026-10-31T00:11:59Z TIDY (Love, TIDY-THE-DESK.command): 54 spent clicks filed into data/USED-CLICKS/ - nothing deleted, all sealed (uchg)
+
+## 2026-10-31T00:10:56.416576Z  ·  diary line 2622
+- Full entry: 2026-10-31T00:10:56.416576Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T23:34:00Z  ·  diary line 2621  ·  fix528
+- fix528 in her code without its number (see her words in the code comments)
+- Full entry: 2026-10-30T23:34:00Z R273 fix528 (Love, FLIP-FADE-STILL-HALTS.command): her flip-fade law sealed as cornerstone 55 - a flip real at send that fades before the fill is refused and halts; no code behavior changed
+
+## 2026-10-30T23:23:03Z  ·  diary line 2620  ·  fix527
+- fix527 IN HER CODE
+- Full entry: 2026-10-30T23:23:03Z R272 fix527 (Love, BANDS-ARE-WALLS-AT-100.command): BTC session carry hands back at sigma USD100, not USD180 - bands count as walls again from USD100; cornerstone 54
+
+## 2026-10-30T23:20:56Z  ·  diary line 2619  ·  fix525, fix526
+- fix525 IN HER CODE
+- fix526 IN HER CODE
+- Full entry: 2026-10-30T23:20:56Z R271 fix526 (Love, PINK-75-FLOOR-AND-THREE-QUARTERS.command): BTC pink tolerance in dollars - max(USD75 weekday floor at any distance, 3/4 of width at widths USD75-USD180, the 20pc scale); scale alone at USD180+; also corrects the garbled R270 line above (her fix525 rule there was USD80-USD180); cornerstone 53
+
+## 2026-10-30T22:59:59.831140Z  ·  diary line 2618
+- Full entry: 2026-10-30T22:59:59.831140Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T22:58:18.883844Z  ·  diary line 2617
+- Full entry: 2026-10-30T22:58:18.883844Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T22:57:29Z  ·  diary line 2616  ·  fix525
+- fix525 IN HER CODE
+- Full entry: 2026-10-30T22:57:29Z R270 fix525 (Love, PINK-THREE-QUARTERS-UNTIL-180.command): BTC pink tolerance 3/4 of the channel while bands are 0-80; the 20% scale returns at 80+; cornerstone 53
+
+## 2026-10-30T22:31:27.318255Z  ·  diary line 2615
+- Full entry: 2026-10-30T22:31:27.318255Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T20:49:40.472796Z  ·  diary line 2614
+- Full entry: 2026-10-30T20:49:40.472796Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T20:47:26Z  ·  diary line 2612  ·  fix522
+- fix522 IN HER CODE
+- Full entry: 2026-10-30T20:47:26Z R269 fix522 (Love, ROLL-HER-PIVOTS-ON-TIME.command): the forming candle stands in at the minute turn - her pivots roll the instant the candle closes; cornerstone 51
+
+## 2026-10-30T20:45:22Z  ·  diary line 2611  ·  fix523
+- fix523 IN HER CODE
+- Full entry: 2026-10-30T20:45:22Z R268 fix523+524 (Love, ALL-DOORS-CLOSED.command): full flags everywhere, the last-line gate, add-on and scripts refused, keepBothBooks report-only, the 4-hour ARM token on all 39 writers, no waiver of any kind; cornerstone 51
+
+## 2026-10-30T20:09:10Z  ·  diary line 2610  ·  fix521
+- fix521 IN HER CODE
+- Full entry: 2026-10-30T20:09:10Z R267 fix521 (Love, UNDER-THE-PINK-AND-HER-COLOUR.command): under the pink = no longs (her readings + B), the mirror, the 2-minute trail clause, her colour at the send, the stamp never waives a flip/colour failure; cornerstone 50
+
+## 2026-10-30T18:43:37Z  ·  diary line 2609  ·  fix520
+- fix520 IN HER CODE
+- Full entry: 2026-10-30T18:43:37Z R266 fix520 (Love, ONLY-WHAT-I-CHOSE.command): her 1.5x floor on every live order and lane, the 1.28x road out, no 1m in any flip wording; cornerstone 49
+
+## 2026-10-30T18:42:57Z  ·  diary line 2608  ·  fix519
+- fix519 IN HER CODE
+- Full entry: 2026-10-30T18:42:57Z R265 fix519 (Love, DEDUCT-THE-DIFFERENCE.command): the open-second Kalshi/chart difference deducted at every strike judgment; every result scored by the Kalshi settlement alone; cornerstone 48
+
+## 2026-10-30T18:25:04Z  ·  diary line 2607  ·  fix518
+- fix518 IN HER CODE
+- Full entry: 2026-10-30T18:25:04Z R264 fix518 (Love, SEAL-THE-QUESTIONNAIRE.command): all 67 questionnaire answers sealed as cornerstone 47; three wordings made exact; R252 retired to the vault; no behavior change
+
+## 2026-10-30T17:09:04.398525Z  ·  diary line 2606
+- Full entry: 2026-10-30T17:09:04.398525Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T15:47:00Z  ·  diary line 2605
+- Full entry: 2026-10-30T15:47:00Z RETIRE x49 (Love, KEEP-THE-OLD-ON-FILE.command): old records into the vault on her 8:25 AM words; rules in force unchanged
+
+## 2026-10-30T15:45:57.076457Z  ·  diary line 2604
+- Full entry: 2026-10-30T15:45:57.076457Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T15:43:58Z  ·  diary line 2603  ·  fix517
+- fix517 IN HER CODE
+- Full entry: 2026-10-30T15:43:58Z R263 fix517 (Love, RESET-10-5-AND-ONE-WAY-ZONES.command): the pink reset is 10% gold / 5% BTC of the channel; the zones one-way, the escape side never flagged, 5M too
+
+## 2026-10-30T15:38:54Z  ·  diary line 2602  ·  fix516
+- fix516 IN HER CODE
+- Full entry: 2026-10-30T15:38:54Z R262 fix516 (Love, NULL-AND-VOID-AT-THE-CLOSE.command): a closed ticker has every resting order cancelled at once; no take-profit re-rests for 20 min; cornerstone 46
+
+## 2026-10-30T15:24:22Z  ·  diary line 2601  ·  fix411
+- Love: “OUT for the 3 second hold”
+- fix411 in her code without its number (see her words in the code comments)
+- Full entry: 2026-10-30T15:24:22Z RETIRE R101 (Love, RETIRE-THE-3-SECOND-HOLD.command): "OUT for the 3 second hold" - fix411 retired by her word, record only
+
+## 2026-10-30T14:49:50Z  ·  diary line 2600
+- Full entry: 2026-10-30T14:49:50Z R261 fix515c (Love, ZONE-REJECTIONS-FREE-OF-A-SPENT-PINK.command): after her  / 00 break a green / red zone rejection waits for no pink, both sides, 5M too, cornerstone 45
+
+## 2026-10-30T14:39:24Z  ·  diary line 2599  ·  fix515
+- fix515 IN HER CODE
+- Full entry: 2026-10-30T14:39:24Z R260 fix515 (Love, SHORTS-ONLY-AT-A-SLID-PINK.command): a slid pink is shorts only, a climbed pink longs only - the break against the slope never trades, 5M too, cornerstone 44
+
+## 2026-10-30T14:24:36Z  ·  diary line 2598  ·  fix512
+- fix512 IN HER CODE
+- Full entry: 2026-10-30T14:24:36Z R259 fix512+513+514 (Love, ALL-ONE-THING.command): both cushions by her cards, the slide outranks the tolerance, no exceptions at the fill - cornerstones 38 + 43
+
+## 2026-10-30T13:46:41Z  ·  diary line 2597  ·  fix511
+- fix511 IN HER CODE
+- Full entry: 2026-10-30T13:46:41Z R258 fix511 (Love, EMPTY-READS-IN-THE-LOG.command): empty main / rejection reads written to the skip log with the dropped candidates (cornerstone 28)
+
+## 2026-10-30T13:31:27Z  ·  diary line 2596  ·  fix510
+- fix510 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-30T13:31:27Z R257 fix510 (Love, PILL-RULES-THE-HOURS.command): liveSkipHours emptied (gold [4,5,6,7] / btc [1,14,21] kept in liveSkipHoursPrev510) - her pill alone decides the hours
+
+## 2026-10-30T13:20:22.120771Z  ·  diary line 2595
+- Full entry: 2026-10-30T13:20:22.120771Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T13:14:05Z  ·  diary line 2594  ·  fix509
+- fix509 IN HER CODE
+- Full entry: 2026-10-30T13:14:05Z R256 fix509 (Love, MY-ANSWERS-IN.command): her questionnaire - 9 Outs removed (pink 10% + floors, copy 3/33c, add-on pink, Bollinger over/under band, target past band, Bollinger bounce, trend through bands, BTC 0 candle + back over, twin hand-off), 3 notes in (BTC Bollinger cushion min, BTC reach 5 < 00, 3 PM rule bounded), cornerstone 42
+
+## 2026-10-30T13:05:24.390Z  ·  diary line 2593
+- Full entry: 2026-10-30T13:05:24.390Z HOURS (Love, in-app schedule pill): 6 AM PT -> MAIN book (GOLD only)
+
+## 2026-10-30T13:05:23.432Z  ·  diary line 2592
+- Full entry: 2026-10-30T13:05:23.432Z HOURS (Love, in-app schedule pill): 6 AM PT -> MAIN book (BTC only)
+
+## 2026-10-30T13:04:33.255450Z  ·  diary line 2591
+- Full entry: 2026-10-30T13:04:33.255450Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T12:34:17.726Z  ·  diary line 2590
+- Full entry: 2026-10-30T12:34:17.726Z HOURS (Love, in-app schedule pill): 5 AM PT -> REJECTION model (GOLD only)
+
+## 2026-10-30T12:34:15.948Z  ·  diary line 2589
+- Full entry: 2026-10-30T12:34:15.948Z HOURS (Love, in-app schedule pill): 5 AM PT -> REJECTION model (BTC only)
+
+## 2026-10-30T12:33:26Z  ·  diary line 2588  ·  fix507
+- Love: “pink is only blocked at 15% of the session bands distance ... 20% for btc. enforce that as a strict tolerance”
+- fix507 IN HER CODE
+- Full entry: 2026-10-30T12:33:26Z R254 fix507 (Love, PINK-ONLY-INSIDE-15-20.command): "pink is only blocked at 15% of the session bands distance ... 20% for btc. enforce that as a strict tolerance" - every pink cushion / floor / add-on hold skipped beyond it, 5M too, 5M Bollinger = never broken, cornerstone 41
+
+## 2026-10-30T12:31:17.055269Z  ·  diary line 2587
+- Full entry: 2026-10-30T12:31:17.055269Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T12:30:27Z  ·  diary line 2586  ·  fix508
+- fix508 IN HER CODE
+- Full entry: 2026-10-30T12:30:27Z R253 fix508 (Love, AUDITOR-TRUSTS-HIS-STAMP.command): the fill auditor trusts the sub-auditor OK stamp from the door (within 2 min) - the re-judge is logged, no trip on a board that moved after the door
+
+## 2026-10-30T11:07:39.989Z  ·  diary line 2585
+- Full entry: 2026-10-30T11:07:39.989Z HOURS (Love, in-app schedule pill): 4 AM PT -> MAIN book (GOLD only)
+
+## 2026-10-30T07:35:11.997359Z  ·  diary line 2584
+- Full entry: 2026-10-30T07:35:11.997359Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T07:32:54Z  ·  diary line 2583  ·  fix506
+- Love: “do not trade broken bollinger bands ever ... only rejections ... any trade inside the red or green is expressly prohibited”
+- Love: “price was sloping down / only hold are longs”
+- fix506 IN HER CODE
+- Full entry: 2026-10-30T07:32:54Z R252 fix506+fix503c (Love, ONLY-MY-RULES.command): "do not trade broken bollinger bands ever ... only rejections ... any trade inside the red or green is expressly prohibited" + "price was sloping down / only hold are longs" - no broken Bollinger, nothing inside a zone either side, slope = price, cornerstone 40
+
+## 2026-10-30T07:18:12Z  ·  diary line 2582  ·  fix504
+- Love: “a closed candle through the band is not my rule”
+- Love: “sub 1s speed ... make it a cornerstone”
+- fix504 IN HER CODE
+- Full entry: 2026-10-30T07:18:12Z R251 fix504 (Love, BREAKS-LIVE-AND-SUB-1S.command): "a closed candle through the band is not my rule" + "sub 1s speed ... make it a cornerstone"
+
+## 2026-10-30T06:57:08Z  ·  diary line 2581
+- Love: “price was sloping down / only hold are longs / not shorts / vis versa”
+- Full entry: 2026-10-30T06:57:08Z R250 fix503b (Love, SLOPE-HOLDS-ONE-WAY.command): "price was sloping down / only hold are longs / not shorts / vis versa" - slope minimum, one-way holds, live-tick release
+
+## 2026-10-30T06:51:58.794477Z  ·  diary line 2580
+- Full entry: 2026-10-30T06:51:58.794477Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T06:50:59Z  ·  diary line 2579  ·  fix503
+- Love: “15% of the channel width from session band to session band ... 20% for btc”
+- fix503 IN HER CODE
+- Full entry: 2026-10-30T06:50:59Z R249 fix503 (Love, PINK-IS-NOT-A-WALL-BEYOND-15.command): "15% of the channel width from session band to session band ... 20% for btc" - the pink holds nothing beyond her tolerance, every book but delayed incl. 5M
+
+## 2026-10-30T06:41:56Z  ·  diary line 2578  ·  fix501
+- Love: “Create a sub-auditor to audit every set up formed, before she takes it”
+- fix501 IN HER CODE
+- Full entry: 2026-10-30T06:41:56Z R248 fix501 (Love, THE-SUB-AUDITOR.command): "Create a sub-auditor to audit every set up formed, before she takes it" - him beside her, every setup routed, no stamp no order, cornerstone 37
+
+## 2026-10-30T06:24:57Z  ·  diary line 2577  ·  fix497, fix500
+- Love: “Drop me an enforcer command”
+- Love: “Do not ever bid more than the ask by six cents”
+- fix497 IN HER CODE
+- fix500 IN HER CODE
+- Full entry: 2026-10-30T06:24:57Z R247 fix497-fix500 (Love, THE-ENFORCER.command): "Drop me an enforcer command" + "Do not ever bid more than the ask by six cents" - enforcer, ask+6c, $1.50 zones/Bollinger, $1 no add-on 1.5x, behaviour umpire as a gate (75 replays), fill auditor
+
+## 2026-10-30T06:07:04.709Z  ·  diary line 2576
+- Full entry: 2026-10-30T06:07:04.709Z HOURS (Love, in-app schedule pill): 11 PM PT -> MAIN book (BTC only)
+
+## 2026-10-30T05:32:51Z  ·  diary line 2575  ·  fix496
+- Love: “it's supposed to be a cornerstone it's definitely that”
+- fix496 in her code without its number (see her words in the code comments)
+- Full entry: 2026-10-30T05:32:51Z R246 fix496 (Love, CACHE-CLEAR-IS-A-CORNERSTONE.command): "it's supposed to be a cornerstone it's definitely that" - hourly cache clear = cornerstone 35
+
+## 2026-10-30T05:24:02Z  ·  diary line 2574  ·  fix495
+- Love: “the cache from old orders”
+- fix495 IN HER CODE
+- Full entry: 2026-10-30T05:24:02Z R245 fix495 (Love, CLEAR-OLD-ORDERS-HOURLY.command): "the cache from old orders" - hourly clear also archives filled orders older than a day
+
+## 2026-10-30T05:17:56Z  ·  diary line 2573  ·  fix494
+- Love: “three candles or more have hit it and rejected on a down slope”
+- fix494 IN HER CODE
+- Full entry: 2026-10-30T05:17:56Z R244 fix494 (Love, PINK-SLIDES-ON-THREE-REJECTIONS.command): "three candles or more have hit it and rejected on a down slope" - her slide definition, both sides, every book but delayed incl. 5M
+
+## 2026-10-30T05:07:29Z  ·  diary line 2572  ·  fix493
+- Love: “yes make the log and make it a cornerstone”
+- fix493 IN HER CODE
+- Full entry: 2026-10-30T05:07:29Z R243 fix493 (Love, LOG-EVERY-ORDER-PRICE.command): "yes make the log and make it a cornerstone" - live ask + its age on every order, cornerstone 34
+
+## 2026-10-30T05:05:48Z  ·  diary line 2571  ·  fix491, fix492
+- Love: “anything else I didn't say goes”
+- fix491 IN HER CODE
+- fix492 IN HER CODE
+- Full entry: 2026-10-30T05:05:48Z R242 fix491+fix492 (Love, ONLY-MY-WORDS.command): "anything else I didn't say goes" - 30-min trigger + look-back, 30c/$10 re-arm, 45 s line wait out; 55% stays
+
+## 2026-10-30T04:54:35Z  ·  diary line 2570  ·  fix491
+- Love: “NEVER ONCE DID I FUCKING SAY THAT”
+- fix491 IN HER CODE
+- Full entry: 2026-10-30T04:54:35Z R241 fix491 (Love, TAKE-OUT-THE-30-MIN-TRIGGER.command): "NEVER ONCE DID I FUCKING SAY THAT" - the $2/$40 30-minute price triggers out, her pink slide only, every book but delayed incl. 5M
+
+## 2026-10-30T04:19:28Z  ·  diary line 2569  ·  fix490
+- Love: “A PINK DOWNSLIDE WHERE PRICE KEEPS REJECTING PINK”
+- fix490 IN HER CODE
+- Full entry: 2026-10-30T04:19:28Z R240 fix490 (Love, PINK-DOWNSLIDE-AND-55.command): "A PINK DOWNSLIDE WHERE PRICE KEEPS REJECTING PINK" - c13 + c10, every book but delayed
+
+## 2026-10-30T03:50:55Z  ·  diary line 2568  ·  fix489
+- Love: “red by $10 for btc”
+- Love: “$5 and $5 add on”
+- fix489 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-30T03:50:55Z R239 fix489 (Love, BTC-CANDLE-10-AND-5-5.command): "red by $10 for btc" + "$5 and $5 add on" - R168 retired
+
+## 2026-10-30T03:37:42Z  ·  diary line 2567  ·  fix488
+- fix488 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-30T03:37:42Z R238 fix488 (Love, GOLD-PINK-NO-2.command): "yes" - gold pink cushion no $2 floor, every book but delayed + 5M
+
+## 2026-10-30T02:55:28Z  ·  diary line 2566  ·  fix487
+- Love: “ITS 20% AT THIS BAND WIDTH”
+- fix487 IN HER CODE
+- Full entry: 2026-10-30T02:55:28Z R237 fix487 (Love, FIX-BTC-20-PERCENT.command): "ITS 20% AT THIS BAND WIDTH"
+
+## 2026-10-30T02:47:08.840057Z  ·  diary line 2565
+- Full entry: 2026-10-30T02:47:08.840057Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-10-30T02:43:41Z  ·  diary line 2564  ·  fix485, fix486
+- Love: “ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED”
+- fix485 IN HER CODE
+- fix486 IN HER CODE
+- Full entry: 2026-10-30T02:43:41Z R236 fix485+fix486 (Love, EVERY-RULE-EVERY-BOOK.command): "ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED" + gold scale
+
+## 2026-10-30T02:31:50Z  ·  diary line 2563
+- Full entry: 2026-10-30T02:31:50Z R235 5M spine re-signed (Love, RESIGN-5M-SPINE.command): recon5m.ts 7570a5be1b3a631c
+
+## 2026-10-30T02:26:17Z  ·  diary line 2562  ·  fix484
+- Love: “PUT. IT. BACK”
+- Love: “EVERY ONE OF THEM”
+- fix484 IN HER CODE
+- Full entry: 2026-10-30T02:26:17Z R234 fix484 (Love, PUT-REACH-WALLS-EVERYWHERE.command): "PUT. IT. BACK" + "EVERY ONE OF THEM" - reach walls on every book but delayed + the 5M
+
+## 2026-10-30T02:10:43Z  ·  diary line 2561  ·  fix483
+- Love: “WVERYTHING I ANSERED. NEEDS. TO. BE. IN.”
+- fix483 IN HER CODE
+- Full entry: 2026-10-30T02:10:43Z R233 fix483 (Love, PUT-MY-ANSWERS-IN.command): "WVERYTHING I ANSERED. NEEDS. TO. BE. IN." - c21 break back by her distance, c4 BTC 20% over $1,000, gold Bollinger $1.50
+
+## 2026-10-30T01:15:23Z  ·  diary line 2560  ·  fix481
+- Love: “can you ensure all of these stay in this time too?”
+- fix481 in her code without its number (see her words in the code comments)
+- Full entry: 2026-10-30T01:15:23Z R232 fix481 (Love, KEEP-HER-RULES-IN.command): "can you ensure all of these stay in this time too?"
+
+## 2026-10-30T01:09:40.717Z  ·  diary line 2559
+- Full entry: 2026-10-30T01:09:40.717Z HOURS (Love, in-app schedule pill): 6 PM PT -> MAIN book (BTC only)
+
+## 2026-10-30T01:06:14.635Z  ·  diary line 2558
+- Full entry: 2026-10-30T01:06:14.635Z HOURS (Love, in-app schedule pill): 6 PM PT -> MAIN book (GOLD only)
+
+## 2026-10-30T01:05:53.360Z  ·  diary line 2557
+- Full entry: 2026-10-30T01:05:53.360Z HOURS (Love, in-app schedule pill): 6 PM PT -> REJECTION model (BTC only)
+
+## 2026-10-30T01:02:12Z  ·  diary line 2556  ·  fix466, fix468, fix480
+- Love: “okay can you put back every single one of those rules i answered ????”
+- fix466 IN HER CODE
+- fix468 IN HER CODE
+- fix480 IN HER CODE
+- Full entry: 2026-10-30T01:02:12Z R231 PUT-HER-RULES-BACK (Love): "okay can you put back every single one of those rules i answered ????" - fix466 + fix468 (5M) + fix480 (paper books)
+
+## 2026-10-30T00:51:41Z  ·  diary line 2555  ·  fix479
+- Love: “she’s supposed to log every skip.”
+- Love: “and the reason for it”
+- fix479 IN HER CODE
+- Full entry: 2026-10-30T00:51:41Z R230 fix479 (Love, LOG-EVERY-SKIP.command): "she’s supposed to log every skip." + "and the reason for it"
+
+## 2026-10-29T23:59:55.570Z  ·  diary line 2554
+- Full entry: 2026-10-29T23:59:55.570Z HOURS (Love, in-app schedule pill): 5 PM PT -> REJECTION model (BTC only)
+
+## 2026-10-29T23:58:21Z  ·  diary line 2553  ·  fix477, fix478
+- Love: “please make sure the umpire doesn’t just do that and actually makes sure each thing stays in place”
+- Love: “i don’t want to have to do this every time i change the schedule pls”
+- fix477 IN HER CODE
+- fix478 IN HER CODE
+- Full entry: 2026-10-29T23:58:21Z R229 fix477+fix478 (Love, FIX-PILL-AND-UMPIRE.command): "please make sure the umpire doesn’t just do that and actually makes sure each thing stays in place" + "i don’t want to have to do this every time i change the schedule pls"
+
+## 2026-10-29T23:39:32.527Z  ·  diary line 2552
+- Full entry: 2026-10-29T23:39:32.527Z HOURS (Love, in-app schedule pill): 4 PM PT -> REJECTION model (BTC only)
+
+## 2026-10-29T21:00:00.112041+00:00  ·  diary line 2550  ·  fix373, fix467
+- Love: “bollinger over pink NEEDS A LONG MIRROR. ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS”
+- fix373 IN HER CODE
+- fix467 IN HER CODE
+- Full entry: 2026-10-29T21:00:00.112041+00:00 fix467 INSTALLED by Love's double-click (R213/R214, Love Oct 29 2026 1:40 PM PT: "bollinger over pink NEEDS A LONG MIRROR. ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS" + 1:24 PM: "both sides ... all books. aside from delayed."): THE MIRRORS, every book but the delayed book: NO LONGS IN THE TOP RUNG (over the BTC session +2σ, mirror of no shorts under -2σ); no long breaking the pink UP with the Bollinger upper within $100 above (mirror of the short rule); the BTC pink-rejection re-aim sticks both ways (fix373 + its long mirror, main + rejection); BTC green/red zones held at 55% both sides at the door, copier and wire; the delayed book's paper rows and thirds keep its own shares. PRE-STAMP LANDED ✓ - her new code is the code the umpire alr {'bandlock.ts': '31d79e8fade6ecba', 'recon.ts': 'e11bdd28198049b7'}
+
+## 2026-10-29T20:50:46Z  ·  diary line 2549  ·  fix373, fix467, fix468
+- fix373 IN HER CODE
+- fix467 IN HER CODE
+- fix468 IN HER CODE
+- Full entry: 2026-10-29T20:50:46Z STAGED (waiting on Love): INSTALL-MIRRORS.command (fix467, every book but delayed: top-rung long mirror, Bollinger-over-pink long mirror, BTC zones 55% both sides door/copier/wire, fix373 re-aim both ways, delayed paper rows keep own share) + INSTALL-5M-MIRRORS.command (fix468, 5M own files: top-rung long mirror, Bollinger long mirror, BTC zones 55% both sides; fix373 NOT on 5M; refreeze R215; R216 logged). fix467 pre-stamped SAFE. Rehearsal 467->466->468 on a private copy: umpire SAFE, CHECK-HER-RULES all ✓ long+short. INSTALL-33-PINK-ALL-BOOKS moved to INSTALLERS-ALREADY-USED (landed 1:45).
+
+## 2026-10-29T20:45:00.071436+00:00  ·  diary line 2548  ·  fix465  ·  books: delayed twin
+- Love: “both sides. not just longs. not just shorts. pink as well. both sides. all books. aside from delayed.”
+- fix465 IN HER CODE
+- Full entry: 2026-10-29T20:45:00.071436+00:00 fix465 INSTALLED by Love's double-click (R206/R207/R209/R210/R211, Love Oct 29 2026 1:24 PM PT: "both sides. not just longs. not just shorts. pink as well. both sides. all books. aside from delayed."): Every book except the delayed book (recon-dly / recon-dlyk): a hard 33% thirds share, and every non-delayed recon book meets the pink (15/20, never into an unbroken pink both sides) and 33% walls at the door and in the read. PRE-STAMP LANDED ✓ - her new code is the code the umpire alr {'bandlock.ts': '86902ac069ded8e6', 'recon.ts': '1ce16eae4b07b116'}
+
+## 2026-10-29T20:34:50Z  ·  diary line 2547  ·  fix464, fix465, fix466
+- fix464 IN HER CODE
+- fix465 IN HER CODE
+- fix466 IN HER CODE
+- Full entry: 2026-10-29T20:34:50Z STAGED (waiting on Love): INSTALL-33-PINK-ALL-BOOKS.command (fix465) + INSTALL-5M-33-PINK.command (fix466); CHECK-HER-RULES on staged code all ✓ (every book but delayed, incl. 5M); delayed book byte-identical; pre-stamps SAFE. fix464 (KEEP20 variant - Love clicked it 1:22:34 PM) landed 1:30:00.
+
+## 2026-10-29T20:30:00.068407+00:00  ·  diary line 2546  ·  fix464
+- Love: “i told you 100 times it's for both sides. do what i say.”
+- fix464 IN HER CODE
+- Full entry: 2026-10-29T20:30:00.068407+00:00 fix464 INSTALLED by Love's double-click (R196-R203, Love Oct 29 2026 1:06 PM PT: "i told you 100 times it's for both sides. do what i say." + 1:12 PM "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): main + rejection both sides - pink short wall 15/20, upslope pink hold, pink + every band tolerance in the read; 1:02:06 PM gold short replays REFUSED. PRE-STAMP LANDED ✓ - her new code is the code the umpire alr {'bandlock.ts': '85056a3909d0dbfe', 'engine.ts': 'd5a9ec076587775a', 'recon.ts': 'c7af9e1923ac0230'}
+
+## 2026-10-29T20:18:52Z  ·  diary line 2544  ·  fix464
+- fix464 IN HER CODE
+- Full entry: 2026-10-29T20:18:52Z STAGED (waiting on Love's click): fix464 INSTALL-1PM-SHORT-FIX.command (R196-R205) + CHECK-HER-RULES.command (read-only, tools/check-her-rules.cjs). Staged code: every rule ✓ long + short; live code now: 4 ✗ (pink short side, launch 33%, upslope pink, pink in read). Pre-stamp SAFE 22 s. Live-off switch prepared (data/STAGED-liveoff/liveoff.py), NOT run.
+
+## 2026-10-29T19:45:00.090578+00:00  ·  diary line 2543  ·  fix463
+- Love: “no flip. independent calls. she does not get one call per window. only once she has executed a trade.”
+- fix463 IN HER CODE
+- Full entry: 2026-10-29T19:45:00.090578+00:00 fix463 INSTALLED by Love's double-click (R191/R192, Love Oct 29 2026 12:38 PM PT: "no flip. independent calls. she does not get one call per window. only once she has executed a trade."): main + rejection - no flipped read is ever her call; every fresh read replaces an unfilled call; only an executed trade closes the window; pre-stamped SAFE (PRE-STAMP LANDED ✓ - her new code is the code the umpire alr). {'recon.ts': '47bfca18339cdde7'}
+
+## 2026-10-29T19:42:44Z  ·  diary line 2542  ·  fix463
+- fix463 IN HER CODE
+- Full entry: 2026-10-29T19:42:44Z STAGED (waiting on Love's click): fix463 INSTALL-INDEPENDENT-CALLS.command (R191-R194) - main + rejection: thirds in the read, no flips, independent calls; pre-stamp SAFE 21.2 s; tests ✓; gate ✓.
+
+## 2026-10-29T18:59:22.494659+00:00  ·  diary line 2540  ·  fix461
+- Love: “can you make sure the umpire not only checks if the code is there, but THAT ITS ENFORCED.??? meaning, if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out ?”
+- Love: “without making the orders lag”
+- fix461 IN HER CODE
+- Full entry: 2026-10-29T18:59:22.494659+00:00 fix461 INSTALLED by Love's double-click (R185/R186/R187/R189, Love Oct 29 2026 11:46 AM PT: "can you make sure the umpire not only checks if the code is there, but THAT ITS ENFORCED.??? meaning, if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out ?" + 11:50 AM "just main and rejection for rn hun" + "without making the orders lag"): main + rejection opening orders need the umpire's SAFE stamp on the running code (in memory, ~7 µs); exits never blocked; old restore-list items report-only. First stamp: UMPIRE STAMP ✓ SAFE (22.4 s, 122 files). {'kalshi-live.server.ts': '8875c0bde7c9a6ed', 'umpire-gate.ts': 'b4b54662d2d75f9e'}
+
+## 2026-10-29T18:56:29Z  ·  diary line 2539  ·  fix461
+- fix461 IN HER CODE
+- Full entry: 2026-10-29T18:56:29Z STAGED (waiting on Love's click): fix461 THE UMPIRE AT THE WIRE (INSTALL-UMPIRE-GATE.command; R185-R189) - main + rejection opening orders need the umpire SAFE stamp on the running code, in-memory 6.7 µs; exits never blocked; option A. Dry run: IN, gate inside the opening-only block. R188 notes R101 (3 s hold) stays retired per R120/R135.
+
+## 2026-10-29T18:45:00.031648+00:00  ·  diary line 2538  ·  fix413, fix460
+- Love: “A BAND 250 AWAY IS NOT A FUCKING OBSTACLE”
+- fix413 IN HER CODE
+- fix460 IN HER CODE
+- Full entry: 2026-10-29T18:45:00.031648+00:00 fix460 INSTALLED by Love's double-click (R181/R182, Love Oct 29 2026 11:31 AM PT: "A BAND 250 AWAY IS NOT A FUCKING OBSTACLE" + 11:32 AM "33% FUCKING PERCENT FROM BAND TO BAND BRO" + 11:33 AM "NO LONGS IN TOP 33% . NO SHORTS IN THE BOTTOM 33%"): the SESSION BAND AHEAD wait (fix413, main + rejection) holds only a long in the top 33% / a short in the bottom 33% of the session-band channel; the 11:23:32 AM BTC short replays free. {'bandlock.ts': '5825a6529f296d8b'}.
+
+## 2026-10-29T18:39:42Z  ·  diary line 2537
+- Full entry: 2026-10-29T18:39:42Z R184 recorded (no change): Love - sliding scale later, thirds 20/33 when bands are wider; touch nothing else now.
+
+## 2026-10-29T18:32:51Z  ·  diary line 2536  ·  fix413, fix456, fix459
+- fix413 IN HER CODE
+- fix456 IN HER CODE
+- fix459 IN HER CODE
+- Full entry: 2026-10-29T18:32:51Z CONFIRMED: fix459 landed 11:30:00 and fix456 (walled-off 5M) landed 11:30:20 PT by Love's clicks; 5M WALL ✓, golden ✓, seal ✓, gate ✓. tools/stale-pink-test-431.cjs went OUT after fix459 (its harness lacked PINK_PCT459/pinkBeyond459 - Claude's miss); harness-only fix (rule unchanged, backup data/BACKUPS/stale-pink-test-431.cjs.pre-fix459-harness), SAFE again. R178-R180 logged; fix413 distance waiting on Love (no words give one).
+
+## 2026-10-29T18:30:20.039122+00:00  ·  diary line 2535  ·  fix456
+- Love: “please create a SEPARATE BOOK FOR THAT MODEL ... WALLED OFF. PLEASE.”
+- fix456 IN HER CODE
+- Full entry: 2026-10-29T18:30:20.039122+00:00 fix456 INSTALLED by Love's double-click (R169 Love Oct 29 2026 10:27 AM PT: "please create a SEPARATE BOOK FOR THAT MODEL ... WALLED OFF. PLEASE."; R172 "1M flip only hun"; R173 "october 27th please. she was at 79%"; R174 "1M 2m, 3M , 4m or 5M candle flip in our favor / keeps trying until 3:00 minutes left / 2. stays / 3. stays"; R175 hours "B"): the Polymarket 5M is her own book - her Oct 27 4:57 AM PT read/walls/lane/exits in her own files, $5, BTC 5m, off 3, 4, 5 AM, 1 PM, 9 PM, 11 PM. Old 5M lane off while five5m.on. Kalshi files untouched: True. {'five5m-mem.ts': '22c32e964ef315ad', 'recon5m.ts': '3319be9ebca694bf', 'bandlock5m27.ts': 'd747023cd7eb3867', 'auto5m27.ts': '8ca46834fdee4047', 'dna5m27.ts': '0aaa1806f71406c1', 'five5m-rows.ts': '633226600030fa5c', 'five5m.ts': 'ae44d58e00b4bc4d', 'pivotbooks.ts': '3d6c4796053918ba', 'engine.ts': 'e7cd58074c58378f'}
+
+## 2026-10-29T18:30:00.033947+00:00  ·  diary line 2534  ·  fix429, fix432, fix459
+- Love: “she is only not allowed to long into pink at 15% of the channel width, band to band. / not all distances, period.”
+- Love: “both books pls”
+- fix429 IN HER CODE
+- fix432 IN HER CODE
+- fix459 IN HER CODE
+- Full entry: 2026-10-29T18:30:00.033947+00:00 fix459 INSTALLED by Love's double-click (R176, Love Oct 29 2026 11:12 AM PT: "she is only not allowed to long into pink at 15% of the channel width, band to band. / not all distances, period." + 11:18 AM "15% just for gold rn hun. 20% for btc" + "both books pls"): main + rejection - the unbroken pink holds a long (fix432) and reaches (fix429/430, over its $1/$50 floor) only within 15% gold / 20% BTC of the session-band channel; downslope pink rule untouched. {'bandlock.ts': '51b5b791eddccc16'}.
+
+## 2026-10-29T18:24:48Z  ·  diary line 2533
+- Full entry: 2026-10-29T18:24:48Z CORRECTION to the line above: Love HAS double-clicked INSTALL-PINK-15-20.command - it is waiting to land at 11:30 AM PT.
+
+## 2026-10-29T18:24:31.999211+00:00  ·  diary line 2532
+- Full entry: 2026-10-29T18:24:31.999211+00:00 NOTE R177 (no code change): Love 11:23 AM PT - session band, green/red, Bollinger and pink band tolerances are hard-set for all models, not book to book; ask before changing. The 9 used installers moved to INSTALLERS-ALREADY-USED (nothing deleted). INSTALL-PINK-15-20 and INSTALL-5M-STANDALONE stay, not clicked yet.
+
+## 2026-10-29T18:23:56Z  ·  diary line 2531  ·  fix456, fix459
+- fix456 IN HER CODE
+- fix459 IN HER CODE
+- Full entry: 2026-10-29T18:23:56Z STAGED (NOT installed, waiting on Love's double-click): fix456 the walled-off 5M (INSTALL-5M-STANDALONE.command; R169/R172/R173/R174/R175) - her Oct 27 4:57 AM PT read/walls/lane/exits as her own files in data/STAGED-five5m, door 1 = 1/2/3/4/5m flip her way until 3:00 left, doors 2+3 as Oct 27, hours B, $5; dry-run on a full copy: IN, 5M WALL ✓, gate ✓, Kalshi files byte-identical. Door replay Oct 27 12-12 AM PT: 131 calls, door open 88 (Oct 27 rule) -> 105 (R174), walls and price still judge each. fix459 pink 15% gold / 20% BTC (R176) staged as INSTALL-PINK-15-20.command.
+
+## 2026-10-29T18:00:00.013937+00:00  ·  diary line 2530  ·  fix457
+- Love: “yes. if a band broke downwards it is only a short ... band breaks = trade the direction of the break. WITH PRICE ON THE SAME SIDE OF THE BREAK. A WICK THRU WITH PRICE ON THE OTHER SIDE OF THE BAND IS NOT AN ENTRY ... count the 33% correctly”
+- fix457 IN HER CODE
+- Full entry: 2026-10-29T18:00:00.013937+00:00 fix457 INSTALLED by Love's double-click (R170, Love Oct 29 2026 10:42 AM PT: "yes. if a band broke downwards it is only a short ... band breaks = trade the direction of the break. WITH PRICE ON THE SAME SIDE OF THE BREAK. A WICK THRU WITH PRICE ON THE OTHER SIDE OF THE BAND IS NOT AN ENTRY ... count the 33% correctly" + 10:43 AM "please send me a command so i know this fix got in"): main + rejection, gold + BTC - band broke this candle = only the break's direction with price on its side; wick through = no entry; her 33% counts a band broken against her this candle as in front. The 10:22 AM gold long replays REFUSED. 5M files untouched. {'bandlock.ts': 'c887f26b3a12e588'}.
+
+## 2026-10-29T17:46:13.689829+00:00  ·  diary line 2529  ·  fix454, fix455
+- fix454 in her code without its number (see her words in the code comments)
+- fix455 IN HER CODE
+- Full entry: 2026-10-29T17:46:13.689829+00:00 RESTORED fix454 (Love's 3 PM pink rule, R165) - REMOVED WITHOUT HER CONSENT at 10:45:00 AM PT when the fix455 installer (INSTALL-8PM-BTC.command) copied in an engine.ts built BEFORE fix454 landed. Claude's mistake: the staged file was built on an older engine and the installer did not check the live file was still that base. Put back exactly fix454's 2 lines on top of fix455 (3-way merge, no conflicts; fix455 kept). engine.ts 86fcfd1dea5e42bf.
+
+## 2026-10-29T17:45:00.025537+00:00  ·  diary line 2528  ·  fix455
+- Love: “we can double up on 8pm hun , $10 initial entry and $5 initial add on - $5 secondary add on at the next band price encounters and rejects”
+- fix455 IN HER CODE
+- Full entry: 2026-10-29T17:45:00.025537+00:00 fix455 INSTALLED (Love Oct 29 2026 10:17 AM PT: "we can double up on 8pm hun , $10 initial entry and $5 initial add on - $5 secondary add on at the next band price encounters and rejects"): BTC 8 PM rejection model on Kalshi - $10 entry (Kalshi-only ceiling $10 at that hour; maxDollars 5 unchanged, Polymarket untouched), first $5 add-on, one second $5 add-on on a flip at a different band. R168. No-removal gate passed. {'engine.ts': '6a49743b4002077c', 'kalshi-live.server.ts': 'b55d2098e92a16a2'}.
+
+## 2026-10-29T17:45:00.010491+00:00  ·  diary line 2527  ·  fix458  ·  books: main
+- Love: “8am - GOES TO MAIN”
+- Love: “10pm - GOES TO MAIN for gold”
+- fix458 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T17:45:00.010491+00:00 fix458 CONFIG (Love Oct 29 2026 9:57 AM PT BTC schedule, R164/R167: "8am - GOES TO MAIN", "11am - GOES TO MAIN", "1pm GOES TO MAIN"; Love 9:42 AM PT gold schedule, R162: "10pm - GOES TO MAIN for gold"): an old main-book block kept main out of hours she gave main. bookSkipHoursByAsset.btc.recon-tog [2, 4, 6, 8, 11, 13, 14, 16, 18, 21, 23] -> [2, 4, 6, 14, 16, 18, 21, 23]; gold.recon-tog [2, 4, 6, 8, 14, 16, 18, 21, 22, 23] -> [2, 4, 6, 8, 14, 16, 18, 21, 23]. Only those named hours lifted. Polymarket untouched. No code change.
+
+## 2026-10-29T17:39:04Z  ·  diary line 2526
+- Love: “EXAMPLE = PRICE CURRENTLY AT 4018 / TARGET PRICE 4020 / LONG INTO THAT LEVEL === BLOCKED / SHORT AWAY FROM THAT == ONLY TRADE ALLOWED”
+- Full entry: 2026-10-29T17:39:04Z TEST: ten-level-test-440 now carries Love's 10:35 AM example word for word (price 4018, target 4020: long INTO blocked, short AWAY the only trade; mirror 4022) - passes on her live code. Love 10:35 AM PT: "EXAMPLE = PRICE CURRENTLY AT 4018 / TARGET PRICE 4020 / LONG INTO THAT LEVEL === BLOCKED / SHORT AWAY FROM THAT == ONLY TRADE ALLOWED"
+
+## 2026-10-29T17:33:46Z  ·  diary line 2525  ·  fix439, fix441, fix454, fix457
+- Love: “she just longed gold with a session band righttttt above her again. why did that get thru?????? it was ABSOLUTELY in the top 33% of the channel. this can't keep happening dude”
+- fix439 IN HER CODE
+- fix441 IN HER CODE
+- fix454 a setting (hours/sizes follow her latest pick)
+- fix457 IN HER CODE
+- Full entry: 2026-10-29T17:33:46Z STAGED (NOT installed): fix457 - the 10:22:16 AM PT gold rejection long (YES 71c $4.93, 4021.877) passed every wall: fix441 let it back in 41c over -1σ 4021.47 after this candle broke it down (low 4020.60) while the candle was still red (open 4022.221); fix439 pink-to-red at 44.9% (cutoff 45%); 33% channel re-measured -1σ->-0.5σ (3%). Staged brokeThisCandle457 (main + rejection): band broken this candle + candle still going the break's way = no trade the other way. Replay data/STAGED-fix457/replay-1022-gold-457.cjs refuses it; tests 429/434/440/441/446 pass; gate refuses until Love's words. Love Oct 29 10:29 AM PT: "she just longed gold with a session band righttttt above her again. why did that get thru?????? it was ABSOLUTELY in the top 33% of the channel. this can't keep happening dude". Also: fix453b + fix454 confirmed landed 10:30:00 (golden ✓, gate ✓).
+
+## 2026-10-29T17:30:00.033081+00:00  ·  diary line 2524  ·  fix454
+- Love: “3pm - GOES TO Main (w pink, bollingers, red green zones only , same for gold”
+- fix454 in her code without its number (see her words in the code comments)
+- Full entry: 2026-10-29T17:30:00.033081+00:00 fix454 INSTALLED (Love Oct 29 2026 9:57 AM PT: "3pm - GOES TO Main (w pink, bollingers, red green zones only , same for gold"): the 3 PM rule takes pink too and holds whichever book has the 3 PM seat (BTC main, gold rejection). R165. No-removal gate passed. {'engine.ts': '9dd86456becb25a8'}.
+
+## 2026-10-29T17:30:00.021625+00:00  ·  diary line 2523
+- Full entry: 2026-10-29T17:30:00.021625+00:00 fix453b CONFIG (Love Oct 29 2026 9:57 AM PT: her BTC schedule + 10:15 AM "give btc 6am on rejection"): rejection btc [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] -> [0,2,3,4,6,7,10,19,20,22]; sit-out btc [0, 7, 8, 18, 23] -> [1,14,21]; delayed model live on Kalshi BTC at 4, 5, 6, 11 PM ($2.50 + $5 add-on at 3.8x+); main 5, 8, 9, 11 AM, 12, 1, 3 PM. Polymarket untouched. R164/R167. No code change.
+
+## 2026-10-29T17:01:11Z  ·  diary line 2522  ·  fix453
+- Love: “please do not count her wins or losses as ANYTHING OTHER THAN THE STRUCTURE WE HAVE IN PLACE”
+- fix453 in her code without its number (see her words in the code comments)
+- Full entry: 2026-10-29T17:01:11Z HELD: fix453 (BTC schedule, R164) NOT installed - stopped before 10:15 AM on Love's 10:00 AM words ("i just spent an hour picking every hour over records that were not even the trades she actually took"); waits for Love after real numbers. RULE (Love Oct 29 2026 10:00 AM PT: "please do not count her wins or losses as ANYTHING OTHER THAN THE STRUCTURE WE HAVE IN PLACE" / "OUR TAKE PROFIT STRUCTURE PLEASE"): never score Love's trades held-to-the-bell; always her take-profit structure.
+
+## 2026-10-29T17:00:00.022908+00:00  ·  diary line 2521  ·  fix452
+- Love: “3pm ✅ (bollingers, green/red zones only) (for btc and gold pls)”
+- fix452 IN HER CODE
+- Full entry: 2026-10-29T17:00:00.022908+00:00 fix452 INSTALLED (Love Oct 29 2026 9:42 AM PT: "3pm ✅ (bollingers, green/red zones only) (for btc and gold pls)"): at 3 PM PT the rejection model takes only Bollinger and green/red zone calls, gold + BTC. R163. No-removal gate passed. {'engine.ts': '6cdba4b66cb42284'}.
+
+## 2026-10-29T16:45:00.014282+00:00  ·  diary line 2520  ·  fix451
+- fix451 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T16:45:00.014282+00:00 fix451 CONFIG (Love Oct 29 2026 9:42 AM PT: her GOLD schedule): rejection hours gold [0, 1, 2, 3, 4, 7, 9, 14, 16, 17, 18, 21, 22, 23] -> [0,1,2,3,8,10,12,13,14,15,16,17,18,21,23]; gold sit-out [4, 7, 9, 20, 23] -> [4,5,6,7]; main takes gold 9, 11 AM, 7, 8, 10 PM. 2 PM left as it was (rejection) pending Love. R162. No code change.
+
+## 2026-10-29T16:15:00.043145+00:00  ·  diary line 2519  ·  fix450
+- Love: “she just longed btc closer to the red than the pink and if immediately reversed we need to nip that in the bud right now”
+- fix450 IN HER CODE
+- Full entry: 2026-10-29T16:15:00.043145+00:00 fix450 INSTALLED (Love Oct 29 2026 9:02 AM PT: "she just longed btc closer to the red than the pink and if immediately reversed we need to nip that in the bud right now"): BTC main + rejection pink-to-red / green-to-pink 40% -> 55% like gold. R161. No-removal gate passed. {'bandlock.ts': 'dc286fc8b3adf839'}.
+
+## 2026-10-29T16:00:00.011328+00:00  ·  diary line 2518  ·  fix449
+- Love: “she's supposed to be off for that hour ... neither of them do well at 7am”
+- fix449 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T16:00:00.011328+00:00 fix449 CONFIG at the 9:00 AM PT boundary (Love Oct 29 2026 8:55 AM PT: "she's supposed to be off for that hour ... neither of them do well at 7am"): liveSkipHours gold [4, 9, 20, 23] -> [4, 7, 9, 20, 23], btc [0, 8, 18, 23] -> [0, 7, 8, 18, 23]. R160. No code change.
+
+## 2026-10-29T06:15:57Z  ·  diary line 2517  ·  fix448
+- Love: “i clicked it”
+- fix448 IN HER CODE
+- Full entry: 2026-10-29T06:15:57Z NOTE: the fix448 line above says "11:00 PM PT boundary" - it actually installed at 11:15:00 PM PT (06:15:00Z) after Love double-clicked INSTALL-GOLD-ZONE-FIX.command at 11:01 PM (Love: "i clicked it"). Live on, $5 + $5 add-on, schedule unchanged, 11 PM sit-out in force; gold read notebook data/rej-reads-gold.jsonl writing.
+
+## 2026-10-29T06:15:00.015100+00:00  ·  diary line 2516  ·  fix448
+- Love: “yes please fix that and add the log pls , off for 11 pls”
+- fix448 IN HER CODE
+- Full entry: 2026-10-29T06:15:00.015100+00:00 fix448 INSTALLED at the 11:00 PM PT boundary (Love Oct 28 2026 10:56 PM PT: "yes please fix that and add the log pls , off for 11 pls"): the rejection model takes the green/red zone rejection her twin sees when her own read is empty (10:50 PM gold miss), walls still judging; gold read log data/rej-reads-gold.jsonl; 11 PM stays off (sit-out). R159. No-removal gate passed. {'recon.ts': '9064bffb9729c81e'}.
+
+## 2026-10-29T05:45:03.006263+00:00  ·  diary line 2515  ·  fix447
+- Love: “and we can put her back on the schedule ok”
+- fix447 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T05:45:03.006263+00:00 fix447 CONFIG at the 10:45 PM PT boundary (Love Oct 28 2026 10:41 PM PT: "and we can put her back on the schedule ok"): rejection hours gold [] -> [0,1,2,3,4,7,9,14,16,17,18,21,22,23], btc 0-23 (unchanged), rejSeatHours None -> 0-23. Sit-out hours unchanged. R158/R131/R132.
+
+## 2026-10-29T05:45:00.023664+00:00  ·  diary line 2514  ·  fix446
+- Love: “yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry ok”
+- fix446 IN HER CODE
+- Full entry: 2026-10-29T05:45:00.023664+00:00 fix446 INSTALLED (Love Oct 28 2026 10:37 PM PT: "yes, 2-5M candle flip from red to green or green to red at a band rejection is her entry ok" + 10:41 PM "hun i want the flip AWAY from a band , that's the whole entry please keep that in"): main + rejection - a band-rejection read stands on a real 2-5m flip her way, not only the 5m. R157. No-removal gate passed. {'recon.ts': '09a74b45b813675d'}.
+
+## 2026-10-29T05:30:00.014933+00:00  ·  diary line 2513  ·  fix427, fix445
+- Love: “shes good babez. You can put her back on at five dollars with the five dollar addon ok”
+- fix427 a setting (hours/sizes follow her latest pick)
+- fix445 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-10-29T05:30:00.014933+00:00 fix445 CONFIG at the 10:30 PM PT boundary (Love Oct 28 2026 10:21 PM PT: "shes good babez. You can put her back on at five dollars with the five dollar addon ok"): back to $5 + one $5 add-on - before {"liveBook.dollars": 1, "offHourMain.dollars": 1, "live-size.dollars": 1, "bigMultipleCap": {"on": true, "x": 1, "dollars": 1, "offNote": "Oct 17 ~12:16 AM PT: replaced by 1/4 size over 3.8x (Love)", "note427": "fix427 Oct 28 2026 8:00 PM PT, Love 7:55 PM: \"pls put her on at $1\" - every Kalshi opening order (main + rejection entries and add-ons) cut to $1 at the wire; exits untouched."}, "addOn.on": false, "addOn.dollars": 8, "offHourMain.addOn.dollars": 8}; after liveBook.dollars 5, offHourMain.dollars 5, live-size 5, bigMultipleCap off (x 3), addOn on $5, offHourMain.addOn $5. R156. No code change.
+
+## 2026-10-29T05:00:03.008881+00:00  ·  diary line 2512  ·  fix375, fix431, fix444
+- Love: “too strict , telling you lol”
+- fix375 IN HER CODE
+- fix431 IN HER CODE
+- fix444 IN HER CODE
+- Full entry: 2026-10-29T05:00:03.008881+00:00 fix444 INSTALLED at the 10:00 PM PT boundary (Love Oct 28 2026 9:52 PM PT: "too strict , telling you lol" - to the 90 s drop for held calls): fix431 taken out (R126 retired on those words, R154); held calls stay alive and are re-checked at the wire every try; the original fix375 stale guard stays. No-removal gate passed. {'engine.ts': 'c597c5785925132d'}.
+
+## 2026-10-29T05:00:00.012479+00:00  ·  diary line 2511  ·  fix443
+- Love: “1.50 is too big rn. make it $1 teporarily pls. til we come up with the sliding scale”
+- fix443 IN HER CODE
+- Full entry: 2026-10-29T05:00:00.012479+00:00 fix443 INSTALLED at the 10:00 PM PT boundary (Love Oct 28 2026 9:52 PM PT: "1.50 is too big rn. make it $1 teporarily pls. til we come up with the sliding scale"): gold reach wall (session bands + pink base) and red/green zone reach $1.50 -> $1 for main + rejection, TEMPORARY. Pink keeps its 15%-of-channel minimum; $10-level rule unchanged. R153. No-removal gate passed. {'bandlock.ts': 'cba45fae27262fa8'}.
 
 ## 2026-10-29T04:40:28Z  ·  diary line 2510
 - Love: “its fine for rn hun i didnt see the acual entry and what happened with it, ill watch the next ones and let you know if we need to fix anything again ok”

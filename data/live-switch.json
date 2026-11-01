@@ -1,9 +1,9 @@
 {
   "live": true,
-  "maxDollars": 5,
+  "maxDollars": 1,
   "cooldownAfterLoss": true,
   "route": "paper",
-  "at": "2026-10-22T18:11:00.468Z",
+  "at": "2026-11-01T18:16:08.893Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -27,8 +27,8 @@
     "silver"
   ],
   "bigMultipleCap": {
-    "on": true,
-    "x": 1,
+    "on": false,
+    "x": 3,
     "dollars": 1,
     "offNote": "Oct 17 ~12:16 AM PT: replaced by 1/4 size over 3.8x (Love)",
     "note427": "fix427 Oct 28 2026 8:00 PM PT, Love 7:55 PM: \"pls put her on at $1\" - every Kalshi opening order (main + rejection entries and add-ons) cut to $1 at the wire; exits untouched."
@@ -126,7 +126,7 @@
       "recon-dly"
     ],
     "dollars": 1,
-    "since": "2026-10-22T18:11:00.469Z",
+    "since": "2026-11-01T18:16:08.894Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -285,16 +285,28 @@
   },
   "addOn": {
     "twin": {
-      "on": true,
+      "on": false,
       "dollars": 5,
       "maxAsk": 0.263,
       "note": "fix175 Oct 24 ~9:48 PM PT, Love: DELAYED twin Kalshi add-on $4 (was $3) | fix190 Oct 25 ~2:09 AM PT, Love: 'then we can raise her add on to $5, those are working as intended' -> $5"
     },
     "on": false,
-    "dollars": 8,
+    "dollars": 5,
     "maxAsk": 0.263,
     "minLeft": 2,
-    "note": "Oct 20 ~12:04 AM PT, Love: \"when i said no limit i was talking about the multiple she could enter into - not no limit on how many times she could add on. limit it to 1 add on of $2 please. one of them\" - ONE $2 add per position, at a rejection her way, any multiple 3.8x or higher (maxAsk 26.3c, no ceiling on the multiple). No noLimit flag: the once-per-window gate enforces exactly one."
+    "note": "Oct 20 ~12:04 AM PT, Love: \"when i said no limit i was talking about the multiple she could enter into - not no limit on how many times she could add on. limit it to 1 add on of $2 please. one of them\" - ONE $2 add per position, at a rejection her way, any multiple 3.8x or higher (maxAsk 26.3c, no ceiling on the multiple). No noLimit flag: the once-per-window gate enforces exactly one.",
+    "second": {
+      "on": false,
+      "dollars": 5,
+      "maxAsk": 0.72,
+      "books": [
+        "recon-rej"
+      ],
+      "hoursByAsset": {
+        "btc": []
+      },
+      "note": "fix455 Love Oct 29 2026 10:17 AM PT: second $5 add-on at BTC 8 PM, rejection model"
+    }
   },
   "timeGate": {
     "on": true,
@@ -473,18 +485,8 @@
   ],
   "halfAt75": true,
   "liveSkipHours": {
-    "gold": [
-      4,
-      9,
-      20,
-      23
-    ],
-    "btc": [
-      0,
-      8,
-      18,
-      23
-    ]
+    "gold": [],
+    "btc": []
   },
   "brokenBy": {
     "btc": 3,
@@ -1002,20 +1004,17 @@
     ],
     "recon-tog": [
       2,
-      4,
-      6,
-      8,
-      14,
-      16,
-      18,
-      21,
-      23
+      5,
+      16
     ],
     "recon-dly": [
       0,
       1,
       2,
       3,
+      4,
+      5,
+      6,
       7,
       8,
       9,
@@ -1025,7 +1024,9 @@
       13,
       14,
       15,
+      16,
       17,
+      18,
       19,
       20,
       21,
@@ -1422,7 +1423,7 @@
   "closeMode": "market",
   "bookDollars": {
     "ogp5-inv": 5,
-    "recon-dly": 2.5
+    "recon-dly": 1
   },
   "liveSkipHoursPrev": {
     "gold": [
@@ -1543,7 +1544,7 @@
     "on": true,
     "dollars": 1,
     "addOn": {
-      "dollars": 8,
+      "dollars": 5,
       "maxAsk": 0.357,
       "note": "fix176 Oct 24 ~9:50 PM PT, Love card '$4 for both': Kalshi rejection-model hours and main-book off hours add $4 (was $3), 2.8x+",
       "dollarsByHour": {}
@@ -1553,62 +1554,109 @@
       0,
       2,
       3,
-      4,
-      7,
-      14,
-      17,
-      18,
-      21,
-      22,
-      23
+      5,
+      10,
+      16,
+      17
     ],
     "rejNote": "Oct 23 ~2:04 PM PT, Love: the rejection model (recon-rej) takes 11 PM, 12 AM and 2 AM on the $2 + $3 structure instead of the main book (fix145) | Oct 23 ~2:16 PM PT, Love picked 'All 8 hours where it won': rejection model at 12, 2, 6, 8 AM, 2, 4, 6, 9, 11 PM on $2 + $3; main book keeps 4, 9, 11 AM, 12 PM off hours | Oct 23 ~2:17 PM PT, Love: 'all hours the rejection model performed better than ours throughout the week if it was repeated among days' -> hours where rej beat tog on more days than not (Oct 20-23): 12, 2, 3, 6, 8, 9 AM, 4, 6, 9, 11 PM (2 PM dropped: better 1 of 4 days) | Oct 23 ~2:55 PM PT, Love card 'Kalshi main 24/7, Poly rejection': rejHours cleared, rejection model moves to Polymarket 24/7 (fix151) | Oct 23 ~2:57 PM PT, Love: keep the rejection model on Kalshi in its hours (main book's worst) - rejHours restored; Polymarket rejection 24/7 stays (fix152) | Oct 23 ~5:30 PM PT, Love: the DELAYED twin takes 1, 2, 5 AM, 12, 2 PM on Kalshi and Poly (fix155); 2 AM leaves the rejection hours | Oct 23 ~7:02 PM PT, Love: 4 PM to the DELAYED twin too (fix156) | Oct 24 ~7:26 PM PT, Love picked 'Only clear winners' (paper Oct 19-24, best book beat the owner by $50+): 4 AM, 7 AM, 3 PM to the rejection model; 9 AM to the main book | fix239 Oct 25 ~9:47 PM PT, Love card 'Rejection takes main's hours' (paper $20 flat since Oct 20: rejection +$1,361 vs main -$984; today +$836 vs -$31): the rejection model takes every hour the main book owned (9, 10, 11 AM, 1, 5, 7, 8, 10 PM) at $20 (Love 9:47 PM: no let us run it at $20 hun she is working) + $5 add-on; main stays paper; twin hours unchanged | fix240 Oct 25 ~9:49 PM PT, Love: 'ehhh $15 and $5 add on for rn hun' -> rejection $15 + $5 add-on; switch ceiling maxDollars 11 -> 15 so the $15 isn't cut to $11 | fix241 Oct 25 ~10 PM PT, Love card 'Those + 8 PM and 10 PM': main book keeps [10, 11, 15, 20, 22] live at her slider (paper Oct 20-25 main beat rejection there on total and most days) | fix243 Oct 25 ~10:30 PM PT, Love: 'yes every hour you just said hun - let them take the best performing hours per model per book' (replay Oct 20-25 live sizes: split +$1,720 vs +$1,090; Mon-Wed-picked tested Thu-Sat +$883 vs +$512): rejHoursByAsset - gold: main also 7 PM; btc: rejection takes 10 AM, 3, 8, 10 PM, main takes 8, 9 AM (11 AM stays main) | fix249 Oct 26 ~1:00 AM PT, Love: 'put her on the main book pls im not doin this over again' - every rejection hour handed to the main book (old map in rejHoursPrev) | fix251 Oct 26 1:47 AM PT, Love: 'run her on the new rejection model for the hour' - rejection hours restored",
     "rejHoursByAsset": {
-      "gold": [],
-      "btc": [
+      "gold": [
         0,
         1,
         2,
         3,
-        4,
         5,
-        6,
-        7,
         8,
-        9,
         10,
-        11,
         12,
         13,
         14,
         15,
         16,
         17,
-        18,
-        19,
-        20,
         21,
-        22,
         23
+      ],
+      "btc": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        7,
+        10,
+        16,
+        17,
+        19,
+        20
       ]
     },
     "dollarsNote": "fix248 Oct 26 ~12:59 AM PT, Love: 'pls put it back to $11 and $5 for the orders hun' (rejection $11 + $5 add-on)",
-    "dollarsByHour": {}
+    "dollarsByHour": {},
+    "rejSeatHours": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "fix489Prev": {
+      "offHourMain.dollarsByHour": {
+        "20": 10
+      },
+      "kalshiCeilingByHour": {
+        "btc": {
+          "20": 10
+        }
+      },
+      "addOn.second.hoursByAsset": {
+        "btc": [
+          20
+        ]
+      },
+      "at": "2026-10-30T03:50:56.034100+00:00",
+      "why": "fix489 Love Oct 29 2026 8:41 PM PT: $5 and $5 add on til we confirmed she is working"
+    },
+    "fix498Prev": {
+      "liveBook.dollars": 5,
+      "maxDollars": 5,
+      "offHourMain.dollars": 5,
+      "bookDollars.recon-dly": 2.5,
+      "addOn.on": true,
+      "addOn.second.on": true,
+      "addOn.twin.on": true,
+      "at": "2026-10-30T06:24:57.529487+00:00",
+      "why": "fix498 Love Oct 29 2026 10:42 PM PT: one dollar with no add-on until I can confirm every rule works"
+    }
   },
   "bookSkipHoursByAsset": {
     "btc": {
       "recon-tog": [
         2,
         4,
-        6,
-        8,
-        11,
-        13,
-        14,
+        5,
         16,
-        18,
-        21,
-        23
+        17
       ],
       "recon-dly": [
         0,
@@ -1640,14 +1688,11 @@
     "gold": {
       "recon-tog": [
         2,
-        4,
-        6,
+        5,
         8,
         14,
         16,
-        18,
         21,
-        22,
         23
       ],
       "recon-dly": [
@@ -1655,6 +1700,9 @@
         1,
         2,
         3,
+        4,
+        5,
+        6,
         7,
         8,
         9,
@@ -2810,5 +2858,203 @@
       21,
       23
     ]
+  },
+  "fix445Prev": {
+    "liveBook.dollars": 1,
+    "offHourMain.dollars": 1,
+    "live-size.dollars": 1,
+    "bigMultipleCap": {
+      "on": true,
+      "x": 1,
+      "dollars": 1,
+      "offNote": "Oct 17 ~12:16 AM PT: replaced by 1/4 size over 3.8x (Love)",
+      "note427": "fix427 Oct 28 2026 8:00 PM PT, Love 7:55 PM: \"pls put her on at $1\" - every Kalshi opening order (main + rejection entries and add-ons) cut to $1 at the wire; exits untouched."
+    },
+    "addOn.on": false,
+    "addOn.dollars": 8,
+    "offHourMain.addOn.dollars": 8
+  },
+  "fix447Prev": {
+    "rejHoursByAsset": {
+      "gold": [],
+      "btc": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    "rejSeatHours": null
+  },
+  "fix449Prev": {
+    "liveSkipHours": {
+      "gold": [
+        4,
+        9,
+        20,
+        23
+      ],
+      "btc": [
+        0,
+        8,
+        18,
+        23
+      ]
+    }
+  },
+  "fix451Prev": {
+    "rejHoursByAsset.gold": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      7,
+      9,
+      14,
+      16,
+      17,
+      18,
+      21,
+      22,
+      23
+    ],
+    "liveSkipHours.gold": [
+      4,
+      7,
+      9,
+      20,
+      23
+    ]
+  },
+  "fix453bPrev": {
+    "rejHoursByAsset.btc": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "liveSkipHours.btc": [
+      0,
+      7,
+      8,
+      18,
+      23
+    ],
+    "bookSkipHoursByAsset.btc.recon-dly": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  "fix458Prev": {
+    "btc.recon-tog": [
+      2,
+      4,
+      6,
+      8,
+      11,
+      13,
+      14,
+      16,
+      18,
+      21,
+      23
+    ],
+    "gold.recon-tog": [
+      2,
+      4,
+      6,
+      8,
+      14,
+      16,
+      18,
+      21,
+      22,
+      23
+    ]
+  },
+  "fix455Prev": {
+    "offHourMain.dollarsByHour": {},
+    "addOn.second": null,
+    "kalshiCeilingByHour": null
+  },
+  "kalshiCeilingByHour": {},
+  "liveSkipHoursPrev510": {
+    "liveSkipHours": {
+      "gold": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "btc": [
+        1,
+        14,
+        21
+      ]
+    },
+    "note": "before Love Oct 30 2026 6:2x AM PT let her pill alone decide the hours (fix510, R257) - copy back to restore"
   }
 }
