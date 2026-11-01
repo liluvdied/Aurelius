@@ -1,0 +1,41 @@
+--- /tmp/claude-0/-home-claude-aurelius/3952c805-6a7a-5665-898a-c18d4270877a/scratchpad/f584/src/lib/desk/bandlock.ts	2026-11-01 10:33:03.575579151 +0000
++++ src/lib/desk/bandlock.ts	2026-11-01 12:12:36.857213413 +0000
+@@ -652,6 +652,10 @@
+     if (!Array.isArray(L) || !L.length || !(tick > 0)) return "the board can't be read this instant - no order (fix523)";
+     const prev = (G as any).__curBook465; let why = "";
+     try { (G as any).__curBook465 = book; why = String(((impossibleGeo as any)(asset, L, tick, side, ...fl) || {}).why || ""); } finally { (G as any).__curBook465 = prev; }
++    // fix587 HER FLIP, NO EXCEPTIONS (Love Nov 1 2026 12:04 UTC: "she does not enter until a 2-5m candle has flipped her color and is pushing away from the band. No exceptions."):
++    // the last word before the POST for every flip book (main, rejection, the no-pink copy) - judged here AFTER every wall, so no early return, born-red candle
++    // or fake-out waiver inside the board can let an order leave without her turn. Delayed + 5M keep their own doors (her Oct 28 words: "don't touch 5M and twin").
++    if (!why && (fl[2] || fl[6]) && !herTurn587(asset, side, tick)) why = `HER FLIP (fix587): no 2/3/4/5m candle has flipped ${side === "up" ? "red to green" : "green to red"} and pushed past its open - no ${side === "up" ? "long" : "short"}. no exceptions.`;
+     return why;
+   } catch { return "the auditor-grade door failed to run - no order (fix523)"; }
+ }
+@@ -1557,6 +1561,27 @@
+     }
+   } catch {}
+   return false;
++}
++// HER FLIP, NO EXCEPTIONS (fix587, Love Nov 1 2026 12:04 UTC: "She is still entering without a 2-5m candle flip. This is the 20th time. The rule is: she does not enter
++// until a 2-5m candle has flipped her color and is pushing away from the band. No exceptions. Find every place she can still leave without a 2-5m flip."): a 2/3/4/5m
++// candle that TRADED THE OTHER COLOUR and then crossed its open her way (red->green for a long, green->red for a short), read on the live tick this instant.
++// A candle BORN her colour (fix544 path 2) is not a flip - the 4:00 AM PT (12:00:13 UTC) BTC short left on a 13-second-old 5m candle born red after a green run,
++// with no 2-5m candle ever turning red. No fake-out waiver, no 1m, no minimum (fix530 turn rule, unchanged).
++export function herTurn587(asset: string, side: string, tick: number): boolean {
++  try {
++    const bars: any[] = G.__pivBars?.[asset]?.bars ?? [], tr = trailNow(asset), ms = Date.now();
++    for (const n of [2, 3, 4, 5]) {
++      const f0 = Math.floor(ms / (n * 60000)) * n * 60;
++      const inF = bars.filter((x) => Number(x.t) >= f0).sort((x, y) => x.t - y.t);
++      let o = inF.length ? Number(inF[0].o) : 0;
++      if (!(o > 0)) { const pre = tr.filter((x) => x.t < f0 * 1000 && x.t >= f0 * 1000 - 10000); const inn = tr.filter((x) => x.t >= f0 * 1000); o = pre.length ? Number(pre[pre.length - 1].c) : inn.length ? Number(inn[0].c) : 0; }
++      if (!(o > 0)) continue;
++      const v = [...inF.flatMap((x) => [Number(x.h), Number(x.l)]), ...tr.filter((x) => x.t >= f0 * 1000).map((x) => Number(x.c))].filter((q) => Number.isFinite(q) && q > 0);
++      const turned = v.length > 0 && (side === "up" ? v.some((q) => q < o) : v.some((q) => q > o));
++      if (turned && (side === "up" ? tick > o : tick < o)) return true;
++    }
++  } catch {}
++  return false;
+ }
+ /** fix416 (Love Oct 28 2026 6:21 PM PT: "yes. we literallly did this 20 fuckin times bro yes. candle. flip. green -> red / red -> green"): HER REAL FLIP for main + rejection - a 2/3/4/5m candle that traded GREEN and then turned RED (10c gold / $5 BTC under its open) for a short, red then green for a long. A candle born red (or born green) never counts. 6:16:04 PM PT gold short (rejection) counted a 2m/4m candle that opened and went straight 10c red while the 3m/5m were green and rising. anyFlipNow/anyFlipMinNow (add-ons, copy, recon paths) untouched. */
+ export function realFlipNow(asset: string, side: string, tick: number): boolean {
