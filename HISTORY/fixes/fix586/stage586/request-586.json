@@ -1,0 +1,18 @@
+{
+ "words": "If a long is blocked in the top of the channel, or a short is blocked in the bottom, she does not spend the rest of the window doing nothing. She waits for that band to be tapped and rejected. The rejection must have a 2-5m candle flip in her direction. When that happens she takes the trade under her normal rules. She does not wait for the floor to come back after the first move has already left. She does not skip the rest of the window because the first read was late or blocked. Every window stays open for the next valid setup that appears under her rules. This is already a cornerstone. Reinforce it. Find every place she is still skipping a window after a missed or blocked first move and close it.",
+ "what": "fix586 EVERY WINDOW STAYS OPEN: kalshi-live sendOrder shut the one-door lock (__oneDoor) at the floor check and left it shut when the last line (finalGate524) refused the order or the send threw before reaching Kalshi - no order on the wire, yet every later read in that window met 'duplicate door shut' and recon treated the window as executed (found in the code Nov 1; the 11:39 UTC door-shut rows came after a real fill, which is correct). Now a refused or failed send opens the door again (and clears heldSymbol); only an order on the wire or a fill keeps it shut - one EXECUTED trade per window unchanged. Her 2-5m flip at the rejection, the 1.5x floor, the pink tolerance and every wall are untouched.",
+ "books": "every live book that sends through kalshi-live sendOrder (recon-tog main, recon-rej rejection, recon-dly delayed); the walled-off 5M is not touched",
+ "proof": [
+  {
+   "code": "src/lib/desk/kalshi-live.server.ts",
+   "has": "if (!reduceOnly) { sent.__oneDoor?.delete(ticker); heldSymbol.delete(sym); } /* fix586 */ return null;"
+  },
+  {
+   "code": "src/lib/desk/kalshi-live.server.ts",
+   "has": ".catch((e586) => { if (!reduceOnly) { sent.__oneDoor?.delete(ticker); heldSymbol.delete(sym); } throw e586; });"
+  },
+  {
+   "test": "tools/window-stays-open-586.cjs"
+  }
+ ]
+}

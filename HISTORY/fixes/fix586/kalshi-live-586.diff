@@ -1,0 +1,26 @@
+--- src/lib/desk/kalshi-live.server.ts	2026-11-01 11:40:51.962662075 +0000
++++ /tmp/claude-0/-home-claude-aurelius/3952c805-6a7a-5665-898a-c18d4270877a/scratchpad/f586/src/lib/desk/kalshi-live.server.ts	2026-11-01 11:47:43.776427641 +0000
+@@ -871,7 +871,13 @@
+     const reg = (sent.__aureliusReach ||= {});
+     reg[ticker] = { ask: Number(sameLine.askPx), at: Date.now() };
+   }
+-  if (!reduceOnly && !forceExit) { const g524 = await finalGate524(ticker, bookSide, sameLine); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} return null; } } // fix524: NOTHING between this test and the send
++  if (!reduceOnly && !forceExit) { const g524 = await finalGate524(ticker, bookSide, sameLine); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { sent.__oneDoor?.delete(ticker); heldSymbol.delete(sym); } /* fix586 */ return null; } } // fix524: NOTHING between this test and the send
++  // fix586 EVERY WINDOW STAYS OPEN (Love Nov 1 2026 11:37 UTC: "She does not skip the rest of the window because the first read was late or blocked.
++  // Every window stays open for the next valid setup that appears under her rules. This is already a cornerstone. Reinforce it." + Oct 27 R008 "ONE EXECUTED
++  // TRADE PER WINDOW. EXECUTED."): the one-door lock (__oneDoor) used to shut at the floor check and STAY shut when the last line (finalGate524) refused the
++  // order or the send failed - no order ever reached Kalshi, yet every later read in that window would meet "duplicate door shut" (found in the code
++  // Nov 1; the 11:39 UTC "duplicate door shut" rows were AFTER a real fill, which is correct). Now a refused or failed send opens the door again;
++  // only an order on the wire or a fill keeps it shut.
+   const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
+     ticker,
+     client_order_id: randomUUID(),
+@@ -887,7 +893,7 @@
+     reduce_only: reduceOnly,
+     cancel_order_on_pause: true,
+     exchange_index: 2
+-  });
++  }).catch((e586) => { if (!reduceOnly) { sent.__oneDoor?.delete(ticker); heldSymbol.delete(sym); } throw e586; }); /* fix586: a send that never reached Kalshi never shuts her window */
+   if (!res.ok) {
+     if (!reduceOnly) {
+       heldSymbol.delete(sym);
