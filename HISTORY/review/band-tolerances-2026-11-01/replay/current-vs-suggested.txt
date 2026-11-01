@@ -1,0 +1,9 @@
+rule asset | CURRENT: blocked n, blocked edge c, kept edge total (h1/h2) | SUGGESTED: same
+pink btc | cur n1229 blk+8.6c win0.48 kept+131.5 (+63.2/+68.3) | new n447 blk+7.2c win0.49 kept+205.1 (+91.2/+114.0)
+pink gold | cur n455 blk+9.4c win0.49 kept+96.0 (+44.0/+51.9) | new n194 blk+6.1c win0.47 kept+127.0 (+61.0/+66.0)
+sess btc | cur n804 blk+9.8c win0.50 kept+158.6 (+59.2/+99.4) | new n212 blk+10.4c win0.49 kept+215.1 (+101.6/+113.5)
+sess gold | cur n486 blk+11.8c win0.52 kept+81.2 (+37.3/+43.9) | new n152 blk+9.4c win0.49 kept+124.5 (+60.1/+64.5)
+boll btc | cur n374 blk-1.6c win0.48 kept+243.2 (+117.4/+125.8) | new n300 blk-4.3c win0.45 kept+250.2 (+115.2/+135.0)
+boll gold | cur n150 blk+3.9c win0.53 kept+133.0 (+66.8/+66.2) | new n122 blk+6.5c win0.56 kept+130.8 (+64.3/+66.5)
+zone btc | cur n47 blk-5.2c win0.43 kept+239.7 (+113.4/+126.4) | new n192 blk-7.4c win0.43 kept+251.4 (+114.3/+137.1)
+zone gold | cur n207 blk+5.1c win0.56 kept+128.1 (+58.5/+69.6) | new n95 blk+2.5c win0.53 kept+136.5 (+66.9/+69.6)
