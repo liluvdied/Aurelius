@@ -1,0 +1,39 @@
+tools/band-flip-test-446.cjs BAND FLIP TEST ✓ - a 2-5m flip red->green / green->red at a band rejection is her entry (main + rejection); other reads still follow the 5
+tools/behaviour-umpire.cjs BEHAVIOUR ✓ - she acts on every one of these rules.
+tools/both-sides-replays-469.cjs ✓  long ✓  short ✓  main + rejection: btc band rejection on a 5m against her = entry only on a real 2-5m flip; a break never rides som
+tools/broke-candle-test-441.cjs BROKE TEST ✓ - after a band or the pink breaks this candle, no trade the other way until price breaks back by her distance: the 9:20 PM go
+tools/broke-candle-test-457.cjs BROKE 457 TEST ✓ - a band broken this candle = only the break's direction with price on its side until price breaks back by her distance (
+tools/check-her-rules.cjs ✗ NOT ALL OF HER RULES HOLD - tell Claude.[0m
+tools/eight-pm-test-455.cjs 8 PM TEST ✓ - BTC 8 PM: $10 Kalshi ceiling (everything else $5, Polymarket untouched); second $5 add-on wired same side, BTC 8 PM rejectio
+tools/ex-age-test-566.cjs Node.js v22.23.4
+tools/five-break-enters-579.cjs 5-BREAK TEST ✓ - an unbroken pink holds a trade only until price clears it by HER pink break (BTC $5 / gold 25c), not the $6/33c band brea
+tools/flip-at-wire-588.cjs FLIP AT WIRE 588 TEST ✓ - every opening order (Kalshi: main, rejection, no-pink, delayed, add-ons, retries; Polymarket: the 5M and every b
+tools/flip-test-433.cjs FLIP TEST ✓ - her flip is 2/3/4/5m: a 1m-only flip never counts, a green 2-5m does; main's green/red zone reads take it (fix394).
+tools/her-flip-587.cjs HER FLIP 587 TEST ✓ - no long or short leaves without a 2-5m candle that traded the other colour and flipped her way; the 4:00 AM and 4:15
+tools/independent-calls-test-463.cjs INDEPENDENT CALLS TEST ✓ - main + rejection: no read in her wrong third (12:31 PM gold long never her call); a flipped read is never her c
+tools/one-pink-test-565.cjs Node.js v22.23.4
+tools/pink-15-20-test-459.cjs PINK 15/20 TEST ✓ - the unbroken pink holds a long only within 15% gold / 20% BTC of the session-band channel (11:06 gold refused, 11:05 f
+tools/pink-both-sides-test-464.cjs PINK BOTH SIDES TEST ✓ - three or more pink rejections on a slope hold the other side (her 10:03 PM rule, both ways, 25c / $8 break frees)
+tools/pink-break-casts-580.cjs PINK-BREAK-CASTS ✓ - the pink break and the session band break both cast at her $5 (not $4, not $6) (fix580).
+tools/pink-far-test-503.cjs PINK FAR TEST ✓ - the pink holds only inside her 15% gold / 20% BTC of the band distance, either side.
+tools/pink-flag-25-test.cjs PINK FLAG25 TEST ✓ - __PINKFLAT25 true = a flat $25 pink both assets at every width; false = her pink scale exactly (gold 15%; BTC $25 und
+tools/pink-shorts-only-test-515.cjs PINK ONE-WAY TEST ✓ - a slid pink is shorts-only past the 25c break, and her $2 / $200 reset restarts the pink.
+tools/reach-test-429.cjs REACH TEST ✓ - the 7:40 PM gold long into the unbroken -1σ is refused (a 18c poke is not a break); clean and bounce longs pass; pink (15%
+tools/sess-five-582.cjs SESSION $5 582 TEST: FAIL - missing function sessFree582R(
+tools/session-ahead-33-test-460.cjs SESSION AHEAD 33 TEST ✓ - the session-band-ahead wait holds only a long in the top 33% / a short in the bottom 33%, band to band; the 11:2
+tools/side-test-434.cjs SIDE TEST ✓ - her 33% runs session band to session band and a band counts passed only when price is NOW her break distance through it (or 
+tools/slide-her-way-584.cjs SLIDE HER WAY 584 TEST ✓ - the pink slide holds only after 3 rejections with the pink in the bottom 33% (longs) / top 33% (shorts); every 
+tools/slide-off-581.cjs SLIDE OFF 581 TEST: FAIL
+tools/slide-ten-test-560.cjs SLIDE 10% TEST ✓ - a sliding pink holds the long (a climbing pink the short) until price breaks it by 10% of the channel, gold + BTC.
+tools/slide-test-btc.cjs SLIDE TEST BTC ✓ - three or more candles hitting the pink and rejecting on a down slope hold the long; an $8 pink break frees.
+tools/slide-test.cjs SLIDE TEST ✓ - three or more candles hitting the pink and rejecting on a down slope hold the long; two, a flat price, or no hits stay free
+tools/stale-pink-test-431.cjs STALE/PINK TEST ✓ - the 7:40 PM gold long is refused under the unbroken pink; broken-pink longs and shorts pass; the 90 s drop for held ca
+tools/strike-off-test-519.cjs STRIKE-OFF 519 ✓ - the difference is deducted and Kalshi alone scores her.
+tools/ten-level-test-440.cjs TEN LEVEL TEST ✓ - no trading into an even $10 level when the target is within $1.50 of it, only away (4040/4038: long refused, short goes
+tools/thirds-five-583.cjs THIRDS $5 583 TEST ✓ - the thirds wall frees on her $5 BTC break (long + short), $4 still waits, arming + gold 33c untouched.
+tools/thirds-off-test-442.cjs THIRDS TEST ✓ - the thirds flip is off for main + rejection: the 9:20 PM 'seen as a short' never goes live; her real calls do.
+tools/three-pm-test-452.cjs 3 PM TEST retired by her word (fix548) - no time-of-day restriction on rejections exists; the $100 BTC / $5 gold width carry stands.
+tools/umpire-gate-test-461.cjs Node.js v22.23.4
+tools/week-replay-521.cjs Node.js v22.23.4
+tools/window-stays-open-586.cjs WINDOW OPEN 586 TEST ✓ - a refused or failed send keeps her window open for the next valid setup; only a fill (or an order on the wire) sh
+tools/zone-pickup-test-448.cjs ZONE PICKUP TEST: FAIL - fix448 missing

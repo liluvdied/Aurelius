@@ -1,0 +1,74 @@
+--- f586/src/lib/desk/kalshi-live.server.ts	2026-11-01 11:47:43.776427641 +0000
++++ f588/src/lib/desk/kalshi-live.server.ts	2026-11-01 12:26:35.993446985 +0000
+@@ -89,6 +89,19 @@
+ const closeOnlyBodies = new WeakSet();
+ // TWIN ADD-ON IS FREE (Oct 22 ~10:51 AM PT, Love: "the delayed entry book is clear to do those add ons after a 4.5x + even if it doesn't match all rules, just at the next band interaction / for that book she is clear to engage"): the twin's $3 add-on body skips the wall at the wire.
+ const twinAddBodies = new WeakSet();
++// fix588: her flip, judged on the trade itself at the last line (see the wire below).
++async function herFlipAtWire588(ticker, side) {
++  try {
++    const sym = /^KXBTC/.test(ticker) ? "btc" : /^KXGOLD/.test(ticker) ? "gold" : "";
++    if (!sym) return "HER FLIP (fix588): no 2-5m candles for this market - no opening order. no exceptions.";
++    const q = (await import("./quotes")).quoteTick(sym);
++    if (!q || !(q.c > 0) || Date.now() - q.at > 2500) return "HER FLIP (fix588): no live tick younger than 2.5s to judge her flip - no opening order.";
++    const B = await import("./bandlock");
++    if (typeof (B as any).herTurn587 !== "function") return "HER FLIP (fix588): her flip test (herTurn587) is not installed - no opening order.";
++    if ((B as any).herTurn587(sym, side, Number(q.c))) return "";
++    return `HER FLIP (fix588): no 2/3/4/5m candle traded ${side === "up" ? "red then crossed its open green" : "green then crossed its open red"} at ${Number(q.c).toFixed(2)} - no ${side === "up" ? "long" : "short"}. no exceptions.`;
++  } catch (e) { return "HER FLIP (fix588): her flip could not be judged - no opening order."; }
++}
+ async function kalshi(method, path, query = "", body) {
+   const guarded = guardKalshiOrder(method, path, body);
+   // ORDER TRAIL (Oct 16 ~7:15 PM PT, Love: "i do want you to implement that so you never - not have an answer for me when i ask
+@@ -104,6 +117,15 @@
+     try { wallWhy = (await import("./bandlock")).wireWall(String(guarded.body.ticker || ""), guarded.body.side === "bid" ? "up" : "down"); } catch (e) { wallWhy = `THE WALL AT THE WIRE could not run (${String(e).slice(0, 80)}) - no opening order`; }
+     if (wallWhy) { noteBlock({ venue: "kalshi", ticker: guarded.body.ticker, reason: wallWhy }); trail({ result: "refused", why: wallWhy }); return new Response(JSON.stringify({ error: wallWhy }), { status: 403, headers: { "Content-Type": "application/json" } }); }
+   }
++  // fix588 HER FLIP AT THE WIRE, EVERY BOOK (Love Nov 1 2026 12:24-12:25 UTC: "Every read needs a 2-5m flip. No exceptions. ... The 'born her colour' path is not a flip. A brand-new candle that opens and falls is not a flip. The fake-out waiver is not a flip.
++// The early 'clear' return is not a flip. A flip is a 2-5m candle that traded the other color first, then crossed its open her way. Every path that can send an order must have that flip.
++// Main, rejection, no-pink, delayed, 5M - all of them." + "The last line before every order leaves must judge the trade itself. It must refuse the order if there is no 2-5m flip."): every opening Kalshi order - main, rejection,
++  // no-pink, delayed, add-ons, every retry, whatever built it - is judged HERE on the live tick, the instant before it is signed: a 2/3/4/5m candle that traded the other colour,
++  // then crossed its open her way (bandlock herTurn587). No flip = refused. Only exits (reduce_only / her take-profit closes) pass. Unreadable = refused (fails closed).
++  if (method === "POST" && /\/portfolio\/(events\/)?orders/.test(path) && guarded.body && guarded.body.reduce_only !== true && !(body && closeOnlyBodies.has(body))) {
++    const flipWhy588 = await herFlipAtWire588(String(guarded.body.ticker || ""), guarded.body.side === "bid" ? "up" : "down");
++    if (flipWhy588) { try { noteBlock({ venue: "kalshi", ticker: guarded.body.ticker, reason: flipWhy588 }); } catch {} trail({ result: "refused", why: flipWhy588 }); return new Response(JSON.stringify({ error: flipWhy588 }), { status: 403, headers: { "Content-Type": "application/json" } }); }
++  }
+   body = guarded.body;
+   const timestamp = Date.now().toString();
+   const signature = sign("sha256", Buffer.from(`${timestamp}${method}${path}`), {
+--- "/mnt/user-data/uploads/Desktop/aurelius fixxd <3/Aurelius/src/lib/desk/poly-live.server.ts"	2026-11-01 12:25:15.087975332 +0000
++++ f588/src/lib/desk/poly-live.server.ts	2026-11-01 12:26:35.995743576 +0000
+@@ -77,9 +77,33 @@
+   return { body };
+ }
+ 
++// fix588: her flip, judged on the trade itself at the last line for every Polymarket buy.
++async function polyFlip588(slug: string, side: string): Promise<string> {
++  try {
++    const sym = /btc/i.test(slug) ? "btc" : /gold|xau/i.test(slug) ? "gold" : "";
++    if (!sym) return "HER FLIP (fix588): no 2-5m candles for this market - no opening order. no exceptions.";
++    const q = (await import("./quotes")).quoteTick(sym);
++    if (!q || !(q.c > 0) || Date.now() - q.at > 2500) return "HER FLIP (fix588): no live tick younger than 2.5s to judge her flip - no opening order.";
++    const B: any = await import("./bandlock");
++    if (typeof B.herTurn587 !== "function") return "HER FLIP (fix588): her flip test (herTurn587) is not installed - no opening order.";
++    if (B.herTurn587(sym, side, Number(q.c))) return "";
++    return `HER FLIP (fix588): no 2/3/4/5m candle traded ${side === "up" ? "red then crossed its open green" : "green then crossed its open red"} at ${Number(q.c).toFixed(2)} - no ${side === "up" ? "long" : "short"}. no exceptions.`;
++  } catch { return "HER FLIP (fix588): her flip could not be judged - no opening order."; }
++}
+ async function poly(method: string, path: string, query = "", rawBody?: unknown): Promise<Response> {
+   const guarded = guardPolyOrder(method, path, rawBody);
+   if (guarded.refused) return new Response(JSON.stringify({ error: guarded.refused }), { status: 403, headers: { "Content-Type": "application/json" } });
++  // fix588 HER FLIP AT THE WIRE, EVERY BOOK (Love Nov 1 2026 12:24-12:25 UTC: "Every read needs a 2-5m flip. No exceptions. ... The 'born her colour' path is not a flip. A brand-new candle that opens and falls is not a flip. The fake-out waiver is not a flip.
++// The early 'clear' return is not a flip. A flip is a 2-5m candle that traded the other color first, then crossed its open her way. Every path that can send an order must have that flip.
++// Main, rejection, no-pink, delayed, 5M - all of them." + "The last line before every order leaves must judge the trade itself. It must refuse the order if there is no 2-5m flip."): every Polymarket buy (the 5M book and every other Poly opening) is judged here
++  // on the live tick: a 2/3/4/5m candle that traded the other colour, then crossed its open her way (bandlock herTurn587). Sells pass. Unreadable = refused.
++  {
++    const o588 = guarded.body as { intent?: string; marketSlug?: string } | undefined;
++    if (method === "POST" && path.startsWith("/v1/orders") && o588 && /BUY/i.test(String(o588.intent || ""))) {
++      const why588 = await polyFlip588(String(o588.marketSlug || ""), /SHORT/i.test(String(o588.intent || "")) ? "down" : "up");
++      if (why588) { try { noteBlock({ venue: "polymarket", ticker: o588.marketSlug, reason: why588 }); } catch {} return new Response(JSON.stringify({ error: why588 }), { status: 403, headers: { "Content-Type": "application/json" } }); }
++    }
++  }
+   const body = guarded.body;
+   const timestamp = Date.now().toString();
+   const signature = sign(null, Buffer.from(`${timestamp}${method}${path}`), privateKey()).toString("base64");
