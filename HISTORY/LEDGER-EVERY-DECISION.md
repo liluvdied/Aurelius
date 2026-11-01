@@ -1,9 +1,13 @@
-# Every decision Love has made - rebuilt 2026-11-01T18:16:28.164163+00:00
+# Every decision Love has made - rebuilt 2026-11-01T18:50:37.021643+00:00
 
-1468 decisions with Love's words or card picks, out of 2222 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1469 decisions with Love's words or card picks, out of 2223 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-01T18:50:11Z  ·  diary line 2690  ·  fix595
+- fix595 IN HER CODE
+- Full entry: 2026-11-01T18:50:11Z R309 fix595 (Love, SAME-SIDE-AT-THE-SEND.command): same side of the break on the live tick at the last line, every session band and pink, both assets
 
 ## 2026-11-01T18:15:58Z  ·  diary line 2689  ·  fix592
 - fix592 IN HER CODE

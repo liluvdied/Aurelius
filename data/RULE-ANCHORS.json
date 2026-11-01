@@ -4167,6 +4167,10 @@
   "add the last-line check so the order does not leave unless o": {
    "file": "kalshi-live.server.ts",
    "at": "2026-11-01T18:15:58.499668+00:00"
+  },
+  "No order leaves unless price is on the same side of the brea": {
+   "file": "bandlock.ts",
+   "at": "2026-11-01T18:50:11.221933+00:00"
   }
  },
  "retired": [],
