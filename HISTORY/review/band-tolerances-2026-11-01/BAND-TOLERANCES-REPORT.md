@@ -1,6 +1,8 @@
 # Aurelius band tolerances: what's live, and replay-tested sliding scales
 *Nov 1 2026. A read-only report. Nothing was changed. Every suggestion below waits for Love's own words.*
 
+> **Correction (Nov 1, later):** the pink and session-band rows below lean on the modelled price, which runs far too high when checked against her real fills. The price-free breakdown in `PINK-AND-SESSION-WAITS.md` replaces those rows. The Bollinger and zone direction still holds there, but check it with the same price-free method before acting on it.
+
 **\*\*\*\*\*\*\*\*\*\* Read this first.** This replay gives a direction, not proof. Kalshi's settlement records and the asks behind skipped reads aren't on the desk. So the "win" is rebuilt from the desk's own price log (window close vs window open). The contract price is modelled from distance and time left. That model reads about 5¢ high for every trade alike: real fills broke even while the model scored them +4¢. So compare a blocked group with the average, not with zero. Each wall is tested alone, over the reads the model actually made. The data covers Oct 20 – Nov 1 for BTC and Oct 20 – Oct 30 for gold, since gold's log stops on Oct 30. **\*\*\*\*\*\*\*\*\*\***
 
 ## 1. Every band tolerance live right now (desk = fix580)
