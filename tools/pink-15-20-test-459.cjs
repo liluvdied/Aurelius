@@ -10,7 +10,7 @@ function grab(head) { const i = src.indexOf(head); if (i < 0) { console.log("PIN
   let d = 0; for (let k = j; k < src.length; k++) { if (src[k] === "{") d++; else if (src[k] === "}") { d--; if (d === 0) return /function/.test(head) ? src.slice(i, k + 1) : src.slice(i, src.indexOf(";", k) + 1); } } }
 const one = (h) => src.slice(src.indexOf(h), src.indexOf("\n", src.indexOf(h)));
 const js = ts.transpileModule(["type Line = { name: string; price: number; unit?: number };", "type Zones = { pp: number; r1: number; r2: number; s1: number; s2: number };",
-  one("const isSessBand = "), grab("export const BREAK_DIST"), grab("export const ZONE_REACH_PCT"), grab("export const REACH429"), one("export const PINK_PCT429"), grab("export const PINK_PCT459"), one("export const PINK_BREAK432"),
+  one("const isSessBand = "), grab("export const BREAK_DIST"), grab("export const ZONE_REACH_PCT"), grab("export const REACH429"), grab("export function sessionScale593"), one("export const PINK_PCT429"), grab("export const PINK_PCT459"), one("export const PINK_BREAK432"),
   grab("export function zoneReachSlide("), grab("export function reachWall429("), grab("export function pinkBeyond459("), grab("export function pinkLongWall432("),
   "function fiveOpenNow(a) { return 0; } function zonesNow(a) { return null; }"].map((x) => x.replace(/^export /, "")).join("\n"), { compilerOptions: { target: 99 } }).outputText;
 const W = new Function(js + "; return { reachWall429, pinkLongWall432 };")();

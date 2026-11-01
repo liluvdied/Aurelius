@@ -17,7 +17,7 @@ const parts = [
   "type Line = { name: string; price: number; unit?: number };",
   "type Zones = { pp: number; r1: number; r2: number; s1: number; s2: number };",
   src.slice(src.indexOf("const isSessBand = "), src.indexOf("\n", src.indexOf("const isSessBand = "))),
-  grab("export const BREAK_DIST"), grab("export const ZONE_REACH_PCT"), grab("export const REACH429"),
+  grab("export const BREAK_DIST"), grab("export const ZONE_REACH_PCT"), grab("export const REACH429"), grab("export function sessionScale593"),
   src.slice(src.indexOf("export const PINK_PCT429"), src.indexOf("\n", src.indexOf("export const PINK_PCT429"))),
   ...(src.includes("export const PINK_PCT459") ? [src.slice(src.indexOf("export const PINK_PCT459"), src.indexOf(";", src.indexOf("export const PINK_PCT459")) + 1)] : []), // fix459 (R176): gold 15% / BTC 20% share the pink reach reads
   grab("export function zoneReachSlide("), grab("export function reachWall429("),

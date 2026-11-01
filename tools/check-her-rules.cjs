@@ -14,7 +14,7 @@ function grab(src, head) { const i = src.indexOf(head); if (i < 0) return null; 
 const one = (src, h) => (src.includes(h) ? src.slice(src.indexOf(h), src.indexOf("\n", src.indexOf(h))) : "");
 const tp = (parts, names) => { const ok = parts.filter(Boolean); return new Function(ts.transpileModule(ok.map((x) => x.replace(/^export /, "")).join("\n"), { compilerOptions: { target: 99 } }).outputText + "; return {" + names.filter((n) => ok.some((p) => p.includes("function " + n + "("))).join(",") + "};")(); };
 const W = tp(["type Line = { name: string; price: number; unit?: number }; type Zones = { pp: number; r1: number; r2: number; s1: number; s2: number };",
-  one(BL, "const isSessBand = "), grab(BL, "export const BREAK_DIST"), grab(BL, "export const ZONE_REACH_PCT"), grab(BL, "export const REACH429"), one(BL, "export const PINK_PCT429"), grab(BL, "export const PINK_PCT459"),
+  one(BL, "const isSessBand = "), grab(BL, "export const BREAK_DIST"), grab(BL, "export const ZONE_REACH_PCT"), grab(BL, "export const REACH429"), grab(BL, "export function sessionScale593"), one(BL, "export const PINK_PCT429"), grab(BL, "export const PINK_PCT459"),
   one(BL, "export const PINK_BREAK432"), grab(BL, "export const PINK_TAP"), "const isChanBand = (a, l) => /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)); function chanL(a, L) { return L; } function squeezedPinkOf(L) { return () => false; }",
   "function fiveOpenNow(a) { return 0; } function zonesNow(a) { return null; } function fiveHLNow(a) { return null; }",
   grab(BL, "export function zoneReachSlide("), grab(BL, "export function reachWall429("), grab(BL, "export function pinkBeyond459("), grab(BL, "export function pinkLongWall432("), grab(BL, "export function pinkShortWall464("),

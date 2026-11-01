@@ -6,7 +6,7 @@ const ROOT = path.join(__dirname, ".."); const ts = require(path.join(ROOT, "nod
 const file = process.argv[2] ? path.resolve(process.argv[2]) : path.join(ROOT, "src/lib/desk/bandlock.ts");
 const FLAT25 = /export const __PINKFLAT25 = true/.test(fs.readFileSync(file, "utf8")); // fix573: when her weekend $25 overlay is on, the pink-tolerance scenes expect the $25 cushion, not the 15%/20% law
 const out = fs.mkdtempSync("/tmp/beh-");
-fs.writeFileSync(path.join(out, "bandlock.js"), ts.transpileModule(fs.readFileSync(file, "utf8"), { compilerOptions: { module: 1, target: 99 } }).outputText);
+fs.writeFileSync(path.join(out, "bandlock.js"), ts.transpileModule(fs.readFileSync(file, "utf8").replace("const z594 = zoneSend594(asset, L, tick, side, false);", "const z594 = globalThis.__door594Test ? zoneSend594(asset, L, tick, side, false) : \"\";") /* fix594: older scenes judge their own wall; the fix594 scenes below turn her zone test on */, { compilerOptions: { module: 1, target: 99 } }).outputText);
 fs.writeFileSync(path.join(out, "quotes.js"), "exports.quoteTick=()=>null;exports.feedHealth=()=>({ok:true});");
 fs.writeFileSync(path.join(out, "recon.js"), "exports.RECON={};");
 const G = globalThis; let NOW = Date.now(); Date.now = () => NOW;
@@ -183,6 +183,66 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   const c1 = geoL("btc", Lb(78095.0), 78080.0, "up", "main"); T("fix514: BTC long with the unbroken pink $15 over (inside her 20% of a $300 channel) is refused", /PINK CUSHION/.test(c1), c1 || "(clear)");
   const c2 = geoL("btc", Lb(78102.0), 78080.0, "up", "main"); T("fix514: BTC long with the pink $22 over (inside her temporary $25 cap, fix542) is refused too", /PINK CUSHION/.test(c2), c2 || "(clear)");
   const c3 = geoL("btc", Lb(78190.0), 78080.0, "up", "main"); T("fix538: BTC long with the pink $110 over (beyond her $75 weekday floor and her 20%) is free of the pink", !/PINK CUSHION/.test(c3), c3 || "(clear)");
+}
+// fix592 (Love Nov 1 2026 9:03 AM PT: "Both paths. She can enter on either one." + "She cannot short a green rising candle. She cannot long a red falling candle."): flip path, born path, $5 BTC / 10c gold, any one 2-5m candle
+{ NOW = Date.parse("2026-11-01T12:00:30Z"); for (const k of Object.keys(G)) if (/^__qtrail/.test(k)) G[k] = {};
+  const t0 = sec("2026-11-01T12:00:00Z"), t1 = sec("2026-11-01T11:59:00Z");
+  const set592 = (asset, po, pc, o, h, l) => { G.__pivBars = { [asset]: { bars: [{ t: t1, o: po, h: Math.max(po, pc), l: Math.min(po, pc), c: pc }, { t: t0, o, h, l, c: l }] } }; };
+  set592("btc", 77870, 77856, 77856, 77860, 77845); T("fix592 BTC flip path: green then red, $6 under its open, goes", B.turnFlip530("btc", "down", 77850));
+  set592("btc", 77870, 77856, 77856, 77860, 77845); T("fix592 BTC flip path: green then red, only $3 under, is refused", !B.turnFlip530("btc", "down", 77853));
+  set592("btc", 77840, 77856, 77856, 77856, 77840); T("fix592 BTC born path: red right after a green one, $11 under, goes", B.turnFlip530("btc", "down", 77845));
+  set592("btc", 77840, 77856, 77856, 77856, 77850); T("fix592 BTC born path: red right after a green one, only $3 under, is refused", !B.turnFlip530("btc", "down", 77853));
+  set592("btc", 77870, 77856, 77856, 77856, 77840); T("fix592 BTC: red right after a red one with no flip is refused", !B.turnFlip530("btc", "down", 77845));
+  set592("btc", 77856, 77840, 77840, 77850, 77835); T("fix592 BTC flip path: red then green, $6 over, goes", B.turnFlip530("btc", "up", 77846));
+  set592("btc", 77856, 77840, 77840, 77856, 77840); T("fix592 BTC born path: green right after a red one, $10 over, goes", B.turnFlip530("btc", "up", 77850));
+  set592("btc", 77840, 77856, 77856, 77870, 77856); T("fix592 hard block: she cannot short a green rising candle", !B.turnFlip530("btc", "down", 77865));
+  set592("btc", 77856, 77840, 77840, 77840, 77825); T("fix592 hard block: she cannot long a red falling candle", !B.turnFlip530("btc", "up", 77830));
+  set592("gold", 3870, 3871, 3871, 3871, 3870.5); T("fix592 gold born path: red right after a green one, 40c under, goes", B.turnFlip530("gold", "down", 3870.6));
+  set592("gold", 3872, 3871, 3871, 3871.2, 3870.5); T("fix592 gold flip path: green then red, 20c under, goes", B.turnFlip530("gold", "down", 3870.8));
+  set592("gold", 3872, 3871, 3871, 3871.2, 3870.5); T("fix592 gold flip path: green then red, 5c under, is refused", !B.turnFlip530("gold", "down", 3870.95));
+}
+// fix593 (Love Nov 1 2026 9:19 AM PT): her session-band scale, door and last line the same; past the last band = refused; pink not part of it
+{ const near = (a, b) => Math.abs(a - b) < 0.0001, Sb = (below, above, extra) => [{ name: "-1σ", price: below }, { name: "+1σ", price: above }, ...(extra || [])];
+  T("fix593 scale BTC: $80 channel = $25", near(B.sessionScale593("btc", 80), 25));
+  T("fix593 scale BTC: $300 channel = 33% = $99", near(B.sessionScale593("btc", 300), 99));
+  T("fix593 scale BTC: $600 channel = 20% = $120", near(B.sessionScale593("btc", 600), 120));
+  T("fix593 scale gold: $10 channel = 33%", near(B.sessionScale593("gold", 10), 3.3));
+  T("fix593 scale gold: $12 channel = 30.4%", near(B.sessionScale593("gold", 12), 3.648));
+  T("fix593 scale gold: $15 channel = 26.5%", near(B.sessionScale593("gold", 15), 3.975));
+  T("fix593 scale gold: $18 channel = 22.6%", near(B.sessionScale593("gold", 18), 4.068));
+  T("fix593 scale gold: $20 channel = 20%", near(B.sessionScale593("gold", 20), 4));
+  G.__pivBars = { btc: { bars: [] }, gold: { bars: [] } };
+  T("fix593 send: BTC long $90 under the band on a $300 channel is refused", !!B.sessionBandSend593("btc", Sb(77700, 78000), 77910, "up"));
+  T("fix593 send: BTC long $120 under the band on a $300 channel goes", !B.sessionBandSend593("btc", Sb(77700, 78000), 77880, "up"));
+  T("fix593 send: BTC short mirror, $90 over the band, is refused", !!B.sessionBandSend593("btc", Sb(77700, 78000), 77790, "down"));
+  T("fix593 send: price past the last session band is refused", /no channel/.test(B.sessionBandSend593("btc", Sb(77700, 78000), 78100, "up")));
+  T("fix593 send: gold long $3 under on a $15 channel is refused", !!B.sessionBandSend593("gold", Sb(3870, 3885), 3882, "up"));
+  T("fix593 send: gold long $5 under on a $15 channel goes", !B.sessionBandSend593("gold", Sb(3870, 3885), 3880, "up"));
+  T("fix593 send: a Bollinger line is not part of this check", !B.sessionBandSend593("btc", Sb(77700, 78000, [{ name: "BB upper", price: 77885 }]), 77880, "up"));
+  T("fix593 send: pink is not part of this check", !B.sessionBandSend593("btc", Sb(77700, 78000, [{ name: "5m PP", price: 77885 }]), 77880, "up"));
+  const Z593 = { r1: 90000, r2: 91000, s1: 1000, s2: 900 };
+  T("fix593 door: BTC long $90 under the band on a $300 channel is refused", !!B.reachWall429("btc", Sb(77700, 78000), 77910, "up", Z593, 77905));
+  T("fix593 door: BTC long $120 under the band on a $300 channel goes", !B.reachWall429("btc", Sb(77700, 78000), 77880, "up", Z593, 77875));
+  T("fix593 door: gold long $3 under on a $15 channel is refused", !!B.reachWall429("gold", Sb(3870, 3885), 3882, "up", Z593, 3881));
+  T("fix593 door: gold long $5 under on a $15 channel goes", !B.reachWall429("gold", Sb(3870, 3885), 3880, "up", Z593, 3879));
+  T("fix593 door: price past the last session band is refused", /no channel/.test(B.reachWall429("btc", Sb(77700, 78000), 78100, "up", Z593, 78090)));
+}
+// fix594 (Love Nov 1 2026 9:45 AM PT): top 55% of pink to red refuses longs, bottom 55% of pink to green refuses shorts, nothing past either boundary, both assets; door and last line the same test
+{ const Zb = (p, s1, s2, r1, r2) => [{ name: "5m PP", price: p }, { name: "5m S1", price: s1 }, { name: "5m S2", price: s2 }, { name: "5m R1", price: r1 }, { name: "5m R2", price: r2 }], ZB = Zb(78000, 77900, 77800, 78100, 78200), ZG = Zb(3880, 3870, 3860, 3890, 3900);
+  T("fix594 BTC short at 30% from pink goes", !B.zoneSend594("btc", ZB, 77970, "down"));
+  T("fix594 BTC short at 50% from pink, in the bottom 55%, is refused", /bottom 55%/.test(B.zoneSend594("btc", ZB, 77950, "down")));
+  T("fix594 BTC short inside the green zone is refused", /past the green/.test(B.zoneSend594("btc", ZB, 77850, "down")));
+  T("fix594 BTC short under the whole green zone is refused, not free and clear", /past the green/.test(B.zoneSend594("btc", ZB, 77700, "down")));
+  T("fix594 BTC long at 30% from pink goes", !B.zoneSend594("btc", ZB, 78030, "up"));
+  T("fix594 BTC long at 50% from pink, in the top 55%, is refused", /top 55%/.test(B.zoneSend594("btc", ZB, 78050, "up")));
+  T("fix594 BTC long over the whole red zone is refused, not free and clear", /past the red/.test(B.zoneSend594("btc", ZB, 78300, "up")));
+  T("fix594 a long rejecting off the green zone is not flagged", !B.zoneSend594("btc", ZB, 77850, "up"));
+  T("fix594 a short rejecting off the red zone is not flagged", !B.zoneSend594("btc", ZB, 78150, "down"));
+  T("fix594 gold short at 60% from pink is refused", /bottom 55%/.test(B.zoneSend594("gold", ZG, 3874, "down")));
+  T("fix594 gold long at 30% from pink goes", !B.zoneSend594("gold", ZG, 3883, "up"));
+  T("fix594 gold long past the red boundary is refused", /past the red/.test(B.zoneSend594("gold", ZG, 3905, "up")));
+  T("fix594 last line: zones that can't be read are refused", /can't be read/.test(B.zoneSend594("btc", [], 78000, "up")));
+  G.__door594Test = true; T("fix594 door: the same test refuses at the door", /bottom 55%/.test(geo("btc", ZB, 77950, "down", "main"))); T("fix594 door: nothing past the red boundary at the door", /PAST THE RED/.test(geo("btc", ZB, 78300, "up", "main"))); G.__door594Test = false;
 }
 const ok = res.every((r) => r.ok);
 for (const r of res) console.log((r.ok ? "  ✓ " : "  ✗ ") + r.name + (r.ok ? "" : "  <- " + r.detail));

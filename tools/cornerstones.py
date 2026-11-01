@@ -10,7 +10,7 @@ def need(ok, what):
     if not ok: bad.append(what)
 print("HER CORNERSTONES")
 # retired by Love Oct 28 2026 7:08 PM PT ("not the fucking checkpoint version" - back to the exact checkpoint, 1-5m flip): need("function anyFlipNow(" in B and ("for (const n of [2, 3, 4, 5] /* fix406" in B or "export function realFlipNow(" in B), "1. HER FLIP: the 2/3/4/5m candle reader exists (fix406, Love Oct 28 2026 5:07 PM PT: cut the 1m)")
-need("if (flipRule) { if (!why && !foTurn && !turnFlip530(asset, side, tick))" in B and "export function turnFlip530(" in B, "1. HER FLIP: a 2/3/4/5m candle that TURNS her way - red to green for a long, green to red for a short, no minimum - at her rejection is the entry, immediate on the next tick (her Oct 30 4:56 PM, fix530)")
+need("if (flipRule) { if (!why && !turnFlip530(asset, side, tick))" in B and "export function turnFlip530(" in B, "1. HER FLIP: a 2/3/4/5m candle that TURNS her way - red to green for a long, green to red for a short, no minimum - at her rejection is the entry, immediate on the next tick (her Oct 30 4:56 PM, fix530)")
 door = re.search(r'const imR = impossibleGeo\([^\n]*', B); wire = re.search(r'const geo = impossibleGeo\([^\n]*', B); cop = re.search(r'else whyR = impossibleGeo\([^\n]*', B)
 for nm, m in (("door", door), ("copier", cop), ("wire", wire)):
     t = m.group(0) if m else ""
@@ -161,7 +161,7 @@ need(B.count("fix526") == 4 and B.count("fix526: her 3/4 at $75-$180 width + the
 need("btc: 100 /* fix527" in B,
      "54. BANDS ARE WALLS AGAIN AT $100: the BTC session carry hands back to the fresh bands at sigma $100, not $180 (fix527)")
 # CORNERSTONE 55 (fix530, Love Oct 30 2026 4:56 PM PT: 'a 2M/3M/4M/5M candle that flips from red to green / green to red at one of her rejection zones = an immediate short/long entry on the next tick from the single remaining feed. auditor still stops it if it flips back before it fills.')
-need("export function turnFlip530(" in B and "fix530: no colour re-test at the send" in K523 and "the knock-loop colour re-test is RETIRED" in K523 and "LET HER RUN (fix536" in E,
+need("export function turnFlip530(" in B and "HER FLIP AT THE SEND (fix592)" in K523 and "the knock-loop colour re-test is RETIRED" in K523 and "LET HER RUN (fix536" in E,
      "55. HER FLIP, THE AUDITOR BEHIND IT: a 2/3/4/5m colour turn at her rejection is an immediate entry on the next tick - no re-test at the send; a flip that fades before the fill is written down by the auditor, entries stay on (her 4:56 PM flip law, the halt lifted by her 6:54 PM, fix530/536)")
 # CORNERSTONE 56 (fix530, her 4:47 PM: Remove the index... Live price = one feed only... No secondary source. + her 4:39 PM: get her on one feed)
 KS530 = open("src/lib/desk/kalshi.ts", encoding="utf8").read()
@@ -193,7 +193,7 @@ need(B.count("fix541: her break is $5") == 2 and E.count("fix541: her break is $
 need(B.count("fix542 TEMPORARY") == 5 and R541.count("fix542 TEMPORARY") == 1 and "fix550" in R541,
      "63. PINK $25 FOR NOW: the BTC pink tolerance is capped at a flat $25 at every site - temporary, hers to lift (fix542)")
 # CORNERSTONE 64 (fix544, Love Oct 30 2026 8:47 PM PT: 'Two valid short entries. Two valid long entries. Both stay. Short entries (both allowed): 1. A green 2-5M candle rejects at a zone/band and turns red (crosses its open down) = immediate short on the next tick. 2. A green candle is at a band, a new 2-5M candle forms that is red and falling = immediate short on the next tick. Long entries (both allowed): 1. A red 2-5M candle rejects at a zone/band and turns green (crosses its open up) = immediate long on the next tick. 2. A red candle is at a band, a new 2-5M candle forms that is green and rising = immediate long on the next tick. Hard blocks: No short on a green rising candle. She must wait for the 2-5M flip to red. No long on a red falling candle. She must wait for the 2-5M flip to green. Once a 2-5M candle is her color and pushing away from the band, that is a valid entry. No extra confirmation. Both entry types are live. Neither replaces the other.')
-need("ENTRY 1 - THE TURN" in B and "ENTRY 2 - BORN HER COLOUR" in B and B.count("born544") >= 2 and "m544" in B and "export function turnFlip530(" in B,
+need("HER FLIP AT THE SEND (fix592)" in K523 and "ENTRY 1 - THE TURN" in B and "ENTRY 2 - BORN HER COLOUR" in B and B.count("born544") >= 2 and "m544" in B and "export function turnFlip530(" in B,
      "64. BOTH ENTRIES LIVE: the turn (a 2-5m candle crosses its open her way after trading the other colour) AND born-her-colour (new 2-5m candle red-and-falling after a green one, green-and-rising after a red one) are each an immediate entry on the next tick, her colour by 10c gold / 5 dollars BTC past the open; a green rising candle never shorts, a red falling candle never longs (her 8:47 + 8:51 PM, fix544)")
 # CORNERSTONE 65 (fix547, Love Oct 30 2026 9:20 PM PT: 'its only supposed to be until the bands widen out. we literally discussed this 20 fucking times' + her c22 card note in her own hand: 'until band widths reach $100 for btc and $5 for gold.')
 need("THE 3 PM TIME RULE IS DELETED (fix548" in E and "w547" not in E,

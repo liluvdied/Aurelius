@@ -790,7 +790,8 @@ async function finalGate524(ticker, bookSide, sameLine) {
     if (!(B.AUDIT_FLAGS523 && B.AUDIT_FLAGS523[book])) return "unknown book " + JSON.stringify(book) + " - not in her flag table - no order (fix558)";
     const w = B.auditGrade523(book, sym, Number(q.c), side);
     if (w) return "the last line (fix524): " + w;
-    // fix530: no colour re-test at the send (her 4:47 PM: "No extra confirmation. No still red at send.") - the full-flag test above already judged her flip, and the fill auditor still stops it if it flips back before it fills (her 4:56 PM)
+    if (!B.turnFlip530(sym, side, Number(q.c))) return "HER FLIP AT THE SEND (fix592): no 2-5m candle has flipped or been born " + (side === "up" ? "green" : "red") + " and pushed " + (sym === "gold" ? "10c" : "$5") + " past its open - no order."; // fix592 (Love Nov 1 2026 9:03 AM PT: "add the last-line check so the order does not leave unless one of those two paths passes on the live tick")
+    const L593 = (globalThis as any).__lawBands?.[sym]?.L; if (!Array.isArray(L593) || !L593.length) return "SESSION BAND AT THE SEND (fix593): the board can't be read - no order."; const sb593 = B.sessionBandSend593(sym, L593, Number(q.c), side); if (sb593) return sb593; const z594 = B.zoneSend594(sym, L593, Number(q.c), side); if (z594) return z594; // fix593 (Love Nov 1 2026 9:11-9:19 AM PT): her session-band scale on the live tick at the last line; pink is not part of this check
     return "";
   } catch { return "the last line could not be judged - no order (fix524)"; }
 }
