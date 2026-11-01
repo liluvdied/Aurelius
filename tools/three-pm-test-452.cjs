@@ -1,0 +1,2 @@
+// RETIRED (fix548, Love Oct 30 2026 9:23 PM PT: "The 3 PM rule is old. Remove it. My only limit was: bands wider than $100 BTC or $5 gold. After that, pink (and the other walls) are valid rejections at every hour. No 3 PM cutoff. No indefinite hold.")
+console.log("3 PM TEST retired by her word (fix548) - no time-of-day restriction on rejections exists; the $100 BTC / $5 gold width carry stands.");

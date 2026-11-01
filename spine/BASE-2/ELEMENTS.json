@@ -1,0 +1,15 @@
+{
+  "version": "1.11",
+  "name": "BASE",
+  "live": [
+    "btc",
+    "gold"
+  ],
+  "books": "Prime and paper are parts of this one model. They are not separate live books.",
+  "oneWindow": "One position per window. A take profit does not open a second order, and not the other side.",
+  "band": "A band in front of the trade blocks it. The setup stays. The blocked thing is the band, not the setup.",
+  "multiple": "Under 1.28x is not taken. 1.28x sells at 25% of the stake. From 1.28x to 1.5x sells at 33%. Over 1.5x sells 15 points under the maximum, the moment that quote prints. No trail.",
+  "size": "Full size at 2.2x and under. Three quarters over 2.2x. One dollar over 10.8x. Locked size at this copy: gold 22, bitcoin 20, base dollars 22.",
+  "hardSell": "Sells only when the live quote reaches the line. Nothing earlier. If it never reaches the line, it holds to the bell.",
+  "restore": "Every window, and on any loss, the live files are compared to spine/BASE. They are rewritten only if they differ."
+}

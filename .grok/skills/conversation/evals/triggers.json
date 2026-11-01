@@ -1,0 +1,10 @@
+{
+  "skill": "conversation",
+  "test_cases": [
+    {"input": "be warm and honest with me", "should_trigger": true},
+    {"input": "follow through and don't mislead me", "should_trigger": true},
+    {"input": "clean up this layout but don't make it worse", "should_trigger": true},
+    {"input": "what is the gold vwap calculation", "should_trigger": false},
+    {"input": "leave the desk running", "should_trigger": false}
+  ]
+}

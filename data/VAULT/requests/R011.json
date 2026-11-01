@@ -1,0 +1,1 @@
+{"kind": "request", "id": "R011", "at": "2026-10-27T20:32:00Z", "what": "Main gold pink break 25c (fix338)", "books": ["main"], "words": "yes let's bring it down to 25c for the time being", "proof": [{"code": "src/lib/desk/bandlock.ts", "has": "const pbd = asset === \"gold\" && flipRule && !rejNoAhead ? 0.25"}], "prev": "486d5ce44355824f", "hash": "483f8642821bb0ca"}

@@ -1,0 +1,484 @@
+{
+ "sealed": "Love Oct 30 2026 10:16 AM PT: \"go over everything and the language for each rule and make sure that everything clear cut wording and cant be interpreted any other way than the way it was intended, like we had before. And please add in all of the second questionnaire, the one that you sent me this morning that I answered in full. Please ensure everything made it on there. And is a cornerstone, not to be interpreted any other way than the way it was intended. No loose ends\"",
+ "questionnaire": "her second questionnaire, answered Oct 30 2026 5:35-5:55 AM PT (67 of 68 cards; c24 unmarked)",
+ "cards": [
+  {
+   "id": "c1",
+   "rule": "HER FLIP: no entry unless a 2, 3, 4 or 5 minute candle has flipped her way, a real turn (green to red or red to green), at least 10c gold / $5 BTC past its open. Never a 1 minute candle, never a closed-candle wait.",
+   "tags": "fix424 · fix433 · fix505",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c2",
+   "rule": "HER THIRDS: no long in the top share of the channel, no short in the bottom share. Clear anywhere else. BTC 33% up to $500 channels, 20% over. Gold 33% under $10, 20% on $10 to $25, 15% over $25.",
+   "tags": "R003 · fix463 · fix485 · fix487",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c3",
+   "rule": "HER CHANNEL is session band to session band (the σ lines and session VWAP). Never a zone, the pink or any other band.",
+   "tags": "R107",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c4",
+   "rule": "DOJI: a green doji then a red candle is a short only; a red doji then a green candle is a long only.",
+   "tags": "Oct 28 6:54 PM",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c5",
+   "rule": "THE ZONES: no trade inside the red zone or the green zone, long or short. $1.50 either side of a zone and of the Bollinger: not allowed to enter within it.",
+   "tags": "fix377 · fix497 · fix506",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c6",
+   "rule": "GOLD PINK 55%: from pink to green, no short in the bottom 55%; from pink to red, no long in the top 55%. Main, rejection and the copy.",
+   "tags": "fix409 · fix490",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c7",
+   "rule": "BLUE VWAP WALLS when the bands are small.",
+   "tags": "fix397 · fix399",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c8",
+   "rule": "BTC PINK RE-AIM: an unfilled long refused by the pink re-aims to the short.",
+   "tags": "fix373",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c9",
+   "rule": "THE PINK SLOPE: it's sliding when three candles or more have hit the pink and rejected on a down slope. A down slope (each rejection closing lower) holds longs only; an up slope (each closing higher) holds shorts only. The hold ends when price breaks through the pink by 25c gold / $8 BTC, read on the live tick.",
+   "tags": "fix494 · fix503c",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c10",
+   "rule": "STALE CALL GUARD: a call over 90 seconds old never fires when a seat opens.",
+   "tags": "fix375 · fix425",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c11",
+   "rule": "HER REACH WALL: no trade into an unbroken session band or the pink within $1 gold / $50 BTC, or into a red/green zone within $1 gold. A poke under the break distance is not a break.",
+   "tags": "fix429 · fix443",
+   "mark": "keep",
+   "note": "the 33/20 stands. this is a hard tolerance for when bands are small. btc’s is $25 at band widths under $100 during tight bands, golds is a hard $1 within that "
+  },
+  {
+   "id": "c12",
+   "rule": "PINK TOLERANCE: the pink is a wall only inside 15% gold / 20% BTC of the band-to-band distance, either side. Beyond that it is no obstacle: no cushion, no floor, no slide or climb hold.",
+   "tags": "fix459 · fix464 · fix503 · fix507",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c13",
+   "rule": "NEVER INTO AN UNBROKEN PINK: no long under the pink until it breaks up 25c gold / $8 BTC; no short over it until it breaks down by the same. Inside her tolerance only.",
+   "tags": "fix432 · fix464",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c14",
+   "rule": "ON HER SIDE OF THE BREAK: band breaks are traded in the direction of the break, with price on that side. A wick through is not an entry.",
+   "tags": "fix434 · R170",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c15",
+   "rule": "EVERY ORDER PASSES HER WALLS AT THE WIRE OR DOES NOT GO. Fails closed.",
+   "tags": "fix435",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c16",
+   "rule": "HER $10 LEVEL: no trading into an even $10 level when the target is within $1.50, only away from it.",
+   "tags": "fix440",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c17",
+   "rule": "BROKE IT THIS CANDLE = HER SIDE NOW: no trade back against a band or pink broken this candle until price breaks back by her distance.",
+   "tags": "fix441",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c18",
+   "rule": "NO THIRDS FLIP: a refused call is never turned into the other side.",
+   "tags": "fix442",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c19",
+   "rule": "INDEPENDENT CALLS: only an executed trade closes the window; a fresh call on the same side can replace an unfilled one. Main and rejection: one executed trade per window.",
+   "tags": "fix463 · fix336",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c20",
+   "rule": "HER ENTRY: at a band rejection, a 2 to 5 minute candle flips away from the band (red to green long, green to red short). At a Bollinger, session band, red/green zone or pink.",
+   "tags": "fix446 · fix505",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c21",
+   "rule": "The rejection model takes the zone rejection her twin sees when her own read is empty.",
+   "tags": "fix448",
+   "mark": "out",
+   "note": "she now has the ability to make her own calls aside from main. she’s independent under the same framework. "
+  },
+  {
+   "id": "c22",
+   "rule": "3 PM onward: Bollingers and green/red zones only for the rejection model, gold + BTC.",
+   "tags": "fix452",
+   "mark": "keep",
+   "note": "until band widths reach $100 for btc and $5 for gold. "
+  },
+  {
+   "id": "c23",
+   "rule": "Rules apply on both sides, on every book except the delayed book. The 5M runs the same rules in her own files.",
+   "tags": "R206–R212 · fix465",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c24",
+   "rule": "HER SKIP LOG: every refused read in main + rejection is written down with its rule.",
+   "tags": "fix479",
+   "mark": null,
+   "note": "",
+   "status": "unmarked on her questionnaire - the rule itself stands as cornerstone 28 (HER SKIP LOG)"
+  },
+  {
+   "id": "c25",
+   "rule": "HER PAPER BOOKS: pure no-pink, her own eyes, sovereign twin, 2nd-band flip, OG rolling VWAP all exist on paper.",
+   "tags": "fix480",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c26",
+   "rule": "NO RULE SWITCHED OFF without your words: the umpire goes OUT if one is.",
+   "tags": "fix476",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c27",
+   "rule": "THE UMPIRE RE-CHECKS every setting change within seconds, and your schedule pill approves itself.",
+   "tags": "fix477 · fix478",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c28",
+   "rule": "HER LIBRARIES FINGERPRINTED: a changed library = no trading.",
+   "tags": "fix481",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c29",
+   "rule": "THE ORDER LOG: paper ask, live ask, its age and what she paid on every live order.",
+   "tags": "fix493",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c30",
+   "rule": "HER HOURLY CACHE CLEAR: never-filled rows after 3.5 hours and filled orders after a day leave the cache, every hour.",
+   "tags": "fix343 · fix370 · fix495",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c31",
+   "rule": "THE ENFORCER: no order leaves unless the umpire is SAFE; she bids at most the ask + 6c.",
+   "tags": "fix500",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c32",
+   "rule": "THE SUB-AUDITOR: every setup is routed to him with its board before she takes it; no stamp, no order.",
+   "tags": "fix501",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c33",
+   "rule": "THE FILL AUDITOR: every live fill is re-judged through her door; a fill her door refuses switches entries OFF and names the rule. (Claude's build: it is re-judging at fill time, not at the door, and has tripped three times tonight on a candle that moved after the door. Claude proposes it trusts the sub-auditor's stamp from the door.)",
+   "tags": "fix499",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c34",
+   "rule": "SUB-1S SPEED: her side of every order under one second, measured on her fills; the umpire goes OUT if she slows.",
+   "tags": "fix504",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c35",
+   "rule": "NO BROKEN BOLLINGER, EVER: a long past the Bollinger upper or a short past the lower is never taken. Only rejections off the Bollinger.",
+   "tags": "fix506",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c36",
+   "rule": "No session-band-ahead wait and no band-above-closer-than-band-below rule: your 33 / 20 is the only position metric.",
+   "tags": "fix505",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c37",
+   "rule": "THE 1.5x FLOOR: no order under 1.5x (66c cap). The 20% floor is gone.",
+   "tags": "fix498 · fix500",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c38",
+   "rule": "SIZE: $1 on every live book, add-on, second and twin OFF, until you confirm every rule works.",
+   "tags": "fix498",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c39",
+   "rule": "THE DELAYED BOOK keeps its own door (band touch entry) and is exempt from main's walls.",
+   "tags": "fix465 · DLY465",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c40",
+   "rule": "BACKUP: a full save before every change; a GitHub push every hour.",
+   "tags": "save-her.py · BACKUP-HER-HOURLY",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "c41",
+   "rule": "YOUR PASSWORD: every file of hers is locked (schg); nothing changes without a click, YES and your Mac password. (Open: should her saves also need your password?)",
+   "tags": "concrete.sh",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w1",
+   "rule": "THE IMPOSSIBILITY: 5% band tolerance. No trade when the target sits in the impossible share of the channel.",
+   "tags": "yes 5% band tolerances",
+   "mark": "out",
+   "note": ""
+  },
+  {
+   "id": "w2",
+   "rule": "THE TOP LINE / THE BOTTOM LINE: on top of the 33%, a hard line at the top and bottom band.",
+   "tags": "keep 33% + top/bottom line",
+   "mark": "keep",
+   "note": "33/20 sliding scale we set "
+  },
+  {
+   "id": "w3",
+   "rule": "PINK 10% CUSHION: no long with the unbroken pink above price within 10% of the channel, no short with it below. BTC: $50 floor, $25 when the channel is $100 or under. (After the pink click: only inside your 15% / 20%.)",
+   "tags": "Oct 22 · fix293 · fix298",
+   "mark": "out",
+   "note": "15% gold /20% btc we set "
+  },
+  {
+   "id": "w4",
+   "rule": "PINK HOLDS THE ADD-ON: the add-on waits for the pink on the same cushion.",
+   "tags": "fix293",
+   "mark": "out",
+   "note": ""
+  },
+  {
+   "id": "w5",
+   "rule": "THE COPY'S PINK: BTC copy keeps $33 to the pink, gold copy keeps 33c. (After the pink click: only inside your 15% / 20%.)",
+   "tags": "fix346b · copy",
+   "mark": "out",
+   "note": "15/20"
+  },
+  {
+   "id": "w6",
+   "rule": "BREAK INTO A ZONE: gold needs $3 of clearance breaking into a zone; RED ZONE OVER A BAND / GREEN ZONE UNDER A BAND use the same $3.",
+   "tags": "we can make that $3 hun · fix310",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w7",
+   "rule": "BOLLINGER CUSHION: no long with the Bollinger upper above price within $1.50 gold / 10% BTC ($50 floor, $25 for the copy at $100 and under).",
+   "tags": "fix173 · fix483",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w8",
+   "rule": "ZONE FOR A FROZEN BOLLINGER: when the Bollinger read is stale, the red/green zone with $1.50 stands in for it.",
+   "tags": "fix275",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w9",
+   "rule": "BOLLINGER OVER / UNDER THE BAND: no long when the Bollinger is within $50 above the band she broke (BTC), mirror for shorts.",
+   "tags": "lower it to $50 temporarily · fix158",
+   "mark": "out",
+   "note": "we have our own we just set.  $50 or 10% whichever is smaller,  $25 at band widths under $100 "
+  },
+  {
+   "id": "w10",
+   "rule": "TARGET PAST A BAND: no trade whose target sits past an unbroken band. (You asked whether to remove this; it has Oct 22 words but is not on your questionnaire.)",
+   "tags": "Oct 22",
+   "mark": "out",
+   "note": "just the hard band tolerances we have in place are good. 20/33 "
+  },
+  {
+   "id": "w11",
+   "rule": "BOLLINGER BOUNCE IN HER CANDLE: if the candle she entered in bounced off the Bollinger, no trade into it. (Retired by an Oct 24 card, the code is still there.)",
+   "tags": "Oct 22 7:23 AM · fix178",
+   "mark": "out",
+   "note": "rejecting only off of bollingers , red/green zones session bands and pink "
+  },
+  {
+   "id": "w12",
+   "rule": "THE LAST RUNG: gold only, no trade off the last rung of the channel.",
+   "tags": "let's make that only for gold pls",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w13",
+   "rule": "FAKE-OUT BAND / CEILING / FLOOR: a band broken and faked out through becomes a ceiling (no longs off it) or a floor; UNDER THE CEILING / OVER THE FLOOR: shorts there anyway.",
+   "tags": "it did break a session band and fakeout thru them",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w14",
+   "rule": "THE LAST CHANNEL: breaks into the last channel count.",
+   "tags": "Also breaks into the last channel",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w15",
+   "rule": "TREND THROUGH THE BANDS: no trade against a trend running through the bands. (Retired by an Oct 22 card, the code is still there.)",
+   "tags": "fix106",
+   "mark": "out",
+   "note": ""
+  },
+  {
+   "id": "w16",
+   "rule": "STEEP SLOPE: no trade against a steep slope of the bands.",
+   "tags": "bandlock.ts:3014",
+   "mark": "keep",
+   "note": "must wait for a rejection of the band above her to short on sloped bands, not at the break of one below her. via verse for longs "
+  },
+  {
+   "id": "w17",
+   "rule": "HER CANDLE $10 (BTC): the BTC candle is red or green by $10 and keeps that colour until $10 the other way; BACK OVER / UNDER BY $10: a band counts as retaken only $10 past it.",
+   "tags": "it's supposed to be red by $10 for btc · fix274 · fix489",
+   "mark": "out",
+   "note": ""
+  },
+  {
+   "id": "w18",
+   "rule": "HER CANDLE: the colour of the candle she enters in must be her way.",
+   "tags": "hun. i'd like it to be the literal color of the candle.",
+   "mark": "keep",
+   "note": "must be green for long , red for short yes. \n\nwith a flip from a 2-5M candle from green to red or red to green"
+  },
+  {
+   "id": "w19",
+   "rule": "HANDS OFF: the engine's own hold when her hands-off switch is set.",
+   "tags": "engine.ts:2528",
+   "mark": "out",
+   "note": "i don’t know what this is ",
+   "status": "marked Out with the note above; the HANDS OFF hold is her own Oct 2 rule protecting her hand-set slider, so it stays until she says Keep or Out knowing what it is"
+  },
+  {
+   "id": "w20",
+   "rule": "DOJI AFTER THE TREND (5M): a doji followed by a candle falling is short only, a continuation.",
+   "tags": "5M · it is SHORT ONLY when a doji is followed by a candle falling",
+   "mark": "keep",
+   "note": "green donnie followed by a red candle is short only \n\na red doji followed by a green doji is long only "
+  },
+  {
+   "id": "w21",
+   "rule": "BTC 40% trial: no short in the bottom 40% of green to pink, no long in the top 40% of pink to red, main + rejection. (Your s12 card said 40%; your later words said 55%. Which?)",
+   "tags": "fix323 · fix324 · R178",
+   "mark": "out",
+   "note": "55%"
+  },
+  {
+   "id": "w22",
+   "rule": "BTC: no shorts under session −2σ (the bottom rung).",
+   "tags": "fix296",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w23",
+   "rule": "Gold green/red zones: rejection only.",
+   "tags": "fix297",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w24",
+   "rule": "From 2 PM until the bands widen out: pink, Bollingers, green/red zones and PP only, no session bands. BTC hands back at $180 width, gold at $5.",
+   "tags": "fix471 · R223",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w25",
+   "rule": "A rejection off a line inside the green zone (long) or red zone (short) counts as a zone call, within $75 BTC / $2 gold of the 5m S1 / R1. Main and rejection only.",
+   "tags": "fix472 · R226",
+   "mark": "keep",
+   "note": ""
+  },
+  {
+   "id": "w26",
+   "rule": "The green zone is measured from the 5m S1 line downward, the red zone from the 5m R1 line upward (not the shaded area from the pink).",
+   "tags": "how the code reads it",
+   "mark": "keep",
+   "note": "PINK TO RED, PINK TO GREEN"
+  },
+  {
+   "id": "w27",
+   "rule": "Schedule: your in-app pill picks which book trades each hour, per asset, and approves itself.",
+   "tags": "fix278 · fix478",
+   "mark": "keep",
+   "note": ""
+  }
+ ]
+}

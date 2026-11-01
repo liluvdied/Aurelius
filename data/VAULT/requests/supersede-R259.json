@@ -1,0 +1,1 @@
+{"kind": "supersede", "of": "R259", "by": "R289", "drop": [{"code": "src/lib/desk/bandlock.ts", "has": "Math.max(50, 0.10 * (above - below)) /* fix514"}], "words": "superseded by R289 - Love Oct 30 2026 10:26 PM PT: \"remove THE $50 BOLLINGER AND MAKE IT the same $25 as pink please\"", "at": "2026-10-31T07:36:54+00:00", "prev": "2799ecd3cb1c12bb", "hash": "baaa79b97ffb9cd6"}

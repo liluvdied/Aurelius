@@ -1,0 +1,1652 @@
+[
+ {
+  "pt": "Tue Oct 13 05:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above +0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 24.549999999999997,
+  "cost": 27.08
+ },
+ {
+  "pt": "Tue Oct 13 05:46 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above +2σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -26.11,
+  "cost": 25.41
+ },
+ {
+  "pt": "Tue Oct 13 06:00 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off session VWAP",
+  "blocked": null,
+  "win": false,
+  "pnl": -27.28,
+  "cost": 26.38
+ },
+ {
+  "pt": "Tue Oct 13 06:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On -1σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 26.69,
+  "cost": 25.0
+ },
+ {
+  "pt": "Tue Oct 13 06:30 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -33.269999999999996,
+  "cost": 29.06
+ },
+ {
+  "pt": "Tue Oct 13 06:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below -0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 15.81,
+  "cost": 22.94
+ },
+ {
+  "pt": "Tue Oct 13 07:46 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off +0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -9.2,
+  "cost": 5.0
+ },
+ {
+  "pt": "Tue Oct 13 08:00 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above 5m R1",
+  "blocked": null,
+  "win": true,
+  "pnl": 26.91,
+  "cost": 25.07
+ },
+ {
+  "pt": "Tue Oct 13 08:17 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at +3σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 7.8,
+  "cost": 27.91
+ },
+ {
+  "pt": "Tue Oct 13 08:45 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "On 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -52.879999999999995,
+  "cost": 25.0
+ },
+ {
+  "pt": "Tue Oct 13 09:07 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Tap-reject at −1σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -14.536567164179111,
+  "cost": 26.14
+ },
+ {
+  "pt": "Tue Oct 13 09:20 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above +1σ",
+  "blocked": "pink 83,701.32 between price 83,688.61 and target 83,714.16",
+  "win": true,
+  "pnl": 24.1,
+  "cost": 4.66
+ },
+ {
+  "pt": "Tue Oct 13 09:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at +0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -53.56,
+  "cost": 27.91
+ },
+ {
+  "pt": "Tue Oct 13 09:45 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "On +1.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 31.619999999999997,
+  "cost": 24.0
+ },
+ {
+  "pt": "Tue Oct 13 10:15 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "On 5m S1",
+  "blocked": null,
+  "win": true,
+  "pnl": 19.7,
+  "cost": 18.9
+ },
+ {
+  "pt": "Tue Oct 13 10:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above +0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -26.52,
+  "cost": 25.83
+ },
+ {
+  "pt": "Tue Oct 13 10:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 25.64,
+  "cost": 29.55
+ },
+ {
+  "pt": "Tue Oct 13 11:00 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On session VWAP",
+  "blocked": null,
+  "win": false,
+  "pnl": -0.7399999999999984,
+  "cost": 18.92
+ },
+ {
+  "pt": "Tue Oct 13 11:20 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Tap-reject at +0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 1.34,
+  "cost": 28.75
+ },
+ {
+  "pt": "Tue Oct 13 11:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On session VWAP",
+  "blocked": null,
+  "win": true,
+  "pnl": 22.62,
+  "cost": 25.71
+ },
+ {
+  "pt": "Wed Oct 14 12:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -57.54,
+  "cost": 24.85
+ },
+ {
+  "pt": "Wed Oct 14 12:26 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at −0.5σ",
+  "blocked": "pink 83,473.98 between price 83,472.26 and target 83,502.23",
+  "win": false,
+  "pnl": -14.23,
+  "cost": 4.59
+ },
+ {
+  "pt": "Wed Oct 14 12:30 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "On 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 30.88,
+  "cost": 25.16
+ },
+ {
+  "pt": "Wed Oct 14 12:45 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "On 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -25.72,
+  "cost": 23.04
+ },
+ {
+  "pt": "Wed Oct 14 01:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below +0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -27.86,
+  "cost": 23.14
+ },
+ {
+  "pt": "Wed Oct 14 01:15 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "On 5m R1",
+  "blocked": null,
+  "win": false,
+  "pnl": -52.33,
+  "cost": 26.66
+ },
+ {
+  "pt": "Wed Oct 14 01:30 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "On 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -51.730000000000004,
+  "cost": 25.97
+ },
+ {
+  "pt": "Wed Oct 14 01:45 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above -0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 19.87,
+  "cost": 25.0
+ },
+ {
+  "pt": "Wed Oct 14 02:37 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at −1.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -50.019999999999996,
+  "cost": 24.26
+ },
+ {
+  "pt": "Wed Oct 14 02:46 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Tap-reject at -1.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 36.45,
+  "cost": 22.91
+ },
+ {
+  "pt": "Wed Oct 14 03:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "On -1.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -13.32,
+  "cost": 28.65
+ },
+ {
+  "pt": "Wed Oct 14 03:15 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off -1σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 19.13,
+  "cost": 24.83
+ },
+ {
+  "pt": "Wed Oct 14 03:30 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "On 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 26.32,
+  "cost": 27.45
+ },
+ {
+  "pt": "Wed Oct 14 03:45 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above -0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 29.73,
+  "cost": 25.0
+ },
+ {
+  "pt": "Wed Oct 14 04:31 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at -0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 21.17,
+  "cost": 28.33
+ },
+ {
+  "pt": "Wed Oct 14 04:46 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at VWAP",
+  "blocked": null,
+  "win": true,
+  "pnl": 11.43,
+  "cost": 27.5
+ },
+ {
+  "pt": "Wed Oct 14 05:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off session VWAP",
+  "blocked": null,
+  "win": false,
+  "pnl": -32.9,
+  "cost": 25.08
+ },
+ {
+  "pt": "Wed Oct 14 05:15 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "On 5m R2",
+  "blocked": null,
+  "win": true,
+  "pnl": 91.06,
+  "cost": 22.76
+ },
+ {
+  "pt": "Wed Oct 14 05:45 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "On 5m S1",
+  "blocked": null,
+  "win": true,
+  "pnl": 17.36,
+  "cost": 18.17
+ },
+ {
+  "pt": "Wed Oct 14 06:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below 15m nav lower band",
+  "blocked": null,
+  "win": true,
+  "pnl": 41.2,
+  "cost": 16.99
+ },
+ {
+  "pt": "Wed Oct 14 06:15 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below 5m nav purple",
+  "blocked": null,
+  "win": false,
+  "pnl": -33.29,
+  "cost": 24.12
+ },
+ {
+  "pt": "Wed Oct 14 08:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "On -3σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 19.96,
+  "cost": 27.86
+ },
+ {
+  "pt": "Wed Oct 14 08:15 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "On 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -26.35,
+  "cost": 23.5
+ },
+ {
+  "pt": "Wed Oct 14 08:30 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off -2.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 14.05,
+  "cost": 26.71
+ },
+ {
+  "pt": "Wed Oct 14 08:45 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off 5m S1",
+  "blocked": null,
+  "win": false,
+  "pnl": -52.82,
+  "cost": 27.04
+ },
+ {
+  "pt": "Wed Oct 14 09:00 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "On 5m S1",
+  "blocked": null,
+  "win": false,
+  "pnl": -7.859999999999999,
+  "cost": 28.0
+ },
+ {
+  "pt": "Wed Oct 14 09:15 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "On -2.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -18.38,
+  "cost": 17.61
+ },
+ {
+  "pt": "Wed Oct 14 09:30 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 22.31,
+  "cost": 27.41
+ },
+ {
+  "pt": "Wed Oct 14 09:46 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off 5m R1",
+  "blocked": null,
+  "win": true,
+  "pnl": 15.72,
+  "cost": 26.58
+ },
+ {
+  "pt": "Wed Oct 14 10:01 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at +2σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -57.31,
+  "cost": 31.62
+ },
+ {
+  "pt": "Wed Oct 14 10:16 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at +0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -56.29,
+  "cost": 30.42
+ },
+ {
+  "pt": "Wed Oct 14 12:00 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On -1.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 20.72,
+  "cost": 25.0
+ },
+ {
+  "pt": "Wed Oct 14 12:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On 5m R1",
+  "blocked": null,
+  "win": false,
+  "pnl": -23.36,
+  "cost": 22.39
+ },
+ {
+  "pt": "Wed Oct 14 12:30 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On -1.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 13.39,
+  "cost": 27.5
+ },
+ {
+  "pt": "Wed Oct 14 12:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -27.75,
+  "cost": 26.95
+ },
+ {
+  "pt": "Wed Oct 14 01:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -48.129999999999995,
+  "cost": 20.29
+ },
+ {
+  "pt": "Wed Oct 14 01:45 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off -1.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 37.42,
+  "cost": 20.17
+ },
+ {
+  "pt": "Wed Oct 14 02:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "On -1.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -13.88,
+  "cost": 31.16
+ },
+ {
+  "pt": "Wed Oct 14 02:45 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off session VWAP",
+  "blocked": null,
+  "win": false,
+  "pnl": -56.760000000000005,
+  "cost": 30.83
+ },
+ {
+  "pt": "Wed Oct 14 03:00 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off -0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 21.75,
+  "cost": 19.25
+ },
+ {
+  "pt": "Wed Oct 14 03:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below -1σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 16.22,
+  "cost": 27.17
+ },
+ {
+  "pt": "Wed Oct 14 03:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above -1.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -53.29,
+  "cost": 27.41
+ },
+ {
+  "pt": "Wed Oct 14 03:45 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off -2σ",
+  "blocked": "-2σ 81,482.11 between price 81,476.17 and target 81,483.41",
+  "win": true,
+  "pnl": 37.58,
+  "cost": 27.1
+ },
+ {
+  "pt": "Wed Oct 14 04:00 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off -0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 23.98,
+  "cost": 29.46
+ },
+ {
+  "pt": "Wed Oct 14 04:15 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above -0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -30.94,
+  "cost": 28.13
+ },
+ {
+  "pt": "Wed Oct 14 05:00 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below session VWAP",
+  "blocked": "session VWAP 81,675.58 between price 81,679.04 and target 81,673.26",
+  "win": false,
+  "pnl": -23.49,
+  "cost": 20.62
+ },
+ {
+  "pt": "Wed Oct 14 05:17 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off +1σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -18.19,
+  "cost": 17.37
+ },
+ {
+  "pt": "Wed Oct 14 05:41 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at +1σ",
+  "blocked": "session VWAP 81,692.02 between price 81,581.10 and target 81,773.38",
+  "win": false,
+  "pnl": -25.26,
+  "cost": 0.24
+ },
+ {
+  "pt": "Thu Oct 15 02:55 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at VWAP",
+  "blocked": null,
+  "win": true,
+  "pnl": 1.9800000000000004,
+  "cost": 31.16
+ },
+ {
+  "pt": "Thu Oct 15 03:00 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "On -0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -33.7,
+  "cost": 28.0
+ },
+ {
+  "pt": "Thu Oct 15 03:15 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off 5m S1",
+  "blocked": null,
+  "win": false,
+  "pnl": -37.7,
+  "cost": 27.0
+ },
+ {
+  "pt": "Thu Oct 15 03:30 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off 5m S1",
+  "blocked": null,
+  "win": true,
+  "pnl": 24.0,
+  "cost": 28.87
+ },
+ {
+  "pt": "Thu Oct 15 03:45 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off 5m S1",
+  "blocked": null,
+  "win": false,
+  "pnl": -29.5,
+  "cost": 26.69
+ },
+ {
+  "pt": "Thu Oct 15 05:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off -1σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -10.17,
+  "cost": 32.54
+ },
+ {
+  "pt": "Thu Oct 15 05:15 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 18.189999999999998,
+  "cost": 29.33
+ },
+ {
+  "pt": "Thu Oct 15 05:30 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Break below -1σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 6.53,
+  "cost": 28.87
+ },
+ {
+  "pt": "Thu Oct 15 05:45 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off -1σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -3.98,
+  "cost": 29.27
+ },
+ {
+  "pt": "Thu Oct 15 06:01 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at -2σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -54.620000000000005,
+  "cost": 28.87
+ },
+ {
+  "pt": "Thu Oct 15 08:01 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "On 5m R1",
+  "blocked": null,
+  "win": false,
+  "pnl": -35.519999999999996,
+  "cost": 24.2
+ },
+ {
+  "pt": "Thu Oct 15 08:15 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above +2.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -0.18,
+  "cost": 26.12
+ },
+ {
+  "pt": "Thu Oct 15 08:30 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above +2.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 5.160000000000001,
+  "cost": 22.37
+ },
+ {
+  "pt": "Thu Oct 15 08:46 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below +2.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -27.89,
+  "cost": 28.87
+ },
+ {
+  "pt": "Thu Oct 15 09:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below +2.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -0.19,
+  "cost": 26.02
+ },
+ {
+  "pt": "Thu Oct 15 09:15 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above 5m PP (2 min ago)",
+  "blocked": null,
+  "win": false,
+  "pnl": -5.4,
+  "cost": 22.39
+ },
+ {
+  "pt": "Thu Oct 15 09:30 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above 5m S1",
+  "blocked": null,
+  "win": false,
+  "pnl": -44.230000000000004,
+  "cost": 31.16
+ },
+ {
+  "pt": "Thu Oct 15 09:56 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Break below 5m PP (2 min ago)",
+  "blocked": null,
+  "win": false,
+  "pnl": -26.14,
+  "cost": 25.17
+ },
+ {
+  "pt": "Thu Oct 15 12:15 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above 5m R1",
+  "blocked": null,
+  "win": true,
+  "pnl": 9.16,
+  "cost": 30.25
+ },
+ {
+  "pt": "Thu Oct 15 12:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -6.46,
+  "cost": 20.46
+ },
+ {
+  "pt": "Thu Oct 15 01:00 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 20.16,
+  "cost": 28.74
+ },
+ {
+  "pt": "Thu Oct 15 01:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On +1.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -19.92,
+  "cost": 19.08
+ },
+ {
+  "pt": "Thu Oct 15 01:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -7.100000000000001,
+  "cost": 25.23
+ },
+ {
+  "pt": "Thu Oct 15 01:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 27.42,
+  "cost": 28.05
+ },
+ {
+  "pt": "Thu Oct 15 02:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On 5m PP",
+  "blocked": "+1.5σ 82,156.78 between price 82,163.24 and target 82,154.65",
+  "win": false,
+  "pnl": -23.08,
+  "cost": 21.21
+ },
+ {
+  "pt": "Thu Oct 15 02:30 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On +1.5σ",
+  "blocked": "+1.5σ 82,300.94 between price 82,315.32 and target 82,297.84",
+  "win": true,
+  "pnl": 13.31,
+  "cost": 19.59
+ },
+ {
+  "pt": "Thu Oct 15 02:46 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below +0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -36.86,
+  "cost": 31.16
+ },
+ {
+  "pt": "Thu Oct 15 03:45 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -19.9,
+  "cost": 29.8
+ },
+ {
+  "pt": "Thu Oct 15 04:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Under -1σ at entry (was: Break above -1σ)",
+  "blocked": null,
+  "win": true,
+  "pnl": 17.32,
+  "cost": 25.3
+ },
+ {
+  "pt": "Thu Oct 15 04:42 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Tap-reject at −1σ",
+  "blocked": "-1σ 82,202.09 between price 82,184.46 and target 82,231.01",
+  "win": false,
+  "pnl": -17.14,
+  "cost": 4.38
+ },
+ {
+  "pt": "Thu Oct 15 04:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On -1σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -20.63,
+  "cost": 19.8
+ },
+ {
+  "pt": "Thu Oct 15 05:01 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off -1σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 34.81,
+  "cost": 20.08
+ },
+ {
+  "pt": "Thu Oct 15 05:15 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "On session VWAP",
+  "blocked": null,
+  "win": true,
+  "pnl": 18.31,
+  "cost": 21.66
+ },
+ {
+  "pt": "Thu Oct 15 05:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above 5m PP (2 min ago)",
+  "blocked": null,
+  "win": true,
+  "pnl": 27.740000000000002,
+  "cost": 28.28
+ },
+ {
+  "pt": "Thu Oct 15 06:44 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above -1σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 0.8500000000000014,
+  "cost": 0.9
+ },
+ {
+  "pt": "Thu Oct 15 06:46 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above -1.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -26.96,
+  "cost": 26.1
+ },
+ {
+  "pt": "Thu Oct 15 07:00 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above -2σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 12.98,
+  "cost": 20.62
+ },
+ {
+  "pt": "Thu Oct 15 07:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On -1σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 20.11,
+  "cost": 18.79
+ },
+ {
+  "pt": "Thu Oct 15 07:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "On -2σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 33.7,
+  "cost": 23.65
+ },
+ {
+  "pt": "Thu Oct 15 08:00 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Break below 5m PP (2 min ago)",
+  "blocked": null,
+  "win": false,
+  "pnl": -34.06,
+  "cost": 28.28
+ },
+ {
+  "pt": "Thu Oct 15 08:15 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above -1σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -56.53,
+  "cost": 28.67
+ },
+ {
+  "pt": "Thu Oct 15 08:45 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above -2.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 9.32,
+  "cost": 33.0
+ },
+ {
+  "pt": "Thu Oct 15 09:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Break below 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -26.48,
+  "cost": 23.96
+ },
+ {
+  "pt": "Thu Oct 15 09:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -27.68,
+  "cost": 17.12
+ },
+ {
+  "pt": "Thu Oct 15 10:15 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "On session VWAP",
+  "blocked": null,
+  "win": false,
+  "pnl": -21.22,
+  "cost": 15.56
+ },
+ {
+  "pt": "Thu Oct 15 10:30 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "On 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 17.47,
+  "cost": 20.09
+ },
+ {
+  "pt": "Thu Oct 15 10:45 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off -1σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 25.41,
+  "cost": 21.18
+ },
+ {
+  "pt": "Thu Oct 15 11:00 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Break below 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 13.7,
+  "cost": 20.15
+ },
+ {
+  "pt": "Thu Oct 15 11:15 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "On 5m S1",
+  "blocked": null,
+  "win": true,
+  "pnl": 14.92,
+  "cost": 17.25
+ },
+ {
+  "pt": "Thu Oct 15 11:32 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above -1σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -7.22,
+  "cost": 22.98
+ },
+ {
+  "pt": "Thu Oct 15 11:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Falling away from -0.5σ, red 5m (was: Bounce off -0.5σ)",
+  "blocked": null,
+  "win": false,
+  "pnl": -24.24,
+  "cost": 21.59
+ },
+ {
+  "pt": "Fri Oct 16 12:00 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 15.73,
+  "cost": 21.36
+ },
+ {
+  "pt": "Fri Oct 16 12:15 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 32.269999999999996,
+  "cost": 22.73
+ },
+ {
+  "pt": "Fri Oct 16 12:45 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above 5m PP (2 min ago)",
+  "blocked": null,
+  "win": true,
+  "pnl": 28.67,
+  "cost": 19.35
+ },
+ {
+  "pt": "Fri Oct 16 01:00 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above +0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -46.07,
+  "cost": 20.48
+ },
+ {
+  "pt": "Fri Oct 16 01:15 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected off +0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 9.77,
+  "cost": 22.06
+ },
+ {
+  "pt": "Fri Oct 16 01:30 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 27.21,
+  "cost": 21.54
+ },
+ {
+  "pt": "Fri Oct 16 01:45 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Close above +0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -46.11,
+  "cost": 20.45
+ },
+ {
+  "pt": "Fri Oct 16 03:00 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Bounce off -1.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -23.54,
+  "cost": 14.92
+ },
+ {
+  "pt": "Fri Oct 16 03:15 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Close below -2σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -23.62,
+  "cost": 20.9
+ },
+ {
+  "pt": "Fri Oct 16 03:30 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Break above 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 24.15,
+  "cost": 22.72
+ },
+ {
+  "pt": "Fri Oct 16 03:45 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Over session VWAP at the Kalshi door (was: Close below session VWAP)",
+  "blocked": null,
+  "win": true,
+  "pnl": 30.88,
+  "cost": 15.21
+ },
+ {
+  "pt": "Fri Oct 16 05:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Falling, broke down through +2σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 10.72,
+  "cost": 21.07
+ },
+ {
+  "pt": "Fri Oct 16 05:15 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rejected up off the green 5m zone",
+  "blocked": null,
+  "win": true,
+  "pnl": 33.33,
+  "cost": 12.36
+ },
+ {
+  "pt": "Fri Oct 16 05:30 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Falling, broke down through +0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 13.7,
+  "cost": 19.58
+ },
+ {
+  "pt": "Fri Oct 16 05:45 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Falling, broke down through session VWAP",
+  "blocked": null,
+  "win": true,
+  "pnl": 13.61,
+  "cost": 23.71
+ },
+ {
+  "pt": "Fri Oct 16 06:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected down off -1σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 13.44,
+  "cost": 16.58
+ },
+ {
+  "pt": "Fri Oct 16 09:25 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected down off -2σ",
+  "blocked": "-1.5σ 81,617.14 between price 81,625.08 and target 81,592.06",
+  "win": false,
+  "pnl": -7.65,
+  "cost": 5.33
+ },
+ {
+  "pt": "Fri Oct 16 09:31 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Over 5m PP (closest band)",
+  "blocked": null,
+  "win": false,
+  "pnl": -13.16,
+  "cost": 6.85
+ },
+ {
+  "pt": "Fri Oct 16 09:46 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rising, broke up through 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -26.78,
+  "cost": 22.22
+ },
+ {
+  "pt": "Fri Oct 16 10:45 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rising, broke up through -2σ (since last 5m)",
+  "blocked": null,
+  "win": false,
+  "pnl": -8.59,
+  "cost": 6.34
+ },
+ {
+  "pt": "Fri Oct 16 12:00 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rising, broke up through -2.5σ (since last 5m)",
+  "blocked": null,
+  "win": true,
+  "pnl": 28.310000000000002,
+  "cost": 19.85
+ },
+ {
+  "pt": "Fri Oct 16 12:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Under -1.5σ (closest band)",
+  "blocked": null,
+  "win": false,
+  "pnl": -25.33,
+  "cost": 24.54
+ },
+ {
+  "pt": "Fri Oct 16 12:30 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected down off the red 5m zone",
+  "blocked": null,
+  "win": true,
+  "pnl": 18.08,
+  "cost": 20.0
+ },
+ {
+  "pt": "Fri Oct 16 12:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected down off 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -17.24,
+  "cost": 16.62
+ },
+ {
+  "pt": "Fri Oct 16 01:00 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Rejected down off -1σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 22.56,
+  "cost": 20.77
+ },
+ {
+  "pt": "Fri Oct 16 01:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Falling, broke down through -1σ (since last 5m)",
+  "blocked": null,
+  "win": false,
+  "pnl": -11.19,
+  "cost": 14.78
+ },
+ {
+  "pt": "Fri Oct 16 01:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rising, broke up through -1σ (since last 5m)",
+  "blocked": null,
+  "win": true,
+  "pnl": 22.659999999999997,
+  "cost": 22.22
+ },
+ {
+  "pt": "Fri Oct 16 01:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Falling, broke down through 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -28.12,
+  "cost": 22.57
+ },
+ {
+  "pt": "Fri Oct 16 02:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Under 5m R1 (closest band)",
+  "blocked": "+2σ 81,711.25 between price 81,746.98 and target 81,705.38",
+  "win": true,
+  "pnl": 12.3,
+  "cost": 13.77
+ },
+ {
+  "pt": "Fri Oct 16 02:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rejected up off 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -21.62,
+  "cost": 20.9
+ },
+ {
+  "pt": "Fri Oct 16 02:45 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rejected up off -0.5σ",
+  "blocked": null,
+  "win": false,
+  "pnl": -4.63,
+  "cost": 21.37
+ },
+ {
+  "pt": "Fri Oct 16 03:00 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rising, broke up through 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 13.85,
+  "cost": 21.31
+ },
+ {
+  "pt": "Fri Oct 16 03:30 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rising, broke up through +1.5σ (since last 5m)",
+  "blocked": null,
+  "win": true,
+  "pnl": 24.740000000000002,
+  "cost": 21.87
+ },
+ {
+  "pt": "Fri Oct 16 03:45 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Falling, broke down through 5m PP (since last 5m)",
+  "blocked": null,
+  "win": false,
+  "pnl": -26.11,
+  "cost": 21.64
+ },
+ {
+  "pt": "Fri Oct 16 04:00 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rejected up off 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -10.659999999999998,
+  "cost": 20.89
+ },
+ {
+  "pt": "Fri Oct 16 10:16 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Broken 5m PP (price still above)",
+  "blocked": null,
+  "win": false,
+  "pnl": -36.22,
+  "cost": 9.16
+ },
+ {
+  "pt": "Fri Oct 16 11:08 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rejected up off -0.5σ",
+  "blocked": "-0.5σ 81,559.67 between price 81,557.12 and target 81,566.25",
+  "win": true,
+  "pnl": 7.98,
+  "cost": 3.75
+ },
+ {
+  "pt": "Fri Oct 16 11:15 PM",
+  "book": "other",
+  "side": "down",
+  "setup": "Falling, broke down through 5m PP",
+  "blocked": null,
+  "win": false,
+  "pnl": -11.04,
+  "cost": 4.18
+ },
+ {
+  "pt": "Fri Oct 16 11:31 PM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rejected up off session VWAP",
+  "blocked": "session VWAP 81,606.26 between price 81,582.99 and target 81,613.88",
+  "win": true,
+  "pnl": 4.22,
+  "cost": 3.11
+ },
+ {
+  "pt": "Sat Oct 17 12:20 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "Falling, broke down through session VWAP",
+  "blocked": null,
+  "win": false,
+  "pnl": -0.92,
+  "cost": 0.91
+ },
+ {
+  "pt": "Sat Oct 17 12:30 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rising, broke up through +0.5σ",
+  "blocked": null,
+  "win": true,
+  "pnl": 0.31,
+  "cost": 0.86
+ },
+ {
+  "pt": "Sat Oct 17 12:46 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "Rejected up off 5m PP",
+  "blocked": null,
+  "win": true,
+  "pnl": 0.98,
+  "cost": 0.57
+ },
+ {
+  "pt": "Sat Oct 17 01:00 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "SHORT - the other side (long refused: would long into +1.5σ 7.53 above (needs more than 13.35); was: Rising, broke up through +1σ (since last 5m))",
+  "blocked": null,
+  "win": false,
+  "pnl": -0.75,
+  "cost": 0.72
+ },
+ {
+  "pt": "Sat Oct 17 01:16 AM",
+  "book": "other",
+  "side": "down",
+  "setup": "SHORT - the other side (long refused: would long into +1.5σ 9.47 above (needs more than 13.43); was: Rising, broke up through 5m PP (since last 5m))",
+  "blocked": null,
+  "win": true,
+  "pnl": 0.54,
+  "cost": 0.63
+ },
+ {
+  "pt": "Sat Oct 17 01:36 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "LONG - the other side (short refused: short into +0.5σ (unbroken, closest band); was: Falling, broke down through +1σ (since last 5m))",
+  "blocked": "+1σ 81,707.05 between price 81,693.59 and target 81,714.33",
+  "win": false,
+  "pnl": -0.62,
+  "cost": 0.59
+ },
+ {
+  "pt": "Sat Oct 17 01:45 AM",
+  "book": "other",
+  "side": "up",
+  "setup": "LONG - the other side (short refused: would short into +0.5σ 6.99 below (needs more than 13.44); was: Falling, broke down through 5m S1 (since last 5m))",
+  "blocked": null,
+  "win": true,
+  "pnl": 0.64,
+  "cost": 0.83
+ }
+]

@@ -1,0 +1,45 @@
+=== TEST 1: BBSR BANDS AS A REFERENCE (week: ogp5-fast + ogp5-sess BTC, Oct 15-18) ===
+ judged 227 | current framework keeps:  74   43-31  ( 58%)  $  +53.88
+              + BB bands keeps:  61   36-25  ( 59%)  $  +13.83 | {'newly blocked by BB': 17, 'newly allowed': 4}
+   trades the BB bands would have blocked:  17    8-9   ( 47%)  $   -2.82
+
+=== TEST 2: BBSR EXTREME SIGNALS ===
+  BULL signals: 13  price went its way over the next 15 min: 7 (54%)
+  BEAR signals: 10  price went its way over the next 15 min: 5 (50%)
+  her trades within 15 min after a signal, WITH it:      7    4-3   ( 57%)  $   -8.87
+  her trades within 15 min after a signal, AGAINST it:   7    2-5   ( 29%)  $  -75.13
+
+=== TEST 3: EVERY NEW / PAPER 24/7 BOOK SINCE 6:05 PM OCT 17 (BTC, settled) - backwards = into the closest band / against a break or rejection this candle ===
+ book           trades  W-L    win%    P&L(paper)   backwards (of judged)
+ paper-247         15   15-0    100%    +205.52    8/14  {'closest band': 2, 'break against her this candle': 5, 'rejection this candle': 1}
+ paper-20          15   15-0    100%    +205.52    8/14  {'closest band': 2, 'break against her this candle': 5, 'rejection this candle': 1}
+ ogp2              28   19-9     68%    +132.09    17/28  {'break against her this candle': 8, 'closest band': 9}
+ ogp5-lock         41   26-15    63%     +82.58    22/40  {'closest band': 11, 'break against her this candle': 10, 'rejection this candle': 1}
+ paper-best         4    4-0    100%     +60.47    3/4  {'break against her this candle': 2, 'rejection this candle': 1}
+ sp2               25   18-7     72%     +55.16    16/25  {'break against her this candle': 7, 'closest band': 9}
+ ogp15             26   18-8     69%     +53.37    13/26  {'closest band': 7, 'break against her this candle': 6}
+ ogp5              27   18-9     67%     +49.38    13/27  {'break against her this candle': 9, 'closest band': 4}
+ paper-piv          3    3-0    100%     +45.12    2/2  {'break against her this candle': 1, 'rejection this candle': 1}
+ piv2              27   19-8     70%     +43.10    14/27  {'break against her this candle': 8, 'closest band': 6}
+ sp15              24   17-7     71%     +39.54    13/24  {'closest band': 7, 'break against her this candle': 6}
+ paper-winners      3    3-0    100%     +39.41    3/3  {'closest band': 1, 'break against her this candle': 2}
+ sp5               25   17-8     68%     +35.52    12/25  {'break against her this candle': 8, 'closest band': 4}
+ ogp5-btco         29   18-11    62%     +24.31    14/28  {'break against her this candle': 7, 'closest band': 7}
+ brk15              3    3-0    100%     +21.28    2/3  {'closest band': 2}
+ brk-sess           2    2-0    100%     +17.30    1/2  {'closest band': 1}
+ ogp5-r30          40   23-17    58%     +15.61    24/40  {'closest band': 11, 'break against her this candle': 12, 'rejection this candle': 1}
+ ogp5-pv           29   18-11    62%     +10.43    16/29  {'break against her this candle': 10, 'closest band': 6}
+ ogp5-hrs           1    1-0    100%      +9.78    1/1  {'closest band': 1}
+ piv5              25   16-9     64%      +5.96    14/25  {'break against her this candle': 9, 'closest band': 5}
+ ogp5-cb           43   24-19    56%      +5.73    25/43  {'closest band': 12, 'break against her this candle': 12, 'rejection this candle': 1}
+ ogp5-inv          13    8-5     62%      +2.48    7/13  {'break against her this candle': 6, 'closest band': 1}
+ ogp5-gw           42   23-19    55%      -1.99    25/41  {'closest band': 12, 'break against her this candle': 12, 'rejection this candle': 1}
+ ogp5-fast         42   23-19    55%      -1.99    25/41  {'closest band': 12, 'break against her this candle': 12, 'rejection this candle': 1}
+ brk5               3    2-1     67%      -2.87    2/3  {'closest band': 1, 'break against her this candle': 1}
+ brk10              3    2-1     67%      -3.26    2/3  {'break against her this candle': 1, 'closest band': 1}
+ ogp5-boll         43   23-20    53%     -20.13    26/42  {'closest band': 12, 'break against her this candle': 13, 'rejection this candle': 1}
+ ogp5-r15          41   22-19    54%     -24.38    24/41  {'closest band': 10, 'break against her this candle': 13, 'rejection this candle': 1}
+ ogp5-c5           41   23-18    56%     -36.34    30/41  {'break against her this candle': 20, 'closest band': 10}
+ ogp5-c1           42   23-19    55%     -67.50    30/42  {'break against her this candle': 17, 'closest band': 12, 'rejection this candle': 1}
+ ogp5-sess         60   32-28    53%    -115.82    40/59  {'closest band': 15, 'break against her this candle': 23, 'rejection this candle': 2}
+ open-road         35   15-20    43%    -247.96    17/34  {'break against her this candle': 14, 'closest band': 3}

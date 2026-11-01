@@ -1,0 +1,21 @@
+{
+ "sealedAt": "2026-11-01T02:15:45.963550+00:00",
+ "R": "R297",
+ "files": {
+  "tools/umpire.py": "cb675a4217ad2b782d5fbf18058a2448479da5e5a5a8129ccc0988fc4cf84b95",
+  "tools/umpire-stamp.py": "d47bd3914837889200eb2869b3bed1896fd62e5f43ff1d46562b4364a6e5e95e",
+  "tools/cornerstones.py": "bf5fd4473ec05dba871dbaa355b0e9c6d5bc79b2760b1c7e473dc6bc21e55cae",
+  "tools/no-removal-gate.py": "4f43ff68b8bb8ddd87cf51cd0e5fa06418113168eaa2882294b1eab4089ba272",
+  "tools/verify-golden.py": "56fa7cc5b34d601df39b1582ec9f690ca6855b5c8eb0008515ddc951f33d2442",
+  "tools/seal-check.py": "a5e965f0ebdef0682754b6d2d268b1f3378214318d701fbee9999d51bfb06a9c",
+  "tools/vault.py": "3324b28f2e70902cef5e29182c794b0ca715cf6a77f2d02212e55bc489b14990",
+  "tools/save-her.py": "06a8f6394dd33d3f79ea9d5e06a2d1aaaf1710e9767baa4a6d9a47e251566a63",
+  "tools/state-guard.py": "e4b2fbae3f5c38f5277316b58fd0307c0cb258e195c0bf6aa7bc5782ad5953a5",
+  "tools/cornerstone-manifest.py": "0fe734bad92792258aa112d29fb5063587d1a40d5b3d68979696197a0325401d",
+  "src/lib/desk/umpire-gate.ts": "dff11f82e3eff3c55649ba969985bded761b0604fce2730ab083fa806592b015",
+  "CHECK-NOTHING-REMOVED.command": "618371d6e4abddd0cd9b1bdc28e2f30063dcf40d4a2c8d2f4db1159824183335",
+  "CHECK-HER-RULES.command": "0930918144e9964a5b7c8b78d921ef216a1d99343a6c3029738432abeee70b27",
+  "AGENTS.project.md": "4d7ca81842b2865d40708669255a8bfa02afca45b6e98a6432cc8b8cc9d43dbf",
+  ".gitignore": "c7ff7474ea2a652942d1aaaf019306678d117f73397ce71db56a6d5606adfd4e"
+ }
+}
