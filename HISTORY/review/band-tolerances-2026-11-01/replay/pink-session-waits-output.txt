@@ -1,0 +1,29 @@
+FILLS taken n 87 win 0.46 real ret/$1 -0.078 model ret 0.871 avg paid 0.46 avg fair 0.421
+ fills btc 68 win 0.471 real -0.041 model 1.053
+ fills gold 19 win 0.421 real -0.208 model 0.218
+
+pink btc: reads 688, windows blocked 275, tradable at 1.5x+ 228
+  ALL widths: win 0.469 model ret/$1 +0.346 avg payout 3.37x avg $ move after +11.81
+  W 0-100: n29 win 0.483 ret +0.133 move +11.32
+  W 100-200: n69 win 0.464 ret +0.041 move +3.00
+  W 200-350: n63 win 0.444 ret +0.184 move +14.78
+  W 500-+: n67 win 0.493 ret +0.904 move +18.31
+
+pink gold: reads 199, windows blocked 89, tradable at 1.5x+ 70
+  ALL widths: win 0.514 model ret/$1 +0.168 avg payout 3.07x avg $ move after +0.59
+  W 5-10: n22 win 0.636 ret +0.698 move +2.70
+  W 10-20: n24 win 0.417 ret -0.242 move -1.05
+  W 20-+: n24 win 0.500 ret +0.093 move +0.30
+
+sess btc: reads 321, windows blocked 180, tradable at 1.5x+ 126
+  ALL widths: win 0.500 model ret/$1 +0.177 avg payout 2.51x avg $ move after +4.39
+  W 0-100: n35 win 0.514 ret +0.012 move +7.94
+  W 100-200: n38 win 0.553 ret +0.123 move +10.66
+  W 200-350: n31 win 0.484 ret +0.256 move -1.02
+  W 500-+: n22 win 0.409 ret +0.419 move -4.47
+
+sess gold: reads 182, windows blocked 92, tradable at 1.5x+ 58
+  ALL widths: win 0.517 model ret/$1 +0.443 avg payout 3.84x avg $ move after +0.81
+  W 5-10: n21 win 0.476 ret +0.392 move +1.25
+  W 10-20: n27 win 0.519 ret +0.168 move +0.31
+  W 20-+: n10 win 0.600 ret +1.288 move +1.23

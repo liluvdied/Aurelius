@@ -1,0 +1,34 @@
+btc TAKEN fills n68 win 47% move +25.11 | all tradable reads n3486 win 47% move +19.95
+gold TAKEN fills n19 win 42% move -0.01 | all tradable reads n1877 win 47% move +0.86
+
+== pink btc: blocked windows n228 win 47% move +11.81
+  tol 10% of channel (release if price-pink > 10%): RELEASED n140 win 49% move +17.41  | STILL HELD n88 win 44% move +2.91
+  tol 5% of channel: RELEASED n179 win 49% move +20.67  | STILL HELD n49 win 39% move -20.53
+  release rejection reads (label says reject/rejected): RELEASED n156 win 47% move +15.88  | STILL HELD n72 win 47% move +3.00
+  release when pink is in the middle third of the channel: RELEASED n87 win 43% move -2.24  | STILL HELD n141 win 50% move +20.48
+  release when pink is in the far third (pink-slide rule your way): RELEASED n75 win 48% move +19.84  | STILL HELD n153 win 46% move +7.88
+  release on channels over $500 (BTC) / $20 (gold): RELEASED n67 win 49% move +18.31  | STILL HELD n161 win 46% move +9.11
+  release only with 8+ min left in the window: RELEASED n196 win 48% move +11.74  | STILL HELD n32 win 41% move +12.24
+
+== pink gold: blocked windows n70 win 51% move +0.59
+  tol 10% of channel (release if price-pink > 10%): RELEASED n35 win 51% move +0.46  | STILL HELD n35 win 51% move +0.73
+  tol 5% of channel: RELEASED n49 win 55% move +0.98  | STILL HELD n21 win 43% move -0.31
+  release rejection reads (label says reject/rejected): RELEASED n51 win 53% move +0.36  | STILL HELD n19 win 47% move +1.22
+  release when pink is in the middle third of the channel: RELEASED n28 win 50% move -0.59  | STILL HELD n42 win 52% move +1.38
+  release when pink is in the far third (pink-slide rule your way): RELEASED n24 win 58% move +1.92  | STILL HELD n46 win 48% move -0.09
+  release on channels over $500 (BTC) / $20 (gold): RELEASED n24 win 50% move +0.30  | STILL HELD n46 win 52% move +0.75
+  release only with 8+ min left in the window: RELEASED n60 win 52% move +0.72  | STILL HELD n10 win 50% move -0.18
+
+== sess btc: blocked windows n126 win 50% move +4.39
+  release if band ahead > 10% of channel: RELEASED n109 win 50% move +4.62  | STILL HELD n17 win 47% move +2.88
+  release if band ahead > 20% of channel: RELEASED n99 win 56% move +10.61  | STILL HELD n27 win 30% move -18.43
+  release rejection reads: RELEASED n73 win 45% move -4.79  | STILL HELD n53 win 57% move +17.03
+  release on channels under $200 (BTC) / $10 (gold): RELEASED n73 win 53% move +9.36  | STILL HELD n53 win 45% move -2.46
+  release only with 8+ min left: RELEASED n115 win 50% move +3.52  | STILL HELD n11 win 55% move +13.42
+
+== sess gold: blocked windows n58 win 52% move +0.81
+  release if band ahead > 10% of channel: RELEASED n53 win 49% move +0.43  | STILL HELD n5 win 80% move +4.86
+  release if band ahead > 20% of channel: RELEASED n46 win 48% move +0.43  | STILL HELD n12 win 67% move +2.26
+  release rejection reads: RELEASED n41 win 46% move +0.58  | STILL HELD n17 win 65% move +1.35
+  release on channels under $200 (BTC) / $10 (gold): RELEASED n21 win 48% move +1.25  | STILL HELD n37 win 54% move +0.56
+  release only with 8+ min left: RELEASED n50 win 50% move +0.74  | STILL HELD n8 win 62% move +1.22
