@@ -1,0 +1,26 @@
+{
+ "words": "The pink slide rule is wrong. It is not a blanket \"under the pink = no longs.\" It is not a blanket \"falling pink = no longs.\" The pink slide rule only applies in this case: Price has rejected the pink three times on the way down. And pink is in the bottom/top 33% of the channel. Only then are longs/shorts blocked. If price has not rejected the pink three times, the slide does not apply. If price is not in the bottom 33%, the slide does not apply. The inverse is true for shorts: Three rejections off the pink on the way up. And pink in the top 33% of the channel. Only then are shorts blocked. In every other case the slide rule does nothing. Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule.",
+ "what": "fix581 PINK SLIDE OFF: one switch __PINKSLIDE_OFF581 = true in engine.ts + bandlock.ts. engine slideHold403 (gold), slideHoldBtc423 (BTC), climbHold464 (short mirror) return no hold and clear their latch; bandlock fix521 walls UNDER THE PINK = NO LONGS / OVER THE PINK = NO SHORTS stand down. Main, rejection and every other book that used the slide (engine h490). Old slide code kept on file untouched for her rewrite (switch false brings it back). Every other rule untouched: unbroken-pink tolerance walls (fix432/464), her $5 break, thirds, 55%, flips, zones, 1.5x floor. The walled-off 5M (five5m.ts) not touched.",
+ "books": "recon-tog (main), recon-rej (rejection), and every other non-5M book the slide held; delayed + 5M untouched",
+ "proof": [
+  {
+   "code": "src/lib/desk/engine.ts",
+   "has": "export const __PINKSLIDE_OFF581 = true;"
+  },
+  {
+   "code": "src/lib/desk/bandlock.ts",
+   "has": "export const __PINKSLIDE_OFF581 = true;"
+  },
+  {
+   "code": "src/lib/desk/bandlock.ts",
+   "has": "if (!(typeof __PINKSLIDE_OFF581 !== \"undefined\" && __PINKSLIDE_OFF581) && tick < pk521 && anyRed521(asset, tick))"
+  },
+  {
+   "code": "src/lib/desk/bandlock.ts",
+   "has": "if (!(typeof __PINKSLIDE_OFF581 !== \"undefined\" && __PINKSLIDE_OFF581) && tick > P && anyGreen521(asset, tick))"
+  },
+  {
+   "test": "tools/slide-off-581.cjs"
+  }
+ ]
+}

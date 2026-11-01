@@ -1,0 +1,9 @@
+5788a5789,5790
+> // fix581 PINK SLIDE OFF (Love Nov 1 2026: "The pink slide rule is wrong. It is not a blanket under the pink = no longs ... Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule."): one switch for the whole pink slide (slideHold403 gold, slideHoldBtc423 BTC, climbHold464 mirror) - true = off. Her old slide code stays on file below, untouched, for her rewrite.
+> export const __PINKSLIDE_OFF581 = true;
+5809a5812
+>   if (typeof __PINKSLIDE_OFF581 !== "undefined" && __PINKSLIDE_OFF581) { S.on = false; return ""; } // fix581 (Love Nov 1 2026: "The pink slide rule is wrong. It is not a blanket under the pink = no longs ... Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule."): the pink slide / climb hold is OFF until she rewrites it - no hold, no latch
+5822a5826
+>   if (typeof __PINKSLIDE_OFF581 !== "undefined" && __PINKSLIDE_OFF581) { S.on = false; return ""; } // fix581 (Love Nov 1 2026: "The pink slide rule is wrong. It is not a blanket under the pink = no longs ... Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule."): the pink slide / climb hold is OFF until she rewrites it - no hold, no latch
+5840a5845
+>   if (typeof __PINKSLIDE_OFF581 !== "undefined" && __PINKSLIDE_OFF581) { S.on = false; return ""; } // fix581 (Love Nov 1 2026: "The pink slide rule is wrong. It is not a blanket under the pink = no longs ... Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule."): the pink slide / climb hold is OFF until she rewrites it - no hold, no latch

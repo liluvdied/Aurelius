@@ -1,0 +1,14 @@
+{
+  "words": "The $5 BTC break is the entry. The weekend $25 is a pink distance tolerance. It is not allowed to block a $5 break. She enters the moment price passes $5 past the pink on a valid flip. Not at $25. Not after half the move. Find the line that is still treating the $25 as a wall that stops the $5 break and remove that block. The $25 tolerance stays for other uses. The entry is the $5 break.",
+  "what": "fix579: in reachWall429 the pink (5m PP) counts as broken behind her at HER pink break - BTC $5 / gold 25c (PINK_BREAK432) - not the $6/33c band break. A clean $5 break clears the $25 reach and she enters; the $25/$1 reach still holds a pink that is NOT yet broken (price only partway through). Main + rejection + every book except delayed. No reach VALUE changed, no other rule/wall/band touched, both sides.",
+  "books": "recon-tog (main), recon-rej (rejection), and every other book except the delayed copy (DLY465)",
+  "proof": [
+    {"code": "src/lib/desk/bandlock.ts", "has": "fix579"},
+    {"code": "src/lib/desk/bandlock.ts", "has": "const dBrk579 = pink ?"},
+    {"code": "src/lib/desk/bandlock.ts", "has": "PINK_BREAK432[asset] : d) : d"},
+    {"code": "src/lib/desk/bandlock.ts", "has": "tick >= P + dBrk579 : tick <= P - dBrk579"},
+    {"test": "tools/five-break-enters-579.cjs"},
+    {"test": "tools/reach-test-429.cjs"},
+    {"test": "tools/pink-both-sides-test-464.cjs"}
+  ]
+}

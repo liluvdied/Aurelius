@@ -1,0 +1,13 @@
+548a549,550
+> // fix582 (Love Nov 1 2026: "she just waited until she was halfway down the channel to short ... The entry is the $5 break on a valid flip. Not halfway ... Diagnose the exact line that is still delaying the entry past the $5 break ... Then remove the delay. The entry is $5 past the pink or session band on a valid flip. Nothing else."): the 10 s waiver her read arms when a SESSION band read is already her $5 / 33c past that band - the pink-distance walls (pink reach, pink tolerance, pink cushion) stand down for that call only.
+> export function sessFree582(asset: string, side: string): boolean { try { return ((((globalThis as any).__sessFree582 || {})[asset + ":" + side]) ?? 0) > Date.now() - 10000; } catch { return false; } }
+561a564
+>     if (pink && typeof sessFree582 === "function" && sessFree582(asset, side)) continue; // fix582: a session-band $5 entry is not held by the pink reach
+685a689
+>   if (typeof sessFree582 === "function" && sessFree582(asset, "up")) return ""; // fix582: a session-band $5 entry is not held by the pink tolerance
+765a770
+>   if (typeof sessFree582 === "function" && sessFree582(asset, "down")) return ""; // fix582: a session-band $5 entry is not held by the pink tolerance
+2891c2896
+<     if (!why && !twinFade && !twinPinkAll && !(foTurn && asset !== "btc") && !DLY465.has(String(G.__curBook465 || ""))) {
+---
+>     if (!why && !twinFade && !twinPinkAll && !(foTurn && asset !== "btc") && !DLY465.has(String(G.__curBook465 || "")) && !(typeof sessFree582 === "function" && sessFree582(asset, side)) /* fix582: a session-band $5 entry skips the pink cushion */) {

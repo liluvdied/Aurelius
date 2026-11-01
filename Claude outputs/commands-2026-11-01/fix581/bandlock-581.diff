@@ -1,0 +1,11 @@
+657a658,659
+> // fix581 PINK SLIDE OFF (Love Nov 1 2026: "The pink slide rule is wrong. It is not a blanket under the pink = no longs ... Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule."): true = the fix521 slide walls (UNDER THE PINK = NO LONGS / OVER THE PINK = NO SHORTS) stand down. Every other pink wall (unbroken pink within her tolerance, the $5 break) is untouched.
+> export const __PINKSLIDE_OFF581 = true;
+669c671
+<     if (tick < pk521 && anyRed521(asset, tick)) {
+---
+>     if (!(typeof __PINKSLIDE_OFF581 !== "undefined" && __PINKSLIDE_OFF581) && tick < pk521 && anyRed521(asset, tick)) { // fix581: the pink slide (UNDER THE PINK = NO LONGS) is OFF until Love rewrites it
+751c753
+<     if (tick > P && anyGreen521(asset, tick)) {
+---
+>     if (!(typeof __PINKSLIDE_OFF581 !== "undefined" && __PINKSLIDE_OFF581) && tick > P && anyGreen521(asset, tick)) { // fix581: the pink slide mirror (OVER THE PINK = NO SHORTS) is OFF until Love rewrites it
