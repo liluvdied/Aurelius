@@ -2,6 +2,30 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R311 - fix600: main and rejection enter at $5 (maxDollars, liveBook.dollars, offHourMain.dollars, live-size.json dollars). addOnBuy600 is her add-on path: $5 as soon as the ask pays 2.8x (0.357), no band touch; umpire SAFE stamp and gate, live switch, entries switch and $5 cap must pass; band walls and flip skipped, her one exception. addOnBuy stays hard-refused for the top-up and silver hedge. Delayed stays $1, its add-on off.
+- when: 2026-11-01T20:51:01+00:00
+- Love: "Love Nov 1 2026 12:27 PM PT: "Positions go to $5 on entry. The $5 add-on at 2.8x+ is in. Trigger: add as soon as price reaches 2.8x. No band-touch requirement. Gates: the add-on must pass the umpire SAFE stamp, the live switch, the entries switch, and the $5 cap. It skips the band walls and the flip. That is the only exception. Delayed book stays at its current size and keeps its add-on off.""
+- books: m, a, i, n,  , (, r, e, c, o, n, -, t, o, g, ), ,,  , r, e, j, e, c, t, i, o, n,  , (, r, e, c, o, n, -, r, e, j, ),  , o, n,  , K, a, l, s, h, i, .,  , D, e, l, a, y, e, d,  , u, n, c, h, a, n, g, e, d, .,  , 5, M,  , u, n, t, o, u, c, h, e, d,  , a, n, d,  , o, f, f, .
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "async function addOnBuy600("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "addOnAt28600(bid, aoMax)"}
+- proof: {"config": "data/live-switch.json", "key": "liveBook.dollars", "equals": 5}
+- proof: {"config": "data/live-switch.json", "key": "addOn.on", "equals": true}
+- proof: {"config": "data/live-switch.json", "key": "addOn.maxAsk", "equals": 0.357}
+- proof: {"test": "tools/behaviour-umpire.cjs"}
+
+## R310 - fix596 HER $25 PINK WINDOW: BTC pink tolerance $25 for the whole 2 PM PT hour, then while her session bands are carried (hand-back at $100); gold untouched. fix597 REJECTIONS ONLY: labelHold597 at the copier and the last line - rejection takes only rejections, the candle-from-the-33% reads and the fake-out reads, at all hours; BTC from 2 PM until $100, main takes only rejections and pink breaks. fix598 THE LOTTO BOOK OUT + THE FAKE-OUT: lottoSnipe and the snipe setting deleted; a fake-out needs 3 reversals at the turn and every fake-out wall, both sides, 25% unchanged. fix599: the last fake-out waiver (gold pink cushion) out. Main spine re-signed for recon.ts; data/five5m/spine-lock.json untouched.
+- when: 2026-11-01T20:50:27+00:00
+- Love: "Love Nov 1 2026 11:20 AM PT: "$25 pink stays in place from 2–3 PM minimum, or until band channel width exceeds $100 session band to session band. During the hours of 2 PM until band channel width reaches $100 again, the green and red zones, Bollingers, and pink bands can be traded for rejections only. Pink can be traded for breaks on main. Rejection is a rejection-only book. The Polymarket lotto book is out. Remove it. A candle rising from the bottom 33% is still a long. A candle falling from the top 33% is still a short. The fake-out turn still applies when price has wicked into a maximum of 25% into a band channel and reversed a minimum of 3 times, both sides. A break is not to be traded in a fake-out zone. Wait for the flip back into the territory price keeps rejecting back into. Ignore the break into the fake-out zone under these conditions." + 11:31 AM PT: "Gold keeps its own tolerance and its $5 hand-back. The $25 pink and the rejections-only window apply to BTC only. Rejection is a rejection-only book at all hours. It keeps the candle-from-the-33% and the fake-out reads. It does not take breaks. Main can take pink breaks. Rejection takes rejections only." + 9:03 AM PT: "Also remove the fake-out waiver.""
+- books: m, a, i, n,  , (, r, e, c, o, n, -, t, o, g, ), ,,  , r, e, j, e, c, t, i, o, n,  , (, r, e, c, o, n, -, r, e, j, ),  , o, n,  , K, a, l, s, h, i, ;,  , t, h, e,  , P, o, l, y, m, a, r, k, e, t,  , l, o, t, t, o, .,  , T, h, e,  , f, a, k, e, -, o, u, t,  , c, o, u, n, t,  , r, e, a, c, h, e, s,  , e, v, e, r, y,  , b, o, o, k,  , t, h, a, t,  , s, h, a, r, e, s,  , b, a, n, d, l, o, c, k,  , e, x, c, e, p, t,  , d, e, l, a, y, e, d,  , f, r, e, e,  , h, o, u, r, s, .,  , 5, M,  , u, n, t, o, u, c, h, e, d,  , a, n, d,  , o, f, f, .
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "W < 100 || pinkHold596() ? 25"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "W < 100 || pinkHold596R() ? 25"}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "B.labelHold597(book, sym"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "labelHold597(String(row.book)"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "if (upF >= 3 && hiF > B.p"}
+- proof: {"test": "tools/behaviour-umpire.cjs"}
+
 ## R309 - fix595 SAME SIDE AT THE SEND: sameSideSend595 runs last in finalGate524, after color, session-band and zone. A session band or pink is broken when this 5m candle opened on one side and traded her break distance through it. A long must be above every band broken this candle and a short below it, on the live tick; bands or candle unreadable = refused. Every Kalshi book but delayed. 5M untouched and off.
 - when: 2026-11-01T18:50:11+00:00
 - Love: "Love Nov 1 2026 10:37 AM PT: "Add the same-side-of-the-break rule to the last line before the order leaves. No order leaves unless price is on the same side of the break, on the live tick, for every band break (session or pink), on both BTC and gold. If the trade is a long, price must be above the broken band at the moment of the send. If the trade is a short, price must be below the broken band at the moment of the send. This applies to every session band and to pink. It runs at the last line, on the live tick, after the color, session-band, and zone checks. If the band cannot be read, refuse the order.""
@@ -1835,7 +1859,7 @@ and there is no auto mode here hun i have the mode hard set""
 - when: 2026-10-29T03:25:52+00:00
 - Love: "Love Oct 28 2026 8:23 PM PT (to the numbered list, after 8:18 PM "1 - stay"): "6-stay. once confirmed shes working. not before" (item 6: add-ons - 2.8x first add-on, one $5 add-on, second $3 at the next rejection)"
 - books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j
-- status: ACTIVE
+- status: RETIRED - Love: "superseded by fix600 - Love Nov 1 2026 12:27 PM PT: The  add-on at 2.8x+ is in."
 - proof: {"config": "data/live-switch.json", "key": "addOn.on", "equals": false}
 
 ## R134 - fix433 item 7: anyFlipNow + anyFlipMinNow back to 2/3/4/5m (no 1m) as before the restore (main Bollinger/zone reads, paper fires, no-pink copy paper). The door flip for main + rejection was already 2-5m (anyFlip406Now, fix424).
@@ -1898,7 +1922,7 @@ and there is no auto mode here hun i have the mode hard set""
 - when: 2026-10-29T03:03:58+00:00
 - Love: "Love Oct 28 2026 7:36 PM PT: "add on of $5 can stay AFTER I CONFIRM SHES WORKING.""
 - books: r, e, c, o, n, -, t, o, g, ,,  , r, e, c, o, n, -, r, e, j,  , (, K, a, l, s, h, i, )
-- status: ACTIVE
+- status: RETIRED - Love: "superseded by fix600 - Love Nov 1 2026 12:27 PM PT: The  add-on at 2.8x+ is in."
 - proof: {"config": "data/live-switch.json", "key": "addOn.on", "equals": false}
 
 ## R122 - fix427: live back ON at $1 for main (recon-tog) + rejection (recon-rej) on Kalshi at the 8:00 PM PT boundary. Size via the Kalshi-only wire cap bigMultipleCap {on:true, x:1, dollars:1} (every Kalshi opening order, entries and add-ons, cut to $1; exits untouched). maxDollars, liveBook, Polymarket, 5M, twin, sit-out hours untouched. No code change.

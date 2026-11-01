@@ -1,9 +1,17 @@
-# Every decision Love has made - rebuilt 2026-11-01T18:50:37.021643+00:00
+# Every decision Love has made - rebuilt 2026-11-01T20:51:29.748215+00:00
 
-1469 decisions with Love's words or card picks, out of 2223 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1471 decisions with Love's words or card picks, out of 2225 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-01T20:51:01Z  ·  diary line 2692  ·  fix600
+- fix600 IN HER CODE
+- Full entry: 2026-11-01T20:51:01Z R311 fix600 (Love, FIVE-DOLLARS-AND-ADD-ON.command): $5 entry main + rejection, $5 add-on as soon as price reaches 2.8x through addOnBuy600 (umpire SAFE, live, entries, $5 cap; skips band walls and flip); delayed unchanged
+
+## 2026-11-01T20:50:27Z  ·  diary line 2691  ·  fix596
+- fix596 IN HER CODE
+- Full entry: 2026-11-01T20:50:27Z R310 fix596-599 (Love, PINK-REJECTIONS-LOTTO-FAKEOUT.command): BTC $25 pink window, rejection-only book and BTC 2 PM to $100 rejections only, Polymarket lotto deleted, fake-out 3 reversals, last waiver out; main spine re-signed for recon.ts
 
 ## 2026-11-01T18:50:11Z  ·  diary line 2690  ·  fix595
 - fix595 IN HER CODE
