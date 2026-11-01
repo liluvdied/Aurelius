@@ -21,3 +21,10 @@ Nov 1 2026. Staged at data/STAGED-CHANGE-her-flip-587 and Desktop/6-HER-FLIP-NO-
 - tools/her-flip-587.cjs on the LIVE bandlock (71c22adee18932eb): **FAIL**. On the staged one (d73c070ce1e6aa8e): **PASS**. See her-flip-587-live-vs-fix.txt.
 - Every tools/*.cjs run before and after: identical except the new test (tests-before-live.txt / tests-after-587.txt). The pre-existing failures are unchanged: sess-five-582, slide-off-581 (retired) and zone-pickup-448.
 - Not run here: the desk's own umpire.py (it needs her live data). The command runs it and prints UMPIRE.
+
+## Added 12:25 UTC: the 4:15 AM PT short (fill-audit 2026-11-01T12:15:14.433Z)
+- recon-rej, KXBTC15M-26NOV010730-30, down, paid 51c, "Rejected down off 5m PP". Wire 77,833.37.
+- Pink 77,846.01 ($12.64 over price). Green zone (5m S1) 77,784.17 ($49.20 under). The pink→green space is $61.84, so price was 80% of the way up from green (20% under pink). The 55% wall (bandlock L2768) refuses only ≤55% from green, which is $34.01.
+- Session: VWAP 77,703.75 ($129.62 under), +1σ 77,895.69 ($62.32 over). W $191.94, price at 67.5%, the top third. The thirds wall (L2827) refuses a short only ≤33% ($63.34 from VWAP).
+- Flip: the 3m candle at 12:15 was born red after a green 12:12–12:15 3m. turnFlip530 = true through born544. herTurn587 = false. This is now in tools/her-flip-587.cjs (test hash 0e12f90296f4867e).
+- Post-send rejudge: "ok". Umpire is still the 11:10:25 UTC stamp.

@@ -18,6 +18,11 @@ let F = make({ __pivBars: { btc: { bars: bars1200 } } });
 t(F.turnFlip530("btc", "down", 77846) === true, "replay setup: the old door (fix530 + born-her-colour) should pass this short at 77846 - that is the leak");
 t(F.herTurn587("btc", "down", 77846) === false, "the 4:00 AM short (born-red 13 s candle, no turn) still passes her flip");
 t(F.herTurn587("btc", "down", 77855.87) === false, "the 4:00 AM short at its wire price still passes her flip");
+// 1b. THE REAL 12:15:14 UTC (4:15 AM PT) SHORT, recon-rej "Rejected down off 5m PP": the 3m candle born red at 12:15 after a green 12:12-12:15 3m - no 2-5m candle turned.
+Date.now = () => Date.parse("2026-11-01T12:15:14.433Z");
+F = make({ __pivBars: { btc: { bars: [{"t": 1793534880, "o": 77903.09, "h": 77908.73, "l": 77850.94, "c": 77868.64, "v": 296}, {"t": 1793534940, "o": 77868.36, "h": 77870.26, "l": 77837.66, "c": 77851.48, "v": 300}, {"t": 1793535000, "o": 77850.47, "h": 77885.7, "l": 77841.41, "c": 77849.66, "v": 282}, {"t": 1793535060, "o": 77864.66, "h": 77864.66, "l": 77816.22, "c": 77830.44, "v": 352}, {"t": 1793535120, "o": 77830.49, "h": 77844.9, "l": 77827.72, "c": 77837.76, "v": 272}, {"t": 1793535180, "o": 77845.26, "h": 77848.23, "l": 77830.07, "c": 77830.07, "v": 286}, {"t": 1793535240, "o": 77829.38, "h": 77843.11, "l": 77819.86, "c": 77840.61, "v": 376}, {"t": 1793535300, "o": 77839.93, "h": 77839.93, "l": 77821.92, "c": 77824.62, "v": 10}] } } });
+t(F.turnFlip530("btc", "down", 77833.37) === true, "replay setup: the old door (born-her-colour) should pass the 4:15 short at 77833.37 - that is the leak");
+t(F.herTurn587("btc", "down", 77833.37) === false, "the 4:15 AM short (3m born red, no turn) still passes her flip");
 // 2. A REAL TURN: a 2m candle that traded green (over its open) and then fell back under its open = her short flip.
 Date.now = () => Date.parse("2026-11-01T12:01:30Z");
 const o = 1793534400; // 12:00
@@ -35,5 +40,5 @@ Date.now = realNow;
 const g = fnText("auditGrade523") || "";
 t(/impossibleGeo[\s\S]*if \(!why && \(fl\[2\] \|\| fl\[6\]\) && !herTurn587\(asset, side, tick\)\) why = [\s\S]*return why;/.test(g), "the last line before the POST (auditGrade523) does not demand her turn after every wall");
 t(/"recon-tog": \[[^\]]*true, false\]/.test(B) && /"recon-rej": \[[^\]]*true, false\]/.test(B), "main / rejection lost their flip flag");
-console.log(ok ? "HER FLIP 587 TEST ✓ - no long or short leaves without a 2-5m candle that traded the other colour and flipped her way; the 4:00 AM born-red short is refused." : "HER FLIP 587 TEST: FAIL");
+console.log(ok ? "HER FLIP 587 TEST ✓ - no long or short leaves without a 2-5m candle that traded the other colour and flipped her way; the 4:00 AM and 4:15 AM born-red shorts are refused." : "HER FLIP 587 TEST: FAIL");
 process.exit(ok ? 0 : 1);
