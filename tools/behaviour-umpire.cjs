@@ -244,6 +244,21 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix594 last line: zones that can't be read are refused", /can't be read/.test(B.zoneSend594("btc", [], 78000, "up")));
   G.__door594Test = true; T("fix594 door: the same test refuses at the door", /bottom 55%/.test(geo("btc", ZB, 77950, "down", "main"))); T("fix594 door: nothing past the red boundary at the door", /PAST THE RED/.test(geo("btc", ZB, 78300, "up", "main"))); G.__door594Test = false;
 }
+// fix595 (Love Nov 1 2026 10:37 AM PT): same side of the break at the last line, every session band and pink, both assets; a band that can't be read refuses
+{ const S5 = (p) => [{ name: "session VWAP", price: 77700 }, { name: "+1σ", price: 78000 }, { name: "5m PP", price: p }], G5 = [{ name: "session VWAP", price: 3880 }, { name: "+1σ", price: 3900 }, { name: "5m PP", price: 3890 }];
+  T("fix595 pink broke up, long still above it, goes", !B.sameSideSend595("btc", S5(77850), 77856, "up", 77820, { h: 77860, l: 77820 }));
+  T("fix595 pink broke up, price back under it, long is refused", /not above/.test(B.sameSideSend595("btc", S5(77850), 77845, "up", 77820, { h: 77860, l: 77820 })));
+  T("fix595 pink broke down, short still below it, goes", !B.sameSideSend595("btc", S5(77850), 77840, "down", 77880, { h: 77880, l: 77838 }));
+  T("fix595 pink broke down, price back over it, short is refused", /not below/.test(B.sameSideSend595("btc", S5(77850), 77855, "down", 77880, { h: 77880, l: 77838 })));
+  T("fix595 a session band broke up, price back under it, long is refused", /\+1σ.*not above/.test(B.sameSideSend595("btc", S5(77500), 77990, "up", 77980, { h: 78010, l: 77975 })));
+  T("fix595 a session band broke down, price back over it, short is refused", /session VWAP.*not below/.test(B.sameSideSend595("btc", S5(77900), 77710, "down", 77720, { h: 77725, l: 77690 })));
+  T("fix595 a poke under her break distance is not a break", !B.sameSideSend595("btc", S5(77850), 77845, "up", 77820, { h: 77853, l: 77820 }));
+  T("fix595 a band broke down, a long under it is refused", /not above/.test(B.sameSideSend595("btc", S5(77850), 77840, "up", 77880, { h: 77880, l: 77838 })));
+  T("fix595 gold pink broke up 25c, long back under it is refused", /not above/.test(B.sameSideSend595("gold", G5, 3889.9, "up", 3889, { h: 3890.4, l: 3889 })));
+  T("fix595 gold pink broke up 25c, long above it goes", !B.sameSideSend595("gold", G5, 3890.1, "up", 3889, { h: 3890.4, l: 3889 }));
+  T("fix595 pink that can't be read refuses", /can't be read/.test(B.sameSideSend595("btc", [{ name: "session VWAP", price: 77700 }, { name: "+1σ", price: 78000 }], 77800, "up", 77790, { h: 77810, l: 77780 })));
+  T("fix595 a candle that can't be read refuses", /can't be read/.test(B.sameSideSend595("btc", S5(77850), 77856, "up", 0, null)));
+}
 const ok = res.every((r) => r.ok);
 for (const r of res) console.log((r.ok ? "  ✓ " : "  ✗ ") + r.name + (r.ok ? "" : "  <- " + r.detail));
 console.log(ok ? "BEHAVIOUR ✓ - she acts on every one of these rules." : "BEHAVIOUR ✗ - a rule is in her code but she does not act on it. Refuse the install, tell Love.");

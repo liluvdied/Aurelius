@@ -5536,5 +5536,10 @@
     "what": "// fix530: no colour re-test at the send (her 4:47 PM: \"No extra confirmation. No still red at send.\") - the full-flag test above already judged her flip, and the fill auditor still stops it if it flips back before it fills (her 4:56 PM)",
     "R": "R308",
     "why": "fix592+fix593+fix594 HER FLIP BAND ZONE AT THE SEND (her Nov 1 9:03-9:45 AM words): both paths, session-band scale and zones at door and last line, fake-out waiver out"
+  },
+  {
+    "what": "const L593 = (globalThis as any).__lawBands?.[sym]?.L; if (!Array.isArray(L593) || !L593.length) return \"SESSION BAND AT THE SEND (fix593): the board can't be read - no order.\"; const sb593 = B.sessionBandSend593(sym, L593, Number(q.c), side); if (sb593) return sb593; const z594 = B.zoneSend594(sym, L593, Number(q.c), side); if (z594) return z594; // fix593 (Love Nov 1 2026 9:11-9:19 AM PT): her session-band scale on the live tick at the last line; pink is not part of this check",
+    "R": "R309",
+    "why": "fix595 SAME SIDE AT THE SEND (her Nov 1 10:37 AM words): added to the last line"
   }
 ]

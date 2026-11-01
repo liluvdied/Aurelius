@@ -791,7 +791,7 @@ async function finalGate524(ticker, bookSide, sameLine) {
     const w = B.auditGrade523(book, sym, Number(q.c), side);
     if (w) return "the last line (fix524): " + w;
     if (!B.turnFlip530(sym, side, Number(q.c))) return "HER FLIP AT THE SEND (fix592): no 2-5m candle has flipped or been born " + (side === "up" ? "green" : "red") + " and pushed " + (sym === "gold" ? "10c" : "$5") + " past its open - no order."; // fix592 (Love Nov 1 2026 9:03 AM PT: "add the last-line check so the order does not leave unless one of those two paths passes on the live tick")
-    const L593 = (globalThis as any).__lawBands?.[sym]?.L; if (!Array.isArray(L593) || !L593.length) return "SESSION BAND AT THE SEND (fix593): the board can't be read - no order."; const sb593 = B.sessionBandSend593(sym, L593, Number(q.c), side); if (sb593) return sb593; const z594 = B.zoneSend594(sym, L593, Number(q.c), side); if (z594) return z594; // fix593 (Love Nov 1 2026 9:11-9:19 AM PT): her session-band scale on the live tick at the last line; pink is not part of this check
+    const L593 = (globalThis as any).__lawBands?.[sym]?.L; if (!Array.isArray(L593) || !L593.length) return "SESSION BAND AT THE SEND (fix593): the board can't be read - no order."; const sb593 = B.sessionBandSend593(sym, L593, Number(q.c), side); if (sb593) return sb593; const z594 = B.zoneSend594(sym, L593, Number(q.c), side); if (z594) return z594; const s595 = B.sameSideSend595(sym, L593, Number(q.c), side); if (s595) return s595; // fix593 (Love Nov 1 2026 9:11-9:19 AM PT): her session-band scale on the live tick at the last line; pink is not part of this check
     return "";
   } catch { return "the last line could not be judged - no order (fix524)"; }
 }

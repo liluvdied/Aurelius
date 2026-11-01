@@ -226,6 +226,8 @@ need("export function onePink565(" in PB565 and "function pinkFresh565(" in PB56
      and '"pivot-now.json"), "utf8")); const pp = Number(pv?.[sa]' not in EN565 and "__onePink565?.(sa)?.pp" in EN565 and "(G as any).__onePink565?.(asset)" in BL565 and "(globalThis as any).__onePink565?.(asset)" in B27565
      and "no pink at the wire - no order (fix565)" in K565,
      "74. ONE PINK: her chart's CM Pivot Bands 5m pink, forming candle + live price included, is the ONLY pink - every read, wall, cushion, reach, zone and slide, the 5M included, and it is recomputed at the wire; no closed-candle pink anywhere (her 2:30 + 3:01 AM, fix565)")
+need("export function sameSideSend595(" in B and "B.sameSideSend595(sym, L593, Number(q.c), side)" in K523,
+     "75. SAME SIDE AT THE SEND (fix595, her Nov 1 10:37 AM words): a long must be above, a short below, any session band or pink broken this candle, on the live tick at the last line; a band that cannot be read refuses")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "retired BTC pink numbers kept on the record - her pink distance is the 15%/20% tolerance alone (7:13 AM, cornerstone 43)"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),

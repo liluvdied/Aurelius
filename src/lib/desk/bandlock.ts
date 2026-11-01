@@ -584,6 +584,22 @@ export function zoneSend594(asset: string, L: Line[], tick: number, side: string
   }
   return "";
 }
+// fix595 HER SIDE OF THE BREAK AT THE SEND (Love Nov 1 2026 10:37 AM PT: "No order leaves unless price is on the same side of the break, on the live tick, for every band break (session or pink), on both BTC and gold. If the trade is a long, price must be above the broken band at the moment of the send. If the trade is a short, price must be below the broken band at the moment of the send. If the band cannot be read, refuse the order."): a band is broken when this 5m candle opened on one side of it and traded her break distance through it.
+export function sameSideSend595(asset: string, L: Line[], tick: number, side: string, o5?: number, hl?: { h: number; l: number } | null): string {
+  if (!(tick > 0) || !(side === "up" || side === "down")) return "SAME SIDE AT THE SEND (fix595): no live tick - no order.";
+  const op = o5 === undefined ? fiveOpenNow(asset) : o5, x = hl === undefined ? fiveHLNow(asset) : hl;
+  const bands = (L || []).filter((l: Line) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$|^5m PP$/.test(String(l.name)));
+  if (!(op > 0) || !x || !bands.some((l: Line) => String(l.name) === "5m PP") || bands.length < 2) return "SAME SIDE AT THE SEND (fix595): the bands or this candle can't be read - no order.";
+  const hi = Math.max(Number(x.h), tick), lo = Math.min(Number(x.l), tick);
+  for (const b of bands) {
+    const P = Number(b.price), d = String(b.name) === "5m PP" ? (PINK_BREAK432[asset] ?? 0) : (BREAK_DIST[asset] ?? 0);
+    if (!(d > 0)) return "SAME SIDE AT THE SEND (fix595): her break distance can't be read - no order.";
+    const broke = (op < P && hi >= P + d) || (op > P && lo <= P - d);
+    if (broke && side === "up" && !(tick > P)) return `SAME SIDE AT THE SEND (fix595): ${b.name} (${P.toFixed(2)}) broke this candle and price ${tick.toFixed(2)} is not above it - no long.`;
+    if (broke && side === "down" && !(tick < P)) return `SAME SIDE AT THE SEND (fix595): ${b.name} (${P.toFixed(2)}) broke this candle and price ${tick.toFixed(2)} is not below it - no short.`;
+  }
+  return "";
+}
 export function reachWall429(asset: string, L: Line[], tick: number, side: string, Z?: Zones | null, open5?: number): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
   const reach = REACH429[asset] ?? 0, d = BREAK_DIST[asset] ?? 0;
