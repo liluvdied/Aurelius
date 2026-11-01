@@ -1,0 +1,35 @@
+--- live/src/lib/desk/engine.ts	2026-11-01 10:08:36.043980459 +0000
++++ t581/src/lib/desk/engine.ts	2026-11-01 10:08:36.645371978 +0000
+@@ -5786,6 +5786,8 @@
+  *  sm = 5 s samples of gold price + 5m pink for the last 30 min. Sliding = more than $2 lower than 30 min ago while under pink (pink + 25c).
+  *  No pink touch needed. Once on, the hold stays on until price breaks up through pink by 25c. Tested by tools/slide-test.cjs (umpire). */
+ // fix491 (Love Oct 29 2026 9:40 PM PT: "WHAT FUCKING RULE IS THAT OF MINE ????? NEVER ONCE DID I FUCKING SAY THAT"): the "$2 gold / $40 BTC lower or higher than 30 min ago" price triggers are out of all three holds below - only her pink slide (or climb) with price under (over) it holds, until her 25c / $8 break.
++// fix581 PINK SLIDE OFF (Love Nov 1 2026: "The pink slide rule is wrong. It is not a blanket under the pink = no longs ... Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule."): one switch for the whole pink slide (slideHold403 gold, slideHoldBtc423 BTC, climbHold464 mirror) - true = off. Her old slide code stays on file below, untouched, for her rewrite.
++export const __PINKSLIDE_OFF581 = true;
+ // PRICE CLIMBING OVER AN UNBROKEN PINK = NO SHORT - THE SHORT SIDE OF THE DOWNSLOPE PINK RULE (fix464, R197/R198 - Love Oct 29 2026 1:06 PM PT: "there is zero instance where she is within 15% of an unbroken pink that she shorts" + "i told you 100 times it's for both sides. do what i say." + Love 11:18 AM PT: "the downslope pink rule where price keeps
+ // recting off of pink on a downslope, no entries til pink breaks by 25c"): main + rejection. Mirror of fix371/403 (gold) and fix423 (BTC): price more than $2 (gold) / $40 (BTC) HIGHER than
+ // 20+ minutes ago and still over the unbroken pink = no short until price breaks DOWN through pink by 25c / $8. 1:02:06 PM gold: 4022.77, ~$7 over 12:32, pink 4019.85 below - held.
+@@ -5807,6 +5809,7 @@
+   return run >= 3;
+ }
+ export function climbHold464(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number, asset: string): string {
++  if (typeof __PINKSLIDE_OFF581 !== "undefined" && __PINKSLIDE_OFF581) { S.on = false; return ""; } // fix581 (Love Nov 1 2026: "The pink slide rule is wrong. It is not a blanket under the pink = no longs ... Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule."): the pink slide / climb hold is OFF until she rewrites it - no hold, no latch
+   const last = sm[sm.length - 1];
+   const brk = asset === "btc" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, nm = asset === "btc" ? "BTC" : "GOLD";
+   if (!last || now - last.t >= 30000) return "";
+@@ -5820,6 +5823,7 @@
+   return "";
+ }
+ export function slideHold403(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
++  if (typeof __PINKSLIDE_OFF581 !== "undefined" && __PINKSLIDE_OFF581) { S.on = false; return ""; } // fix581 (Love Nov 1 2026: "The pink slide rule is wrong. It is not a blanket under the pink = no longs ... Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule."): the pink slide / climb hold is OFF until she rewrites it - no hold, no latch
+   const last = sm[sm.length - 1];
+   if (!last || now - last.t >= 30000) return "";
+   if (last.p > last.pp + ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})["gold"] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return 0.25; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494 + fix560 (Love Oct 31 2026 1:11 AM PT: "when the longs are blocked on the pink downslope she is to SHORT there ONLY until price breaks pink by 10% of the channel width for gold and 10% for btc"): her break (10% of the channel up through pink) frees the long
+@@ -5838,6 +5842,7 @@
+ /** fix423 BTC (same rule as fix403, BTC sizes): sliding = more than $40 lower than 30 min ago while under pink (pink + $8); free on an $8 break up through pink
+  *  ($8 = the checkpoint's BTC pink break, PINK WAIT BACK ON BTC Oct 18). Tested by tools/slide-test-btc.cjs (umpire). */
+ export function slideHoldBtc423(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
++  if (typeof __PINKSLIDE_OFF581 !== "undefined" && __PINKSLIDE_OFF581) { S.on = false; return ""; } // fix581 (Love Nov 1 2026: "The pink slide rule is wrong. It is not a blanket under the pink = no longs ... Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule."): the pink slide / climb hold is OFF until she rewrites it - no hold, no latch
+   const last = sm[sm.length - 1];
+   if (!last || now - last.t >= 30000) return "";
+   if (last.p > last.pp + ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})["btc"] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return 8; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494: her break ($8 up through pink) frees the long

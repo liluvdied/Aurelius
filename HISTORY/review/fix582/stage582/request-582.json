@@ -1,0 +1,18 @@
+{
+ "words": "the multiple was 2x at the beginning of the window, and she waited until the floor past her again ... she just waited until she was halfway down the channel to short ... The fix did not work. She is still missing the entry. She is still waiting until price is halfway down the channel. That is not a valid rule. That is not enforced. The entry is the $5 break on a valid flip. Not halfway. Not after the floor has passed again. Diagnose the exact line that is still delaying the entry past the $5 break. Do not tell me what rule it is. Show me the line. Then remove the delay. The entry is $5 past the pink or session band on a valid flip. Nothing else.",
+ "what": "fix582 SESSION BAND $5 = HER ENTRY: recon sessFree582R - a read off a session band (sigma / session VWAP / fresh VWAP) with price already $5 BTC / 33c gold past that band her way skips pinkRead464 at every read site (L480 logger, L509/510 every book, L716 main, L1022 rejection) and arms a 10 s waiver __sessFree582[asset:side]; bandlock sessFree582 makes the pink reach (reachWall429 pink branch), the pink tolerance (pinkLongWall432 / pinkShortWall464) and the pink cushion (cush514) stand down for that call. Thirds, 55%, zones, Bollingers, candle/flip, 1.5x floor still judge it. 5M read (recon-rej5) keeps its pink waits; delayed untouched.",
+ "books": "recon-tog (main), recon-rej (rejection), every other non-5M, non-delayed book",
+ "proof": [
+  {
+   "code": "src/lib/desk/recon.ts",
+   "has": "function sessFree582R(asset: string, side: string, label: string, spot: number, L: Line[], lane: string = \"\", arm: boolean = true): boolean {"
+  },
+  {
+   "code": "src/lib/desk/bandlock.ts",
+   "has": "export function sessFree582(asset: string, side: string): boolean {"
+  },
+  {
+   "test": "tools/sess-five-582.cjs"
+  }
+ ]
+}

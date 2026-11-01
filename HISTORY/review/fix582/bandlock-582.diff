@@ -1,0 +1,44 @@
+--- t581/src/lib/desk/bandlock.ts	2026-11-01 10:08:36.648851279 +0000
++++ t582/src/lib/desk/bandlock.ts	2026-11-01 10:08:36.774299555 +0000
+@@ -546,6 +546,8 @@
+ // PINK TOLERANCE 15% (fix430, Love Oct 28 2026 8:07 PM PT: "make the pink tolerance a minimum of 15% of the channel width please"): the pink's reach is the larger of
+ // her fixed reach ($1.50 gold / $50 BTC) and 15% of the session-band channel price sits in (session band below to session band above).
+ export const PINK_PCT429 = 0.15;
++// fix582 (Love Nov 1 2026: "she just waited until she was halfway down the channel to short ... The entry is the $5 break on a valid flip. Not halfway ... Diagnose the exact line that is still delaying the entry past the $5 break ... Then remove the delay. The entry is $5 past the pink or session band on a valid flip. Nothing else."): the 10 s waiver her read arms when a SESSION band read is already her $5 / 33c past that band - the pink-distance walls (pink reach, pink tolerance, pink cushion) stand down for that call only.
++export function sessFree582(asset: string, side: string): boolean { try { const S = (globalThis as any).__sessFree582 || {}, bk = String((globalThis as any).__curBook465 || ""), k = asset + ":" + side + ":", f = (b: string) => ((S[k + b]) ?? 0) > Date.now() - 10000; return bk ? f(bk) : (f("recon-tog") || f("recon-rej")); } catch { return false; } } // keyed to the book that read it: a named book only rides its OWN waiver; the 5M (recon-rej5) never arms one
+ export function reachWall429(asset: string, L: Line[], tick: number, side: string, Z?: Zones | null, open5?: number): string {
+   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
+   const reach = REACH429[asset] ?? 0, d = BREAK_DIST[asset] ?? 0;
+@@ -559,6 +561,7 @@
+   for (const b of L.filter((l) => Number(l.price) > 0 && (isSessBand(l) || String(l.name) === "5m PP"))) {
+     const P = Number(b.price), pink = String(b.name) === "5m PP", r = pink ? ((typeof __PINKFLAT25 !== "undefined" && __PINKFLAT25) ? 25 : ((typeof pinkSlide580 === "function" && asset === "btc" && sA && sB) ? pinkSlide580(asset, sA.price - sB.price) : pinkReach)) : reach509; // fix509 c11
+     const dBrk579 = pink ? ((typeof PINK_BREAK432 !== "undefined" && PINK_BREAK432 && PINK_BREAK432[asset] != null) ? PINK_BREAK432[asset] : d) : d; // fix579 (Love Nov 1 2026: "The $5 BTC break is the entry ... It is not allowed to block a $5 break ... The $25 tolerance stays for other uses. The entry is the $5 break."): the PINK counts as broken behind her at HER $5 pink break (PINK_BREAK432), not the $6 band break - a valid $5 break clears the $25 reach; the $25 reach still holds an UNBROKEN pink (under her $5 break). The typeof guard mirrors __PINKFLAT25 so the extraction tests (reach-test-429 etc) that don't pull PINK_BREAK432 fall back to d and still pass.
++    if (pink && typeof sessFree582 === "function" && sessFree582(asset, side)) continue; // fix582: a session-band $5 entry is not held by the pink reach
+     if (up ? tick >= P + dBrk579 : tick <= P - dBrk579) continue; // broken her way by her break distance - behind her
+     if ((up ? tick > P : tick < P) && o5 > 0 && (up ? o5 > P : o5 < P)) continue; // this 5m candle opened past it on her side - a bounce off it, not a poke through it
+     const dist = up ? P - tick : tick - P;
+@@ -683,6 +686,7 @@
+       if (!spent521 && !botQ && !clear522) return `UNDER THE PINK = NO LONGS (fix521): price ${tick.toFixed(2)} is $${(pk521 - tick).toFixed(2)} under the pink (${pk521.toFixed(2)}) and falling - a long waits for her 10%/5% reset, or the bottom 25% of pink->green (at the green line).`;
+     }
+   } catch {}
++  if (typeof sessFree582 === "function" && sessFree582(asset, "up")) return ""; // fix582: a session-band $5 entry is not held by the pink tolerance
+   if (pinkBeyond459(asset, L, tick, Number(pk.price))) return ""; // fix459 (R176): only an unbroken pink within 15% gold / 20% BTC of the session-band channel holds a long
+   if ((((globalThis as any).__zoneRej515c || {})[asset + ":up"] ?? 0) > Date.now() - 10000) return ""; // fix515c (Love Oct 30 2026 7:41 AM PT: "once pink has been broken by those numbers, she can then take the rejection from the green zone without waiting for pink to break. For both of them."): a green-zone rejection with the pink spent waits for nothing
+   return `NO LONG UNDER AN UNBROKEN PINK (fix432): 5m PP ${Number(pk.price).toFixed(2)} is ${tick < pk.price ? `$${(pk.price - tick).toFixed(2)} above` : `only $${(tick - pk.price).toFixed(2)} broken, under her $${brk} break`} - no long until it breaks up`;
+@@ -763,6 +767,7 @@
+       if (!spent521 && !topQ && !clear522b) return `OVER THE PINK = NO SHORTS (fix521): price ${tick.toFixed(2)} is $${(tick - P).toFixed(2)} over the pink (${P.toFixed(2)}) and rising - a short waits for her 10%/5% reset, or the top 25% of pink->red (at the red line).`;
+     }
+   } catch {}
++  if (typeof sessFree582 === "function" && sessFree582(asset, "down")) return ""; // fix582: a session-band $5 entry is not held by the pink tolerance
+   if (tick > P) {
+     const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
+     const a = S.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];
+@@ -2888,7 +2893,7 @@
+     // fix558 KEPT (Love Oct 27 2026 5:40 PM PT: "we can make it unilaterally pink rules in both direction" - Oct 31 12:18 AM PT: "22. stays"): the one pink cushion below holds both ways, long under and short over (test pink-both-sides-test-464)
+     // ONE PINK CUSHION (fix514, Love Oct 30 2026 7:13 AM PT: "The pink tolerance is still 15% of the bandwidth for gold and 20% for bitcoin." + 7:03 AM: "Do not retire the pink cushion ... keep it one thing. Make it all one thing"): her 15% gold / 20% BTC of the channel is the pink's ONLY distance - no trade into an unbroken pink inside it,
+     // free beyond it (cornerstone 38); the delayed book keeps her standing exemption.
+-    if (!why && !twinFade && !twinPinkAll && !(foTurn && asset !== "btc") && !DLY465.has(String(G.__curBook465 || ""))) {
++    if (!why && !twinFade && !twinPinkAll && !(foTurn && asset !== "btc") && !DLY465.has(String(G.__curBook465 || "")) && !(typeof sessFree582 === "function" && sessFree582(asset, side)) /* fix582: a session-band $5 entry skips the pink cushion */) {
+       for (const pl514 of (L || []).filter((l: Line) => String(l.name) === "5m PP" && Number(l.price) > 0)) {
+         const pp514 = Number(pl514.price); if (pinkFar503(asset, L, tick, pp514)) continue;
+         const W538 = above - below, cush514 = ((typeof __PINKFLAT25 !== "undefined" && __PINKFLAT25) ? 25 : (typeof pinkSlide580 === "function") ? pinkSlide580(asset, W538) : (asset === "btc" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date())) ? 0 : 75, W538 < 180 && W538 >= 75 ? 0.75 * W538 : 0.20 * W538)) : 0.15 * W538)); // fix538 (Love Oct 30 2026 3:49 PM PT: "when bands are under over $80 - until they hit $180 , she needs at least 3/4 of a band channel width for pink tolerances... at any bands distance - she needs a minimum of $75 during weekdays. on weekends, it could differ." (the same law her fix525/526 click installed, reaching the one pink-cushion site it missed)): her $75 weekday floor + 3/4 at $75-$180 width reach the cushion too - the one site her 3:49 PM click missed

@@ -1,0 +1,29 @@
+--- live/src/lib/desk/bandlock.ts	2026-11-01 10:08:36.043720000 +0000
++++ t581/src/lib/desk/bandlock.ts	2026-11-01 10:08:36.648851279 +0000
+@@ -655,6 +655,8 @@
+     return why;
+   } catch { return "the auditor-grade door failed to run - no order (fix523)"; }
+ }
++// fix581 PINK SLIDE OFF (Love Nov 1 2026: "The pink slide rule is wrong. It is not a blanket under the pink = no longs ... Temporarily disable the pink slide rule until I rewrite it. Do not leave the current version in force. Do not change any other rule."): true = the fix521 slide walls (UNDER THE PINK = NO LONGS / OVER THE PINK = NO SHORTS) stand down. Every other pink wall (unbroken pink within her tolerance, the $5 break) is untouched.
++export const __PINKSLIDE_OFF581 = true;
+ export function pinkLongWall432(asset: string, L: Line[], tick: number, side: string): string {
+   if (side !== "up" || !(tick > 0)) return "";
+   const pk = L.find((l) => String(l.name) === "5m PP" && Number(l.price) > 0);
+@@ -666,7 +668,7 @@
+   // green live there) - until her 10% gold / 5% BTC reset through the pink (pinkSpent515c; the reset formula is untouched).
+   try {
+     const pk521 = Number(pk.price);
+-    if (tick < pk521 && anyRed521(asset, tick)) {
++    if (!(typeof __PINKSLIDE_OFF581 !== "undefined" && __PINKSLIDE_OFF581) && tick < pk521 && anyRed521(asset, tick)) { // fix581: the pink slide (UNDER THE PINK = NO LONGS) is OFF until Love rewrites it
+       const s1x = L.find((l) => String(l.name) === "5m S1" && Number(l.price) > 0);
+       const s1 = s1x ? Number(s1x.price) : 0;
+       const botQ = (s1 > 0 && s1 < pk521 ? tick <= s1 + 0.25 * (pk521 - s1) : false) && turnFlip530(asset, "up", tick) /* fix530: her colour TURN is the flip, no minimum */; // her B + "with the color flip" (12:42 PM): the exception demands her full flip (2-5m, 10c gold / $5 BTC past its open, her c1) AND a real colour turn (red -> green, never a candle born green - her fix416 words)
+@@ -748,7 +750,7 @@
+   // ANY distance - except in the top 25% of the pink->red channel (pink 0% up to the 5m R1 at 100%: her short rejections down off the red live there)
+   // - until her 10% / 5% reset down through the pink.
+   try {
+-    if (tick > P && anyGreen521(asset, tick)) {
++    if (!(typeof __PINKSLIDE_OFF581 !== "undefined" && __PINKSLIDE_OFF581) && tick > P && anyGreen521(asset, tick)) { // fix581: the pink slide mirror (OVER THE PINK = NO SHORTS) is OFF until Love rewrites it
+       const r1x = L.find((l) => String(l.name) === "5m R1" && Number(l.price) > 0);
+       const r1 = r1x ? Number(r1x.price) : 0;
+       const topQ = (r1 > 0 && r1 > P ? tick >= r1 - 0.25 * (r1 - P) : false) && turnFlip530(asset, "down", tick) /* fix530: her colour TURN is the flip, no minimum */; // her B + "with the color flip": the mirror demands the flip and the real colour turn (green -> red)
