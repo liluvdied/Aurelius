@@ -13,7 +13,7 @@ function grab(head) { const i = src.indexOf(head); if (i < 0) { console.log("PIN
 const one = (h) => src.slice(src.indexOf(h), src.indexOf("\n", src.indexOf(h)));
 const hasSlide580 = src.indexOf("export function pinkSlide580(") >= 0; // fix580: her pink scale (BTC $25 under $100 / 20% $100-$500 / 15% over $500; gold 15%)
 const body = [one("export const PINK_PCT429"), grab("export const PINK_PCT459"), ...(hasSlide580 ? [one("export function pinkSlide580(")] : []), grab("export function pinkFar503(")].map((x) => x.replace(/^export /, "")).join("\n");
-const buildF = (flagVal) => { const js = ts.transpileModule("type Line = { name: string; price: number; unit?: number };\nconst __PINKFLAT25 = " + flagVal + ";\n" + body, { compilerOptions: { target: ts.ScriptTarget.ES2020 } }).outputText; return new Function(js + "; return pinkFar503;")(); };
+const buildF = (flagVal) => { const js = ts.transpileModule("type Line = { name: string; price: number; unit?: number };\nconst __PINKFLAT25 = " + flagVal + ";\nconst pinkHold596 = () => false; // fix596: the flag is judged away from her 2 PM window\n" + body, { compilerOptions: { target: ts.ScriptTarget.ES2020 } }).outputText; return new Function(js + "; return pinkFar503;")(); };
 const Ftrue = buildF(true), Ffalse = buildF(false);
 const board = (lo, hi) => (tick, pink) => [{ name: "-1σ", price: lo }, { name: "+1σ", price: hi }, { name: "5m PP", price: pink }];
 const readTol = (F, asset, lo, hi) => { const mk = board(lo, hi), tick = (lo + hi) / 2; let a = 0, b = 1e7; for (let i = 0; i < 60; i++) { const m = (a + b) / 2; if (F(asset, mk(tick, tick + m), tick, tick + m) === true) b = m; else a = m; } return (a + b) / 2; };

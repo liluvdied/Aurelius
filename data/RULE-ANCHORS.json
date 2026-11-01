@@ -1208,10 +1208,6 @@
    "file": "engine.ts",
    "at": "2026-10-27T19:08:33.172210+00:00"
   },
-  "even if we're not in a trade and btc is within $10 from the ": {
-   "file": "engine.ts",
-   "at": "2026-10-27T19:08:33.172211+00:00"
-  },
   "for our polymarket hedges, let's structure it the same way w": {
    "file": "engine.ts",
    "at": "2026-10-27T19:08:33.172211+00:00"
@@ -4171,9 +4167,33 @@
   "No order leaves unless price is on the same side of the brea": {
    "file": "bandlock.ts",
    "at": "2026-11-01T18:50:11.221933+00:00"
+  },
+  "During the hours of 2 PM until band channel width reaches $1": {
+   "file": "bandlock.ts",
+   "at": "2026-11-01T20:50:27.751607+00:00"
+  },
+  "$25 pink stays in place from 2-3 PM minimum, or until band c": {
+   "file": "bandlock.ts",
+   "at": "2026-11-01T20:50:27.751820+00:00"
+  },
+  "add as soon as price reaches 2.8x. No band-touch requirement": {
+   "file": "bandlock.ts",
+   "at": "2026-11-01T20:51:01.735437+00:00"
+  },
+  "The $5 add-on at 2.8x+ is in. Trigger: add as soon as price ": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-11-01T20:51:01.735579+00:00"
   }
  },
- "retired": [],
+ "retired": [
+  {
+   "anchor": "even if we're not in a trade and btc is within $10 from the ",
+   "file": "engine.ts",
+   "at": "2026-10-27T19:08:33.172211+00:00",
+   "love": "Love Nov 1 2026 11:20 AM PT: The Polymarket lotto book is out. Remove it.",
+   "retiredAt": "2026-11-01T20:50:27.715540+00:00"
+  }
+ ],
  "onFile": {
   "let's make that $3.50 ... as long as she doesn't actually en": {
    "file": "bandlock.ts",

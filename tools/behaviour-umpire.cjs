@@ -259,6 +259,60 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix595 pink that can't be read refuses", /can't be read/.test(B.sameSideSend595("btc", [{ name: "session VWAP", price: 77700 }, { name: "+1σ", price: 78000 }], 77800, "up", 77790, { h: 77810, l: 77780 })));
   T("fix595 a candle that can't be read refuses", /can't be read/.test(B.sameSideSend595("btc", S5(77850), 77856, "up", 0, null)));
 }
+// fix596 + fix597 + fix598 + fix599 (Love Nov 1 2026 11:20 + 11:31 AM PT)
+{ const NOON = Date.parse("2026-11-02T20:30:00Z"), TWO = Date.parse("2026-11-02T22:30:00Z"), FOUR = Date.parse("2026-11-03T00:30:00Z"), keepNow = NOW;
+  NOW = NOON; G.__sessCarried = { btc: false };
+  T("fix596 BTC at 11:30 AM on a $188 channel reads 20%", Math.abs(B.pinkSlide580("btc", 188) - 37.6) < 0.01);
+  T("fix596 BTC under $100 reads $25 at any hour", B.pinkSlide580("btc", 90) === 25);
+  NOW = TWO; G.__sessCarried = { btc: false };
+  T("fix596 BTC reads $25 for the whole 2 PM hour, even past $100", B.pinkSlide580("btc", 188) === 25);
+  NOW = FOUR; G.__sessCarried = { btc: true };
+  T("fix596 BTC after 3 PM with the bands still carried reads $25", B.pinkSlide580("btc", 188) === 25);
+  G.__sessCarried = { btc: false };
+  T("fix596 BTC after 3 PM past $100 goes back to 20%", Math.abs(B.pinkSlide580("btc", 188) - 37.6) < 0.01);
+  NOW = TWO; G.__sessCarried = { btc: true, gold: true };
+  T("fix596 gold keeps her own 15%, at 2 PM too", Math.abs(B.pinkSlide580("gold", 10) - 1.5) < 0.001);
+  NOW = keepNow; G.__sessCarried = {};
+  const H = B.labelHold597;
+  T("fix597 rejection refuses a break at any hour", /REJECTION-ONLY/.test(H("recon-rej", "btc", false, "Break above +1σ")));
+  T("fix597 rejection refuses a pink break", /REJECTION-ONLY/.test(H("recon-rej", "btc", true, "Break above 5m PP")));
+  T("fix597 rejection takes a rejection", !H("recon-rej", "btc", true, "Rejected up off 5m PP") && !H("recon-rej", "btc", false, "Failed break below Green zone - rejected up"));
+  T("fix597 rejection keeps the candle-from-the-33% reads", !H("recon-rej", "btc", true, "Launched from the bottom third (low 77601.39) - a long until the top third") && !H("recon-rej", "btc", false, "Red candle falling from the top third"));
+  T("fix597 rejection keeps the fake-out read", !H("recon-rej", "btc", true, "Fake-out turn over session VWAP"));
+  T("fix597 main in the BTC window takes a pink break", !H("recon-tog", "btc", true, "Break above 5m PP"));
+  T("fix597 main in the BTC window refuses a session-band break", /REJECTIONS ONLY/.test(H("recon-tog", "btc", true, "Break above +1σ")));
+  T("fix597 main in the BTC window refuses a zone break", /REJECTIONS ONLY/.test(H("recon-tog", "btc", true, "Break above Red zone")));
+  T("fix597 main in the BTC window takes a rejection", !H("recon-tog", "btc", true, "Rejected down off Bollinger upper"));
+  T("fix597 main in the BTC window holds the third reads", /REJECTIONS ONLY/.test(H("recon-tog", "btc", true, "Launched from the bottom third (low 1) - a long until the top third")));
+  T("fix597 main outside the window keeps her breaks", !H("recon-tog", "btc", false, "Break above +1σ"));
+  T("fix597 gold main is not in the BTC window", !H("recon-tog", "gold", true, "Break above +1σ"));
+  T("fix597 delayed is untouched", !H("recon-dly", "btc", true, "Break above +1σ"));
+  const F0 = Date.parse("2026-11-02T20:30:00Z"), f0 = F0 / 1000; NOW = F0 + 65000;
+  const L9 = [{ name: "session VWAP", price: 77700 }, { name: "+1σ", price: 77900 }, { name: "-1σ", price: 77500 }, { name: "+2σ", price: 78100 }, { name: "-2σ", price: 77300 }];
+  const up = (t, poke) => { const h = poke ? 77930 : 77885; return [{ t, o: 77880, h: 77882, l: 77878, c: 77881 }, { t: t + 60, o: 77881, h, l: 77879, c: 77882 }, { t: t + 120, o: 77882, h: 77884, l: 77880, c: 77883 }]; };
+  const dn = (t, poke) => { const l = poke ? 77470 : 77515; return [{ t, o: 77520, h: 77522, l: 77518, c: 77519 }, { t: t + 60, o: 77519, h: 77521, l, c: 77518 }, { t: t + 120, o: 77518, h: 77520, l: 77516, c: 77517 }]; };
+  const bars = (mk, n) => { const o = []; for (let i = 1; i <= 10; i++) o.unshift(...mk(f0 - i * 300, i <= n)); return o; };
+  G.__pivBars = { btc: { bars: [...bars(up, 3), { t: f0, o: 77895, h: 77905, l: 77884, c: 77885 }] } };
+  T("fix598 three wicks over and back, the fake-out turn is a short", (B.fakeOutTurnNow("btc", L9, 77884) || {}).side === "down");
+  G.__pivBars = { btc: { bars: [...bars(up, 2), { t: f0, o: 77895, h: 77905, l: 77884, c: 77885 }] } };
+  T("fix598 two wicks over and back is no fake-out", !B.fakeOutTurnNow("btc", L9, 77884));
+  G.__pivBars = { btc: { bars: [...bars(dn, 3), { t: f0, o: 77505, h: 77516, l: 77495, c: 77515 }] } };
+  T("fix598 three wicks under and back, the fake-out turn is a long", (B.fakeOutTurnNow("btc", L9, 77516) || {}).side === "up");
+  G.__pivBars = { btc: { bars: [...bars(dn, 2), { t: f0, o: 77505, h: 77516, l: 77495, c: 77515 }] } };
+  T("fix598 two wicks under and back is no fake-out", !B.fakeOutTurnNow("btc", L9, 77516));
+  const deep = (t, poke) => { const h = poke ? 77960 : 77885; return [{ t, o: 77880, h: 77882, l: 77878, c: 77881 }, { t: t + 60, o: 77881, h, l: 77879, c: 77882 }, { t: t + 120, o: 77882, h: 77884, l: 77880, c: 77883 }]; };
+  G.__pivBars = { btc: { bars: [...bars(deep, 3), { t: f0, o: 77895, h: 77905, l: 77884, c: 77885 }] } };
+  T("fix598 a wick past 25% of the channel is a real break, not a fake-out", !B.fakeOutTurnNow("btc", L9, 77884));
+  const src599 = fs.readFileSync(file, "utf8");
+  T("fix599 the fake-out waiver is out of the gold pink cushion", !/foTurn/.test(src599));
+  NOW = keepNow; G.__pivBars = {};
+}
+// fix600 (Love Nov 1 2026 12:27 PM PT): the $5 add-on goes as soon as price reaches 2.8x, no band touch
+{ T("fix600 at 2.8x the add-on goes", !!B.addOnAt28600(0.357, 0.357));
+  T("fix600 past 2.8x the add-on goes", !!B.addOnAt28600(0.25, 0.357));
+  T("fix600 under 2.8x it waits", !B.addOnAt28600(0.36, 0.357));
+  T("fix600 a dead bid does nothing", !B.addOnAt28600(0.02, 0.357));
+}
 const ok = res.every((r) => r.ok);
 for (const r of res) console.log((r.ok ? "  ✓ " : "  ✗ ") + r.name + (r.ok ? "" : "  <- " + r.detail));
 console.log(ok ? "BEHAVIOUR ✓ - she acts on every one of these rules." : "BEHAVIOUR ✗ - a rule is in her code but she does not act on it. Refuse the install, tell Love.");

@@ -24,7 +24,7 @@ import { lessonHold, noteForming, noteOpen } from "./review";
 import { scoreMirror } from "./mirror";
 import { flagBetween } from "./watchdog";
 import { quoteTick } from "./quotes";
-import { turnNow } from "./bandlock";
+import { turnNow, labelHold597, REJ_KEEPS597, addOnAt28600 } from "./bandlock";
 
 var g = globalThis;
 // A Kalshi position one of her books copied (live-book-done.json says filled on that ticker), vs a trade Love opened herself.
@@ -2295,7 +2295,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           let aoCap = aoMax;
           try { if (bid > aoMax || !why) { const blm2 = await import("./bandlock"); const rj = blm2.addOnTapNow(id, mySide); if (rj) { why = `${rj} - flipped near the band, ${aoOff ? "2.8x+ (off hours)" : "3.4x+"}`; aoCap = Math.max(aoMax, 0.294); } } } catch {}
           if (why && aoTwin && twEB[row.ticker] && bandOf(why) === twEB[row.ticker]) why = null; // fix309: not her entry band
-          if (why && bid > aoCap) why = null;
+          if (!aoTwin) why = addOnAt28600(bid, aoMax) || null; /* fix600: as soon as price reaches 2.8x, no band touch */ else if (why && bid > aoCap) why = null;
           // NO LIMIT - ONE PER DISTINCT REJECTION (Oct 19 ~9:56 PM PT, Love: "if a position reverses on us i want her to do a $2 add on at either a
           // rejection of a red or green zone, or any band at a multiple of 3.8x or more - no limit on that"): with addOn.noLimit the once-per-window
           // latch is off; each DISTINCT rejection (band + 5m candle) may add once, so one lingering rejection can't machine-gun $2s every 5 s.
@@ -2307,7 +2307,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             void (async () => {
               let r: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
               try {
-                r = await live.addOnBuy(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoOff ? aoOff.aoDollars : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: "just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those"): walls skip add-ons like the twin's (was free only for the twin)
+                r = await (aoTwin ? live.addOnBuy : live.addOnBuy600)(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoOff ? aoOff.aoDollars : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: "just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those"): walls skip add-ons like the twin's (was free only for the twin)
               } catch (err) {
                 r = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "add-on failed" };
               }
@@ -3108,56 +3108,6 @@ async function settleRolled(trades, assets) {
   }
   return next;
 }
-// $3 SNIPE (Love, Oct 4 ~12:10 PM PT: "even if we're not in a trade and btc is within $10 from the target... and the odds are
-// 20x+ do $3 every time... also for within $20 and 3 minutes"). Replay on Kalshi paths (Oct 2-4): with 1-3 min left and
-// price within $20 of the strike, a 20x+ cheap side came back 3 of 47 times (+$90 on $3 tickets); in the LAST minute 1 of
-// 46 (-$82: Kalshi settles on the final minute's average), so the last minute is skipped. Bought on POLYMARKET (a Kalshi
-// ticket would net against the desk's own position); never against Love's own other-side Polymarket position.
-// live-switch "snipe": { on, dollars, maxDist, minLeft, maxLeft, maxAsk }.
-async function lottoSnipe(assets) {
-  try {
-    const cfg = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).snipe;
-    if (!cfg?.on) return;
-    const a = assets?.btc;
-    const m = a?.market;
-    const spot = Number(a?.spot) || 0;
-    const target = Number(a?.target) || 0;
-    const left = Number(a?.secondsLeft) || 0;
-    if (!m?.ticker || !(spot > 0) || !(target > 0) || !m.closeTime) return;
-    const minLeft = Number(cfg.minLeft) || 60;
-    const maxLeft = Number(cfg.maxLeft) || 180;
-    const maxDist = Number(cfg.maxDist) || 20;
-    const maxAsk = Number(cfg.maxAsk) || 0.05;
-    if (left < minLeft || left > maxLeft || Math.abs(spot - target) > maxDist) return;
-    const reg = g.__aureliusSnipe || (g.__aureliusSnipe = {});
-    if (reg[m.ticker]) return;
-    // The cheap side is the one currently losing.
-    const side = spot >= target ? "down" : "up";
-    const kAsk = side === "up" ? Number(m.yesAsk) : Number(m.noAsk);
-    if (!(kAsk > 0.005 && kAsk <= maxAsk + 0.02)) return;
-    reg[m.ticker] = Date.now();
-    const log = (x) => {
-      try {
-        appendFileSync(join(process.cwd(), "data", "snipe-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), kalshi: m.ticker, side, spot, target, dist: Math.round((spot - target) * 100) / 100, left, kalshiAsk: kAsk, ...x }) + "\n");
-      } catch {
-      }
-    };
-    const pm = await import("./poly-live.server");
-    const win = await pm.polyWindowFor(m.closeTime).catch(() => null);
-    const mine = await pm.polymarketHoldings().catch(() => []);
-    const hers = win?.slug ? mine.find((h) => h.slug === win.slug && Math.abs(h.net) > 0.01) : undefined;
-    if (hers && Math.sign(hers.net) !== (side === "up" ? 1 : -1)) {
-      log({ status: "skipped", why: "you hold the other side of this window on Polymarket" });
-      return;
-    }
-    const fill = await pm.takeSide(side, m.closeTime, Number(cfg.dollars) || 3, maxAsk, 0.005, 0.01, ":snipe").catch((err) => {
-      log({ status: "error", why: String(err?.message || err).slice(0, 160) });
-      return null;
-    });
-    log(fill ? { status: "filled", slug: fill.slug, price: fill.price, contracts: fill.filled } : { status: "no fill", why: pm.takeSideWhy() });
-  } catch {
-  }
-}
 // HEDGE BANK (Love, Oct 4 ~3:25 AM PT: "we definitely need to bank the hedges while they're down too, bc of that exact
 // scenario... that's twice in one night we banked on both sides"). Every open Polymarket hedge is marked each tick; when its
 // own bid reaches +bankAt% (default 200%, replay: about even with holding, the early banks did worse) it is sold. What is
@@ -3754,10 +3704,6 @@ async function tick() {
         }
       });
       import("./polymirror").then((m) => m.polyMirrorTick(snap.assets)).catch(() => {});
-    } catch {
-    }
-    try {
-      void lottoSnipe(snap.assets);
     } catch {
     }
     try {
@@ -5472,7 +5418,8 @@ async function copyLiveBook(assets, lane = "") {
     // questionnaire era) is gone outright - no time-of-day restriction on rejections exists anywhere. Her ONLY narrow-band rule is the width carry just below
     // (fix471/527), handing back at her $100 BTC / $5 gold. Pink and every wall are valid rejections at every hour on wide bands.
     // 2 PM TIL THE BANDS WIDEN (fix471, Love Oct 29 2026 2:54-2:55 PM PT: "no pp stays, make it 2pm pls" + "and not til 4. its til bands widen out enough", after 2:52 PM: "is she on the bollinger and redgren zones and pink and not session bands after 2pm????"): from the 2 PM PT session reset until that asset's new session bands widen out (pivotbooks' carry hand-back, __sessCarried: BTC sigma $180+, gold $5+), main + rejection take only pink, Bollinger, green/red zone and 5m PP calls; session-band calls are held (not final). The 3 PM rule above stays as it is.
-    if (["recon-rej", "recon-tog"].includes(String(row.book)) /* fix471: main + rejection */ && (globalThis as any).__sessCarried?.[String(row.asset)] === true /* fix471: from the 2 PM PT session reset until her session bands widen out (the carry hand-back: BTC sigma $180+, gold $5+) */ && !(() => { try { const L = ((globalThis as any).__lawBands?.[String(row.asset)]?.L || []) as any[]; const lb = String(row.setup || row.label || ""); const z = L.find((l: any) => String(l.name) === (row.side === "up" ? "5m S1" : "5m R1")); const b = L.filter((l: any) => !/^5m (S1|R1)$/.test(String(l.name)) && lb.includes(String(l.name))).sort((x: any, y: any) => String(y.name).length - String(x.name).length)[0]; return !!(z && b && Math.abs(Number(b.price) - Number(z.price)) <= (String(row.asset) === "gold" ? 2 : 75)); } catch { return false; } })() /* fix472: a rejection off a line inside her green (long) / red (short) zone - within $75 BTC / $2 gold of it - is a zone call */ && !/Bollinger|Green zone|Red zone|5m PP|pink/i.test(String(row.setup || row.label || "")) /* fix471: pink and PP stay */ && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `2 PM TIL THE BANDS WIDEN = BOLLINGERS, ZONES AND PINK ONLY (fix471): "${String(row.setup || row.label).slice(0, 80)}" is not a Bollinger or green/red zone call` }; continue; }
+    if (["recon-rej", "recon-tog"].includes(String(row.book)) /* fix471: main + rejection */ && (globalThis as any).__sessCarried?.[String(row.asset)] === true /* fix471: from the 2 PM PT session reset until her session bands widen out (the carry hand-back: BTC sigma $180+, gold $5+) */ && !(() => { try { const L = ((globalThis as any).__lawBands?.[String(row.asset)]?.L || []) as any[]; const lb = String(row.setup || row.label || ""); const z = L.find((l: any) => String(l.name) === (row.side === "up" ? "5m S1" : "5m R1")); const b = L.filter((l: any) => !/^5m (S1|R1)$/.test(String(l.name)) && lb.includes(String(l.name))).sort((x: any, y: any) => String(y.name).length - String(x.name).length)[0]; return !!(z && b && Math.abs(Number(b.price) - Number(z.price)) <= (String(row.asset) === "gold" ? 2 : 75)); } catch { return false; } })() /* fix472: a rejection off a line inside her green (long) / red (short) zone - within $75 BTC / $2 gold of it - is a zone call */ && !(String(row.book) === "recon-rej" && REJ_KEEPS597.test(String(row.setup || row.label || ""))) /* fix597: rejection keeps the candle-from-the-33% and fake-out reads at all hours */ && !/Bollinger|Green zone|Red zone|5m PP|pink/i.test(String(row.setup || row.label || "")) /* fix471: pink and PP stay */ && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `2 PM TIL THE BANDS WIDEN = BOLLINGERS, ZONES AND PINK ONLY (fix471): "${String(row.setup || row.label).slice(0, 80)}" is not a Bollinger or green/red zone call` }; continue; }
+    { const h597 = labelHold597(String(row.book), String(row.asset), (globalThis as any).__sessCarried?.[String(row.asset)] === true, String(row.setup || row.label || "")); /* fix597 */ if (h597 && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: h597 }; continue; } }
     const frame = asset?.vwap1m?.vwap ? asset.vwap1m : asset?.vwap5m;
     let placed = null;
     // HIS STAMP BEFORE HER ORDER (fix501): wait at most 250 ms for his verdict on this setup; no stamp or a refused board = not taken this pass (written down, not final - he and her door judge again next pass).

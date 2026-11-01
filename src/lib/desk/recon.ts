@@ -450,7 +450,8 @@ function zoneFree515c(asset: string, side: string, label: string): boolean {
 }
 export const __PINKFLAT25 = false; // fix580 (Love Nov 1 2026: "put the pink tolerance back to 15% of the channel ... we restore $25 from 2-3 pm tomorrow"): weekend $25 overlay OFF - the pink tolerance is back to her sliding scale (15% gold / 20% BTC of the session-band channel), byte-identical to the else-branch. Re-run WEEKEND-PINK-25 tomorrow 2-3pm PT to set this true again. (fix571 was the overlay ON.)
 // fix580 PINK SLIDING SCALE (same as bandlock pinkSlide580, kept here so the spine stands alone): BTC $25 under $100 wide / 20% at $100-$500 / 15% over $500 of the session-band channel; gold her 15% (pct) as before.
-function pinkSlide580R(asset: string, W: number, pct: number): number { return asset === "btc" ? (W < 100 ? 25 : W <= 500 ? 0.2 * W : 0.15 * W) : pct * W; }
+function pinkHold596R(): boolean { try { return Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(Date.now()))) === 14 || (globalThis as any).__sessCarried?.btc === true; } catch { return false; } } // fix596: same window as bandlock pinkHold596
+function pinkSlide580R(asset: string, W: number, pct: number): number { return asset === "btc" ? (W < 100 || pinkHold596R() ? 25 : W <= 500 ? 0.2 * W : 0.15 * W) : pct * W; }
 export function pinkRead464(asset: string, L: { name: string; price: number }[], spot: number, side: string, pink: number): boolean {
   if (!(spot > 0) || !(pink > 0) || !(side === "up" || side === "down")) return false;
   const brk = asset === "btc" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, pct = asset === "btc" ? 0.2 : 0.15;

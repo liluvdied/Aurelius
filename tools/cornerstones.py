@@ -228,6 +228,17 @@ need("export function onePink565(" in PB565 and "function pinkFresh565(" in PB56
      "74. ONE PINK: her chart's CM Pivot Bands 5m pink, forming candle + live price included, is the ONLY pink - every read, wall, cushion, reach, zone and slide, the 5M included, and it is recomputed at the wire; no closed-candle pink anywhere (her 2:30 + 3:01 AM, fix565)")
 need("export function sameSideSend595(" in B and "B.sameSideSend595(sym, L593, Number(q.c), side)" in K523,
      "75. SAME SIDE AT THE SEND (fix595, her Nov 1 10:37 AM words): a long must be above, a short below, any session band or pink broken this candle, on the live tick at the last line; a band that cannot be read refuses")
+need("function pinkHold596()" in B and "W < 100 || pinkHold596() ? 25" in B and "W < 100 || pinkHold596R() ? 25" in R,
+     "76. HER $25 PINK WINDOW (fix596, her Nov 1 11:20 + 11:31 AM words): BTC only, the whole 2 PM hour, then until the channel is past $100; gold keeps her own tolerance and her $5 hand-back")
+need("export function labelHold597(" in B and "labelHold597(String(row.book)" in E and "B.labelHold597(book, sym" in K523,
+     "77. REJECTIONS ONLY (fix597, her Nov 1 11:20 + 11:31 AM words): rejection is a rejection-only book at all hours and keeps the candle-from-the-33% and fake-out reads; 2 PM until $100 on BTC, main takes rejections and pink breaks only; at the copier and the last line")
+need("lottoSnipe" not in E and '"snipe"' not in open("data/live-switch.json", encoding="utf8").read(),
+     "78. THE POLYMARKET LOTTO BOOK IS OUT (fix598, her Nov 1 11:20 AM words)")
+need("upF >= 2" not in B.split("bandlockEnd")[0] and "if (upF >= 3 && hiF > B.p" in B and "foTurn" not in B,
+     "79. THE FAKE-OUT (fix598 + fix599, her Nov 1 9:03 + 11:20 AM words): a wick at most 25% into the channel, reversed at least 3 times, both sides; no break traded into it; the waiver is gone")
+SW600 = __import__("json").load(open("data/live-switch.json"))
+need("async function addOnBuy600(" in K523 and "ADD-ON DISABLED (fix524" in K523 and "live.addOnBuy600" in E and "addOnAt28600(bid, aoMax)" in E and SW600["addOn"]["maxAsk"] == 0.357 and SW600["addOn"]["twin"]["on"] is False,
+     "80. HER $5 ADD-ON AT 2.8x (fix600, her Nov 1 12:27 PM words): as soon as price reaches 2.8x, no band touch; must pass the umpire SAFE stamp, the live switch, the entries switch and the $5 cap; skips the band walls and the flip, her one exception; delayed keeps hers off; the top-up and silver hedge stay refused")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "retired BTC pink numbers kept on the record - her pink distance is the 15%/20% tolerance alone (7:13 AM, cornerstone 43)"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),

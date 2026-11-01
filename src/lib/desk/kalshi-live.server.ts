@@ -790,7 +790,7 @@ async function finalGate524(ticker, bookSide, sameLine) {
     if (!(B.AUDIT_FLAGS523 && B.AUDIT_FLAGS523[book])) return "unknown book " + JSON.stringify(book) + " - not in her flag table - no order (fix558)";
     const w = B.auditGrade523(book, sym, Number(q.c), side);
     if (w) return "the last line (fix524): " + w;
-    if (!B.turnFlip530(sym, side, Number(q.c))) return "HER FLIP AT THE SEND (fix592): no 2-5m candle has flipped or been born " + (side === "up" ? "green" : "red") + " and pushed " + (sym === "gold" ? "10c" : "$5") + " past its open - no order."; // fix592 (Love Nov 1 2026 9:03 AM PT: "add the last-line check so the order does not leave unless one of those two paths passes on the live tick")
+    const l597 = B.labelHold597(book, sym, (globalThis as any).__sessCarried?.[sym] === true, String(sameLine?.label || "")); if (l597) return l597; /* fix597 */ if (!B.turnFlip530(sym, side, Number(q.c))) return "HER FLIP AT THE SEND (fix592): no 2-5m candle has flipped or been born " + (side === "up" ? "green" : "red") + " and pushed " + (sym === "gold" ? "10c" : "$5") + " past its open - no order."; // fix592 (Love Nov 1 2026 9:03 AM PT: "add the last-line check so the order does not leave unless one of those two paths passes on the live tick")
     const L593 = (globalThis as any).__lawBands?.[sym]?.L; if (!Array.isArray(L593) || !L593.length) return "SESSION BAND AT THE SEND (fix593): the board can't be read - no order."; const sb593 = B.sessionBandSend593(sym, L593, Number(q.c), side); if (sb593) return sb593; const z594 = B.zoneSend594(sym, L593, Number(q.c), side); if (z594) return z594; const s595 = B.sameSideSend595(sym, L593, Number(q.c), side); if (s595) return s595; // fix593 (Love Nov 1 2026 9:11-9:19 AM PT): her session-band scale on the live tick at the last line; pink is not part of this check
     return "";
   } catch { return "the last line could not be judged - no order (fix524)"; }
@@ -1665,6 +1665,29 @@ async function restTakeProfit(ticker, pos, sellPx, closeTimeIso) {
 // ADD-ON (Love, Oct 4 ~2:45 AM PT: "just add in the $5 positions at a rejection of a band if price rejects, that way price
 // going down is happy thing"). One $5 IOC buy on the side she already holds, never above maxAsk. Its own path because the
 // one-order-per-window lock in sendOrder would refuse it; it still goes through kalshi(), so the live switch guards it.
+// HER $5 ADD-ON AT 2.8x (fix600, Love Nov 1 2026 12:27 PM PT: "The $5 add-on at 2.8x+ is in. Trigger: add as soon as price reaches 2.8x. No band-touch requirement. Gates: the add-on must pass the umpire SAFE stamp, the live switch, the entries switch, and the $5 cap. It skips the band walls and the flip. That is the only exception."): its own path, so addOnBuy below stays refused for the top-up and the silver hedge.
+async function addOnBuy600(ticker, side, dollars, maxAsk) {
+  const no = (reason) => ({ ok: false, reason: `ADD-ON (fix600): ${reason} - no order` });
+  try { const v600 = JSON.parse(readFileSync(join(process.cwd(), "data", "UMPIRE-VERDICT.json"), "utf8")); if (v600?.ok !== true) return no("the umpire is not SAFE"); } catch { return no("the umpire stamp can't be read"); }
+  { const ug600 = (globalThis as any).__umpGate461, u600 = typeof ug600 === "function" ? ug600("recon-rej") : "the umpire gate is not running"; if (u600) return no(String(u600).slice(0, 160)); }
+  if (!liveOn()) return no("the live switch is off");
+  try { if (JSON.parse(readFileSync(join(process.cwd(), "data", "halt.json"), "utf8")).off !== false) return no("entries are off"); } catch { return no("the entries switch can't be read"); }
+  if (!(Number(dollars) > 0 && Number(dollars) <= 5)) return no(`$${dollars} is over her $5 cap`);
+  { const lk = windowLockSide(ticker); if (lk && lk !== side) return no(`window is ${lk === "up" ? "LONG" : "SHORT"} only`); }
+  const quote = await liveAsks(ticker);
+  const ask = side === "up" ? quote?.yesAsk : quote?.noAsk;
+  if (!(ask > 0.02) || ask > maxAsk + 1e-9) return { ok: false, reason: `ask ${ask ?? "?"} over ${maxAsk}` };
+  const px = Math.min(maxAsk, Math.round((ask + 0.01) * 100) / 100);
+  const count = Math.floor(Number(dollars) / px * 100) / 100;
+  if (!(count >= 0.01)) return { ok: false, reason: "size" };
+  const aoBody = { ticker, client_order_id: randomUUID(), side: side === "up" ? "bid" : "ask", count: count.toFixed(2), price: money(side === "up" ? px : Math.round((1 - px) * 100) / 100), time_in_force: "immediate_or_cancel", self_trade_prevention_type: "taker_at_cross", post_only: false, reduce_only: false, cancel_order_on_pause: true, exchange_index: 2 };
+  twinAddBodies.add(aoBody); // fix600: skips the band walls at the wire, her one exception
+  const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", aoBody);
+  if (!res.ok) { const text = await res.text().catch(() => ""); return { ok: false, reason: `refused: ${text.slice(0, 120)}` }; }
+  const data = await res.json();
+  const filled = Number.parseFloat(data.fill_count ?? "0") || 0;
+  return { ok: filled > 0, filled, px, ask, orderId: data.order_id, reason: filled > 0 ? "" : "no fill" };
+}
 async function addOnBuy(ticker, side, dollars, maxAsk, free = false) {
   return { ok: false, reason: "ADD-ON DISABLED (fix524, Love Oct 30 2026 1:36 PM PT: \"Disable it. Hard refusal. It does not remain as a path that can send without the umpire.\")" }; // the body below is dead and never runs
   { const lk = windowLockSide(ticker); if (lk && lk !== side) return { ok: false, reason: `directional lock: window is ${lk === "up" ? "LONG" : "SHORT"} only` }; }
@@ -3041,6 +3064,7 @@ export {
   rfqProbe,
   allPositions,
   addOnBuy,
+  addOnBuy600,
   cancelLiveOrder,
   restTakeProfit,
   cancelTpRest,

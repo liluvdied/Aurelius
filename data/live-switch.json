@@ -1,9 +1,9 @@
 {
   "live": true,
-  "maxDollars": 1,
+  "maxDollars": 5,
   "cooldownAfterLoss": true,
   "route": "paper",
-  "at": "2026-11-01T18:50:17.280Z",
+  "at": "2026-11-01T20:51:05.951Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -125,8 +125,8 @@
       "recon-rej",
       "recon-dly"
     ],
-    "dollars": 1,
-    "since": "2026-11-01T18:50:17.282Z",
+    "dollars": 5,
+    "since": "2026-11-01T20:51:05.953Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -290,9 +290,9 @@
       "maxAsk": 0.263,
       "note": "fix175 Oct 24 ~9:48 PM PT, Love: DELAYED twin Kalshi add-on $4 (was $3) | fix190 Oct 25 ~2:09 AM PT, Love: 'then we can raise her add on to $5, those are working as intended' -> $5"
     },
-    "on": false,
+    "on": true,
     "dollars": 5,
-    "maxAsk": 0.263,
+    "maxAsk": 0.357,
     "minLeft": 2,
     "note": "Oct 20 ~12:04 AM PT, Love: \"when i said no limit i was talking about the multiple she could enter into - not no limit on how many times she could add on. limit it to 1 add on of $2 please. one of them\" - ONE $2 add per position, at a rejection her way, any multiple 3.8x or higher (maxAsk 26.3c, no ceiling on the multiple). No noLimit flag: the once-per-window gate enforces exactly one.",
     "second": {
@@ -339,14 +339,6 @@
       "recon-dly",
       "recon-togp"
     ]
-  },
-  "snipe": {
-    "on": true,
-    "dollars": 1,
-    "maxDist": 20,
-    "minLeft": 60,
-    "maxLeft": 180,
-    "maxAsk": 0.05
   },
   "polyLive": false,
   "polyMirror": {
@@ -1542,7 +1534,7 @@
   "dlyLiveNote": "Oct 20 ~9:43 PM PT, Love: delayed entry model live at $1 in her off hours, picked 'Her old rest hours' (2, 4, 6, 7, 9, 10, 11 AM, 6, 8, 9 PM PT): recon-dly live those hours at $1 (bookDollars), recon-tog sits them out (bookSkipHours); TOGETHER trades every other hour at the slider. | Oct 20 ~9:44 PM PT, Love: \"add 2pm & 4pm too\" -> off hours 2, 4, 6, 7, 9, 10, 11 AM, 2, 4, 6, 8, 9 PM PT. | Oct 20 9:54 PM PT Love: \"we can go ahead and do $2 for her off hours hun\" - delayed twin $2.",
   "offHourMain": {
     "on": true,
-    "dollars": 1,
+    "dollars": 5,
     "addOn": {
       "dollars": 5,
       "maxAsk": 0.357,
