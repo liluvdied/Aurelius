@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R324 - fix628 the no-removal and no-switch-off gates accept a schedule setting whose value is exactly what her pill approved in data/schedule-approved.json. Any other value or setting is still judged.
+- when: 2026-11-02T07:09:05+00:00
+- Love: "Love Nov 1 2026 10:44 PM PT: "yes please allow me to change the schedule at will without tripping the umpire this was requested yesterday""
+- books: n, o,  , b, o, o, k,  , c, h, a, n, g, e, s, .
+- status: ACTIVE
+- proof: {"code": "tools/no-removal-gate.py", "has": "def pill_ok628(new):"}
+- proof: {"code": "tools/no-switch-off-gate.py", "has": "G[\"pill_ok628\"](new)"}
+
 ## R323 - fix626 the schedule pill's delayed button now seats the pure no-pink model. An hour tapped to it, recon-rnp rows reach the copier as recon-tog rows, so main's door, last line, umpire, holds, size and add-on judge them. Delayed stops trading live.
 - when: 2026-11-02T06:37:10+00:00
 - Love: "Love Nov 1 2026 10:18 PM PT: "EVERYTHING THE SAME. JUST. PINKS. EXCLUDED. PLEASE DO NOT ASK ME AGAIN. EVERYTHING 1:1 WITH ALL OF THE SETTINGS I JUST DID WITH YOU. PINKS. EXCLUDED. THAT IS IT. just replace the delayed models button with that one for right now bb. I will click it myself can you do that?" + 10:14 PM: "no i mean placing the pure no pink model on live right now can we do it?""
@@ -2403,7 +2411,7 @@ add on of $5 can stay AFTER I CONFIRM SHES WORKING.""
 - when: 2026-10-28T19:20:27+00:00
 - Love: "and yes, pure no pink for btc always pls"
 - books: recon-np btc, recon-dly btc (Kalshi only)
-- status: ACTIVE
+- status: RETIRED - Love: "Love Nov 1 2026 10:18 PM PT: "just replace the delayed models button with that one for right now bb. I will click it myself" (fix627: her hours on that button open bookSkipHoursByAsset.btc.recon-dly)"
 - proof: {"config": "data/live-switch.json", "key": "bookSkipHoursByAsset.btc.recon-dly", "equals": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}
 
 ## R072 - fix386: $2.50 entry, $7 first add-on, $5 second add-on for main, rejection, no-pink copy, sovereign twin, pure no-pink (Kalshi). Delayed twin + Poly 5M unchanged. Supersedes fix384 $10/$5/$5.

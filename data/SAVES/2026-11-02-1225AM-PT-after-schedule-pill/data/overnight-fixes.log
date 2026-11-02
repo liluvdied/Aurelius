@@ -2703,3 +2703,11 @@ LIVE back on after fix425 2026-10-29T02:37:06.682417+00:00 ({'engine.ts': 'bc53a
 2026-11-02T06:36:40Z R322 fix625 (Love, FIX625-PURE-NO-PINK-CARD.command): a new card for the pure no-pink model with a fresh record
 2026-11-02T06:37:10Z R323 fix626 (Love, FIX626-DELAYED-BUTTON-IS-PURE-NO-PINK.command): the delayed button seats the pure no-pink model, on the main path, only in hours she taps
 2026-11-02T06:38:57.418Z HOURS (Love, in-app schedule pill): 10 PM PT -> DELAYED twin
+2026-11-02T06:38:58.353Z HOURS (Love, in-app schedule pill): 10 PM PT -> DELAYED twin
+2026-11-02T06:44:54.319730Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+2026-11-02T06:54:19Z fix627 (Love, CLEAR-MY-TAP.command): R075 retired, fresh save after her 10 PM tap to the pure no-pink button
+2026-11-02T07:04:58.876Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (BTC only)
+2026-11-02T07:05:00.365Z HOURS (Love, in-app schedule pill): 11 PM PT -> DELAYED twin
+2026-11-02T07:05:01.135Z HOURS (Love, in-app schedule pill): 11 PM PT -> DELAYED twin
+2026-11-02T07:09:05Z R324 fix628 (Love, FIX628-TAP-AT-WILL.command): schedule pill taps no longer trip the umpire gates
+2026-11-02T07:25:54.535Z HOURS (Love, in-app schedule pill): 10 PM PT -> REJECTION model (BTC only)

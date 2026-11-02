@@ -6422,3 +6422,28 @@
 {"at":"2026-11-02T06:25:11.632Z","ticker":"KXGOLD15M-26NOV020130-30","px":0.87,"qty":24.38,"bid":0.11,"had":{"id":null,"px":0.8,"qty":24.38,"failed":true}}
 {"at":"2026-11-02T06:30:26.362Z","ticker":"KXGOLD15M-26NOV020130-30","cancel":"position closed - every resting order on it is null and void (fix516)"}
 {"at":"2026-11-02T06:45:26.361Z","ticker":"KXGOLD15M-26NOV020145-45","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-02T06:52:31.355Z","ticker":"KXGOLD15M-26NOV020200-00","px":0.91,"qty":21.75,"bid":0.12,"had":null}
+{"at":"2026-11-02T06:52:34.272Z","ticker":"KXGOLD15M-26NOV020200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-02T06:52:36.970Z","ticker":"KXBTC15M-26NOV020200-00","px":0.92,"qty":10.97,"bid":0.27,"had":null}
+{"at":"2026-11-02T06:52:37.047Z","ticker":"KXGOLD15M-26NOV020200-00","px":0.91,"qty":21.75,"bid":0.12,"had":null}
+{"at":"2026-11-02T06:52:39.361Z","ticker":"KXBTC15M-26NOV020200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-02T06:52:42.406Z","ticker":"KXBTC15M-26NOV020200-00","px":0.92,"qty":10.97,"bid":0.25,"had":null}
+{"at":"2026-11-02T06:55:55.350Z","ticker":"KXBTC15M-26NOV020200-00","px":0.79,"qty":10.97,"bid":0.65,"had":{"id":null,"px":0.92,"qty":10.97,"failed":true}}
+{"at":"2026-11-02T06:56:01.700Z","ticker":"KXGOLD15M-26NOV020200-00","px":0.79,"qty":21.75,"bid":0.16,"had":{"id":null,"px":0.91,"qty":21.75,"failed":true}}
+{"at":"2026-11-02T06:56:26.680Z","ticker":"KXBTC15M-26NOV020200-00","px":0.91,"qty":10.97,"bid":0.61,"had":{"id":null,"px":0.79,"qty":10.97,"failed":true}}
+{"at":"2026-11-02T06:56:31.877Z","ticker":"KXGOLD15M-26NOV020200-00","px":0.9,"qty":21.75,"bid":0.09,"had":{"id":null,"px":0.79,"qty":21.75,"failed":true}}
+{"at":"2026-11-02T07:00:07.971Z","ticker":"KXBTC15M-26NOV020200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-02T07:00:27.600Z","ticker":"KXGOLD15M-26NOV020200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-02T07:00:36.032Z","ticker":"KXBTC15M-26NOV020215-15","px":0.95,"qty":7.57,"bid":0.61,"had":null}
+{"at":"2026-11-02T07:15:06.606Z","ticker":"KXBTC15M-26NOV020215-15","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-02T07:15:19.150Z","ticker":"KXGOLD15M-26NOV020215-15","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-02T07:15:28.529Z","ticker":"KXGOLD15M-26NOV020230-30","px":0.96,"qty":8.19,"bid":0.6,"had":null}
+{"at":"2026-11-02T07:16:07.745Z","ticker":"KXBTC15M-26NOV020230-30","px":0.96,"qty":7.81,"bid":0.63,"had":null}
+{"at":"2026-11-02T07:18:57.695Z","ticker":"KXBTC15M-26NOV020230-30","px":0.94,"qty":22.51,"bid":0.32,"had":{"id":"01a19b1d-8ec0-79db-b7a0-dd0367fe7e99","px":0.96,"qty":7.81,"failed":false}}
+{"at":"2026-11-02T07:23:20.833Z","ticker":"KXGOLD15M-26NOV020230-30","px":0.94,"qty":22.89,"bid":0.32,"had":{"id":"01a19b1c-f280-73b7-9a8d-13f12d2d7ff0","px":0.96,"qty":8.19,"failed":false}}
+{"at":"2026-11-02T07:27:31.278Z","ticker":"KXGOLD15M-26NOV020230-30","px":0.94,"qty":22.89,"bid":0.83,"had":null}
+{"at":"2026-11-02T07:27:33.131Z","ticker":"KXGOLD15M-26NOV020230-30","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-02T07:27:55.647Z","ticker":"KXBTC15M-26NOV020230-30","px":0.87,"qty":22.51,"bid":0.15,"had":{"id":"01a19b20-26d0-7306-bb47-2ef821d19545","px":0.94,"qty":22.51,"failed":false}}
+{"at":"2026-11-02T07:30:06.930Z","ticker":"KXBTC15M-26NOV020230-30","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-02T07:45:07.822Z","ticker":"KXBTC15M-26NOV020245-45","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-02T07:45:35.913Z","ticker":"KXGOLD15M-26NOV020245-45","cancel":"position closed - every resting order on it is null and void (fix516)"}

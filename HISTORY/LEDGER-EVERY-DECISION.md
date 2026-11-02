@@ -1,9 +1,41 @@
-# Every decision Love has made - rebuilt 2026-11-02T06:44:19.215732+00:00
+# Every decision Love has made - rebuilt 2026-11-02T07:26:20.486487+00:00
 
-1485 decisions with Love's words or card picks, out of 2239 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1495 decisions with Love's words or card picks, out of 2249 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-02T07:25:59.353Z  ·  diary line 2716
+- Full entry: 2026-11-02T07:25:59.353Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (GOLD only)
+
+## 2026-11-02T07:25:58.422Z  ·  diary line 2715
+- Full entry: 2026-11-02T07:25:58.422Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (BTC only)
+
+## 2026-11-02T07:25:56.680Z  ·  diary line 2714
+- Full entry: 2026-11-02T07:25:56.680Z HOURS (Love, in-app schedule pill): 10 PM PT -> DELAYED twin
+
+## 2026-11-02T07:25:54.535Z  ·  diary line 2713
+- Full entry: 2026-11-02T07:25:54.535Z HOURS (Love, in-app schedule pill): 10 PM PT -> REJECTION model (BTC only)
+
+## 2026-11-02T07:09:05Z  ·  diary line 2712  ·  fix628
+- fix628 in her code without its number (see her words in the code comments)
+- Full entry: 2026-11-02T07:09:05Z R324 fix628 (Love, FIX628-TAP-AT-WILL.command): schedule pill taps no longer trip the umpire gates
+
+## 2026-11-02T07:05:01.135Z  ·  diary line 2711
+- Full entry: 2026-11-02T07:05:01.135Z HOURS (Love, in-app schedule pill): 11 PM PT -> DELAYED twin
+
+## 2026-11-02T07:05:00.365Z  ·  diary line 2710
+- Full entry: 2026-11-02T07:05:00.365Z HOURS (Love, in-app schedule pill): 11 PM PT -> DELAYED twin
+
+## 2026-11-02T07:04:58.876Z  ·  diary line 2709
+- Full entry: 2026-11-02T07:04:58.876Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (BTC only)
+
+## 2026-11-02T06:54:19Z  ·  diary line 2708  ·  fix627
+- fix627 in her code without its number (see her words in the code comments)
+- Full entry: 2026-11-02T06:54:19Z fix627 (Love, CLEAR-MY-TAP.command): R075 retired, fresh save after her 10 PM tap to the pure no-pink button
+
+## 2026-11-02T06:44:54.319730Z  ·  diary line 2707
+- Full entry: 2026-11-02T06:44:54.319730Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
 
 ## 2026-11-02T06:38:58.353Z  ·  diary line 2706
 - Full entry: 2026-11-02T06:38:58.353Z HOURS (Love, in-app schedule pill): 10 PM PT -> DELAYED twin
