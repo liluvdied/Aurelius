@@ -1,9 +1,59 @@
-# Every decision Love has made - rebuilt 2026-11-02T05:46:12.778233+00:00
+# Every decision Love has made - rebuilt 2026-11-02T06:44:19.215732+00:00
 
-1472 decisions with Love's words or card picks, out of 2226 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1485 decisions with Love's words or card picks, out of 2239 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-02T06:38:58.353Z  ·  diary line 2706
+- Full entry: 2026-11-02T06:38:58.353Z HOURS (Love, in-app schedule pill): 10 PM PT -> DELAYED twin
+
+## 2026-11-02T06:38:57.418Z  ·  diary line 2705
+- Full entry: 2026-11-02T06:38:57.418Z HOURS (Love, in-app schedule pill): 10 PM PT -> DELAYED twin
+
+## 2026-11-02T06:37:10Z  ·  diary line 2704  ·  fix626
+- fix626 IN HER CODE
+- Full entry: 2026-11-02T06:37:10Z R323 fix626 (Love, FIX626-DELAYED-BUTTON-IS-PURE-NO-PINK.command): the delayed button seats the pure no-pink model, on the main path, only in hours she taps
+
+## 2026-11-02T06:36:40Z  ·  diary line 2703  ·  fix625
+- fix625 IN HER CODE
+- Full entry: 2026-11-02T06:36:40Z R322 fix625 (Love, FIX625-PURE-NO-PINK-CARD.command): a new card for the pure no-pink model with a fresh record
+
+## 2026-11-02T06:04:45Z  ·  diary line 2702  ·  fix624
+- fix624 IN HER CODE
+- Full entry: 2026-11-02T06:04:45Z R321 fix624 (Love, FIX624-TWIN-IS-MAIN-NO-PINK.command): paper twin recon-rnp is main without pink entries
+
+## 2026-11-02T06:03:56Z  ·  diary line 2701  ·  fix623
+- fix623 IN HER CODE
+- Full entry: 2026-11-02T06:03:56Z R320 fix623 (Love, FIX623-MID-CHANNEL-PINK-NOT-A-WALL.command): a mid-channel pink is not a wall; her cushion and the stacked check stay
+
+## 2026-11-02T05:52:45Z  ·  diary line 2700  ·  fix621
+- fix621 IN HER CODE
+- Full entry: 2026-11-02T05:52:45Z R319 fix621 (Love, FIX621-READ-LOOP-ON-CHANGE.command): two tick readers of live-paper-book.json share the one parsed copy
+
+## 2026-11-02T05:50:36Z  ·  diary line 2699  ·  fix620
+- fix620 IN HER CODE
+- Full entry: 2026-11-02T05:50:36Z R318 fix620 (Love, FIX620-PAPER-TWIN-NO-PINK.command): paper twin recon-rnp, the rejection book without pink entries
+
+## 2026-11-02T05:49:40Z  ·  diary line 2698  ·  fix619
+- fix619 IN HER CODE
+- Full entry: 2026-11-02T05:49:40Z R317 fix619 (Love, FIX619-ANY-2-5M-FLIP.command): any 2-5m flip or born colour off a band or zone is her entry, not only the 5m
+
+## 2026-11-02T05:48:51Z  ·  diary line 2697  ·  fix618
+- fix618 IN HER CODE
+- Full entry: 2026-11-02T05:48:51Z R316 fix618 (Love, FIX618-SAME-ENTRY-LOGIC.command): the same entry logic on gold and BTC, session band ahead of the pink, her named rules kept
+
+## 2026-11-02T05:48:17Z  ·  diary line 2696  ·  fix617
+- fix617 IN HER CODE
+- Full entry: 2026-11-02T05:48:17Z R315 fix617 (Love, FIX617-CARRY-BANDS-ALSO.command): carry bands also, extra lines for rejections and breaks until 80
+
+## 2026-11-02T05:47:17Z  ·  diary line 2695  ·  fix616
+- fix616 IN HER CODE
+- Full entry: 2026-11-02T05:47:17Z R314 fix616 (Love, FIX616-READ-BOOK-ON-CHANGE.command): live-paper-book.json read from disk only when it changes
+
+## 2026-11-02T05:46:37Z  ·  diary line 2694  ·  fix615
+- fix615 IN HER CODE
+- Full entry: 2026-11-02T05:46:37Z R313 fix615 (Love, FIX615-PINK-CUSHION-SCALE.command): the pink cushion scale, BTC and gold each their own, nothing else
 
 ## 2026-11-02T05:45:32Z  ·  diary line 2693  ·  fix601
 - fix601 IN HER CODE

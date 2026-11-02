@@ -9,8 +9,9 @@ const NAME: Record<string, string> = {
   "recon-rej": "REJECTION 🔁",
   "recon-togp": "NO-PINK COPY 🩷",
   "recon-np": "PURE NO-PINK 🤍",
+  "recon-rnp": "MAIN WITHOUT PINK 🤍", // fix625
   "recon-sov": "SOVEREIGN TWIN 👑",
-  "recon-dly": "DELAYED TWIN ⏳",
+  "recon-dly": "PURE NO PINK 🤍", // fix626: the delayed button
 };
 const UP = "#3ddc84";
 const DOWN = "#ff5c5c";

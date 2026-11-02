@@ -1,0 +1,79 @@
+// BREAKER (Claude, Oct 12 ~7:30 AM PT, Love: "no need to change anything unless there is a sudden sharp drop in her
+// performance... within a 2 hour window could we have it trigger an alarm"). Watches only, once a minute, and PAUSES NEW
+// ENTRIES (halt.json, the same switch as her LIVE button) when one of these happens. Open trades keep their exits. It never
+// turns her back on by itself (the old auto pause/resume loop is why: Oct 2), that's her LIVE button or her yes.
+//  1. the bots' settled live trades over the last 2 hours are down $80 or more
+//  2. 5 bot losses in a row
+//  3. a post-fill NEVER BACKWARDS alarm (Kalshi held the opposite side of a copy)
+//  4. a model file no longer matches its approved hash
+// Status: data/breaker.json. Thresholds: live-switch breaker { on, drop2h, streak }.
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+const D = (f: string) => join(process.cwd(), "data", f);
+const r2 = (n: number) => Math.round(n * 100) / 100;
+const g = globalThis as unknown as { __brAt?: number };
+const rd = (f: string, d: any) => { try { return existsSync(D(f)) ? JSON.parse(readFileSync(D(f), "utf8")) : d; } catch { return d; } };
+
+export function breakerTick() {
+  if (g.__brAt && Date.now() - g.__brAt < 60000) return;
+  g.__brAt = Date.now();
+  try {
+    const cfg = rd("live-switch.json", {})?.breaker ?? {};
+    if (cfg.on === false) return;
+    // JUST 9 IN A ROW (Oct 16 ~2:15 AM PT, Love: "we set it to just 9 losses in a row luv, remember?"): drop2h 0 = no 2-hour $ trip.
+    const drop2h = cfg.drop2h === 0 ? 0 : Number(cfg.drop2h) || 80;
+    const streakN = Number(cfg.streak) || 5;
+    const prev = rd("breaker.json", {});
+    // bot-copied tickers (her hand-only trades don't count)
+    const done = rd("live-book-done.json", {});
+    const bot = new Set<string>();
+    for (const v of Object.values(done) as any[]) if (v && ["filled", "partial"].includes(v.status) && v.ticker) bot.add(String(v.ticker));
+    const trades = (rd("live-paper-book.json", {})?.trades ?? []).filter((t: any) => t.source === "live" && t.closedAt && Number.isFinite(Number(t.profit)) && bot.has(String(t.ticker)));
+    trades.sort((a: any, b: any) => Date.parse(b.closedAt) - Date.parse(a.closedAt));
+    const since = Date.now() - 2 * 3600 * 1000;
+    const recent = trades.filter((t: any) => Date.parse(t.closedAt) >= since);
+    const pnl2h = r2(recent.reduce((a: number, t: any) => a + Number(t.profit), 0));
+    // RE-ARM FIX (Oct 15 ~12:15 PM PT): the streak had no time window, so a stale run of losses re-tripped the breaker
+    // minutes after Love cleared it, before a single new trade - a deadlock ("turn her back on with LIVE" could never hold).
+    // Trades closed before the latest clear (halt.off false, halt.at) no longer count toward the streak; the 9-in-a-row and
+    // $222/2h rules are unchanged for everything after the clear.
+    const haltEarly = rd("halt.json", {});
+    const clearedAt = haltEarly.off !== true && haltEarly.at ? Date.parse(haltEarly.at) : 0;
+    let streak = 0;
+    for (const t of trades) { if (clearedAt && Date.parse(t.closedAt) < clearedAt) break; if (Number(t.profit) < 0) streak++; else break; }
+    // post-fill backwards alarms in the last 2 hours
+    const alarms: any[] = rd("alarm.json", []);
+    const backwards = (Array.isArray(alarms) ? alarms : []).filter((a) => /^RED: .* meant .* but Kalshi holds /.test(String(a.text)) && Date.parse(a.at) >= since);
+    // model approval
+    const appr = rd("approved-model.json", {})?.files ?? {};
+    const bad: string[] = [];
+    for (const [f, h] of Object.entries(appr)) {
+      const p = [join(process.cwd(), "src/lib/desk", f), join(process.cwd(), "src/lib", f)].find((x) => existsSync(x));
+      const cur = p ? createHash("sha256").update(readFileSync(p)).digest("hex").slice(0, 16) : "missing";
+      if (cur !== h) bad.push(f);
+    }
+    const why: string[] = [];
+    if (drop2h > 0 && pnl2h <= -drop2h) why.push(`bots down $${Math.abs(pnl2h).toFixed(2)} over the last 2 hours (${recent.length} trades)`);
+    if (streak >= streakN) why.push(`${streak} bot losses in a row`);
+    if (backwards.length) why.push(`${backwards.length} backwards fill alarm(s): ${String(backwards[0].text).slice(5, 140)}`);
+    if (bad.length) why.push(`model not approved: ${bad.join(", ")} changed`);
+    const halt = rd("halt.json", {});
+    const status: any = { at: new Date().toISOString(), pnl2h, trades2h: recent.length, streak, backwards: backwards.length, modelOk: !bad.length, drop2h, streakN, tripped: prev.tripped ?? null, entriesOff: halt.off === true };
+    if (why.length && !prev.tripped) {
+      const reason = `BREAKER: ${why.join(" · ")}. New entries paused, open trades keep their exits. Turn her back on with LIVE when you're happy.`;
+      if (halt.off !== true) writeFileSync(D("halt.json"), JSON.stringify({ off: true, at: status.at, since: status.at, reason, losses: [], breaker: true }));
+      status.tripped = { at: status.at, why };
+      status.entriesOff = true;
+      const list = Array.isArray(alarms) ? alarms : [];
+      list.unshift({ at: status.at, text: `RED: ${reason}` });
+      writeFileSync(D("alarm.json"), JSON.stringify(list.slice(0, 200)));
+    }
+    // once she turns entries back on, the breaker re-arms
+    if (prev.tripped && halt.off !== true) status.tripped = null;
+    writeFileSync(D("breaker.json"), JSON.stringify(status, null, 1));
+  } catch (e) {
+    try { writeFileSync(D("breaker.json"), JSON.stringify({ at: new Date().toISOString(), error: String(e).slice(0, 200) })); } catch {}
+  }
+}

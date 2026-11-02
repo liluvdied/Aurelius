@@ -3,7 +3,7 @@ import { spawn as spawn501 } from "node:child_process"; // fix501: the sub-audit
 import { join } from "node:path";
 import { readySpine, spineOwns } from "./spine-ready";
 import { autoDecision, bandBetween, bandInWay, brokeUnder, closeByBand, closedThrough, offList, primeLabel, shortBandOnTarget, shortTap, survivalBlock, underBand, winningSetup } from "./auto";
-import { readBook, writeBook } from "./book";
+import { readBook, readBookShared, writeBook } from "./book"; // fix621
 import { readFillLog } from "./fill-log";
 import { goldHaltFill, goldHalted } from "./hours";
 import { bandBank, bandBreak, bandInTheWay, bandNear, catchPct, clampTrail, closeEnough, exitTargetPct, flipped, gateStep, keepGreen, legalSide, markTrade, midBand, newId, noteFour, proveGate, quoteSale, saleCall, screenBid, settleSide, smallTicket, targetKiss, tenVwapWall, tpGates, trailCatch, trailScale, vwapSitsBetween, windowStillOpen } from "./paper";
@@ -67,6 +67,20 @@ function bookOwnerOf(ticker) {
 // offHourMain.rejHoursByAsset { gold: [..], btc: [..] } = the rejection model's hours per asset; an asset without a list falls back to offHourMain.rejHours.
 const skipHrsA = (sw: any, book: string, asset: any): any => { const m = sw?.bookSkipHoursByAsset?.[String(asset || "").toLowerCase()]?.[book]; return Array.isArray(m) ? m : sw?.bookSkipHours?.[book]; }; // HOURS PER ASSET (fix278, Oct 26 ~12:25 PM PT, Love: "could you add in the ability to shift the individual assets to individual books on the schedule? ... i tried to only change gold, and it changed both books"): live-switch bookSkipHoursByAsset { btc|gold: { book: [PT hours] } } - an asset with its own list follows it, else bookSkipHours.
 function rjA(om: any, a: any): number[] { const m = om?.rejHoursByAsset?.[String(a || "").toLowerCase()]; return Array.isArray(m) ? m.map(Number) : Array.isArray(om?.rejHours) ? om.rejHours.map(Number) : []; }
+// fix626 THE DELAYED BUTTON IS THE PURE NO-PINK MODEL (Love Nov 1 2026 10:18 PM PT: "EVERYTHING 1:1 WITH ALL OF THE SETTINGS I JUST DID WITH YOU. PINKS. EXCLUDED. ... just replace the delayed models button with that one for right now bb. I will click it myself"): an hour she taps to that button, the twin's rows reach the copier AS main's rows, so main's door, last line, umpire, holds, size, add-on and exits judge them. Delayed stops trading live. No tap, no row.
+function pureRows626(rs: any[]): any[] {
+  let sw: any = null; try { sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")); } catch { sw = null; }
+  const h = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24;
+  const out: any[] = [];
+  for (const r of rs) {
+    if (r?.book === "recon-dly") continue;
+    if (r?.book !== "recon-rnp") { out.push(r); continue; }
+    const dS = sw ? skipHrsA(sw, "recon-dly", r.asset) : null;
+    if (!Array.isArray(dS) || dS.map(Number).includes(h)) continue;
+    out.push({ ...r, id: `${r.ticker}:recon-tog:${String(r.id).split(":recon-rnp:")[1]}`, book: "recon-tog", pure626: true });
+  }
+  return out;
+}
 function offHourMain(asset?: string): { dollars: number; aoDollars: number; aoMax: number } | null {
   try {
     const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"));
@@ -4018,7 +4032,7 @@ async function tick() {
         g.__aureliusWatchAt = Date.now();
         const live = await import("./kalshi-live.server");
         await Promise.race([
-          live.watchAccount(readBook().trades),
+          live.watchAccount(readBookShared().trades), // fix621 (Love Nov 1 2026 8:32 PM PT: "the full read-loop speed fix"): only looked at
           new Promise((resolve) => setTimeout(resolve, 4000)),
         ]);
       }
@@ -4507,7 +4521,7 @@ async function copyPaperBook(assets) {
     const text = String(label || "").replace(/−/g, "-").replace(/\s+/g, " ").trim();
     return /^tap-reject at /i.test(text) || /^close above /i.test(text) || /^close below /i.test(text) || /^open /i.test(text);
   };
-  const trades = readBook().trades;
+  const trades = readBookShared().trades; // fix621: only looked at
   const paper = trades.filter((t) => t && t.source !== "live" && t.venue !== "polymarket" && !t.probe && (t.asset === "btc" || t.asset === "gold"));
   const open = paper.filter((t) => t.result === "open" && shape(t.patternLabel));
   const ready = [];
@@ -4691,7 +4705,7 @@ async function copyLiveBook(assets, lane = "") {
       extraRows = [];
     }
     // (Oct 19 ~2:01 PM PT, Love: "when she takes one let kalshi take one"): every session + pink trade goes to Kalshi now - the pink-only filter is gone.
-    rows = [...nb.listNight(), ...extraRows].filter((r) => books.includes(r.book) && /15M-/.test(String(r.ticker)) && !r.dnaMode && !r.stale && (!lane || copyLaneOf(r.ticker) === lane) && !finished(done[r.id]) && Date.parse(r.at) >= Math.max(Date.parse(cfg.since || 0), Date.now() - 3 * 3600 * 1000));
+    rows = pureRows626([...nb.listNight(), ...extraRows]).filter((r) => books.includes(r.book) && /15M-/.test(String(r.ticker)) && !r.dnaMode && !r.stale && (!lane || copyLaneOf(r.ticker) === lane) && !finished(done[r.id]) && Date.parse(r.at) >= Math.max(Date.parse(cfg.since || 0), Date.now() - 3 * 3600 * 1000));
     // FRESH SIGNALS FIRST (Oct 15 ~6:35 PM PT, Love: "work on the fast rails for the pivot break books so they're ready
     // for the next window pls"). The pass works rows in list order with awaited gate checks, so a BRAND-NEW signal used
     // to stand in line behind every retrying straggler: brk10's 9:30 entry fired on paper at 01:15:37 and reached
@@ -4758,7 +4772,7 @@ async function copyLiveBook(assets, lane = "") {
     try {
       const nbQ = await import("./nightbook");
       const ogQ = await import("./grokog");
-      const freshQ = [...nbQ.listNight(), ...(ogQ.asNightRows() as typeof rows)].filter((r) => books.includes(r.book) && /15M-/.test(String(r.ticker)) && !r.dnaMode && !r.stale && (!lane || copyLaneOf(r.ticker) === lane) && !seenQ.has(r.id) && !done[r.id] && Date.parse(r.at) >= Date.now() - 10 * 60 * 1000);
+      const freshQ = pureRows626([...nbQ.listNight(), ...(ogQ.asNightRows() as typeof rows)]).filter((r) => books.includes(r.book) && /15M-/.test(String(r.ticker)) && !r.dnaMode && !r.stale && (!lane || copyLaneOf(r.ticker) === lane) && !seenQ.has(r.id) && !done[r.id] && Date.parse(r.at) >= Date.now() - 10 * 60 * 1000);
       for (const fr of freshQ) { seenQ.add(fr.id); rows.splice(qi, 0, fr); }
     } catch {
     }
@@ -4979,14 +4993,14 @@ async function copyLiveBook(assets, lane = "") {
       // main book and the rejection model sit out live.
       { const dS = skipHrsA(sw, "recon-dly", row.asset); const lbB = sw?.liveBook?.books; // fix278: per asset
         const twH = Array.isArray(lbB) && lbB.includes("recon-dly") && Array.isArray(dS) && !dS.map(Number).includes(hNow);
-        if (twH && (row.book === "recon-tog" || row.book === "recon-rej" || row.book === "recon-togp") && done[row.id]?.status !== "partial") { // fix281: the no-pink copy sits the twin hours out too
+        if (twH && !(row as any).pure626 /* fix626 */ && (row.book === "recon-tog" || row.book === "recon-rej" || row.book === "recon-togp") && done[row.id]?.status !== "partial") { // fix281: the no-pink copy sits the twin hours out too
           done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: "the DELAYED twin takes this hour live (Love, Oct 23)" };
           continue;
         } }
       { const omR = sw?.offHourMain; const rjH = omR?.on === true && rjA(omR, row.asset).includes(hNow); // fix243: per asset
         // fix281 (fix281, Oct 26 ~1:10 PM PT, Love: "copy paste the main book onto a fresh paper twin that excludes pink trades only ... same entry logic, speed and execution ... we will put that book on for the rejection models hours"): with recon-togp on liveBook.books, the no-pink copy of the main book takes her rejection hours live and recon-rej stays paper.
         const tpOn = Array.isArray(sw?.liveBook?.books) && sw.liveBook.books.includes("recon-togp");
-        if (((row.book === "recon-rej" && (!rjH || tpOn)) || (row.book === "recon-togp" && !rjH) || (row.book === "recon-tog" && rjH)) && done[row.id]?.status !== "partial") {
+        if (!(row as any).pure626 /* fix626 */ && ((row.book === "recon-rej" && (!rjH || tpOn)) || (row.book === "recon-togp" && !rjH) || (row.book === "recon-tog" && rjH)) && done[row.id]?.status !== "partial") {
           done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: row.book === "recon-togp" ? "THE NO-PINK COPY trades live only in Love's rejection hours" : row.book === "recon-rej" && rjH ? "the NO-PINK copy of the main book takes the rejection hours live (Love, Oct 26)" : rjH ? (tpOn ? "the NO-PINK copy takes this hour live (Love, Oct 26)" : "the REJECTION model takes this hour live (Love, Oct 23)") : "REJECTION trades live only in Love's rejection hours" };
           continue;
         } }
@@ -5065,7 +5079,7 @@ async function copyLiveBook(assets, lane = "") {
     try {
       // Oct 6 ~6:10 AM PT (Love: COTC did it too, "can you ensure thats on for the night"): every live book's gold trades.
       // Never on a copy already holding a partial fill (Oct 6: a re-check 16 s later wiped a live BRICK·TVC fill to "skipped").
-      if (row.asset === "gold" && done[row.id]?.status !== "partial") {
+      if (false /* fix618 */ && row.asset === "gold" && done[row.id]?.status !== "partial") {
         const bnAll = JSON.parse(readFileSync(join(process.cwd(), "data", "bands-now.json"), "utf8"));
         const bn = bnAll?.gold;
         // Oct 7: no lines (or stale ones) = no trade this tick, never a free pass.
@@ -5177,7 +5191,7 @@ async function copyLiveBook(assets, lane = "") {
       const bxFree = (() => { try { const bx = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.bandExempt?.btc?.[row.book]; return Array.isArray(bx) && bx.includes(row.side); } catch { return false; } })();
       // PAPER FIRES SKIP THIS TOO (Oct 16 ~2:10 AM PT, Love: "i thought the main book we were running currently didn't have any
       // band checks hun?" - her Oct 15 pick "Open all except my hand-window law"; the 04:44Z paperFires pass missed this one).
-      if (row.asset === "btc" && room > 0 && !bxFree && !pf && done[row.id]?.status !== "partial") {
+      if (false /* fix618 */ && row.asset === "btc" && room > 0 && !bxFree && !pf && done[row.id]?.status !== "partial") {
         const bnAll = JSON.parse(readFileSync(join(process.cwd(), "data", "bands-now.json"), "utf8"));
         const bn = bnAll?.btc;
         // Oct 7 (Love's 3:16 PM short into the 5m purple): missing or stale lines used to mean "nothing in front" = a free
@@ -5420,7 +5434,7 @@ async function copyLiveBook(assets, lane = "") {
     // questionnaire era) is gone outright - no time-of-day restriction on rejections exists anywhere. Her ONLY narrow-band rule is the width carry just below
     // (fix471/527), handing back at her $100 BTC / $5 gold. Pink and every wall are valid rejections at every hour on wide bands.
     // 2 PM TIL THE BANDS WIDEN (fix471, Love Oct 29 2026 2:54-2:55 PM PT: "no pp stays, make it 2pm pls" + "and not til 4. its til bands widen out enough", after 2:52 PM: "is she on the bollinger and redgren zones and pink and not session bands after 2pm????"): from the 2 PM PT session reset until that asset's new session bands widen out (pivotbooks' carry hand-back, __sessCarried: BTC sigma $180+, gold $5+), main + rejection take only pink, Bollinger, green/red zone and 5m PP calls; session-band calls are held (not final). The 3 PM rule above stays as it is.
-    if (["recon-rej", "recon-tog"].includes(String(row.book)) /* fix471: main + rejection */ && (globalThis as any).__sessCarried?.[String(row.asset)] === true /* fix471: from the 2 PM PT session reset until her session bands widen out (the carry hand-back: BTC sigma $180+, gold $5+) */ && !(() => { try { const L = ((globalThis as any).__lawBands?.[String(row.asset)]?.L || []) as any[]; const lb = String(row.setup || row.label || ""); const z = L.find((l: any) => String(l.name) === (row.side === "up" ? "5m S1" : "5m R1")); const b = L.filter((l: any) => !/^5m (S1|R1)$/.test(String(l.name)) && lb.includes(String(l.name))).sort((x: any, y: any) => String(y.name).length - String(x.name).length)[0]; return !!(z && b && Math.abs(Number(b.price) - Number(z.price)) <= (String(row.asset) === "gold" ? 2 : 75)); } catch { return false; } })() /* fix472: a rejection off a line inside her green (long) / red (short) zone - within $75 BTC / $2 gold of it - is a zone call */ && !(String(row.book) === "recon-rej" && REJ_KEEPS597.test(String(row.setup || row.label || ""))) /* fix597: rejection keeps the candle-from-the-33% and fake-out reads at all hours */ && !/Bollinger|Green zone|Red zone|5m PP|pink/i.test(String(row.setup || row.label || "")) /* fix471: pink and PP stay */ && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `2 PM TIL THE BANDS WIDEN = BOLLINGERS, ZONES AND PINK ONLY (fix471): "${String(row.setup || row.label).slice(0, 80)}" is not a Bollinger or green/red zone call` }; continue; }
+    if (["recon-rej", "recon-tog"].includes(String(row.book)) /* fix471: main + rejection */ && (globalThis as any).__sessCarried?.[String(row.asset)] === true /* fix471: from the 2 PM PT session reset until her session bands widen out (the carry hand-back: BTC sigma $180+, gold $5+) */ && !(() => { try { const L = ((globalThis as any).__lawBands?.[String(row.asset)]?.L || []) as any[]; const lb = String(row.setup || row.label || ""); const z = L.find((l: any) => String(l.name) === (row.side === "up" ? "5m S1" : "5m R1")); const b = L.filter((l: any) => !/^5m (S1|R1)$/.test(String(l.name)) && lb.includes(String(l.name))).sort((x: any, y: any) => String(y.name).length - String(x.name).length)[0]; return !!(z && b && Math.abs(Number(b.price) - Number(z.price)) <= (String(row.asset) === "gold" ? 2 : 75)); } catch { return false; } })() /* fix472: a rejection off a line inside her green (long) / red (short) zone - within $75 BTC / $2 gold of it - is a zone call */ && !(String(row.book) === "recon-rej" && REJ_KEEPS597.test(String(row.setup || row.label || ""))) /* fix597: rejection keeps the candle-from-the-33% and fake-out reads at all hours */ && !/Bollinger|Green zone|Red zone|5m PP|pink|carried /i.test(String(row.setup || row.label || "")) /* fix471: pink and PP stay; fix617: carry bands also */ && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `2 PM TIL THE BANDS WIDEN = BOLLINGERS, ZONES AND PINK ONLY (fix471): "${String(row.setup || row.label).slice(0, 80)}" is not a Bollinger or green/red zone call` }; continue; }
     { const h597 = labelHold597(String(row.book), String(row.asset), (globalThis as any).__sessCarried?.[String(row.asset)] === true, String(row.setup || row.label || "")); /* fix597 */ if (h597 && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: h597 }; continue; } }
     const frame = asset?.vwap1m?.vwap ? asset.vwap1m : asset?.vwap5m;
     let placed = null;

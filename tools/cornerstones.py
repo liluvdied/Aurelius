@@ -264,6 +264,28 @@ need("last1m.c < last1m.o) rejCandle" not in R and "Number(k1.c) < B.p && Number
      "90. THE OTHER 1M READS ARE OUT (fix610, her Nov 1 2:17 PM words): the candle read and the fake-out turn no longer wait for a finished 1m candle")
 need('"data", "tick-log.jsonl"' in E,
      "91. THE TICK LOG (fix613, her Nov 1 2:31 PM words): the ticks her feed took are written, read-only, every 5 s")
+BK616 = open("src/lib/desk/book.ts", encoding="utf8").read()
+need("function raw616(" in BK616 and "file616.m !== st.mtimeMs" in BK616 and "const prev = readBookShared();" in BK616 and "trades = readBookShared().trades;" in K523,
+     "92. THE BOOK IS READ ONLY WHEN IT CHANGES (fix616, her Nov 1 4:27 PM words): live-paper-book.json comes off disk only when its time or size changes")
+need("export function carryExtra617(" in B and "...carryExtra617(id)]" in R and "5m PP|pink|carried /i.test(String(row.setup" in E and "5m PP|pink|carried /i.test(lb)" in B,
+     "93. CARRY BANDS ALSO (fix617, her Nov 1 4:57 PM words): BTC, the last session's bands are extra lines to trade rejections and breaks off, until the new bands are $180 wide; no wall or thirds counts them")
+need("export function pinkAhead618(" in B and "const pa618 = pinkAhead618(asset, lbR.L, qR.c, side)" in B and "pinkClose618" not in B and "pinkBelow = false && ppC > sDn" in R,
+     "94. SESSION BAND AHEAD OF THE PINK (fix618, her Nov 1 6:10 PM words): pink inside her session-band scale of an unbroken session band, no trade through it until the band breaks, gold and BTC; fix623: a mid-channel pink is not a wall")
+need('(asset === "btc" || asset === "gold") && G.__sessCarried?.[asset] === true' in B and 'if (book === "recon-tog" /* fix618: gold too */ && carried' in B and 'const tight344 = false /* fix618 */' in B and 'false /* fix618 */ && row.asset === "gold"' in E and 'false /* fix618 */ && row.asset === "btc"' in E and "THE LAST RUNG" in B and "THE LAST CHANNEL" in B and "THE $10 LEVEL" in B,
+     "95. THE SAME ENTRY LOGIC (fix618, her Nov 1 6:10 PM words): gold and BTC take the same setups on the same flips; gold keeps her $10 level, 55%, last rung and last channel, BTC her +2 sigma rule, and their own tolerances")
+need("return turnFlip530(asset, c.side, spot); } catch { return false; } }; // fix619" in R and 'return turnFlip530(asset, "up", spot); } catch { return false; } })() /* fix619' in R and "!rejFlip611(asset, side, qR.c) /* fix619 */" in B and "__wireLabel619 = " in K523,
+     "96. A TURN OR BORN HER COLOUR, ANY 2-5M CANDLE (fix619, her Nov 1 7:35 PM words): off a band or zone the read and the door take any 2-5m candle her colour past her $5 BTC / 10c gold, not only the 5m")
+need('"recon-rnp" /* fix620 */' in R and 'book("recon-rnp", np620)' in R and 'String(l.name) !== "5m PP"' in R and '|| rejCandleNP620;' in R and "recon-rnp" not in __import__("json").load(open("data/live-switch.json")).get("liveBook", {}).get("books", []),
+     "97. THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (fix620, her Nov 1 7:50 PM words): the same logic on every other band and zone, no pink entries, no breaks, in no live list")
+need("live.watchAccount(readBookShared().trades)" in E and "const trades = readBookShared().trades;" in E,
+     "98. HER TICK READS THE SHARED BOOK (fix621, her Nov 1 8:32 PM words): the two tick readers that only look at live-paper-book.json use the one parsed copy")
+need('let np620: any = firstT && !pink620(firstT) ? firstT : null;' in R and 'bandLockCheck464("recon-tog", id, np620.side' in R and 'if (prior && lane === "recon-rnp") {' in R and 'lane === "recon-rnp" ? "recon-tog" /* fix624' in R,
+     "99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words): main's read, door, free-to-trade and one-call-per-window; only pink entries are out; paper only")
+F625 = open("src/lib/desk/fns.ts", encoding="utf8").read(); A625 = open("src/components/desk/app.tsx", encoding="utf8").read()
+need('r.book === "recon-rnp" && r.at >= RNPF_START' in F625 and 'book: "recon-rnp-fresh", title:' in A625,
+     "100. HER PURE NO-PINK CARD (fix625, her Nov 1 10:08 PM words): the main-without-pink twin on its own card with a fresh record from the moment FIX624 landed")
+need("function pureRows626(" in E and "rows = pureRows626([...nb.listNight(), ...extraRows])" in E and "const freshQ = pureRows626(" in E and '`${r.ticker}:recon-tog:${String(r.id).split(":recon-rnp:")[1]}`' in E,
+     "101. THE DELAYED BUTTON IS THE PURE NO-PINK MODEL (fix626, her Nov 1 10:18 PM words): an hour she taps, the twin's rows reach the copier as main's rows; only pink entries are out; delayed stops trading live")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "retired BTC pink numbers kept on the record - her pink distance is the 15%/20% tolerance alone (7:13 AM, cornerstone 43)"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),

@@ -4,7 +4,7 @@ import { createPrivateKey, randomUUID, sign, constants } from "node:crypto";
 import { closeCash, halfCuts, screenBid } from "./paper";
 import { bandInWay, bandOnPath, bandReach, centerWrong, shortBandOnTarget, shortTap, survivalBlock } from "./auto";
 import { listPrimePaper, onPrimeBook, primeOwns, primeProven } from "./prime-book";
-import { readBook } from "./book";
+import { readBook, readBookShared } from "./book"; // fix616
 import { bandLevels, liveOn, loveSkip, maxDollars, noteBlock, recordFire } from "./live-guard";
 void import("./umpire-gate").catch(() => {}); // fix461 (R185/R186, Love Oct 29 2026 11:46 AM PT: "if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out"): the umpire gate starts with the wire
 const ROOT = "https://external-api.kalshi.com";
@@ -880,7 +880,7 @@ async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine
     const reg = (sent.__aureliusReach ||= {});
     reg[ticker] = { ask: Number(sameLine.askPx), at: Date.now() };
   }
-  if (!reduceOnly && !forceExit) { const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send
+  if (!reduceOnly && !forceExit) { (globalThis as any).__wireLabel619 = String(sameLine?.label || ""); /* fix619 */ const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send
   const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
     ticker,
     client_order_id: randomUUID(),
@@ -1138,7 +1138,7 @@ function paperShape(label) {
 function paperSeat(ticker, side) {
   let trades = [];
   try {
-    trades = readBook().trades;
+    trades = readBookShared().trades; // fix616: only looked at here
   } catch {
     return null;
   }

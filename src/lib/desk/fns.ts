@@ -1284,11 +1284,12 @@ export const getShiftSummary = createServerFn({ method: "GET" }).handler(async (
   // TOGETHER's own rows from 12:59 PM PT Oct 20 (THE WALL AT THE WIRE went in), nothing before it.
   const RF_START = "2026-10-20T19:59:00.000Z", RF_MS = Date.parse(RF_START);
   const TPF_START = "2026-10-26T21:30:00.000Z", TPF_MS = Date.parse(TPF_START); // fix288 (Oct 26 ~2:31 PM PT, Love: "can we get a fresh card for this model too? she should have a clean record"): the no-pink copy since 2:30 PM PT
+  const RNPF_START = "2026-11-02T06:04:45.000Z", RNPF_MS = Date.parse(RNPF_START); // fix625 (Love Nov 1 2026 10:08 PM PT: "create a new card for the new pure (no-pink) model with a fresh record"): from the second FIX624 landed
   const since = "2026-10-02T17:15:00.000Z", sinceMs = Date.parse(since);
   const base = ((await nightLightCached()) as any[]).filter((r) => !(r.book === "recon-dly" && r.at < DLY_START) && !(r.result !== "open" && togOffAt(String(r.book), Date.parse(r.at))));
   // ALL HOURS (Oct 21 ~4:25 PM PT, Love): TOGETHER unfiltered - her off-hours paper calls included - on its own card. Her TOGETHER card stays live hours only.
   const allTog = ((await nightLightCached()) as any[]).filter((r) => r.book === "recon-tog").map((r) => ({ ...r, id: `${r.id}:recon-all`, book: "recon-all" }));
-  const rowsAll = [...base, ...base.filter((r) => r.book === "ogp5-fast" && r.at >= SN_START).map((r) => ({ ...r, id: `${r.id}:supernova`, book: "supernova" })), ...base.filter((r) => r.book === "recon-tog" && r.at >= RF_START).map((r) => ({ ...r, id: `${r.id}:recon-fresh`, book: "recon-fresh" })), ...base.filter((r) => r.book === "recon-togp" && r.at >= TPF_START).map((r) => ({ ...r, id: `${r.id}:recon-togp-fresh`, book: "recon-togp-fresh" })), ...allTog].filter((r) => TAPS.has(r.book) || !r.dnaMode);
+  const rowsAll = [...base, ...base.filter((r) => r.book === "ogp5-fast" && r.at >= SN_START).map((r) => ({ ...r, id: `${r.id}:supernova`, book: "supernova" })), ...base.filter((r) => r.book === "recon-tog" && r.at >= RF_START).map((r) => ({ ...r, id: `${r.id}:recon-fresh`, book: "recon-fresh" })), ...base.filter((r) => r.book === "recon-togp" && r.at >= TPF_START).map((r) => ({ ...r, id: `${r.id}:recon-togp-fresh`, book: "recon-togp-fresh" })), ...base.filter((r) => r.book === "recon-rnp" && r.at >= RNPF_START).map((r) => ({ ...r, id: `${r.id}:recon-rnp-fresh`, book: "recon-rnp-fresh" })) /* fix625 */, ...allTog].filter((r) => TAPS.has(r.book) || !r.dnaMode);
   const rows = rowsAll.filter((r) => !r.stale);
   const hist: [string, number, number][] = [];
   try { const live = new Set(listNight().map((r) => r.id)); for (const [id, book, atMs, pnl] of ledgerHistRows()) if (!live.has(id)) hist.push([book, atMs, pnl]); } catch {}
@@ -1307,9 +1308,9 @@ export const getShiftSummary = createServerFn({ method: "GET" }).handler(async (
   const hAll: [string, number, number][] = [];
   for (const h of hist) { if (h[0] === "recon-tog") hAll.push(h); if ((h[0] === "recon-dly" && h[1] < DLY_MS) || togOffAt(h[0], h[1])) continue; let a = hBy.get(h[0]); if (!a) hBy.set(h[0], (a = [])); a.push(h); }
   const books: ShiftSummary["books"] = {};
-  for (const book of new Set([...byBook.keys(), ...hBy.keys(), "supernova", "recon-fresh", "recon-togp-fresh", "recon-all"])) {
+  for (const book of new Set([...byBook.keys(), ...hBy.keys(), "supernova", "recon-fresh", "recon-togp-fresh", "recon-rnp-fresh" /* fix625 */, "recon-all"])) {
     const rs = byBook.get(book) ?? [];
-    const hs = (hBy.get(book) ?? []).concat(book === "supernova" ? (hBy.get("ogp5-fast") ?? []).filter((h) => h[1] >= SN_MS) : []).concat(book === "recon-fresh" ? (hBy.get("recon-tog") ?? []).filter((h) => h[1] >= RF_MS) : []).concat(book === "recon-togp-fresh" ? (hBy.get("recon-togp") ?? []).filter((h) => h[1] >= TPF_MS) : []).concat(book === "recon-all" ? hAll : []);
+    const hs = (hBy.get(book) ?? []).concat(book === "supernova" ? (hBy.get("ogp5-fast") ?? []).filter((h) => h[1] >= SN_MS) : []).concat(book === "recon-fresh" ? (hBy.get("recon-tog") ?? []).filter((h) => h[1] >= RF_MS) : []).concat(book === "recon-togp-fresh" ? (hBy.get("recon-togp") ?? []).filter((h) => h[1] >= TPF_MS) : []).concat(book === "recon-rnp-fresh" ? (hBy.get("recon-rnp") ?? []).filter((h) => h[1] >= RNPF_MS) : []) /* fix625 */.concat(book === "recon-all" ? hAll : []);
     const s: Record<string, SpanStat> = {}, k: Record<string, KStat> = {};
     for (const [nm, from] of SPANS) {
       const xs = rs.filter((r) => r.at >= since && (!from || Date.parse(r.at) >= from));

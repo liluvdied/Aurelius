@@ -4219,6 +4219,54 @@
   "Until channel width reaches $100: half the channel width (do": {
    "file": "bandlock.ts",
    "at": "2026-11-02T05:46:37.844828+00:00"
+  },
+  "build the numbered branch that re-reads live-paper-book.json": {
+   "file": "book.ts",
+   "at": "2026-11-02T05:47:17.661044+00:00"
+  },
+  "she still uses the carry bands as an additional band to trad": {
+   "file": "bandlock.ts",
+   "at": "2026-11-02T05:48:17.294354+00:00"
+  },
+  "If pink sits inside an unbroken session band's tolerance, no": {
+   "file": "bandlock.ts",
+   "at": "2026-11-02T05:48:51.768977+00:00"
+  },
+  "Add a distance check that refuses a short when an unbroken p": {
+   "file": "bandlock.ts",
+   "at": "2026-11-02T05:48:51.769158+00:00"
+  },
+  "SHE NEEDS THE SAME 2-5M CANDLE FLIP IN HER FAVOR. A GREEN CA": {
+   "file": "recon.ts",
+   "at": "2026-11-02T05:49:41.238025+00:00"
+  },
+  "Build a new paper twin of the rejection book. It uses the sa": {
+   "file": "recon.ts",
+   "at": "2026-11-02T05:50:37.029280+00:00"
+  },
+  "the full read-loop speed fix": {
+   "file": "engine.ts",
+   "at": "2026-11-02T05:52:45.309022+00:00"
+  },
+  "A pink sitting in the middle of the channel is not a wall.": {
+   "file": "bandlock.ts",
+   "at": "2026-11-02T06:03:56.996434+00:00"
+  },
+  "It uses the main book's free-to-trade rule, the main book's ": {
+   "file": "recon.ts",
+   "at": "2026-11-02T06:04:46.168550+00:00"
+  },
+  "The paper twin must match the main book. The only difference": {
+   "file": "recon.ts",
+   "at": "2026-11-02T06:04:46.168785+00:00"
+  },
+  "create a new card for the new pure (no-pink) model with a fr": {
+   "file": "fns.ts",
+   "at": "2026-11-02T06:36:41.109809+00:00"
+  },
+  "EVERYTHING 1:1 WITH ALL OF THE SETTINGS I JUST DID WITH YOU.": {
+   "file": "engine.ts",
+   "at": "2026-11-02T06:37:11.083453+00:00"
   }
  },
  "retired": [

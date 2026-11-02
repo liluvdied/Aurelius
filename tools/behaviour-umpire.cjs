@@ -290,7 +290,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix597 main in the BTC window takes a rejection", !H("recon-tog", "btc", true, "Rejected down off Bollinger upper"));
   T("fix597 main in the BTC window holds the third reads", /REJECTIONS ONLY/.test(H("recon-tog", "btc", true, "Launched from the bottom third (low 1) - a long until the top third")));
   T("fix597 main outside the window keeps her breaks", !H("recon-tog", "btc", false, "Break above +1σ"));
-  T("fix597 gold main is not in the BTC window", !H("recon-tog", "gold", true, "Break above +1σ"));
+  T("fix618 gold main reads the same 2 PM window", /REJECTIONS ONLY/.test(B.labelHold597("recon-tog", "gold", true, "Break above +1σ")));
   T("fix597 delayed is untouched", !H("recon-dly", "btc", true, "Break above +1σ"));
   const F0 = Date.parse("2026-11-02T20:30:00Z"), f0 = F0 / 1000; NOW = F0 + 65000;
   const L9 = [{ name: "session VWAP", price: 77700 }, { name: "+1σ", price: 77900 }, { name: "-1σ", price: 77500 }, { name: "+2σ", price: 78100 }, { name: "-2σ", price: 77300 }];
@@ -364,7 +364,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   G.__sessCarried = { btc: true, gold: true }; G.__curBook465 = "";
   const Lf = B.carryWalls612("btc", Lc), names = Lf.map((l) => l.name).join(",");
   T("fix612 under $100 only the blue VWAP is left of her session lines", names === "fresh VWAP,5m PP,5m S1,5m R1", names);
-  T("fix612 gold keeps every line", B.carryWalls612("gold", Lc).length === Lc.length);
+  T("fix618 gold reads the same, only the blue VWAP is left", B.carryWalls612("gold", Lc).map((l) => l.name).join(",") === names);
   G.__curBook465 = "recon-dly";
   T("fix612 the delayed book keeps every line", B.carryWalls612("btc", Lc).length === Lc.length);
   G.__curBook465 = "";
@@ -390,6 +390,48 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   G.__sessCarried = { btc: true }; G.__freshSd = { btc: 60 };
   T("fix615 carried on a $60 channel, the cushion is $30", B.carryTol615("btc") === 30);
   G.__sessCarried = {}; G.__freshSd = {}; NOW = keep;
+}
+// fix617 (Love Nov 1 2026 4:57 PM PT): carry bands also
+{ const keepC = G.__sessCarry; 
+  G.__sessCarry = { btc: { cur: { sd: 60 }, prev: { v: 77750, sd: 178 } } };
+  const x = B.carryExtra617("btc");
+  T("fix617 under $100 the carry bands are extra lines", x.length === 7 && x[0].name === "carried mid" && x[0].price === 77750 && x.some((l) => l.name === "carried +1" && l.price === 77928));
+  G.__sessCarry.btc.cur.sd = 150; T("fix617 from $100 to $180 they stay", B.carryExtra617("btc").length === 7);
+  G.__sessCarry.btc.cur.sd = 180; T("fix617 at $180 they leave", B.carryExtra617("btc").length === 0);
+  G.__sessCarry.gold = { cur: { sd: 3 }, prev: { v: 3954, sd: 48 } }; T("fix618 gold has carry bands under her $5", B.carryExtra617("gold").length === 7); G.__sessCarry.gold.cur.sd = 5; T("fix618 gold at her $5 they leave", B.carryExtra617("gold").length === 0);
+  T("fix617 no wall or thirds counts a carry line", !x.some((l) => /σ$|^session VWAP$|^fresh VWAP$|VWAP/.test(l.name)));
+  T("fix617 a break of a carry band passes the 2 PM label hold on main", !B.labelHold597("recon-tog", "btc", true, "Break above carried +1"));
+  T("fix617 a session band break is still held", /REJECTIONS ONLY/.test(B.labelHold597("recon-tog", "btc", true, "Break above +1σ")));
+  G.__sessCarry = keepC;
+}
+// fix618 (Love Nov 1 2026 6:10 PM PT): the same entry logic, the real 5:45 PM boards
+{ const G545 = [{ name: "session VWAP", price: 3901.63 }, { name: "+1σ", price: 3907.32 }, { name: "-1σ", price: 3895.94 }, { name: "+2σ", price: 3913.01 }, { name: "5m PP", price: 3909.0 }, { name: "5m R1", price: 3915.12 }, { name: "5m S1", price: 3902.88 }];
+  const B545 = [{ name: "session VWAP", price: 78022.27 }, { name: "+1σ", price: 78267.93 }, { name: "+2σ", price: 78513.59 }, { name: "-1σ", price: 77776.61 }, { name: "5m PP", price: 78405.4 }, { name: "5m R1", price: 78578.97 }, { name: "5m S1", price: 78231.83 }];
+  T("fix618 the 5:45:13 PM gold short is refused: pink $1.68 over the band, inside 33% of a $5.69 channel", /no short until that band breaks/.test(B.pinkAhead618("gold", G545, 3910.23, "down")));
+  const G10 = [{ name: "+1σ", price: 3900 }, { name: "+2σ", price: 3910 }, { name: "5m PP", price: 3902 }], G20 = [{ name: "+1σ", price: 3900 }, { name: "+2σ", price: 3920 }, { name: "5m PP", price: 3905 }];
+  T("fix618 a $10 channel with pink $2 over the band: refused", /no short until/.test(B.pinkAhead618("gold", G10, 3905, "down")));
+  T("fix618 a $20 channel with pink $5 over the band: past 20%, free", !B.pinkAhead618("gold", G20, 3910, "down"));
+  T("fix618 the 5:45:07 PM BTC board: pink is 56% up the channel, past 33%, free", !B.pinkAhead618("btc", B545, 78455.8, "down"));
+  const GS = G545.map((l) => l.name === "5m PP" ? { ...l, price: 3908.4 } : l), BS = B545.map((l) => l.name === "5m PP" ? { ...l, price: 78300 } : l);
+  T("fix618 gold, pink in the bottom 20% stacked on the band, a short waits", /no short until that band breaks/.test(B.pinkAhead618("gold", GS, 3910.23, "down")));
+  T("fix618 BTC, pink in the bottom 20% stacked on the band, a short waits the same", /no short until that band breaks/.test(B.pinkAhead618("btc", BS, 78455.8, "down")));
+  T("fix618 once the band breaks by her break distance the short is free", !B.pinkAhead618("gold", GS, 3906.9, "down"));
+  const GU = G545.map((l) => l.name === "5m PP" ? { ...l, price: 3912 } : l);
+  T("fix618 mirror: pink in the top 20% stacked under the band, a long waits", /no long until/.test(B.pinkAhead618("gold", GU, 3909, "up")));
+  T("fix618 a short stays free when pink is in the top of the channel", !B.pinkAhead618("gold", GU, 3909, "down"));
+  T("fix623 the mid-channel distance check is gone", typeof B.pinkClose618 === "undefined");
+  T("fix618 gold's 10c and BTC's $5 are her only flip difference", /asset === "gold" \? 0\.1 : 5/.test(B.turnFlip530.toString()));
+  T("fix618 gold's walls are the same lines as BTC's", B.wallLines("gold", G545).length === B.wallLines("btc", B545).length);
+  T("fix618 the 2 PM label hold reads gold the same", /REJECTIONS ONLY/.test(B.labelHold597("recon-tog", "gold", true, "Break above +1σ")));
+}
+// fix619 (Love Nov 1 2026 7:35 PM PT): a turn or born her colour on any 2-5m candle
+{ const keep = NOW, keepB = G.__pivBars, keepT = G.__qtrail_1; NOW = Date.parse("2026-11-02T02:50:30Z"); G.__sessCarried = {};
+  const t0 = (m) => Math.floor(Date.parse("2026-11-02T02:40:00Z") / 1000) + m * 60;
+  G.__pivBars = { gold: { bars: [{ t: t0(6), o: 3899, h: 3899.5, l: 3898, c: 3898.2 }, { t: t0(8), o: 3898.2, h: 3898.3, l: 3897.8, c: 3898.0 }, { t: t0(10), o: 3897.9, h: 3898.4, l: 3897.9, c: 3898.4 }] } };
+  T("fix619 a 2m candle born green past 10c is her flip", B.turnFlip530("gold", "up", 3898.4));
+  T("fix619 the same 2m candle at 5c past its open is not", !B.turnFlip530("gold", "up", 3897.95));
+  G.__curLabel611 = "Rejected up off Green zone"; T("fix619 a rejection with that flip passes the 5m read", B.rejFlip611("gold", "up", 3898.4)); G.__curLabel611 = "";
+  G.__pivBars = keepB; G.__qtrail_1 = keepT; NOW = keep;
 }
 const ok = res.every((r) => r.ok);
 for (const r of res) console.log((r.ok ? "  ✓ " : "  ✗ ") + r.name + (r.ok ? "" : "  <- " + r.detail));
