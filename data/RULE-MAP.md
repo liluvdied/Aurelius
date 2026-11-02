@@ -1,8 +1,8 @@
 # Rule map
 
-Written Nov 01 2026 09:49 PM by tools/rule-map.py, at commit 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316).
+Written Nov 01 2026 09:50 PM by tools/rule-map.py, at commit ae3fdff1 rule map after fix618 (R316).
 
-Read-only. No rule reads this file. 232 active requests, 98 cornerstones, 0 proof lines not found.
+Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proof lines not found.
 
 ## Active requests
 
@@ -46,24 +46,24 @@ Read-only. No rule reads this file. 232 active requests, 98 cornerstones, 0 proo
 |  |  | tools/free-to-trade-test.py | test |  |
 | R024 | fix343: clear her record cache now + auto-clear every 4 hours (finished, unfilled records older than 3.5 h mov… | src/lib/desk/selfcheck.ts:136 | fix343 | c91077b5 full desk snapshot for new project |
 | R025 | Gold 3-5 PM: red/green zones, pink and Bollingers stay tradeable (3 PM lines fix24 quietLines; 4-5 PM zones + … | src/lib/desk/recon.ts:78 | function quietLines(id: string, p: any): Line[] { | c91077b5 full desk snapshot for new project |
-|  |  | src/lib/desk/recon.ts:650 | for (const q of quietLines(id, p)) | c91077b5 full desk snapshot for new project |
-|  |  | src/lib/desk/recon.ts:668 | LB.push({ name: "Green zone", price: Number(p.s1) | c91077b5 full desk snapshot for new project |
+|  |  | src/lib/desk/recon.ts:651 | for (const q of quietLines(id, p)) | c91077b5 full desk snapshot for new project |
+|  |  | src/lib/desk/recon.ts:669 | LB.push({ name: "Green zone", price: Number(p.s1) | c91077b5 full desk snapshot for new project |
 | R026 | fix344: gold 3:00-4:59 PM PT, session channel under $2: her thirds (THE IMPOSSIBILITY / ONLY IN HER THIRD) and… | src/lib/desk/bandlock.ts:1230 | fix344 | c91077b5 full desk snapshot for new project |
 | R027 | fix344b: inside fix344's gold 3-5 PM tight-band slice, the session VWAP stays a wall - when VWAP is the band i… | src/lib/desk/bandlock.ts:2935 | fix344b | c91077b5 full desk snapshot for new project |
-| R028 | fix345: a main-book (and no-pink copy) Bollinger rejection trades on any 1/2/3/4/5m flip her way (HER FLIP), n… | src/lib/desk/recon.ts:677 | fix345 | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
+| R028 | fix345: a main-book (and no-pink copy) Bollinger rejection trades on any 1/2/3/4/5m flip her way (HER FLIP), n… | src/lib/desk/recon.ts:678 | fix345 | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
 | R033 | No-pink copy gets HER FLIP like main (fix325: entry needs a live 1-5m candle flipped her way, literal colour) … | src/lib/desk/bandlock.ts:3226 | fix349 | 44b42fd5 fix592+593+594: flip or born + session-band scale + zones at the door and last li… |
 | R035 | No-pink copy, gold channels under $10: top/bottom 33% always (fix219 20% for channels within one fresh sigma n… | src/lib/desk/bandlock.ts:2927 | fix351 | c91077b5 full desk snapshot for new project |
 | R037 | Delayed twin (recon-dly) = the no-pink copy with a delayed entry: books the copy read (firstT, pink out unless… | src/lib/desk/recon.ts:51 | fix353 | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/bandlock.ts:1119 | fix353 | c91077b5 full desk snapshot for new project |
 | R042 | Polymarket 5M sits out 3, 4, 5 AM, 1 PM, 9 PM PT (plus 11 PM already off): polyTwin.rej5m.skipHours [3,4,5,13,… | data/live-switch.json key polyTwin.rej5m.skipHours | = [3, 4, 5, 13, 21, 23] |  |
 | R048 | Pure no-pink (recon-np): pink holds her only when pink is stacked with a session band in the outer 10% of the … | src/lib/desk/bandlock.ts:2874 | npPink = false /* fix363 | c91077b5 full desk snapshot for new project |
-|  |  | src/lib/desk/recon.ts:743 | const stackN = | c91077b5 full desk snapshot for new project |
+|  |  | src/lib/desk/recon.ts:746 | const stackN = | c91077b5 full desk snapshot for new project |
 | R054 | fix368: pure no-pink (recon-np) only - no long with any unbroken band (pink, purple m5/m10/m15, session sigma/… | src/lib/desk/bandlock.ts:2892 | ANY BAND CUSHION (pure no-pink) | c91077b5 full desk snapshot for new project |
 | R055 | fix369: pure no-pink any-band cushion BTC = $10 while session band width (+1 sigma - VWAP) < $180, 10% of the … | src/lib/desk/bandlock.ts:2888 | w369 >= 180 ? 0.10 * w369 : 10 | c91077b5 full desk snapshot for new project |
 | R056 | fix370: selfcheck auto-clear every 1 hour (was 4); 3.5 h age line unchanged. | src/lib/desk/selfcheck.ts:142 | >= 1 * 3600000 /* fix370 | c91077b5 full desk snapshot for new project |
 | R057 | fix371: main + rejection + no-pink copy, gold longs, Kalshi only: when gold is >$2 lower than 30 min ago, pink… | src/lib/desk/engine.ts:5799 | GOLD SLIDE UNDER PINK: gold | c91077b5 full desk snapshot for new project |
-| R058 | fix372: recon-sov = SOVEREIGN paper twin: own bonesDecide read on the rejection board (session, pink, zones, B… | src/lib/desk/recon.ts:751 | book("recon-sov" | c91077b5 full desk snapshot for new project |
-| R059 | fix373: BTC only - main/rej/copy unfilled long refused by a PINK wall re-aims to the short when the engine rea… | src/lib/desk/recon.ts:837 | re-aimed off the pink rejection (fix373) | c91077b5 full desk snapshot for new project |
+| R058 | fix372: recon-sov = SOVEREIGN paper twin: own bonesDecide read on the rejection board (session, pink, zones, B… | src/lib/desk/recon.ts:754 | book("recon-sov" | c91077b5 full desk snapshot for new project |
+| R059 | fix373: BTC only - main/rej/copy unfilled long refused by a PINK wall re-aims to the short when the engine rea… | src/lib/desk/recon.ts:840 | re-aimed off the pink rejection (fix373) | c91077b5 full desk snapshot for new project |
 | R061 | fix375: Kalshi copier - a call never tried on Kalshi and older than 90 s is skipped (stale), never sent. recon… | src/lib/desk/engine.ts:5413 | a seat that just opened never fires an old call (fix375) | c91077b5 full desk snapshot for new project |
 | R062 | fix376: gold, main/rej/copy (and the paper delayed copy that shares copy walls): a trade pointing away from th… | src/lib/desk/bandlock.ts:3077 | CLEAR OF THE $10 LEVEL | c91077b5 full desk snapshot for new project |
 | R063 | Strategy lab paper books (tools/lab-paper.py): Gold Snapback 15M, Gold Bollinger fade 15M+1H, BTC Bollinger fa… | tools/lab-paper.py:2 | STRATEGY LAB PAPER BOOKS | c91077b5 full desk snapshot for new project |
@@ -71,16 +71,16 @@ Read-only. No rule reads this file. 232 active requests, 98 cornerstones, 0 proo
 | R065 | fix378: gold, main/rej/copy (+ paper delayed copy): no long within $1.50 under the 5m red zone (R1), no short … | src/lib/desk/bandlock.ts:3092 | $1.50 BEFORE THE RED ZONE | c91077b5 full desk snapshot for new project |
 | R066 | fix379: BTC THE IMPOSSIBILITY top/bottom 33% (was fix219 20% for one-sigma channels) on main/rej/copy (+ paper… | src/lib/desk/bandlock.ts:2927 | fix379 | c91077b5 full desk snapshot for new project |
 | R069 | fix382: Poly 5M walls (bandlock5m.ts) = bandlock.ts as of 4:57 AM PT Oct 27 (her 65% stretch, with fixes 295-3… | src/lib/desk/bandlock5m.ts:1 | THE 5M BOOK'S OWN WALLS - FROZEN (fix382 | c91077b5 full desk snapshot for new project |
-| R073 | fix387: pure no-pink (recon-np) also takes main reads worded Tap-reject at <session band / red or green zone /… | src/lib/desk/recon.ts:740 | fix387 | c91077b5 full desk snapshot for new project |
+| R073 | fix387: pure no-pink (recon-np) also takes main reads worded Tap-reject at <session band / red or green zone /… | src/lib/desk/recon.ts:743 | fix387 | c91077b5 full desk snapshot for new project |
 | R075 | fix388: pure no-pink holds the Kalshi BTC seat every hour - the delayed twin sits out all BTC hours live on Ka… | data/live-switch.json key bookSkipHoursByAsset.btc.recon-dly | = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1… |  |
-| R076 | fix389: recon-npo = PURE NO-PINK WITH HER OWN EYES, PAPER: every tick she runs the engine read (bonesDecide, r… | src/lib/desk/recon.ts:50 | recon-npo | c91077b5 full desk snapshot for new project |
-| R077 | fix389b: LIVE pure no-pink (recon-np) also books her own band read (the recon-npo read: session bands, zones, … | src/lib/desk/recon.ts:764 | fix389b | c91077b5 full desk snapshot for new project |
+| R076 | fix389: recon-npo = PURE NO-PINK WITH HER OWN EYES, PAPER: every tick she runs the engine read (bonesDecide, r… | src/lib/desk/recon.ts:50 | recon-npo | not committed yet |
+| R077 | fix389b: LIVE pure no-pink (recon-np) also books her own band read (the recon-npo read: session bands, zones, … | src/lib/desk/recon.ts:767 | fix389b | c91077b5 full desk snapshot for new project |
 | R078 | fix390: pure no-pink (recon-np) meets MAIN walls at the door, the paper sweep and the wire (impossibleGeo flag… | src/lib/desk/bandlock.ts:1119 | fix390 | c91077b5 full desk snapshot for new project |
-| R079 | fix391: the pure no-pink own-eyes read (fix389/389b) never books a thirds read (Candle rising/falling, Launche… | src/lib/desk/recon.ts:758 | !/third/i.test(lb9) | c91077b5 full desk snapshot for new project |
+| R079 | fix391: the pure no-pink own-eyes read (fix389/389b) never books a thirds read (Candle rising/falling, Launche… | src/lib/desk/recon.ts:761 | !/third/i.test(lb9) | c91077b5 full desk snapshot for new project |
 | R080 | fix392: pure no-pink BTC PINK TO GREEN / PINK TO RED zoneGuard 0.5 (no short in bottom 50% green->pink, no lon… | src/lib/desk/bandlock.ts:1119 | fix392 | c91077b5 full desk snapshot for new project |
-| R082 | fix394: bonesDecide zoneFlip param - green zone long / red zone short read passes on any 1-5m candle flipped h… | src/lib/desk/recon.ts:670 | fix394: main | c91077b5 full desk snapshot for new project |
-| R083 | fix395: pure no-pink HER OWN TAPS - recon.ts block after fix389b: price taps one of her bands (σ/VWAP/Bollinge… | src/lib/desk/recon.ts:767 | HER OWN TAPS (fix395 | c91077b5 full desk snapshot for new project |
-| R084 | fix396: pure no-pink own taps (fix395) fire only while price is within half the distance from the tapped band … | src/lib/desk/recon.ts:776 | const half96 | c91077b5 full desk snapshot for new project |
+| R082 | fix394: bonesDecide zoneFlip param - green zone long / red zone short read passes on any 1-5m candle flipped h… | src/lib/desk/recon.ts:671 | fix394: main | c91077b5 full desk snapshot for new project |
+| R083 | fix395: pure no-pink HER OWN TAPS - recon.ts block after fix389b: price taps one of her bands (σ/VWAP/Bollinge… | src/lib/desk/recon.ts:770 | HER OWN TAPS (fix395 | c91077b5 full desk snapshot for new project |
+| R084 | fix396: pure no-pink own taps (fix395) fire only while price is within half the distance from the tapped band … | src/lib/desk/recon.ts:779 | const half96 | c91077b5 full desk snapshot for new project |
 | R085 | fix397: wireWall (every Kalshi opening order, every book): when session VWAP to +1σ < $150 BTC / $3 gold, no l… | src/lib/desk/bandlock.ts:2738 | THE BLUE VWAP WALL (fix397 | c91077b5 full desk snapshot for new project |
 | R087 | fix399: while blue VWAP to 1σ < $150 BTC / $3 gold - THE IMPOSSIBILITY top/bottom tolerance 20% (not 33%) in i… | src/lib/desk/bandlock.ts:2745 | ACROSS THE BLUE VWAP | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/bandlock.ts:171 | export function blueSmall399 | c91077b5 full desk snapshot for new project |
@@ -88,7 +88,7 @@ Read-only. No rule reads this file. 232 active requests, 98 cornerstones, 0 proo
 |  |  | src/lib/desk/bandlock.ts:1611 | export function anyFlip2Now | c91077b5 full desk snapshot for new project |
 | R092 | fix402: one $5 add-on only - addOn.second.on false (first add-on $5 at 2.8x stays) | data/live-switch.json key addOn.second.on | = false |  |
 | R093 | fix403: fix371 hold needs no pink touch; sticky until a 25c break over pink | src/lib/desk/engine.ts:5732 | fix403: no touch needed | c91077b5 full desk snapshot for new project |
-| R094 | fix404: recon-b2 PAPER lane - tight bands (blueSmall399), price blew through band A, rejected off the next ban… | src/lib/desk/recon.ts:786 | THE 2ND-BAND FLIP (fix404 | c91077b5 full desk snapshot for new project |
+| R094 | fix404: recon-b2 PAPER lane - tight bands (blueSmall399), price blew through band A, rejected off the next ban… | src/lib/desk/recon.ts:789 | THE 2ND-BAND FLIP (fix404 | c91077b5 full desk snapshot for new project |
 | R097 | fix407: main + rejection HER FLIP needs a 2/3/4/5m candle at least $5 (BTC) / 10c (gold) past its open her way… | src/lib/desk/bandlock.ts:1627 | fix407 | c91077b5 full desk snapshot for new project |
 | R098 | fix408: recon-og = PAPER book rebuilt from grok v1 elements (desk-project/src/lib/desk/vwap.ts): rolling 60-mi… | src/lib/desk/recon.ts:485 | fix408 | c91077b5 full desk snapshot for new project |
 | R099 | fix409: gold PINK TO GREEN no short in the bottom 55% (was 60%) and PINK TO RED no long in the top 55% (was 50… | src/lib/desk/bandlock.ts:1119 | fix409 | c91077b5 full desk snapshot for new project |
@@ -110,7 +110,7 @@ Read-only. No rule reads this file. 232 active requests, 98 cornerstones, 0 proo
 | R128 | Cornerstone 0h: nothing is removed from her code or live-switch without Love's own words - not by a restore, a… | LOVE-RULEBOOK.md:32 | 0h. CORNERSTONE - NOTHING LEAVES WITHOUT LOVE SAYING SO | c91077b5 full desk snapshot for new project |
 |  |  | tools/no-removal-gate.py | file exists |  |
 |  |  | data/LOVE-RESTORE-OPTIONS-2026-10-28.md | file exists |  |
-| R129 | fix433 item 1: fix394 back for MAIN only - bonesDecide zoneFlip: a green-zone long / red-zone short read passe… | src/lib/desk/recon.ts:670 | true /* fix394: main (fix433) */ | c91077b5 full desk snapshot for new project |
+| R129 | fix433 item 1: fix394 back for MAIN only - bonesDecide zoneFlip: a green-zone long / red-zone short read passe… | src/lib/desk/recon.ts:671 | true /* fix394: main (fix433) */ | c91077b5 full desk snapshot for new project |
 | R130 | fix433 item 2: already in her - slideHold403 is identical to before the 6:45 PM restore (back via fix423 at 7:… | src/lib/desk/engine.ts:5732 | fix403: no touch needed | c91077b5 full desk snapshot for new project |
 |  |  | tools/slide-test.cjs | test |  |
 | R131 | fix433 item 3: offHourMain.rejSeatHours 0-23 back in live-switch. The no-pink copy is off live (fix421), so th… | data/live-switch.json key offHourMain.rejSeatHours | = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1… |  |
@@ -150,8 +150,8 @@ Read-only. No rule reads this file. 232 active requests, 98 cornerstones, 0 proo
 | R155 | Her reach wall (fix429, main + rejection) as it stands after fix443: no trade into an unbroken session band or… | src/lib/desk/bandlock.ts:1126 | const rw429 = reachWall429(asset, lbR.L, qR.c, side) | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/bandlock.ts:545 | export const REACH429: Record<string, number> = { gold: 1, b… | c91077b5 full desk snapshot for new project |
 |  |  | tools/reach-test-429.cjs | test |  |
-| R157 | fix446: main + rejection - in her read (recon.ts perspective, HER CANDLE), a band-rejection read (Rejected up/… | src/lib/desk/recon.ts:670 | true /* fix446: main */ | c91077b5 full desk snapshot for new project |
-|  |  | src/lib/desk/recon.ts:989 | true /* fix446: rejection */ | c91077b5 full desk snapshot for new project |
+| R157 | fix446: main + rejection - in her read (recon.ts perspective, HER CANDLE), a band-rejection read (Rejected up/… | src/lib/desk/recon.ts:671 | true /* fix446: main */ | c91077b5 full desk snapshot for new project |
+|  |  | src/lib/desk/recon.ts:992 | true /* fix446: rejection */ | c91077b5 full desk snapshot for new project |
 |  |  | tools/band-flip-test-446.cjs | test |  |
 | R161 | fix450: BTC on main + rejection gets Love's 55% exactly like gold (fix409): no BTC long in the top 55% of pink… | src/lib/desk/bandlock.ts:1119 | (book === "recon-tog" \|\| book === "recon-rej") ? 0.55 /* f… | c91077b5 full desk snapshot for new project |
 | R166 | Standing rule: every performance number for any book is counted ONLY by the structure in place (her live take-… | process | performance always counted by her live structure (Love Oct 2… |  |
@@ -260,13 +260,13 @@ Read-only. No rule reads this file. 232 active requests, 98 cornerstones, 0 proo
 |  |  | src/lib/desk/bandlock.ts:2992 | Math.min(50, 0.10 * (above - below)) | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/bandlock.ts:626 | const reach509 =  | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
 |  |  | src/lib/desk/bandlock5m27.ts:2651 | TARGET PAST A BAND - OUT | c91077b5 full desk snapshot for new project |
-|  |  | src/lib/desk/recon.ts:1043 | THE TWIN HAND-OFF (fix448) - OUT | c91077b5 full desk snapshot for new project |
+|  |  | src/lib/desk/recon.ts:1052 | THE TWIN HAND-OFF (fix448) - OUT | c91077b5 full desk snapshot for new project |
 |  |  | tools/cornerstones.py:114 | 42. HER ANSWERS | c91077b5 full desk snapshot for new project |
 |  |  | tools/behaviour-umpire.cjs | test |  |
 |  |  | tools/pink-far-test-503.cjs | test |  |
 |  |  | tools/reach-test-429.cjs | test |  |
 | R257 | fix510 - live-switch liveSkipHours gold [] and btc [] (was gold [4,5,6,7], btc [1,14,21]); old values in liveS… | data/live-switch.json:3034 | liveSkipHoursPrev510 | 683decd0 Save point 20261101-1031: V.11 |
-| R258 | fix511 (log only): recon.ts bonesDecide remembers the candidates it dropped when it returns empty (globalThis.… | src/lib/desk/recon.ts:711 | EMPTY READ (fix511) | c91077b5 full desk snapshot for new project |
+| R258 | fix511 (log only): recon.ts bonesDecide remembers the candidates it dropped when it returns empty (globalThis.… | src/lib/desk/recon.ts:714 | EMPTY READ (fix511) | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/recon.ts:340 | __drop511 | c91077b5 full desk snapshot for new project |
 |  |  | tools/cornerstones.py:76 | an empty read too (fix479, R230; fix511) | c91077b5 full desk snapshot for new project |
 |  |  | tools/independent-calls-test-463.cjs | test |  |
@@ -494,6 +494,9 @@ Read-only. No rule reads this file. 232 active requests, 98 cornerstones, 0 proo
 |  |  | src/lib/desk/bandlock.ts:1137 | !rejFlip611(asset, side, qR.c) /* fix619 */ | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
 |  |  | tools/band-flip-test-446.cjs | test |  |
 |  |  | tools/behaviour-umpire.cjs | test |  |
+| R318 | fix620 recon-rnp, paper only: the rejection book's own call when it is not a pink call; otherwise her read wit… | src/lib/desk/recon.ts:1030 | book("recon-rnp", np620) | not committed yet |
+|  |  | src/lib/desk/recon.ts:1028 | \|\| rejCandleNP620; | not committed yet |
+|  |  | tools/cornerstones.py | test |  |
 
 ## Cornerstones
 
@@ -597,3 +600,4 @@ Read-only. No rule reads this file. 232 active requests, 98 cornerstones, 0 proo
 | 94. SESSION BAND AHEAD OF THE PINK (fix618, her Nov 1 6:10 PM words): pink inside her session-band scale of an unbroken session ba… | src/lib/desk/bandlock.ts:563 | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
 | 95. THE SAME ENTRY LOGIC (fix618, her Nov 1 6:10 PM words): gold and BTC take the same setups on the same flips; gold keeps her $1… | src/lib/desk/bandlock.ts:563 | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
 | 96. A TURN OR BORN HER COLOUR, ANY 2-5M CANDLE (fix619, her Nov 1 7:35 PM words): off a band or zone the read and the door take an… | src/lib/desk/bandlock.ts:1137 | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
+| 97. THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (fix620, her Nov 1 7:50 PM words): the same logic on every other band and zone… | src/lib/desk/grokog.ts:360 | not committed yet |

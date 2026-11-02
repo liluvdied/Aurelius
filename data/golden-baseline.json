@@ -38,7 +38,7 @@
     "goldlaw.ts": "dcc1fd1002ef2c2d",
     "goldstrikes.ts": "c9bb2840d06a6246",
     "grok.ts": "12bcfcb3768de88b",
-    "grokog.ts": "f6688a08862099e0",
+    "grokog.ts": "90e7a205542f1e07",
     "handguard.ts": "a9bb2f322f025e3a",
     "hist.ts": "325121fa22d2b1fa",
     "hourcombos.ts": "01e3f5aa48a955ac",
@@ -83,7 +83,7 @@
     "probe.ts": "9c0674e13b6c4516",
     "quotes.ts": "fe54b8cdeb6e764b",
     "realtwin.ts": "c74ff01ef7e1b5ea",
-    "recon.ts": "03e36639ec94bb9e",
+    "recon.ts": "48b3af267df1abd4",
     "research.ts": "cd5d69f9cb3ff595",
     "review.ts": "ed486d1c8a4113c0",
     "riptap.ts": "1c967350e6259666",
@@ -131,7 +131,7 @@
     "maxDollars": "ef2d127de3",
     "cooldownAfterLoss": "fcbcf16590",
     "route": "9d53f79e71",
-    "at": "d0a90c548d",
+    "at": "0c8c430a86",
     "note": "34fb5e33ce",
     "cooldownExcuse": "1570b63708",
     "shiftStart": "3a2984a939",
@@ -150,7 +150,7 @@
     "model": "80270e39ab",
     "autoExits": "b5bea41b6c",
     "tpHard": "b5bea41b6c",
-    "liveBook": "6389dfd987",
+    "liveBook": "136423d4c8",
     "tpOfMax": "69f59c273b",
     "netBelow": "4f53cda18c",
     "insurance": "7e56fa5011",
@@ -317,10 +317,10 @@
   },
   "configFiles": {
   "data/HER-ANSWERS-2.json": "770a121597eb8e17",
-    "data/spine-lock.json": "9ccac40902a848b3",
+    "data/spine-lock.json": "8c0030eb683baa56",
     "data/FROZEN.json": "96bf1e60e4b50fe3",
     "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-    "data/live-switch.json": "ed9efa541d4e7bd2"
+    "data/live-switch.json": "1629df59923ebe91"
   },
   "sealLiveBook": "c8cfbbf7f9",
   "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

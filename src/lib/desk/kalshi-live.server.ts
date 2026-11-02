@@ -880,7 +880,7 @@ async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine
     const reg = (sent.__aureliusReach ||= {});
     reg[ticker] = { ask: Number(sameLine.askPx), at: Date.now() };
   }
-  if (!reduceOnly && !forceExit) { const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send
+  if (!reduceOnly && !forceExit) { (globalThis as any).__wireLabel619 = String(sameLine?.label || ""); /* fix619 */ const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send
   const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
     ticker,
     client_order_id: randomUUID(),

@@ -6416,5 +6416,15 @@
     "what": "if (!reduceOnly && !forceExit) { const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, \"before\", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send",
     "R": "R317",
     "why": "fix619 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "for (const l480 of [\"recon-np\", \"recon-sov\", \"recon-npo\", \"recon-b2\", \"recon-og\"]) RECON.add(l480); // fix480: PAPER ONLY - in no live list (liveBook.books untouched)",
+    "R": "R318",
+    "why": "fix620 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "\"recon-ogp5\": \"recon-ogp5\", \"recon-paper\": \"recon-paper\", \"recon-tog\": \"recon-tog\", \"recon-top\": \"recon-top\", \"recon-rej\": \"recon-rej\", \"recon-dly\": \"recon-dly\", \"recon-rej5\": \"recon-rej5\", /* fix261 */ \"recon-togp\": \"recon-togp\", /* fix281 */ // RECONSTRUCTED (Oct 19 ~6:16 PM PT, Love)",
+    "R": "R318",
+    "why": "fix620 (her Nov 1 4:27 PM words)"
   }
 ]

@@ -275,6 +275,8 @@ need('(asset === "btc" || asset === "gold") && G.__sessCarried?.[asset] === true
      "95. THE SAME ENTRY LOGIC (fix618, her Nov 1 6:10 PM words): gold and BTC take the same setups on the same flips; gold keeps her $10 level, 55%, last rung and last channel, BTC her +2 sigma rule, and their own tolerances")
 need("return turnFlip530(asset, c.side, spot); } catch { return false; } }; // fix619" in R and 'return turnFlip530(asset, "up", spot); } catch { return false; } })() /* fix619' in R and "!rejFlip611(asset, side, qR.c) /* fix619 */" in B and "__wireLabel619 = " in K523,
      "96. A TURN OR BORN HER COLOUR, ANY 2-5M CANDLE (fix619, her Nov 1 7:35 PM words): off a band or zone the read and the door take any 2-5m candle her colour past her $5 BTC / 10c gold, not only the 5m")
+need('"recon-rnp" /* fix620 */' in R and 'book("recon-rnp", np620)' in R and 'String(l.name) !== "5m PP"' in R and '|| rejCandleNP620;' in R and "recon-rnp" not in __import__("json").load(open("data/live-switch.json")).get("liveBook", {}).get("books", []),
+     "97. THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (fix620, her Nov 1 7:50 PM words): the same logic on every other band and zone, no pink entries, no breaks, in no live list")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "retired BTC pink numbers kept on the record - her pink distance is the 15%/20% tolerance alone (7:13 AM, cornerstone 43)"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),

@@ -47,7 +47,7 @@ type Piv = { pp: number; r1: number; s1: number; r2: number; s2: number; a: numb
 type Line = { name: string; price: number; unit: number; center?: boolean };
 export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-dly", "recon-rejx", "recon-togr", "recon-rej5", "recon-togp", "recon-dlyk"] as const; /* fix354 (Oct 27 2026 6:20 PM PT, Love: "yes let's ensure polymarkets live orders stay the same byte for byte , and we can do paper if the regular delayed entry model just took the btc entry , it worked properly"): the delayed no-pink copy, PAPER only (never in liveBook, never read by Polymarket) */ /* fix281 recon-togp */ /* fix261 recon-rej5 */ /* fix250 recon-togr */ /* fix171 recon-rejx */ // + MOST SUCCESSFUL 70%+ (Oct 19 ~9:02 PM PT, Love) + REJECTIONS ONLY twin (Oct 20 ~7:39 AM PT, Love)
 export const RECON = new Set<string>(RECON_LANES);
-for (const l480 of ["recon-np", "recon-sov", "recon-npo", "recon-b2", "recon-og"]) RECON.add(l480); // fix480: PAPER ONLY - in no live list (liveBook.books untouched)
+for (const l480 of ["recon-np", "recon-sov", "recon-npo", "recon-b2", "recon-og", "recon-rnp" /* fix620 */]) RECON.add(l480); // fix480: PAPER ONLY - in no live list (liveBook.books untouched)
 const DLY_AS_COPY = false; /* fix353 PAUSED (Love 6:11 PM PT: "wait no no no no no no do not change the 5M on polymarket in any way nooo"): the twin is exactly as before everywhere */ // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): the DELAYED twin is the no-pink copy with a delayed entry
 
 function resample(b: Bar[], mins: number): Bar[] {
@@ -640,6 +640,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // fix246 (Love Oct 25 ~11:41 PM PT: "i need you to have all of the same infrastructure in place hun i do not want to deal with backwards fires anymore"): the main book's
   // reading (near-band reach, Bollinger + green/red zone rejection bands, the candle in her third, the fake-out turn) is kept here for the REJECTION model below.
   let rejCandleNow: { side: "up" | "down"; label: string } | null = null; // fix260
+  let rejCandleNP620: { side: "up" | "down"; label: string } | null = null; // fix620: the same candle read for the paper twin, without the pink condition
   let tpStack = false; // fix283
   let npPink = 0, npL: { name: string; price: number }[] = []; // fix361: the pure no-pink twin reads the pink and her lines // fix480
   let tgPF: { side: "up" | "down"; label: string } | null = null, tgFO = false; // fix326
@@ -691,6 +692,8 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       // fix260: the rejection model's copy of the candle in her third needs no finished 1m colour - the 5m candle on the live tick decides (pink rule kept).
       if (!pinkBelow && (cur.h - sDn) / wC >= 0.67 && spot < cur.o && cur.h - spot >= tpC) rejCandleNow = { side: "down", label: "Red candle falling from the top third" };
       else if (!pinkAbove && (cur.l - sDn) / wC <= 0.33 && spot > cur.o && spot - cur.l >= tpC) rejCandleNow = { side: "up", label: "Green candle rising from the bottom third" };
+      if ((cur.h - sDn) / wC >= 0.67 && spot < cur.o && cur.h - spot >= tpC) rejCandleNP620 = { side: "down", label: "Red candle falling from the top third" };
+      else if ((cur.l - sDn) / wC <= 0.33 && spot > cur.o && spot - cur.l >= tpC) rejCandleNP620 = { side: "up", label: "Green candle rising from the bottom third" };
     }
     // THE FAKE-OUT TURN (fix139, Oct 23 ~9:55 AM PT, Love: "if price fakes out there she can short once price breaks back under, even if there is a pink there"):
     // gold - a red 1m close back under a band that keeps faking out over it is her short (mirror long); it outranks her other calls this tick.
@@ -1019,6 +1022,12 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   try { const pv464 = onePink565R(id, b); if (lookRM && pv464 && !zoneFree515c(id, lookRM.side, String(lookRM.label)) && pinkRead464(id, sessionLines(ax, id), spot, lookRM.side, Number(pv464.pp))) lookRM = null; } catch {} // fix464 (R197/R198): no read into an unbroken pink within 15% / 20%, either side
   try { if (lookRM) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464("recon-rej", id, lookRM.side, String(m.ticker), String(lookRM.label || "")).ok) lookRM = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): every band tolerance in the read too - a read her walls refuse is never her call
   if (lookRM && book("recon-rej", lookRM)) changed = true;
+  // fix620 THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (Love Nov 1 2026 7:50 PM PT: "Build a new paper twin of the rejection book. It uses the same entry logic as main on every zone and band except pink. It ignores pink for entries. It still enters on a 2-5m flip or a candle born her colour. It can still take trades that are rising or falling inside the 20/33. It does nothing else." + 8:32 PM PT: "The paper twin must include rising and falling inside the top and bottom 20/33. It does not exclude them. It only ignores pink for entries. Everything else stays identical to the rejection book."): the rejection book's own call when it is not a pink call; otherwise her read with the pink line taken out, and her rising or falling candle with its pink condition taken out, through the same checks. No breaks. In no live list.
+  try { const pink620 = (x: { label: string } | null | undefined) => !!x && /5m PP|pink/i.test(String(x.label));
+    let np620: any = lookRM && !pink620(lookRM) ? lookRM : null;
+    if (!np620 && rejLB && rejReach > 0) { const LN620 = rejLB.filter((l: any) => String(l.name) !== "5m PP"); const rd620: any = bonesDecide(id, LN620, spot, last1m, cur, prev, b, true, rejReach, false, true, true) || rejCandleNP620;
+      if (rd620 && !pink620(rd620) && !thirdsRead463(sessionLines(ax, id), spot, rd620.side)) { const G620 = globalThis as any; G620.__blQuiet464 = true; try { if (bandLockCheck464("recon-rej", id, rd620.side, String(m.ticker), String(rd620.label || "")).ok) np620 = rd620; } finally { G620.__blQuiet464 = false; } } }
+    if (np620 && !/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(String(np620.label)) && book("recon-rnp", np620)) changed = true; } catch {}
   // HER READS FOR THE RE-AIM PAPER TWIN (fix223, Oct 25 ~6:00 PM PT, Love: "let's keep her as is, let's run a paper twin that can re aim"): log-only - every time the
   // rejection model's BTC read turns inside a 5m slot it is written to data/rej-reads.jsonl; tools/five-reaim-paper.py replays a 5m paper book that follows it. No orders.
   try { if (id === "btc" && lookR) { const GR = ((globalThis as any).__rejRead ||= {}); const s5R = Math.floor(Date.now() / 300000); const lr = GR.last;

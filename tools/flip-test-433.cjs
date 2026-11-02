@@ -19,6 +19,6 @@ for (const name of ["anyFlipNow", "anyFlipMinNow"]) {
   const g2 = mk([{ t: m0, o: 4049.0, h: 4050.6, l: 4048.9, c: 4049.6 }, { t: m1, o: 4049.6, h: 4050.2, l: 4049.5, c: 4050 }]);
   if (!g2("gold", "up", 4050.0)) { ok = false; console.log(`FLIP TEST: FAIL - ${name}: a green 2-5m candle did not count`); }
 }
-if (!R.includes("zoneFlip = false /* fix394") || !R.includes("(zoneFlip && (() => { try { return anyFlipNow(asset, \"up\", spot)") || !R.includes("true /* fix394: main (fix433) */")) { ok = false; console.log("FLIP TEST: FAIL - main's zone read does not take the 2-5m flip (fix394)"); }
+if (!R.includes("zoneFlip = false /* fix394") || !R.includes("(() => { try { return turnFlip530(asset, \"up\", spot)") || !R.includes("true /* fix394: main (fix433) */")) { ok = false; console.log("FLIP TEST: FAIL - main's zone read does not take the 2-5m flip (fix394)"); }
 console.log(ok ? "FLIP TEST ✓ - her flip is 2/3/4/5m: a 1m-only flip never counts, a green 2-5m does; main's green/red zone reads take it (fix394)." : "FLIP TEST: FAIL");
 process.exit(ok ? 0 : 1);
