@@ -4183,6 +4183,42 @@
   "The $5 add-on at 2.8x+ is in. Trigger: add as soon as price ": {
    "file": "kalshi-live.server.ts",
    "at": "2026-11-01T20:51:01.735579+00:00"
+  },
+  "keep our take profit structure in place for all trades. if i": {
+   "file": "bandlock.ts",
+   "at": "2026-11-02T05:45:33.283854+00:00"
+  },
+  "A rejection off a lower band is allowed when there is a reje": {
+   "file": "bandlock.ts",
+   "at": "2026-11-02T05:45:33.283990+00:00"
+  },
+  "Fresh bands stop being walls until the channel reaches $100.": {
+   "file": "bandlock.ts",
+   "at": "2026-11-02T05:45:33.283992+00:00"
+  },
+  "The other 1m reads stay as they are for now. -out. 2-5M only": {
+   "file": "bandlock.ts",
+   "at": "2026-11-02T05:45:33.283993+00:00"
+  },
+  "123&4 out love those are incredibly dated": {
+   "file": "engine.ts",
+   "at": "2026-11-02T05:45:33.283995+00:00"
+  },
+  "Yes. Add the read-only tick log.": {
+   "file": "engine.ts",
+   "at": "2026-11-02T05:45:33.283996+00:00"
+  },
+  "the latest umpire verdict must be SAFE on the exact order th": {
+   "file": "kalshi-live.server.ts",
+   "at": "2026-11-02T05:45:33.283998+00:00"
+  },
+  "1m rejections are out. Only 2-5m candles count.": {
+   "file": "recon.ts",
+   "at": "2026-11-02T05:45:33.283999+00:00"
+  },
+  "Until channel width reaches $100: half the channel width (do": {
+   "file": "bandlock.ts",
+   "at": "2026-11-02T05:46:37.844828+00:00"
   }
  },
  "retired": [

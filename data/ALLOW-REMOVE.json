@@ -5851,5 +5851,340 @@
     "what": "live-size dollars",
     "R": "R311",
     "why": "fix600 (her Nov 1 12:27 PM words)"
+  },
+  {
+    "what": "if (!(sA && sB)) return \"SESSION BAND AT THE SEND (fix593): price is past the last session band with no channel to measure - no order.\";",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const w = sA.price - sB.price, r = sessionScale593(asset, w);",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (!(op > 0) || !x || !bands.some((l: Line) => String(l.name) === \"5m PP\") || bands.length < 2) return \"SAME SIDE AT THE SEND (fix595): the bands or this candle can't be read - no order.\";",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const lb = String(label || \"\"), rej = /^(Rejected (up|down) off |\\d+m rejection off |Tap-reject at |Failed break )/.test(lb);",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const reach509 = asset === \"btc\" && sA && sB && sA.price - sB.price < 100 ? 25 : reach; // fix509 (Love Oct 30 2026 5:35-5:55 AM PT questionnaire c11 Keep: \"btc's is $25 at band widths under $100 during tight bands, golds is a hard $1 within that\")",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (!(sA && sB)) return `SESSION BAND (fix593): price is past the last session band with no channel to measure - no ${up ? \"long\" : \"short\"}`; // fix593 (Love Nov 1 2026 9:19 AM PT: \"If price is past the last session band with no channel to measure, refuse the order.\")",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const P = Number(b.price), pink = String(b.name) === \"5m PP\", r = pink ? ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : ((typeof pinkSlide580 === \"function\" && asset === \"btc\" && sA && sB) ? pinkSlide580(asset, sA.price - sB.price) : pinkReach)) : /^BB /.test(String(b.name)) ? reach509 : sessionScale593(asset, sA && sB ? sA.price - sB.price : 0); // fix593: session bands use her scale; pink and the Bollinger lines keep their own",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (!a || !b || !(a.price > b.price)) return false;",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (!a || !b || !(a.price > b.price)) return false;",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "export function bandLockCheck(book: string, asset: string, side: string, ticker = \"\"): { ok: true } | { ok: false; reason: string } {",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (!G.__inBLC465) { G.__inBLC465 = true; const prev465 = G.__curBook465; try { G.__curBook465 = book; return bandLockCheck(book, asset, side, ticker); } finally { G.__inBLC465 = false; G.__curBook465 = prev465; } } // fix465: the book being judged sets her thirds share (delayed keeps its own)",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (!(tick > 0) || edges.length < 2) return \"THE IMPOSSIBILITY: her bands can't be read - no opening order\";",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (upF >= 3 && hiF > B.p && tick < B.p && Number(k1.c) < B.p && Number(k1.c) < Number(k1.o)) return { side: \"down\", name: B.n, p: B.p };",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (dnF >= 3 && loF < B.p && tick > B.p && Number(k1.c) > B.p && Number(k1.c) > Number(k1.o)) return { side: \"up\", name: B.n, p: B.p };",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (!(tick > 0) || edges.length < 2) return { why: \"THE IMPOSSIBILITY: her bands can't be read - no opening order\", below: null, above: null, pos: null, lock: null };",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "{ const topL = edges[edges.length - 1], botL = edges[0];",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "// 1m CLOSE OFF A REJECTED BAND (Oct 21 ~12:06 PM PT, Love picked \"Yes, 1m close off the band is enough\"; \"the 1m close off of a rejection is perfect\"):",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "// the latest finished 1m candle (or the one before) tapped the line within her tap and the latest closed back off it, price still on that side.",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "{ const lc = closed[closed.length - 1], two = closed.slice(-2);",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const f0 = Math.floor(nowS / 300) * 300, inC = (x: { t: number }) => x.t >= f0; // tap + close inside the running 5m candle, every line (pivots Oct 21 ~1:22 PM PT; all lines fix98 Oct 22 ~5:56 PM PT, Love \"Yes, both guards\" - the 5:30 PM gold main short read a 5:29 bounce off -2σ)",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (lc && lc.t + 120 > nowS && inC(lc)) {",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (lc.c > p && spot > p && two.some((x) => inC(x) && x.l <= p + nr) && !(l.name === \"5m PP\" && !((spot >= cur.o + (asset === \"btc\" ? 10 : tap) || pfU))) /* and a pink long into a green candle (Love card \"Both: red short, green long\") */) cands.push({ side: \"up\", label: `1m rejection off ${l.name}`, d, rank: 1 });",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (lc.c < p && spot < p && two.some((x) => inC(x) && x.h >= p - nr) && !(l.name === \"5m PP\" && !((spot <= cur.o - (asset === \"btc\" ? 10 : tap) || pfD))) /* PINK SHORT INTO A RED CANDLE, both assets, every book (Oct 22 ~7:23 AM PT, Love: \"only have her short off of a pink band into a red candle, never a green one\") */) cands.push({ side: \"down\", label: `1m rejection off ${l.name}`, d, rank: 1 });",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (!a || !b || !(a.price > b.price)) return true;",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const L = [...sessionLines(ax, id), ...(p ? [{ name: \"5m PP\", price: p.pp, unit: p.a }] : []), ...btcBB(id, Number(sessionLines(ax, id)[0]?.unit) || 0)];",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (!pinkBelow && (cur.h - sDn) / wC >= 0.67 && spot < cur.o && cur.h - spot >= tpC && last1m.c < last1m.o) rejCandle = { side: \"down\", label: \"Red candle falling from the top third\" };",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "else if (!pinkAbove && (cur.l - sDn) / wC <= 0.33 && spot > cur.o && spot - cur.l >= tpC && last1m.c > last1m.o) rejCandle = { side: \"up\", label: \"Green candle rising from the bottom third\" };",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "try { if (firstTog) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464(\"recon-tog\", id, firstTog.side, String(m.ticker)).ok) firstTog = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: \"PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS\"): every band tolerance in the read too - a read her walls refuse is never her call",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const LR = [...sessionLines(ax, id), ...(pR ? [{ name: \"5m PP\", price: pR.pp, unit: pR.a }] : []), ...btcBB(id, Number(sessionLines(ax, id)[0]?.unit) || 0)];",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "try { if (lookRM) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464(\"recon-rej\", id, lookRM.side, String(m.ticker)).ok) lookRM = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: \"PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS\"): every band tolerance in the read too - a read her walls refuse is never her call",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "import { turnNow, labelHold597, REJ_KEEPS597, addOnAt28600 } from \"./bandlock\";",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const tpLine = pinPct > 0 ? pinPct : tableArm;",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const tpSell = (pinStep) || (tpOn && tpLine > 0 && armedTp[row.ticker] > 0 && (pinPct > 0 || tpMode === \"original\" || tpHard || bid >= 0.97 || tpLive < trailFloor));",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (tpSell) decision.why = pinStep && !(tpLive + 1e-9 >= tpLine) ? `safety net: got to ${Math.round(netPeakOfMax)}% of the max, fell back to the +${pinFloor}% step` : pinPct > 0 ? `your slider ${Math.round(pinPct)}%` : tpHard ? `hard take profit: touched +${Math.round(tpLive)}% (line +${Math.round(tpLine)}%, ${entryPx > 0 ? (1 / entryPx).toFixed(2) : \"?\"}x)` : `take profit: peaked +${Math.round(tpPeaks[row.ticker] ?? tpLive)}%, sold on the 1% trail (line +${Math.round(tpLine)}%, ${entryPx > 0 ? (1 / entryPx).toFixed(2) : \"?\"}x)`;",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (((liveCfg as { mirrorPaper?: boolean }).mirrorPaper !== false || mpBooks.length > 0) && botOwnsPosition(row) && !(pinPct > 0)) {",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (restOn && !mirrorOn && tpOn && tpLine > 0 && entryPx > 0.02 && qty >= 0.01 && closeIso && !tpSell) {",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const px = Math.min(0.99, Math.floor(entryPx * (1 + tpLine / 100) * 100 + 1e-6) / 100);",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const lockSell = paperLocks && !tpSell && !gateSell && lockPeaks[row.ticker] >= Number(lockCfg.arm) && tpLive <= Number(lockCfg.floor) && tpLive > 0 && paperReason;",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if ((liveCfg as { halfAt75?: boolean }).halfAt75 === true && !handsOff && (bookOwned || (liveCfg as { halfAt75Hand?: boolean }).halfAt75Hand === true) && !(pinPct > 0) && !paperSell && (mirrorOn || (!tpSell && !gateSell && !lockSell)) && entryPx > 0.02 && entryPx < 0.95 && Math.abs(row.pos) >= 0.04 && bid >= entryPx + 0.75 * (1 - entryPx)) { // ANY SIZE (Oct 17 ~6:55 PM PT, Love: \"Yes, any size\"): was 2+ contracts; at $1 she holds ~1.4 and the half never fired",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "} else if ((mirrorOn ? paperSell : tpSell || gateSell || lockSell || paperSell) && bid > 0.02 && entryPx > 0) {",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const bl: any = (r as any).hedge ? { ok: true } : blm.bandLockCheck(String(r.book), r.asset, r.side, String(r.ticker));",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const bl = (await import(\"./bandlock\")).bandLockCheck(String(line?.bookCopy || \"\"), String(ticker).includes(\"GOLD\") ? \"gold\" : \"btc\", bookSide === \"bid\" ? \"up\" : \"down\", String(ticker));",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "async function finalGate524(ticker, bookSide, sameLine) {",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (book === \"recon-dly\" || book === \"recon-dlyk\") return \"\";",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const L593 = (globalThis as any).__lawBands?.[sym]?.L; if (!Array.isArray(L593) || !L593.length) return \"SESSION BAND AT THE SEND (fix593): the board can't be read - no order.\"; const sb593 = B.sessionBandSend593(sym, L593, Number(q.c), side); if (sb593) return sb593; const z594 = B.zoneSend594(sym, L593, Number(q.c), side); if (z594) return z594; const s595 = B.sameSideSend595(sym, L593, Number(q.c), side); if (s595) return s595; // fix593 (Love Nov 1 2026 9:11-9:19 AM PT): her session-band scale on the live tick at the last line; pink is not part of this check",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (halt.off === true) return null;",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (!reduceOnly && !forceExit) { const g524 = await finalGate524(ticker, bookSide, sameLine); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, \"before\", false, g524); } catch {} return null; } } // fix524: NOTHING between this test and the send",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const bl = (await import(\"./bandlock\")).bandLockCheck(bookCopy, symbolOf(ticker), side, ticker);",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "try { const bl = (await import(\"./bandlock\")).bandLockCheck(String(bookCopy), symbolOf(ticker), side, ticker); if (!bl.ok) { sent.__aureliusBlock = `break retry stopped: ${bl.reason}`; break; } } catch {}",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "const tu = await addOnBuy(ticker, side, shortBy + 0.02, capPx, true); // free (fix127): the entry it completes already passed every wall a moment ago",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "import { paperBandFilter, bandRulesVerdict, floorFor, sessCarryPick, sessStartMs, isSessRej, breakEntry, nextBandReject, pinkRetest, pinkRejectEntry } from \"./bandlock\";",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "if (fl) { const L0565 = [...(fl[1] as any[]).map((l) => ({ name: String(l.name), price: Number(l.price), unit: Number(l.unit) || 0 })), ...btcBBWindow(id, Number((fl[1] as any[])[0]?.unit) || 0)].filter((l) => l.price > 0); const o565: any = { at: Date.now() }; Object.defineProperty(o565, \"L\", { enumerable: true, get: () => pinkFresh565(id, L0565) }); ((globalThis as any).__lawBands ||= {})[id] = o565; } /* fix565 ONE PINK (Love Oct 31 2026 3:01 AM PT: \"5M uses the exact same onePink565. No closed-candle pink remains anywhere.\" + \"The wire computes the pink fresh at the moment of the send. Do not reuse the 1-second pass value. onePink565() is called again inside the final gate before the POST.\"): every read of her law bands - every wall, the 5M's, and the final gate at the wire - takes the pink from onePink565 AT THAT MOMENT, never the 1 s pass copy */",
+    "R": "R312",
+    "why": "fix601-613 (her Nov 1 words)"
+  },
+  {
+    "what": "live-switch timeGate.on",
+    "R": "R312",
+    "why": "her Oct 30 9:39 PM + Nov 1 1:40 + 1:56 PM words"
+  },
+  {
+    "what": "live-switch cooldownAfterLoss",
+    "R": "R312",
+    "why": "her Oct 30 9:39 PM + Nov 1 1:40 + 1:56 PM words"
+  },
+  {
+    "what": "live-switch lockWin.on",
+    "R": "R312",
+    "why": "her Oct 30 9:39 PM + Nov 1 1:40 + 1:56 PM words"
+  },
+  {
+    "what": "live-switch blockedSetups Tap-reject archived",
+    "R": "R312",
+    "why": "her Oct 30 9:39 PM + Nov 1 1:40 + 1:56 PM words"
+  },
+  {
+    "what": "live-switch polyHour.on",
+    "R": "R312",
+    "why": "her Oct 30 9:39 PM + Nov 1 1:40 + 1:56 PM words"
+  },
+  {
+    "what": "const P = Number(b.price), pink = String(b.name) === \"5m PP\", r = pink ? ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : ((typeof pinkSlide580 === \"function\" && asset === \"btc\" && sA && sB) ? pinkSlide580(asset, sA.price - sB.price) : pinkReach)) : /^BB /.test(String(b.name)) ? reach509 : ((typeof carryOn612 === \"function\" && carryOn612(asset)) && !(sA && sB)) ? 25 /* fix612: $25 off the blue VWAP */ : sessionScale593(asset, sA && sB ? sA.price - sB.price : 0); // fix593: session bands use her scale; pink and the Bollinger lines keep their own",
+    "R": "R313",
+    "why": "fix615 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "function pinkHold596(): boolean { if (G.__stDefaultReach) return false; /* her self-test judges on a neutral clock */ try { return Number(PT_HOUR_Q.format(new Date(Date.now()))) === 14 || (G as any).__sessCarried?.btc === true; } catch { return false; } }",
+    "R": "R313",
+    "why": "fix615 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "export function pinkSlide580(asset: string, W: number): number { return asset === \"btc\" ? (W < 100 || pinkHold596() ? 25 : W <= 500 ? 0.2 * W : 0.15 * W) : (PINK_PCT459[asset] ?? PINK_PCT429) * W; }",
+    "R": "R313",
+    "why": "fix615 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (!a || !b || !(a.price > b.price)) return (typeof carryOn612 === \"function\" && carryOn612(asset)) ? Math.abs(pink - tick) > 25 : false; // fix612: no channel while she is on the blue VWAP, $25 flat",
+    "R": "R313",
+    "why": "fix615 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (!a || !b || !(a.price > b.price)) return (typeof carryOn612 === \"function\" && carryOn612(asset)) ? pink - tick > 25 : false; // fix612",
+    "R": "R313",
+    "why": "fix615 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if ((typeof carryOn612 === \"function\" && carryOn612(asset)) && !(a && b) && tick - P > 25) return \"\"; // fix612: no channel while she is on the blue VWAP, $25 flat",
+    "R": "R313",
+    "why": "fix615 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "import { carryWalls612 } from \"./bandlock\"; // fix612",
+    "R": "R313",
+    "why": "fix615 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "function pinkHold596R(): boolean { try { return Number(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", hour: \"2-digit\", hourCycle: \"h23\" }).format(new Date(Date.now()))) === 14 || (globalThis as any).__sessCarried?.btc === true; } catch { return false; } } // fix596: same window as bandlock pinkHold596",
+    "R": "R313",
+    "why": "fix615 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "function pinkSlide580R(asset: string, W: number, pct: number): number { return asset === \"btc\" ? (W < 100 || pinkHold596R() ? 25 : W <= 500 ? 0.2 * W : 0.15 * W) : pct * W; }",
+    "R": "R313",
+    "why": "fix615 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (!a || !b || !(a.price > b.price)) return spot >= 20000 && (globalThis as any).__sessCarried?.btc === true ? Math.abs(pink - spot) <= 25 /* fix612: $25 flat */ : true;",
+    "R": "R313",
+    "why": "fix615 (her Nov 1 4:27 PM words)"
   }
 ]

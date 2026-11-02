@@ -1,0 +1,1 @@
+{"kind": "supersede", "of": "R310", "by": "R313", "drop": [{"code": "src/lib/desk/bandlock.ts", "has": "W < 100 || pinkHold596() ? 25"}, {"code": "src/lib/desk/recon.ts", "has": "W < 100 || pinkHold596R() ? 25"}], "words": "Love Nov 1 2026 4:27 PM PT: her pink cushion scale.", "at": "2026-11-02T05:46:37+00:00", "prev": "4efa046efe131488", "hash": "eaa63eb7298cf606"}

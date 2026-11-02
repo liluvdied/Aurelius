@@ -24,7 +24,7 @@ import { lessonHold, noteForming, noteOpen } from "./review";
 import { scoreMirror } from "./mirror";
 import { flagBetween } from "./watchdog";
 import { quoteTick } from "./quotes";
-import { turnNow, labelHold597, REJ_KEEPS597, addOnAt28600 } from "./bandlock";
+import { turnNow, labelHold597, REJ_KEEPS597, addOnAt28600, sliderLine607 } from "./bandlock";
 
 var g = globalThis;
 // A Kalshi position one of her books copied (live-book-done.json says filled on that ticker), vs a trade Love opened herself.
@@ -2126,7 +2126,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       // so a line at 96.2c could only fire at 97c. The line now rounds DOWN to the cent the bid can actually print (96c).
       const tableArm = entryPx > 0.02 && tableArm0 > 0 ? Math.round(((Math.floor(entryPx * (1 + tableArm0 / 100) * 100 + 1e-6) / 100 / entryPx) - 1) * 10000) / 100 : tableArm0;
       const pinPct = pin && Number(pin.pct) >= 1 ? Number(pin.pct) : 0;
-      const tpLine = pinPct > 0 ? pinPct : tableArm;
+      const tpLine = sliderLine607(pinPct, tableArm); /* fix607: her slider and her structure both stand, whichever comes first */
       const tpLive = entryPx > 0 ? (bid / entryPx - 1) * 100 : 0;
       const armedTp = g.__aureliusTpArmed || (g.__aureliusTpArmed = {});
       const tpPeaks = g.__aureliusTpPeak || (g.__aureliusTpPeak = {});
@@ -2170,8 +2170,9 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       } else {
         delete pinPeaks[row.ticker];
       }
-      const tpSell = (pinStep) || (tpOn && tpLine > 0 && armedTp[row.ticker] > 0 && (pinPct > 0 || tpMode === "original" || tpHard || bid >= 0.97 || tpLive < trailFloor));
-      if (tpSell) decision.why = pinStep && !(tpLive + 1e-9 >= tpLine) ? `safety net: got to ${Math.round(netPeakOfMax)}% of the max, fell back to the +${pinFloor}% step` : pinPct > 0 ? `your slider ${Math.round(pinPct)}%` : tpHard ? `hard take profit: touched +${Math.round(tpLive)}% (line +${Math.round(tpLine)}%, ${entryPx > 0 ? (1 / entryPx).toFixed(2) : "?"}x)` : `take profit: peaked +${Math.round(tpPeaks[row.ticker] ?? tpLive)}%, sold on the 1% trail (line +${Math.round(tpLine)}%, ${entryPx > 0 ? (1 / entryPx).toFixed(2) : "?"}x)`;
+      const pinHit607 = pinPct > 0 && tpLive + 1e-9 >= pinPct; /* fix607 */
+      const tpSell = (pinStep) || pinHit607 || (tpOn && tpLine > 0 && armedTp[row.ticker] > 0 && ((pinPct > 0 && tpLine === pinPct) || tpMode === "original" || tpHard || bid >= 0.97 || tpLive < trailFloor));
+      if (tpSell) decision.why = pinStep && !(tpLive + 1e-9 >= tpLine) ? `safety net: got to ${Math.round(netPeakOfMax)}% of the max, fell back to the +${pinFloor}% step` : pinHit607 || (pinPct > 0 && tpLine === pinPct) ? `your slider ${Math.round(pinPct)}%` : tpHard ? `hard take profit: touched +${Math.round(tpLive)}% (line +${Math.round(tpLine)}%, ${entryPx > 0 ? (1 / entryPx).toFixed(2) : "?"}x)` : `take profit: peaked +${Math.round(tpPeaks[row.ticker] ?? tpLive)}%, sold on the 1% trail (line +${Math.round(tpLine)}%, ${entryPx > 0 ? (1 / entryPx).toFixed(2) : "?"}x)`;
       if (tpSell) decision.lock = tpLine;
       // MIRROR PAPER 1:1 (Love, Oct 8 ~3:45 PM PT: "rewire kalshi to fire 1:1 with the paper books. if they are letting
       // winners ride and kalshi is exiting early, let's make them do the same things so her live books can shine too").
@@ -2193,7 +2194,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       // it only read the night book, so a lane-owned position could never find its paper row and silently fell back to
       // the old exit stack.
       const mpBooks: string[] = Array.isArray((liveCfg as { mirrorPaperBooks?: string[] }).mirrorPaperBooks) ? ((liveCfg as { mirrorPaperBooks?: string[] }).mirrorPaperBooks as string[]) : [];
-      if (((liveCfg as { mirrorPaper?: boolean }).mirrorPaper !== false || mpBooks.length > 0) && botOwnsPosition(row) && !(pinPct > 0)) {
+      if (((liveCfg as { mirrorPaper?: boolean }).mirrorPaper !== false || mpBooks.length > 0) && botOwnsPosition(row)) { // fix607: a slider no longer takes the position off her structure
         try {
           mirrorOwn = bookOwnerOf(row.ticker);
           if (mirrorOwn && (liveCfg as { mirrorPaper?: boolean }).mirrorPaper === false && !mpBooks.includes(String(mirrorOwn.id).split(":")[1] || "")) mirrorOwn = null;
@@ -2206,7 +2207,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         }
       }
       const mirrorOn = Boolean(mirrorRow);
-      if (mirrorOn) {
+      if (mirrorOn && !(pinPct > 0)) { // fix607: with a slider set, her resting order at the slider stays
         try {
           const tpR = g.__aureliusTpRest || {};
           if (tpR[row.ticker]?.id && !tpR[row.ticker]?.busy) void live.cancelTpRest(row.ticker);
@@ -2220,8 +2221,8 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const tpRest = g.__aureliusTpRest || (g.__aureliusTpRest = {});
         const restOn = (liveCfg as { tpRest?: boolean }).tpRest !== false && liveCfg.autoExits !== false;
         const closeIso = String(data.market?.close_time || "");
-        if (restOn && !mirrorOn && tpOn && tpLine > 0 && entryPx > 0.02 && qty >= 0.01 && closeIso && !tpSell) {
-          const px = Math.min(0.99, Math.floor(entryPx * (1 + tpLine / 100) * 100 + 1e-6) / 100);
+        if (restOn && (!mirrorOn || pinPct > 0) && tpOn && tpLine > 0 && entryPx > 0.02 && qty >= 0.01 && closeIso && !tpSell) {
+          const px = Math.min(0.99, Math.floor(entryPx * (1 + (mirrorOn ? pinPct : tpLine) / 100) * 100 + 1e-6) / 100); // fix607
           const cur = tpRest[row.ticker];
           const stale = !cur || Math.abs((cur.px ?? 0) - px) >= 0.005 || Math.abs((cur.qty ?? 0) - Math.floor(qty * 100) / 100) > 0.01;
           const cool = cur?.failedAt && Date.now() - cur.failedAt < 30000;
@@ -2503,7 +2504,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         decision.lock = gateFloor;
       }
       // LOCK THE WIN dismantled with the gate (same day, same ask): only the hard take profit and her slider sell.
-      const lockSell = paperLocks && !tpSell && !gateSell && lockPeaks[row.ticker] >= Number(lockCfg.arm) && tpLive <= Number(lockCfg.floor) && tpLive > 0 && paperReason;
+      const lockSell = lockCfg.on !== false /* fix605 (Love Oct 30 2026 9:39 PM PT: "123&4 out love those are incredibly dated"): the switch is obeyed */ && paperLocks && !tpSell && !gateSell && lockPeaks[row.ticker] >= Number(lockCfg.arm) && tpLive <= Number(lockCfg.floor) && tpLive > 0 && paperReason;
       if (lockSell) {
         decision.why = `locked the win: was up +${Math.round(lockPeaks[row.ticker])}%, fell back to +${Math.round(tpLive)}%${rejected ? " (rejected off a band)" : cushion != null ? ` (only ${cushion.toFixed(2)} past the target)` : ""}`;
         decision.lock = Number(lockCfg.floor);
@@ -2552,7 +2553,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       // every rule (90% take profit + trail, gates, lock the win, the bell). Once per position. live-switch "halfAt75".
       // Lab (scripts/half-lab.py): +$155 gold / +$324 BTC on trades that end on a gate or lock; -$400 / -$45 over all trades.
       // YOURS TOO (Oct 17 ~10:16 AM PT, Love: "you can leave those on for mine too bb"): live-switch halfAt75Hand = her own trades get half at 75% as well. Her slider still wins.
-      if ((liveCfg as { halfAt75?: boolean }).halfAt75 === true && !handsOff && (bookOwned || (liveCfg as { halfAt75Hand?: boolean }).halfAt75Hand === true) && !(pinPct > 0) && !paperSell && (mirrorOn || (!tpSell && !gateSell && !lockSell)) && entryPx > 0.02 && entryPx < 0.95 && Math.abs(row.pos) >= 0.04 && bid >= entryPx + 0.75 * (1 - entryPx)) { // ANY SIZE (Oct 17 ~6:55 PM PT, Love: "Yes, any size"): was 2+ contracts; at $1 she holds ~1.4 and the half never fired
+      if ((liveCfg as { halfAt75?: boolean }).halfAt75 === true && !handsOff && (bookOwned || (liveCfg as { halfAt75Hand?: boolean }).halfAt75Hand === true) && !paperSell && (mirrorOn || (!tpSell && !gateSell && !lockSell)) && entryPx > 0.02 && entryPx < 0.95 && Math.abs(row.pos) >= 0.04 && bid >= entryPx + 0.75 * (1 - entryPx)) { // ANY SIZE (Oct 17 ~6:55 PM PT, Love: "Yes, any size"): was 2+ contracts; at $1 she holds ~1.4 and the half never fired
         const hFile = join(process.cwd(), "data", "half75.json");
         let halved: Record<string, string> = {};
         try {
@@ -2581,7 +2582,8 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       }
       if (handsOff && !(tpSell && pinPct > 0)) {
         if (tpSell || gateSell || lockSell || paperSell) decision.why = `HANDS OFF: would have sold (${decision.why || "exit"}), holding for you`;
-      } else if ((mirrorOn ? paperSell : tpSell || gateSell || lockSell || paperSell) && bid > 0.02 && entryPx > 0) {
+      } else if ((mirrorOn ? paperSell || pinHit607 : tpSell || gateSell || lockSell || paperSell) && bid > 0.02 && entryPx > 0) {
+        if (mirrorOn && pinHit607 && !paperSell) decision.why = `your slider ${Math.round(pinPct)}%`; // fix607
         // Tighter fill: a gate, the lock or a follow-paper exit sells no more than 1c under the bid (was 3c).
         const floor = Math.max(0.02, Math.round((bid - (gateSell || lockSell || paperSell || mirrorOn ? 0.01 : 0.03)) * 100) / 100);
         const payout = await live.flattenTicker(row.ticker, true, 0, false, floor);
@@ -3399,7 +3401,7 @@ async function polyTwin() {
       const endMs = mm ? Date.UTC(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4]) + 4, Number(mm[5])) : 0;
       if (!endMs || now > endMs - 60000) { reg[r.id] = { ...base, status: "skipped", final: true, reason: "under a minute left" }; changed = true; continue; }
       const closesAt = new Date(endMs).toISOString();
-      const bl: any = (r as any).hedge ? { ok: true } : blm.bandLockCheck(String(r.book), r.asset, r.side, String(r.ticker));
+      const bl: any = (r as any).hedge ? { ok: true } : blm.bandLockCheck(String(r.book), r.asset, r.side, String(r.ticker), String(r.setup || "")); /* fix611 */
       if (!bl.ok) { if (d?.reason !== bl.reason) log({ id: r.id, status: "blocked", reason: bl.reason }); reg[r.id] = { ...base, status: "blocked", reason: bl.reason }; changed = true; continue; }
       const win = await pm.polyWindowAsset(r.asset, closesAt).catch(() => null);
       if (!win) { if (d?.status !== "no window") log({ id: r.id, status: "no window", closesAt }); reg[r.id] = { ...base, status: "no window", reason: `no Polymarket ${r.asset} 15m window closing ${closesAt}` }; changed = true; continue; }
@@ -5816,3 +5818,5 @@ export function slideHoldBtc423(sm: { t: number; p: number; pp: number }[], S: {
   if (S.on) return `BTC SLIDE UNDER PINK: btc ${last.p.toFixed(2)} is still under the pink (${last.pp.toFixed(2)}) since her slide - no long until price breaks up through pink by 10% of the channel (fix560).`;
   return "";
 }
+// fix613 THE TICK LOG (Love Nov 1 2026 2:31 PM PT: "Yes. Add the read-only tick log."): every 5 s, the ticks her feed already took go to data/tick-log.jsonl with their arrival time, to lay beside her chart. No rule reads this file and it never touches the feed.
+if (!(globalThis as any).__tickLog613) { const G613 = globalThis as any, seen613: Record<string, number> = {}; G613.__tickLog613 = setInterval(() => { try { const tr = G613[`__qtrail_${G613.__qsVer}`] || {}; let out = ""; for (const a of ["btc", "gold"]) { for (const x of (tr[a] || []) as { t: number; c: number }[]) { if (x.t > (seen613[a] || 0)) { out += JSON.stringify({ t: x.t, a, c: x.c }) + "\n"; seen613[a] = x.t; } } } if (out) void import("node:fs/promises").then((m) => m.appendFile(join(process.cwd(), "data", "tick-log.jsonl"), out)).catch(() => {}); } catch {} }, 5000); G613.__tickLog613.unref?.(); }

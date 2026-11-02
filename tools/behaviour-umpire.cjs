@@ -262,16 +262,21 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
 // fix596 + fix597 + fix598 + fix599 (Love Nov 1 2026 11:20 + 11:31 AM PT)
 { const NOON = Date.parse("2026-11-02T20:30:00Z"), TWO = Date.parse("2026-11-02T22:30:00Z"), FOUR = Date.parse("2026-11-03T00:30:00Z"), keepNow = NOW;
   NOW = NOON; G.__sessCarried = { btc: false };
-  T("fix596 BTC at 11:30 AM on a $188 channel reads 20%", Math.abs(B.pinkSlide580("btc", 188) - 37.6) < 0.01);
-  T("fix596 BTC under $100 reads $25 at any hour", B.pinkSlide580("btc", 90) === 25);
+  T("fix615 BTC over $180 is the normal scale, 20%", Math.abs(B.pinkSlide580("btc", 188) - 37.6) < 0.01);
+  T("fix615 BTC under $100 reads half the channel", B.pinkSlide580("btc", 90) === 45);
+  T("fix615 BTC $100 to $180 reads half, capped at $60", B.pinkSlide580("btc", 100) === 50 && B.pinkSlide580("btc", 126.76) === 60 && B.pinkSlide580("btc", 179) === 60);
+  T("fix615 BTC from $180 the normal scale is back", Math.abs(B.pinkSlide580("btc", 180) - 36) < 0.01 && Math.abs(B.pinkSlide580("btc", 600) - 90) < 0.01);
+  T("fix615 gold under $2 reads half the channel", B.pinkSlide580("gold", 1) === 0.5 && B.pinkSlide580("gold", 1.9) === 0.95);
+  T("fix615 gold from $2 to $5 stays half, capped at $1.50", B.pinkSlide580("gold", 2) === 1 && B.pinkSlide580("gold", 3) === 1.5 && B.pinkSlide580("gold", 4.9) === 1.5);
+  T("fix615 gold from $5 the normal 15% is back", Math.abs(B.pinkSlide580("gold", 5) - 0.75) < 0.001 && Math.abs(B.pinkSlide580("gold", 10) - 1.5) < 0.001);
   NOW = TWO; G.__sessCarried = { btc: false };
-  T("fix596 BTC reads $25 for the whole 2 PM hour, even past $100", B.pinkSlide580("btc", 188) === 25);
+  T("fix615 BTC at 2 PM on $188 reads the normal 20%, no hour", Math.abs(B.pinkSlide580("btc", 188) - 37.6) < 0.01);
   NOW = FOUR; G.__sessCarried = { btc: true };
-  T("fix596 BTC after 3 PM with the bands still carried reads $25", B.pinkSlide580("btc", 188) === 25);
+  T("fix615 after 3 PM the carry alone does not mean $25", Math.abs(B.pinkSlide580("btc", 188) - 37.6) < 0.01 && B.pinkSlide580("btc", 60) === 30);
   G.__sessCarried = { btc: false };
-  T("fix596 BTC after 3 PM past $100 goes back to 20%", Math.abs(B.pinkSlide580("btc", 188) - 37.6) < 0.01);
+  T("fix615 after 3 PM on $188 reads 20%", Math.abs(B.pinkSlide580("btc", 188) - 37.6) < 0.01);
   NOW = TWO; G.__sessCarried = { btc: true, gold: true };
-  T("fix596 gold keeps her own 15%, at 2 PM too", Math.abs(B.pinkSlide580("gold", 10) - 1.5) < 0.001);
+  T("fix615 at 2 PM it is the same scale, no hour, BTC and gold", B.pinkSlide580("btc", 90) === 45 && B.pinkSlide580("gold", 3) === 1.5 && Math.abs(B.pinkSlide580("gold", 10) - 1.5) < 0.001);
   NOW = keepNow; G.__sessCarried = {};
   const H = B.labelHold597;
   T("fix597 rejection refuses a break at any hour", /REJECTION-ONLY/.test(H("recon-rej", "btc", false, "Break above +1σ")));
@@ -312,6 +317,79 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix600 past 2.8x the add-on goes", !!B.addOnAt28600(0.25, 0.357));
   T("fix600 under 2.8x it waits", !B.addOnAt28600(0.36, 0.357));
   T("fix600 a dead bid does nothing", !B.addOnAt28600(0.02, 0.357));
+}
+// fix603 (Love Nov 1 2026 1:06 PM PT): same side sees the live ticks, not only the chart bars
+{ const keep603 = NOW; NOW = Date.parse("2026-11-02T20:32:30Z"); const f603 = Math.floor(NOW / 300000) * 300;
+  const L603 = [{ name: "session VWAP", price: 77700 }, { name: "+1σ", price: 78000 }, { name: "5m PP", price: 77850 }];
+  G.__pivBars = { btc: { bars: [{ t: f603, o: 77870, h: 77872, l: 77852, c: 77860 }] } };
+  G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 77838 }, { t: NOW - 500, c: 77848 }] };
+  T("fix603 a break down only the ticks saw, long back under pink, is refused", /not above/.test(B.sameSideSend595("btc", L603, 77848, "up")));
+  G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 77852 }, { t: NOW - 500, c: 77848 }] };
+  T("fix603 no break in the ticks or the bars, no same-side refusal", !B.sameSideSend595("btc", L603, 77848, "up"));
+  G.__pivBars = { btc: { bars: [{ t: f603, o: 77830, h: 77845, l: 77828, c: 77840 }] } };
+  G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 77862 }, { t: NOW - 500, c: 77852 }] };
+  T("fix603 a break up only the ticks saw, short back over pink, is refused", /not below/.test(B.sameSideSend595("btc", L603, 77852, "down")));
+  NOW = keep603; G.__pivBars = {}; G.__qtrail_1 = {};
+}
+// fix606 + fix607 (Love Nov 1 2026 1:24 + 1:40 PM PT)
+{ const H6 = B.labelHold597, S7 = B.sliderLine607;
+  T("fix606 a 1m rejection is refused on rejection", /1M REJECTIONS ARE OUT/.test(H6("recon-rej", "btc", false, "1m rejection off 5m PP")));
+  T("fix606 a 1m rejection is refused on main", /1M REJECTIONS ARE OUT/.test(H6("recon-tog", "gold", false, "1m rejection off Green zone")));
+  T("fix606 a band rejection still goes", !H6("recon-rej", "btc", false, "Rejected up off 5m PP"));
+  T("fix607 a slider before the structure is the line", S7(40, 90) === 40);
+  T("fix607 a slider past the structure, the structure is the line", S7(120, 90) === 90);
+  T("fix607 no slider, the structure is the line", S7(0, 90) === 90);
+  T("fix607 a slider with no structure line still stands", S7(40, 0) === 40);
+}
+// fix611 + fix612 (Love Nov 1 2026 2:31 PM PT)
+{ const keep = NOW, keepB = G.__pivBars; NOW = Date.parse("2026-11-01T22:07:15Z"); G.__sessCarried = {};
+  const L611 = [{ name: "session VWAP", price: 77751.95 }, { name: "-1σ", price: 77573.6 }, { name: "+1σ", price: 77930.29 }, { name: "5m PP", price: 77774.8 }];
+  const t0 = (m) => Math.floor(Date.parse("2026-11-01T22:00:00Z") / 1000) + m * 60;
+  const Bars = (c3) => ({ btc: { bars: [{ t: t0(5), o: 77790, h: 77795, l: 77700, c: 77700 }, { t: t0(6), o: 77700, h: 77705, l: 77629, c: 77680 }, { t: t0(7), o: 77680, h: Math.max(77680, c3), l: 77675, c: c3 }] } });
+  const LB = "Failed break below fresh -2σ - rejected up", HL = { h: 77795, l: 77629 };
+  G.__pivBars = Bars(77725);
+  G.__curLabel611 = "";
+  T("fix611 no rejection label, the broke-this-candle wall still refuses the long", /BROKE IT/.test(B.brokeThisCandle441("btc", L611, 77725, "up", 77790, HL)));
+  G.__curLabel611 = LB;
+  T("fix611 the 2:07:15 PM rejection with its flip goes", !B.brokeThisCandle441("btc", L611, 77725, "up", 77790, HL));
+  T("fix611 the second broke-this-candle wall lets it go too", !/BROKE DOWN THIS CANDLE/.test(B.brokeThisCandle457("btc", L611, 77725, "up", 77790, HL)));
+  T("fix611 the same-side test lets it go too", !B.sameSideSend595("btc", L611, 77725, "up", 77790, HL));
+  T("fix611 the same-side test still refuses a break read", (() => { G.__curLabel611 = "Break above 5m S1"; const w = B.sameSideSend595("btc", L611, 77725, "up", 77790, HL); G.__curLabel611 = LB; return /not above/.test(w); })());
+  G.__curLabel611 = "1m rejection off -1σ";
+  T("fix611 a 1m rejection gets no pass", /BROKE IT/.test(B.brokeThisCandle441("btc", L611, 77725, "up", 77790, HL)));
+  G.__curLabel611 = LB; G.__pivBars = { btc: { bars: [{ t: t0(5), o: 77790, h: 77795, l: 77700, c: 77700 }, { t: t0(6), o: 77770, h: 77775, l: 77720, c: 77725 }, { t: t0(7), o: 77728, h: 77728, l: 77724, c: 77725 }] } };
+  T("fix611 a rejection with no flip stays refused", /BROKE IT/.test(B.brokeThisCandle441("btc", L611, 77725, "up", 77790, HL)));
+  G.__curLabel611 = ""; G.__pivBars = keepB;
+  const Lc = [{ name: "session VWAP", price: 77751.95 }, { name: "+1σ", price: 77930 }, { name: "-1σ", price: 77573 }, { name: "fresh VWAP", price: 77794.2 }, { name: "fresh +1σ", price: 77827 }, { name: "fresh -1σ", price: 77760 }, { name: "5m PP", price: 77774.8 }, { name: "5m S1", price: 77700 }, { name: "5m R1", price: 77850 }];
+  G.__sessCarried = { btc: true, gold: true }; G.__curBook465 = "";
+  const Lf = B.carryWalls612("btc", Lc), names = Lf.map((l) => l.name).join(",");
+  T("fix612 under $100 only the blue VWAP is left of her session lines", names === "fresh VWAP,5m PP,5m S1,5m R1", names);
+  T("fix612 gold keeps every line", B.carryWalls612("gold", Lc).length === Lc.length);
+  G.__curBook465 = "recon-dly";
+  T("fix612 the delayed book keeps every line", B.carryWalls612("btc", Lc).length === Lc.length);
+  G.__curBook465 = "";
+  G.__sessCarried = { btc: false };
+  T("fix612 at $100 every line is back", B.carryWalls612("btc", Lc).length === Lc.length);
+  G.__sessCarried = { btc: true };
+  const Lb = Lf.filter((l) => l.name === "fresh VWAP");
+  T("fix612 a long $10 under the blue VWAP is refused", /HER WALL/.test(B.reachWall429("btc", Lb, 77784.2, "up", { r1: 78500, s1: 77000, r2: 78600, s2: 76900, pp: 77774.8 }, 77700)));
+  T("fix612 a long $60 under the blue VWAP goes", !B.reachWall429("btc", Lb, 77734.2, "up", { r1: 78500, s1: 77000, r2: 78600, s2: 76900, pp: 77774.8 }, 77700));
+  T("fix612 at the send, a long $10 under the blue VWAP is refused", /is unbroken/.test(B.sessionBandSend593("btc", Lb, 77784.2, "up")));
+  T("fix612 at the send, a long $60 under it goes", !B.sessionBandSend593("btc", Lb, 77734.2, "up"));
+  const g612 = B.impossibleGeo("btc", Lb, 77900, "up", ...BOOKS.main).why;
+  T("fix612 one blue line is not an unreadable board or a whole channel", !/can't be read|THE TOP LINE/.test(g612), g612);
+  G.__sessCarried = {};
+  T("fix612 with no carry, past the last band is still refused", /no channel to measure/.test(B.sessionBandSend593("btc", Lb, 77734.2, "up")));
+  NOW = keep; G.__sessCarried = {};
+}
+// fix615 (Love Nov 1 2026 4:27 PM PT): the cushion's size only, the wall itself unchanged
+{ const keep = NOW; NOW = Date.parse("2026-11-01T23:30:12Z"); G.__sessCarried = {};
+  const L = [{ name: "session VWAP", price: 77797.56 }, { name: "+1σ", price: 77924.32 }, { name: "+2σ", price: 78051.08 }, { name: "-1σ", price: 77670.8 }, { name: "5m PP", price: 77945.06 }, { name: "5m S1", price: 77794.86 }, { name: "5m R1", price: 78095.25 }];
+  T("fix615 the wall stands: $59 over the pink on a $126.76 channel is inside the $60 cushion", /NO SHORT OVER AN UNBROKEN PINK/.test(B.pinkShortWall464("btc", L, 78004.06, "down")));
+  T("fix615 the wall stands: $61 over the pink is past the cushion and free", !B.pinkShortWall464("btc", L, 78006.06, "down"));
+  G.__sessCarried = { btc: true }; G.__freshSd = { btc: 60 };
+  T("fix615 carried on a $60 channel, the cushion is $30", B.carryTol615("btc") === 30);
+  G.__sessCarried = {}; G.__freshSd = {}; NOW = keep;
 }
 const ok = res.every((r) => r.ok);
 for (const r of res) console.log((r.ok ? "  ✓ " : "  ✗ ") + r.name + (r.ok ? "" : "  <- " + r.detail));

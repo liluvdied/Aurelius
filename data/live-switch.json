@@ -1,21 +1,19 @@
 {
   "live": true,
   "maxDollars": 5,
-  "cooldownAfterLoss": true,
+  "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-01T20:51:05.951Z",
+  "at": "2026-11-02T05:46:41.660Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
   ],
   "shiftStart": "2026-10-02T01:58:00.000Z",
-  "blockedSetups": [
-    "Tap-reject at -0.5σ|down|gold"
-  ],
+  "blockedSetups": [],
   "lockWin": {
     "arm": 30,
     "floor": 20,
-    "on": true,
+    "on": false,
     "clear": {
       "gold": 0.5,
       "btc": 100
@@ -126,7 +124,7 @@
       "recon-dly"
     ],
     "dollars": 5,
-    "since": "2026-11-01T20:51:05.953Z",
+    "since": "2026-11-02T05:46:41.661Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -309,7 +307,7 @@
     }
   },
   "timeGate": {
-    "on": true,
+    "on": false,
     "minN": 15,
     "minWin": 0.62,
     "hours": 4,
@@ -353,7 +351,7 @@
   "paperLocks": true,
   "bookLikePaper": true,
   "polyHour": {
-    "on": true,
+    "on": false,
     "books": [
       "brick"
     ],

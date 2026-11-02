@@ -228,8 +228,8 @@ need("export function onePink565(" in PB565 and "function pinkFresh565(" in PB56
      "74. ONE PINK: her chart's CM Pivot Bands 5m pink, forming candle + live price included, is the ONLY pink - every read, wall, cushion, reach, zone and slide, the 5M included, and it is recomputed at the wire; no closed-candle pink anywhere (her 2:30 + 3:01 AM, fix565)")
 need("export function sameSideSend595(" in B and "B.sameSideSend595(sym, L593, Number(q.c), side)" in K523,
      "75. SAME SIDE AT THE SEND (fix595, her Nov 1 10:37 AM words): a long must be above, a short below, any session band or pink broken this candle, on the live tick at the last line; a band that cannot be read refuses")
-need("function pinkHold596()" in B and "W < 100 || pinkHold596() ? 25" in B and "W < 100 || pinkHold596R() ? 25" in R,
-     "76. HER $25 PINK WINDOW (fix596, her Nov 1 11:20 + 11:31 AM words): BTC only, the whole 2 PM hour, then until the channel is past $100; gold keeps her own tolerance and her $5 hand-back")
+need("(W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60)" in B and "(W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60)" in R and "pinkHold596" not in B and "pinkHold596R" not in R and B.count("W < 2 ? W / 2 : Math.min(W / 2, 1.5)") == 1 and R.count("W < 2 ? W / 2 : Math.min(W / 2, 1.5)") == 1,
+     "76. HER PINK CUSHION (fix615, her Nov 1 4:27, 4:32 + 5:20 PM words, replacing fix596): BTC half the channel under $100, half capped at $60 to $180, the normal scale from $180; gold half the channel under $2, half capped at $1.50 to $5, the normal 15% from $5, at any hour")
 need("export function labelHold597(" in B and "labelHold597(String(row.book)" in E and "B.labelHold597(book, sym" in K523,
      "77. REJECTIONS ONLY (fix597, her Nov 1 11:20 + 11:31 AM words): rejection is a rejection-only book at all hours and keeps the candle-from-the-33% and fake-out reads; 2 PM until $100 on BTC, main takes rejections and pink breaks only; at the copier and the last line")
 need("lottoSnipe" not in E and '"snipe"' not in open("data/live-switch.json", encoding="utf8").read(),
@@ -239,6 +239,31 @@ need("upF >= 2" not in B.split("bandlockEnd")[0] and "if (upF >= 3 && hiF > B.p"
 SW600 = __import__("json").load(open("data/live-switch.json"))
 need("async function addOnBuy600(" in K523 and "ADD-ON DISABLED (fix524" in K523 and "live.addOnBuy600" in E and "addOnAt28600(bid, aoMax)" in E and SW600["addOn"]["maxAsk"] == 0.357 and SW600["addOn"]["twin"]["on"] is False,
      "80. HER $5 ADD-ON AT 2.8x (fix600, her Nov 1 12:27 PM words): as soon as price reaches 2.8x, no band touch; must pass the umpire SAFE stamp, the live switch, the entries switch and the $5 cap; skips the band walls and the flip, her one exception; delayed keeps hers off; the top-up and silver hedge stay refused")
+_g601 = K523[K523.find("async function sendOrder("):]
+_p601 = _g601[_g601.find("await finalGate524(ticker, bookSide, sameLine, yesPrice, count)"):_g601.find('kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {')]
+need("async function judgeOrder601(" in K523 and "THE UMPIRE AT THE LAST LINE (fix601): not SAFE" in K523 and K523.count("HER DOOR AT THE LAST LINE (fix601)") >= 2 and "order-verdicts.jsonl" in K523 and _p601.count("\n") <= 1,
+     "81. THE EXACT ORDER (fix601, her words): every opening order is judged at the last line, nothing between the test and the POST: the umpire stamp and running code, every wall and her door on the live tick; its verdict is written with book, side, price and count")
+need("sent.__oneDoor?.delete(ticker); /* fix602" in _p601,
+     "82. A REFUSED ORDER NEVER CLOSES HER WINDOW (fix602, her words): the door reopens when the last line refuses; only an executed trade closes a window")
+need("trailNow(asset).filter((t) => Number(t.t) >=" in B and "...tr603" in B,
+     "83. SAME SIDE SEES THE TICKS (fix603, her words): a break only the last few ticks saw counts at the last line")
+need("ENTRIES ARE OFF (fix604)" in K523 and "lockCfg.on !== false" in E,
+     "84. HER OFF SWITCHES WORK (fix604 + fix605): entries off writes its reason; the profit lock obeys its switch and cannot sell a position while off")
+need("`1m rejection off ${l.name}`" not in R and "1M REJECTIONS ARE OUT (fix606)" in B,
+     "85. 1M REJECTIONS ARE OUT (fix606, her Nov 1 1:24 PM words): the read is gone and main and rejection refuse the label at the copier and the last line; only 2-5m candles count")
+need("export function sliderLine607(" in B and "sliderLine607(pinPct, tableArm)" in E and "pinHit607 || (tpOn" in E and "paperSell || pinHit607" in E and "botOwnsPosition(row)) { // fix607" in E,
+     "86. HER SLIDER AND HER TAKE PROFITS, BOTH (fix607, her Nov 1 1:40 PM words): the structure stays on every trade once a slider is set; the position closes at her slider if it comes first")
+PB612 = open("src/lib/desk/pivotbooks.ts", encoding="utf8").read()
+need(B.count("(typeof rejFlip611 === \"function\" && rejFlip611(asset, side, tick))") >= 3 and "if (!(typeof rejFlip611" in B and K523.count("__curLabel611") >= 2 and 'String(line?.label || "")); /* fix611' in K523 and 'String(firstTog.label || "")' in R and 'String(lookRM.label || "")' in R,
+     "87. A REJECTION WITH ITS FLIP GOES (fix611, her Nov 1 2:31 PM words): a band broken earlier in the 5m candle no longer stops a rejection that has its 2-5m flip; her 33% and every other wall still judge it")
+need("carryWalls612(id, pinkFresh565(id, L0565))" in PB612 and R.count("sessWalls612(ax, id)") >= 2 and "carryOn612(asset)) ? Math.abs(pink - tick) > (typeof carryTol615" in B and "btc: 100" in B,
+     "88. THE BLUE VWAP IS THE ONLY WALL UNTIL $100 (fix612, her Nov 1 2:31 PM words): BTC while carried, the other session lines step off the board at the read, door, last line and wire; the delayed book keeps its own; the lines come back at $100")
+need("await topUpFlat609(ticker, side, shortBy, capPx, line)" in K523 and "const w = await finalGate524(ticker, bookSide, line)" in K523,
+     "89. FLAT $5 (fix609, her Nov 1 1:56 + 2:17 PM words): main and rejection top up through the last line and the wire, never over $5; delayed unchanged")
+need("last1m.c < last1m.o) rejCandle" not in R and "Number(k1.c) < B.p && Number(k1.c) < Number(k1.o)" not in B,
+     "90. THE OTHER 1M READS ARE OUT (fix610, her Nov 1 2:17 PM words): the candle read and the fake-out turn no longer wait for a finished 1m candle")
+need('"data", "tick-log.jsonl"' in E,
+     "91. THE TICK LOG (fix613, her Nov 1 2:31 PM words): the ticks her feed took are written, read-only, every 5 s")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "retired BTC pink numbers kept on the record - her pink distance is the 15%/20% tolerance alone (7:13 AM, cornerstone 43)"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),

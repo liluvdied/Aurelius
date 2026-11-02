@@ -25,6 +25,7 @@ import { dnaNow } from "./dna";
 import { quoteTick, feedHealth } from "./quotes";
 import { addOnTouchNow, anyFlipNow, anyFlip406Now, realFlipNow } from "./bandlock"; // fix169 + fix326 + fix424 + fix446
 import { anyFlip2Now, impossibleGeo, blueSmall399, pinkSpent515c } from "./bandlock"; // fix480: her paper books back (Love Oct 29 2026 5:49 PM PT: "okay can you put back every single one of those rules i answered ????" (marked "Put it back") + Oct 28 6:39 PM: "save all of these new revisions on another paper twin and give me my model back")
+import { carryWalls612, carryTol615 } from "./bandlock"; // fix612 + fix615
 import { bandLockCheck as bandLockCheck464 } from "./bandlock"; // fix464 (R202): her read meets the same band tolerances as her orders
 
 const D = (f: string) => join(process.cwd(), "data", f);
@@ -81,6 +82,7 @@ function quietLines(id: string, p: any): Line[] {
   if (z && Number(z.bbU) > 0 && Number(z.bbL) > 0 && Date.now() - Number(z.at) <= 20000) out.push({ name: "BB upper", price: Number(z.bbU), unit: p.a }, { name: "BB lower", price: Number(z.bbL), unit: p.a });
   return out;
 }
+function sessWalls612(a: any, id = ""): Line[] { return carryWalls612(id, sessionLines(a, id)); } // fix612: main and rejection read only the blue VWAP while the bands are carried; the delayed book keeps her own
 function sessionLines(a: any, id = ""): Line[] {
   const f = a?.vwap1m?.vwap ? a.vwap1m : a?.vwap5m;
   let v = Number(f?.vwap) || 0, sd = Number(f?.stdev) || 0;
@@ -183,14 +185,7 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
     // rejection waits for the candle to cross back over its open.
     if (cur.o > p && cur.l <= p + nr && cur.l > p - brk && spot >= cur.l + tap && spot > p && (l.name !== "5m PP" || (spot >= cur.o + (asset === "btc" ? 10 : tap) || pfU))) cands.push({ side: "up", label: `Rejected up off ${l.name}`, d, rank: 1 });
     if (cur.o < p && cur.h >= p - nr && cur.h < p + brk && spot <= cur.h - tap && spot < p && (l.name !== "5m PP" || (spot <= cur.o - (asset === "btc" ? 10 : tap) || pfD))) cands.push({ side: "down", label: `Rejected down off ${l.name}`, d, rank: 1 });
-    // 1m CLOSE OFF A REJECTED BAND (Oct 21 ~12:06 PM PT, Love picked "Yes, 1m close off the band is enough"; "the 1m close off of a rejection is perfect"):
-    // the latest finished 1m candle (or the one before) tapped the line within her tap and the latest closed back off it, price still on that side.
-    { const lc = closed[closed.length - 1], two = closed.slice(-2);
-      const f0 = Math.floor(nowS / 300) * 300, inC = (x: { t: number }) => x.t >= f0; // tap + close inside the running 5m candle, every line (pivots Oct 21 ~1:22 PM PT; all lines fix98 Oct 22 ~5:56 PM PT, Love "Yes, both guards" - the 5:30 PM gold main short read a 5:29 bounce off -2σ)
-      if (lc && lc.t + 120 > nowS && inC(lc)) {
-        if (lc.c > p && spot > p && two.some((x) => inC(x) && x.l <= p + nr) && !(l.name === "5m PP" && !((spot >= cur.o + (asset === "btc" ? 10 : tap) || pfU))) /* and a pink long into a green candle (Love card "Both: red short, green long") */) cands.push({ side: "up", label: `1m rejection off ${l.name}`, d, rank: 1 });
-        if (lc.c < p && spot < p && two.some((x) => inC(x) && x.h >= p - nr) && !(l.name === "5m PP" && !((spot <= cur.o - (asset === "btc" ? 10 : tap) || pfD))) /* PINK SHORT INTO A RED CANDLE, both assets, every book (Oct 22 ~7:23 AM PT, Love: "only have her short off of a pink band into a red candle, never a green one") */) cands.push({ side: "down", label: `1m rejection off ${l.name}`, d, rank: 1 });
-      } }
+    // 1m CLOSE OFF A REJECTED BAND - OUT (fix606, Love Nov 1 2026 1:24 PM PT: "1m rejections are out. Only 2-5m candles count.")
     // A FAILED BREAK IS A REJECTION (Oct 20 ~9:54 PM PT, Love: "if it breaks and comes back on the other side of the band, it's a rejection until price goes on the other side of the band in the direction it broke"):
     // the wick broke through by her break distance and price came back across - read as the rejection while price stays back on the open side.
     if (cur.o > p && cur.l <= p - brk && spot >= cur.l + tap && spot > p && (l.name !== "5m PP" || (spot >= cur.o + (asset === "btc" ? 10 : tap) || pfU))) cands.push({ side: "up", label: `Failed break below ${l.name} - rejected up`, d, rank: 1 });
@@ -427,6 +422,7 @@ export function freshSameSide463(lane: string, priorSide: string, priorLabel: st
 // nor a short in the bottom 33% (the one below). The walls still check at the door. 12:31 PM gold: long read at 88% up the 4004.95 -> -1σ 4018.29 channel - never her call.
 export function thirdsRead463(L: { name: string; price: number }[], spot: number, side: string): boolean {
   if (!(spot > 0) || !(side === "up" || side === "down")) return false;
+  if (spot >= 20000 && (globalThis as any).__sessCarried?.btc === true) return false; // fix612: BTC while carried, one blue line has no thirds
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name)));
   const a = S.filter((l) => l.price > spot).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < spot).sort((x, y) => y.price - x.price)[0];
   if (!a || !b || !(a.price > b.price)) return false;
@@ -450,16 +446,16 @@ function zoneFree515c(asset: string, side: string, label: string): boolean {
 }
 export const __PINKFLAT25 = false; // fix580 (Love Nov 1 2026: "put the pink tolerance back to 15% of the channel ... we restore $25 from 2-3 pm tomorrow"): weekend $25 overlay OFF - the pink tolerance is back to her sliding scale (15% gold / 20% BTC of the session-band channel), byte-identical to the else-branch. Re-run WEEKEND-PINK-25 tomorrow 2-3pm PT to set this true again. (fix571 was the overlay ON.)
 // fix580 PINK SLIDING SCALE (same as bandlock pinkSlide580, kept here so the spine stands alone): BTC $25 under $100 wide / 20% at $100-$500 / 15% over $500 of the session-band channel; gold her 15% (pct) as before.
-function pinkHold596R(): boolean { try { return Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(Date.now()))) === 14 || (globalThis as any).__sessCarried?.btc === true; } catch { return false; } } // fix596: same window as bandlock pinkHold596
-function pinkSlide580R(asset: string, W: number, pct: number): number { return asset === "btc" ? (W < 100 || pinkHold596R() ? 25 : W <= 500 ? 0.2 * W : 0.15 * W) : pct * W; }
+function pinkSlide580R(asset: string, W: number, pct: number): number { return asset === "btc" ? (W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60) : W <= 500 ? 0.2 * W : 0.15 * W) : asset === "gold" && W < 5 ? (W < 2 ? W / 2 : Math.min(W / 2, 1.5)) : pct * W; /* fix615 */ }
 export function pinkRead464(asset: string, L: { name: string; price: number }[], spot: number, side: string, pink: number): boolean {
   if (!(spot > 0) || !(pink > 0) || !(side === "up" || side === "down")) return false;
+  L = typeof carryWalls612 === "function" ? carryWalls612(asset, L as any) : L; // fix612
   const brk = asset === "btc" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, pct = asset === "btc" ? 0.2 : 0.15;
   if (side === "up" ? spot >= pink + brk : spot <= pink - brk) return false;
   if (side === "up" ? spot > pink : spot < pink) return false;
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name)));
   const a = S.filter((l) => l.price > spot).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < spot).sort((x, y) => y.price - x.price)[0];
-  if (!a || !b || !(a.price > b.price)) return true;
+  if (!a || !b || !(a.price > b.price)) return spot >= 20000 && (globalThis as any).__sessCarried?.btc === true ? Math.abs(pink - spot) <= (typeof carryTol615 === "function" ? carryTol615(asset) : 25) /* fix612 + fix615 */ : true;
   const W550 = a.price - b.price; // fix550 (Love Oct 30 2026 8:17 PM PT: "lower her pink tolerance to $25 for the moment please" + her 3:49 PM law ($75 weekday floor, 3/4 at $75-$180) - reaching the READ-side pink wall in recon (pinkRead464), the sixth site the earlier clicks missed; it held a 10:02 PM short $27 from the pink where her $25 cap says clear): the read wall runs her exact tolerance law, same as every door site
   const tol550 = ((typeof __PINKFLAT25 !== "undefined" && __PINKFLAT25) ? 25 : (typeof pinkSlide580R === "function") ? pinkSlide580R(asset, W550, pct) : (asset === "btc" ? Math.min(25 /* fix542 TEMPORARY: her $25 pink, lifted with the cap-lift click */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date())) ? 0 : 75, W550 < 180 && W550 >= 75 ? 0.75 * W550 : pct * W550)) : pct * W550));
   return Math.abs(pink - spot) <= tol550;
@@ -650,7 +646,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   let rejLB: Line[] | null = null, rejReach = 0, rejL: Line[] | null = null, rejCandle: { side: "up" | "down"; label: string } | null = null, rejFO: { side: "up" | "down"; label: string } | null = null;
   try {
     const p = onePink565R(id, b);
-    const L = [...sessionLines(ax, id), ...(p ? [{ name: "5m PP", price: p.pp, unit: p.a }] : []), ...btcBB(id, Number(sessionLines(ax, id)[0]?.unit) || 0)];
+    const L = [...sessWalls612(ax, id), ...(p ? [{ name: "5m PP", price: p.pp, unit: p.a }] : []), ...btcBB(id, Number(sessionLines(ax, id)[0]?.unit) || 0)];
     try { const hv = new Set(L.map((l) => String(l.name))); for (const q of quietLines(id, p)) if (!hv.has(q.name) && Number(q.price) > 0) L.push(q); } catch {} // the 3 PM channel (Love, Oct 21)
     look5 = bonesDecide(id, L, spot, last1m, cur, prev, b);
     const ses = L.filter((l) => /σ|VWAP/.test(String(l.name)) && Number(l.price) > 0).map((l) => Number(l.price));
@@ -689,8 +685,8 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       // BTC shorted a red top-third candle $64 over an unbroken pink; the low missed the pink by $13 and price bounced to 82,011): no candle-rule short while an
       // unbroken pink sits below her inside the channel, no candle-rule long while one sits above her - until price breaks it.
       const ppC = Number(p?.pp) || 0, pinkBelow = ppC > sDn && ppC < spot, pinkAbove = ppC < sUp && ppC > spot;
-      if (!pinkBelow && (cur.h - sDn) / wC >= 0.67 && spot < cur.o && cur.h - spot >= tpC && last1m.c < last1m.o) rejCandle = { side: "down", label: "Red candle falling from the top third" };
-      else if (!pinkAbove && (cur.l - sDn) / wC <= 0.33 && spot > cur.o && spot - cur.l >= tpC && last1m.c > last1m.o) rejCandle = { side: "up", label: "Green candle rising from the bottom third" };
+      if (!pinkBelow && (cur.h - sDn) / wC >= 0.67 && spot < cur.o && cur.h - spot >= tpC /* fix610: no finished 1m candle */) rejCandle = { side: "down", label: "Red candle falling from the top third" };
+      else if (!pinkAbove && (cur.l - sDn) / wC <= 0.33 && spot > cur.o && spot - cur.l >= tpC /* fix610 */) rejCandle = { side: "up", label: "Green candle rising from the bottom third" };
       if (!lookT && rejCandle) lookT = rejCandle;
       // fix260: the rejection model's copy of the candle in her third needs no finished 1m colour - the 5m candle on the live tick decides (pink rule kept).
       if (!pinkBelow && (cur.h - sDn) / wC >= 0.67 && spot < cur.o && cur.h - spot >= tpC) rejCandleNow = { side: "down", label: "Red candle falling from the top third" };
@@ -715,7 +711,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   try { if (!firstTog) { const d511 = (globalThis as any).__drop511?.[id + ":main"]; if (d511 && Date.now() - d511.at < 5000) skipLog("recon-tog", String(m.ticker), "-", d511.cands.join(" | "), 0, `EMPTY READ (fix511): ${d511.cands.length} candidate(s) dropped by ${d511.after2 === 0 ? "the pink / Bollinger / zone label filters" : d511.seen === 0 ? "her thirds, candle and flip read (fix446)" : "the rank filter"}`); } } catch {} // fix511 (Love Oct 30 2026 6:37 AM PT: "I want the extra login. I already asked for it and it's literally one of the cornerstones." (cornerstone 28: every refused read in main + rejection is written down))
   try { if (firstTog && thirdsRead463(sessionLines(ax, id), spot, firstTog.side)) firstTog = null; } catch {} // fix463 (R193, Love 12:41 PM "in the read itself"): no main read in her wrong third
   try { const pv464 = onePink565R(id, b); if (firstTog && pv464 && !zoneFree515c(id, firstTog.side, String(firstTog.label)) && pinkRead464(id, sessionLines(ax, id), spot, firstTog.side, Number(pv464.pp))) firstTog = null; } catch {} // fix464 (R197/R198): no read into an unbroken pink within 15% / 20%, either side
-  try { if (firstTog) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464("recon-tog", id, firstTog.side, String(m.ticker)).ok) firstTog = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): every band tolerance in the read too - a read her walls refuse is never her call
+  try { if (firstTog) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464("recon-tog", id, firstTog.side, String(m.ticker), String(firstTog.label || "")).ok) firstTog = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): every band tolerance in the read too - a read her walls refuse is never her call
   if (firstTog && book("recon-tog", firstTog, lookP && !lookT && firstTog === firstT ? lookP.ask : undefined)) changed = true;
   // THE MAIN BOOK, REJECTIONS ONLY (fix250, Oct 26 ~1:03 AM PT, Love: "make a copy of the main book that trades rejections only ... she is not taking the same trades
   // at all"): a literal copy of TOGETHER - the very call TOGETHER reads this tick (firstT), the same one-call-per-window rule - with only her breaks left out
@@ -989,7 +985,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   let lookR5: { side: "up" | "down"; label: string } | null = null; // fix261
   try {
     const pR = onePink565R(id, b);
-    const LR = [...sessionLines(ax, id), ...(pR ? [{ name: "5m PP", price: pR.pp, unit: pR.a }] : []), ...btcBB(id, Number(sessionLines(ax, id)[0]?.unit) || 0)];
+    const LR = [...sessWalls612(ax, id), ...(pR ? [{ name: "5m PP", price: pR.pp, unit: pR.a }] : []), ...btcBB(id, Number(sessionLines(ax, id)[0]?.unit) || 0)];
     lookR = bonesDecide(id, LR, spot, last1m, cur, prev, b, true, 0, false, false, true /* fix446: rejection */);
     lookR5 = lookR; // fix261: her read exactly as it ran before fix246 (the 5m green streak)
     // fix246: THE MAIN BOOK'S INFRASTRUCTURE - same lines (Bollinger, green/red zones as rejection bands), same near-band reach, same Bollinger-needs-its-colour rule,
@@ -1021,7 +1017,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   try { if (!lookRM) { const d511 = (globalThis as any).__drop511?.[id + ":rej"]; if (d511 && Date.now() - d511.at < 5000) skipLog("recon-rej", String(m.ticker), "-", d511.cands.join(" | "), 0, `EMPTY READ (fix511): ${d511.cands.length} candidate(s) dropped by ${d511.after2 === 0 ? "the pink / Bollinger / zone label filters" : d511.seen === 0 ? "her thirds, candle and flip read (fix446)" : "the rank filter"}`); } } catch {} // fix511
   try { if (lookRM && thirdsRead463(sessionLines(ax, id), spot, lookRM.side)) lookRM = null; } catch {} // fix463 (R193, Love 12:41 PM "in the read itself"): no rejection read in her wrong third
   try { const pv464 = onePink565R(id, b); if (lookRM && pv464 && !zoneFree515c(id, lookRM.side, String(lookRM.label)) && pinkRead464(id, sessionLines(ax, id), spot, lookRM.side, Number(pv464.pp))) lookRM = null; } catch {} // fix464 (R197/R198): no read into an unbroken pink within 15% / 20%, either side
-  try { if (lookRM) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464("recon-rej", id, lookRM.side, String(m.ticker)).ok) lookRM = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): every band tolerance in the read too - a read her walls refuse is never her call
+  try { if (lookRM) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464("recon-rej", id, lookRM.side, String(m.ticker), String(lookRM.label || "")).ok) lookRM = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): every band tolerance in the read too - a read her walls refuse is never her call
   if (lookRM && book("recon-rej", lookRM)) changed = true;
   // HER READS FOR THE RE-AIM PAPER TWIN (fix223, Oct 25 ~6:00 PM PT, Love: "let's keep her as is, let's run a paper twin that can re aim"): log-only - every time the
   // rejection model's BTC read turns inside a 5m slot it is written to data/rej-reads.jsonl; tools/five-reaim-paper.py replays a 5m paper book that follows it. No orders.

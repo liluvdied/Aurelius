@@ -322,7 +322,7 @@ async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding
       // that framework"): every opening order from every path runs her side-of-the-band gate + the feed-health guard here too.
       if (!/^KX(GOLD|BTC)/.test(String(ticker)) && line?.bookCopy) { sent.__aureliusBlock = "Blocked: no band framework for this market - books only open gold and BTC"; return null; }
       if (/^KX(GOLD|BTC)/.test(String(ticker)) && !line?.gateTest) {
-        const bl = (await import("./bandlock")).bandLockCheck(String(line?.bookCopy || ""), String(ticker).includes("GOLD") ? "gold" : "btc", bookSide === "bid" ? "up" : "down", String(ticker));
+        const bl = (await import("./bandlock")).bandLockCheck(String(line?.bookCopy || ""), String(ticker).includes("GOLD") ? "gold" : "btc", bookSide === "bid" ? "up" : "down", String(ticker), String(line?.label || "")); /* fix611 */
         if (!bl.ok) { sent.__aureliusBlock = `Blocked by the band lock: ${bl.reason}`; return null; }
       }
     } catch {
@@ -774,7 +774,13 @@ async function terminalGate(ticker, bookSide, sameLine) {
 }
 // THE LAST LINE (fix524, Love Oct 30 2026 1:36 PM PT: "Every item you marked OPEN is now closed. No remaining choices. 1. The full-flag umpire test becomes the absolute last logic before the POST... 2. Add-on path: Disable it. Hard refusal... 3. The three scripts replaced with an immediate refusal... 4. keepBothBooks becomes report-only... 5. Build the 4-hour ARM token. Every function that writes state or can move an order refuses without a valid token created by my password click. Closes are not exempt. No loopback-only version. Refusal only. 6. One-way zone carve-out: Remove it. No remaining waiver. Any re-judged failure halts." + 1:35 PM: "Disable the three scripts. No exceptions... Token life is 4 hours"): the full-flag umpire test is the absolute last logic before the network call. Live tick older
 // than 2.5 s, unknown book, or anything unreadable = no order (fails closed). Closes (reduceOnly / forceExit) pass - they only shrink her.
-async function finalGate524(ticker, bookSide, sameLine) {
+// fix601 THE EXACT ORDER (Love Nov 1 2026 8:32 AM PT: "the latest umpire verdict must be SAFE on the exact order that is about to leave, not just a file stamp" + 1:06 PM: "please close all remaining gaps"): every opening order is judged in this one place, on the live tick, and its verdict is written to data/order-verdicts.jsonl with its book, side, price and count.
+async function finalGate524(ticker, bookSide, sameLine, yesPrice = 0, count = "") {
+  const why = await judgeOrder601(ticker, bookSide, sameLine);
+  try { const s601 = String(ticker).includes("GOLD") ? "gold" : "btc", q601 = (await import("./quotes")).quoteTick(s601); appendFileSync(join(process.cwd(), "data", "order-verdicts.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker, book: String(sameLine?.bookCopy || ""), side: bookSide === "bid" ? "up" : "down", label: String(sameLine?.label || "").slice(0, 80), price: Number(yesPrice) || 0, count: String(count), tick: q601?.c ?? null, verdict: why ? "REFUSED" : "SAFE", why }) + "\n"); } catch {}
+  return why;
+}
+async function judgeOrder601(ticker, bookSide, sameLine) {
   try {
     if (!/^KX(GOLD|BTC)/.test(String(ticker))) return "no band framework for this market - no order (fix524)";
     const sym = String(ticker).includes("GOLD") ? "gold" : "btc";
@@ -784,14 +790,16 @@ async function finalGate524(ticker, bookSide, sameLine) {
     if (!q || !(q.c > 0) || Date.now() - q.at > 2500) return "no live tick younger than 2.5s - no order (fix524)";
     { const pk565 = (globalThis as any).__onePink565?.(sym); if (!pk565 || !(pk565.pp > 0)) return "no pink at the wire - no order (fix565)"; } // fix565 ONE PINK (Love Oct 31 2026 3:01 AM PT: "5M uses the exact same onePink565. No closed-candle pink remains anywhere." + "The wire computes the pink fresh at the moment of the send. Do not reuse the 1-second pass value. onePink565() is called again inside the final gate before the POST."): her pink computed again here, at the send; the walls below read it fresh too
     const book = String(sameLine?.bookCopy || "");
+    try { const v601 = JSON.parse(readFileSync(join(process.cwd(), "data", "UMPIRE-VERDICT.json"), "utf8")); if (v601?.ok !== true) return "THE UMPIRE AT THE LAST LINE (fix601): not SAFE - " + String(v601?.why || "no verdict").slice(0, 120) + " - no order."; } catch { return "THE UMPIRE AT THE LAST LINE (fix601): the verdict can't be read - no order."; }
+    { const ug601 = (globalThis as any).__umpGate461, u601 = typeof ug601 === "function" ? ug601(book || "unknown") : "the umpire gate is not running"; if (u601) return "THE UMPIRE AT THE LAST LINE (fix601): " + String(u601).slice(0, 160) + " - no order."; }
     // fix558 (Love Oct 31 2026 12:18 AM PT: "all band tolerances apply to all books aside from the delayed entry model."): the delayed book keeps her own door (judged in place() by bandLockCheck);
     // every other book is judged by its own full flags; a book with no flags = refused (no substitute set).
-    if (book === "recon-dly" || book === "recon-dlyk") return "";
+    if (book === "recon-dly" || book === "recon-dlyk") { const d601 = B.bandLockCheck(book, sym, side, String(ticker), String(sameLine?.label || "")); return d601.ok ? "" : "HER DOOR AT THE LAST LINE (fix601): " + d601.reason; }
     if (!(B.AUDIT_FLAGS523 && B.AUDIT_FLAGS523[book])) return "unknown book " + JSON.stringify(book) + " - not in her flag table - no order (fix558)";
     const w = B.auditGrade523(book, sym, Number(q.c), side);
     if (w) return "the last line (fix524): " + w;
     const l597 = B.labelHold597(book, sym, (globalThis as any).__sessCarried?.[sym] === true, String(sameLine?.label || "")); if (l597) return l597; /* fix597 */ if (!B.turnFlip530(sym, side, Number(q.c))) return "HER FLIP AT THE SEND (fix592): no 2-5m candle has flipped or been born " + (side === "up" ? "green" : "red") + " and pushed " + (sym === "gold" ? "10c" : "$5") + " past its open - no order."; // fix592 (Love Nov 1 2026 9:03 AM PT: "add the last-line check so the order does not leave unless one of those two paths passes on the live tick")
-    const L593 = (globalThis as any).__lawBands?.[sym]?.L; if (!Array.isArray(L593) || !L593.length) return "SESSION BAND AT THE SEND (fix593): the board can't be read - no order."; const sb593 = B.sessionBandSend593(sym, L593, Number(q.c), side); if (sb593) return sb593; const z594 = B.zoneSend594(sym, L593, Number(q.c), side); if (z594) return z594; const s595 = B.sameSideSend595(sym, L593, Number(q.c), side); if (s595) return s595; // fix593 (Love Nov 1 2026 9:11-9:19 AM PT): her session-band scale on the live tick at the last line; pink is not part of this check
+    const L593 = (globalThis as any).__lawBands?.[sym]?.L; if (!Array.isArray(L593) || !L593.length) return "SESSION BAND AT THE SEND (fix593): the board can't be read - no order."; const sb593 = B.sessionBandSend593(sym, L593, Number(q.c), side); if (sb593) return sb593; const z594 = B.zoneSend594(sym, L593, Number(q.c), side); if (z594) return z594; (globalThis as any).__curLabel611 = String(sameLine?.label || ""); /* fix611 */ const s595 = B.sameSideSend595(sym, L593, Number(q.c), side); (globalThis as any).__curLabel611 = ""; if (s595) return s595; { const d601 = B.bandLockCheck(book, sym, side, String(ticker), String(sameLine?.label || "")); if (!d601.ok) return "HER DOOR AT THE LAST LINE (fix601): " + d601.reason; } // fix593 (Love Nov 1 2026 9:11-9:19 AM PT): her session-band scale on the live tick at the last line; pink is not part of this check
     return "";
   } catch { return "the last line could not be judged - no order (fix524)"; }
 }
@@ -800,7 +808,7 @@ async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine
   if (!reduceOnly && !sameLine?.primeCopy && !sameLine?.paperBook && !sameLine?.gateTest) {
     try {
       const halt = JSON.parse(readFileSync(join(process.cwd(), "data", "halt.json"), "utf8"));
-      if (halt.off === true) return null;
+      if (halt.off === true) { const w604 = "ENTRIES ARE OFF (fix604) - no order"; sent.__aureliusBlock = w604; try { noteGate(ticker, "before", false, w604); } catch {} return null; }
     } catch {
     }
   }
@@ -872,7 +880,7 @@ async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine
     const reg = (sent.__aureliusReach ||= {});
     reg[ticker] = { ask: Number(sameLine.askPx), at: Date.now() };
   }
-  if (!reduceOnly && !forceExit) { const g524 = await finalGate524(ticker, bookSide, sameLine); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} return null; } } // fix524: NOTHING between this test and the send
+  if (!reduceOnly && !forceExit) { const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send
   const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
     ticker,
     client_order_id: randomUUID(),
@@ -1292,7 +1300,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   // before Kalshi. A twin order on gold/BTC that isn't on the closest band's side - or can't be verified - never goes out.
   if (bookCopy) {
     try {
-      const bl = (await import("./bandlock")).bandLockCheck(bookCopy, symbolOf(ticker), side, ticker);
+      const bl = (await import("./bandlock")).bandLockCheck(bookCopy, symbolOf(ticker), side, ticker, String(label || "")); /* fix611 */
       if (!bl.ok) return { status: "blocked", reason: bl.reason };
     } catch {
       return { status: "blocked", reason: "band lock unavailable - no order" };
@@ -1517,7 +1525,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   if ((!placed || !(placed.filled > 0)) && bookCopy && topUp <= 0) {
     for (let tryN = 0; tryN < 10 && (!placed || !(placed.filled > 0)); tryN += 1) {
       await new Promise((r) => setTimeout(r, 1500));
-      try { const bl = (await import("./bandlock")).bandLockCheck(String(bookCopy), symbolOf(ticker), side, ticker); if (!bl.ok) { sent.__aureliusBlock = `break retry stopped: ${bl.reason}`; break; } } catch {}
+      try { const bl = (await import("./bandlock")).bandLockCheck(String(bookCopy), symbolOf(ticker), side, ticker, String(label || "")); /* fix611 */ if (!bl.ok) { sent.__aureliusBlock = `break retry stopped: ${bl.reason}`; break; } } catch {}
       try { const B523 = await import("./bandlock"); const q523 = (await import("./quotes")).quoteTick(symbolOf(ticker)); const w523 = B523.auditGrade523(String(bookCopy), symbolOf(ticker), Number(q523 && q523.c) || 0, side); if (w523) { sent.__aureliusBlock = "auditor-grade door (fix523): " + w523; break; } } catch { sent.__aureliusBlock = "auditor-grade door unreadable - no order (fix523)"; break; } // fix523: the umpire and the auditor are the same strength, judged before the order is attempted
       // fix530 (her 4:47 PM): the knock-loop colour re-test is RETIRED - no still-red-at-send. Her flip is tested in the full-flag door; the fill auditor still stops a flip-back before the fill (her 4:56 PM).
       // EVERY KNOCK RE-PRICES (fix135, Oct 23 ~12:50 AM PT): the 12:45 gold long knocked 11 times at its first 50c limit while the ask sat higher, and only
@@ -1559,7 +1567,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
         const paidT = side === "up" ? Number(placed.yesPrice) : 1 - Number(placed.yesPrice);
         const shortBy = Math.round((Number(budget) - Number(placed.filled) * paidT) * 100) / 100;
         if (paidT > 0 && shortBy >= 0.1) {
-          const tu = await addOnBuy(ticker, side, shortBy + 0.02, capPx, true); // free (fix127): the entry it completes already passed every wall a moment ago
+          const tu = bookCopy === "recon-tog" || bookCopy === "recon-rej" ? await topUpFlat609(ticker, side, shortBy, capPx, line) : await addOnBuy(ticker, side, shortBy + 0.02, capPx, true); // fix609 (Love Nov 1 2026 2:17 PM PT: flat $5 main and rejection, through the last line and the wire, delayed unchanged); delayed: free (fix127)
           try { appendFileSync(join(process.cwd(), "data", "twin-topup.jsonl"), JSON.stringify({ at: new Date().toISOString(), book: bookCopy, ticker, side, budget, filled: placed.filled, paid: paidT, shortBy, tu }) + "\n"); } catch {}
         }
       } catch {}
@@ -1666,6 +1674,24 @@ async function restTakeProfit(ticker, pos, sellPx, closeTimeIso) {
 // going down is happy thing"). One $5 IOC buy on the side she already holds, never above maxAsk. Its own path because the
 // one-order-per-window lock in sendOrder would refuse it; it still goes through kalshi(), so the live switch guards it.
 // HER $5 ADD-ON AT 2.8x (fix600, Love Nov 1 2026 12:27 PM PT: "The $5 add-on at 2.8x+ is in. Trigger: add as soon as price reaches 2.8x. No band-touch requirement. Gates: the add-on must pass the umpire SAFE stamp, the live switch, the entries switch, and the $5 cap. It skips the band walls and the flip. That is the only exception."): its own path, so addOnBuy below stays refused for the top-up and the silver hedge.
+// fix609 FLAT $5 (Love Nov 1 2026 1:56 + 2:17 PM PT): the top-up has been refused since fix524. Main and rejection buy the difference through the last line and the wire, never over $5. Not in twinAddBodies - every wall judges it.
+async function topUpFlat609(ticker, side, dollars, maxAsk, line) {
+  const bookSide = side === "up" ? "bid" : "ask";
+  try { if (JSON.parse(readFileSync(join(process.cwd(), "data", "halt.json"), "utf8")).off !== false) return { ok: false, reason: "TOP-UP (fix609): entries are off" }; } catch { return { ok: false, reason: "TOP-UP (fix609): the entries switch can't be read" }; }
+  if (!(Number(dollars) > 0 && Number(dollars) <= 5)) return { ok: false, reason: `TOP-UP (fix609): $${dollars} is over her $5 cap` };
+  const w = await finalGate524(ticker, bookSide, line); if (w) return { ok: false, reason: `TOP-UP (fix609): ${w}` };
+  const quote = await liveAsks(ticker);
+  const ask = side === "up" ? quote?.yesAsk : quote?.noAsk;
+  if (!(ask > 0.02) || ask > maxAsk + 1e-9) return { ok: false, reason: `ask ${ask ?? "?"} over ${maxAsk}` };
+  const px = Math.min(maxAsk, Math.round((ask + 0.01) * 100) / 100);
+  const count = Math.floor(Number(dollars) / px * 100) / 100;
+  if (!(count >= 0.01)) return { ok: false, reason: "size" };
+  const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", { ticker, client_order_id: randomUUID(), side: bookSide, count: count.toFixed(2), price: money(side === "up" ? px : Math.round((1 - px) * 100) / 100), time_in_force: "immediate_or_cancel", self_trade_prevention_type: "taker_at_cross", post_only: false, reduce_only: false, cancel_order_on_pause: true, exchange_index: 2 });
+  if (!res.ok) { const text = await res.text().catch(() => ""); return { ok: false, reason: `refused: ${text.slice(0, 120)}` }; }
+  const data = await res.json();
+  const filled = Number.parseFloat(data.fill_count ?? "0") || 0;
+  return { ok: filled > 0, filled, px, ask, orderId: data.order_id, reason: filled > 0 ? "" : "no fill" };
+}
 async function addOnBuy600(ticker, side, dollars, maxAsk) {
   const no = (reason) => ({ ok: false, reason: `ADD-ON (fix600): ${reason} - no order` });
   try { const v600 = JSON.parse(readFileSync(join(process.cwd(), "data", "UMPIRE-VERDICT.json"), "utf8")); if (v600?.ok !== true) return no("the umpire is not SAFE"); } catch { return no("the umpire stamp can't be read"); }

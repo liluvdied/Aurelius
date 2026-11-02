@@ -559,8 +559,8 @@ export function sessionBandSend593(asset: string, L: Line[], tick: number, side:
   const up = side === "up", d = BREAK_DIST[asset] ?? 0, o5 = fiveOpenNow(asset);
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
   const sA = S.filter((l) => l.price > tick).sort((a, b) => a.price - b.price)[0], sB = S.filter((l) => l.price < tick).sort((a, b) => b.price - a.price)[0];
-  if (!(sA && sB)) return "SESSION BAND AT THE SEND (fix593): price is past the last session band with no channel to measure - no order.";
-  const w = sA.price - sB.price, r = sessionScale593(asset, w);
+  if (!(sA && sB) && !(typeof carryOn612 === "function" && carryOn612(asset))) return "SESSION BAND AT THE SEND (fix593): price is past the last session band with no channel to measure - no order.";
+  const w = sA && sB ? sA.price - sB.price : 0, r = sA && sB ? sessionScale593(asset, w) : 25; // fix612: $25 off the blue VWAP
   for (const b of S) {
     const P = Number(b.price);
     if (up ? tick >= P + d : tick <= P - d) continue;
@@ -589,8 +589,10 @@ export function sameSideSend595(asset: string, L: Line[], tick: number, side: st
   if (!(tick > 0) || !(side === "up" || side === "down")) return "SAME SIDE AT THE SEND (fix595): no live tick - no order.";
   const op = o5 === undefined ? fiveOpenNow(asset) : o5, x = hl === undefined ? fiveHLNow(asset) : hl;
   const bands = (L || []).filter((l: Line) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$|^5m PP$/.test(String(l.name)));
-  if (!(op > 0) || !x || !bands.some((l: Line) => String(l.name) === "5m PP") || bands.length < 2) return "SAME SIDE AT THE SEND (fix595): the bands or this candle can't be read - no order.";
-  const hi = Math.max(Number(x.h), tick), lo = Math.min(Number(x.l), tick);
+  if (!(op > 0) || !x || !bands.some((l: Line) => String(l.name) === "5m PP") || (bands.length < 2 && !(typeof carryOn612 === "function" && carryOn612(asset)))) return "SAME SIDE AT THE SEND (fix595): the bands or this candle can't be read - no order.";
+  if ((typeof rejFlip611 === "function" && rejFlip611(asset, side, tick))) return ""; // fix611
+  const tr603 = hl === undefined ? trailNow(asset).filter((t) => Number(t.t) >= Math.floor(Date.now() / 300000) * 300000).map((t) => Number(t.c)) : []; // fix603 (Love Nov 1 2026 1:06 PM PT): a break only the last few ticks saw counts now, not when a chart bar shows it
+  const hi = Math.max(Number(x.h), tick, ...tr603), lo = Math.min(Number(x.l), tick, ...tr603);
   for (const b of bands) {
     const P = Number(b.price), d = String(b.name) === "5m PP" ? (PINK_BREAK432[asset] ?? 0) : (BREAK_DIST[asset] ?? 0);
     if (!(d > 0)) return "SAME SIDE AT THE SEND (fix595): her break distance can't be read - no order.";
@@ -603,12 +605,15 @@ export function sameSideSend595(asset: string, L: Line[], tick: number, side: st
 // fix597 REJECTIONS ONLY (Love Nov 1 2026 11:20 AM PT: "During the hours of 2 PM until band channel width reaches $100 again, the green and red zones, Bollingers, and pink bands can be traded for rejections only. Pink can be traded for breaks on main." + 11:31 AM: "Rejection is a rejection-only book at all hours. It keeps the candle-from-the-33% and the fake-out reads. It does not take breaks. Main can take pink breaks. Rejection takes rejections only." + "apply to BTC only."): judged at the copier and again at the last line.
 export const REJ_KEEPS597 = /^(Launched from the (bottom|top) third|Red candle falling from the top third|Green candle rising from the bottom third|Candle (rising from the bottom|falling from the top) third|Fake-out turn )/;
 export function labelHold597(book: string, asset: string, carried: boolean, label: string): string {
-  const lb = String(label || ""), rej = /^(Rejected (up|down) off |\d+m rejection off |Tap-reject at |Failed break )/.test(lb);
+  const lb = String(label || ""), rej = /^(Rejected (up|down) off |[2-5]m rejection off |Tap-reject at |Failed break )/.test(lb);
+  if ((book === "recon-rej" || book === "recon-tog") && /^1m rejection off /.test(lb)) return `1M REJECTIONS ARE OUT (fix606): "${lb.slice(0, 80)}" - only 2-5m candles count - no order.`;
   if (book === "recon-rej" && !rej && !REJ_KEEPS597.test(lb)) return `REJECTION IS A REJECTION-ONLY BOOK (fix597): "${lb.slice(0, 80)}" is not a rejection - no order.`;
   if (book === "recon-tog" && asset === "btc" && carried && !rej && !(/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(lb) && /5m PP|pink/i.test(lb))) return `2 PM TIL $100 = REJECTIONS ONLY (fix597): "${lb.slice(0, 80)}" is not a rejection or a pink break - no order.`;
   return "";
 }
 export function addOnAt28600(bid: number, maxAsk: number): string { return bid > 0.02 && maxAsk > 0 && bid <= maxAsk ? `price reached ${(1 / maxAsk).toFixed(1)}x (fix600)` : ""; } // fix600 (Love Nov 1 2026 12:27 PM PT): "add as soon as price reaches 2.8x. No band-touch requirement."
+// fix607 (Love Nov 1 2026 1:40 PM PT: "keep our take profit structure in place for all trades. if i set my slider at a price before that, simultaneously you can allow the position to close at the price i select when i set the slider myself if it comes before the take profits structure we have in place , without ignoring the trade entirely once the slider is set. both coexisting"): the line that comes first is the line.
+export function sliderLine607(pinPct: number, tableArm: number): number { return pinPct > 0 && tableArm > 0 ? Math.min(pinPct, tableArm) : pinPct > 0 ? pinPct : tableArm; }
 export function reachWall429(asset: string, L: Line[], tick: number, side: string, Z?: Zones | null, open5?: number): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
   const reach = REACH429[asset] ?? 0, d = BREAK_DIST[asset] ?? 0;
@@ -617,11 +622,12 @@ export function reachWall429(asset: string, L: Line[], tick: number, side: strin
   const o5 = open5 === undefined ? fiveOpenNow(asset) : open5;
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
   const sA = S.filter((l) => l.price > tick).sort((a, b) => a.price - b.price)[0], sB = S.filter((l) => l.price < tick).sort((a, b) => b.price - a.price)[0];
-  const reach509 = asset === "btc" && sA && sB && sA.price - sB.price < 100 ? 25 : reach; // fix509 (Love Oct 30 2026 5:35-5:55 AM PT questionnaire c11 Keep: "btc's is $25 at band widths under $100 during tight bands, golds is a hard $1 within that")
+  const carryPink615 = (typeof carryOn612 === "function" && carryOn612(asset)) && !(sA && sB) && typeof carryTol615 === "function" ? carryTol615(asset) : 0; // fix615
+  const reach509 = (asset === "btc" && sA && sB && sA.price - sB.price < 100) || ((typeof carryOn612 === "function" && carryOn612(asset)) && !(sA && sB)) /* fix612: $25 off the blue VWAP */ ? 25 : reach; // fix509 (Love Oct 30 2026 5:35-5:55 AM PT questionnaire c11 Keep: "btc's is $25 at band widths under $100 during tight bands, golds is a hard $1 within that")
   const pinkReach = Math.max(reach509, sA && sB && PINK_PCT429 > 0 ? Math.round((asset === "btc" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date())) ? 0 : 75, sA.price - sB.price < 180 && sA.price - sB.price >= 75 ? 0.75 * (sA.price - sB.price) : (PINK_PCT459[asset] ?? PINK_PCT429) * (sA.price - sB.price))) : (PINK_PCT459[asset] ?? PINK_PCT429) * (sA.price - sB.price)) /* fix526 (Love Oct 30 2026 4:12 PM PT: "the 3/4 starts from band to session band, lets do $75 instead of $80... enforced at band widths of $75 and over... up until our $180, where she returns to her sliding scale... at any bands distance - she needs a minimum of $75 during weekdays... on weekends, it could differ... for right now, we can enforce the 3/4 band width policy"): BTC dollars = max(weekday $75 floor, 3/4 of the width at $75-$180, the 20% scale otherwise); gold untouched */ * 100) / 100 : 0); // fix459 (R176): gold 15%, BTC 20% of the channel; fix525 (Love Oct 30 2026 3:49 PM PT: "when bands are under over $80 - until they hit $180 , she needs at least 3/4 of a band channel width for pink tolerances. here, that would be roughly $75. after $180 is reached, she returns to the sliding scale we have set for her"): BTC 75% of the channel while the bands sit between $80 and $180 apart - the scale returns at $180+
-  if (!(sA && sB)) return `SESSION BAND (fix593): price is past the last session band with no channel to measure - no ${up ? "long" : "short"}`; // fix593 (Love Nov 1 2026 9:19 AM PT: "If price is past the last session band with no channel to measure, refuse the order.")
+  if (!(sA && sB) && !(typeof carryOn612 === "function" && carryOn612(asset))) return `SESSION BAND (fix593): price is past the last session band with no channel to measure - no ${up ? "long" : "short"}`; // fix593 (Love Nov 1 2026 9:19 AM PT: "If price is past the last session band with no channel to measure, refuse the order.")
   for (const b of L.filter((l) => Number(l.price) > 0 && (isSessBand(l) || String(l.name) === "5m PP"))) {
-    const P = Number(b.price), pink = String(b.name) === "5m PP", r = pink ? ((typeof __PINKFLAT25 !== "undefined" && __PINKFLAT25) ? 25 : ((typeof pinkSlide580 === "function" && asset === "btc" && sA && sB) ? pinkSlide580(asset, sA.price - sB.price) : pinkReach)) : /^BB /.test(String(b.name)) ? reach509 : sessionScale593(asset, sA && sB ? sA.price - sB.price : 0); // fix593: session bands use her scale; pink and the Bollinger lines keep their own
+    const P = Number(b.price), pink = String(b.name) === "5m PP", r = pink ? ((typeof __PINKFLAT25 !== "undefined" && __PINKFLAT25) ? 25 : ((typeof pinkSlide580 === "function" && asset === "btc" && sA && sB) ? pinkSlide580(asset, sA.price - sB.price) : carryPink615 > 0 ? carryPink615 : pinkReach)) : /^BB /.test(String(b.name)) ? reach509 : ((typeof carryOn612 === "function" && carryOn612(asset)) && !(sA && sB)) ? 25 /* fix612: $25 off the blue VWAP */ : sessionScale593(asset, sA && sB ? sA.price - sB.price : 0); // fix593: session bands use her scale; pink and the Bollinger lines keep their own
     const dBrk579 = pink ? ((typeof PINK_BREAK432 !== "undefined" && PINK_BREAK432 && PINK_BREAK432[asset] != null) ? PINK_BREAK432[asset] : d) : d; // fix579 (Love Nov 1 2026: "The $5 BTC break is the entry ... It is not allowed to block a $5 break ... The $25 tolerance stays for other uses. The entry is the $5 break."): the PINK counts as broken behind her at HER $5 pink break (PINK_BREAK432), not the $6 band break - a valid $5 break clears the $25 reach; the $25 reach still holds an UNBROKEN pink (under her $5 break). The typeof guard mirrors __PINKFLAT25 so the extraction tests (reach-test-429 etc) that don't pull PINK_BREAK432 fall back to d and still pass.
     if (up ? tick >= P + dBrk579 : tick <= P - dBrk579) continue; // broken her way by her break distance - behind her
     if ((up ? tick > P : tick < P) && o5 > 0 && (up ? o5 > P : o5 < P)) continue; // this 5m candle opened past it on her side - a bounce off it, not a poke through it
@@ -783,8 +789,7 @@ export const __PINKFLAT25 = false; // fix580 (Love Nov 1 2026: "put the pink tol
 // fix580 PINK SLIDING SCALE (Love Nov 1 2026: "15% of the channel again please. we restore $25 from 2-3 pm tomorrow ... put it back to 15% please. change nothing else."): with the weekend $25 off, her pink DISTANCE tolerance is her sliding scale of the session-band channel
 // (the width between the session bands either side of price): BTC $25 under $100 wide / 20% of the width at $100-$500 / 15% over $500; gold her 15% of the width, exactly as before (PINK_PCT459). The old layers (fix525/526 $75 floor + 3/4, fix542 $25 cap, the $50 reach floor on the pink) stay in the file as written but no longer apply - they are what held the tolerance at $25.
 // fix596 HER $25 PINK WINDOW (Love Nov 1 2026 11:20 AM PT: "$25 pink stays in place from 2-3 PM minimum, or until band channel width exceeds $100 session band to session band." + 11:31 AM: "The $25 pink and the rejections-only window apply to BTC only."): BTC only, the whole 2 PM hour, then for as long as her session bands are carried (the hand-back at $100).
-function pinkHold596(): boolean { if (G.__stDefaultReach) return false; /* her self-test judges on a neutral clock */ try { return Number(PT_HOUR_Q.format(new Date(Date.now()))) === 14 || (G as any).__sessCarried?.btc === true; } catch { return false; } }
-export function pinkSlide580(asset: string, W: number): number { return asset === "btc" ? (W < 100 || pinkHold596() ? 25 : W <= 500 ? 0.2 * W : 0.15 * W) : (PINK_PCT459[asset] ?? PINK_PCT429) * W; }
+export function pinkSlide580(asset: string, W: number): number { return asset === "btc" ? (W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60) : W <= 500 ? 0.2 * W : 0.15 * W) : asset === "gold" && W < 5 ? (W < 2 ? W / 2 : Math.min(W / 2, 1.5)) : (PINK_PCT459[asset] ?? PINK_PCT429) * W; /* fix615 (Love Nov 1 2026 4:27 PM PT, BTC: "Until channel width reaches $100: half the channel width (dollar amount). From $100 to $180: half the channel width, capped at $60. Over $180: the normal sliding scale that was already in place." + 4:32 PM, gold: "gold will be 1/2 of the channel width up until $2 , calculated in distance of price to pink and remain capped at $1.50 until the sliding scale goes back into place at $5." + 5:20 PM: "any time bands are under 180") */ }
 // PINK IS NOT AN OBSTACLE BEYOND HER TOLERANCE (fix503, Love Oct 29 2026 11:38-11:41 PM PT: "band distance is $10. 15% of that is $1.50." + "pink tolerance is $1.50 at this band distance , not $4" + "btc is $800, so that tolerance would be $160 at the moment." + "she is treating pink as a bigger barrier than it needs to be. it is not an obstacle at those distances" + 11:34 PM: "she is still only waiting for pink to break at any distance. change that please" + 11:36 PM: "make session bands count again as well and rejections from red green bollingers"): the pink holds a trade only while price is within her pink
 // tolerance of it - 15% gold / 20% BTC of the session-band channel (band under price to band over it), either side. Farther than that, a pink slide or climb holds nothing.
 // Channel unreadable = not far (the hold stays - never blind).
@@ -792,14 +797,14 @@ export function pinkFar503(asset: string, L: Line[], tick: number, pink: number)
   if (!(tick > 0) || !(pink > 0)) return false;
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
   const a = S.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];
-  if (!a || !b || !(a.price > b.price)) return false;
+  if (!a || !b || !(a.price > b.price)) return (typeof carryOn612 === "function" && carryOn612(asset)) ? Math.abs(pink - tick) > (typeof carryTol615 === "function" ? carryTol615(asset) : 25) : false; // fix612 + fix615
   return Math.abs(pink - tick) > (((typeof __PINKFLAT25 !== "undefined" && __PINKFLAT25) ? 25 : (typeof pinkSlide580 === "function") ? pinkSlide580(asset, a.price - b.price) : (asset === "btc" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date())) ? 0 : 75, a.price - b.price < 180 && a.price - b.price >= 75 ? 0.75 * (a.price - b.price) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price))) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price)))) /* fix526: her 3/4 at $75-$180 width + the $75 weekday floor */;
 }
 export function pinkBeyond459(asset: string, L: Line[], tick: number, pink: number): boolean {
   if (!(tick > 0) || !(pink > tick)) return false;
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
   const a = S.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];
-  if (!a || !b || !(a.price > b.price)) return false;
+  if (!a || !b || !(a.price > b.price)) return (typeof carryOn612 === "function" && carryOn612(asset)) ? pink - tick > (typeof carryTol615 === "function" ? carryTol615(asset) : 25) : false; // fix612 + fix615
   return pink - tick > (((typeof __PINKFLAT25 !== "undefined" && __PINKFLAT25) ? 25 : (typeof pinkSlide580 === "function") ? pinkSlide580(asset, a.price - b.price) : (asset === "btc" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date())) ? 0 : 75, a.price - b.price < 180 && a.price - b.price >= 75 ? 0.75 * (a.price - b.price) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price))) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price)))) /* fix526: her 3/4 at $75-$180 width + the $75 weekday floor */;
 }
 // NEVER SHORT INTO AN UNBROKEN PINK - THE SHORT SIDE OF fix432/fix459 (fix464, R197/R198 - Love Oct 29 2026 1:06 PM PT: "there is zero instance where she is within 15% of an unbroken pink that she shorts" + "i told you 100 times it's for both sides. do what i say."): main + rejection. While price is over the unbroken pink (or less than her pink break
@@ -832,13 +837,23 @@ export function pinkShortWall464(asset: string, L: Line[], tick: number, side: s
   if (tick > P) {
     const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
     const a = S.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];
+    if ((typeof carryOn612 === "function" && carryOn612(asset)) && !(a && b) && tick - P > (typeof carryTol615 === "function" ? carryTol615(asset) : 25)) return ""; // fix612 + fix615
     if (a && b && a.price > b.price && tick - P > (((typeof __PINKFLAT25 !== "undefined" && __PINKFLAT25) ? 25 : (typeof pinkSlide580 === "function") ? pinkSlide580(asset, a.price - b.price) : (asset === "btc" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date())) ? 0 : 75, a.price - b.price < 180 && a.price - b.price >= 75 ? 0.75 * (a.price - b.price) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price))) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price)))) /* fix526: her 3/4 at $75-$180 width + the $75 weekday floor */) return "";
   }
   if ((((globalThis as any).__zoneRej515c || {})[asset + ":down"] ?? 0) > Date.now() - 10000) return ""; // fix515c mirror: a red-zone rejection with the pink spent down
   return `NO SHORT OVER AN UNBROKEN PINK (fix464): 5m PP ${P.toFixed(2)} is ${tick > P ? `$${(tick - P).toFixed(2)} below` : `only $${(P - tick).toFixed(2)} broken, under her $${brk} break`} - no short until it breaks down`;
 }
+// fix611 A REJECTION WITH ITS FLIP GOES (Love Nov 1 2026 2:31 PM PT: "A rejection off a lower band is allowed when there is a rejection and a flip, the same as any other entry. She is clear to take any valid setup throughout the window."): a band broken earlier in this 5m candle no longer stops a rejection that has its 2-5m flip. Both directions. Every other wall still judges it.
+export const REJ_LABEL611 = /^(Rejected (up|down) off |Failed break (above|below) |\dm flip - rejected (up|down) off |2nd-band flip: |OG tap-reject (up|down) off |Tap-reject at )/;
+export function rejFlip611(asset: string, side: string, tick: number, label?: string): boolean { return REJ_LABEL611.test(String(label ?? G.__curLabel611 ?? "")) && turnFlip530(asset, side, tick); }
+// fix612 THE BLUE VWAP IS THE ONLY WALL UNTIL $100 (Love Nov 1 2026 2:31 PM PT: "Fresh bands stop being walls until the channel reaches $100. Until then, and continuing until $180, she trades the red and green zones, the pink, and the Bollingers. The main blue VWAP is the only wall until the channel reaches $100."): BTC while the bands are carried, every session line but the blue line (fresh VWAP) steps off the board. The delayed book keeps her own.
+export function carryOn612(asset: string): boolean { return asset === "btc" && G.__sessCarried?.btc === true; }
+export function carryWalls612<T extends { name: string }>(asset: string, L: T[]): T[] { return carryOn612(asset) && !DLY465.has(String(G.__curBook465 || "")) ? L.filter((l) => !/σ$|^session VWAP$/.test(String(l.name))) : L; }
+// fix615: while carried the channel width is the fresh band to fresh band width, though those lines are off her board (fix612)
+export function carryTol615(asset: string): number { const w = Number(G.__freshSd?.[asset]) || 0; return w > 0 ? pinkSlide580(asset, w) : 25; }
 export function brokeThisCandle441(asset: string, L: Line[], tick: number, side: string, o5?: number, hl?: { h: number; l: number } | null): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
+  if ((typeof rejFlip611 === "function" && rejFlip611(asset, side, tick))) return ""; // fix611
   const d = BREAK_DIST[asset] ?? 0, op = o5 === undefined ? fiveOpenNow(asset) : o5, x = hl === undefined ? fiveHLNow(asset) : hl;
   if (!(d > 0) || !(op > 0) || !x) return "";
   const hi = Math.max(Number(x.h), tick), lo = Math.min(Number(x.l), tick);
@@ -862,7 +877,7 @@ export function brokeThisCandle457(asset: string, L: Line[], tick: number, side:
   const up = side === "up", hi = Math.max(Number(x.h), tick), lo = Math.min(Number(x.l), tick);
   const bands = L.filter((l) => Number(l.price) > 0 && (isSessBand(l) || String(l.name) === "5m PP"));
   const brokeDn = (P: number) => op > P && lo <= P - d, brokeUp = (P: number) => op < P && hi >= P + d;
-  for (const b of bands) {
+  if (!(typeof rejFlip611 === "function" && rejFlip611(asset, side, tick))) for (const b of bands) { // fix611: her 33% below still counts
     const P = Number(b.price);
     if ((up && brokeDn(P) && tick >= P + d) || (!up && brokeUp(P) && tick <= P - d)) continue; // fix483 (Love Oct 29 2026 6:40 PM PT: "a break by HER DISTANCE I JUST FUCKING ANSERED EVERYTHJNG" (her list, c21 marked Right: no trade back against a band/pink broken this candle until price breaks back by her distance) + 6:37 PM: "that is not a block" + 6:37 PM: "bollinger is only $1.50 love" + "same band tolerances apply everywhere"): price broke back by her distance - the break failed, the trade back is free (c21)
     if (up && brokeDn(P)) return `BROKE DOWN THIS CANDLE (fix457): ${b.name} (${P.toFixed(2)}) broke DOWN this candle (low ${lo.toFixed(2)}) - only a short this candle, never a long (price ${tick.toFixed(2)})`;
@@ -1048,8 +1063,8 @@ export function thirdWallAbsolute(asset: string, L: Line[], tick: number, side: 
   } catch {}
   return "";
 }
-export function bandLockCheck(book: string, asset: string, side: string, ticker = ""): { ok: true } | { ok: false; reason: string } {
-  if (!G.__inBLC465) { G.__inBLC465 = true; const prev465 = G.__curBook465; try { G.__curBook465 = book; return bandLockCheck(book, asset, side, ticker); } finally { G.__inBLC465 = false; G.__curBook465 = prev465; } } // fix465: the book being judged sets her thirds share (delayed keeps its own)
+export function bandLockCheck(book: string, asset: string, side: string, ticker = "", label = ""): { ok: true } | { ok: false; reason: string } {
+  if (!G.__inBLC465) { G.__inBLC465 = true; const prev465 = G.__curBook465, prev611 = G.__curLabel611; try { G.__curBook465 = book; G.__curLabel611 = label; /* fix611 */ return bandLockCheck(book, asset, side, ticker, label); } finally { G.__inBLC465 = false; G.__curBook465 = prev465; G.__curLabel611 = prev611; } } // fix465: the book being judged sets her thirds share (delayed keeps its own)
   // EVERY BOOK (Oct 16 ~1:10 PM PT, Love: "EVERY FUCKING BOOK WE OWN. EVERYTHING THAT EVER RUNS."): no exemptions - the
   // inverse included, any asset. An asset with no band feed can't be verified, so it can't open.
   void LAW_BOOKS;
@@ -2599,7 +2614,7 @@ export function dlyThirds(asset: string, L: Line[], tick: number, side: string):
   if (/^THE IMPOSSIBILITY: her (bands can't be read|session bands just jumped)/.test(g.why)) return g.why;
   const sqzE = squeezedPinkOf(L);
   const edges = chanL(asset, L).filter((l: Line) => isChanBand(asset, l) && !sqzE(l)).map((l: Line) => Number(l.price)).filter((x: number) => x > 0).sort((x: number, y: number) => x - y);
-  if (!(tick > 0) || edges.length < 2) return "THE IMPOSSIBILITY: her bands can't be read - no opening order";
+  if (!(tick > 0) || (edges.length < 2 && !(typeof carryOn612 === "function" && carryOn612(asset)) /* fix612 */)) return "THE IMPOSSIBILITY: her bands can't be read - no opening order";
   const topL = edges[edges.length - 1], botL = edges[0];
   if (side === "up" && tick > topL) return `THE TOP LINE: long at ${tick.toFixed(2)} over the top of her whole channel (${topL.toFixed(2)}) - never trade its break; a rejection back under it is a short.`;
   if (side === "down" && tick < botL) return `THE BOTTOM LINE: short at ${tick.toFixed(2)} under the bottom of her whole channel (${botL.toFixed(2)}) - never trade its break; a rejection back over it is a long.`;
@@ -2682,7 +2697,7 @@ export function wireWall(ticker: string, side: "up" | "down"): string {
     return reason;
   };
   const seal = sealDrift(); if (seal) return deny(seal);
-  const lb = G.__lawBands?.[asset];
+  const lb0612 = G.__lawBands?.[asset], lb = lb0612 && dlyOrderAtWire(t, side) && Array.isArray(lb0612.full) ? { at: lb0612.at, L: lb0612.full } : lb0612; // fix612: the delayed book keeps her own lines at the wire
   if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > 15000) return deny("THE WALL AT THE WIRE: her band list is not fresh - can't verify, no opening order");
   const q = quoteTick(asset);
   if (!q || !(q.c > 0) || Date.now() - q.at > 3000) return deny("THE WALL AT THE WIRE: no fresh price - can't verify, no opening order");
@@ -2789,8 +2804,8 @@ export function fakeOutTurnNow(asset: string, L: Line[], tick: number): { side: 
     const fD25 = Number(G.__pinkCap5) > 0 ? Infinity /* fix266: the Poly 5m board counts pokes as it did Sun Oct 25 3:45-10:32 PM PT (Love Oct 26 9:09 AM PT: "please go back over our last messages yesterday and rebuild a twin EXACTLY. from that configuration, nothing different whatsoever") */ : Number.isFinite(abT) && Number.isFinite(beT) && abT > beT ? 0.25 * (abT - beT) : Infinity; // fix252: 25% of her channel (Love Oct 22 / Oct 26)
     for (const B of FB) {
       const fT = asset === "btc" ? 10 : 0.3; /* fix180 (Oct 24 ~11:14 PM PT, Love: "it did break a session band and fakeout thru them" - the 10:45/10:50 PM BTC candles opened and closed within $3-7 of -1σ and wicked $60-90 under, so the strict open-over/close-over count missed them): a poke counts when the candle opens and closes no further than her tap past the band ($10 BTC / 30c gold) and its wick runs past that tap */ const upF = c5.filter((k) => k.o < B.p + fT && k.h > B.p + fT && k.c < B.p + fT && k.h - Math.max(k.o, k.c) >= fT && k.h - B.p <= fD25).length, dnF = c5.filter((k) => k.o > B.p - fT && k.l < B.p - fT && k.c > B.p - fT && Math.min(k.o, k.c) - k.l >= fT && B.p - k.l <= fD25).length;
-      if (upF >= 3 && hiF > B.p && tick < B.p && Number(k1.c) < B.p && Number(k1.c) < Number(k1.o)) return { side: "down", name: B.n, p: B.p };
-      if (dnF >= 3 && loF < B.p && tick > B.p && Number(k1.c) > B.p && Number(k1.c) > Number(k1.o)) return { side: "up", name: B.n, p: B.p };
+      if (upF >= 3 && hiF > B.p && tick < B.p) /* fix610 (Love Nov 1 2026 2:17 PM PT: "The other 1m reads stay as they are for now. -out. 2-5M only."): no finished 1m candle */ return { side: "down", name: B.n, p: B.p };
+      if (dnF >= 3 && loF < B.p && tick > B.p) /* fix610 */ return { side: "up", name: B.n, p: B.p };
     }
   } catch {}
   return null;
@@ -2844,7 +2859,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
       if (side === "down" && p < tick && tick - p <= cu368) return { why: `ANY BAND CUSHION (pure no-pink): short ${(tick - p).toFixed(2)} over the unbroken ${nm} (${p.toFixed(2)}) - inside ${asset === "gold" ? "$1" : "$" + cu368.toFixed(0)} she waits for it to break, then the next band (fix368/369).`, below: p, above: null, pos: null, lock: null }; } }
   const sqzE = squeezedPinkOf(L);
   const edges = chanL(asset, L).filter((l: Line) => isChanBand(asset, l) && !sqzE(l)).map((l: Line) => Number(l.price)).filter((x: number) => x > 0).sort((x: number, y: number) => x - y);
-  if (!(tick > 0) || edges.length < 2) return { why: "THE IMPOSSIBILITY: her bands can't be read - no opening order", below: null, above: null, pos: null, lock: null };
+  if (!(tick > 0) || (edges.length < 2 && !(typeof carryOn612 === "function" && carryOn612(asset)) /* fix612 */)) return { why: "THE IMPOSSIBILITY: her bands can't be read - no opening order", below: null, above: null, pos: null, lock: null };
   // BANDS JUMPED (fix104, Oct 22 ~7:30 PM PT - the 7:00 PM gold short at 3990.72 read a session sigma of $2,509 for a few seconds at the top of the hour,
   // so price 'sat in the top third' of a nonsense channel): when sigma jumps past 3x the last good read (within 10 min), her bands can't be read - no opening order.
   if (!G.__stDefaultReach) { try { const vwJ = Number((L || []).find((l: Line) => String(l.name) === "session VWAP")?.price) || 0, u1J = Number((L || []).find((l: Line) => String(l.name) === "+1σ")?.price) || 0, sdJ = Math.abs(u1J - vwJ);
@@ -2864,7 +2879,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // THE WHOLE CHANNEL'S TOP AND BOTTOM LINES (Oct 21 ~11:15 AM PT, Love: "the TOP line, of the whole channel, and the BOTTOM line. of the whole channel. she can't
   // trade the breaks in the direction of those. she can trade the rejections of the bottom line or top line of the whole channel, not the breaks of them"):
   // no long above her top session band, no short below her bottom one. A short back off the top line (a long off the bottom) is still hers.
-  { const topL = edges[edges.length - 1], botL = edges[0];
+  if (edges.length >= 2) /* fix612: one blue line is no whole channel */ { const topL = edges[edges.length - 1], botL = edges[0];
     if (side === "up" && tick > topL) return { why: `THE TOP LINE: long at ${tick.toFixed(2)} over the top of her whole channel (${topL.toFixed(2)}) - never trade its break; a rejection back under it is a short.`, below: topL, above: null, pos: null, lock: null };
     if (side === "down" && tick < botL) return { why: `THE BOTTOM LINE: short at ${tick.toFixed(2)} under the bottom of her whole channel (${botL.toFixed(2)}) - never trade its break; a rejection back over it is a long.`, below: null, above: botL, pos: null, lock: null }; }
   const below0 = edges.filter((x: number) => x <= tick).pop(), above0 = edges.find((x: number) => x > tick);

@@ -23,6 +23,8 @@ build_tree() {
   local t; t=$(mktemp -t aurelius-backup) || return 1
   GIT_INDEX_FILE="$t" git read-tree HEAD || { rm -f "$t"; return 1; }
   GIT_INDEX_FILE="$t" git add -A . 2>/dev/null || { rm -f "$t"; return 1; }
+  # Love Nov 1 2026 1:56 + 2:17 PM PT: trade records and the newest save go up hourly; everything else in data/ stays local
+  GIT_INDEX_FILE="$t" git add -f --ignore-errors -- data/live-fires.json data/live-book-done.json data/live-book-done-archive.jsonl data/exit-log.json data/exit-log-archive.jsonl data/exit-ledger.jsonl data/order-trail.jsonl data/order-verdicts.jsonl data/copy-timing.jsonl data/addon-log.jsonl data/twin-topup.jsonl data/hand-trail.jsonl data/half75-log.jsonl data/tp-rest.jsonl data/recon-skips.jsonl data/would-have-halted.jsonl data/overnight-fixes.log data/LOVE-REQUESTS.jsonl data/tick-log.jsonl "data/SAVES/$(ls -t data/SAVES | head -1)" 2>/dev/null
   GIT_INDEX_FILE="$t" git write-tree; local rc=$?
   rm -f "$t"; return $rc
 }
