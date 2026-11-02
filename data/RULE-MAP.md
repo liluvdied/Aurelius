@@ -1,8 +1,8 @@
 # Rule map
 
-Written Nov 01 2026 09:51 PM by tools/rule-map.py, at commit 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318).
+Written Nov 01 2026 09:53 PM by tools/rule-map.py, at commit 3be94693 fix621: two tick readers of the paper book share the parsed copy (R319).
 
-Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proof lines not found.
+Read-only. No rule reads this file. 234 active requests, 100 cornerstones, 0 proof lines not found.
 
 ## Active requests
 
@@ -497,6 +497,8 @@ Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proo
 | R318 | fix620 recon-rnp, paper only: the rejection book's own call when it is not a pink call; otherwise her read wit… | src/lib/desk/recon.ts:1030 | book("recon-rnp", np620) | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
 |  |  | src/lib/desk/recon.ts:1028 | \|\| rejCandleNP620; | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
 |  |  | tools/cornerstones.py | test |  |
+| R319 | fix621 two tick readers that only look at live-paper-book.json, watchAccount at engine.ts and the paper-copy r… | src/lib/desk/engine.ts:4021 | live.watchAccount(readBookShared().trades) | 3be94693 fix621: two tick readers of the paper book share the parsed copy (R319) |
+|  |  | src/lib/desk/engine.ts:4510 | const trades = readBookShared().trades; | 3be94693 fix621: two tick readers of the paper book share the parsed copy (R319) |
 
 ## Cornerstones
 
@@ -601,3 +603,4 @@ Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proo
 | 95. THE SAME ENTRY LOGIC (fix618, her Nov 1 6:10 PM words): gold and BTC take the same setups on the same flips; gold keeps her $1… | src/lib/desk/bandlock.ts:563 | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
 | 96. A TURN OR BORN HER COLOUR, ANY 2-5M CANDLE (fix619, her Nov 1 7:35 PM words): off a band or zone the read and the door take an… | src/lib/desk/bandlock.ts:1137 | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
 | 97. THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (fix620, her Nov 1 7:50 PM words): the same logic on every other band and zone… | src/lib/desk/grokog.ts:360 | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
+| 98. HER TICK READS THE SHARED BOOK (fix621, her Nov 1 8:32 PM words): the two tick readers that only look at live-paper-book.json … | src/lib/desk/engine.ts:6 | 3be94693 fix621: two tick readers of the paper book share the parsed copy (R319) |
