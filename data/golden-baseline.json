@@ -27,7 +27,7 @@
     "confirm.ts": "9d4790dfd4a9e8ed",
     "dayboard.ts": "85ba614c44331637",
     "dna.ts": "7e15f742d137607e",
-    "engine.ts": "c355a1f202f02f63",
+    "engine.ts": "656c886710d5ea9c",
     "feedmatch.ts": "8908213d26d0f9fc",
     "fees.ts": "b31480529d0d4c44",
     "fill-log.ts": "1e136cd46cbbbe7f",
@@ -131,7 +131,7 @@
     "maxDollars": "ef2d127de3",
     "cooldownAfterLoss": "fcbcf16590",
     "route": "9d53f79e71",
-    "at": "0c8c430a86",
+    "at": "31a7d42d48",
     "note": "34fb5e33ce",
     "cooldownExcuse": "1570b63708",
     "shiftStart": "3a2984a939",
@@ -150,7 +150,7 @@
     "model": "80270e39ab",
     "autoExits": "b5bea41b6c",
     "tpHard": "b5bea41b6c",
-    "liveBook": "136423d4c8",
+    "liveBook": "758bc4c81a",
     "tpOfMax": "69f59c273b",
     "netBelow": "4f53cda18c",
     "insurance": "7e56fa5011",
@@ -317,10 +317,10 @@
   },
   "configFiles": {
   "data/HER-ANSWERS-2.json": "770a121597eb8e17",
-    "data/spine-lock.json": "8c0030eb683baa56",
+    "data/spine-lock.json": "72d50785687586a1",
     "data/FROZEN.json": "96bf1e60e4b50fe3",
     "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-    "data/live-switch.json": "1629df59923ebe91"
+    "data/live-switch.json": "10dfea59ca7589a7"
   },
   "sealLiveBook": "c8cfbbf7f9",
   "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

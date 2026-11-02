@@ -6426,5 +6426,20 @@
     "what": "\"recon-ogp5\": \"recon-ogp5\", \"recon-paper\": \"recon-paper\", \"recon-tog\": \"recon-tog\", \"recon-top\": \"recon-top\", \"recon-rej\": \"recon-rej\", \"recon-dly\": \"recon-dly\", \"recon-rej5\": \"recon-rej5\", /* fix261 */ \"recon-togp\": \"recon-togp\", /* fix281 */ // RECONSTRUCTED (Oct 19 ~6:16 PM PT, Love)",
     "R": "R318",
     "why": "fix620 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "import { readBook, writeBook } from \"./book\";",
+    "R": "R319",
+    "why": "fix621 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "live.watchAccount(readBook().trades),",
+    "R": "R319",
+    "why": "fix621 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const trades = readBook().trades;",
+    "R": "R319",
+    "why": "fix621 (her Nov 1 4:27 PM words)"
   }
 ]

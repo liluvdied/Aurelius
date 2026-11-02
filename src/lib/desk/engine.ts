@@ -3,7 +3,7 @@ import { spawn as spawn501 } from "node:child_process"; // fix501: the sub-audit
 import { join } from "node:path";
 import { readySpine, spineOwns } from "./spine-ready";
 import { autoDecision, bandBetween, bandInWay, brokeUnder, closeByBand, closedThrough, offList, primeLabel, shortBandOnTarget, shortTap, survivalBlock, underBand, winningSetup } from "./auto";
-import { readBook, writeBook } from "./book";
+import { readBook, readBookShared, writeBook } from "./book"; // fix621
 import { readFillLog } from "./fill-log";
 import { goldHaltFill, goldHalted } from "./hours";
 import { bandBank, bandBreak, bandInTheWay, bandNear, catchPct, clampTrail, closeEnough, exitTargetPct, flipped, gateStep, keepGreen, legalSide, markTrade, midBand, newId, noteFour, proveGate, quoteSale, saleCall, screenBid, settleSide, smallTicket, targetKiss, tenVwapWall, tpGates, trailCatch, trailScale, vwapSitsBetween, windowStillOpen } from "./paper";
@@ -4018,7 +4018,7 @@ async function tick() {
         g.__aureliusWatchAt = Date.now();
         const live = await import("./kalshi-live.server");
         await Promise.race([
-          live.watchAccount(readBook().trades),
+          live.watchAccount(readBookShared().trades), // fix621 (Love Nov 1 2026 8:32 PM PT: "the full read-loop speed fix"): only looked at
           new Promise((resolve) => setTimeout(resolve, 4000)),
         ]);
       }
@@ -4507,7 +4507,7 @@ async function copyPaperBook(assets) {
     const text = String(label || "").replace(/−/g, "-").replace(/\s+/g, " ").trim();
     return /^tap-reject at /i.test(text) || /^close above /i.test(text) || /^close below /i.test(text) || /^open /i.test(text);
   };
-  const trades = readBook().trades;
+  const trades = readBookShared().trades; // fix621: only looked at
   const paper = trades.filter((t) => t && t.source !== "live" && t.venue !== "polymarket" && !t.probe && (t.asset === "btc" || t.asset === "gold"));
   const open = paper.filter((t) => t.result === "open" && shape(t.patternLabel));
   const ready = [];
