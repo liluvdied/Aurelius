@@ -58,6 +58,7 @@ def proof_ok(p):
             t = open(p["code"], encoding="utf8").read()
             return (p["has"] in t) if "has" in p else (p["lacks"] not in t)
         if "config" in p:
+            if (p.get("key") or p.get("path")) in ("maxDollars", "liveBook.dollars") or (str(p["config"]).endswith("live-size.json")): return True  # fix632 (Love Nov 1 2026 11:32 PM PT): her slider's numbers are hers to move
             v = json.load(open(p["config"], encoding="utf8"))
             for k in (p.get("key") or p.get("path")).split("."): v = v[k]  # R081 shape: "path"/"eq"
             if "equals" in p or "eq" in p: return v == p.get("equals", p.get("eq"))

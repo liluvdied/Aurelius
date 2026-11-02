@@ -9,6 +9,14 @@ drift = []
 try: PILL478 = json.load(open("data/schedule-approved.json"))
 except Exception: PILL478 = {}
 PILLCFG478 = {k: v for k, v in (PILL478.get("config") or {}).items() if k in ("bookSkipHours", "bookSkipHoursByAsset", "offHourMain", "live", "at", "note", "liveBook")}
+# fix632 (Love Nov 1 2026 11:32 PM PT: "i already have a position sizing slider. you told me any change makes the umpire stop all orders. don't have that in place for position sizes."): her slider's two numbers, maxDollars and liveBook.dollars, never count as drift. Every other setting is still checked.
+SIZE632 = [False]
+def size_only632(k, ls, targets):
+    if k == "maxDollars": SIZE632[0] = True; return True
+    if k != "liveBook" or not isinstance(ls.get(k), dict): return False
+    for d in [i for i in range(0, 1001)] + [i / 2 for i in range(1, 2001, 2)]:
+        if hashlib.sha256(json.dumps({**ls[k], "dollars": d}, sort_keys=True).encode()).hexdigest()[:10] in targets: SIZE632[0] = True; return True
+    return False
 cur = {os.path.basename(f): hashlib.sha256(open(f, "rb").read()).hexdigest()[:16] for f in sorted(glob.glob("src/lib/desk/*.ts"))}
 for f, h in b["code"].items():
     if cur.get(f) != h: drift.append("code " + f + ": " + str(cur.get(f, "MISSING")) + " (baseline " + h + ")")
@@ -20,6 +28,7 @@ try:
     for k, h in b["config"].items():
         c = hashlib.sha256(json.dumps(ls.get(k), sort_keys=True).encode()).hexdigest()[:10] if k in ls else "MISSING"
         if c != h and PILLCFG478.get(k) == c: continue  # fix478: her schedule pill approved it
+        if c != h and size_only632(k, ls, (h, PILLCFG478.get(k))): continue  # fix632
         if c != h: drift.append("config " + k + " changed")
     for k in ls:
         if k not in b["config"]: drift.append("config " + k + ": NEW KEY")
@@ -27,6 +36,7 @@ except Exception as e: drift.append("live-switch unreadable: " + str(e))
 for f, h in b.get("configFiles", {}).items():
     c = hashlib.sha256(open(f, "rb").read()).hexdigest()[:16] if os.path.exists(f) else "MISSING"
     if c != h and f == "data/live-switch.json" and PILL478.get("file") == c: continue  # fix478: the file as her schedule pill left it
+    if c != h and f == "data/live-switch.json" and SIZE632[0]: continue  # fix632: every key was checked above, only her slider moved
     if c != h: drift.append(f + " changed")
 if drift:
     print("UNSOLICITED DRIFT (baseline moves only with changes Love asked for):")

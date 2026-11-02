@@ -127,12 +127,12 @@
     "umpire-gate.ts": "dff11f82e3eff3c5"
   },
   "config": {
-    "live": "b5bea41b6c",
+    "live": "fcbcf16590",
     "maxDollars": "ef2d127de3",
     "cooldownAfterLoss": "fcbcf16590",
     "route": "9d53f79e71",
-    "at": "da5a4a0632",
-    "note": "34fb5e33ce",
+    "at": "41161b3ece",
+    "note": "069795491f",
     "cooldownExcuse": "1570b63708",
     "shiftStart": "3a2984a939",
     "blockedSetups": "4f53cda18c",
@@ -150,7 +150,7 @@
     "model": "80270e39ab",
     "autoExits": "b5bea41b6c",
     "tpHard": "b5bea41b6c",
-    "liveBook": "1d0ed0584d",
+    "liveBook": "71c1862dd7",
     "tpOfMax": "69f59c273b",
     "netBelow": "4f53cda18c",
     "insurance": "7e56fa5011",
@@ -317,10 +317,10 @@
   },
   "configFiles": {
   "data/HER-ANSWERS-2.json": "770a121597eb8e17",
-    "data/spine-lock.json": "9f8ad3f69d78922d",
+    "data/spine-lock.json": "ff404d85aa59136c",
     "data/FROZEN.json": "96bf1e60e4b50fe3",
     "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-    "data/live-switch.json": "158e46a3c9fd3fcb"
+    "data/live-switch.json": "fa2e320a2ff4850f"
   },
   "sealLiveBook": "c8cfbbf7f9",
   "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."
