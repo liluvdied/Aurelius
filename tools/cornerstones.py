@@ -264,6 +264,9 @@ need("last1m.c < last1m.o) rejCandle" not in R and "Number(k1.c) < B.p && Number
      "90. THE OTHER 1M READS ARE OUT (fix610, her Nov 1 2:17 PM words): the candle read and the fake-out turn no longer wait for a finished 1m candle")
 need('"data", "tick-log.jsonl"' in E,
      "91. THE TICK LOG (fix613, her Nov 1 2:31 PM words): the ticks her feed took are written, read-only, every 5 s")
+BK616 = open("src/lib/desk/book.ts", encoding="utf8").read()
+need("function raw616(" in BK616 and "file616.m !== st.mtimeMs" in BK616 and "const prev = readBookShared();" in BK616 and "trades = readBookShared().trades;" in K523,
+     "92. THE BOOK IS READ ONLY WHEN IT CHANGES (fix616, her Nov 1 4:27 PM words): live-paper-book.json comes off disk only when its time or size changes")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "retired BTC pink numbers kept on the record - her pink distance is the 15%/20% tolerance alone (7:13 AM, cornerstone 43)"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),

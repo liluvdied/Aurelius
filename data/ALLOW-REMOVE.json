@@ -6186,5 +6186,30 @@
     "what": "if (!a || !b || !(a.price > b.price)) return spot >= 20000 && (globalThis as any).__sessCarried?.btc === true ? Math.abs(pink - spot) <= 25 /* fix612: $25 flat */ : true;",
     "R": "R313",
     "why": "fix615 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const parsed = JSON.parse(readFileSync(FILE, \"utf8\")) as Partial<BookFile>;",
+    "R": "R314",
+    "why": "fix616 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const prev = readBook();",
+    "R": "R314",
+    "why": "fix616 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (readFileSync(FILE, \"utf8\") === body) return next;",
+    "R": "R314",
+    "why": "fix616 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "import { readBook } from \"./book\";",
+    "R": "R314",
+    "why": "fix616 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "trades = readBook().trades;",
+    "R": "R314",
+    "why": "fix616 (her Nov 1 4:27 PM words)"
   }
 ]
