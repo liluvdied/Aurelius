@@ -1,10 +1,10 @@
 {
-  "live": true,
-  "maxDollars": 5,
+  "live": false,
+  "maxDollars": 1,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-02T07:09:09.506Z",
-  "note": "Turned on from the desk",
+  "at": "2026-11-02T07:39:10.238Z",
+  "note": "Turned off from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
   ],
@@ -123,7 +123,7 @@
       "recon-rej",
       "recon-dly"
     ],
-    "dollars": 5,
+    "dollars": 1,
     "since": "2026-11-02T07:09:09.508Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
@@ -1021,7 +1021,8 @@
       18,
       19,
       20,
-      21
+      21,
+      23
     ]
   },
   "bookSkipHoursNote": "Love, Oct 11 ~6:20 AM PT: worst hours = red in both halves of the week for the closest relative with history. GROK BUILDER <- GOLDEN (same builder, same feed) BTC Oct 4-11; OG x PIVOT 5M <- PRIME (Grok's instant-entry book) BTC Oct 6-11. | Oct 11 ~6:50 AM PT: PAP247 + PAPWIN live for the day, off PAPER's red-both-halves hours 12,2,4,5 AM, 12,1,6 PM PT. | Oct 11 ~5:20 PM PT Love: only the session-pivot books live, off their red hours (Oct 11 paper record).",
@@ -1547,7 +1548,8 @@
       5,
       10,
       16,
-      17
+      17,
+      23
     ],
     "rejNote": "Oct 23 ~2:04 PM PT, Love: the rejection model (recon-rej) takes 11 PM, 12 AM and 2 AM on the $2 + $3 structure instead of the main book (fix145) | Oct 23 ~2:16 PM PT, Love picked 'All 8 hours where it won': rejection model at 12, 2, 6, 8 AM, 2, 4, 6, 9, 11 PM on $2 + $3; main book keeps 4, 9, 11 AM, 12 PM off hours | Oct 23 ~2:17 PM PT, Love: 'all hours the rejection model performed better than ours throughout the week if it was repeated among days' -> hours where rej beat tog on more days than not (Oct 20-23): 12, 2, 3, 6, 8, 9 AM, 4, 6, 9, 11 PM (2 PM dropped: better 1 of 4 days) | Oct 23 ~2:55 PM PT, Love card 'Kalshi main 24/7, Poly rejection': rejHours cleared, rejection model moves to Polymarket 24/7 (fix151) | Oct 23 ~2:57 PM PT, Love: keep the rejection model on Kalshi in its hours (main book's worst) - rejHours restored; Polymarket rejection 24/7 stays (fix152) | Oct 23 ~5:30 PM PT, Love: the DELAYED twin takes 1, 2, 5 AM, 12, 2 PM on Kalshi and Poly (fix155); 2 AM leaves the rejection hours | Oct 23 ~7:02 PM PT, Love: 4 PM to the DELAYED twin too (fix156) | Oct 24 ~7:26 PM PT, Love picked 'Only clear winners' (paper Oct 19-24, best book beat the owner by $50+): 4 AM, 7 AM, 3 PM to the rejection model; 9 AM to the main book | fix239 Oct 25 ~9:47 PM PT, Love card 'Rejection takes main's hours' (paper $20 flat since Oct 20: rejection +$1,361 vs main -$984; today +$836 vs -$31): the rejection model takes every hour the main book owned (9, 10, 11 AM, 1, 5, 7, 8, 10 PM) at $20 (Love 9:47 PM: no let us run it at $20 hun she is working) + $5 add-on; main stays paper; twin hours unchanged | fix240 Oct 25 ~9:49 PM PT, Love: 'ehhh $15 and $5 add on for rn hun' -> rejection $15 + $5 add-on; switch ceiling maxDollars 11 -> 15 so the $15 isn't cut to $11 | fix241 Oct 25 ~10 PM PT, Love card 'Those + 8 PM and 10 PM': main book keeps [10, 11, 15, 20, 22] live at her slider (paper Oct 20-25 main beat rejection there on total and most days) | fix243 Oct 25 ~10:30 PM PT, Love: 'yes every hour you just said hun - let them take the best performing hours per model per book' (replay Oct 20-25 live sizes: split +$1,720 vs +$1,090; Mon-Wed-picked tested Thu-Sat +$883 vs +$512): rejHoursByAsset - gold: main also 7 PM; btc: rejection takes 10 AM, 3, 8, 10 PM, main takes 8, 9 AM (11 AM stays main) | fix249 Oct 26 ~1:00 AM PT, Love: 'put her on the main book pls im not doin this over again' - every rejection hour handed to the main book (old map in rejHoursPrev) | fix251 Oct 26 1:47 AM PT, Love: 'run her on the new rejection model for the hour' - rejection hours restored",
     "rejHoursByAsset": {
@@ -1565,7 +1567,8 @@
         15,
         16,
         17,
-        21
+        21,
+        23
       ],
       "btc": [
         0,
@@ -1579,7 +1582,7 @@
         17,
         19,
         20,
-        22
+        23
       ]
     },
     "dollarsNote": "fix248 Oct 26 ~12:59 AM PT, Love: 'pls put it back to $11 and $5 for the orders hun' (rejection $11 + $5 add-on)",
@@ -1673,7 +1676,7 @@
         19,
         20,
         21,
-        22
+        23
       ]
     },
     "gold": {
@@ -1709,7 +1712,8 @@
         18,
         19,
         20,
-        21
+        21,
+        23
       ]
     }
   },

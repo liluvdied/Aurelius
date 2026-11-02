@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R325 - fix632 her position sizing slider's numbers, maxDollars and liveBook.dollars, never count as drift. Every other setting is still checked.
+- when: 2026-11-02T08:58:53+00:00
+- Love: "Love Nov 1 2026 11:32 PM PT: "i already have a position sizing slider. you told me any change makes the umpire stop all orders. don't have that in place for position sizes.""
+- books: n, o,  , b, o, o, k,  , c, h, a, n, g, e, s, .
+- status: ACTIVE
+- proof: {"code": "tools/verify-golden.py", "has": "def size_only632(k, ls, targets):"}
+- proof: {"code": "tools/requests.py", "has": "fix632 (Love Nov 1 2026 11:32 PM PT)"}
+
 ## R324 - fix628 the no-removal and no-switch-off gates accept a schedule setting whose value is exactly what her pill approved in data/schedule-approved.json. Any other value or setting is still judged.
 - when: 2026-11-02T07:09:05+00:00
 - Love: "Love Nov 1 2026 10:44 PM PT: "yes please allow me to change the schedule at will without tripping the umpire this was requested yesterday""

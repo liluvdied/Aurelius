@@ -2711,3 +2711,10 @@ LIVE back on after fix425 2026-10-29T02:37:06.682417+00:00 ({'engine.ts': 'bc53a
 2026-11-02T07:05:01.135Z HOURS (Love, in-app schedule pill): 11 PM PT -> DELAYED twin
 2026-11-02T07:09:05Z R324 fix628 (Love, FIX628-TAP-AT-WILL.command): schedule pill taps no longer trip the umpire gates
 2026-11-02T07:25:54.535Z HOURS (Love, in-app schedule pill): 10 PM PT -> REJECTION model (BTC only)
+2026-11-02T07:25:56.680Z HOURS (Love, in-app schedule pill): 10 PM PT -> DELAYED twin
+2026-11-02T07:25:58.422Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (BTC only)
+2026-11-02T07:25:59.353Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (GOLD only)
+2026-11-02T08:23:28.929713Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+2026-11-02T08:30:29.443706Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+2026-11-02T08:58:53Z R325 fix632 (Love, FIX632-SLIDER-NEVER-TRIPS.command): her size slider never trips the umpire
+2026-11-02T09:01:08Z ARM-THE-DESK: armed 4 hours by her password

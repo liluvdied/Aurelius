@@ -1,9 +1,19 @@
-# Every decision Love has made - rebuilt 2026-11-02T07:26:20.486487+00:00
+# Every decision Love has made - rebuilt 2026-11-02T09:10:15.864732+00:00
 
-1495 decisions with Love's words or card picks, out of 2249 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1498 decisions with Love's words or card picks, out of 2253 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-02T08:58:53Z  ·  diary line 2719  ·  fix632
+- fix632 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-11-02T08:58:53Z R325 fix632 (Love, FIX632-SLIDER-NEVER-TRIPS.command): her size slider never trips the umpire
+
+## 2026-11-02T08:30:29.443706Z  ·  diary line 2718
+- Full entry: 2026-11-02T08:30:29.443706Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-11-02T08:23:28.929713Z  ·  diary line 2717
+- Full entry: 2026-11-02T08:23:28.929713Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
 
 ## 2026-11-02T07:25:59.353Z  ·  diary line 2716
 - Full entry: 2026-11-02T07:25:59.353Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (GOLD only)

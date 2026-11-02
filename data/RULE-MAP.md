@@ -1,8 +1,8 @@
 # Rule map
 
-Written Nov 01 2026 11:09 PM by tools/rule-map.py, at commit 1108c484 fix628: her pill taps never trip the umpire (R324).
+Written Nov 02 2026 01:10 AM by tools/rule-map.py, at commit f45ceecb fix632: her size slider never trips the umpire (R325).
 
-Read-only. No rule reads this file. 238 active requests, 104 cornerstones, 0 proof lines not found.
+Read-only. No rule reads this file. 239 active requests, 104 cornerstones, 0 proof lines not found.
 
 ## Active requests
 
@@ -264,7 +264,7 @@ Read-only. No rule reads this file. 238 active requests, 104 cornerstones, 0 pro
 |  |  | tools/behaviour-umpire.cjs | test |  |
 |  |  | tools/pink-far-test-503.cjs | test |  |
 |  |  | tools/reach-test-429.cjs | test |  |
-| R257 | fix510 - live-switch liveSkipHours gold [] and btc [] (was gold [4,5,6,7], btc [1,14,21]); old values in liveS… | data/live-switch.json:3032 | liveSkipHoursPrev510 | 683decd0 Save point 20261101-1031: V.11 |
+| R257 | fix510 - live-switch liveSkipHours gold [] and btc [] (was gold [4,5,6,7], btc [1,14,21]); old values in liveS… | data/live-switch.json:3038 | liveSkipHoursPrev510 | 683decd0 Save point 20261101-1031: V.11 |
 | R258 | fix511 (log only): recon.ts bonesDecide remembers the candidates it dropped when it returns empty (globalThis.… | src/lib/desk/recon.ts:727 | EMPTY READ (fix511) | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/recon.ts:340 | __drop511 | c91077b5 full desk snapshot for new project |
 |  |  | tools/cornerstones.py:76 | an empty read too (fix479, R230; fix511) | c91077b5 full desk snapshot for new project |
@@ -414,7 +414,7 @@ Read-only. No rule reads this file. 238 active requests, 104 cornerstones, 0 pro
 | R300 | When the spine lock is in drift (recon.ts changed without a re-sign), recon's read returned false BEFORE the s… | words only |  |  |
 | R301 | Re-sign the spine lock so the reconstructed books resume booking (carries the checkable proof R299 was meant t… | data/spine-lock-status.json key ok | = true |  |
 |  |  | data/spine-lock.json:6 | recon.ts | not committed yet |
-|  |  | tools/requests.py:102 | isinstance(pr, (dict, str)) | c91077b5 full desk snapshot for new project |
+|  |  | tools/requests.py:103 | isinstance(pr, (dict, str)) | c91077b5 full desk snapshot for new project |
 | R302 | On a spine drift, log the reason to recon-skips.jsonl before the books hold, so the freeze never hides its cau… | src/lib/desk/recon.ts:465 | SPINE DRIFT (fix575) | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/recon.ts:465 | run UNFREEZE-HER-BOOKS | c91077b5 full desk snapshot for new project |
 | R303 | Lift the 4-hour arm requirement from every fns writer/button: the armGate524 hook still logs each call but no … | src/lib/desk/fns.ts:38 | arm requirement lifted (fix578) | c91077b5 full desk snapshot for new project |
@@ -508,6 +508,8 @@ Read-only. No rule reads this file. 238 active requests, 104 cornerstones, 0 pro
 |  |  | src/components/desk/schedule-pill.tsx:59 | PURE NO PINK | db39f39a fix626: the delayed button is the pure no-pink model (R323) |
 | R324 | fix628 the no-removal and no-switch-off gates accept a schedule setting whose value is exactly what her pill a… | tools/no-removal-gate.py:107 | def pill_ok628(new): | 1108c484 fix628: her pill taps never trip the umpire (R324) |
 |  |  | tools/no-switch-off-gate.py:33 | G["pill_ok628"](new) | 1108c484 fix628: her pill taps never trip the umpire (R324) |
+| R325 | fix632 her position sizing slider's numbers, maxDollars and liveBook.dollars, never count as drift. Every othe… | tools/verify-golden.py:14 | def size_only632(k, ls, targets): | f45ceecb fix632: her size slider never trips the umpire (R325) |
+|  |  | tools/requests.py:61 | fix632 (Love Nov 1 2026 11:32 PM PT) | f45ceecb fix632: her size slider never trips the umpire (R325) |
 
 ## Cornerstones
 
