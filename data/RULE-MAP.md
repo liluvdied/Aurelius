@@ -1,6 +1,6 @@
 # Rule map
 
-Written Nov 01 2026 09:47 PM by tools/rule-map.py, at commit f832b60e fix615: the pink cushion scale, BTC and gold each their own (R313).
+Written Nov 01 2026 09:48 PM by tools/rule-map.py, at commit b39f26b2 fix616: live-paper-book.json read only when it changes (R314).
 
 Read-only. No rule reads this file. 229 active requests, 94 cornerstones, 0 proof lines not found.
 
@@ -482,8 +482,8 @@ Read-only. No rule reads this file. 229 active requests, 94 cornerstones, 0 proo
 | R313 | fix615 the pink cushion size, at any hour, no 2-3 PM number. BTC: half the channel under $100, half capped at … | src/lib/desk/bandlock.ts:792 | (W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60) | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 |  |  | src/lib/desk/recon.ts:449 | (W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60) | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 |  |  | tools/behaviour-umpire.cjs | test |  |
-| R314 | fix616 live-paper-book.json comes off disk only when its time or size changes; paperSeat and writeBook's look … | src/lib/desk/book.ts:60 | file616.m !== st.mtimeMs | not committed yet |
-|  |  | src/lib/desk/kalshi-live.server.ts:1141 | trades = readBookShared().trades; | not committed yet |
+| R314 | fix616 live-paper-book.json comes off disk only when its time or size changes; paperSeat and writeBook's look … | src/lib/desk/book.ts:60 | file616.m !== st.mtimeMs | b39f26b2 fix616: live-paper-book.json read only when it changes (R314) |
+|  |  | src/lib/desk/kalshi-live.server.ts:1141 | trades = readBookShared().trades; | b39f26b2 fix616: live-paper-book.json read only when it changes (R314) |
 
 ## Cornerstones
 
@@ -582,4 +582,4 @@ Read-only. No rule reads this file. 229 active requests, 94 cornerstones, 0 proo
 | 89. FLAT $5 (fix609, her Nov 1 1:56 + 2:17 PM words): main and rejection top up through the last line and the wire, never over $5;… | src/lib/desk/kalshi-live.server.ts:1570 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 | 90. THE OTHER 1M READS ARE OUT (fix610, her Nov 1 2:17 PM words): the candle read and the fake-out turn no longer wait for a finis… | src/lib/desk/bandlock.ts:2807 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 | 91. THE TICK LOG (fix613, her Nov 1 2:31 PM words): the ticks her feed took are written, read-only, every 5 s | src/lib/desk/engine.ts:5821 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
-| 92. THE BOOK IS READ ONLY WHEN IT CHANGES (fix616, her Nov 1 4:27 PM words): live-paper-book.json comes off disk only when its tim… | src/lib/desk/book.ts:55 | not committed yet |
+| 92. THE BOOK IS READ ONLY WHEN IT CHANGES (fix616, her Nov 1 4:27 PM words): live-paper-book.json comes off disk only when its tim… | src/lib/desk/book.ts:55 | b39f26b2 fix616: live-paper-book.json read only when it changes (R314) |
