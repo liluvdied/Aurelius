@@ -52,21 +52,40 @@ function empty(): BookFile {
   return { trades: [], settings: DEFAULT_SETTINGS };
 }
 
+// fix616 (Love Nov 1 2026 4:27 PM PT: "build the numbered branch that re-reads live-paper-book.json only when the file changes"): the file is read from disk only when its time or size changes.
+// readBook still hands every caller its own rows, because callers change them. readBookShared is for callers that only look: it parses once per change. Never change its rows.
+let file616: { m: number; s: number; raw: string; book: BookFile | null } | null = null;
+function raw616(): string {
+  const st = statSync(FILE);
+  if (!file616 || file616.m !== st.mtimeMs || file616.s !== st.size) file616 = { m: st.mtimeMs, s: st.size, raw: readFileSync(FILE, "utf8"), book: null };
+  return file616.raw;
+}
+function parse616(raw: string): BookFile {
+  const parsed = JSON.parse(raw) as Partial<BookFile>;
+  const trades = Array.isArray(parsed.trades) ? parsed.trades.filter((t) => t?.id) : [];
+  return {
+    trades: onePerSetup(trades),
+    settings: { ...DEFAULT_SETTINGS, ...(parsed.settings ?? {}) },
+  };
+}
 export function readBook(): BookFile {
   try {
-    const parsed = JSON.parse(readFileSync(FILE, "utf8")) as Partial<BookFile>;
-    const trades = Array.isArray(parsed.trades) ? parsed.trades.filter((t) => t?.id) : [];
-    return {
-      trades: onePerSetup(trades),
-      settings: { ...DEFAULT_SETTINGS, ...(parsed.settings ?? {}) },
-    };
+    return parse616(raw616());
+  } catch {
+    return empty();
+  }
+}
+export function readBookShared(): BookFile {
+  try {
+    const raw = raw616();
+    return file616!.book ?? (file616!.book = parse616(raw));
   } catch {
     return empty();
   }
 }
 
 export function writeBook(trades: Trade[], settings?: DeskSettings): BookFile {
-  const prev = readBook();
+  const prev = readBookShared(); // fix616: only looked at here
   const arch = archivedIds();
   if (arch.size) trades = trades.filter((t) => !t?.id || !arch.has(String(t.id)) || t.result === "open");
   const merged = unionTrades(prev.trades, trades);
@@ -82,7 +101,7 @@ export function writeBook(trades: Trade[], settings?: DeskSettings): BookFile {
   };
   const body = JSON.stringify(next);
   try {
-    if (readFileSync(FILE, "utf8") === body) return next;
+    if (raw616() === body) return next; // fix616
   } catch {
     // first write
   }

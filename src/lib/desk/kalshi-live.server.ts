@@ -4,7 +4,7 @@ import { createPrivateKey, randomUUID, sign, constants } from "node:crypto";
 import { closeCash, halfCuts, screenBid } from "./paper";
 import { bandInWay, bandOnPath, bandReach, centerWrong, shortBandOnTarget, shortTap, survivalBlock } from "./auto";
 import { listPrimePaper, onPrimeBook, primeOwns, primeProven } from "./prime-book";
-import { readBook } from "./book";
+import { readBook, readBookShared } from "./book"; // fix616
 import { bandLevels, liveOn, loveSkip, maxDollars, noteBlock, recordFire } from "./live-guard";
 void import("./umpire-gate").catch(() => {}); // fix461 (R185/R186, Love Oct 29 2026 11:46 AM PT: "if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out"): the umpire gate starts with the wire
 const ROOT = "https://external-api.kalshi.com";
@@ -1138,7 +1138,7 @@ function paperShape(label) {
 function paperSeat(ticker, side) {
   let trades = [];
   try {
-    trades = readBook().trades;
+    trades = readBookShared().trades; // fix616: only looked at here
   } catch {
     return null;
   }
