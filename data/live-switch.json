@@ -3,7 +3,7 @@
   "maxDollars": 5,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-02T06:37:17.206Z",
+  "at": "2026-11-02T07:09:09.506Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -124,7 +124,7 @@
       "recon-dly"
     ],
     "dollars": 5,
-    "since": "2026-11-02T06:37:17.207Z",
+    "since": "2026-11-02T07:09:09.508Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -995,7 +995,9 @@
     "recon-tog": [
       2,
       5,
-      16
+      16,
+      22,
+      23
     ],
     "recon-dly": [
       0,
@@ -1019,9 +1021,7 @@
       18,
       19,
       20,
-      21,
-      22,
-      23
+      21
     ]
   },
   "bookSkipHoursNote": "Love, Oct 11 ~6:20 AM PT: worst hours = red in both halves of the week for the closest relative with history. GROK BUILDER <- GOLDEN (same builder, same feed) BTC Oct 4-11; OG x PIVOT 5M <- PRIME (Grok's instant-entry book) BTC Oct 6-11. | Oct 11 ~6:50 AM PT: PAP247 + PAPWIN live for the day, off PAPER's red-both-halves hours 12,2,4,5 AM, 12,1,6 PM PT. | Oct 11 ~5:20 PM PT Love: only the session-pivot books live, off their red hours (Oct 11 paper record).",
@@ -1565,8 +1565,7 @@
         15,
         16,
         17,
-        21,
-        23
+        21
       ],
       "btc": [
         0,
@@ -1646,7 +1645,9 @@
         4,
         5,
         16,
-        17
+        17,
+        22,
+        23
       ],
       "recon-dly": [
         0,
@@ -1670,9 +1671,7 @@
         18,
         19,
         20,
-        21,
-        22,
-        23
+        21
       ]
     },
     "gold": {
@@ -1683,6 +1682,7 @@
         14,
         16,
         21,
+        22,
         23
       ],
       "recon-dly": [
@@ -1707,9 +1707,7 @@
         18,
         19,
         20,
-        21,
-        22,
-        23
+        21
       ]
     }
   },

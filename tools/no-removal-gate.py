@@ -103,10 +103,20 @@ def flat(o, p=""):
         return r if r or not p else {p: o}
     return {p: o}
 
+# fix628 (Love Nov 1 2026 10:44 PM PT: "yes please allow me to change the schedule at will without tripping the umpire"): a schedule setting whose value is exactly what her pill approved in data/schedule-approved.json is hers. Any other value, or any other setting, is still judged.
+def pill_ok628(new):
+    import hashlib
+    try:
+        a = (json.load(open("data/schedule-approved.json", encoding="utf8")).get("config") or {}); ls = json.load(open(new, encoding="utf8"))
+        return {k for k in ("bookSkipHours", "bookSkipHoursByAsset", "offHourMain") if k in ls and a.get(k) == hashlib.sha256(json.dumps(ls[k], sort_keys=True).encode()).hexdigest()[:10]}
+    except Exception:
+        return set()
+
 def config_losses(old, new):
     O = flat(json.load(open(old, encoding="utf8"))); N = flat(json.load(open(new, encoding="utf8")))
-    out = []
+    out = []; P628 = pill_ok628(new)
     for k, v in O.items():
+        if k.split(".")[0] in P628: continue  # fix628
         if k not in N: out.append(("setting gone", k))
         elif N[k] != v: out.append(("setting changed", f"{k}: {json.dumps(v, ensure_ascii=False)[:80]} -> {json.dumps(N[k], ensure_ascii=False)[:80]}"))
     return out

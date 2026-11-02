@@ -286,6 +286,9 @@ need('r.book === "recon-rnp" && r.at >= RNPF_START' in F625 and 'book: "recon-rn
      "100. HER PURE NO-PINK CARD (fix625, her Nov 1 10:08 PM words): the main-without-pink twin on its own card with a fresh record from the moment FIX624 landed")
 need("function pureRows626(" in E and "rows = pureRows626([...nb.listNight(), ...extraRows])" in E and "const freshQ = pureRows626(" in E and '`${r.ticker}:recon-tog:${String(r.id).split(":recon-rnp:")[1]}`' in E,
      "101. THE DELAYED BUTTON IS THE PURE NO-PINK MODEL (fix626, her Nov 1 10:18 PM words): an hour she taps, the twin's rows reach the copier as main's rows; only pink entries are out; delayed stops trading live")
+N628 = open("tools/no-removal-gate.py", encoding="utf8").read(); W628 = open("tools/no-switch-off-gate.py", encoding="utf8").read()
+need("def pill_ok628(new):" in N628 and 'if k.split(".")[0] in P628: continue' in N628 and 'G["pill_ok628"](new)' in W628,
+     "102. HER PILL TAPS NEVER TRIP THE UMPIRE (fix628, her Nov 1 10:44 PM words): hours her pill approved are hers; any other change is still judged")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "retired BTC pink numbers kept on the record - her pink distance is the 15%/20% tolerance alone (7:13 AM, cornerstone 43)"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),

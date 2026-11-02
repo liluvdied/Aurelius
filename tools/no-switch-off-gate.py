@@ -30,9 +30,9 @@ def code_offs(old, new):
     return out
 def cfg_offs(old, new):
     O = G["flat"](json.load(open(old, encoding="utf8"))); N = G["flat"](json.load(open(new, encoding="utf8")))
-    out = []
+    out = []; P628 = G["pill_ok628"](new)
     for k, v in O.items():
-        if k not in N: continue
+        if k not in N or k.split(".")[0] in P628: continue  # fix628
         leaf = k.split(".")[-1].lower()
         if leaf in ("on", "enabled", "active") and v is True and N[k] is False: out.append(("setting turned off", k))
         if ("skip" in k.lower() or "off" in leaf) and isinstance(v, list) and isinstance(N[k], list) and set(N[k]) > set(v): out.append(("more hours switched off", f"{k}: +{sorted(set(N[k]) - set(v))}"))
