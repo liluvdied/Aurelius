@@ -1,6 +1,6 @@
 # Rule map
 
-Written Nov 01 2026 10:04 PM by tools/rule-map.py, at commit e04c8978 rule map after fix621 (R319).
+Written Nov 01 2026 10:05 PM by tools/rule-map.py, at commit 44463a49 fix624: the paper twin is main without pink entries (R321).
 
 Read-only. No rule reads this file. 236 active requests, 101 cornerstones, 0 proof lines not found.
 
@@ -494,15 +494,15 @@ Read-only. No rule reads this file. 236 active requests, 101 cornerstones, 0 pro
 |  |  | src/lib/desk/bandlock.ts:1126 | !rejFlip611(asset, side, qR.c) /* fix619 */ | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
 |  |  | tools/band-flip-test-446.cjs | test |  |
 |  |  | tools/behaviour-umpire.cjs | test |  |
-| R318 | fix620 recon-rnp, paper only: the rejection book's own call when it is not a pink call; otherwise her read wit… | src/lib/desk/recon.ts:1049 | book("recon-rnp", np620) | not committed yet |
-|  |  | src/lib/desk/recon.ts:1044 | \|\| rejCandleNP620; | not committed yet |
+| R318 | fix620 recon-rnp, paper only: the rejection book's own call when it is not a pink call; otherwise her read wit… | src/lib/desk/recon.ts:1049 | book("recon-rnp", np620) | 44463a49 fix624: the paper twin is main without pink entries (R321) |
+|  |  | src/lib/desk/recon.ts:1044 | \|\| rejCandleNP620; | 44463a49 fix624: the paper twin is main without pink entries (R321) |
 |  |  | tools/cornerstones.py | test |  |
 | R319 | fix621 two tick readers that only look at live-paper-book.json, watchAccount at engine.ts and the paper-copy r… | src/lib/desk/engine.ts:4021 | live.watchAccount(readBookShared().trades) | 3be94693 fix621: two tick readers of the paper book share the parsed copy (R319) |
 |  |  | src/lib/desk/engine.ts:4510 | const trades = readBookShared().trades; | 3be94693 fix621: two tick readers of the paper book share the parsed copy (R319) |
-| R320 | fix623 the fix618 distance check (pinkClose618) is removed, and the candle reads no longer stop for a pink els… | src/lib/desk/recon.ts:701 | pinkBelow = false && ppC > sDn | not committed yet |
+| R320 | fix623 the fix618 distance check (pinkClose618) is removed, and the candle reads no longer stop for a pink els… | src/lib/desk/recon.ts:701 | pinkBelow = false && ppC > sDn | 44463a49 fix624: the paper twin is main without pink entries (R321) |
 |  |  | src/lib/desk/bandlock.ts:862 | export function pinkAhead618( | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
-| R321 | fix624 paper twin recon-rnp is main without pink entries: main's read, or main's read with the pink line out, … | src/lib/desk/recon.ts:1041 | let np620: any = firstT && !pink620(firstT) ? firstT : null; | not committed yet |
-|  |  | src/lib/desk/recon.ts:550 | if (prior && lane === "recon-rnp") { | not committed yet |
+| R321 | fix624 paper twin recon-rnp is main without pink entries: main's read, or main's read with the pink line out, … | src/lib/desk/recon.ts:1041 | let np620: any = firstT && !pink620(firstT) ? firstT : null; | 44463a49 fix624: the paper twin is main without pink entries (R321) |
+|  |  | src/lib/desk/recon.ts:550 | if (prior && lane === "recon-rnp") { | 44463a49 fix624: the paper twin is main without pink entries (R321) |
 
 ## Cornerstones
 
@@ -608,4 +608,4 @@ Read-only. No rule reads this file. 236 active requests, 101 cornerstones, 0 pro
 | 96. A TURN OR BORN HER COLOUR, ANY 2-5M CANDLE (fix619, her Nov 1 7:35 PM words): off a band or zone the read and the door take an… | src/lib/desk/bandlock.ts:1126 | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
 | 97. THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (fix620, her Nov 1 7:50 PM words): the same logic on every other band and zone… | src/lib/desk/grokog.ts:360 | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
 | 98. HER TICK READS THE SHARED BOOK (fix621, her Nov 1 8:32 PM words): the two tick readers that only look at live-paper-book.json … | src/lib/desk/engine.ts:6 | 3be94693 fix621: two tick readers of the paper book share the parsed copy (R319) |
-| 99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words): main's read, door, free-to-trade and one-call-per-win… | src/lib/desk/recon.ts:418 | not committed yet |
+| 99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words): main's read, door, free-to-trade and one-call-per-win… | src/lib/desk/recon.ts:418 | 44463a49 fix624: the paper twin is main without pink entries (R321) |
