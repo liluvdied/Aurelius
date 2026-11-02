@@ -1,8 +1,8 @@
 # Rule map
 
-Written Nov 01 2026 10:38 PM by tools/rule-map.py, at commit db39f39a fix626: the delayed button is the pure no-pink model (R323).
+Written Nov 01 2026 11:09 PM by tools/rule-map.py, at commit 1108c484 fix628: her pill taps never trip the umpire (R324).
 
-Read-only. No rule reads this file. 238 active requests, 103 cornerstones, 0 proof lines not found.
+Read-only. No rule reads this file. 238 active requests, 104 cornerstones, 0 proof lines not found.
 
 ## Active requests
 
@@ -72,7 +72,6 @@ Read-only. No rule reads this file. 238 active requests, 103 cornerstones, 0 pro
 | R066 | fix379: BTC THE IMPOSSIBILITY top/bottom 33% (was fix219 20% for one-sigma channels) on main/rej/copy (+ paper… | src/lib/desk/bandlock.ts:2916 | fix379 | c91077b5 full desk snapshot for new project |
 | R069 | fix382: Poly 5M walls (bandlock5m.ts) = bandlock.ts as of 4:57 AM PT Oct 27 (her 65% stretch, with fixes 295-3… | src/lib/desk/bandlock5m.ts:1 | THE 5M BOOK'S OWN WALLS - FROZEN (fix382 | c91077b5 full desk snapshot for new project |
 | R073 | fix387: pure no-pink (recon-np) also takes main reads worded Tap-reject at <session band / red or green zone /… | src/lib/desk/recon.ts:756 | fix387 | c91077b5 full desk snapshot for new project |
-| R075 | fix388: pure no-pink holds the Kalshi BTC seat every hour - the delayed twin sits out all BTC hours live on Ka… | data/live-switch.json key bookSkipHoursByAsset.btc.recon-dly | = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1… |  |
 | R076 | fix389: recon-npo = PURE NO-PINK WITH HER OWN EYES, PAPER: every tick she runs the engine read (bonesDecide, r… | src/lib/desk/recon.ts:50 | recon-npo | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
 | R077 | fix389b: LIVE pure no-pink (recon-np) also books her own band read (the recon-npo read: session bands, zones, … | src/lib/desk/recon.ts:780 | fix389b | c91077b5 full desk snapshot for new project |
 | R078 | fix390: pure no-pink (recon-np) meets MAIN walls at the door, the paper sweep and the wire (impossibleGeo flag… | src/lib/desk/bandlock.ts:1108 | fix390 | c91077b5 full desk snapshot for new project |
@@ -265,7 +264,7 @@ Read-only. No rule reads this file. 238 active requests, 103 cornerstones, 0 pro
 |  |  | tools/behaviour-umpire.cjs | test |  |
 |  |  | tools/pink-far-test-503.cjs | test |  |
 |  |  | tools/reach-test-429.cjs | test |  |
-| R257 | fix510 - live-switch liveSkipHours gold [] and btc [] (was gold [4,5,6,7], btc [1,14,21]); old values in liveS… | data/live-switch.json:3034 | liveSkipHoursPrev510 | 683decd0 Save point 20261101-1031: V.11 |
+| R257 | fix510 - live-switch liveSkipHours gold [] and btc [] (was gold [4,5,6,7], btc [1,14,21]); old values in liveS… | data/live-switch.json:3032 | liveSkipHoursPrev510 | 683decd0 Save point 20261101-1031: V.11 |
 | R258 | fix511 (log only): recon.ts bonesDecide remembers the candidates it dropped when it returns empty (globalThis.… | src/lib/desk/recon.ts:727 | EMPTY READ (fix511) | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/recon.ts:340 | __drop511 | c91077b5 full desk snapshot for new project |
 |  |  | tools/cornerstones.py:76 | an empty read too (fix479, R230; fix511) | c91077b5 full desk snapshot for new project |
@@ -507,6 +506,8 @@ Read-only. No rule reads this file. 238 active requests, 103 cornerstones, 0 pro
 |  |  | src/components/desk/app.tsx:3319 | book: "recon-rnp-fresh", title: | 6ccd2b0c fix625: a card for the pure no-pink model, fresh record (R322) |
 | R323 | fix626 the schedule pill's delayed button now seats the pure no-pink model. An hour tapped to it, recon-rnp ro… | src/lib/desk/engine.ts:71 | function pureRows626( | db39f39a fix626: the delayed button is the pure no-pink model (R323) |
 |  |  | src/components/desk/schedule-pill.tsx:59 | PURE NO PINK | db39f39a fix626: the delayed button is the pure no-pink model (R323) |
+| R324 | fix628 the no-removal and no-switch-off gates accept a schedule setting whose value is exactly what her pill a… | tools/no-removal-gate.py:107 | def pill_ok628(new): | 1108c484 fix628: her pill taps never trip the umpire (R324) |
+|  |  | tools/no-switch-off-gate.py:33 | G["pill_ok628"](new) | 1108c484 fix628: her pill taps never trip the umpire (R324) |
 
 ## Cornerstones
 
@@ -615,3 +616,4 @@ Read-only. No rule reads this file. 238 active requests, 103 cornerstones, 0 pro
 | 99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words): main's read, door, free-to-trade and one-call-per-win… | src/lib/desk/recon.ts:418 | 44463a49 fix624: the paper twin is main without pink entries (R321) |
 | 100. HER PURE NO-PINK CARD (fix625, her Nov 1 10:08 PM words): the main-without-pink twin on its own card with a fresh record from… | src/lib/desk/fns.ts:1287 | 6ccd2b0c fix625: a card for the pure no-pink model, fresh record (R322) |
 | 101. THE DELAYED BUTTON IS THE PURE NO-PINK MODEL (fix626, her Nov 1 10:18 PM words): an hour she taps, the twin's rows reach the … | src/lib/desk/engine.ts:70 | db39f39a fix626: the delayed button is the pure no-pink model (R323) |
+| 102. HER PILL TAPS NEVER TRIP THE UMPIRE (fix628, her Nov 1 10:44 PM words): hours her pill approved are hers; any other change is… | tools/cornerstones.py |  |
