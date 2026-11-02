@@ -1,8 +1,8 @@
 # Rule map
 
-Written Nov 01 2026 09:49 PM by tools/rule-map.py, at commit 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315).
+Written Nov 01 2026 09:49 PM by tools/rule-map.py, at commit 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316).
 
-Read-only. No rule reads this file. 231 active requests, 97 cornerstones, 0 proof lines not found.
+Read-only. No rule reads this file. 232 active requests, 98 cornerstones, 0 proof lines not found.
 
 ## Active requests
 
@@ -50,7 +50,7 @@ Read-only. No rule reads this file. 231 active requests, 97 cornerstones, 0 proo
 |  |  | src/lib/desk/recon.ts:668 | LB.push({ name: "Green zone", price: Number(p.s1) | c91077b5 full desk snapshot for new project |
 | R026 | fix344: gold 3:00-4:59 PM PT, session channel under $2: her thirds (THE IMPOSSIBILITY / ONLY IN HER THIRD) and… | src/lib/desk/bandlock.ts:1230 | fix344 | c91077b5 full desk snapshot for new project |
 | R027 | fix344b: inside fix344's gold 3-5 PM tight-band slice, the session VWAP stays a wall - when VWAP is the band i… | src/lib/desk/bandlock.ts:2935 | fix344b | c91077b5 full desk snapshot for new project |
-| R028 | fix345: a main-book (and no-pink copy) Bollinger rejection trades on any 1/2/3/4/5m flip her way (HER FLIP), n… | src/lib/desk/recon.ts:677 | fix345 | c91077b5 full desk snapshot for new project |
+| R028 | fix345: a main-book (and no-pink copy) Bollinger rejection trades on any 1/2/3/4/5m flip her way (HER FLIP), n… | src/lib/desk/recon.ts:677 | fix345 | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
 | R033 | No-pink copy gets HER FLIP like main (fix325: entry needs a live 1-5m candle flipped her way, literal colour) … | src/lib/desk/bandlock.ts:3226 | fix349 | 44b42fd5 fix592+593+594: flip or born + session-band scale + zones at the door and last li… |
 | R035 | No-pink copy, gold channels under $10: top/bottom 33% always (fix219 20% for channels within one fresh sigma n… | src/lib/desk/bandlock.ts:2927 | fix351 | c91077b5 full desk snapshot for new project |
 | R037 | Delayed twin (recon-dly) = the no-pink copy with a delayed entry: books the copy read (firstT, pink out unless… | src/lib/desk/recon.ts:51 | fix353 | c91077b5 full desk snapshot for new project |
@@ -334,7 +334,7 @@ Read-only. No rule reads this file. 231 active requests, 97 cornerstones, 0 proo
 |  |  | tools/week-replay-521.cjs | test |  |
 |  |  | tools/behaviour-umpire.cjs | test |  |
 | R268 | fix523+524 ALL DOORS CLOSED: AUDIT_FLAGS523 single table (bandlock) for auditor + wire + sub-auditor (sub pars… | src/lib/desk/bandlock.ts:709 | export const AUDIT_FLAGS523 | c91077b5 full desk snapshot for new project |
-|  |  | src/lib/desk/kalshi-live.server.ts:883 | fix524: NOTHING between this test and the send | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
+|  |  | src/lib/desk/kalshi-live.server.ts:883 | fix524: NOTHING between this test and the send | not committed yet |
 |  |  | src/lib/desk/kalshi-live.server.ts:1718 | ADD-ON DISABLED (fix524 | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/engine.ts:164 | REPORT-ONLY (fix524 | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/fns.ts:37 | armGate524 | c91077b5 full desk snapshot for new project |
@@ -467,7 +467,7 @@ Read-only. No rule reads this file. 231 active requests, 97 cornerstones, 0 proo
 |  |  | data/live-switch.json key addOn.maxAsk | = 0.357 |  |
 |  |  | tools/behaviour-umpire.cjs | test |  |
 | R312 | fix611 a rejection with its 2-5m flip passes the broke-this-candle walls. fix612 BTC while carried: the blue V… | src/lib/desk/kalshi-live.server.ts:783 | async function judgeOrder601( | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
-|  |  | src/lib/desk/kalshi-live.server.ts:883 | sent.__oneDoor?.delete(ticker); /* fix602 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
+|  |  | src/lib/desk/kalshi-live.server.ts:883 | sent.__oneDoor?.delete(ticker); /* fix602 | not committed yet |
 |  |  | src/lib/desk/bandlock.ts:595 | ...tr603 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 |  |  | src/lib/desk/engine.ts:2507 | lockCfg.on !== false | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 |  |  | data/live-switch.json key lockWin.on | = false |  |
@@ -489,6 +489,10 @@ Read-only. No rule reads this file. 231 active requests, 97 cornerstones, 0 proo
 |  |  | tools/behaviour-umpire.cjs | test |  |
 | R316 | fix618 pinkClose618: unbroken pink inside the session-band tolerance directly under a short or over a long ref… | src/lib/desk/bandlock.ts:862 | export function pinkAhead618( | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
 |  |  | src/lib/desk/bandlock.ts:2934 | const tight344 = false /* fix618 */ | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
+|  |  | tools/behaviour-umpire.cjs | test |  |
+| R317 | fix619 off a band or zone, a 2-5m candle that turned or was born her colour past $5 BTC / 10c gold is her entr… | src/lib/desk/recon.ts:290 | return turnFlip530(asset, c.side, spot); | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
+|  |  | src/lib/desk/bandlock.ts:1137 | !rejFlip611(asset, side, qR.c) /* fix619 */ | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
+|  |  | tools/band-flip-test-446.cjs | test |  |
 |  |  | tools/behaviour-umpire.cjs | test |  |
 
 ## Cornerstones
@@ -578,7 +582,7 @@ Read-only. No rule reads this file. 231 active requests, 97 cornerstones, 0 proo
 | 79. THE FAKE-OUT (fix598 + fix599, her Nov 1 9:03 + 11:20 AM words): a wick at most 25% into the channel, reversed at least 3 time… | tools/cornerstones.py |  |
 | 80. HER $5 ADD-ON AT 2.8x (fix600, her Nov 1 12:27 PM words): as soon as price reaches 2.8x, no band touch; must pass the umpire S… | src/lib/desk/bandlock.ts:614 | 45769e2c fix596-599: BTC pink window, rejections only, lotto out, fake-out 3, waiver out (… |
 | 81. THE EXACT ORDER (fix601, her words): every opening order is judged at the last line, nothing between the test and the POST: th… | src/lib/desk/kalshi-live.server.ts:777 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
-| 82. A REFUSED ORDER NEVER CLOSES HER WINDOW (fix602, her words): the door reopens when the last line refuses; only an executed tra… | src/lib/desk/kalshi-live.server.ts:883 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
+| 82. A REFUSED ORDER NEVER CLOSES HER WINDOW (fix602, her words): the door reopens when the last line refuses; only an executed tra… | src/lib/desk/kalshi-live.server.ts:883 | not committed yet |
 | 83. SAME SIDE SEES THE TICKS (fix603, her words): a break only the last few ticks saw counts at the last line | src/lib/desk/bandlock.ts:594 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 | 84. HER OFF SWITCHES WORK (fix604 + fix605): entries off writes its reason; the profit lock obeys its switch and cannot sell a pos… | src/lib/desk/kalshi-live.server.ts:811 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 | 85. 1M REJECTIONS ARE OUT (fix606, her Nov 1 1:24 PM words): the read is gone and main and rejection refuse the label at the copie… | src/lib/desk/bandlock.ts:609 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
@@ -592,3 +596,4 @@ Read-only. No rule reads this file. 231 active requests, 97 cornerstones, 0 proo
 | 93. CARRY BANDS ALSO (fix617, her Nov 1 4:57 PM words): BTC, the last session's bands are extra lines to trade rejections and brea… | src/lib/desk/bandlock.ts:611 | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
 | 94. SESSION BAND AHEAD OF THE PINK (fix618, her Nov 1 6:10 PM words): pink inside her session-band scale of an unbroken session ba… | src/lib/desk/bandlock.ts:563 | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
 | 95. THE SAME ENTRY LOGIC (fix618, her Nov 1 6:10 PM words): gold and BTC take the same setups on the same flips; gold keeps her $1… | src/lib/desk/bandlock.ts:563 | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
+| 96. A TURN OR BORN HER COLOUR, ANY 2-5M CANDLE (fix619, her Nov 1 7:35 PM words): off a band or zone the read and the door take an… | src/lib/desk/bandlock.ts:1137 | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
