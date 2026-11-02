@@ -1,9 +1,13 @@
-# Every decision Love has made - rebuilt 2026-11-01T20:51:29.748215+00:00
+# Every decision Love has made - rebuilt 2026-11-02T05:46:12.778233+00:00
 
-1471 decisions with Love's words or card picks, out of 2225 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1472 decisions with Love's words or card picks, out of 2226 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-02T05:45:32Z  ·  diary line 2693  ·  fix601
+- fix601 IN HER CODE
+- Full entry: 2026-11-02T05:45:32Z R312 fix601-613 (Love, ALL-FIXES-ONE-COMMAND.command): the exact order judged at the last line and written down, refused orders reopen the door, same side sees ticks, entries off logs, her three Oct 30 Outs off, 1m rejections out, her slider and take profits both, Tap-reject archived, flat , other 1m reads out, rejection with its flip past a broken band, blue VWAP the only session wall under 00, tick log, polyHour off, hourly backup restarted
 
 ## 2026-11-01T20:51:01Z  ·  diary line 2692  ·  fix600
 - fix600 IN HER CODE

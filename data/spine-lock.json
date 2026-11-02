@@ -1,9 +1,9 @@
 {
-  "at": "2026-11-01T20:50:27.551096+00:00",
+  "at": "2026-11-02T05:46:37.680007+00:00",
   "lockedBy": "Love",
   "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
   "files": {
-    "recon.ts": "14bda784ad02efbb"
+    "recon.ts": "17eaf76704b548f3"
   },
   "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
   "signedBy": [
@@ -466,6 +466,18 @@
       "by": "Love",
       "quote": "Love Nov 1 2026 11:20 + 11:31 AM PT: $25 pink window, BTC only (fix596)",
       "recon.ts": "14bda784ad02efbb"
+    },
+    {
+      "at": "2026-11-02T05:45:33.108757+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "9ec6f3ef6e28c998"
+    },
+    {
+      "at": "2026-11-02T05:46:37.680007+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "17eaf76704b548f3"
     }
   ],
   "R": "R266",

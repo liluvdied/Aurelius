@@ -20,7 +20,7 @@ const readTol = (F, asset, lo, hi) => { const mk = board(lo, hi), tick = (lo + h
 const near = (x, y, m) => Math.abs(x - y) <= (m || 0.02);
 // faithful replica of her LIVE pink law (the overlay's else-branch), day-robust
 const weekend = /Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date()));
-const live = (asset, W) => hasSlide580 ? Math.round((asset === "btc" ? (W < 100 ? 25 : W <= 500 ? 0.2 * W : 0.15 * W) : 0.15 * W) * 100) / 100 : asset === "btc" ? Math.round(Math.min(25, Math.max(weekend ? 0 : 75, (W < 180 && W >= 75) ? 0.75 * W : 0.2 * W)) * 100) / 100 : Math.round(0.15 * W * 100) / 100;
+const live = (a, W) => a === "btc" ? (W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60) : W <= 500 ? 0.2 * W : 0.15 * W) : W < 5 ? (W < 2 ? W / 2 : Math.min(W / 2, 1.5)) : 0.15 * W; // fix615 her pink cushion
 const WIDTHS = [["gold", 3997.5, 4002.5, 5], ["gold", 4040, 4080, 40], ["gold", 3900, 4100, 200], ["btc", 79975, 80025, 50], ["btc", 80000, 80300, 300], ["btc", 79650, 80350, 700]];
 // FLAG TRUE => flat $25 both assets, every width
 for (const [asset, lo, hi, W] of WIDTHS) { const got = readTol(Ftrue, asset, lo, hi); t(near(got, 25), `flag TRUE: ${asset} W=$${W} should be a flat $25, got $${got.toFixed(3)}`); }
