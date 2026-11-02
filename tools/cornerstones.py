@@ -267,6 +267,12 @@ need('"data", "tick-log.jsonl"' in E,
 BK616 = open("src/lib/desk/book.ts", encoding="utf8").read()
 need("function raw616(" in BK616 and "file616.m !== st.mtimeMs" in BK616 and "const prev = readBookShared();" in BK616 and "trades = readBookShared().trades;" in K523,
      "92. THE BOOK IS READ ONLY WHEN IT CHANGES (fix616, her Nov 1 4:27 PM words): live-paper-book.json comes off disk only when its time or size changes")
+need("export function carryExtra617(" in B and "...carryExtra617(id)]" in R and "5m PP|pink|carried /i.test(String(row.setup" in E and "5m PP|pink|carried /i.test(lb)" in B,
+     "93. CARRY BANDS ALSO (fix617, her Nov 1 4:57 PM words): BTC, the last session's bands are extra lines to trade rejections and breaks off, until the new bands are $180 wide; no wall or thirds counts them")
+need("export function pinkAhead618(" in B and "const pa618 = pinkAhead618(asset, lbR.L, qR.c, side)" in B and "const pc618 = pinkClose618(asset, lbR.L, qR.c, side)" in B and "[pinkClose618(asset, lbR.L, qR.c, side)" in B,
+     "94. SESSION BAND AHEAD OF THE PINK (fix618, her Nov 1 6:10 PM words): pink inside her session-band scale of an unbroken session band, no trade through it until the band breaks, gold and BTC")
+need('(asset === "btc" || asset === "gold") && G.__sessCarried?.[asset] === true' in B and 'if (book === "recon-tog" /* fix618: gold too */ && carried' in B and 'const tight344 = false /* fix618 */' in B and 'false /* fix618 */ && row.asset === "gold"' in E and 'false /* fix618 */ && row.asset === "btc"' in E and "THE LAST RUNG" in B and "THE LAST CHANNEL" in B and "THE $10 LEVEL" in B,
+     "95. THE SAME ENTRY LOGIC (fix618, her Nov 1 6:10 PM words): gold and BTC take the same setups on the same flips; gold keeps her $10 level, 55%, last rung and last channel, BTC her +2 sigma rule, and their own tolerances")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "retired BTC pink numbers kept on the record - her pink distance is the 15%/20% tolerance alone (7:13 AM, cornerstone 43)"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),

@@ -6211,5 +6211,160 @@
     "what": "trades = readBook().trades;",
     "R": "R314",
     "why": "fix616 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (book === \"recon-tog\" && asset === \"btc\" && carried && !rej && !(/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(lb) && /5m PP|pink/i.test(lb))) return `2 PM TIL $100 = REJECTIONS ONLY (fix597): \"${lb.slice(0, 80)}\" is not a rejection or a pink break - no order.`;",
+    "R": "R315",
+    "why": "fix617 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "import { carryWalls612, carryTol615 } from \"./bandlock\"; // fix612 + fix615",
+    "R": "R315",
+    "why": "fix617 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "function sessWalls612(a: any, id = \"\"): Line[] { return carryWalls612(id, sessionLines(a, id)); } // fix612: main and rejection read only the blue VWAP while the bands are carried; the delayed book keeps her own",
+    "R": "R315",
+    "why": "fix617 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if ([\"recon-rej\", \"recon-tog\"].includes(String(row.book)) /* fix471: main + rejection */ && (globalThis as any).__sessCarried?.[String(row.asset)] === true /* fix471: from the 2 PM PT session reset until her session bands widen out (the carry hand-back: BTC sigma $180+, gold $5+) */ && !(() => { try { const L = ((globalThis as any).__lawBands?.[String(row.asset)]?.L || []) as any[]; const lb = String(row.setup || row.label || \"\"); const z = L.find((l: any) => String(l.name) === (row.side === \"up\" ? \"5m S1\" : \"5m R1\")); const b = L.filter((l: any) => !/^5m (S1|R1)$/.test(String(l.name)) && lb.includes(String(l.name))).sort((x: any, y: any) => String(y.name).length - String(x.name).length)[0]; return !!(z && b && Math.abs(Number(b.price) - Number(z.price)) <= (String(row.asset) === \"gold\" ? 2 : 75)); } catch { return false; } })() /* fix472: a rejection off a line inside her green (long) / red (short) zone - within $75 BTC / $2 gold of it - is a zone call */ && !(String(row.book) === \"recon-rej\" && REJ_KEEPS597.test(String(row.setup || row.label || \"\"))) /* fix597: rejection keeps the candle-from-the-33% and fake-out reads at all hours */ && !/Bollinger|Green zone|Red zone|5m PP|pink/i.test(String(row.setup || row.label || \"\")) /* fix471: pink and PP stay */ && !done[row.id]?.orderId && ![\"partial\", \"resting\", \"filled\", \"sent\"].includes(String(done[row.id]?.status || \"\"))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: \"blocked\", final: false, reason: `2 PM TIL THE BANDS WIDEN = BOLLINGERS, ZONES AND PINK ONLY (fix471): \"${String(row.setup || row.label).slice(0, 80)}\" is not a Bollinger or green/red zone call` }; continue; }",
+    "R": "R315",
+    "why": "fix617 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const w = sA && sB ? sA.price - sB.price : 0, r = sA && sB ? sessionScale593(asset, w) : 25; // fix612: $25 off the blue VWAP",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (book === \"recon-tog\" && asset === \"btc\" && carried && !rej && !(/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(lb) && /5m PP|pink|carried /i.test(lb) /* fix617 */)) return `2 PM TIL $100 = REJECTIONS ONLY (fix597): \"${lb.slice(0, 80)}\" is not a rejection or a pink break - no order.`;",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const reach509 = (asset === \"btc\" && sA && sB && sA.price - sB.price < 100) || ((typeof carryOn612 === \"function\" && carryOn612(asset)) && !(sA && sB)) /* fix612: $25 off the blue VWAP */ ? 25 : reach; // fix509 (Love Oct 30 2026 5:35-5:55 AM PT questionnaire c11 Keep: \"btc's is $25 at band widths under $100 during tight bands, golds is a hard $1 within that\")",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const P = Number(b.price), pink = String(b.name) === \"5m PP\", r = pink ? ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : ((typeof pinkSlide580 === \"function\" && asset === \"btc\" && sA && sB) ? pinkSlide580(asset, sA.price - sB.price) : carryPink615 > 0 ? carryPink615 : pinkReach)) : /^BB /.test(String(b.name)) ? reach509 : ((typeof carryOn612 === \"function\" && carryOn612(asset)) && !(sA && sB)) ? 25 /* fix612: $25 off the blue VWAP */ : sessionScale593(asset, sA && sB ? sA.price - sB.price : 0); // fix593: session bands use her scale; pink and the Bollinger lines keep their own",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "export function carryOn612(asset: string): boolean { return asset === \"btc\" && G.__sessCarried?.btc === true; }",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "export function carryTol615(asset: string): number { const w = Number(G.__freshSd?.[asset]) || 0; return w > 0 ? pinkSlide580(asset, w) : 25; }",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (asset !== \"btc\") return [];",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const c = G.__sessCarry?.btc, p = c?.prev, v = Number(p?.v) || 0, sd = Number(p?.sd) || 0;",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (!(v > 0 && sd > 0) || Number(c?.cur?.sd) >= 180) return [];",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "for (const w465 of [reachWall429(asset, lbR.L, qR.c, side), pinkLongWall432(asset, lbR.L, qR.c, side), pinkShortWall464(asset, lbR.L, qR.c, side), sameSide434(asset, lbR.L, qR.c, side), brokeThisCandle441(asset, lbR.L, qR.c, side), brokeThisCandle457(asset, lbR.L, qR.c, side)]) if (w465) return deny(w465, { tick: qR.c });",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (asset === \"btc\" && quietHour()) return L.filter((l) => !/^5m (R2|S2)$/.test(String(l.name))); // 3 PM hour: BTC's red/green zones are edges",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "return asset === \"btc\" ? L.filter((l) => !/^5m (R1|R2|S1|S2)$/.test(String(l.name))) : L;",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const tight344 = asset === \"gold\" && (flipRule || togpLoose) && (above - below) < 2 && (() => { try { const h = Number(PT_HOUR_Q.format(new Date())); return h === 15 || h === 16; } catch { return false; } })();",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "else if (brZ && asset === \"gold\" && tick < r1Z && r1Z < nxZ && r1Z - tick < 3 /* fix310: Love Oct 27 2:15 AM \"we can make that $3 hun\" - $3 clearance */ && !rejNoAhead /* fix317 */) why = `BREAK INTO A ZONE: gold long broke ${brZ.toFixed(2)} with the red zone (${r1Z.toFixed(2)}) ahead before the next band - those reverse; no long here.`;",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "else if (brZ && asset === \"gold\" && tick > s1Z && s1Z > nxZ && tick - s1Z < 3 /* fix310: $3 clearance */ && !rejNoAhead /* fix317 */) why = `BREAK INTO A ZONE: gold short broke ${brZ.toFixed(2)} with the green zone (${s1Z.toFixed(2)}) ahead before the next band - those reverse; no short here.`;",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const FB = [...SB.filter((x) => !(asset === \"gold\" && /^fresh /.test(x.n))) /* fix221/fix222 gold fresh bands (under $5 apart) stay out of the fake-outs (Love: \"disable fakeouts for bands under $5\" + \"gold only pls\") */, ...(L || []).filter((l: Line) => /^5m [RS]1$|^(Green|Red) zone$/.test(String(l.name)) && Number(l.price) > 0).map((l: Line) => ({ n: String(l.name) === \"5m S1\" || String(l.name) === \"Green zone\" ? \"the green zone\" : String(l.name) === \"5m R1\" || String(l.name) === \"Red zone\" ? \"the red zone\" : String(l.name), p: Number(l.price) }))]; // fix181: + green/red zone (Love Oct 24 ~11:16 PM PT). fix140 (Oct 23 ~10:04 AM PT, Love: \"let's only have the fake out rule in place for the session bands\"): the pink no longer counts",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (asset === \"gold\" && o5 > 0 && hl5) { if (cdl === \"up\" && tick < o5 + 0.3 && Number(hl5.l) <= o5 - 0.3) cdl = \"down\"; else if (cdl === \"down\" && tick > o5 - 0.3 && Number(hl5.h) >= o5 + 0.3) cdl = \"up\"; }",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (c.side === \"down\" && asset === \"btc\" && bbL > 0) { const ppB = pB(\"5m PP\"); if (ppB > 0 && bbL < ppB && ppB - bbL <= 100) return false; }",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (spot >= 20000 && (globalThis as any).__sessCarried?.btc === true) return false; // fix612: BTC while carried, one blue line has no thirds",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (!a || !b || !(a.price > b.price)) return spot >= 20000 && (globalThis as any).__sessCarried?.btc === true ? Math.abs(pink - spot) <= (typeof carryTol615 === \"function\" ? carryTol615(asset) : 25) /* fix612 + fix615 */ : true;",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (id === \"btc\" && lane !== \"recon-dly\" && lane !== \"recon-dlyk\" && look.side === \"up\" && /^(Break|Close) above 5m PP$/.test(String(look.label))) { try { const bz467 = (globalThis as any).__bbsr?.[id], bbU467 = Number(bz467?.bbU) || 0, pv467 = onePink565R(id, b); if (Date.now() - Number(bz467?.at) <= 20000 && pv467 && bbU467 > Number(pv467.pp) && bbU467 - Number(pv467.pp) <= 100) return false; } catch {} } // fix467 (R213, Love 1:40 PM PT: \"bollinger over pink NEEDS A LONG MIRROR\"): BOLLINGER WITHIN $100 OVER THE PINK - no long on a BTC break up through the pink with the Bollinger upper $100 or less above it (mirror of Oct 21's short rule); every book but delayed",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "try { if (id === \"btc\" && rejLB && rejReach > 0) { const lanes373 = [\"recon-tog\", \"recon-rej\"] /* fix424: main + rejection only (Love Oct 28 2026 7:29 PM PT card \"All protections back\") */.filter((ln) => rows.some((r) => r.ticker === m.ticker && r.lane === ln && r.side === \"up\" && r.result === \"open\"));",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (sv3 && sv3.side === \"down\" && /5m PP/.test(String(sv3.label)) && (() => { try { return anyFlip406Now(id, \"down\", spot, 5); } catch { return false; } })()) {",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "try { if (id === \"btc\" && rejLB && rejReach > 0) { const lanes467 = [\"recon-tog\", \"recon-rej\"].filter((ln) => rows.some((r) => r.ticker === m.ticker && r.lane === ln && r.side === \"down\" && r.result === \"open\"));",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (sv7 && sv7.side === \"up\" && /5m PP/.test(String(sv7.label)) && (() => { try { return anyFlip406Now(id, \"up\", spot, 5); } catch { return false; } })()) {",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (row.asset === \"gold\" && done[row.id]?.status !== \"partial\") {",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (row.asset === \"btc\" && room > 0 && !bxFree && !pf && done[row.id]?.status !== \"partial\") {",
+    "R": "R316",
+    "why": "fix618 (her Nov 1 4:27 PM words)"
   }
 ]

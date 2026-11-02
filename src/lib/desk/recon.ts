@@ -25,7 +25,7 @@ import { dnaNow } from "./dna";
 import { quoteTick, feedHealth } from "./quotes";
 import { addOnTouchNow, anyFlipNow, anyFlip406Now, realFlipNow } from "./bandlock"; // fix169 + fix326 + fix424 + fix446
 import { anyFlip2Now, impossibleGeo, blueSmall399, pinkSpent515c } from "./bandlock"; // fix480: her paper books back (Love Oct 29 2026 5:49 PM PT: "okay can you put back every single one of those rules i answered ????" (marked "Put it back") + Oct 28 6:39 PM: "save all of these new revisions on another paper twin and give me my model back")
-import { carryWalls612, carryTol615 } from "./bandlock"; // fix612 + fix615
+import { carryWalls612, carryTol615, carryExtra617 } from "./bandlock"; // fix612 + fix615 + fix617
 import { bandLockCheck as bandLockCheck464 } from "./bandlock"; // fix464 (R202): her read meets the same band tolerances as her orders
 
 const D = (f: string) => join(process.cwd(), "data", f);
@@ -82,7 +82,7 @@ function quietLines(id: string, p: any): Line[] {
   if (z && Number(z.bbU) > 0 && Number(z.bbL) > 0 && Date.now() - Number(z.at) <= 20000) out.push({ name: "BB upper", price: Number(z.bbU), unit: p.a }, { name: "BB lower", price: Number(z.bbL), unit: p.a });
   return out;
 }
-function sessWalls612(a: any, id = ""): Line[] { return carryWalls612(id, sessionLines(a, id)); } // fix612: main and rejection read only the blue VWAP while the bands are carried; the delayed book keeps her own
+function sessWalls612(a: any, id = ""): Line[] { return [...carryWalls612(id, sessionLines(a, id)), ...carryExtra617(id)]; } // fix612: main and rejection read only the blue VWAP while the bands are carried; the delayed book keeps her own
 function sessionLines(a: any, id = ""): Line[] {
   const f = a?.vwap1m?.vwap ? a.vwap1m : a?.vwap5m;
   let v = Number(f?.vwap) || 0, sd = Number(f?.stdev) || 0;
@@ -320,7 +320,7 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
       // BOLLINGER WITHIN $100 UNDER THE PINK (Oct 21 ~11:07 PM PT, Love: "let's just update it to not trade the break of a pink downwards if a bollinger band is
       // within $100 ... have her skip the short if the bollinger band below is within $100 of the pink band / if it breaks the pink up afterwards she is clear to
       // long / or at the rejection of the bollinger band" - 11:00 PM BTC shorted a pink break with the Bollinger lower $88 under it and lost): BTC only, shorts only.
-      if (c.side === "down" && asset === "btc" && bbL > 0) { const ppB = pB("5m PP"); if (ppB > 0 && bbL < ppB && ppB - bbL <= 100) return false; }
+      if (false /* fix618 */ && c.side === "down" && asset === "btc" && bbL > 0) { const ppB = pB("5m PP"); if (ppB > 0 && bbL < ppB && ppB - bbL <= 100) return false; }
       if (c.side === "down" && bbL > 0 && s1B > 0 && bbL < spot && bbL > s1B) return false;
       if (c.side === "up" && bbU > 0 && r1B > 0 && bbU > spot && bbU < r1B) return false;
       return true;
@@ -422,7 +422,7 @@ export function freshSameSide463(lane: string, priorSide: string, priorLabel: st
 // nor a short in the bottom 33% (the one below). The walls still check at the door. 12:31 PM gold: long read at 88% up the 4004.95 -> -1σ 4018.29 channel - never her call.
 export function thirdsRead463(L: { name: string; price: number }[], spot: number, side: string): boolean {
   if (!(spot > 0) || !(side === "up" || side === "down")) return false;
-  if (spot >= 20000 && (globalThis as any).__sessCarried?.btc === true) return false; // fix612: BTC while carried, one blue line has no thirds
+  if ((globalThis as any).__sessCarried?.[spot >= 20000 ? "btc" : "gold"] === true) return false; // fix612 + fix618: while carried, one blue line has no thirds
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name)));
   const a = S.filter((l) => l.price > spot).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < spot).sort((x, y) => y.price - x.price)[0];
   if (!a || !b || !(a.price > b.price)) return false;
@@ -455,7 +455,7 @@ export function pinkRead464(asset: string, L: { name: string; price: number }[],
   if (side === "up" ? spot > pink : spot < pink) return false;
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name)));
   const a = S.filter((l) => l.price > spot).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < spot).sort((x, y) => y.price - x.price)[0];
-  if (!a || !b || !(a.price > b.price)) return spot >= 20000 && (globalThis as any).__sessCarried?.btc === true ? Math.abs(pink - spot) <= (typeof carryTol615 === "function" ? carryTol615(asset) : 25) /* fix612 + fix615 */ : true;
+  if (!a || !b || !(a.price > b.price)) return (globalThis as any).__sessCarried?.[asset] === true ? Math.abs(pink - spot) <= (typeof carryTol615 === "function" ? carryTol615(asset) : 25) /* fix612 + fix615 */ : true;
   const W550 = a.price - b.price; // fix550 (Love Oct 30 2026 8:17 PM PT: "lower her pink tolerance to $25 for the moment please" + her 3:49 PM law ($75 weekday floor, 3/4 at $75-$180) - reaching the READ-side pink wall in recon (pinkRead464), the sixth site the earlier clicks missed; it held a 10:02 PM short $27 from the pink where her $25 cap says clear): the read wall runs her exact tolerance law, same as every door site
   const tol550 = ((typeof __PINKFLAT25 !== "undefined" && __PINKFLAT25) ? 25 : (typeof pinkSlide580R === "function") ? pinkSlide580R(asset, W550, pct) : (asset === "btc" ? Math.min(25 /* fix542 TEMPORARY: her $25 pink, lifted with the cap-lift click */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date())) ? 0 : 75, W550 < 180 && W550 >= 75 ? 0.75 * W550 : pct * W550)) : pct * W550));
   return Math.abs(pink - spot) <= tol550;
@@ -505,7 +505,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     if ((lane === "recon-tog" || lane === "recon-rej") && isFlip463(look.label)) return false; // fix463 (R191, Love Oct 29 12:38 PM PT: "no flip. independent calls"): a flipped read is never her call
     if (lane === "recon-tog" || lane === "recon-rej") { try { if (thirdsRead463(sessionLines(ax, id), spot, look.side)) return false; const pv464b = onePink565R(id, b); if (pv464b && !zoneFree515c(id, look.side, String(look.label)) && pinkRead464(id, sessionLines(ax, id), spot, look.side, Number(pv464b.pp))) return false; const G464b = globalThis as any; G464b.__blQuiet464 = true; try { if (!bandLockCheck464(lane, id, look.side, String(m.ticker)).ok) return false; } finally { G464b.__blQuiet464 = false; } } catch {} } // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): EVERY read main or rejection books - whatever path it came from (incl. the gold zone pickup) - meets her thirds, the pink both sides and every band tolerance first
     if (lane !== "recon-tog" && lane !== "recon-rej" && lane !== "recon-dly" && lane !== "recon-dlyk") { try { if (thirdsRead463(sessionLines(ax, id), spot, look.side)) return false; const pv465 = onePink565R(id, b); if (pv465 && !zoneFree515c(id, look.side, String(look.label)) && pinkRead464(id, sessionLines(ax, id), spot, look.side, Number(pv465.pp))) return false; const G465 = globalThis as any; G465.__blQuiet464 = true; try { if (!bandLockCheck464(lane, id, look.side, String(m.ticker)).ok) return false; } finally { G465.__blQuiet464 = false; } } catch {} } // fix465 (R209, Love 1:24 PM PT: "all books. aside from delayed."): every other book's read meets her 33%, the pink both sides and her walls too
-    if (id === "btc" && lane !== "recon-dly" && lane !== "recon-dlyk" && look.side === "up" && /^(Break|Close) above 5m PP$/.test(String(look.label))) { try { const bz467 = (globalThis as any).__bbsr?.[id], bbU467 = Number(bz467?.bbU) || 0, pv467 = onePink565R(id, b); if (Date.now() - Number(bz467?.at) <= 20000 && pv467 && bbU467 > Number(pv467.pp) && bbU467 - Number(pv467.pp) <= 100) return false; } catch {} } // fix467 (R213, Love 1:40 PM PT: "bollinger over pink NEEDS A LONG MIRROR"): BOLLINGER WITHIN $100 OVER THE PINK - no long on a BTC break up through the pink with the Bollinger upper $100 or less above it (mirror of Oct 21's short rule); every book but delayed
+    if (false /* fix618 */ && id === "btc" && lane !== "recon-dly" && lane !== "recon-dlyk" && look.side === "up" && /^(Break|Close) above 5m PP$/.test(String(look.label))) { try { const bz467 = (globalThis as any).__bbsr?.[id], bbU467 = Number(bz467?.bbU) || 0, pv467 = onePink565R(id, b); if (Date.now() - Number(bz467?.at) <= 20000 && pv467 && bbU467 > Number(pv467.pp) && bbU467 - Number(pv467.pp) <= 100) return false; } catch {} } // fix467 (R213, Love 1:40 PM PT: "bollinger over pink NEEDS A LONG MIRROR"): BOLLINGER WITHIN $100 OVER THE PINK - no long on a BTC break up through the pink with the Bollinger upper $100 or less above it (mirror of Oct 21's short rule); every book but delayed
     const prior = rows.find((r) => r.ticker === m.ticker && r.lane === lane);
     if (lane === "recon-dly" && DLY_AS_COPY && !(look as any).copy353) return false; // fix353: her old twin calls (initial move, touches, re-aims) no longer book
     // FRESH 5M SWINGS (fix186, Oct 25 ~1:45 AM PT, Love: "can you see why the rejection model didn't long at the rejection of btc at the band? ... it didnt register a
@@ -829,17 +829,17 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // BTC PINK-REJECTION RE-AIM (fix373, Love Oct 27 2026 10:38 PM PT: "if the numbers are that good on btc you can go ahead and put that in bb 💞 / we are stopping bleeds this week ok" + card "Which books get the BTC pink-rejection re-aim?" -> "Main + rejection + copy"; study since Oct 11: BTC longs refused under pink, the pink-rejection short won 27 of 38 +$222 while the refused long lost ~$204):
   // BTC only, MAIN / REJECTION MODEL / NO-PINK COPY - when her open call this window is a LONG that never filled and a PINK wall refused it, and the engine now reads a
   // rejection DOWN off the pink (bonesDecide, rejections only) with a 1-5m candle flipped red, the unfilled long re-aims to that short (book() re-aims; a fill locks the window). Gold untouched.
-  try { if (id === "btc" && rejLB && rejReach > 0) { const lanes373 = ["recon-tog", "recon-rej"] /* fix424: main + rejection only (Love Oct 28 2026 7:29 PM PT card "All protections back") */.filter((ln) => rows.some((r) => r.ticker === m.ticker && r.lane === ln && r.side === "up" && r.result === "open"));
+  try { if (rejLB && rejReach > 0) { /* fix618: gold too */ const lanes373 = ["recon-tog", "recon-rej"] /* fix424: main + rejection only (Love Oct 28 2026 7:29 PM PT card "All protections back") */.filter((ln) => rows.some((r) => r.ticker === m.ticker && r.lane === ln && r.side === "up" && r.result === "open"));
     if (lanes373.length) { const sv3 = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach);
-      if (sv3 && sv3.side === "down" && /5m PP/.test(String(sv3.label)) && (() => { try { return anyFlip406Now(id, "down", spot, 5); } catch { return false; } })()) {
+      if (sv3 && sv3.side === "down" && /5m PP/.test(String(sv3.label)) && (() => { try { return anyFlip406Now(id, "down", spot, id === "btc" ? 5 : 0.1); } catch { return false; } })()) {
         let d3: Record<string, any> = {}; try { d3 = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); } catch {}
         for (const ln of lanes373) { let pinkNo = false, filled = false; for (const k3 of Object.keys(d3)) { if (!k3.startsWith(m.ticker + ":" + ln)) continue; const v3 = d3[k3]; if (v3?.status === "filled" || v3?.status === "partial") filled = true; if (v3?.side === "up" && (/^PINK/.test(String(v3?.firstReason || "")) || /^PINK/.test(String(v3?.reason || "")))) pinkNo = true; }
           if (pinkNo && !filled && (((globalThis as any).__reaim373 ||= {})[m.ticker + ":" + ln] = 1) && book(ln, { side: "down", label: `${sv3.label} - re-aimed off the pink rejection (fix373)` } as any)) { changed = true; try { appendFileSync(D("pink-reaim.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: m.ticker, lane: ln, label: sv3.label, spot }) + "\n"); } catch {} } } } } } } catch {}
   // fix467 (R213, Love Oct 29 2026 1:40 PM PT: "ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS"): THE MIRROR OF fix373 - BTC main + rejection: an unfilled SHORT a PINK wall refused, with a rejection UP off the pink
   // (bonesDecide, rejections only) and a 2-5m candle flipped green, re-aims to that long; then the re-aim sticks (no turning back to the short). A fill locks the window.
-  try { if (id === "btc" && rejLB && rejReach > 0) { const lanes467 = ["recon-tog", "recon-rej"].filter((ln) => rows.some((r) => r.ticker === m.ticker && r.lane === ln && r.side === "down" && r.result === "open"));
+  try { if (rejLB && rejReach > 0) { /* fix618: gold too */ const lanes467 = ["recon-tog", "recon-rej"].filter((ln) => rows.some((r) => r.ticker === m.ticker && r.lane === ln && r.side === "down" && r.result === "open"));
     if (lanes467.length) { const sv7 = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach);
-      if (sv7 && sv7.side === "up" && /5m PP/.test(String(sv7.label)) && (() => { try { return anyFlip406Now(id, "up", spot, 5); } catch { return false; } })()) {
+      if (sv7 && sv7.side === "up" && /5m PP/.test(String(sv7.label)) && (() => { try { return anyFlip406Now(id, "up", spot, id === "btc" ? 5 : 0.1); } catch { return false; } })()) {
         let d7: Record<string, any> = {}; try { d7 = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); } catch {}
         for (const ln of lanes467) { let pinkNo = false, filled = false; for (const k7 of Object.keys(d7)) { if (!k7.startsWith(m.ticker + ":" + ln)) continue; const v7 = d7[k7]; if (v7?.status === "filled" || v7?.status === "partial") filled = true; if (v7?.side === "down" && (/^PINK/.test(String(v7?.firstReason || "")) || /^PINK/.test(String(v7?.reason || "")))) pinkNo = true; }
           if (pinkNo && !filled && (((globalThis as any).__reaim467 ||= {})[m.ticker + ":" + ln] = 1) && book(ln, { side: "up", label: `${sv7.label} - re-aimed off the pink rejection (fix467)` } as any)) { changed = true; try { appendFileSync(D("pink-reaim.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: m.ticker, lane: ln, label: sv7.label, spot, mirror: true }) + "\n"); } catch {} } } } } } } catch {}
