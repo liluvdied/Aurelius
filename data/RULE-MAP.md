@@ -1,6 +1,6 @@
 # Rule map
 
-Written Nov 01 2026 10:37 PM by tools/rule-map.py, at commit 6ccd2b0c fix625: a card for the pure no-pink model, fresh record (R322).
+Written Nov 01 2026 10:38 PM by tools/rule-map.py, at commit db39f39a fix626: the delayed button is the pure no-pink model (R323).
 
 Read-only. No rule reads this file. 238 active requests, 103 cornerstones, 0 proof lines not found.
 
@@ -505,8 +505,8 @@ Read-only. No rule reads this file. 238 active requests, 103 cornerstones, 0 pro
 |  |  | src/lib/desk/recon.ts:550 | if (prior && lane === "recon-rnp") { | 44463a49 fix624: the paper twin is main without pink entries (R321) |
 | R322 | fix625 the main-without-pink twin gets its own card, recon-rnp-fresh, counting only rows from 10:04:45 PM PT N… | src/lib/desk/fns.ts:1292 | r.book === "recon-rnp" && r.at >= RNPF_START | 6ccd2b0c fix625: a card for the pure no-pink model, fresh record (R322) |
 |  |  | src/components/desk/app.tsx:3319 | book: "recon-rnp-fresh", title: | 6ccd2b0c fix625: a card for the pure no-pink model, fresh record (R322) |
-| R323 | fix626 the schedule pill's delayed button now seats the pure no-pink model. An hour tapped to it, recon-rnp ro… | src/lib/desk/engine.ts:71 | function pureRows626( | not committed yet |
-|  |  | src/components/desk/schedule-pill.tsx:59 | PURE NO PINK | not committed yet |
+| R323 | fix626 the schedule pill's delayed button now seats the pure no-pink model. An hour tapped to it, recon-rnp ro… | src/lib/desk/engine.ts:71 | function pureRows626( | db39f39a fix626: the delayed button is the pure no-pink model (R323) |
+|  |  | src/components/desk/schedule-pill.tsx:59 | PURE NO PINK | db39f39a fix626: the delayed button is the pure no-pink model (R323) |
 
 ## Cornerstones
 
@@ -614,4 +614,4 @@ Read-only. No rule reads this file. 238 active requests, 103 cornerstones, 0 pro
 | 98. HER TICK READS THE SHARED BOOK (fix621, her Nov 1 8:32 PM words): the two tick readers that only look at live-paper-book.json … | src/lib/desk/engine.ts:6 | 3be94693 fix621: two tick readers of the paper book share the parsed copy (R319) |
 | 99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words): main's read, door, free-to-trade and one-call-per-win… | src/lib/desk/recon.ts:418 | 44463a49 fix624: the paper twin is main without pink entries (R321) |
 | 100. HER PURE NO-PINK CARD (fix625, her Nov 1 10:08 PM words): the main-without-pink twin on its own card with a fresh record from… | src/lib/desk/fns.ts:1287 | 6ccd2b0c fix625: a card for the pure no-pink model, fresh record (R322) |
-| 101. THE DELAYED BUTTON IS THE PURE NO-PINK MODEL (fix626, her Nov 1 10:18 PM words): an hour she taps, the twin's rows reach the … | src/lib/desk/engine.ts:70 | not committed yet |
+| 101. THE DELAYED BUTTON IS THE PURE NO-PINK MODEL (fix626, her Nov 1 10:18 PM words): an hour she taps, the twin's rows reach the … | src/lib/desk/engine.ts:70 | db39f39a fix626: the delayed button is the pure no-pink model (R323) |
