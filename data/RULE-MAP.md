@@ -1,6 +1,6 @@
 # Rule map
 
-Written Nov 01 2026 09:50 PM by tools/rule-map.py, at commit ae3fdff1 rule map after fix618 (R316).
+Written Nov 01 2026 09:51 PM by tools/rule-map.py, at commit 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318).
 
 Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proof lines not found.
 
@@ -73,7 +73,7 @@ Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proo
 | R069 | fix382: Poly 5M walls (bandlock5m.ts) = bandlock.ts as of 4:57 AM PT Oct 27 (her 65% stretch, with fixes 295-3… | src/lib/desk/bandlock5m.ts:1 | THE 5M BOOK'S OWN WALLS - FROZEN (fix382 | c91077b5 full desk snapshot for new project |
 | R073 | fix387: pure no-pink (recon-np) also takes main reads worded Tap-reject at <session band / red or green zone /… | src/lib/desk/recon.ts:743 | fix387 | c91077b5 full desk snapshot for new project |
 | R075 | fix388: pure no-pink holds the Kalshi BTC seat every hour - the delayed twin sits out all BTC hours live on Ka… | data/live-switch.json key bookSkipHoursByAsset.btc.recon-dly | = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 1… |  |
-| R076 | fix389: recon-npo = PURE NO-PINK WITH HER OWN EYES, PAPER: every tick she runs the engine read (bonesDecide, r… | src/lib/desk/recon.ts:50 | recon-npo | not committed yet |
+| R076 | fix389: recon-npo = PURE NO-PINK WITH HER OWN EYES, PAPER: every tick she runs the engine read (bonesDecide, r… | src/lib/desk/recon.ts:50 | recon-npo | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
 | R077 | fix389b: LIVE pure no-pink (recon-np) also books her own band read (the recon-npo read: session bands, zones, … | src/lib/desk/recon.ts:767 | fix389b | c91077b5 full desk snapshot for new project |
 | R078 | fix390: pure no-pink (recon-np) meets MAIN walls at the door, the paper sweep and the wire (impossibleGeo flag… | src/lib/desk/bandlock.ts:1119 | fix390 | c91077b5 full desk snapshot for new project |
 | R079 | fix391: the pure no-pink own-eyes read (fix389/389b) never books a thirds read (Candle rising/falling, Launche… | src/lib/desk/recon.ts:761 | !/third/i.test(lb9) | c91077b5 full desk snapshot for new project |
@@ -334,7 +334,7 @@ Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proo
 |  |  | tools/week-replay-521.cjs | test |  |
 |  |  | tools/behaviour-umpire.cjs | test |  |
 | R268 | fix523+524 ALL DOORS CLOSED: AUDIT_FLAGS523 single table (bandlock) for auditor + wire + sub-auditor (sub pars… | src/lib/desk/bandlock.ts:709 | export const AUDIT_FLAGS523 | c91077b5 full desk snapshot for new project |
-|  |  | src/lib/desk/kalshi-live.server.ts:883 | fix524: NOTHING between this test and the send | not committed yet |
+|  |  | src/lib/desk/kalshi-live.server.ts:883 | fix524: NOTHING between this test and the send | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
 |  |  | src/lib/desk/kalshi-live.server.ts:1718 | ADD-ON DISABLED (fix524 | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/engine.ts:164 | REPORT-ONLY (fix524 | c91077b5 full desk snapshot for new project |
 |  |  | src/lib/desk/fns.ts:37 | armGate524 | c91077b5 full desk snapshot for new project |
@@ -467,7 +467,7 @@ Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proo
 |  |  | data/live-switch.json key addOn.maxAsk | = 0.357 |  |
 |  |  | tools/behaviour-umpire.cjs | test |  |
 | R312 | fix611 a rejection with its 2-5m flip passes the broke-this-candle walls. fix612 BTC while carried: the blue V… | src/lib/desk/kalshi-live.server.ts:783 | async function judgeOrder601( | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
-|  |  | src/lib/desk/kalshi-live.server.ts:883 | sent.__oneDoor?.delete(ticker); /* fix602 | not committed yet |
+|  |  | src/lib/desk/kalshi-live.server.ts:883 | sent.__oneDoor?.delete(ticker); /* fix602 | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
 |  |  | src/lib/desk/bandlock.ts:595 | ...tr603 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 |  |  | src/lib/desk/engine.ts:2507 | lockCfg.on !== false | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 |  |  | data/live-switch.json key lockWin.on | = false |  |
@@ -494,8 +494,8 @@ Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proo
 |  |  | src/lib/desk/bandlock.ts:1137 | !rejFlip611(asset, side, qR.c) /* fix619 */ | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
 |  |  | tools/band-flip-test-446.cjs | test |  |
 |  |  | tools/behaviour-umpire.cjs | test |  |
-| R318 | fix620 recon-rnp, paper only: the rejection book's own call when it is not a pink call; otherwise her read wit… | src/lib/desk/recon.ts:1030 | book("recon-rnp", np620) | not committed yet |
-|  |  | src/lib/desk/recon.ts:1028 | \|\| rejCandleNP620; | not committed yet |
+| R318 | fix620 recon-rnp, paper only: the rejection book's own call when it is not a pink call; otherwise her read wit… | src/lib/desk/recon.ts:1030 | book("recon-rnp", np620) | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
+|  |  | src/lib/desk/recon.ts:1028 | \|\| rejCandleNP620; | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
 |  |  | tools/cornerstones.py | test |  |
 
 ## Cornerstones
@@ -585,7 +585,7 @@ Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proo
 | 79. THE FAKE-OUT (fix598 + fix599, her Nov 1 9:03 + 11:20 AM words): a wick at most 25% into the channel, reversed at least 3 time… | tools/cornerstones.py |  |
 | 80. HER $5 ADD-ON AT 2.8x (fix600, her Nov 1 12:27 PM words): as soon as price reaches 2.8x, no band touch; must pass the umpire S… | src/lib/desk/bandlock.ts:614 | 45769e2c fix596-599: BTC pink window, rejections only, lotto out, fake-out 3, waiver out (… |
 | 81. THE EXACT ORDER (fix601, her words): every opening order is judged at the last line, nothing between the test and the POST: th… | src/lib/desk/kalshi-live.server.ts:777 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
-| 82. A REFUSED ORDER NEVER CLOSES HER WINDOW (fix602, her words): the door reopens when the last line refuses; only an executed tra… | src/lib/desk/kalshi-live.server.ts:883 | not committed yet |
+| 82. A REFUSED ORDER NEVER CLOSES HER WINDOW (fix602, her words): the door reopens when the last line refuses; only an executed tra… | src/lib/desk/kalshi-live.server.ts:883 | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
 | 83. SAME SIDE SEES THE TICKS (fix603, her words): a break only the last few ticks saw counts at the last line | src/lib/desk/bandlock.ts:594 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 | 84. HER OFF SWITCHES WORK (fix604 + fix605): entries off writes its reason; the profit lock obeys its switch and cannot sell a pos… | src/lib/desk/kalshi-live.server.ts:811 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
 | 85. 1M REJECTIONS ARE OUT (fix606, her Nov 1 1:24 PM words): the read is gone and main and rejection refuse the label at the copie… | src/lib/desk/bandlock.ts:609 | dc42dcc8 fix601-613: exact order, refused orders reopen, 1m out, slider and take profits, … |
@@ -600,4 +600,4 @@ Read-only. No rule reads this file. 233 active requests, 99 cornerstones, 0 proo
 | 94. SESSION BAND AHEAD OF THE PINK (fix618, her Nov 1 6:10 PM words): pink inside her session-band scale of an unbroken session ba… | src/lib/desk/bandlock.ts:563 | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
 | 95. THE SAME ENTRY LOGIC (fix618, her Nov 1 6:10 PM words): gold and BTC take the same setups on the same flips; gold keeps her $1… | src/lib/desk/bandlock.ts:563 | 7b7f2ff8 fix617: carry bands also, until the new bands reach 180 dollars (R315) |
 | 96. A TURN OR BORN HER COLOUR, ANY 2-5M CANDLE (fix619, her Nov 1 7:35 PM words): off a band or zone the read and the door take an… | src/lib/desk/bandlock.ts:1137 | 9716cd3f fix618: the same entry logic, session band ahead of the pink (R316) |
-| 97. THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (fix620, her Nov 1 7:50 PM words): the same logic on every other band and zone… | src/lib/desk/grokog.ts:360 | not committed yet |
+| 97. THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (fix620, her Nov 1 7:50 PM words): the same logic on every other band and zone… | src/lib/desk/grokog.ts:360 | 1adc7b9c fix620: paper twin, the rejection book without pink entries (R318) |
