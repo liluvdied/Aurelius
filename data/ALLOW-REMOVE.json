@@ -6521,5 +6521,95 @@
     "what": "if (np620 && !/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(String(np620.label)) && book(\"recon-rnp\", np620)) changed = true; } catch {}",
     "R": "R321",
     "why": "fix624 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const rowsAll = [...base, ...base.filter((r) => r.book === \"ogp5-fast\" && r.at >= SN_START).map((r) => ({ ...r, id: `${r.id}:supernova`, book: \"supernova\" })), ...base.filter((r) => r.book === \"recon-tog\" && r.at >= RF_START).map((r) => ({ ...r, id: `${r.id}:recon-fresh`, book: \"recon-fresh\" })), ...base.filter((r) => r.book === \"recon-togp\" && r.at >= TPF_START).map((r) => ({ ...r, id: `${r.id}:recon-togp-fresh`, book: \"recon-togp-fresh\" })), ...allTog].filter((r) => TAPS.has(r.book) || !r.dnaMode);",
+    "R": "R322",
+    "why": "fix625 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "for (const book of new Set([...byBook.keys(), ...hBy.keys(), \"supernova\", \"recon-fresh\", \"recon-togp-fresh\", \"recon-all\"])) {",
+    "R": "R322",
+    "why": "fix625 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const hs = (hBy.get(book) ?? []).concat(book === \"supernova\" ? (hBy.get(\"ogp5-fast\") ?? []).filter((h) => h[1] >= SN_MS) : []).concat(book === \"recon-fresh\" ? (hBy.get(\"recon-tog\") ?? []).filter((h) => h[1] >= RF_MS) : []).concat(book === \"recon-togp-fresh\" ? (hBy.get(\"recon-togp\") ?? []).filter((h) => h[1] >= TPF_MS) : []).concat(book === \"recon-all\" ? hAll : []);",
+    "R": "R322",
+    "why": "fix625 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "type ShiftNight = { id: string; book: \"fivey\" | \"fivey123\" | \"recon-fresh\" | \"recon-togp-fresh\" | \"recon-all\" | \"recon-dly\" | \"recon-ogp5\" | \"recon-paper\" | \"recon-tog\" | \"recon-top\" | \"recon-rej\" | \"recon-togp\" | \"ogp5-sess\" | \"ogp5-c1\" | \"ogp5-c5\" | \"ogp5-hrs\" | \"ogp5-bbsr\" | \"ogp5-dly\" | \"supernova\" | \"ogp5-r15\" | \"ogp5-r30\" | \"ogp5-cb\" | \"ogp5-fast\" | \"ogp5-gw\" | \"ogp5-inv\" | \"ogp5-boll\" | \"ogp5-lock\" | \"ogp5-btco\" | \"ogp5-pv\" | \"brk-sess\" | \"brk-sesspk\" | \"brk-sessrj\" | \"brk5\" | \"brk10\" | \"brk15\" | \"gold-rg\" | \"twtog\" | \"twhyb\" | \"twtrend\" | \"twflush\" | \"twrev2\" | \"twrev\" | \"twrev5\" | \"twrevsp5\" | \"twrevogp15\" | \"twrevogp5\" | \"twlive\" | \"twbtc\" | \"twgold\" | \"twclean\" | \"twno45\" | \"twnocs\" | \"twsp5b\" | \"twogp15b\" | \"twogp5b\" | \"oggb\" | \"oghb\" | \"ogp2b\" | \"ogp5b\" | \"ogp10b\" | \"ogp15b\" | \"ogp2\" | \"ogp5\" | \"ogp10\" | \"ogp15\" | \"ogg\" | \"ogh\" | \"grokb\" | \"pap20\" | \"piv2\" | \"piv5\" | \"piv10\" | \"piv15\" | \"sp2\" | \"sp5\" | \"sp10\" | \"sp15\" | \"brnw\" | \"sqnw\" | \"pap247\" | \"papbest\" | \"papwin\" | \"original\" | \"new\" | \"refined\" | \"golden\" | \"optA\" | \"optB\" | \"claude\" | \"trend\" | \"brick\" | \"cotc\" | \"diamond\" | \"diamond25\" | \"confirm\" | \"brk1\" | \"sole5\" | \"sole10\" | \"sole15\" | \"sole5p\" | \"sole5z\" | \"sole5v\" | \"brickc\" | \"lastmin\" | \"lastgrant\" | \"bank\" | \"bank2\" | \"bank5p\" | \"claudex\" | \"trendx\" | \"brickx\" | \"bank5px\" | \"brickt\" | \"brickp\" | \"bricks\" | \"brickcr\" | \"brickc75\" | \"brickcf\" | \"brickcm\" | \"brickcpt\" | \"brickcx\" | \"brickcw\" | \"brickcl\" | \"brickch\" | \"brk\" | \"hold90\" | \"tap3x\" | \"taphold\" | \"rescue\" | \"hour\" | \"snap50\" | \"snap100\" | \"snap200\" | \"snap300\" | \"snaphold\" | \"x16_50\" | \"x16_100\" | \"x16_200\" | \"x16_300\" | \"x16hold\" | \"squeeze\" | \"reent\" | \"vine\" | \"gall\" | \"gclear\" | \"dcd\" | \"new24\" | \"rt100\" | \"rt200\" | \"rt90\" | \"w5\" | \"anchor\" | \"phr\" | \"rvw\" | \"snapb\" | \"cfol\" | \"ldc1\" | \"ldc5\" | \"ldc15\" | \"ldc2\" | \"ldc10\" | \"ldc20\" | \"ldc30\" | \"vwap1\" | \"vwap2\" | \"vwap5\" | \"vwap10\" | \"vwap15\" | \"vwap30\" | \"vlc\" | \"newp\" | \"diap\" | \"snpt\" | \"b11\"; at: string; asset: string; side: string; setup: string; multiple: number; stake: number; peakPct: number; exit: string | null; result: string; pnl: number | null; notes?: { worked: string[]; better: string[]; keep: string[] } | null; bankPnl?: number | null; bankExit?: string; stale?: boolean; dnaMode?: \"atr\" | \"free\" | \"fix\"; bell?: string; ticker?: string; soldAt?: string; ask?: number; lonePurple?: boolean; vanBlock?: boolean; insPnl?: number; insNote?: string };",
+    "R": "R322",
+    "why": "fix625 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const fetchBooks: string[] = pick === \"all\" ? [] : pick === \"taps\" || isTap(pick) ? TAPS : pick === \"origClean\" ? [\"original\"] : pick === \"supernova\" ? [\"ogp5-fast\"] : pick === \"recon-fresh\" ? [\"recon-tog\"] : pick === \"recon-togp-fresh\" ? [\"recon-togp\"] : [pick];",
+    "R": "R322",
+    "why": "fix625 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const rowsSN = useMemo(() => [...rowsIn, ...rowsIn.filter((r) => r.book === \"ogp5-fast\" && r.at >= SN_START).map((r) => ({ ...r, id: `${r.id}:supernova`, book: \"supernova\" as ShiftNight[\"book\"] })), ...rowsIn.filter((r) => r.book === \"recon-tog\" && r.at >= RF_START).map((r) => ({ ...r, id: `${r.id}:recon-fresh`, book: \"recon-fresh\" as ShiftNight[\"book\"] })), ...rowsIn.filter((r) => r.book === \"recon-togp\" && r.at >= TPF_START).map((r) => ({ ...r, id: `${r.id}:recon-togp-fresh`, book: \"recon-togp-fresh\" as ShiftNight[\"book\"] }))], [rowsIn]);",
+    "R": "R322",
+    "why": "fix625 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const ranked = BOOKS.filter((b) => !isTap(b.book) && (b.book === \"recon-fresh\" || b.book === \"recon-togp-fresh\" || !archSet.has(b.book))).map((b) => ({ ...b, s: side(b.book) })).sort((a, b) => b.s.pnl - a.s.pnl);",
+    "R": "R322",
+    "why": "fix625 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "[\"RECONSTRUCTED 🧬\", (b) => [\"recon-fresh\", \"recon-togp-fresh\", \"recon-all\", \"recon-dly\", \"recon-ogp5\", \"recon-paper\", \"recon-tog\", \"recon-top\", \"recon-rej\", \"recon-togp\"].includes(b)],",
+    "R": "R322",
+    "why": "fix625 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "{!isTap(book) && book !== \"supernova\" && book !== \"recon-fresh\" && book !== \"recon-togp-fresh\" && book !== \"recon-all\" && (",
+    "R": "R322",
+    "why": "fix625 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "rows = [...nb.listNight(), ...extraRows].filter((r) => books.includes(r.book) && /15M-/.test(String(r.ticker)) && !r.dnaMode && !r.stale && (!lane || copyLaneOf(r.ticker) === lane) && !finished(done[r.id]) && Date.parse(r.at) >= Math.max(Date.parse(cfg.since || 0), Date.now() - 3 * 3600 * 1000));",
+    "R": "R323",
+    "why": "fix626 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const freshQ = [...nbQ.listNight(), ...(ogQ.asNightRows() as typeof rows)].filter((r) => books.includes(r.book) && /15M-/.test(String(r.ticker)) && !r.dnaMode && !r.stale && (!lane || copyLaneOf(r.ticker) === lane) && !seenQ.has(r.id) && !done[r.id] && Date.parse(r.at) >= Date.now() - 10 * 60 * 1000);",
+    "R": "R323",
+    "why": "fix626 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (twH && (row.book === \"recon-tog\" || row.book === \"recon-rej\" || row.book === \"recon-togp\") && done[row.id]?.status !== \"partial\") { // fix281: the no-pink copy sits the twin hours out too",
+    "R": "R323",
+    "why": "fix626 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (((row.book === \"recon-rej\" && (!rjH || tpOn)) || (row.book === \"recon-togp\" && !rjH) || (row.book === \"recon-tog\" && rjH)) && done[row.id]?.status !== \"partial\") {",
+    "R": "R323",
+    "why": "fix626 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const dP624 = main624 && done624 ? done624[`${m.ticker}:recon-tog:${main624.id}`] : null;",
+    "R": "R323",
+    "why": "fix626 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "// every Pacific hour, ticked MAIN 💞, DELAYED ⏳ or REJECTION 🎯 (fix184). A tap hands that hour to the book live; the hour now glows.",
+    "R": "R323",
+    "why": "fix626 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const who = (x: any) => (x.rej ? \"REJECTION 🎯\" : x.main ? \"MAIN 💞\" : x.twin ? \"DELAYED ⏳\" : \"NOBODY\");",
+    "R": "R323",
+    "why": "fix626 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "<button type=\"button\" aria-label={`${lbl(r.h)} ${asset ?? \"\"} delayed twin`} disabled={busy !== null} onClick={() => !x.twin && tap(r.h, \"twin\", asset)} className=\"flex h-5 w-7 items-center justify-center rounded-md text-[10px]\" style={{ border: \"1px solid #8ab4ff\", background: \"transparent\" }}>{x.twin ? \"⏳\" : \"\"}</button>",
+    "R": "R323",
+    "why": "fix626 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "\"recon-dly\": \"DELAYED TWIN ⏳\",",
+    "R": "R323",
+    "why": "fix626 (her Nov 1 4:27 PM words)"
   }
 ]

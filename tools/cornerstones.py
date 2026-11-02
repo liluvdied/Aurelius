@@ -281,6 +281,11 @@ need("live.watchAccount(readBookShared().trades)" in E and "const trades = readB
      "98. HER TICK READS THE SHARED BOOK (fix621, her Nov 1 8:32 PM words): the two tick readers that only look at live-paper-book.json use the one parsed copy")
 need('let np620: any = firstT && !pink620(firstT) ? firstT : null;' in R and 'bandLockCheck464("recon-tog", id, np620.side' in R and 'if (prior && lane === "recon-rnp") {' in R and 'lane === "recon-rnp" ? "recon-tog" /* fix624' in R,
      "99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words): main's read, door, free-to-trade and one-call-per-window; only pink entries are out; paper only")
+F625 = open("src/lib/desk/fns.ts", encoding="utf8").read(); A625 = open("src/components/desk/app.tsx", encoding="utf8").read()
+need('r.book === "recon-rnp" && r.at >= RNPF_START' in F625 and 'book: "recon-rnp-fresh", title:' in A625,
+     "100. HER PURE NO-PINK CARD (fix625, her Nov 1 10:08 PM words): the main-without-pink twin on its own card with a fresh record from the moment FIX624 landed")
+need("function pureRows626(" in E and "rows = pureRows626([...nb.listNight(), ...extraRows])" in E and "const freshQ = pureRows626(" in E and '`${r.ticker}:recon-tog:${String(r.id).split(":recon-rnp:")[1]}`' in E,
+     "101. THE DELAYED BUTTON IS THE PURE NO-PINK MODEL (fix626, her Nov 1 10:18 PM words): an hour she taps, the twin's rows reach the copier as main's rows; only pink entries are out; delayed stops trading live")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "retired BTC pink numbers kept on the record - her pink distance is the 15%/20% tolerance alone (7:13 AM, cornerstone 43)"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),
