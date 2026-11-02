@@ -1134,7 +1134,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
       // SESSION BAND AHEAD (fix413/fix465) OUT for every other book too (fix505): her 33% / 20% scale is the only position rule.
       for (const w465 of [pinkClose618(asset, lbR.L, qR.c, side) /* fix618 */, pinkAhead618(asset, lbR.L, qR.c, side) /* fix618 */, reachWall429(asset, lbR.L, qR.c, side), pinkLongWall432(asset, lbR.L, qR.c, side), pinkShortWall464(asset, lbR.L, qR.c, side), sameSide434(asset, lbR.L, qR.c, side), brokeThisCandle441(asset, lbR.L, qR.c, side), brokeThisCandle457(asset, lbR.L, qR.c, side)]) if (w465) return deny(w465, { tick: qR.c });
     }
-    { const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side) return deny(`the candle is ${tmR === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }
+    { const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side && !rejFlip611(asset, side, qR.c) /* fix619 */) return deny(`the candle is ${tmR === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }
     const chR = channelOnly(asset, lbR.L, qR.c, side, refreshBroken(asset, lbR.L, qR.c)); // REJECTION OVERRIDE REMOVED (Oct 19 ~9:18 PM PT, Love: "let's remove the pink band rejection override... she shorted here and it would have been rejected for being in the bottom 33% on gold" - the wall rules over rejections again)
     if (chR) return deny(chR, { tick: qR.c });
     const cdR = candleDirOnly(asset, lbR.L, qR.c, side); // band breaks up = trade up (Oct 19 ~6:34 PM PT, Love)
@@ -2758,7 +2758,7 @@ export function wireWall(ticker: string, side: "up" | "down"): string {
   // NEVER AGAINST THE THIRDS AT THE WIRE (Love, Oct 20 ~5:07 PM PT: "again she did it / she shorted a candle rising in the bottom 33% of the channel on gold / can you fix it hun?"): 5:01:44 PM her 5:00:10 "break below the pink" short was still
   // being retried while the candle had already turned and was rising off its low - it went out against the rise. Whatever called it and whenever:
   // a candle rising from the bottom third is a long, so no short leaves; falling from the top third is a short, so no long leaves.
-  if (!dlyFree) { const tm = thirdsMove(asset, lb.L, q.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tm && tm !== side) return deny(`THE THIRDS AT THE WIRE: the candle is ${tm === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"}`, { tick: q.c }); }
+  if (!dlyFree) { const tm = thirdsMove(asset, lb.L, q.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tm && tm !== side && !rejFlip611(asset, side, q.c, String(G.__wireLabel619 || "")) /* fix619 */) return deny(`THE THIRDS AT THE WIRE: the candle is ${tm === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"}`, { tick: q.c }); }
   const w = dlyFree ? "" : thirdWallAbsolute(asset, lb.L, q.c, side, refreshBroken(asset, lb.L, q.c));
   if (w) return deny(`${w} (at the wire)`, { tick: q.c });
   // EVERY PASS ON THE RECORD (Oct 20 ~2:37 PM PT, Love: "please make sure nothing else can slip past her new code"): each opening order the wire

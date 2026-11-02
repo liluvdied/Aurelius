@@ -427,6 +427,15 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix618 gold's walls are the same lines as BTC's", B.wallLines("gold", G545).length === B.wallLines("btc", B545).length);
   T("fix618 the 2 PM label hold reads gold the same", /REJECTIONS ONLY/.test(B.labelHold597("recon-tog", "gold", true, "Break above +1σ")));
 }
+// fix619 (Love Nov 1 2026 7:35 PM PT): a turn or born her colour on any 2-5m candle
+{ const keep = NOW, keepB = G.__pivBars, keepT = G.__qtrail_1; NOW = Date.parse("2026-11-02T02:50:30Z"); G.__sessCarried = {};
+  const t0 = (m) => Math.floor(Date.parse("2026-11-02T02:40:00Z") / 1000) + m * 60;
+  G.__pivBars = { gold: { bars: [{ t: t0(6), o: 3899, h: 3899.5, l: 3898, c: 3898.2 }, { t: t0(8), o: 3898.2, h: 3898.3, l: 3897.8, c: 3898.0 }, { t: t0(10), o: 3897.9, h: 3898.4, l: 3897.9, c: 3898.4 }] } };
+  T("fix619 a 2m candle born green past 10c is her flip", B.turnFlip530("gold", "up", 3898.4));
+  T("fix619 the same 2m candle at 5c past its open is not", !B.turnFlip530("gold", "up", 3897.95));
+  G.__curLabel611 = "Rejected up off Green zone"; T("fix619 a rejection with that flip passes the 5m read", B.rejFlip611("gold", "up", 3898.4)); G.__curLabel611 = "";
+  G.__pivBars = keepB; G.__qtrail_1 = keepT; NOW = keep;
+}
 const ok = res.every((r) => r.ok);
 for (const r of res) console.log((r.ok ? "  ✓ " : "  ✗ ") + r.name + (r.ok ? "" : "  <- " + r.detail));
 console.log(ok ? "BEHAVIOUR ✓ - she acts on every one of these rules." : "BEHAVIOUR ✗ - a rule is in her code but she does not act on it. Refuse the install, tell Love.");

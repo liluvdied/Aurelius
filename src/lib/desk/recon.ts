@@ -25,7 +25,7 @@ import { dnaNow } from "./dna";
 import { quoteTick, feedHealth } from "./quotes";
 import { addOnTouchNow, anyFlipNow, anyFlip406Now, realFlipNow } from "./bandlock"; // fix169 + fix326 + fix424 + fix446
 import { anyFlip2Now, impossibleGeo, blueSmall399, pinkSpent515c } from "./bandlock"; // fix480: her paper books back (Love Oct 29 2026 5:49 PM PT: "okay can you put back every single one of those rules i answered ????" (marked "Put it back") + Oct 28 6:39 PM: "save all of these new revisions on another paper twin and give me my model back")
-import { carryWalls612, carryTol615, carryExtra617 } from "./bandlock"; // fix612 + fix615 + fix617
+import { carryWalls612, carryTol615, carryExtra617, turnFlip530 } from "./bandlock"; // fix612 + fix615 + fix617 + fix619
 import { bandLockCheck as bandLockCheck464 } from "./bandlock"; // fix464 (R202): her read meets the same band tolerances as her orders
 
 const D = (f: string) => join(process.cwd(), "data", f);
@@ -241,11 +241,11 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
     // REINFORCED (Oct 20 ~4:48 PM PT, Love: "please reinforce it it didn't work"): FALLING / RISING is enough - no colour needed (her 8:57 AM law).
     if (cur.o > 0 && cur.h > 0 && spot <= cur.h - tap) {
       const chS = chAt(cur.h);
-      if (chS && chS.w > 0 && (chS.hi - cur.h) / chS.w <= lockP(chS.w)) for (let i = cands.length - 1; i >= 0; i -= 1) { if (cands[i].side === "up") cands.splice(i, 1); }
+      if (chS && chS.w > 0 && (chS.hi - cur.h) / chS.w <= lockP(chS.w)) for (let i = cands.length - 1; i >= 0; i -= 1) { if (cands[i].side === "up" && !(/^(Rejected up off|Failed break)/.test(String(cands[i].label)) && turnFlip530(asset, "up", spot)) /* fix619 */) cands.splice(i, 1); }
     }
     if (cur.o > 0 && cur.l > 0 && spot >= cur.l + tap) {
       const chS = chAt(cur.l);
-      if (chS && chS.w > 0 && (cur.l - chS.lo) / chS.w <= lockP(chS.w)) for (let i = cands.length - 1; i >= 0; i -= 1) { if (cands[i].side === "down") cands.splice(i, 1); }
+      if (chS && chS.w > 0 && (cur.l - chS.lo) / chS.w <= lockP(chS.w)) for (let i = cands.length - 1; i >= 0; i -= 1) { if (cands[i].side === "down" && !(/^(Rejected down off|Failed break)/.test(String(cands[i].label)) && turnFlip530(asset, "down", spot)) /* fix619 */) cands.splice(i, 1); }
     }
     // NO LONG IN THE TOP SHARE, NO SHORT IN THE BOTTOM SHARE - at the bones as well as the wall (Oct 20 ~4:48 PM PT, Love: "please reinforce it").
     // + ONLY IN HER THIRD (Love, Oct 20 ~5:01 PM PT: "longs only in the bottom 33% with an unbroken band / shorts only in the top 33% if there is an unbroken band there /
@@ -287,7 +287,7 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
       // ("Rejected up/down off", "Nm rejection off", "Tap-reject at", "Failed break ... rejected") is not thrown out by the 5m candle colour once a 2/3/4/5m candle has really
       // flipped her way (realFlipNow: traded the other colour, then turned past its open by 10c gold / $5 BTC). Everything else still follows HER CANDLE (the 5m).
       const rej446 = (c: { label: string }) => /^(Rejected (up|down) off|\d+m rejection off|Tap-reject at|Failed break)/.test(String(c.label));
-      const fl446 = (c: { side: string; label: string }) => { if (!bandFlip || !rej446(c)) return false; try { return realFlipNow(asset, c.side, spot); } catch { return false; } };
+      const fl446 = (c: { side: string; label: string }) => { if (!rej446(c)) return false; try { return turnFlip530(asset, c.side, spot); } catch { return false; } }; // fix619 (Love Nov 1 2026 7:35 PM PT: "SHE NEEDS THE SAME 2-5M CANDLE FLIP IN HER FAVOR. A GREEN CANDLE OFF A ZONE OR BAND FOR A LONG AND A RED CANDLE FOR A SHORT. A FLIP OR BORN THAT COLOR. NOT ONLY 5M."): every book, a turn or born her colour
       return seenL.filter((c) => !((c.side === "up" && (f >= 1 - k || (fix33 && f >= 0.67) || (falling && !m1(c) && !fl446(c)) || spot > topS)) || (c.side === "down" && (f <= k || (fix33 && f <= 0.33) || (rising && !m1(c) && !fl446(c)) || spot < botS))));
     };
   } catch {}
@@ -333,7 +333,7 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
   // fix297 (Oct 26 ~10:20 PM PT, Love: "she can't use the green zone as a signal to short down / or for the red zone / that is rejection only for gold / she can only
   // use the session bands the bollingers and the pink band for that"): a "Failed break above Green zone - rejected down" label ends in " - rejected down", so the
   // fix67 filter below missed it and the 10:16 PM gold main short got through. The zone is now matched anywhere in the label.
-  cands2 = cands2.filter((c) => { const lb = String(c.label); if (!/(Green|Red) zone( - |$)/.test(lb)) return true; if (/^(Break|Close) /.test(lb)) return false; return /Green zone( - |$)/.test(lb) ? c.side === "up" && (spot > cur.o || (zoneFlip && (() => { try { return anyFlipNow(asset, "up", spot); } catch { return false; } })())) : c.side === "down" && (spot < cur.o || (zoneFlip && (() => { try { return anyFlipNow(asset, "down", spot); } catch { return false; } })())); }); /* fix394 back as fix433 (Love Oct 28 2026 8:18 PM PT: "1 - stay" (to: green-zone longs and red-zone shorts go on any 2-5m candle flipped her way, not only the 5m - main)): with zoneFlip a 2/3/4/5m candle flipped her way counts, not only the 5m */
+  cands2 = cands2.filter((c) => { const lb = String(c.label); if (!/(Green|Red) zone( - |$)/.test(lb)) return true; if (/^(Break|Close) /.test(lb)) return false; return /Green zone( - |$)/.test(lb) ? c.side === "up" && (spot > cur.o || (() => { try { return turnFlip530(asset, "up", spot); } catch { return false; } })() /* fix619: every book, a turn or born her colour */) : c.side === "down" && (spot < cur.o || (() => { try { return turnFlip530(asset, "down", spot); } catch { return false; } })() /* fix619 */); }); /* fix394 back as fix433 (Love Oct 28 2026 8:18 PM PT: "1 - stay" (to: green-zone longs and red-zone shorts go on any 2-5m candle flipped her way, not only the 5m - main)): with zoneFlip a 2/3/4/5m candle flipped her way counts, not only the 5m */
   let seenC = cands2;
   try { if (perspective) seenC = perspective(cands2); } catch {}
   const pool = rejOnly ? seenC.filter((c) => c.rank >= 1) : seenC;
@@ -674,7 +674,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     // book, not the main one going forward ... the green candle pushing up is fine in the green zone for btc or red candle pushing off" - 11:46 PM BTC longed a
     // "1m rejection off Bollinger lower" on a red candle and lost): a main-book call off the Bollinger needs this 5m candle colored its way (green over its open
     // for a long, red under it for a short); otherwise the Bollinger steps aside and her other bands decide as before.
-    if (lookT && /Bollinger/.test(String(lookT.label)) && !(lookT.side === "up" ? spot > cur.o : spot < cur.o) && !(() => { try { return anyFlipNow(id, lookT.side, spot); } catch { return false; } })() /* fix345 (Oct 27 2026 5:05 PM PT, Love: "ya it is on the 2m hun" + card "Should a 2m flip be enough for her to short a Bollinger rejection?" -> "Any 1–5m flip counts"): any 1/2/3/4/5m candle flipped her way (HER FLIP, Cornerstone #1) lets the Bollinger call stand */) lookT = reachT > 0 ? bonesDecide(id, L, spot, last1m, cur, prev, b, false, reachT) : look5;
+    if (lookT && /Bollinger/.test(String(lookT.label)) && !(lookT.side === "up" ? spot > cur.o : spot < cur.o) && !(() => { try { return turnFlip530(id, lookT.side, spot); /* fix619 */ } catch { return false; } })() /* fix345 (Oct 27 2026 5:05 PM PT, Love: "ya it is on the 2m hun" + card "Should a 2m flip be enough for her to short a Bollinger rejection?" -> "Any 1–5m flip counts"): any 1/2/3/4/5m candle flipped her way (HER FLIP, Cornerstone #1) lets the Bollinger call stand */) lookT = reachT > 0 ? bonesDecide(id, L, spot, last1m, cur, prev, b, false, reachT) : look5;
     // THE CANDLE IN HER THIRD (Oct 21 ~10:50 PM PT, Love: "i do want her to be able to trade a red candle that rejected & is falling from the top 33%, and a green
     // candle rising from the bottom 33% ... if the green/red candle rising/falling didn't tap within $10 of the band i still want her to be able to trade those" +
     // card): main book only. Short = this 5m candle's high reached the top 33% of the session channel, it is red and falling (under its open, a tap off its high)
@@ -992,7 +992,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     // same candle in her third and fake-out turn; rejections only (rank-1 voices), every wall unchanged.
     if (rejLB && rejReach > 0) {
       lookR = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach, false, false, true /* fix446: rejection */);
-      if (lookR && /Bollinger/.test(String(lookR.label)) && !(lookR.side === "up" ? spot > cur.o : spot < cur.o)) lookR = bonesDecide(id, rejL || LR, spot, last1m, cur, prev, b, true, rejReach, false, false, true /* fix446: rejection */);
+      if (lookR && /Bollinger/.test(String(lookR.label)) && !(lookR.side === "up" ? spot > cur.o : spot < cur.o) && !(() => { try { return turnFlip530(id, lookR!.side, spot); } catch { return false; } })() /* fix619 */) lookR = bonesDecide(id, rejL || LR, spot, last1m, cur, prev, b, true, rejReach, false, false, true /* fix446: rejection */);
     }
     if (!lookR && (rejCandleNow || rejCandle)) lookR = rejCandleNow || rejCandle; // fix260: live 5m candle, no 1m wait
     if (rejFO) lookR = rejFO;

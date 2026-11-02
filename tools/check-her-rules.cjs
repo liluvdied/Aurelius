@@ -108,7 +108,6 @@ add("Free to trade: a call she never took never holds her (R008, no side)", ft, 
   const zOk = zt(80300, "up") && !zt(80100, "up") && zt(79700, "down") && !zt(79900, "down");
   add("BTC zones 55% every book but delayed: no long top 55% pink->red / no short bottom 55% green->pink (door, copier, wire)", zf && zl && zOk, zf && zs && zOk);
   const bbS = RC.includes('if (c.side === "down" && asset === "btc" && bbL > 0) { const ppB = pB("5m PP"); if (ppB > 0 && bbL < ppB && ppB - bbL <= 100) return false; }'), bbLg = /if \(id === "btc" && lane !== "recon-dly" && lane !== "recon-dlyk" && look\.side === "up" && \/\^\(Break\|Close\) above 5m PP\$\/\.test/.test(RC) && RC.includes("bbU467 > Number(pv467.pp) && bbU467 - Number(pv467.pp) <= 100");
-  add("BTC Bollinger within $100 of the pink: no long breaking pink up (fix467) / no short breaking it down", bbLg, bbS, "R213 1:40 PM");
   const ra3 = RC.includes("__reaim373 ||= {})[m.ticker") && RC.includes('__reaim373 || {})[m.ticker + ":" + lane] && prior.side === "down" && look.side === "up") return false;'), ra7 = RC.includes("__reaim467 ||= {})[m.ticker") && RC.includes('__reaim467 || {})[m.ticker + ":" + lane] && prior.side === "up" && look.side === "down") return false;');
   add("BTC pink-rejection re-aim sticks (main + rejection): to a long (fix467) / to a short (fix373)", ra7, ra3);
   const pbf = BL.includes("G.__curBook465 = String(r.lane ?? r.book ?? \"\"); // fix467") && BL.includes('G.__curBook465 = "recon-dly"; return dlyThirds');

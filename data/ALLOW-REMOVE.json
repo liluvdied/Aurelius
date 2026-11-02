@@ -6366,5 +6366,55 @@
     "what": "if (row.asset === \"btc\" && room > 0 && !bxFree && !pf && done[row.id]?.status !== \"partial\") {",
     "R": "R316",
     "why": "fix618 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "import { carryWalls612, carryTol615, carryExtra617 } from \"./bandlock\"; // fix612 + fix615 + fix617",
+    "R": "R317",
+    "why": "fix619 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (chS && chS.w > 0 && (chS.hi - cur.h) / chS.w <= lockP(chS.w)) for (let i = cands.length - 1; i >= 0; i -= 1) { if (cands[i].side === \"up\") cands.splice(i, 1); }",
+    "R": "R317",
+    "why": "fix619 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (chS && chS.w > 0 && (cur.l - chS.lo) / chS.w <= lockP(chS.w)) for (let i = cands.length - 1; i >= 0; i -= 1) { if (cands[i].side === \"down\") cands.splice(i, 1); }",
+    "R": "R317",
+    "why": "fix619 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const fl446 = (c: { side: string; label: string }) => { if (!bandFlip || !rej446(c)) return false; try { return realFlipNow(asset, c.side, spot); } catch { return false; } };",
+    "R": "R317",
+    "why": "fix619 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "cands2 = cands2.filter((c) => { const lb = String(c.label); if (!/(Green|Red) zone( - |$)/.test(lb)) return true; if (/^(Break|Close) /.test(lb)) return false; return /Green zone( - |$)/.test(lb) ? c.side === \"up\" && (spot > cur.o || (zoneFlip && (() => { try { return anyFlipNow(asset, \"up\", spot); } catch { return false; } })())) : c.side === \"down\" && (spot < cur.o || (zoneFlip && (() => { try { return anyFlipNow(asset, \"down\", spot); } catch { return false; } })())); }); /* fix394 back as fix433 (Love Oct 28 2026 8:18 PM PT: \"1 - stay\" (to: green-zone longs and red-zone shorts go on any 2-5m candle flipped her way, not only the 5m - main)): with zoneFlip a 2/3/4/5m candle flipped her way counts, not only the 5m */",
+    "R": "R317",
+    "why": "fix619 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (lookT && /Bollinger/.test(String(lookT.label)) && !(lookT.side === \"up\" ? spot > cur.o : spot < cur.o) && !(() => { try { return anyFlipNow(id, lookT.side, spot); } catch { return false; } })() /* fix345 (Oct 27 2026 5:05 PM PT, Love: \"ya it is on the 2m hun\" + card \"Should a 2m flip be enough for her to short a Bollinger rejection?\" -> \"Any 1–5m flip counts\"): any 1/2/3/4/5m candle flipped her way (HER FLIP, Cornerstone #1) lets the Bollinger call stand */) lookT = reachT > 0 ? bonesDecide(id, L, spot, last1m, cur, prev, b, false, reachT) : look5;",
+    "R": "R317",
+    "why": "fix619 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (lookR && /Bollinger/.test(String(lookR.label)) && !(lookR.side === \"up\" ? spot > cur.o : spot < cur.o)) lookR = bonesDecide(id, rejL || LR, spot, last1m, cur, prev, b, true, rejReach, false, false, true /* fix446: rejection */);",
+    "R": "R317",
+    "why": "fix619 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "{ const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side) return deny(`the candle is ${tmR === \"up\" ? \"rising from the bottom third - a long, never a short\" : \"falling from the top third - a short, never a long\"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }",
+    "R": "R317",
+    "why": "fix619 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (!dlyFree) { const tm = thirdsMove(asset, lb.L, q.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tm && tm !== side) return deny(`THE THIRDS AT THE WIRE: the candle is ${tm === \"up\" ? \"rising from the bottom third - a long, never a short\" : \"falling from the top third - a short, never a long\"}`, { tick: q.c }); }",
+    "R": "R317",
+    "why": "fix619 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (!reduceOnly && !forceExit) { const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, \"before\", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send",
+    "R": "R317",
+    "why": "fix619 (her Nov 1 4:27 PM words)"
   }
 ]
