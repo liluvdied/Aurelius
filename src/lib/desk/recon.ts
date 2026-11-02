@@ -550,7 +550,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     if (prior && lane === "recon-rnp") {
       const nth624 = rows.filter((r) => r.ticker === m.ticker && r.lane === lane).length - 1, main624 = rows.filter((r) => r.ticker === m.ticker && r.lane === "recon-tog").reverse()[nth624];
       let done624 = null; try { done624 = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); } catch { done624 = null; }
-      const dP624 = main624 && done624 ? done624[`${m.ticker}:recon-tog:${main624.id}`] : null;
+      const dP624 = done624 ? (done624[`${m.ticker}:recon-tog:${prior.id}`] /* fix626: her own live call */ || (main624 ? done624[`${m.ticker}:recon-tog:${main624.id}`] : null)) : null;
       if (prior.result !== "open" || (dP624 && dP624.final === true && dP624.status !== "filled" && dP624.status !== "partial" && !(dP624.status === "skipped" && /\blive\b/i.test(String(dP624.reason || ""))))) {
         let execd624 = !done624;
         try { const od = (globalThis as any).__oneDoor; if (od instanceof Set && od.has(m.ticker)) execd624 = true; } catch {}

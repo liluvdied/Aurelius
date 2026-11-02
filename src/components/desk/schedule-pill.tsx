@@ -41,7 +41,7 @@ export function SchedulePill() {
 }
 
 // HOURS BY HAND (Oct 22 ~12:41 PM PT, Love: "a running schedule pill ... with tick boxes that can allow me to add or drop hours on there myself"):
-// every Pacific hour, ticked MAIN 💞, DELAYED ⏳ or REJECTION 🎯 (fix184). A tap hands that hour to the book live; the hour now glows.
+// every Pacific hour, ticked MAIN 💞, DELAYED 🤍 or REJECTION 🎯 (fix184). A tap hands that hour to the book live; the hour now glows.
 function HourTicks() {
   const qc = useQueryClient();
   const q = useQuery({ queryKey: ["book-hours"], queryFn: () => getBookHours(), refetchInterval: 30000 });
@@ -56,11 +56,11 @@ function HourTicks() {
   const nowRow = d.hours[d.now];
   // fix245 (Love Oct 25 10:40 PM PT: "make the outline a more rectangular, still sleek rounded edges" + "remove the background color from the individual buttons"): roomier cells, outline-only boxes.
   // fix244 (Love Oct 25 ~10:32 PM PT: "can we update it to show that hun? so i don't accidentally switch one?"): a BTC row and a GOLD row per hour.
-  const who = (x: any) => (x.rej ? "REJECTION 🎯" : x.main ? "MAIN 💞" : x.twin ? "DELAYED ⏳" : "NOBODY");
+  const who = (x: any) => (x.rej ? "REJECTION 🎯" : x.main ? "MAIN 💞" : x.twin ? "PURE NO PINK 🤍" : "NOBODY");
   const boxes = (r: any, x: any, asset?: "btc" | "gold") => (
     <span className="flex gap-1">
       <button type="button" aria-label={`${lbl(r.h)} ${asset ?? ""} main book`} disabled={busy !== null} onClick={() => !x.main && tap(r.h, "main", asset)} className="flex h-5 w-7 items-center justify-center rounded-md text-[10px]" style={{ border: "1px solid #ff7eb6", background: "transparent" }}>{x.main ? "💞" : ""}</button>
-      <button type="button" aria-label={`${lbl(r.h)} ${asset ?? ""} delayed twin`} disabled={busy !== null} onClick={() => !x.twin && tap(r.h, "twin", asset)} className="flex h-5 w-7 items-center justify-center rounded-md text-[10px]" style={{ border: "1px solid #8ab4ff", background: "transparent" }}>{x.twin ? "⏳" : ""}</button>
+      <button type="button" aria-label={`${lbl(r.h)} ${asset ?? ""} pure no pink`} disabled={busy !== null} onClick={() => !x.twin && tap(r.h, "twin", asset)} className="flex h-5 w-7 items-center justify-center rounded-md text-[10px]" style={{ border: "1px solid #8ab4ff", background: "transparent" }}>{x.twin ? "🤍" : ""}</button>
       <button type="button" aria-label={`${lbl(r.h)} ${asset ?? ""} rejection model`} disabled={busy !== null} onClick={() => !x.rej && tap(r.h, "rej", asset)} className="flex h-5 w-7 items-center justify-center rounded-md text-[10px]" style={{ border: "1px solid #ffb347", background: "transparent" }}>{x.rej ? "🎯" : ""}</button>
     </span>
   );
