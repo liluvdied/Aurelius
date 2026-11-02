@@ -872,18 +872,7 @@ export function pinkAhead618(asset: string, L: Line[], tick: number, side: strin
   return "";
 }
 // fix618 THE DISTANCE CHECK (Love Nov 1 2026 7:50 PM PT: "Add a distance check that refuses a short when an unbroken pink sits inside the session-band tolerance directly under the entry, and refuses a long when an unbroken pink sits inside the session-band tolerance directly above the entry. This check runs on both gold and BTC. It does not replace the percentage rule. It sits in front of it."): the channel is session band to session band around price.
-export function pinkClose618(asset: string, L: Line[], tick: number, side: string): string {
-  if (!(tick > 0) || !(side === "up" || side === "down")) return "";
-  const P = Number(L.find((l) => String(l.name) === "5m PP")?.price) || 0;
-  if (!(P > 0)) return "";
-  const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
-  const a = S.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], d = S.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];
-  if (!a || !d) return "";
-  const w = a.price - d.price, r = sessionScale593(asset, w);
-  if (side === "down" && P < tick && tick - P <= r) return `PINK UNDER HER (fix618): unbroken pink ${P.toFixed(2)} is $${(tick - P).toFixed(2)} under the short, inside her $${r.toFixed(2)} of the $${w.toFixed(2)} channel ${d.name} to ${a.name} - no short`;
-  if (side === "up" && P > tick && P - tick <= r) return `PINK OVER HER (fix618): unbroken pink ${P.toFixed(2)} is $${(P - tick).toFixed(2)} over the long, inside her $${r.toFixed(2)} of the $${w.toFixed(2)} channel ${d.name} to ${a.name} - no long`;
-  return "";
-}
+// fix623 (Love Nov 1 2026 9:26 PM PT: "A pink sitting in the middle of the channel is not a wall."): the check above is taken out by her words; only pinkAhead618 stays.
 export function brokeThisCandle441(asset: string, L: Line[], tick: number, side: string, o5?: number, hl?: { h: number; l: number } | null): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
   if ((typeof rejFlip611 === "function" && rejFlip611(asset, side, tick))) return ""; // fix611
@@ -1127,12 +1116,12 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
     if (book === "recon-tog" || book === "recon-rej") { const pl432 = pinkLongWall432(asset, lbR.L, qR.c, side); if (pl432) return deny(pl432, { tick: qR.c }); } // fix432: never long into an unbroken pink, main + rejection
     if (book === "recon-tog" || book === "recon-rej") { const ps464 = pinkShortWall464(asset, lbR.L, qR.c, side); if (ps464) return deny(ps464, { tick: qR.c }); } // fix464 (R197/R198): the short side of "never trade into an unbroken pink"
     if (book === "recon-tog" || book === "recon-rej") { const ss434 = sameSide434(asset, lbR.L, qR.c, side); if (ss434) return deny(ss434, { tick: qR.c }); } // fix434: on her side of the break, her 33%
-    if (book === "recon-tog" || book === "recon-rej") { const pc618 = pinkClose618(asset, lbR.L, qR.c, side); if (pc618) return deny(pc618, { tick: qR.c }); const pa618 = pinkAhead618(asset, lbR.L, qR.c, side); if (pa618) return deny(pa618, { tick: qR.c }); } // fix618
+    if (book === "recon-tog" || book === "recon-rej") { const pa618 = pinkAhead618(asset, lbR.L, qR.c, side); if (pa618) return deny(pa618, { tick: qR.c }); } // fix618
     if (book === "recon-tog" || book === "recon-rej") { const bt441 = brokeThisCandle441(asset, lbR.L, qR.c, side); if (bt441) return deny(bt441, { tick: qR.c }); } // fix441: broke it this candle = her side now
     if (book === "recon-tog" || book === "recon-rej") { const bt457 = brokeThisCandle457(asset, lbR.L, qR.c, side); if (bt457) return deny(bt457, { tick: qR.c }); } // fix457 (R170, Love Oct 29 10:42 AM): band broke this candle = trade the break with price on its side; her 33% counted right
     if (book !== "recon-tog" && book !== "recon-rej" && !DLY465.has(book)) { // fix465 (R209/R210, Love Oct 29 2026 1:24 PM PT: "both sides. not just longs. not just shorts. pink as well. both sides. all books. aside from delayed."): every other book meets the same walls
       // SESSION BAND AHEAD (fix413/fix465) OUT for every other book too (fix505): her 33% / 20% scale is the only position rule.
-      for (const w465 of [pinkClose618(asset, lbR.L, qR.c, side) /* fix618 */, pinkAhead618(asset, lbR.L, qR.c, side) /* fix618 */, reachWall429(asset, lbR.L, qR.c, side), pinkLongWall432(asset, lbR.L, qR.c, side), pinkShortWall464(asset, lbR.L, qR.c, side), sameSide434(asset, lbR.L, qR.c, side), brokeThisCandle441(asset, lbR.L, qR.c, side), brokeThisCandle457(asset, lbR.L, qR.c, side)]) if (w465) return deny(w465, { tick: qR.c });
+      for (const w465 of [pinkAhead618(asset, lbR.L, qR.c, side) /* fix618 */, reachWall429(asset, lbR.L, qR.c, side), pinkLongWall432(asset, lbR.L, qR.c, side), pinkShortWall464(asset, lbR.L, qR.c, side), sameSide434(asset, lbR.L, qR.c, side), brokeThisCandle441(asset, lbR.L, qR.c, side), brokeThisCandle457(asset, lbR.L, qR.c, side)]) if (w465) return deny(w465, { tick: qR.c });
     }
     { const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side && !rejFlip611(asset, side, qR.c) /* fix619 */) return deny(`the candle is ${tmR === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }
     const chR = channelOnly(asset, lbR.L, qR.c, side, refreshBroken(asset, lbR.L, qR.c)); // REJECTION OVERRIDE REMOVED (Oct 19 ~9:18 PM PT, Love: "let's remove the pink band rejection override... she shorted here and it would have been rejected for being in the bottom 33% on gold" - the wall rules over rejections again)

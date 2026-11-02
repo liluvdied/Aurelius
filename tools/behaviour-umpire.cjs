@@ -419,10 +419,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   const GU = G545.map((l) => l.name === "5m PP" ? { ...l, price: 3912 } : l);
   T("fix618 mirror: pink in the top 20% stacked under the band, a long waits", /no long until/.test(B.pinkAhead618("gold", GU, 3909, "up")));
   T("fix618 a short stays free when pink is in the top of the channel", !B.pinkAhead618("gold", GU, 3909, "down"));
-  T("fix618 distance check: the 5:45:13 PM gold short, pink $1.23 under it, inside $1.88, is refused", /PINK UNDER HER/.test(B.pinkClose618("gold", G545, 3910.23, "down")));
-  T("fix618 distance check: the same short $2 over the pink is past it", !B.pinkClose618("gold", G545, 3911.0, "down"));
-  T("fix618 distance check: a long just under the pink is refused the same", /PINK OVER HER/.test(B.pinkClose618("gold", G545, 3908.0, "up")));
-  T("fix618 distance check: BTC the same, the 5:45:07 PM short, pink $50.40 under it, inside $81.07", /PINK UNDER HER/.test(B.pinkClose618("btc", B545, 78455.8, "down")));
+  T("fix623 the mid-channel distance check is gone", typeof B.pinkClose618 === "undefined");
   T("fix618 gold's 10c and BTC's $5 are her only flip difference", /asset === "gold" \? 0\.1 : 5/.test(B.turnFlip530.toString()));
   T("fix618 gold's walls are the same lines as BTC's", B.wallLines("gold", G545).length === B.wallLines("btc", B545).length);
   T("fix618 the 2 PM label hold reads gold the same", /REJECTIONS ONLY/.test(B.labelHold597("recon-tog", "gold", true, "Break above +1σ")));

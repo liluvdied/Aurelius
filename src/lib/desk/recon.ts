@@ -415,7 +415,7 @@ function skipLog(lane: string, ticker: string, side: string, label: string, ask:
 // (a fill, or an order on the wire) closes the window - the checks below are unchanged.
 export function isFlip463(label: string): boolean { return / - seen as a (short|long) /.test(String(label || "")); }
 export function freshSameSide463(lane: string, priorSide: string, priorLabel: string, look: { side: string; label: string }): boolean {
-  return (lane === "recon-tog" || lane === "recon-rej") && priorSide === look.side && String(priorLabel || "") !== String(look.label || "") && !isFlip463(look.label);
+  return (lane === "recon-tog" || lane === "recon-rej" || lane === "recon-rnp" /* fix624 */) && priorSide === look.side && String(priorLabel || "") !== String(look.label || "") && !isFlip463(look.label);
 }
 // HER THIRDS IN THE READ ITSELF (fix463, R193 - Love Oct 29 2026 12:41 PM PT: "to answer your question, yes. in the read itself. / not just the walls that go out please" + her cornerstone
 // "NO LONGS IN TOP 33% . NO SHORTS IN THE BOTTOM 33%"): main + rejection - her read never calls a long in the top 33% of the session-band channel (the unbroken session band above her),
@@ -504,7 +504,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     if (lane !== "recon-tog" && lane !== "recon-rej" && lane !== "recon-dly" && lane !== "recon-dlyk") { log479(lane, look); if (isFlip463(look.label)) return false; } // fix486 (Love Oct 29 2026 7:34 PM PT: "ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED" + 7:36 PM: "no put the rules in for every book other than delayed"): no flipped reads and her skip log on every book but delayed
     if ((lane === "recon-tog" || lane === "recon-rej") && isFlip463(look.label)) return false; // fix463 (R191, Love Oct 29 12:38 PM PT: "no flip. independent calls"): a flipped read is never her call
     if (lane === "recon-tog" || lane === "recon-rej") { try { if (thirdsRead463(sessionLines(ax, id), spot, look.side)) return false; const pv464b = onePink565R(id, b); if (pv464b && !zoneFree515c(id, look.side, String(look.label)) && pinkRead464(id, sessionLines(ax, id), spot, look.side, Number(pv464b.pp))) return false; const G464b = globalThis as any; G464b.__blQuiet464 = true; try { if (!bandLockCheck464(lane, id, look.side, String(m.ticker)).ok) return false; } finally { G464b.__blQuiet464 = false; } } catch {} } // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): EVERY read main or rejection books - whatever path it came from (incl. the gold zone pickup) - meets her thirds, the pink both sides and every band tolerance first
-    if (lane !== "recon-tog" && lane !== "recon-rej" && lane !== "recon-dly" && lane !== "recon-dlyk") { try { if (thirdsRead463(sessionLines(ax, id), spot, look.side)) return false; const pv465 = onePink565R(id, b); if (pv465 && !zoneFree515c(id, look.side, String(look.label)) && pinkRead464(id, sessionLines(ax, id), spot, look.side, Number(pv465.pp))) return false; const G465 = globalThis as any; G465.__blQuiet464 = true; try { if (!bandLockCheck464(lane, id, look.side, String(m.ticker)).ok) return false; } finally { G465.__blQuiet464 = false; } } catch {} } // fix465 (R209, Love 1:24 PM PT: "all books. aside from delayed."): every other book's read meets her 33%, the pink both sides and her walls too
+    if (lane !== "recon-tog" && lane !== "recon-rej" && lane !== "recon-dly" && lane !== "recon-dlyk") { try { if (thirdsRead463(sessionLines(ax, id), spot, look.side)) return false; const pv465 = onePink565R(id, b); if (pv465 && !zoneFree515c(id, look.side, String(look.label)) && pinkRead464(id, sessionLines(ax, id), spot, look.side, Number(pv465.pp))) return false; const G465 = globalThis as any; G465.__blQuiet464 = true; try { if (!bandLockCheck464(lane === "recon-rnp" ? "recon-tog" /* fix624: the main book's door */ : lane, id, look.side, String(m.ticker)).ok) return false; } finally { G465.__blQuiet464 = false; } } catch {} } // fix465 (R209, Love 1:24 PM PT: "all books. aside from delayed."): every other book's read meets her 33%, the pink both sides and her walls too
     if (false /* fix618 */ && id === "btc" && lane !== "recon-dly" && lane !== "recon-dlyk" && look.side === "up" && /^(Break|Close) above 5m PP$/.test(String(look.label))) { try { const bz467 = (globalThis as any).__bbsr?.[id], bbU467 = Number(bz467?.bbU) || 0, pv467 = onePink565R(id, b); if (Date.now() - Number(bz467?.at) <= 20000 && pv467 && bbU467 > Number(pv467.pp) && bbU467 - Number(pv467.pp) <= 100) return false; } catch {} } // fix467 (R213, Love 1:40 PM PT: "bollinger over pink NEEDS A LONG MIRROR"): BOLLINGER WITHIN $100 OVER THE PINK - no long on a BTC break up through the pink with the Bollinger upper $100 or less above it (mirror of Oct 21's short rule); every book but delayed
     const prior = rows.find((r) => r.ticker === m.ticker && r.lane === lane);
     if (lane === "recon-dly" && DLY_AS_COPY && !(look as any).copy353) return false; // fix353: her old twin calls (initial move, touches, re-aims) no longer book
@@ -545,6 +545,19 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       try { const dX = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); for (const kX of Object.keys(dX)) { const vX = dX[kX]; if (kX.startsWith(m.ticker + ":" + lane) && vX && (vX.status === "filled" || vX.status === "partial" || vX.status === "resting")) execd = true; } } catch { execd = true; }
       if (execd) return false;
       freeId = `${m.ticker}:${lane}:n${rows.filter((r) => r.ticker === m.ticker && r.lane === lane).length + 1}`;
+    }
+    // fix624 (Love Nov 1 2026 9:37 PM PT: "It uses the main book's free-to-trade rule, the main book's one-call-per-window rule ... A closed or unfilled call frees the twin the same way it frees main."): the twin reads main's order record, because she never reaches Kalshi herself. Her Nth call pairs with main's Nth.
+    if (prior && lane === "recon-rnp") {
+      const nth624 = rows.filter((r) => r.ticker === m.ticker && r.lane === lane).length - 1, main624 = rows.filter((r) => r.ticker === m.ticker && r.lane === "recon-tog").reverse()[nth624];
+      let done624 = null; try { done624 = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); } catch { done624 = null; }
+      const dP624 = main624 && done624 ? done624[`${m.ticker}:recon-tog:${main624.id}`] : null;
+      if (prior.result !== "open" || (dP624 && dP624.final === true && dP624.status !== "filled" && dP624.status !== "partial" && !(dP624.status === "skipped" && /\blive\b/i.test(String(dP624.reason || ""))))) {
+        let execd624 = !done624;
+        try { const od = (globalThis as any).__oneDoor; if (od instanceof Set && od.has(m.ticker)) execd624 = true; } catch {}
+        for (const k624 of Object.keys(done624 || {})) { const v624 = done624[k624]; if (k624.startsWith(m.ticker + ":recon-tog") && v624 && (v624.status === "filled" || v624.status === "partial" || v624.status === "resting")) execd624 = true; }
+        if (execd624) return false;
+        freeId = `${m.ticker}:${lane}:n${nth624 + 2}`;
+      }
     }
     if (prior && !freeId) {
       // ONE EXECUTED DIRECTION PER WINDOW (Oct 20 ~8:00 AM PT, Love: "she is clear to take the other side if she doesn't execute a
@@ -685,7 +698,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       // THE CANDLE RULE RESPECTS THE PINK (Oct 22 ~3:06 AM PT, Love: "she shorted btc on a pink rejection. that was supposed to be a long there" + card - 3:00 AM
       // BTC shorted a red top-third candle $64 over an unbroken pink; the low missed the pink by $13 and price bounced to 82,011): no candle-rule short while an
       // unbroken pink sits below her inside the channel, no candle-rule long while one sits above her - until price breaks it.
-      const ppC = Number(p?.pp) || 0, pinkBelow = ppC > sDn && ppC < spot, pinkAbove = ppC < sUp && ppC > spot;
+      const ppC = Number(p?.pp) || 0, pinkBelow = false && ppC > sDn && ppC < spot, pinkAbove = false && ppC < sUp && ppC > spot; // fix623 (Love Nov 1 2026 9:26 PM PT: "A pink sitting in the middle of the channel is not a wall."): her cushion and the stacked check judge it at the door
       if (!pinkBelow && (cur.h - sDn) / wC >= 0.67 && spot < cur.o && cur.h - spot >= tpC /* fix610: no finished 1m candle */) rejCandle = { side: "down", label: "Red candle falling from the top third" };
       else if (!pinkAbove && (cur.l - sDn) / wC <= 0.33 && spot > cur.o && spot - cur.l >= tpC /* fix610 */) rejCandle = { side: "up", label: "Green candle rising from the bottom third" };
       if (!lookT && rejCandle) lookT = rejCandle;
@@ -1023,11 +1036,17 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   try { if (lookRM) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464("recon-rej", id, lookRM.side, String(m.ticker), String(lookRM.label || "")).ok) lookRM = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): every band tolerance in the read too - a read her walls refuse is never her call
   if (lookRM && book("recon-rej", lookRM)) changed = true;
   // fix620 THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (Love Nov 1 2026 7:50 PM PT: "Build a new paper twin of the rejection book. It uses the same entry logic as main on every zone and band except pink. It ignores pink for entries. It still enters on a 2-5m flip or a candle born her colour. It can still take trades that are rising or falling inside the 20/33. It does nothing else." + 8:32 PM PT: "The paper twin must include rising and falling inside the top and bottom 20/33. It does not exclude them. It only ignores pink for entries. Everything else stays identical to the rejection book."): the rejection book's own call when it is not a pink call; otherwise her read with the pink line taken out, and her rising or falling candle with its pink condition taken out, through the same checks. No breaks. In no live list.
+  // fix624 THE TWIN IS MAIN WITHOUT PINK ENTRIES (Love Nov 1 2026 9:37 PM PT: "The paper twin must match the main book. The only difference is that pink entries are excluded. Everything else is identical to main."): main's own read when it is not a pink call; otherwise main's read with the pink line out. Main's thirds, pink wall and door, as main's lines above.
   try { const pink620 = (x: { label: string } | null | undefined) => !!x && /5m PP|pink/i.test(String(x.label));
-    let np620: any = lookRM && !pink620(lookRM) ? lookRM : null;
-    if (!np620 && rejLB && rejReach > 0) { const LN620 = rejLB.filter((l: any) => String(l.name) !== "5m PP"); const rd620: any = bonesDecide(id, LN620, spot, last1m, cur, prev, b, true, rejReach, false, true, true) || rejCandleNP620;
-      if (rd620 && !pink620(rd620) && !thirdsRead463(sessionLines(ax, id), spot, rd620.side)) { const G620 = globalThis as any; G620.__blQuiet464 = true; try { if (bandLockCheck464("recon-rej", id, rd620.side, String(m.ticker), String(rd620.label || "")).ok) np620 = rd620; } finally { G620.__blQuiet464 = false; } } }
-    if (np620 && !/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(String(np620.label)) && book("recon-rnp", np620)) changed = true; } catch {}
+    let np620: any = firstT && !pink620(firstT) ? firstT : null;
+    if (!np620 && rejLB && rejReach > 0) { const LN620 = rejLB.filter((l: any) => String(l.name) !== "5m PP"); let rd620: any = bonesDecide(id, LN620, spot, last1m, cur, prev, b, false, rejReach, false, true, true);
+      if (rd620 && /Bollinger/.test(String(rd620.label)) && !(rd620.side === "up" ? spot > cur.o : spot < cur.o) && !turnFlip530(id, rd620.side, spot)) rd620 = bonesDecide(id, (rejL || LN620).filter((l: any) => String(l.name) !== "5m PP"), spot, last1m, cur, prev, b, false, rejReach);
+      const rc620 = rd620 || rejCandleNP620;
+      np620 = rc620 || (lookP && !pink620(lookP) ? lookP : null); if (pink620(np620)) np620 = null; }
+    if (np620 && thirdsRead463(sessionLines(ax, id), spot, np620.side)) np620 = null;
+    { const pv624 = onePink565R(id, b); if (np620 && pv624 && !zoneFree515c(id, np620.side, String(np620.label)) && pinkRead464(id, sessionLines(ax, id), spot, np620.side, Number(pv624.pp))) np620 = null; }
+    if (np620) { const G620 = globalThis as any; G620.__blQuiet464 = true; try { if (!bandLockCheck464("recon-tog", id, np620.side, String(m.ticker), String(np620.label || "")).ok) np620 = null; } finally { G620.__blQuiet464 = false; } }
+    if (np620 && (np620 === lookP ? book("recon-rnp", np620, lookP!.ask) : book("recon-rnp", np620))) changed = true; } catch {}
   // HER READS FOR THE RE-AIM PAPER TWIN (fix223, Oct 25 ~6:00 PM PT, Love: "let's keep her as is, let's run a paper twin that can re aim"): log-only - every time the
   // rejection model's BTC read turns inside a 5m slot it is written to data/rej-reads.jsonl; tools/five-reaim-paper.py replays a 5m paper book that follows it. No orders.
   try { if (id === "btc" && lookR) { const GR = ((globalThis as any).__rejRead ||= {}); const s5R = Math.floor(Date.now() / 300000); const lr = GR.last;

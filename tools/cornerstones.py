@@ -269,8 +269,8 @@ need("function raw616(" in BK616 and "file616.m !== st.mtimeMs" in BK616 and "co
      "92. THE BOOK IS READ ONLY WHEN IT CHANGES (fix616, her Nov 1 4:27 PM words): live-paper-book.json comes off disk only when its time or size changes")
 need("export function carryExtra617(" in B and "...carryExtra617(id)]" in R and "5m PP|pink|carried /i.test(String(row.setup" in E and "5m PP|pink|carried /i.test(lb)" in B,
      "93. CARRY BANDS ALSO (fix617, her Nov 1 4:57 PM words): BTC, the last session's bands are extra lines to trade rejections and breaks off, until the new bands are $180 wide; no wall or thirds counts them")
-need("export function pinkAhead618(" in B and "const pa618 = pinkAhead618(asset, lbR.L, qR.c, side)" in B and "const pc618 = pinkClose618(asset, lbR.L, qR.c, side)" in B and "[pinkClose618(asset, lbR.L, qR.c, side)" in B,
-     "94. SESSION BAND AHEAD OF THE PINK (fix618, her Nov 1 6:10 PM words): pink inside her session-band scale of an unbroken session band, no trade through it until the band breaks, gold and BTC")
+need("export function pinkAhead618(" in B and "const pa618 = pinkAhead618(asset, lbR.L, qR.c, side)" in B and "pinkClose618" not in B and "pinkBelow = false && ppC > sDn" in R,
+     "94. SESSION BAND AHEAD OF THE PINK (fix618, her Nov 1 6:10 PM words): pink inside her session-band scale of an unbroken session band, no trade through it until the band breaks, gold and BTC; fix623: a mid-channel pink is not a wall")
 need('(asset === "btc" || asset === "gold") && G.__sessCarried?.[asset] === true' in B and 'if (book === "recon-tog" /* fix618: gold too */ && carried' in B and 'const tight344 = false /* fix618 */' in B and 'false /* fix618 */ && row.asset === "gold"' in E and 'false /* fix618 */ && row.asset === "btc"' in E and "THE LAST RUNG" in B and "THE LAST CHANNEL" in B and "THE $10 LEVEL" in B,
      "95. THE SAME ENTRY LOGIC (fix618, her Nov 1 6:10 PM words): gold and BTC take the same setups on the same flips; gold keeps her $10 level, 55%, last rung and last channel, BTC her +2 sigma rule, and their own tolerances")
 need("return turnFlip530(asset, c.side, spot); } catch { return false; } }; // fix619" in R and 'return turnFlip530(asset, "up", spot); } catch { return false; } })() /* fix619' in R and "!rejFlip611(asset, side, qR.c) /* fix619 */" in B and "__wireLabel619 = " in K523,
@@ -279,6 +279,8 @@ need('"recon-rnp" /* fix620 */' in R and 'book("recon-rnp", np620)' in R and 'St
      "97. THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (fix620, her Nov 1 7:50 PM words): the same logic on every other band and zone, no pink entries, no breaks, in no live list")
 need("live.watchAccount(readBookShared().trades)" in E and "const trades = readBookShared().trades;" in E,
      "98. HER TICK READS THE SHARED BOOK (fix621, her Nov 1 8:32 PM words): the two tick readers that only look at live-paper-book.json use the one parsed copy")
+need('let np620: any = firstT && !pink620(firstT) ? firstT : null;' in R and 'bandLockCheck464("recon-tog", id, np620.side' in R and 'if (prior && lane === "recon-rnp") {' in R and 'lane === "recon-rnp" ? "recon-tog" /* fix624' in R,
+     "99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words): main's read, door, free-to-trade and one-call-per-window; only pink entries are out; paper only")
 print("HER STANDING RULES")
 for tag, what in [("fix296", "BTC no shorts under session -2σ (bottom rung)"), ("fix297", "gold green/red zones rejection only"),
                   ("fix298", "retired BTC pink numbers kept on the record - her pink distance is the 15%/20% tolerance alone (7:13 AM, cornerstone 43)"), ("fix302", "copy BTC Bollinger cushion $25 only at $100 and under"),

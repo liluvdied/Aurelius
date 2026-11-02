@@ -6441,5 +6441,85 @@
     "what": "const trades = readBook().trades;",
     "R": "R319",
     "why": "fix621 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "export function pinkClose618(asset: string, L: Line[], tick: number, side: string): string {",
+    "R": "R320",
+    "why": "fix623 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const P = Number(L.find((l) => String(l.name) === \"5m PP\")?.price) || 0;",
+    "R": "R320",
+    "why": "fix623 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const a = S.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], d = S.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];",
+    "R": "R320",
+    "why": "fix623 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (!a || !d) return \"\";",
+    "R": "R320",
+    "why": "fix623 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const w = a.price - d.price, r = sessionScale593(asset, w);",
+    "R": "R320",
+    "why": "fix623 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (side === \"down\" && P < tick && tick - P <= r) return `PINK UNDER HER (fix618): unbroken pink ${P.toFixed(2)} is $${(tick - P).toFixed(2)} under the short, inside her $${r.toFixed(2)} of the $${w.toFixed(2)} channel ${d.name} to ${a.name} - no short`;",
+    "R": "R320",
+    "why": "fix623 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (side === \"up\" && P > tick && P - tick <= r) return `PINK OVER HER (fix618): unbroken pink ${P.toFixed(2)} is $${(P - tick).toFixed(2)} over the long, inside her $${r.toFixed(2)} of the $${w.toFixed(2)} channel ${d.name} to ${a.name} - no long`;",
+    "R": "R320",
+    "why": "fix623 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (book === \"recon-tog\" || book === \"recon-rej\") { const pc618 = pinkClose618(asset, lbR.L, qR.c, side); if (pc618) return deny(pc618, { tick: qR.c }); const pa618 = pinkAhead618(asset, lbR.L, qR.c, side); if (pa618) return deny(pa618, { tick: qR.c }); } // fix618",
+    "R": "R320",
+    "why": "fix623 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "for (const w465 of [pinkClose618(asset, lbR.L, qR.c, side) /* fix618 */, pinkAhead618(asset, lbR.L, qR.c, side) /* fix618 */, reachWall429(asset, lbR.L, qR.c, side), pinkLongWall432(asset, lbR.L, qR.c, side), pinkShortWall464(asset, lbR.L, qR.c, side), sameSide434(asset, lbR.L, qR.c, side), brokeThisCandle441(asset, lbR.L, qR.c, side), brokeThisCandle457(asset, lbR.L, qR.c, side)]) if (w465) return deny(w465, { tick: qR.c });",
+    "R": "R320",
+    "why": "fix623 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "const ppC = Number(p?.pp) || 0, pinkBelow = ppC > sDn && ppC < spot, pinkAbove = ppC < sUp && ppC > spot;",
+    "R": "R320",
+    "why": "fix623 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "return (lane === \"recon-tog\" || lane === \"recon-rej\") && priorSide === look.side && String(priorLabel || \"\") !== String(look.label || \"\") && !isFlip463(look.label);",
+    "R": "R321",
+    "why": "fix624 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (lane !== \"recon-tog\" && lane !== \"recon-rej\" && lane !== \"recon-dly\" && lane !== \"recon-dlyk\") { try { if (thirdsRead463(sessionLines(ax, id), spot, look.side)) return false; const pv465 = onePink565R(id, b); if (pv465 && !zoneFree515c(id, look.side, String(look.label)) && pinkRead464(id, sessionLines(ax, id), spot, look.side, Number(pv465.pp))) return false; const G465 = globalThis as any; G465.__blQuiet464 = true; try { if (!bandLockCheck464(lane, id, look.side, String(m.ticker)).ok) return false; } finally { G465.__blQuiet464 = false; } } catch {} } // fix465 (R209, Love 1:24 PM PT: \"all books. aside from delayed.\"): every other book's read meets her 33%, the pink both sides and her walls too",
+    "R": "R321",
+    "why": "fix624 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "let np620: any = lookRM && !pink620(lookRM) ? lookRM : null;",
+    "R": "R321",
+    "why": "fix624 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (!np620 && rejLB && rejReach > 0) { const LN620 = rejLB.filter((l: any) => String(l.name) !== \"5m PP\"); const rd620: any = bonesDecide(id, LN620, spot, last1m, cur, prev, b, true, rejReach, false, true, true) || rejCandleNP620;",
+    "R": "R321",
+    "why": "fix624 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (rd620 && !pink620(rd620) && !thirdsRead463(sessionLines(ax, id), spot, rd620.side)) { const G620 = globalThis as any; G620.__blQuiet464 = true; try { if (bandLockCheck464(\"recon-rej\", id, rd620.side, String(m.ticker), String(rd620.label || \"\")).ok) np620 = rd620; } finally { G620.__blQuiet464 = false; } } }",
+    "R": "R321",
+    "why": "fix624 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (np620 && !/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(String(np620.label)) && book(\"recon-rnp\", np620)) changed = true; } catch {}",
+    "R": "R321",
+    "why": "fix624 (her Nov 1 4:27 PM words)"
   }
 ]
