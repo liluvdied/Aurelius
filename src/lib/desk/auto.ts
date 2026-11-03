@@ -1,13 +1,3 @@
-export function channelThird33(side: string, spot: number, vwap: number, stdev: number, asset = ""): string {
-  if (!(spot > 0) || !(vwap > 0) || !(stdev > 0)) return "Blocked. The session bands could not be read, so the order was not sent.";
-  const pos = (spot - (vwap - stdev)) / (stdev * 2);
-  const longOk = pos < 0.33;
-  const shortOk = pos > 0.5;
-  if (side === "up" && !longOk) return "Blocked. Price is not in the bottom third of the session band channel. A long is only allowed in the bottom third. The order was not sent.";
-  if (side === "down" && !shortOk) return "Blocked. Price is not in the top half of the session band channel. A short is only allowed in the top half. The order was not sent.";
-  return "";
-}
-
 import type { DeskSettings, GrokCall, Setup } from "./types";
 
 function readDeskJson(name: string): unknown {
@@ -441,8 +431,6 @@ export function offList(label: string, side: string, asset?: string): boolean {
 export type AutoDecision = { action: "fill" } | { action: "skip"; reason: string };
 
 export function autoDecision(setup: Setup, settings: DeskSettings, _grok?: GrokCall | null): AutoDecision {
-  const thirds = channelThird33(side, spot, vwap, stdev, asset);
-  if (thirds) return { decision: "skip", reason: thirds };
   if (!settings.autoPaper) return { action: "skip", reason: "Paper fills are off." };
   if (setup.watchOnly) return { action: "skip", reason: "Watching." };
   if (!winningSetup(setup.pattern.label, setup.side, setup.asset)) return { action: "skip", reason: "Not a band tap." };
