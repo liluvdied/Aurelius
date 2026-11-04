@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R334 - fix647 LOG ONLY: every rule in her read's thirds / candle / flip filter (THIRDS, BTC 33%, RED FALLING 5M, GREEN RISING 5M, PAST THE WHOLE CHANNEL) writes its own line to data/skip-reasons.jsonl - the read decides exactly as before. tools/skip-scorecard.py (read only) settles every refused 15m window per rule from her price log (SAVED = would have lost, MISSED = would have won) and lists her taken trades by setup, worst first -> data/SKIP-SCORECARD.txt.
+- when: 2026-11-04T23:20:31+00:00
+- Love: "Love Nov 4 2026 3:11 PM PT: "please give them all their own line so we can test and track them individually" + "add any other metrics that will help gather data to refine her entries and stop bleeds""
+- books: recon-tog, recon-rej
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "appendFileSync(D(\"skip-reasons.jsonl\")"}
+- proof: {"exists": "tools/skip-scorecard.py"}
+- proof: {"test": "tools/skip-lines-647.cjs"}
+
 ## R333 - fix646: her pink slide / climb (3 rejections, longs or shorts only until a 10% break) turns on with the pink in the bottom / top 44% of the channel - was 33% (fix584). One threshold in pinkThird584, shared by every book that reads the slide.
 - when: 2026-11-04T23:04:01+00:00
 - Love: "Love Nov 4 2026 2:54 PM PT: "44% for main & rejection for now pls we will test that""
