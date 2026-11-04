@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R332 - fix645: trade away from the closest band with no touch - the nearest line over price + a 2/5m candle turned or born red past its open (the pink also needs her $10 BTC / tap gold push off its candle open) = the short off it; nearest line under + green = the long. Every wall still judges it.
+- when: 2026-11-04T22:36:42+00:00
+- Love: "Love Nov 4 2026 2:29-2:30 PM PT: "i DO want her to trade if a candle is born our color & is under a band pushing off , and i DO want her to long if a candle is born our color & is over a band &&& is pushing off." + "i don't want that in. i never asked for it to need a touch." + "it just needs to push away from a band or zone with the push requirement""
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "cands.push({ side: \"down\", label: `Rejected down off ${nb645.name}`, d, rank: 1 }); // fix645"}
+- proof: {"test": "tools/zone-reject-644.cjs"}
+
 ## R331 - fix644: the red zone is read as an area - a candle that reached the red zone (or ran past it) and falls by her tap on a 2/5m candle turned or born red is the short (Rejected down off Red zone), wherever it sits against 5m R1; back under the Bollinger upper on red is the Bollinger rejection, not a break. Mirror for the green zone / Bollinger lower on green. Every wall still judges it. + fix642b (Claude's own bug in fix642, found 2:23 PM and stopped with LIVE off): a break counts only when price was on the other side of that band in this 5m candle or on a 1m close within the last 15 minutes - a band price merely sits past is never a break (2:14 PM 'Break below Red zone').
 - when: 2026-11-04T22:31:34+00:00
 - Love: "Love Nov 4 2026 2:22-2:23 PM PT: "i wanted her to short" + "the candle flipped red from a red zone" + (a red candle falling from inside or above the red zone, or back under the Bollinger upper, after the push, counts as the short, even while price is still above the red line - mirror for green?) "yes""
