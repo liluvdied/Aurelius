@@ -2,6 +2,17 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R330 - fix643: a NEW PAPER book recon-rjnp (card RECONSTRUCTED · REJECTIONS ONLY · NO PINK): rejections only off the session bands, the green / red zone and the Bollingers - no pink trades, no breaks - on a 2/5m candle turned or born her colour after the push, through main's thirds, pink wall and door (55%, red falling 5m, every wall). The no-pink book recon-rnp is untouched. In no live list.
+- when: 2026-11-04T22:19:47+00:00
+- Love: "Love Nov 4 2026 2:10 PM PT: "let's keep that one the way it was , and create a new rejection only model with pink excluded as well. she only trades rejections of session bands, red/green zones and bollingers. nothing else. same rules we just went over. only takes rejections , no pinks and no breaks pls" + "keep that no pink as it is , we will have another one that does that""
+- books: recon-rjnp (paper)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "RECON.add(\"recon-rjnp\"); // fix643"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "if (rj643 && book(\"recon-rjnp\", rj643)) changed = true; } catch {} // fix643"}
+- proof: {"code": "src/lib/desk/grokog.ts", "has": "(LANE_BOOK as any)[\"recon-rjnp\"] = \"recon-rjnp\";"}
+- proof: {"code": "src/components/desk/app.tsx", "has": "{ book: \"recon-rjnp\" as any, title: \"RECONSTRUCTED 🧬 · REJECTIONS ONLY · NO PINK\""}
+- proof: {"test": "tools/rej-nopink-643.cjs"}
+
 ## R329 - fix642: past the pink ($5 BTC / 25c gold), a session band or the green / red zone (her $5 BTC / 33c gold break) and still past it, on a 2/5m candle that turned or was born her colour past its open, she enters - no new cross needed, both ways. The pink break now waits for that candle too (fix641's no-flip go is gone by her 'yes'). Zone breaks on her colour now count (fix67/fix297 still hold every other zone read). The 55%, the red-falling-5m rule and her thirds stay.
 - when: 2026-11-04T22:01:01+00:00
 - Love: "Love Nov 4 2026 1:53 PM PT: "Once the pink is broken and price is still above it, she longs. She does not wait for another cross. The same for shorts below. The 55% and the red-falling-5m rule stay." + 1:53 PM: "not just pink. a session band or green zone or red zone. a flip or a candle born it's color after the push requirement." + 1:55 PM (does the pink break wait for a green candle too?): "yes" + 1:56 PM: "she enters at price pushing off of any band or zone in her color at the push requirement please""
