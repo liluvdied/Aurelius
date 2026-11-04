@@ -1,9 +1,9 @@
 {
-  "at": "2026-11-01T20:50:27.551096+00:00",
+  "at": "2026-11-04T01:08:20.375498+00:00",
   "lockedBy": "Love",
   "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
   "files": {
-    "recon.ts": "14bda784ad02efbb"
+    "recon.ts": "073526e7a795f7a5"
   },
   "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
   "signedBy": [
@@ -466,6 +466,96 @@
       "by": "Love",
       "quote": "Love Nov 1 2026 11:20 + 11:31 AM PT: $25 pink window, BTC only (fix596)",
       "recon.ts": "14bda784ad02efbb"
+    },
+    {
+      "at": "2026-11-02T05:45:33.108757+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "9ec6f3ef6e28c998"
+    },
+    {
+      "at": "2026-11-02T05:46:37.680007+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "17eaf76704b548f3"
+    },
+    {
+      "at": "2026-11-02T05:47:17.532232+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "17eaf76704b548f3"
+    },
+    {
+      "at": "2026-11-02T05:48:17.136556+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "7349d24abda06135"
+    },
+    {
+      "at": "2026-11-02T05:48:51.610835+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "741a6ebb733804c3"
+    },
+    {
+      "at": "2026-11-02T05:49:41.048304+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "03e36639ec94bb9e"
+    },
+    {
+      "at": "2026-11-02T05:50:36.913076+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "48b3af267df1abd4"
+    },
+    {
+      "at": "2026-11-02T05:52:45.200567+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "48b3af267df1abd4"
+    },
+    {
+      "at": "2026-11-02T06:03:56.879537+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "806912270f91a646"
+    },
+    {
+      "at": "2026-11-02T06:04:46.049422+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "c1036852762f8c9b"
+    },
+    {
+      "at": "2026-11-02T06:36:41.016115+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "c1036852762f8c9b"
+    },
+    {
+      "at": "2026-11-02T06:37:10.962222+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "3e6458d4d9ba8004"
+    },
+    {
+      "at": "2026-11-02T07:09:05.153290+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "3e6458d4d9ba8004"
+    },
+    {
+      "at": "2026-11-02T08:58:53.097460+00:00",
+      "by": "Love",
+      "quote": "Love Nov 1 2026 1:24 PM PT: 1m rejections are out. Only 2-5m candles count. (fix606)",
+      "recon.ts": "3e6458d4d9ba8004"
+    },
+    {
+      "at": "2026-11-04T01:08:20.375498+00:00",
+      "by": "Love",
+      "quote": "Love Nov 3 2026 5:03-5:08 PM PT: \"Change the rejection entry so that a valid pink rejection books the moment the candle turns against the pink ... Do not wait for the touch ... Keep the existing thirds, walls, and flip rules\" + \"i ran your command in terminal\" (recon.ts unlocked by Love)",
+      "recon.ts": "073526e7a795f7a5"
     }
   ],
   "R": "R266",

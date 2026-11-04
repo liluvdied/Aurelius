@@ -1,10 +1,10 @@
 {
-  "live": false,
-  "maxDollars": 1,
+  "live": true,
+  "maxDollars": 2,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-02T07:39:10.238Z",
-  "note": "Turned off from the desk",
+  "at": "2026-11-03T20:38:27.203Z",
+  "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
   ],
@@ -124,7 +124,7 @@
       "recon-dly"
     ],
     "dollars": 1,
-    "since": "2026-11-02T07:09:09.508Z",
+    "since": "2026-11-03T20:38:27.204Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -289,7 +289,7 @@
       "note": "fix175 Oct 24 ~9:48 PM PT, Love: DELAYED twin Kalshi add-on $4 (was $3) | fix190 Oct 25 ~2:09 AM PT, Love: 'then we can raise her add on to $5, those are working as intended' -> $5"
     },
     "on": true,
-    "dollars": 5,
+    "dollars": 2,
     "maxAsk": 0.357,
     "minLeft": 2,
     "note": "Oct 20 ~12:04 AM PT, Love: \"when i said no limit i was talking about the multiple she could enter into - not no limit on how many times she could add on. limit it to 1 add on of $2 please. one of them\" - ONE $2 add per position, at a rejection her way, any multiple 3.8x or higher (maxAsk 26.3c, no ceiling on the multiple). No noLimit flag: the once-per-window gate enforces exactly one.",
@@ -1507,7 +1507,7 @@
     "minLeft": 5
   },
   "addOnRed1": {
-    "on": true,
+    "on": false,
     "dollars": 2,
     "maxAsk": 0.263,
     "minLeft": 5,
@@ -1533,10 +1533,10 @@
   "dlyLiveNote": "Oct 20 ~9:43 PM PT, Love: delayed entry model live at $1 in her off hours, picked 'Her old rest hours' (2, 4, 6, 7, 9, 10, 11 AM, 6, 8, 9 PM PT): recon-dly live those hours at $1 (bookDollars), recon-tog sits them out (bookSkipHours); TOGETHER trades every other hour at the slider. | Oct 20 ~9:44 PM PT, Love: \"add 2pm & 4pm too\" -> off hours 2, 4, 6, 7, 9, 10, 11 AM, 2, 4, 6, 8, 9 PM PT. | Oct 20 9:54 PM PT Love: \"we can go ahead and do $2 for her off hours hun\" - delayed twin $2.",
   "offHourMain": {
     "on": true,
-    "dollars": 5,
+    "dollars": 1,
     "addOn": {
-      "dollars": 5,
-      "maxAsk": 0.357,
+      "dollars": 2,
+      "maxAsk": 0.25,
       "note": "fix176 Oct 24 ~9:50 PM PT, Love card '$4 for both': Kalshi rejection-model hours and main-book off hours add $4 (was $3), 2.8x+",
       "dollarsByHour": {}
     },
@@ -3050,5 +3050,22 @@
       ]
     },
     "note": "before Love Oct 30 2026 6:2x AM PT let her pill alone decide the hours (fix510, R257) - copy back to restore"
+  },
+  "sizeNov3Prev": {
+    "value": {
+      "maxDollars": 1,
+      "offHourMain.dollars": 5,
+      "offHourMain.addOn": {
+        "dollars": 5,
+        "maxAsk": 0.357,
+        "note": "fix176 Oct 24 ~9:50 PM PT, Love card '$4 for both': Kalshi rejection-model hours and main-book off hours add $4 (was $3), 2.8x+",
+        "dollarsByHour": {}
+      },
+      "addOn.dollars": 5,
+      "addOn.maxAsk": 0.357,
+      "addOn.second.on": false,
+      "addOnRed1.on": true
+    },
+    "note": "before Love Nov 3 2026 4:03 PM PT: \"go\" to: entry $1 on every live book every hour; one $2 add-on per position only at 4x+ (ask <= 25c); second add-on off; reversal add-on off; per-order ceiling $2 (her ask 3:55 PM: \"place her on her $1 and one $2 add on of 4x + , when 4x + is reached\") - copy back to restore"
   }
 }

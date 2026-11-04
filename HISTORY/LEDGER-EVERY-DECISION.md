@@ -1,9 +1,141 @@
-# Every decision Love has made - rebuilt 2026-11-01T20:51:29.748215+00:00
+# Every decision Love has made - rebuilt 2026-11-04T01:08:40.740227+00:00
 
-1471 decisions with Love's words or card picks, out of 2225 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1507 decisions with Love's words or card picks, out of 2264 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-04T01:08:20Z  ·  diary line 2731
+- Love: “Change the rejection entry so that a valid pink rejection books the moment the candle turns against the pink ... Do not wait for the touch ... Keep the existing thirds, walls, and flip rules”
+- Love: “i ran your command in terminal”
+- Full entry: 2026-11-04T01:08:20Z PINK REJECTION EARLY: recon.ts 073526e7a795f7a5 (6 lines: 5m PP rejection books on spot < / > cur.o or her flip; the $10 BTC / tap gold past-open wait removed); spine, approved-model, golden re-signed - Love Nov 3 2026 5:03-5:08 PM PT: "Change the rejection entry so that a valid pink rejection books the moment the candle turns against the pink ... Do not wait for the touch ... Keep the existing thirds, walls, and flip rules" + "i ran your command in terminal" (recon.ts unlocked by Love)
+
+## 2026-11-04T00:26:43Z  ·  diary line 2730
+- Love: “Remove that refusal for gold and every other asset ... Do not add new checks.”
+- Full entry: 2026-11-04T00:26:43Z GOLD UNBLOCKED: engine.ts 3a3882d29d93e87b - the sub-auditor's "bands can't be read" no longer holds an order while the asset is carried. Love Nov 3 4:25 PM PT: "Remove that refusal for gold and every other asset ... Do not add new checks."
+
+## 2026-11-04T00:19:20Z  ·  diary line 2729
+- Love: “again she is not taking trades on kalshi ... get her live”
+- Full entry: 2026-11-04T00:19:20Z SUB-AUDITOR BOARD: engine.ts 0b8b638dc4e5f99e sends carried + freshSd with each setup (gold refused "bands can't be read" while carried). Love Nov 3 4:17 PM PT: "again she is not taking trades on kalshi ... get her live"
+
+## 2026-11-04T00:06:18Z  ·  diary line 2727  ·  fix617
+- fix617 IN HER CODE
+- Full entry: 2026-11-04T00:06:18Z UMPIRE BACK TO SAFE: engine.ts bce0b4d826eaaa8d keeps fix617 text verbatim (BB/5m R1-S1 check split out); main addOn parked OFF at 0.357 ($2 kept) until cornerstone #80 ($5 at 2.8x, Nov 1) is retired in Love's words for her Nov 3 4:03 PM "$2 at 4x+"
+
+## 2026-11-04T00:04:00Z  ·  diary line 2726
+- Full entry: 2026-11-04T00:04:00Z SIZING (live-switch: maxDollars 2, liveBook $1, offHourMain $1 + addOn $2 @ <=0.25, addOn $2 @ <=0.25, addOn.second off, addOnRed1 off; old values in sizeNov3Prev; golden re-signed) - Love Nov 3 2026 4:03 PM PT: "go" to: entry $1 on every live book every hour; one $2 add-on per position only at 4x+ (ask <= 25c); second add-on off; reversal add-on off; per-order ceiling $2 (her ask 3:55 PM: "place her on her $1 and one $2 add on of 4x + , when 4x + is reached")
+
+## 2026-11-03T23:51:56Z  ·  diary line 2724
+- Love: “she is still not taking her entries hun. fix it. no excuses. find what it is and fix it.”
+- Love: “put her on dude. paper is taking them. put her on my main book”
+- Full entry: 2026-11-03T23:51:56Z FIX471 BB/ZONE NAMES (engine.ts f665432e3eafba6f; one regex in the 2 PM window: BB upper/lower + 5m R1/S1 rejections count as Bollinger/zone calls; approved-model + golden baseline re-signed for engine.ts only) - Love Nov 3 2026 3:48-3:49 PM PT: "she is still not taking her entries hun. fix it. no excuses. find what it is and fix it." + "put her on dude. paper is taking them. put her on my main book"
+
+## 2026-11-03T23:49:57Z  ·  diary line 2723
+- Love: “she is still not taking her entries hun. fix it. no excuses. find what it is and fix it.”
+- Full entry: 2026-11-03T23:49:57Z BREAKER PAUSE CLEARED (halt.json off:false; tripped 11:01 AM PT on "auto.ts changed", auto.ts now matches approved-model.json; no code, no rules) - Love Nov 3 2026 3:48 PM PT: "she is still not taking her entries hun. fix it. no excuses. find what it is and fix it."
+
+## 2026-11-03T23:40:23Z  ·  diary line 2722
+- Love: “Turn her back on. Approve the current LIVE-on state so the umpire passes. Update the golden baseline for the LIVE switch only. Do not change any rules.”
+- Full entry: 2026-11-03T23:40:23Z LIVE-ON APPROVED (golden baseline: live, at, note, liveBook + live-switch.json fingerprint only; no code, no rules) - Love Nov 3 2026 3:37 PM PT: "Turn her back on. Approve the current LIVE-on state so the umpire passes. Update the golden baseline for the LIVE switch only. Do not change any rules." + 3:40 PM PT: "go ... turn her on"
+
+## 2026-11-03T20:11:58Z  ·  diary line 2721
+- Full entry: 2026-11-03T20:11:58Z CACHE CLEARED BY HAND (Love, CLEAR-HER-CACHE.command): 0 rows to the archive, 13 stay
+
+## 2026-11-02T08:58:53Z  ·  diary line 2719  ·  fix632
+- fix632 a setting (hours/sizes follow her latest pick)
+- Full entry: 2026-11-02T08:58:53Z R325 fix632 (Love, FIX632-SLIDER-NEVER-TRIPS.command): her size slider never trips the umpire
+
+## 2026-11-02T08:30:29.443706Z  ·  diary line 2718
+- Full entry: 2026-11-02T08:30:29.443706Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-11-02T08:23:28.929713Z  ·  diary line 2717
+- Full entry: 2026-11-02T08:23:28.929713Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-11-02T07:25:59.353Z  ·  diary line 2716
+- Full entry: 2026-11-02T07:25:59.353Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (GOLD only)
+
+## 2026-11-02T07:25:58.422Z  ·  diary line 2715
+- Full entry: 2026-11-02T07:25:58.422Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (BTC only)
+
+## 2026-11-02T07:25:56.680Z  ·  diary line 2714
+- Full entry: 2026-11-02T07:25:56.680Z HOURS (Love, in-app schedule pill): 10 PM PT -> DELAYED twin
+
+## 2026-11-02T07:25:54.535Z  ·  diary line 2713
+- Full entry: 2026-11-02T07:25:54.535Z HOURS (Love, in-app schedule pill): 10 PM PT -> REJECTION model (BTC only)
+
+## 2026-11-02T07:09:05Z  ·  diary line 2712  ·  fix628
+- fix628 in her code without its number (see her words in the code comments)
+- Full entry: 2026-11-02T07:09:05Z R324 fix628 (Love, FIX628-TAP-AT-WILL.command): schedule pill taps no longer trip the umpire gates
+
+## 2026-11-02T07:05:01.135Z  ·  diary line 2711
+- Full entry: 2026-11-02T07:05:01.135Z HOURS (Love, in-app schedule pill): 11 PM PT -> DELAYED twin
+
+## 2026-11-02T07:05:00.365Z  ·  diary line 2710
+- Full entry: 2026-11-02T07:05:00.365Z HOURS (Love, in-app schedule pill): 11 PM PT -> DELAYED twin
+
+## 2026-11-02T07:04:58.876Z  ·  diary line 2709
+- Full entry: 2026-11-02T07:04:58.876Z HOURS (Love, in-app schedule pill): 11 PM PT -> REJECTION model (BTC only)
+
+## 2026-11-02T06:54:19Z  ·  diary line 2708  ·  fix627
+- fix627 in her code without its number (see her words in the code comments)
+- Full entry: 2026-11-02T06:54:19Z fix627 (Love, CLEAR-MY-TAP.command): R075 retired, fresh save after her 10 PM tap to the pure no-pink button
+
+## 2026-11-02T06:44:54.319730Z  ·  diary line 2707
+- Full entry: 2026-11-02T06:44:54.319730Z ENTRIES ON (Love, ENTRIES-ON.command) - same as her entries button
+
+## 2026-11-02T06:38:58.353Z  ·  diary line 2706
+- Full entry: 2026-11-02T06:38:58.353Z HOURS (Love, in-app schedule pill): 10 PM PT -> DELAYED twin
+
+## 2026-11-02T06:38:57.418Z  ·  diary line 2705
+- Full entry: 2026-11-02T06:38:57.418Z HOURS (Love, in-app schedule pill): 10 PM PT -> DELAYED twin
+
+## 2026-11-02T06:37:10Z  ·  diary line 2704  ·  fix626
+- fix626 IN HER CODE
+- Full entry: 2026-11-02T06:37:10Z R323 fix626 (Love, FIX626-DELAYED-BUTTON-IS-PURE-NO-PINK.command): the delayed button seats the pure no-pink model, on the main path, only in hours she taps
+
+## 2026-11-02T06:36:40Z  ·  diary line 2703  ·  fix625
+- fix625 IN HER CODE
+- Full entry: 2026-11-02T06:36:40Z R322 fix625 (Love, FIX625-PURE-NO-PINK-CARD.command): a new card for the pure no-pink model with a fresh record
+
+## 2026-11-02T06:04:45Z  ·  diary line 2702  ·  fix624
+- fix624 IN HER CODE
+- Full entry: 2026-11-02T06:04:45Z R321 fix624 (Love, FIX624-TWIN-IS-MAIN-NO-PINK.command): paper twin recon-rnp is main without pink entries
+
+## 2026-11-02T06:03:56Z  ·  diary line 2701  ·  fix623
+- fix623 IN HER CODE
+- Full entry: 2026-11-02T06:03:56Z R320 fix623 (Love, FIX623-MID-CHANNEL-PINK-NOT-A-WALL.command): a mid-channel pink is not a wall; her cushion and the stacked check stay
+
+## 2026-11-02T05:52:45Z  ·  diary line 2700  ·  fix621
+- fix621 IN HER CODE
+- Full entry: 2026-11-02T05:52:45Z R319 fix621 (Love, FIX621-READ-LOOP-ON-CHANGE.command): two tick readers of live-paper-book.json share the one parsed copy
+
+## 2026-11-02T05:50:36Z  ·  diary line 2699  ·  fix620
+- fix620 IN HER CODE
+- Full entry: 2026-11-02T05:50:36Z R318 fix620 (Love, FIX620-PAPER-TWIN-NO-PINK.command): paper twin recon-rnp, the rejection book without pink entries
+
+## 2026-11-02T05:49:40Z  ·  diary line 2698  ·  fix619
+- fix619 IN HER CODE
+- Full entry: 2026-11-02T05:49:40Z R317 fix619 (Love, FIX619-ANY-2-5M-FLIP.command): any 2-5m flip or born colour off a band or zone is her entry, not only the 5m
+
+## 2026-11-02T05:48:51Z  ·  diary line 2697  ·  fix618
+- fix618 IN HER CODE
+- Full entry: 2026-11-02T05:48:51Z R316 fix618 (Love, FIX618-SAME-ENTRY-LOGIC.command): the same entry logic on gold and BTC, session band ahead of the pink, her named rules kept
+
+## 2026-11-02T05:48:17Z  ·  diary line 2696  ·  fix617
+- fix617 IN HER CODE
+- Full entry: 2026-11-02T05:48:17Z R315 fix617 (Love, FIX617-CARRY-BANDS-ALSO.command): carry bands also, extra lines for rejections and breaks until 80
+
+## 2026-11-02T05:47:17Z  ·  diary line 2695  ·  fix616
+- fix616 IN HER CODE
+- Full entry: 2026-11-02T05:47:17Z R314 fix616 (Love, FIX616-READ-BOOK-ON-CHANGE.command): live-paper-book.json read from disk only when it changes
+
+## 2026-11-02T05:46:37Z  ·  diary line 2694  ·  fix615
+- fix615 IN HER CODE
+- Full entry: 2026-11-02T05:46:37Z R313 fix615 (Love, FIX615-PINK-CUSHION-SCALE.command): the pink cushion scale, BTC and gold each their own, nothing else
+
+## 2026-11-02T05:45:32Z  ·  diary line 2693  ·  fix601
+- fix601 IN HER CODE
+- Full entry: 2026-11-02T05:45:32Z R312 fix601-613 (Love, ALL-FIXES-ONE-COMMAND.command): the exact order judged at the last line and written down, refused orders reopen the door, same side sees ticks, entries off logs, her three Oct 30 Outs off, 1m rejections out, her slider and take profits both, Tap-reject archived, flat , other 1m reads out, rejection with its flip past a broken band, blue VWAP the only session wall under 00, tick log, polyHour off, hourly backup restarted
 
 ## 2026-11-01T20:51:01Z  ·  diary line 2692  ·  fix600
 - fix600 IN HER CODE

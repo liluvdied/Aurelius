@@ -183,19 +183,19 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
     // REJECTION — tapped, never broke, moving away by the tap distance:
     // ONLY THE PINK NEEDS THE FLIP (Oct 20 ~8:53-8:57 AM PT, Love): a session-band rejection enters on the move alone; a pink
     // rejection waits for the candle to cross back over its open.
-    if (cur.o > p && cur.l <= p + nr && cur.l > p - brk && spot >= cur.l + tap && spot > p && (l.name !== "5m PP" || (spot >= cur.o + (asset === "btc" ? 10 : tap) || pfU))) cands.push({ side: "up", label: `Rejected up off ${l.name}`, d, rank: 1 });
-    if (cur.o < p && cur.h >= p - nr && cur.h < p + brk && spot <= cur.h - tap && spot < p && (l.name !== "5m PP" || (spot <= cur.o - (asset === "btc" ? 10 : tap) || pfD))) cands.push({ side: "down", label: `Rejected down off ${l.name}`, d, rank: 1 });
+    if (cur.o > p && cur.l <= p + nr && cur.l > p - brk && spot >= cur.l + tap && spot > p && (l.name !== "5m PP" || (spot > cur.o || pfU) /* Love Nov 3 2026 5:03 PM PT: same, long side */)) cands.push({ side: "up", label: `Rejected up off ${l.name}`, d, rank: 1 });
+    if (cur.o < p && cur.h >= p - nr && cur.h < p + brk && spot <= cur.h - tap && spot < p && (l.name !== "5m PP" || (spot < cur.o || pfD) /* Love Nov 3 2026 5:03 PM PT: pink rejection books the moment the candle turns against the pink - no wait for $10 BTC / tap gold past its open */)) cands.push({ side: "down", label: `Rejected down off ${l.name}`, d, rank: 1 });
     // 1m CLOSE OFF A REJECTED BAND - OUT (fix606, Love Nov 1 2026 1:24 PM PT: "1m rejections are out. Only 2-5m candles count.")
     // A FAILED BREAK IS A REJECTION (Oct 20 ~9:54 PM PT, Love: "if it breaks and comes back on the other side of the band, it's a rejection until price goes on the other side of the band in the direction it broke"):
     // the wick broke through by her break distance and price came back across - read as the rejection while price stays back on the open side.
-    if (cur.o > p && cur.l <= p - brk && spot >= cur.l + tap && spot > p && (l.name !== "5m PP" || (spot >= cur.o + (asset === "btc" ? 10 : tap) || pfU))) cands.push({ side: "up", label: `Failed break below ${l.name} - rejected up`, d, rank: 1 });
-    if (cur.o < p && cur.h >= p + brk && spot <= cur.h - tap && spot < p && (l.name !== "5m PP" || (spot <= cur.o - (asset === "btc" ? 10 : tap) || pfD))) cands.push({ side: "down", label: `Failed break above ${l.name} - rejected down`, d, rank: 1 });
+    if (cur.o > p && cur.l <= p - brk && spot >= cur.l + tap && spot > p && (l.name !== "5m PP" || (spot > cur.o || pfU) /* Love Nov 3 2026 5:03 PM PT: same, long side */)) cands.push({ side: "up", label: `Failed break below ${l.name} - rejected up`, d, rank: 1 });
+    if (cur.o < p && cur.h >= p + brk && spot <= cur.h - tap && spot < p && (l.name !== "5m PP" || (spot < cur.o || pfD) /* Love Nov 3 2026 5:03 PM PT: pink rejection books the moment the candle turns against the pink - no wait for $10 BTC / tap gold past its open */)) cands.push({ side: "down", label: `Failed break above ${l.name} - rejected down`, d, rank: 1 });
     // A REJECTION SURVIVES THE CANDLE TURN (Oct 19 ~9:02 PM PT, Love: "btc rejected the band below her and she didn't enter" — the +1σ tap sat in the
     // 8:55 candle, the bounce ran into the 9:00 one; her Oct 18 law: "once a new candle starts, a rejection off the pink is a valid trade"): the tap may
     // sit in the PREVIOUS 5m candle, provided the line stayed unbroken in both candles and price is still moving away by the tap distance.
     if (prev) {
-      if (prev.l <= p + nr && prev.l > p - brk && cur.l > p - brk && cur.l > prev.l - tap && spot >= prev.l + tap && spot > p && (l.name !== "5m PP" || (spot >= cur.o + (asset === "btc" ? 10 : tap) || pfU))) cands.push({ side: "up", label: `Rejected up off ${l.name}`, d, rank: 1 });
-      if (prev.h >= p - nr && prev.h < p + brk && cur.h < p + brk && cur.h < prev.h + tap && spot <= prev.h - tap && spot < p && (l.name !== "5m PP" || (spot <= cur.o - (asset === "btc" ? 10 : tap) || pfD))) cands.push({ side: "down", label: `Rejected down off ${l.name}`, d, rank: 1 });
+      if (prev.l <= p + nr && prev.l > p - brk && cur.l > p - brk && cur.l > prev.l - tap && spot >= prev.l + tap && spot > p && (l.name !== "5m PP" || (spot > cur.o || pfU) /* Love Nov 3 2026 5:03 PM PT: same, long side */)) cands.push({ side: "up", label: `Rejected up off ${l.name}`, d, rank: 1 });
+      if (prev.h >= p - nr && prev.h < p + brk && cur.h < p + brk && cur.h < prev.h + tap && spot <= prev.h - tap && spot < p && (l.name !== "5m PP" || (spot < cur.o || pfD) /* Love Nov 3 2026 5:03 PM PT: pink rejection books the moment the candle turns against the pink - no wait for $10 BTC / tap gold past its open */)) cands.push({ side: "down", label: `Rejected down off ${l.name}`, d, rank: 1 });
     }
   }
   // GREEN FROM THE BOTTOM / RED FROM THE TOP (Oct 20 ~12:22 AM PT, Love: "a green candle rising from the bottom 33% of the channel is a
