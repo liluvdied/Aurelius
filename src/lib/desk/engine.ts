@@ -5798,7 +5798,7 @@ export function pinkThird584(asset: string, pp: number, dir: "down" | "up"): boo
     const a = S0.filter((l: any) => Number(l.price) > pp).sort((x: any, y: any) => x.price - y.price)[0], b = S0.filter((l: any) => Number(l.price) < pp).sort((x: any, y: any) => y.price - x.price)[0];
     if (!a || !b || !(a.price > b.price)) return false;
     const W = a.price - b.price;
-    return dir === "down" ? (pp - b.price) / W <= 1 / 3 : (a.price - pp) / W <= 1 / 3;
+    return dir === "down" ? (pp - b.price) / W <= 0.44 : (a.price - pp) / W <= 0.44; // fix646 (Love Nov 4 2026 2:54 PM PT: "44% for main & rejection for now pls we will test that"): the slide / climb turns on with the pink in the bottom / top 44% of the channel (was 33%)
   } catch { return false; }
 }
 export function climbHold464(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number, asset: string): string {

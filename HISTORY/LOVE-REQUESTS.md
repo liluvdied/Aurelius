@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R333 - fix646: her pink slide / climb (3 rejections, longs or shorts only until a 10% break) turns on with the pink in the bottom / top 44% of the channel - was 33% (fix584). One threshold in pinkThird584, shared by every book that reads the slide.
+- when: 2026-11-04T23:04:01+00:00
+- Love: "Love Nov 4 2026 2:54 PM PT: "44% for main & rejection for now pls we will test that""
+- books: recon-tog, recon-rej
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "(pp - b.price) / W <= 0.44 : (a.price - pp) / W <= 0.44; // fix646"}
+- proof: {"test": "tools/slide-her-way-584.cjs"}
+
 ## R332 - fix645: trade away from the closest band with no touch - the nearest line over price + a 2/5m candle turned or born red past its open (the pink also needs her $10 BTC / tap gold push off its candle open) = the short off it; nearest line under + green = the long. Every wall still judges it.
 - when: 2026-11-04T22:36:42+00:00
 - Love: "Love Nov 4 2026 2:29-2:30 PM PT: "i DO want her to trade if a candle is born our color & is under a band pushing off , and i DO want her to long if a candle is born our color & is over a band &&& is pushing off." + "i don't want that in. i never asked for it to need a touch." + "it just needs to push away from a band or zone with the push requirement""
