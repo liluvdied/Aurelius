@@ -437,23 +437,34 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   G.__pivBars = keepB; G.__qtrail_1 = keepT; NOW = keep;
 }
 // fix641 (Love Nov 4 2026 1:24 PM PT: "Yes. A pink break enters the moment the push is met. Price must still be on the same side of the band at the fill. If it flips before the fill, refuse it at the door. The flip is still required on rejections." + "anything over 1k channel width for btc goes to 10% for pink tolerance." + "for gold anything over $25 goes to $3 for pink tolerance")
+// + fix642 (Love Nov 4 2026 1:55 PM PT, does the pink break wait for a green candle too? "yes"): the pink break goes on the push AND her 2/5m candle turned or born her colour
 { const keep = NOW, keepB = G.__pivBars, keepT = G.__qtrail_1; NOW = Date.parse("2026-11-04T21:05:03Z");
-  G.__pivBars = { btc: { bars: [] } }; G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 80010 }, { t: NOW - 500, c: 80010 }] }; // no 2/5m flip anywhere
+  const s2 = (iso) => Math.floor(Date.parse(iso) / 1000);
+  const FLAT = { btc: { bars: [] } }, TR = (c) => ({ btc: [{ t: NOW - 3000, c }, { t: NOW - 500, c }] });
+  const GREEN = { btc: { bars: [{ t: s2("2026-11-04T21:02:00Z"), o: 80010, h: 80012, l: 79988, c: 79990 }, { t: s2("2026-11-04T21:04:00Z"), o: 80000, h: 80010, l: 80000, c: 80010 }] } }; // 2m born green after a red one
+  const RED = { btc: { bars: [{ t: s2("2026-11-04T21:02:00Z"), o: 79990, h: 80012, l: 79988, c: 80010 }, { t: s2("2026-11-04T21:04:00Z"), o: 80000, h: 80000, l: 79990, c: 79990 }] } }; // 2m born red after a green one
   const LP = [{ name: "-1σ", price: 79500 }, { name: "session VWAP", price: 79900 }, { name: "+1σ", price: 80300 }, { name: "5m PP", price: 80000 }, { name: "5m S1", price: 79800 }, { name: "5m R1", price: 80200 }];
   T("fix641 BTC pink tolerance over a $1,000 channel is 10% ($1,339 -> $133.90)", Math.abs(B.pinkSlide580("btc", 1339) - 133.9) < 0.01 && Math.abs(B.pinkSlide580("btc", 1001) - 100.1) < 0.01);
   T("fix641 BTC at exactly $1,000 and below keeps 15%", Math.abs(B.pinkSlide580("btc", 1000) - 150) < 0.01 && Math.abs(B.pinkSlide580("btc", 600) - 90) < 0.01);
   T("fix641 gold over $25 is $3", Math.abs(B.pinkSlide580("gold", 30) - 3) < 0.001 && Math.abs(B.pinkSlide580("gold", 60) - 3) < 0.001);
-  T("fix641 a pink break long $5 past the pink is the entry (go)", B.pinkBreak641("btc", LP, 80005, "up", "Break above 5m PP") === "go" && B.pinkBreak641("btc", LP, 80010, "up", "Close above 5m PP") === "go");
-  T("fix641 a pink break short $5 under the pink is the entry (go)", B.pinkBreak641("btc", LP, 79995, "down", "Break below 5m PP") === "go");
-  T("fix641 gold pink break needs its 25c push", B.pinkBreak641("gold", [{ name: "5m PP", price: 4000 }], 4000.25, "up", "Break above 5m PP") === "go" && B.pinkBreak641("gold", [{ name: "5m PP", price: 4000 }], 4000.2, "up", "Break above 5m PP") === "");
+  G.__pivBars = GREEN; G.__qtrail_1 = TR(80010);
+  T("fix642 a pink break long $5+ past the pink on her green 2m candle is the entry (go)", B.pinkBreak641("btc", LP, 80005, "up", "Break above 5m PP") === "go" && B.pinkBreak641("btc", LP, 80010, "up", "Close above 5m PP") === "go");
   T("fix641 short of the push = no waiver (the flip rule stands)", B.pinkBreak641("btc", LP, 80004, "up", "Break above 5m PP") === "");
-  T("fix641 price back across the pink = the break is gone (back)", B.pinkBreak641("btc", LP, 79999, "up", "Break above 5m PP") === "back" && B.pinkBreak641("btc", LP, 80001, "down", "Break below 5m PP") === "back");
   T("fix641 a rejection never gets the waiver", B.pinkBreak641("btc", LP, 80010, "up", "Failed break below 5m PP - rejected up") === "" && B.pinkBreak641("btc", LP, 80010, "up", "Rejected up off Green zone") === "");
   T("fix641 a break the wrong way never gets the waiver", B.pinkBreak641("btc", LP, 80010, "down", "Break above 5m PP") === "");
+  T("fix641 price back across the pink = the break is gone (back)", B.pinkBreak641("btc", LP, 79999, "up", "Break above 5m PP") === "back" && B.pinkBreak641("btc", LP, 80001, "down", "Break below 5m PP") === "back");
+  G.__pivBars = FLAT;
+  T("fix642 a pink break long with no green 2/5m candle waits (no waiver)", B.pinkBreak641("btc", LP, 80010, "up", "Break above 5m PP") === "");
+  G.__pivBars = RED; G.__qtrail_1 = TR(79990);
+  T("fix642 a pink break short $5+ under the pink on her red 2m candle is the entry (go)", B.pinkBreak641("btc", LP, 79995, "down", "Break below 5m PP") === "go");
   G.__inBLC465 = true;
   for (const bk of ["main", "rejection"]) {
+    G.__pivBars = GREEN; G.__qtrail_1 = TR(80010);
     G.__curLabel611 = "Break above 5m PP"; const a = geo("btc", LP, 80010, "up", bk);
-    T(`fix641 [${bk}] pink break long, push met, no flip candle: HER FLIP does not hold it`, !/HER FLIP/.test(a), a || "(clear)");
+    T(`fix642 [${bk}] pink break long, push met, her green candle: HER FLIP does not hold it`, !/HER FLIP/.test(a), a || "(clear)");
+    G.__pivBars = FLAT;
+    G.__curLabel611 = "Break above 5m PP"; const n = geo("btc", LP, 80010, "up", bk);
+    T(`fix642 [${bk}] pink break long, push met, no green candle: HER FLIP holds it`, /HER FLIP/.test(n), n || "(clear)");
     G.__curLabel611 = "Break above 5m PP"; const c = geo("btc", LP, 79995, "up", bk);
     T(`fix641 [${bk}] pink break long with price back under the pink is refused`, /PINK BREAK GONE|PINK CUSHION|HER FLIP/.test(c), c || "(clear)");
     G.__curLabel611 = "Rejected up off Green zone"; const b = geo("btc", LP, 80010, "up", bk);

@@ -1673,6 +1673,7 @@ export function pinkBreak641(asset: string, L: Line[], tick: number, side: strin
     const pp = Number((L || []).find((l: Line) => String(l.name) === "5m PP")?.price) || 0; if (!(pp > 0) || !(tick > 0)) return ""; // fix641
     const push = asset === "btc" ? 5 : 0.25; // fix641: her pink break, $5 BTC / 25c gold
     if (side === "up" ? tick <= pp : tick >= pp) return "back"; // fix641: back across the pink = the break is gone
+    if (!turnFlip530(asset, side, tick)) return ""; // fix642 (Love Nov 4 2026 1:55 PM PT, does the pink break wait for a green candle too? "yes"): the pink break waits for her 2/5m candle turned or born her colour
     return (side === "up" ? tick >= pp + push : tick <= pp - push) ? "go" : ""; // fix641: the push is met = the entry
   } catch { return ""; } // fix641
 } // fix641
