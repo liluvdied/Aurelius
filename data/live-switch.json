@@ -1,10 +1,10 @@
 {
-  "live": true,
-  "maxDollars": 2,
+  "live": false,
+  "maxDollars": 1,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-03T20:38:27.203Z",
-  "note": "Turned on from the desk",
+  "at": "2026-11-04T21:33:25.000Z",
+  "note": "Turned off from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
   ],
@@ -124,7 +124,7 @@
       "recon-dly"
     ],
     "dollars": 1,
-    "since": "2026-11-03T20:38:27.204Z",
+    "since": "2026-11-04T21:30:24.250Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -304,6 +304,12 @@
         "btc": []
       },
       "note": "fix455 Love Oct 29 2026 10:17 AM PT: second $5 add-on at BTC 8 PM, rejection model"
+    },
+    "at38": {
+      "on": true,
+      "dollars": 3,
+      "maxAsk": 0.263,
+      "note": "Love Nov 4 2026 9:51 AM PT: $3 at 3.8x after the $2 at 2.8x has filled, once per position"
     }
   },
   "timeGate": {
@@ -1536,7 +1542,7 @@
     "dollars": 1,
     "addOn": {
       "dollars": 2,
-      "maxAsk": 0.25,
+      "maxAsk": 0.357,
       "note": "fix176 Oct 24 ~9:50 PM PT, Love card '$4 for both': Kalshi rejection-model hours and main-book off hours add $4 (was $3), 2.8x+",
       "dollarsByHour": {}
     },
@@ -3067,5 +3073,25 @@
       "addOnRed1.on": true
     },
     "note": "before Love Nov 3 2026 4:03 PM PT: \"go\" to: entry $1 on every live book every hour; one $2 add-on per position only at 4x+ (ask <= 25c); second add-on off; reversal add-on off; per-order ceiling $2 (her ask 3:55 PM: \"place her on her $1 and one $2 add on of 4x + , when 4x + is reached\") - copy back to restore"
+  },
+  "addOn4Prev": {
+    "value": {
+      "maxDollars": 5,
+      "addOn.dollars": 2,
+      "offHourMain.addOn.dollars": 2
+    },
+    "note": "before Love Nov 4 2026 9:38 AM PT \"raise our add ons to $4 instead of $2\""
+  },
+  "addOn38Prev": {
+    "value": {
+      "addOn.dollars": 4,
+      "offHourMain.addOn": {
+        "dollars": 4,
+        "maxAsk": 0.25,
+        "note": "fix176 Oct 24 ~9:50 PM PT, Love card '$4 for both': Kalshi rejection-model hours and main-book off hours add $4 (was $3), 2.8x+",
+        "dollarsByHour": {}
+      }
+    },
+    "note": "before Love Nov 4 2026 9:51 AM PT \"$2 at 2.8x & $3 at 3.8x\""
   }
 }

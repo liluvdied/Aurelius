@@ -2334,6 +2334,22 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             })();
           }
         }
+        // THE 3.8x ADD-ON (Love Nov 4 2026 9:51 AM PT: "let's make the add on $2 at 2.8x & $3 at 3.8x instead pls"): once her first add-on has FILLED on a position,
+        // ONE more addOn.at38.dollars on the same side as soon as the ask pays 3.8x (addOn.at38.maxAsk 0.263). Same gates as the first add-on (her position, no TP sell, time left).
+        try {
+          const a38 = (ao as any)?.at38; const add38: Record<string, number> = g.__aureliusAdd38 || (g.__aureliusAdd38 = (() => { const s: Record<string, number> = {}; try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.add38 && x.ticker) s[x.ticker] = Date.parse(x.at) || Date.now(); } catch {} } } catch {} return s; })());
+          const try38: Record<string, number> = g.__aureliusTry38 || (g.__aureliusTry38 = {});
+          const cap38 = Number(a38?.maxAsk) > 0 && Number(a38.maxAsk) < 1 ? Number(a38.maxAsk) : 0.263;
+          if (a38?.on === true && ao?.on && !aoTwin && (id === "btc" || id === "gold") && addReg[row.ticker] && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5)) {
+            try38[row.ticker] = Date.now();
+            void (async () => {
+              let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
+              try { r3 = await live.addOnBuy600(row.ticker, mySide, Number(a38.dollars) || 3, cap38, true); } catch (err) { r3 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "3.8x add-on failed" }; }
+              if (r3?.ok) add38[row.ticker] = Date.now();
+              try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: "3.8x add-on (Love Nov 4)", bid, add38: true, ...(r3 || {}) }) + "\n"); } catch {}
+            })();
+          }
+        } catch {}
         // THE SECOND ADD-ON AT 8 PM BTC (fix455, Love Oct 29 2026 10:17 AM PT: "we can double up on 8pm hun , $10 initial entry and $5 initial add on - $5 secondary add on at the next band price encounters and rejects. same way we have our entry logic wired. candle flips near a band = second add on of $5"): the Oct 28 second add-on (taken out in the 6:45 PM restore) brought back for the hours in live-switch
         // addOn.second.hoursByAsset only (BTC 8 PM, rejection model): once the first add-on has filled, ONE more addOn.second.dollars on the SAME side when price is at a band that is NOT the
         // first add-on's band and a 2-5m candle has flipped her way there (anyFlipMinNow, $5 BTC / 10c gold past its open). Once per position; every wall + wire check still judges it.
@@ -4748,7 +4764,7 @@ async function copyLiveBook(assets, lane = "") {
           // order comes off. A "can't verify" blip never pulls it - only a real rule refusal.
           try {
             const bk = String(id).split(":")[1] || "";
-            const bl = (await import("./bandlock")).bandLockCheck(bk, String(dd.ticker).includes("GOLD") ? "gold" : "btc", dd.side, String(dd.ticker));
+            const G626 = globalThis as any; G626.__restLabel626 = String((r as any)?.setup || ""); /* fix626: a resting pink break is judged as a pink break */ let bl: any; try { bl = (await import("./bandlock")).bandLockCheck(bk, String(dd.ticker).includes("GOLD") ? "gold" : "btc", dd.side, String(dd.ticker)); } finally { G626.__restLabel626 = ""; }
             if (!bl.ok && !/can't verify|not healthy|self-test|no band feed/.test(bl.reason)) {
               await live.cancelLiveOrder(dd.orderId, dd.ticker).catch(() => {});
               (done as any)[id] = { ...dd, at: new Date().toISOString(), parkedDone: true, status: "skipped", final: true, reason: `resting order pulled before it filled: ${bl.reason}` };
@@ -5438,6 +5454,7 @@ async function copyLiveBook(assets, lane = "") {
     { const h597 = labelHold597(String(row.book), String(row.asset), (globalThis as any).__sessCarried?.[String(row.asset)] === true, String(row.setup || row.label || "")); /* fix597 */ if (h597 && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: h597 }; continue; } }
     const frame = asset?.vwap1m?.vwap ? asset.vwap1m : asset?.vwap5m;
     let placed = null;
+    { const lab0 = String(row.setup || row.label || ""), mB = /^(?:Break|Close) above (.+?)$/.exec(lab0); if (mB && row.side === "up") { const ln0 = (((globalThis as any).__lawBands?.[String(row.asset)]?.L || []) as any[]).find((l: any) => String(l.name) === mB[1].trim()); const px0 = Number(asset?.spot) || 0; if (ln0 && Number(ln0.price) > 0 && px0 > 0 && !(px0 > Number(ln0.price)) && !done[row.id]?.orderId) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `NOT A BREAK ABOVE AT THE ORDER: price ${px0.toFixed(2)} is at or below ${mB[1].trim()} (${Number(ln0.price).toFixed(2)}) - no entry` }; continue; } } } // Love Nov 3 2026 7:45 PM PT: "if price is below the band at the moment of the order, it is not a break above. No entry."
     // HIS STAMP BEFORE HER ORDER (fix501): wait at most 250 ms for his verdict on this setup; no stamp or a refused board = not taken this pass (written down, not final - he and her door judge again next pass).
     { let v501: any = null; const t501 = Date.now(); while (Date.now() - t501 < 250) { try { v501 = JSON.parse(readFileSync(join(process.cwd(), "data", "setup-audit-last.json"), "utf8"))?.[row.id] || null; } catch { v501 = null; } if (v501) break; await new Promise((r) => setTimeout(r, 20)); }
       if (v501 && v501.ok !== true && /^THE IMPOSSIBILITY: her bands can't be read/.test(String(v501.why || "")) && (globalThis as any).__sessCarried?.[String(row.asset)] === true) v501 = { ...v501, ok: true, carried: true }; /* Love Nov 3 2026 4:25 PM PT: "Gold is blocked only because the sub-auditor says her bands can't be read. That is not a real rule. Remove that refusal": while she is carried (fix612) her board has one fresh line by design and he is never told; that refusal no longer holds her order then. Her own door and wire still judge every order in full. */

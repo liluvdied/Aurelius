@@ -839,7 +839,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
       try {
         const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
         const bit = (t: string) => Number(parts.find((p) => p.type === t)?.value ?? "0");
-        const day = new Date(Date.UTC(bit("year"), bit("month") - 1, bit("day"), 21, 0, 0));
+        const offH = 12 - Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "2-digit", hourCycle: "h23" }).format(new Date(Date.UTC(bit("year"), bit("month") - 1, bit("day"), 12)))); const day = new Date(Date.UTC(bit("year"), bit("month") - 1, bit("day"), 17 + offH, 0, 0)); // Love Nov 3 2026 6:35 PM PT (DST fix): 5 PM New York every day - 22:00 UTC in winter (EST), 21:00 UTC in summer (EDT). Was a fixed 21:00 UTC, an hour early since Nov 1.
         if (bit("hour") < 17) day.setUTCDate(day.getUTCDate() - 1);
         // INDEX BTC (Oct 16 ~11:59 PM PT): her chart's session resets at 00:00 UTC; gold stays 5 PM ET
         const S0 = day.getTime() / 1000; // Vantage BTC + gold: 5 PM ET (Oct 17 ~12:04 AM PT, back from INDEX's 00:00 UTC)

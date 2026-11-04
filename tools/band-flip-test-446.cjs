@@ -10,7 +10,7 @@ const js = ts.transpileModule("function F(asset, spot, seenL, f, k, fix33, falli
 const F = new Function(js + "; return F;")();
 const run = (label, side, falling, rising, flip, bandFlip = true) => F("gold", 4041, [{ side, label }], 0.4, 0.33, false, falling, rising, Infinity, -Infinity, bandFlip, () => flip).length === 1;
 let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log("BAND FLIP TEST: FAIL - " + m); } };
-t(run("Rejected up off -1σ", "up", true, false, true), "10:33 PM: a band-rejection long on a red 5m with a real 2-5m green flip was thrown out");
+t(!run("Rejected up off -1σ", "up", true, false, true), "Love Nov 4: a band-rejection long on a red falling 5m went through on a 2-5m green flip (the flip no longer overrides it)");
 t(!run("Rejected up off -1σ", "up", true, false, false), "a band-rejection long on a red 5m with NO 2-5m flip went through");
 t(!run("Break above 5m PP", "up", true, false, true), "a non-rejection long went through on a red 5m (a 2m flip elsewhere must not bypass HER CANDLE)");
 t(run("Rejected down off Red zone", "down", false, true, true), "mirror: a band-rejection short on a green 5m with a real 2-5m red flip was thrown out");

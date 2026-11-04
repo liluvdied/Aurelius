@@ -49,7 +49,7 @@ function sessionStart(kind: "ny" | "utc"): number {
     hourCycle: "h23",
   }).formatToParts(new Date());
   const bit = (type: string) => Number(parts.find((part) => part.type === type)?.value ?? "0");
-  const day = new Date(Date.UTC(bit("year"), bit("month") - 1, bit("day"), 21, 0, 0));
+  const offH = 12 - Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "2-digit", hourCycle: "h23" }).format(new Date(Date.UTC(bit("year"), bit("month") - 1, bit("day"), 12)))); const day = new Date(Date.UTC(bit("year"), bit("month") - 1, bit("day"), 17 + offH, 0, 0)); // Love Nov 3 2026 6:35 PM PT (DST fix): 5 PM New York every day - 22:00 UTC in winter (EST), 21:00 UTC in summer (EDT). Was a fixed 21:00 UTC, an hour early since Nov 1.
   if (bit("hour") < 17) day.setUTCDate(day.getUTCDate() - 1);
   return day.getTime() / 1000;
 }

@@ -1,9 +1,53 @@
-# Every decision Love has made - rebuilt 2026-11-04T01:08:40.740227+00:00
+# Every decision Love has made - rebuilt 2026-11-04T21:34:10.975603+00:00
 
-1507 decisions with Love's words or card picks, out of 2264 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1518 decisions with Love's words or card picks, out of 2278 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-04T20:31:35Z  ·  diary line 2745
+- Love: “The pink-excluded book is not limited to main's calls. When a valid setup appears that is not a pink trade, she takes it on her own. She does not wait for main and does not take main's next-best.”
+- Love: “Unlocked. Go.”
+- Full entry: 2026-11-04T20:31:35Z MAIN WITHOUT PINK OWN READ (recon 5e17a6753bf47818; cornerstone #99 + manifest; R326 supersedes R321) - Love Nov 4 2026 12:26-12:30 PM PT: "The pink-excluded book is not limited to main's calls. When a valid setup appears that is not a pink trade, she takes it on her own. She does not wait for main and does not take main's next-best." + "Unlocked. Go."
+
+## 2026-11-04T20:14:03Z  ·  diary line 2744
+- Love: “yes they all need the push that's what it is”
+- Full entry: 2026-11-04T20:14:03Z PINK REJECTION PUSH BACK (recon 69ea4ff5cb6e5385, 6 lines) - Love Nov 4 2026 12:13 PM PT: "yes they all need the push that's what it is" (pink rejections need the $10 BTC / one-tap gold push again)
+
+## 2026-11-04T18:50:19Z  ·  diary line 2742
+- Love: “on gold , past a $25 band width $3 max. 7.25 isn't necessary love”
+- Full entry: 2026-11-04T18:50:19Z GOLD PINK $3 MAX OVER A $25 CHANNEL (bandlock 18c902a16e01e4a0, recon ead767cda1242239, pink-flag-25-test updated) - Love Nov 4 2026 10:41 AM PT: "on gold , past a $25 band width $3 max. 7.25 isn't necessary love" + 10:49 AM "go"
+
+## 2026-11-04T18:42:11Z  ·  diary line 2740
+- Love: “on gold , past a $25 band width $3 max. 7.25 isn't necessary love”
+- Full entry: 2026-11-04T18:42:11Z GOLD PINK TOLERANCE $3 MAX OVER A $25 CHANNEL (bandlock 18c902a16e01e4a0 pinkSlide580, recon ead767cda1242239 pinkSlide580R) - Love Nov 4 2026 10:41 AM PT: "on gold , past a $25 band width $3 max. 7.25 isn't necessary love"
+
+## 2026-11-04T18:36:16Z  ·  diary line 2739
+- Love: “A red falling 5m candle refuses the long. No 2-5m flip overrides it.”
+- Love: “unlocked bb”
+- Full entry: 2026-11-04T18:36:16Z RED FALLING 5m REFUSES THE LONG (recon 3034742815ce50be; band-flip-test-446 + both-sides-replays-469 updated) - Love Nov 4 2026 10:20-10:35 AM PT: "A red falling 5m candle refuses the long. No 2-5m flip overrides it." + "unlocked bb"
+
+## 2026-11-04T18:23:56Z  ·  diary line 2737
+- Love: “A red falling 5m candle refuses the long. No 2-5m flip overrides it.”
+- Love: “make it only the 2M or 5M candle pls / must be pushing off of the band in the direction of the trade in our color by a factor of 10 cents for gold or $2 for btc”
+- Full entry: 2026-11-04T18:23:56Z FLIP 2m/5m + $2 BTC; RED FALLING 5m REFUSES LONG (bandlock 8dfe4c8ee2f97aba, recon 3034742815ce50be; band-flip-test-446 + behaviour-umpire updated) - Love Nov 4 2026 10:20-10:23 AM PT: "A red falling 5m candle refuses the long. No 2-5m flip overrides it." + "make it only the 2M or 5M candle pls / must be pushing off of the band in the direction of the trade in our color by a factor of 10 cents for gold or $2 for btc"
+
+## 2026-11-04T17:53:08Z  ·  diary line 2736
+- Full entry: 2026-11-04T17:53:08Z ADD-ONS $2 @2.8x + $3 @3.8x (engine.ts be19692632b48f58 3.8x add-on; live-switch addOn $2 @0.357, offHourMain.addOn $2 @0.357, addOn.at38 $3 @0.263; old in addOn38Prev) - Love Nov 4 9:51 AM PT
+
+## 2026-11-04T17:39:54Z  ·  diary line 2735
+- Full entry: 2026-11-04T17:39:54Z ADD-ONS $4 (addOn + offHourMain.addOn $2 -> $4, maxDollars $2 -> $4; old values in addOn4Prev) - Love Nov 4 9:38 AM PT
+
+## 2026-11-04T17:25:24Z  ·  diary line 2734
+- Full entry: 2026-11-04T17:25:24Z FIX618 LONGS INSIDE PINK TOLERANCE ONLY (bandlock.ts 2c091d9410ecc992) + UMPIRE OVERRIDE 618 (tools/behaviour-umpire.cjs, data/umpire-override-618.json) - Love Nov 3 7:20 PM + Nov 4 9:23 AM PT
+
+## 2026-11-04T03:46:45Z  ·  diary line 2733
+- Love: “if price is below the band at the moment of the order, it is not a break above. No entry.”
+- Full entry: 2026-11-04T03:46:45Z BREAK ABOVE AT THE ORDER: engine.ts bc1ad63fe33222f5 - a "Break/Close above X" long is refused at the order when price is at or below X. Love Nov 3 7:45 PM PT: "if price is below the band at the moment of the order, it is not a break above. No entry."
+
+## 2026-11-04T02:35:41Z  ·  diary line 2732
+- Love: “Unlocked. Apply the 21:00 fix to both files now. Re-sign so the umpire stays SAFE ... No other changes.”
+- Full entry: 2026-11-04T02:35:41Z DST SESSION ANCHOR: tv.ts 261436a4a3b54b97 + pivotbooks.ts 85ccdac9554baf83 - session VWAP anchor 5 PM New York (22:00 UTC now), was fixed 21:00 UTC - Love Nov 3 2026 6:35 PM PT: "Unlocked. Apply the 21:00 fix to both files now. Re-sign so the umpire stays SAFE ... No other changes."
 
 ## 2026-11-04T01:08:20Z  ·  diary line 2731
 - Love: “Change the rejection entry so that a valid pink rejection books the moment the candle turns against the pink ... Do not wait for the touch ... Keep the existing thirds, walls, and flip rules”

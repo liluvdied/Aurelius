@@ -10,7 +10,7 @@ def need(ok, what):
     if not ok: bad.append(what)
 print("HER CORNERSTONES")
 # retired by Love Oct 28 2026 7:08 PM PT ("not the fucking checkpoint version" - back to the exact checkpoint, 1-5m flip): need("function anyFlipNow(" in B and ("for (const n of [2, 3, 4, 5] /* fix406" in B or "export function realFlipNow(" in B), "1. HER FLIP: the 2/3/4/5m candle reader exists (fix406, Love Oct 28 2026 5:07 PM PT: cut the 1m)")
-need("if (flipRule) { if (!why && !turnFlip530(asset, side, tick))" in B and "export function turnFlip530(" in B, "1. HER FLIP: a 2/3/4/5m candle that TURNS her way - red to green for a long, green to red for a short, no minimum - at her rejection is the entry, immediate on the next tick (her Oct 30 4:56 PM, fix530)")
+need("pb626 !== \"go\" && !turnFlip530(asset, side, tick)) why = `HER FLIP:" in B and "export function pinkBreak626(" in B and "export function turnFlip530(" in B, "1. HER FLIP (a pink break $5 BTC / 25c gold past the pink is the entry with no flip; price back across the pink is refused - fix626, Love Nov 4 2026 1:24 PM PT): a 2/3/4/5m candle that TURNS her way - red to green for a long, green to red for a short, no minimum - at her rejection is the entry, immediate on the next tick (her Oct 30 4:56 PM, fix530)")
 door = re.search(r'const imR = impossibleGeo\([^\n]*', B); wire = re.search(r'const geo = impossibleGeo\([^\n]*', B); cop = re.search(r'else whyR = impossibleGeo\([^\n]*', B)
 for nm, m in (("door", door), ("copier", cop), ("wire", wire)):
     t = m.group(0) if m else ""
@@ -279,8 +279,8 @@ need('"recon-rnp" /* fix620 */' in R and 'book("recon-rnp", np620)' in R and 'St
      "97. THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (fix620, her Nov 1 7:50 PM words): the same logic on every other band and zone, no pink entries, no breaks, in no live list")
 need("live.watchAccount(readBookShared().trades)" in E and "const trades = readBookShared().trades;" in E,
      "98. HER TICK READS THE SHARED BOOK (fix621, her Nov 1 8:32 PM words): the two tick readers that only look at live-paper-book.json use the one parsed copy")
-need('let np620: any = firstT && !pink620(firstT) ? firstT : null;' in R and 'bandLockCheck464("recon-tog", id, np620.side' in R and 'if (prior && lane === "recon-rnp") {' in R and 'lane === "recon-rnp" ? "recon-tog" /* fix624' in R,
-     "99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words): main's read, door, free-to-trade and one-call-per-window; only pink entries are out; paper only")
+need('let np620: any = null; /* Love Nov 4 2026 12:26 PM PT' in R and 'if (rejLB && rejReach > 0) { const LN620' in R and 'bandLockCheck464("recon-tog", id, np620.side' in R and 'if (prior && lane === "recon-rnp") {' not in R and 'lane === "recon-rnp" ? "recon-tog" /* fix624' in R,
+     "99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words; Nov 4 12:26 PM: her own non-pink read, never main's call, never waits on main): main's logic, thirds, pink wall and door; only pink entries are out; paper only")
 F625 = open("src/lib/desk/fns.ts", encoding="utf8").read(); A625 = open("src/components/desk/app.tsx", encoding="utf8").read()
 need('r.book === "recon-rnp" && r.at >= RNPF_START' in F625 and 'book: "recon-rnp-fresh", title:' in A625,
      "100. HER PURE NO-PINK CARD (fix625, her Nov 1 10:08 PM words): the main-without-pink twin on its own card with a fresh record from the moment FIX624 landed")

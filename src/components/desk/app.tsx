@@ -4008,6 +4008,8 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
       })()}
       {/* FAMILIES + FIND (Oct 9). */}
       <div className="mt-3 rounded-2xl px-2 py-2" style={{ border: "1px solid rgba(255,255,255,0.18)" }}>
+        {/* RECORDS (Love Nov 4 2026 10:35 AM PT: "draw the files OFF OF MY COMPUTER ... the app is the INTERFACE to view them, not the thing hosting them"): a plain link to the page her laptop builds and serves (7-OPEN-REGISTRAR, http://127.0.0.1:8090). The desk loads none of it. */}
+        <a href="http://127.0.0.1:8090/" target="_blank" rel="noopener noreferrer" className="mb-2 inline-block rounded-lg px-3 py-1.5 font-mono text-[10px] font-bold tracking-[0.18em] text-white" style={{ border: "1.5px solid #5dff9c", boxShadow: "0 0 10px rgba(93,255,156,0.35)" }}>RECORDS · GREEN BOOKS ALL TIME ↗</a>
         <input
           value={findQ}
           onChange={(e) => setFindQ(e.target.value)}

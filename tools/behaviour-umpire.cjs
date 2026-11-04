@@ -12,7 +12,9 @@ fs.writeFileSync(path.join(out, "recon.js"), "exports.RECON={};");
 const G = globalThis; let NOW = Date.now(); Date.now = () => NOW;
 const B = require(path.join(out, "bandlock.js"));
 const res = []; const RETIRED = /^(REAL FLIP|33% \(copy\): no BTC|SESSION BAND AHEAD)/; // fix505: SESSION BAND AHEAD retired by Love Oct 30 2026 12:08 AM PT // fix424 (Love Oct 28 2026 7:30 PM PT: "a candle born red at a band and falling is still a short" -> fix416 real flip off; card "Put the removed protections back on main and rejection?" -> "All protections back": SESSION BAND AHEAD + BTC 33% back for main + rejection; the copy stays as it is)
-const T = (name, ok, detail) => RETIRED.test(name) ? null : res.push({ name, ok: !!ok, detail: String(detail ?? "").slice(0, 160) });
+// UMPIRE OVERRIDE 618 (Love Nov 3 2026 7:20 PM PT): data/umpire-override-618.json {"on": true} skips ONLY the fix618 mirror tests; off / missing = the normal check.
+const OVR618 = (() => { try { return JSON.parse(fs.readFileSync(path.join(ROOT, "data", "umpire-override-618.json"), "utf8")).on === true; } catch { return false; } })();
+const T = (name, ok, detail) => RETIRED.test(name) ? null : (OVR618 && /^fix618 mirror/.test(name)) ? (console.log("  ~ skipped by Love's override (data/umpire-override-618.json): " + name), null) : res.push({ name, ok: !!ok, detail: String(detail ?? "").slice(0, 160) });
 const sec = (iso) => Date.parse(iso) / 1000;
 const BOOKS = { main: [false, false, false, false, true, 0.4, true, false], rejection: [false, false, false, true, true, 0.4, true, false], copy: [false, false, true, false, false, 0, false, false] };
 const geo = (asset, L, tick, side, bk) => { try { return B.impossibleGeo(asset, L, tick, side, ...BOOKS[bk]).why || ""; } catch (e) { return "ERROR " + e.message; } };
@@ -189,9 +191,9 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   const t0 = sec("2026-11-01T12:00:00Z"), t1 = sec("2026-11-01T11:59:00Z");
   const set592 = (asset, po, pc, o, h, l) => { G.__pivBars = { [asset]: { bars: [{ t: t1, o: po, h: Math.max(po, pc), l: Math.min(po, pc), c: pc }, { t: t0, o, h, l, c: l }] } }; };
   set592("btc", 77870, 77856, 77856, 77860, 77845); T("fix592 BTC flip path: green then red, $6 under its open, goes", B.turnFlip530("btc", "down", 77850));
-  set592("btc", 77870, 77856, 77856, 77860, 77845); T("fix592 BTC flip path: green then red, only $3 under, is refused", !B.turnFlip530("btc", "down", 77853));
+  set592("btc", 77870, 77856, 77856, 77860, 77845); T("fix592 BTC flip path: green then red, only $1 under, is refused (Love Nov 4: $2 BTC)", !B.turnFlip530("btc", "down", 77855));
   set592("btc", 77840, 77856, 77856, 77856, 77840); T("fix592 BTC born path: red right after a green one, $11 under, goes", B.turnFlip530("btc", "down", 77845));
-  set592("btc", 77840, 77856, 77856, 77856, 77850); T("fix592 BTC born path: red right after a green one, only $3 under, is refused", !B.turnFlip530("btc", "down", 77853));
+  set592("btc", 77840, 77856, 77856, 77856, 77850); T("fix592 BTC born path: red right after a green one, only $1 under, is refused (Love Nov 4: $2 BTC)", !B.turnFlip530("btc", "down", 77855));
   set592("btc", 77870, 77856, 77856, 77856, 77840); T("fix592 BTC: red right after a red one with no flip is refused", !B.turnFlip530("btc", "down", 77845));
   set592("btc", 77856, 77840, 77840, 77850, 77835); T("fix592 BTC flip path: red then green, $6 over, goes", B.turnFlip530("btc", "up", 77846));
   set592("btc", 77856, 77840, 77840, 77856, 77840); T("fix592 BTC born path: green right after a red one, $10 over, goes", B.turnFlip530("btc", "up", 77850));
@@ -417,10 +419,11 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix618 BTC, pink in the bottom 20% stacked on the band, a short waits the same", /no short until that band breaks/.test(B.pinkAhead618("btc", BS, 78455.8, "down")));
   T("fix618 once the band breaks by her break distance the short is free", !B.pinkAhead618("gold", GS, 3906.9, "down"));
   const GU = G545.map((l) => l.name === "5m PP" ? { ...l, price: 3912 } : l);
-  T("fix618 mirror: pink in the top 20% stacked under the band, a long waits", /no long until/.test(B.pinkAhead618("gold", GU, 3909, "up")));
+  T("fix618 mirror: pink in the top 20% stacked under the band, a long INSIDE her pink tolerance waits (Love Nov 3 7:20 PM)", /no long until/.test(B.pinkAhead618("gold", GU, 3911.5, "up")));
+  T("fix618 mirror: a long OUTSIDE her pink tolerance is free (Love Nov 3 7:20 PM)", !B.pinkAhead618("gold", GU, 3909, "up"));
   T("fix618 a short stays free when pink is in the top of the channel", !B.pinkAhead618("gold", GU, 3909, "down"));
   T("fix623 the mid-channel distance check is gone", typeof B.pinkClose618 === "undefined");
-  T("fix618 gold's 10c and BTC's $5 are her only flip difference", /asset === "gold" \? 0\.1 : 5/.test(B.turnFlip530.toString()));
+  T("fix618 gold's 10c and BTC's $2 are her only flip difference (Love Nov 4 10:23 AM)", /asset === "gold" \? 0\.1 : 2\b/.test(B.turnFlip530.toString()));
   T("fix618 gold's walls are the same lines as BTC's", B.wallLines("gold", G545).length === B.wallLines("btc", B545).length);
   T("fix618 the 2 PM label hold reads gold the same", /REJECTIONS ONLY/.test(B.labelHold597("recon-tog", "gold", true, "Break above +1σ")));
 }
@@ -432,6 +435,31 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix619 the same 2m candle at 5c past its open is not", !B.turnFlip530("gold", "up", 3897.95));
   G.__curLabel611 = "Rejected up off Green zone"; T("fix619 a rejection with that flip passes the 5m read", B.rejFlip611("gold", "up", 3898.4)); G.__curLabel611 = "";
   G.__pivBars = keepB; G.__qtrail_1 = keepT; NOW = keep;
+}
+// fix626 (Love Nov 4 2026 1:24 PM PT: "Yes. A pink break enters the moment the push is met. Price must still be on the same side of the band at the fill. If it flips before the fill, refuse it at the door. The flip is still required on rejections." + "anything over 1k channel width for btc goes to 10% for pink tolerance." + "for gold anything over $25 goes to $3 for pink tolerance")
+{ const keep = NOW, keepB = G.__pivBars, keepT = G.__qtrail_1; NOW = Date.parse("2026-11-04T21:05:03Z");
+  G.__pivBars = { btc: { bars: [] } }; G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 80010 }, { t: NOW - 500, c: 80010 }] }; // no 2/5m flip anywhere
+  const LP = [{ name: "-1σ", price: 79500 }, { name: "session VWAP", price: 79900 }, { name: "+1σ", price: 80300 }, { name: "5m PP", price: 80000 }, { name: "5m S1", price: 79800 }, { name: "5m R1", price: 80200 }];
+  T("fix626 BTC pink tolerance over a $1,000 channel is 10% ($1,339 -> $133.90)", Math.abs(B.pinkSlide580("btc", 1339) - 133.9) < 0.01 && Math.abs(B.pinkSlide580("btc", 1001) - 100.1) < 0.01);
+  T("fix626 BTC at exactly $1,000 and below keeps 15%", Math.abs(B.pinkSlide580("btc", 1000) - 150) < 0.01 && Math.abs(B.pinkSlide580("btc", 600) - 90) < 0.01);
+  T("fix626 gold over $25 is $3", Math.abs(B.pinkSlide580("gold", 30) - 3) < 0.001 && Math.abs(B.pinkSlide580("gold", 60) - 3) < 0.001);
+  T("fix626 a pink break long $5 past the pink is the entry (go)", B.pinkBreak626("btc", LP, 80005, "up", "Break above 5m PP") === "go" && B.pinkBreak626("btc", LP, 80010, "up", "Close above 5m PP") === "go");
+  T("fix626 a pink break short $5 under the pink is the entry (go)", B.pinkBreak626("btc", LP, 79995, "down", "Break below 5m PP") === "go");
+  T("fix626 gold pink break needs its 25c push", B.pinkBreak626("gold", [{ name: "5m PP", price: 4000 }], 4000.25, "up", "Break above 5m PP") === "go" && B.pinkBreak626("gold", [{ name: "5m PP", price: 4000 }], 4000.2, "up", "Break above 5m PP") === "");
+  T("fix626 short of the push = no waiver (the flip rule stands)", B.pinkBreak626("btc", LP, 80004, "up", "Break above 5m PP") === "");
+  T("fix626 price back across the pink = the break is gone (back)", B.pinkBreak626("btc", LP, 79999, "up", "Break above 5m PP") === "back" && B.pinkBreak626("btc", LP, 80001, "down", "Break below 5m PP") === "back");
+  T("fix626 a rejection never gets the waiver", B.pinkBreak626("btc", LP, 80010, "up", "Failed break below 5m PP - rejected up") === "" && B.pinkBreak626("btc", LP, 80010, "up", "Rejected up off Green zone") === "");
+  T("fix626 a break the wrong way never gets the waiver", B.pinkBreak626("btc", LP, 80010, "down", "Break above 5m PP") === "");
+  G.__inBLC465 = true;
+  for (const bk of ["main", "rejection"]) {
+    G.__curLabel611 = "Break above 5m PP"; const a = geo("btc", LP, 80010, "up", bk);
+    T(`fix626 [${bk}] pink break long, push met, no flip candle: HER FLIP does not hold it`, !/HER FLIP/.test(a), a || "(clear)");
+    G.__curLabel611 = "Break above 5m PP"; const c = geo("btc", LP, 79995, "up", bk);
+    T(`fix626 [${bk}] pink break long with price back under the pink is refused`, /PINK BREAK GONE|PINK CUSHION|HER FLIP/.test(c), c || "(clear)");
+    G.__curLabel611 = "Rejected up off Green zone"; const b = geo("btc", LP, 80010, "up", bk);
+    T(`fix626 [${bk}] a rejection with no flip candle is still held by HER FLIP`, /HER FLIP/.test(b) || (b && !/^ERROR/.test(b)), b || "(clear)");
+  }
+  G.__curLabel611 = ""; G.__inBLC465 = false; G.__pivBars = keepB; G.__qtrail_1 = keepT; NOW = keep;
 }
 const ok = res.every((r) => r.ok);
 for (const r of res) console.log((r.ok ? "  ✓ " : "  ✗ ") + r.name + (r.ok ? "" : "  <- " + r.detail));

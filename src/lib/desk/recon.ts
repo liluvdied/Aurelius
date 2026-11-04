@@ -183,19 +183,19 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
     // REJECTION — tapped, never broke, moving away by the tap distance:
     // ONLY THE PINK NEEDS THE FLIP (Oct 20 ~8:53-8:57 AM PT, Love): a session-band rejection enters on the move alone; a pink
     // rejection waits for the candle to cross back over its open.
-    if (cur.o > p && cur.l <= p + nr && cur.l > p - brk && spot >= cur.l + tap && spot > p && (l.name !== "5m PP" || (spot > cur.o || pfU) /* Love Nov 3 2026 5:03 PM PT: same, long side */)) cands.push({ side: "up", label: `Rejected up off ${l.name}`, d, rank: 1 });
-    if (cur.o < p && cur.h >= p - nr && cur.h < p + brk && spot <= cur.h - tap && spot < p && (l.name !== "5m PP" || (spot < cur.o || pfD) /* Love Nov 3 2026 5:03 PM PT: pink rejection books the moment the candle turns against the pink - no wait for $10 BTC / tap gold past its open */)) cands.push({ side: "down", label: `Rejected down off ${l.name}`, d, rank: 1 });
+    if (cur.o > p && cur.l <= p + nr && cur.l > p - brk && spot >= cur.l + tap && spot > p && (l.name !== "5m PP" || (spot >= cur.o + (asset === "btc" ? 10 : tap) || pfU) /* Love Nov 4 2026 12:13 PM PT: "yes they all need the push" */)) cands.push({ side: "up", label: `Rejected up off ${l.name}`, d, rank: 1 });
+    if (cur.o < p && cur.h >= p - nr && cur.h < p + brk && spot <= cur.h - tap && spot < p && (l.name !== "5m PP" || (spot <= cur.o - (asset === "btc" ? 10 : tap) || pfD) /* Love Nov 4 2026 12:13 PM PT: "yes they all need the push" - the push is back */)) cands.push({ side: "down", label: `Rejected down off ${l.name}`, d, rank: 1 });
     // 1m CLOSE OFF A REJECTED BAND - OUT (fix606, Love Nov 1 2026 1:24 PM PT: "1m rejections are out. Only 2-5m candles count.")
     // A FAILED BREAK IS A REJECTION (Oct 20 ~9:54 PM PT, Love: "if it breaks and comes back on the other side of the band, it's a rejection until price goes on the other side of the band in the direction it broke"):
     // the wick broke through by her break distance and price came back across - read as the rejection while price stays back on the open side.
-    if (cur.o > p && cur.l <= p - brk && spot >= cur.l + tap && spot > p && (l.name !== "5m PP" || (spot > cur.o || pfU) /* Love Nov 3 2026 5:03 PM PT: same, long side */)) cands.push({ side: "up", label: `Failed break below ${l.name} - rejected up`, d, rank: 1 });
-    if (cur.o < p && cur.h >= p + brk && spot <= cur.h - tap && spot < p && (l.name !== "5m PP" || (spot < cur.o || pfD) /* Love Nov 3 2026 5:03 PM PT: pink rejection books the moment the candle turns against the pink - no wait for $10 BTC / tap gold past its open */)) cands.push({ side: "down", label: `Failed break above ${l.name} - rejected down`, d, rank: 1 });
+    if (cur.o > p && cur.l <= p - brk && spot >= cur.l + tap && spot > p && (l.name !== "5m PP" || (spot >= cur.o + (asset === "btc" ? 10 : tap) || pfU) /* Love Nov 4 2026 12:13 PM PT: "yes they all need the push" */)) cands.push({ side: "up", label: `Failed break below ${l.name} - rejected up`, d, rank: 1 });
+    if (cur.o < p && cur.h >= p + brk && spot <= cur.h - tap && spot < p && (l.name !== "5m PP" || (spot <= cur.o - (asset === "btc" ? 10 : tap) || pfD) /* Love Nov 4 2026 12:13 PM PT: "yes they all need the push" - the push is back */)) cands.push({ side: "down", label: `Failed break above ${l.name} - rejected down`, d, rank: 1 });
     // A REJECTION SURVIVES THE CANDLE TURN (Oct 19 ~9:02 PM PT, Love: "btc rejected the band below her and she didn't enter" — the +1σ tap sat in the
     // 8:55 candle, the bounce ran into the 9:00 one; her Oct 18 law: "once a new candle starts, a rejection off the pink is a valid trade"): the tap may
     // sit in the PREVIOUS 5m candle, provided the line stayed unbroken in both candles and price is still moving away by the tap distance.
     if (prev) {
-      if (prev.l <= p + nr && prev.l > p - brk && cur.l > p - brk && cur.l > prev.l - tap && spot >= prev.l + tap && spot > p && (l.name !== "5m PP" || (spot > cur.o || pfU) /* Love Nov 3 2026 5:03 PM PT: same, long side */)) cands.push({ side: "up", label: `Rejected up off ${l.name}`, d, rank: 1 });
-      if (prev.h >= p - nr && prev.h < p + brk && cur.h < p + brk && cur.h < prev.h + tap && spot <= prev.h - tap && spot < p && (l.name !== "5m PP" || (spot < cur.o || pfD) /* Love Nov 3 2026 5:03 PM PT: pink rejection books the moment the candle turns against the pink - no wait for $10 BTC / tap gold past its open */)) cands.push({ side: "down", label: `Rejected down off ${l.name}`, d, rank: 1 });
+      if (prev.l <= p + nr && prev.l > p - brk && cur.l > p - brk && cur.l > prev.l - tap && spot >= prev.l + tap && spot > p && (l.name !== "5m PP" || (spot >= cur.o + (asset === "btc" ? 10 : tap) || pfU) /* Love Nov 4 2026 12:13 PM PT: "yes they all need the push" */)) cands.push({ side: "up", label: `Rejected up off ${l.name}`, d, rank: 1 });
+      if (prev.h >= p - nr && prev.h < p + brk && cur.h < p + brk && cur.h < prev.h + tap && spot <= prev.h - tap && spot < p && (l.name !== "5m PP" || (spot <= cur.o - (asset === "btc" ? 10 : tap) || pfD) /* Love Nov 4 2026 12:13 PM PT: "yes they all need the push" - the push is back */)) cands.push({ side: "down", label: `Rejected down off ${l.name}`, d, rank: 1 });
     }
   }
   // GREEN FROM THE BOTTOM / RED FROM THE TOP (Oct 20 ~12:22 AM PT, Love: "a green candle rising from the bottom 33% of the channel is a
@@ -288,7 +288,7 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
       // flipped her way (realFlipNow: traded the other colour, then turned past its open by 10c gold / $5 BTC). Everything else still follows HER CANDLE (the 5m).
       const rej446 = (c: { label: string }) => /^(Rejected (up|down) off|\d+m rejection off|Tap-reject at|Failed break)/.test(String(c.label));
       const fl446 = (c: { side: string; label: string }) => { if (!rej446(c)) return false; try { return turnFlip530(asset, c.side, spot); } catch { return false; } }; // fix619 (Love Nov 1 2026 7:35 PM PT: "SHE NEEDS THE SAME 2-5M CANDLE FLIP IN HER FAVOR. A GREEN CANDLE OFF A ZONE OR BAND FOR A LONG AND A RED CANDLE FOR A SHORT. A FLIP OR BORN THAT COLOR. NOT ONLY 5M."): every book, a turn or born her colour
-      return seenL.filter((c) => !((c.side === "up" && (f >= 1 - k || (fix33 && f >= 0.67) || (falling && !m1(c) && !fl446(c)) || spot > topS)) || (c.side === "down" && (f <= k || (fix33 && f <= 0.33) || (rising && !m1(c) && !fl446(c)) || spot < botS))));
+      return seenL.filter((c) => !((c.side === "up" && (f >= 1 - k || (fix33 && f >= 0.67) || (falling && !m1(c)) /* Love Nov 3 2026 7:45 PM + Nov 4 10:20 AM PT: "A red falling 5m candle refuses the long. No 2-5m flip overrides it." */ || spot > topS)) || (c.side === "down" && (f <= k || (fix33 && f <= 0.33) || (rising && !m1(c) && !fl446(c)) || spot < botS))));
     };
   } catch {}
   // ZONE FLIP (Oct 20 ~2:32 AM PT, Love: "in the event she either misses the entry because the multiple was too low, or because
@@ -446,7 +446,7 @@ function zoneFree515c(asset: string, side: string, label: string): boolean {
 }
 export const __PINKFLAT25 = false; // fix580 (Love Nov 1 2026: "put the pink tolerance back to 15% of the channel ... we restore $25 from 2-3 pm tomorrow"): weekend $25 overlay OFF - the pink tolerance is back to her sliding scale (15% gold / 20% BTC of the session-band channel), byte-identical to the else-branch. Re-run WEEKEND-PINK-25 tomorrow 2-3pm PT to set this true again. (fix571 was the overlay ON.)
 // fix580 PINK SLIDING SCALE (same as bandlock pinkSlide580, kept here so the spine stands alone): BTC $25 under $100 wide / 20% at $100-$500 / 15% over $500 of the session-band channel; gold her 15% (pct) as before.
-function pinkSlide580R(asset: string, W: number, pct: number): number { return asset === "btc" ? (W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60) : W <= 500 ? 0.2 * W : 0.15 * W) : asset === "gold" && W < 5 ? (W < 2 ? W / 2 : Math.min(W / 2, 1.5)) : pct * W; /* fix615 */ }
+function pinkSlide580R(asset: string, W: number, pct: number): number { return asset === "btc" ? (W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60) : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* Love Nov 4 2026 1:24 PM PT: "anything over 1k channel width for btc goes to 10% for pink tolerance" */ : 0.15 * W) : asset === "gold" && W < 5 ? (W < 2 ? W / 2 : Math.min(W / 2, 1.5)) : asset === "gold" && W > 25 ? Math.min(pct * W, 3) /* Love Nov 4 2026 10:41 AM PT: "on gold, past a $25 band width $3 max" */ : pct * W; /* fix615 */ }
 export function pinkRead464(asset: string, L: { name: string; price: number }[], spot: number, side: string, pink: number): boolean {
   if (!(spot > 0) || !(pink > 0) || !(side === "up" || side === "down")) return false;
   L = typeof carryWalls612 === "function" ? carryWalls612(asset, L as any) : L; // fix612
@@ -547,18 +547,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       freeId = `${m.ticker}:${lane}:n${rows.filter((r) => r.ticker === m.ticker && r.lane === lane).length + 1}`;
     }
     // fix624 (Love Nov 1 2026 9:37 PM PT: "It uses the main book's free-to-trade rule, the main book's one-call-per-window rule ... A closed or unfilled call frees the twin the same way it frees main."): the twin reads main's order record, because she never reaches Kalshi herself. Her Nth call pairs with main's Nth.
-    if (prior && lane === "recon-rnp") {
-      const nth624 = rows.filter((r) => r.ticker === m.ticker && r.lane === lane).length - 1, main624 = rows.filter((r) => r.ticker === m.ticker && r.lane === "recon-tog").reverse()[nth624];
-      let done624 = null; try { done624 = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); } catch { done624 = null; }
-      const dP624 = done624 ? (done624[`${m.ticker}:recon-tog:${prior.id}`] /* fix626: her own live call */ || (main624 ? done624[`${m.ticker}:recon-tog:${main624.id}`] : null)) : null;
-      if (prior.result !== "open" || (dP624 && dP624.final === true && dP624.status !== "filled" && dP624.status !== "partial" && !(dP624.status === "skipped" && /\blive\b/i.test(String(dP624.reason || ""))))) {
-        let execd624 = !done624;
-        try { const od = (globalThis as any).__oneDoor; if (od instanceof Set && od.has(m.ticker)) execd624 = true; } catch {}
-        for (const k624 of Object.keys(done624 || {})) { const v624 = done624[k624]; if (k624.startsWith(m.ticker + ":recon-tog") && v624 && (v624.status === "filled" || v624.status === "partial" || v624.status === "resting")) execd624 = true; }
-        if (execd624) return false;
-        freeId = `${m.ticker}:${lane}:n${nth624 + 2}`;
-      }
-    }
+    // Love Nov 4 2026 12:26 PM PT: MAIN WITHOUT PINK no longer waits on main's order record - she frees and re-aims on her own calls like every other paper book.
     if (prior && !freeId) {
       // ONE EXECUTED DIRECTION PER WINDOW (Oct 20 ~8:00 AM PT, Love: "she is clear to take the other side if she doesn't execute a
       // decision in the other. only one EXECUTED direction per window. if she doesn't take a long initially, she is clear to short
@@ -1038,8 +1027,8 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   // fix620 THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (Love Nov 1 2026 7:50 PM PT: "Build a new paper twin of the rejection book. It uses the same entry logic as main on every zone and band except pink. It ignores pink for entries. It still enters on a 2-5m flip or a candle born her colour. It can still take trades that are rising or falling inside the 20/33. It does nothing else." + 8:32 PM PT: "The paper twin must include rising and falling inside the top and bottom 20/33. It does not exclude them. It only ignores pink for entries. Everything else stays identical to the rejection book."): the rejection book's own call when it is not a pink call; otherwise her read with the pink line taken out, and her rising or falling candle with its pink condition taken out, through the same checks. No breaks. In no live list.
   // fix624 THE TWIN IS MAIN WITHOUT PINK ENTRIES (Love Nov 1 2026 9:37 PM PT: "The paper twin must match the main book. The only difference is that pink entries are excluded. Everything else is identical to main."): main's own read when it is not a pink call; otherwise main's read with the pink line out. Main's thirds, pink wall and door, as main's lines above.
   try { const pink620 = (x: { label: string } | null | undefined) => !!x && /5m PP|pink/i.test(String(x.label));
-    let np620: any = firstT && !pink620(firstT) ? firstT : null;
-    if (!np620 && rejLB && rejReach > 0) { const LN620 = rejLB.filter((l: any) => String(l.name) !== "5m PP"); let rd620: any = bonesDecide(id, LN620, spot, last1m, cur, prev, b, false, rejReach, false, true, true);
+    let np620: any = null; /* Love Nov 4 2026 12:26 PM PT: "She takes her own valid non-pink setups. She does not wait for main and does not take main's next-best." - her own read, never main's call */
+    if (rejLB && rejReach > 0) { const LN620 = rejLB.filter((l: any) => String(l.name) !== "5m PP"); let rd620: any = bonesDecide(id, LN620, spot, last1m, cur, prev, b, false, rejReach, false, true, true);
       if (rd620 && /Bollinger/.test(String(rd620.label)) && !(rd620.side === "up" ? spot > cur.o : spot < cur.o) && !turnFlip530(id, rd620.side, spot)) rd620 = bonesDecide(id, (rejL || LN620).filter((l: any) => String(l.name) !== "5m PP"), spot, last1m, cur, prev, b, false, rejReach);
       const rc620 = rd620 || rejCandleNP620;
       np620 = rc620 || (lookP && !pink620(lookP) ? lookP : null); if (pink620(np620)) np620 = null; }
