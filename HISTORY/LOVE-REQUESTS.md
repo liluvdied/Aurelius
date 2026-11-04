@@ -2,6 +2,17 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R331 - fix644: the red zone is read as an area - a candle that reached the red zone (or ran past it) and falls by her tap on a 2/5m candle turned or born red is the short (Rejected down off Red zone), wherever it sits against 5m R1; back under the Bollinger upper on red is the Bollinger rejection, not a break. Mirror for the green zone / Bollinger lower on green. Every wall still judges it. + fix642b (Claude's own bug in fix642, found 2:23 PM and stopped with LIVE off): a break counts only when price was on the other side of that band in this 5m candle or on a 1m close within the last 15 minutes - a band price merely sits past is never a break (2:14 PM 'Break below Red zone').
+- when: 2026-11-04T22:31:34+00:00
+- Love: "Love Nov 4 2026 2:22-2:23 PM PT: "i wanted her to short" + "the candle flipped red from a red zone" + (a red candle falling from inside or above the red zone, or back under the Bollinger upper, after the push, counts as the short, even while price is still above the red line - mirror for green?) "yes""
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "if (String(l.name) === \"Red zone\" && cur.h >= p - nr && spot <= cur.h - tap"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "if (/^(Bollinger|BB) upper$/.test(String(l.name)) && cur.h >= p && spot < p && spot <= cur.h - tap"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "cands.splice(i642, 1); } } // fix642b"}
+- proof: {"test": "tools/zone-reject-644.cjs"}
+- proof: {"test": "tools/held-break-642.cjs"}
+
 ## R330 - fix643: a NEW PAPER book recon-rjnp (card RECONSTRUCTED · REJECTIONS ONLY · NO PINK): rejections only off the session bands, the green / red zone and the Bollingers - no pink trades, no breaks - on a 2/5m candle turned or born her colour after the push, through main's thirds, pink wall and door (55%, red falling 5m, every wall). The no-pink book recon-rnp is untouched. In no live list.
 - when: 2026-11-04T22:19:47+00:00
 - Love: "Love Nov 4 2026 2:10 PM PT: "let's keep that one the way it was , and create a new rejection only model with pink excluded as well. she only trades rejections of session bands, red/green zones and bollingers. nothing else. same rules we just went over. only takes rejections , no pinks and no breaks pls" + "keep that no pink as it is , we will have another one that does that""

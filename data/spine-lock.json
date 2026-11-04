@@ -1,9 +1,9 @@
 {
- "at": "2026-11-04T22:19:47.068258+00:00",
+ "at": "2026-11-04T22:31:34.982234+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "e0e4c9de9eb42cbb"
+  "recon.ts": "69af9e7321032f62"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -628,6 +628,12 @@
    "by": "Love",
    "quote": "Love Nov 4 2026 2:10 PM PT: \"create a new rejection only model with pink excluded as well. she only trades rejections of session bands, red/green zones and bollingers. nothing else.\" (R330, fix643)",
    "recon.ts": "e0e4c9de9eb42cbb"
+  },
+  {
+   "at": "2026-11-04T22:31:34.982234+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 2:22-2:23 PM PT: \"i wanted her to short\" + \"the candle flipped red from a red zone\" + \"yes\" (R331, fix644)",
+   "recon.ts": "69af9e7321032f62"
   }
  ],
  "R": "R266",
