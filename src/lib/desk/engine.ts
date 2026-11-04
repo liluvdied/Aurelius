@@ -4764,7 +4764,7 @@ async function copyLiveBook(assets, lane = "") {
           // order comes off. A "can't verify" blip never pulls it - only a real rule refusal.
           try {
             const bk = String(id).split(":")[1] || "";
-            const G626 = globalThis as any; G626.__restLabel626 = String((r as any)?.setup || ""); /* fix626: a resting pink break is judged as a pink break */ let bl: any; try { bl = (await import("./bandlock")).bandLockCheck(bk, String(dd.ticker).includes("GOLD") ? "gold" : "btc", dd.side, String(dd.ticker)); } finally { G626.__restLabel626 = ""; }
+            const G641 = globalThis as any; G641.__restLabel641 = String((r as any)?.setup || ""); /* fix641: a resting pink break is judged as a pink break */ let bl: any; try { bl = (await import("./bandlock")).bandLockCheck(bk, String(dd.ticker).includes("GOLD") ? "gold" : "btc", dd.side, String(dd.ticker)); } finally { G641.__restLabel641 = ""; }
             if (!bl.ok && !/can't verify|not healthy|self-test|no band feed/.test(bl.reason)) {
               await live.cancelLiveOrder(dd.orderId, dd.ticker).catch(() => {});
               (done as any)[id] = { ...dd, at: new Date().toISOString(), parkedDone: true, status: "skipped", final: true, reason: `resting order pulled before it filled: ${bl.reason}` };

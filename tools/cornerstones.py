@@ -10,7 +10,7 @@ def need(ok, what):
     if not ok: bad.append(what)
 print("HER CORNERSTONES")
 # retired by Love Oct 28 2026 7:08 PM PT ("not the fucking checkpoint version" - back to the exact checkpoint, 1-5m flip): need("function anyFlipNow(" in B and ("for (const n of [2, 3, 4, 5] /* fix406" in B or "export function realFlipNow(" in B), "1. HER FLIP: the 2/3/4/5m candle reader exists (fix406, Love Oct 28 2026 5:07 PM PT: cut the 1m)")
-need("pb626 !== \"go\" && !turnFlip530(asset, side, tick)) why = `HER FLIP:" in B and "export function pinkBreak626(" in B and "export function turnFlip530(" in B, "1. HER FLIP (a pink break $5 BTC / 25c gold past the pink is the entry with no flip; price back across the pink is refused - fix626, Love Nov 4 2026 1:24 PM PT): a 2/3/4/5m candle that TURNS her way - red to green for a long, green to red for a short, no minimum - at her rejection is the entry, immediate on the next tick (her Oct 30 4:56 PM, fix530)")
+need("pb641 !== \"go\" && !turnFlip530(asset, side, tick)) why = `HER FLIP:" in B and "export function pinkBreak641(" in B and "export function turnFlip530(" in B, "1. HER FLIP (a pink break $5 BTC / 25c gold past the pink is the entry with no flip; price back across the pink is refused - fix641, Love Nov 4 2026 1:24 PM PT): a 2/3/4/5m candle that TURNS her way - red to green for a long, green to red for a short, no minimum - at her rejection is the entry, immediate on the next tick (her Oct 30 4:56 PM, fix530)")
 door = re.search(r'const imR = impossibleGeo\([^\n]*', B); wire = re.search(r'const geo = impossibleGeo\([^\n]*', B); cop = re.search(r'else whyR = impossibleGeo\([^\n]*', B)
 for nm, m in (("door", door), ("copier", cop), ("wire", wire)):
     t = m.group(0) if m else ""

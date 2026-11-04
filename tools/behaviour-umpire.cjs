@@ -436,28 +436,28 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   G.__curLabel611 = "Rejected up off Green zone"; T("fix619 a rejection with that flip passes the 5m read", B.rejFlip611("gold", "up", 3898.4)); G.__curLabel611 = "";
   G.__pivBars = keepB; G.__qtrail_1 = keepT; NOW = keep;
 }
-// fix626 (Love Nov 4 2026 1:24 PM PT: "Yes. A pink break enters the moment the push is met. Price must still be on the same side of the band at the fill. If it flips before the fill, refuse it at the door. The flip is still required on rejections." + "anything over 1k channel width for btc goes to 10% for pink tolerance." + "for gold anything over $25 goes to $3 for pink tolerance")
+// fix641 (Love Nov 4 2026 1:24 PM PT: "Yes. A pink break enters the moment the push is met. Price must still be on the same side of the band at the fill. If it flips before the fill, refuse it at the door. The flip is still required on rejections." + "anything over 1k channel width for btc goes to 10% for pink tolerance." + "for gold anything over $25 goes to $3 for pink tolerance")
 { const keep = NOW, keepB = G.__pivBars, keepT = G.__qtrail_1; NOW = Date.parse("2026-11-04T21:05:03Z");
   G.__pivBars = { btc: { bars: [] } }; G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 80010 }, { t: NOW - 500, c: 80010 }] }; // no 2/5m flip anywhere
   const LP = [{ name: "-1σ", price: 79500 }, { name: "session VWAP", price: 79900 }, { name: "+1σ", price: 80300 }, { name: "5m PP", price: 80000 }, { name: "5m S1", price: 79800 }, { name: "5m R1", price: 80200 }];
-  T("fix626 BTC pink tolerance over a $1,000 channel is 10% ($1,339 -> $133.90)", Math.abs(B.pinkSlide580("btc", 1339) - 133.9) < 0.01 && Math.abs(B.pinkSlide580("btc", 1001) - 100.1) < 0.01);
-  T("fix626 BTC at exactly $1,000 and below keeps 15%", Math.abs(B.pinkSlide580("btc", 1000) - 150) < 0.01 && Math.abs(B.pinkSlide580("btc", 600) - 90) < 0.01);
-  T("fix626 gold over $25 is $3", Math.abs(B.pinkSlide580("gold", 30) - 3) < 0.001 && Math.abs(B.pinkSlide580("gold", 60) - 3) < 0.001);
-  T("fix626 a pink break long $5 past the pink is the entry (go)", B.pinkBreak626("btc", LP, 80005, "up", "Break above 5m PP") === "go" && B.pinkBreak626("btc", LP, 80010, "up", "Close above 5m PP") === "go");
-  T("fix626 a pink break short $5 under the pink is the entry (go)", B.pinkBreak626("btc", LP, 79995, "down", "Break below 5m PP") === "go");
-  T("fix626 gold pink break needs its 25c push", B.pinkBreak626("gold", [{ name: "5m PP", price: 4000 }], 4000.25, "up", "Break above 5m PP") === "go" && B.pinkBreak626("gold", [{ name: "5m PP", price: 4000 }], 4000.2, "up", "Break above 5m PP") === "");
-  T("fix626 short of the push = no waiver (the flip rule stands)", B.pinkBreak626("btc", LP, 80004, "up", "Break above 5m PP") === "");
-  T("fix626 price back across the pink = the break is gone (back)", B.pinkBreak626("btc", LP, 79999, "up", "Break above 5m PP") === "back" && B.pinkBreak626("btc", LP, 80001, "down", "Break below 5m PP") === "back");
-  T("fix626 a rejection never gets the waiver", B.pinkBreak626("btc", LP, 80010, "up", "Failed break below 5m PP - rejected up") === "" && B.pinkBreak626("btc", LP, 80010, "up", "Rejected up off Green zone") === "");
-  T("fix626 a break the wrong way never gets the waiver", B.pinkBreak626("btc", LP, 80010, "down", "Break above 5m PP") === "");
+  T("fix641 BTC pink tolerance over a $1,000 channel is 10% ($1,339 -> $133.90)", Math.abs(B.pinkSlide580("btc", 1339) - 133.9) < 0.01 && Math.abs(B.pinkSlide580("btc", 1001) - 100.1) < 0.01);
+  T("fix641 BTC at exactly $1,000 and below keeps 15%", Math.abs(B.pinkSlide580("btc", 1000) - 150) < 0.01 && Math.abs(B.pinkSlide580("btc", 600) - 90) < 0.01);
+  T("fix641 gold over $25 is $3", Math.abs(B.pinkSlide580("gold", 30) - 3) < 0.001 && Math.abs(B.pinkSlide580("gold", 60) - 3) < 0.001);
+  T("fix641 a pink break long $5 past the pink is the entry (go)", B.pinkBreak641("btc", LP, 80005, "up", "Break above 5m PP") === "go" && B.pinkBreak641("btc", LP, 80010, "up", "Close above 5m PP") === "go");
+  T("fix641 a pink break short $5 under the pink is the entry (go)", B.pinkBreak641("btc", LP, 79995, "down", "Break below 5m PP") === "go");
+  T("fix641 gold pink break needs its 25c push", B.pinkBreak641("gold", [{ name: "5m PP", price: 4000 }], 4000.25, "up", "Break above 5m PP") === "go" && B.pinkBreak641("gold", [{ name: "5m PP", price: 4000 }], 4000.2, "up", "Break above 5m PP") === "");
+  T("fix641 short of the push = no waiver (the flip rule stands)", B.pinkBreak641("btc", LP, 80004, "up", "Break above 5m PP") === "");
+  T("fix641 price back across the pink = the break is gone (back)", B.pinkBreak641("btc", LP, 79999, "up", "Break above 5m PP") === "back" && B.pinkBreak641("btc", LP, 80001, "down", "Break below 5m PP") === "back");
+  T("fix641 a rejection never gets the waiver", B.pinkBreak641("btc", LP, 80010, "up", "Failed break below 5m PP - rejected up") === "" && B.pinkBreak641("btc", LP, 80010, "up", "Rejected up off Green zone") === "");
+  T("fix641 a break the wrong way never gets the waiver", B.pinkBreak641("btc", LP, 80010, "down", "Break above 5m PP") === "");
   G.__inBLC465 = true;
   for (const bk of ["main", "rejection"]) {
     G.__curLabel611 = "Break above 5m PP"; const a = geo("btc", LP, 80010, "up", bk);
-    T(`fix626 [${bk}] pink break long, push met, no flip candle: HER FLIP does not hold it`, !/HER FLIP/.test(a), a || "(clear)");
+    T(`fix641 [${bk}] pink break long, push met, no flip candle: HER FLIP does not hold it`, !/HER FLIP/.test(a), a || "(clear)");
     G.__curLabel611 = "Break above 5m PP"; const c = geo("btc", LP, 79995, "up", bk);
-    T(`fix626 [${bk}] pink break long with price back under the pink is refused`, /PINK BREAK GONE|PINK CUSHION|HER FLIP/.test(c), c || "(clear)");
+    T(`fix641 [${bk}] pink break long with price back under the pink is refused`, /PINK BREAK GONE|PINK CUSHION|HER FLIP/.test(c), c || "(clear)");
     G.__curLabel611 = "Rejected up off Green zone"; const b = geo("btc", LP, 80010, "up", bk);
-    T(`fix626 [${bk}] a rejection with no flip candle is still held by HER FLIP`, /HER FLIP/.test(b) || (b && !/^ERROR/.test(b)), b || "(clear)");
+    T(`fix641 [${bk}] a rejection with no flip candle is still held by HER FLIP`, /HER FLIP/.test(b) || (b && !/^ERROR/.test(b)), b || "(clear)");
   }
   G.__curLabel611 = ""; G.__inBLC465 = false; G.__pivBars = keepB; G.__qtrail_1 = keepT; NOW = keep;
 }

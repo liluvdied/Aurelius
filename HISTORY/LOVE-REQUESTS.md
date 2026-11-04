@@ -2,6 +2,20 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R328 - fix641 (R327 put in whole - the send file had not gone in, and R327 had no checkable proof): a pink break (Break/Close above/below 5m PP) enters the moment price is $5 BTC / 25c gold past the pink - no 2/5m flip needed, at her walls, the send and on resting orders; price back across the pink before the order = refused (PINK BREAK GONE). Rejections still need the flip. Red falling 5m candle still refuses longs. 55% stays. BTC pink tolerance 10% of the channel over $1,000 (15% $500-$1,000 unchanged). Gold over $25 = $3 unchanged.
+- when: 2026-11-04T21:39:01+00:00
+- Love: "Love Nov 4 2026 1:24 PM PT: "Yes. A pink break enters the moment the push is met. Price must still be on the same side of the band at the fill. If it flips before the fill, refuse it at the door. The flip is still required on rejections." + "anything over 1k channel width for btc goes to 10% for pink tolerance." + "for gold anything over $25 goes to $3 for pink tolerance okay" + 1:32 PM: "that's good bb thank you i input it""
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function pinkBreak641("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "pb641 !== \"go\" && !turnFlip530(asset, side, tick)) why = `HER FLIP:"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "pb641c !== \"go\" && !turnFlip530(asset, side, tick)"}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "PINK BREAK GONE AT THE SEND (fix641)"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "G641.__restLabel641 = String((r as any)?.setup || \"\");"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W"}
+- proof: {"test": "tools/behaviour-umpire.cjs"}
+
 ## R327 - A pink break (Break/Close above/below 5m PP) enters the moment price is $5 BTC / 25c gold past the pink - no 2/5m flip needed; price back across the pink before the order = refused (her walls, the send, and resting orders). Rejections still need the flip. Red falling 5m candle still refuses longs. 55% stays. BTC pink tolerance 10% of the channel over $1,000 (15% $500-$1,000 unchanged). Gold over $25 = $3 (already live since 10:41 AM, unchanged).
 - when: 2026-11-04T21:33:51+00:00
 - Love: "Love Nov 4 2026 1:24 PM PT: "Yes. A pink break enters the moment the push is met. Price must still be on the same side of the band at the fill. If it flips before the fill, refuse it at the door. The flip is still required on rejections." + "anything over 1k channel width for btc goes to 10% for pink tolerance." + "for gold anything over $25 goes to $3 for pink tolerance okay""
