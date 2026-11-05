@@ -6,6 +6,19 @@
 #   unlock    lifts the lock on the files named (Love's password), only ever called from a CHANGE-*.command she double-clicked
 # NEVER locked (the live desk writes these while she trades): data/ (except the sealed books below), .secrets/, node_modules/, .git/, every __pycache__.
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# fix732 COMMANDS TAKE TURNS (Love Nov 5 2026 9:43 AM PT: "let's set up a safe path ... so the umpire can't shut down the whole desk if she is doing what she's supposed to be doing"):
+# today's pauses were two CHANGE commands running at once (the umpire saw her code change mid-check). A CHANGE's apply script now holds data/.change-running-732 from its first
+# line to its last; a second CHANGE opened meanwhile waits here and goes by itself the moment the first finishes. A lock left by a closed window (its process gone) is cleared.
+case "$0" in */STAGED-CHANGE-*/apply*.sh)
+  L732="$ROOT/data/.change-running-732"; w732=0
+  while ! mkdir "$L732" 2>/dev/null; do
+    o732=$(cat "$L732/pid" 2>/dev/null)
+    if [ -n "$o732" ] && ! kill -0 "$o732" 2>/dev/null; then rm -rf "$L732"; continue; fi
+    if [ $w732 -eq 0 ]; then echo "WAITING: $(cat "$L732/name" 2>/dev/null || echo "another CHANGE") is still running - this one starts by itself the moment it finishes. Leave this window open."; w732=1; fi
+    sleep 2
+  done
+  echo $$ > "$L732/pid"; basename "$(dirname "$0")" > "$L732/name"; trap 'rm -rf "$L732"' EXIT ;;
+esac
 concrete_scope() {
   cd "$ROOT" || return 1
   find src tools scripts server pine migrations public -type f -not -path "*/__pycache__/*" -not -name ".DS_Store" -not -name "cloudflared*" 2>/dev/null

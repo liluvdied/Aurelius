@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R411 - fix732 COMMANDS TAKE TURNS: today's umpire pauses (12:57, 3:28, 3:44-3:50, 4:01, 5:18, 5:29, 7:13, 8:44, 9:40 AM PT) were all 'her code changed while the umpire ran' - two CHANGE commands running at the same time. Every CHANGE sources tools/concrete.sh first; it now holds a lock (data/.change-running-732) for the whole run, so a second CHANGE opened meanwhile shows WAITING and starts by itself the moment the first finishes. A lock from a closed window clears itself. No umpire check is changed. Run this one ALONE (it cannot protect its own install).
+- when: 2026-11-05T17:52:30+00:00
+- Love: "Love Nov 5 2026 9:43 AM PT: "let's set up a safe path for these two books , so the umpire can't shut down the whole desk if she is doing what she's supposed to be doing" (part A: CHANGE commands take turns)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/concrete.sh", "has": "fix732 COMMANDS TAKE TURNS"}
+- proof: {"test": "tools/take-turns-732.cjs"}
+
 ## R410 - fix730 AKIMBO EXEMPT AT THE WIRE (Love's words, 9:25 AM): a deliberate exception to her Oct 20 immutable wall at the wire, for the akimbo books only (SESSION + PINK and +15M PIVOTS, while live-today is on - it ends with it). Their own opening orders (marked by the copier in enterLive, good 30 s) skip the wall's geometry (red/green zones, pink-to-red top 55%, thirds, the impossibility) so live takes what their paper books take; the seal and the fresh band list / fresh price checks still apply. Two more copier gates stand down for them too: the pink-slide hold (fix658, held the 9:01 and 9:16 BTC shorts) and the not-a-break-above re-check at the order. Since 8:46 these stopped 7 of 8 akimbo calls. KEPT for them: umpire, ENFORCER, LIVE switch, the seal, fresh band list + fresh price at the wire, the stale-call guard (90 s), the -$100 akimbo stop, the -$200 desk stop + give-back, one BTC / one gold position, one ticket per window, hand-trade windows, under 30 s left, the sub-auditor stamp. Supersedes the split 75/76. Umpire, ENFORCER, LIVE switch, daily stops unchanged; every other book and hand orders unchanged. Run after CHANGE-74.
 - when: 2026-11-05T17:39:46+00:00
 - Love: "Love Nov 5 2026 9:30 AM PT: "do your thing bb, pls check against all other potentialities and we will cover them all in one if we need to okay" + 9:25 AM PT: "ohhh so that's whyyy she's not taking anything ? okay GOOD let's fix both / yes / akimbo exempt , 1:1 with their paper records individually- combined ledger pls / my words" (a deliberate exception to her Oct 20 immutable wall at the wire, for the akimbo books only, while live-today is on; + 7:37 AM: "she needs to take the same trades as both books")"
