@@ -1,9 +1,9 @@
 {
- "at": "2026-11-05T02:43:56.076529+00:00",
+ "at": "2026-11-05T03:20:00.820376+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "00a263b6eca6243d"
+  "recon.ts": "f75403100c2b6b11"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -682,6 +682,18 @@
    "by": "Love",
    "quote": "Love Nov 4 2026 6:04 PM PT: \"in regards to the near a band - lets make it 15% of the channel width , the 15% closest to the band is sufficient\" + \"lets lower the pink slide rule to 2 of them instead of 3 while pink is sloped up or down as well pls\" (R346, fix657)",
    "recon.ts": "00a263b6eca6243d"
+  },
+  {
+   "at": "2026-11-05T03:19:40.933032+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 7:02 PM PT: \"yes, let's do that for all refused trades going forward. log the multiple for it, and percentage up/down in the channel. it will tell us which rule was holding her and how we should go about handling\" (R350, fix661)",
+   "recon.ts": "3ffb392fc49feaa7"
+  },
+  {
+   "at": "2026-11-05T03:20:00.820376+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 7:10 PM PT (to \"pass main's label so the push-off-band entry works on main too\"): \"yes\" (R351, fix662)",
+   "recon.ts": "f75403100c2b6b11"
   }
  ],
  "R": "R266",

@@ -1096,6 +1096,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
   const deny = (reason: string, extra: Record<string, unknown> = {}) => {
     if (G.__blQuiet464) return { ok: false as const, reason }; // fix464: her read asks the same walls quietly (no log line per tick)
     try { appendFileSync(D("band-lock.jsonl"), JSON.stringify({ at: new Date().toISOString(), book, asset, side, reason, ...extra }) + "\n"); } catch {}
+    try { G.__refusal661?.({ where: "door", lane: book, asset, side, ticker, label, rule: reason }); } catch {} // fix661: every refused door also goes to her refusal ledger (log only)
     return { ok: false as const, reason };
   };
   if (!(asset === "gold" || asset === "btc")) return deny(`no band feed for ${asset} to verify against - it can't open`);

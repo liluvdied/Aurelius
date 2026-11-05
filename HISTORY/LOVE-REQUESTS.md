@@ -2,6 +2,33 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R352 - fix663: in a pink slide (fix658) her trend side takes any read off the pink - a rejection, a failed break, or a break back across the pink in the slide's direction (Break / Close above 5m PP on a climb, below on a slide); reads off every other band still wait. Every other wall unchanged.
+- when: 2026-11-05T03:20:30+00:00
+- Love: "Love Nov 4 2026 7:10 PM PT (to "during a pink slide, any read off the pink counts - rejection, failed break or break back across the pink in the slide's direction; other bands still held"): "yes""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix663: a break back across the pink"}
+- proof: {"test": "tools/slide-off-pink-663.cjs"}
+
+## R351 - fix662 (a bug in fix655): the three book-level wall checks in recon.ts (why479 log, main + rejection, every other book) now hand the read's label to her walls, so fix655's push-off-the-band entry (push met + 2m her colour = no flip past its open) also works for main and every book - it only reached the rejection book's read before. No new rule.
+- when: 2026-11-05T03:20:00+00:00
+- Love: "Love Nov 4 2026 7:10 PM PT (to "pass main's label so the push-off-band entry works on main too"): "yes""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "String(look.label || \"\") /* fix662"}
+- proof: {"test": "tools/label-to-walls-662.cjs"}
+
+## R350 - fix661 LOG ONLY - every refused trade (her read, the door, the send; every book) also writes one line to data/refusal-ledger.jsonl: where it was refused, the rule and its fix, the book, the asset, her side's live Kalshi ask and multiple (1/ask), price's % in the session-band channel (0 = bottom band, 100 = top), its % from the pink toward the red zone (+) or green zone (-), and the minute into the window. Asynchronous write (never waits on the disk), deduped per rule/book/side/minute; rotated by the 2-hour archive (fix654). Decides nothing.
+- when: 2026-11-05T03:19:40+00:00
+- Love: "Love Nov 4 2026 7:02 PM PT: "yes, let's do that for all refused trades going forward. log the multiple for it, and percentage up/down in the channel. it will tell us which rule was holding her and how we should go about handling""
+- books: every book (log only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/refusal-ledger.ts", "has": "export function refusal661("}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "__refusal661?.({ where: \"read\""}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "__refusal661?.({ where: \"door\""}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "refusal661({ where: \"send\""}
+- proof: {"test": "tools/refusal-ledger-661.cjs"}
+
 ## R349 - fix660 NIGHTLY RESTART: tools/nightly-restart-660.sh runs in the background (nohup; click 9-START-NIGHTLY-RESTART on the Desktop after a Mac restart). Every day at 2:05 PM PT (PLACEHOLDER - gold's daily break; Love to confirm) it saves her, waits until no order is in flight (no order in the last 90 s, nothing mid-try; at most 10 min), stops the desk and starts exactly one (her RESTART - ONE DESK steps), waits for live prices and logs whether the umpire is SAFE and entries are on (data/nightly-restart.jsonl). It never touches LIVE, rules, books, sizes or orders.
 - when: 2026-11-05T02:50:52+00:00
 - Love: "Love Nov 4 2026 6:20 PM PT: (a nightly restart of the desk) "yes""

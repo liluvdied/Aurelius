@@ -7056,5 +7056,30 @@
     "what": "if (heldView.empty < 2 && heldView.rows.length) return heldView.rows.map((r) => ({ ...r, stale: true }));",
     "why": "fix659 (her words in this change's request): the line is replaced by her new version",
     "R": "R348"
+  },
+  {
+    "what": "\"pure-walls.jsonl\", \"order-trail.jsonl\", \"pink-break.jsonl\", \"tick-log.jsonl\", \"band-log.jsonl\", \"slow-ops.jsonl\", \"loop-lag.jsonl\"]",
+    "why": "fix661 (her words in this change's request)",
+    "R": "R350"
+  },
+  {
+    "what": "const why479 = (lane: string, look: { side: string; label: string } | null | undefined): string => { if (!look) return \"\"; try { if (isFlip463(look.label)) return \"a flipped read is never her call (fix463)\"; const L479 = sessionLines(ax, id); if (thirdsRead463(L479, spot, look.side)) return \"HER THIRDS in the read: no long in the top 33% / no short in the bottom 33%, session band to session band (fix463)\"; const pv479 = onePink565R(id, b); if (pv479 && !zoneFree515c(id, look.side, String(look.label)) && pinkRead464(id, L479, spot, look.side, Number(pv479.pp))) return \"THE PINK in the read: an unbroken pink within 15% gold / 20% BTC of the channel (fix464)\"; const G479 = globalThis as any; G479.__blQuiet464 = true; try { const r479: any = bandLockCheck464(lane, id, look.side, String(m.ticker)); if (!r479.ok) return \"HER WALLS in the read (fix464): \" + String(r479.reason || \"\"); } finally { G479.__blQuiet464 = false; } } catch {} return \"\"; }; // fix479",
+    "why": "fix662 (her words in this change's request)",
+    "R": "R351"
+  },
+  {
+    "what": "if (lane === \"recon-tog\" || lane === \"recon-rej\") { try { if (thirdsRead463(sessionLines(ax, id), spot, look.side)) return false; const pv464b = onePink565R(id, b); if (pv464b && !zoneFree515c(id, look.side, String(look.label)) && pinkRead464(id, sessionLines(ax, id), spot, look.side, Number(pv464b.pp))) return false; const G464b = globalThis as any; G464b.__blQuiet464 = true; try { if (!bandLockCheck464(lane, id, look.side, String(m.ticker)).ok) return false; } finally { G464b.__blQuiet464 = false; } } catch {} } // fix464 (R202, Love 1:12 PM PT: \"PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS\"): EVERY read main or rejection books - whatever path it came from (incl. the gold zone pickup) - meets her thirds, the pink both sides and every band tolerance first",
+    "why": "fix662 (her words in this change's request)",
+    "R": "R351"
+  },
+  {
+    "what": "if (lane !== \"recon-tog\" && lane !== \"recon-rej\" && lane !== \"recon-dly\" && lane !== \"recon-dlyk\") { try { if (thirdsRead463(sessionLines(ax, id), spot, look.side)) return false; const pv465 = onePink565R(id, b); if (pv465 && !zoneFree515c(id, look.side, String(look.label)) && pinkRead464(id, sessionLines(ax, id), spot, look.side, Number(pv465.pp))) return false; const G465 = globalThis as any; G465.__blQuiet464 = true; try { if (!bandLockCheck464(lane === \"recon-rnp\" ? \"recon-tog\" /* fix624: the main book's door */ : lane, id, look.side, String(m.ticker)).ok) return false; } finally { G465.__blQuiet464 = false; } } catch {} } // fix465 (R209, Love 1:24 PM PT: \"all books. aside from delayed.\"): every other book's read meets her 33%, the pink both sides and her walls too",
+    "why": "fix662 (her words in this change's request)",
+    "R": "R351"
+  },
+  {
+    "what": "{ const lab658 = String((row as any).label || (row as any).setup || \"\"), pink658 = /5m PP/.test(lab658) && /reject/i.test(lab658); if ((row.side === \"up\" || row.side === \"down\") && (row.asset === \"gold\" || row.asset === \"btc\") && ![\"recon-dly\", \"recon-dlyk\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\" && !pink658) { const on658 = slideBlock658(String(row.asset), row.side === \"up\" ? \"down\" : \"up\"); if (on658) { try { const GL: any = ((globalThis as any).__slide658Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), \"data\", \"slide-pink.jsonl\"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: `PINK SLIDE (fix658): ${row.side === \"up\" ? \"longs\" : \"shorts\"} only off the pink while it slides - ${lab658 || \"this read\"} waits for the pink rejection. (${on658})` }) + \"\\n\"); } } catch {} continue; } } } // fix658 (Love Nov 4 2026 6:09 PM PT: \"the pink slide rule dictates it is longs only while pink is on a slide up, she doesnt short at red, she waits til it gets to pink and rejects, enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down. she waits for it to come to pink and reject and shorts as she normally would. if it doesnt function like that already thats what i would like\"): while the pink slides her way, her trend side enters ONLY off a pink rejection / flip; the other side is already held by the slide / climb holds below",
+    "why": "fix663 (her words in this change's request)",
+    "R": "R352"
   }
 ]
