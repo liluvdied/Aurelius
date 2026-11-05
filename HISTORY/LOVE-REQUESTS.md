@@ -2,6 +2,22 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R397 - fix711 NO FADING A BOLLINGER BREAK PAST HER ZONE: inside her zone wall (zoneSend594 - the door and the last line, where PAST THE GREEN / RED ZONE already lives): once price has broken the 5m Bollinger lower (now or in the last 5 minutes) and sits at or past the green boundary, no long; mirror - after a break above the Bollinger upper, at or past red, no short. Every book but delayed. Cheap entries stay allowed (no ask floor). Replay Oct 19 - Nov 5: fading that break lost every week (BTC 190 trades 26%, -$1,042; gold 134, 31%, -$561); tonight's 4:17 / 4:30 AM BTC longs off the Bollinger lower both lost. Needs CHANGE-57 installed first (same bandlock.ts).
+- when: 2026-11-05T13:28:18+00:00
+- Love: "Love Nov 5 2026 5:12 AM PT, her pick on the guard card: "Bollinger fade block only - No long off the BB lower past green after a break (mirror for shorts past red). Cheap entries stay allowed." (after 5:11 AM PT: "she's all losses ????? too many in a row love can you see what's up?")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function bbFade711("}
+- proof: {"test": "tools/bb-fade-block-711.cjs"}
+
+## R396 - fix710 GOLD WICK IN DOLLARS: her wick rejection without a flip (fix668, 15% since fix693) is a fixed $1 on gold - the 5m candle's high came within $1 of the level and price is $1 back off it - instead of 15% of the channel (gold's σ swung $8-$50; 15% was ~$1.40 this week, $7 on a $50 day). BTC keeps 15% of the channel (its best setting). Every book but delayed (the delayed book still gets no waiver); every other wall unchanged. Replay Oct 19 - Nov 5, real asks: $1 near / $1 back 50%, +$1,047, weeks +$304 / +$524 / +$219.
+- when: 2026-11-05T13:28:11+00:00
+- Love: "Love Nov 5 2026 ~4:33 AM PT: "i was thinking a gold wick of about $1 would be sufficient, could you test individual dollar levels instead? golds band widths vary so much" + 5:11 AM PT: "just $1 bb i already know it's gonna come to $1.11 and im gonna be like wtf / so $1 for the wick rejection on gold is good bb""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const GOLD_WICK710 = 1;"}
+- proof: {"test": "tools/gold-wick-dollar-710.cjs"}
+
 ## R395 - fix709 HALF-BAND KEEP BOOK - PAPER ONLY, 24/7 (never sends an order, in no live list): the original model (PAPER 24/7, auto.ts - session VWAP with the half bands ±0.5σ / ±1.5σ / ±2.5σ beside ±1/±2/±3σ) still runs on paper; this book takes the SAME side of its calls, $20 at the real live ask, but ONLY for set ups her SET UP SCORES panel (CHANGE-55) rates KEEP (7 days 15+ trades, 65%+, made money) or LADDER (24 h more than half, or 7 days 60%+) right now - so the list refines itself through the week and drops set ups that start losing. Right now that is 4 KEEP (gold short tap-reject at -1.5σ 20/23 +$194, BTC long at -0.5σ 17/20 +$137, silver short at +1.5σ 13/16 +$106, gold short at +0.5σ 11/15 +$51) and 15 LADDER. Its own trades are scored on the panel too. The card shows the half bands' live prices for each asset (her TradingView has no half bands). Held to the bell and under her take-profit. Needs CHANGE-55 installed first (same fns/app files) and CHANGE-54 (same engine file).
 - when: 2026-11-05T13:18:00+00:00
 - Love: "Love Nov 5 2026 ~4:20 AM PT: "and the original model used half bands, i don't even have the option for them on my chart. can we create another book that still uses those and then from there refine the set ups on THAT that worked best? by next friday we will have her propped up on concrete""

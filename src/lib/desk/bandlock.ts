@@ -575,11 +575,27 @@ export function sessionBandSend593(asset: string, L: Line[], tick: number, side:
   }
   return "";
 }
+// fix711 NO FADING A BOLLINGER BREAK PAST HER ZONE (Love Nov 5 2026 5:12 AM PT, her pick: "Bollinger fade block only - No long off the BB lower past green after a break (mirror for
+// shorts past red). Cheap entries stay allowed."): once price has broken the 5m Bollinger lower (now, or in the last 5 minutes) and sits at or past her green boundary, no long; once it has
+// broken the Bollinger upper and sits at or past red, no short. Every book but delayed. (Replay Oct 19 - Nov 5: fading that break lost every week - BTC 26%, -$1,042; gold 31%, -$561;
+// tonight 4:17 / 4:30 AM BTC "Rejected up off Bollinger lower" both lost.)
+export function bbFade711(asset: string, tick: number, side: string, r1: number, s1: number): string {
+  try {
+    if (DLY465.has(String(G.__curBook465 || ""))) return "";
+    const z = G.__bbsr?.[asset], bU = Number(z?.bbU) || 0, bL = Number(z?.bbL) || 0; if (!z || Date.now() - Number(z.at) > 20000 || !(tick > 0)) return "";
+    const M = (G.__bb711 ||= {}) as Record<string, number>, now = Date.now();
+    if (bL > 0 && tick < bL) M[asset + ":dn"] = now; if (bU > 0 && tick > bU) M[asset + ":up"] = now;
+    if (side === "up" && s1 > 0 && tick <= s1 && now - (M[asset + ":dn"] || 0) <= 300000) return `BOLLINGER FADE PAST GREEN (fix711): long at ${tick.toFixed(2)} at or past green ${s1.toFixed(2)} after a break below the Bollinger lower (${bL.toFixed(2)}) - no fading the break.`;
+    if (side === "down" && r1 > 0 && tick >= r1 && now - (M[asset + ":up"] || 0) <= 300000) return `BOLLINGER FADE PAST RED (fix711): short at ${tick.toFixed(2)} at or past red ${r1.toFixed(2)} after a break above the Bollinger upper (${bU.toFixed(2)}) - no fading the break.`;
+  } catch {}
+  return "";
+}
 // fix594 HER ZONES (Love Nov 1 2026 9:45 AM PT: "do not count past the green as free and clear. no trades past the green boundary and no trades past the red. and the 55% is the outermost of the channel from pink in both directions. top 55% of the channel from pink to red for longs. bottom 55% of the channel from pink to green for shorts."): the door (strict false) and the last line (strict true) use this one test; both assets; green blocks shorts, red blocks longs; a long off green and a short off red are never flagged here.
 export function zoneSend594(asset: string, L: Line[], tick: number, side: string, strict = true): string {
   const px = (n: string) => Number((L || []).find((l: Line) => String(l.name) === n)?.price) || 0;
   const zP = px("5m PP"), r1 = px("5m R1"), s1 = px("5m S1");
   if (!(tick > 0) || !(zP > 0) || !(r1 > zP) || !(s1 > 0) || !(s1 < zP)) return strict ? "ZONE (fix594): the zones can't be read - no order." : "";
+  { const w711 = bbFade711(asset, tick, side, r1, s1); if (w711) return w711; } // fix711
   if (side === "up") {
     if (tick >= r1) return `PAST THE RED ZONE (fix594): long at ${tick.toFixed(2)} at or past the red boundary ${r1.toFixed(2)} - no long.`;
     if (tick > zP && (tick - zP) / (r1 - zP) >= 0.45) return `PINK TO RED (fix594): long at ${Math.round((tick - zP) / (r1 - zP) * 100)}% of pink ${zP.toFixed(2)} to red ${r1.toFixed(2)} - in the top 55% - no long.`;
@@ -1680,6 +1696,9 @@ export function pushLabel653(asset: string, side: string, tick: number, L: Line[
 // fix668 A REJECTION WITHOUT A FLIP (Love Nov 4 2026 8:23 PM PT: "if price comes up to a band (within 15% of it) , and then price rejects near the band by 20% of the channel width or more , she can enter in , even if the candle hasn't flipped / so if price rejects on a green 5M candle , and the body of the candle pushes down by 20% of the channel width - she can enter short even if the candle hasn't flipped and it is still green okay / inverse for shorts"): this 5m candle came within 15% of the channel of a band (opened on the near side of it) and price is now back on the near side, 20% of the channel or more
 // away from the candle's extreme at the band (its high for a short, its low for a long) - she enters even if no candle has flipped (the 5m can still be green for the short / red for the long). The channel = the session bands either side of that band.
 // Waives only the candle colour / flip checks (HER FLIP, HER CANDLE, price-is-rising/falling, RED FALLING / GREEN RISING 5M in the read); every other wall still judges. The delayed book keeps its flips.
+// fix710 GOLD WICK IN DOLLARS (Love Nov 5 2026 5:11 AM PT: "just $1 bb ... so $1 for the wick rejection on gold is good bb"): gold's band widths swing ($8-$50), so her gold
+// wick rejection is a fixed $1 - the 5m high (low) within $1 of the level and price $1 back off it - instead of 15% of the channel. BTC keeps 15%. (Replay Oct 19 - Nov 5: $1/$1 50%, +$1,047, green all 3 weeks.)
+export const GOLD_WICK710 = 1;
 export function rejBand668(asset: string, side: string, tick: number, L: Line[], hl?: { o?: number; h: number; l: number } | null): { name: string; price: number; w: number } | null {
   try { if (!(tick > 0) || !(side === "up" || side === "down") || DLY465.has(String(G.__curBook465 || ""))) return null;
     const h5 = hl && Number(hl.h) > 0 && Number(hl.l) > 0 ? hl : fiveHLNow(asset), o5 = hl && Number(hl.o) > 0 ? Number(hl.o) : fiveOpenNow(asset); if (!h5 || !(o5 > 0)) return null;
@@ -1687,9 +1706,9 @@ export function rejBand668(asset: string, side: string, tick: number, L: Line[],
     const S = (L || []).filter((l: Line) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name))).map((l: Line) => Number(l.price)).sort((x: number, y: number) => x - y); if (S.length < 2) return null;
     let best: { name: string; price: number; w: number } | null = null, bd = Infinity;
     for (const l of (L || [])) { const P = Number(l.price), nm = String(l.name); if (!(P > 0) || !/σ$|^session VWAP$|^5m PP$|^(Red|Green) zone$|^5m (R1|S1)$|^(Bollinger|BB) (upper|lower)$/.test(nm)) continue;
-      if (side === "down") { const top = S.find((x: number) => x >= P), bot = [...S].reverse().find((x: number) => x < P); if (top === undefined || bot === undefined) continue; const W = top - bot; if (!(W > 0)) continue;
+      if (side === "down") { const top = S.find((x: number) => x >= P), bot = [...S].reverse().find((x: number) => x < P); if (top === undefined || bot === undefined) continue; const W = asset === "gold" ? GOLD_WICK710 / 0.15 : top - bot; if (!(W > 0)) continue;
         if (o5 <= P && Math.abs(hi - P) <= 0.15 * W && tick < P && hi - tick >= 0.15 * W /* fix693: was 0.2 */ && Math.abs(hi - P) < bd) { bd = Math.abs(hi - P); best = { name: nm, price: P, w: W }; } }
-      else { const bot = [...S].reverse().find((x: number) => x <= P), top = S.find((x: number) => x > P); if (top === undefined || bot === undefined) continue; const W = top - bot; if (!(W > 0)) continue;
+      else { const bot = [...S].reverse().find((x: number) => x <= P), top = S.find((x: number) => x > P); if (top === undefined || bot === undefined) continue; const W = asset === "gold" ? GOLD_WICK710 / 0.15 : top - bot; if (!(W > 0)) continue;
         if (o5 >= P && Math.abs(lo - P) <= 0.15 * W && tick > P && tick - lo >= 0.15 * W /* fix693: was 0.2 */ && Math.abs(lo - P) < bd) { bd = Math.abs(lo - P); best = { name: nm, price: P, w: W }; } } }
     return best; } catch { return null; } } // fix668 + fix693 (Love Nov 5 2026 ~2:06 AM PT: "can you lower that to 15% for both pls?!"): the move back off the band is 15% of the channel (was 20%); the 15% tap distance is unchanged
 export function rej668(asset: string, side: string, tick: number, L: Line[], hl?: { o?: number; h: number; l: number } | null): boolean { return !!rejBand668(asset, side, tick, L, hl); } // fix668

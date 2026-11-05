@@ -7651,5 +7651,20 @@
     "what": "if (!why && !tightDn && side === \"down\" && pos <= TH + MARGIN648B) why = `ONLY IN HER THIRD: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no short in the bottom ${thTxt}%, over the unbroken band below.`;",
     "why": "fix703 (her words in this change's request)",
     "R": "R390"
+  },
+  {
+    "what": "if (side === \"down\") { const top = S.find((x: number) => x >= P), bot = [...S].reverse().find((x: number) => x < P); if (top === undefined || bot === undefined) continue; const W = top - bot; if (!(W > 0)) continue;",
+    "why": "fix710 (her words in this change's request)",
+    "R": "R396"
+  },
+  {
+    "what": "else { const bot = [...S].reverse().find((x: number) => x <= P), top = S.find((x: number) => x > P); if (top === undefined || bot === undefined) continue; const W = top - bot; if (!(W > 0)) continue;",
+    "why": "fix710 (her words in this change's request)",
+    "R": "R396"
+  },
+  {
+    "what": "t(!B.rej668(\"gold\", \"down\", 4117.2, LG, { o: 4114, h: 4119.8, l: 4113.9 }), \"gold: $2.60 back down (needs $3, fix693 15%) counted\"); t(B.rej668(\"gold\", \"down\", 4116.5, LG, { o: 4114, h: 4119.8, l: 4113.9 }), \"gold: $3.30 back down (15% = $3, fix693) was not hers\");",
+    "why": "fix710 (her words in this change's request)",
+    "R": "R396"
   }
 ]
