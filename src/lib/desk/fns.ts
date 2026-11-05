@@ -2347,3 +2347,16 @@ export const getSkips697 = createServerFn({ method: "GET" }).handler(async () =>
 export const flagSkip697 = createServerFn({ method: "POST" })
   .validator((input: { id: string; note?: string; line?: string }) => { armGate524("flagSkip697"); if (!input || typeof input.id !== "string" || !input.id) throw new Error("id"); return { id: String(input.id).slice(0, 120), note: String(input.note || "").slice(0, 500), line: String(input.line || "").slice(0, 600) }; })
   .handler(async ({ data }) => { try { const m = await import("./skips"); return { ok: m.flagSkip697(data.id, data.note, data.line) }; } catch { return { ok: false }; } });
+// fix704 MOMENTUM BOOK paper book (Love Nov 5 2026 3:31 AM PT: "all of em bb !!"), summarised on the server.
+export const getMomentum704 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./momentum"); return m.momentumSummary704(); } catch { return null; } });
+// fix707 HIGH MULTIPLE BOOK + TRACKER (Love Nov 5 2026 ~4:10 AM PT), summarised on the server.
+export const getHighMult707 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./hmulti"); return m.highMultSummary707(); } catch { return null; } });
+// fix708 SET UP SCORES - every book, her framework (Love Nov 5 2026 ~4:20 AM PT: "were you able to to get the stats system scoring under that framework again?"). Read only:
+// serves data/setup-scores-708.json and, when it is older than 10 minutes, rebuilds it in the background (tools/setup-scores-708.py, niced, one run at a time).
+export const getSetupScores708 = createServerFn({ method: "GET" }).handler(async () => {
+  const p = join(process.cwd(), "data", "setup-scores-708.json");
+  try { const age = Date.now() - statSync(p).mtimeMs; if (age > 600000) throw new Error("old"); } catch { try { const { spawn } = await import("node:child_process"); spawn("nice", ["-n", "19", "python3", "tools/setup-scores-708.py"], { cwd: process.cwd(), detached: true, stdio: "ignore" }).unref(); } catch {} }
+  try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; }
+});
+// fix709 HALF-BAND KEEP BOOK paper book (Love Nov 5 2026 ~4:20 AM PT), summarised on the server.
+export const getHalfBand709 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./halfband"); return m.halfBandSummary709(); } catch { return null; } });

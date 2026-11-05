@@ -25,11 +25,15 @@ import { SitRep, explainExit, explainTake, whyTrade } from "@/components/desk/si
 import { SettingsDrawer } from "@/components/desk/settings-drawer";
 import { RsiBooks672 } from "@/components/desk/rsi-books"; // fix672
 import { RungStats680 } from "@/components/desk/stats-rungs"; // fix680
+import { SetupScores708 } from "@/components/desk/setup-scores"; // fix708
 import { Skips697 } from "@/components/desk/skips"; // fix697
 import { EthBook682 } from "@/components/desk/eth-book"; // fix682
 import { Og1012Card } from "@/components/desk/og-1012"; // fix686
 import { BrkOut687 } from "@/components/desk/brk-out"; // fix687
 import { Inverse688 } from "@/components/desk/inverse-book"; // fix688
+import { Momentum704 } from "@/components/desk/momentum-book"; // fix704
+import { HighMult707 } from "@/components/desk/high-multiple"; // fix707
+import { HalfBand709 } from "@/components/desk/half-band"; // fix709
 import { Club690 } from "@/components/desk/club"; // fix690
 import { MainVwap694 } from "@/components/desk/mainvwap"; // fix694
 import { RejParked695 } from "@/components/desk/rejparked"; // fix695
@@ -2231,6 +2235,7 @@ export function DeskApp() {
           />
         ) : null}
         {bookTab === "stats" ? <RungStats680 /> : null}
+        {bookTab === "stats" ? <SetupScores708 /> : null} {/* fix708 every book's set ups, her framework */}
 
         {bookTab === "cash" ? (
           <CashBook
@@ -4032,6 +4037,9 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
       <Og1012Card /> {/* fix686 OG ORIGINAL · 10.12 - paper, sealed */}
       <BrkOut687 /> {/* fix687 OUTWARD BREAK - paper only */}
       <Inverse688 /> {/* fix688 INVERSE BOOK - paper only */}
+      <Momentum704 /> {/* fix704 MOMENTUM BOOK - paper only */}
+      <HighMult707 /> {/* fix707 HIGH MULTIPLE BOOK + TRACKER - paper only */}
+      <HalfBand709 /> {/* fix709 HALF-BAND KEEP BOOK - paper only */}
       <Club690 /> {/* fix690 70% CLUB - paper only */}
       <MainVwap694 /> {/* fix694 MAIN VWAP SIDE - paper only */}
       <RejParked695 /> {/* fix695 REJECTION PARKED SIDE - paper only */}

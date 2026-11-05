@@ -3772,6 +3772,12 @@ async function tick() {
     import("./inverse").then((m) => m.inverseTick688(snap.assets)).catch(() => {});
     // fix705 AT THE PINK TAP (Love Nov 5 2026 ~3:54 AM PT: "can you update her loggings to say why she didn't enter AT the rejection of pink?"). LOG ONLY.
     import("./pinktap").then((m) => m.pinkTapTick705(snap.assets)).catch(() => {});
+    // fix704 MOMENTUM BOOK (Love Nov 5 2026 3:31 AM PT: "all of em bb !!"). PAPER ONLY (momentum.ts never sends an order).
+    import("./momentum").then((m) => m.momentumTick704(snap.assets)).catch(() => {});
+    // fix707 HIGH MULTIPLE BOOK (Love Nov 5 2026 ~4:10 AM PT: "let's create a high multiple book too pls. only takes 2.8x +"). PAPER ONLY, 24/7.
+    import("./hmulti").then((m) => m.highMultTick707(snap.assets)).catch(() => {});
+    // fix709 HALF-BAND KEEP BOOK (Love Nov 5 2026 ~4:20 AM PT: "can we create another book that still uses those [half bands]"). PAPER ONLY, 24/7.
+    import("./halfband").then((m) => m.halfBandTick709(snap.assets)).catch(() => {});
     // fix690 70% CLUB (Love Nov 5 2026 ~1:28 AM PT: "only taking the set ups that won over 70%"). PAPER ONLY (club.ts never sends an order).
     import("./club").then((m) => m.clubTick690(snap.assets)).catch(() => {});
     // fix694 MAIN VWAP SIDE (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"). PAPER ONLY (mainvwap.ts never sends an order).

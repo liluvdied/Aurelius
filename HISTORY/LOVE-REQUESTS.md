@@ -2,6 +2,42 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R395 - fix709 HALF-BAND KEEP BOOK - PAPER ONLY, 24/7 (never sends an order, in no live list): the original model (PAPER 24/7, auto.ts - session VWAP with the half bands ±0.5σ / ±1.5σ / ±2.5σ beside ±1/±2/±3σ) still runs on paper; this book takes the SAME side of its calls, $20 at the real live ask, but ONLY for set ups her SET UP SCORES panel (CHANGE-55) rates KEEP (7 days 15+ trades, 65%+, made money) or LADDER (24 h more than half, or 7 days 60%+) right now - so the list refines itself through the week and drops set ups that start losing. Right now that is 4 KEEP (gold short tap-reject at -1.5σ 20/23 +$194, BTC long at -0.5σ 17/20 +$137, silver short at +1.5σ 13/16 +$106, gold short at +0.5σ 11/15 +$51) and 15 LADDER. Its own trades are scored on the panel too. The card shows the half bands' live prices for each asset (her TradingView has no half bands). Held to the bell and under her take-profit. Needs CHANGE-55 installed first (same fns/app files) and CHANGE-54 (same engine file).
+- when: 2026-11-05T13:18:00+00:00
+- Love: "Love Nov 5 2026 ~4:20 AM PT: "and the original model used half bands, i don't even have the option for them on my chart. can we create another book that still uses those and then from there refine the set ups on THAT that worked best? by next friday we will have her propped up on concrete""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/halfband.ts", "has": "export async function halfBandTick709("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.halfBandTick709(snap.assets)"}
+- proof: {"test": "tools/half-band-709.cjs"}
+
+## R394 - fix708 SET UP SCORES - EVERY BOOK, HER FRAMEWORK (display / read only): a new panel on the STATS tab in the old RETESTS look. Every current book - MAIN, REJECTION, REJ ONLY · NO PINK, DELAYED, REJECTION · THIRDS AS READ, HALF BANDS · ORIGINAL PAPER 24/7 (the original model's ±0.5/1.5/2.5σ bands), INVERSE, MOMENTUM, HIGH MULTIPLE and the HALF-BAND KEEP book - each set up ranked with wins/trades, hit %, $ and a badge, rolling 24 hours or 7 days: KEEP = 7 days 15+ trades, 65%+ and made money (her rule) · LADDER = 24 h more than half (3+) or 7 days 60%+ (10+) · CUT = 7 days lost more than it won (5+) · WATCH = the rest. Built by tools/setup-scores-708.py from the books' own settled paper rows (archive read incrementally), refreshed at most every 10 minutes while the tab is open. Never touches trading. Needs CHANGE-54 installed first (same fns/app files).
+- when: 2026-11-05T13:17:50+00:00
+- Love: "Love Nov 5 2026 ~4:20 AM PT: "these are good finds bb, let's give them all the attention they deserve and track all of them throughout the week... were you able to to get the stats system scoring under that framework again? we will be able to refine from there within 24 hours.""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/setup-scores-708.py", "has": "fix708 SETUP SCORES - EVERY BOOK, HER FRAMEWORK"}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "export const getSetupScores708"}
+- proof: {"test": "tools/setup-scores-708.cjs"}
+
+## R393 - fix707 HIGH MULTIPLE BOOK + TRACKER - PAPER ONLY, 24/7 (never sends an order, in no live list): (1) REVERSAL AT THE FARTHEST BAND (her read): price ripped through 1+ session bands in the last 15 minutes, reached the next band out (within 5% of the channel - the most distant band of the move, not the nearest) and came back 10% of the channel -> the other way; (2) WITH THE RIP twin (replay Oct 19 - Nov 5: BTC 2.8-5x with a 1+ band rip 51%, +$817; betting against rips lost): still past the last band crossed -> with it. ONLY at a real live ask of 35.7c or less (2.8x+), $20 paper, once per way per window, 2+ min left, held to the bell and under her TP. Every trade logs its hour (PT), σ in bps, bands crossed and the 15-minute range in σ. (3) HIGH-MULTIPLE TRACKER on the same card: every 2.8x+ winner from every book in the last 7 days (her paper rows) with hour and σ context, plus a per-hour tally. Needs CHANGE-52 installed first (same engine/fns/app files).
+- when: 2026-11-05T13:17:39+00:00
+- Love: "Love Nov 5 2026 ~4:10 AM PT: "anddd i want to start tracking when high multiple trades hit bb. im guessing its at the most volatile hours when price rips thru a band or two and stops at the next and reverses. when bands are tight she caught 4 20x + in a row in one afternoon. let's create a high multiple book too pls. only takes 2.8x +. takes the most distant band trade, not the closest. thaaat on volatile hours. i THINK but let's see. we can leave it running 24/7, over the week we will see the pattern""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/hmulti.ts", "has": "export async function highMultTick707("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.highMultTick707(snap.assets)"}
+- proof: {"test": "tools/high-multiple-707.cjs"}
+
+## R392 - fix704 MOMENTUM BOOK - PAPER ONLY (never sends an order, in no live list): the top 'go with it' edges of the Nov 5 sweep (data/reports/dumb-inverse-sweep-nov6.md, Oct 19 - Nov 5 at real logged asks): gold WITH the first 2 minutes of the window (265 trades, 60% at 57c, +$397), BTC WITH a fresh 1m green close up through pink (221, 52% at 49c, +$172), BTC SHORT on a red 1m close under -2σ (41, 63% at 52c, +$142), gold chasing a 1σ+ 2-minute run (thin, flagged). $20 paper at the real live ask of its side, once per setup per window, only with 2+ minutes left; scored held to the bell and under her take-profit; each row marks whether it passes her 1.5x floor. New card on the Books page beside INVERSE BOOK. Needs CHANGE-51 installed first (same engine file). Her books, walls and settings untouched.
+- when: 2026-11-05T13:17:30+00:00
+- Love: "Love Nov 5 2026 3:31 AM PT: "all of em bb !!" (to the MOMENTUM paper book from the how-dumb-can-we-go sweep: gold with the first 2 minutes, BTC with a fresh break up through pink, BTC short under -2σ while falling, gold chasing a 1σ run)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/momentum.ts", "has": "export async function momentumTick704("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.momentumTick704(snap.assets)"}
+- proof: {"test": "tools/momentum-book-704.cjs"}
+
 ## R391 - fix705 AT THE PINK TAP - LOG ONLY: the moment price taps her pink (within 5% of its session channel) and turns back the way it came (7.5% off pink, not a break), it writes for main, rejection, no-pink (and the thirds-as-read twin once CHANGE-50 is in) why she did NOT enter at that second: her read not formed yet (no 2/5m candle flipped her way, wick back off pink under her 15%) or the first wall that held the read at that second (pink cushion, 55%, thirds, floor, $10 level...), with the ask at the tap - so the log shows the reason AT the rejection, not the later 'too high'. Lines go into her refusal ledger (where: pink-tap) so SITREP shows them, and into data/pink-tap-705.jsonl. Nothing about when or how she trades changes.
 - when: 2026-11-05T12:05:41+00:00
 - Love: "Love Nov 5 2026 ~3:54 AM PT: "and gold never longing a pink rejection, can you update her loggings to say why she didn't enter AT the rejection of pink? not that it was too high up? that is the reason we need logged.""
