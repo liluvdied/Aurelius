@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R391 - fix705 AT THE PINK TAP - LOG ONLY: the moment price taps her pink (within 5% of its session channel) and turns back the way it came (7.5% off pink, not a break), it writes for main, rejection, no-pink (and the thirds-as-read twin once CHANGE-50 is in) why she did NOT enter at that second: her read not formed yet (no 2/5m candle flipped her way, wick back off pink under her 15%) or the first wall that held the read at that second (pink cushion, 55%, thirds, floor, $10 level...), with the ask at the tap - so the log shows the reason AT the rejection, not the later 'too high'. Lines go into her refusal ledger (where: pink-tap) so SITREP shows them, and into data/pink-tap-705.jsonl. Nothing about when or how she trades changes.
+- when: 2026-11-05T12:05:41+00:00
+- Love: "Love Nov 5 2026 ~3:54 AM PT: "and gold never longing a pink rejection, can you update her loggings to say why she didn't enter AT the rejection of pink? not that it was too high up? that is the reason we need logged.""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pinktap.ts", "has": "export async function pinkTapTick705("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.pinkTapTick705(snap.assets)"}
+- proof: {"test": "tools/pink-tap-log-705.cjs"}
+
 ## R390 - fix703 REJECTIONS · THIRDS AS READ - PAPER ONLY (never sends an order, in no live list): a new card that is the REJECTION book's exact read and walls with ONE thirds judgment - the one her read made. Tonight her read said 'Green candle rising from the bottom third' (the 5m candle's low, -2σ -> VWAP) and then HER THIRDS said 'no long in the top 33%' (price now, nearest session lines) - two thirds disagreeing. On this paper book a candle-in-her-third / launched-from read keeps its own third, any other read is judged once on the read's own session-band channel, and the door's ONLY IN HER THIRD / THE IMPOSSIBILITY percent lines stand down (a flag set only around this book's own door check). Pink in the read, pink cushion, 55%, flip, floor, $10 level, Bollinger, zones, top/bottom line all judge it as REJECTION. Every held read writes its reason to recon-skips. Her live books and walls behave byte-for-byte as before (the flag is never on for them). Replay so far: about coin-flip on the extra trades (BTC 53%, gold 50%) - the week on paper decides (Nov 11).
 - when: 2026-11-05T12:00:08+00:00
 - Love: "Love Nov 5 2026 ~3:43 AM PT: "YES pls fix the two thirds that disagree !!!! that's been happening all week !!" (built first as a paper twin of REJECTION, to decide Nov 11; the live version waits for her pick)"

@@ -3770,6 +3770,8 @@ async function tick() {
     import("./brkout").then((m) => m.brkOutTick687(snap.assets)).catch(() => {});
     // fix688 INVERSE BOOK (Love Nov 5 2026 ~1:05 AM PT: "can you create the inverse set ups book i asked you about earlier too?"). PAPER ONLY (inverse.ts never sends an order).
     import("./inverse").then((m) => m.inverseTick688(snap.assets)).catch(() => {});
+    // fix705 AT THE PINK TAP (Love Nov 5 2026 ~3:54 AM PT: "can you update her loggings to say why she didn't enter AT the rejection of pink?"). LOG ONLY.
+    import("./pinktap").then((m) => m.pinkTapTick705(snap.assets)).catch(() => {});
     // fix690 70% CLUB (Love Nov 5 2026 ~1:28 AM PT: "only taking the set ups that won over 70%"). PAPER ONLY (club.ts never sends an order).
     import("./club").then((m) => m.clubTick690(snap.assets)).catch(() => {});
     // fix694 MAIN VWAP SIDE (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"). PAPER ONLY (mainvwap.ts never sends an order).
