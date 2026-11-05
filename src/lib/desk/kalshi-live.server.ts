@@ -313,7 +313,8 @@ async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding
   if (!reduceOnly) {
     try {
       const lb = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook;
-      const books = lb ? (Array.isArray(lb.books) ? lb.books : lb.book ? [lb.book] : []) : [];
+      let lt723o = ""; try { const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); if (j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === "string") lt723o = j.book; } catch {} // fix723: the one live book today passes the order lock too
+      const books = lt723o ? [lt723o] : lb ? (Array.isArray(lb.books) ? lb.books : lb.book ? [lb.book] : []) : [];
       if (books.length && !books.includes(line?.bookCopy)) {
         sent.__aureliusBlock = `Blocked. Only ${books.map((b) => String(b).toUpperCase()).join(" + ")} go live right now.`;
         return null;
@@ -1255,7 +1256,10 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
     liveBook = null;
   }
   const bookCopy = typeof opts?.bookCopy === "string" ? opts.bookCopy : "";
-  const liveBooks = liveBook ? (Array.isArray(liveBook.books) ? liveBook.books : liveBook.book ? [liveBook.book] : []) : [];
+  // fix723 (Love Nov 5 2026 7:02 AM PT: "that's 2 she missed, did she turn on?"): while ONE BOOK LIVE TODAY is on (data/live-today.json), its book is the live book here too -
+  // fix717 set the copier and the walls but this send step still read her normal lineup and refused it as "not a live book" (6:46 AM gold long, 7:00 AM gold short).
+  let lt723 = ""; try { const j723 = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); if (j723?.on === true && Date.now() < Date.parse(String(j723.until)) && typeof j723.book === "string") lt723 = j723.book; } catch {}
+  const liveBooks = lt723 ? [lt723] : liveBook ? (Array.isArray(liveBook.books) ? liveBook.books : liveBook.book ? [liveBook.book] : []) : [];
   if (liveBooks.length && !bookCopy) return { status: "blocked", reason: `${liveBooks.map((b) => String(b).toUpperCase()).join(" + ")} only right now (Love's call)` };
   if (bookCopy && !liveBooks.includes(bookCopy)) return { status: "blocked", reason: `${bookCopy} is not a live book` };
   // New lock (Oct 3, Love): ONLY a named live book can open a position. The Grok-era prime / paper copy routes are gone.

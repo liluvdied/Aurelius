@@ -3784,6 +3784,8 @@ async function tick() {
     import("./hmulti").then((m) => m.highMultTick707(snap.assets)).catch(() => {});
     // fix709 HALF-BAND KEEP BOOK (Love Nov 5 2026 ~4:20 AM PT: "can we create another book that still uses those [half bands]"). PAPER ONLY, 24/7.
     import("./halfband").then((m) => m.halfBandTick709(snap.assets)).catch(() => {});
+    // fix713 CUP BOOK (Love Nov 5 2026 ~5:38 AM PT: "is there a way we can have her gauge candle formations?"). PAPER ONLY, 24/7.
+    import("./cups").then((m) => m.cupTick713(snap.assets)).catch(() => {});
     // fix690 70% CLUB (Love Nov 5 2026 ~1:28 AM PT: "only taking the set ups that won over 70%"). PAPER ONLY (club.ts never sends an order).
     import("./club").then((m) => m.clubTick690(snap.assets)).catch(() => {});
     // fix694 MAIN VWAP SIDE (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"). PAPER ONLY (mainvwap.ts never sends an order).

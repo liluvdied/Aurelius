@@ -7681,5 +7681,30 @@
     "what": "const books = cfg ? (Array.isArray(cfg.books) ? cfg.books : cfg.book ? [cfg.book] : []) : [];",
     "why": "fix717 (her words in this change's request)",
     "R": "R398"
+  },
+  {
+    "what": "const books = lb ? (Array.isArray(lb.books) ? lb.books : lb.book ? [lb.book] : []) : [];",
+    "why": "fix723 (her words in this change's request)",
+    "R": "R399"
+  },
+  {
+    "what": "const liveBooks = liveBook ? (Array.isArray(liveBook.books) ? liveBook.books : liveBook.book ? [liveBook.book] : []) : [];",
+    "why": "fix723 (her words in this change's request)",
+    "R": "R399"
+  },
+  {
+    "what": "FILES = {\"inverse-book-688.json\": (\"INVERSE BOOK\", \"setup\"), \"momentum-book-704.json\": (\"MOMENTUM BOOK\", \"setup\"), \"high-multiple-707.json\": (\"HIGH MULTIPLE BOOK\", \"way\"), \"half-band-709.json\": (\"HALF-BAND KEEP BOOK\", \"setup\")}",
+    "why": "fix713 (her words in this change's request)",
+    "R": "R400"
+  },
+  {
+    "what": "const len = size - c.size;",
+    "why": "fix719 (her words in this change's request)",
+    "R": "R403"
+  },
+  {
+    "what": "readSync(fd, buf, 0, len, c.size);",
+    "why": "fix719 (her words in this change's request)",
+    "R": "R403"
   }
 ]

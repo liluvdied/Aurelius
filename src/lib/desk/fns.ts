@@ -1233,6 +1233,7 @@ async function nightLightCached(): Promise<NightRow[]> {
   for (const r of all) if (isOld(r)) m.set((r as any).id, r);
   for (const r of all) if (!isOld(r)) m.set((r as any).id, r);
   const rows = [...m.values()];
+  try { const p721 = await import("./paperrows"); for (const r of p721.paperBookRows721()) rows.push(r as any); } catch {} // fix721: tonight's paper books as regular cards (display only)
   // FIVEY + 1-2-3 BOOK (fix212, Oct 25 ~2:20 PM PT, Love: "i want to look at her trades / let's have the new 123 book have its own card with its own ledger"): her live Polymarket 5m trades as two cards
   try { for (const r of fiveNightRows()) rows.push(r as NightRow); } catch {}
   gS.__shiftLight = { at: Date.now(), rows };
@@ -2360,3 +2361,19 @@ export const getSetupScores708 = createServerFn({ method: "GET" }).handler(async
 });
 // fix709 HALF-BAND KEEP BOOK paper book (Love Nov 5 2026 ~4:20 AM PT), summarised on the server.
 export const getHalfBand709 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./halfband"); return m.halfBandSummary709(); } catch { return null; } });
+// fix713 CUP BOOK paper book (Love Nov 5 2026 ~5:38 AM PT), summarised on the server.
+export const getCups713 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./cups"); return m.cupSummary713(); } catch { return null; } });
+// fix722 LIVE TODAY ON TOP (Love Nov 5 2026 ~6:54 AM PT: "can you put her in the running table? super hard to find her"): read only - the one live book from data/live-today.json
+// and its live trades since midnight PT (her Kalshi fills, the same count the daily stop uses).
+export const getLiveToday722 = createServerFn({ method: "GET" }).handler(async () => {
+  try {
+    const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8"));
+    const on = j?.on === true && Date.now() < Date.parse(String(j.until));
+    if (!on) return { on: false };
+    const nowPT = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })), mid = new Date(nowPT); mid.setHours(0, 0, 0, 0);
+    const since = Date.now() - (nowPT.getTime() - mid.getTime());
+    let tr: any[] = []; try { tr = (await import("./riskguard")).liveTrades().filter((t: any) => t.book === j.book && Date.parse(String(t.first)) >= since); } catch {}
+    const pnl = tr.reduce((s: number, t: any) => s + (Number(t.pnl) || 0), 0);
+    return { on: true, book: String(j.book), name: String(j.name || j.book), until: String(j.until), stopAt: Number(j.stopAt) < 0 ? Number(j.stopAt) : null, n: tr.length, w: tr.filter((t: any) => Number(t.pnl) > 0).length, l: tr.filter((t: any) => Number(t.pnl) <= 0).length, pnl: Math.round(pnl * 100) / 100, stopped: Number(j.stopAt) < 0 && pnl <= Number(j.stopAt), recent: tr.slice(-8).reverse().map((t: any) => ({ first: t.first, ticker: t.ticker, pnl: t.pnl })) };
+  } catch { return { on: false }; }
+});

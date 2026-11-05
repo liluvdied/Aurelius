@@ -18,6 +18,7 @@ import { PositionsTab } from "@/components/desk/kalshi-positions";
 import { pointsFromFills, pointsFromPrime, TapeBook } from "@/components/desk/kalshi-tape";
 import { HedgeBook } from "@/components/desk/hedge-book";
 import { ScheduleLiveCard } from "@/components/desk/schedule-live";
+import { LiveToday722 } from "@/components/desk/live-today"; // fix722
 import { LookPanel } from "@/components/desk/look-panel";
 import { Positions } from "@/components/desk/positions";
 import { ScaleBook } from "@/components/desk/scale";
@@ -34,6 +35,7 @@ import { Inverse688 } from "@/components/desk/inverse-book"; // fix688
 import { Momentum704 } from "@/components/desk/momentum-book"; // fix704
 import { HighMult707 } from "@/components/desk/high-multiple"; // fix707
 import { HalfBand709 } from "@/components/desk/half-band"; // fix709
+import { Cups713 } from "@/components/desk/cup-book"; // fix713
 import { Club690 } from "@/components/desk/club"; // fix690
 import { MainVwap694 } from "@/components/desk/mainvwap"; // fix694
 import { RejParked695 } from "@/components/desk/rejparked"; // fix695
@@ -3343,6 +3345,15 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     { book: "recon-togp-fresh", title: "RECONSTRUCTED 🧬 · NO PINK · FRESH SLATE ✨ (since 2:30 PM Oct 26)", note: "fix288 (Love, Oct 26 2:31 PM: \"can we get a fresh card for this model too? she should have a clean record\"): the no-pink copy's own trades from 2:30 PM PT Oct 26 only - after fix284-286 (free re-aim, $25 Bollinger cushion, no fake-out floor). Same trades as the NO PINK card, fresh ledger." },
     { book: "recon-togp", title: "RECONSTRUCTED 🧬 · TOGETHER · NO PINK", note: "fix281 (Love, Oct 26 1:10 PM): the main book copied 1:1 - her exact booked call each window, same walls, same door and wire - with only pink (5m PP) breaks and rejections left out. Live in her rejection hours in place of the rejection model; paper the rest." },
     { book: "recon-rjt3" as any, title: "RECONSTRUCTED 🧬 · REJECTIONS ONLY · THIRDS AS READ 🧪", note: "fix703 (Love, Nov 5 3:43 AM: \"YES pls fix the two thirds that disagree !!!! that's been happening all week !!\"): REJECTION's exact read and walls, but her thirds judged once - where the read judged them (a candle-in-her-third read keeps its own third; any other read is judged on the read's session-band channel). The door's ONLY IN HER THIRD / IMPOSSIBILITY percent lines stand down for this book only. Paper - decide Nov 11." },
+    { book: "mom704" as any, title: "MOMENTUM BOOK · GO WITH IT (paper)", note: "fix704 paper: gold with the first 2 minutes, BTC with a fresh pink break up, BTC short under -2σ while falling, gold 1σ chase. $20 at the real ask. Card added by fix721 (display only)." },
+    { book: "hm707-rev" as any, title: "HIGH MULTIPLE · REVERSAL AT THE FARTHEST BAND (paper)", note: "fix707 paper: after a rip through 1+ bands, the turn back at the farthest band, 2.8x+ asks only. Card added by fix721 (display only)." },
+    { book: "hm707-rip" as any, title: "HIGH MULTIPLE · WITH THE RIP (paper)", note: "fix707 paper twin: still past the last band crossed, with the rip, 2.8x+ asks only. Card added by fix721 (display only)." },
+    { book: "inv688" as any, title: "INVERSE BOOK · HER LOSING SET UPS, FLIPPED (paper)", note: "fix688 paper: the other side of her listed losing set ups (data/inverse-setups.json). Card added by fix721 (display only)." },
+    { book: "club690" as any, title: "70% CLUB · HER BEST SET UPS (paper)", note: "fix690 paper: CLUB 70 / HER RULE / HER LADDER lists from the past 14 days. Card added by fix721 (display only)." },
+    { book: "hb709" as any, title: "HALF-BAND KEEP BOOK (paper)", note: "fix709 paper: PAPER 24/7's half-band calls, only the set ups SET UP SCORES rate KEEP or LADDER. Card added by fix721 (display only)." },
+    { book: "cup713" as any, title: "CUP BOOK · CUPS, HANDLES, DOUBLES (paper)", note: "fix713 paper: cup, inverted cup, cup & handle, double bottom / top on 1m and 2m. Card added by fix721 (display only)." },
+    { book: "mv694" as any, title: "MAIN · VWAP SIDE ONLY (paper)", note: "fix694 paper: main's calls on the VWAP side only. Card added by fix721 (display only)." },
+    { book: "rp695" as any, title: "REJECTION · PARKED SIDE (paper)", note: "fix695 paper: rejection's calls on the parked side. Card added by fix721 (display only)." },
     { book: "recon-rjnp" as any, title: "RECONSTRUCTED 🧬 · REJECTIONS ONLY · NO PINK", note: "fix643 (Love, Nov 4 2:10 PM: \"a new rejection only model with pink excluded as well. she only trades rejections of session bands, red/green zones and bollingers. nothing else.\"): rejections only off the session bands, green / red zone and Bollingers, on a 2/5m candle turned or born her colour after the push. No pink trades, no breaks. Main's thirds, pink wall and door. Paper." },
     { book: "recon-rej", title: "RECONSTRUCTED 🧬 · REJECTIONS ONLY", note: "Her Oct 20 twin: only rejections - shorts off the band above, longs off the band below, candle flips and zone flips included, every break muted. Every trade ends up coming back, most of the time. Paper, same door as her siblings." },
     { book: "brk-sess", title: "NEW 🆕 · BREAK BOOK · SESSION ONLY (paper)", note: "Breaks only: a 1m close or a live $5 / 92c push through a session band, entered in the break's direction; no band between price and the strike. Paper, $20." },
@@ -3513,6 +3524,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     // NEW ONES (Love, Oct 15 ~3:30 PM PT: "place the ones we have running under one roof... make a new tab for NEW ONES").
     // First in the list so these cards live here even when another family's pattern would also match them.
     ["RECONSTRUCTED 🧬", (b) => ["recon-fresh", "recon-togp-fresh", "recon-rnp-fresh" /* fix625 */, "recon-all", "recon-dly", "recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-togp"].includes(b)],
+    ["TONIGHT'S PAPER 🧪", (b) => ["mom704", "hm707-rev", "hm707-rip", "inv688", "club690", "hb709", "cup713", "mv694", "rp695"].includes(b)], // fix721
     ["NEW ONES 🆕", (b) => ["ogp5-sess", "ogp5-c1", "ogp5-c5", "ogp5-hrs", "ogp5-bbsr", "ogp5-dly", "supernova", "ogp5-r15", "ogp5-r30", "ogp5-cb", "ogp5-fast", "ogp5-gw", "ogp5-inv", "ogp5-boll", "ogp5-lock", "ogp5-btco", "ogp5-pv", "brk-sess", "brk-sesspk", "brk-sessrj", "brk5", "brk10", "brk15", "gold-rg"].includes(b)],
     ["HER LINEUP 🪞 TWINS", (b) => /^tw/.test(b) && b !== "twtog"],
     ["BRICK", (b) => /^brick/.test(b) || b === "b11"],
@@ -3938,6 +3950,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   );
   return (
     <section className="rounded-[22px] border border-white/25 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
+      <LiveToday722 /> {/* fix722 the one live book today, pinned on top */}
       <ScheduleLiveCard /> {/* fix385 (Love Oct 28 2026 12:04 PM PT): the new schedule, live trades only, labelled by book */}
       <div className="flex items-baseline justify-between gap-3">
         <div className="flex items-center justify-between gap-2">
@@ -4040,6 +4053,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
       <Momentum704 /> {/* fix704 MOMENTUM BOOK - paper only */}
       <HighMult707 /> {/* fix707 HIGH MULTIPLE BOOK + TRACKER - paper only */}
       <HalfBand709 /> {/* fix709 HALF-BAND KEEP BOOK - paper only */}
+      <Cups713 /> {/* fix713 CUP BOOK - paper only */}
       <Club690 /> {/* fix690 70% CLUB - paper only */}
       <MainVwap694 /> {/* fix694 MAIN VWAP SIDE - paper only */}
       <RejParked695 /> {/* fix695 REJECTION PARKED SIDE - paper only */}
