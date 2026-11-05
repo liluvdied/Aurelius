@@ -11,7 +11,7 @@ export function LiveToday722() {
     <div className="mb-3 rounded-2xl px-3 py-2" style={{ border: "1.5px solid #5dff9c", boxShadow: "0 0 12px rgba(93,255,156,0.35)" }}>
       <p className="font-mono text-[10px] font-bold tracking-[0.2em] text-white">● LIVE TODAY · {d.name} <span className="text-white/60">({d.book})</span></p>
       <p className="mt-0.5 font-mono text-[10px] text-white/85">{d.n} live trades today · {d.w}W {d.l}L · {money(d.pnl)} · daily stop {d.stopAt != null ? `$${d.stopAt}` : "none"}{d.stopped ? " · STOPPED for today" : ""}</p>
-      <p className="font-mono text-[9px] text-white/60">only live book until {new Date(d.until).toLocaleTimeString()} · its own gates · CHANGE-63 puts your normal lineup back</p>
+      <p className="font-mono text-[9px] text-white/60">{String(d.book).includes(",") ? "AKIMBO - both books live, pivot gets the sticks · paper card: AKIMBO 🤹 chip · " : ""}only live book until {new Date(d.until).toLocaleTimeString()} · its own gates · CHANGE-63 puts your normal lineup back</p>
       {(d.recent ?? []).map((r: any, i: number) => <p key={i} className="border-t border-white/10 py-0.5 font-mono text-[9px] text-white/75">{new Date(r.first).toLocaleTimeString()} · {r.ticker} · {money(r.pnl)}</p>)}
     </div>
   );

@@ -3,7 +3,7 @@
   "maxDollars": 11,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-05T16:39:59.423Z",
+  "at": "2026-11-05T16:43:44.423Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -124,7 +124,7 @@
       "recon-dly"
     ],
     "dollars": 11,
-    "since": "2026-11-05T16:39:59.424Z",
+    "since": "2026-11-05T16:43:44.425Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -341,7 +341,8 @@
       "recon-tog",
       "recon-rej",
       "recon-dly",
-      "recon-togp"
+      "recon-togp",
+      "brk15"
     ]
   },
   "polyLive": false,
@@ -713,7 +714,8 @@
         "recon-tog",
         "recon-rej",
         "recon-dly",
-        "recon-togp"
+        "recon-togp",
+        "brk15"
       ],
       "gold": [
         "dcd",
@@ -738,7 +740,8 @@
         "recon-tog",
         "recon-rej",
         "recon-dly",
-        "recon-togp"
+        "recon-togp",
+        "brk15"
       ],
       "silver": [
         "pap247"
@@ -829,6 +832,10 @@
         "down"
       ],
       "recon-rej": [
+        "up",
+        "down"
+      ],
+      "brk15": [
         "up",
         "down"
       ]
@@ -1065,7 +1072,8 @@
     "recon-tog",
     "recon-rej",
     "recon-dly",
-    "recon-togp"
+    "recon-togp",
+    "brk15"
   ],
   "noLocksNote": "Love, Oct 11 ~8:30 AM PT: 'that's too sensitive hun they'll never run... let her take profits half at 75 the rest at 90%'. PAPER's live books skip LOCK THE WIN and the take-profit gates.",
   "reversalGuard": {
@@ -1110,7 +1118,8 @@
     "recon-tog",
     "recon-rej",
     "recon-dly",
-    "recon-togp"
+    "recon-togp",
+    "brk15"
   ],
   "goldGateExemptNote": "Love Oct 11 ~6:40 PM PT: pivot books fire on gold when they call it; only a nav band between price and the strike blocks.",
   "comboGuard": {
@@ -1392,7 +1401,8 @@
     "recon-tog",
     "recon-rej",
     "recon-dly",
-    "recon-togp"
+    "recon-togp",
+    "brk15"
   ],
   "paperFires": [
     "ogp5-inv",
@@ -1410,7 +1420,8 @@
     "recon-tog",
     "recon-rej",
     "recon-dly",
-    "recon-togp"
+    "recon-togp",
+    "brk15"
   ],
   "cheapSize": {
     "minMult": 2.8,
@@ -3088,5 +3099,6 @@
       }
     },
     "note": "before Love Nov 4 2026 9:51 AM PT \"$2 at 2.8x & $3 at 3.8x\""
-  }
+  },
+  "brk15AkimboNote": "fix726 (Love Nov 5 2026 7:25-7:37 AM PT, akimbo): +15M PIVOTS sits in every live list SESSION + PINK is in, so live takes the same trades paper does"
 }

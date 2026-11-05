@@ -7711,5 +7711,80 @@
     "what": "if (d2 > 0 && tick < d2) return { why: `NO SHORTS IN THE BOTTOM RUNG: btc short at ${tick.toFixed(2)} is under the session -2σ (${d2.toFixed(2)}) - longs only down here.`, below: null, above: null, pos: null, lock: null }; }",
     "why": "fix728 (her words in this change's request)",
     "R": "R404"
+  },
+  {
+    "what": "\"by\": \"Love Nov 5 2026: one book live today - card pick BREAK BOOK · SESSION + PINK\",",
+    "why": "fix718 (her words in this change's request)",
+    "R": "R405"
+  },
+  {
+    "what": "\"note\": \"fix717: this book is her only live book until midnight PT tonight; CHANGE-63 turns it off\"",
+    "why": "fix718 (her words in this change's request)",
+    "R": "R405"
+  },
+  {
+    "what": "function liveToday717(): string { try { const j = JSON.parse(readFileSync(join(process.cwd(), \"data\", \"live-today.json\"), \"utf8\")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === \"string\" && /^[a-z0-9-]{2,24}$/.test(j.book) ? j.book : \"\"; } catch { return \"\"; } }",
+    "why": "fix726 (her words in this change's request)",
+    "R": "R406"
+  },
+  {
+    "what": "let aoOne717 = false; try { const lt = liveToday717(); aoOne717 = !!lt && String(bookOwnerOf(row.ticker)?.id || \"\").endsWith(\":\" + lt); } catch {} // fix717: the one live book takes no add-ons",
+    "why": "fix726 (her words in this change's request)",
+    "R": "R406"
+  },
+  {
+    "what": "flip: /:m\\d$/.test(String(row.id)),",
+    "why": "fix726 (her words in this change's request)",
+    "R": "R406"
+  },
+  {
+    "what": "export function liveToday717(): string { try { const j = JSON.parse(readFileSync(D(\"live-today.json\"), \"utf8\")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === \"string\" && /^[a-z0-9-]{2,24}$/.test(j.book) ? j.book : \"\"; } catch { return \"\"; } }",
+    "why": "fix726 (her words in this change's request)",
+    "R": "R406"
+  },
+  {
+    "what": "{ const lt717 = typeof (B as any).liveToday717 === \"function\" ? (B as any).liveToday717() : \"\"; if (lt717 && book === lt717) { try { const j717 = JSON.parse(readFileSync(join(process.cwd(), \"data\", \"live-today.json\"), \"utf8\")), stop717 = Number(j717?.stopAt); if (stop717 < 0) { const nowPT = new Date(new Date().toLocaleString(\"en-US\", { timeZone: \"America/Los_Angeles\" })), mid = new Date(nowPT); mid.setHours(0, 0, 0, 0); const since = Date.now() - (nowPT.getTime() - mid.getTime()); const rg = await import(\"./riskguard\"); const day717 = rg.liveTrades().filter((t: any) => t.book === lt717 && Date.parse(String(t.first)) >= since).reduce((acc: number, t: any) => acc + (Number(t.pnl) || 0), 0); if (day717 <= stop717) return `DAILY STOP (fix717): ${lt717} is at $${day717.toFixed(2)} live today, at or past its $${stop717} stop - no new entries until midnight PT.`; } } catch {} return \"\"; } } // fix717: the one live book today, its own gates only (like the delayed book) - the umpire above still judged it; its daily loss stop (data/live-today.json stopAt)",
+    "why": "fix726 (her words in this change's request)",
+    "R": "R406"
+  },
+  {
+    "what": "\"book\": \"brk-sesspk\",",
+    "why": "fix726 (her words in this change's request)",
+    "R": "R406"
+  },
+  {
+    "what": "\"name\": \"BREAK BOOK · SESSION + PINK\",",
+    "why": "fix726 (her words in this change's request)",
+    "R": "R406"
+  },
+  {
+    "what": "\"until\": \"2026-11-06T08:00:00.000Z\",",
+    "why": "fix726 (her words in this change's request)",
+    "R": "R406"
+  },
+  {
+    "what": "\"by\": \"Love: normal lineup back (CHANGE-63)\",",
+    "why": "fix726 (her words in this change's request)",
+    "R": "R406"
+  },
+  {
+    "what": "\"note\": \"fix718: her normal live lineup and schedule\"",
+    "why": "fix726 (her words in this change's request)",
+    "R": "R406"
+  },
+  {
+    "what": "if ((row.asset === \"gold\" || row.asset === \"btc\") && ![\"recon-rej\", \"recon-tog\", \"recon-dly\", \"recon-dlyk\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\") { let h490 = \"\"; try { const sm490 = ((((globalThis as any)[row.asset === \"gold\" ? \"__slide371\" : \"__slide423b\"])?.s || []) as { t: number; p: number; pp: number }[]); h490 = row.side === \"down\" ? climbHold464(sm490, ((globalThis as any)[row.asset === \"gold\" ? \"__climb464g\" : \"__climb464b\"] ||= { on: false }), Date.now(), String(row.asset)) : row.asset === \"gold\" ? slideHold403(sm490, ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(sm490, ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {} if (h490) { try { const bl503 = await import(\"./bandlock\"); const G503 = globalThis as any, sm503 = ((G503[row.asset === \"gold\" ? \"__slide371\" : \"__slide423b\"])?.s || []), l503 = sm503[sm503.length - 1]; /* fix513 (Love Oct 30 2026 6:59 AM PT: \"Yes, I asked for the pink slide too.\"): the slide hold outranks the 15%/20% tolerance - it releases only on her 25c / $8 break below */ const qT503 = (await import(\"./quotes\")).quoteTick(String(row.asset)), brk503 = ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[String(row.asset)] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return row.asset === \"btc\" ? 5 : 0.25; })(Number(qT503?.c) || 0) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */; if (h490 && l503 && qT503 && qT503.c > 0 && Date.now() - qT503.at < 5000 && (String(row.side) === \"down\" ? qT503.c < Number(l503.pp) - brk503 : qT503.c > Number(l503.pp) + brk503)) h490 = \"\"; /* fix503b: the release reads the live tick - through the pink by her break distance, the hold is over */ if (!h490 && /5m PP|pink/i.test(String((row as any).setup || \"\")) && slideRun515(sm503 as any, Date.now(), String(row.side) === \"down\" ? \"up\" : \"down\", String(row.asset))) h490 = `ONE WAY AT A SLOPED PINK (fix515): the pink sloped on three-plus rejections - a pink call goes with the slope only; the break against it is never her trade until price breaks pink by 10% of the channel (fix560) the other way (her 7:33 + 7:36 AM words).`; /* fix515 (Love Oct 30 2026 7:33 AM PT: \"once we do the slide roll for pink. Let's make it shorts only at pink. It will win a lot more than the breakes.\"): a pink call goes one way only while the slope stands - the break the other way is never her trade */ } catch {} } /* fix503: a far pink holds nothing */ if (h490) { try { const GL = ((globalThis as any).__slide490Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); { const why698 = String(h490); appendFileSync(join(process.cwd(), \"data\", \"slide-pink.jsonl\"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: why698 }) + \"\\n\"); done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: \"held\", reason: why698.slice(0, 300), firstReason: done[row.id]?.firstReason ?? why698.slice(0, 300) } /* fix698: her skip record says why (not only the side log) - never final, the wall keeps judging */; } } } catch {} continue; } } // fix490 (Love Oct 29 2026 7:34 PM PT: \"ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED\"): the pink downslide / climb holds every other live book too",
+    "why": "fix720 (her words in this change's request)",
+    "R": "R407"
+  },
+  {
+    "what": "let tr: any[] = []; try { tr = (await import(\"./riskguard\")).liveTrades().filter((t: any) => t.book === j.book && Date.parse(String(t.first)) >= since); } catch {}",
+    "why": "fix727 (her words in this change's request)",
+    "R": "R408"
+  },
+  {
+    "what": "<p className=\"font-mono text-[9px] text-white/60\">only live book until {new Date(d.until).toLocaleTimeString()} · its own gates · CHANGE-63 puts your normal lineup back</p>",
+    "why": "fix727 (her words in this change's request)",
+    "R": "R408"
   }
 ]

@@ -2,6 +2,39 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R408 - fix727 AKIMBO CARD: a new card AKIMBO · SESSION + PINK × 15M PIVOTS ✨ (clean slate) - the akimbo pair's paper book exactly as CHANGE-71 trades it live (one ticket per window, the first of the two books to call it; when +15M PIVOTS calls the other side of a SESSION + PINK ticket, that ticket is sold at the bid and pivot's side is taken; a SESSION + PINK call against a pivot ticket is ignored), $10 a ticket, from zero at install (kept in data/akimbo-book-727.json). Same card as every book (W/L, hit %, $, 4H/12H/24H/ALL, tap for trades), under its own AKIMBO 🤹 chip first in the list, right under the LIVE TODAY row; the LIVE TODAY row now counts both books' live Kalshi trades today. Display only - the copier never reads it. Run after CHANGE-71 (and 65).
+- when: 2026-11-05T16:43:40+00:00
+- Love: "Love Nov 5 2026 7:42 AM PT: "pls create a new combined card Akimbo so she has a clean slate""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/akimbocard.ts", "has": "fix727 AKIMBO CARD"}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "ak727.akimboRows727()"}
+- proof: {"test": "tools/akimbo-card-727.cjs"}
+
+## R407 - fix720: while live-today is on (data/live-today.json, through Sat under CHANGE-71), every live-today book also skips the copier's slide / climb-under-pink hold for other books (fix490 - engine.ts), so its live calls match its paper card. Replay since Oct 19 for BREAK BOOK · SESSION + PINK: the calls that hold would have stopped = 320 trades, 60%, +$404 at $20 (+$101 at $5) - the same as the rest. Main / rejection keep their own slide hold; every other book keeps fix490; when the switch is off or expired, nothing is different from today. Both akimbo books (SESSION + PINK and +15M PIVOTS) skip it while CHANGE-71 is on. Run AFTER CHANGE-71.
+- when: 2026-11-05T16:43:33+00:00
+- Love: "Love Nov 5 2026 7:37 AM PT: "let her skip them too btw *** she needs to take the same trades as both books" (the copier slide / climb-under-pink holds; earlier 6:47 AM PT question whether the copier's slide / climb-under-pink holds help or hurt BREAK BOOK · SESSION + PINK; replay: the trades they hold won 60% and made +$404 at $20 (+$101 at her $5) - her card pick to let today's one live book skip them"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix720: today's live book(s) skip the slide"}
+- proof: {"test": "tools/one-book-no-slide-hold-720.cjs"}
+
+## R406 - fix726 AKIMBO - PIVOT GETS THE STICKS: BREAK BOOK · SESSION + PINK and BREAK BOOK · +15M PIVOTS are both her live books through Sat Nov 7 PT (data/live-today.json book 'brk-sesspk,brk15', until 2026-11-08 08:00 UTC). One ticket per asset-window, the first book to call it. When they disagree, +15M PIVOTS gets the move: if pivot calls the other side of a SESSION + PINK ticket, that ticket is sold at the bid and pivot's side is taken (her change-her-mind flip, all gates still run); if SESSION + PINK calls the other side of a pivot ticket, pivot keeps it and no order goes. Both judged by their own gates (her walls stand down for these two books), no add-ons, one -$100 daily stop counting both. Every akimbo sell/keep is logged in data/akimbo-726.jsonl. Replay since Oct 19 at $10: +$1,153, green 14 of 17 days, worst day -$41 (first call wins +$1,058 / -$76; sell-and-sit-out +$1,052 / -$59). Run AFTER CHANGE-73 and CHANGE-63 (built on top of both); CHANGE-70 is retired (this replaces it). CHANGE-63 turns it all off.
+- when: 2026-11-05T16:43:23+00:00
+- Love: "Love Nov 5 2026 7:25 AM PT: "just have her take the first one to make it there bb" + 7:26 AM: "yes / time to get serious" + 7:32 AM: "we will run it that way for the week bb. can you test something on there for me though? i want to see what giving pivot the move would do when she would be skipping, or if it's a choppy hour and price breaks a band first, then hits a pivot and then reverses. that's the most likely turn of events. can you see what passing pivot the sticks does to the numbers in those positions?" + her card pick 7:34 AM: "Pivot gets the sticks, always""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix726 AKIMBO - PIVOT GETS THE STICKS"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix726 AKIMBO: both live-today books"}
+- proof: {"test": "tools/akimbo-726.cjs"}
+
+## R405 - fix718 NORMAL LINEUP BACK: turns ONE BOOK LIVE TODAY off (data/live-today.json on: false) - her normal live lineup and schedule trade again, BREAK BOOK · SESSION + PINK goes back to paper, her walls judge every book but delayed again. No code changes (the switch also expires by itself at midnight PT). Run after CHANGE-62.
+- when: 2026-11-05T16:42:58+00:00
+- Love: "Love Nov 5 2026 6:03 AM PT: "dude just put brick on for the day wut r we doin here" + 6:36 AM PT: "but just as of looks compared to the other ones ye run this one" (BREAK BOOK · SESSION + PINK) - one book live for today with only its own gates, a second exception to her Oct 31 law (like the delayed book), today only - and the one-run way back"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"test": "tools/one-book-live-717.cjs"}
+
 ## R404 - fix728 THE WATERFALL ON BTC FOR MAIN + REJECTION: her bottom-rung wall (fix296, no BTC short under the session -2σ) lets a short through for main (recon-tog) and rejection (recon-rej) when the running 1m candle is red (price under its open) and no 1m candle closed over pink in the last 15 minutes (her rule: a real reversal blows up through pink). Pink history comes from the copier's own 1-second price + pink sampler; with under 15 minutes of it (right after a restart) the wall stays. Every other wall still judges the short; every other book, gold and the delayed book keep the old rung rule. Works under AKIMBO (main + rejection trade paper) and after CHANGE-63 (they trade live again). Replay Oct 19 - Nov 5, real asks, $20: 37 shorts, 65%, +$323. Replaces the resting CHANGE-59 ($50 green-candle guard). Run FIRST (before CHANGE-63 and the later CHANGE-71).
 - when: 2026-11-05T16:39:52+00:00
 - Love: "Love Nov 5 2026 5:34 AM PT: "we can turn the waterfall on btc but if it has a meaningful move up past pink or has a green rejection move up strongly don't take the short" + 5:43 AM PT: "ya go ahead and put it on love ... we will let her take the shorts down here, just not if there's a sharp spike up to the red band. back down into no mans land it will blow right up thru pink if it's actually reversing" + 7:48 AM PT: "did we put the shorts allowed rule under the bottom rung on for btc on the main book and rej? will run her on there til we have the new books live""
