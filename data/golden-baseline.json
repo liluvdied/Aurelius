@@ -1,5 +1,5 @@
 {
- "at": "2026-11-05T11:49:17.286068+00:00",
+ "at": "2026-11-05T12:00:08.428236+00:00",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -8,7 +8,7 @@
   "auto.ts": "ec817b827977b355",
   "autoroll.ts": "78fb6514980c1219",
   "band-check.ts": "b237ae9c8845f659",
-  "bandlock.ts": "6ad471b87b22f4bb",
+  "bandlock.ts": "129d3604d71215e6",
   "bankreplay.ts": "5d765962480ec439",
   "book.ts": "b68263872097dcb5",
   "bookhist.server.ts": "d59046a5705aeb65",
@@ -32,13 +32,13 @@
   "fees.ts": "b31480529d0d4c44",
   "fill-log.ts": "1e136cd46cbbbe7f",
   "fingerprint.ts": "eb6e23291ce5b229",
-  "fns.ts": "25330fffd009ad59",
+  "fns.ts": "c2ea1a56cb83f3d5",
   "format.ts": "120f3490cf2631ff",
   "golden.ts": "9ffef369c617d291",
   "goldlaw.ts": "dcc1fd1002ef2c2d",
   "goldstrikes.ts": "c9bb2840d06a6246",
   "grok.ts": "12bcfcb3768de88b",
-  "grokog.ts": "4a0a9d50a3094fa2",
+  "grokog.ts": "2166aa64a964633d",
   "handguard.ts": "a9bb2f322f025e3a",
   "hist.ts": "325121fa22d2b1fa",
   "hourcombos.ts": "01e3f5aa48a955ac",
@@ -83,7 +83,7 @@
   "probe.ts": "9c0674e13b6c4516",
   "quotes.ts": "fe54b8cdeb6e764b",
   "realtwin.ts": "c74ff01ef7e1b5ea",
-  "recon.ts": "60fd87999a45dbe2",
+  "recon.ts": "e5e325fc46935089",
   "research.ts": "cd5d69f9cb3ff595",
   "review.ts": "ed486d1c8a4113c0",
   "riptap.ts": "1c967350e6259666",
@@ -133,14 +133,15 @@
   "inverse.ts": "ce0ec2fc7a989c38",
   "club.ts": "4ba5ddf25775683e",
   "mainvwap.ts": "1b4955f09377ccd1",
-  "rejparked.ts": "3c67bfeeb1d7e3ff"
+  "rejparked.ts": "3c67bfeeb1d7e3ff",
+  "skips.ts": "a4ef3032b9e11ac3"
  },
  "config": {
   "live": "b5bea41b6c",
   "maxDollars": "4e07408562",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "8e1dafbfcb",
+  "at": "c5c13460f1",
   "note": "34fb5e33ce",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -159,7 +160,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "002c773a79",
+  "liveBook": "1cb57e10cf",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -329,10 +330,10 @@
  },
  "configFiles": {
   "data/HER-ANSWERS-2.json": "770a121597eb8e17",
-  "data/spine-lock.json": "919458139c7d726a",
+  "data/spine-lock.json": "9c204edfb556676f",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "d54ab116fdb046f9"
+  "data/live-switch.json": "0e64d5aa7b64228e"
  },
  "sealLiveBook": "c8cfbbf7f9",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

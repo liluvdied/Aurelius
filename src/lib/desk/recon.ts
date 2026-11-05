@@ -49,6 +49,7 @@ export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top
 export const RECON = new Set<string>(RECON_LANES);
 for (const l480 of ["recon-np", "recon-sov", "recon-npo", "recon-b2", "recon-og", "recon-rnp" /* fix620 */]) RECON.add(l480); // fix480: PAPER ONLY - in no live list (liveBook.books untouched)
 RECON.add("recon-rjnp"); // fix643: REJECTIONS ONLY, NO PINK - PAPER ONLY, in no live list
+RECON.add("recon-rjt3"); // fix703: REJECTIONS · THIRDS AS READ - PAPER ONLY, in no live list
 const DLY_AS_COPY = false; /* fix353 PAUSED (Love 6:11 PM PT: "wait no no no no no no do not change the 5M on polymarket in any way nooo"): the twin is exactly as before everywhere */ // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): the DELAYED twin is the no-pink copy with a delayed entry
 
 function resample(b: Bar[], mins: number): Bar[] {
@@ -441,7 +442,7 @@ function skipLog(lane: string, ticker: string, side: string, label: string, ask:
 // (a fill, or an order on the wire) closes the window - the checks below are unchanged.
 export function isFlip463(label: string): boolean { return / - seen as a (short|long) /.test(String(label || "")); }
 export function freshSameSide463(lane: string, priorSide: string, priorLabel: string, look: { side: string; label: string }): boolean {
-  return (lane === "recon-tog" || lane === "recon-rej" || lane === "recon-rnp" /* fix624 */ || lane === "recon-rjnp" /* fix673 */) && priorSide === look.side && String(priorLabel || "") !== String(look.label || "") && !isFlip463(look.label);
+  return (lane === "recon-tog" || lane === "recon-rej" || lane === "recon-rnp" /* fix624 */ || lane === "recon-rjnp" /* fix673 */ || lane === "recon-rjt3" /* fix703 */) && priorSide === look.side && String(priorLabel || "") !== String(look.label || "") && !isFlip463(look.label);
 }
 // HER THIRDS IN THE READ ITSELF (fix463, R193 - Love Oct 29 2026 12:41 PM PT: "to answer your question, yes. in the read itself. / not just the walls that go out please" + her cornerstone
 // "NO LONGS IN TOP 33% . NO SHORTS IN THE BOTTOM 33%"): main + rejection - her read never calls a long in the top 33% of the session-band channel (the unbroken session band above her),
@@ -675,6 +676,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   let tpStack = false; // fix283
   let npPink = 0, npL: { name: string; price: number }[] = []; // fix361: the pure no-pink twin reads the pink and her lines // fix480
   let tgPF: { side: "up" | "down"; label: string } | null = null, tgFO = false; // fix326
+  let rdUp703 = NaN, rdDn703 = NaN; // fix703: the channel her read measured its thirds on (session band to session band at the read)
   let rejLB: Line[] | null = null, rejReach = 0, rejL: Line[] | null = null, rejCandle: { side: "up" | "down"; label: string } | null = null, rejFO: { side: "up" | "down"; label: string } | null = null;
   try {
     const p = onePink565R(id, b);
@@ -683,6 +685,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     look5 = bonesDecide(id, L, spot, last1m, cur, prev, b);
     const ses = L.filter((l) => /σ|VWAP/.test(String(l.name)) && Number(l.price) > 0).map((l) => Number(l.price));
     const sUp = Math.min(...ses.filter((x) => x > spot)), sDn = Math.max(...ses.filter((x) => x <= spot));
+    rdUp703 = sUp; rdDn703 = sDn; // fix703 (read only)
     const reachT = Number.isFinite(sUp) && Number.isFinite(sDn) && sUp > sDn ? REACH_PCT * (sUp - sDn) : (REACH[id] ?? 0);
     // PINK STACKED ON A SESSION BAND (fix283, Oct 26 ~1:19 PM PT, Love: "if pink is stacked just above a session bands and price rejects it, she can enter on the break
     // of pink as she normally would / only if pink and the session bands both sit in the top/bottom 20% of the channel / otherwise she can skip the pink trades in the
@@ -1050,6 +1053,19 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   try { if (rejLB && rejReach > 0 && !rejFO) { const pfR = bonesDecide(id, rejLB, spot, last1m, cur, prev, b, true, rejReach, true); if (pfR && /5m PP/.test(String(pfR.label))) lookRM = pfR; } } catch {}
   log479("recon-rej", lookRM); // fix479: write down why, if her read refuses it
   try { if (!lookRM) { const d511 = (globalThis as any).__drop511?.[id + ":rej"]; if (d511 && Date.now() - d511.at < 5000) skipLog("recon-rej", String(m.ticker), "-", d511.cands.join(" | "), 0, `EMPTY READ (fix511): ${d511.cands.length} candidate(s) dropped by ${d511.after2 === 0 ? "the pink / Bollinger / zone label filters" : d511.seen === 0 ? "her thirds, candle and flip read (fix446)" : "the rank filter"}`); } } catch {} // fix511
+  // fix703 REJECTIONS · THIRDS AS READ - PAPER ONLY (Love Nov 5 2026 ~3:43 AM PT: "YES pls fix the two thirds that disagree !!!! that's been happening all week !!"): the rejection
+  // book's exact read and walls, with ONE thirds judgment - the one her read made. A candle-in-her-third / launched-from read already judged its third (the 5m candle's high/low
+  // in the session channel), so no second thirds wall re-judges it from where price is now; any other read is judged once, on the same session-band channel the read measured
+  // (not the wall's carried lines). The door's ONLY IN HER THIRD / THE IMPOSSIBILITY percent lines stand down for this book only (__thirds703, set and cleared here); every other
+  // wall (pink in the read, pink cushion, 55%, flip, floor, $10 level, Bollinger, zones, top/bottom line) judges it exactly as REJECTION. Never in a live list - paper rows only.
+  try {
+    let t703 = lookRM; const s703 = (why: string) => { try { if (t703) skipLog("recon-rjt3", String(m.ticker), t703.side, String(t703.label || ""), 0, why); } catch {} };
+    if (t703 && isFlip463(String(t703.label))) { s703("a flipped read is never her call (fix463)"); t703 = null; }
+    if (t703 && !/third/i.test(String(t703.label)) && Number.isFinite(rdUp703) && Number.isFinite(rdDn703) && rdUp703 > rdDn703 && thirdsRead463([{ name: "read top σ", price: rdUp703 }, { name: "read bottom σ", price: rdDn703 }], spot, t703.side)) { s703(`HER THIRDS AS READ (fix703): ${t703.side === "up" ? "long in the top" : "short in the bottom"} third of the read's channel ${rdDn703.toFixed(2)} -> ${rdUp703.toFixed(2)}`); t703 = null; }
+    { const pv703 = onePink565R(id, b); if (t703 && pv703 && !zoneFree515c(id, t703.side, String(t703.label)) && pinkRead464(id, sessionLines(ax, id), spot, t703.side, Number(pv703.pp))) { s703(`THE PINK in the read: an unbroken pink (${Number(pv703.pp).toFixed(2)}) within 15% gold / 20% BTC of the channel (fix464)`); t703 = null; } }
+    if (t703) { const G703 = globalThis as any; G703.__blQuiet464 = true; G703.__thirds703 = true; try { const bl703 = bandLockCheck464("recon-rej", id, t703.side, String(m.ticker), String(t703.label || "")); if (!bl703.ok) { s703(`HER DOOR: ${String((bl703 as any).reason || "a wall said no").slice(0, 220)}`); t703 = null; } } finally { G703.__blQuiet464 = false; G703.__thirds703 = false; } }
+    if (t703 && book("recon-rjt3", t703)) changed = true;
+  } catch {}
   try { if (lookRM && thirdsRead463(sessionLines(ax, id), spot, lookRM.side)) lookRM = null; } catch {} // fix463 (R193, Love 12:41 PM "in the read itself"): no rejection read in her wrong third
   try { const pv464 = onePink565R(id, b); if (lookRM && pv464 && !zoneFree515c(id, lookRM.side, String(lookRM.label)) && pinkRead464(id, sessionLines(ax, id), spot, lookRM.side, Number(pv464.pp))) lookRM = null; } catch {} // fix464 (R197/R198): no read into an unbroken pink within 15% / 20%, either side
   try { if (lookRM) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464("recon-rej", id, lookRM.side, String(m.ticker), String(lookRM.label || "")).ok) lookRM = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): every band tolerance in the read too - a read her walls refuse is never her call

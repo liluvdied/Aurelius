@@ -2,6 +2,31 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R390 - fix703 REJECTIONS · THIRDS AS READ - PAPER ONLY (never sends an order, in no live list): a new card that is the REJECTION book's exact read and walls with ONE thirds judgment - the one her read made. Tonight her read said 'Green candle rising from the bottom third' (the 5m candle's low, -2σ -> VWAP) and then HER THIRDS said 'no long in the top 33%' (price now, nearest session lines) - two thirds disagreeing. On this paper book a candle-in-her-third / launched-from read keeps its own third, any other read is judged once on the read's own session-band channel, and the door's ONLY IN HER THIRD / THE IMPOSSIBILITY percent lines stand down (a flag set only around this book's own door check). Pink in the read, pink cushion, 55%, flip, floor, $10 level, Bollinger, zones, top/bottom line all judge it as REJECTION. Every held read writes its reason to recon-skips. Her live books and walls behave byte-for-byte as before (the flag is never on for them). Replay so far: about coin-flip on the extra trades (BTC 53%, gold 50%) - the week on paper decides (Nov 11).
+- when: 2026-11-05T12:00:08+00:00
+- Love: "Love Nov 5 2026 ~3:43 AM PT: "YES pls fix the two thirds that disagree !!!! that's been happening all week !!" (built first as a paper twin of REJECTION, to decide Nov 11; the live version waits for her pick)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix703 REJECTIONS · THIRDS AS READ - PAPER ONLY"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "__thirds703 /* fix703: paper twin only */"}
+- proof: {"test": "tools/thirds-as-read-703.cjs"}
+
+## R389 - fix697 SITREP · EVERY WINDOW, TOOK IT OR WHY NOT (display / log only): at the top of the SITREP tab, one plain line per 15-minute window and asset for the last 12 hours - which live book had it (and who was off that hour), TOOK IT (time, side, price paid) or SKIPPED with the first wall that held it and its numbers (from live-book-done, the refusal ledger, and the copier's pink / climb / slide holds in slide-pink.jsonl that were never written with the rest), plus the runner-up idea; a call that never reached the copier at all is marked to flag. A FLAG button per line (optional note) appends to data/sitrep-flags.jsonl for Claude to read and fix. Built only when the tab is open (cached 60 s), never in her trade loop; no book, rule, wall, size or order path touched. Needs CHANGE-43 installed first (same files).
+- when: 2026-11-05T12:00:01+00:00
+- Love: "Love Nov 5 2026 ~2:17 AM PT: "the intention behind it was to get an answer on every skip so i wouldn't have to ask grok every time ... just have it log every skip and the reason for it so i can look without bugging you. and let's add a flag button so i can flag the flawed ones and we can address it that way instead of typing it out frantically""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/skips.ts", "has": "export function skipLog697("}
+- proof: {"test": "tools/skips-flag-697.cjs"}
+
+## R388 - fix702: her schedule pill takes a save after every tap. Two taps half a second apart (BTC then gold, 3:14:59 AM) started two saves in the same minute; the second crashed on the same folder name, so the newest save held only the BTC tap, her no-switch-off / no-removal gates read gold's 3 AM as a rule switched off, the umpire went NOT SAFE and THE ENFORCER held every live order 3:16-3:33 AM (REJECTION's BTC short, a paper winner). tools/save-her.py now takes saves one at a time (a lock), gives a second save in the same minute its own folder, and names folders in Pacific time by the calendar (PST now; it was a fixed -7 h, an hour ahead all winter). Nothing about any book, rule, wall, size or order changes.
+- when: 2026-11-05T11:59:48+00:00
+- Love: "Love Nov 5 2026 3:31 AM PT: "i put on the regular rejection book and she didn't take the rejections , gold or btc" + Nov 1 2026 10:44 PM PT: "yes please allow me to change the schedule at will without tripping the umpire""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/save-her.py", "has": "fix702: one save at a time"}
+- proof: {"test": "tools/save-race-702.cjs"}
+
 ## R387 - fix701 (log only): REJ ONLY · NO PINK re-checks main's walls after its read (Bollinger on her colour, her thirds, the pink, main's door) and used to drop a held read without writing why - 3:01-3:05 AM gold its short off the red zone was held by the pink exactly like main and rejection, but its log only showed the 3:05 floor line. Each of those four now writes its reason to data/recon-skips.jsonl (and her refusal ledger) like the other books, once per window per reason, so SITREP shows it. What it trades, when, and every wall are unchanged.
 - when: 2026-11-05T11:49:17+00:00
 - Love: "Love Nov 5 2026 ~2:17 AM PT: "just have it log every skip and the reason for it so i can look without bugging you" + 3:09 AM PT (on REJ ONLY · NO PINK at the 3:00 gold red zone): "it should have taken the rejection on a flip off of red just like the other book hun" - it did read it; the pink held it as it held the other books, but the no-pink book never wrote that down"

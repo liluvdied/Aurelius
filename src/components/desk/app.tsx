@@ -25,6 +25,7 @@ import { SitRep, explainExit, explainTake, whyTrade } from "@/components/desk/si
 import { SettingsDrawer } from "@/components/desk/settings-drawer";
 import { RsiBooks672 } from "@/components/desk/rsi-books"; // fix672
 import { RungStats680 } from "@/components/desk/stats-rungs"; // fix680
+import { Skips697 } from "@/components/desk/skips"; // fix697
 import { EthBook682 } from "@/components/desk/eth-book"; // fix682
 import { Og1012Card } from "@/components/desk/og-1012"; // fix686
 import { BrkOut687 } from "@/components/desk/brk-out"; // fix687
@@ -2269,6 +2270,7 @@ export function DeskApp() {
 
         {bookTab === "log" ? <FillLog events={fillLog.data ?? []} /> : null}
 
+        {bookTab === "sitrep" ? <Skips697 /> : null} {/* fix697 every window: took it or why not, with a FLAG */}
         {bookTab === "sitrep" ? (
           <SitRep
             rows={exitLog.data ?? []}
@@ -3335,6 +3337,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     { book: "recon-rnp-fresh", title: "RECONSTRUCTED 🧬 · PURE NO PINK · MAIN WITHOUT PINK ENTRIES · FRESH SLATE ✨ (since 10:04 PM Nov 1)", note: "fix625 (Love, Nov 1 10:08 PM: \"create a new card for the new pure (no-pink) model with a fresh record\"): the paper twin on main's read, door and window rules, with only pink entries out, from the moment FIX624 landed. Paper." },
     { book: "recon-togp-fresh", title: "RECONSTRUCTED 🧬 · NO PINK · FRESH SLATE ✨ (since 2:30 PM Oct 26)", note: "fix288 (Love, Oct 26 2:31 PM: \"can we get a fresh card for this model too? she should have a clean record\"): the no-pink copy's own trades from 2:30 PM PT Oct 26 only - after fix284-286 (free re-aim, $25 Bollinger cushion, no fake-out floor). Same trades as the NO PINK card, fresh ledger." },
     { book: "recon-togp", title: "RECONSTRUCTED 🧬 · TOGETHER · NO PINK", note: "fix281 (Love, Oct 26 1:10 PM): the main book copied 1:1 - her exact booked call each window, same walls, same door and wire - with only pink (5m PP) breaks and rejections left out. Live in her rejection hours in place of the rejection model; paper the rest." },
+    { book: "recon-rjt3" as any, title: "RECONSTRUCTED 🧬 · REJECTIONS ONLY · THIRDS AS READ 🧪", note: "fix703 (Love, Nov 5 3:43 AM: \"YES pls fix the two thirds that disagree !!!! that's been happening all week !!\"): REJECTION's exact read and walls, but her thirds judged once - where the read judged them (a candle-in-her-third read keeps its own third; any other read is judged on the read's session-band channel). The door's ONLY IN HER THIRD / IMPOSSIBILITY percent lines stand down for this book only. Paper - decide Nov 11." },
     { book: "recon-rjnp" as any, title: "RECONSTRUCTED 🧬 · REJECTIONS ONLY · NO PINK", note: "fix643 (Love, Nov 4 2:10 PM: \"a new rejection only model with pink excluded as well. she only trades rejections of session bands, red/green zones and bollingers. nothing else.\"): rejections only off the session bands, green / red zone and Bollingers, on a 2/5m candle turned or born her colour after the push. No pink trades, no breaks. Main's thirds, pink wall and door. Paper." },
     { book: "recon-rej", title: "RECONSTRUCTED 🧬 · REJECTIONS ONLY", note: "Her Oct 20 twin: only rejections - shorts off the band above, longs off the band below, candle flips and zone flips included, every break muted. Every trade ends up coming back, most of the time. Paper, same door as her siblings." },
     { book: "brk-sess", title: "NEW 🆕 · BREAK BOOK · SESSION ONLY (paper)", note: "Breaks only: a 1m close or a live $5 / 92c push through a session band, entered in the break's direction; no band between price and the strike. Paper, $20." },

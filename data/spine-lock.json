@@ -1,9 +1,9 @@
 {
- "at": "2026-11-05T11:49:17.286068+00:00",
+ "at": "2026-11-05T12:00:08.428236+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "60fd87999a45dbe2"
+  "recon.ts": "e5e325fc46935089"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -742,6 +742,12 @@
    "by": "Love",
    "quote": "Love Nov 5 2026 ~2:17 AM PT: \"just have it log every skip and the reason for it so i can look without bugging you\" + 3:09 AM PT (on REJ ONLY · NO PINK at the 3:00 gold red zone): \"it should have taken the rejection on a flip off of red just like the other book hun\" - it did read it; the pink held it as it held the other books, but the no-pink book never wrote that down (R387, fix701)",
    "recon.ts": "60fd87999a45dbe2"
+  },
+  {
+   "at": "2026-11-05T12:00:08.428236+00:00",
+   "by": "Love",
+   "quote": "Love Nov 5 2026 ~3:43 AM PT: \"YES pls fix the two thirds that disagree !!!! that's been happening all week !!\" (built first as a paper twin of REJECTION, to decide Nov 11; the live version waits for her pick) (R390, fix703)",
+   "recon.ts": "e5e325fc46935089"
   }
  ],
  "R": "R266",

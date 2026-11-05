@@ -7606,5 +7606,50 @@
     "what": "t(R.includes('if (rj643 && thirdsRead463(sessionLines(ax, id), spot, rj643.side)) rj643 = null;'), \"not main's thirds\");",
     "why": "fix701 (her words in this change's request)",
     "R": "R387"
+  },
+  {
+    "what": "pt=datetime.datetime.now(datetime.timezone.utc)-datetime.timedelta(hours=7)",
+    "why": "fix702 (her words in this change's request)",
+    "R": "R388"
+  },
+  {
+    "what": "dst=os.path.join('data','SAVES',name); os.makedirs(os.path.join(dst,'data'))",
+    "why": "fix702 (her words in this change's request)",
+    "R": "R388"
+  },
+  {
+    "what": "return (lane === \"recon-tog\" || lane === \"recon-rej\" || lane === \"recon-rnp\" /* fix624 */ || lane === \"recon-rjnp\" /* fix673 */) && priorSide === look.side && String(priorLabel || \"\") !== String(look.label || \"\") && !isFlip463(look.label);",
+    "why": "fix703 (her words in this change's request)",
+    "R": "R390"
+  },
+  {
+    "what": "if (side === \"up\" && pos >= 1 - TH) return `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${thTxt}%, into the unbroken band above. never.`;",
+    "why": "fix703 (her words in this change's request)",
+    "R": "R390"
+  },
+  {
+    "what": "if (side === \"down\" && pos <= TH) return `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${thTxt}%, into the unbroken band below. never.`;",
+    "why": "fix703 (her words in this change's request)",
+    "R": "R390"
+  },
+  {
+    "what": "if (!tightUp && !beyond && side === \"up\" && pos >= 1 - IMPOSSIBLE) why = `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${pctTxt}%, into the unbroken band above. never.`;",
+    "why": "fix703 (her words in this change's request)",
+    "R": "R390"
+  },
+  {
+    "what": "if (!tightDn && !beyond && side === \"down\" && pos <= IMPOSSIBLE) why = `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${pctTxt}%, into the unbroken band below. never.`;",
+    "why": "fix703 (her words in this change's request)",
+    "R": "R390"
+  },
+  {
+    "what": "if (!why && !tightUp && side === \"up\" && pos >= 1 - TH - MARGIN648B) why = `ONLY IN HER THIRD: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no long in the top ${thTxt}%, under the unbroken band above.`;",
+    "why": "fix703 (her words in this change's request)",
+    "R": "R390"
+  },
+  {
+    "what": "if (!why && !tightDn && side === \"down\" && pos <= TH + MARGIN648B) why = `ONLY IN HER THIRD: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no short in the bottom ${thTxt}%, over the unbroken band below.`;",
+    "why": "fix703 (her words in this change's request)",
+    "R": "R390"
   }
 ]

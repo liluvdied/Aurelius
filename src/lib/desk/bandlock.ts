@@ -2710,8 +2710,8 @@ export function dlyThirds(asset: string, L: Line[], tick: number, side: string):
   const below = edges.filter((x: number) => x <= tick).pop(), above = edges.find((x: number) => x > tick);
   if (below === undefined || above === undefined || !(above > below)) return "";
   const pos = (tick - below) / (above - below), TH = asset === "btc" ? DLY_BTC_EDGE /* fix307: Love 1:36 AM "yes 5% band tolerances" - BTC keeps her 5% edge */ : lockPctFor(asset, above - below), thTxt = Math.round(TH * 100);
-  if (side === "up" && pos >= 1 - TH) return `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${thTxt}%, into the unbroken band above. never.`;
-  if (side === "down" && pos <= TH) return `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${thTxt}%, into the unbroken band below. never.`;
+  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && side === "up" && pos >= 1 - TH) return `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${thTxt}%, into the unbroken band above. never.`;
+  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && side === "down" && pos <= TH) return `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${thTxt}%, into the unbroken band below. never.`;
   return "";
 }
 // UNDER ALL HER RULES (Oct 21 ~11:23 AM PT, Love: "when i said anywhere i meant she could trade under our rules. anywhere. not abandon them entirely"):
@@ -2993,8 +2993,8 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   const vw344 = Number((L || []).find((l: Line) => String(l.name) === "session VWAP")?.price) || 0;
   const tightUp = tight344 && !(vw344 > 0 && Math.abs(above - vw344) < 0.005), tightDn = tight344 && !(vw344 > 0 && Math.abs(below - vw344) < 0.005);
   let why = "";
-  if (!tightUp && !beyond && side === "up" && pos >= 1 - IMPOSSIBLE) why = `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${pctTxt}%, into the unbroken band above. never.`;
-  if (!tightDn && !beyond && side === "down" && pos <= IMPOSSIBLE) why = `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${pctTxt}%, into the unbroken band below. never.`;
+  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightUp && !beyond && side === "up" && pos >= 1 - IMPOSSIBLE) why = `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${pctTxt}%, into the unbroken band above. never.`;
+  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightDn && !beyond && side === "down" && pos <= IMPOSSIBLE) why = `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${pctTxt}%, into the unbroken band below. never.`;
   // BREAK INTO A ZONE (fix238, Oct 25 ~9:25 PM PT, Love: "do her trades that break a session band and go right into a red zone or green zone typically do well ..?
   // or do they reverse almost immediately afterwards ... is this another one of the bleeds" -> "yeeeup we stopping bleeds bb"; ~/brkzone.py, 3,260 recon calls Oct 20-26:
   // a break landing inside a zone 28 trades 50% -$113, gold break with a zone ahead before the next band 107 trades 46% -$296, BTC with a zone ahead 123 trades +$170):
@@ -3256,8 +3256,8 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // Oct 22 ~3:20 AM PT, Love: "the session bands hun, same way we have her set up at 33% both ways / we will do 20% after bands exceed $500 apart / 33% under that" -
   // on BTC her thirds slide with THE IMPOSSIBILITY (33% to $500 wide, 20% past). Gold keeps the fixed third.
   const TH = IMPOSSIBLE, thTxt = Math.round(TH * 100);
-  if (!why && !tightUp && side === "up" && pos >= 1 - TH - MARGIN648B) why = `ONLY IN HER THIRD: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no long in the top ${thTxt}%, under the unbroken band above.`;
-  if (!why && !tightDn && side === "down" && pos <= TH + MARGIN648B) why = `ONLY IN HER THIRD: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no short in the bottom ${thTxt}%, over the unbroken band below.`;
+  if (!why && !(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightUp && side === "up" && pos >= 1 - TH - MARGIN648B) why = `ONLY IN HER THIRD: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no long in the top ${thTxt}%, under the unbroken band above.`;
+  if (!why && !(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightDn && side === "down" && pos <= TH + MARGIN648B) why = `ONLY IN HER THIRD: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no short in the bottom ${thTxt}%, over the unbroken band below.`;
   // HER CANDLE (Oct 20 ~8:07 PM PT, Love: "she is clear to long a rising candle that either came up from the bottom, or broke pink upwards, she can long
   // anywhere but the top 33% of the channel, same for shorts on a falling candle that fell from the band, or broke the pink downwards ... hardwired into her
   // architecture, no other method of operations"): a rising 5m candle (over its open, lifted the tap off its low) is a long or nothing; a falling one (under

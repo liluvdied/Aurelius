@@ -1,9 +1,33 @@
-# Every decision Love has made - rebuilt 2026-11-05T11:50:45.289569+00:00
+# Every decision Love has made - rebuilt 2026-11-05T12:02:08.178063+00:00
 
-1526 decisions with Love's words or card picks, out of 2286 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1534 decisions with Love's words or card picks, out of 2294 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-05T12:01:42.513Z  ·  diary line 2761
+- Full entry: 2026-11-05T12:01:42.513Z HOURS (Love, in-app schedule pill): 4 AM PT -> DELAYED twin
+
+## 2026-11-05T12:01:41.354Z  ·  diary line 2760
+- Full entry: 2026-11-05T12:01:41.354Z HOURS (Love, in-app schedule pill): 4 AM PT -> DELAYED twin
+
+## 2026-11-05T12:01:39.644Z  ·  diary line 2759
+- Full entry: 2026-11-05T12:01:39.644Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (GOLD only)
+
+## 2026-11-05T12:01:38.957Z  ·  diary line 2758
+- Full entry: 2026-11-05T12:01:38.957Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (BTC only)
+
+## 2026-11-05T11:57:23.858Z  ·  diary line 2757
+- Full entry: 2026-11-05T11:57:23.858Z HOURS (Love, in-app schedule pill): 3 AM PT -> DELAYED twin
+
+## 2026-11-05T11:57:23.067Z  ·  diary line 2756
+- Full entry: 2026-11-05T11:57:23.067Z HOURS (Love, in-app schedule pill): 3 AM PT -> DELAYED twin
+
+## 2026-11-05T11:57:22.341Z  ·  diary line 2755
+- Full entry: 2026-11-05T11:57:22.341Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (GOLD only)
+
+## 2026-11-05T11:57:20.582Z  ·  diary line 2754
+- Full entry: 2026-11-05T11:57:20.582Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (BTC only)
 
 ## 2026-11-05T11:32:34.204Z  ·  diary line 2753
 - Full entry: 2026-11-05T11:32:34.204Z HOURS (Love, in-app schedule pill): 3 AM PT -> MAIN book (GOLD only)

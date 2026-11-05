@@ -2342,3 +2342,8 @@ export const getClub690 = createServerFn({ method: "GET" }).handler(async () => 
 export const getMainVwap694 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./mainvwap"); return m.mainVwap694Summary(); } catch { return null; } });
 // fix695 REJECTION PARKED SIDE paper book (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"), summarised on the server.
 export const getRejParked695 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./rejparked"); return m.rejParked695Summary(); } catch { return null; } });
+// fix697 EVERY SKIP IN PLAIN WORDS + A FLAG (Love Nov 5 2026 ~2:17 AM PT: "just have it log every skip and the reason for it so i can look without bugging you. and let's add a flag button"). Display / log only.
+export const getSkips697 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./skips"); return m.skipLog697(12); } catch { return []; } });
+export const flagSkip697 = createServerFn({ method: "POST" })
+  .validator((input: { id: string; note?: string; line?: string }) => { armGate524("flagSkip697"); if (!input || typeof input.id !== "string" || !input.id) throw new Error("id"); return { id: String(input.id).slice(0, 120), note: String(input.note || "").slice(0, 500), line: String(input.line || "").slice(0, 600) }; })
+  .handler(async ({ data }) => { try { const m = await import("./skips"); return { ok: m.flagSkip697(data.id, data.note, data.line) }; } catch { return { ok: false }; } });
