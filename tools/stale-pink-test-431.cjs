@@ -22,6 +22,6 @@ if (!P("gold", L, 4044.03, "up")) { ok = false; console.log("STALE/PINK TEST: FA
 if (!P("gold", L, 4047.50, "up")) { ok = false; console.log("STALE/PINK TEST: FAIL - a long only 18c over the pink (under her 25c break) was NOT refused"); }
 if (P("gold", L, 4047.60, "up")) { ok = false; console.log("STALE/PINK TEST: FAIL - a long 28c over the pink (broken) was refused"); }
 if (P("gold", L, 4044.03, "down")) { ok = false; console.log("STALE/PINK TEST: FAIL - a short was refused by the long-only pink wall"); }
-if (!P("btc", [{ name: "5m PP", price: 80000 }], 80004, "up") || P("btc", [{ name: "5m PP", price: 80000 }], 80005, "up")) { ok = false; console.log("STALE/PINK TEST: FAIL - BTC $5 pink break (fix561)"); }
+if (!P("btc", [{ name: "5m PP", price: 80000 }], 80001, "up") || P("btc", [{ name: "5m PP", price: 80000 }], 80002, "up")) { ok = false; console.log("STALE/PINK TEST: FAIL - BTC $2 pink break (fix651)"); }
 console.log(ok ? "STALE/PINK TEST ✓ - the 7:40 PM gold long is refused under the unbroken pink; broken-pink longs and shorts pass; the 90 s drop for held calls stays out (fix444)." : "STALE/PINK TEST: FAIL");
 process.exit(ok ? 0 : 1);

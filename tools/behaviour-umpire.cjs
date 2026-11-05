@@ -254,7 +254,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix595 pink broke down, price back over it, short is refused", /not below/.test(B.sameSideSend595("btc", S5(77850), 77855, "down", 77880, { h: 77880, l: 77838 })));
   T("fix595 a session band broke up, price back under it, long is refused", /\+1σ.*not above/.test(B.sameSideSend595("btc", S5(77500), 77990, "up", 77980, { h: 78010, l: 77975 })));
   T("fix595 a session band broke down, price back over it, short is refused", /session VWAP.*not below/.test(B.sameSideSend595("btc", S5(77900), 77710, "down", 77720, { h: 77725, l: 77690 })));
-  T("fix595 a poke under her break distance is not a break", !B.sameSideSend595("btc", S5(77850), 77845, "up", 77820, { h: 77853, l: 77820 }));
+  T("fix595 a poke under her break distance is not a break", !B.sameSideSend595("btc", S5(77850), 77845, "up", 77820, { h: 77851, l: 77820 })); // fix651: a $1 poke, under her $2 break
   T("fix595 a band broke down, a long under it is refused", /not above/.test(B.sameSideSend595("btc", S5(77850), 77840, "up", 77880, { h: 77880, l: 77838 })));
   T("fix595 gold pink broke up 25c, long back under it is refused", /not above/.test(B.sameSideSend595("gold", G5, 3889.9, "up", 3889, { h: 3890.4, l: 3889 })));
   T("fix595 gold pink broke up 25c, long above it goes", !B.sameSideSend595("gold", G5, 3890.1, "up", 3889, { h: 3890.4, l: 3889 }));
@@ -326,8 +326,8 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   G.__pivBars = { btc: { bars: [{ t: f603, o: 77870, h: 77872, l: 77852, c: 77860 }] } };
   G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 77838 }, { t: NOW - 500, c: 77848 }] };
   T("fix603 a break down only the ticks saw, long back under pink, is refused", /not above/.test(B.sameSideSend595("btc", L603, 77848, "up")));
-  G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 77852 }, { t: NOW - 500, c: 77848 }] };
-  T("fix603 no break in the ticks or the bars, no same-side refusal", !B.sameSideSend595("btc", L603, 77848, "up"));
+  G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 77852 }, { t: NOW - 500, c: 77849 }] }; // fix651: $1 under the pink, inside her $2 break
+  T("fix603 no break in the ticks or the bars, no same-side refusal", !B.sameSideSend595("btc", L603, 77849, "up"));
   G.__pivBars = { btc: { bars: [{ t: f603, o: 77830, h: 77845, l: 77828, c: 77840 }] } };
   G.__qtrail_1 = { btc: [{ t: NOW - 3000, c: 77862 }, { t: NOW - 500, c: 77852 }] };
   T("fix603 a break up only the ticks saw, short back over pink, is refused", /not below/.test(B.sameSideSend595("btc", L603, 77852, "down")));
@@ -449,7 +449,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix641 gold over $25 is $3", Math.abs(B.pinkSlide580("gold", 30) - 3) < 0.001 && Math.abs(B.pinkSlide580("gold", 60) - 3) < 0.001);
   G.__pivBars = GREEN; G.__qtrail_1 = TR(80010);
   T("fix642 a pink break long $5+ past the pink on her green 2m candle is the entry (go)", B.pinkBreak641("btc", LP, 80005, "up", "Break above 5m PP") === "go" && B.pinkBreak641("btc", LP, 80010, "up", "Close above 5m PP") === "go");
-  T("fix641 short of the push = no waiver (the flip rule stands)", B.pinkBreak641("btc", LP, 80004, "up", "Break above 5m PP") === "");
+  T("fix641 short of the push = no waiver (the flip rule stands)", B.pinkBreak641("btc", LP, 80001, "up", "Break above 5m PP") === ""); // fix651: $1, short of her $2
   T("fix641 a rejection never gets the waiver", B.pinkBreak641("btc", LP, 80010, "up", "Failed break below 5m PP - rejected up") === "" && B.pinkBreak641("btc", LP, 80010, "up", "Rejected up off Green zone") === "");
   T("fix641 a break the wrong way never gets the waiver", B.pinkBreak641("btc", LP, 80010, "down", "Break above 5m PP") === "");
   T("fix641 price back across the pink = the break is gone (back)", B.pinkBreak641("btc", LP, 79999, "up", "Break above 5m PP") === "back" && B.pinkBreak641("btc", LP, 80001, "down", "Break below 5m PP") === "back");

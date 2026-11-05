@@ -6611,5 +6611,70 @@
     "what": "\"recon-dly\": \"DELAYED TWIN ⏳\",",
     "R": "R323",
     "why": "fix626 (her Nov 1 4:27 PM words)"
+  },
+  {
+    "what": "if (!up && brokeDn(P) && tick >= P) return `WICK THROUGH (fix457): ${b.name} (${P.toFixed(2)}) broke down this candle but price ${tick.toFixed(2)} is back over it - a wick through is not an entry`;",
+    "why": "fix650 (her Nov 4 4:19 PM words: remove only the wick-through block)",
+    "R": "R337"
+  },
+  {
+    "what": "if (up && brokeUp(P) && tick <= P) return `WICK THROUGH (fix457): ${b.name} (${P.toFixed(2)}) broke up this candle but price ${tick.toFixed(2)} is back under it - a wick through is not an entry`;",
+    "why": "fix650 (her Nov 4 4:19 PM words: remove only the wick-through block)",
+    "R": "R337"
+  },
+  {
+    "what": "const dist = FROZEN_THIRD_DIST[asset] ?? 0, w = up.price - dn.price; const rel583 = asset === \"btc\" ? 5 : dist; // fix583 (Love Nov 1 2026: \"Find the line that is still waiting past $5 and make $5 the cast. Nothing else.\"): the thirds wall frees on her $5 BTC break off the low/high (was $8); gold 33c and the arming distance untouched",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
+  },
+  {
+    "what": "const dist = RT_DIST[asset] ?? 0; const rel583 = asset === \"btc\" ? 5 : dist; // fix583 (Love Nov 1 2026: \"Find the line that is still waiting past $5 and make $5 the cast. Nothing else.\"): the thirds wall frees on her $5 BTC break off the low/high (was $8); gold 33c and the arming distance untouched",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
+  },
+  {
+    "what": "export const PINK_BREAK432: Record<string, number> = { gold: 0.25, btc: 5 }; // fix561 (Love Oct 30 2026 8:16 PM PT: \"make her break $5\" (cornerstone 62, every site) + Oct 31 1:15 AM PT: \"she used to enter QUICKLY on the break ... she is supposed to enter on the BREAK. can you fix that?\"): the never-long-under / never-short-over an unbroken pink walls break at her $5 BTC like every other site (was $8); gold 25c unchanged",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
+  },
+  {
+    "what": "const push = asset === \"btc\" ? 5 : 0.25; // fix641: her pink break, $5 BTC / 25c gold",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
+  },
+  {
+    "what": "export const BREAK_DIST: Record<string, number> = { btc: 5, gold: 0.33 }; // BTC $8 -> $6 Oct 19 ~12:26 AM PT (Love: \"let's lower btc's break to $6 from its original $8 tpls\") // // gold 50c -> 33c Oct 18 ~9:04 PM PT (Love: \"could you make the push thru a band 33 cents instead of 50 for now bb\") // // Love, Oct 17 ~1:15 AM PT; gold $1 -> 50c Oct 18 ~3:51 PM PT (\"$1 is waaay too wide rn bb... let's bring that down to 50 cents pls\") // fix580 (Love Nov 1 2026: \"The entry is $5 past the pink or session ... on a valid flip, rejection or break\"): BTC $6 -> $5, every line - her break is $5; gold untouched",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
+  },
+  {
+    "what": "export const PINK_BREAK: Record<string, number> = { btc: 5, gold: 0.33 }; // BTC $8 -> $6 Oct 19 ~12:26 AM PT (Love: \"let's lower btc's break to $6 from its original $8 tpls\") // // gold 50c -> 33c Oct 18 ~9:04 PM PT (Love: \"could you make the push thru a band 33 cents instead of 50 for now bb\") // // gold 75c -> 50c Oct 18 ~4:00 PM PT (Love: \"Yes, 50c for the pink too\") // fix580: BTC $6 -> $5 (her $5 break); gold untouched",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
+  },
+  {
+    "what": "const pbd514 = asset === \"btc\" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25;",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
+  },
+  {
+    "what": "const brk = asset === \"btc\" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, nm = asset === \"btc\" ? \"BTC\" : \"GOLD\";",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
+  },
+  {
+    "what": "const BREAK: Record<string, number> = { btc: 5, gold: 0.33 }; // fix580 (Love Nov 1 2026: \"The entry is $5 past the pink or session ... on a valid flip, rejection or break\"): BTC $6 -> $5, same value as bandlock BREAK_DIST; gold untouched",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
+  },
+  {
+    "what": "const brkL580 = String(l.name) === \"5m PP\" ? (asset === \"btc\" ? 5 : 0.25) : brk; // fix580 (Love Nov 1 2026: \"The $5 BTC break is the entry ... She is still missing entries after price has already passed $5 ... Find the line that is still waiting past $5 and remove it. The entry is $5 past the pink on a valid flip.\"): the pink's break candidate casts at HER $5 BTC / 25c gold break (cornerstone 62, every site - same as bandlock PINK_BREAK432), not the $6/33c band break - so she enters on the $5 break, not a dollar later. Session bands keep their $6/33c.",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
+  },
+  {
+    "what": "const brk = asset === \"btc\" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, pct = asset === \"btc\" ? 0.2 : 0.15;",
+    "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
+    "R": "R338"
   }
 ]

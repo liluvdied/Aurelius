@@ -33,7 +33,7 @@ const r2 = (n: number) => Math.round(n * 100) / 100;
 const fee = (n: number, p: number) => Math.ceil(0.07 * n * p * (1 - p) * 100) / 100;
 const STAKE = 20;
 // Her distances, locked with the spine (same values as bandlock BREAK_DIST / PINK_TAP, kept here so the spine stands alone):
-const BREAK: Record<string, number> = { btc: 5, gold: 0.33 }; // fix580 (Love Nov 1 2026: "The entry is $5 past the pink or session ... on a valid flip, rejection or break"): BTC $6 -> $5, same value as bandlock BREAK_DIST; gold untouched
+const BREAK: Record<string, number> = { btc: 2, gold: 0.33 }; // fix580 (Love Nov 1 2026: "The entry is $5 past the pink or session ... on a valid flip, rejection or break"): BTC $6 -> $5, same value as bandlock BREAK_DIST; gold untouched // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
 const TAP: Record<string, number> = { btc: 3, gold: 0.3 };
 // TOGETHER's NEAR-BAND REACH (Oct 21 ~7:55 PM PT, Love: "let's make it $33 for btc ... i do want her to be able to short a candle falling from the band above
 // anywhere but the bottom 33% of the channel and be able to long anywhere but the top 33% if a candle has rejected a band and is moving off away from it ... for
@@ -178,7 +178,7 @@ export function bonesDecide(asset: string, L: Line[], spot: number, last1m: Bar 
     if (xdir < 0 && spot < p) cands.push({ side: "down", label: `Break below ${l.name}`, d, rank: 0 });
     // BREAK — a 1m close through the line: OUT (fix504, Love Oct 29 2026 11:59 PM PT: "a closed candle through the band is not my rule." + 9:57 PM: "anything else I didn't say goes, please"). A break is live price through the line by her distance (below) - never a candle close.
     // BREAK — a live push through from this 5m candle's open side:
-    const brkL580 = String(l.name) === "5m PP" ? (asset === "btc" ? 5 : 0.25) : brk; // fix580 (Love Nov 1 2026: "The $5 BTC break is the entry ... She is still missing entries after price has already passed $5 ... Find the line that is still waiting past $5 and remove it. The entry is $5 past the pink on a valid flip."): the pink's break candidate casts at HER $5 BTC / 25c gold break (cornerstone 62, every site - same as bandlock PINK_BREAK432), not the $6/33c band break - so she enters on the $5 break, not a dollar later. Session bands keep their $6/33c.
+    const brkL580 = String(l.name) === "5m PP" ? (asset === "btc" ? 2 : 0.25) : brk; // fix580 (Love Nov 1 2026: "The $5 BTC break is the entry ... She is still missing entries after price has already passed $5 ... Find the line that is still waiting past $5 and remove it. The entry is $5 past the pink on a valid flip."): the pink's break candidate casts at HER $5 BTC / 25c gold break (cornerstone 62, every site - same as bandlock PINK_BREAK432), not the $6/33c band break - so she enters on the $5 break, not a dollar later. Session bands keep their $6/33c. // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
     if (cur.o > p && spot <= p - brkL580) cands.push({ side: "down", label: `Break below ${l.name}`, d, rank: 0 });
     if (cur.o < p && spot >= p + brkL580) cands.push({ side: "up", label: `Break above ${l.name}`, d, rank: 0 });
     // fix642 PAST THE BAND, HER COLOUR (Love Nov 4 2026 1:53-1:56 PM PT: "Once the pink is broken and price is still above it, she longs. She does not wait for another cross. The same for shorts below. The 55% and the red-falling-5m rule stay." + "not just pink. a session band or green zone or red zone. a flip or a candle born it's color after the push requirement." + "she enters at price pushing off of any band or zone in her color at the push requirement please" + (does the pink wait for a green candle too?) "yes"): price her push past the pink ($5 BTC / 25c gold), a session band or the green / red zone (her $5 BTC / 33c gold break) with a 2/5m candle that turned or was born her colour past its open is her entry - even when this 5m candle opened past the line already. Every wall still judges it (55%, red falling 5m, thirds).
@@ -440,6 +440,7 @@ export function freshSameSide463(lane: string, priorSide: string, priorLabel: st
 // HER THIRDS IN THE READ ITSELF (fix463, R193 - Love Oct 29 2026 12:41 PM PT: "to answer your question, yes. in the read itself. / not just the walls that go out please" + her cornerstone
 // "NO LONGS IN TOP 33% . NO SHORTS IN THE BOTTOM 33%"): main + rejection - her read never calls a long in the top 33% of the session-band channel (the unbroken session band above her),
 // nor a short in the bottom 33% (the one below). The walls still check at the door. 12:31 PM gold: long read at 88% up the 4004.95 -> -1σ 4018.29 channel - never her call.
+export const MARGIN648 = 0.03; // fix648 (Love Nov 4 2026 3:42 PM PT: "make it a 3% margin of error both sides pls" (after a 3:15 PM BTC short got in at 34% of a 33% thirds line)): every thirds share (33% / 20% / her gold sliding share) refuses 3% of the channel early, both sides - so nothing gets in by 1%
 export function thirdsRead463(L: { name: string; price: number }[], spot: number, side: string): boolean {
   if (!(spot > 0) || !(side === "up" || side === "down")) return false;
   if ((globalThis as any).__sessCarried?.[spot >= 20000 ? "btc" : "gold"] === true) return false; // fix612 + fix618: while carried, one blue line has no thirds
@@ -449,7 +450,7 @@ export function thirdsRead463(L: { name: string; price: number }[], spot: number
   const f = (spot - b.price) / (a.price - b.price), k483 = a.price - b.price > 1000 ? 0.2 : 0.33; // fix483 (Love Oct 29 2026 her list, c4 marked Right with her note: "btc over 1000 - 20%" + 6:41 PM: "WVERYTHING I ANSERED. NEEDS. TO. BE. IN."): only BTC channels reach $1,000
   const k485 = spot < 20000 ? (a.price - b.price > 25 ? 0.15 : a.price - b.price >= 10 ? 0.2 : 0.33) : k483; // fix485 (Love Oct 29 2026 7:20 PM PT: "gold has a sliding scale love i already answered it" (her list, c4 marked Right: gold 33% under $10, 20% on $10-25 channels, 15% over $25; BTC 33% up to $1,000, 20% over - her note "btc over 1000 - 20%"))
   const k487 = spot >= 20000 && a.price - b.price > 500 ? 0.2 : k485; // fix487 (Love Oct 29 2026 7:49 PM PT: "ITS 20% AT THIS BAND WIDTH" (a $963 BTC channel; her list c4 marked Right: BTC 20% over $500 - her note "btc over 1000" = the full band, both sides))
-  return side === "up" ? f >= 1 - k487 : f <= k487;
+  return side === "up" ? f >= 1 - k487 - MARGIN648 : f <= k487 + MARGIN648; // fix648: her thirds refuse 3% early, both sides
 }
 // THE PINK IN THE READ, BOTH SIDES (fix464, R197/R198 - Love Oct 29 2026 1:06 PM PT: "there is zero instance where she is within 15% of an unbroken pink that she shorts" + "i told you 100 times it's for both sides. do what i say." + Love 12:41 PM PT: "in the read itself. / not just the walls that go out please"): main + rejection - her read never
 // calls a long with the unbroken pink above within 15% (gold) / 20% (BTC) of the session-band channel, nor a short with it below within that share, until it breaks (25c / $8).
@@ -470,7 +471,7 @@ function pinkSlide580R(asset: string, W: number, pct: number): number { return a
 export function pinkRead464(asset: string, L: { name: string; price: number }[], spot: number, side: string, pink: number): boolean {
   if (!(spot > 0) || !(pink > 0) || !(side === "up" || side === "down")) return false;
   L = typeof carryWalls612 === "function" ? carryWalls612(asset, L as any) : L; // fix612
-  const brk = asset === "btc" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, pct = asset === "btc" ? 0.2 : 0.15;
+  const brk = asset === "btc" ? 2 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, pct = asset === "btc" ? 0.2 : 0.15; // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
   if (side === "up" ? spot >= pink + brk : spot <= pink - brk) return false;
   if (side === "up" ? spot > pink : spot < pink) return false;
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name)));

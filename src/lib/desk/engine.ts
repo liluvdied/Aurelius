@@ -5803,7 +5803,7 @@ export function pinkThird584(asset: string, pp: number, dir: "down" | "up"): boo
 }
 export function climbHold464(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number, asset: string): string {
   const last = sm[sm.length - 1];
-  const brk = asset === "btc" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, nm = asset === "btc" ? "BTC" : "GOLD";
+  const brk = asset === "btc" ? 2 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, nm = asset === "btc" ? "BTC" : "GOLD"; // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
   if (!last || now - last.t >= 30000) return "";
   if (typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584 && !pinkThird584(asset, last.pp, "up")) { S.on = false; return ""; } // fix584: the pink is not in her bottom/top 33% - the slide does nothing
   if (last.p < last.pp - ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[asset] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return brk; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494: her break (25c / $8 down through pink) frees the short

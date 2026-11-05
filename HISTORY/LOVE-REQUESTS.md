@@ -2,6 +2,56 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R339 - fix652 CHECKS ONLY, no trading code: (1) tools/check-her-rules.cjs and tools/independent-calls-test-463.cjs carry her 3% margin (MARGIN648, fix648) when they lift thirdsRead463 out of recon.ts - they crashed on it after fix649; (2) tools/thirds-five-583.cjs holds her $2 break (fix651): $1 still waits, $2 frees; (3) the $5 code proofs of R294, R305 and R306 are superseded by their $2 text from fix651 (kept in the book, marked superseded, never deleted).
+- when: 2026-11-05T00:51:56+00:00
+- Love: "Love Nov 4 2026 4:02 PM PT: "make it $2 on the break." + 4:44 PM PT (on updating the checks that still held $5, no trading code): "yes""
+- books: every live book (checks only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "btc: 2 }; // fix561"}
+- proof: {"code": "tools/cornerstones.py", "has": "70. HER $2 BREAK AT THE PINK WALLS TOO"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const brkL580 = String(l.name) === \"5m PP\" ? (asset === \"btc\" ? 2 : 0.25) : brk;"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const BREAK: Record<string, number> = { btc: 2, gold: 0.33 };"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const BREAK_DIST: Record<string, number> = { btc: 2, gold: 0.33 };"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "const rel583 = asset === \"btc\" ? 2 : dist;"}
+- proof: {"code": "tools/check-her-rules.cjs", "has": "one(RC, \"export const MARGIN648 = \")"}
+- proof: {"code": "tools/independent-calls-test-463.cjs", "has": "export const MARGIN648 = [^;]+;"}
+- proof: {"test": "tools/thirds-five-583.cjs"}
+- proof: {"test": "tools/check-her-rules.cjs"}
+- proof: {"test": "tools/independent-calls-test-463.cjs"}
+
+## R338 - fix651: BTC break $5 -> $2 at every break site - BREAK_DIST, PINK_BREAK, PINK_BREAK432 (bandlock), her pink-break push (fix641), the pink cushion break (fix541/pbd514), the thirds-wall release off the low/high (fix583 rel583, both walls), engine's brk (fix541), recon's BREAK, brkL580 and brk (fix580/fix541). Gold untouched. Her flips, the fake-out proximity and every other $5 stay. Cornerstone 70 and the tests that held $5 now hold $2.
+- when: 2026-11-05T00:39:50+00:00
+- Love: "Love Nov 4 2026 4:02 PM PT: "make it $2 on the break." + 4:19 PM: "Then build the $2 break as its own command.""
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const BREAK_DIST: Record<string, number> = { btc: 2, gold: 0.33 };"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const BREAK: Record<string, number> = { btc: 2, gold: 0.33 };"}
+- proof: {"test": "tools/pink-break-casts-580.cjs"}
+
+## R337 - fix650: the WICK THROUGH (fix457) block is out - the two lines in brokeThisCandle457 that refused a long with price back under a band the candle broke up through (and the short mirror) for the rest of the candle. Nothing else in fix457 changes. tools/broke-candle-test-457.cjs now checks a wick through is no longer refused.
+- when: 2026-11-05T00:39:30+00:00
+- Love: "Love Nov 4 2026 4:19 PM PT: "A wick through the band does not block the entry for the rest of the window. Once price is back on the same side of the band, a candle is her color, and the push is met, she enters. Print the exact line that does the wick-through block and remove only that block.""
+- books: every live book
+- status: ACTIVE
+- proof: {"test": "tools/broke-candle-test-457.cjs"}
+
+## R335 - fix648: her thirds (33% / 20% / her gold sliding share, session band to session band) refuse 3% of the channel early, both sides - in her read (thirdsRead463, MARGIN648) and at her door (ONLY IN HER THIRD, MARGIN648B). The 3:15 PM BTC short at 34% of a 33% line is refused.
+- when: 2026-11-05T00:39:12+00:00
+- Love: "Love Nov 4 2026 3:42 PM PT: "make it a 3% margin of error both sides pls" (3:21 PM: "hun i told you to create a 5% margin of error in both directions so a trade can't get in by 1%")"
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "f >= 1 - k487 - MARGIN648 : f <= k487 + MARGIN648; // fix648"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "pos <= TH + MARGIN648B"}
+- proof: {"test": "tools/margin-648.cjs"}
+
+## R336 - fix649: her channel percentage is band to band as drawn - the session band this 5m candle just broke in the trade's direction is the back edge of the channel price is now in (channelOnly + awayVerdict); it no longer vanishes and merges two channels. The 3:50:35 PM BTC short at 80487.07 read 32% of -1σ -> +1σ with the broken VWAP skipped; it is 65% of -1σ -> VWAP and is no longer refused. The edge in front stays unbroken only; her 33% / 20% shares are untouched.
+- when: 2026-11-05T00:39:12+00:00
+- Love: "Love Nov 4 2026 4:02 PM PT: "Fix the calculation so it matches the chart." ("even after that move (the blue line i drew) it was still not 66% of the way through the channel. she is still clear to short anywhere BUT the bottom /Top 33%.")"
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "brokeNow.has(l.name)); // fix649"}
+- proof: {"test": "tools/channel-649.cjs"}
+
 ## R334 - fix647 LOG ONLY: every rule in her read's thirds / candle / flip filter (THIRDS, BTC 33%, RED FALLING 5M, GREEN RISING 5M, PAST THE WHOLE CHANNEL) writes its own line to data/skip-reasons.jsonl - the read decides exactly as before. tools/skip-scorecard.py (read only) settles every refused 15m window per rule from her price log (SAVED = would have lost, MISSED = would have won) and lists her taken trades by setup, worst first -> data/SKIP-SCORECARD.txt.
 - when: 2026-11-04T23:20:31+00:00
 - Love: "Love Nov 4 2026 3:11 PM PT: "please give them all their own line so we can test and track them individually" + "add any other metrics that will help gather data to refine her entries and stop bleeds""

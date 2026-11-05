@@ -26,14 +26,14 @@ function up(tick){const r=brk(null,tick);return r&&r.side==="up"?r.label:null;}
 let ok=true;
 const fail=(m)=>{ok=false;console.log("PINK-BREAK-CASTS: FAIL - "+m);};
 // PINK: must cast the break at $5 (100005), and NOT yet at $4 (100004)
-const p4=up(100004), p5=up(100005);
+const p4=up(100001), p5=up(100002); // fix651: her $2 - not at $1, at $2
 console.log("  pink break @ $4 (100004): "+(p4||"none")+"   @ $5 (100005): "+(p5||"none"));
 if(p4&&/5m PP/.test(p4)) fail("the pink break cast at only $4 (should wait for her $5)");
 if(!(p5&&/Break above 5m PP/.test(p5))) fail("the pink break did NOT cast at her $5 (still waiting past $5) -> "+(p5||"none"));
 // SESSION band +1σ: her $5 - must NOT cast at $4, must cast at $5
 // move pink far away so only +1σ is the break candidate near tick
 function brkB(tick){const L=[{name:"5m PP",price:90000},{name:"+1σ",price:100100},{name:"+2σ",price:103000},{name:"-1σ",price:97000}];const cur={o:100090,h:tick,l:100090};return bones("btc",L,tick,undefined,cur,null,[],false,0,false,false,false);}
-const b5=brkB(100104), b6=brkB(100105);
+const b5=brkB(100101), b6=brkB(100102); // fix651: her $2 - not at $1, at $2
 const bl5=b5&&b5.side==="up"?b5.label:null, bl6=b6&&b6.side==="up"?b6.label:null;
 console.log("  +1σ break @ $4 (100104): "+(bl5||"none")+"   @ $5 (100105): "+(bl6||"none"));
 if(bl5&&/\+1σ/.test(bl5)) fail("the SESSION +1σ break cast at only $4 (should wait for her $5)");

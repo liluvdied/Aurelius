@@ -176,6 +176,7 @@ export function blueSmall399(asset: string, L: Line[]): { vw: number; w: number 
 // HARD 33% FOR EVERY BOOK BUT THE DELAYED BOOK (fix465, R206/R207/R209/R210 - Love Oct 29 2026 1:22-1:26 PM PT: "no i'm keeping it a hard 33% for all books so you can't get them confused" + "not on the delayed book please. every single other one" + "both sides. not just longs. not just shorts. pink as well. both sides. all books. aside from delayed. do not ever use that as a loophole again." + "implement the 33% and pink tolerances BOTH SIDES. ON ALL BOOKS. ASIDE FROM DELAYED."): every thirds share that reads lockPctFor (her channel walls, THE IMPOSSIBILITY,
 // the candle-launch rule thirdsMove, the paper books' walls) is a hard 33% - except while the delayed book (recon-dly / recon-dlyk) is being judged, which keeps its own shares byte for byte.
 export const DLY465 = new Set(["recon-dly", "recon-dlyk"]);
+export const MARGIN648B = 0.03; // fix648 (Love Nov 4 2026 3:42 PM PT: "make it a 3% margin of error both sides pls" (after a 3:15 PM BTC short got in at 34% of a 33% thirds line)): her door's thirds (ONLY IN HER THIRD) refuse 3% of the channel early, both sides
 export function lockPctFor(asset: string, width: number): number {
   if (asset === "btc" && width > 500 && !DLY465.has(String(G.__curBook465 || ""))) return 0.2; // fix487 (Love Oct 29 2026 7:49 PM PT: "ITS 20% AT THIS BAND WIDTH" (a $963 BTC channel; her list c4 marked Right: BTC 20% over $500 - her note "btc over 1000" = the full band, both sides))
   if (asset === "btc" && width > 1000 && !DLY465.has(String(G.__curBook465 || ""))) return 0.2; // fix483 (Love Oct 29 2026 her list, c4 marked Right with her note: "btc over 1000 - 20%" + 6:41 PM: "WVERYTHING I ANSERED. NEEDS. TO. BE. IN."): BTC channels over $1,000 lock their top/bottom 20%; 33% up to $1,000
@@ -241,7 +242,9 @@ export function channelOnly(asset: string, L: Line[], tick: number, side: string
   // CHANNEL EDGES ARE UNBROKEN ONLY (Oct 20 ~8:02 AM PT, Love): a standing-broken band is not a barrier and not a channel edge -
   // the 8:00:51 AM gold short read 37% against a BROKEN +2sigma top where her chart read 20% against the true unbroken edges.
   const chU = S; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn
-  const up = chU.filter((l) => l.price > tick).sort((a, b) => a.price - b.price)[0], dn = chU.filter((l) => l.price < tick).sort((a, b) => b.price - a.price)[0];
+  // fix649 (Love Nov 4 2026 4:02 PM PT: "Fix the calculation so it matches the chart." + "even after that move (the blue line i drew) it was still not 66% of the way through the channel"): the band this candle just broke in the trade's direction is the BACK edge of the channel price is now in, band to band as drawn - it no longer vanishes and merges two channels into one. 3:50:35 PM BTC short at 80487.07 read 32% of -1σ 80389.58 -> +1σ 80689.84 ($300, the broken VWAP 80539.66 skipped); her chart: 65% of -1σ -> VWAP ($150). The edge in front stays unbroken only.
+  const bk649 = wallLines(asset, chanL(asset, L)).filter((l) => Number(l.price) > 0 && isChanBand(asset, l) && brokeNow.has(l.name)); // fix649
+  const up = [...chU.filter((l) => l.price > tick), ...(side === "down" ? bk649.filter((l) => l.price > tick) : [])].sort((a, b) => a.price - b.price)[0], dn = [...chU.filter((l) => l.price < tick), ...(side === "up" ? bk649.filter((l) => l.price < tick) : [])].sort((a, b) => b.price - a.price)[0]; // fix649
   if (!up || !dn) return "";
   const frac = (tick - dn.price) / (up.price - dn.price);
   const cp = lockPctFor(asset, up.price - dn.price); // sliding by width (Oct 20 ~1:27 PM PT, Love)
@@ -391,7 +394,9 @@ export function awayVerdict(asset: string, L: Line[], tick: number, side: string
   // CHANNEL EDGES ARE UNBROKEN ONLY (Oct 20 ~8:02 AM PT, Love): a standing-broken band is not a barrier and not a channel edge -
   // the 8:00:51 AM gold short read 37% against a BROKEN +2sigma top where her chart read 20% against the true unbroken edges.
   const chU = S; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn
-  const up = chU.filter((l) => l.price > tick).sort((a, b) => a.price - b.price)[0], dn = chU.filter((l) => l.price < tick).sort((a, b) => b.price - a.price)[0];
+  // fix649 (Love Nov 4 2026 4:02 PM PT: "Fix the calculation so it matches the chart." + "even after that move (the blue line i drew) it was still not 66% of the way through the channel"): the band this candle just broke in the trade's direction is the BACK edge of the channel price is now in, band to band as drawn - it no longer vanishes and merges two channels into one. 3:50:35 PM BTC short at 80487.07 read 32% of -1σ 80389.58 -> +1σ 80689.84 ($300, the broken VWAP 80539.66 skipped); her chart: 65% of -1σ -> VWAP ($150). The edge in front stays unbroken only.
+  const bk649 = wallLines(asset, L).filter((l) => Number(l.price) > 0 && isSessBand(l) && brokeNow.has(l.name)); // fix649
+  const up = [...chU.filter((l) => l.price > tick), ...(side === "down" ? bk649.filter((l) => l.price > tick) : [])].sort((a, b) => a.price - b.price)[0], dn = [...chU.filter((l) => l.price < tick), ...(side === "up" ? bk649.filter((l) => l.price < tick) : [])].sort((a, b) => b.price - a.price)[0]; // fix649
   // PRESSED PAST AN UNBROKEN BAND IS STILL AT THE BAND - ALL BOOKS (Oct 19 ~11:23 PM PT, Love: "and yes, fix the blind spot"
   // after the 11:00:04 PM gold short 23c under unbroken -2σ): same guard as channelOnly. While this 5m candle opened on the far
   // side and price sits within break distance past an unbroken band, that band is still her floor (or ceiling) - only trades away
@@ -436,7 +441,7 @@ export function awayVerdict(asset: string, L: Line[], tick: number, side: string
     // FROZEN (Oct 19 ~12:19 AM PT, Love: "freeze it til it's frozen - until i say to thaw it" - data/FROZEN.json): this rule keeps its own distances,
     // BTC $8 / gold 33c, whatever the break distance elsewhere becomes.
     const FROZEN_THIRD_DIST: Record<string, number> = { btc: 8, gold: 0.33 };
-    const dist = FROZEN_THIRD_DIST[asset] ?? 0, w = up.price - dn.price; const rel583 = asset === "btc" ? 5 : dist; // fix583 (Love Nov 1 2026: "Find the line that is still waiting past $5 and make $5 the cast. Nothing else."): the thirds wall frees on her $5 BTC break off the low/high (was $8); gold 33c and the arming distance untouched
+    const dist = FROZEN_THIRD_DIST[asset] ?? 0, w = up.price - dn.price; const rel583 = asset === "btc" ? 2 : dist; // fix583 (Love Nov 1 2026: "Find the line that is still waiting past $5 and make $5 the cast. Nothing else."): the thirds wall frees on her $5 BTC break off the low/high (was $8); gold 33c and the arming distance untouched // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
     let tr = o.trail;
     if (!tr && G.__stDefaultReach) tr = []; // the self-test never reads her live prices
     if (!tr) { const tk = Object.keys(G).filter((k) => /^__qtrail_\d+$/.test(k)).sort((a, b) => Number(b.slice(9)) - Number(a.slice(9)))[0]; const f0 = Math.floor(Date.now() / 300000) * 300000; tr = ((tk && G[tk]?.[asset]) || []).filter((x: any) => x && x.c > 0 && x.t >= f0); }
@@ -651,7 +656,7 @@ export function reachWall429(asset: string, L: Line[], tick: number, side: strin
 // NEVER LONG INTO AN UNBROKEN PINK (fix432, Love Oct 28 2026 7:43 PM PT: "NO SHES NOT SUPPOSED TO LONG INTO AN UNBROKEN PINK EVER" + 8:06 PM "yes to all of them bb" to
 // "Never long into an unbroken pink"): main + rejection, longs only (the short mirror waits for Love) - while price is under the pink, or less than her pink break through it
 // (gold 25c, BTC $8), no long at any distance. Can't read the pink = no verdict here (the other walls still judge).
-export const PINK_BREAK432: Record<string, number> = { gold: 0.25, btc: 5 }; // fix561 (Love Oct 30 2026 8:16 PM PT: "make her break $5" (cornerstone 62, every site) + Oct 31 1:15 AM PT: "she used to enter QUICKLY on the break ... she is supposed to enter on the BREAK. can you fix that?"): the never-long-under / never-short-over an unbroken pink walls break at her $5 BTC like every other site (was $8); gold 25c unchanged
+export const PINK_BREAK432: Record<string, number> = { gold: 0.25, btc: 2 }; // fix561 (Love Oct 30 2026 8:16 PM PT: "make her break $5" (cornerstone 62, every site) + Oct 31 1:15 AM PT: "she used to enter QUICKLY on the break ... she is supposed to enter on the BREAK. can you fix that?"): the never-long-under / never-short-over an unbroken pink walls break at her $5 BTC like every other site (was $8); gold 25c unchanged // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
 // THE PINK IS SPENT (fix515c, Love Oct 30 2026 7:41 AM PT: "once pink has been broken by those numbers, she can then take the rejection from the green zone without waiting for pink to break. For both of them."): price broke the pink by her $2 gold / $200 BTC and has not re-broken it 25c / $8 back the other
 // way since - the pink is spent that way, and a zone rejection trades with no pink wait (the read sets a short waiver the walls below honor).
 export function pinkSpent515c(sm: { t: number; p: number; pp: number }[], now: number, side: string, asset: string): boolean {
@@ -904,8 +909,6 @@ export function brokeThisCandle457(asset: string, L: Line[], tick: number, side:
     if ((up && brokeDn(P) && tick >= P + d) || (!up && brokeUp(P) && tick <= P - d)) continue; // fix483 (Love Oct 29 2026 6:40 PM PT: "a break by HER DISTANCE I JUST FUCKING ANSERED EVERYTHJNG" (her list, c21 marked Right: no trade back against a band/pink broken this candle until price breaks back by her distance) + 6:37 PM: "that is not a block" + 6:37 PM: "bollinger is only $1.50 love" + "same band tolerances apply everywhere"): price broke back by her distance - the break failed, the trade back is free (c21)
     if (up && brokeDn(P)) return `BROKE DOWN THIS CANDLE (fix457): ${b.name} (${P.toFixed(2)}) broke DOWN this candle (low ${lo.toFixed(2)}) - only a short this candle, never a long (price ${tick.toFixed(2)})`;
     if (!up && brokeUp(P)) return `BROKE UP THIS CANDLE (fix457): ${b.name} (${P.toFixed(2)}) broke UP this candle (high ${hi.toFixed(2)}) - only a long this candle, never a short (price ${tick.toFixed(2)})`;
-    if (!up && brokeDn(P) && tick >= P) return `WICK THROUGH (fix457): ${b.name} (${P.toFixed(2)}) broke down this candle but price ${tick.toFixed(2)} is back over it - a wick through is not an entry`;
-    if (up && brokeUp(P) && tick <= P) return `WICK THROUGH (fix457): ${b.name} (${P.toFixed(2)}) broke up this candle but price ${tick.toFixed(2)} is back under it - a wick through is not an entry`;
   }
   // her 33%, counted with every session band broken against her this candle still in front of her
   const S = bands.filter((l) => isSessBand(l));
@@ -950,7 +953,7 @@ export function reconZoneGate(asset: string, tick: number, side: string): string
 export function reconThirdAgainst(asset: string, L: Line[], tick: number, side: string, Bk: Map<string, "up" | "down">): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
   const RT_DIST: Record<string, number> = { btc: 8, gold: 0.33 };
-  const dist = RT_DIST[asset] ?? 0; const rel583 = asset === "btc" ? 5 : dist; // fix583 (Love Nov 1 2026: "Find the line that is still waiting past $5 and make $5 the cast. Nothing else."): the thirds wall frees on her $5 BTC break off the low/high (was $8); gold 33c and the arming distance untouched
+  const dist = RT_DIST[asset] ?? 0; const rel583 = asset === "btc" ? 2 : dist; // fix583 (Love Nov 1 2026: "Find the line that is still waiting past $5 and make $5 the cast. Nothing else."): the thirds wall frees on her $5 BTC break off the low/high (was $8); gold 33c and the arming distance untouched // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
   const o = fiveOpenNow(asset);
   const S = wallFor(wallLines(asset, L).filter((l) => Number(l.price) > 0 && isSessBand(l)), Bk, tick, side);
   // CHANNEL EDGES ARE UNBROKEN ONLY (Oct 20 ~8:02 AM PT, Love): a standing-broken band is not a barrier and not a channel edge -
@@ -1671,7 +1674,7 @@ export function pinkBreak641(asset: string, L: Line[], tick: number, side: strin
     const lab = String(label ?? (G.__inBLC465 ? (G.__curLabel611 || G.__restLabel641 || "") : (G.__wireLabel619 || ""))); // fix641
     const m = PINK_BREAK_LABEL641.exec(lab); if (!m || (m[1] === "above") !== (side === "up")) return ""; // fix641
     const pp = Number((L || []).find((l: Line) => String(l.name) === "5m PP")?.price) || 0; if (!(pp > 0) || !(tick > 0)) return ""; // fix641
-    const push = asset === "btc" ? 5 : 0.25; // fix641: her pink break, $5 BTC / 25c gold
+    const push = asset === "btc" ? 2 : 0.25; // fix641: her pink break, $5 BTC / 25c gold // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
     if (side === "up" ? tick <= pp : tick >= pp) return "back"; // fix641: back across the pink = the break is gone
     if (!turnFlip530(asset, side, tick)) return ""; // fix642 (Love Nov 4 2026 1:55 PM PT, does the pink break wait for a green candle too? "yes"): the pink break waits for her 2/5m candle turned or born her colour
     return (side === "up" ? tick >= pp + push : tick <= pp - push) ? "go" : ""; // fix641: the push is met = the entry
@@ -1728,7 +1731,7 @@ function fiveHLNow(asset: string): { h: number; l: number } | null {
   } catch { return null; }
 }
 /** A reason string if `side` trades against a band break made in the live 5m candle, else "". */
-export const BREAK_DIST: Record<string, number> = { btc: 5, gold: 0.33 }; // BTC $8 -> $6 Oct 19 ~12:26 AM PT (Love: "let's lower btc's break to $6 from its original $8 tpls") // // gold 50c -> 33c Oct 18 ~9:04 PM PT (Love: "could you make the push thru a band 33 cents instead of 50 for now bb") // // Love, Oct 17 ~1:15 AM PT; gold $1 -> 50c Oct 18 ~3:51 PM PT ("$1 is waaay too wide rn bb... let's bring that down to 50 cents pls") // fix580 (Love Nov 1 2026: "The entry is $5 past the pink or session ... on a valid flip, rejection or break"): BTC $6 -> $5, every line - her break is $5; gold untouched
+export const BREAK_DIST: Record<string, number> = { btc: 2, gold: 0.33 }; // BTC $8 -> $6 Oct 19 ~12:26 AM PT (Love: "let's lower btc's break to $6 from its original $8 tpls") // // gold 50c -> 33c Oct 18 ~9:04 PM PT (Love: "could you make the push thru a band 33 cents instead of 50 for now bb") // // Love, Oct 17 ~1:15 AM PT; gold $1 -> 50c Oct 18 ~3:51 PM PT ("$1 is waaay too wide rn bb... let's bring that down to 50 cents pls") // fix580 (Love Nov 1 2026: "The entry is $5 past the pink or session ... on a valid flip, rejection or break"): BTC $6 -> $5, every line - her break is $5; gold untouched // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
 // LATEST BREAK DECIDES (Oct 18 ~7:45 PM PT, Love: "yes. the direction of the break... break = direction of the break / rejection = trade the direction
 // of the rejection" - 7:30 PM gold: the candle opened under the pink, spiked $0.40 over it, then fell back $2 under it; the open-based check still read a
 // rising candle and let a long through). Her live ticks in this 5m candle, in order: every time price goes BREAK_DIST through a band from the side it
@@ -2303,7 +2306,7 @@ export function pinkRejectAgainst(asset: string, L: Line[], tick: number, side: 
 // that went 11-3, +$79). The same-candle break/rejection rules still stop a wick through that snaps back. Gold's $0.75 stays.
 // PINK WAIT BACK ON BTC (Oct 18 ~3:31 PM PT, Love: "Yes, wait at the pink" - 3:30:23 PM she longed "On 5m PP" $5 above a falling pink that broke down 2 s
 // later): within $8 of the pink (the closest wall) she waits - $8 through it = the break, $8 off it = the rejection. Gold unchanged ($0.75).
-export const PINK_BREAK: Record<string, number> = { btc: 5, gold: 0.33 }; // BTC $8 -> $6 Oct 19 ~12:26 AM PT (Love: "let's lower btc's break to $6 from its original $8 tpls") // // gold 50c -> 33c Oct 18 ~9:04 PM PT (Love: "could you make the push thru a band 33 cents instead of 50 for now bb") // // gold 75c -> 50c Oct 18 ~4:00 PM PT (Love: "Yes, 50c for the pink too") // fix580: BTC $6 -> $5 (her $5 break); gold untouched
+export const PINK_BREAK: Record<string, number> = { btc: 2, gold: 0.33 }; // BTC $8 -> $6 Oct 19 ~12:26 AM PT (Love: "let's lower btc's break to $6 from its original $8 tpls") // // gold 50c -> 33c Oct 18 ~9:04 PM PT (Love: "could you make the push thru a band 33 cents instead of 50 for now bb") // // gold 75c -> 50c Oct 18 ~4:00 PM PT (Love: "Yes, 50c for the pink too") // fix580: BTC $6 -> $5 (her $5 break); gold untouched // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
 export function atPink(asset: string, W: Line[], tick: number): string {
   const d = PINK_BREAK[asset] ?? 0;
   if (!(d > 0) || !(tick > 0) || !W.length) return "";
@@ -3011,7 +3014,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
       for (const pl514 of (L || []).filter((l: Line) => String(l.name) === "5m PP" && Number(l.price) > 0)) {
         const pp514 = Number(pl514.price); if (pinkFar503(asset, L, tick, pp514)) continue;
         const W538 = above - below, cush514 = ((typeof __PINKFLAT25 !== "undefined" && __PINKFLAT25) ? 25 : (typeof pinkSlide580 === "function") ? pinkSlide580(asset, W538) : (asset === "btc" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date())) ? 0 : 75, W538 < 180 && W538 >= 75 ? 0.75 * W538 : 0.20 * W538)) : 0.15 * W538)); // fix538 (Love Oct 30 2026 3:49 PM PT: "when bands are under over $80 - until they hit $180 , she needs at least 3/4 of a band channel width for pink tolerances... at any bands distance - she needs a minimum of $75 during weekdays. on weekends, it could differ." (the same law her fix525/526 click installed, reaching the one pink-cushion site it missed)): her $75 weekday floor + 3/4 at $75-$180 width reach the cushion too - the one site her 3:49 PM click missed
-        const pbd514 = asset === "btc" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25;
+        const pbd514 = asset === "btc" ? 2 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25; // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
         if (side === "up" && pp514 > tick - pbd514 && pp514 - tick <= cush514) why = `PINK CUSHION: long $${(pp514 - tick).toFixed(2)} under the unbroken pink (${pp514.toFixed(2)}) - inside her $${cush514.toFixed(2)} cushion (fix514). wait for the break or the rejection.`;
         if (!why && side === "down" && pp514 < tick + pbd514 && tick - pp514 <= cush514) why = `PINK CUSHION: short $${(tick - pp514).toFixed(2)} over the unbroken pink (${pp514.toFixed(2)}) - inside her $${cush514.toFixed(2)} cushion (fix514). wait for the break or the rejection.`;
       }
@@ -3204,8 +3207,8 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // Oct 22 ~3:20 AM PT, Love: "the session bands hun, same way we have her set up at 33% both ways / we will do 20% after bands exceed $500 apart / 33% under that" -
   // on BTC her thirds slide with THE IMPOSSIBILITY (33% to $500 wide, 20% past). Gold keeps the fixed third.
   const TH = IMPOSSIBLE, thTxt = Math.round(TH * 100);
-  if (!why && !tightUp && side === "up" && pos >= 1 - TH) why = `ONLY IN HER THIRD: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no long in the top ${thTxt}%, under the unbroken band above.`;
-  if (!why && !tightDn && side === "down" && pos <= TH) why = `ONLY IN HER THIRD: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no short in the bottom ${thTxt}%, over the unbroken band below.`;
+  if (!why && !tightUp && side === "up" && pos >= 1 - TH - MARGIN648B) why = `ONLY IN HER THIRD: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no long in the top ${thTxt}%, under the unbroken band above.`;
+  if (!why && !tightDn && side === "down" && pos <= TH + MARGIN648B) why = `ONLY IN HER THIRD: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - no short in the bottom ${thTxt}%, over the unbroken band below.`;
   // HER CANDLE (Oct 20 ~8:07 PM PT, Love: "she is clear to long a rising candle that either came up from the bottom, or broke pink upwards, she can long
   // anywhere but the top 33% of the channel, same for shorts on a falling candle that fell from the band, or broke the pink downwards ... hardwired into her
   // architecture, no other method of operations"): a rising 5m candle (over its open, lifted the tap off its low) is a long or nothing; a falling one (under

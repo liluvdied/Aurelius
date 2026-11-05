@@ -22,7 +22,7 @@ const W = tp(["type Line = { name: string; price: number; unit?: number }; type 
   grab(BL, "export function aheadBeyond460("), grab(BL, "export function sessionAheadWait("), one(BL, "export const ZONE_TOL497"), grab(BL, "export function zoneTolerance497(")],
   ["reachWall429", "pinkLongWall432", "pinkShortWall464", "sameSide434", "brokeThisCandle441", "brokeThisCandle457", "thirdsMove464", "aheadBeyond460", "sessionAheadWait", "zoneTolerance497"]);
 const H = tp([grab(EN, "export function slideHold403("), grab(EN, "export function climbHold464(")], ["slideHold403", "climbHold464"]);
-const R = tp([grab(RC, "export function thirdsRead463("), grab(RC, "export function pinkRead464(")], ["thirdsRead463", "pinkRead464"]);
+const R = tp([one(RC, "export const MARGIN648 = "), grab(RC, "export function thirdsRead463("), grab(RC, "export function pinkRead464(")], ["thirdsRead463", "pinkRead464"]); // fix652 (Love Nov 4 2026 4:44 PM PT: "yes" - update the checks): her 3% margin (MARGIN648, fix648) goes along with thirdsRead463
 const rows = [];
 const add = (rule, longOk, shortOk, miss = "") => rows.push({ rule, longOk, shortOk, miss });
 const C = 4000, mir = (x) => 2 * C - x, mL = (L) => L.map((l) => ({ ...l, name: String(l.name).replace(/^-(\d)/, "+$1").replace(/^\+(\d)/, (m0, d) => "-" + d).replace(/^5m R1$/, "5m S1x").replace(/^5m S1$/, "5m R1").replace("5m S1x", "5m S1").replace(/^5m R2$/, "5m S2x").replace(/^5m S2$/, "5m R2").replace("5m S2x", "5m S2").replace(/^Bollinger upper$/, "Bollinger lowerx").replace(/^Bollinger lower$/, "Bollinger upper").replace("Bollinger lowerx", "Bollinger lower") /* fix497: the zones' far edges and the Bollinger mirror too */, price: mir(l.price) }));
