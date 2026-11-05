@@ -1,0 +1,366 @@
+import { useEffect, useRef } from "react";
+import type { Look } from "@/lib/desk/look";
+import { onTick } from "@/lib/desk/ticks";
+import type { AssetId, VwapFrame } from "@/lib/desk/types";
+
+function fmt(asset: AssetId, n: number): string {
+  if (asset === "gold" || asset === "silver") return n.toFixed(2);
+  return Math.round(n).toLocaleString("en-US");
+}
+
+function niceStep(span: number): number {
+  if (!(span > 0) || !Number.isFinite(span)) return 1;
+  const raw = span / 5;
+  const pow = Math.pow(10, Math.floor(Math.log10(raw)));
+  const n = raw / pow;
+  const m = n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10;
+  return m * pow;
+}
+
+function mix(a: number, b: number, t: number): number {
+  const x = Math.min(1, Math.max(0, t));
+  return a + (b - a) * x;
+}
+
+// LIVE TAPE (rebuilt by Claude, Oct 4 ~12:40 AM PT, Love: "get the ball to move smoothly and have the line follow smoothly
+// with the same gradient same everything... zoom up and down like kalshi's and have the price on the side zoom in and out").
+// Her design, untouched: white line, white ball, green/red glow under the line by side of the strike, dashed strike line,
+// price scale on the right. What changed is the engine: one animation loop that runs every frame (it used to redraw only
+// when a new price arrived and rebuilt the tape from scratch each time, so the ball jumped). Now the price glides to each
+// new quote, the tape scrolls continuously, and the camera (and the price scale with it) eases in and out.
+export function Sparkline({
+  spark,
+  target,
+  live,
+  asset,
+  closeTime,
+  look,
+  tapeId,
+  ticks,
+}: {
+  spark: number[];
+  target: number | null;
+  live?: number;
+  asset: AssetId;
+  closeTime?: string;
+  look: Look;
+  tapeId?: string;
+  ticks?: boolean;
+}) {
+  const priceRef = useRef(live && live > 0 ? live : 0);
+  const tickOn = ticks ?? (asset === "btc" || (asset === "gold" && target != null));
+  const tickOnRef = useRef(tickOn);
+  tickOnRef.current = tickOn;
+  const targetRef = useRef(target);
+  const closeRef = useRef(closeTime);
+  const sparkRef = useRef(spark);
+  const lookRef = useRef(look);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<SVGPathElement>(null);
+  const ballRef = useRef<HTMLSpanElement>(null);
+  const haloRef = useRef<HTMLSpanElement>(null);
+  const areaRef = useRef<SVGPathElement>(null);
+  const strikeRef = useRef<SVGLineElement>(null);
+  const scaleRef = useRef<HTMLDivElement>(null);
+
+  if (live && live > 0) priceRef.current = live;
+  targetRef.current = target;
+  closeRef.current = closeTime;
+  sparkRef.current = spark;
+  lookRef.current = look;
+
+  useEffect(() => {
+    // v3 (Oct 4 ~1:40 AM PT, Love: "the line doesn't stay smooth behind the ball, it gets jagged and skippy... skips like a
+    // cd... bring the scale closer to the ball... the sliders didn't do too much"):
+    //  - every tape sample is final when it is written (no re-smoothing of the past = no shimmer / CD skip),
+    //  - the curve is a MONOTONE spline (it can never loop back or overshoot, which caused the hooks and spikes),
+    //  - her feed and Coinbase are blended with a slow 45 s correction (no cliffs when a desk quote lands),
+    //  - the ball sits closer to the price scale, and every LOOK slider has a much wider range.
+    const tape: { t: number; v: number }[] = [];
+    let shown = 0;
+    let ema = 0;
+    let camLo = 0;
+    let camHi = 0;
+    let last = performance.now();
+    let lastSample = 0;
+    let seeded = false;
+    let tone = "";
+    let raf = 0;
+    const headX = 88;
+    let tick = 0;
+    let tickSm = 0;
+    let deskSeen = 0;
+    let offWant = 0;
+    let off = 0;
+    let offReady = false;
+    const unsub = onTick(asset, (px) => {
+      tick = px;
+      const wig = lookRef.current.fluctuations / 100;
+      tickSm = tickSm > 0 ? tickSm + (px - tickSm) * mix(0.03, 1, wig) : px;
+    });
+
+    // v4 "cartoon" camera (Oct 4 ~2:30 AM PT, Love: "chart is still flat... make it attached to price... just ups and downs
+    // if it's going up or down"): the camera frames only the last few seconds, so every little move swings the ball. Older
+    // line outside that view eases into the top/bottom margins instead of being clipped flat.
+    const yOf = (v: number) => {
+      const span = camHi - camLo || 1;
+      let u = (v - camLo) / span;
+      if (u > 1) u = 1 + 0.07 * Math.tanh((u - 1) / 0.7);
+      else if (u < 0) u = -0.07 * Math.tanh(-u / 0.7);
+      return 9 + (1 - u) * 82;
+    };
+    const n2 = (v: number) => v.toFixed(2);
+
+    // Monotone cubic (Fritsch-Carlson, like d3.curveMonotoneX), blended toward straight lines by "sharpness".
+    const curve = (pts: { x: number; y: number }[], sharp: number) => {
+      const n = pts.length;
+      if (n < 2) return n ? `M${n2(pts[0].x)},${n2(pts[0].y)}` : "";
+      const dx: number[] = [];
+      const m: number[] = [];
+      for (let i = 0; i < n - 1; i++) {
+        dx.push(Math.max(1e-6, pts[i + 1].x - pts[i].x));
+        m.push((pts[i + 1].y - pts[i].y) / dx[i]);
+      }
+      const t: number[] = new Array(n);
+      t[0] = m[0];
+      t[n - 1] = m[n - 2];
+      for (let i = 1; i < n - 1; i++) {
+        if (m[i - 1] * m[i] <= 0) t[i] = 0;
+        else {
+          const w1 = 2 * dx[i] + dx[i - 1];
+          const w2 = dx[i] + 2 * dx[i - 1];
+          t[i] = (w1 + w2) / (w1 / m[i - 1] + w2 / m[i]);
+        }
+      }
+      const k = 1 - Math.min(0.95, sharp);
+      let d = `M${n2(pts[0].x)},${n2(pts[0].y)}`;
+      for (let i = 0; i < n - 1; i++) {
+        const h = dx[i] / 3;
+        const lin = (pts[i + 1].y - pts[i].y) / 3;
+        const c1y = pts[i].y + lin + (t[i] * h - lin) * k;
+        const c2y = pts[i + 1].y - lin - (t[i + 1] * h - lin) * k;
+        d += ` C${n2(pts[i].x + h)},${n2(c1y)} ${n2(pts[i + 1].x - h)},${n2(c2y)} ${n2(pts[i + 1].x)},${n2(pts[i + 1].y)}`;
+      }
+      return d;
+    };
+
+    const frame = (now: number) => {
+      raf = requestAnimationFrame(frame);
+      const dt = Math.min(100, now - last);
+      last = now;
+      const desk = priceRef.current;
+      if (!(desk > 0)) return;
+      const L = lookRef.current;
+      const spd = L.speed / 100;
+      const move = L.movement / 100;
+      const sm = L.smooth / 100;
+      const sharp = L.sharpness / 100;
+      const windowMs = mix(150000, 20000, spd);
+      const SAMPLE = mix(400, 90, spd);
+
+      let price = desk;
+      if (tickOnRef.current && tick > 0) {
+        if (desk !== deskSeen) {
+          deskSeen = desk;
+          offWant = desk - tick;
+          if (!offReady) {
+            off = offWant;
+            offReady = true;
+          }
+        }
+        off += (offWant - off) * (1 - Math.exp(-dt / 45000));
+        price = tickSm + off;
+      }
+
+      // The ball glides to price ("speed" fast/slow, "smooth" adds weight).
+      if (!(shown > 0)) shown = price;
+      const tau = mix(2600, 110, spd) * mix(0.6, 2.4, sm);
+      shown += (price - shown) * (1 - Math.exp(-dt / tau));
+
+      if (!seeded) {
+        const src = sparkRef.current.filter((n) => n > 0).slice(-6);
+        if (src.length >= 3) {
+          // Seed shape, moved onto today's level so it never cliffs into the live price.
+          const shift = shown - src[src.length - 1];
+          // Candle history squeezed into a few seconds would set a huge zoom and flatten the live tape: keep its shape,
+          // shrink its height to a few minimum-zooms.
+          const base = src[src.length - 1];
+          const rng = Math.max(...src) - Math.min(...src);
+          const seedFloor = asset === "gold" || asset === "silver" ? 0.03 : 3;
+          const amp = rng > 0 ? Math.min(1, seedFloor / rng) : 1;
+          for (let q = 0; q < src.length; q++) src[q] = base + (src[q] - base) * amp;
+          const n = 50;
+          for (let k = 0; k <= n; k++) {
+            const u = (k / n) * (src.length - 1);
+            const i = Math.min(src.length - 2, Math.floor(u));
+            const f = u - i;
+            const e = f * f * (3 - 2 * f);
+            tape.push({ t: now - windowMs * (1 - k / n), v: src[i] + (src[i + 1] - src[i]) * e + shift });
+          }
+        } else {
+          tape.push({ t: now - windowMs, v: shown });
+        }
+        ema = shown;
+        seeded = true;
+        lastSample = now;
+      }
+
+      // Samples are written once, smoothed at write time ("smooth" dial), never touched again.
+      if (now - lastSample >= SAMPLE) {
+        ema += (shown - ema) * mix(1, 0.15, sm);
+        tape.push({ t: now, v: ema });
+        lastSample = now;
+        while (tape.length > 2 && tape[1].t < now - windowMs * 1.05) tape.shift();
+      }
+
+      // Camera frames everything on screen ("movement": tighter zoom and less air = bigger swings).
+      // Frame the RECENT tape only ("movement": shorter look-back + tighter minimum zoom = bigger swings).
+      const zoomMs = windowMs;
+      let lo = shown;
+      let hi = shown;
+      for (const p of tape) {
+        if (p.t < now - zoomMs) continue;
+        if (p.v < lo) lo = p.v;
+        if (p.v > hi) hi = p.v;
+      }
+      const floor = asset === "gold" || asset === "silver" ? mix(1, 0.015, move) : mix(25, 0.6, move);
+      const span = Math.max(hi - lo, floor);
+      const pad = span * mix(0.4, 0.1, move);
+      const wantLo = lo - pad;
+      const wantHi = hi + pad;
+      if (!(camHi > camLo)) {
+        camLo = wantLo;
+        camHi = wantHi;
+      } else {
+        const k = 1 - Math.exp(-dt / mix(1100, 160, spd));
+        camLo += (wantLo - camLo) * k;
+        camHi += (wantHi - camHi) * k;
+      }
+
+      // Points: the stored tape (fixed), then a short bridge from the last sample into the ball.
+      const pts: { x: number; y: number }[] = [];
+      for (const p of tape) {
+        const x = headX - ((now - p.t) / windowMs) * headX;
+        pts.push({ x, y: yOf(p.v) });
+      }
+      while (pts.length > 2 && pts[1].x < -4) pts.shift();
+      if (headX - pts[pts.length - 1].x > 0.05) pts.push({ x: headX, y: yOf(shown) });
+      else pts[pts.length - 1] = { x: headX, y: yOf(shown) };
+
+      const d = curve(pts, sharp * 0.9);
+      lineRef.current?.setAttribute("d", d);
+      areaRef.current?.setAttribute("d", `${d} L${n2(headX)},100 L${n2(pts[0].x)},100 Z`);
+      const head = pts[pts.length - 1];
+      for (const el of [ballRef.current, haloRef.current]) {
+        if (!el) continue;
+        el.style.left = `${head.x}%`;
+        el.style.top = `${head.y}%`;
+      }
+
+      const strike = targetRef.current;
+      const up = strike != null && strike > 0 ? shown >= strike : tape.length > 1 ? shown >= tape[Math.max(0, tape.length - 8)].v : true;
+      const want = up ? "#3ddc84" : "#ff5c5c";
+      if (want !== tone) {
+        tone = want;
+        rootRef.current?.querySelectorAll("stop").forEach((stop) => stop.setAttribute("stop-color", tone));
+        if (haloRef.current) haloRef.current.style.boxShadow = `0 0 10px 2px ${tone}66`;
+      }
+      if (strikeRef.current) {
+        if (strike != null && strike > 0) {
+          const sy = yOf(strike);
+          strikeRef.current.setAttribute("y1", n2(sy));
+          strikeRef.current.setAttribute("y2", n2(sy));
+          strikeRef.current.style.display = sy > -4 && sy < 104 ? "" : "none";
+        } else {
+          strikeRef.current.style.display = "none";
+        }
+      }
+
+      const box = scaleRef.current;
+      if (box) {
+        const step = niceStep(camHi - camLo);
+        const first = Math.ceil(camLo / step) * step;
+        const ticks: number[] = [];
+        for (let p = first; p <= camHi + step * 0.01 && ticks.length < 7; p += step) ticks.push(p);
+        while (box.children.length < 7) {
+          const el = document.createElement("span");
+          el.className = "absolute right-0 -translate-y-1/2 text-right font-mono text-[10px] tabular-nums leading-none text-white/50";
+          box.appendChild(el);
+        }
+        for (let i = 0; i < box.children.length; i++) {
+          const el = box.children[i] as HTMLSpanElement;
+          const p = ticks[i];
+          const y = p == null ? -1 : yOf(p);
+          if (p == null || y < 2 || y > 98) {
+            el.style.display = "none";
+            continue;
+          }
+          el.style.display = "";
+          el.style.top = `${y}%`;
+          el.style.opacity = String(Math.min(1, Math.min(y - 2, 98 - y) / 8));
+          el.textContent = fmt(asset, p);
+        }
+      }
+    };
+
+    raf = requestAnimationFrame(frame);
+    return () => {
+      cancelAnimationFrame(raf);
+      unsub();
+    };
+  }, [asset]);
+
+  const gid = `tape-${tapeId || asset}`;
+
+  return (
+    <div ref={rootRef} className="relative h-40 w-full overflow-hidden bg-black sm:h-52">
+      <svg viewBox="0 0 100 100" className="h-full w-full" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#3ddc84" stopOpacity="0.4" />
+            <stop offset="48%" stopColor="#3ddc84" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#3ddc84" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <line ref={strikeRef} x1="0" x2="90" y1="50" y2="50" stroke="#ffffff" strokeOpacity="0.28" strokeDasharray="1.1 1.5" vectorEffect="non-scaling-stroke" />
+        <path ref={areaRef} d="" fill={`url(#${gid})`} />
+        <path ref={lineRef} d="" fill="none" stroke="#ffffff" strokeWidth="2.15" strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+      </svg>
+      <span ref={haloRef} className="pointer-events-none absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full" />
+      <span ref={ballRef} className="pointer-events-none absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
+      <div ref={scaleRef} className="pointer-events-none absolute inset-y-0 right-1 w-[2.9rem] overflow-hidden" />
+    </div>
+  );
+}
+
+export function BandMeter({
+  price,
+  frame,
+}: {
+  price: number;
+  frame: VwapFrame | null;
+}) {
+  if (!frame || frame.stdev <= 0) return null;
+  const min = frame.vwap - 3 * frame.stdev;
+  const max = frame.vwap + 3 * frame.stdev;
+  const t = Math.min(1, Math.max(0, (price - min) / (max - min)));
+
+  return (
+    <div className="mt-2">
+      <div className="relative h-px bg-white/25">
+        <div
+          className="absolute top-1/2 size-1 -translate-x-1/2 -translate-y-1/2 bg-white"
+          style={{ left: `${t * 100}%` }}
+        />
+        {[0.166, 0.333, 0.5, 0.666, 0.833].map((p) => (
+          <span key={p} className="absolute top-1/2 h-1.5 w-px -translate-y-1/2 bg-white/40" style={{ left: `${p * 100}%` }} />
+        ))}
+      </div>
+      <div className="mt-1.5 flex justify-between font-mono text-[10px] tracking-wide text-white">
+        <span>−3σ</span>
+        <span>VWAP</span>
+        <span>+3σ</span>
+      </div>
+    </div>
+  );
+}
