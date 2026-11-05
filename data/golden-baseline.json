@@ -1,5 +1,5 @@
 {
- "at": "2026-11-05T23:40:13.865911+00:00",
+ "at": "2026-11-05T23:48:05.747759+00:00",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -75,7 +75,7 @@
   "pivotbooks.ts": "3e2eba14e4dfe821",
   "pivotpull.ts": "d07d9b2879c44ec5",
   "poly-ledger.ts": "03a0d120db477fe7",
-  "poly-live.server.ts": "35b30f988a3a8703",
+  "poly-live.server.ts": "a8ccf550717145cd",
   "polyhour.ts": "4dfc284ae053bed8",
   "polymirror.ts": "07db988769580d4d",
   "positions.ts": "d47e005ba5bac220",
@@ -149,7 +149,7 @@
   "maxDollars": "4a44dc1536",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "1877ea916c",
+  "at": "0de4e28e7b",
   "note": "34fb5e33ce",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -168,7 +168,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "d6059a2dec",
+  "liveBook": "988b49eb27",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -342,7 +342,7 @@
   "data/spine-lock.json": "38af91cda2a0c893",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "a9fc3e72bca9d058"
+  "data/live-switch.json": "d6ff64131c94d98a"
  },
  "sealLiveBook": "c8cfbbf7f9",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

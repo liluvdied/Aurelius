@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R427 - fix748 POLYMARKET OBEYS THE UMPIRE: Kalshi's ENFORCER refuses every opening order while the umpire is not SAFE, but the Polymarket route (the $2 rejection / delayed copies) never asked the umpire - so while Kalshi was frozen this morning, Polymarket could still open orders. Now an opening Polymarket BUY needs the same SAFE stamp; no verdict = no order. Sells and closes are never blocked. Nothing else changes. Run after CHANGE-90.
+- when: 2026-11-05T23:48:05+00:00
+- Love: "Love Nov 5 2026 1:03 PM PT: "the 5M bollinger breaks are 71% on btc , pls route those orders to polymarket at $5" - checking that route found Polymarket never asked the umpire; her standing rule (Oct 29 2026 11:46 AM PT): "if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/poly-live.server.ts", "has": "fix748 POLYMARKET OBEYS THE UMPIRE"}
+- proof: {"test": "tools/poly-umpire-748.cjs"}
+
 ## R426 - fix759 NO FLIPS: the desk never sells a held live position to take the other side. AKIMBO: whichever book holds the window keeps it - when +15M PIVOTS calls the opposite of SESSION + PINK's filled ticket (or the other way round), the call is skipped and logged 'NO FLIPS - holds LONG/SHORT' (was: pivot sold your position and tried to flip, which at 3:02 PM BTC sold your Down for -$3.25 and then couldn't go long). The old change-her-mind flip (':m2' / ':m3' rows) is off too. A try that never filled no longer counts as holding the window, so the other book can still enter normally. Take-profit and exits are unchanged. Paper cards keep tracking as before (the AKIMBO card still shows 'pivot gets the sticks' on paper). Run after CHANGE-103.
 - when: 2026-11-05T23:40:13+00:00
 - Love: "Love Nov 5 2026 3:10 PM PT: "yo why did she exit a trade early ????" + 3:12 PM PT: "no babe don't ever flip a position" (3:00 PM BTC: the AKIMBO flip sold her filled short when +15M PIVOTS called long, then pivot's long was blocked - she was left flat and Down won)"

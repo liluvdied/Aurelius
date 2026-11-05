@@ -55,6 +55,10 @@ function guardPolyOrder(method: string, path: string, body: unknown): { body?: u
   const order = body as { intent?: string; quantity?: number; marketSlug?: string; price?: { value?: string } } | undefined;
   if (method !== "POST" || !path.startsWith("/v1/orders") || !order || !/BUY/i.test(String(order.intent || ""))) return { body };
   // POLYMARKET SWITCH (Oct 4 ~8:55 PM PT): Polymarket can run while Kalshi's LIVE is off (live-switch "polyLive": true).
+  // fix748 POLYMARKET OBEYS THE UMPIRE (her rule, Oct 29 2026 11:46 AM PT: "if the umpire doesnt call it safe ... trade doesnt go out"): Kalshi's ENFORCER (fix500) refuses every opening order while
+  // the umpire is not SAFE; Polymarket never asked, so it could open orders while Kalshi was frozen. Now an opening Polymarket BUY needs the same SAFE stamp. Sells / closes are never blocked.
+  try { const v748 = JSON.parse(readFileSync(join(process.cwd(), "data", "UMPIRE-VERDICT.json"), "utf8")); if (v748?.ok !== true) { noteBlock({ venue: "polymarket", ticker: order.marketSlug, reason: "THE ENFORCER (fix748): the umpire is not SAFE" }); return { refused: `THE ENFORCER (fix748): the umpire is not SAFE - ${String(v748?.why || "no verdict").slice(0, 120)} - no Polymarket order.` }; } }
+  catch { return { refused: "THE ENFORCER (fix748): no umpire verdict on file - no Polymarket order." }; }
   if (!liveOn() && !polyLiveOn()) {
     noteBlock({ venue: "polymarket", ticker: order.marketSlug, reason: "Live switch is OFF" });
     return { refused: "Live switch is OFF. No new Polymarket order was sent." };
