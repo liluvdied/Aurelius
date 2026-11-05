@@ -7456,5 +7456,155 @@
     "what": "if (!awayVerdict(\"gold\", GR, 4187.02, \"down\", none, { nowS, st: {}, sessRej: true })) bad++;  // unbroken R1 still walls it",
     "why": "fix684 (her words in this change's request)",
     "R": "R372"
+  },
+  {
+    "what": "S = [v for k2, v in X[1].items() if v and (k2.endswith(\"σ\") or k2 == \"session VWAP\")]",
+    "why": "fix689 (her words in this change's request)",
+    "R": "R377"
+  },
+  {
+    "what": "op = O[2]; lo, hi = min(op, pe), max(op, pe); n = min(3, sum(1 for v in S if lo < v < hi)); up = pe > op",
+    "why": "fix689 (her words in this change's request)",
+    "R": "R377"
+  },
+  {
+    "what": "x = T[(per, bk, a, b, how)]; x[\"n\"] += 1; x[\"w\"] += won; x[\"pnl\"] += r[\"pnl\"]",
+    "why": "fix689 (her words in this change's request)",
+    "R": "R377"
+  },
+  {
+    "what": "\"travel\": [dict(period=k[0], book=k[1], asset=k[2], bands=k[3], how=k[4], n=v[\"n\"], w=v[\"w\"], pnl=round(v[\"pnl\"], 2)) for k, v in T.items()]}",
+    "why": "fix689 (her words in this change's request)",
+    "R": "R377"
+  },
+  {
+    "what": "type Cell = { period: string; book: string; asset: string; n: number; w: number; pnl: number; setup?: string; rung?: string; bands?: string; how?: string };",
+    "why": "fix689 (her words in this change's request)",
+    "R": "R377"
+  },
+  {
+    "what": "const [period, setPeriod] = useState(\"7d\"); const [book, setBook] = useState(\"all\"); const [asset, setAsset] = useState(\"btc\");",
+    "why": "fix689 (her words in this change's request)",
+    "R": "R377"
+  },
+  {
+    "what": "const travel = pick((q.data?.travel ?? []) as Cell[]).sort((a, b) => String(a.bands).localeCompare(String(b.bands)) || String(a.how).localeCompare(String(b.how)));",
+    "why": "fix689 (her words in this change's request)",
+    "R": "R377"
+  },
+  {
+    "what": "<p className=\"mb-1 mt-2 font-mono text-[9px] tracking-[0.18em] text-white/70\">BAND TRAVEL (bands crossed since the window before opened)</p>",
+    "why": "fix689 (her words in this change's request)",
+    "R": "R377"
+  },
+  {
+    "what": "const ranked = BOOKS.filter((b) => !isTap(b.book) && (b.book === \"recon-fresh\" || b.book === \"recon-togp-fresh\" || b.book === \"recon-rnp-fresh\" /* fix625 */ || !archSet.has(b.book))).map((b) => ({ ...b, s: side(b.book) })).sort((a, b) => b.s.pnl - a.s.pnl);",
+    "why": "fix691 (her words in this change's request)",
+    "R": "R379"
+  },
+  {
+    "what": "refetchInterval: foreground ? 30000 : false, // Oct 14 (lighter page): was 12 s, every tab, even in the background",
+    "why": "fix692 (her words in this change's request)",
+    "R": "R380"
+  },
+  {
+    "what": "const q = useQuery({ queryKey: [\"rung-stats-680\"], queryFn: () => getRungStats680(), refetchInterval: 60000, staleTime: 50000 });",
+    "why": "fix692 (her words in this change's request)",
+    "R": "R380"
+  },
+  {
+    "what": "if (o5 <= P && Math.abs(hi - P) <= 0.15 * W && tick < P && hi - tick >= 0.2 * W && Math.abs(hi - P) < bd) { bd = Math.abs(hi - P); best = { name: nm, price: P, w: W }; } }",
+    "why": "fix693 (her words in this change's request)",
+    "R": "R381"
+  },
+  {
+    "what": "if (o5 >= P && Math.abs(lo - P) <= 0.15 * W && tick > P && tick - lo >= 0.2 * W && Math.abs(lo - P) < bd) { bd = Math.abs(lo - P); best = { name: nm, price: P, w: W }; } } }",
+    "why": "fix693 (her words in this change's request)",
+    "R": "R381"
+  },
+  {
+    "what": "return best; } catch { return null; } } // fix668",
+    "why": "fix693 (her words in this change's request)",
+    "R": "R381"
+  },
+  {
+    "what": "t(!B.rej668(\"btc\", \"down\", 80155, L, { o: 80120, h: 80190, l: 80115 }), \"only $35 back down (needs $40) counted\");",
+    "why": "fix693 (her words in this change's request)",
+    "R": "R381"
+  },
+  {
+    "what": "t(!B.rej668(\"gold\", \"down\", 4116.5, LG, { o: 4114, h: 4119.8, l: 4113.9 }), \"gold: $3.30 back down (needs $4) counted\");",
+    "why": "fix693 (her words in this change's request)",
+    "R": "R381"
+  },
+  {
+    "what": "if (hold464) { try { const GL = ((globalThis as any).__climb464Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), \"data\", \"slide-pink.jsonl\"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: hold464 }) + \"\\n\"); } } catch {} continue; } } // fix464 (R197/R198, Love Oct 29 1:06 PM PT: \"it's for both sides\"): the upslope pink - no short while price climbs over an unbroken pink",
+    "why": "fix698 (her words in this change's request)",
+    "R": "R384"
+  },
+  {
+    "what": "{ const lab658 = String((row as any).label || (row as any).setup || \"\"), pink658 = /5m PP/.test(lab658) && (/reject/i.test(lab658) || (row.side === \"up\" ? /^(?:Break|Close) above 5m PP/ : /^(?:Break|Close) below 5m PP/).test(lab658)) /* fix663: a break back across the pink in the slide's direction is off the pink too */; if ((row.side === \"up\" || row.side === \"down\") && (row.asset === \"gold\" || row.asset === \"btc\") && ![\"recon-dly\", \"recon-dlyk\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\" && !pink658 && !/^(Rejected (up|down) off |Failed break (above|below) |\\dm flip - rejected (up|down) off |\\dm rejection off |Tap-reject at |OG tap-reject (up|down) off |Fake-out turn (over|under) )/.test(lab658) /* fix677 (Love Nov 4 2026 11:06 PM PT: \"yes to change 26 bb , thank you for telling me\" - to Claude's 10:50 PM offer: \"If you want her to take ANY trend-side rejection during a slide (a long off green/a band in a climb, a short off a band in a slide down), with the other side still blocked, tell me in your words and I'll build it as CHANGE-26, all books except delayed\" (her fix658 words, 6:09 PM: \"longs only while pink is on a slide up ... enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down\")): during a slide her trend side takes ANY rejection (off the pink, a band, the green / red zone, a Bollinger) - only her trend side's non-rejection reads still wait; the other side stays held by the slide / climb holds */) { const on658 = slideBlock658(String(row.asset), row.side === \"up\" ? \"down\" : \"up\"); if (on658) { try { const GL: any = ((globalThis as any).__slide658Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), \"data\", \"slide-pink.jsonl\"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: `PINK SLIDE (fix658): ${row.side === \"up\" ? \"longs\" : \"shorts\"} only off the pink while it slides - ${lab658 || \"this read\"} waits for the pink rejection. (${on658})` }) + \"\\n\"); } } catch {} continue; } } } // fix658 (Love Nov 4 2026 6:09 PM PT: \"the pink slide rule dictates it is longs only while pink is on a slide up, she doesnt short at red, she waits til it gets to pink and rejects, enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down. she waits for it to come to pink and reject and shorts as she normally would. if it doesnt function like that already thats what i would like\"): while the pink slides her way, her trend side enters ONLY off a pink rejection / flip; the other side is already held by the slide / climb holds below",
+    "why": "fix698 (her words in this change's request)",
+    "R": "R384"
+  },
+  {
+    "what": "if (hold423) { try { const GL = ((globalThis as any).__slide371Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), \"data\", \"slide-pink.jsonl\"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: hold423 }) + \"\\n\"); } } catch {} continue; } }",
+    "why": "fix698 (her words in this change's request)",
+    "R": "R384"
+  },
+  {
+    "what": "if ((row.asset === \"gold\" || row.asset === \"btc\") && ![\"recon-rej\", \"recon-tog\", \"recon-dly\", \"recon-dlyk\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\") { let h490 = \"\"; try { const sm490 = ((((globalThis as any)[row.asset === \"gold\" ? \"__slide371\" : \"__slide423b\"])?.s || []) as { t: number; p: number; pp: number }[]); h490 = row.side === \"down\" ? climbHold464(sm490, ((globalThis as any)[row.asset === \"gold\" ? \"__climb464g\" : \"__climb464b\"] ||= { on: false }), Date.now(), String(row.asset)) : row.asset === \"gold\" ? slideHold403(sm490, ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(sm490, ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {} if (h490) { try { const bl503 = await import(\"./bandlock\"); const G503 = globalThis as any, sm503 = ((G503[row.asset === \"gold\" ? \"__slide371\" : \"__slide423b\"])?.s || []), l503 = sm503[sm503.length - 1]; /* fix513 (Love Oct 30 2026 6:59 AM PT: \"Yes, I asked for the pink slide too.\"): the slide hold outranks the 15%/20% tolerance - it releases only on her 25c / $8 break below */ const qT503 = (await import(\"./quotes\")).quoteTick(String(row.asset)), brk503 = ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[String(row.asset)] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return row.asset === \"btc\" ? 5 : 0.25; })(Number(qT503?.c) || 0) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */; if (h490 && l503 && qT503 && qT503.c > 0 && Date.now() - qT503.at < 5000 && (String(row.side) === \"down\" ? qT503.c < Number(l503.pp) - brk503 : qT503.c > Number(l503.pp) + brk503)) h490 = \"\"; /* fix503b: the release reads the live tick - through the pink by her break distance, the hold is over */ if (!h490 && /5m PP|pink/i.test(String((row as any).setup || \"\")) && slideRun515(sm503 as any, Date.now(), String(row.side) === \"down\" ? \"up\" : \"down\", String(row.asset))) h490 = `ONE WAY AT A SLOPED PINK (fix515): the pink sloped on three-plus rejections - a pink call goes with the slope only; the break against it is never her trade until price breaks pink by 10% of the channel (fix560) the other way (her 7:33 + 7:36 AM words).`; /* fix515 (Love Oct 30 2026 7:33 AM PT: \"once we do the slide roll for pink. Let's make it shorts only at pink. It will win a lot more than the breakes.\"): a pink call goes one way only while the slope stands - the break the other way is never her trade */ } catch {} } /* fix503: a far pink holds nothing */ if (h490) { try { const GL = ((globalThis as any).__slide490Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), \"data\", \"slide-pink.jsonl\"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: h490 }) + \"\\n\"); } } catch {} continue; } } // fix490 (Love Oct 29 2026 7:34 PM PT: \"ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED\"): the pink downslide / climb holds every other live book too",
+    "why": "fix698 (her words in this change's request)",
+    "R": "R384"
+  },
+  {
+    "what": "if (!done[row.id] && String(row.book) !== \"recon-dly\" && !((globalThis as any).__slide371Log || {})[row.id] && Date.parse(String(row.at)) > 0 && Date.now() - Date.parse(String(row.at)) > 90000) { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: \"skipped\", final: true, reason: `STALE CALL: booked ${Math.round((Date.now() - Date.parse(String(row.at))) / 1000)} s ago and never tried on Kalshi - a seat that just opened never fires an old call (fix375)` }; continue; }",
+    "why": "fix699 (her words in this change's request)",
+    "R": "R385"
+  },
+  {
+    "what": "const endMs = mm ? Date.UTC(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4]) + 4, Number(mm[5])) : 0;",
+    "why": "fix700 (her words in this change's request)",
+    "R": "R386"
+  },
+  {
+    "what": "const endMs = mm ? Date.UTC(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4]) + 4, Number(mm[5])) : 0;",
+    "why": "fix700 (her words in this change's request)",
+    "R": "R386"
+  },
+  {
+    "what": "const endMs = mm ? Date.UTC(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4]) + 4, Number(mm[5])) : 0;",
+    "why": "fix700 (her words in this change's request)",
+    "R": "R386"
+  },
+  {
+    "what": "const endT = mmT ? Date.UTC(2000 + Number(mmT[1]), MONT.indexOf(mmT[2]), Number(mmT[3]), Number(mmT[4]) + 4, Number(mmT[5])) : 0;",
+    "why": "fix700 (her words in this change's request)",
+    "R": "R386"
+  },
+  {
+    "what": "if (rj643 && /Bollinger|BB (upper|lower)/.test(String(rj643.label)) && !(rj643.side === \"up\" ? spot > cur.o : spot < cur.o) && !turnFlip530(id, rj643.side, spot)) rj643 = null; // fix643: a Bollinger rejection on her colour, as main (fix345 / fix619)",
+    "why": "fix701 (her words in this change's request)",
+    "R": "R387"
+  },
+  {
+    "what": "if (rj643 && thirdsRead463(sessionLines(ax, id), spot, rj643.side)) rj643 = null; // fix643: main's thirds",
+    "why": "fix701 (her words in this change's request)",
+    "R": "R387"
+  },
+  {
+    "what": "{ const pv643 = onePink565R(id, b); if (rj643 && pv643 && !zoneFree515c(id, rj643.side, String(rj643.label)) && pinkRead464(id, sessionLines(ax, id), spot, rj643.side, Number(pv643.pp))) rj643 = null; } // fix643: the pink still walls her, as main",
+    "why": "fix701 (her words in this change's request)",
+    "R": "R387"
+  },
+  {
+    "what": "if (rj643) { const G643 = globalThis as any; G643.__blQuiet464 = true; try { if (!bandLockCheck464(\"recon-tog\", id, rj643.side, String(m.ticker), String(rj643.label || \"\")).ok) rj643 = null; } finally { G643.__blQuiet464 = false; } } // fix643: main's door (55%, red falling 5m, her flip, every wall)",
+    "why": "fix701 (her words in this change's request)",
+    "R": "R387"
+  },
+  {
+    "what": "t(R.includes('if (rj643 && thirdsRead463(sessionLines(ax, id), spot, rj643.side)) rj643 = null;'), \"not main's thirds\");",
+    "why": "fix701 (her words in this change's request)",
+    "R": "R387"
   }
 ]

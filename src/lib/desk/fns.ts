@@ -2336,3 +2336,9 @@ export const getOg1012 = createServerFn({ method: "GET" }).handler(async () => {
 export const getBrkOut687 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./brkout"); return m.brkOutSummary687(); } catch { return null; } });
 // fix688 INVERSE BOOK paper book (Love Nov 5 2026 ~1:05 AM PT: "can you create the inverse set ups book i asked you about earlier too?"), summarised on the server.
 export const getInverse688 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./inverse"); return m.inverseSummary688(); } catch { return null; } });
+// fix690 70% CLUB paper book (Love Nov 5 2026 ~1:28 AM PT: "only taking the set ups that won over 70%"), summarised on the server.
+export const getClub690 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./club"); return m.clubSummary690(); } catch { return null; } });
+// fix694 MAIN VWAP SIDE paper book (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"), summarised on the server.
+export const getMainVwap694 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./mainvwap"); return m.mainVwap694Summary(); } catch { return null; } });
+// fix695 REJECTION PARKED SIDE paper book (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"), summarised on the server.
+export const getRejParked695 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./rejparked"); return m.rejParked695Summary(); } catch { return null; } });

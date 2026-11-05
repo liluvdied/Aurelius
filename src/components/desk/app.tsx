@@ -29,6 +29,9 @@ import { EthBook682 } from "@/components/desk/eth-book"; // fix682
 import { Og1012Card } from "@/components/desk/og-1012"; // fix686
 import { BrkOut687 } from "@/components/desk/brk-out"; // fix687
 import { Inverse688 } from "@/components/desk/inverse-book"; // fix688
+import { Club690 } from "@/components/desk/club"; // fix690
+import { MainVwap694 } from "@/components/desk/mainvwap"; // fix694
+import { RejParked695 } from "@/components/desk/rejparked"; // fix695
 import { autoDecision } from "@/lib/desk/auto";
 import { lateWindow } from "@/lib/desk/setup";
 import { askDeskGrok, armLiveNow, askHelp, closeNow, exitLiveOrder, getAltBoards, getAudit, getBookMode, getComboRows, getDecidedRows, getDeskSnapshot, getExitLog, getFillLog, getFuelRows, getHalfRows, getHeldOrders, getKalshiCash, getLeanRows, getLiveSize, getLiveSpots, getLiveSwitch, setLiveSwitch, getRunBooks, getSchedule, getArchived, setArchived, setRunBook, saveRunPreset, applyRunPreset, stepOut, getNightHist, getShiftSummary, getShiftRows, setAutoRoll, getLiveByBook,
@@ -1019,7 +1022,7 @@ export function DeskApp() {
   const book = useQuery({
     queryKey: ["book"],
     queryFn: () => pullBook(),
-    refetchInterval: foreground ? 30000 : false, // Oct 14 (lighter page): was 12 s, every tab, even in the background
+    refetchInterval: foreground ? 60000 : false, // Oct 14 (lighter page): was 12 s, every tab, even in the background; fix692: was 30 s (~580 KB each)
     refetchOnWindowFocus: false,
     staleTime: 4000,
   });
@@ -1068,7 +1071,7 @@ export function DeskApp() {
     queryKey: ["fill-log"],
     queryFn: () => getFillLog(),
     enabled: hydrated,
-    refetchInterval: foreground ? 20000 : false,
+    refetchInterval: foreground ? 60000 : false, // fix692 lighter page: was every 20 s (~695 KB each)
     refetchOnWindowFocus: false,
   });
   const exitLog = useQuery({
@@ -3215,6 +3218,12 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   const h2h = since !== "9999";
   // 12H / 24H / ALL on every card (Love, Oct 3 ~9 PM PT): one switch, every card's numbers follow it.
   const [span, setSpan] = useState<"4h" | "12h" | "24h" | "all">("all");
+  // fix691 SORT BY (Love Nov 5 2026 ~1:54 AM PT: "let's add sorted by - buttons for all the cards pls!!! highest hit rate & lowest pls!!"): $ or hit rate, high or low, for the span picked; remembered on this device. Display only.
+  const [sortBy691, setSortBy691] = useState<"pnl-hi" | "pnl-lo" | "hit-hi" | "hit-lo">("pnl-hi");
+  useEffect(() => { try { const v = localStorage.getItem("sortBy691"); if (v === "pnl-hi" || v === "pnl-lo" || v === "hit-hi" || v === "hit-lo") setSortBy691(v); } catch {} }, []);
+  const pickSort691 = (v: "pnl-hi" | "pnl-lo" | "hit-hi" | "hit-lo") => { setSortBy691(v); try { localStorage.setItem("sortBy691", v); } catch {} };
+  const hit691 = (s: { wins: number; losses: number }) => (s.wins + s.losses ? s.wins / (s.wins + s.losses) : -1);
+  const cmp691 = (a: { s: { pnl: number; wins: number; losses: number } }, b: { s: { pnl: number; wins: number; losses: number } }) => { if (sortBy691 === "pnl-lo") return a.s.pnl - b.s.pnl; if (sortBy691 === "hit-hi") return hit691(b.s) - hit691(a.s) || b.s.pnl - a.s.pnl; if (sortBy691 === "hit-lo") { const x = hit691(a.s), y = hit691(b.s); if (x < 0 || y < 0) return (x < 0 ? 1 : 0) - (y < 0 ? 1 : 0); return x - y || a.s.pnl - b.s.pnl; } return b.s.pnl - a.s.pnl; };
   // RUN per book (Love, Oct 5): green = this book sends to Kalshi, red = paper only. First book to fire owns the window.
   const runQ = useQuery({ queryKey: ["run-books"], queryFn: () => getRunBooks(), refetchInterval: 10000 });
   const schedQ = useQuery({ queryKey: ["schedule-pill"], queryFn: () => getSchedule(), refetchInterval: 60000 });
@@ -3469,7 +3478,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   ];
   // TAPS live in their own tab (Love: "not the vibe" to have $2.50 lotto tickets paint the whole ledger red).
   const archSet = new Set<string>(((archQ.data as string[] | undefined) ?? []).filter((b) => !runOn(b as ShiftNight["book"])));
-  const ranked = BOOKS.filter((b) => !isTap(b.book) && (b.book === "recon-fresh" || b.book === "recon-togp-fresh" || b.book === "recon-rnp-fresh" /* fix625 */ || !archSet.has(b.book))).map((b) => ({ ...b, s: side(b.book) })).sort((a, b) => b.s.pnl - a.s.pnl);
+  const ranked = BOOKS.filter((b) => !isTap(b.book) && (b.book === "recon-fresh" || b.book === "recon-togp-fresh" || b.book === "recon-rnp-fresh" /* fix625 */ || !archSet.has(b.book))).map((b) => ({ ...b, s: side(b.book) })).sort(cmp691); // fix691: was $ high to low only
   const tapRanked = BOOKS.filter((b) => isTap(b.book)).map((b) => ({ ...b, s: side(b.book) })).sort((a, b) => b.s.pnl - a.s.pnl);
   // CARD TAPS (Oct 13 ~3:25 AM PT, Love: "when i click one it takes a few seconds to open and then i think my click didn't
   // register... when i click again... the second click closes it"). The card says OPENING… the instant it's tapped; taps
@@ -3925,6 +3934,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
       <div className="flex items-baseline justify-between gap-3">
         <div className="flex items-center justify-between gap-2">
           <p className="text-[10px] tracking-[0.28em] text-white/90">PAPER · {ranked.length} LEDGERS · RANKED{h2h ? ` · SINCE ${shiftClock(since)}` : ""}</p>
+          <span className="flex shrink-0 flex-wrap gap-1">{([["pnl-hi", "$ HIGH"], ["pnl-lo", "$ LOW"], ["hit-hi", "HIT % HIGH"], ["hit-lo", "HIT % LOW"]] as const).map(([k, t]) => <button key={k} type="button" onClick={() => pickSort691(k)} className="rounded-[4px] px-1.5 py-0.5 font-mono text-[9px] leading-none" style={{ border: `1px solid rgba(255,255,255,${sortBy691 === k ? 0.9 : 0.3})`, color: sortBy691 === k ? "#fff" : "rgba(255,255,255,0.55)" }}>{t}</button>)}</span> {/* fix691 SORT BY */}
           <button
             type="button"
             onClick={flipAuto}
@@ -4019,6 +4029,9 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
       <Og1012Card /> {/* fix686 OG ORIGINAL · 10.12 - paper, sealed */}
       <BrkOut687 /> {/* fix687 OUTWARD BREAK - paper only */}
       <Inverse688 /> {/* fix688 INVERSE BOOK - paper only */}
+      <Club690 /> {/* fix690 70% CLUB - paper only */}
+      <MainVwap694 /> {/* fix694 MAIN VWAP SIDE - paper only */}
+      <RejParked695 /> {/* fix695 REJECTION PARKED SIDE - paper only */}
       {/* FAMILIES + FIND (Oct 9). */}
       <div className="mt-3 rounded-2xl px-2 py-2" style={{ border: "1px solid rgba(255,255,255,0.18)" }}>
         {/* RECORDS (Love Nov 4 2026 10:35 AM PT: "draw the files OFF OF MY COMPUTER ... the app is the INTERFACE to view them, not the thing hosting them"): a plain link to the page her laptop builds and serves (7-OPEN-REGISTRAR, http://127.0.0.1:8090). The desk loads none of it. */}

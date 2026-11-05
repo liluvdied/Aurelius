@@ -1688,10 +1688,10 @@ export function rejBand668(asset: string, side: string, tick: number, L: Line[],
     let best: { name: string; price: number; w: number } | null = null, bd = Infinity;
     for (const l of (L || [])) { const P = Number(l.price), nm = String(l.name); if (!(P > 0) || !/σ$|^session VWAP$|^5m PP$|^(Red|Green) zone$|^5m (R1|S1)$|^(Bollinger|BB) (upper|lower)$/.test(nm)) continue;
       if (side === "down") { const top = S.find((x: number) => x >= P), bot = [...S].reverse().find((x: number) => x < P); if (top === undefined || bot === undefined) continue; const W = top - bot; if (!(W > 0)) continue;
-        if (o5 <= P && Math.abs(hi - P) <= 0.15 * W && tick < P && hi - tick >= 0.2 * W && Math.abs(hi - P) < bd) { bd = Math.abs(hi - P); best = { name: nm, price: P, w: W }; } }
+        if (o5 <= P && Math.abs(hi - P) <= 0.15 * W && tick < P && hi - tick >= 0.15 * W /* fix693: was 0.2 */ && Math.abs(hi - P) < bd) { bd = Math.abs(hi - P); best = { name: nm, price: P, w: W }; } }
       else { const bot = [...S].reverse().find((x: number) => x <= P), top = S.find((x: number) => x > P); if (top === undefined || bot === undefined) continue; const W = top - bot; if (!(W > 0)) continue;
-        if (o5 >= P && Math.abs(lo - P) <= 0.15 * W && tick > P && tick - lo >= 0.2 * W && Math.abs(lo - P) < bd) { bd = Math.abs(lo - P); best = { name: nm, price: P, w: W }; } } }
-    return best; } catch { return null; } } // fix668
+        if (o5 >= P && Math.abs(lo - P) <= 0.15 * W && tick > P && tick - lo >= 0.15 * W /* fix693: was 0.2 */ && Math.abs(lo - P) < bd) { bd = Math.abs(lo - P); best = { name: nm, price: P, w: W }; } } }
+    return best; } catch { return null; } } // fix668 + fix693 (Love Nov 5 2026 ~2:06 AM PT: "can you lower that to 15% for both pls?!"): the move back off the band is 15% of the channel (was 20%); the 15% tap distance is unchanged
 export function rej668(asset: string, side: string, tick: number, L: Line[], hl?: { o?: number; h: number; l: number } | null): boolean { return !!rejBand668(asset, side, tick, L, hl); } // fix668
 export function pushOff653(asset: string, side: string, tick: number, band: number, push: number, ext = 0): boolean { const ref = ext > 0 ? (side === "up" ? Math.max(band, ext) : Math.min(band, ext)) : band; return band > 0 && tick > 0 && (side === "up" ? tick >= ref + push : tick <= ref - push) && twoMinHer653(asset, side, tick); } // fix653
 export function turnFlip530(asset: string, side: string, tick: number): boolean {

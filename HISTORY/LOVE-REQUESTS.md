@@ -2,6 +2,97 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R387 - fix701 (log only): REJ ONLY · NO PINK re-checks main's walls after its read (Bollinger on her colour, her thirds, the pink, main's door) and used to drop a held read without writing why - 3:01-3:05 AM gold its short off the red zone was held by the pink exactly like main and rejection, but its log only showed the 3:05 floor line. Each of those four now writes its reason to data/recon-skips.jsonl (and her refusal ledger) like the other books, once per window per reason, so SITREP shows it. What it trades, when, and every wall are unchanged.
+- when: 2026-11-05T11:49:17+00:00
+- Love: "Love Nov 5 2026 ~2:17 AM PT: "just have it log every skip and the reason for it so i can look without bugging you" + 3:09 AM PT (on REJ ONLY · NO PINK at the 3:00 gold red zone): "it should have taken the rejection on a flip off of red just like the other book hun" - it did read it; the pink held it as it held the other books, but the no-pink book never wrote that down"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix701: the no-pink book writes why it held a read"}
+- proof: {"test": "tools/rjnp-skips-701.cjs"}
+
+## R386 - fix700: the copier's window-end clocks (4 places) read her tickers' Eastern close time with the right offset - +5 h in winter (EST), +4 h in summer (EDT) - instead of always +4 h. Since Nov 1 they thought every window ended an hour early, which only mattered when a market read blipped. Nothing else changes. Needs CHANGE-46 installed first (same engine.ts).
+- when: 2026-11-05T11:49:03+00:00
+- Love: "Love Nov 5 2026 2:40 AM PT: "and your last question, yes" - to Claude's 2:36 AM: "Prepared but holding for your yes, since they touch the copier: (3) the window clocks know it's winter time (EST)""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "function etOff700("}
+- proof: {"test": "tools/est-clocks-700.cjs"}
+
+## R385 - fix699: the 90-second STALE CALL guard (fix375) no longer throws out a call that the climb-over-pink wall (fix464) or the other books' slide (fix490) held and then let go - the same pass the pink-slide hold (fix371) already had. Every other part of the stale guard unchanged. Needs CHANGE-45 installed first (same engine.ts).
+- when: 2026-11-05T11:48:54+00:00
+- Love: "Love Nov 5 2026 2:40 AM PT: "and your last question, yes" - to Claude's 2:36 AM: "Prepared but holding for your yes, since they touch the copier: (2) a call held by the climb wall can't be thrown out by the 90-second stale guard when it's released""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "__climb464Log || {})[row.id] /* fix699 */"}
+- proof: {"test": "tools/climb-not-stale-699.cjs"}
+
+## R384 - fix698: the copier's four pink holds (climb over pink fix464, the pink slide fix423 / fix658, the other books' slide fix490) still hold exactly as before, but each now writes a 'held' line with its reason into her skip record (data/live-book-done.json) as well as the side log - once a minute, never final, so the wall keeps judging every pass and SITREP shows why. Nothing about when she enters changes. Needs CHANGE-43 installed first (same engine.ts).
+- when: 2026-11-05T11:48:46+00:00
+- Love: "Love Nov 5 2026 2:40 AM PT: "and your last question, yes" - to Claude's 2:36 AM: "Prepared but holding for your yes, since they touch the copier: (1) holds like climb over pink write their reason into your normal skip record""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix698: her skip record says why"}
+- proof: {"test": "tools/held-reason-698.cjs"}
+
+## R383 - fix695 REJECTION · PARKED SIDE - PAPER ONLY (never sends an order): when her REJECTION book (recon-rej paper rows) makes a call and price is PARKED (the last 12 closed 5m candles from her chart's 1m candles all closed on one side of the pink drawn before each), it takes only calls on the parked side (above pink longs, below shorts); not parked = as rejection called it. $20 paper, her 1.5x floor, one per window, skips logged. Study: parked-side rejection trades 58% (+$653) vs across pink 49% (+$74). New card on the Books page. Her books, walls and settings untouched; it only reads her paper rows. Needs CHANGE-42 installed first (same files).
+- when: 2026-11-05T11:47:16+00:00
+- Love: "Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c" - (b) REJECTION twin, when parked (the last hour of 5m closes on one side of pink) only the parked side"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/rejparked.ts", "has": "export async function rejParked695Tick("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.rejParked695Tick(snap.assets)"}
+- proof: {"test": "tools/rejparked-695.cjs"}
+
+## R382 - fix694 MAIN · VWAP SIDE ONLY - PAPER ONLY (never sends an order): when her MAIN book (recon-tog paper rows) makes a call, this twin takes it only on the VWAP side - a long with price above her session VWAP, a short with price below - $20 paper at the live ask, her 1.5x floor, one per window; every skip logged (data/main-vwap-694-skips.jsonl). Study Oct 20 - Nov 5: main with the VWAP about +$120 over 994, against it about -$1,040 over ~1,090. New card on the Books page. Her books, walls and settings untouched; it only reads her paper rows. Needs CHANGE-41 installed first (same files).
+- when: 2026-11-05T11:47:07+00:00
+- Love: "Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c" - (a) MAIN twin, VWAP side only (above the session VWAP longs only, below shorts only)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/mainvwap.ts", "has": "export async function mainVwap694Tick("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.mainVwap694Tick(snap.assets)"}
+- proof: {"test": "tools/mainvwap-694.cjs"}
+
+## R381 - fix693: her wick rejection without a flip (fix668) now needs price back off the band by 15% of the channel width (was 20%), BTC and gold, every book but delayed (the delayed book already keeps its flips). The tap distance (the 5m candle within 15% of the channel of the band) and every other wall are unchanged. Raw replay Oct 19 - Nov 5 on her session bands, pink and zones (before her other walls, 1.5x floor, mostly estimated asks): BTC 20% 778 windows 55% -> 15% 971 windows 55%, the extra 215 windows won 54%; gold 20% 589 at 54% -> 15% 714 at 54%, the extra 134 won 49% (about break even). The fix668 proofs move to the new numbers ($25 < $30 BTC, $2.60 < $3 gold).
+- when: 2026-11-05T11:47:00+00:00
+- Love: "Love Nov 5 2026 ~2:06 AM PT: "she didn't enter on btc at the rejection, doing some head math she was like $30 off from the $60 ish requirement of 20% of the channel width for the wick rejection, can you lower that to 15% for both pls?!" + "yesss maam" (all books except delayed)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "0.15 * W /* fix693: was 0.2 */"}
+- proof: {"test": "tools/wick-15-693.cjs"}
+
+## R380 - fix692 LIGHTER PAGE (display only): the desk page re-downloads three big lists less often - the fill log every 60 s (was 20 s, ~695 KB each), the paper book every 60 s (was 30 s, ~580 KB each), the STATS table every 10 minutes (was every minute, ~419 KB; it only changes every 2 h). About 55% less data pulled into the page while it sits open; every number still shows, just refreshed a little slower. The live snapshot (prices, positions, the trading view) is untouched, and nothing in her trade loop, books, rules, walls or sizes changes. Needs CHANGE-37 and CHANGE-39 installed first (same files).
+- when: 2026-11-05T11:46:52+00:00
+- Love: "Love Nov 5 2026 ~1:35 AM PT (her photos of the desk): "This webpage was reloaded because it was using significant memory." - Claude measured the page for 90 s on the STATS tab: the fill log (695 KB every 20 s, every tab), the paper book (580 KB every 30 s) and the STATS table (419 KB every minute, rebuilt only every 2 h) were most of what it downloads"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "fix692 lighter page"}
+- proof: {"test": "tools/lighter-page-692.cjs"}
+
+## R379 - fix691 SORT BY (display only): the paper cards' ranking gets four buttons next to its title - $ HIGH (as before), $ LOW, HIT % HIGH, HIT % LOW (wins over wins + losses, for the 4H / 12H / 24H / ALL span picked; cards with no closed trade go last) - remembered on this device. Nothing else on the page, and no book, rule, wall, size or order path, is touched. Needs CHANGE-38 installed first (same app.tsx).
+- when: 2026-11-05T11:46:42+00:00
+- Love: "Love Nov 5 2026 ~1:54 AM PT: "let's add sorted by - buttons for all the cards pls!!! highest hit rate & lowest pls!! we'll be able to see the worst performing ones already""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "fix691 SORT BY"}
+- proof: {"test": "tools/sort-by-691.cjs"}
+
+## R378 - fix690 70% CLUB - PAPER ONLY (never sends an order): when her main or rejection book (recon-tog / recon-rej) opens a set up (asset x set up x line x side, the STATS table's key) that is on the nightly list, it takes the SAME side, $20 paper at the live ask, but only when the ask is at least 5c under that set up's own hit rate (a 70% set up is never bought at 72c); once per window per list. Three lists scored side by side, built every night from the PAST 14 days only (no hindsight) by tools/club-list-690.py, which the 2-hour archive starts as its own low-priority process: CLUB 70 = won 70%+ with 15+ trades; HER RULE = won 65%+ with 15+ trades and made money; HER LADDER = won more than half its last 24 h (3+ trades) or 60%+ over the week (10+), dropped only after two bad PT days in a row (each under 50%). Scored held to the bell and under her take-profit. Walk-forward replay Oct 19 - Nov 4 (70% / 15 trades): 34 trades, 62% won, +$134 while all main + rejection was 51%, -$641. New card on the Books page. Needs CHANGE-33 and CHANGE-36 installed first (same files). Her books, walls and settings untouched.
+- when: 2026-11-05T11:46:34+00:00
+- Love: "Love Nov 5 2026 ~1:28 AM PT: "only taking the set ups that won over 70% - thaaaats why my win rate was 70%" + ~1:38 AM PT: "we cut the set ups that lost more than they won, and had a minimum of 65% hit rate. after that we had it at a steady 70-80% - so now that we got those scoring again, we'll be able to do that this week" + ~2:00 AM PT: "then we'll limit it to the set ups that won more than half the time in 24 hours and add in/take out more, and then 60%+ of the time over the week. i would assume some set ups aren't all bad and just have rllly bad days on occasion""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/club.ts", "has": "export async function clubTick690("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.clubTick690(snap.assets)"}
+- proof: {"test": "tools/club-690.cjs"}
+
+## R377 - fix689 STATS (display only): BAND TRAVEL now counts three families of lines crossed since the window before opened - her session bands (as before), her pivots (pink 5m PP, red zone R1, green zone S1) and the Bollinger 20/2 on 5m (built from her band log's prices, the log carries no Bollinger line) - each with follow / fade, N, won %, P&L; a SESSION / PIVOTS / BOLLINGER chip picks the table. Built by the same 2-hour rebuild (tools/rung-stats-680.py, its own process), never in her trade loop. No book, rule, wall or size touched.
+- when: 2026-11-05T11:46:26+00:00
+- Love: "Love Nov 5 2026 ~1:25 AM PT: "could you add the pivots (red green and pink) and the bollingers in on here in the stats?!" (the STATS box: SETUP x RUNG + BAND TRAVEL)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/rung-stats-680.py", "has": "fix689"}
+- proof: {"test": "tools/stats-pivots-bollinger-689.cjs"}
+
 ## R376 - fix688 INVERSE BOOK - PAPER ONLY (never sends an order): when her main or rejection book (recon-tog / recon-rej) opens one of the set ups listed in data/inverse-setups.json, this book takes the OTHER side of the same window at that moment - $20 paper at the other side's REAL live ask (logged on every row, with her own ask beside it, so the week gives true $), once per source trade; scored held-to-the-bell and under her take-profit, and marked whether it passes her 1.38x floor. Starts with tonight's five: gold pink shorts -> long, gold red candle falling from the top third -> long, BTC launched from the bottom third -> short, BTC rejected down off +1σ -> long, BTC failed break above -1σ -> long (never the BTC pink longs); plus the band-travel losers from her STATS table, counted its way (bands crossed since the previous window opened): BTC 1 band down + she follows -> long, gold 1 band down + follows -> long, gold 1 band up + follows -> short; and every DELAYED book call flipped (replay Oct 19 - Nov 4 at the other side's ask: 64% of 1,768, +$1,259 held, weeks -$455 / +$742 / +$972). The list is a plain data file: Nov 11's worst losers go in with no code change. New card on the Books page. Needs CHANGE-35 installed first (same engine/fns/app files). Her books, walls and settings untouched; it only reads her paper rows.
 - when: 2026-11-05T11:44:04+00:00
 - Love: "Love Nov 5 2026 ~1:05 AM PT: "while you are making those paper books, can you create the inverse set ups book i asked you about earlier too? all of our least successful set ups... in a week we'll know for sure which set ups lose the most. then we create the inverse" (started with tonight's five from data/reports/confluence-and-inverse-nov6.md; never the BTC pink longs) + ~1:15 AM PT: "can you do the inverse of the biggest losers on here so far? 1 Band traveled the previous window" + ~1:54 AM PT: "i'm pretty sure the delayed book has like a steady 30% hit rate as is, creating an inverse of that would put it at 70% off the bat""
