@@ -2,6 +2,22 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R410 - fix730 AKIMBO EXEMPT AT THE WIRE (Love's words, 9:25 AM): a deliberate exception to her Oct 20 immutable wall at the wire, for the akimbo books only (SESSION + PINK and +15M PIVOTS, while live-today is on - it ends with it). Their own opening orders (marked by the copier in enterLive, good 30 s) skip the wall's geometry (red/green zones, pink-to-red top 55%, thirds, the impossibility) so live takes what their paper books take; the seal and the fresh band list / fresh price checks still apply. Two more copier gates stand down for them too: the pink-slide hold (fix658, held the 9:01 and 9:16 BTC shorts) and the not-a-break-above re-check at the order. Since 8:46 these stopped 7 of 8 akimbo calls. KEPT for them: umpire, ENFORCER, LIVE switch, the seal, fresh band list + fresh price at the wire, the stale-call guard (90 s), the -$100 akimbo stop, the -$200 desk stop + give-back, one BTC / one gold position, one ticket per window, hand-trade windows, under 30 s left, the sub-auditor stamp. Supersedes the split 75/76. Umpire, ENFORCER, LIVE switch, daily stops unchanged; every other book and hand orders unchanged. Run after CHANGE-74.
+- when: 2026-11-05T17:39:46+00:00
+- Love: "Love Nov 5 2026 9:30 AM PT: "do your thing bb, pls check against all other potentialities and we will cover them all in one if we need to okay" + 9:25 AM PT: "ohhh so that's whyyy she's not taking anything ? okay GOOD let's fix both / yes / akimbo exempt , 1:1 with their paper records individually- combined ledger pls / my words" (a deliberate exception to her Oct 20 immutable wall at the wire, for the akimbo books only, while live-today is on; + 7:37 AM: "she needs to take the same trades as both books")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix730 AKIMBO EXEMPT AT THE WIRE"}
+- proof: {"test": "tools/akimbo-wire-730.cjs"}
+
+## R409 - fix729 AKIMBO RETRY KNOCKS: when her first order for a window does not fill at once, the copier retries for up to ~15 s, and each retry ran the auditor-grade door (fix523). SESSION + PINK and +15M PIVOTS are not in her flag table, so that door answered 'unknown book - no order' and the retry stopped (8:39 AM BTC SESSION + PINK try) - live missed trades paper took. Now the live-today books skip only that one retry door, the same way they already skip it at the last line (fix717). The door right before it (bandLockCheck) still runs every knock, and the umpire, ENFORCER, LIVE switch, freshness and both daily stops all still apply. Every other book unchanged.
+- when: 2026-11-05T17:39:37+00:00
+- Love: "Love Nov 5 2026 7:37 AM PT: "let her skip them too btw *** she needs to take the same trades as both books""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix729: the live-today (akimbo) books skip only this retry door"}
+- proof: {"test": "tools/akimbo-retry-729.cjs"}
+
 ## R408 - fix727 AKIMBO CARD: a new card AKIMBO · SESSION + PINK × 15M PIVOTS ✨ (clean slate) - the akimbo pair's paper book exactly as CHANGE-71 trades it live (one ticket per window, the first of the two books to call it; when +15M PIVOTS calls the other side of a SESSION + PINK ticket, that ticket is sold at the bid and pivot's side is taken; a SESSION + PINK call against a pivot ticket is ignored), $10 a ticket, from zero at install (kept in data/akimbo-book-727.json). Same card as every book (W/L, hit %, $, 4H/12H/24H/ALL, tap for trades), under its own AKIMBO 🤹 chip first in the list, right under the LIVE TODAY row; the LIVE TODAY row now counts both books' live Kalshi trades today. Display only - the copier never reads it. Run after CHANGE-71 (and 65).
 - when: 2026-11-05T16:43:40+00:00
 - Love: "Love Nov 5 2026 7:42 AM PT: "pls create a new combined card Akimbo so she has a clean slate""

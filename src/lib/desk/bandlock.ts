@@ -2835,6 +2835,10 @@ export function wireWall(ticker: string, side: "up" | "down"): string {
   if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > (typeof bandAge670 === "function" ? bandAge670() : 15000) /* fix670 */) return deny("THE WALL AT THE WIRE: her band list is not fresh - can't verify, no opening order");
   const q = quoteTick(asset);
   if (!q || !(q.c > 0) || Date.now() - q.at > 3000) return deny("THE WALL AT THE WIRE: no fresh price - can't verify, no opening order");
+  // fix730 AKIMBO EXEMPT AT THE WIRE (Love Nov 5 2026 9:25 AM PT: "akimbo exempt , 1:1 with their paper records individually ... my words"): a deliberate exception to her Oct 20 immutable wall,
+  // for the akimbo (live-today) books only: an opening order the copier just sent for one of them (kalshi-live marks ticker|side in enterLive, good for 30 s) skips the wall's geometry
+  // (zones, thirds, the impossibility) - they are judged by their own gates like on paper. The seal and the fresh band / fresh price checks above still apply; off or expired = the wall as before.
+  { const a730 = ((G as any).__akimboWire730 || {})[t + "|" + side]; const lt730 = liveToday717(); if (a730 && Date.now() - Number(a730.at) < 30000 && lt730 && lt730.split(",").includes(String(a730.book))) return ""; }
   // THE BLUE VWAP WALL (fix397, Love Oct 28 2026 2:46 PM PT: "we need to keep the blue vwap a wall on all books when bands are small" + card "All Kalshi books, 5M frozen"):
   // every Kalshi opening order, every book. When the bands are small (session VWAP to +1σ under $150 BTC / $3 gold), no long under the unbroken VWAP within half that width,
   // no short over it within half. Price across the VWAP frees her. The Polymarket 5M (bandlock5m.ts) and the Poly twin (polyTwinWall) never come through here.

@@ -1227,6 +1227,7 @@ async function sendPaperBook(side, ticker, yesAsk, noAsk, opts) {
   return { status: "filled", orderId: placed.orderId, filled: placed.filled, yesPrice: placed.yesPrice, paid };
 }
 async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, opts) {
+  try { const j730 = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); const bc730 = String(opts?.bookCopy || ""); if (bc730 && j730?.on === true && Date.now() < Date.parse(String(j730.until)) && String(j730.book || "").split(",").includes(bc730)) ((globalThis as any).__akimboWire730 ||= {})[String(ticker).toUpperCase() + "|" + side] = { at: Date.now(), book: bc730 }; } catch {} // fix730: mark the akimbo book's own order for the wall at the wire
   if (opts?.paperBook) {
     try {
       const lb = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook;
@@ -1537,7 +1538,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
     for (let tryN = 0; tryN < 10 && (!placed || !(placed.filled > 0)); tryN += 1) {
       await new Promise((r) => setTimeout(r, 1500));
       try { const bl = (await import("./bandlock")).bandLockCheck(String(bookCopy), symbolOf(ticker), side, ticker, String(label || "")); /* fix611 */ if (!bl.ok) { sent.__aureliusBlock = `break retry stopped: ${bl.reason}`; break; } } catch {}
-      try { const B523 = await import("./bandlock"); const q523 = (await import("./quotes")).quoteTick(symbolOf(ticker)); const w523 = B523.auditGrade523(String(bookCopy), symbolOf(ticker), Number(q523 && q523.c) || 0, side); if (w523) { sent.__aureliusBlock = "auditor-grade door (fix523): " + w523; break; } } catch { sent.__aureliusBlock = "auditor-grade door unreadable - no order (fix523)"; break; } // fix523: the umpire and the auditor are the same strength, judged before the order is attempted
+      try { const B523 = await import("./bandlock"); const q523 = (await import("./quotes")).quoteTick(symbolOf(ticker)); const lt729 = typeof (B523 as any).liveToday717 === "function" ? String((B523 as any).liveToday717() || "") : ""; const w523 = lt729 && lt729.split(",").includes(String(bookCopy)) ? "" /* fix729: the live-today (akimbo) books skip only this retry door - they are not in her flag table, judged by their own gates like at the last line */ : B523.auditGrade523(String(bookCopy), symbolOf(ticker), Number(q523 && q523.c) || 0, side); if (w523) { sent.__aureliusBlock = "auditor-grade door (fix523): " + w523; break; } } catch { sent.__aureliusBlock = "auditor-grade door unreadable - no order (fix523)"; break; } // fix523: the umpire and the auditor are the same strength, judged before the order is attempted
       // fix530 (her 4:47 PM): the knock-loop colour re-test is RETIRED - no still-red-at-send. Her flip is tested in the full-flag door; the fill auditor still stops a flip-back before the fill (her 4:56 PM).
       // EVERY KNOCK RE-PRICES (fix135, Oct 23 ~12:50 AM PT): the 12:45 gold long knocked 11 times at its first 50c limit while the ask sat higher, and only
       // filled 30 s later at 58c when the loop restarted. Each knock now re-reads the live ask and bids ask + 20% (at least 3c), never past her floor cap;
