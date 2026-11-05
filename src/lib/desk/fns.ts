@@ -1235,6 +1235,7 @@ async function nightLightCached(): Promise<NightRow[]> {
   const rows = [...m.values()];
   try { const p721 = await import("./paperrows"); for (const r of p721.paperBookRows721()) rows.push(r as any); } catch {} // fix721: tonight's paper books as regular cards (display only)
   try { const ak727 = await import("./akimbocard"); for (const r of ak727.akimboRows727()) rows.push(r as any); } catch {} // fix727: the AKIMBO card (display only)
+  try { const ak744 = await import("./akimbocard"); for (const r of ak744.akimboTwinRows744()) rows.push(r as any); } catch {} // fix744: the AKIMBO + BTC twin card (paper)
   // FIVEY + 1-2-3 BOOK (fix212, Oct 25 ~2:20 PM PT, Love: "i want to look at her trades / let's have the new 123 book have its own card with its own ledger"): her live Polymarket 5m trades as two cards
   try { for (const r of fiveNightRows()) rows.push(r as NightRow); } catch {}
   gS.__shiftLight = { at: Date.now(), rows };

@@ -602,6 +602,7 @@ export function breakSide739(asset: string, side: string, label: string, tick: n
     const m = /^(?:Break|Close) (above|below) (?:fresh )?(.+?)(?:\s*\(.*)?$/.exec(String(label || "").trim()); if (!m || !(tick > 0)) return "";
     const name = m[2].trim(); let px = 0;
     const L0 = ((G as any).__lawBands?.[asset]?.L || []) as Line[]; const hit = L0.find((l) => String(l.name) === name); if (hit) px = Number(hit.price);
+    if (!(px > 0) && name === "5m BB middle") { const g743 = (G as any).__bmid743?.[asset]; if (g743 && Date.now() - Number(g743.at) < 120000) px = Number(g743.mid); } // fix743: the BTC 5m middle seat
     if (!(px > 0) && name === "2m BB middle") { const g742 = (G as any).__gmid742?.[asset]; if (g742 && Date.now() - Number(g742.at) < 120000) px = Number(g742.mid); } // fix742: the gold 2m middle seat
     if (!(px > 0)) { const tf = /^(\d+)m /.exec(name); const pl = tf ? (G as any).__pivLines739?.[`${asset}:${tf[1]}`] : null; if (pl && Date.now() - Number(pl.at) < 60000) { const h2 = (pl.L || []).find((l: any) => String(l.name) === name); if (h2) px = Number(h2.price); } }
     if (!(px > 0)) return "";

@@ -43,3 +43,35 @@ export function akimboRows727(): any[] {
     C.key = key; C.rows = Object.values(S.rows); return C.rows;
   } catch { return (G.__ak727?.rows as any[]) || []; }
 }
+
+// fix744 AKIMBO + BTC TWIN CARD (Love Nov 5 2026 12:30 PM PT: "we will test our card with one that has btc added and see how it does today"). Display only, paper: the same AKIMBO rules as live
+// (one ticket per asset-window - the first of the books to call it; when +15M PIVOTS later calls the other side, the first ticket is sold at the bid and pivot's side taken; any other
+// later call is ignored) over SESSION + PINK, +15M PIVOTS, the gold 2m middle seat AND the BTC 5m middle paper book. $10 a ticket, clean slate from its first build (data/akimbo-btc-744.json).
+const AKF744 = "akimbo-btc-744.json", LANES744 = ["brk-sesspk", "brk15", "gmid2", "bmid5"];
+export function akimboTwinRows744(): any[] {
+  try {
+    const C = (G.__ak744 ||= { key: "", rows: [] as any[] });
+    const p = D("grok-og.json"); if (!existsSync(p)) return C.rows;
+    const st = statSync(p), key = `${st.mtimeMs}:${st.size}`; if (C.key === key) return C.rows;
+    let S: { since: string; rows: Record<string, any> } = { since: new Date().toISOString(), rows: {} }; let fresh = true;
+    try { if (existsSync(D(AKF744))) { const j = JSON.parse(readFileSync(D(AKF744), "utf8")); if (j && typeof j.since === "string" && j.rows) { S = j; fresh = false; } } } catch {}
+    const raw = JSON.parse(readFileSync(p, "utf8")); const all = Array.isArray(raw) ? raw : [];
+    const win: Record<string, any[]> = {};
+    for (const r of all) { if (!r || !LANES744.includes(String(r.lane)) || !/15M-/.test(String(r.ticker)) || String(r.at) < S.since || (r.side !== "up" && r.side !== "down")) continue; (win[`${r.asset}|${r.ticker}`] ||= []).push(r); }
+    const ten = (r: any) => (r.result === "open" || r.pnl == null ? null : 10 * Number(r.pnl) / (Number(r.stake) || 20));
+    let changed = fresh;
+    for (const [wk, list] of Object.entries(win)) {
+      const firstBy: Record<string, any> = {}; for (const r of list) if (!firstBy[r.lane] || String(r.at) < String(firstBy[r.lane].at)) firstBy[r.lane] = r;
+      const calls = Object.values(firstBy).sort((x: any, y: any) => (String(x.at) < String(y.at) ? -1 : 1)); const x: any = calls[0]; if (!x) continue;
+      const pv: any = firstBy["brk15"]; let row: any;
+      if (pv && x.lane !== "brk15" && pv.side !== x.side && String(pv.at) > String(x.at)) {
+        const bid = Math.max(0.01, 1 - (Number(pv.ask) || 0.99) - 0.01), sold = Number(x.ask) > 0 ? 10 * (bid / Number(x.ask) - 1) : 0, v = ten(pv);
+        row = { at: x.at, asset: pv.asset, ticker: pv.ticker, side: pv.side, ask: Number(pv.ask) || 0, setup: `PIVOT GETS THE STICKS: ${x.lane} sold at ${Math.round(bid * 100)}c -> +15M PIVOTS: ${String(pv.label || "")}`.slice(0, 160), result: v == null ? "open" : v + sold > 0 ? "win" : "loss", pnl: v == null ? null : Math.round((v + sold) * 100) / 100, exit: pv.result === "open" ? "open" : String(pv.exit || "held to the bell") };
+      } else { const v = ten(x); row = { at: x.at, asset: x.asset, ticker: x.ticker, side: x.side, ask: Number(x.ask) || 0, setup: `${x.lane}: ${String(x.label || "")}`.slice(0, 160), result: v == null ? "open" : v > 0 ? "win" : "loss", pnl: v == null ? null : Math.round(v * 100) / 100, exit: x.result === "open" ? "open" : String(x.exit || "held to the bell") }; }
+      const out = { id: `${row.ticker}:akimbo744`, book: "akimbo744", at: row.at, asset: row.asset, ticker: row.ticker, side: row.side, setup: row.setup, ask: row.ask, multiple: row.ask > 0 ? Math.round((1 / row.ask) * 100) / 100 : null, stake: 10, result: row.result, exit: row.exit, pnl: row.pnl, paper721: true };
+      if (JSON.stringify(S.rows[wk]) !== JSON.stringify(out)) { S.rows[wk] = out; changed = true; }
+    }
+    if (changed) { try { writeFileSync(D(AKF744 + ".tmp"), JSON.stringify(S)); renameSync(D(AKF744 + ".tmp"), D(AKF744)); } catch {} }
+    C.key = key; C.rows = Object.values(S.rows); return C.rows;
+  } catch { return (G.__ak744?.rows as any[]) || []; }
+}

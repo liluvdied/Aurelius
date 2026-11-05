@@ -1097,6 +1097,32 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
             }
           } catch {}
         }
+        // fix743 BTC 5M MIDDLE BOLLINGER SEAT (Love Nov 5 2026 12:24 PM PT: "yes pls ... but for now yes we can add them into this book"): paper lane bmid5 - BTC only. A closed 1m candle crossing the
+        // 5m Bollinger middle line (20-period SMA of 5m closes, live 5m candle included) books the break that way, once per window, 2+ min left, ask up to 66c, not into her green / red zone ($100).
+        // Replay since Oct 19 ($20): 95 trades, 62%, +$319, green 13 of 17. PAPER ONLY (not in AKIMBO, never sends an order).
+        if (id === "btc" && m?.ticker && left > 120) {
+          try {
+            const G743 = globalThis as any, nowS743 = Date.now() / 1000;
+            const c743 = resample(b, 5).map((x) => x.c).slice(-20), cl743 = b.filter((x) => x.t + 60 <= nowS743 + 1);
+            if (c743.length === 20 && cl743.length >= 2) {
+              const mid743 = c743.reduce((q, v) => q + v, 0) / 20; (G743.__bmid743 ||= {})[id] = { at: Date.now(), mid: mid743 };
+              const last743 = cl743[cl743.length - 1], prev743 = cl743[cl743.length - 2], S743 = (G743.__bmid743seen ||= {});
+              if (S743[id] !== last743.t) {
+                S743[id] = last743.t;
+                const side743: "up" | "down" = last743.c > mid743 ? "up" : "down", was743 = prev743.c > mid743 ? "up" : "down";
+                if (side743 !== was743 && !rows.some((r: any) => r.ticker === m.ticker && r.lane === "bmid5")) {
+                  const ask743 = Number(side743 === "up" ? m.yesAsk : m.noAsk), zw743 = zoneWall741(b, id, side743, last743.c, "bmid5");
+                  if (zw743) { try { appendFileSync(D("zone-wall.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane: "bmid5", ticker: m.ticker, side: side743, why: zw743 }) + "\n"); } catch {} }
+                  else if (ask743 > 0.02 && ask743 <= 0.667) {
+                    const n743 = STAKE / ask743;
+                    rows.unshift({ id: `${m.ticker}:bmid5`, lane: "bmid5", at: new Date().toISOString(), asset: id, ticker: m.ticker, side: side743, label: `Break ${side743 === "up" ? "above" : "below"} 5m BB middle`, ask: r2(ask743), multiple: r2(1 / ask743), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(n743, ask743), peak: ask743, lastBid: 0, result: "open", exit: null, pnl: null, bar: { o: r2(last743.o), h: r2(last743.h), l: r2(last743.l), c: r2(last743.c) }, band: { name: "5m BB middle", price: r2(mid743) } } as any);
+                    changed = true;
+                  }
+                }
+              }
+            }
+          } catch {}
+        }
         for (const [lane, L, legacy] of lanes) {
           if (lateWin && lane !== "brk-sesspk") continue; // only the session + pink book trades the last 2 minutes
           const lane5 = lane === "ogp5-hold" || lane === "ogp5-pk2" || lane === "ogp5-pk3" ? "ogp5" : lane; // twins run every path her 5M half runs
