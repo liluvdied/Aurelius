@@ -75,6 +75,20 @@ const SYM: Record<string, string> = { btc: "PEPPERSTONE:BTCUSD", gold: "TVC:GOLD
 // change the memories built on the old feed are cleared - broken bands, rejection memory, DELAYED's band sides, the Kalshi gap and the cached 1m bars.
 { const GF = globalThis as any; if (GF.__symBtc !== SYM.btc) { GF.__symBtc = SYM.btc; try { delete GF.__dlyState; if (GF.__brokenWalls) GF.__brokenWalls.btc = {}; if (GF.__rejMem) GF.__rejMem.btc = {}; if (GF.__kGap) GF.__kGap = { at: 0, gap: 0, vAt: 0 }; if (GF.__pivBars) delete GF.__pivBars.btc; if (GF.__lawBands) delete GF.__lawBands.btc; } catch {} } }
 
+// fix740 SESSION + PINK 15M BOLLINGER WALL (Love Nov 5 2026 11:39 AM PT: "we should have her use those as a wall" + card 11:42 AM "Yes, SESSION + PINK only"): BREAK BOOK · SESSION + PINK
+// skips a break that runs INTO the opposite 15m Bollinger band (BB 20, 2σ on 15m closes, the live 15m candle included) within $50 BTC / $1 gold - a short with the lower band that close
+// below price, a long with the upper band that close above. Paper skips it (so live, 1:1 with paper, never sends it). Replay since Oct 19 ($20): +$1,568 -> +$1,779, green 10 -> 12 of 16 days.
+export function bb15Wall740(b: Bar[], asset: string, side: string, tick: number): string {
+  try {
+    if (!(tick > 0)) return "";
+    const c = resample(b, 15).map((x) => x.c).slice(-20); if (c.length < 20) return "";
+    const m = c.reduce((q, v) => q + v, 0) / 20, sd = Math.sqrt(c.reduce((q, v) => q + (v - m) ** 2, 0) / 20), U = m + 2 * sd, Lo = m - 2 * sd, th = asset === "gold" ? 1 : 50;
+    if (side === "down" && tick - Lo >= 0 && tick - Lo <= th) return `INTO 15m BB (fix740): short at ${tick.toFixed(2)} runs into the lower 15m Bollinger ${Lo.toFixed(2)} ($${(tick - Lo).toFixed(2)} away, wall $${th})`;
+    if (side === "up" && U - tick >= 0 && U - tick <= th) return `INTO 15m BB (fix740): long at ${tick.toFixed(2)} runs into the upper 15m Bollinger ${U.toFixed(2)} ($${(U - tick).toFixed(2)} away, wall $${th})`;
+    return "";
+  } catch { return ""; }
+}
+// fix740 end
 export function resample(b: Bar[], mins: number): Bar[] {
   const out: Bar[] = [];
   const span = mins * 60;
@@ -1622,6 +1636,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
           } catch {}
           // a second ticket is for a NEW setup, not the same refused one again
           if (reId && mine.some((r) => r.side === look!.side && r.label === look!.label)) { skipNote("same refused setup again", {}); continue; }
+          if (lane === "brk-sesspk") { const q740 = quoteTick(id), tk740 = q740 && Date.now() - q740.at <= 3000 ? Number(q740.c) : Number(last1m?.c) || 0; const w740 = bb15Wall740(b, id, look!.side, tk740); if (w740) { try { appendFileSync(D("bb15-wall.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, side: look!.side, label: look!.label, why: w740 }) + "\n"); } catch {} continue; } } // fix740: SESSION + PINK only
           const ask = Number(look.side === "up" ? m.yesAsk : m.noAsk);
           // 1.18x-5x (Oct 11: a 25x short with 2 min left on the strike is a lottery ticket, not her tap-at-4x).
           // OG + PIVOT lanes keep the OG's own rule: 1.18x and up, no cap.

@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R419 - fix740 SESSION + PINK 15M BOLLINGER WALL: BREAK BOOK · SESSION + PINK skips a break whose direction runs INTO the opposite 15m Bollinger band (BB 20, 2σ, the same bands as TradingView, on 15m candles) within $50 BTC / $1 gold - a short with the lower band that close below, a long with the upper band that close above. It is a paper-book rule, so live (1:1 with paper) never sends those either; each skip is written to data/bb15-wall.jsonl. +15M PIVOTS unchanged. Replay since Oct 19 at $20: +$1,568 -> +$1,779, green days 10 -> 12 of 16, better in all three weeks. Run after CHANGE-83.
+- when: 2026-11-05T20:02:31+00:00
+- Love: "Love Nov 5 2026 11:39 AM PT: "we should have her use those as a wall instead of the old rsi bollingers we were using that you said held up the least and needed to get kicked lol" + her card pick 11:42 AM: "Yes, SESSION + PINK only" (to "Add a 15m Bollinger wall to SESSION + PINK?")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "export function bb15Wall740("}
+- proof: {"test": "tools/bb15-wall-740.cjs"}
+
 ## R418 - fix739 AKIMBO PRICE ON THE BREAK SIDE: for SESSION + PINK and +15M PIVOTS, a 'Break/Close above|below <line>' call only sends - the first order and every re-knock - while the live price is still on the break side of that line (long above it, short below it). If price has gone back across, she stops knocking ('BACK ACROSS <line> (fix739)', which the silent alarm shows). No 1m close needed. Lines: session bands, pink, 5m pivots (her board) and 15m pivots (kept from the pivot book each pass). A line it can't read = no change. Akimbo books only; no other gate is turned back on; all rails kept.
 - when: 2026-11-05T19:41:09+00:00
 - Love: "Love Nov 5 2026 11:35 AM PT: "no , it just needs price on the same side of the break when she enters hun she doesn't need a close""
