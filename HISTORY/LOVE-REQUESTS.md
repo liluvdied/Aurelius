@@ -2,6 +2,58 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R364 - fix675: completes fix668 (CHANGE-17). Her 20% rejection off a band (15% tap, 20% of the channel back off the extreme, this 5m candle) now also passes the four candle-DIRECTION walls that held it at 10:04:13 PM PT BTC: the door's 'the candle is falling from the top third - a short, never a long' (bandlock.ts thirdsMove ~1139), the send's 'THE THIRDS AT THE WIRE' (~2809) and the two 'price is falling/rising from the top/bottom third of her channel' walls (awayVerdict ~454/458, reconThirdAgainst ~982/987). Her thirds by POSITION (33%), 45%, past red/green, pink, break walls and the 1.5x floor still judge. Every book but delayed (rej668 returns false for the delayed book). Built on CHANGE-20 (bandlock.ts).
+- when: 2026-11-05T06:36:26+00:00
+- Love: "Love Nov 4 2026 10:20 PM PT: "our new 20% wick rejection rule didn't fire just now on btc love it was definitely over 20% , can you look into why she didn't enter on that for me as well?" (her CHANGE-17 words, Nov 4 8:23 PM PT: "she can enter in , even if the candle hasn't flipped")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "!rejFlip611(asset, side, qR.c) /* fix619 */ && !(typeof rej668 === \"function\" && rej668(asset, side, qR.c, lbR.L))"}
+- proof: {"test": "tools/rej20-thirds-675.cjs"}
+
+## R363 - fix674: her DELAYED-button hours (fix626, today 10 PM PT BTC + gold - whatever her schedule pill gives the DELAYED button) now trade live through her rejections-only no-pink book (recon-rjnp, fix643/fix673) as main's rows - same copier, size, take-profit, add-ons, walls and send as main. Main without pink (recon-rnp) goes back to paper and keeps its record; the delayed twin stays paper. Every other hour unchanged. Cornerstone 101 updated with her words; the schedule panel's DELAYED label reads REJECTIONS ONLY · NO PINK. Built on CHANGE-21 (engine.ts).
+- when: 2026-11-05T06:36:05+00:00
+- Love: "Love Nov 4 2026 10:12 PM PT: "for the main without pink book , i created one that is rejections only for session bands too, no breaks i want THAT one in place of the main without pink book so its rejections only""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "if (r?.book === \"recon-rnp\") continue; // fix674"}
+- proof: {"test": "tools/delayed-to-rejonly-674.cjs"}
+
+## R362 - fix673: her rejections-only no-pink book (recon-rjnp, fix643) matched to main: it already reads with main's bonesDecide (main's zone + band flip settings, main's band list and reach, every read fix tonight: push $6/10c, 15% near-band, CHANGE-17 no-flip rejection, gold Bollinger cut), main's thirds, the pink wall (CHANGE-16 edge) and main's door (every wall: 45%, past red/green, break-back CHANGE-14/15, HER FLIP, 1.5x at the copier). This adds: her fake-out turns off a session band / zone / Bollinger (main and rejection take them), keeps ONLY rejection reads (a candle-from-the-third / launch / seen-as read is not a rejection), and re-aims to a fresh read like main (fix463). No breaks, no pink, as she built it. Paper until CHANGE-23 moves the DELAYED hours to it.
+- when: 2026-11-05T06:35:51+00:00
+- Love: "Love Nov 4 2026 10:12 PM PT: "for the main without pink book , i created one that is rejections only for session bands too, no breaks i want THAT one in place of the main without pink book so its rejections only i made it earlier, without you , when there were still issues - so pls confirm it is the same entry logic and everything in every way, and match all the fixes we just made , so it's the same - just no breaks and no pink trades all rejections""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "rj643 = rejFO; // fix673"}
+- proof: {"test": "tools/rej-only-sync-673.cjs"}
+
+## R361 - fix672 RSI PAPER BOOKS (paper only - never sends an order): RSI(14, Wilder) on 5m/15m/30m/1h/4h candles from her one-minute closes (seeded from her band log, live candle included). 20 books (5 timeframes x 4 levels): short when RSI first crosses 70/80/85/90, long when it first crosses 30/20/15/10 (her mirror), re-armed 2 points back inside. Each signal paper-trades BTC and gold on the 15M window and the 1H market (KXBTCD / KXGOLDH, strike nearest price), $20 at the live ask. Per trade: hours until price moved her way 0.25% / 0.5% (24 h), worst move against first, settle, P&L held and under her TP. New RSI BOOKS section on the Books page (filter asset / market / RSI timeframe / level). Live books, walls and the umpire untouched.
+- when: 2026-11-05T06:35:38+00:00
+- Love: "Love Nov 4 2026 9:56 PM PT: "i want to paper test those 1H kalshi markets , once gold has hit an RSI of 70 + 80+ and 90+ 3 different paper books testing each level i want to place reversal trades when those rsi values are hit , when they hit them then i want to track how many hours AFTER the move up/down has taken place, until the trade worked out in our favor ... we will test them on 5M , 15M , 30M , and 1H, and 4H (on second thought) timeframe RSI's ... and for our regular 15M windows, i want to test those out as well ... we can make a new subsection here for the RSI books ... andd i would like them tested on both btc and on Gold" + ~10:05 PM PT: "as for the 15M windows rsi books, the 80-85 will be our best chance there, 90+ will be very successful as well""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/rsibooks.ts", "has": "export async function rsiTick672("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.rsiTick672(snap.assets)"}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "export const getRsiBooks672"}
+- proof: {"code": "src/components/desk/app.tsx", "has": "<RsiBooks672 />"}
+- proof: {"test": "tools/rsi-books-672.cjs"}
+
+## R360 - fix671: gold Bollinger reads are cut - in the read (bonesDecide drops any gold candidate whose label names the Bollinger / BB, so the next best read speaks) and at the door (bandLockCheck refuses a gold order whose label names the Bollinger / BB, every book but delayed). BTC Bollinger, BTC session-band rejections and every other read unchanged. Built on top of CHANGE-19 (fix670).
+- when: 2026-11-05T06:35:24+00:00
+- Love: "Love Nov 4 2026 9:16 PM PT: "cut gold bollinger reads, keep btc as is""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "GOLD BOLLINGER CUT (fix671)"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "cands2.filter((c) => !/Bollinger|BB (upper|lower)/.test(String(c.label))); // fix671"}
+- proof: {"test": "tools/gold-boll-cut-671.cjs"}
+
+## R359 - fix670: the 8 band-list freshness checks in bandlock.ts (door channel + closest band, paper filter, wall at the wire, near-band reads) accept a band list up to 30 s old during the first 15 s of each 15m window (15 s otherwise, as before) - the read at :00-:09 is no longer refused as 'band list not fresh' at every window change. The pink is recomputed live on each read; live price freshness (2 s, fix654; 3 s at the wall) unchanged. Every book but delayed (the delayed door shares bandlock - its freshness is the same check). Built on top of CHANGE-18 (fix669).
+- when: 2026-11-05T06:34:58+00:00
+- Love: "Love Nov 4 2026 9:16 PM PT: "yes, let her use a band list up to 30 seconds old in the first 15 seconds of each window" (live price stays 2 s fresh, fix654 unchanged)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function bandAge670()"}
+- proof: {"test": "tools/window-start-670.cjs"}
+
 ## R358 - fix669: her BTC push off the band is $6 (was $10) everywhere she waited $10 - the read's pink / failed-break / previous-candle / nearest-band pushes (recon.ts, 8 sites, longs and shorts) and the door + send push (pushLabel653, bandlock.ts). Her 2m colour still applies. Gold keeps its 10c push. Every book but delayed (the 5M is off). Built on her current files (independent of CHANGE-16/17).
 - when: 2026-11-05T05:14:06+00:00
 - Love: "Love Nov 4 2026 8:54 PM PT: "as for the $10 push for btc we said we'd come back to, we can bring that to $6 , it will be better when volume is low" + ~8:56 PM PT: "yes, $6 push in both directions, in place of where she was waiting $10 now pls , and yes all books but delayed""

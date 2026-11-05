@@ -451,11 +451,11 @@ export function awayVerdict(asset: string, L: Line[], tick: number, side: string
       if (side === "up") {
         let hi = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c >= hi.c) { hi = p; i0 = i; } });
         const loAfter = Math.min(...pts.slice(i0).map((p) => p.c));
-        if ((hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < rel583) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no long while it falls`;
+        if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < rel583) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no long while it falls`;
       } else {
         let lo = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c <= lo.c) { lo = p; i0 = i; } });
         const hiAfter = Math.max(...pts.slice(i0).map((p) => p.c));
-        if ((lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < rel583) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no short while it rises`;
+        if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < rel583) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no short while it rises`;
       }
     }
   }
@@ -801,6 +801,8 @@ export function pinkSlide580(asset: string, W: number): number { return asset ==
 // fix667 PINK AND THE BAND IN THE SAME OUTER 25% (Love Nov 4 2026 8:23 PM PT: "let's revise / if pink and the session band are both sitting in the top/bottom 25 % she is clear to enter at the beginning of the channel , / we can keep the 50% under a $100 band width / past $100 we can make it 1/3rd of the channel width of clearance until our sliding scale comes back into place after $180 is reached" + ~8:29 PM PT (gold): "for gold however, let's make it a third from $3 -5 instead of from $2-5 so she has an even $1"): when the pink and the session band she trades off both sit in the outer 25% of the session-band channel at that end
 // (bottom 25% for a long off the band below, top 25% for a short off the band above) and price is there too, the pink cushion does not hold her - she enters at the start of the channel. Channel = the session bands either side of price.
 export function pinkEdge667(asset: string, L: Line[], tick: number, side: string, pink: number): boolean { try { if (!(tick > 0) || !(pink > 0)) return false; const S = (L || []).filter((l: Line) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))).map((l: Line) => Number(l.price)); const a = Math.min(...S.filter((x: number) => x > tick)), b = Math.max(...S.filter((x: number) => x < tick)); if (!Number.isFinite(a) || !Number.isFinite(b) || !(a > b)) return false; const q = 0.25 * (a - b); return side === "up" ? pink <= b + q && tick <= b + q : side === "down" ? pink >= a - q && tick >= a - q : false; } catch { return false; } } // fix667
+// fix670 THE WINDOW CHANGE IS NOT BLIND (Love Nov 4 2026 9:16 PM PT: "yes, let her use a band list up to 30 seconds old in the first 15 seconds of each window" (live price stays 2 s fresh, fix654 unchanged)): her band list (session bands, zones; the pink is recomputed live on every read) may be up to 30 s old in the first 15 s of a 15m window - the desk waits 5 s after the open for a fresh price (Oct 14), so the list goes ~15 s stale right at the change and every read at :00-:09 was refused. Any other time: 15 s, as before. The live price freshness (2 s, fix654) is untouched.
+export function bandAge670(): number { const s = (Date.now() / 1000) % 900; return s < 15 ? 30000 : 15000; } // fix670
 export function pinkFar503(asset: string, L: Line[], tick: number, pink: number): boolean {
   if (!(tick > 0) || !(pink > 0)) return false;
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
@@ -979,12 +981,12 @@ export function reconThirdAgainst(asset: string, L: Line[], tick: number, side: 
   if (side === "up") {
     let hi = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c >= hi.c) { hi = p; i0 = i; } });
     const loAfter = Math.min(...pts.slice(i0).map((p) => p.c));
-    if ((hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < rel583) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a short, not a long`;
+    if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < rel583) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a short, not a long`;
   }
   if (side === "down") {
     let lo = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c <= lo.c) { lo = p; i0 = i; } });
     const hiAfter = Math.max(...pts.slice(i0).map((p) => p.c));
-    if ((lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < rel583) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a long, not a short`;
+    if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < rel583) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a long, not a short`;
   }
   return "";
 }
@@ -1109,6 +1111,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
     return { ok: false as const, reason };
   };
   if (!(asset === "gold" || asset === "btc")) return deny(`no band feed for ${asset} to verify against - it can't open`);
+  if (asset === "gold" && !DLY465.has(String(book)) && /Bollinger|BB (upper|lower)/.test(String(label || ""))) return deny(`GOLD BOLLINGER CUT (fix671): "${String(label)}" is a gold Bollinger read - cut by Love (Nov 4 9:16 PM PT). no order.`); // fix671
   // RECONSTRUCTED (Oct 19 ~6:16 PM PT, Love: "that exact configuration that traded that way that day"): the Oct 12 book had no band lock at the door -
   // its two refusals live in recon.ts at the decision. Here: a fresh price and a healthy feed, nothing else.
   if (RECON.has(book)) {
@@ -1116,7 +1119,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
     const fhR = feedHealth(asset); if (!fhR.ok) return deny(`price feed not healthy (${fhR.why})`);
     // + HER 33% CHANNEL RULE (Oct 19 ~6:33 PM PT, Love) - the one addition to the Oct 12 door.
     const lbR = G.__lawBands?.[asset];
-    if (!lbR || !Array.isArray(lbR.L) || !lbR.L.length || Date.now() - Number(lbR.at) > 15000) return deny("can't verify the channel right now (band list not fresh)");
+    if (!lbR || !Array.isArray(lbR.L) || !lbR.L.length || Date.now() - Number(lbR.at) > (typeof bandAge670 === "function" ? bandAge670() : 15000) /* fix670 */) return deny("can't verify the channel right now (band list not fresh)");
     if (book === "recon-dly" && dlyFreeNow(asset)) { const gwR = dlyThirds(asset, lbR.L, qR.c, side); /* fix307 */ return gwR ? deny(gwR, { tick: qR.c }) : { ok: true }; } // THE DELAYED BOOK in her off hours (Love, Oct 21 ~10:59 AM PT) - free but for her 33% + top/bottom line (11:21 AM)
     const imR = impossibleGeo(asset, lbR.L, qR.c, side, false, book === "recon-dly" && !DLY_AS_COPY, book === "recon-togp" || (DLY_AS_COPY && book === "recon-dly") /* fix353 */ || book === "recon-dlyk" /* fix354: the delayed no-pink copy meets the copy walls */, book === "recon-rej", book === "recon-rej" || book === "recon-tog" || book === "recon-np", book === "recon-np" /* fix392 (Love Oct 28 2026 1:54 PM PT, card "Make BTC's no-short zone the bottom 50% from green to pink?" -> "Pure no-pink only, 50%"): the pure no-pink's BTC PINK TO GREEN / PINK TO RED line is 50%; main + rejection stay 40% */ ? 0.5 : (book === "recon-tog" || book === "recon-rej") ? 0.55 /* fix450 (STAGED - Love Oct 29 2026 9:02 AM PT: "she just longed btc closer to the red than the pink and if immediately reversed we need to nip that in the bud right now"): BTC main + rejection 55% like gold (fix409) */ : (book === "recon-np" /* fix324 */) ? 0.4 : 0, (book === "recon-tog" || book === "recon-rej" || book === "recon-np") ? true : false, false /* fix390 (Love Oct 28 2026 1:10 PM PT: "no just make her have the same cushions and band tolerances and everything and she should be good hun"): the pure no-pink meets MAIN's walls */).why; // fix272: twin pink-free every hour // THE IMPOSSIBILITY at her door too (Oct 20 ~2:37 PM PT, Love) - same function as the wire
     if (imR) return deny(imR, { tick: qR.c });
@@ -1136,7 +1139,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
       // SESSION BAND AHEAD (fix413/fix465) OUT for every other book too (fix505): her 33% / 20% scale is the only position rule.
       for (const w465 of [pinkAhead618(asset, lbR.L, qR.c, side) /* fix618 */, reachWall429(asset, lbR.L, qR.c, side), pinkLongWall432(asset, lbR.L, qR.c, side), pinkShortWall464(asset, lbR.L, qR.c, side), sameSide434(asset, lbR.L, qR.c, side), brokeThisCandle441(asset, lbR.L, qR.c, side), brokeThisCandle457(asset, lbR.L, qR.c, side)]) if (w465) return deny(w465, { tick: qR.c });
     }
-    { const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side && !rejFlip611(asset, side, qR.c) /* fix619 */) return deny(`the candle is ${tmR === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }
+    { const tmR = thirdsMove(asset, lbR.L, qR.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tmR && tmR !== side && !rejFlip611(asset, side, qR.c) /* fix619 */ && !(typeof rej668 === "function" && rej668(asset, side, qR.c, lbR.L)) /* fix675: her 20% rejection off the band is not held by the candle's direction */) return deny(`the candle is ${tmR === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"} (Oct 20 ~5:07 PM PT, Love)`, { tick: qR.c }); }
     const chR = channelOnly(asset, lbR.L, qR.c, side, refreshBroken(asset, lbR.L, qR.c)); // REJECTION OVERRIDE REMOVED (Oct 19 ~9:18 PM PT, Love: "let's remove the pink band rejection override... she shorted here and it would have been rejected for being in the bottom 33% on gold" - the wall rules over rejections again)
     if (chR) return deny(chR, { tick: qR.c });
     const cdR = candleDirOnly(asset, lbR.L, qR.c, side); // band breaks up = trade up (Oct 19 ~6:34 PM PT, Love)
@@ -1151,7 +1154,7 @@ export function bandLockCheck(book: string, asset: string, side: string, ticker 
   }
   if (G.__bandLawBroken) return deny("band law failed its self-test - no orders until it passes");
   const lb = G.__lawBands?.[asset];
-  if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > 15000) return deny("can't verify the closest band right now (band list not fresh)");
+  if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > (typeof bandAge670 === "function" ? bandAge670() : 15000) /* fix670 */) return deny("can't verify the closest band right now (band list not fresh)");
   // NEVER BLIND (Oct 17 ~2:42 PM PT, Love: "yes, both please"): no session bands on her list = can't verify = no order.
   if (!lb.L.some((l: Line) => /σ$|^session VWAP$|^BB (upper|lower)$/.test(String(l.name)))) return deny("can't verify the session bands right now (none on her list)");
   const q = quoteTick(asset);
@@ -1534,7 +1537,7 @@ export function paperBandFilter<T>(rows: T[], tag: string): T[] {
       G.__curBook465 = String(r.lane ?? r.book ?? ""); // fix467: each paper row is judged with its own book's share (the delayed book keeps its own)
       const a1 = String(r.asset ?? "").toLowerCase(); const lbR = G.__lawBands?.[a1]; const qR = quoteTick(a1);
       let whyR = "";
-      if (!lbR || !Array.isArray(lbR.L) || !lbR.L.length || now - Number(lbR.at) > 15000) whyR = "can't verify the channel (band list not fresh)";
+      if (!lbR || !Array.isArray(lbR.L) || !lbR.L.length || now - Number(lbR.at) > (typeof bandAge670 === "function" ? bandAge670() : 15000) /* fix670 */) whyR = "can't verify the channel (band list not fresh)";
       else if (!qR || !(qR.c > 0) || now - qR.at > 3000) whyR = "can't verify (no fresh price)";
       else if (String(r.lane ?? r.book ?? "") === "recon-dly" && dlyFreeNow(a1)) whyR = dlyThirds(a1, lbR.L, qR.c, side); /* fix307 */ // THE DELAYED BOOK in her off hours (Love, Oct 21 ~10:59 AM PT) - free but for her 33% + top/bottom line (11:21 AM)
       else whyR = impossibleGeo(a1, lbR.L, qR.c, side, false, String(r.lane ?? r.book ?? "") === "recon-dly" && !DLY_AS_COPY, String(r.lane ?? r.book ?? "") === "recon-togp" || (DLY_AS_COPY && String(r.lane ?? r.book ?? "") === "recon-dly") /* fix353 */ || String(r.lane ?? r.book ?? "") === "recon-dlyk" /* fix354 */, String(r.lane ?? r.book ?? "") === "recon-rej", String(r.lane ?? r.book ?? "") === "recon-rej" || String(r.lane ?? r.book ?? "") === "recon-tog" || String(r.lane ?? r.book ?? "") === "recon-np", String(r.lane ?? r.book ?? "") === "recon-np" /* fix392 (Love Oct 28 2026 1:54 PM PT, card "Make BTC's no-short zone the bottom 50% from green to pink?" -> "Pure no-pink only, 50%"): the pure no-pink's BTC PINK TO GREEN / PINK TO RED line is 50%; main + rejection stay 40% */ ? 0.5 : (String(r.lane ?? r.book ?? "") === "recon-tog" || String(r.lane ?? r.book ?? "") === "recon-rej" || String(r.lane ?? r.book ?? "") === "recon-np" /* fix324 */) ? 0.4 : 0, (String(r.lane ?? r.book ?? "") === "recon-tog" || String(r.lane ?? r.book ?? "") === "recon-rej" || String(r.lane ?? r.book ?? "") === "recon-np") ? true : false /* fix390 (Love Oct 28 2026 1:10 PM PT: "no just make her have the same cushions and band tolerances and everything and she should be good hun"): the pure no-pink meets MAIN's walls */).why || channelOnly(a1, lbR.L, qR.c, side, refreshBroken(a1, lbR.L, qR.c)) || candleDirOnly(a1, lbR.L, qR.c, side) || reconZoneGate(a1, qR.c, side) || reconThirdAgainst(a1, lbR.L, qR.c, side, refreshBroken(a1, lbR.L, qR.c)) || thirdWallAbsolute(a1, lbR.L, qR.c, side, refreshBroken(a1, lbR.L, qR.c)); // zones 12:22 AM; third wall 1:32 AM; THE WALL 8:05 AM ("make it impossible. no excuses")
@@ -1554,7 +1557,7 @@ export function paperBandFilter<T>(rows: T[], tag: string): T[] {
     const q = quoteTick(asset);
     let why = "";
     if (G.__bandLawBroken) why = "band law failed its self-test";
-    else if (!lb || !Array.isArray(lb.L) || !lb.L.length || now - Number(lb.at) > 15000) why = "can't verify (band list not fresh)";
+    else if (!lb || !Array.isArray(lb.L) || !lb.L.length || now - Number(lb.at) > (typeof bandAge670 === "function" ? bandAge670() : 15000) /* fix670 */) why = "can't verify (band list not fresh)";
     else if (!q || !(q.c > 0) || now - q.at > 3000) why = "can't verify (no fresh price)";
     else if (!lb.L.some((l: Line) => /σ$|^session VWAP$|^BB (upper|lower)$/.test(String(l.name)))) why = "can't verify (no session bands on her list)";
     else if (r.band && Number(r.band.price) > 0) { const zc = Number(r.goldLaw?.ceil), zf = Number(r.goldLaw?.floor); const bp = side === "down" && zc > 0 ? zc : side === "up" && zf > 0 ? zf : Number(r.band.price); if (!sideOfBandOk(bp, q.c, side)) why = `${side === "up" ? "long" : "short"} on the wrong side of ${r.band.name} (its setup band)`; }
@@ -2281,7 +2284,7 @@ export function nearReject(asset: string, L: Line[], tick: number, mySide: "up" 
 // (THE IMPOSSIBILITY, her thirds, top/bottom line... - her candle waived, like the twin's free hours).
 export function bandsNearNow(asset: string): { names: string[]; tick: number } | null {
   const lb = G.__lawBands?.[asset]; const q = quoteTick(asset); const near = NEAR_TAP[asset] ?? 0;
-  if (!lb || !Array.isArray(lb.L) || !q || !(q.c > 0) || Date.now() - q.at > 3000 || Date.now() - Number(lb.at) > 15000 || !(near > 0)) return null;
+  if (!lb || !Array.isArray(lb.L) || !q || !(q.c > 0) || Date.now() - q.at > 3000 || Date.now() - Number(lb.at) > (typeof bandAge670 === "function" ? bandAge670() : 15000) /* fix670 */ || !(near > 0)) return null;
   const ex: { name: string; price: number }[] = [];
   for (const l of lb.L) { const P = Number(l.price); if (!(P > 0)) continue; if (isSessBand(l as Line) || l.name === "5m PP") ex.push({ name: l.name === "5m PP" ? "the pink" : String(l.name), price: P }); if (l.name === "5m S1") ex.push({ name: "Green zone", price: P }); if (l.name === "5m R1") ex.push({ name: "Red zone", price: P }); }
   try { const zB = G.__bbsr?.[asset]; if (zB && Date.now() - Number(zB.at) <= 20000) { if (Number(zB.bbU) > 0) ex.push({ name: "Bollinger upper", price: Number(zB.bbU) }); if (Number(zB.bbL) > 0) ex.push({ name: "Bollinger lower", price: Number(zB.bbL) }); } } catch {}
@@ -2289,7 +2292,7 @@ export function bandsNearNow(asset: string): { names: string[]; tick: number } |
 }
 export function polyTwinWall(asset: string, side: string): string {
   const lb = G.__lawBands?.[asset]; const q = quoteTick(asset);
-  if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > 15000) return "can't verify the channel right now (band list not fresh)";
+  if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > (typeof bandAge670 === "function" ? bandAge670() : 15000) /* fix670 */) return "can't verify the channel right now (band list not fresh)";
   if (!q || !(q.c > 0) || Date.now() - q.at > 3000) return "can't verify the price right now (no fresh price)";
   const fh = feedHealth(asset); if (!fh.ok) return `price feed not healthy (${fh.why})`;
   return dlyKeeps(impossibleGeo(asset, lb.L, q.c, side, true).why, asset);
@@ -2440,7 +2443,7 @@ export function bandRulesVerdict(asset: string, side: string, roomX = 0, cb = fa
   if (!(asset === "gold" || asset === "btc") || !(side === "up" || side === "down")) return { rule: "", cantVerify: true };
   const lb = G.__lawBands?.[asset];
   const q = quoteTick(asset);
-  if (G.__bandLawBroken || !lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > 15000 || !q || !(q.c > 0) || Date.now() - q.at > 3000) return { rule: "", cantVerify: true };
+  if (G.__bandLawBroken || !lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > (typeof bandAge670 === "function" ? bandAge670() : 15000) /* fix670 */ || !q || !(q.c > 0) || Date.now() - q.at > 3000) return { rule: "", cantVerify: true };
   if (!feedHealth(asset).ok) return { rule: "", cantVerify: true };
   if (!lb.L.some((l: Line) => /σ$|^session VWAP$|^BB (upper|lower)$/.test(String(l.name)))) return { rule: "", cantVerify: true };
   const W = wallLines(asset, lb.L);
@@ -2780,7 +2783,7 @@ export function wireWall(ticker: string, side: "up" | "down"): string {
   };
   const seal = sealDrift(); if (seal) return deny(seal);
   const lb0612 = G.__lawBands?.[asset], lb = lb0612 && dlyOrderAtWire(t, side) && Array.isArray(lb0612.full) ? { at: lb0612.at, L: lb0612.full } : lb0612; // fix612: the delayed book keeps her own lines at the wire
-  if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > 15000) return deny("THE WALL AT THE WIRE: her band list is not fresh - can't verify, no opening order");
+  if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > (typeof bandAge670 === "function" ? bandAge670() : 15000) /* fix670 */) return deny("THE WALL AT THE WIRE: her band list is not fresh - can't verify, no opening order");
   const q = quoteTick(asset);
   if (!q || !(q.c > 0) || Date.now() - q.at > 3000) return deny("THE WALL AT THE WIRE: no fresh price - can't verify, no opening order");
   // THE BLUE VWAP WALL (fix397, Love Oct 28 2026 2:46 PM PT: "we need to keep the blue vwap a wall on all books when bands are small" + card "All Kalshi books, 5M frozen"):
@@ -2806,7 +2809,7 @@ export function wireWall(ticker: string, side: "up" | "down"): string {
   // NEVER AGAINST THE THIRDS AT THE WIRE (Love, Oct 20 ~5:07 PM PT: "again she did it / she shorted a candle rising in the bottom 33% of the channel on gold / can you fix it hun?"): 5:01:44 PM her 5:00:10 "break below the pink" short was still
   // being retried while the candle had already turned and was rising off its low - it went out against the rise. Whatever called it and whenever:
   // a candle rising from the bottom third is a long, so no short leaves; falling from the top third is a short, so no long leaves.
-  if (!dlyFree) { const tm = thirdsMove(asset, lb.L, q.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tm && tm !== side && !rejFlip611(asset, side, q.c, String(G.__wireLabel619 || "")) /* fix619 */) return deny(`THE THIRDS AT THE WIRE: the candle is ${tm === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"}`, { tick: q.c }); }
+  if (!dlyFree) { const tm = thirdsMove(asset, lb.L, q.c, fiveOpenNow(asset), fiveHLNow(asset)); if (tm && tm !== side && !rejFlip611(asset, side, q.c, String(G.__wireLabel619 || "")) /* fix619 */ && !(typeof rej668 === "function" && rej668(asset, side, q.c, lb.L)) /* fix675 */) return deny(`THE THIRDS AT THE WIRE: the candle is ${tm === "up" ? "rising from the bottom third - a long, never a short" : "falling from the top third - a short, never a long"}`, { tick: q.c }); }
   const w = dlyFree ? "" : thirdWallAbsolute(asset, lb.L, q.c, side, refreshBroken(asset, lb.L, q.c));
   if (w) return deny(`${w} (at the wire)`, { tick: q.c });
   // EVERY PASS ON THE RECORD (Oct 20 ~2:37 PM PT, Love: "please make sure nothing else can slip past her new code"): each opening order the wire

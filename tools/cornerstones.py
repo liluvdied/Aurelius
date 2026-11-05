@@ -284,8 +284,8 @@ need('let np620: any = null; /* Love Nov 4 2026 12:26 PM PT' in R and 'if (rejLB
 F625 = open("src/lib/desk/fns.ts", encoding="utf8").read(); A625 = open("src/components/desk/app.tsx", encoding="utf8").read()
 need('r.book === "recon-rnp" && r.at >= RNPF_START' in F625 and 'book: "recon-rnp-fresh", title:' in A625,
      "100. HER PURE NO-PINK CARD (fix625, her Nov 1 10:08 PM words): the main-without-pink twin on its own card with a fresh record from the moment FIX624 landed")
-need("function pureRows626(" in E and "rows = pureRows626([...nb.listNight(), ...extraRows])" in E and "const freshQ = pureRows626(" in E and '`${r.ticker}:recon-tog:${String(r.id).split(":recon-rnp:")[1]}`' in E,
-     "101. THE DELAYED BUTTON IS THE PURE NO-PINK MODEL (fix626, her Nov 1 10:18 PM words): an hour she taps, the twin's rows reach the copier as main's rows; only pink entries are out; delayed stops trading live")
+need("function pureRows626(" in E and "rows = pureRows626([...nb.listNight(), ...extraRows])" in E and "const freshQ = pureRows626(" in E and '`${r.ticker}:recon-tog:${String(r.id).split(":recon-rjnp:")[1]}`' in E and 'if (r?.book === "recon-rnp") continue; // fix674' in E,
+     "101. THE DELAYED BUTTON IS THE REJECTIONS-ONLY NO-PINK MODEL (fix626, her Nov 1 10:18 PM words; fix674, her Nov 4 10:12 PM words: \"i want THAT one in place of the main without pink book so its rejections only\"): an hour she taps, the rejections-only no-pink book's rows reach the copier as main's rows; no pink, no breaks; main without pink and delayed stay paper")
 N628 = open("tools/no-removal-gate.py", encoding="utf8").read(); W628 = open("tools/no-switch-off-gate.py", encoding="utf8").read()
 need("def pill_ok628(new):" in N628 and 'if k.split(".")[0] in P628: continue' in N628 and 'G["pill_ok628"](new)' in W628,
      "102. HER PILL TAPS NEVER TRIP THE UMPIRE (fix628, her Nov 1 10:44 PM words): hours her pill approved are hers; any other change is still judged")

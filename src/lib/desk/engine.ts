@@ -74,10 +74,11 @@ function pureRows626(rs: any[]): any[] {
   const out: any[] = [];
   for (const r of rs) {
     if (r?.book === "recon-dly") continue;
-    if (r?.book !== "recon-rnp") { out.push(r); continue; }
+    if (r?.book === "recon-rnp") continue; // fix674 (Love Nov 4 2026 10:12 PM PT: "for the main without pink book , i created one that is rejections only for session bands too, no breaks i want THAT one in place of the main without pink book so its rejections only"): main without pink goes back to paper - the DELAYED hours are the rejections-only no-pink book's now
+    if (r?.book !== "recon-rjnp") { out.push(r); continue; }
     const dS = sw ? skipHrsA(sw, "recon-dly", r.asset) : null;
     if (!Array.isArray(dS) || dS.map(Number).includes(h)) continue;
-    out.push({ ...r, id: `${r.ticker}:recon-tog:${String(r.id).split(":recon-rnp:")[1]}`, book: "recon-tog", pure626: true });
+    out.push({ ...r, id: `${r.ticker}:recon-tog:${String(r.id).split(":recon-rjnp:")[1]}`, book: "recon-tog", pure626: true });
   }
   return out;
 }
@@ -3759,6 +3760,8 @@ async function tick() {
     }
     // BTC HOURLY (Love): Kalshi KXBTCD off her 1-hour nav band. Paper only (hourly.ts).
     import("./hourly").then((m) => m.hourTick(snap.assets)).catch(() => {});
+    // fix672 RSI PAPER BOOKS (Love Nov 4 2026 9:56 PM PT): RSI 70/80/90 reversals on 5m-4h, BTC + gold, 15M window + 1H market. PAPER ONLY (rsibooks.ts never sends an order).
+    import("./rsibooks").then((m) => m.rsiTick672(snap.assets)).catch(() => {});
     // TAP + RESCUE (Love): band-touch lotto tickets and rescue adds. Paper only (tap.ts).
     import("./tap").then((m) => m.tapTick(snap.assets)).catch(() => {});
     import("./squeeze").then((m) => m.squeezeTick(snap.assets)).catch(() => {});

@@ -11,7 +11,7 @@ const NAME: Record<string, string> = {
   "recon-np": "PURE NO-PINK 🤍",
   "recon-rnp": "MAIN WITHOUT PINK 🤍", // fix625
   "recon-sov": "SOVEREIGN TWIN 👑",
-  "recon-dly": "PURE NO PINK 🤍", // fix626: the delayed button
+  "recon-dly": "REJECTIONS ONLY · NO PINK 🤍", // fix626 + fix674: the delayed button
 };
 const UP = "#3ddc84";
 const DOWN = "#ff5c5c";

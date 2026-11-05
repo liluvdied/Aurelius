@@ -1,9 +1,9 @@
 {
- "at": "2026-11-05T05:14:06.770080+00:00",
+ "at": "2026-11-05T06:35:51.862776+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "0e8b76d53b1d747d"
+  "recon.ts": "9af34116bca57756"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -712,6 +712,18 @@
    "by": "Love",
    "quote": "Love Nov 4 2026 8:54 PM PT: \"as for the \\$10 push for btc we said we'd come back to, we can bring that to \\$6 , it will be better when volume is low\" + ~8:56 PM PT: \"yes, \\$6 push in both directions, in place of where she was waiting \\$10 now pls , and yes all books but delayed\" (R358, fix669)",
    "recon.ts": "0e8b76d53b1d747d"
+  },
+  {
+   "at": "2026-11-05T06:35:25.054796+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 9:16 PM PT: \"cut gold bollinger reads, keep btc as is\" (R360, fix671)",
+   "recon.ts": "af3739169d2248ea"
+  },
+  {
+   "at": "2026-11-05T06:35:51.862776+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 10:12 PM PT: \"for the main without pink book , i created one that is rejections only for session bands too, no breaks i want THAT one in place of the main without pink book so its rejections only i made it earlier, without you , when there were still issues - so pls confirm it is the same entry logic and everything in every way, and match all the fixes we just made , so it's the same - just no breaks and no pink trades all rejections\" (R362, fix673)",
+   "recon.ts": "9af34116bca57756"
   }
  ],
  "R": "R266",
