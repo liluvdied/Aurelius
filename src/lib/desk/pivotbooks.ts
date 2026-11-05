@@ -893,6 +893,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
         const p = tf === 5 ? onePink565(id, b) /* fix565 ONE PINK: her walls (__lawBands) and pivot-now.json */ : pivot(resample(b, tf), tf);
         if (!p) continue;
         st[`${tf}m`] = { pp: r2(p.pp), r1: r2(p.r1), s1: r2(p.s1), r2: r2(p.r2), s2: r2(p.s2) };
+        try { ((globalThis as any).__pivLines739 ||= {})[`${id}:${tf}`] = { at: Date.now(), L: lines(p, tf) }; } catch {} // fix739: the send reads the pivot line a break was called on
         // OG + PIVOT (Love, Oct 11 ~4:55 AM PT: "can you run another OG book with session bands &&& the pivot bands"):
         // the OG exactly (session bands, instant on-the-band / break entries, no band between price and strike, 1.18x+ no cap)
         // with this timeframe's pivot lines added to the same lines and the same rules.

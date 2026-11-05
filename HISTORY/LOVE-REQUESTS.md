@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R418 - fix739 AKIMBO PRICE ON THE BREAK SIDE: for SESSION + PINK and +15M PIVOTS, a 'Break/Close above|below <line>' call only sends - the first order and every re-knock - while the live price is still on the break side of that line (long above it, short below it). If price has gone back across, she stops knocking ('BACK ACROSS <line> (fix739)', which the silent alarm shows). No 1m close needed. Lines: session bands, pink, 5m pivots (her board) and 15m pivots (kept from the pivot book each pass). A line it can't read = no change. Akimbo books only; no other gate is turned back on; all rails kept.
+- when: 2026-11-05T19:41:09+00:00
+- Love: "Love Nov 5 2026 11:35 AM PT: "no , it just needs price on the same side of the break when she enters hun she doesn't need a close""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function breakSide739("}
+- proof: {"test": "tools/break-side-739.cjs"}
+
 ## R417 - fix738 GATE KEY: two commands that stay on your Desktop - UNLOCK-GATE and RELOCK-GATE. UNLOCK: the no-removal gate keeps printing its full warning (in that window, in ALERTS, in data/gate-unlock.jsonl) but no longer stops her, and the umpire re-checks right away; a red GATE UNLOCKED line shows on the LIVE TODAY row. RELOCK: takes a fresh save of her as she is, turns the gate back on, umpire re-checks. Only the no-removal gate - every other umpire check, the ENFORCER, LIVE, seal, freshness, the 90 s stale guard, the stops, one position per asset, one ticket per window, hand windows, under 30 s, the 1.5x floor all stay. Run after CHANGE-81.
 - when: 2026-11-05T19:11:54+00:00
 - Love: "Love Nov 5 2026 ~10:59 AM PT: "it's killed a whole morning blocking her , and all of her rules are actually functioning bc of you i only needed the umpire to block her from firing backwards and you fixed her , so let me unlock her with a command myself and leave it stationary on the desktop i will unlock it after it gives me a warning like that and put it back on when im done okay" + ~11:01 AM: "yeah command 80 is saying i can't do it without unlocking it so yes we'll do the lock and keep it on the desktop and i'll put it back on when we're done implementing changes still have it give me the warning , and i'll come to you and ask what happened w it :)""

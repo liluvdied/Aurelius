@@ -594,6 +594,22 @@ export function fall728(asset: string, tick: number): boolean {
   } catch { return false; }
 }
 // fix728 end
+// fix739 PRICE ON THE BREAK SIDE (Love Nov 5 2026 11:35 AM PT: "no , it just needs price on the same side of the break when she enters hun she doesn't need a close"): for the akimbo
+// (live-today) books, a "Break/Close above|below <line>" call only goes out - first order AND every re-knock - while the live tick is still on the break side of that line (long above it,
+// short below it). Back across = stop knocking ("BACK ACROSS ... (fix739)"), written down for the silent alarm. No close needed. A line her board doesn't show (or no tick) = no change.
+export function breakSide739(asset: string, side: string, label: string, tick: number): string {
+  try {
+    const m = /^(?:Break|Close) (above|below) (?:fresh )?(.+?)(?:\s*\(.*)?$/.exec(String(label || "").trim()); if (!m || !(tick > 0)) return "";
+    const name = m[2].trim(); let px = 0;
+    const L0 = ((G as any).__lawBands?.[asset]?.L || []) as Line[]; const hit = L0.find((l) => String(l.name) === name); if (hit) px = Number(hit.price);
+    if (!(px > 0)) { const tf = /^(\d+)m /.exec(name); const pl = tf ? (G as any).__pivLines739?.[`${asset}:${tf[1]}`] : null; if (pl && Date.now() - Number(pl.at) < 60000) { const h2 = (pl.L || []).find((l: any) => String(l.name) === name); if (h2) px = Number(h2.price); } }
+    if (!(px > 0)) return "";
+    if (m[1] === "above" && side === "up" && !(tick > px)) return `BACK ACROSS ${name} (fix739): price ${tick.toFixed(2)} is back at/under ${name} ${px.toFixed(2)} - not on the break side any more - no order.`;
+    if (m[1] === "below" && side === "down" && !(tick < px)) return `BACK ACROSS ${name} (fix739): price ${tick.toFixed(2)} is back at/over ${name} ${px.toFixed(2)} - not on the break side any more - no order.`;
+    return "";
+  } catch { return ""; }
+}
+// fix739 end
 // fix711 NO FADING A BOLLINGER BREAK PAST HER ZONE (Love Nov 5 2026 5:12 AM PT, her pick: "Bollinger fade block only - No long off the BB lower past green after a break (mirror for
 // shorts past red). Cheap entries stay allowed."): once price has broken the 5m Bollinger lower (now, or in the last 5 minutes) and sits at or past her green boundary, no long; once it has
 // broken the Bollinger upper and sits at or past red, no short. Every book but delayed. (Replay Oct 19 - Nov 5: fading that break lost every week - BTC 26%, -$1,042; gold 31%, -$561;

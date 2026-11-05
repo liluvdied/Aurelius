@@ -7831,5 +7831,10 @@
     "what": "return { silent: await (async () => { try { return (await import(\"./akimbowatch\")).recentSilent734(); } catch { return []; } })() /* fix734 */, on: true, book: String(j.book), name: String(j.name || j.book), until: String(j.until), stopAt: Number(j.stopAt) < 0 ? Number(j.stopAt) : null, n: tr.length, w: tr.filter((t: any) => Number(t.pnl) > 0).length, l: tr.filter((t: any) => Number(t.pnl) <= 0).length, pnl: Math.round(pnl * 100) / 100, stopped: Number(j.stopAt) < 0 && pnl <= Number(j.stopAt), recent: tr.slice(-8).reverse().map((t: any) => ({ first: t.first, ticker: t.ticker, pnl: t.pnl })) };",
     "why": "fix738 (her words in this change's request)",
     "R": "R417"
+  },
+  {
+    "what": "{ const lt717all = typeof (B as any).liveToday717 === \"function\" ? (B as any).liveToday717() : \"\"; const lt717 = lt717all.split(\",\").includes(book) ? book : lt717all; /* fix726: either akimbo book */ if (lt717 && book === lt717) { try { const j717 = JSON.parse(readFileSync(join(process.cwd(), \"data\", \"live-today.json\"), \"utf8\")), stop717 = Number(j717?.stopAt); if (stop717 < 0) { const nowPT = new Date(new Date().toLocaleString(\"en-US\", { timeZone: \"America/Los_Angeles\" })), mid = new Date(nowPT); mid.setHours(0, 0, 0, 0); const since = Date.now() - (nowPT.getTime() - mid.getTime()); const rg = await import(\"./riskguard\"); const day717 = rg.liveTrades().filter((t: any) => t.book === lt717 && Date.parse(String(t.first)) >= since || lt717all.split(\",\").includes(String(t.book)) /* fix726: one stop for both books */ && Date.parse(String(t.first)) >= since).reduce((acc: number, t: any) => acc + (Number(t.pnl) || 0), 0); if (day717 <= stop717) return `DAILY STOP (fix717): ${lt717} is at $${day717.toFixed(2)} live today, at or past its $${stop717} stop - no new entries until midnight PT.`; } } catch {} return \"\"; } } // fix717: the one live book today, its own gates only (like the delayed book) - the umpire above still judged it; its daily loss stop (data/live-today.json stopAt)",
+    "why": "fix739 (her words in this change's request)",
+    "R": "R418"
   }
 ]
