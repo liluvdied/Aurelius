@@ -1123,6 +1123,32 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
             }
           } catch {}
         }
+        // fix745 ALL-BOLLINGER BOOK - PAPER ONLY (Love Nov 5 2026 12:43 PM PT: "pls do test those yes i want our win rate at 70%"): one ticket per asset-window, the first of: gold - a closed 1m candle
+        // crossing the 2m Bollinger middle (either way), closing over the 2m upper band (long) or under the 2m lower band (short), or closing back under the 2m upper band after being over it (short,
+        // the upper fade); BTC - crossing the 5m middle, or closing over / under the 2m upper / lower band. BB(20, 2) on closes, live candle included. Zone wall ($2 / $100), ask up to 66c, 2+ min left.
+        // Replay since Oct 19 ($20): 329 trades, 67%, +$2,228, green 15 of 18 days, worst day -$43. Never in a live list.
+        if (m?.ticker && left > 120 && (id === "gold" || id === "btc")) {
+          try {
+            const G745 = globalThis as any, nowS745 = Date.now() / 1000, cl745 = b.filter((x) => x.t + 60 <= nowS745 + 1);
+            const bb745 = (tf: number) => { const c = resample(b, tf).map((x) => x.c).slice(-20); if (c.length < 20) return null; const mm = c.reduce((q, v) => q + v, 0) / 20, sd = Math.sqrt(c.reduce((q, v) => q + (v - mm) ** 2, 0) / 20); return { mid: mm, up: mm + 2 * sd, lo: mm - 2 * sd }; };
+            const S745 = (G745.__allbb745seen ||= {});
+            if (cl745.length >= 2 && S745[id] !== cl745[cl745.length - 1].t && !rows.some((r: any) => r.ticker === m.ticker && r.lane === "allbb")) {
+              const last = cl745[cl745.length - 1], prev = cl745[cl745.length - 2]; S745[id] = last.t;
+              const two = bb745(2), mt = id === "gold" ? two : bb745(5); let hit745: { side: "up" | "down"; label: string } | null = null;
+              if (mt && (last.c > mt.mid) !== (prev.c > mt.mid)) hit745 = { side: last.c > mt.mid ? "up" : "down", label: `Break ${last.c > mt.mid ? "above" : "below"} ${id === "gold" ? "2m" : "5m"} BB middle` };
+              else if (two && prev.c <= two.up && last.c > two.up) hit745 = { side: "up", label: "Break above 2m BB upper" };
+              else if (two && prev.c >= two.lo && last.c < two.lo) hit745 = { side: "down", label: "Break below 2m BB lower" };
+              else if (two && id === "gold" && prev.c > two.up && last.c <= two.up) hit745 = { side: "down", label: "Fade back under 2m BB upper" };
+              if (hit745) {
+                const ask745 = Number(hit745.side === "up" ? m.yesAsk : m.noAsk), zw745 = zoneWall741(b, id, hit745.side, last.c, "allbb");
+                if (!zw745 && ask745 > 0.02 && ask745 <= 0.667) {
+                  rows.unshift({ id: `${m.ticker}:allbb`, lane: "allbb", at: new Date().toISOString(), asset: id, ticker: m.ticker, side: hit745.side, label: hit745.label, ask: r2(ask745), multiple: r2(1 / ask745), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(STAKE / ask745, ask745), peak: ask745, lastBid: 0, result: "open", exit: null, pnl: null, bar: { o: r2(last.o), h: r2(last.h), l: r2(last.l), c: r2(last.c) } } as any);
+                  changed = true;
+                }
+              }
+            }
+          } catch {}
+        }
         for (const [lane, L, legacy] of lanes) {
           if (lateWin && lane !== "brk-sesspk") continue; // only the session + pink book trades the last 2 minutes
           const lane5 = lane === "ogp5-hold" || lane === "ogp5-pk2" || lane === "ogp5-pk3" ? "ogp5" : lane; // twins run every path her 5M half runs

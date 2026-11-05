@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R423 - fix745 ALL-BOLLINGER BOOK - PAPER ONLY: one ticket per asset-window, the first of these on a closed 1m candle: gold - crossing the 2m Bollinger middle, closing over the 2m upper band (long) / under the 2m lower band (short), or closing back under the 2m upper band after being over it (short); BTC - crossing the 5m middle, or closing over / under the 2m upper / lower band. Zone wall ($2 / $100), ask up to 66c, 2+ minutes left. Replay since Oct 19 ($20): 329 trades, 67%, +$2,228, green 15 of 18 days, worst day -$43 (bands rebuilt from 1m bars - close, not exact). Its own card; never sends an order. Run after CHANGE-87.
+- when: 2026-11-05T21:13:01+00:00
+- Love: "Love Nov 5 2026 12:43 PM PT: "pls do test those yes i want our win rate at 70% :)" (the ALL-BOLLINGER book, paper)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix745 ALL-BOLLINGER BOOK - PAPER ONLY"}
+- proof: {"test": "tools/all-bb-745.cjs"}
+
 ## R422 - fix743 BTC 5M MIDDLE BOLLINGER SEAT: a new paper book, BTC only - when a closed 1m candle crosses the 5m Bollinger middle line (20-period average of 5m closes) it trades the break that way, once per window, 2+ minutes left, within her 1.5x floor, not into her green / red zone ($100). Replay with exactly these rules since Oct 19 ($20): 95 trades, 62%, +$319, green 13 of 17 days. (seat-only figures pending) PAPER ONLY (Love 12:30 PM: "yes we can just do gold , for rn bb ... we will test our card with one that has btc added and see how it does today"): it is NOT in AKIMBO and never sends an order - its own card, to watch next to AKIMBO. As an AKIMBO seat it would have added little (15 own windows +$30; 13 windows it calls first -$86), so it stays on paper. Plus a full AKIMBO twin card on paper (fix744: AKIMBO + BTC 5M MIDDLE · TWIN): AKIMBO's exact rules over SESSION + PINK, +15M PIVOTS, the gold 2m middle seat and this BTC book, $10, clean slate - to compare with the AKIMBO card today. Run after CHANGE-86.
 - when: 2026-11-05T21:02:13+00:00
 - Love: "Love Nov 5 2026 12:24 PM PT: "yes pls ... but for now yes we can add them into this book" (BTC 5m middle Bollinger break as an AKIMBO seat, after the 12:05 PM gold one: "can you test for the middle bollinger breaks")"
