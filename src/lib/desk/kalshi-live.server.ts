@@ -475,7 +475,7 @@ function offMainDollars(bookCopy, ticker?) { // fix243: ticker picks the asset's
     const om = sw?.offHourMain; if (!om || om.on !== true) return 0;
     const aH = /GOLD/i.test(String(ticker || "")) ? "gold" : /BTC/i.test(String(ticker || "")) ? "btc" : ""; const mH = aH ? sw?.bookSkipHoursByAsset?.[aH]?.["recon-tog"] : null; // fix278: per asset
     const hrs = Array.isArray(mH) ? mH : sw?.bookSkipHours?.["recon-tog"]; const h = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24;
-    const d = Number(om.dollarsByHour?.[String(h)] ?? om.dollars); // fix287 (Oct 26 ~2:34 PM PT, Love: "for the 2pm hour, let's have the rejection model trading at a $5 initial entry and $5 add on"): a per-hour opening size
+    const d = Number(om.dollarsByHour?.[String(h)] ?? (Number(sw?.liveBook?.dollars) >= 1 ? Number(sw.liveBook.dollars) : om.dollars) /* fix681: her size slider (liveBook.dollars) sizes the off / rejection hours too */); // fix287 (Oct 26 ~2:34 PM PT, Love: "for the 2pm hour, let's have the rejection model trading at a $5 initial entry and $5 add on"): a per-hour opening size
     const aK = /GOLD/i.test(String(ticker || "")) ? "gold" : /BTC/i.test(String(ticker || "")) ? "btc" : "", mK = aK ? om?.rejHoursByAsset?.[aK] : null;
     const rjK = Array.isArray(mK) ? mK.map(Number) : Array.isArray(om?.rejHours) ? om.rejHours.map(Number) : [];
     return ((Array.isArray(hrs) && hrs.map(Number).includes(h)) || rjK.includes(h)) && d >= 1 && d <= 100 ? d : 0;

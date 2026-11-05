@@ -24,6 +24,7 @@ import { ScaleBook } from "@/components/desk/scale";
 import { SitRep, explainExit, explainTake, whyTrade } from "@/components/desk/sitrep";
 import { SettingsDrawer } from "@/components/desk/settings-drawer";
 import { RsiBooks672 } from "@/components/desk/rsi-books"; // fix672
+import { RungStats680 } from "@/components/desk/stats-rungs"; // fix680
 import { autoDecision } from "@/lib/desk/auto";
 import { lateWindow } from "@/lib/desk/setup";
 import { askDeskGrok, armLiveNow, askHelp, closeNow, exitLiveOrder, getAltBoards, getAudit, getBookMode, getComboRows, getDecidedRows, getDeskSnapshot, getExitLog, getFillLog, getFuelRows, getHalfRows, getHeldOrders, getKalshiCash, getLeanRows, getLiveSize, getLiveSpots, getLiveSwitch, setLiveSwitch, getRunBooks, getSchedule, getArchived, setArchived, setRunBook, saveRunPreset, applyRunPreset, stepOut, getNightHist, getShiftSummary, getShiftRows, setAutoRoll, getLiveByBook,
@@ -2221,6 +2222,7 @@ export function DeskApp() {
             events={fillLog.data ?? []}
           />
         ) : null}
+        {bookTab === "stats" ? <RungStats680 /> : null}
 
         {bookTab === "cash" ? (
           <CashBook
