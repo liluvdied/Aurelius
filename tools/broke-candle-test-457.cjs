@@ -19,7 +19,7 @@ const W = new Function(js + "; return brokeThisCandle457;")();
 const L = [{ name: "-2σ", price: 4009.24 }, { name: "-1σ", price: 4021.47 }, { name: "-0.5σ", price: 4033.64 }, { name: "5m PP", price: 4019.97 }];
 let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log("BROKE 457 TEST: FAIL - " + m); } };
 const a = W("gold", L, 4021.70, "up", 4022.221, { h: 4022.56, l: 4020.60 }); t(a, "a gold long only 23c back over the -1σ that broke DOWN this candle (under her 33c) was NOT refused"); console.log("  23c back: " + a);
-t(!W("gold", L, 4021.877, "up", 4022.221, { h: 4022.56, l: 4020.60 }), "fix483 (c21, Love Oct 29 6:40 PM: \"a break by HER DISTANCE\"): the long 41c back over the broken -1σ (past her 33c) was still refused");
+t(W("gold", L, 4021.877, "up", 4022.221, { h: 4022.56, l: 4020.60 }), "fix666 (Love Nov 4 2026 7:26 PM PT: 'it only needs to break the other way by at least same the distance it broke'): -1σ broke down 87c, a long only 41c back over it must still wait");
 t(!W("gold", L, 4022.40, "up", 4022.221, { h: 4022.56, l: 4020.60 }), "fix483: a long 93c back over the -1σ it broke down through (past her 33c) was still refused");
 const w = W("gold", L, 4021.60, "down", 4022.221, { h: 4022.56, l: 4020.60 }); t(!/WICK/.test(w), "fix650 (Love Nov 4 2026 4:19 PM PT: \"A wick through the band does not block the entry for the rest of the window\"): a wick through was still refused: " + w);
 t(!W("gold", L, 4020.90, "down", 4022.221, { h: 4022.56, l: 4020.60 }), "a short under the -1σ it broke down through (price on the side of the break) was refused");
@@ -29,7 +29,7 @@ t(!W("gold", L2, 4012.50, "up", 4011.00, { h: 4012.6, l: 4010.9 }), "a long at 2
 t(!W("gold", L, 4022.30, "up", 4022.00, { h: 4022.40, l: 4021.90 }), "a clean long the next candle (opened over -1σ, never broke it) was refused");
 const LB = [{ name: "-1σ", price: 80900 }, { name: "session VWAP", price: 81000 }, { name: "+1σ", price: 81300 }];
 t(W("btc", LB, 80999, "down", 80990, { h: 81010, l: 80980 }), "BTC: a short only $1 back under the session VWAP that broke UP this candle (under her $2, fix651) was NOT refused");
-t(!W("btc", LB, 80995, "down", 80990, { h: 81010, l: 80980 }), "fix580: BTC short $5 back under the VWAP it broke up through (her $5 break) was still refused");
+t(W("btc", LB, 80995, "down", 80990, { h: 81010, l: 80980 }), "fix666: the VWAP broke up $10, a BTC short only $5 back under it must still wait");
 t(!W("btc", LB, 80990, "down", 80990, { h: 81010, l: 80980 }), "fix483: BTC short $10 back under the VWAP it broke up through (past her $5) was still refused");
 t(!/WICK/.test(W("btc", LB, 80995, "up", 80990, { h: 81010, l: 80980 })), "fix650: BTC long back under the VWAP it wicked through was still refused by WICK THROUGH");
 t(!W("btc", LB, 81020, "up", 80990, { h: 81025, l: 80980 }), "BTC: a long over the VWAP it broke up through was refused");

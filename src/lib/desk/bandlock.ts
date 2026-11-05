@@ -891,8 +891,8 @@ export function brokeThisCandle441(asset: string, L: Line[], tick: number, side:
   for (const b of L.filter((l) => Number(l.price) > 0 && (isSessBand(l) || String(l.name) === "5m PP"))) {
     const P = Number(b.price);
     if (typeof rejAway665 === "function" && rejAway665(asset, L, side, P)) continue; // fix665: a rejection off a band beyond the one that broke is not held here
-    if (side === "down" && op < P && hi >= P + d && tick > P - d) return `BROKE IT THIS CANDLE (fix441): ${b.name} (${P.toFixed(2)}) broke UP this candle (high ${hi.toFixed(2)}) - no short until price breaks back down $${d} under it (now ${tick.toFixed(2)})`;
-    if (side === "up" && op > P && lo <= P - d && tick < P + d) return `BROKE IT THIS CANDLE (fix441): ${b.name} (${P.toFixed(2)}) broke DOWN this candle (low ${lo.toFixed(2)}) - no long until price breaks back up $${d} over it (now ${tick.toFixed(2)})`;
+    if (side === "down" && op < P && hi >= P + d && tick > P - Math.max(d, hi - P)) return `BROKE IT THIS CANDLE (fix441 + fix666): ${b.name} (${P.toFixed(2)}) broke UP this candle by $${(hi - P).toFixed(2)} (high ${hi.toFixed(2)}) - no short until price is back $${Math.max(d, hi - P).toFixed(2)} under it, the same distance (now ${tick.toFixed(2)})`;
+    if (side === "up" && op > P && lo <= P - d && tick < P + Math.max(d, P - lo)) return `BROKE IT THIS CANDLE (fix441 + fix666): ${b.name} (${P.toFixed(2)}) broke DOWN this candle by $${(P - lo).toFixed(2)} (low ${lo.toFixed(2)}) - no long until price is back $${Math.max(d, P - lo).toFixed(2)} over it, the same distance (now ${tick.toFixed(2)})`;
   }
   return "";
 }
@@ -912,7 +912,7 @@ export function brokeThisCandle457(asset: string, L: Line[], tick: number, side:
   if (!(typeof rejFlip611 === "function" && rejFlip611(asset, side, tick))) for (const b of bands) { // fix611: her 33% below still counts
     const P = Number(b.price);
     if (typeof rejAway665 === "function" && rejAway665(asset, L, side, P)) continue; // fix665: a rejection off a band beyond the one that broke is not held here
-    if ((up && brokeDn(P) && tick >= P + d) || (!up && brokeUp(P) && tick <= P - d)) continue; // fix483 (Love Oct 29 2026 6:40 PM PT: "a break by HER DISTANCE I JUST FUCKING ANSERED EVERYTHJNG" (her list, c21 marked Right: no trade back against a band/pink broken this candle until price breaks back by her distance) + 6:37 PM: "that is not a block" + 6:37 PM: "bollinger is only $1.50 love" + "same band tolerances apply everywhere"): price broke back by her distance - the break failed, the trade back is free (c21)
+    if ((up && brokeDn(P) && tick >= P + Math.max(d, P - lo)) || (!up && brokeUp(P) && tick <= P - Math.max(d, hi - P))) continue; /* fix666: back past the band by the same distance it broke (her break distance at least) */ // fix483 (Love Oct 29 2026 6:40 PM PT: "a break by HER DISTANCE I JUST FUCKING ANSERED EVERYTHJNG" (her list, c21 marked Right: no trade back against a band/pink broken this candle until price breaks back by her distance) + 6:37 PM: "that is not a block" + 6:37 PM: "bollinger is only $1.50 love" + "same band tolerances apply everywhere"): price broke back by her distance - the break failed, the trade back is free (c21)
     if (up && brokeDn(P)) return `BROKE DOWN THIS CANDLE (fix457): ${b.name} (${P.toFixed(2)}) broke DOWN this candle (low ${lo.toFixed(2)}) - only a short this candle, never a long (price ${tick.toFixed(2)})`;
     if (!up && brokeUp(P)) return `BROKE UP THIS CANDLE (fix457): ${b.name} (${P.toFixed(2)}) broke UP this candle (high ${hi.toFixed(2)}) - only a long this candle, never a short (price ${tick.toFixed(2)})`;
   }

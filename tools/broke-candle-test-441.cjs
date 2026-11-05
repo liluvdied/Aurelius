@@ -10,9 +10,11 @@ const F = new Function(ts.transpileModule(parts.join("\n"), { compilerOptions: {
 const L = [{ name: "-2σ", price: 4032.24 }, { name: "-1σ", price: 4040.77 }, { name: "5m PP", price: 4038.56 }];
 let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log("BROKE TEST: FAIL - " + m); } };
 t(F("gold", L, 4038.30, "down", 4036.67, { h: 4038.949, l: 4035.1 }), "9:20:02 PM gold short after the pink broke UP this candle must be refused");
-t(!F("gold", L, 4038.20, "down", 4036.67, { h: 4038.949, l: 4035.1 }), "a short once price broke back down 33c+ under the pink goes");
+t(F("gold", L, 4038.20, "down", 4036.67, { h: 4038.949, l: 4035.1 }), "fix666 (Love Nov 4 2026 7:26 PM PT: 'it only needs to break the other way by at least same the distance it broke'): the pink broke up 39c, a short only 36c back under it must still wait");
+t(!F("gold", L, 4038.15, "down", 4036.67, { h: 4038.949, l: 4035.1 }), "fix666: a short once price is back 39c+ under the pink (the same distance it broke) goes");
 t(!F("gold", L, 4038.30, "down", 4036.67, { h: 4038.70, l: 4035.1 }), "a short in a candle that only poked 14c over the pink (not a break) goes");
 t(F("gold", L, 4038.80, "up", 4039.50, { h: 4039.6, l: 4038.10 }), "mirror: pink broke DOWN this candle, a long back at 4038.80 must be refused");
-t(!F("gold", L, 4038.95, "up", 4039.50, { h: 4039.6, l: 4038.10 }), "mirror: a long once price is back 33c+ over the pink goes");
+t(F("gold", L, 4038.95, "up", 4039.50, { h: 4039.6, l: 4038.10 }), "fix666 mirror: the pink broke down 46c, a long only 39c back over it must still wait");
+t(!F("gold", L, 4039.05, "up", 4039.50, { h: 4039.6, l: 4038.10 }), "fix666 mirror: a long once price is back 46c+ over the pink (the same distance) goes");
 console.log(ok ? "BROKE TEST ✓ - after a band or the pink breaks this candle, no trade the other way until price breaks back by her distance: the 9:20 PM gold short is refused; mirror holds." : "BROKE TEST: FAIL");
 process.exit(ok ? 0 : 1);

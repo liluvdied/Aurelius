@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R355 - fix666: her broke-this-candle walls (fix441, fix457/fix483 release) free the other side once price is back PAST THE BAND the other way by the same distance it broke (the furthest it went past the band this candle; her break distance at least) - e.g. band 100 broke to 75 -> a long is clear above 125, a band that broke up by $10 frees shorts $10 under it. The push and her 2m colour still apply as usual. Every book but delayed (the 5M is off).
+- when: 2026-11-05T03:51:44+00:00
+- Love: "Love Nov 4 2026 7:26 PM PT: "it's not supposed to block that trade for the rest of the window if a band breaks, it only needs to break the other way by at least same the distance it broke down initially. so if price broke a band down for $10 for example, a long can be taken if it flips back up and pushes up by more than $10" + 7:29 PM: "past the band the other way" + "if price broke the band by $25, flips up, and then pushes up past $25 (the same distance that it broke down by) she is clear to long""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "tick < P + Math.max(d, P - lo)"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "/* fix666: back past the band by the same distance it broke"}
+- proof: {"test": "tools/break-back-666.cjs"}
+
 ## R354 - fix665: her broke-this-candle walls (fix441 BROKE IT THIS CANDLE and fix457 BROKE UP/DOWN THIS CANDLE) hold only reads off the band that broke - a rejection SHORT off a band ABOVE a band that broke up, or a rejection LONG off a band BELOW a band that broke down, is no longer held by them (the read's label names its band). Every other wall still judges it. Every book but delayed (the 5M keeps its own copy and is off). Her second sentence is recorded as a guiding rule only.
 - when: 2026-11-05T03:47:55+00:00
 - Love: "Love Nov 4 2026 7:23 PM PT: "yes a rejection off a band above should be allowed after a break of the band below" + "any valid set up at an entry is to be taken if she hasn't executed a trade that window""

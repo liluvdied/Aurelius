@@ -7081,5 +7081,40 @@
     "what": "{ const lab658 = String((row as any).label || (row as any).setup || \"\"), pink658 = /5m PP/.test(lab658) && /reject/i.test(lab658); if ((row.side === \"up\" || row.side === \"down\") && (row.asset === \"gold\" || row.asset === \"btc\") && ![\"recon-dly\", \"recon-dlyk\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\" && !pink658) { const on658 = slideBlock658(String(row.asset), row.side === \"up\" ? \"down\" : \"up\"); if (on658) { try { const GL: any = ((globalThis as any).__slide658Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), \"data\", \"slide-pink.jsonl\"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: `PINK SLIDE (fix658): ${row.side === \"up\" ? \"longs\" : \"shorts\"} only off the pink while it slides - ${lab658 || \"this read\"} waits for the pink rejection. (${on658})` }) + \"\\n\"); } } catch {} continue; } } } // fix658 (Love Nov 4 2026 6:09 PM PT: \"the pink slide rule dictates it is longs only while pink is on a slide up, she doesnt short at red, she waits til it gets to pink and rejects, enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down. she waits for it to come to pink and reject and shorts as she normally would. if it doesnt function like that already thats what i would like\"): while the pink slides her way, her trend side enters ONLY off a pink rejection / flip; the other side is already held by the slide / climb holds below",
     "why": "fix663 (her words in this change's request)",
     "R": "R352"
+  },
+  {
+    "what": "if (side === \"down\" && op < P && hi >= P + d && tick > P - d) return `BROKE IT THIS CANDLE (fix441): ${b.name} (${P.toFixed(2)}) broke UP this candle (high ${hi.toFixed(2)}) - no short until price breaks back down $${d} under it (now ${tick.toFixed(2)})`;",
+    "why": "fix666 (her words in this change's request)",
+    "R": "R355"
+  },
+  {
+    "what": "if (side === \"up\" && op > P && lo <= P - d && tick < P + d) return `BROKE IT THIS CANDLE (fix441): ${b.name} (${P.toFixed(2)}) broke DOWN this candle (low ${lo.toFixed(2)}) - no long until price breaks back up $${d} over it (now ${tick.toFixed(2)})`;",
+    "why": "fix666 (her words in this change's request)",
+    "R": "R355"
+  },
+  {
+    "what": "if ((up && brokeDn(P) && tick >= P + d) || (!up && brokeUp(P) && tick <= P - d)) continue; // fix483 (Love Oct 29 2026 6:40 PM PT: \"a break by HER DISTANCE I JUST FUCKING ANSERED EVERYTHJNG\" (her list, c21 marked Right: no trade back against a band/pink broken this candle until price breaks back by her distance) + 6:37 PM: \"that is not a block\" + 6:37 PM: \"bollinger is only $1.50 love\" + \"same band tolerances apply everywhere\"): price broke back by her distance - the break failed, the trade back is free (c21)",
+    "why": "fix666 (her words in this change's request)",
+    "R": "R355"
+  },
+  {
+    "what": "t(!F(\"gold\", L, 4038.20, \"down\", 4036.67, { h: 4038.949, l: 4035.1 }), \"a short once price broke back down 33c+ under the pink goes\");",
+    "why": "fix666 (her Nov 4 7:26 PM words): the test now holds her same-distance release",
+    "R": "R355"
+  },
+  {
+    "what": "t(!F(\"gold\", L, 4038.95, \"up\", 4039.50, { h: 4039.6, l: 4038.10 }), \"mirror: a long once price is back 33c+ over the pink goes\");",
+    "why": "fix666 (her Nov 4 7:26 PM words): the test now holds her same-distance release",
+    "R": "R355"
+  },
+  {
+    "what": "t(!W(\"gold\", L, 4021.877, \"up\", 4022.221, { h: 4022.56, l: 4020.60 }), \"fix483 (c21, Love Oct 29 6:40 PM: \\\"a break by HER DISTANCE\\\"): the long 41c back over the broken -1σ (past her 33c) was still refused\");",
+    "why": "fix666 (her Nov 4 7:26 PM words): the test now holds her same-distance release",
+    "R": "R355"
+  },
+  {
+    "what": "t(!W(\"btc\", LB, 80995, \"down\", 80990, { h: 81010, l: 80980 }), \"fix580: BTC short $5 back under the VWAP it broke up through (her $5 break) was still refused\");",
+    "why": "fix666 (her Nov 4 7:26 PM words): the test now holds her same-distance release",
+    "R": "R355"
   }
 ]
