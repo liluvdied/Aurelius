@@ -7936,5 +7936,15 @@
     "what": "{ const i1 = E.indexOf(\"let flip726 = false\"), i2 = E.indexOf(\"|| flip726 /* fix726: pivot gets the sticks */\"), i0 = E.lastIndexOf(\"HIS STAMP BEFORE HER ORDER (fix501)\", i1); t(i0 > 0 && i1 > i0 && i2 > i1 && i2 - i1 < 8000, \"the akimbo rule is not just before the order (after every gate)\"); }",
     "why": "fix759 (her words in this change's request)",
     "R": "R426"
+  },
+  {
+    "what": "const text = `AKIMBO ${v.kind === \"quiet\" ? \"(yours)\" : \"SILENT\"}: ${when} ${String(r.asset).toUpperCase()} ${r.side === \"up\" ? \"long\" : \"short\"} · ${book === \"brk15\" ? \"+15M PIVOTS\" : book === \"brk-sesspk\" ? \"SESSION + PINK\" : book} · paper ${Math.round(Number(r.ask) * 100)}c · live: ${v.status || \"none\"} - ${v.why.slice(0, 220)}`;",
+    "why": "fix750 (her words in this change's request)",
+    "R": "R428"
+  },
+  {
+    "what": "t(f(row(\"brk15\", \"up\", 60), {}, B, now).kind === \"\", \"it alerted before 2 minutes with no record\");",
+    "why": "fix750 (her words in this change's request)",
+    "R": "R428"
   }
 ]

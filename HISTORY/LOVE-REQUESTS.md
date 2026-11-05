@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R428 - fix750 PAPER-NOT-ON-KALSHI FLAG + EVALUATION (log / alert only - no rule changes, never sends): her silent alarm (CHANGE-78) now also flags an AKIMBO paper entry the copier never attempted at 20 s (was 2 min), and every flag gets an automatic evaluation of why - the copier's status and reasons, seconds from paper to first attempt, copy timing (wait / gates / order ms, live vs paper ask), the 66c floor, the umpire, LIVE, entries on/off, her hand window, and the wall lines for that book + window - written to data/paper-not-kalshi.jsonl and added to the ALERTS line and the Mac ping as 'WHY: ...'. Nothing else changes.
+- when: 2026-11-05T23:50:32+00:00
+- Love: "Love Nov 5 2026 1:34 PM PT: "can you set up a flag for any orders that were sent out on paper and didn't make it to kalshi , when one does have it trigger an evaluation of why until we see what's halting them and fix that""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/akimbowatch.ts", "has": "fix750 PAPER-NOT-ON-KALSHI EVALUATION"}
+- proof: {"test": "tools/paper-not-kalshi-750.cjs"}
+
 ## R427 - fix748 POLYMARKET OBEYS THE UMPIRE: Kalshi's ENFORCER refuses every opening order while the umpire is not SAFE, but the Polymarket route (the $2 rejection / delayed copies) never asked the umpire - so while Kalshi was frozen this morning, Polymarket could still open orders. Now an opening Polymarket BUY needs the same SAFE stamp; no verdict = no order. Sells and closes are never blocked. Nothing else changes. Run after CHANGE-90.
 - when: 2026-11-05T23:48:05+00:00
 - Love: "Love Nov 5 2026 1:03 PM PT: "the 5M bollinger breaks are 71% on btc , pls route those orders to polymarket at $5" - checking that route found Polymarket never asked the umpire; her standing rule (Oct 29 2026 11:46 AM PT): "if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out""
