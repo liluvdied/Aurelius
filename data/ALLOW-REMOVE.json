@@ -7826,5 +7826,10 @@
     "what": "const runRows = ranked.map((b, i) => ({ ...b, i })).filter((b) => runOn(b.book) || (togOn && b.book === \"twtog\") || (freshOn && b.book === \"recon-fresh\") || b.book === \"fivey123\" || b.book === \"fivey\").sort((a, b) => pin5(a.book) - pin5(b.book));",
     "why": "fix736 (her words in this change's request)",
     "R": "R415"
+  },
+  {
+    "what": "return { silent: await (async () => { try { return (await import(\"./akimbowatch\")).recentSilent734(); } catch { return []; } })() /* fix734 */, on: true, book: String(j.book), name: String(j.name || j.book), until: String(j.until), stopAt: Number(j.stopAt) < 0 ? Number(j.stopAt) : null, n: tr.length, w: tr.filter((t: any) => Number(t.pnl) > 0).length, l: tr.filter((t: any) => Number(t.pnl) <= 0).length, pnl: Math.round(pnl * 100) / 100, stopped: Number(j.stopAt) < 0 && pnl <= Number(j.stopAt), recent: tr.slice(-8).reverse().map((t: any) => ({ first: t.first, ticker: t.ticker, pnl: t.pnl })) };",
+    "why": "fix738 (her words in this change's request)",
+    "R": "R417"
   }
 ]

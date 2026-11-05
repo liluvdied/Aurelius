@@ -156,6 +156,20 @@ if __name__ == "__main__":
         if not saves: print("NO-REMOVAL GATE: no save to compare against"); sys.exit(1)
         old, new = saves[-1], "."
     bad = gate(old, new)
+    # fix738 GATE KEY (Love Nov 5 2026 ~10:59-11:01 AM PT: "let me unlock her with a command myself and leave it stationary on the desktop ... still have it give me the warning"): while Love's
+    # UNLOCK-GATE command has her gate unlocked (data/gate-unlock.json), this gate still prints the FULL warning and logs every change (data/gate-unlock.jsonl) but does not stop her.
+    # RELOCK-GATE takes a fresh save and turns it back on. Only this gate - every other umpire check, the ENFORCER and every rail are unchanged.
+    try: U738 = json.load(open("data/gate-unlock.json", encoding="utf8")).get("unlocked") is True
+    except Exception: U738 = False
+    if bad and U738:
+        print(f"NO-REMOVAL GATE ✓ UNLOCKED BY LOVE - WARNING: {len(bad)} change(s) she would have refused (old: {old}) - logged, not stopped:")
+        for f, k, i in bad[:60]: print(f"  ⚠ {f} [{k}] {i[:200]}")
+        try:
+            import datetime
+            with open("data/gate-unlock.jsonl", "a", encoding="utf8") as fh:
+                for f, k, i in bad: fh.write(json.dumps({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "file": f, "kind": k, "item": i[:300], "old": old}, ensure_ascii=False) + "\n")
+        except Exception: pass
+        sys.exit(0)
     if bad:
         print(f"NO-REMOVAL GATE: REFUSED - {len(bad)} change(s) to Love's rules/settings without her words - taken out, or put in unasked (old: {old}):")
         for f, k, i in bad[:60]: print(f"  ✗ {f} [{k}] {i[:200]}")
