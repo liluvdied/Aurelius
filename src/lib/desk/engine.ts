@@ -5516,9 +5516,10 @@ async function copyLiveBook(assets, lane = "") {
     // SESSION + PINK calls the other side of a pivot ticket -> pivot keeps it, no order. Replay since Oct 19 at $10: +$1,153, green 14 of 17 days, worst day -$41 (first call wins +$1,058 / -$76).
     let flip726 = false, from726: [string, any] | null = null;
     try { const lt726 = liveToday717().split(",").filter(Boolean); if (lt726.length > 1 && lt726.includes(String(row.book))) {
-      const oth = Object.entries(done).find(([k, v]: [string, any]) => k.startsWith(`${row.ticker}:`) && (k.split(":")[1] || "") !== String(row.book) && lt726.includes(k.split(":")[1] || "") && v && ["filled", "partial", "resting", "sent"].includes(String(v.status))) as [string, any] | undefined;
+      const oth = Object.entries(done).find(([k, v]: [string, any]) => k.startsWith(`${row.ticker}:`) && (k.split(":")[1] || "") !== String(row.book) && lt726.includes(k.split(":")[1] || "") && v && (["filled", "partial"].includes(String(v.status)) || (String(v.status) === "resting" && !!v.orderId)) /* fix759: only a real fill (or a live resting order) owns the window - an unfilled try never does */) as [string, any] | undefined;
       if (oth && oth[1].side && oth[1].side !== row.side) {
-        if (String(row.book) === "brk15") { flip726 = true; from726 = oth; if (oth[1].status === "resting" && oth[1].orderId) { await live.cancelLiveOrder(oth[1].orderId, row.ticker).catch(() => {}); done[oth[0]] = { ...oth[1], at: new Date().toISOString(), parkedDone: true, status: "skipped", final: true, reason: "AKIMBO (fix726): +15M PIVOTS called the other side - the resting order came off, pivot takes the window" }; } }
+        // fix759 NO FLIPS (Love Nov 5 2026 3:12 PM PT: "no babe don't ever flip a position"): whichever AKIMBO book holds the window keeps it - an opposite call from the other book is skipped and logged, never a sell-and-flip.
+        if (String(row.book) === "brk15") { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: `NO FLIPS (fix759): SESSION + PINK holds ${oth[1].side === "up" ? "LONG" : "SHORT"} this window - never flip a position` }; try { appendFileSync(join(process.cwd(), "data", "akimbo-726.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, ticker: row.ticker, side: row.side, kept: oth[0], what: "no flips (fix759)" }) + "\n"); } catch {} continue; }
         else { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: "AKIMBO (fix726): +15M PIVOTS holds the other side this window - pivot keeps the sticks" }; try { appendFileSync(join(process.cwd(), "data", "akimbo-726.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, ticker: row.ticker, side: row.side, kept: oth[0], what: "pivot keeps it" }) + "\n"); } catch {} continue; }
       } } } catch {}
     const tOrder = Date.now();
@@ -5529,7 +5530,7 @@ async function copyLiveBook(assets, lane = "") {
         bookCopy: row.book,
         sizeMul: togMul,
         // CHANGE HER MIND (Oct 15, Love): a ":m2"/":m3" pivot row = she changed her mind this window; kalshi-live flips the position.
-        flip: /:m\d$/.test(String(row.id)) || flip726 /* fix726: pivot gets the sticks */,
+        flip: false /* fix759 NO FLIPS (Love Nov 5 2026 3:12 PM PT: "don't ever flip a position"): no live order closes a held position to take the other side - was: ":m2"/":m3" change-her-mind rows and fix726 pivot-gets-the-sticks */,
         paperAsk: Number(row.ask) || 0,
         line: { spot: asset?.spot || 0, vwap: frame?.vwap || 0, target: asset?.target ?? 0, stdev: frame?.stdev || 0, label: row.setup, bookCopy: row.book },
         secondsLeft: asset?.secondsLeft

@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R426 - fix759 NO FLIPS: the desk never sells a held live position to take the other side. AKIMBO: whichever book holds the window keeps it - when +15M PIVOTS calls the opposite of SESSION + PINK's filled ticket (or the other way round), the call is skipped and logged 'NO FLIPS - holds LONG/SHORT' (was: pivot sold your position and tried to flip, which at 3:02 PM BTC sold your Down for -$3.25 and then couldn't go long). The old change-her-mind flip (':m2' / ':m3' rows) is off too. A try that never filled no longer counts as holding the window, so the other book can still enter normally. Take-profit and exits are unchanged. Paper cards keep tracking as before (the AKIMBO card still shows 'pivot gets the sticks' on paper). Run after CHANGE-103.
+- when: 2026-11-05T23:40:13+00:00
+- Love: "Love Nov 5 2026 3:10 PM PT: "yo why did she exit a trade early ????" + 3:12 PM PT: "no babe don't ever flip a position" (3:00 PM BTC: the AKIMBO flip sold her filled short when +15M PIVOTS called long, then pivot's long was blocked - she was left flat and Down won)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix759 NO FLIPS"}
+- proof: {"test": "tools/no-flips-759.cjs"}
+
 ## R425 - fix755 AKIMBO STEPS ASIDE 2-3 PM PT (every day while AKIMBO is on): from 2:00 to 3:00 PM PT the AKIMBO books stand aside everywhere (copier, door, last line, send gates, bell, silent alarm, LIVE TODAY card) and your normal lineup + hour pills trade that hour, exactly as when AKIMBO is off (your pills at 2 PM: BTC = main, gold = rejection model; delayed both). Every rail stays. Other hours unchanged. It's one setting (data/live-today.json skipHoursPT: [14]) - more hours can be added later.
 - when: 2026-11-05T22:33:27+00:00
 - Love: "Love Nov 5 2026 2:02 PM PT: "and during 2 -3 pm we run main" + "she trades the red /green zone flips and bollingers and pinks" + 2:05 PM PT: "main can go on for rn bb it's ok" (AKIMBO steps aside 2-3 PM PT; her lineup and pills trade that hour)"

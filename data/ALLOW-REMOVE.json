@@ -7911,5 +7911,30 @@
     "what": "\"note\": \"fix726: both books live through Sat Nov 7 PT; one ticket per window, first call; when they disagree +15M PIVOTS gets the move (sesspk ticket sold at bid, pivot side taken); -$100 daily stop counts both; CHANGE-63 turns it off\"",
     "why": "fix755 (her words in this change's request)",
     "R": "R425"
+  },
+  {
+    "what": "const oth = Object.entries(done).find(([k, v]: [string, any]) => k.startsWith(`${row.ticker}:`) && (k.split(\":\")[1] || \"\") !== String(row.book) && lt726.includes(k.split(\":\")[1] || \"\") && v && [\"filled\", \"partial\", \"resting\", \"sent\"].includes(String(v.status))) as [string, any] | undefined;",
+    "why": "fix759 (her words in this change's request)",
+    "R": "R426"
+  },
+  {
+    "what": "if (String(row.book) === \"brk15\") { flip726 = true; from726 = oth; if (oth[1].status === \"resting\" && oth[1].orderId) { await live.cancelLiveOrder(oth[1].orderId, row.ticker).catch(() => {}); done[oth[0]] = { ...oth[1], at: new Date().toISOString(), parkedDone: true, status: \"skipped\", final: true, reason: \"AKIMBO (fix726): +15M PIVOTS called the other side - the resting order came off, pivot takes the window\" }; } }",
+    "why": "fix759 (her words in this change's request)",
+    "R": "R426"
+  },
+  {
+    "what": "flip: /:m\\d$/.test(String(row.id)) || flip726 /* fix726: pivot gets the sticks */,",
+    "why": "fix759 (her words in this change's request)",
+    "R": "R426"
+  },
+  {
+    "what": "t(E.includes('if (String(row.book) === \"brk15\") { flip726 = true;') && E.includes('pivot keeps the sticks\" };') && E.includes(\"|| flip726 /* fix726: pivot gets the sticks */\"), \"pivot does not get the sticks on a disagreement\");",
+    "why": "fix759 (her words in this change's request)",
+    "R": "R426"
+  },
+  {
+    "what": "{ const i1 = E.indexOf(\"let flip726 = false\"), i2 = E.indexOf(\"|| flip726 /* fix726: pivot gets the sticks */\"), i0 = E.lastIndexOf(\"HIS STAMP BEFORE HER ORDER (fix501)\", i1); t(i0 > 0 && i1 > i0 && i2 > i1 && i2 - i1 < 8000, \"the akimbo rule is not just before the order (after every gate)\"); }",
+    "why": "fix759 (her words in this change's request)",
+    "R": "R426"
   }
 ]
