@@ -89,6 +89,27 @@ export function bb15Wall740(b: Bar[], asset: string, side: string, tick: number)
   } catch { return ""; }
 }
 // fix740 end
+// fix741 AKIMBO ZONE WALL (Love Nov 5 2026 11:45 AM PT: "it was almost at the green that would be long wouldn't it ??" + 11:47 AM: "yes"): the akimbo books skip a break that runs
+// INTO her green / red zone - a short with the green zone (5m S1 of the last closed 5m candle) within $2 gold / $100 BTC below price (SESSION + PINK) or $1 / $50 (+15M PIVOTS), a long with
+// the red zone (5m R1) that close above. Paper skips it, so live (1:1) never sends it. Replay since Oct 19 ($20): SESSION + PINK 61% -> 68%, +$1,570 -> +$1,860; pivot 57% -> 60%, +$1,157 -> +$1,557.
+export function zoneWall741(b: Bar[], asset: string, side: string, tick: number, lane: string, label = "", lines: any[] = []): string {
+  try {
+    if (!(tick > 0)) return "";
+    // REJECTION THAT IS REALLY MOVING OFF (Love 11:53 AM: "not immediately on the flip ... like red by $50 or something like ACTUALLY FALLING off"): a break back across its line after price was on the
+    // other side of it in the last 3 minutes (a rejection / reclaim), already $50 BTC / $1 gold off that line in the trade's direction, passes the zone wall.
+    { const m = /^(?:Break|Close) (above|below) (?:fresh )?(.+?)(?:\s*\(.*)?$/.exec(String(label || "").trim()); if (m) { const nm = m[2].trim(); let lp = 0; const h1 = (lines || []).find((l: any) => String(l?.name) === nm); if (h1) lp = Number(h1.price);
+      if (!(lp > 0)) { const tf = /^(\d+)m /.exec(nm); const pl = tf ? (globalThis as any).__pivLines739?.[`${asset}:${tf[1]}`] : null; const h2 = pl ? (pl.L || []).find((l: any) => String(l.name) === nm) : null; if (h2) lp = Number(h2.price); }
+      if (lp > 0) { const up = m[1] === "above", need = asset === "gold" ? 1 : 50, off = up ? tick - lp : lp - tick, nowM = Math.floor(Date.now() / 60000) * 60; const recent = b.filter((x) => x.t >= nowM - 180);
+        const dipped = recent.some((x) => (up ? x.l < lp : x.h > lp)); if (dipped && off >= need) return ""; } } }
+    const th = lane === "brk15" ? (asset === "gold" ? 1 : 50) : (asset === "gold" ? 2 : 100);
+    const nowSec = Date.now() / 1000; const closed = resample(b, 5).filter((x) => x.t + 300 <= nowSec + 1); const p = closed[closed.length - 1]; if (!p) return "";
+    const PP = (p.h + p.l + p.c) / 3, R1 = 2 * PP - p.l, S1 = 2 * PP - p.h;
+    if (side === "down" && tick - S1 >= 0 && tick - S1 <= th) return `INTO THE GREEN ZONE (fix741): short at ${tick.toFixed(2)} with the green zone (5m S1 ${S1.toFixed(2)}) $${(tick - S1).toFixed(2)} below - wall $${th}`;
+    if (side === "up" && R1 - tick >= 0 && R1 - tick <= th) return `INTO THE RED ZONE (fix741): long at ${tick.toFixed(2)} with the red zone (5m R1 ${R1.toFixed(2)}) $${(R1 - tick).toFixed(2)} above - wall $${th}`;
+    return "";
+  } catch { return ""; }
+}
+// fix741 end
 export function resample(b: Bar[], mins: number): Bar[] {
   const out: Bar[] = [];
   const span = mins * 60;
@@ -1637,6 +1658,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
           // a second ticket is for a NEW setup, not the same refused one again
           if (reId && mine.some((r) => r.side === look!.side && r.label === look!.label)) { skipNote("same refused setup again", {}); continue; }
           if (lane === "brk-sesspk") { const q740 = quoteTick(id), tk740 = q740 && Date.now() - q740.at <= 3000 ? Number(q740.c) : Number(last1m?.c) || 0; const w740 = bb15Wall740(b, id, look!.side, tk740); if (w740) { try { appendFileSync(D("bb15-wall.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, side: look!.side, label: look!.label, why: w740 }) + "\n"); } catch {} continue; } } // fix740: SESSION + PINK only
+          if (lane === "brk-sesspk" || lane === "brk15") { const q741 = quoteTick(id), tk741 = q741 && Date.now() - q741.at <= 3000 ? Number(q741.c) : Number(last1m?.c) || 0; const w741 = zoneWall741(b, id, look!.side, tk741, lane, String(look!.label || ""), (L as any[]) || []); if (w741) { try { appendFileSync(D("zone-wall.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, side: look!.side, label: look!.label, why: w741 }) + "\n"); } catch {} continue; } } // fix741: the akimbo books
           const ask = Number(look.side === "up" ? m.yesAsk : m.noAsk);
           // 1.18x-5x (Oct 11: a 25x short with 2 min left on the strike is a lottery ticket, not her tap-at-4x).
           // OG + PIVOT lanes keep the OG's own rule: 1.18x and up, no cap.
