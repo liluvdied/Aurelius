@@ -7806,5 +7806,25 @@
     "what": "if ((why.startsWith(\"CODE CHANGED\") && Date.now() - S.dirtyAt >= 3000) || (!S.v && Date.now() - S.lastRun > 60000) || (S.v && S.v.ok !== true && Date.now() - S.lastRun > 300000)) restamp();",
     "why": "fix733 (her words in this change's request)",
     "R": "R412"
+  },
+  {
+    "what": "return { on: true, book: String(j.book), name: String(j.name || j.book), until: String(j.until), stopAt: Number(j.stopAt) < 0 ? Number(j.stopAt) : null, n: tr.length, w: tr.filter((t: any) => Number(t.pnl) > 0).length, l: tr.filter((t: any) => Number(t.pnl) <= 0).length, pnl: Math.round(pnl * 100) / 100, stopped: Number(j.stopAt) < 0 && pnl <= Number(j.stopAt), recent: tr.slice(-8).reverse().map((t: any) => ({ first: t.first, ticker: t.ticker, pnl: t.pnl })) };",
+    "why": "fix734 (her words in this change's request)",
+    "R": "R413"
+  },
+  {
+    "what": "const write = (rows0: any[]) => { try { (globalThis as any).__grokOverlay?.(rows0); } catch {} const rows = paperBandFilter(rows0, \"pivot\"); archiveTrimmed(rows); const txt = JSON.stringify(rows.slice(0, 8000)); if (ogSame(FILE(), txt)) return; writeFileSync(FILE() + \".tmp\", txt); renameSync(FILE() + \".tmp\", FILE()); ogMark(FILE(), txt); };",
+    "why": "fix735 (her words in this change's request)",
+    "R": "R414"
+  },
+  {
+    "what": "const pin5 = (bk: string) => (bk === \"recon-fresh\" ? 0 : bk === \"twtog\" ? 1 : bk === \"fivey123\" ? 2 : bk === \"fivey\" ? 3 : 9);",
+    "why": "fix736 (her words in this change's request)",
+    "R": "R415"
+  },
+  {
+    "what": "const runRows = ranked.map((b, i) => ({ ...b, i })).filter((b) => runOn(b.book) || (togOn && b.book === \"twtog\") || (freshOn && b.book === \"recon-fresh\") || b.book === \"fivey123\" || b.book === \"fivey\").sort((a, b) => pin5(a.book) - pin5(b.book));",
+    "why": "fix736 (her words in this change's request)",
+    "R": "R415"
   }
 ]

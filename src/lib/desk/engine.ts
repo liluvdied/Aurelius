@@ -3786,6 +3786,8 @@ async function tick() {
     import("./halfband").then((m) => m.halfBandTick709(snap.assets)).catch(() => {});
     // fix713 CUP BOOK (Love Nov 5 2026 ~5:38 AM PT: "is there a way we can have her gauge candle formations?"). PAPER ONLY, 24/7.
     import("./cups").then((m) => m.cupTick713(snap.assets)).catch(() => {});
+    // fix734 AKIMBO SILENT ALARM (Love Nov 5 2026 10:13 AM PT: "pls set up 2 minute monitor for her , that pings if she's silent on a window"). ALERT ONLY - never touches an order.
+    import("./akimbowatch").then((m) => m.akimboWatch734()).catch(() => {});
     // fix690 70% CLUB (Love Nov 5 2026 ~1:28 AM PT: "only taking the set ups that won over 70%"). PAPER ONLY (club.ts never sends an order).
     import("./club").then((m) => m.clubTick690(snap.assets)).catch(() => {});
     // fix694 MAIN VWAP SIDE (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"). PAPER ONLY (mainvwap.ts never sends an order).
@@ -4705,6 +4707,10 @@ function copyLaneOf(t) { return /^KXBTC/.test(String(t)) ? "btc" : /^KXGOLD/.tes
 setLiveHook(() => {
   if (gLiveCopy.__lastAssets) void copyLiveBookSafe(gLiveCopy.__lastAssets);
 });
+// fix735 AKIMBO INSTANT BELL (Love Nov 5 2026 ~10:19 AM PT: "can you wire them to go out at the same time? ... so she gets the better prices than paper does"): the akimbo books book on the
+// pivot ledger (grok-og.json), which had no bell - their calls waited for the copier's next pass (8:45 AM 12 s, 10:04 AM 16 s). The pivot ledger now rings this the instant it writes a
+// new call of a live-today book, so the copier runs at once, exactly like the main books' DIRECT WIRE. Same copier, same gates, same rails.
+(globalThis as any).__akimboBell735 = () => { if (gLiveCopy.__lastAssets) void copyLiveBookSafe(gLiveCopy.__lastAssets); };
 // LIVE BOOK (Claude, Oct 3 ~1:45 PM PT, Love: "let's run BRICK on kalshi for the time being... @ $22 position sizes").
 // Every new open row of the book named in live-switch "liveBook" (her main paper book, not a twin) is sent to Kalshi
 // once, in its own window, at liveBook.dollars. The wire guard still needs the live switch ON and caps size.

@@ -19,6 +19,7 @@ import { pointsFromFills, pointsFromPrime, TapeBook } from "@/components/desk/ka
 import { HedgeBook } from "@/components/desk/hedge-book";
 import { ScheduleLiveCard } from "@/components/desk/schedule-live";
 import { LiveToday722 } from "@/components/desk/live-today"; // fix722
+import { getLiveToday722 as getLiveToday736 } from "@/lib/desk/fns"; // fix736
 import { LookPanel } from "@/components/desk/look-panel";
 import { Positions } from "@/components/desk/positions";
 import { ScaleBook } from "@/components/desk/scale";
@@ -3240,6 +3241,9 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   const [showArch, setShowArch] = useState(false);
   const [runBusy, setRunBusy] = useState<string | null>(null);
   const runOn = (book: string) => (runQ.data?.books ?? []).includes(book);
+  // fix736 (Love Nov 5 2026 10:37-10:41 AM PT: "can you put the cards in the Running Table that our other books are in hun ? i want to be able to see them without digging"): the live-today (akimbo) books' own cards ride in RUNNING too - display only (their RUN button, the lineup and the copier are untouched).
+  const lt736Q = useQuery({ queryKey: ["live-today-722"], queryFn: () => getLiveToday736(), refetchInterval: 20000, staleTime: 15000 });
+  const lt736: string[] = (lt736Q.data as any)?.on ? String((lt736Q.data as any).book || "").split(",").filter(Boolean) : [];
   const liveQ2 = useQuery({ queryKey: ["live-by-book"], queryFn: () => getLiveByBook(), refetchInterval: 30000 });
   const copyQ = useQuery({ queryKey: ["live-copy-map"], queryFn: () => getLiveCopyMap(), refetchInterval: 30000 });
   // OPEN NOW (Oct 21 ~11:07 AM PT, Love: "i want to see her open trades for the main book / i need to see which positions she is taking"): her main book's
@@ -4021,8 +4025,8 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
         const freshOn = runOn("recon-tog");
         // FIVEY IN RUNNING (fix213, Oct 25 ~2:46 PM PT, Love: "can you have them in the running tab? since we're running them on poly"): the 1-2-3 BOOK and FIVEY
         // always ride in RUNNING, right under the FRESH SLATE / TOGETHER cards.
-        const pin5 = (bk: string) => (bk === "recon-fresh" ? 0 : bk === "twtog" ? 1 : bk === "fivey123" ? 2 : bk === "fivey" ? 3 : 9);
-        const runRows = ranked.map((b, i) => ({ ...b, i })).filter((b) => runOn(b.book) || (togOn && b.book === "twtog") || (freshOn && b.book === "recon-fresh") || b.book === "fivey123" || b.book === "fivey").sort((a, b) => pin5(a.book) - pin5(b.book));
+        const pin5 = (bk: string) => (lt736.includes(bk) ? -1 /* fix736: the akimbo books first */ : bk === "recon-fresh" ? 0 : bk === "twtog" ? 1 : bk === "fivey123" ? 2 : bk === "fivey" ? 3 : 9);
+        const runRows = ranked.map((b, i) => ({ ...b, i })).filter((b) => runOn(b.book) || lt736.includes(b.book) /* fix736 */ || (togOn && b.book === "twtog") || (freshOn && b.book === "recon-fresh") || b.book === "fivey123" || b.book === "fivey").sort((a, b) => pin5(a.book) - pin5(b.book));
         if (!runRows.length) return null;
         return (
           <div className="mt-3 rounded-2xl px-2 pb-2 pt-2" style={{ border: "1px solid rgba(61,220,132,0.45)", boxShadow: "0 0 18px rgba(61,220,132,0.12)" }}>

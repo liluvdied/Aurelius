@@ -2,6 +2,38 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R416 - fix737 THE NO-REMOVAL GATE IGNORES HER LIVE SWITCH: every umpire stop today after a CHANGE was this gate reading her own LIVE flip (live / at / note / liveBook.since) as 'settings changed without her words'. Those keys and her size slider (maxDollars, liveBook.dollars) are hers - the umpire gate, verify-golden and the wire seal already treat them that way - so this gate now skips them. Every other setting, her lineup (liveBook.books), every code file and every rule are still guarded exactly as before. This command also finishes CHANGE-80 (its window closed early): re-locks its two files in concrete and marks it done under R415. Running it restores the umpire's SAFE.
+- when: 2026-11-05T19:01:40+00:00
+- Love: "Love Nov 5 2026 ~10:57 AM PT: "please disable this hun for me to unlock and then relock when i want to" (the no-removal gate stopping her every time she flips LIVE)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/no-removal-gate.py", "has": "HER_HANDS737"}
+- proof: {"test": "tools/gate-ignores-live-737.cjs"}
+
+## R415 - fix736 AKIMBO CARDS IN RUNNING (display only): while akimbo (live-today) is on, the real cards of BREAK BOOK · SESSION + PINK and BREAK BOOK · +15M PIVOTS ride first in the RUNNING table with the other running books - the same cards (stats, KALSHI TODAY, trades on tap), and they stay in their groups too. Their RUN button, your lineup, the seal and what trades live are untouched. Run after CHANGE-79.
+- when: 2026-11-05T18:56:57+00:00
+- Love: "Love Nov 5 2026 10:37 AM PT: "can you put both of the ACTUAL cards in the running table babez ? i want to have them both right there so i don't have to find them in the groups" + 10:41 AM: "can you put the cards in the Running Table that our other books are in hun ? i want to be able to see them without digging""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "lt736.includes(b.book) /* fix736 */"}
+- proof: {"test": "tools/akimbo-running-736.cjs"}
+
+## R414 - fix735 AKIMBO INSTANT BELL: the akimbo books (SESSION + PINK, +15M PIVOTS) book their calls on the pivot ledger (grok-og.json), which - unlike the main books' night book - had no bell to wake the copier, so a call could wait for the copier's next pass (8:45 AM BTC long 12 s, 10:04 AM BTC long 16 s; other calls 0.1-0.3 s). Now the pivot ledger rings the copier the instant it writes a new call of a live-today book (under 60 s old, once per call), exactly like the main books' DIRECT WIRE. Same copier, same gates, every rail kept (umpire, ENFORCER, LIVE, seal, fresh prices, 90 s stale guard, stops, one position per asset, one ticket per window, hand windows, under 30 s left, the order price limit). Run after CHANGE-78.
+- when: 2026-11-05T18:48:13+00:00
+- Love: "Love Nov 5 2026 ~10:19 AM PT: "can you wire them to go out at the same time? or send the live path to kalshi , and have paper get it second ? so she gets the better prices than paper does""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix735 AKIMBO INSTANT BELL"}
+- proof: {"test": "tools/akimbo-bell-735.cjs"}
+
+## R413 - fix734 AKIMBO SILENT ALARM (alert only - never places, holds or changes an order): whenever SESSION + PINK or +15M PIVOTS books a paper entry and live has no fill for that window - at once if the copier writes down a hold / refusal / drop (with its exact reason: wall, hold, retry door, umpire, stale call, daily stop, price ran...), or 2 minutes after the paper entry with nothing filled - she raises one alert: a Mac notification with a sound, a row on the desk's alarm bar (ALERTS), a red line on the LIVE TODAY row (last 30 min), and data/akimbo-silent.jsonl. Windows you traded by hand are written down quietly (no sound); a second call in a window the other akimbo book already holds on the same side is one-ticket-per-window, not an alert. Run after CHANGE-76 and 77.
+- when: 2026-11-05T18:35:43+00:00
+- Love: "Love Nov 5 2026 10:13 AM PT: "pls set up 2 minute monitor for her , that pings if she's silent on a window ; after entering on paper or some kind of signaling something stopped her so we can remediate the cause before the next window""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/akimbowatch.ts", "has": "fix734 AKIMBO SILENT ALARM"}
+- proof: {"test": "tools/akimbo-silent-734.cjs"}
+
 ## R412 - fix733 UMPIRE QUICK RECHECK: when the umpire's ONLY complaint is 'her code changed while the umpire ran' (a timing clash, not a broken rule), the desk re-checks her 3 seconds after her files settle instead of waiting the 5-minute retry - a pause like today's 9:40 AM clears in about a minute by itself. Any real failure (a rule OUT, the request book, the no-removal gate, golden, seal) is exactly as before: NOT SAFE blocks every opening order and retries every 5 minutes. Run after CHANGE-76.
 - when: 2026-11-05T18:21:55+00:00
 - Love: "Love Nov 5 2026 9:43 AM PT: "let's set up a safe path for these two books , so the umpire can't shut down the whole desk if she is doing what she's supposed to be doing" (part B: quick re-check after a mid-run code change)"

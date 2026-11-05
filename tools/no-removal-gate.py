@@ -112,11 +112,17 @@ def pill_ok628(new):
     except Exception:
         return set()
 
+# fix737 (Love Nov 5 2026 ~10:57 AM PT: "please disable this hun for me to unlock and then relock when i want to"): every time she turned LIVE back on during a CHANGE, this gate read
+# live / at / note / liveBook.since as "settings changed without her words" and the umpire stopped the whole desk. These are her own hands - the same set the umpire gate (fix477),
+# verify-golden (fix632/fix676) and the wire seal already treat as hers: LIVE on/off and its stamps, and her size slider. Every other setting is still guarded exactly as before.
+HER_HANDS737 = {"live", "at", "note", "maxDollars", "liveBook.dollars", "liveBook.note", "liveBook.at", "liveBook.since"}
+
 def config_losses(old, new):
     O = flat(json.load(open(old, encoding="utf8"))); N = flat(json.load(open(new, encoding="utf8")))
     out = []; P628 = pill_ok628(new)
     for k, v in O.items():
         if k.split(".")[0] in P628: continue  # fix628
+        if k in HER_HANDS737: continue  # fix737: her LIVE switch and size slider are hers - flipping them is never a rule change
         if k not in N: out.append(("setting gone", k))
         elif N[k] != v: out.append(("setting changed", f"{k}: {json.dumps(v, ensure_ascii=False)[:80]} -> {json.dumps(N[k], ensure_ascii=False)[:80]}"))
     return out

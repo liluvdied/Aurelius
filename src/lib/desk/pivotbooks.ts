@@ -49,7 +49,18 @@ function pbTrades(): any[] {
 // write and the file untouched since = no write. Shared by every grok-og.json writer (globalThis.__ogLast).
 const ogSame = (p: string, txt: string) => { try { const L = (globalThis as any).__ogLast, st = statSync(p); return !!L && L.p === p && L.k === `${st.mtimeMs}:${st.size}` && L.t === txt; } catch { return false; } };
 const ogMark = (p: string, txt: string) => { try { const st = statSync(p); (globalThis as any).__ogLast = { p, k: `${st.mtimeMs}:${st.size}`, t: txt }; } catch {} };
-const write = (rows0: any[]) => { try { (globalThis as any).__grokOverlay?.(rows0); } catch {} const rows = paperBandFilter(rows0, "pivot"); archiveTrimmed(rows); const txt = JSON.stringify(rows.slice(0, 8000)); if (ogSame(FILE(), txt)) return; writeFileSync(FILE() + ".tmp", txt); renameSync(FILE() + ".tmp", FILE()); ogMark(FILE(), txt); };
+// fix735 AKIMBO INSTANT BELL: the moment this ledger is written with a NEW call (under 60 s old) of a live-today book, ring the copier (engine.ts __akimboBell735) - no waiting for its next pass.
+function bell735(rows: any[]): void {
+  const G735 = globalThis as any; if (typeof G735.__akimboBell735 !== "function") return;
+  const c = (G735.__lt735 ||= { at: 0, books: [] as string[] });
+  if (Date.now() - c.at > 5000) { c.at = Date.now(); try { const j = JSON.parse(readFileSync(D("live-today.json"), "utf8")); c.books = j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === "string" ? j.book.split(",") : []; } catch { c.books = []; } }
+  if (!c.books.length) return;
+  const seen: Record<string, number> = (G735.__bell735Seen ||= {}); let ring = false;
+  for (const r of rows.slice(0, 60)) { if (r && c.books.includes(String(r.lane)) && !seen[r.id] && Date.now() - Date.parse(String(r.at)) < 60000) { seen[r.id] = Date.now(); ring = true; } }
+  if (ring) G735.__akimboBell735();
+  for (const k of Object.keys(seen)) if (Date.now() - seen[k] > 3600000) delete seen[k];
+}
+const write = (rows0: any[]) => { try { (globalThis as any).__grokOverlay?.(rows0); } catch {} const rows = paperBandFilter(rows0, "pivot"); archiveTrimmed(rows); const txt = JSON.stringify(rows.slice(0, 8000)); if (ogSame(FILE(), txt)) return; writeFileSync(FILE() + ".tmp", txt); renameSync(FILE() + ".tmp", FILE()); ogMark(FILE(), txt); try { bell735(rows); } catch {} };
 type Bar = { t: number; o: number; h: number; l: number; c: number };
 // SELF-TEST RERUN (Oct 18 ~11:12 PM PT): the 11:11 PM self-test failed (new rules read live prices during the test) and blocked orders; rerun it at once
 // after the fix instead of waiting 10 minutes.
