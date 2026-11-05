@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R373 - fix685: her REGISTRAR page (every book's full trade record, view only, ~/Desktop/AURELIUS-REGISTRAR) rebuilds itself every 2 hours: the fix654 log archive, which the desk already starts every 2 hours as its own process, now also starts registrar.py at the lowest priority (nice 19, its own session, never waited on). It only reads her saved records (grok-og / night-book files) and writes its own folder. No book, rule, wall, size or live path is touched; nothing new runs inside her tick loop.
+- when: 2026-11-05T09:29:28+00:00
+- Love: "Love Nov 5 2026 ~12:05 AM PT: "can you recover those? in a view only capacity that wont slow down the desk?" (the old books' trade records) - the registrar (~/Desktop/AURELIUS-REGISTRAR, view only) now rebuilds itself every 2 hours instead of by hand"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/log-archive-654.py", "has": "# fix685"}
+- proof: {"test": "tools/registrar-rebuild-685.cjs"}
+
 ## R372 - fix684: the band law's self-test (bandlock.ts bandSelfTest, every 10 min) checks HER CURRENT numbers. 8 of its fixed checks still expected rules she has since changed on purpose: the BTC pink break / pink wait / at-the-session-band wait / pink rejection at $5-$8 (now $2, fix651; $5 fix580) and gold 5m R1 as a wall (not a wall since fix618, both assets). Because the test failed, __bandLawBroken was true and the old PAPER books refused every order since Nov 3 10:53 PM PT (BREAK BOOK · SESSION ONLY, ogp5-boll/-cb/-r30/-fast/-inv/-bbsr/-sess, ogp15-both, tap3x ...). The 8 checks now test her $2 / fix618 rules (both directions); every other check unchanged. No trading function, wall, size or live book is touched; her live recon books never read this flag. The old paper books come back on paper.
 - when: 2026-11-05T08:57:03+00:00
 - Love: "Love Nov 5 2026 ~12:30 AM PT: "yes to both" - to turning BREAK BOOK · SESSION ONLY back on, paper only (the old paper books have refused every order since Nov 3 10:53 PM PT with "band law failed its self-test": the self-test still expected her old numbers - the $8/$6 BTC pink wait and $5 rejection (fix580, then Love Nov 4 2026 4:02 PM PT: "make it $2 on the break.") and gold 5m R1/S1 as walls (fix618 Love Nov 1 2026 6:10 PM PT: "This applies to both gold and BTC."))"
