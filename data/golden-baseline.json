@@ -1,5 +1,5 @@
 {
- "at": "2026-11-05T21:13:02.046769+00:00",
+ "at": "2026-11-05T21:54:48.381810+00:00",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -83,7 +83,7 @@
   "probe.ts": "9c0674e13b6c4516",
   "quotes.ts": "fe54b8cdeb6e764b",
   "realtwin.ts": "c74ff01ef7e1b5ea",
-  "recon.ts": "e5e325fc46935089",
+  "recon.ts": "19c50eb711aaf226",
   "research.ts": "cd5d69f9cb3ff595",
   "review.ts": "ed486d1c8a4113c0",
   "riptap.ts": "1c967350e6259666",
@@ -149,7 +149,7 @@
   "maxDollars": "4a44dc1536",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "96778025b5",
+  "at": "90975c0311",
   "note": "34fb5e33ce",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -168,7 +168,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "08253ad8b3",
+  "liveBook": "8032322606",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -339,10 +339,10 @@
  },
  "configFiles": {
   "data/HER-ANSWERS-2.json": "770a121597eb8e17",
-  "data/spine-lock.json": "9c204edfb556676f",
+  "data/spine-lock.json": "38af91cda2a0c893",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "5dc693f9f21f931c"
+  "data/live-switch.json": "1f8de49f7b50c2b5"
  },
  "sealLiveBook": "c8cfbbf7f9",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

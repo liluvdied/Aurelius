@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R424 - fix746 MAIN · ZONE WALL + MOVING-OFF TWIN - PAPER ONLY: a paper twin of the main book. Every call main books, the twin takes too - except not into her green / red zone ($2 gold / $100 BTC), and a REJECTION or a BREAK / push only once price is already $50 BTC / $1 gold past the line it was called on (Love 12:48 PM: main exactly, just waits those distances on pushes). If price isn't there yet the twin waits and books later in the same window when it gets there, at that moment's price (under 66c, 2+ minutes left) - the real priced result, not a filter (the filter replay was 643 trades, 54%, +$696 vs main 51%, -$1,001). Main itself is unchanged; the twin never sends an order. Run after CHANGE-88.
+- when: 2026-11-05T21:54:48+00:00
+- Love: "Love Nov 5 2026 12:42 PM PT: "how much did it effect our main books positively ? and waiting for a push that distance didn't make our winrate go up for the other books bb ?" + 12:43 PM: "pls do test those yes i want our win rate at 70% :)" (a paper twin of the main book with the zone wall and rejections taken once moving off the line)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix746 MAIN · ZONE WALL + MOVING-OFF TWIN"}
+- proof: {"test": "tools/main-twin-746.cjs"}
+
 ## R423 - fix745 ALL-BOLLINGER BOOK - PAPER ONLY: one ticket per asset-window, the first of these on a closed 1m candle: gold - crossing the 2m Bollinger middle, closing over the 2m upper band (long) / under the 2m lower band (short), or closing back under the 2m upper band after being over it (short); BTC - crossing the 5m middle, or closing over / under the 2m upper / lower band. Zone wall ($2 / $100), ask up to 66c, 2+ minutes left. Replay since Oct 19 ($20): 329 trades, 67%, +$2,228, green 15 of 18 days, worst day -$43 (bands rebuilt from 1m bars - close, not exact). Its own card; never sends an order. Run after CHANGE-87.
 - when: 2026-11-05T21:13:01+00:00
 - Love: "Love Nov 5 2026 12:43 PM PT: "pls do test those yes i want our win rate at 70% :)" (the ALL-BOLLINGER book, paper)"

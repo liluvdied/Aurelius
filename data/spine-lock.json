@@ -1,9 +1,9 @@
 {
- "at": "2026-11-05T12:00:08.428236+00:00",
+ "at": "2026-11-05T21:54:48.381810+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "e5e325fc46935089"
+  "recon.ts": "19c50eb711aaf226"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -748,6 +748,12 @@
    "by": "Love",
    "quote": "Love Nov 5 2026 ~3:43 AM PT: \"YES pls fix the two thirds that disagree !!!! that's been happening all week !!\" (built first as a paper twin of REJECTION, to decide Nov 11; the live version waits for her pick) (R390, fix703)",
    "recon.ts": "e5e325fc46935089"
+  },
+  {
+   "at": "2026-11-05T21:54:48.381810+00:00",
+   "by": "Love",
+   "quote": "Love Nov 5 2026 12:42 PM PT: \"how much did it effect our main books positively ? and waiting for a push that distance didn't make our winrate go up for the other books bb ?\" + 12:43 PM: \"pls do test those yes i want our win rate at 70% :)\" (a paper twin of the main book with the zone wall and rejections taken once moving off the line) (R424, fix746)",
+   "recon.ts": "19c50eb711aaf226"
   }
  ],
  "R": "R266",

@@ -49,6 +49,7 @@ export const RECON_LANES = ["recon-ogp5", "recon-paper", "recon-tog", "recon-top
 export const RECON = new Set<string>(RECON_LANES);
 for (const l480 of ["recon-np", "recon-sov", "recon-npo", "recon-b2", "recon-og", "recon-rnp" /* fix620 */]) RECON.add(l480); // fix480: PAPER ONLY - in no live list (liveBook.books untouched)
 RECON.add("recon-rjnp"); // fix643: REJECTIONS ONLY, NO PINK - PAPER ONLY, in no live list
+RECON.add("recon-tzw"); // fix746: MAIN · ZONE WALL + MOVING-OFF TWIN - PAPER ONLY, in no live list
 RECON.add("recon-rjt3"); // fix703: REJECTIONS · THIRDS AS READ - PAPER ONLY, in no live list
 const DLY_AS_COPY = false; /* fix353 PAUSED (Love 6:11 PM PT: "wait no no no no no no do not change the 5M on polymarket in any way nooo"): the twin is exactly as before everywhere */ // fix353 (Oct 27 2026 ~6:09 PM PT, Love: "just make the delayed entry model a delayed rejection copy of no pink / no entires first 30 seconds into a window is good" + "we will use that model with a delayed entry - after 30 seconds"): the DELAYED twin is the no-pink copy with a delayed entry
 
@@ -751,6 +752,31 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
   try { const pv464 = onePink565R(id, b); if (firstTog && pv464 && !zoneFree515c(id, firstTog.side, String(firstTog.label)) && pinkRead464(id, sessionLines(ax, id), spot, firstTog.side, Number(pv464.pp))) firstTog = null; } catch {} // fix464 (R197/R198): no read into an unbroken pink within 15% / 20%, either side
   try { if (firstTog) { const G464 = globalThis as any; G464.__blQuiet464 = true; try { if (!bandLockCheck464("recon-tog", id, firstTog.side, String(m.ticker), String(firstTog.label || "")).ok) firstTog = null; } finally { G464.__blQuiet464 = false; } } } catch {} // fix464 (R202, Love 1:12 PM PT: "PLACE THE FUCKING BAND TOLERANCES ON MAIN AND REJECTIONS"): every band tolerance in the read too - a read her walls refuse is never her call
   if (firstTog && book("recon-tog", firstTog, lookP && !lookT && firstTog === firstT ? lookP.ask : undefined)) changed = true;
+  // fix746 MAIN · ZONE WALL + MOVING-OFF TWIN - PAPER ONLY (Love Nov 5 2026 12:42-12:43 PM PT: "how much did it effect our main books" + "i want our win rate at 70%"): every call the main book
+  // books, this twin takes too - but not into her green / red zone ($2 gold / $100 BTC, 5m S1 / R1 of the last closed 5m candle), and a REJECTION only once price is already $50 BTC / $1 gold off
+  // the line it rejected (frozen at main's call). Not there yet = it WAITS and books later in the same window when price gets there, at that moment's ask (under 66c, 2+ min left) - the real priced
+  // result, not a filter. Main itself is unchanged. Paper only - never in a live list.
+  try {
+    const G746 = globalThis as any, P746 = (G746.__tzw746 ||= {}) as Record<string, any>;
+    const mainRow = rows.find((r: any) => r.ticker === m.ticker && r.lane === "recon-tog"), twinRow = rows.find((r: any) => r.ticker === m.ticker && r.lane === "recon-tzw");
+    if (mainRow && !twinRow && !P746[m.ticker]) {
+      const lab = String(mainRow.label || ""), mm = /^(?:Rejected (?:up|down) off|Failed break (?:above|below)|(?:Break|Close) (?:above|below)|\dm rejection off|Tap-reject at|1m rejection off)\s+(?:fresh )?(.+?)(?:\s*\(.*)?$/.exec(lab);
+      let lp = 0; if (mm) { const Lx = (G746.__lawBands?.[id]?.L || []) as any[]; const hx = Lx.find((l: any) => String(l?.name) === mm[1].trim()); if (hx) lp = Number(hx.price); }
+      P746[m.ticker] = { side: mainRow.side, label: lab, rej: !!mm, line: lp, at: Date.now(), done: false };
+    }
+    const pd = P746[m.ticker];
+    if (pd && !pd.done && !twinRow && left > 120) {
+      const need = id === "gold" ? 1 : 50, th = id === "gold" ? 2 : 100;
+      const off = pd.rej && pd.line > 0 ? (pd.side === "up" ? spot - pd.line : pd.line - spot) : Infinity;
+      const nowS = Date.now() / 1000, c5: Record<number, { h: number; l: number; c: number }> = {};
+      for (const x of b) { const k = Math.floor(x.t / 300) * 300; if (k + 300 > nowS + 1) continue; const z = c5[k]; c5[k] = z ? { h: Math.max(z.h, x.h), l: Math.min(z.l, x.l), c: x.c } : { h: x.h, l: x.l, c: x.c }; }
+      const k5 = Object.keys(c5).map(Number).sort((p, q) => q - p)[0]; let inZone = false;
+      if (k5) { const z = c5[k5], PP = (z.h + z.l + z.c) / 3, R1 = 2 * PP - z.l, S1 = 2 * PP - z.h; inZone = (pd.side === "down" && spot - S1 >= 0 && spot - S1 <= th) || (pd.side === "up" && R1 - spot >= 0 && R1 - spot <= th); }
+      const ask = Number(pd.side === "up" ? m?.yesAsk : m?.noAsk);
+      if (off >= need && !inZone && ask > 0.02 && ask <= 0.667) { if (book("recon-tzw", { side: pd.side, label: `${pd.label}${pd.rej && off !== Infinity ? ` (moving off: ${off.toFixed(id === "gold" ? 2 : 0)} past)` : ""}` })) { changed = true; pd.done = true; } }
+    }
+    for (const k of Object.keys(P746)) if (Date.now() - Number(P746[k].at) > 1800000) delete P746[k];
+  } catch {}
   // THE MAIN BOOK, REJECTIONS ONLY (fix250, Oct 26 ~1:03 AM PT, Love: "make a copy of the main book that trades rejections only ... she is not taking the same trades
   // at all"): a literal copy of TOGETHER - the very call TOGETHER reads this tick (firstT), the same one-call-per-window rule - with only her breaks left out
   // (Break above/below, Close above/below). Paper only, beside the rejection model.
