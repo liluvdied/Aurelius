@@ -2330,3 +2330,9 @@ export const getRsiBooks672 = createServerFn({ method: "GET" }).handler(async ()
 export const getRungStats680 = createServerFn({ method: "GET" }).handler(async () => { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "rung-stats.json"), "utf8")); } catch { return { at: "", trades: 0, setups: [], travel: [] }; } });
 // fix682 the ETH rejections-only paper book (Love Nov 4 2026 11:38 PM PT: "yess, let us do so please (eth book)"), summarised on the server.
 export const getEthBook682 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./ethbook"); return m.ethSummary682(); } catch { return null; } });
+// fix686 OG ORIGINAL · 10.12 - the sealed Oct 12 paper card (Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls"), summarised on the server.
+export const getOg1012 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./og1012"); return m.og1012Summary(); } catch { return null; } });
+// fix687 OUTWARD BREAK · SESSION BANDS paper book (Love Nov 5 2026 ~1:00 AM PT: "a new one too if you have a different idea in mind for it"), summarised on the server.
+export const getBrkOut687 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./brkout"); return m.brkOutSummary687(); } catch { return null; } });
+// fix688 INVERSE BOOK paper book (Love Nov 5 2026 ~1:05 AM PT: "can you create the inverse set ups book i asked you about earlier too?"), summarised on the server.
+export const getInverse688 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./inverse"); return m.inverseSummary688(); } catch { return null; } });

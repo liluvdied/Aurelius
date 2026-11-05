@@ -1,9 +1,33 @@
-# Every decision Love has made - rebuilt 2026-11-05T09:30:21.863740+00:00
+# Every decision Love has made - rebuilt 2026-11-05T11:45:38.905618+00:00
 
-1518 decisions with Love's words or card picks, out of 2278 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1526 decisions with Love's words or card picks, out of 2286 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-05T11:32:34.204Z  ·  diary line 2753
+- Full entry: 2026-11-05T11:32:34.204Z HOURS (Love, in-app schedule pill): 3 AM PT -> MAIN book (GOLD only)
+
+## 2026-11-05T11:32:33.622Z  ·  diary line 2752
+- Full entry: 2026-11-05T11:32:33.622Z HOURS (Love, in-app schedule pill): 3 AM PT -> MAIN book (BTC only)
+
+## 2026-11-05T11:14:59.596Z  ·  diary line 2751
+- Full entry: 2026-11-05T11:14:59.596Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (GOLD only)
+
+## 2026-11-05T11:14:59.061Z  ·  diary line 2750
+- Full entry: 2026-11-05T11:14:59.061Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (BTC only)
+
+## 2026-11-05T10:56:33.958Z  ·  diary line 2749
+- Full entry: 2026-11-05T10:56:33.958Z HOURS (Love, in-app schedule pill): 3 AM PT -> DELAYED twin
+
+## 2026-11-05T10:56:33.290Z  ·  diary line 2748
+- Full entry: 2026-11-05T10:56:33.290Z HOURS (Love, in-app schedule pill): 3 AM PT -> DELAYED twin
+
+## 2026-11-05T10:34:57.447Z  ·  diary line 2747
+- Full entry: 2026-11-05T10:34:57.447Z HOURS (Love, in-app schedule pill): 2 AM PT -> DELAYED twin
+
+## 2026-11-05T10:34:19.659Z  ·  diary line 2746
+- Full entry: 2026-11-05T10:34:19.659Z HOURS (Love, in-app schedule pill): 2 AM PT -> DELAYED twin
 
 ## 2026-11-04T20:31:35Z  ·  diary line 2745
 - Love: “The pink-excluded book is not limited to main's calls. When a valid setup appears that is not a pink trade, she takes it on her own. She does not wait for main and does not take main's next-best.”

@@ -2,6 +2,33 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R376 - fix688 INVERSE BOOK - PAPER ONLY (never sends an order): when her main or rejection book (recon-tog / recon-rej) opens one of the set ups listed in data/inverse-setups.json, this book takes the OTHER side of the same window at that moment - $20 paper at the other side's REAL live ask (logged on every row, with her own ask beside it, so the week gives true $), once per source trade; scored held-to-the-bell and under her take-profit, and marked whether it passes her 1.38x floor. Starts with tonight's five: gold pink shorts -> long, gold red candle falling from the top third -> long, BTC launched from the bottom third -> short, BTC rejected down off +1σ -> long, BTC failed break above -1σ -> long (never the BTC pink longs); plus the band-travel losers from her STATS table, counted its way (bands crossed since the previous window opened): BTC 1 band down + she follows -> long, gold 1 band down + follows -> long, gold 1 band up + follows -> short; and every DELAYED book call flipped (replay Oct 19 - Nov 4 at the other side's ask: 64% of 1,768, +$1,259 held, weeks -$455 / +$742 / +$972). The list is a plain data file: Nov 11's worst losers go in with no code change. New card on the Books page. Needs CHANGE-35 installed first (same engine/fns/app files). Her books, walls and settings untouched; it only reads her paper rows.
+- when: 2026-11-05T11:44:04+00:00
+- Love: "Love Nov 5 2026 ~1:05 AM PT: "while you are making those paper books, can you create the inverse set ups book i asked you about earlier too? all of our least successful set ups... in a week we'll know for sure which set ups lose the most. then we create the inverse" (started with tonight's five from data/reports/confluence-and-inverse-nov6.md; never the BTC pink longs) + ~1:15 AM PT: "can you do the inverse of the biggest losers on here so far? 1 Band traveled the previous window" + ~1:54 AM PT: "i'm pretty sure the delayed book has like a steady 30% hit rate as is, creating an inverse of that would put it at 70% off the bat""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/inverse.ts", "has": "export async function inverseTick688("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.inverseTick688(snap.assets)"}
+- proof: {"test": "tools/inverse-book-688.cjs"}
+
+## R375 - fix687 OUTWARD BREAK · SESSION BANDS - PAPER ONLY (never sends an order), BTC + gold: when her chart's 1m candle CLOSES through a session band (her live VWAP and ±0.5..3σ) by her push ($6 BTC, 33c gold) in the direction away from the VWAP (up through a band at/above it, down through one at/below it), it takes that side at once - 4+ minutes left, her 1.38x floor, one per window, $20 paper at the live ask; scored held-to-the-bell and under her take-profit. Replay Oct 12 - Nov 5: 1,577 trades, 56%, green every week (+$395 / +$304 / +$414 / +$276); break-and-retest (-$1,241) and breaks back toward the VWAP (-$848) lost, so they are not in it. New card on the Books page. Needs CHANGE-34 installed first (same engine/fns/app files). Live books, walls and settings untouched; BREAK BOOK · SESSION ONLY unchanged.
+- when: 2026-11-05T11:43:56+00:00
+- Love: "Love Nov 5 2026 ~1:00 AM PT: "and yes, a session break book for both - we have one and it was doing well last i saw but that was a while ago, a new one too if you have a different idea in mind for it" (the new idea, from Claude's replay Oct 12 - Nov 5: a 1m close through a session band by her push, away from the VWAP - the only break idea green every week)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/brkout.ts", "has": "export async function brkOutTick687("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.brkOutTick687(snap.assets)"}
+- proof: {"test": "tools/brk-out-687.cjs"}
+
+## R374 - fix686 OG ORIGINAL · 10.12 - its own PAPER card, sealed, never sends an order: her Oct 12 OG + PIVOT 5M lane (the 27-2 code) running side by side on today's prices. Entries (resample/pivot/lines/sessionLines/decide + the lane body with the 1.38x floor) and exits (half at 75%, rest arms at 90% with the trail, else the bell; Kalshi settle every 15 s) are copied byte for byte from the vault (data/vault-og-oct12 = git branch 10.12) and checked every tick: vault sha256 + every frozen block against the vault text; any difference = the card stops and says SEAL BROKEN. $20 paper, BTC + gold, one per window, its own store data/og-1012.json, her chart's 1m bars (no extra TradingView reads), new card on the Books page. Needs CHANGE-30 installed first (same engine/fns/app files). No live book, wall or setting touched.
+- when: 2026-11-05T11:43:49+00:00
+- Love: "Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls" (the Oct 12 OG + PIVOT 5M code that went 27-2, vaulted in data/vault-og-oct12 and git branch 10.12)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/og1012.ts", "has": "export async function og1012Tick("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.og1012Tick(snap.assets)"}
+- proof: {"test": "tools/og-1012-686.cjs"}
+
 ## R373 - fix685: her REGISTRAR page (every book's full trade record, view only, ~/Desktop/AURELIUS-REGISTRAR) rebuilds itself every 2 hours: the fix654 log archive, which the desk already starts every 2 hours as its own process, now also starts registrar.py at the lowest priority (nice 19, its own session, never waited on). It only reads her saved records (grok-og / night-book files) and writes its own folder. No book, rule, wall, size or live path is touched; nothing new runs inside her tick loop.
 - when: 2026-11-05T09:29:28+00:00
 - Love: "Love Nov 5 2026 ~12:05 AM PT: "can you recover those? in a view only capacity that wont slow down the desk?" (the old books' trade records) - the registrar (~/Desktop/AURELIUS-REGISTRAR, view only) now rebuilds itself every 2 hours instead of by hand"
