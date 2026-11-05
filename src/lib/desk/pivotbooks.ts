@@ -1070,6 +1070,33 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
         let aFastOn = false; try { aFastOn = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.togetherFast === true; } catch {}
         let aFast: any = null;
         try { const sw1 = JSON.parse(readFileSync(D("live-switch.json"), "utf8")); if (sw1?.togetherFast === true) { const q1 = quoteTick(id); if (q1 && q1.c > 0 && feedHealth(id).ok && q1.at > (Number(aBase?.spotAt) || 0)) aFast = { ...aBase, spot: q1.c, spotAt: q1.at }; } } catch {}
+        // fix742 GOLD 2M MIDDLE BOLLINGER SEAT (Love Nov 5 2026 12:05 PM PT: "can you test for the middle bollinger breaks ???? gold specifically" + card 12:07 PM "Third AKIMBO seat"): paper lane
+        // gmid2 - gold only. When a closed 1m candle crosses the 2m Bollinger middle line (20-period SMA of 2m closes, the live 2m candle included) it books the break that way, the next minute,
+        // once per window, 2+ minutes left, ask up to 66c (her 1.5x floor), and not into her green / red zone ($2 - the zone wall). Replay since Oct 19 ($20): 146 trades, 60%, +$886, green 14 of 15 days.
+        // Live it is AKIMBO's third seat (data/live-today.json): it only gets a gold window neither SESSION + PINK nor +15M PIVOTS has taken; first call wins; pivot still gets the sticks.
+        if (id === "gold" && m?.ticker && left > 120) {
+          try {
+            const G742 = globalThis as any, nowS742 = Date.now() / 1000;
+            const c742 = resample(b, 2).map((x) => x.c).slice(-20), cl742 = b.filter((x) => x.t + 60 <= nowS742 + 1);
+            if (c742.length === 20 && cl742.length >= 2) {
+              const mid742 = c742.reduce((q, v) => q + v, 0) / 20; (G742.__gmid742 ||= {})[id] = { at: Date.now(), mid: mid742 };
+              const last742 = cl742[cl742.length - 1], prev742 = cl742[cl742.length - 2], S742 = (G742.__gmid742seen ||= {});
+              if (S742[id] !== last742.t) {
+                S742[id] = last742.t;
+                const side742: "up" | "down" = last742.c > mid742 ? "up" : "down", was742 = prev742.c > mid742 ? "up" : "down";
+                if (side742 !== was742 && !rows.some((r: any) => r.ticker === m.ticker && r.lane === "gmid2")) {
+                  const ask742 = Number(side742 === "up" ? m.yesAsk : m.noAsk), zw742 = zoneWall741(b, id, side742, last742.c, "gmid2");
+                  if (zw742) { try { appendFileSync(D("zone-wall.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane: "gmid2", ticker: m.ticker, side: side742, why: zw742 }) + "\n"); } catch {} }
+                  else if (ask742 > 0.02 && ask742 <= 0.667) {
+                    const n742 = STAKE / ask742;
+                    rows.unshift({ id: `${m.ticker}:gmid2`, lane: "gmid2", at: new Date().toISOString(), asset: id, ticker: m.ticker, side: side742, label: `Break ${side742 === "up" ? "above" : "below"} 2m BB middle`, ask: r2(ask742), multiple: r2(1 / ask742), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE, fee: fee(n742, ask742), peak: ask742, lastBid: 0, result: "open", exit: null, pnl: null, bar: { o: r2(last742.o), h: r2(last742.h), l: r2(last742.l), c: r2(last742.c) }, band: { name: "2m BB middle", price: r2(mid742) } } as any);
+                    changed = true;
+                  }
+                }
+              }
+            }
+          } catch {}
+        }
         for (const [lane, L, legacy] of lanes) {
           if (lateWin && lane !== "brk-sesspk") continue; // only the session + pink book trades the last 2 minutes
           const lane5 = lane === "ogp5-hold" || lane === "ogp5-pk2" || lane === "ogp5-pk3" ? "ogp5" : lane; // twins run every path her 5M half runs

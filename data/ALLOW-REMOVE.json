@@ -7836,5 +7836,30 @@
     "what": "{ const lt717all = typeof (B as any).liveToday717 === \"function\" ? (B as any).liveToday717() : \"\"; const lt717 = lt717all.split(\",\").includes(book) ? book : lt717all; /* fix726: either akimbo book */ if (lt717 && book === lt717) { try { const j717 = JSON.parse(readFileSync(join(process.cwd(), \"data\", \"live-today.json\"), \"utf8\")), stop717 = Number(j717?.stopAt); if (stop717 < 0) { const nowPT = new Date(new Date().toLocaleString(\"en-US\", { timeZone: \"America/Los_Angeles\" })), mid = new Date(nowPT); mid.setHours(0, 0, 0, 0); const since = Date.now() - (nowPT.getTime() - mid.getTime()); const rg = await import(\"./riskguard\"); const day717 = rg.liveTrades().filter((t: any) => t.book === lt717 && Date.parse(String(t.first)) >= since || lt717all.split(\",\").includes(String(t.book)) /* fix726: one stop for both books */ && Date.parse(String(t.first)) >= since).reduce((acc: number, t: any) => acc + (Number(t.pnl) || 0), 0); if (day717 <= stop717) return `DAILY STOP (fix717): ${lt717} is at $${day717.toFixed(2)} live today, at or past its $${stop717} stop - no new entries until midnight PT.`; } } catch {} return \"\"; } } // fix717: the one live book today, its own gates only (like the delayed book) - the umpire above still judged it; its daily loss stop (data/live-today.json stopAt)",
     "why": "fix739 (her words in this change's request)",
     "R": "R418"
+  },
+  {
+    "what": "\"book\": \"brk-sesspk,brk15\",",
+    "why": "fix742 (her words in this change's request)",
+    "R": "R421"
+  },
+  {
+    "what": "\"name\": \"AKIMBO · BREAK BOOK SESSION + PINK + BREAK BOOK 15M PIVOTS (pivot gets the sticks)\",",
+    "why": "fix742 (her words in this change's request)",
+    "R": "R421"
+  },
+  {
+    "what": "\"by\": \"Love Nov 5 2026 7:25-7:34 AM PT: \\\"just have her take the first one to make it there bb\\\" + card pick \\\"Pivot gets the sticks, always\\\" (fix726)\",",
+    "why": "fix742 (her words in this change's request)",
+    "R": "R421"
+  },
+  {
+    "what": "t(j && (j.on !== true || (j.book === \"brk-sesspk,brk15\" && j.stopAt === -100 && j.until === \"2026-11-08T08:00:00.000Z\")), \"live-today is on but not the akimbo pair through Sat with the -$100 daily stop\"); // off (CHANGE-63) is fine",
+    "why": "fix742 (her words in this change's request)",
+    "R": "R421"
+  },
+  {
+    "what": "t(P.includes('if (lane === \"brk-sesspk\" || lane === \"brk15\") { const q741') && (P.match(/zoneWall741\\(b, id/g) || []).length === 1, \"the zone wall is not on (only) the akimbo books' booking\");",
+    "why": "fix742 (her words in this change's request)",
+    "R": "R421"
   }
 ]

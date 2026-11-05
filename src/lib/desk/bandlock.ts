@@ -602,6 +602,7 @@ export function breakSide739(asset: string, side: string, label: string, tick: n
     const m = /^(?:Break|Close) (above|below) (?:fresh )?(.+?)(?:\s*\(.*)?$/.exec(String(label || "").trim()); if (!m || !(tick > 0)) return "";
     const name = m[2].trim(); let px = 0;
     const L0 = ((G as any).__lawBands?.[asset]?.L || []) as Line[]; const hit = L0.find((l) => String(l.name) === name); if (hit) px = Number(hit.price);
+    if (!(px > 0) && name === "2m BB middle") { const g742 = (G as any).__gmid742?.[asset]; if (g742 && Date.now() - Number(g742.at) < 120000) px = Number(g742.mid); } // fix742: the gold 2m middle seat
     if (!(px > 0)) { const tf = /^(\d+)m /.exec(name); const pl = tf ? (G as any).__pivLines739?.[`${asset}:${tf[1]}`] : null; if (pl && Date.now() - Number(pl.at) < 60000) { const h2 = (pl.L || []).find((l: any) => String(l.name) === name); if (h2) px = Number(h2.price); } }
     if (!(px > 0)) return "";
     if (m[1] === "above" && side === "up" && !(tick > px)) return `BACK ACROSS ${name} (fix739): price ${tick.toFixed(2)} is back at/under ${name} ${px.toFixed(2)} - not on the break side any more - no order.`;

@@ -3367,6 +3367,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     { book: "brk5", title: "NEW 🆕 · BREAK BOOK · +5M PIVOTS (paper)", note: "The Break Book with the 5m pivot lines added. Paper, $20." },
     { book: "brk10", title: "NEW 🆕 · BREAK BOOK · +10M PIVOTS (paper)", note: "The Break Book with the 10m pivot lines added. Paper, $20." },
     { book: "brk15", title: "NEW 🆕 · BREAK BOOK · +15M PIVOTS (paper)", note: "The Break Book with the 15m pivot lines added. Paper, $20." },
+    { book: "gmid2" as any, title: "AKIMBO SEAT 3 · GOLD · 2M MIDDLE BOLLINGER BREAK", note: "fix742 (Love, Nov 5 12:05-12:07 PM): gold only - a closed 1m candle crossing the 2m Bollinger middle line, traded that way; not into her green/red zone ($2); 1.5x floor. Live as AKIMBO's third seat: only gold windows neither SESSION + PINK nor +15M PIVOTS took. Paper, $20." },
     { book: "twrevsp5", title: "SESSION + PIVOT 5M · REVISED HOURS (twin)", note: "SP5 on the revised hours. Paper, $20." },
     { book: "twrevogp15", title: "OG 👑 + PIVOT 15M · REVISED HOURS (twin)", note: "OG PIVOT 15M on the revised hours. Paper, $20." },
     { book: "twrevogp5", title: "OG + PIVOT 5M · REVISED HOURS (twin)", note: "OG+PIVOT 5M on the revised hours. Paper, $20." },

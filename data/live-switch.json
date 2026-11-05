@@ -1,9 +1,9 @@
 {
   "live": true,
-  "maxDollars": 11,
+  "maxDollars": 5,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-05T20:09:55.201Z",
+  "at": "2026-11-05T20:39:03.411Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -123,8 +123,8 @@
       "recon-rej",
       "recon-dly"
     ],
-    "dollars": 11,
-    "since": "2026-11-05T20:09:55.202Z",
+    "dollars": 5,
+    "since": "2026-11-05T20:39:03.412Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -342,7 +342,8 @@
       "recon-rej",
       "recon-dly",
       "recon-togp",
-      "brk15"
+      "brk15",
+      "gmid2"
     ]
   },
   "polyLive": false,
@@ -715,7 +716,8 @@
         "recon-rej",
         "recon-dly",
         "recon-togp",
-        "brk15"
+        "brk15",
+        "gmid2"
       ],
       "gold": [
         "dcd",
@@ -741,7 +743,8 @@
         "recon-rej",
         "recon-dly",
         "recon-togp",
-        "brk15"
+        "brk15",
+        "gmid2"
       ],
       "silver": [
         "pap247"
@@ -1073,7 +1076,8 @@
     "recon-rej",
     "recon-dly",
     "recon-togp",
-    "brk15"
+    "brk15",
+    "gmid2"
   ],
   "noLocksNote": "Love, Oct 11 ~8:30 AM PT: 'that's too sensitive hun they'll never run... let her take profits half at 75 the rest at 90%'. PAPER's live books skip LOCK THE WIN and the take-profit gates.",
   "reversalGuard": {
@@ -1119,7 +1123,8 @@
     "recon-rej",
     "recon-dly",
     "recon-togp",
-    "brk15"
+    "brk15",
+    "gmid2"
   ],
   "goldGateExemptNote": "Love Oct 11 ~6:40 PM PT: pivot books fire on gold when they call it; only a nav band between price and the strike blocks.",
   "comboGuard": {
@@ -1402,7 +1407,8 @@
     "recon-rej",
     "recon-dly",
     "recon-togp",
-    "brk15"
+    "brk15",
+    "gmid2"
   ],
   "paperFires": [
     "ogp5-inv",
@@ -1421,7 +1427,8 @@
     "recon-rej",
     "recon-dly",
     "recon-togp",
-    "brk15"
+    "brk15",
+    "gmid2"
   ],
   "cheapSize": {
     "minMult": 2.8,
