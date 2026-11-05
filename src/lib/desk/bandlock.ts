@@ -878,6 +878,10 @@ export function pinkAhead618(asset: string, L: Line[], tick: number, side: strin
 }
 // fix618 THE DISTANCE CHECK (Love Nov 1 2026 7:50 PM PT: "Add a distance check that refuses a short when an unbroken pink sits inside the session-band tolerance directly under the entry, and refuses a long when an unbroken pink sits inside the session-band tolerance directly above the entry. This check runs on both gold and BTC. It does not replace the percentage rule. It sits in front of it."): the channel is session band to session band around price.
 // fix623 (Love Nov 1 2026 9:26 PM PT: "A pink sitting in the middle of the channel is not a wall."): the check above is taken out by her words; only pinkAhead618 stays.
+// fix665 A REJECTION OFF A BAND ABOVE THE ONE THAT BROKE (Love Nov 4 2026 7:23 PM PT: "yes a rejection off a band above should be allowed after a break of the band below" + "any valid set up at an entry is to be taken if she hasn't executed a trade that window"): her broke-this-candle walls (fix441, fix457) hold only reads off the band that broke and the side it broke toward -
+// a rejection SHORT off a band ABOVE a band that broke UP (a rejection LONG off a band BELOW a band that broke DOWN) is not held by them. Every other wall still judges it. The read's label names its band.
+function labelBand665(asset: string, L: Line[]): { band: number; label: string } { try { const lab = String(G.__inBLC465 ? (G.__curLabel611 || "") : (G.__wireLabel619 || G.__curLabel611 || "")); const m = /(?: off | above | below | at )(.+?)(?: - rejected (?:up|down))?$/.exec(lab); if (!m) return { band: 0, label: lab }; const nm = m[1].trim(), px = (n: string) => Number((L || []).find((l: Line) => String(l.name) === n)?.price) || 0, bz = G.__bbsr?.[asset]; const band = px(nm) || (nm === "Green zone" ? px("5m S1") : nm === "Red zone" ? px("5m R1") : /^(Bollinger|BB) upper$/.test(nm) ? Number(bz?.bbU) || 0 : /^(Bollinger|BB) lower$/.test(nm) ? Number(bz?.bbL) || 0 : 0); return { band, label: lab }; } catch { return { band: 0, label: "" }; } } // fix665
+function rejAway665(asset: string, L: Line[], side: string, P: number): boolean { const r = labelBand665(asset, L); if (!(r.band > 0)) return false; return side === "down" ? r.band > P && /^(Rejected down off |Failed break above |Tap-reject at |\dm flip - rejected down off )/.test(r.label) : r.band < P && /^(Rejected up off |Failed break below |Tap-reject at |\dm flip - rejected up off )/.test(r.label); } // fix665
 export function brokeThisCandle441(asset: string, L: Line[], tick: number, side: string, o5?: number, hl?: { h: number; l: number } | null): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
   if ((typeof rejFlip611 === "function" && rejFlip611(asset, side, tick))) return ""; // fix611
@@ -886,6 +890,7 @@ export function brokeThisCandle441(asset: string, L: Line[], tick: number, side:
   const hi = Math.max(Number(x.h), tick), lo = Math.min(Number(x.l), tick);
   for (const b of L.filter((l) => Number(l.price) > 0 && (isSessBand(l) || String(l.name) === "5m PP"))) {
     const P = Number(b.price);
+    if (typeof rejAway665 === "function" && rejAway665(asset, L, side, P)) continue; // fix665: a rejection off a band beyond the one that broke is not held here
     if (side === "down" && op < P && hi >= P + d && tick > P - d) return `BROKE IT THIS CANDLE (fix441): ${b.name} (${P.toFixed(2)}) broke UP this candle (high ${hi.toFixed(2)}) - no short until price breaks back down $${d} under it (now ${tick.toFixed(2)})`;
     if (side === "up" && op > P && lo <= P - d && tick < P + d) return `BROKE IT THIS CANDLE (fix441): ${b.name} (${P.toFixed(2)}) broke DOWN this candle (low ${lo.toFixed(2)}) - no long until price breaks back up $${d} over it (now ${tick.toFixed(2)})`;
   }
@@ -906,6 +911,7 @@ export function brokeThisCandle457(asset: string, L: Line[], tick: number, side:
   const brokeDn = (P: number) => op > P && lo <= P - d, brokeUp = (P: number) => op < P && hi >= P + d;
   if (!(typeof rejFlip611 === "function" && rejFlip611(asset, side, tick))) for (const b of bands) { // fix611: her 33% below still counts
     const P = Number(b.price);
+    if (typeof rejAway665 === "function" && rejAway665(asset, L, side, P)) continue; // fix665: a rejection off a band beyond the one that broke is not held here
     if ((up && brokeDn(P) && tick >= P + d) || (!up && brokeUp(P) && tick <= P - d)) continue; // fix483 (Love Oct 29 2026 6:40 PM PT: "a break by HER DISTANCE I JUST FUCKING ANSERED EVERYTHJNG" (her list, c21 marked Right: no trade back against a band/pink broken this candle until price breaks back by her distance) + 6:37 PM: "that is not a block" + 6:37 PM: "bollinger is only $1.50 love" + "same band tolerances apply everywhere"): price broke back by her distance - the break failed, the trade back is free (c21)
     if (up && brokeDn(P)) return `BROKE DOWN THIS CANDLE (fix457): ${b.name} (${P.toFixed(2)}) broke DOWN this candle (low ${lo.toFixed(2)}) - only a short this candle, never a long (price ${tick.toFixed(2)})`;
     if (!up && brokeUp(P)) return `BROKE UP THIS CANDLE (fix457): ${b.name} (${P.toFixed(2)}) broke UP this candle (high ${hi.toFixed(2)}) - only a long this candle, never a short (price ${tick.toFixed(2)})`;

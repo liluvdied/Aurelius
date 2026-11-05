@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R354 - fix665: her broke-this-candle walls (fix441 BROKE IT THIS CANDLE and fix457 BROKE UP/DOWN THIS CANDLE) hold only reads off the band that broke - a rejection SHORT off a band ABOVE a band that broke up, or a rejection LONG off a band BELOW a band that broke down, is no longer held by them (the read's label names its band). Every other wall still judges it. Every book but delayed (the 5M keeps its own copy and is off). Her second sentence is recorded as a guiding rule only.
+- when: 2026-11-05T03:47:55+00:00
+- Love: "Love Nov 4 2026 7:23 PM PT: "yes a rejection off a band above should be allowed after a break of the band below" + "any valid set up at an entry is to be taken if she hasn't executed a trade that window""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "function rejAway665("}
+- proof: {"test": "tools/band-above-665.cjs"}
+
 ## R353 - fix664 HER ADD-ON BOXES: Desk settings gets two rows like Position size - Add-on 1 (her first add-on, at 2.8x) and Add-on 2 (the 3.8x add-on, which only comes after Add-on 1 has filled) - each a $1-$5 box and an on/off toggle. Saved to data/addon-settings.json (survives restarts; not part of her sealed settings, so a tap never trips the umpire or the seal, like her size slider). engine.ts applyAddon664 applies them every tick over live-switch addOn / addOn.at38; no file = today's settings. Her $5 add-on cap stays; triggers unchanged.
 - when: 2026-11-05T03:44:21+00:00
 - Love: "Love Nov 4 2026 7:17 PM PT: "can you pls put in a box for our add on in here? with a toggle on/off. a box for Add on 1 & a box for add on 2 with an on/off toggle for them both so i don't need to bug you with them""
