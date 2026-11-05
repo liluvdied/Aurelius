@@ -25,6 +25,7 @@ import { SitRep, explainExit, explainTake, whyTrade } from "@/components/desk/si
 import { SettingsDrawer } from "@/components/desk/settings-drawer";
 import { RsiBooks672 } from "@/components/desk/rsi-books"; // fix672
 import { RungStats680 } from "@/components/desk/stats-rungs"; // fix680
+import { EthBook682 } from "@/components/desk/eth-book"; // fix682
 import { autoDecision } from "@/lib/desk/auto";
 import { lateWindow } from "@/lib/desk/setup";
 import { askDeskGrok, armLiveNow, askHelp, closeNow, exitLiveOrder, getAltBoards, getAudit, getBookMode, getComboRows, getDecidedRows, getDeskSnapshot, getExitLog, getFillLog, getFuelRows, getHalfRows, getHeldOrders, getKalshiCash, getLeanRows, getLiveSize, getLiveSpots, getLiveSwitch, setLiveSwitch, getRunBooks, getSchedule, getArchived, setArchived, setRunBook, saveRunPreset, applyRunPreset, stepOut, getNightHist, getShiftSummary, getShiftRows, setAutoRoll, getLiveByBook,
@@ -4011,6 +4012,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
         );
       })()}
       <RsiBooks672 /> {/* fix672 RSI BOOKS - paper only */}
+      <EthBook682 /> {/* fix682 ETH rejections-only - paper only */}
       {/* FAMILIES + FIND (Oct 9). */}
       <div className="mt-3 rounded-2xl px-2 py-2" style={{ border: "1px solid rgba(255,255,255,0.18)" }}>
         {/* RECORDS (Love Nov 4 2026 10:35 AM PT: "draw the files OFF OF MY COMPUTER ... the app is the INTERFACE to view them, not the thing hosting them"): a plain link to the page her laptop builds and serves (7-OPEN-REGISTRAR, http://127.0.0.1:8090). The desk loads none of it. */}

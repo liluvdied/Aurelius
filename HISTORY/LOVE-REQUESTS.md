@@ -2,6 +2,31 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R372 - fix684: the band law's self-test (bandlock.ts bandSelfTest, every 10 min) checks HER CURRENT numbers. 8 of its fixed checks still expected rules she has since changed on purpose: the BTC pink break / pink wait / at-the-session-band wait / pink rejection at $5-$8 (now $2, fix651; $5 fix580) and gold 5m R1 as a wall (not a wall since fix618, both assets). Because the test failed, __bandLawBroken was true and the old PAPER books refused every order since Nov 3 10:53 PM PT (BREAK BOOK · SESSION ONLY, ogp5-boll/-cb/-r30/-fast/-inv/-bbsr/-sess, ogp15-both, tap3x ...). The 8 checks now test her $2 / fix618 rules (both directions); every other check unchanged. No trading function, wall, size or live book is touched; her live recon books never read this flag. The old paper books come back on paper.
+- when: 2026-11-05T08:57:03+00:00
+- Love: "Love Nov 5 2026 ~12:30 AM PT: "yes to both" - to turning BREAK BOOK · SESSION ONLY back on, paper only (the old paper books have refused every order since Nov 3 10:53 PM PT with "band law failed its self-test": the self-test still expected her old numbers - the $8/$6 BTC pink wait and $5 rejection (fix580, then Love Nov 4 2026 4:02 PM PT: "make it $2 on the break.") and gold 5m R1/S1 as walls (fix618 Love Nov 1 2026 6:10 PM PT: "This applies to both gold and BTC."))"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "// fix684: only $1.50 under -> a rejection"}
+- proof: {"test": "tools/selftest-catches-up-684.cjs"}
+
+## R371 - fix683: her two no-pink books - MAIN WITHOUT PINK (recon-rnp) and REJECTIONS ONLY · NO PINK (recon-rjnp, live in her DELAYED hours) - may take a pink REJECTION (Rejected off / Failed break - rejected / 1-5m rejection off the 5m PP) only when the pink and the session band under price both sit in the bottom 25% of the session channel with price there (a long), or both in the top 25% (a short). Every other pink read stays out (mid-channel pinks, pink breaks, the wrong side). All their other walls unchanged; main, rejection and every other book untouched.
+- when: 2026-11-05T08:56:48+00:00
+- Love: "Love Nov 4 2026 11:57 PM PT: "& yes i want her to take them on the no pink if they're in the same 25% bb [heart]" + 11:50 PM: "if pink is sitting in the same top/bottom 25% of the channel as a session band , the no pink book can take the pink rejections then" (replay Oct 19 -> now: those pink rejections 100 trades, 56%, +$1.83 a trade vs every other pink rejection 534, 54%, +$0.38)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const edge683: string ="}
+- proof: {"test": "tools/no-pink-edge-683.cjs"}
+
+## R370 - fix682 ETH · REJECTIONS ONLY · NO PINK - PAPER ONLY (never sends an order): her rejections-only rules re-drawn for ETH (her live pipeline carries only BTC and gold): Coinbase ETH-USD 1m feed; her session VWAP ±1/2/3σ (5 PM ET), 5m CM pivot (pink, red zone R1, green zone S1), Bollinger 20/2; a rejection off a session band / zone / Bollinger (15% of the channel near, not broken by her break, back off by her push with the live 2m her colour, or 20% of the channel off - her no-flip rejection); walls: thirds 33%, past red/green, pink-to-red/green 45%, her pink cushion, 1.5x floor, one per window; BTC $ distances scaled by price. Paper $20 on Kalshi KXETH15M at the live ask under her take-profit; new ETH card on the Books page. Live books, walls and settings untouched.
+- when: 2026-11-05T08:56:34+00:00
+- Love: "Love Nov 4 2026 11:38 PM PT: "yess, let us do so please ❤️‍🔥 (eth book)" - to Claude's 11:36 PM offer: "an ETH rejections-only PAPER book ... so it gets real numbers with all of her walls during the freeze week. It's its own command and paper only" (broker study: ETH rejection 64% won from the entry, 188 Kalshi-settled trades)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethbook.ts", "has": "export async function ethTick682("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.ethTick682()"}
+- proof: {"test": "tools/eth-book-682.cjs"}
+
 ## R369 - fix681: her size slider (liveBook.dollars) now also sizes the entries that were held at offHourMain.dollars ($1): main's off hours, the rejection book's live hours and the DELAYED-hour book (rejections-only no-pink, sent as main) - kalshi-live.server.ts offMainDollars + engine.ts offHourMain read the slider first. A per-hour size she sets (offHourMain.dollarsByHour) still wins; the add-on sizes (add-on boxes / offHourMain.addOn) are untouched; the delayed paper book unchanged. Her switch ceiling (maxDollars = the slider) still caps every order.
 - when: 2026-11-05T07:28:25+00:00
 - Love: "Love Nov 4 2026 11:23 PM PT: "OHH that's what that was , okaay yes since we replaced the delayed book with this one that's fine bb :)" - to: her size slider sizing every live entry fully (main regular + off hours, the rejection hours, the rejections-only DELAYED-hour book), every live book except the delayed paper book (Claude's 11:21 PM finding: offHourMain.dollars $1, her Nov 3 4:03 PM "entry $1 on every live book every hour", sat under the slider)"

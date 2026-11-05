@@ -2328,3 +2328,5 @@ export const setAddonSettings = createServerFn({ method: "POST" }).validator((in
 export const getRsiBooks672 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./rsibooks"); return m.rsiSummary672(); } catch { return { at: "", cells: [], recent: [] }; } });
 // fix680 STATS (Love Nov 4 2026 11:20 PM PT: "stats tables too bb sorry !!"): setup x rung + band travel for her real books, from data/rung-stats.json (tools/rung-stats-680.py, every 2 h). Display only.
 export const getRungStats680 = createServerFn({ method: "GET" }).handler(async () => { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "rung-stats.json"), "utf8")); } catch { return { at: "", trades: 0, setups: [], travel: [] }; } });
+// fix682 the ETH rejections-only paper book (Love Nov 4 2026 11:38 PM PT: "yess, let us do so please (eth book)"), summarised on the server.
+export const getEthBook682 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./ethbook"); return m.ethSummary682(); } catch { return null; } });

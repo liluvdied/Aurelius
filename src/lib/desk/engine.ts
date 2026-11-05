@@ -3762,6 +3762,8 @@ async function tick() {
     import("./hourly").then((m) => m.hourTick(snap.assets)).catch(() => {});
     // fix672 RSI PAPER BOOKS (Love Nov 4 2026 9:56 PM PT): RSI 70/80/90 reversals on 5m-4h, BTC + gold, 15M window + 1H market. PAPER ONLY (rsibooks.ts never sends an order).
     import("./rsibooks").then((m) => m.rsiTick672(snap.assets)).catch(() => {});
+    // fix682 ETH REJECTIONS ONLY · NO PINK (Love Nov 4 2026 11:38 PM PT: "yess, let us do so please (eth book)"). PAPER ONLY (ethbook.ts never sends an order).
+    import("./ethbook").then((m) => m.ethTick682()).catch(() => {});
     // TAP + RESCUE (Love): band-touch lotto tickets and rescue adds. Paper only (tap.ts).
     import("./tap").then((m) => m.tapTick(snap.assets)).catch(() => {});
     import("./squeeze").then((m) => m.squeezeTick(snap.assets)).catch(() => {});

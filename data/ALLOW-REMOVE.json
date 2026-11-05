@@ -7396,5 +7396,65 @@
     "what": "const d = Number(om.dollarsByHour?.[String(h)] ?? om.dollars), ad = Number(om.addOn?.dollarsByHour?.[String(h)] ?? om.addOn?.dollars), am = Number(om.addOn?.maxAsk); // fix289 (Oct 26 ~2:50 PM PT, Love: \"we can put it on $2 and $3 for the add on for 2pm pls hun 2pm is the worst\"): per-hour entry + add-on",
     "why": "fix681 (her words in this change's request)",
     "R": "R369"
+  },
+  {
+    "what": "if (rejLB && rejReach > 0) { const LN620 = rejLB.filter((l: any) => String(l.name) !== \"5m PP\"); let rd620: any = bonesDecide(id, LN620, spot, last1m, cur, prev, b, false, rejReach, false, true, true);",
+    "why": "fix683 (her words in this change's request)",
+    "R": "R371"
+  },
+  {
+    "what": "np620 = rc620 || (lookP && !pink620(lookP) ? lookP : null); if (pink620(np620)) np620 = null; }",
+    "why": "fix683 (her words in this change's request)",
+    "R": "R371"
+  },
+  {
+    "what": "if (rejLB && rejReach > 0) { const L643 = rejLB.filter((l: any) => /\\u03c3$|^session VWAP$|^(Green|Red) zone$|^Bollinger (upper|lower)$|^BB (upper|lower)$/.test(String(l.name))); if (L643.length) rj643 = bonesDecide(id, L643, spot, last1m, cur, prev, b, true, rejReach, false, true, true); } // fix643: rejections only (rejOnly), her lines only",
+    "why": "fix683 (her words in this change's request)",
+    "R": "R371"
+  },
+  {
+    "what": "if (rj643 && (/5m PP|pink/i.test(String(rj643.label)) || /^(Break|Close) /.test(String(rj643.label)))) rj643 = null; // fix643: no pink, no breaks",
+    "why": "fix683 (her words in this change's request)",
+    "R": "R371"
+  },
+  {
+    "what": "if (candleBreakAgainst(\"btc\", PP, 92, \"up\", 95, { h: 96, l: 85 })) bad++;    // only $5 under -> a rejection: long ok",
+    "why": "fix684 (her words in this change's request)",
+    "R": "R372"
+  },
+  {
+    "what": "if (!atSessionBand(\"btc\", W2, 81288)) bad++;   // $4 under it -> wait",
+    "why": "fix684 (her words in this change's request)",
+    "R": "R372"
+  },
+  {
+    "what": "if (pinkRejectAgainst(\"btc\", PK, 81597, \"down\", { h: 81598, l: 81593 })) bad++;          // only $4.63 up -> not a rejection yet",
+    "why": "fix684 (her words in this change's request)",
+    "R": "R372"
+  },
+  {
+    "what": "if (!atPink(\"btc\", PW, 81602.76)) bad++;   // $3.84 under the pink -> wait ($8 pink wait, Oct 18 3:31 PM)",
+    "why": "fix684 (her words in this change's request)",
+    "R": "R372"
+  },
+  {
+    "what": "if (!atPink(\"btc\", [{ name: \"5m PP\", price: 81517.24 }, { name: \"-0.5σ\", price: 81492.61, unit: 128 }], 81522.5)) bad++; // $5.26 over -> wait",
+    "why": "fix684 (her words in this change's request)",
+    "R": "R372"
+  },
+  {
+    "what": "if (!atPink(\"btc\", PW, 81601.1)) bad++; /* $5.50 under -> still waiting ($6 break, Oct 19) */    // $6.70 under -> still waiting",
+    "why": "fix684 (her words in this change's request)",
+    "R": "R372"
+  },
+  {
+    "what": "if (!awayVerdict(\"gold\", GR, 4187.02, \"down\", r1Up, { nowS, st: {} })) bad++;                 // not a session-band rejection: R1 still walls it",
+    "why": "fix684 (her words in this change's request)",
+    "R": "R372"
+  },
+  {
+    "what": "if (!awayVerdict(\"gold\", GR, 4187.02, \"down\", none, { nowS, st: {}, sessRej: true })) bad++;  // unbroken R1 still walls it",
+    "why": "fix684 (her words in this change's request)",
+    "R": "R372"
   }
 ]

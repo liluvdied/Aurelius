@@ -1,9 +1,9 @@
 {
- "at": "2026-11-05T07:27:59.221736+00:00",
+ "at": "2026-11-05T08:56:48.941297+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "484e272ae848a785"
+  "recon.ts": "f987b97a6180b060"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -730,6 +730,12 @@
    "by": "Love",
    "quote": "Love Nov 4 2026 11:18 PM PT: \"no i sent that before i saw those hun , just for the tracker for now bb\" - the log-only tracker: every idea in her read + what each wall says (Claude's 11:12 PM offer: \"I'd add a log-only change that records every idea in each read and what every wall says about it\") (R367, fix679)",
    "recon.ts": "484e272ae848a785"
+  },
+  {
+   "at": "2026-11-05T08:56:48.941297+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 11:57 PM PT: \"& yes i want her to take them on the no pink if they're in the same 25% bb [heart]\" + 11:50 PM: \"if pink is sitting in the same top/bottom 25% of the channel as a session band , the no pink book can take the pink rejections then\" (replay Oct 19 -> now: those pink rejections 100 trades, 56%, +\\$1.83 a trade vs every other pink rejection 534, 54%, +\\$0.38) (R371, fix683)",
+   "recon.ts": "f987b97a6180b060"
   }
  ],
  "R": "R266",

@@ -1305,7 +1305,8 @@ function bandSelfTest0(goldLaw: (...a: any[]) => any, n = 2000): number {
     if (!candleBreakAgainst("x", [{ name: "+1σ", price: 100 }, { name: "5m PP", price: 90 }], 95, "up", 105, { h: 106, l: 89 })) bad++; } // falling candle broke +1σ, tapped pink -> still no long
   { const PP: Line[] = [{ name: "5m PP", price: 90 }];
     if (!candleBreakAgainst("btc", PP, 92, "up", 95, { h: 96, l: 81 })) bad++;   // punched $9 under the pink, snapped back -> a break: no long
-    if (candleBreakAgainst("btc", PP, 92, "up", 95, { h: 96, l: 85 })) bad++;    // only $5 under -> a rejection: long ok
+    if (candleBreakAgainst("btc", PP, 92, "up", 95, { h: 96, l: 88.5 })) bad++;  // fix684: only $1.50 under -> a rejection: long ok (her $2 break, fix651)
+    if (!candleBreakAgainst("btc", PP, 92, "up", 95, { h: 96, l: 85 })) bad++;   // fix684: $5 under is a break now (fix651) -> no long
     if (!candleBreakAgainst("gold", PP, 90.5, "up", 91, { h: 91.2, l: 88.9 })) bad++; // gold $1.10 under -> break
     if (!candleBreakAgainst("btc", PP, 88, "down", 85, { h: 99, l: 84 })) bad++; } // mirror: punched $9 over, back under -> no short
   { const f0 = Math.floor(Date.now() / 300000) * 300, P: Line[] = [{ name: "5m PP", price: 90 }, { name: "session VWAP", price: 120, unit: 50 }];
@@ -1335,7 +1336,8 @@ function bandSelfTest0(goldLaw: (...a: any[]) => any, n = 2000): number {
     if (!crossToTarget("btc", U, 81660, "up", chartTarget(81580, 60, 30))) bad++; } // pink 81,665 between a long at 81,660 and the 81,670 target -> refused
   { const W2: Line[] = [{ name: "-2σ", price: 81292, unit: 128 }, { name: "5m PP", price: 81270 }];
     if (!atSessionBand("btc", W2, 81293)) bad++;   // the 10:31 AM long: $1 over -2 sigma -> wait
-    if (!atSessionBand("btc", W2, 81288)) bad++;   // $4 under it -> wait
+    if (!atSessionBand("btc", W2, 81290.5)) bad++; // fix684: $1.50 under it -> wait (her $2, fix651)
+    if (atSessionBand("btc", W2, 81288)) bad++;    // fix684: $4 under -> through her $2: free
     if (atSessionBand("btc", W2, 81301)) bad++;    // $9 through -> the break, free
     if (atSessionBand("btc", W2, 81283)) bad++;    // pulled $9 back -> the rejection, free (closest band now decides the side)
     if (atSessionBand("btc", [{ name: "5m PP", price: 81270 }, { name: "-2σ", price: 81320, unit: 128 }], 81272)) bad++; // pink closest, not a session band -> this rule stays out
@@ -1350,16 +1352,18 @@ function bandSelfTest0(goldLaw: (...a: any[]) => any, n = 2000): number {
   { const PK: Line[] = [{ name: "5m PP", price: 81592.37 }];
     if (!pinkRejectAgainst("btc", PK, 81612.34, "down", { h: 81612.34, l: 81594.4 })) bad++; // the 1:01 PM short: tapped the pink, $20 up -> refused
     if (pinkRejectAgainst("btc", PK, 81612.34, "up", { h: 81612.34, l: 81594.4 })) bad++;    // the long with the rejection -> this rule stays out
-    if (pinkRejectAgainst("btc", PK, 81597, "down", { h: 81598, l: 81593 })) bad++;          // only $4.63 up -> not a rejection yet
+    if (pinkRejectAgainst("btc", PK, 81593.9, "down", { h: 81594, l: 81592.5 })) bad++;      // fix684: only $1.53 up -> not a rejection yet (her $2, fix651)
+    if (!pinkRejectAgainst("btc", PK, 81597, "down", { h: 81598, l: 81593 })) bad++;         // fix684: $4.63 up is a rejection now -> no short against it
     if (pinkRejectAgainst("btc", PK, 81612, "down", { h: 81612, l: 81605 })) bad++;          // never came within $2 of the pink -> no tap
     if (pinkRejectAgainst("btc", PK, 81612, "down", { h: 81612, l: 81580 })) bad++;          // punched $12 under = a break, not a rejection
     if (!pinkRejectAgainst("btc", PK, 81570, "up", { h: 81591, l: 81570 })) bad++;           // mirror: tapped from below, $22 down -> no long
     if (!pinkRejectAgainst("gold", [{ name: "5m PP", price: 4165 }], 4166.3, "down", { h: 4166.3, l: 4165.1 })) bad++;
     if (!pinkRejectAgainst("btc", [{ name: "+0.5σ", price: 81622 }], 81605, "up", { h: 81621, l: 81605 })) bad++; } // session band: tapped +0.5 sigma from below, $17 down -> no long // gold tap $0.10, $1.30 up -> no short
   { const PW: Line[] = [{ name: "5m PP", price: 81606.6 }, { name: "+0.5σ", price: 81622.34, unit: 128 }, { name: "session VWAP", price: 81558.52, unit: 128 }];
-    if (!atPink("btc", PW, 81602.76)) bad++;   // $3.84 under the pink -> wait ($8 pink wait, Oct 18 3:31 PM)
-    if (!atPink("btc", [{ name: "5m PP", price: 81517.24 }, { name: "-0.5σ", price: 81492.61, unit: 128 }], 81522.5)) bad++; // $5.26 over -> wait
-    if (!atPink("btc", PW, 81601.1)) bad++; /* $5.50 under -> still waiting ($6 break, Oct 19) */    // $6.70 under -> still waiting
+    if (!atPink("btc", PW, 81604.76)) bad++;   // fix684: $1.84 under the pink -> wait (her $2 pink break, fix651; was $8 Oct 18, $6 Oct 19, $5 fix580)
+    if (atPink("btc", PW, 81602.76)) bad++;    // fix684: $3.84 under -> through her $2: free
+    if (!atPink("btc", [{ name: "5m PP", price: 81517.24 }, { name: "-0.5σ", price: 81492.61, unit: 128 }], 81518.5)) bad++; // fix684: $1.26 over -> wait
+    if (!atPink("btc", PW, 81605.1)) bad++;    // fix684: $1.50 under -> still waiting (her $2)
     if (atPink("btc", PW, 81598)) bad++;       // $8.60 under -> broke: free
     if (atPink("btc", PW, 81618)) bad++;       // closest wall is +0.5 sigma, not the pink -> this rule stays out
     if (!atPink("gold", [{ name: "5m PP", price: 4165 }], 4165.3)) bad++;  // gold $0.30 -> wait (50c pink break)
@@ -1441,8 +1445,8 @@ function bandSelfTest0(goldLaw: (...a: any[]) => any, n = 2000): number {
     // 5:01 PM gold: rejected down off +2σ with a 5m R1 price had climbed through $0.22 below
     const GR: Line[] = [{ name: "+2σ", price: 4187.3 }, { name: "+1σ", price: 4183 }, { name: "5m R1", price: 4186.8 }], r1Up = new Map<string, "up" | "down">([["5m R1", "up"]]);
     if (awayVerdict("gold", GR, 4187.02, "down", r1Up, { nowS, st: {}, sessRej: true })) bad++;   // session-band rejection: the broken R1 doesn't block
-    if (!awayVerdict("gold", GR, 4187.02, "down", r1Up, { nowS, st: {} })) bad++;                 // not a session-band rejection: R1 still walls it
-    if (!awayVerdict("gold", GR, 4187.02, "down", none, { nowS, st: {}, sessRej: true })) bad++;  // unbroken R1 still walls it
+    if (awayVerdict("gold", GR, 4187.02, "down", r1Up, { nowS, st: {} })) bad++;                  // fix684: gold's 5m R1/S1 are not walls (fix618, both assets)
+    if (awayVerdict("gold", GR, 4187.02, "down", none, { nowS, st: {}, sessRej: true })) bad++;   // fix684: an unbroken gold R1 is not a wall either (fix618)
     // 7:30 PM BTC: +1σ $56 above, VWAP $425 below -> top of the channel: no long, short ok; the bottom Bollinger $58 below doesn't move the middle
     const B730: Line[] = [{ name: "+1σ", price: 82354.44 }, { name: "session VWAP", price: 81873.19 }, { name: "5m PP", price: 82346.02 }], BBL: Line[] = [{ name: "5m BBSR upper", price: 82497.75 }, { name: "5m BBSR lower", price: 82240.55 }];
     if (!awayVerdict("btc", B730, 82298, "up", none, { nowS, st: {} }, BBL) || !awayVerdict("btc", B730, 82298, "up", none, { nowS, st: {} })) bad++;
