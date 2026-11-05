@@ -7706,5 +7706,10 @@
     "what": "readSync(fd, buf, 0, len, c.size);",
     "why": "fix719 (her words in this change's request)",
     "R": "R403"
+  },
+  {
+    "what": "if (d2 > 0 && tick < d2) return { why: `NO SHORTS IN THE BOTTOM RUNG: btc short at ${tick.toFixed(2)} is under the session -2σ (${d2.toFixed(2)}) - longs only down here.`, below: null, above: null, pos: null, lock: null }; }",
+    "why": "fix728 (her words in this change's request)",
+    "R": "R404"
   }
 ]

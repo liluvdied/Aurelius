@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R404 - fix728 THE WATERFALL ON BTC FOR MAIN + REJECTION: her bottom-rung wall (fix296, no BTC short under the session -2σ) lets a short through for main (recon-tog) and rejection (recon-rej) when the running 1m candle is red (price under its open) and no 1m candle closed over pink in the last 15 minutes (her rule: a real reversal blows up through pink). Pink history comes from the copier's own 1-second price + pink sampler; with under 15 minutes of it (right after a restart) the wall stays. Every other wall still judges the short; every other book, gold and the delayed book keep the old rung rule. Works under AKIMBO (main + rejection trade paper) and after CHANGE-63 (they trade live again). Replay Oct 19 - Nov 5, real asks, $20: 37 shorts, 65%, +$323. Replaces the resting CHANGE-59 ($50 green-candle guard). Run FIRST (before CHANGE-63 and the later CHANGE-71).
+- when: 2026-11-05T16:39:52+00:00
+- Love: "Love Nov 5 2026 5:34 AM PT: "we can turn the waterfall on btc but if it has a meaningful move up past pink or has a green rejection move up strongly don't take the short" + 5:43 AM PT: "ya go ahead and put it on love ... we will let her take the shorts down here, just not if there's a sharp spike up to the red band. back down into no mans land it will blow right up thru pink if it's actually reversing" + 7:48 AM PT: "did we put the shorts allowed rule under the bottom rung on for btc on the main book and rej? will run her on there til we have the new books live""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function fall728("}
+- proof: {"test": "tools/waterfall-btc-728.cjs"}
+
 ## R403 - fix719 FULL HISTORY ON CARDS (display only): nothing was deleted - the lane books' older trades are all in data/grok-og-archive.jsonl, but that file passed 536 MB (the most one JavaScript string can hold), so the desk's first read of it after every start threw and every lane card (BREAK BOOK · SESSION + PINK, OG x PIVOT 5M, PAPER 24/7...) fell back to its recent rows only (e.g. 21 trades instead of 1,412). The reader now takes the file in 64 MB pieces and keeps its newest 480 MB (about the size it held fine before - since about Oct 15 today), so each card's ALL shows its record again. No book, wall, size, order or exit changes; the night books (DIAMOND, BRICK...) already read their full history from the exit ledger and are unchanged.
 - when: 2026-11-05T15:13:13+00:00
 - Love: "Love Nov 5 2026 6:36 AM PT: "is there any way we can recover the records for these hun ??? :((( i didn't know it would be deleting everything i never would have done it ... no way we can fix that? it's hard to get a read on things with 15 trades""

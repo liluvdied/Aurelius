@@ -575,6 +575,25 @@ export function sessionBandSend593(asset: string, L: Line[], tick: number, side:
   }
   return "";
 }
+// fix728 THE WATERFALL ON BTC FOR MAIN + REJECTION (Love Nov 5 2026 5:34 AM PT: "we can turn the waterfall on btc but if it has a meaningful move up past pink ... don't take the short"
+// + 5:43 AM: "it will blow right up thru pink if it's actually reversing" + 7:48 AM: "did we put the shorts allowed rule under the bottom rung on for btc on the main book and rej?"): under the session -2σ
+// her bottom-rung wall (fix296) lets a BTC short through for main (recon-tog) and rejection (recon-rej) only, when the running 1m candle is red (price under this minute's open) and no 1m candle
+// CLOSED over pink in the last 15 minutes (a real reversal goes up through pink). Pink history = the copier's own 1 s price + pink sampler (30 min); under 15 min of samples = the wall stays.
+// Every other wall still judges the short; every other book, gold and the delayed book keep the old rung rule. Replay Oct 19 - Nov 5 (real asks, $20): 37 shorts, 65%, +$323.
+export function fall728(asset: string, tick: number): boolean {
+  try {
+    if (asset !== "btc" || !["recon-tog", "recon-rej"].includes(String(G.__curBook465 || "")) || !(tick > 0)) return false;
+    const bars = (G.__pivBars?.btc?.bars ?? []) as any[], nowMs = Date.now(), m0 = Math.floor(nowMs / 60000) * 60;
+    const cur = bars.find((x) => Number(x.t) === m0); if (!cur || !(tick < Number(cur.o))) return false; // red 1m: price under this minute's open
+    const s = ((G.__slide423b?.s || []) as { t: number; p: number; pp: number }[]).filter((x) => x && x.t >= nowMs - 900000 && x.t < m0 * 1000);
+    if (!s.length || s[0].t > nowMs - 900000 + 90000) return false; // under 15 min of pink history: the wall stays
+    const lastOf: Record<number, { p: number; pp: number }> = {};
+    for (const x of s) lastOf[Math.floor(x.t / 60000)] = { p: x.p, pp: x.pp }; // each minute's close vs pink at that close
+    if (Object.values(lastOf).some((x) => x.pp > 0 && x.p > x.pp)) return false; // a 1m close over pink in the last 15 min: reversing, no short
+    return true;
+  } catch { return false; }
+}
+// fix728 end
 // fix711 NO FADING A BOLLINGER BREAK PAST HER ZONE (Love Nov 5 2026 5:12 AM PT, her pick: "Bollinger fade block only - No long off the BB lower past green after a break (mirror for
 // shorts past red). Cheap entries stay allowed."): once price has broken the 5m Bollinger lower (now, or in the last 5 minutes) and sits at or past her green boundary, no long; once it has
 // broken the Bollinger upper and sits at or past red, no short. Every book but delayed. (Replay Oct 19 - Nov 5: fading that break lost every week - BTC 26%, -$1,042; gold 31%, -$561;
@@ -2987,7 +3006,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   if (asset === "btc" && side === "up" && !DLY465.has(String(G.__curBook465 || ""))) { const u2 = Number((L || []).find((l: Line) => String(l.name) === "+2σ")?.price) || 0;
     if (u2 > 0 && tick > u2) return { why: `NO LONGS IN THE TOP RUNG (fix467): btc long at ${tick.toFixed(2)} is over the session +2σ (${u2.toFixed(2)}) - shorts only up here.`, below: null, above: null, pos: null, lock: null }; }
   if (asset === "btc" && side === "down") { const d2 = Number((L || []).find((l: Line) => String(l.name) === "-2σ")?.price) || 0;
-    if (d2 > 0 && tick < d2) return { why: `NO SHORTS IN THE BOTTOM RUNG: btc short at ${tick.toFixed(2)} is under the session -2σ (${d2.toFixed(2)}) - longs only down here.`, below: null, above: null, pos: null, lock: null }; }
+    if (d2 > 0 && tick < d2 && !fall728(asset, tick)) return { why: `NO SHORTS IN THE BOTTOM RUNG: btc short at ${tick.toFixed(2)} is under the session -2σ (${d2.toFixed(2)}) - longs only down here.`, below: null, above: null, pos: null, lock: null }; }
   // NO CHASE PAST 2σ - DROPPED (Oct 21 ~11:12 AM PT, Love picked "Drop the 2σ rule": on this morning's trend BTC rode 2-2.1σ for hours and every call
   // became a short). Longs past 2σ (shorts past -2σ) open again under her thirds and HER CANDLE.
   // THE WHOLE CHANNEL'S TOP AND BOTTOM LINES (Oct 21 ~11:15 AM PT, Love: "the TOP line, of the whole channel, and the BOTTOM line. of the whole channel. she can't
