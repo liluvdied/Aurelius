@@ -7051,5 +7051,10 @@
     "what": "t(/SLIDE UNDER PINK/.test(slideHold403(smD, { on: false }, 1e12 + 3 * 300000 + 160000) || \"\"), \"price falling rejection to rejection under a flat pink was NOT held - that is her down slope (fix503c)\");",
     "why": "fix658 (her words in this change's request): the line is replaced by her new version",
     "R": "R347"
+  },
+  {
+    "what": "if (heldView.empty < 2 && heldView.rows.length) return heldView.rows.map((r) => ({ ...r, stale: true }));",
+    "why": "fix659 (her words in this change's request): the line is replaced by her new version",
+    "R": "R348"
   }
 ]

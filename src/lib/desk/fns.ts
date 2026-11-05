@@ -524,13 +524,15 @@ function parkHeld(rows: HeldOrder[]): HeldOrder[] {
 const heldView: { rows: HeldOrder[]; at: number; empty: number } = { rows: [], at: 0, empty: 0 };
 const quoteMem = new Map<string, { value: number; target: number | null; at?: string }>();
 
+// fix659 THE DESK CLOSES A FINISHED WINDOW (Love Nov 4 2026 6:13 PM PT: "her entrey on the 6:00 window was perfect. the desk was showing the last windows short still, so i thought she shorted there. pls fix that too, so it closes the last windows position on the desk when the windoow is over"): DISPLAY ONLY - once a 15m window is over (the time in its ticker, Kalshi's Eastern close), its position leaves LIVE ORDERS while Kalshi settles it. No order, no sell, no book or exit change.
+export function windowOver659(ticker: string): boolean { try { const m = /-(\d{2})([A-Z]{3})(\d{2})(\d{2})(\d{2})-/.exec(String(ticker)); if (!m) return false; const mo = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"].indexOf(m[2]); if (mo < 0) return false; const guess = Date.UTC(2000 + Number(m[1]), mo, Number(m[3]), Number(m[4]), Number(m[5])); const p = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).formatToParts(new Date(guess)); const v = (k: string) => Number(p.find((x) => x.type === k)?.value); const off = Date.UTC(v("year"), v("month") - 1, v("day"), v("hour"), v("minute")) - guess; return Date.now() >= guess - off; } catch { return false; } } // fix659
 export const getHeldOrders = createServerFn({ method: "GET" }).handler(async (): Promise<HeldOrder[]> => {
   ensureEngine();
   const live = await import("./kalshi-live.server");
-  const held = await live.heldFifteens();
+  const held = (await live.heldFifteens()).filter((r: any) => !windowOver659(String(r?.ticker || ""))); // fix659: a finished window leaves LIVE ORDERS (display only)
   if (!held.length) {
     heldView.empty += 1;
-    if (heldView.empty < 2 && heldView.rows.length) return heldView.rows.map((r) => ({ ...r, stale: true }));
+    if (heldView.empty < 2 && heldView.rows.length) return heldView.rows.filter((r) => !windowOver659(String(r.ticker))).map((r) => ({ ...r, stale: true })); // fix659
   } else {
     heldView.empty = 0;
   }

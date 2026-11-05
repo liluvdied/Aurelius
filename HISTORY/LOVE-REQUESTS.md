@@ -2,6 +2,22 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R349 - fix660 NIGHTLY RESTART: tools/nightly-restart-660.sh runs in the background (nohup; click 9-START-NIGHTLY-RESTART on the Desktop after a Mac restart). Every day at 2:05 PM PT (PLACEHOLDER - gold's daily break; Love to confirm) it saves her, waits until no order is in flight (no order in the last 90 s, nothing mid-try; at most 10 min), stops the desk and starts exactly one (her RESTART - ONE DESK steps), waits for live prices and logs whether the umpire is SAFE and entries are on (data/nightly-restart.jsonl). It never touches LIVE, rules, books, sizes or orders.
+- when: 2026-11-05T02:50:52+00:00
+- Love: "Love Nov 4 2026 6:20 PM PT: (a nightly restart of the desk) "yes""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/nightly-restart-660.sh", "has": "RESTART_AT="}
+- proof: {"test": "tools/nightly-restart-660-test.cjs"}
+
+## R348 - fix659 DISPLAY ONLY: getHeldOrders (fns.ts) leaves out a 15m position once its window is over (the close time in its ticker, Eastern) - LIVE ORDERS stops showing the last window's trade while Kalshi settles it. No order, no sell, no change to her books, positions or exits.
+- when: 2026-11-05T02:50:31+00:00
+- Love: "Love Nov 4 2026 6:13 PM PT: "her entrey on the 6:00 window was perfect. the desk was showing the last windows short still, so i thought she shorted there. pls fix that too, so it closes the last windows position on the desk when the windoow is over""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/fns.ts", "has": "export function windowOver659("}
+- proof: {"test": "tools/window-close-659.cjs"}
+
 ## R347 - fix658 THE PINK SLIDE, HER WAY: the slide / climb is ON with 2 pink rejections (fix657) while price steps her way (fix503c) AND the pink itself slopes that way (pink at the last rejection higher - climb - / lower - slide - than at the first). The 44% pink-share gate (fix584/646) no longer applies to the slide. While a climb is ON: no shorts from any band or zone, every book but delayed (climbHold464, unchanged release: price breaks down through pink by 10% of the channel, fix560), and longs ONLY off a pink rejection / flip (any other long read waits - engine.ts copier, logged in slide-pink.jsonl). Mirror on a down slide. Add-ons are left exactly as they are (Love 6:20 PM PT: "no , add ons are okay as is").
 - when: 2026-11-05T02:44:32+00:00
 - Love: "Love Nov 4 2026 6:09 PM PT: "the pink slide rule dictates it is longs only while pink is on a slide up, she doesnt short at red, she waits til it gets to pink and rejects, enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down. she waits for it to come to pink and reject and shorts as she normally would. if it doesnt function like that already thats what i would like""
