@@ -20,7 +20,7 @@ const readTol = (F, asset, lo, hi) => { const mk = board(lo, hi), tick = (lo + h
 const near = (x, y, m) => Math.abs(x - y) <= (m || 0.02);
 // faithful replica of her LIVE pink law (the overlay's else-branch), day-robust
 const weekend = /Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date()));
-const live = (a, W) => a === "btc" ? (W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60) : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* fix641 Love Nov 4 1:24 PM */ : 0.15 * W) : W < 5 ? (W < 2 ? W / 2 : Math.min(W / 2, 1.5)) : W > 25 ? Math.min(0.15 * W, 3) : 0.15 * W; // fix615 her pink cushion; Love Nov 4 10:41 AM: gold $3 max past a $25 channel
+const live = (a, W) => a === "btc" ? (W < 100 ? W / 2 : W < 180 ? W / 3 /* fix667 */ : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* fix641 Love Nov 4 1:24 PM */ : 0.15 * W) : W < 5 ? (W < 3 ? W / 2 : W / 3 /* fix667 */) : W > 25 ? Math.min(0.15 * W, 3) : 0.15 * W; // fix615 her pink cushion; Love Nov 4 10:41 AM: gold $3 max past a $25 channel
 const WIDTHS = [["gold", 3997.5, 4002.5, 5], ["gold", 4040, 4080, 40], ["gold", 3900, 4100, 200], ["btc", 79975, 80025, 50], ["btc", 80000, 80300, 300], ["btc", 79650, 80350, 700], ["btc", 79330, 80670, 1340] /* fix641: over $1,000 = 10% */];
 // FLAG TRUE => flat $25 both assets, every width
 for (const [asset, lo, hi, W] of WIDTHS) { const got = readTol(Ftrue, asset, lo, hi); t(near(got, 25), `flag TRUE: ${asset} W=$${W} should be a flat $25, got $${got.toFixed(3)}`); }

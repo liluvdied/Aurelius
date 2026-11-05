@@ -1,9 +1,9 @@
 {
- "at": "2026-11-05T03:20:00.820376+00:00",
+ "at": "2026-11-05T05:05:39.628722+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "f75403100c2b6b11"
+  "recon.ts": "4545ef96ed1a87e1"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -694,6 +694,18 @@
    "by": "Love",
    "quote": "Love Nov 4 2026 7:10 PM PT (to \"pass main's label so the push-off-band entry works on main too\"): \"yes\" (R351, fix662)",
    "recon.ts": "f75403100c2b6b11"
+  },
+  {
+   "at": "2026-11-05T05:05:25.173781+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 8:23 PM PT: \"let's revise / if pink and the session band are both sitting in the top/bottom 25 % she is clear to enter at the beginning of the channel , / we can keep the 50% under a \\$100 band width / past \\$100 we can make it 1/3rd of the channel width of clearance until our sliding scale comes back into place after \\$180 is reached\" + ~8:29 PM PT (gold): \"for gold however, let's make it a third from \\$3 -5 instead of from \\$2-5 so she has an even \\$1\" (R356, fix667)",
+   "recon.ts": "e6763f8b065a39ae"
+  },
+  {
+   "at": "2026-11-05T05:05:39.628722+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 8:23 PM PT: \"if price comes up to a band (within 15% of it) , and then price rejects near the band by 20% of the channel width or more , she can enter in , even if the candle hasn't flipped / so if price rejects on a green 5M candle , and the body of the candle pushes down by 20% of the channel width - she can enter short even if the candle hasn't flipped and it is still green okay / inverse for shorts\" (R357, fix668)",
+   "recon.ts": "4545ef96ed1a87e1"
   }
  ],
  "R": "R266",

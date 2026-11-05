@@ -2,6 +2,26 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R357 - fix668: a new entry - this 5m candle came within 15% of the channel of a band (session band, VWAP, pink, red/green zone, Bollinger; opened on the near side of it) and price is now 20% of the channel or more back off the candle's extreme at that band (from its high for a short, its low for a long), still on the near side - she may enter even though no candle has flipped (the 5m can still be green for the short / red for the long). Channel = the session bands either side of that band. It waives only the candle colour / flip checks (door HER FLIP, HER CANDLE, price is rising/falling; HER FLIP AT THE SEND; the read's RED FALLING / GREEN RISING 5M and thirds splices) and casts the read; every other wall (thirds, 45%, past red/green, pink cushion, break walls, 1.5x floor, umpire) still judges. Every book but delayed (the 5M is off). Her 'inverse for shorts' read as the mirror for longs.
+- when: 2026-11-05T05:05:39+00:00
+- Love: "Love Nov 4 2026 8:23 PM PT: "if price comes up to a band (within 15% of it) , and then price rejects near the band by 20% of the channel width or more , she can enter in , even if the candle hasn't flipped / so if price rejects on a green 5M candle , and the body of the candle pushes down by 20% of the channel width - she can enter short even if the candle hasn't flipped and it is still green okay / inverse for shorts""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function rejBand668("}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "label: `Rejected ${sd668} off ${r668.name}`"}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "B.rej668(sym, side, Number(q.c)"}
+- proof: {"test": "tools/rej-no-flip-668.cjs"}
+
+## R356 - fix667: her pink cushion (pinkSlide580 at the door + pinkSlide580R in the read) - BTC half the channel under $100 (kept), a third of the channel from $100 to $180 (was half capped at $60), her sliding scale from $180 unchanged; gold (her ~8:29 PM words): half under $3, a third from $3 to $5, then 15% ($3 max past $25) unchanged. And when the pink and the session band she trades off both sit in the outer 25% of the session-band channel at that end (bottom for a long, top for a short) with price there too, the pink cushion does not hold her - she enters at the start of the channel (door PINK CUSHION + read pinkRead464). Every other wall unchanged. Every book but delayed (the 5M is off).
+- when: 2026-11-05T05:05:25+00:00
+- Love: "Love Nov 4 2026 8:23 PM PT: "let's revise / if pink and the session band are both sitting in the top/bottom 25 % she is clear to enter at the beginning of the channel , / we can keep the 50% under a $100 band width / past $100 we can make it 1/3rd of the channel width of clearance until our sliding scale comes back into place after $180 is reached" + ~8:29 PM PT (gold): "for gold however, let's make it a third from $3 -5 instead of from $2-5 so she has an even $1""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "W < 180 ? W / 3"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function pinkEdge667("}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const q667 = 0.25 * (a.price - b.price)"}
+- proof: {"test": "tools/pink-third-667.cjs"}
+
 ## R355 - fix666: her broke-this-candle walls (fix441, fix457/fix483 release) free the other side once price is back PAST THE BAND the other way by the same distance it broke (the furthest it went past the band this candle; her break distance at least) - e.g. band 100 broke to 75 -> a long is clear above 125, a band that broke up by $10 frees shorts $10 under it. The push and her 2m colour still apply as usual. Every book but delayed (the 5M is off).
 - when: 2026-11-05T03:51:44+00:00
 - Love: "Love Nov 4 2026 7:26 PM PT: "it's not supposed to block that trade for the rest of the window if a band breaks, it only needs to break the other way by at least same the distance it broke down initially. so if price broke a band down for $10 for example, a long can be taken if it flips back up and pushes up by more than $10" + 7:29 PM: "past the band the other way" + "if price broke the band by $25, flips up, and then pushes up past $25 (the same distance that it broke down by) she is clear to long""
