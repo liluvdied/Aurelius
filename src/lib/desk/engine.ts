@@ -46,7 +46,7 @@ function doneDocCached() {
 // and before its "until" (midnight PT tonight), its "book" is her only live book (main / rejection / no-pink / delayed stay on paper), judged by its own gates only - her walls at the
 // door and the last line stand down for that book alone, like the delayed book - and it gets no add-ons. Umpire, ENFORCER, freshness, LIVE switch and her take-profit still apply.
 // The file expires on its own; CHANGE-63 (NORMAL LINEUP BACK) turns it off in one run.
-function liveToday717(): string { try { const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === "string" && /^[a-z0-9-]{2,24}(,[a-z0-9-]{2,24}){0,3}$/.test(j.book) ? j.book : "" /* fix726: one book, or up to 4 comma-joined (akimbo) */; } catch { return ""; } }
+function liveToday717(): string { try { const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && !(Array.isArray(j?.skipHoursPT) && j.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */ && typeof j.book === "string" && /^[a-z0-9-]{2,24}(,[a-z0-9-]{2,24}){0,3}$/.test(j.book) ? j.book : "" /* fix726: one book, or up to 4 comma-joined (akimbo) */; } catch { return ""; } }
 function bookOwnerOf(ticker) {
   try {
     const done = doneDocCached();

@@ -7861,5 +7861,55 @@
     "what": "t(P.includes('if (lane === \"brk-sesspk\" || lane === \"brk15\") { const q741') && (P.match(/zoneWall741\\(b, id/g) || []).length === 1, \"the zone wall is not on (only) the akimbo books' booking\");",
     "why": "fix742 (her words in this change's request)",
     "R": "R421"
+  },
+  {
+    "what": "function liveToday717(): string { try { const j = JSON.parse(readFileSync(join(process.cwd(), \"data\", \"live-today.json\"), \"utf8\")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === \"string\" && /^[a-z0-9-]{2,24}(,[a-z0-9-]{2,24}){0,3}$/.test(j.book) ? j.book : \"\" /* fix726: one book, or up to 4 comma-joined (akimbo) */; } catch { return \"\"; } }",
+    "why": "fix755 (her words in this change's request)",
+    "R": "R425"
+  },
+  {
+    "what": "export function liveToday717(): string { try { const j = JSON.parse(readFileSync(D(\"live-today.json\"), \"utf8\")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === \"string\" && /^[a-z0-9-]{2,24}(,[a-z0-9-]{2,24}){0,3}$/.test(j.book) ? j.book : \"\" /* fix726: one book, or up to 4 comma-joined (akimbo) */; } catch { return \"\"; } }",
+    "why": "fix755 (her words in this change's request)",
+    "R": "R425"
+  },
+  {
+    "what": "let lt723o = \"\"; try { const j = JSON.parse(readFileSync(join(process.cwd(), \"data\", \"live-today.json\"), \"utf8\")); if (j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === \"string\") lt723o = j.book; } catch {} // fix723: the one live book today passes the order lock too",
+    "why": "fix755 (her words in this change's request)",
+    "R": "R425"
+  },
+  {
+    "what": "try { const j730 = JSON.parse(readFileSync(join(process.cwd(), \"data\", \"live-today.json\"), \"utf8\")); const bc730 = String(opts?.bookCopy || \"\"); if (bc730 && j730?.on === true && Date.now() < Date.parse(String(j730.until)) && String(j730.book || \"\").split(\",\").includes(bc730)) ((globalThis as any).__akimboWire730 ||= {})[String(ticker).toUpperCase() + \"|\" + side] = { at: Date.now(), book: bc730 }; } catch {} // fix730: mark the akimbo book's own order for the wall at the wire",
+    "why": "fix755 (her words in this change's request)",
+    "R": "R425"
+  },
+  {
+    "what": "let lt723 = \"\"; try { const j723 = JSON.parse(readFileSync(join(process.cwd(), \"data\", \"live-today.json\"), \"utf8\")); if (j723?.on === true && Date.now() < Date.parse(String(j723.until)) && typeof j723.book === \"string\") lt723 = j723.book; } catch {}",
+    "why": "fix755 (her words in this change's request)",
+    "R": "R425"
+  },
+  {
+    "what": "function lt734(): string[] { try { const j = JSON.parse(readFileSync(D(\"live-today.json\"), \"utf8\")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === \"string\" ? j.book.split(\",\").filter(Boolean) : []; } catch { return []; } }",
+    "why": "fix755 (her words in this change's request)",
+    "R": "R425"
+  },
+  {
+    "what": "if (Date.now() - c.at > 5000) { c.at = Date.now(); try { const j = JSON.parse(readFileSync(D(\"live-today.json\"), \"utf8\")); c.books = j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === \"string\" ? j.book.split(\",\") : []; } catch { c.books = []; } }",
+    "why": "fix755 (her words in this change's request)",
+    "R": "R425"
+  },
+  {
+    "what": "const on = j?.on === true && Date.now() < Date.parse(String(j.until));",
+    "why": "fix755 (her words in this change's request)",
+    "R": "R425"
+  },
+  {
+    "what": "\"by\": \"Love Nov 5 2026 7:25-7:34 AM PT: \\\"just have her take the first one to make it there bb\\\" + card pick \\\"Pivot gets the sticks, always\\\" (fix726) + Love Nov 5 12:07 PM PT card \\\"Third AKIMBO seat\\\" (fix742: gold 2m middle Bollinger)\",",
+    "why": "fix755 (her words in this change's request)",
+    "R": "R425"
+  },
+  {
+    "what": "\"note\": \"fix726: both books live through Sat Nov 7 PT; one ticket per window, first call; when they disagree +15M PIVOTS gets the move (sesspk ticket sold at bid, pivot side taken); -$100 daily stop counts both; CHANGE-63 turns it off\"",
+    "why": "fix755 (her words in this change's request)",
+    "R": "R425"
   }
 ]

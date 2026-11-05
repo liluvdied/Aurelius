@@ -53,7 +53,7 @@ const ogMark = (p: string, txt: string) => { try { const st = statSync(p); (glob
 function bell735(rows: any[]): void {
   const G735 = globalThis as any; if (typeof G735.__akimboBell735 !== "function") return;
   const c = (G735.__lt735 ||= { at: 0, books: [] as string[] });
-  if (Date.now() - c.at > 5000) { c.at = Date.now(); try { const j = JSON.parse(readFileSync(D("live-today.json"), "utf8")); c.books = j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === "string" ? j.book.split(",") : []; } catch { c.books = []; } }
+  if (Date.now() - c.at > 5000) { c.at = Date.now(); try { const j = JSON.parse(readFileSync(D("live-today.json"), "utf8")); c.books = j?.on === true && Date.now() < Date.parse(String(j.until)) && !(Array.isArray(j?.skipHoursPT) && j.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */ && typeof j.book === "string" ? j.book.split(",") : []; } catch { c.books = []; } }
   if (!c.books.length) return;
   const seen: Record<string, number> = (G735.__bell735Seen ||= {}); let ring = false;
   for (const r of rows.slice(0, 60)) { if (r && c.books.includes(String(r.lane)) && !seen[r.id] && Date.now() - Date.parse(String(r.at)) < 60000) { seen[r.id] = Date.now(); ring = true; } }

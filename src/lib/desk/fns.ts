@@ -2370,7 +2370,7 @@ export const getCups713 = createServerFn({ method: "GET" }).handler(async () => 
 export const getLiveToday722 = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8"));
-    const on = j?.on === true && Date.now() < Date.parse(String(j.until));
+    const on = j?.on === true && Date.now() < Date.parse(String(j.until)) && !(Array.isArray(j?.skipHoursPT) && j.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */;
     if (!on) return { on: false };
     const nowPT = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })), mid = new Date(nowPT); mid.setHours(0, 0, 0, 0);
     const since = Date.now() - (nowPT.getTime() - mid.getTime());

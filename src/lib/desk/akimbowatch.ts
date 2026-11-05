@@ -9,7 +9,7 @@ import { execFile } from "node:child_process";
 const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
 const OK734 = new Set(["filled", "partial"]);
-function lt734(): string[] { try { const j = JSON.parse(readFileSync(D("live-today.json"), "utf8")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === "string" ? j.book.split(",").filter(Boolean) : []; } catch { return []; } }
+function lt734(): string[] { try { const j = JSON.parse(readFileSync(D("live-today.json"), "utf8")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && !(Array.isArray(j?.skipHoursPT) && j.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */ && typeof j.book === "string" ? j.book.split(",").filter(Boolean) : []; } catch { return []; } }
 export function silentWhy734(row: any, done: Record<string, any>, books: string[], nowMs: number): { kind: "" | "alert" | "quiet"; why: string; status: string } {
   const key = Object.keys(done).find((k) => k.startsWith(`${row.ticker}:${row.book}`));
   const d: any = key ? done[key] : null, st = String(d?.status || "");

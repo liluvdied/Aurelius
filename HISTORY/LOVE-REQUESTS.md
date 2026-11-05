@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R425 - fix755 AKIMBO STEPS ASIDE 2-3 PM PT (every day while AKIMBO is on): from 2:00 to 3:00 PM PT the AKIMBO books stand aside everywhere (copier, door, last line, send gates, bell, silent alarm, LIVE TODAY card) and your normal lineup + hour pills trade that hour, exactly as when AKIMBO is off (your pills at 2 PM: BTC = main, gold = rejection model; delayed both). Every rail stays. Other hours unchanged. It's one setting (data/live-today.json skipHoursPT: [14]) - more hours can be added later.
+- when: 2026-11-05T22:33:27+00:00
+- Love: "Love Nov 5 2026 2:02 PM PT: "and during 2 -3 pm we run main" + "she trades the red /green zone flips and bollingers and pinks" + 2:05 PM PT: "main can go on for rn bb it's ok" (AKIMBO steps aside 2-3 PM PT; her lineup and pills trade that hour)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix755: AKIMBO steps aside"}
+- proof: {"test": "tools/akimbo-aside-755.cjs"}
+
 ## R424 - fix746 MAIN · ZONE WALL + MOVING-OFF TWIN - PAPER ONLY: a paper twin of the main book. Every call main books, the twin takes too - except not into her green / red zone ($2 gold / $100 BTC), and a REJECTION or a BREAK / push only once price is already $50 BTC / $1 gold past the line it was called on (Love 12:48 PM: main exactly, just waits those distances on pushes). If price isn't there yet the twin waits and books later in the same window when it gets there, at that moment's price (under 66c, 2+ minutes left) - the real priced result, not a filter (the filter replay was 643 trades, 54%, +$696 vs main 51%, -$1,001). Main itself is unchanged; the twin never sends an order. Run after CHANGE-88.
 - when: 2026-11-05T21:54:48+00:00
 - Love: "Love Nov 5 2026 12:42 PM PT: "how much did it effect our main books positively ? and waiting for a push that distance didn't make our winrate go up for the other books bb ?" + 12:43 PM: "pls do test those yes i want our win rate at 70% :)" (a paper twin of the main book with the zone wall and rejections taken once moving off the line)"

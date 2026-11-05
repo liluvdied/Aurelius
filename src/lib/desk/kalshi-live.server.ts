@@ -313,7 +313,7 @@ async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding
   if (!reduceOnly) {
     try {
       const lb = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook;
-      let lt723o = ""; try { const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); if (j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === "string") lt723o = j.book; } catch {} // fix723: the one live book today passes the order lock too
+      let lt723o = ""; try { const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); if (j?.on === true && Date.now() < Date.parse(String(j.until)) && !(Array.isArray(j?.skipHoursPT) && j.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */ && typeof j.book === "string") lt723o = j.book; } catch {} // fix723: the one live book today passes the order lock too
       const books = lt723o ? [lt723o] : lb ? (Array.isArray(lb.books) ? lb.books : lb.book ? [lb.book] : []) : [];
       if (lt723o.includes(",")) books.splice(0, books.length, ...lt723o.split(",")); // fix726 AKIMBO
       if (books.length && !books.includes(line?.bookCopy)) {
@@ -1227,7 +1227,7 @@ async function sendPaperBook(side, ticker, yesAsk, noAsk, opts) {
   return { status: "filled", orderId: placed.orderId, filled: placed.filled, yesPrice: placed.yesPrice, paid };
 }
 async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, opts) {
-  try { const j730 = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); const bc730 = String(opts?.bookCopy || ""); if (bc730 && j730?.on === true && Date.now() < Date.parse(String(j730.until)) && String(j730.book || "").split(",").includes(bc730)) ((globalThis as any).__akimboWire730 ||= {})[String(ticker).toUpperCase() + "|" + side] = { at: Date.now(), book: bc730 }; } catch {} // fix730: mark the akimbo book's own order for the wall at the wire
+  try { const j730 = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); const bc730 = String(opts?.bookCopy || ""); if (bc730 && j730?.on === true && Date.now() < Date.parse(String(j730.until)) && !(Array.isArray(j730?.skipHoursPT) && j730.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */ && String(j730.book || "").split(",").includes(bc730)) ((globalThis as any).__akimboWire730 ||= {})[String(ticker).toUpperCase() + "|" + side] = { at: Date.now(), book: bc730 }; } catch {} // fix730: mark the akimbo book's own order for the wall at the wire
   if (opts?.paperBook) {
     try {
       const lb = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).liveBook;
@@ -1260,7 +1260,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   const bookCopy = typeof opts?.bookCopy === "string" ? opts.bookCopy : "";
   // fix723 (Love Nov 5 2026 7:02 AM PT: "that's 2 she missed, did she turn on?"): while ONE BOOK LIVE TODAY is on (data/live-today.json), its book is the live book here too -
   // fix717 set the copier and the walls but this send step still read her normal lineup and refused it as "not a live book" (6:46 AM gold long, 7:00 AM gold short).
-  let lt723 = ""; try { const j723 = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); if (j723?.on === true && Date.now() < Date.parse(String(j723.until)) && typeof j723.book === "string") lt723 = j723.book; } catch {}
+  let lt723 = ""; try { const j723 = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); if (j723?.on === true && Date.now() < Date.parse(String(j723.until)) && !(Array.isArray(j723?.skipHoursPT) && j723.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */ && typeof j723.book === "string") lt723 = j723.book; } catch {}
   const liveBooks = lt723 ? [lt723] : liveBook ? (Array.isArray(liveBook.books) ? liveBook.books : liveBook.book ? [liveBook.book] : []) : [];
   if (lt723.includes(",")) liveBooks.splice(0, liveBooks.length, ...lt723.split(",")); // fix726 AKIMBO
   if (liveBooks.length && !bookCopy) return { status: "blocked", reason: `${liveBooks.map((b) => String(b).toUpperCase()).join(" + ")} only right now (Love's call)` };
