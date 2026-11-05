@@ -2,6 +2,16 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R353 - fix664 HER ADD-ON BOXES: Desk settings gets two rows like Position size - Add-on 1 (her first add-on, at 2.8x) and Add-on 2 (the 3.8x add-on, which only comes after Add-on 1 has filled) - each a $1-$5 box and an on/off toggle. Saved to data/addon-settings.json (survives restarts; not part of her sealed settings, so a tap never trips the umpire or the seal, like her size slider). engine.ts applyAddon664 applies them every tick over live-switch addOn / addOn.at38; no file = today's settings. Her $5 add-on cap stays; triggers unchanged.
+- when: 2026-11-05T03:44:21+00:00
+- Love: "Love Nov 4 2026 7:17 PM PT: "can you pls put in a box for our add on in here? with a toggle on/off. a box for Add on 1 & a box for add on 2 with an on/off toggle for them both so i don't need to bug you with them""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "export function applyAddon664("}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "export const setAddonSettings"}
+- proof: {"code": "src/components/desk/settings-drawer.tsx", "has": "<AddOnRows664 />"}
+- proof: {"test": "tools/addon-boxes-664.cjs"}
+
 ## R352 - fix663: in a pink slide (fix658) her trend side takes any read off the pink - a rejection, a failed break, or a break back across the pink in the slide's direction (Break / Close above 5m PP on a climb, below on a slide); reads off every other band still wait. Every other wall unchanged.
 - when: 2026-11-05T03:20:30+00:00
 - Love: "Love Nov 4 2026 7:10 PM PT (to "during a pink slide, any read off the pink counts - rejection, failed break or break back across the pink in the slide's direction; other bands still held"): "yes""

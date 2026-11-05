@@ -3,6 +3,8 @@ import { Drawer } from "vaul";
 import { Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { DeskSettings } from "@/lib/desk/types";
+import { useEffect, useState } from "react"; // fix664
+import { getAddonSettings, setAddonSettings } from "@/lib/desk/fns"; // fix664
 const PAPER_STOPS = [5, 10, 15, 20, 25, 30, 40, 50, 75, 100, 150, 200, 250, 300, 400, 500, 750, 1000];
 
 function Row({
@@ -209,9 +211,44 @@ export function SettingsDrawer({
                 />
               </label>
             </Row>
+            <AddOnRows664 />
           </div>
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>
+  );
+}
+// fix664 HER ADD-ON BOXES (Love Nov 4 2026 7:17 PM PT: "a box for Add on 1 & a box for add on 2 with an on/off toggle for them both so i don't need to bug you with them").
+// Add-on 1 = her first add-on (2.8x); Add-on 2 = the 3.8x add-on (it only comes after Add-on 1 has filled). $1-$5 each (her $5 add-on cap). Saved on the desk, read live by the engine.
+function AddOnRows664() {
+  const [s, setS] = useState<{ addOn1: { on: boolean; dollars: number }; addOn2: { on: boolean; dollars: number } } | null>(null);
+  useEffect(() => { void getAddonSettings().then((v) => setS(v)).catch(() => {}); }, []);
+  if (!s) return null;
+  const save = (n: typeof s) => { setS(n); void setAddonSettings({ data: n }).catch(() => {}); };
+  const rows: [keyof typeof s, string, string][] = [["addOn1", "Add-on 1", "First add-on (at 2.8x). $1-$5."], ["addOn2", "Add-on 2", "The 3.8x add-on, after Add-on 1 has filled. $1-$5."]];
+  return (
+    <>
+      {rows.map(([k, label, hint]) => (
+        <Row key={k} label={label} hint={hint}>
+          <span className="flex items-center gap-2 font-mono text-sm tabular-nums">
+            $
+            <input
+              type="number"
+              inputMode="numeric"
+              min={1}
+              max={5}
+              step={1}
+              key={`${k}-${s[k].dollars}`}
+              defaultValue={Math.round(s[k].dollars)}
+              onBlur={(e) => { const n = Math.max(1, Math.min(5, Math.round(Number(e.currentTarget.value) || 0))); if (n >= 1 && n !== s[k].dollars) save({ ...s, [k]: { ...s[k], dollars: n } }); }}
+              onKeyDown={(e) => { if (e.key === "Enter") (e.currentTarget as HTMLInputElement).blur(); }}
+              className="w-12 rounded-[4px] border border-white/30 bg-black px-1 py-0.5 text-right"
+              aria-label={`${label} dollars`}
+            />
+            <Toggle on={s[k].on} onChange={(v) => save({ ...s, [k]: { ...s[k], on: v } })} />
+          </span>
+        </Row>
+      ))}
+    </>
   );
 }
