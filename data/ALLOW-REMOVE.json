@@ -6676,5 +6676,380 @@
     "what": "const brk = asset === \"btc\" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, pct = asset === \"btc\" ? 0.2 : 0.15;",
     "why": "fix651 (her Nov 4 4:02 PM words: make it $2 on the break)",
     "R": "R338"
+  },
+  {
+    "what": "if (side === \"up\" && o - tick >= dist / 2 && tick - lo < dist) return `price is falling: this 5m candle is $${(o - tick).toFixed(2)} under its open and only $${(tick - lo).toFixed(2)} off its low - no long while it's falling`;",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "if (side === \"down\" && tick - o >= dist / 2 && hi - tick < dist) return `price is rising: this 5m candle is $${(tick - o).toFixed(2)} over its open and only $${(hi - tick).toFixed(2)} off its high - no short while it's rising`;",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "import { carryWalls612, carryTol615, carryExtra617, turnFlip530 } from \"./bandlock\"; // fix612 + fix615 + fix617 + fix619",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "if (cur.o > p && cur.l <= p + nr && cur.l > p - brk && spot >= cur.l + tap && spot > p && (l.name !== \"5m PP\" || (spot >= cur.o + (asset === \"btc\" ? 10 : tap) || pfU) /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Rejected up off ${l.name}`, d, rank: 1 });",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "if (cur.o < p && cur.h >= p - nr && cur.h < p + brk && spot <= cur.h - tap && spot < p && (l.name !== \"5m PP\" || (spot <= cur.o - (asset === \"btc\" ? 10 : tap) || pfD) /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Rejected down off ${l.name}`, d, rank: 1 });",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "if (cur.o > p && cur.l <= p - brk && spot >= cur.l + tap && spot > p && (l.name !== \"5m PP\" || (spot >= cur.o + (asset === \"btc\" ? 10 : tap) || pfU) /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Failed break below ${l.name} - rejected up`, d, rank: 1 });",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "if (cur.o < p && cur.h >= p + brk && spot <= cur.h - tap && spot < p && (l.name !== \"5m PP\" || (spot <= cur.o - (asset === \"btc\" ? 10 : tap) || pfD) /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Failed break above ${l.name} - rejected down`, d, rank: 1 });",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "if (prev.l <= p + nr && prev.l > p - brk && cur.l > p - brk && cur.l > prev.l - tap && spot >= prev.l + tap && spot > p && (l.name !== \"5m PP\" || (spot >= cur.o + (asset === \"btc\" ? 10 : tap) || pfU) /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Rejected up off ${l.name}`, d, rank: 1 });",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "if (prev.h >= p - nr && prev.h < p + brk && cur.h < p + brk && cur.h < prev.h + tap && spot <= prev.h - tap && spot < p && (l.name !== \"5m PP\" || (spot <= cur.o - (asset === \"btc\" ? 10 : tap) || pfD) /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Rejected down off ${l.name}`, d, rank: 1 });",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "if (p > spot && (!pk || spot <= cur.o - (asset === \"btc\" ? 10 : tap)) && (() => { try { return turnFlip530(asset, \"down\", spot); } catch { return false; } })()) cands.push({ side: \"down\", label: `Rejected down off ${nb645.name}`, d, rank: 1 }); // fix645",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "if (p < spot && (!pk || spot >= cur.o + (asset === \"btc\" ? 10 : tap)) && (() => { try { return turnFlip530(asset, \"up\", spot); } catch { return false; } })()) cands.push({ side: \"up\", label: `Rejected up off ${nb645.name}`, d, rank: 1 }); } } // fix645",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "try { const G647 = globalThis as any, slot647 = Math.floor(Date.now() / 300000), seen647 = (G647.__skip647 ||= {}); for (const c of seenL) { const r647: string[] = []; if (c.side === \"up\") { if (f >= 1 - k) r647.push(\"THIRDS: long in her top share of the channel\"); if (fix33 && f >= 0.67) r647.push(\"BTC 33%: long in the top 33%\"); if (falling && !m1(c)) r647.push(\"RED FALLING 5M: no long\"); if (spot > topS) r647.push(\"PAST THE WHOLE CHANNEL: no long\"); } else { if (f <= k) r647.push(\"THIRDS: short in her bottom share of the channel\"); if (fix33 && f <= 0.33) r647.push(\"BTC 33%: short in the bottom 33%\"); if (rising && !m1(c) && !fl446(c)) r647.push(\"GREEN RISING 5M: no short\"); if (spot < botS) r647.push(\"PAST THE WHOLE CHANNEL: no short\"); } for (const r of r647) { const key647 = `${asset}|${rejOnly ? \"rej\" : \"main\"}|${c.side}|${r}|${slot647}`; if (seen647[key647]) continue; seen647[key647] = 1; appendFileSync(D(\"skip-reasons.jsonl\"), JSON.stringify({ at: new Date().toISOString(), asset, read: rejOnly ? \"rejections\" : \"main\", side: c.side, setup: c.label, rule: r, spot, chanPct: Math.round(f * 1000) / 10, o5: cur.o, h5: cur.h, l5: cur.l }) + \"\\n\"); } } for (const k647 of Object.keys(seen647)) if (Number(k647.split(\"|\").pop()) < slot647 - 2) delete seen647[k647]; } catch {} // fix647",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "return seenL.filter((c) => !((c.side === \"up\" && (f >= 1 - k || (fix33 && f >= 0.67) || (falling && !m1(c)) /* Love Nov 3 2026 7:45 PM + Nov 4 10:20 AM PT: \"A red falling 5m candle refuses the long. No 2-5m flip overrides it.\" */ || spot > topS)) || (c.side === \"down\" && (f <= k || (fix33 && f <= 0.33) || (rising && !m1(c) && !fl446(c)) || spot < botS))));",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "else { const F = new Function(js(\"function F(asset, spot, seenL, f, k, fix33, falling, rising, topS, botS, bandFlip, turnFlip530) { const m1 = (c) => false;\\n\" + R.slice(i, j) + \"\\n}\") + \"; return F;\")();",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "\"function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(a,s,sp){return !!(globalThis.__flip642&&globalThis.__flip642[s]);}\",",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "const js = ts.transpileModule(\"function F(asset, spot, seenL, f, k, fix33, falling, rising, topS, botS, bandFlip, turnFlip530) { const m1 = (c) => false;\\n\" + R.slice(a, b) + \"\\n}\", { compilerOptions: { target: ts.ScriptTarget.ES2020 } }).outputText;",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "const run = (label, side, falling, rising, flip, bandFlip = true) => F(\"gold\", 4041, [{ side, label }], 0.4, 0.33, false, falling, rising, Infinity, -Infinity, bandFlip, () => flip).length === 1;",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "\"function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(a,s,sp){return !!(globalThis.__flip642&&globalThis.__flip642[s]);}\",",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "\"function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(){return false;}\",",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "\"function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(a,s,sp){return !!(globalThis.__flip642&&globalThis.__flip642[s]);}\",",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "\"function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function appendFileSync(f,x){(globalThis.__lines647||=[]).push(String(x));} function D(f){return f;} function turnFlip530(a,s,sp){return !!(globalThis.__flip642&&globalThis.__flip642[s]);}\",",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "T(\"the long is still refused (the read decides as before)\", !(r&&r.side===\"up\"), r&&r.label);",
+    "why": "fix653 (her words in this change's request): the line is replaced by her new version",
+    "R": "R340"
+  },
+  {
+    "what": "if (side === \"up\" && !(rejFlip611(asset, side, tick) && twoMinHer653(asset, side, tick)) /* fix653 */ && o - tick >= dist / 2 && tick - lo < dist) return `price is falling: this 5m candle is $${(o - tick).toFixed(2)} under its open and only $${(tick - lo).toFixed(2)} off its low - no long while it's falling`;",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "if (side === \"down\" && !(rejFlip611(asset, side, tick) && twoMinHer653(asset, side, tick)) /* fix653 */ && tick - o >= dist / 2 && hi - tick < dist) return `price is rising: this 5m candle is $${(tick - o).toFixed(2)} over its open and only $${(hi - tick).toFixed(2)} off its high - no short while it's rising`;",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "if (flipRule) { const pb641 = pinkBreak641(asset, L, tick, side); if (!why && pb641 === \"back\") why = `PINK BREAK GONE (fix641): price ${tick.toFixed(2)} is back across the pink - not a break ${side === \"up\" ? \"above\" : \"below\"} it any more - no ${side === \"up\" ? \"long\" : \"short\"}.`; if (!why && pb641 !== \"go\" && !turnFlip530(asset, side, tick)) why = `HER FLIP: no 2/3/4/5m candle has TURNED ${side === \"up\" ? \"red to green\" : \"green to red\"} - her flip at the rejection is the entry (fix530).`; cdl = \"\"; } // fix530 (her 4:56 PM): the colour TURN is the flip, no minimum; the $5/10c line below is retired by her word",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "if (cdl && cdl !== side && rejFlip611(asset, side, tick) && twoMinHer653(asset, side, tick)) cdl = \"\"; // fix653: a band rejection with her 2m pushing off the band does not wait for the 5m",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "import { carryWalls612, carryTol615, carryExtra617, turnFlip530, pushOff653, twoMinHer653 } from \"./bandlock\"; // fix612 + fix615 + fix617 + fix619",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "try { const G647 = globalThis as any, slot647 = Math.floor(Date.now() / 300000), seen647 = (G647.__skip647 ||= {}); for (const c of seenL) { const r647: string[] = []; if (c.side === \"up\") { if (f >= 1 - k) r647.push(\"THIRDS: long in her top share of the channel\"); if (fix33 && f >= 0.67) r647.push(\"BTC 33%: long in the top 33%\"); if (falling && !m1(c) && !(fl446(c) && twoMinHer653(asset, \"up\", spot))) r647.push(\"RED FALLING 5M: no long\"); /* fix653 */ if (spot > topS) r647.push(\"PAST THE WHOLE CHANNEL: no long\"); } else { if (f <= k) r647.push(\"THIRDS: short in her bottom share of the channel\"); if (fix33 && f <= 0.33) r647.push(\"BTC 33%: short in the bottom 33%\"); if (rising && !m1(c) && !fl446(c)) r647.push(\"GREEN RISING 5M: no short\"); if (spot < botS) r647.push(\"PAST THE WHOLE CHANNEL: no short\"); } for (const r of r647) { const key647 = `${asset}|${rejOnly ? \"rej\" : \"main\"}|${c.side}|${r}|${slot647}`; if (seen647[key647]) continue; seen647[key647] = 1; appendFileSync(D(\"skip-reasons.jsonl\"), JSON.stringify({ at: new Date().toISOString(), asset, read: rejOnly ? \"rejections\" : \"main\", side: c.side, setup: c.label, rule: r, spot, chanPct: Math.round(f * 1000) / 10, o5: cur.o, h5: cur.h, l5: cur.l }) + \"\\n\"); } } for (const k647 of Object.keys(seen647)) if (Number(k647.split(\"|\").pop()) < slot647 - 2) delete seen647[k647]; } catch {} // fix647",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "return seenL.filter((c) => !((c.side === \"up\" && (f >= 1 - k || (fix33 && f >= 0.67) || (falling && !m1(c) && !(fl446(c) && twoMinHer653(asset, \"up\", spot))) /* fix653 (Love Nov 4 2026 5:25 PM PT: \"a 2m green pushing off the band is good, no waiting for the 5m\"): a band rejection with her 2m does not wait for the 5m */ /* was: Love Nov 3 2026 7:45 PM + Nov 4 10:20 AM PT: \"A red falling 5m candle refuses the long. No 2-5m flip overrides it.\" */ || spot > topS)) || (c.side === \"down\" && (f <= k || (fix33 && f <= 0.33) || (rising && !m1(c) && !fl446(c)) || spot < botS))));",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "const l597 = B.labelHold597(book, sym, (globalThis as any).__sessCarried?.[sym] === true, String(sameLine?.label || \"\")); if (l597) return l597; /* fix597 */ const pb641w = B.pinkBreak641(sym, ((globalThis as any).__lawBands?.[sym]?.L || []) as any[], Number(q.c), side, String(sameLine?.label || \"\")); if (pb641w === \"back\") return \"PINK BREAK GONE AT THE SEND (fix641): price \" + Number(q.c).toFixed(2) + \" is back across the pink - not a break any more - no order.\"; /* fix641 */ if (pb641w !== \"go\" && !B.turnFlip530(sym, side, Number(q.c))) return \"HER FLIP AT THE SEND (fix592): no 2-5m candle has flipped or been born \" + (side === \"up\" ? \"green\" : \"red\") + \" and pushed \" + (sym === \"gold\" ? \"10c\" : \"$5\") + \" past its open - no order.\"; // fix592 (Love Nov 1 2026 9:03 AM PT: \"add the last-line check so the order does not leave unless one of those two paths passes on the live tick\")",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "const parts = [grab(B, \"export function twoMinHer653(\"), grab(B, \"export function pushOff653(\"), grab(B, \"export function turnFlip530(\")];",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "const F = new Function(ts.transpileModule(\"const G: any = globalThis; let __tr: any[] = []; function trailNow(a) { return __tr; }\\n\" + parts.join(\"\\n\") + \"\\n; return { twoMinHer653, pushOff653, turnFlip530, setTr: (x) => { __tr = x; } };\", { compilerOptions: { target: 99 } }).outputText)();",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "t(R.includes(\"(falling && !m1(c) && !(fl446(c) && twoMinHer653(asset, \\\"up\\\", spot)))\"), \"RED FALLING 5M still holds a band rejection that has her 2m\");",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "t(B.includes(\"rejFlip611(asset, side, tick) && twoMinHer653(asset, side, tick)) cdl = \\\"\\\"; // fix653\"), \"HER CANDLE (5m) still holds a band rejection that has her 2m\");",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "const js = ts.transpileModule(\"function F(asset, spot, seenL, f, k, fix33, falling, rising, topS, botS, bandFlip, turnFlip530, twoMinHer653) { const m1 = (c) => false;\\n\" + R.slice(a, b) + \"\\n}\", { compilerOptions: { target: ts.ScriptTarget.ES2020 } }).outputText;",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "else { const F = new Function(js(\"function F(asset, spot, seenL, f, k, fix33, falling, rising, topS, botS, bandFlip, turnFlip530, twoMinHer653 = (a, s, p) => false /* fix653 */) { const m1 = (c) => false;\\n\" + R.slice(i, j) + \"\\n}\") + \"; return F;\")();",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "\"function twoMinHer653(a,s,sp){return !!(globalThis.__two653&&globalThis.__two653[s]);} function pushOff653(a,s,sp,p,x){return (s==='up'?sp>=p+x:sp<=p-x)&&twoMinHer653(a,s,sp);} /* fix653: her 2m colour + push from the band */ function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(a,s,sp){return !!(globalThis.__flip642&&globalThis.__flip642[s]);}\",",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "\"function twoMinHer653(a,s,sp){return !!(globalThis.__two653&&globalThis.__two653[s]);} function pushOff653(a,s,sp,p,x){return (s==='up'?sp>=p+x:sp<=p-x)&&twoMinHer653(a,s,sp);} /* fix653: her 2m colour + push from the band */ function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(){return false;}\",",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "\"function twoMinHer653(a,s,sp){return !!(globalThis.__two653&&globalThis.__two653[s]);} function pushOff653(a,s,sp,p,x){return (s==='up'?sp>=p+x:sp<=p-x)&&twoMinHer653(a,s,sp);} /* fix653: her 2m colour + push from the band */ function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(a,s,sp){return !!(globalThis.__flip642&&globalThis.__flip642[s]);}\",",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "\"function twoMinHer653(a,s,sp){return !!(globalThis.__two653&&globalThis.__two653[s]);} function pushOff653(a,s,sp,p,x){return (s==='up'?sp>=p+x:sp<=p-x)&&twoMinHer653(a,s,sp);} /* fix653: her 2m colour + push from the band */ function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function appendFileSync(f,x){(globalThis.__lines647||=[]).push(String(x));} function D(f){return f;} function turnFlip530(a,s,sp){return !!(globalThis.__flip642&&globalThis.__flip642[s]);}\",",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "\"function twoMinHer653(a,s,sp){return !!(globalThis.__two653&&globalThis.__two653[s]);} function pushOff653(a,s,sp,p,x){return (s==='up'?sp>=p+x:sp<=p-x)&&twoMinHer653(a,s,sp);} /* fix653: her 2m colour + push from the band */ function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(a,s,sp){return !!(globalThis.__flip642&&globalThis.__flip642[s]);}\",",
+    "why": "fix655 (her words in this change's request): the line is replaced by her new version",
+    "R": "R344"
+  },
+  {
+    "what": "return band > 0 && pushOff653(asset, side, tick, band, asset === \"btc\" ? 10 : (PINK_TAP[asset] ?? 0.3)); } catch { return false; } } // fix655",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "export function pushOff653(asset: string, side: string, tick: number, band: number, push: number): boolean { return band > 0 && tick > 0 && (side === \"up\" ? tick >= band + push : tick <= band - push) && twoMinHer653(asset, side, tick); } // fix653",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "if (cur.o > p && cur.l <= p + nr && cur.l > p - brk && spot >= cur.l + tap && spot > p && (l.name !== \"5m PP\" || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 10 : tap) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Rejected up off ${l.name}`, d, rank: 1 });",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "if (cur.o < p && cur.h >= p - nr && cur.h < p + brk && spot <= cur.h - tap && spot < p && (l.name !== \"5m PP\" || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 10 : tap) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Rejected down off ${l.name}`, d, rank: 1 });",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "if (cur.o > p && cur.l <= p - brk && spot >= cur.l + tap && spot > p && (l.name !== \"5m PP\" || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 10 : tap) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Failed break below ${l.name} - rejected up`, d, rank: 1 });",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "if (cur.o < p && cur.h >= p + brk && spot <= cur.h - tap && spot < p && (l.name !== \"5m PP\" || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 10 : tap) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Failed break above ${l.name} - rejected down`, d, rank: 1 });",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "if (prev.l <= p + nr && prev.l > p - brk && cur.l > p - brk && cur.l > prev.l - tap && spot >= prev.l + tap && spot > p && (l.name !== \"5m PP\" || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 10 : tap) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Rejected up off ${l.name}`, d, rank: 1 });",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "if (prev.h >= p - nr && prev.h < p + brk && cur.h < p + brk && cur.h < prev.h + tap && spot <= prev.h - tap && spot < p && (l.name !== \"5m PP\" || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 10 : tap) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Rejected down off ${l.name}`, d, rank: 1 });",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "if (p > spot && (!pk || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 10 : tap)) /* fix653 */ && (() => { try { return turnFlip530(asset, \"down\", spot); } catch { return false; } })()) cands.push({ side: \"down\", label: `Rejected down off ${nb645.name}`, d, rank: 1 }); // fix645",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "if (p < spot && (!pk || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 10 : tap)) /* fix653 */ && (() => { try { return turnFlip530(asset, \"up\", spot); } catch { return false; } })()) cands.push({ side: \"up\", label: `Rejected up off ${nb645.name}`, d, rank: 1 }); } } // fix645",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "set(4100, 4095); t(F.pushOff653(\"gold\", \"up\", 4095.4, 4095.05, 0.3), \"gold 2m green 35c off the band did not count\");",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "t(!F.pushOff653(\"gold\", \"up\", 4095.2, 4095.05, 0.3), \"gold 15c off the band counted as her tap\");",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "t((R.match(/pushOff653\\(asset, \"up\", spot, p, asset === \"btc\" \\? 10 : tap\\)/g) || []).length === 4, \"a pink long push in recon.ts is not measured from the band (4 sites)\");",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "t((R.match(/pushOff653\\(asset, \"down\", spot, p, asset === \"btc\" \\? 10 : tap\\)/g) || []).length === 4, \"a pink short push in recon.ts is not measured from the band (4 sites)\");",
+    "why": "fix656 (her words in this change's request): the line is replaced by her new version",
+    "R": "R345"
+  },
+  {
+    "what": "const nr = String(l.name) === \"5m PP\" ? (reach > 0 && asset === \"btc\" ? Math.max(tap, 75) : reach > 0 && asset === \"gold\" ? Math.max(tap, 0.5) : tap) : (reach > 0 && asset === \"btc\" ? Math.max(tap, 10) : reach > 0 && asset === \"gold\" ? Math.max(tap, 0.5) : tap);",
+    "why": "fix657 (her words in this change's request): the line is replaced by her new version",
+    "R": "R346"
+  },
+  {
+    "what": "if (run494 >= 3) { S.on = true; return `${nm} CLIMB OVER PINK: ${run494} candles hit the pink and rejected on an up slope (last at ${rejPp494.toFixed(2)}) with ${asset} ${last.p.toFixed(2)} over it - no short until price breaks down through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: \"Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.\", mirrored for shorts per her 1:24 PM \"both sides\")",
+    "why": "fix657 (her words in this change's request): the line is replaced by her new version",
+    "R": "R346"
+  },
+  {
+    "what": "if (run494 >= 3) { S.on = true; return `GOLD SLIDE UNDER PINK: ${run494} candles hit the pink and rejected on a down slope (last at ${rejPp494.toFixed(2)}) with gold ${last.p.toFixed(2)} under it - no long until price breaks up through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: \"Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.\")",
+    "why": "fix657 (her words in this change's request): the line is replaced by her new version",
+    "R": "R346"
+  },
+  {
+    "what": "if (run494 >= 3) { S.on = true; return `BTC SLIDE UNDER PINK: ${run494} candles hit the pink and rejected on a down slope (last at ${rejPp494.toFixed(2)}) with btc ${last.p.toFixed(2)} under it - no long until price breaks up through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: \"Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.\")",
+    "why": "fix657 (her words in this change's request): the line is replaced by her new version",
+    "R": "R346"
+  },
+  {
+    "what": "// only two rejections = free",
+    "why": "fix657 (her words in this change's request): the line is replaced by her new version",
+    "R": "R346"
+  },
+  {
+    "what": "t(!slideHold403(sm2, { on: false }, 1e12 + 2 * 300000 + 160000), \"2 rejections held the long - her rule is three or more\");",
+    "why": "fix657 (her words in this change's request): the line is replaced by her new version",
+    "R": "R346"
+  },
+  {
+    "what": "if (H(sm2, { on: false }, 1e12 + 2 * 300000 + 160000)) { ok = false; console.log(\"SLIDE TEST BTC: FAIL - 2 rejections held the long\"); }",
+    "why": "fix657 (her words in this change's request): the line is replaced by her new version",
+    "R": "R346"
+  },
+  {
+    "what": "t(!H.climbHold464(mk494([[true, 4022.4, 4019.0], [true, 4023.1, 4019.8], [false, 4023.8, 4020.5]]), { on: false }, 1e12 + 2 * 300000 + 160000, \"gold\"), \"2 rejections held the short - her rule is three or more\");",
+    "why": "fix657 (her words in this change's request): the line is replaced by her new version",
+    "R": "R346"
+  },
+  {
+    "what": "T(\"fix645 same spot, no red candle: no short\", !(()=>{ const r=run(LN,100000,{o:100010,h:100012,l:99995},{}); return r&&r.side===\"down\"&&/off \\+1σ/.test(r.label); })());",
+    "why": "fix657 (her words in this change's request): the line is replaced by her new version",
+    "R": "R346"
+  },
+  {
+    "what": "if (typeof __PINKSLIDE_HERWAY584 !== \"undefined\" && __PINKSLIDE_HERWAY584 && !pinkThird584(asset, last.pp, \"up\")) { S.on = false; return \"\"; } // fix584: the pink is not in her bottom/top 33% - the slide does nothing",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
+  },
+  {
+    "what": "if (run494 >= 2 /* fix657 (Love Nov 4 2026 6:04 PM PT: lower the pink slide rule to 2 instead of 3 while pink is sloped): 2 rejections on her slope - each closing higher on a climb / lower on a slide (fix503c) */) { S.on = true; return `${nm} CLIMB OVER PINK: ${run494} candles hit the pink and rejected on an up slope (last at ${rejPp494.toFixed(2)}) with ${asset} ${last.p.toFixed(2)} over it - no short until price breaks down through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: \"Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.\", mirrored for shorts per her 1:24 PM \"both sides\")",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
+  },
+  {
+    "what": "if (typeof __PINKSLIDE_HERWAY584 !== \"undefined\" && __PINKSLIDE_HERWAY584 && !pinkThird584(\"gold\", last.pp, \"down\")) { S.on = false; return \"\"; } // fix584: the pink is not in her bottom/top 33% - the slide does nothing",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
+  },
+  {
+    "what": "if (run494 >= 2 /* fix657 (Love Nov 4 2026 6:04 PM PT: lower the pink slide rule to 2 instead of 3 while pink is sloped): 2 rejections on her slope - each closing higher on a climb / lower on a slide (fix503c) */) { S.on = true; return `GOLD SLIDE UNDER PINK: ${run494} candles hit the pink and rejected on a down slope (last at ${rejPp494.toFixed(2)}) with gold ${last.p.toFixed(2)} under it - no long until price breaks up through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: \"Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.\")",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
+  },
+  {
+    "what": "if (typeof __PINKSLIDE_HERWAY584 !== \"undefined\" && __PINKSLIDE_HERWAY584 && !pinkThird584(\"btc\", last.pp, \"down\")) { S.on = false; return \"\"; } // fix584: the pink is not in her bottom/top 33% - the slide does nothing",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
+  },
+  {
+    "what": "if (run494 >= 2 /* fix657 (Love Nov 4 2026 6:04 PM PT: lower the pink slide rule to 2 instead of 3 while pink is sloped): 2 rejections on her slope - each closing higher on a climb / lower on a slide (fix503c) */) { S.on = true; return `BTC SLIDE UNDER PINK: ${run494} candles hit the pink and rejected on a down slope (last at ${rejPp494.toFixed(2)}) with btc ${last.p.toFixed(2)} under it - no long until price breaks up through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: \"Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.\")",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
+  },
+  {
+    "what": "t(NEW.slideHold403(g, s1, now) === \"\" && !s1.on, \"gold: 3 rejections with the pink mid-channel still held (needs the bottom 33%)\");",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
+  },
+  {
+    "what": "t(NEW.slideHoldBtc423(b, s2, now) === \"\" && !s2.on, \"BTC: 3 rejections with the pink mid-channel still held (needs the bottom 33%)\");",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
+  },
+  {
+    "what": "const s3 = { on: true }; t(NEW.climbHold464(c, s3, now, \"gold\") === \"\" && !s3.on, \"gold climb: pink mid-channel still held the short (needs the top 33%)\");",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
+  },
+  {
+    "what": "set([], []); t(NEW.slideHold403(g, S(), now) === \"\", \"no readable channel still held (her rule: every other case the slide does nothing)\");",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
+  },
+  {
+    "what": "t(/SLIDE UNDER PINK/.test(slideHold403(smD, { on: false }, 1e12 + 3 * 300000 + 160000) || \"\"), \"price falling rejection to rejection under a flat pink was NOT held - that is her down slope (fix503c)\");",
+    "why": "fix658 (her words in this change's request): the line is replaced by her new version",
+    "R": "R347"
   }
 ]

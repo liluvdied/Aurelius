@@ -2,6 +2,73 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R347 - fix658 THE PINK SLIDE, HER WAY: the slide / climb is ON with 2 pink rejections (fix657) while price steps her way (fix503c) AND the pink itself slopes that way (pink at the last rejection higher - climb - / lower - slide - than at the first). The 44% pink-share gate (fix584/646) no longer applies to the slide. While a climb is ON: no shorts from any band or zone, every book but delayed (climbHold464, unchanged release: price breaks down through pink by 10% of the channel, fix560), and longs ONLY off a pink rejection / flip (any other long read waits - engine.ts copier, logged in slide-pink.jsonl). Mirror on a down slide. Add-ons are left exactly as they are (Love 6:20 PM PT: "no , add ons are okay as is").
+- when: 2026-11-05T02:44:32+00:00
+- Love: "Love Nov 4 2026 6:09 PM PT: "the pink slide rule dictates it is longs only while pink is on a slide up, she doesnt short at red, she waits til it gets to pink and rejects, enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down. she waits for it to come to pink and reject and shorts as she normally would. if it doesnt function like that already thats what i would like""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "export function slideBlock658("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "&& pkS658 /* fix658 */) { S.on = true;"}
+
+## R346 - fix657: (1) NEAR A BAND = the 15% of the channel closest to it - recon.ts bonesDecide nr (her near-band reach for every rejection read, and so the fix656 push off a candle near the band) is 15% of the session-band channel around price (was gold 50c / BTC $75 pink, $10 other bands); an unreadable channel keeps the old reach. (2) PINK SLIDE / CLIMB AT 2: engine.ts climbHold464 + the gold and BTC slide holds turn on at 2 rejections (was 3) on her slope - each rejection candle closing higher than the one before on a climb, lower on a slide (fix503c, unchanged). The 44% pink share (fix646) is unchanged.
+- when: 2026-11-05T02:43:56+00:00
+- Love: "Love Nov 4 2026 6:04 PM PT: "in regards to the near a band - lets make it 15% of the channel width , the 15% closest to the band is sufficient" + "lets lower the pink slide rule to 2 of them instead of 3 while pink is sloped up or down as well pls""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const nr = W657 > 0 ? 0.15 * W657"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "if (run494 >= 2 /* fix657"}
+
+## R345 - fix656: pushOff653 / pushLabel653 - gold push 10c (was her one tap 30c); BTC stays $10. The candle does not have to reach the band: near it is enough (her existing near-band reach in the read, recon.ts nr: gold within 50c of the band, BTC within $75 of the pink / $10 of other bands), and the push is measured from the band, or from that candle's own high/low when it stopped short of the band (whichever is nearer price), in her direction, with the live 2m her colour. At the door and the send the candle's high/low is the live 5m's.
+- when: 2026-11-05T02:43:36+00:00
+- Love: "Love Nov 4 2026 5:52 PM PT: "gold needs a 10c push, not just a tap - and it doesn't need to be on the band itself , just a flip /band candle near it and pushing down in a candle our color""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "push: number, ext = 0): boolean { const ref = ext > 0 ?"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix656: gold 10c"}
+
+## R344 - fix655: pushLabel653 (bandlock.ts) - a band rejection (Rejected / Failed break / Tap-reject / 2m flip off a band) whose push off ITS band is met (BTC $10 / gold her one tap 30c, unchanged) with the live 2m her colour no longer needs a 2-5m flip past its open: HER FLIP at the door (impossibleGeo, main + rejection) and HER FLIP AT THE SEND (kalshi-live.server.ts fix592) both let it through; the 5m holds (HER CANDLE, price rising/falling, RED FALLING 5M) step aside for it too. Breaks keep their own rules. fix521's flip-at-send function is not called anywhere (left as it is).
+- when: 2026-11-05T02:43:16+00:00
+- Love: "Love Nov 4 2026 5:40 PM PT: "The push is from the band. She enters the second the push is met and a 2m is her color. Remove the check that still wants the flip past its open.""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function pushLabel653("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "const pb641 = pushLabel653(asset, side, tick, L, "}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "!B.pushLabel653(sym, side, Number(q.c)"}
+
+## R343 - fix654 THE CLEAR STICKS + DATED FILES EVERY 2 HOURS: the paper twins (pivotbooks.ts) no longer re-copy parent trades older than a day (they refilled ~4,500 rows into grok-og.json every hour, each archived ~75 times); every 2 hours tools/log-archive-654.py (its own process, off her loop) moves rows older than a day from 13 write-only logs (gold-law, behaviour-umpire, band-lock, copy-timing, fast-skip, latency-shadow, pure-walls, order-trail, pink-break, tick-log, band-log, slow-ops, loop-lag) into data/archive/logs/<date-time>/<log>.gz - kept forever, never deleted; the last day stays; logged in auto-clear.jsonl. Her hourly cache clear is unchanged.
+- when: 2026-11-05T02:42:59+00:00
+- Love: "Love Nov 4 2026 5:27 PM PT: "cahce clear that sticks, yes - push everything to athe dated file for that, never deleted. make it do that every 2 hours to keep her fast pls""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "if (Date.now() - Date.parse(t.openedAt) > 24 * 3600000) continue; // fix654"}
+- proof: {"code": "src/lib/desk/selfcheck.ts", "has": "log-archive-654.py"}
+- proof: {"test": "tools/archive-654b.cjs"}
+
+## R342 - fix654 FRESHNESS GUARD at the last line (kalshi-live.server.ts judgeOrder601, every book): no opening order on a price tick older than 2 s, or right after her engine froze more than 2 s (fns.ts 100 ms heartbeat).
+- when: 2026-11-05T02:42:44+00:00
+- Love: "Love Nov 4 2026 5:27 PM PT: "freshness guard, 2 seconds""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "FRESHNESS (fix654): the last price tick is"}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "G654.__lagLast654 = Date.now(); }, 100)"}
+- proof: {"test": "tools/freshness-654a.cjs"}
+
+## R340 - fix653 PUSH OFF THE BAND: every pink rejection (Rejected / Failed break off 5m PP, the previous-candle tap, and fix645's push off the nearest pink) measures her push FROM THE BAND in the direction of the trade - her same push, $10 BTC / one tap gold - with the live 2m candle her colour (green for a long, red for a short, any amount); never from the candle open, and the $0 any-candle-under-its-open path (pfU/pfD) no longer counts. For a band rejection with her flip and her 2m colour, RED FALLING / GREEN RISING 5M (recon read), HER CANDLE (5m) and the 5m price-is-rising/falling hold at the door step aside - she does not wait for the 5m. Replays the 5:02:57 PM BTC short (green 2m) as refused. Every book but delayed (the 5M stays off).
+- when: 2026-11-05T02:42:25+00:00
+- Love: "Love Nov 4 2026 5:25 PM PT: "make it so its a push from the band, not past its open. a 2m green pushing off the band is good, no waiting for the 5m . not past the candles open. just in the direction of the trade. thats number 1" + 5:27 PM PT: "pink rejections need the same push as the others, not $0""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function pushOff653("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function twoMinHer653("}
+- proof: {"test": "tools/push-off-band-653.cjs"}
+
+## R341 - PROCESS: every fix is its own CHANGE command, numbered in install order, so one element can be changed or taken out without the others (the Nov 4 bundle of fix653-658 was split before it was ever installed).
+- when: 2026-11-05T02:42:25+00:00
+- Love: "Love Nov 4 2026 6:13 PM PT: "keep all fixes as individual commands so we can track everything and they arent bundled together, it will be easier to untangle if we need to change individual elements without taking others out""
+- books: process
+- status: ACTIVE
+- proof: {"code": "data/CHANGES-DONE/STAGED-CHANGE-push-off-band-653", "has": "R"}
+
 ## R339 - fix652 CHECKS ONLY, no trading code: (1) tools/check-her-rules.cjs and tools/independent-calls-test-463.cjs carry her 3% margin (MARGIN648, fix648) when they lift thirdsRead463 out of recon.ts - they crashed on it after fix649; (2) tools/thirds-five-583.cjs holds her $2 break (fix651): $1 still waits, $2 frees; (3) the $5 code proofs of R294, R305 and R306 are superseded by their $2 text from fix651 (kept in the book, marked superseded, never deleted).
 - when: 2026-11-05T00:51:56+00:00
 - Love: "Love Nov 4 2026 4:02 PM PT: "make it $2 on the break." + 4:44 PM PT (on updating the checks that still held $5, no trading code): "yes""

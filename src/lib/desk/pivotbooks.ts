@@ -1785,6 +1785,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
       const p20T = new Set<any>(); for (const r of rows) if (r.lane === "paper-20" && !r.parent) p20T.add(r.ticker);
       for (const t of pb) {
         if (t?.source !== "paper" || Date.parse(t.openedAt) < since) continue;
+        if (Date.now() - Date.parse(t.openedAt) > 24 * 3600000) continue; // fix654 (Love Nov 4 2026 5:27 PM PT: "cahce clear that sticks, yes - push everything to athe dated file for that, never deleted. make it do that every 2 hours to keep her fast pls"): a parent trade older than a day is never copied again - her hourly clear filed those rows away, and re-copying them put ~4,500 rows back every hour (each archived ~75 times), so the clear never stuck
         const k = 25 / (Number(t.stake) || 25);
         for (const [lane, ok] of lanes) {
           if (!ok(t)) continue;

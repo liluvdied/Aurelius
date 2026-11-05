@@ -19,15 +19,16 @@ const t = (c, m) => { if (!c) { ok = false; console.log("SLIDE TEST: FAIL - " + 
 const sm3 = mk([[true, 4057.1, 4059.5], [true, 4056.0, 4058.2], [true, 4054.8, 4056.9], [false, 4054.2, 4056.4]]);
 const h1 = slideHold403(sm3, { on: false }, 1e12 + 3 * 300000 + 160000);
 t(/SLIDE UNDER PINK/.test(h1), "3 candles hit the pink and rejected on a down slope - the long was NOT held");
-// only two rejections = free
+// fix657 (Love Nov 4 2026 6:04 PM PT: "lets lower the pink slide rule to 2 of them instead of 3 while pink is sloped up or down as well pls"): two rejections on her down slope = held; one = free
 const sm2 = mk([[true, 4057.1, 4059.5], [true, 4056.0, 4058.2], [false, 4054.8, 4056.9]]);
-t(!slideHold403(sm2, { on: false }, 1e12 + 2 * 300000 + 160000), "2 rejections held the long - her rule is three or more");
+t(/SLIDE UNDER PINK/.test(slideHold403(sm2, { on: false }, 1e12 + 2 * 300000 + 160000)), "2 rejections on a down slope did NOT hold the long - her rule is two (fix657)");
+t(!slideHold403(mk([[true, 4057.1, 4059.5], [false, 4056.0, 4058.2]]), { on: false }, 1e12 + 1 * 300000 + 160000), "1 rejection held the long - her rule is two (fix657)");
 // three rejections with price FLAT (each candle closing where the last did) = free - no down slope (fix503c, Love Oct 29 2026 11:46 PM PT: "that was not a rejection upward / it was the wrong direction in her head hun" + "had the logic backwards" + "price was sloping down / only hold are longs / not shorts / vis versa" + 10:03 PM: "It's sliding when three candles or more have hit it and rejected on a down slope.")
 const smF = mk([[true, 4057.1, 4058.0], [true, 4057.1, 4058.0], [true, 4057.1, 4058.0], [false, 4057.1, 4058.0]]);
 t(!slideHold403(smF, { on: false }, 1e12 + 3 * 300000 + 160000), "3 rejections with price flat held the long - her down slope is price falling rejection to rejection");
 // three rejections under a FLAT pink with price falling = her down slope = held (fix503c: the slope is price, not the pink)
 const smD = mk([[true, 4057.1, 4058.0], [true, 4056.0, 4058.0], [true, 4055.0, 4058.0], [false, 4054.2, 4058.0]]);
-t(/SLIDE UNDER PINK/.test(slideHold403(smD, { on: false }, 1e12 + 3 * 300000 + 160000) || ""), "price falling rejection to rejection under a flat pink was NOT held - that is her down slope (fix503c)");
+t(!slideHold403(smD, { on: false }, 1e12 + 3 * 300000 + 160000), "a FLAT pink held the long - fix658 (Love Nov 4 2026 6:04 PM PT: \"while pink is sloped up or down\"): the pink itself must slope down for her slide");
 // price sliding under a sliding pink WITHOUT touching it = free (her words: candles must hit it)
 const smN = mk([[false, 4051.0, 4059.5], [false, 4050.0, 4058.2], [false, 4049.0, 4056.9], [false, 4048.5, 4056.4]]);
 t(!slideHold403(smN, { on: false }, 1e12 + 3 * 300000 + 160000), "price under a sliding pink with NO pink rejections was held - her rule needs hits");

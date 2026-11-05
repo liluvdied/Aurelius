@@ -40,7 +40,7 @@ if (WHAT === "flip") {
   }
   const R = rd("recon.ts"), i = R.indexOf("const rej446 ="), j = R.indexOf("\n", R.indexOf('return seenL.filter((c) => !((c.side === "up"', i));
   if (i < 0) t(false, false, false, "fix446 band-rejection flip missing");
-  else { const F = new Function(js("function F(asset, spot, seenL, f, k, fix33, falling, rising, topS, botS, bandFlip, turnFlip530) { const m1 = (c) => false;\n" + R.slice(i, j) + "\n}") + "; return F;")();
+  else { const F = new Function(js("function F(asset, spot, seenL, f, k, fix33, falling, rising, topS, botS, bandFlip, turnFlip530, twoMinHer653 = (a, s, p) => false /* fix653 */, pushLabel653 = (a, s, p, L, lab) => false, L = [] /* fix655 */) { const m1 = (c) => false;\n" + R.slice(i, j) + "\n}") + "; return F;")();
     for (const asset of ["gold", "btc"]) { const run = (label, side, falling, rising, flip) => F(asset, 4041, [{ side, label }], 0.4, 0.33, false, falling, rising, Infinity, -Infinity, true, () => flip).length === 1;
       const lo = !run("Rejected up off -1σ", "up", true, false, true) /* Love Nov 4 2026: a red falling 5m refuses the long, no flip overrides it */ && !run("Rejected up off -1σ", "up", true, false, false) && !run("Break above 5m PP", "up", true, false, true);
       const sh = run("Rejected down off +1σ", "down", false, true, true) && !run("Rejected down off +1σ", "down", false, true, false) && !run("Break below 5m PP", "down", false, true, true);

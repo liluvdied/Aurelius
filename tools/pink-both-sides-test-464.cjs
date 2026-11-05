@@ -27,7 +27,8 @@ const mk494 = (cands) => { const sm = []; let t0 = 1e12; for (const [touch, endP
 const cl3 = mk494([[true, 4022.4, 4019.0], [true, 4023.1, 4019.8], [true, 4023.8, 4020.5], [false, 4024.2, 4021.0]]);
 const ch = H.climbHold464(cl3, { on: false }, 1e12 + 3 * 300000 + 160000, "gold"); console.log("  3 rejections up a climbing pink: " + (ch || "free"));
 t(/CLIMB OVER PINK/.test(ch), "3 candles hit the climbing pink from above and rejected - the short was NOT held");
-t(!H.climbHold464(mk494([[true, 4022.4, 4019.0], [true, 4023.1, 4019.8], [false, 4023.8, 4020.5]]), { on: false }, 1e12 + 2 * 300000 + 160000, "gold"), "2 rejections held the short - her rule is three or more");
+t(/CLIMB OVER PINK/.test(H.climbHold464(mk494([[true, 4022.4, 4019.0], [true, 4023.1, 4019.8], [false, 4023.8, 4020.5]]), { on: false }, 1e12 + 2 * 300000 + 160000, "gold")), "2 rejections up a climbing pink did NOT hold the short - her rule is two (fix657)"); // fix657 (Love Nov 4 2026 6:04 PM PT: "lets lower the pink slide rule to 2 of them instead of 3 while pink is sloped up or down as well pls")
+t(!H.climbHold464(mk494([[true, 4022.4, 4019.0], [false, 4023.1, 4019.8]]), { on: false }, 1e12 + 1 * 300000 + 160000, "gold"), "1 rejection held the short - her rule is two (fix657)");
 t(!H.climbHold464(cl3.concat([{ t: 1e12 + 4 * 300000, p: 4020.7, pp: 4021.0 }]), { on: true }, 1e12 + 4 * 300000 + 1000, "gold"), "a break DOWN through the pink did not free the short");
 // price merely above/below a moving pink with NO rejections = free, both sides (her words: candles must hit it)
 const noTouch = mk494([[false, 4024.0, 4019.0], [false, 4025.0, 4019.8], [false, 4026.0, 4020.5], [false, 4026.5, 4021.0]]);

@@ -1,9 +1,9 @@
 {
- "at": "2026-11-05T00:39:50.283348+00:00",
+ "at": "2026-11-05T02:43:56.076529+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "6478946054111fcf"
+  "recon.ts": "00a263b6eca6243d"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -658,6 +658,30 @@
    "by": "Love",
    "quote": "Love Nov 4 2026 4:02 PM PT: \"make it $2 on the break.\" + 4:19 PM: \"Then build the $2 break as its own command.\" (R338, fix651)",
    "recon.ts": "6478946054111fcf"
+  },
+  {
+   "at": "2026-11-05T02:42:25.621913+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 5:25 PM PT: \"make it so its a push from the band, not past its open. a 2m green pushing off the band is good, no waiting for the 5m . not past the candles open. just in the direction of the trade. thats number 1\" + 5:27 PM PT: \"pink rejections need the same push as the others, not \\$0\" (R340, fix653)",
+   "recon.ts": "8017374091a26069"
+  },
+  {
+   "at": "2026-11-05T02:43:16.174252+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 5:40 PM PT: \"The push is from the band. She enters the second the push is met and a 2m is her color. Remove the check that still wants the flip past its open.\" (R344, fix655)",
+   "recon.ts": "ef4cd791d518fadf"
+  },
+  {
+   "at": "2026-11-05T02:43:36.557701+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 5:52 PM PT: \"gold needs a 10c push, not just a tap - and it doesn't need to be on the band itself , just a flip /band candle near it and pushing down in a candle our color\" (R345, fix656)",
+   "recon.ts": "83a9bd20b70e2431"
+  },
+  {
+   "at": "2026-11-05T02:43:56.076529+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 6:04 PM PT: \"in regards to the near a band - lets make it 15% of the channel width , the 15% closest to the band is sufficient\" + \"lets lower the pink slide rule to 2 of them instead of 3 while pink is sloped up or down as well pls\" (R346, fix657)",
+   "recon.ts": "00a263b6eca6243d"
   }
  ],
  "R": "R266",

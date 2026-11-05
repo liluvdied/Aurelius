@@ -11,7 +11,7 @@ const parts=[
  "type Line={name:string;price:number;unit?:number};","type Bar={t:number;o:number;h:number;l:number;c:number};","type Piv={pp:number;r1:number;s1:number;r2:number;s2:number;a:number};",
  grab("const BREAK:"),grab("const TAP:"),grab("const REACH:"),grab("const REACH_PCT ="),
  // stubs for flip helpers (breaks don't use them)
- "function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(){return false;}",
+ "function pushLabel653(a,s,sp,L,lab){return false;} function twoMinHer653(a,s,sp){return !!(globalThis.__two653&&globalThis.__two653[s]);} function pushOff653(a,s,sp,p,x){return (s==='up'?sp>=p+x:sp<=p-x)&&twoMinHer653(a,s,sp);} /* fix653: her 2m colour + push from the band */ function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(){return false;}",
  grab("export function bonesDecide("),
 ].map(x=>x.replace(/^export /,""));
 const js=ts.transpileModule(parts.join("\n"),{compilerOptions:{target:ts.ScriptTarget.ES2020}}).outputText;

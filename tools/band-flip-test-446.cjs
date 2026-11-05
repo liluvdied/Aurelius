@@ -6,11 +6,12 @@ const ts = require(path.join(root, "node_modules/typescript"));
 const R = fs.readFileSync(process.argv[2] || path.join(root, "src/lib/desk/recon.ts"), "utf8");
 const a = R.indexOf("const rej446 ="), b = R.indexOf("\n", R.indexOf("return seenL.filter((c) => !((c.side === \"up\"", a));
 if (a < 0) { console.log("BAND FLIP TEST: FAIL - fix446 missing from recon.ts"); process.exit(1); }
-const js = ts.transpileModule("function F(asset, spot, seenL, f, k, fix33, falling, rising, topS, botS, bandFlip, turnFlip530) { const m1 = (c) => false;\n" + R.slice(a, b) + "\n}", { compilerOptions: { target: ts.ScriptTarget.ES2020 } }).outputText;
+const js = ts.transpileModule("function F(asset, spot, seenL, f, k, fix33, falling, rising, topS, botS, bandFlip, turnFlip530, twoMinHer653, pushLabel653 = (a, s, p, L, lab) => false, L = [] /* fix655 */) { const m1 = (c) => false;\n" + R.slice(a, b) + "\n}", { compilerOptions: { target: ts.ScriptTarget.ES2020 } }).outputText;
 const F = new Function(js + "; return F;")();
-const run = (label, side, falling, rising, flip, bandFlip = true) => F("gold", 4041, [{ side, label }], 0.4, 0.33, false, falling, rising, Infinity, -Infinity, bandFlip, () => flip).length === 1;
+const run = (label, side, falling, rising, flip, bandFlip = true, two = false) => F("gold", 4041, [{ side, label }], 0.4, 0.33, false, falling, rising, Infinity, -Infinity, bandFlip, () => flip, () => two).length === 1; // fix653: two = her live 2m colour
 let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log("BAND FLIP TEST: FAIL - " + m); } };
 t(!run("Rejected up off -1σ", "up", true, false, true), "Love Nov 4: a band-rejection long on a red falling 5m went through on a 2-5m green flip (the flip no longer overrides it)");
+t(run("Rejected up off -1σ", "up", true, false, true, true, true), "Love Nov 4 5:25 PM (fix653): a band-rejection long with her flip AND her 2m green pushing off the band still waited for the 5m"); // fix653
 t(!run("Rejected up off -1σ", "up", true, false, false), "a band-rejection long on a red 5m with NO 2-5m flip went through");
 t(!run("Break above 5m PP", "up", true, false, true), "a non-rejection long went through on a red 5m (a 2m flip elsewhere must not bypass HER CANDLE)");
 t(run("Rejected down off Red zone", "down", false, true, true), "mirror: a band-rejection short on a green 5m with a real 2-5m red flip was thrown out");

@@ -133,6 +133,9 @@ export function selfCheckTick() {
     }
   } catch {
   }
+  // fix654 HER LOGS INTO DATED FILES EVERY 2 HOURS (Love Nov 4 2026 5:27 PM PT: "cahce clear that sticks, yes - push everything to athe dated file for that, never deleted. make it do that every 2 hours to keep her fast pls"): every 2 hours (and 10 min after she starts) tools/log-archive-654.py moves each big log's rows older than a day into
+  // data/archive/logs/<date-time>/<log>.gz - compressed, kept forever, never deleted - as its OWN process, so her loop never waits on it. Logged in data/auto-clear.jsonl.
+  try { const G654 = globalThis as any; if (!G654.__logArch654At) G654.__logArch654At = Date.now() - 110 * 60000; if (Date.now() - G654.__logArch654At >= 2 * 3600000) { G654.__logArch654At = Date.now(); void import("node:child_process").then((cp) => { try { const ch = cp.spawn("python3", [join(process.cwd(), "tools", "log-archive-654.py")], { cwd: process.cwd(), detached: true, stdio: "ignore" }); ch.unref(); } catch {} }).catch(() => {}); } } catch {} // fix654
   // AUTO-CLEAR EVERY 4 HOURS (fix343, Oct 27 2026 4:08 PM PT, Love: "aww poor ting let's clear up her cache so she can continue to execute properly hunn / i want to set up an
   // auto-clear every 4 hours so she doesn't get stopped up by the lag that comes from that pls"): every 4 hours (and once when she starts) each finished record that never
   // filled (skipped / missed / blocked-final) and is older than 3.5 h moves out of live-book-done.json into live-book-done-archive.jsonl - kept forever, never deleted.
