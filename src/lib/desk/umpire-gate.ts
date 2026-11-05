@@ -43,7 +43,7 @@ function scan() {
   if (S.running) return;
   const why = umpireVerdict461(S.v, S.cur);
   // re-check her: code changed (3 s after the last change settles), no stamp yet, or NOT SAFE (retry every 5 min)
-  if ((why.startsWith("CODE CHANGED") && Date.now() - S.dirtyAt >= 3000) || (!S.v && Date.now() - S.lastRun > 60000) || (S.v && S.v.ok !== true && Date.now() - S.lastRun > 300000)) restamp();
+  if ((why.startsWith("CODE CHANGED") && Date.now() - S.dirtyAt >= 3000) || (!S.v && Date.now() - S.lastRun > 60000) || (S.v && S.v.ok !== true && Date.now() - S.lastRun > 300000) || (S.v && S.v.ok !== true && String(S.v.why || "") === "her code changed while the umpire ran" && Date.now() - S.dirtyAt >= 3000 && Date.now() - S.lastRun > 5000) /* fix733: the ONLY complaint was a mid-run code change - re-check 3 s after her files settle, not 5 min later; every real failure keeps the 5-min retry */) restamp();
 }
 // fix477 (Love Oct 29 2026 4:47 PM PT: "please make sure the umpire doesn't just do that and actually makes sure each thing stays in place"): the umpire also
 // re-checks her ~3 s after her SETTINGS change (data/live-switch.json), not only her code. Her own hands that the wire seal already lets through - LIVE, the size

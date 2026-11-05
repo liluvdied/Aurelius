@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R412 - fix733 UMPIRE QUICK RECHECK: when the umpire's ONLY complaint is 'her code changed while the umpire ran' (a timing clash, not a broken rule), the desk re-checks her 3 seconds after her files settle instead of waiting the 5-minute retry - a pause like today's 9:40 AM clears in about a minute by itself. Any real failure (a rule OUT, the request book, the no-removal gate, golden, seal) is exactly as before: NOT SAFE blocks every opening order and retries every 5 minutes. Run after CHANGE-76.
+- when: 2026-11-05T18:21:55+00:00
+- Love: "Love Nov 5 2026 9:43 AM PT: "let's set up a safe path for these two books , so the umpire can't shut down the whole desk if she is doing what she's supposed to be doing" (part B: quick re-check after a mid-run code change)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/umpire-gate.ts", "has": "fix733: the ONLY complaint was a mid-run code change"}
+- proof: {"test": "tools/quick-recheck-733.cjs"}
+
 ## R411 - fix732 COMMANDS TAKE TURNS: today's umpire pauses (12:57, 3:28, 3:44-3:50, 4:01, 5:18, 5:29, 7:13, 8:44, 9:40 AM PT) were all 'her code changed while the umpire ran' - two CHANGE commands running at the same time. Every CHANGE sources tools/concrete.sh first; it now holds a lock (data/.change-running-732) for the whole run, so a second CHANGE opened meanwhile shows WAITING and starts by itself the moment the first finishes. A lock from a closed window clears itself. No umpire check is changed. Run this one ALONE (it cannot protect its own install).
 - when: 2026-11-05T17:52:30+00:00
 - Love: "Love Nov 5 2026 9:43 AM PT: "let's set up a safe path for these two books , so the umpire can't shut down the whole desk if she is doing what she's supposed to be doing" (part A: CHANGE commands take turns)"

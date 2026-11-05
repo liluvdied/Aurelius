@@ -7801,5 +7801,10 @@
     "what": "{ const lab0 = String(row.setup || row.label || \"\"), mB = /^(?:Break|Close) above (.+?)$/.exec(lab0); if (mB && row.side === \"up\") { const ln0 = (((globalThis as any).__lawBands?.[String(row.asset)]?.L || []) as any[]).find((l: any) => String(l.name) === mB[1].trim()); const px0 = Number(asset?.spot) || 0; if (ln0 && Number(ln0.price) > 0 && px0 > 0 && !(px0 > Number(ln0.price)) && !done[row.id]?.orderId) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: \"blocked\", final: false, reason: `NOT A BREAK ABOVE AT THE ORDER: price ${px0.toFixed(2)} is at or below ${mB[1].trim()} (${Number(ln0.price).toFixed(2)}) - no entry` }; continue; } } } // Love Nov 3 2026 7:45 PM PT: \"if price is below the band at the moment of the order, it is not a break above. No entry.\"",
     "why": "fix730 (her words in this change's request)",
     "R": "R410"
+  },
+  {
+    "what": "if ((why.startsWith(\"CODE CHANGED\") && Date.now() - S.dirtyAt >= 3000) || (!S.v && Date.now() - S.lastRun > 60000) || (S.v && S.v.ok !== true && Date.now() - S.lastRun > 300000)) restamp();",
+    "why": "fix733 (her words in this change's request)",
+    "R": "R412"
   }
 ]
