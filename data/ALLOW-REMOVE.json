@@ -7216,5 +7216,60 @@
     "what": "const l597 = B.labelHold597(book, sym, (globalThis as any).__sessCarried?.[sym] === true, String(sameLine?.label || \"\")); if (l597) return l597; /* fix597 */ const pb641w = B.pinkBreak641(sym, ((globalThis as any).__lawBands?.[sym]?.L || []) as any[], Number(q.c), side, String(sameLine?.label || \"\")); if (pb641w === \"back\") return \"PINK BREAK GONE AT THE SEND (fix641): price \" + Number(q.c).toFixed(2) + \" is back across the pink - not a break any more - no order.\"; /* fix641 */ if (pb641w !== \"go\" && !B.turnFlip530(sym, side, Number(q.c)) && !B.pushLabel653(sym, side, Number(q.c), ((globalThis as any).__lawBands?.[sym]?.L || []) as any[], String(sameLine?.label || \"\")) /* fix655: the push off the band with her 2m is the entry - no flip past its open */) return \"HER FLIP AT THE SEND (fix592): no 2-5m candle has flipped or been born \" + (side === \"up\" ? \"green\" : \"red\") + \" and pushed \" + (sym === \"gold\" ? \"10c\" : \"$5\") + \" past its open - no order.\"; // fix592 (Love Nov 1 2026 9:03 AM PT: \"add the last-line check so the order does not leave unless one of those two paths passes on the live tick\")",
     "why": "fix668 (her words in this change's request)",
     "R": "R357"
+  },
+  {
+    "what": "const hl656 = fiveHLNow(asset); return band > 0 && pushOff653(asset, side, tick, band, asset === \"btc\" ? 10 : 0.1 /* fix656: gold 10c */, hl656 ? (side === \"up\" ? Number(hl656.l) : Number(hl656.h)) : 0); } catch { return false; } } // fix655",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
+  },
+  {
+    "what": "if (cur.o > p && cur.l <= p + nr && cur.l > p - brk && spot >= cur.l + tap && spot > p && (l.name !== \"5m PP\" || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 10 : 0.1 /* fix656: gold 10c */, cur.l) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Rejected up off ${l.name}`, d, rank: 1 });",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
+  },
+  {
+    "what": "if (cur.o < p && cur.h >= p - nr && cur.h < p + brk && spot <= cur.h - tap && spot < p && (l.name !== \"5m PP\" || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 10 : 0.1 /* fix656: gold 10c */, cur.h) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Rejected down off ${l.name}`, d, rank: 1 });",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
+  },
+  {
+    "what": "if (cur.o > p && cur.l <= p - brk && spot >= cur.l + tap && spot > p && (l.name !== \"5m PP\" || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 10 : 0.1 /* fix656: gold 10c */, cur.l) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Failed break below ${l.name} - rejected up`, d, rank: 1 });",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
+  },
+  {
+    "what": "if (cur.o < p && cur.h >= p + brk && spot <= cur.h - tap && spot < p && (l.name !== \"5m PP\" || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 10 : 0.1 /* fix656: gold 10c */, cur.h) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Failed break above ${l.name} - rejected down`, d, rank: 1 });",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
+  },
+  {
+    "what": "if (prev.l <= p + nr && prev.l > p - brk && cur.l > p - brk && cur.l > prev.l - tap && spot >= prev.l + tap && spot > p && (l.name !== \"5m PP\" || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 10 : 0.1 /* fix656: gold 10c */, prev.l) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Rejected up off ${l.name}`, d, rank: 1 });",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
+  },
+  {
+    "what": "if (prev.h >= p - nr && prev.h < p + brk && cur.h < p + brk && cur.h < prev.h + tap && spot <= prev.h - tap && spot < p && (l.name !== \"5m PP\" || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 10 : 0.1 /* fix656: gold 10c */, prev.h) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Rejected down off ${l.name}`, d, rank: 1 });",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
+  },
+  {
+    "what": "if (p > spot && (!pk || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 10 : 0.1 /* fix656: gold 10c */, cur.h)) /* fix653 */ && (() => { try { return turnFlip530(asset, \"down\", spot); } catch { return false; } })()) cands.push({ side: \"down\", label: `Rejected down off ${nb645.name}`, d, rank: 1 }); // fix645",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
+  },
+  {
+    "what": "if (p < spot && (!pk || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 10 : 0.1 /* fix656: gold 10c */, cur.l)) /* fix653 */ && (() => { try { return turnFlip530(asset, \"up\", spot); } catch { return false; } })()) cands.push({ side: \"up\", label: `Rejected up off ${nb645.name}`, d, rank: 1 }); } } // fix645",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
+  },
+  {
+    "what": "t((R.match(/pushOff653\\(asset, \"up\", spot, p, asset === \"btc\" \\? 10 : 0\\.1 \\/\\* fix656: gold 10c \\*\\/, (cur|prev)\\.[lh]\\)/g) || []).length === 4, \"a pink long push in recon.ts is not measured from the band (4 sites)\");",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
+  },
+  {
+    "what": "t((R.match(/pushOff653\\(asset, \"down\", spot, p, asset === \"btc\" \\? 10 : 0\\.1 \\/\\* fix656: gold 10c \\*\\/, (cur|prev)\\.[lh]\\)/g) || []).length === 4, \"a pink short push in recon.ts is not measured from the band (4 sites)\");",
+    "why": "fix669 (her words in this change's request)",
+    "R": "R358"
   }
 ]

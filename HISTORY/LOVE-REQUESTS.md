@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R358 - fix669: her BTC push off the band is $6 (was $10) everywhere she waited $10 - the read's pink / failed-break / previous-candle / nearest-band pushes (recon.ts, 8 sites, longs and shorts) and the door + send push (pushLabel653, bandlock.ts). Her 2m colour still applies. Gold keeps its 10c push. Every book but delayed (the 5M is off). Built on her current files (independent of CHANGE-16/17).
+- when: 2026-11-05T05:14:06+00:00
+- Love: "Love Nov 4 2026 8:54 PM PT: "as for the $10 push for btc we said we'd come back to, we can bring that to $6 , it will be better when volume is low" + ~8:56 PM PT: "yes, $6 push in both directions, in place of where she was waiting $10 now pls , and yes all books but delayed""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "asset === \"btc\" ? 6 /* fix669"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "asset === \"btc\" ? 6 /* fix669"}
+- proof: {"test": "tools/push-six-669.cjs"}
+
 ## R357 - fix668: a new entry - this 5m candle came within 15% of the channel of a band (session band, VWAP, pink, red/green zone, Bollinger; opened on the near side of it) and price is now 20% of the channel or more back off the candle's extreme at that band (from its high for a short, its low for a long), still on the near side - she may enter even though no candle has flipped (the 5m can still be green for the short / red for the long). Channel = the session bands either side of that band. It waives only the candle colour / flip checks (door HER FLIP, HER CANDLE, price is rising/falling; HER FLIP AT THE SEND; the read's RED FALLING / GREEN RISING 5M and thirds splices) and casts the read; every other wall (thirds, 45%, past red/green, pink cushion, break walls, 1.5x floor, umpire) still judges. Every book but delayed (the 5M is off). Her 'inverse for shorts' read as the mirror for longs.
 - when: 2026-11-05T05:05:39+00:00
 - Love: "Love Nov 4 2026 8:23 PM PT: "if price comes up to a band (within 15% of it) , and then price rejects near the band by 20% of the channel width or more , she can enter in , even if the candle hasn't flipped / so if price rejects on a green 5M candle , and the body of the candle pushes down by 20% of the channel width - she can enter short even if the candle hasn't flipped and it is still green okay / inverse for shorts""

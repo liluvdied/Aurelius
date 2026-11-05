@@ -1,9 +1,9 @@
 {
- "at": "2026-11-05T05:05:39.628722+00:00",
+ "at": "2026-11-05T05:14:06.770080+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "4545ef96ed1a87e1"
+  "recon.ts": "0e8b76d53b1d747d"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -706,6 +706,12 @@
    "by": "Love",
    "quote": "Love Nov 4 2026 8:23 PM PT: \"if price comes up to a band (within 15% of it) , and then price rejects near the band by 20% of the channel width or more , she can enter in , even if the candle hasn't flipped / so if price rejects on a green 5M candle , and the body of the candle pushes down by 20% of the channel width - she can enter short even if the candle hasn't flipped and it is still green okay / inverse for shorts\" (R357, fix668)",
    "recon.ts": "4545ef96ed1a87e1"
+  },
+  {
+   "at": "2026-11-05T05:14:06.770080+00:00",
+   "by": "Love",
+   "quote": "Love Nov 4 2026 8:54 PM PT: \"as for the \\$10 push for btc we said we'd come back to, we can bring that to \\$6 , it will be better when volume is low\" + ~8:56 PM PT: \"yes, \\$6 push in both directions, in place of where she was waiting \\$10 now pls , and yes all books but delayed\" (R358, fix669)",
+   "recon.ts": "0e8b76d53b1d747d"
   }
  ],
  "R": "R266",
