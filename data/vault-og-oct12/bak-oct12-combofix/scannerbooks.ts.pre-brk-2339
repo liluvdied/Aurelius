@@ -1,0 +1,286 @@
+// SCANNER BOOKS (Claude, Oct 11 ~7 PM PT, Love: "could you add a combo's tab that actually shows the trades when i click it
+// in the scanner tab... let's make all of the cards clickable to show their trades on there too, highest performance toggle
+// too, and the 4, 12, 24 and all buttons"). Read only: every paper book the SCANNER tab follows, as one list of trades per
+// book, so the tab can filter by time, sort by performance and open any card's trades.
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+
+export type SBRow = { at: string; label: string; side: string; entry: number | null; result: string; pnl: number | null; exit: string | null };
+export type SBook = { id: string; title: string; family: string; rows: SBRow[] };
+const rd = (f: string, d: any) => { try { const p = join(process.cwd(), "data", f); return existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : d; } catch { return d; } };
+const LANE_TITLE: Record<string, string> = { "ogp5-wait": "5M · WAITS FOR THE REJECTION 🕯️ (paper twin)", "ogp5-wait-skip": "5M · WHAT WAITING SKIPPED 🕯️ (paper)", "gold-flip": "GOLD · SHORT THE RED / LONG THE GREEN 🔁 (paper)", "btc-flip": "BTC · SHORT THE RED / LONG THE GREEN 🔁 (paper)", "paper-piv": "PAPER 24/7 · RESPECTS PIVOTS 🧭 (paper twin)", "paper-piv-skip": "PAPER 24/7 · WHAT THE PIVOT ZONE SKIPPED 🧭 (paper)", "ogp5-smi": "5M + SMI CONFIRMED 📈 (paper)", "paper-fast": "PAPER 24/7 · FAST ⚡ (paper twin)", "ogp5-px": "5M · SKIPS 40-50c ENTRIES 💲 (paper)", "ogp5-bb": "5M · NO CHASING PAST THE BOLLINGER 🎈 (paper)", "ogp5-knn": "5M · KNN MAGNET 🧲 (paper)", consensus: "CONSENSUS 🤝 · PAPER 24/7 + 5M AGREE (paper)", "ogp5-hybc": "5M · HYBRID ✓ CONFIRMED (paper twin)",
+  "og-golden": "OG · OCT 1 FEED", "og-hers": "OG · YOUR BANDS", grok: "GROK BUILDER",
+  "paper-247": "PAPER · 24/7", "paper-best": "PAPER · HER BEST HOURS", "paper-winners": "PAPER · WINNING SETUPS", "paper-20": "PAPER · 20% ROAD", "open-road": "PAPER · WHAT THE BAND BENCHED",
+  "brick-nowall": "BRICK · NO PIVOT WALL", "squeeze-nowall": "SQUEEZE · NO PIVOT WALL",
+};
+function laneTitle(l: string): string {
+  if (LANE_TITLE[l]) return LANE_TITLE[l];
+  // Oct 13 (Love): her books' comparison twins: "-old" = the all-day model, "-both" = both ways everywhere.
+  const tw = /^(.+)-(old|both|rej)$/.exec(l);
+  if (tw) return `${laneTitle(tw[1])} · ${tw[2] === "old" ? "TREND ASSASSIN 🗡️" : tw[2] === "both" ? "BOTH WAYS ↕" : "BLOCKED BY REJECTION 🛡️"}`;
+  const bank = l.endsWith("-bank");
+  const b = l.replace(/-bank$/, "");
+  let m = /^piv(\d+)$/.exec(b); if (m) return `PIVOT ${m[1]}M${bank ? " · BANK" : ""}`;
+  m = /^sp(\d+)$/.exec(b); if (m) return `SESSION + PIVOT ${m[1]}M${bank ? " · BANK" : ""}`;
+  m = /^ogp(\d+)$/.exec(b); if (m) return `OG 👑 + PIVOT ${m[1]}M${bank ? " · BANK" : ""}`;
+  if (LANE_TITLE[b]) return `${LANE_TITLE[b]}${bank ? " · BANK" : ""}`;
+  return l.toUpperCase();
+}
+const res = (r: any, pnl: number | null) => (r === "open" ? "open" : pnl == null ? String(r || "open") : pnl > 0.05 ? "win" : pnl < -0.05 ? "loss" : "flat");
+
+// Her lineup twins as SHIFT rows (Oct 12, Love: "add all of these cards for her clean ones and the btc twins... to the shift
+// tabs"). Read only, never seen by the live copier (it reads its own rows, not getNight's).
+export const TWIN_BOOK: Record<string, string> = { "twin:rev:noflush": "twflush", "twin:rev2:lineup": "twrev2", "twin:rev:lineup": "twrev", "twin:rev:lineup5": "twrev5", "twin:rev:sp5": "twrevsp5", "twin:rev:ogp15": "twrevogp15", "twin:rev:ogp5": "twrevogp5", "twin:lineup:live": "twlive", "twin:lineup:btc": "twbtc", "twin:lineup:gold": "twgold", "twin:lineup:clean": "twclean", "twin:lineup:no45": "twno45", "twin:lineup:nocs": "twnocs", "twin:sp5:btc": "twsp5b", "twin:ogp15:btc": "twogp15b", "twin:ogp5:btc": "twogp5b", "twin:trend:live": "twtrend", "twin:hybrid:live": "twhyb", "twin:together:live": "twtog" };
+export function lineupTwinRows(): any[] {
+  const out: any[] = [];
+  for (const b of scannerBooks()) {
+    const book = TWIN_BOOK[b.id];
+    if (!book) continue;
+    for (const r of b.rows as any[]) out.push({ id: `${r.ticker}:${book}`, book, at: r.at, asset: r.asset, ticker: r.ticker, side: r.side, setup: r.setup, ask: r.entry ?? 0, multiple: r.entry ? Math.round((1 / r.entry) * 100) / 100 : 0, stake: Number(r.usd) || 20, peakPct: 0, exit: r.exit, result: r.result === "flat" ? "loss" : r.result, pnl: r.pnl });
+  }
+  return out;
+}
+export function scannerBooks(): SBook[] {
+  const out: SBook[] = [];
+  const add = (id: string, title: string, family: string, row: SBRow) => {
+    let b = out.find((x) => x.id === id);
+    if (!b) { b = { id, title, family, rows: [] }; out.push(b); }
+    b.rows.push(row);
+  };
+  // COMBOS
+  try {
+    const titles: Record<string, string> = { "crypto-late": "CRYPTO · LAST 5 MIN · 88c+", "crypto-10m": "CRYPTO · 10 MIN LEFT · 88c+", "mix-5x": "CRYPTO + COMMODITIES · OTHER SIDE 5x+", "mix-7x": "CRYPTO + COMMODITIES · OTHER SIDE 7x+", "comm-5x": "COMMODITIES ONLY · OTHER SIDE 5x+", claude: "CLAUDE'S PICKS ✦" };
+    for (const c of rd("combos.json", []) as any[]) {
+      const lane = c.lane || "crypto-late";
+      const legs = (c.legs || []).map((l: any) => l.kind === "sports" ? `${l.note || l.series} ${Math.round(l.ask * 100)}c` : `${String(l.series).replace(/^KX|15M$/g, "")} ${String(l.side).toUpperCase()}`).join(" · ");
+      const base = lane.replace(/-sm$/, "");
+      add(`combo:${lane}`, `COMBO 🧩 ${titles[base] || base}${lane !== base ? " · SUPERMODEL ✨" : ""}`, "COMBOS", { at: c.at, label: `${(c.legs || []).length} legs · ${c.multiple}x · ${legs}`, side: "", entry: Number(c.cost) || null, result: res(c.result, c.pnl), pnl: c.pnl ?? null, exit: c.exit ?? null });
+    }
+  } catch {}
+  // PATTERN BOOK ⏱ (Oct 13, Love): leaning 15M windows, one card per asset
+  try {
+    for (const r of rd("pattern-book.json", []) as any[]) {
+      const a = String(r.series).replace(/^KX|15M$/g, "");
+      const [hh, mm] = String(r.slot).split(":").map(Number);
+      const t12 = `${((hh + 11) % 12) + 1}:${String(mm).padStart(2, "0")} ${hh < 12 ? "AM" : "PM"}`;
+      add(`pattern:${a}`, `PATTERNS ⏱ · ${a} · LEANING WINDOWS`, "PATTERNS", { at: r.at, label: `${t12} ${String(r.side).toUpperCase()} (${r.rate}% of ${r.hist}) · paid ${Math.round(r.ask * 100)}c · ${r.multiple}x`, side: r.side, entry: r.ask, result: res(r.result, r.pnl), pnl: r.pnl ?? null, exit: null });
+    }
+  } catch {}
+  // OG / PIVOT / PAPER lanes
+  try {
+    const g = rd("grok-og.json", []);
+    const rows: any[] = Array.isArray(g) ? g : g?.rows ?? [];
+    for (const r of rows) {
+      const lane = r.lane || "grok";
+      if (/-skipped$/.test(lane)) continue;
+      // METALS LAB (Oct 12): her lineup's rules + BOUNCE on platinum / palladium / silver / gold-control, paper, to the bell.
+      const mm = /^(platinum|palladium|msilver|mgold)-(sp5|ogp5|ogp15|bounce)$/.exec(lane);
+      if (mm) {
+        const metal = ({ platinum: "PLATINUM", palladium: "PALLADIUM", msilver: "SILVER", mgold: "GOLD (control)" } as Record<string, string>)[mm[1]];
+        const rule = ({ sp5: "SESSION + PIVOT 5M", ogp5: "OG + PIVOT 5M", ogp15: "OG 👑 + PIVOT 15M", bounce: "BOUNCE OFF ±1.5σ" } as Record<string, string>)[mm[2]];
+        const row = { at: r.at, label: `${r.side === "up" ? "LONG" : "SHORT"} · ${r.label}`, side: r.side, entry: Number(r.ask) || null, result: res(r.result, r.pnl), pnl: r.pnl ?? null, exit: r.exit ?? null };
+        add(`metal:${lane}`, `${metal} · ${rule}`, "METALS", row);
+        continue;
+      }
+      const fam = /^paper-|^open-road/.test(lane) ? "PAPER" : "OG & PIVOT";
+      add(`lane:${lane}`, laneTitle(lane), fam, { at: r.at, label: `${String(r.asset).toUpperCase()} ${r.side === "up" ? "LONG" : "SHORT"} · ${r.label}`, side: r.side, entry: Number(r.ask) || null, result: res(r.result, r.pnl), pnl: r.pnl ?? null, exit: r.exit ?? null });
+    }
+  } catch {}
+  // HER LINEUP TWINS (Love, Oct 12 AM: "lets run paper twins of the ones i have running on btc only and we'll know if golds
+  // worth it"). Her live lineup replayed on paper exactly as the copier runs it (each book's skip hours, gold sits out 6 PM,
+  // one trade per window), every trade at $20: AS LIVE (BTC + gold), BTC ONLY, GOLD ONLY, and each book on BTC only.
+  try {
+    const sw = rd("live-switch.json", {});
+    const books: string[] = sw?.liveBook?.books ?? ["sp5", "ogp15", "ogp5"];
+    const skip: Record<string, number[]> = sw?.bookSkipHours ?? {};
+    const goldSkip: number[] = sw?.liveSkipHours?.gold ?? [18];
+    const hr = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+    const g = rd("grok-og.json", []);
+    const rows: any[] = (Array.isArray(g) ? g : g?.rows ?? []).filter((r: any) => books.includes(r.lane)).sort((a: any, b: any) => (a.at < b.at ? -1 : 1));
+    const seen = new Set<string>();
+    // REAL PRICE (Oct 12, Love: "fix paper so it uses the real price"): when a live copy of the window filled, the twins score
+    // the trade at what Kalshi actually charged, not the paper quote (3:01 PM: paper 32c, Kalshi 60c). Winners are scaled
+    // to the real payout; losers stay a full loss either way.
+    const paidBy = new Map<string, number>();
+    try { for (const v of Object.values(rd("live-book-done.json", {})) as any[]) if (v && (v.status === "filled" || v.status === "partial") && v.ticker && Number(v.paid) > 0 && !paidBy.has(v.ticker)) paidBy.set(String(v.ticker), Number(v.paid)); } catch {}
+    const mk = (r: any, usd = 20): SBRow => {
+      const k = usd / (Number(r.stake) || 20);
+      let pnl = r.pnl == null ? null : Math.round(Number(r.pnl) * k * 100) / 100;
+      const paid = paidBy.get(r.ticker), ask = Number(r.ask) || 0;
+      if (pnl != null && pnl > 0 && paid && ask > 0 && Math.abs(paid - ask) >= 0.02) pnl = Math.round(pnl * ((1 / paid - 1) / (1 / ask - 1)) * 100) / 100;
+      return { at: r.at, label: `${String(r.asset).toUpperCase()} ${r.side === "up" ? "LONG" : "SHORT"} · ${laneTitle(r.lane)} · ${r.label}`, side: r.side, entry: paid || Number(r.ask) || null, result: res(r.result, pnl), pnl, exit: r.exit ?? null, asset: r.asset, ticker: r.ticker, setup: `${laneTitle(r.lane)} · ${r.label}${paid && Math.abs(paid - ask) >= 0.02 ? ` · Kalshi ${Math.round(paid * 100)}c (paper ${Math.round(ask * 100)}c)` : ""}`, usd } as SBRow;
+    };
+    // LOSS-CAUSE TWINS (Love, Oct 12 ~noon PT: "isolate what the cause of the majority of these losses are, make a paper
+    // book that tries to stop whatever most of those is coming from"). On her lineup's own trades (Oct 11-12): entries under
+    // 45c won 44% and carried 48% of every dollar lost; "Close through a σ band" entries won 44%. Each twin skips one (or
+    // both) and, like the live copier, lets the next book's call take the window if the first one is skipped.
+    const closeSigma = (r: any) => /^close/i.test(String(r.label)) && /σ/.test(String(r.label));
+    const cheap = (r: any) => Number(r.ask) > 0 && Number(r.ask) < 0.45;
+    const variants: { id: string; title: string; skip: (r: any) => boolean; seen: Set<string> }[] = [
+      { id: "twin:lineup:no45", title: "HER LINEUP · NO ENTRIES UNDER 45c (twin)", skip: cheap, seen: new Set() },
+      { id: "twin:lineup:nocs", title: "HER LINEUP · NO CLOSE-THROUGH-σ (twin)", skip: closeSigma, seen: new Set() },
+      { id: "twin:lineup:clean", title: "HER LINEUP · CLEAN: NEITHER (twin)", skip: (r: any) => cheap(r) || closeSigma(r), seen: new Set() },
+    ];
+    // REVISED HOURS TWINS (Love, Oct 12 ~1:10 PM PT: "she shines 8-11 AM... 2-7 PM almost all green... 7-9 PM almost all red,
+    // 9 PM is great, 10-11 PM almost all red, then 11 PM good till 3 AM and fine till 11 AM... make new twins of the ones
+    // we're running under those hours... keep these intact so we can switch back"). Every book off 11a-2p, 7-9p, 10-11p PT
+    // (gold still off 6 PM). The "$5 SNIPES" twin keeps her under-45c entries but at $5 instead of cutting them.
+    const REV = [3, 6, 7, 11, 12, 13, 19, 20, 22]; // + 6-8 AM (Love, Oct 12 ~1:35 PM PT) // + 3 AM (Love, Oct 12 ~1:30 PM PT: "3am should still be out")
+    const REV2 = [...REV, 8, 10];
+    // NO FLUSH (Oct 12, Love: "yesss let's do that"): her live hours, minus an "On" entry at an outer line (±1.5σ+ or a pivot
+    // S1/S2/R1/R2) right after a one-minute flush INTO it: that candle's range >= 0.75 sigma and it closed in its last 20% in
+    // the trade's direction. Only trades booked since this change carry the candle, so it's a forward test.
+    const flushed = (r: any) => {
+      const b = r.bar, sd = Number(r.sd) || 0, l = String(r.label);
+      if (!b || !(sd > 0) || !/^On /.test(l)) return false;
+      const mm = /([+-]?\d(\.\d)?)σ/.exec(l);
+      const outer = (mm && Math.abs(Number(mm[1])) >= 1.5) || /\b(S1|S2|R1|R2)\b/.test(l);
+      const rg = b.h - b.l;
+      if (!outer || !(rg >= 0.75 * sd)) return false;
+      return r.side === "down" ? (b.c - b.l) <= 0.2 * rg : (b.h - b.c) <= 0.2 * rg;
+    };
+    const flushSeen = new Set<string>(); // + 8 AM and 10 AM (Love, Oct 12 ~2:20 PM PT: "8 and 10 off on there too")
+    const revSeen = new Set<string>(), rev5Seen = new Set<string>(), rev2Seen = new Set<string>();
+    for (const r of rows) {
+      const h = hr(r.at);
+      if (!REV.includes(h) && !(r.asset === "gold" && goldSkip.includes(h)) && !flushed(r) && !flushSeen.has(r.ticker)) { flushSeen.add(r.ticker); add("twin:rev:noflush", "HER LINEUP · LIVE HOURS, NO FLUSH ENTRIES (twin)", "LINEUP", mk(r)); }
+      if (!REV2.includes(h) && !(r.asset === "gold" && goldSkip.includes(h)) && !rev2Seen.has(r.ticker)) { rev2Seen.add(r.ticker); add("twin:rev2:lineup", "HER LINEUP · REVISED HOURS + 8 & 10 AM OFF (twin)", "LINEUP", mk(r)); }
+      if (REV.includes(h) || (r.asset === "gold" && goldSkip.includes(h))) continue;
+      add(`twin:rev:${r.lane}`, `${laneTitle(r.lane)} · REVISED HOURS (twin)`, "LINEUP", mk(r));
+      if (!revSeen.has(r.ticker)) { revSeen.add(r.ticker); add("twin:rev:lineup", "HER LINEUP · REVISED HOURS (twin)", "LINEUP", mk(r)); }
+      if (!rev5Seen.has(r.ticker)) { rev5Seen.add(r.ticker); add("twin:rev:lineup5", "HER LINEUP · REVISED HOURS + $5 SNIPES UNDER 45c (twin)", "LINEUP", mk(r, Number(r.ask) < 0.45 ? 5 : 20)); }
+    }
+    for (const r of rows) {
+      const h = hr(r.at);
+      if ((skip[r.lane] ?? []).includes(h)) continue;
+      if (!(r.asset === "gold" && goldSkip.includes(h))) for (const v of variants) {
+        if (v.skip(r) || v.seen.has(r.ticker)) continue;
+        v.seen.add(r.ticker);
+        add(v.id, v.title, "LINEUP", mk(r));
+      }
+      if (r.asset === "btc") add(`twin:${r.lane}:btc`, `${laneTitle(r.lane)} · BTC ONLY (twin)`, "LINEUP", mk(r));
+      if (r.asset === "gold" && goldSkip.includes(h)) continue;
+      if (seen.has(r.ticker)) continue;
+      seen.add(r.ticker);
+      const row = mk(r);
+      add("twin:lineup:live", "HER LINEUP · AS LIVE, BTC + GOLD (twin)", "LINEUP", row);
+      add(r.asset === "btc" ? "twin:lineup:btc" : "twin:lineup:gold", r.asset === "btc" ? "HER LINEUP · BTC ONLY (twin)" : "HER LINEUP · GOLD ONLY (twin)", "LINEUP", row);
+    }
+  } catch {}
+  // TREND ASSASSIN · FULL RECORD (Love, Oct 13 ~noon PT: "put a card up for the model we were running all day yesterday prior
+  // to the switch... i want to see how it did"). Her lineup exactly as Kalshi traded it until the switch (Oct 13 2:45 AM PT),
+  // then the same model's paper twins ("-old") from there on: her off hours, gold off at 6 PM, one trade per window, $20.
+  try {
+    const SWITCH = "2026-10-13T09:45:00Z";
+    const sw = rd("live-switch.json", {});
+    const books: string[] = ["sp5", "ogp15", "ogp5"];
+    const skip: Record<string, number[]> = sw?.bookSkipHours ?? {};
+    const goldSkip: number[] = sw?.liveSkipHours?.gold ?? [18];
+    const hr = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+    const g = rd("grok-og.json", []);
+    let arch: any[] = [];
+    try { arch = readFileSync(join(process.cwd(), "data", "grok-og-archive.jsonl"), "utf8").split("\n").filter((l) => l.includes('"lane":"sp5') || l.includes('"lane":"ogp')).map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean); } catch {}
+    const cur: any[] = Array.isArray(g) ? g : g?.rows ?? [];
+    const ids = new Set(cur.map((r: any) => r.id));
+    const all: any[] = [...cur, ...arch.filter((r: any) => !ids.has(r.id))].filter((r: any) => (books.includes(r.lane) && r.at < SWITCH) || (books.map((b) => `${b}-old`).includes(r.lane) && r.at >= SWITCH)).sort((a: any, b: any) => (a.at < b.at ? -1 : 1));
+    const seen = new Set<string>();
+    for (const r of all) {
+      const base = String(r.lane).replace(/-old$/, "");
+      const h = hr(r.at);
+      if ((skip[base] ?? []).includes(h) || (r.asset === "gold" && goldSkip.includes(h)) || seen.has(r.ticker)) continue;
+      seen.add(r.ticker);
+      const k = 20 / (Number(r.stake) || 20);
+      const pnl = r.pnl == null ? null : Math.round(Number(r.pnl) * k * 100) / 100;
+      add("twin:trend:live", "TREND ASSASSIN 🗡️ · ALL DAY YESTERDAY → NOW (as live, twin)", "LINEUP", { at: r.at, label: `${String(r.asset).toUpperCase()} ${r.side === "up" ? "LONG" : "SHORT"} · ${laneTitle(base)} · ${r.label}${r.at >= SWITCH ? " · (paper after the switch)" : ""}`, side: r.side, entry: Number(r.ask) || null, result: res(r.result, pnl), pnl, exit: r.exit ?? null, asset: r.asset, ticker: r.ticker, setup: `${laneTitle(base)} · ${r.label}`, usd: 20 } as any);
+    }
+  } catch {}
+  // HYBRID ✨ · AS LIVE (Love, Oct 13 ~12:30 PM PT: "a hybrid card of its own... the trades she would have taken on that
+  // overnight and how they compared to the both ways version, and the original"). Since the switch: each window's first call
+  // from her three books, where price outside +/-1 sigma of the session VWAP takes the all-day model's call ("-old") and inside
+  // takes the both-ways call with today's rules (her live books' rows; their own "-hyb" twins once those exist). Channel for
+  // the past rows rebuilt by the lab (data/lab/hybrid-flags.json). Her off hours, gold off 6 PM, one per window, $20.
+  try {
+    const SWITCH = "2026-10-13T09:45:00Z";
+    const sw = rd("live-switch.json", {});
+    const skip: Record<string, number[]> = sw?.bookSkipHours ?? {};
+    const goldSkip: number[] = sw?.liveSkipHours?.gold ?? [18];
+    const hr = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+    const flags: Record<string, any> = rd("lab/hybrid-flags.json", {})?.flags ?? {};
+    const g = rd("grok-og.json", []);
+    const cur: any[] = (Array.isArray(g) ? g : g?.rows ?? []).filter((r: any) => r.at >= SWITCH).sort((a: any, b: any) => (a.at < b.at ? -1 : 1));
+    const B = ["sp5", "ogp15", "ogp5"];
+    const hybStart = cur.find((r: any) => /-hyb$/.test(String(r.lane)))?.at ?? "9999";
+    const seen = new Set<string>();
+    for (const r of cur) {
+      const ln = String(r.lane);
+      const base = ln.replace(/-(old|hyb)$/, "");
+      if (!B.includes(base)) continue;
+      let take = false;
+      if (r.at >= hybStart) take = ln === `${base}-hyb`;
+      else {
+        const f = flags[r.id];
+        if (!f) continue;
+        take = f.outside ? ln === `${base}-old` : ln === base;
+      }
+      if (!take) continue;
+      const h = hr(r.at);
+      if ((skip[base] ?? []).includes(h) || (r.asset === "gold" && goldSkip.includes(h)) || seen.has(r.ticker)) continue;
+      seen.add(r.ticker);
+      const pnl = r.pnl == null ? null : Math.round(Number(r.pnl) * (20 / (Number(r.stake) || 20)) * 100) / 100;
+      const outside = ln.endsWith("-hyb") ? /trend/.test(String(r.mode || "")) : !!flags[r.id]?.outside;
+      add("twin:hybrid:live", "HYBRID ✨ · AS LIVE SINCE THE SWITCH (twin)", "LINEUP", { at: r.at, label: `${String(r.asset).toUpperCase()} ${r.side === "up" ? "LONG" : "SHORT"} · ${laneTitle(base)} · ${r.label} · ${outside ? "trend side (outside 1σ)" : "channel (inside 1σ)"}`, side: r.side, entry: Number(r.ask) || null, result: res(r.result, pnl), pnl, exit: r.exit ?? null, asset: r.asset, ticker: r.ticker, setup: `${laneTitle(base)} · ${r.label}${outside ? " · trend side" : ""}`, usd: 20 } as any);
+    }
+  } catch {}
+  // TOGETHER 💞 (Oct 13 ~8:30 PM PT, Love: "could you make a card for me that would show the trades of the combined ones... if
+  // they carry each other when the other is hurting that's a beautiful symbiosis"): PAPER 24/7 and the 5M lineup (ogp5) on RUN
+  // at once, as the copier would run them: one trade per window per asset, whichever signals first takes it; when one sits a
+  // window out (no signal, or its off hour) the other is free to take it. Each book's current off hours, gold off at 6 PM,
+  // $20 a ticket. Includes archived and rebuilt rows (Oct 11 eve on).
+  try {
+    const sw = rd("live-switch.json", {});
+    const skip: Record<string, number[]> = sw?.bookSkipHours ?? {};
+    const goldSkip: number[] = sw?.liveSkipHours?.gold ?? [18];
+    const hr = (iso: string) => Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(iso)));
+    const BK: Record<string, string> = { "paper-247": "pap247", ogp5: "ogp5" };
+    const byId = new Map<string, any>();
+    try {
+      for (const l of readFileSync(join(process.cwd(), "data", "grok-og-archive.jsonl"), "utf8").split("\n")) {
+        if (!l || !(l.includes('"lane":"paper-247"') || l.includes('"lane": "paper-247"') || l.includes('"lane":"ogp5"') || l.includes('"lane": "ogp5"'))) continue;
+        try { const r = JSON.parse(l); if (BK[r.lane]) byId.set(r.id, r); } catch {}
+      }
+    } catch {}
+    const g = rd("grok-og.json", []);
+    for (const r of (Array.isArray(g) ? g : []) as any[]) if (BK[r.lane]) byId.set(r.id, r);
+    const start = [...byId.values()].filter((r) => r.lane === "ogp5").reduce((m, r) => (r.at < m ? r.at : m), "9999");
+    const rows = [...byId.values()].filter((r) => r.at >= start).sort((a, b) => (a.at < b.at ? -1 : 1));
+    const seen = new Set<string>();
+    for (const r of rows) {
+      const bk = BK[r.lane];
+      const h = hr(r.at);
+      if ((skip[bk] ?? []).includes(h) || (r.asset === "gold" && goldSkip.includes(h)) || seen.has(r.ticker)) continue;
+      seen.add(r.ticker);
+      const pnl = r.pnl == null ? null : Math.round(Number(r.pnl) * (20 / (Number(r.stake) || 20)) * 100) / 100;
+      const who = bk === "pap247" ? "PAPER 24/7" : "5M PIVOT";
+      add("twin:together:live", "TOGETHER 💞 · PAPER 24/7 + 5M PIVOT (first to signal takes the window)", "LINEUP", { at: r.at, label: `${String(r.asset).toUpperCase()} ${r.side === "up" ? "LONG" : "SHORT"} · ${who} · ${r.label}${r.rebuilt ? " · rebuilt" : ""}`, side: r.side, entry: Number(r.ask) || null, result: res(r.result, pnl), pnl, exit: r.exit ?? null, asset: r.asset, ticker: r.ticker, setup: `${who} · ${r.label}`, usd: 20 } as any);
+    }
+  } catch {}
+  // SPORTS (CLOSER + LONGSHOT)
+  try {
+    const c = rd("closer.json", {});
+    for (const t of c?.trades ?? []) add(`closer:${t.lane}`, `CLOSER 🏈 · ${String(t.lane).toUpperCase()}`, "SPORTS", { at: t.at, label: `${t.league} · ${t.team} · ${t.game}`, side: "yes", entry: Number(t.ask) || null, result: res(t.result, t.pnl), pnl: t.pnl ?? null, exit: null });
+    for (const t of c?.shots ?? []) add(`shot:${t.book}`, `LONGSHOT 🎯 · ${t.book}`, "SPORTS", { at: t.at, label: `${t.league} · ${t.team} · ${t.game}`, side: t.side, entry: Number(t.ask) || null, result: res(t.result, t.pnl), pnl: t.pnl ?? null, exit: null });
+  } catch {}
+  // CLIMATE
+  try {
+    for (const t of rd("climate-wide.json", []) as any[]) add(`climate:${t.kind}`, `CLIMATE · ${String(t.kind).toUpperCase()}`, "CLIMATE", { at: t.at, label: String(t.title || t.ticker).slice(0, 110), side: t.side, entry: Number(t.ask) || null, result: res(t.result, t.pnl), pnl: t.pnl ?? null, exit: null });
+  } catch {}
+  // HOURLY LONGSHOTS (held to the bell)
+  try {
+    for (const t of rd("hour-lotto.json", []) as any[]) {
+      const p = t?.exits?.hold?.pnl;
+      add(`hour:${t.rule}`, `HOURLY LONGSHOTS · ${String(t.rule).toUpperCase()} · HOLD`, "HOURLY", { at: t.at, label: `BTC ${t.side === "up" ? "ABOVE" : "BELOW"} ${t.strike} · ${t.why || ""}`, side: t.side, entry: Number(t.ask) || null, result: t.done ? res("x", p ?? null) : "open", pnl: t.done ? p ?? null : null, exit: null });
+    }
+  } catch {}
+  for (const b of out) b.rows.sort((a, c) => (a.at < c.at ? 1 : -1));
+  return out;
+}

@@ -1,0 +1,703 @@
+// SCANNER tab (Claude, Oct 8, Love: "let's make it a SCANNER tab to the right of Kalshi... anything we can actually get some
+// data on and not speculate"). Oct 9 ~7:15 PM PT redesign (Love: "can we make the tab have the same design language as our
+// cards... the wording is hard to make out, it doesn't say specific cities"): every book is a SHIFT-style card (big glowing
+// P&L, thin border that glows green when it's up), and every trade says the place, the time and the bet in plain words.
+import { Fragment, useState, type ReactNode } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getComboLessons, getScannerBooks, getLastMinute, getCombos, getGrokOg, getCloser, getClimate, addLoveCall, editLoveCall, getHourLotto, getLoveCalls, getMentions, getOracle, getPositions, getScanner } from "@/lib/desk/fns";
+
+const UP = "#3ddc84";
+const DOWN = "#ff5c5c";
+const usd = (n: number) => `${n >= 0 ? "+" : "−"}$${Math.abs(n).toFixed(2)}`;
+const tone = (n: number) => (n > 0.005 ? UP : n < -0.005 ? DOWN : "rgba(255,255,255,0.75)");
+const ago = (iso: string | null | undefined) => (iso ? `${Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 60000))} min ago` : "starting…");
+const KIND: Record<string, string> = { "high-lock": "DAILY HIGH · LOCK-IN", "low-lock": "DAILY LOW · LOCK-IN", hourly: "HOURLY · NEAR THE READING" };
+
+// "Will the temp in New York City be above 66.99° on Oct 9, 2026 at 11am EDT? · 67° or above"
+//   -> { where: "New York City", when: "Oct 9 · 11am EDT", what: "67° or above" }
+function pretty(title: string) {
+  const t = String(title || "");
+  const [q, opt] = t.split(" · ");
+  const where = (q.match(/\bin ([A-Z][A-Za-z.' -]+?)(?: be| on| today| tomorrow| between| have|\?|,)/) || [])[1] || "";
+  const date = (q.match(/\bon ([A-Z][a-z]{2,8} \d{1,2})/) || [])[1] || "";
+  const time = (q.match(/\bat (\d{1,2}(?::\d\d)?\s?(?:am|pm)(?: [A-Z]{2,4})?)/i) || [])[1] || "";
+  const kind = /\bhigh\b/i.test(q) ? "high" : /\blow\b/i.test(q) ? "low" : /temp/i.test(q) ? "temp" : "";
+  // Eastern -> her Pacific time ("6pm EDT" -> "3pm PT").
+  const et = time.match(/^(\d{1,2})(?::(\d\d))?\s?(am|pm) E[DS]T$/i);
+  let tPT = time;
+  if (et) {
+    let h = (Number(et[1]) % 12) + (/pm/i.test(et[3]) ? 12 : 0) - 3;
+    if (h < 0) h += 24;
+    tPT = `${h % 12 === 0 ? 12 : h % 12}${et[2] ? `:${et[2]}` : ""}${h < 12 ? "am" : "pm"} PT`;
+  }
+  return { where, when: [date, tPT].filter(Boolean).join(" · "), what: (opt || "").trim(), kind, q };
+}
+function betLine(side: string, what: string, kind: string) {
+  const subject = kind === "high" ? "the day's high" : kind === "low" ? "the day's low" : kind === "temp" ? "the reading" : "it";
+  return side === "yes" ? `betting ${subject} IS ${what || "yes"}` : `betting ${subject} is NOT ${what || "yes"}`;
+}
+
+function Card({ title, sub, money, line, children, note }: { title: string; sub?: string; money?: number | null; line?: ReactNode; children?: ReactNode; note?: string }) {
+  const has = typeof money === "number";
+  const c = has ? (money! >= 0 ? UP : DOWN) : "rgba(255,255,255,0.85)";
+  const glow = has && money! > 0.005;
+  return (
+    <div className="flex flex-col gap-1 rounded-2xl border px-4 py-3" style={{ borderColor: glow ? "rgba(61,220,132,0.55)" : has && money! < -0.005 ? "rgba(255,92,92,0.45)" : "rgba(255,255,255,0.2)", boxShadow: glow ? "0 0 14px rgba(61,220,132,0.18)" : "none" }}>
+      <p className="text-[10px] tracking-[0.26em] text-white">{title}</p>
+      {sub ? <p className="text-[9px] leading-snug text-white/55">{sub}</p> : null}
+      {has ? (
+        <p className="mt-1 font-mono text-2xl tabular-nums" style={{ color: c, textShadow: `0 0 10px ${c}` }}>
+          {usd(money!)}
+        </p>
+      ) : null}
+      {line ? <p className="font-mono text-[11px] tabular-nums text-white/80">{line}</p> : null}
+      {note ? <p className="font-mono text-[9px] tracking-[0.12em] text-white/55">{note}</p> : null}
+      {children}
+    </div>
+  );
+}
+function TradeRow({ head, sub, right, rightColor, border }: { head: ReactNode; sub?: ReactNode; right: string; rightColor: string; border?: string }) {
+  return (
+    <div className="flex items-start gap-2 rounded-xl border px-3 py-2" style={{ borderColor: border || "rgba(255,255,255,0.14)" }}>
+      <div className="min-w-0 flex-1">
+        <p className="font-mono text-[10px] leading-snug text-white">{head}</p>
+        {sub ? <p className="font-mono text-[9px] leading-snug text-white/55">{sub}</p> : null}
+      </div>
+      <span className="shrink-0 font-mono text-[11px] tabular-nums" style={{ color: rightColor }}>
+        {right}
+      </span>
+    </div>
+  );
+}
+const H = ({ children }: { children: ReactNode }) => <p className="mt-5 text-[10px] tracking-[0.26em] text-white/80">{children}</p>;
+
+const MAP: { tier: "green" | "yellow" | "red"; name: string; data: string; status: string }[] = [
+  { tier: "green", name: "Weather · daily high / low", data: "Settles on the station's official max/min. The station's live readings put a floor under the high and a ceiling over the low as the day goes.", status: "SCANNING" },
+  { tier: "green", name: "Weather · hourly temperature", data: "Settles on a blended AREA index, not one station. She learns each city's gap from every settled hour, trades a city only after 6+ lessons, and needs a cushion of 4F or the 90th-percentile miss + 1.5F.", status: "SCANNING" },
+  { tier: "yellow", name: "Mentions · what will X say", data: "Kalshi's own record of what each speaker actually said, rallies vs everything else. Before the event only, 20+ points off the record. Paper until it proves itself.", status: "PAPER" },
+  { tier: "yellow", name: "ORACLE · reasoned forecasts", data: "Researched probabilities written before the result, scored against the market's own price. Real money only after 100+ forecasts that beat the crowd.", status: "PAPER" },
+  { tier: "yellow", name: "Fed / CPI / jobs / yields / commodities", data: "Futures and nowcasts price these; ORACLE checks Kalshi against them. Liquid ones are usually fair.", status: "ORACLE" },
+  { tier: "red", name: "Pure coin flips", data: "No data that settles the answer ahead of the crowd. Skipped on purpose.", status: "SKIP" },
+];
+const TIER = { green: UP, yellow: "#ffd27a", red: "#ff8a8a" };
+
+function LoveCalls() {
+  const qc = useQueryClient();
+  const lq = useQuery({ queryKey: ["love-calls"], queryFn: () => getLoveCalls(), refetchInterval: 60000 });
+  const pq = useQuery({ queryKey: ["positions"], queryFn: () => getPositions(), refetchInterval: 30000 });
+  const L = lq.data as any;
+  const pos: any[] = (pq.data as any)?.rows ?? [];
+  const [pick, setPick] = useState("");
+  const [reason, setReason] = useState("");
+  const [sure, setSure] = useState(70);
+  const [busy, setBusy] = useState(false);
+  const [sellAt, setSellAt] = useState<Record<string, string>>({});
+  const p = pos.find((x) => x.ticker === pick);
+  const save = (r: any) => qc.setQueryData(["love-calls"], r);
+  const logged = new Set((L?.rows ?? []).filter((r: any) => r.result === "open").map((r: any) => r.ticker));
+  return (
+    <Card
+      title="LOVE'S CALLS ✍️"
+      sub="Your own trades with the reason you took them, scored against the price you paid. If your instinct beats the crowd over 20-30 calls, that's when the bigger tickets earn their place."
+      money={L?.total?.n ? L.total.p : null}
+      line={L ? `${L.total.w}/${L.total.n} won${L.total.n ? ` · ${L.total.roi >= 0 ? "+" : ""}${L.total.roi}% on what you staked` : ""} · ${L.open} open` : "loading…"}
+      note={L && Object.keys(L.by || {}).length ? Object.entries(L.by).map(([k, c]: any) => `${k.toUpperCase()} ${usd(c.p)} ${c.w}/${c.n}`).join(" · ") : undefined}
+    >
+      <div className="mt-2 flex flex-col gap-1.5 rounded-xl border px-3 py-2" style={{ borderColor: "rgba(179,136,255,0.45)" }}>
+        <p className="text-[9px] tracking-[0.2em]" style={{ color: "#B388FF" }}>LOG A CALL FROM YOUR POSITIONS</p>
+        <select value={pick} onChange={(e) => setPick(e.target.value)} className="rounded-lg bg-black px-2 py-1.5 font-mono text-[10px] text-white" style={{ border: "1px solid rgba(255,255,255,0.25)" }}>
+          <option value="">pick a position…</option>
+          {pos.filter((x) => !logged.has(x.ticker)).map((x) => (
+            <option key={x.ticker} value={x.ticker}>
+              {x.side.toUpperCase()} @ {Math.round(x.entry * 100)}c · ${x.cost.toFixed(2)} · {String(x.title).slice(0, 70)}
+            </option>
+          ))}
+        </select>
+        <textarea value={reason} onChange={(e) => setReason(e.target.value)} placeholder="why you took it (e.g. he always says Iran at rallies)" rows={2} className="rounded-lg bg-black px-2 py-1.5 font-mono text-[10px] text-white placeholder:text-white/35" style={{ border: "1px solid rgba(255,255,255,0.25)" }} />
+        <div className="flex items-center gap-2 font-mono text-[9px] text-white/70">
+          <span>HOW SURE</span>
+          <input type="range" min={50} max={99} value={sure} onChange={(e) => setSure(Number(e.target.value))} className="glass-range flex-1" />
+          <span className="w-8 text-right">{sure}%</span>
+        </div>
+        <button
+          type="button"
+          disabled={!p || !reason.trim() || busy}
+          onClick={() => {
+            if (!p) return;
+            setBusy(true);
+            void addLoveCall({ data: { ticker: p.ticker, side: p.side, entry: p.entry, stake: p.cost, reason, conviction: sure / 100, title: p.title } })
+              .then((r) => { save(r); setPick(""); setReason(""); })
+              .finally(() => setBusy(false));
+          }}
+          className="self-start rounded-full border px-3 py-1 font-mono text-[9px] tracking-[0.15em] disabled:opacity-40"
+          style={{ borderColor: "#B388FF", color: "#B388FF" }}
+        >
+          {busy ? "LOGGING…" : "LOG THIS CALL"}
+        </button>
+      </div>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {(L?.rows ?? []).slice(0, 20).map((r: any) => (
+          <div key={r.id} className="rounded-xl border px-3 py-2" style={{ borderColor: r.result === "open" ? "rgba(179,136,255,0.4)" : (r.pnl ?? 0) >= 0 ? "rgba(61,220,132,0.45)" : "rgba(255,92,92,0.4)" }}>
+            <div className="flex items-start gap-2">
+              <p className="min-w-0 flex-1 font-mono text-[10px] leading-snug text-white">
+                {r.side.toUpperCase()} @ {Math.round(r.entry * 100)}c · {r.title}
+              </p>
+              <span className="shrink-0 font-mono text-[11px]" style={{ color: r.result === "open" ? "#B388FF" : tone(r.pnl ?? 0) }}>
+                {r.result === "open" ? "OPEN" : `${r.result === "sold" ? `SOLD ${Math.round((r.exit ?? 0) * 100)}c ` : r.result.toUpperCase() + " "}${usd(r.pnl ?? 0)}`}
+              </span>
+            </div>
+            <p className="font-mono text-[9px] leading-snug text-white/55">
+              "{r.reason}"{r.conviction ? ` · ${Math.round(r.conviction * 100)}% sure` : ""} · ${r.stake.toFixed(2)} in
+            </p>
+            {r.result === "open" ? (
+              <div className="mt-1 flex items-center gap-1.5">
+                <input value={sellAt[r.id] ?? ""} onChange={(e) => setSellAt((s) => ({ ...s, [r.id]: e.target.value }))} placeholder="sold at ¢" inputMode="numeric" className="w-20 rounded-md bg-black px-2 py-0.5 font-mono text-[9px] text-white placeholder:text-white/35" style={{ border: "1px solid rgba(255,255,255,0.25)" }} />
+                <button type="button" onClick={() => Number(sellAt[r.id]) > 0 && void editLoveCall({ data: { id: r.id, sell: Number(sellAt[r.id]) } }).then(save)} className="rounded-full border px-2 py-0.5 font-mono text-[9px] text-white/80" style={{ borderColor: "rgba(255,255,255,0.35)" }}>
+                  I SOLD IT
+                </button>
+                <span className="flex-1" />
+                <button type="button" onClick={() => void editLoveCall({ data: { id: r.id, remove: true } }).then(save)} className="font-mono text-[9px] text-white/40">
+                  remove
+                </button>
+              </div>
+            ) : null}
+          </div>
+        ))}
+        {L && !L.rows?.length ? <p className="font-mono text-[9px] text-white/45">Your first call shows up here. Held to the end, it settles itself from Kalshi's result.</p> : null}
+      </div>
+    </Card>
+  );
+}
+
+
+// SCANNER BOOKS (Oct 11 ~7 PM PT, Love: "a combo's tab that actually shows the trades when i click it... make all of the cards
+// clickable to show their trades... highest performance toggle... and the 4, 12, 24 and all buttons"). One grid of every
+// paper book on this tab: family chips (COMBOS first), a time window, best-first sort, and a tap opens that card's trades.
+function ScannerBooks() {
+  const q = useQuery({ queryKey: ["scanner-books"], queryFn: () => getScannerBooks(), refetchInterval: 30000 });
+  const books = (q.data ?? []) as any[];
+  const [fam, setFam] = useState("COMBOS");
+  const [span, setSpan] = useState<"4h" | "12h" | "24h" | "all">("24h");
+  const [best, setBest] = useState(true);
+  const [open, setOpen] = useState<string | null>(null);
+  const from = span === "all" ? 0 : Date.now() - (span === "4h" ? 4 : span === "12h" ? 12 : 24) * 3600e3;
+  const fams = ["ALL", "COMBOS", "OG & PIVOT", "PAPER", "SPORTS", "CLIMATE", "HOURLY"];
+  const stat = (rows: any[]) => {
+    const xs = rows.filter((r) => !from || Date.parse(r.at) >= from);
+    const done = xs.filter((r) => r.result !== "open" && r.pnl != null);
+    return { xs, n: done.length, w: done.filter((r) => r.pnl > 0.05).length, l: done.filter((r) => r.pnl < -0.05).length, pnl: done.reduce((a, r) => a + r.pnl, 0), open: xs.length - done.length };
+  };
+  let list = books.filter((b) => fam === "ALL" || b.family === fam).map((b) => ({ ...b, s: stat(b.rows) })).filter((b) => b.s.xs.length > 0);
+  if (best) list = [...list].sort((a, b) => b.s.pnl - a.s.pnl);
+  const chip = (on: boolean) => ({ border: `1px solid rgba(255,255,255,${on ? 0.9 : 0.28})`, color: on ? "#fff" : "rgba(255,255,255,0.6)", boxShadow: on ? "0 0 8px rgba(255,255,255,0.25)" : "none" });
+  return (
+    <div className="mt-3 rounded-2xl px-2 py-2" style={{ border: "1px solid rgba(255,255,255,0.22)" }}>
+      <p className="px-1 text-[10px] tracking-[0.26em] text-white/90">BOOKS · TAP A CARD FOR ITS TRADES</p>
+      <div className="mt-2 flex flex-wrap gap-1.5">
+        {fams.map((f) => (
+          <button key={f} type="button" onClick={() => { setFam(f); setOpen(null); }} className="rounded-full px-2.5 py-1 text-[9px] tracking-[0.16em]" style={chip(fam === f)}>
+            {f === "COMBOS" ? "COMBOS 🧩" : f}
+          </button>
+        ))}
+      </div>
+      <div className="mt-2 flex flex-wrap items-center gap-1.5">
+        {(["4h", "12h", "24h", "all"] as const).map((k) => (
+          <button key={k} type="button" onClick={() => setSpan(k)} className="rounded-[4px] px-2 py-0.5 font-mono text-[9px]" style={chip(span === k)}>
+            {k === "all" ? "ALL" : k.toUpperCase()}
+          </button>
+        ))}
+        <button type="button" onClick={() => setBest((v) => !v)} className="ml-auto rounded-full px-2.5 py-1 text-[9px] tracking-[0.16em]" style={chip(best)}>
+          {best ? "▲ HIGHEST PERFORMANCE FIRST" : "SORT: AS LISTED"}
+        </button>
+      </div>
+      {!list.length ? <p className="mt-2 px-1 font-mono text-[10px] text-white/50">{q.isLoading ? "loading…" : "no trades in this window"}</p> : null}
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {list.map((b) => {
+          const on = open === b.id;
+          const c = b.s.pnl > 0.005 ? UP : b.s.pnl < -0.005 ? DOWN : "rgba(255,255,255,0.8)";
+          return (
+            <Fragment key={b.id}>
+              <button type="button" onClick={() => setOpen(on ? null : b.id)} className="flex flex-col gap-1 rounded-2xl px-3 py-2.5 text-left" style={{ border: `1px solid ${on ? c : b.s.pnl > 0.005 ? "rgba(61,220,132,0.6)" : "rgba(255,255,255,0.2)"}`, boxShadow: on ? `0 0 14px ${c}55` : "none" }}>
+                <p className="text-[10px] tracking-[0.2em] text-white">{b.title}</p>
+                <p className="font-mono text-xl tabular-nums" style={{ color: c, textShadow: `0 0 8px ${c}` }}>{b.s.n ? usd(b.s.pnl) : "—"}</p>
+                <p className="font-mono text-[10px] text-white/75">{b.s.w}W · {b.s.l}L{b.s.n ? ` · ${Math.round((b.s.w / b.s.n) * 100)}% wins` : ""}{b.s.open ? ` · ${b.s.open} open` : ""}</p>
+                <p className="text-[8px] tracking-[0.18em] text-white/40">{on ? "SHOWING ITS TRADES · TAP TO CLOSE" : "TAP FOR ITS TRADES"}</p>
+              </button>
+              {on ? (
+                <div className="rounded-2xl px-3 py-2 sm:col-span-2" style={{ border: "1px solid rgba(255,255,255,0.22)" }}>
+                  {b.s.xs.slice(0, 40).map((r: any, i: number) => {
+                    const op = r.result === "open" || r.pnl == null;
+                    return (
+                      <div key={`${r.at}-${i}`} className="flex items-baseline justify-between gap-2 border-t border-white/10 py-1 font-mono text-[10px] first:border-t-0">
+                        <span className="min-w-0 text-white/80">
+                          {new Date(r.at).toLocaleString("en-US", { timeZone: "America/Los_Angeles", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} · {r.label}{r.entry ? ` · in ${Math.round(r.entry * 100) / 100}` : ""}
+                          {r.exit ? <span className="block text-[9px] text-white/45">{r.exit}</span> : null}
+                        </span>
+                        <span className="shrink-0 tabular-nums" style={{ color: op ? "rgba(255,255,255,0.7)" : tone(r.pnl) }}>{op ? "OPEN" : usd(r.pnl)}</span>
+                      </div>
+                    );
+                  })}
+                  {b.s.xs.length > 40 ? <p className="pt-1 font-mono text-[9px] text-white/45">showing the latest 40 of {b.s.xs.length}</p> : null}
+                </div>
+              ) : null}
+            </Fragment>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// COMBO LESSONS (Oct 11 ~7:20 PM PT, Love: "a learning protocol... log the scenarios... after a week the scenarios responsible for
+// the majority of the losses will be apparent, and then we can avoid them").
+function ComboLessons() {
+  const q = useQuery({ queryKey: ["combo-lessons"], queryFn: () => getComboLessons(), refetchInterval: 60000 });
+  const L: any = q.data;
+  const pct = (m: { n: number; miss: number }) => (m.n ? Math.round((m.miss / m.n) * 100) : 0);
+  return (
+    <div className="mt-3 rounded-2xl px-3 py-2.5" style={{ border: "1px solid rgba(255,255,255,0.22)" }}>
+      <p className="text-[10px] tracking-[0.26em] text-white/90">COMBO LESSONS 📚 · WHAT THE LOSSES HAVE IN COMMON</p>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">Every combo now logs its scenario at entry (lane, time left, weakest leg, number of legs, crypto legs, hour, multiple). A scenario is only called once it has 8+ settled combos. Cash-out lines are scored on every combo too.</p>
+      {!L ? <p className="mt-2 font-mono text-[10px] text-white/50">loading…</p> : (
+        <>
+          <p className="mt-2 font-mono text-[10px] text-white/80">{L.n} combos with a logged scenario · cash out at 50% of max {usd(L.exits.at50)} · 75% {usd(L.exits.at75)} · 90% {usd(L.exits.at90)} · hold {usd(L.exits.hold)}</p>
+          {L.worst?.length ? (
+            <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <div><p className="text-[9px] tracking-[0.2em]" style={{ color: DOWN }}>COSTING THE MOST</p>{L.worst.map((b: any) => <p key={b.dim + b.key} className="font-mono text-[10px] text-white/80">{b.dim}: {b.key} · {b.w}/{b.n} · <span style={{ color: tone(b.pnl) }}>{usd(b.pnl)}</span></p>)}</div>
+              <div><p className="text-[9px] tracking-[0.2em]" style={{ color: UP }}>EARNING THE MOST</p>{L.best.map((b: any) => <p key={b.dim + b.key} className="font-mono text-[10px] text-white/80">{b.dim}: {b.key} · {b.w}/{b.n} · <span style={{ color: tone(b.pnl) }}>{usd(b.pnl)}</span></p>)}</div>
+            </div>
+          ) : <p className="mt-2 font-mono text-[10px] text-white/50">collecting: scenarios show up here once each has 8 settled combos</p>}
+          <p className="mt-2 font-mono text-[9px] text-white/60">legs that miss most: {Object.entries(L.legMiss || {}).filter(([, m]: any) => m.n >= 5).sort((a: any, b: any) => pct(b[1]) - pct(a[1])).slice(0, 6).map(([k, m]: any) => `${k} ${pct(m)}% of ${m.n}`).join(" · ") || "collecting"}</p>
+          <p className="font-mono text-[9px] text-white/60">by leg price: {Object.entries(L.legPx || {}).map(([k, m]: any) => `${k} missed ${pct(m)}% of ${m.n}`).join(" · ")}</p>
+        </>
+      )}
+    </div>
+  );
+}
+
+export function ScannerTab() {
+  const q = useQuery({ queryKey: ["scanner"], queryFn: () => getScanner(), refetchInterval: 60000 });
+  const d = q.data as any;
+  const lq = useQuery({ queryKey: ["hour-lotto"], queryFn: () => getHourLotto(), refetchInterval: 60000 });
+  const L = lq.data as any;
+  const mq = useQuery({ queryKey: ["mentions"], queryFn: () => getMentions(), refetchInterval: 60000 });
+  const MN = mq.data as any;
+  const oq = useQuery({ queryKey: ["oracle"], queryFn: () => getOracle(), refetchInterval: 60000 });
+  const OR = oq.data as any;
+  const cq = useQuery({ queryKey: ["climate"], queryFn: () => getClimate(), refetchInterval: 60000 });
+  const CL = cq.data as any;
+  const zq = useQuery({ queryKey: ["closer"], queryFn: () => getCloser(), refetchInterval: 30000 });
+  const CZ = zq.data as any;
+  const oq2 = useQuery({ queryKey: ["grok-og"], queryFn: () => getGrokOg(), refetchInterval: 30000 });
+  const GO = oq2.data as any;
+  const cbq = useQuery({ queryKey: ["combos"], queryFn: () => getCombos(), refetchInterval: 20000 });
+  const r2c = (n: number) => Math.round(n * 100) / 100;
+  const lmq = useQuery({ queryKey: ["lastminute"], queryFn: () => getLastMinute(), refetchInterval: 60000 });
+  const LM: any = lmq.data;
+  const CB = cbq.data as any;
+  const EX: Record<string, string> = { x3: "SELL AT 3x", x5: "SELL AT 5x", c50: "SELL AT 50c", hold: "HOLD TO THE HOUR" };
+  return (
+    <section className="mx-3 mt-3 rounded-[14px] px-3 py-3" style={{ border: "1px solid rgba(255,255,255,0.18)", background: "#000" }}>
+      <div className="flex items-baseline justify-between gap-2">
+        <p className="text-[10px] tracking-[0.28em] text-white/90">SCANNER · DATA, NOT GUESSES</p>
+        <p className="font-mono text-[9px] text-white/55">PAPER FIRST · ALWAYS</p>
+      </div>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">
+        Kalshi markets where real data can see the answer coming. Every idea is booked on paper at the real price with Kalshi's fee and settled from Kalshi's own
+        result, so the record proves the edge before a dollar goes in.
+      </p>
+
+      <ScannerBooks />
+      <ComboLessons />
+
+      <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <Card
+          title="WEATHER 🌡️"
+          sub="Daily high/low lock-ins + hourly readings near the bell. $100 a flag."
+          money={d?.total?.n ? d.total.p : null}
+          line={d ? `${d.total.w}/${d.total.n} right · ${d.open} open · ${(d.flags ?? []).length} live flag${(d.flags ?? []).length === 1 ? "" : "s"}` : "loading…"}
+          note={d ? `last scan ${ago(d.at)} · ${d.scanned} markets` : undefined}
+        />
+        <Card
+          title="MENTIONS 🎙️"
+          sub="What will X say, vs Kalshi's record of what they actually said. $100."
+          money={MN?.total?.n ? MN.total.p : null}
+          line={MN ? `${MN.total.w}/${MN.total.n} settled · ${MN.open} open` : "loading…"}
+          note={MN?.status ? `last look ${ago(MN.status.at)} · ${MN.status.events} events · ${MN.status.live?.length || 0} already live (skipped)` : undefined}
+        />
+        <Card
+          title="ORACLE 🔮"
+          sub="Researched forecasts written before the result. Trades only 7+ points off the price."
+          money={OR?.paper?.n ? OR.paper.p : null}
+          line={OR ? `${OR.forecasts} forecasts · ${OR.scored} scored${OR.scored ? ` · ours ${OR.brierOurs} vs market ${OR.brierMarket}` : ""}` : "loading…"}
+          note={OR?.scored ? ((OR.brierOurs ?? 1) < (OR.brierMarket ?? 0) ? "BEATING THE CROWD" : "NOT BEATING THE CROWD YET") : "scores fill in as markets settle"}
+        />
+        <Card
+          title="HOURLY LONGSHOTS 🎯"
+          sub="BTC hourly ladder, 3-8c tickets, $5. Signal vs a no-reason control."
+          line={L ? `${L.open} open` : "loading…"}
+          note={L ? `SIGNAL hold ${L.signal?.hold?.n ? `${usd(L.signal.hold.p)} ${L.signal.hold.w}/${L.signal.hold.n}` : "—"} · CONTROL hold ${L.control?.hold?.n ? `${usd(L.control.hold.p)} ${L.control.hold.w}/${L.control.hold.n}` : "—"}` : undefined}
+        />
+      </div>
+
+      {/* CLIMATE (Oct 10, Love: "i refreshed the page and i don't see any of the new climate positions") */}
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <Card
+          title="CLIMATE WIDE 🌎"
+          sub="Every climate market, every window: the favorite at 1.2x-2x, $100 paper. The knowledge base."
+          money={CL?.summary?.settled ? CL.summary.pnl : null}
+          line={CL ? `${CL.summary?.won ?? 0}/${CL.summary?.settled ?? 0} right · ${CL.openN} open` : "loading…"}
+          note={CL?.status ? (CL.status.note === "pass done" || CL.status.done === CL.status.series ? `last sweep ${ago(CL.status.at)} · ${CL.status.series} series` : `sweeping… ${CL.status.done}/${CL.status.series} series`) : undefined}
+        />
+        <Card
+          title="CLIMATE LADDER 🪜"
+          sub="Mazda-style ladders when the buckets are cheap vs our odds. $100 paper, 9 AM-3 PM local."
+          money={CL?.ladder?.status?.book?.n ? CL.ladder.status.book.pnl : null}
+          line={CL?.ladder?.status?.book ? `${CL.ladder.status.book.w}/${CL.ladder.status.book.n} right · ${CL.ladder.status.book.open} open` : "first ladders tomorrow morning"}
+          note={CL?.tp?.settled ? `take-profit lab: ${Object.entries(CL.tp.levels).map(([k, v]: any) => `${k} ${usd(v.pnl)}`).join(" · ")}` : "take-profit lab: +10/25/50/100% vs hold, fills in as trades settle"}
+        />
+      </div>
+      {CL?.summary?.settled ? (
+        <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+          {[["BY MARKET", CL.summary.byKind], ["BY HOURS TO CLOSE", CL.summary.byHoursToClose], ["BY PRICE", CL.summary.byPrice]].map(([t, o]: any) => (
+            <Card key={t} title={t}>
+              {Object.entries(o).map(([k, v]: any) => (
+                <p key={k} className="font-mono text-[10px] tabular-nums" style={{ color: v.pnl >= 0 ? UP : DOWN }}>
+                  {k} · {v.w}/{v.n} · {usd(v.pnl)} ({v.roi >= 0 ? "+" : ""}{v.roi}%)
+                </p>
+              ))}
+            </Card>
+          ))}
+        </div>
+      ) : null}
+      {CL?.recent?.length ? (
+        <>
+          <H>CLIMATE WIDE · NEWEST PAPER TRADES</H>
+          <div className="mt-2 flex flex-col gap-1.5">
+            {CL.recent.map((r: any) => (
+              <TradeRow
+                key={r.id}
+                head={`${r.side.toUpperCase()} · ${r.title}`}
+                sub={`${r.kind} · ${Math.round(r.ask * 100)}c (${(1 / r.ask).toFixed(2)}x) · ${r.hoursToClose}h to close · $${r.stake}`}
+                right={r.result === "open" ? "OPEN" : usd(r.pnl ?? 0)}
+                rightColor={r.result === "open" ? "rgba(255,255,255,0.6)" : (r.pnl ?? 0) >= 0 ? UP : DOWN}
+              />
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      {/* LAST-MINUTE LOCK (Oct 11 ~7:30 AM PT, Love: "make an exception for last minute reversals... run it on paper til we can confirm") */}
+      <H>LAST-MINUTE LOCK ⏱ · TAKE THE GREEN IF IT ISN'T DECIDED (PAPER)</H>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">
+        With the clock nearly out, if our side is green but still under 90c (the market hasn't called it), sell at the bid instead of riding a coin flip into the bell. 90c+ rides. Nothing sells yet: every BTC + gold trade still held is scored. SAVED = the bell went against us; GAVE UP = it would have paid $1.
+      </p>
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+        {[120, 90, 60].map((L) => {
+          const b = LM?.summary?.[`btc:${L}`], gd = LM?.summary?.[`gold:${L}`];
+          return <Card key={L} title={`${L / 60 >= 1 ? `${Math.floor(L / 60)}:${String(L % 60).padStart(2, "0")}` : `0:${L}`} LEFT`} money={b || gd ? r2c((b?.net ?? 0) + (gd?.net ?? 0)) : null} line={b ? `BTC ${b.fires} fires: saved ${b.saved} (${usd(b.savedUsd)}), gave up ${b.gaveUp} (${usd(b.gaveUsd)}) · GOLD ${gd?.fires ?? 0} fires, net ${usd(gd?.net ?? 0)}` : "loading…"} />;
+        })}
+      </div>
+      {LM?.recent?.length ? (
+        <div className="mt-2 flex flex-col gap-1.5">
+          {LM.recent.slice(0, 8).map((r: any) => {
+            const v = r.v["120"] || r.v["90"] || r.v["60"];
+            return <TradeRow key={r.key} head={`${r.asset.toUpperCase()} ${r.side.toUpperCase()} · ${r.source} · paid ${Math.round(r.ask * 100)}c`} sub={`would sell at ${Math.round(v.bid * 100)}c · the bell ${r.settle ? "paid $1" : "went to 0"}`} right={usd(v.delta)} rightColor={v.delta >= 0 ? UP : DOWN} />;
+          })}
+        </div>
+      ) : null}
+
+      {/* COMBOS (Oct 11, Love: "stack combos on 1.2x multiples that are already decided for the 15M markets") */}
+      <H>COMBO 🧩 · NEAR-DECIDED LEGS (PAPER) · ALL FOUR LANES IN BOOKS ABOVE</H>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">
+        Each 15-minute window, last 5 minutes: every crypto market whose favorite costs 88c+ becomes a leg; 4+ legs = one $100 combo. Your gate: arms at +60%, floor +40%, floor up 5% per 5% of best gain. HOLD = the same combos held to the bell. Marked at the legs' bids (close to Kalshi's cash-out, not exact).
+      </p>
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <Card title="WITH YOUR GATE" money={CB?.n ? CB.pnl : null} line={CB ? `${CB.w}/${CB.n} green · ${CB.open} open` : "loading…"} />
+        <Card title="HELD TO THE BELL" money={CB?.hold?.n ? CB.hold.pnl : null} line={CB ? `${CB.hold.w}/${CB.hold.n} every leg right` : "loading…"} />
+      </div>
+      {CB?.recent?.length ? (
+        <div className="mt-2 flex flex-col gap-1.5">
+          {CB.recent.map((c: any) => (
+            <TradeRow key={c.id} head={`${c.legs.length} legs · ${c.multiple}x · ${c.legs.map((l: any) => `${l.series.replace(/^KX|15M$/g, "")} ${l.side.toUpperCase()}`).join(" · ")}`} sub={`${Math.round(c.secondsLeft / 60)}m left at entry · best +${Math.round(c.best)}% · ${c.exit ?? `now ${c.lastPct >= 0 ? "+" : ""}${Math.round(c.lastPct)}%`}`} right={c.result === "open" ? "OPEN" : usd(c.pnl ?? 0)} rightColor={c.result === "open" ? "rgba(255,255,255,0.6)" : (c.pnl ?? 0) >= 0 ? UP : DOWN} />
+          ))}
+        </div>
+      ) : null}
+
+      {/* GROK OG (Oct 11, Love: "is there any way we can try to reconstruct her bb?") */}
+      <H>REANIMATED 👑 · THE OG MODEL (PAPER)</H>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">
+        OG = Grok's original prime book: the instant a window has a price on or near a band she takes it (over the band = long, under = short), or the break when a 1m candle closes through one. Her band rules on top, any multiple 1.38x and up. GROK = Grok's setup builder exactly. Grok's own exits. $20 tickets.
+      </p>
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+        {[["og-golden", "OG · OCT 1 FEED"], ["og-hers", "OG · YOUR BANDS"], ["grok", "GROK BUILDER"], ["paper-247", "PAPER · 24/7"], ["paper-best", "PAPER · HER BEST HOURS"], ["paper-winners", "PAPER · WINNING SETUPS ONLY"], ["paper-20", "PAPER · 20% ROAD"], ["open-road", "PAPER · WHAT THE BAND BENCHED"]].map(([k, t]) => {
+          const b = GO?.[k];
+          return (
+            <Card key={k} title={t} money={b?.total?.n ? b.total.pnl : null} line={b ? `${b.total.w}/${b.total.n} right · ${b.open} open` : "loading…"} note={b?.total?.n ? `BTC ${b.btc.w}/${b.btc.n} ${usd(b.btc.pnl)} · gold ${b.gold.w}/${b.gold.n} ${usd(b.gold.pnl)} · first 3 min ${b.early.w}/${b.early.n}` : "first tickets come as windows open"}>
+              {(b?.recent ?? []).slice(0, 4).map((r: any) => (
+                <p key={r.id} className="font-mono text-[9px] text-white/70">{r.asset.toUpperCase()} {r.side === "up" ? "long" : "short"} · {r.label} · {Math.round(r.ask * 100)}c ({r.multiple}x) · {Math.floor(r.intoWindow / 60)}m in · {r.result === "open" ? "OPEN" : usd(r.pnl ?? 0)}</p>
+              ))}
+            </Card>
+          );
+        })}
+      </div>
+
+      <H>PIVOT BOOKS 📐 · CM PIVOT BANDS (PAPER)</H>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">
+        The OG's instant entries on your pivot bands: price on a line = in (over it long, under it short), or a 1m close through one. No line between price and the strike. Left: pivot lines only. Right: pivot lines + your session bands.
+      </p>
+      <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {[2, 5, 10, 15].flatMap((tf) => [[`piv${tf}`, `PIVOT ${tf}M`], [`sp${tf}`, `SESSION+PIVOT ${tf}M`], [`ogp${tf}`, `OG 👑 + PIVOT ${tf}M`]]).map(([k, t]) => {
+          const b = GO?.[k];
+          return <Card key={k} title={t} money={b?.total?.n ? b.total.pnl : null} line={b ? `${b.total.w}/${b.total.n} right · ${b.open} open` : "loading…"} note={b?.total?.n ? `BTC ${usd(b.btc.pnl)} · gold ${usd(b.gold.pnl)}` : undefined} />;
+        })}
+      </div>
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {[["brick", "BRICK"], ["squeeze", "SQUEEZE"]].map(([k, t]) => {
+          const a = GO?.[`${k}-nowall`], s = GO?.[`${k}-nowall-skipped`];
+          return <Card key={k} title={`${t} · NO PIVOT WALL`} sub="Her paper trades minus any with a 5m pivot line between price and the strike." money={a?.total?.n ? a.total.pnl : null} line={a ? `${a.total.w}/${a.total.n} right · ${a.open} open` : "loading…"} note={s?.total?.n ? `skipped ${s.total.n}: they made ${usd(s.total.pnl)} (${s.total.w} won)` : "skipped trades show here as they settle"} />;
+        })}
+      </div>
+
+      {/* CLOSER (Oct 10 ~7:20 PM PT, Love: LSU-Kentucky Q4 "can we also get her to scan for stuff like this") */}
+      <H>CLOSER 🏈 · LATE-GAME FAVORITES</H>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">
+        Every live game in its last stretch (football Q4, NBA Q4, college hoops last 10 min, NHL 3rd, MLB 8th+). ESPN's live win model vs Kalshi's price. $100 paper.
+      </p>
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <Card
+          title="EDGE LANE"
+          sub="Model 75%+, pays 1.2x+, model 5+ points above Kalshi after the fee."
+          money={CZ?.summary?.edge?.n ? CZ.summary.edge.pnl : null}
+          line={CZ?.summary ? `${CZ.summary.edge.w}/${CZ.summary.edge.n} right · ${CZ.summary.edge.open} open` : "first scan within a minute"}
+        />
+        <Card
+          title="FAVORITE LANE"
+          sub="Model 80%+, pays 1.2x-1.67x, no edge needed. Does the edge matter?"
+          money={CZ?.summary?.favorite?.n ? CZ.summary.favorite.pnl : null}
+          line={CZ?.summary ? `${CZ.summary.favorite.w}/${CZ.summary.favorite.n} right · ${CZ.summary.favorite.open} open` : "first scan within a minute"}
+          note={CZ?.status ? `last look ${ago(CZ.status.at)} · ${CZ.status.watching?.length || 0} late game${CZ.status.watching?.length === 1 ? "" : "s"} live${CZ.status.errors?.length ? ` · ${CZ.status.errors[0]}` : ""}` : undefined}
+        />
+      </div>
+      {CZ?.summary?.looksSettled ? (
+        <Card title="HOW OFTEN THE LATE FAVORITE REALLY WINS" sub="Every late-game price we saw, settled from the final score. Win % vs what the price implied.">
+          {Object.entries(CZ.summary.calibration).map(([k, v]: any) => (
+            <p key={k} className="font-mono text-[10px] tabular-nums" style={{ color: v.hit >= v.avgAsk ? UP : DOWN }}>
+              {k} · won {v.w}/{v.n} ({Math.round(v.hit * 100)}%) vs price {Math.round(v.avgAsk * 100)}c
+            </p>
+          ))}
+        </Card>
+      ) : null}
+      {CZ?.status?.watching?.length ? (
+        <div className="mt-2 flex flex-col gap-1.5">
+          {CZ.status.watching.map((w: any, i: number) => (
+            <TradeRow
+              key={i}
+              head={`${w.league} · ${w.game} · ${w.period >= 5 && /football|NFL|NCAAF/.test(w.league) ? "OT" : `P${w.period}`} ${w.clock}`}
+              sub={w.fav ? `${w.fav} favored · model ${w.wp != null ? `${Math.round(w.wp * 100)}%` : "n/a"} · Kalshi ${w.ask != null ? `${Math.round(w.ask * 100)}c (${(1 / w.ask).toFixed(2)}x)` : "no market found"}` : w.matched ? "no favorite yet" : "no Kalshi market found"}
+              right={w.wp != null && w.ask != null ? `${w.wp - w.ask >= 0 ? "+" : ""}${Math.round((w.wp - w.ask) * 100)} pts` : "—"}
+              rightColor={w.wp != null && w.ask != null && w.wp - w.ask >= 0.05 ? UP : "rgba(255,255,255,0.6)"}
+            />
+          ))}
+        </div>
+      ) : null}
+      {CZ?.recent?.length ? (
+        <div className="mt-2 flex flex-col gap-1.5">
+          {CZ.recent.map((t: any) => (
+            <TradeRow
+              key={t.id}
+              head={`${t.lane.toUpperCase()} · ${t.team} · ${t.game}`}
+              sub={`${t.league} · P${t.period} ${t.clock} · model ${Math.round(t.wp * 100)}% · paid ${Math.round(t.ask * 100)}c (${(1 / t.ask).toFixed(2)}x) · $${t.stake}`}
+              right={t.result === "open" ? "OPEN" : usd(t.pnl ?? 0)}
+              rightColor={t.result === "open" ? "rgba(255,255,255,0.6)" : (t.pnl ?? 0) >= 0 ? UP : DOWN}
+            />
+          ))}
+        </div>
+      ) : null}
+
+      {/* LONGSHOT (Oct 10 ~7:35 PM PT, Love: Kansas at 31x "up 300%... can we have another lil side book like that?") */}
+      <H>LONGSHOT 🎯 · UNDERDOGS AT 15x+</H>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">
+        Any live game, the dog at 15x or more (6c or less), $100 paper. Split by how much game is left when she buys. Every ticket is scored four ways: sell at +100%, +200%, +300%, or hold to the final.
+      </p>
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+        {["3Q+ LEFT", "2-3Q LEFT", "1-2Q LEFT"].map((bk) => {
+          const b = CZ?.summary?.longshot?.[bk];
+          const best = b?.n ? Object.entries(b.ways).sort((x: any, y: any) => y[1].pnl - x[1].pnl)[0] : null;
+          return (
+            <Card key={bk} title={bk} money={best ? (best[1] as any).pnl : null} line={b ? `${b.won}/${b.n} won outright · ${b.open} open` : "watching for 15x+ dogs"} note={best ? `best exit so far: ${best[0] === "hold" ? "hold to the final" : `sell at ${best[0]}`}` : undefined}>
+              {b?.n ? Object.entries(b.ways).map(([k, v]: any) => (
+                <p key={k} className="font-mono text-[10px] tabular-nums" style={{ color: v.pnl >= 0 ? UP : DOWN }}>
+                  {k === "hold" ? "hold" : `sell ${k}`} · {usd(v.pnl)}{k === "hold" ? "" : ` · hit ${v.hits}/${b.n}`}
+                </p>
+              )) : null}
+            </Card>
+          );
+        })}
+      </div>
+      {CZ?.shots?.length ? (
+        <div className="mt-2 flex flex-col gap-1.5">
+          {CZ.shots.map((t: any) => {
+            const hits = Object.entries(t.tp || {}).filter(([, v]) => v).map(([k]) => k);
+            const now = t.result === "open" && t.lastBid > 0 ? Math.round((t.lastBid / t.ask - 1) * 100) : null;
+            return (
+              <TradeRow
+                key={t.id}
+                head={`${t.book} · ${t.team} · ${t.game}`}
+                sub={`${t.league} · P${t.period} ${t.clock} · paid ${Math.round(t.ask * 100)}c (${(1 / t.ask).toFixed(0)}x) · peak ${Math.round(t.peak * 100)}c${hits.length ? ` · hit ${hits.join(" ")}` : ""}`}
+                right={t.result === "open" ? (now != null ? `${now >= 0 ? "+" : ""}${now}% now` : "OPEN") : usd(t.pnl ?? 0)}
+                rightColor={t.result === "open" ? (now != null && now > 0 ? UP : "rgba(255,255,255,0.6)") : (t.pnl ?? 0) >= 0 ? UP : DOWN}
+              />
+            );
+          })}
+        </div>
+      ) : null}
+
+      <div className="mt-2">
+        <LoveCalls />
+      </div>
+
+      <H>WEATHER · LIVE FLAGS</H>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {d?.flags?.length ? (
+          d.flags.map((f: any) => {
+            const x = pretty(f.title);
+            return (
+              <TradeRow
+                key={`${f.ticker}:${f.side}`}
+                head={<>{x.where || f.ticker} · {x.when} · <span style={{ color: UP }}>{f.side.toUpperCase()} @ {Math.round(f.ask * 100)}c</span></>}
+                sub={<>{betLine(f.side, x.what, x.kind)} · {KIND[f.kind] ?? f.kind} · {f.reason}</>}
+                right="FLAG"
+                rightColor={UP}
+                border="rgba(61,220,132,0.45)"
+              />
+            );
+          })
+        ) : (
+          <p className="rounded-xl border px-3 py-2 font-mono text-[10px] text-white/55" style={{ borderColor: "rgba(255,255,255,0.12)" }}>
+            Nothing lined up right now. Lock-ins show up through the afternoon; hourly flags in the last 45 minutes before a reading.
+          </p>
+        )}
+      </div>
+
+      <H>WEATHER · PAPER TRADES</H>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {(d?.paper ?? []).slice(0, 25).map((r: any) => {
+          const x = pretty(r.title);
+          const open = r.result === "open";
+          return (
+            <TradeRow
+              key={r.id}
+              head={<>{x.where || r.ticker} · {x.when}</>}
+              sub={<>{r.side.toUpperCase()} @ {Math.round(r.ask * 100)}c · {betLine(r.side, x.what, x.kind)}</>}
+              right={open ? "OPEN" : r.result === "void" ? "VOID" : usd(r.pnl ?? 0)}
+              rightColor={open ? "rgba(255,255,255,0.55)" : tone(r.pnl ?? 0)}
+              border={open ? "rgba(255,255,255,0.14)" : (r.pnl ?? 0) >= 0 ? "rgba(61,220,132,0.35)" : "rgba(255,92,92,0.35)"}
+            />
+          );
+        })}
+        {d && !d.paper?.length ? <p className="font-mono text-[9px] text-white/45">The first paper trades land with the first flags.</p> : null}
+      </div>
+
+      {d?.learn && Object.keys(d.learn).length ? (
+        <>
+          <H>WEATHER · WHAT SHE'S LEARNED</H>
+          <p className="mt-1 text-[9px] leading-snug text-white/55">How far each city's hourly index sits from the airport station we read. A big gap is why the early NYC trades lost; now she adds the gap back and keeps a cushion.</p>
+          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+            {Object.entries(d.learn as Record<string, any>).map(([k, c]) => (
+              <Card key={k} title={k.replace(/^KXTEMP/, "").replace(/HS$/, "")} line={`${c.n} lessons · index ${c.bias >= 0 ? "+" : ""}${c.bias}°F vs station`} note={c.n >= 6 ? `misses up to ${c.spread}°F · cushion ${c.cushion}°F` : "still learning (needs 6)"} />
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      <H>MENTIONS · BASE RATES</H>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {(MN?.paper ?? []).slice(0, 14).map((r: any) => (
+          <TradeRow
+            key={r.id}
+            head={<>{String(r.word).toUpperCase()} · {r.side.toUpperCase()} @ {Math.round(r.ask * 100)}c</>}
+            sub={<>said in {r.basis} ({Math.round(r.rate * 100)}%) · {String(r.title).replace(/^What will /, "").slice(0, 100)}</>}
+            right={r.result === "open" ? "OPEN" : `${r.result.toUpperCase()} ${usd(r.pnl ?? 0)}`}
+            rightColor={r.result === "open" ? "rgba(255,255,255,0.55)" : tone(r.pnl ?? 0)}
+          />
+        ))}
+        {MN && !MN.paper?.length ? <p className="font-mono text-[9px] text-white/45">No word far enough from its record yet.</p> : null}
+      </div>
+
+      <H>ORACLE · LATEST FORECASTS</H>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {(OR?.latest ?? []).map((f: any) => {
+          const gap = Math.round((f.prob - Number(f.yesAsk)) * 100);
+          return (
+            <TradeRow
+              key={`${f.ticker}${f.at}`}
+              head={<>{String(f.title || f.ticker)}</>}
+              sub={<>ORACLE {Math.round(f.prob * 100)}% vs market {Math.round(Number(f.yesAsk) * 100)}c ({gap >= 0 ? "+" : ""}{gap}) · {String(f.reason || "").slice(0, 200)}</>}
+              right={f.trade ? `${f.trade.side.toUpperCase()}${f.result ? ` · ${String(f.result).toUpperCase()}` : ""}` : f.result ? String(f.result).toUpperCase() : "NO TRADE"}
+              rightColor={f.trade ? UP : "rgba(255,255,255,0.5)"}
+            />
+          );
+        })}
+        {OR && !OR.latest?.length ? <p className="font-mono text-[9px] text-white/45">First forecasts land after the next run.</p> : null}
+      </div>
+
+      <H>SIGNAL LAB · HOW PRICE MOVES AFTER EACH SIGNAL</H>
+      <p className="mt-1 text-[9px] leading-snug text-white/55">% = share of signals already moving their way at that minute · median move · MFE / MAE = median best / worst move in the hour after.</p>
+      <div className="mt-2 flex flex-col gap-1.5">
+        {(d?.lab ?? []).map((g: any) => (
+          <TradeRow
+            key={g.key}
+            head={<>{g.key} · {g.n} signal{g.n === 1 ? "" : "s"}{g.mfe != null ? ` · MFE ${g.mfe.toFixed(2)} / MAE ${(g.mae ?? 0).toFixed(2)}` : ""}</>}
+            sub={Object.entries(g.marks).map(([k, c]: any) => (c ? `${k}m ${c.right}% (${(c.med ?? 0) >= 0 ? "+" : ""}${(c.med ?? 0).toFixed(2)})` : `${k}m —`)).join(" · ")}
+            right=""
+            rightColor="white"
+          />
+        ))}
+        {d && !d.lab?.length ? <p className="font-mono text-[9px] text-white/45">Fills in as signals arrive; each one is followed for an hour.</p> : null}
+      </div>
+
+      {L ? (
+        <>
+          <H>HOURLY LONGSHOTS · ALL FOUR EXITS</H>
+          <div className="mt-2 grid grid-cols-[72px_repeat(4,minmax(0,1fr))] gap-1 font-mono text-[9px]">
+            <span />
+            {Object.keys(EX).map((k) => (
+              <span key={k} className="text-[8px] tracking-[0.12em] text-white/45">{EX[k]}</span>
+            ))}
+            {(["signal", "control"] as const).map((rule) => (
+              <Fragment key={rule}>
+                <span className="text-[8px] tracking-[0.18em] text-white/60">{rule.toUpperCase()}</span>
+                {Object.keys(EX).map((k) => {
+                  const c = L[rule]?.[k];
+                  return (
+                    <span key={`${rule}${k}`} style={{ color: c && c.n ? tone(c.p) : "rgba(255,255,255,0.35)" }}>
+                      {c && c.n ? `${usd(c.p)} ${c.w}/${c.n}` : "—"}
+                    </span>
+                  );
+                })}
+              </Fragment>
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      <H>MARKET MAP · WHAT'S WORTH SCANNING</H>
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {MAP.map((m) => (
+          <div key={m.name} className="rounded-2xl border px-4 py-3" style={{ borderColor: `${TIER[m.tier]}66` }}>
+            <p className="flex items-baseline justify-between gap-2 text-[10px] tracking-[0.18em]" style={{ color: TIER[m.tier] }}>
+              <span>{m.name}</span>
+              <span className="text-[8px] tracking-[0.2em]">{m.status}</span>
+            </p>
+            <p className="mt-1 text-[9px] leading-snug text-white/55">{m.data}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-[9px] leading-snug text-white/45">
+        Why low multiples: across Kalshi's history, contracts under 10c win less often than their price says (longshots lose most), while 90c+ contracts win a little
+        more often than priced. Takers lose more than makers. (Bürgi, Deng &amp; Whelan, 2025.)
+      </p>
+    </section>
+  );
+}
