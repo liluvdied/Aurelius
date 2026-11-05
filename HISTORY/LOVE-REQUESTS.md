@@ -2,6 +2,16 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R398 - fix717 ONE BOOK LIVE TODAY - BREAK BOOK · SESSION + PINK (brk-sesspk): her ONLY live book for BTC and gold until midnight PT tonight (data/live-today.json until 2026-11-06 08:00 UTC). Main, rejection, no-pink and delayed keep running on paper. BREAK BOOK · SESSION + PINK is judged by its own gates only: her walls at the door and the last line stand down for this one book (a second exception to her Oct 31 law, today only, like the delayed book); the umpire, ENFORCER, freshness guard, LIVE switch, her slider size and her take-profit all still apply; no add-ons; and it stops itself for the rest of the day once its own live trades since midnight PT are down $100 (stopAt in data/live-today.json). Her lineup (liveBook) and seal untouched. Record (paper archive, real paper trades): since Oct 19 1,412 trades, 61%, +$1,433, green 10 of 16 days, worst day -$135 at $20; forward check Oct 13-26 +$137 then Oct 27-Nov 5 +$1,296 (green 6 of 8 days); about 110 calls a day, so expect a live trade most windows. The switch expires by itself at midnight; CHANGE-63 NORMAL LINEUP BACK turns it off in one run.
+- when: 2026-11-05T14:42:41+00:00
+- Love: "Love Nov 5 2026 6:03 AM PT: "dude just put brick on for the day wut r we doin here" + 6:36 AM PT: "but just as of looks compared to the other ones ye run this one" (BREAK BOOK · SESSION + PINK) - one book live for today with only its own gates, a second exception to her Oct 31 law (like the delayed book), today only"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix717: one book alone today"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function liveToday717("}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix717: the one live book today, its own gates only"}
+- proof: {"test": "tools/one-book-live-717.cjs"}
+
 ## R397 - fix711 NO FADING A BOLLINGER BREAK PAST HER ZONE: inside her zone wall (zoneSend594 - the door and the last line, where PAST THE GREEN / RED ZONE already lives): once price has broken the 5m Bollinger lower (now or in the last 5 minutes) and sits at or past the green boundary, no long; mirror - after a break above the Bollinger upper, at or past red, no short. Every book but delayed. Cheap entries stay allowed (no ask floor). Replay Oct 19 - Nov 5: fading that break lost every week (BTC 190 trades 26%, -$1,042; gold 134, 31%, -$561); tonight's 4:17 / 4:30 AM BTC longs off the Bollinger lower both lost. Needs CHANGE-57 installed first (same bandlock.ts).
 - when: 2026-11-05T13:28:18+00:00
 - Love: "Love Nov 5 2026 5:12 AM PT, her pick on the guard card: "Bollinger fade block only - No long off the BB lower past green after a break (mirror for shorts past red). Cheap entries stay allowed." (after 5:11 AM PT: "she's all losses ????? too many in a row love can you see what's up?")"

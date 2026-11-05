@@ -7666,5 +7666,20 @@
     "what": "t(!B.rej668(\"gold\", \"down\", 4117.2, LG, { o: 4114, h: 4119.8, l: 4113.9 }), \"gold: $2.60 back down (needs $3, fix693 15%) counted\"); t(B.rej668(\"gold\", \"down\", 4116.5, LG, { o: 4114, h: 4119.8, l: 4113.9 }), \"gold: $3.30 back down (15% = $3, fix693) was not hers\");",
     "why": "fix710 (her words in this change's request)",
     "R": "R396"
+  },
+  {
+    "what": "if (ao?.on && (!aoTwin || aoTw?.on === true) && (id === \"btc\" || id === \"gold\") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5)) {",
+    "why": "fix717 (her words in this change's request)",
+    "R": "R398"
+  },
+  {
+    "what": "if (a38?.on === true && ao?.on && !aoTwin && (id === \"btc\" || id === \"gold\") && addReg[row.ticker] && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5)) {",
+    "why": "fix717 (her words in this change's request)",
+    "R": "R398"
+  },
+  {
+    "what": "const books = cfg ? (Array.isArray(cfg.books) ? cfg.books : cfg.book ? [cfg.book] : []) : [];",
+    "why": "fix717 (her words in this change's request)",
+    "R": "R398"
   }
 ]

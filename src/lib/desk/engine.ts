@@ -42,6 +42,11 @@ function doneDocCached() {
   G0.__doneDoc = { m: st.mtimeMs, s: st.size, v };
   return v;
 }
+// fix717 ONE BOOK LIVE TODAY (Love Nov 5 2026 6:03 AM PT: "dude just put brick on for the day" + her card pick 6:21 AM "BREAK BOOK · SESSION ONLY"): while data/live-today.json says on
+// and before its "until" (midnight PT tonight), its "book" is her only live book (main / rejection / no-pink / delayed stay on paper), judged by its own gates only - her walls at the
+// door and the last line stand down for that book alone, like the delayed book - and it gets no add-ons. Umpire, ENFORCER, freshness, LIVE switch and her take-profit still apply.
+// The file expires on its own; CHANGE-63 (NORMAL LINEUP BACK) turns it off in one run.
+function liveToday717(): string { try { const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === "string" && /^[a-z0-9-]{2,24}$/.test(j.book) ? j.book : ""; } catch { return ""; } }
 function bookOwnerOf(ticker) {
   try {
     const done = doneDocCached();
@@ -2280,6 +2285,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         // MAIN BOOK ONLY (Love, same message: "ONE $2 dollar add on to our main books positions"): the delayed twin's positions never add.
         let aoTwin = false;
         try { aoTwin = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] === "recon-dly"; } catch { aoTwin = false; }
+        let aoOne717 = false; try { const lt = liveToday717(); aoOne717 = !!lt && String(bookOwnerOf(row.ticker)?.id || "").endsWith(":" + lt); } catch {} // fix717: the one live book takes no add-ons
         // $2 AT A BAND, 2.8x+ (Oct 17 ~1:15 PM PT, Love: "implement the $2 add on for me at a band, as long as it's over 2.8x actually / so it's
         // effectively 1/5th of the normal position size" + her picks: band rejection her way, once per window, 5+ min left, BTC and gold, her trades
         // only). addOn { on, dollars 2, maxAsk 0.35 }. A refused/unfilled try retries after 5 s; only a fill uses up the window's add-on.
@@ -2292,7 +2298,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const aoOff = aoTwin ? null : offHourMain(id); // fix142: her off hours add $3 at 2.8x+
         const aoMax = aoTwin ? (Number(aoTw?.maxAsk) > 0 ? Number(aoTw.maxAsk) : 0.222) : aoOff ? aoOff.aoMax : Number(ao?.maxAsk) > 0 ? Number(ao!.maxAsk) : 0.55;
         const aoLeft = (Date.parse(aoClose) - Date.now()) / 60000;
-        if (ao?.on && (!aoTwin || aoTw?.on === true) && (id === "btc" || id === "gold") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5)) {
+        if (ao?.on && !aoOne717 /* fix717 */ && (!aoTwin || aoTw?.on === true) && (id === "btc" || id === "gold") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5)) {
           // $3 TAP REJECTION (Oct 17 ~10:57 PM PT, Love: "let's make it a $3 tap rejection"): bandlock.addOnTapNow replaces the old snap here.
           let why: string | null = null;
           try { const blm = await import("./bandlock"); why = blm.addOnTouchNow(id) || null; /* fix109 (Oct 22 ~7:48 PM PT, Love: "pls have her do them at band taps / no rejection necessary pls"): main-book add-on on a band touch too (walls still judge it); was aoTwin ? touch : addOnTapNow */ void mySide; } catch { why = null; }
@@ -2342,7 +2348,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           const a38 = (ao as any)?.at38; const add38: Record<string, number> = g.__aureliusAdd38 || (g.__aureliusAdd38 = (() => { const s: Record<string, number> = {}; try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.add38 && x.ticker) s[x.ticker] = Date.parse(x.at) || Date.now(); } catch {} } } catch {} return s; })());
           const try38: Record<string, number> = g.__aureliusTry38 || (g.__aureliusTry38 = {});
           const cap38 = Number(a38?.maxAsk) > 0 && Number(a38.maxAsk) < 1 ? Number(a38.maxAsk) : 0.263;
-          if (a38?.on === true && ao?.on && !aoTwin && (id === "btc" || id === "gold") && addReg[row.ticker] && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5)) {
+          if (a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === "btc" || id === "gold") && addReg[row.ticker] && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5)) {
             try38[row.ticker] = Date.now();
             void (async () => {
               let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
@@ -4710,7 +4716,7 @@ async function copyLiveBook(assets, lane = "") {
   } catch {
     cfg = null;
   }
-  const books = cfg ? (Array.isArray(cfg.books) ? cfg.books : cfg.book ? [cfg.book] : []) : [];
+  const lt717 = liveToday717(); const books = lt717 ? [lt717] /* fix717: one book alone today */ : cfg ? (Array.isArray(cfg.books) ? cfg.books : cfg.book ? [cfg.book] : []) : [];
   if (!books.length || !(Number(cfg.dollars) > 0) || entriesOff()) return;
   let live;
   try {

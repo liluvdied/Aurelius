@@ -1115,7 +1115,13 @@ export function thirdWallAbsolute(asset: string, L: Line[], tick: number, side: 
   } catch {}
   return "";
 }
+// fix717 ONE BOOK LIVE TODAY (Love Nov 5 2026 6:03 AM PT: "dude just put brick on for the day" + her card pick 6:21 AM "BREAK BOOK · SESSION ONLY"): while data/live-today.json says on
+// and before its "until" (midnight PT tonight), its "book" is her only live book (main / rejection / no-pink / delayed stay on paper), judged by its own gates only - her walls at the
+// door and the last line stand down for that book alone, like the delayed book - and it gets no add-ons. Umpire, ENFORCER, freshness, LIVE switch and her take-profit still apply.
+// The file expires on its own; CHANGE-63 (NORMAL LINEUP BACK) turns it off in one run.
+export function liveToday717(): string { try { const j = JSON.parse(readFileSync(D("live-today.json"), "utf8")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && typeof j.book === "string" && /^[a-z0-9-]{2,24}$/.test(j.book) ? j.book : ""; } catch { return ""; } }
 export function bandLockCheck(book: string, asset: string, side: string, ticker = "", label = ""): { ok: true } | { ok: false; reason: string } {
+  { const lt717 = liveToday717(); if (lt717 && String(book) === lt717) return { ok: true }; } // fix717: the one live book today, its own gates only
   if (!G.__inBLC465) { G.__inBLC465 = true; const prev465 = G.__curBook465, prev611 = G.__curLabel611; try { G.__curBook465 = book; G.__curLabel611 = label; /* fix611 */ return bandLockCheck(book, asset, side, ticker, label); } finally { G.__inBLC465 = false; G.__curBook465 = prev465; G.__curLabel611 = prev611; } } // fix465: the book being judged sets her thirds share (delayed keeps its own)
   // EVERY BOOK (Oct 16 ~1:10 PM PT, Love: "EVERY FUCKING BOOK WE OWN. EVERYTHING THAT EVER RUNS."): no exemptions - the
   // inverse included, any asset. An asset with no band feed can't be verified, so it can't open.
