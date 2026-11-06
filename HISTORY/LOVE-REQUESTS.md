@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R463 - fix792 BESTIE'S PINK-TO-ZONE 55%: live BESTIE gets main's zone check at the send - bandlock.ts zoneSend594, the same function main and REJECTION's last line runs: no short in the bottom 55% from the pink down to the green zone, no long in the top 55% from the pink up to the red zone, no trade past the red / green boundary, and her Bollinger fade-past-the-zone block (fix711) that lives in the same check. Done with live-switch zoneBooks792 = ["bestie"] in the live-today send branch. Replay of her 25 settled takes since 10 PM: blocks 6 (4 W) - -$12.75 vs taking them (incl. the 3:16 AM BTC short). Every other book unchanged.
+- when: 2026-11-06T12:06:45+00:00
+- Love: "Love Nov 6 2026 ~3:26 AM PT, her card pick "Both guards" (after "hun she just shorted btc in the bottom of the channel"), guard 2 = pink-to-green / pink-to-red 55% (fix594)"
+- books: BESTIE (bestie) live - entries
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "?.zoneBooks792;"}
+- proof: {"test": "tools/bestie-guard-792.cjs"}
+
 ## R462 - fix791 BESTIE'S THIRDS (her 33%): live BESTIE gets main's THE WALL at the send - bandlock.ts thirdWallAbsolute, the same function every book's wall runs: no long in the top 33% / no short in the bottom 33% of the session-band channel (band to band as drawn, her channelPct / channelPctTop from live-switch; a band broken her way by her break distance is not a barrier). Done with live-switch thirdsBooks791 = ["bestie"] read in the live-today send branch. Replay of her 25 settled takes since 10 PM: blocks 7 (5 W) - -$11.00 vs taking them. With CHANGE-131 a blocked take lets her look for the next valid set up that window. Every other book unchanged.
 - when: 2026-11-06T12:03:53+00:00
 - Love: "Love Nov 6 2026 ~3:26 AM PT, her card pick "Both guards" (after "hun she just shorted btc in the bottom of the channel"), guard 1 = her thirds - R141 (Oct 29 2026): "her 33% NEVER leaves under any circumstances" / R206: "a hard 33% for the thirds on EVERY Kalshi book""
