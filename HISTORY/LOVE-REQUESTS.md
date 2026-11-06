@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R465 - fix796 MAIN + REJECTION BACK LIVE: data/live-today.json on -> false (nothing else in it changes), so the live lineup goes back to her main lineup in live-switch liveBook - MAIN / TOGETHER (recon-tog), REJECTION (recon-rej) and the DELAYED book (recon-dly) that rides with them - exactly the way they ran before the live-today lineup (fix717 onward). BESTIE leaves live; V.111 - 2 and all her paper twins keep scoring. Kept: every money rail (umpire, day stop, halt, LIVE, sizes, floor, one per window, no flips), the 75% / 95% exit for main + REJECTION (fix782), and every other installed fix. Turning live-today on again puts BESTIE back. No code changed; the fix775 proof also accepts live-today off.
+- when: 2026-11-06T13:31:50+00:00
+- Love: "Love Nov 6 2026 ~5:20 AM PT: "dude our main and rejection on pls i can't do this anymore""
+- books: MAIN (recon-tog) + REJECTION (recon-rej) + DELAYED (recon-dly) live; BESTIE paper
+- status: ACTIVE
+- proof: {"code": "data/live-today.json", "has": "\"on\": false"}
+- proof: {"test": "tools/v111-2-live-775.cjs"}
+
 ## R464 - fix793 BESTIE'S SESSION-BAND SLIDING SCALE (as main and rej): live BESTIE gets main's SESSION BAND AT THE SEND - bandlock.ts sessionBandSend593 with her sliding scale sessionScale593 (fix593): no long into an unbroken session band above / short into one below within BTC $25 when the channel is under $100, 33% of the channel to $500, 20% over $500; gold 33% at a $10 channel sliding to 20% at $20 (20% over). Done with live-switch scaleBooks793 = ["bestie"] in the live-today send branch. Replay of her 25 settled takes since 10 PM: blocks 7 (5 W) - -$11.00 vs taking them. Every other book unchanged.
 - when: 2026-11-06T12:48:45+00:00
 - Love: "Love Nov 6 2026 ~3:26 AM PT: "the same sliding scale for the session bands bb :))" + "as main and rej""
