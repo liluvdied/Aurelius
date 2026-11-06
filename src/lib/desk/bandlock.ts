@@ -834,6 +834,15 @@ export function auditGrade523(book: string, asset: string, tick: number, side: s
 }
 // fix584 PINK SLIDE HER WAY (Love Nov 1 2026: "The pink slide rule only applies in this case: Price has rejected the pink three times on the way down. And pink is in the bottom/top 33% of the channel. Only then are longs/shorts blocked ... In every other case the slide rule does nothing." + 10:29 AM: "i did not ask for pink slide off. i asked for it to be revised."): the blanket fix521 walls below stand down; her revised slide is the engine hold (3 rejections + pink in the bottom/top 33%).
 export const __PINKSLIDE_HERWAY584 = true;
+// fix828 BTC: NO LONGS UNDER THE PINK AGAIN (Love Nov 6 2026 ~12:46 PM PT: "but yes if it blocks 28 trades that only had a 25% hit rate on them yes 🎯 🎯 🎯" + her card: option 1, BTC longs only):
+// her fix521 wall comes back for BTC LONGS ONLY - no BTC long under the pink while a running 2-5m candle is red, at ANY distance - except the bottom 25% of the pink -> green channel (at the green line)
+// with her REAL $5 flip (a turn alone no longer counts), or her 5% reset through the pink. Gold and every short keep her Nov 1 pink-slide rule (fix584) exactly as it is. Every book but delayed.
+// Replay Nov 2-6 (main + REJ): it blocks 28 BTC longs that went 25% hit, -$154. live-switch btcLong828 false = off.
+export function btcLong828(asset: string): boolean {
+  if (asset !== "btc") return false;
+  try { if (DLY465.has(String(G.__curBook465 || ""))) return false; if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.btcLong828 === false) return false; } catch {}
+  return true;
+}
 export function pinkLongWall432(asset: string, L: Line[], tick: number, side: string): string {
   if (side !== "up" || !(tick > 0)) return "";
   const pk = L.find((l) => String(l.name) === "5m PP" && Number(l.price) > 0);
@@ -845,10 +854,10 @@ export function pinkLongWall432(asset: string, L: Line[], tick: number, side: st
   // green live there) - until her 10% gold / 5% BTC reset through the pink (pinkSpent515c; the reset formula is untouched).
   try {
     const pk521 = Number(pk.price);
-    if (!(typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584) && tick < pk521 && anyRed521(asset, tick)) { // fix584: the blanket UNDER THE PINK = NO LONGS stands down - her slide (3 rejections + pink in the bottom 33%) lives in the engine hold
+    if ((!(typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584) || btcLong828(asset)) /* fix828 */ && tick < pk521 && anyRed521(asset, tick)) { // fix584: the blanket UNDER THE PINK = NO LONGS stands down - her slide (3 rejections + pink in the bottom 33%) lives in the engine hold
       const s1x = L.find((l) => String(l.name) === "5m S1" && Number(l.price) > 0);
       const s1 = s1x ? Number(s1x.price) : 0;
-      const botQ = (s1 > 0 && s1 < pk521 ? tick <= s1 + 0.25 * (pk521 - s1) : false) && turnFlip530(asset, "up", tick) /* fix530: her colour TURN is the flip, no minimum */; // her B + "with the color flip" (12:42 PM): the exception demands her full flip (2-5m, 10c gold / $5 BTC past its open, her c1) AND a real colour turn (red -> green, never a candle born green - her fix416 words)
+      const botQ = (s1 > 0 && s1 < pk521 ? tick <= s1 + 0.25 * (pk521 - s1) : false) && (btcLong828(asset) ? realFlipNow(asset, "up", tick) /* fix828: BTC needs her real $5 flip */ : turnFlip530(asset, "up", tick)) /* fix530: her colour TURN is the flip, no minimum */; // her B + "with the color flip" (12:42 PM): the exception demands her full flip (2-5m, 10c gold / $5 BTC past its open, her c1) AND a real colour turn (red -> green, never a candle born green - her fix416 words)
       const sm521 = ((((globalThis as any)[asset === "gold" ? "__slide371" : "__slide423b"]) || {}).s || []) as { t: number; p: number; pp: number }[];
       const spent521 = pinkSpent515c(sm521, Date.now(), "up", asset);
       // her 1:03 PM clearance: more than $4 gold / $200 BTC under the pink, with the colour flip and her minimum, while the session channel is
@@ -1796,11 +1805,22 @@ export function push807(asset: string, label?: string): number {
   try { if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.push807 === false) return 0; } catch {}
   return 50;
 }
+// fix827 GOLD BAND PUSH 15c / 20c (Love Nov 6 2026 ~11:55 AM PT: "let's make it 20c when bands are over $10 bb , and $15c under that / just a bittt more of a push than where it's at bc those are barely
+// blips of a push ... it's definitely costing fakies , when a few cents more doesn't change the multiple atttt all and will keep us out of the ones that flip for a millisecond and continue melting" + her card
+// ~12:06 PM PT: band / zone trades only, pink keeps 10c): gold's push off a session band, Bollinger, zone or R/S line is 20c when the band channel (the session bands either side of price) is over $10, 15c
+// when it's $10 or under (or can't be read). Pink trades (off / through the 5m PP) keep 10c. BTC unchanged. Every book but delayed (delayed keeps its own flips). live-switch goldPush827 false = 10c.
+// Replay Nov 1-6 (gold band / zone rejections, main + REJ): about -$420 at 10c vs -$274 at 15/20c; pink kept at 10c (+$195 vs +$76 with the bigger push).
+export function goldPush827(L: Line[], tick: number): number {
+  try { if (DLY465.has(String(G.__curBook465 || ""))) return 0.1; if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.goldPush827 === false) return 0.1; } catch {}
+  const S0 = (L || []).filter((l: Line) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name))).map((l: Line) => Number(l.price));
+  const up = S0.filter((p) => p > tick), dn = S0.filter((p) => p < tick); const w = up.length && dn.length ? Math.min(...up) - Math.max(...dn) : 0;
+  return w > 10 ? 0.2 : 0.15;
+}
 export function pushLabel653(asset: string, side: string, tick: number, L: Line[], label: string): boolean { // fix655
   try { const lab = String(label || ""); if (!REJ_LABEL611.test(lab)) return false; const m = /(?: off | above | below | at )(.+?)(?: - rejected (?:up|down))?$/.exec(lab); if (!m) return false; // fix655
     const nm = m[1].trim(), px = (n: string) => Number((L || []).find((l: Line) => String(l.name) === n)?.price) || 0, bz = G.__bbsr?.[asset]; // fix655
     const band = px(nm) || (nm === "Green zone" ? px("5m S1") : nm === "Red zone" ? px("5m R1") : /^(Bollinger|BB) upper$/.test(nm) ? Number(bz?.bbU) || 0 : /^(Bollinger|BB) lower$/.test(nm) ? Number(bz?.bbL) || 0 : 0); // fix655
-    const hl656 = fiveHLNow(asset), p807 = typeof push807 === "function" ? push807(asset, nm) : 0, ext807 = hl656 ? (side === "up" ? Number(hl656.l) : Number(hl656.h)) : 0; if (p807 > 0) return band > 0 && ext807 > 0 && pushOff653(asset, side, tick, ext807, p807, 0) /* fix807: measured from the wick (this 5m candle's high for a short / low for a long) */; return band > 0 && pushOff653(asset, side, tick, band, asset === "btc" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: "we can bring that to $6"): BTC push $10 -> $6 */ : 0.1 /* fix656: gold 10c */, ext807); } catch { return false; } } // fix655
+    const hl656 = fiveHLNow(asset), p807 = typeof push807 === "function" ? push807(asset, nm) : 0, ext807 = hl656 ? (side === "up" ? Number(hl656.l) : Number(hl656.h)) : 0; if (p807 > 0) return band > 0 && ext807 > 0 && pushOff653(asset, side, tick, ext807, p807, 0) /* fix807: measured from the wick (this 5m candle's high for a short / low for a long) */; return band > 0 && pushOff653(asset, side, tick, band, asset === "btc" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: "we can bring that to $6"): BTC push $10 -> $6 */ : nm === "5m PP" ? 0.1 /* fix656: gold 10c - pink trades keep 10c (fix827) */ : goldPush827(L, tick) /* fix827 gold band / zone push 15c / 20c */, ext807); } catch { return false; } } // fix655
 // fix656 (Love Nov 4 2026 5:52 PM PT: "gold needs a 10c push, not just a tap - and it doesn't need to be on the band itself , just a flip /band candle near it and pushing down in a candle our color"): the candle does not have to reach the band - near it (her near-band reach in the read, recon.ts nr) is enough; the push is measured from the band, or from the candle's own high/low when it stopped short of the band (whichever is nearer price), so she still needs the push her way. Gold push 10c.
 /** fix653: her push is measured FROM THE BAND she pushes off (her push distance, in the direction of the trade), with the live 2m her colour - never from the candle's open. */
 // fix668 A REJECTION WITHOUT A FLIP (Love Nov 4 2026 8:23 PM PT: "if price comes up to a band (within 15% of it) , and then price rejects near the band by 20% of the channel width or more , she can enter in , even if the candle hasn't flipped / so if price rejects on a green 5M candle , and the body of the candle pushes down by 20% of the channel width - she can enter short even if the candle hasn't flipped and it is still green okay / inverse for shorts"): this 5m candle came within 15% of the channel of a band (opened on the near side of it) and price is now back on the near side, 20% of the channel or more

@@ -2,6 +2,30 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R496 - fix828 BTC NO LONGS UNDER THE PINK AGAIN: her fix521 wall comes back for BTC LONGS ONLY - no BTC long under the pink while a running 2-5m candle is red, at any distance - except the bottom 25% of the pink->green channel with her real $5 flip (a colour turn alone no longer counts), her wide-channel clearance, or her 5% reset through the pink. Gold and every short keep her Nov 1 pink-slide rule (fix584) as it is. Every book but delayed. Replay Nov 2-6 (main + REJ): blocks 28 BTC longs that went 25% hit, -$154. live-switch btcLong828 false = off.
+- when: 2026-11-06T23:34:47+00:00
+- Love: "Love Nov 6 2026 ~12:46 PM PT: "but yes if it blocks 28 trades that only had a 25% hit rate on them yes 🎯 🎯 🎯" + her card: option 1 (BTC longs only) + ~12:20 PM: "oh definitely don't let those thru bb""
+- books: every book but DELAYED - BTC longs under the pink
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function btcLong828("}
+- proof: {"test": "tools/btc-under-pink-828.cjs"}
+
+## R495 - fix827 GOLD BAND PUSH 15c / 20c: gold's push off a session band, Bollinger, zone or R/S line (her band-rejection entry, pushLabel653) is 20c when the band channel (session bands either side of price) is over $10, 15c when it's $10 or under or can't be read. Gold pink trades keep 10c; BTC unchanged; delayed unchanged. Replay Nov 1-6 (gold band / zone rejections, main + REJ): about -$420 at 10c vs -$274 at 15/20c. live-switch goldPush827 false = 10c.
+- when: 2026-11-06T23:34:45+00:00
+- Love: "Love Nov 6 2026 ~11:55 AM PT: "let's make it 20c when bands are over $10 bb , and $15c under that / just a bittt more of a push than where it's at bc those are barely blips of a push 😹 like i said it's satisfying when she gets in cleanly but it's definitely costing fakies , when a few cents more doesn't change the multiple atttt all and will keep us out of the ones that flip for a millisecond and continue melting" + her card ~12:06 PM PT: band / zone trades only, gold pink trades keep 10c"
+- books: every book but DELAYED - gold band / zone push
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function goldPush827("}
+- proof: {"test": "tools/gold-band-push-827.cjs"}
+
+## R494 - fix826 GOLD WIDE-CHANNEL RELEASE: her gold slide / climb holds (fix560, and the every-second release fix806 + the copier's own release checks) still release when price breaks through the pink by 10% of the channel - but when gold's channel (the session bands either side of price, the same width the 10% reads) is over $30, 5%. BTC unchanged (10%; its channels are always over $30). Main + REJ, like the holds. Replay Nov 1-6: only 5 held windows had a channel over $30; no change in result (36 trades, 69%, +$37 either way).
+- when: 2026-11-06T23:34:43+00:00
+- Love: "Love Nov 6 2026 ~11:55 AM PT: "yes lets keep it 10% bb, but over $30 band widths let's make it 5% , pls bc those do happen on occasion""
+- books: MAIN + REJECTION - gold slide / climb hold release
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "/* fix826 her 5% over a $30 gold channel */"}
+- proof: {"test": "tools/wide-channel-826.cjs"}
+
 ## R493 - fix825 STATS · EVERY FACTOR (display only): every settled main / REJ trade is matched to the board she saw at the call (setup-audit-in, read incrementally) and scored by each factor on its own - σ spot (which band channel price sat in), set up x σ spot, the line traded, the zone just past the band (fix822), the target by a line (into / away, fix821), her side of the pink, and the hour PT - 7 days / 24 hours, as STATS tally cards with her sorters (hit rate, $$, $/trade, edge) for MAIN, REJECTION and both families. Never touches trading.
 - when: 2026-11-06T19:56:47+00:00
 - Love: "Love Nov 6 2026 ~10:43 AM PT: "can you take it a bit further and have her score red/green zone trades at the different band levels too? ... every independent factor ... we simply cut the ones that don't pay""

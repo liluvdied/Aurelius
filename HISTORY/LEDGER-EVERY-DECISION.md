@@ -1,4 +1,4 @@
-# Every decision Love has made - rebuilt 2026-11-06T20:16:17.575644+00:00
+# Every decision Love has made - rebuilt 2026-11-06T23:36:27.181738+00:00
 
 1534 decisions with Love's words or card picks, out of 2294 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
