@@ -1,5 +1,5 @@
 {
- "at": "2026-11-06T06:01:58.395651+00:00",
+ "at": "2026-11-06T09:18:34.524649+00:00",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -140,20 +140,21 @@
   "hmulti.ts": "0be923682c984bf7",
   "halfband.ts": "113189fee179e915",
   "cups.ts": "399cf812a04e0903",
-  "paperrows.ts": "a11ea480af259e8c",
+  "paperrows.ts": "f567c8e3f15e4076",
   "akimbocard.ts": "93050ce006e5038b",
   "akimbowatch.ts": "77b5e5f09cf30d0a",
   "stats-week.ts": "4787526e2f95ba6b",
-  "v1112.ts": "23c8e56b9665b1e1",
+  "v1112.ts": "ae7b1678a0ad38e6",
   "setupboard773.ts": "1cb20ec7eff84035",
-  "v1112best.ts": "ca9d45cf7580cd1b"
+  "v1112best.ts": "ca9d45cf7580cd1b",
+  "v1112inv.ts": "7f599cb5249e15c4"
  },
  "config": {
   "live": "b5bea41b6c",
   "maxDollars": "4a44dc1536",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "a82bc93b63",
+  "at": "1a751ad477",
   "note": "34fb5e33ce",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -172,7 +173,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "80178122e5",
+  "liveBook": "58f6524b57",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -346,7 +347,7 @@
   "data/spine-lock.json": "595fbf87bb2c42df",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "6368a86ae67513d9"
+  "data/live-switch.json": "e05b895efea72ddd"
  },
  "sealLiveBook": "c8cfbbf7f9",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

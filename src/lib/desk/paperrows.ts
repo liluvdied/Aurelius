@@ -22,6 +22,7 @@ export const PAPER_BOOKS721: { file: string; book: string; title: string; split?
   { file: "og-1012.json", book: "og1012", title: "OG ORIGINAL · 10.12 🕯️ · PAPER · SEALED" }, // fix765: a regular card (her sealed rows read as they are)
   { file: "brk-out-687.json", book: "brkout687", title: "OUTWARD BREAK · SESSION BANDS · PAPER 🤍" }, // fix765
   { file: "v111-2-770.json", book: "v1112", title: "V.111 - 2 · HER SEP 24 READS · PAPER" }, // fix770: her own card
+  { file: "v111-2-inv-777.json", book: "v1112inv", title: "V.111 - 2 INV · HER TAKES FLIPPED · PAPER" }, // fix777: the inverse paper book's card
 ];
 export function paperBookRows721(): any[] {
   const out: any[] = [];

@@ -15,6 +15,7 @@
 import { existsSync, readFileSync, renameSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { bestTake775 } from "./v1112best.ts"; // fix775: her BEST-table takes also go live on Kalshi at $5 (v1112best.ts decides, the live copier sends)
+import { invTake777, invSettle777 } from "./v1112inv.ts"; // fix777: V.111 - 2 INVERSE (paper) - every take of hers, the opposite side at its real ask
 
 // ---------------------------------------------------------------- the brain: og-replay.mjs lines 3-112, logic unchanged ----------------------------------------------------------------
 export type Bar770 = { t: number; o: number; h: number; l: number; c: number; v: number };
@@ -246,6 +247,7 @@ export async function v1112Tick770(assets: Record<string, any> | null | undefine
         side: tk.side, ask, multiple: Math.round((1 / ask) * 100) / 100, floorOk: ask <= 0.667, contracts: STAKE / ask, stake: STAKE, spot: Number(r.spot) || 0, vwap: Number(r.vwap) || 0, stdev: Number(r.stdev) || 0,
         level: Number.isFinite(Number(tk.level)) ? Number(tk.level) : null, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null });
       { const r775 = s.rows[s.rows.length - 1] as any; void bestTake775(r775).then((d) => { r775.best775 = d; save(true); }).catch(() => {}); } // fix775: on the BEST list or not, decided this second (her paper trade above is unchanged)
+      try { invTake777(s.rows[s.rows.length - 1], m); } catch {} // fix777: the inverse paper book takes the other side, same read, same second (her row above is unchanged)
     }
     for (const r of s.rows) {
       if (r.result !== "open") { if (!r.logged) { logFill770(r); r.logged = true; dirty = true; } continue; }
@@ -265,5 +267,6 @@ export async function v1112Tick770(assets: Record<string, any> | null | undefine
       logFill770(r); r.logged = true; dirty = true;
     }
     if (dirty) save(true); else save();
+    try { await invSettle777(assets); } catch {} // fix777: the inverse paper book's bids, take-profit and settlement (its own file)
   } catch {} finally { G.__v1112Busy = false; }
 }
