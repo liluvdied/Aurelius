@@ -8196,5 +8196,30 @@
     "what": "t(P.includes('if (lane === \"brk-sesspk\") { const q740 = quoteTick(id)') && P.includes(\"bb15Wall740(b, id, look!.side, tk740)\"), \"the wall is not on SESSION + PINK's booking\");",
     "why": "fix762 (her words in this change's request)",
     "R": "R443"
+  },
+  {
+    "what": "{!isTap(book) && book !== \"supernova\" && book !== \"recon-fresh\" && book !== \"recon-togp-fresh\" && book !== \"recon-rnp-fresh\" /* fix625 */ && book !== \"recon-all\" && (",
+    "why": "fix768 (her words in this change's request)",
+    "R": "R444"
+  },
+  {
+    "what": "const rows = (rg.liveTrades() as any[]).filter((t) => books.has(String(t.book)) && String(t.first) >= since).map((t) => {",
+    "why": "fix768 (her words in this change's request)",
+    "R": "R444"
+  },
+  {
+    "what": "const bookOfKey = (k: string) => { const p = k.split(\":\"); const last = p.pop() || \"\"; if (last !== \"x5\") return last; const base = p.pop() || \"\"; return ({ bank5p: \"bank5px\", claude: \"claudex\", trend: \"trendx\" } as Record<string, string>)[base] || `${base}x`; };",
+    "why": "fix769 (her words in this change's request)",
+    "R": "R445"
+  },
+  {
+    "what": "const bookOfKey = (k: string) => { const p = k.split(\":\"); const last = p.pop() || \"\"; if (last !== \"x5\") return last; const base = p.pop() || \"\"; return ({ bank5p: \"bank5px\", claude: \"claudex\", trend: \"trendx\" } as Record<string, string>)[base] || `${base}x`; };",
+    "why": "fix769 (her words in this change's request)",
+    "R": "R445"
+  },
+  {
+    "what": "const bookOfKey = (k: string) => { const p = k.split(\":\"); const last = p.pop() || \"\"; if (last !== \"x5\") return last; const base = p.pop() || \"\"; return ({ bank5p: \"bank5px\", claude: \"claudex\", trend: \"trendx\" } as Record<string, string>)[base] || `${base}x`; };",
+    "why": "fix769 (her words in this change's request)",
+    "R": "R445"
   }
 ]

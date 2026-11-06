@@ -2,6 +2,22 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R445 - fix769 RETRY ROWS COUNT UNDER THEIR OWN BOOK (bug fix - no rule, threshold or rail value changes): the risk guard, book watch (ALERTS) and day board read which book owns a live Kalshi ticket from the last part of its key, so a retry row (key ending ':n2', ':m2', ':m3') was filed under a book called 'n2' - e.g. TOGETHER's 5:45 PM BTC +$4.71 tonight. Now the retry tag is stripped first, so it counts under TOGETHER. Today this changes no decision: the per-book bench is off (your Oct 14 call) and the daily stop / give-back count the day's total, which already included it. Run after CHANGE-113.
+- when: 2026-11-06T03:44:12+00:00
+- Love: "Love Nov 5 2026 5:06 PM PT: "the new active ledger for what's on kalshi rn doesn't have its own card still bb , can you give her one so we can see the actual record ? 💓" (bug found building it: a live ticket on a retry row - key ending ":n2" - was counted under a book called "n2" in riskguard / bookwatch / dayboard; fix768 fixed the card, this fixes the shared read)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/riskguard.ts", "has": "fix769: a retry row"}
+- proof: {"test": "tools/book-of-key-769.cjs"}
+
+## R444 - fix768 ON KALSHI NOW, FIXED (display only): the card is pinned first in your $$$ group and first in every sort; its RUN pill is gone (it's a record, not a book); and its count now matches Kalshi's fills - a TOGETHER ticket booked as a second try (':n2', the 5:45 PM BTC +$4.71) was read as a book called 'n2' and fell off the card. No book, rule, order or risk setting changes.
+- when: 2026-11-06T03:44:10+00:00
+- Love: "Love Nov 5 2026 5:06 PM PT: "the new active ledger for what's on kalshi rn doesn't have its own card still bb , can you give her one so we can see the actual record ? 💓" (follow-up to fix766: the card pinned first, no RUN pill on it, and its record matching Kalshi's fills - a TOGETHER ":n2" ticket was read as a book called "n2")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/paperrows.ts", "has": "fix768: the book is the 2nd part"}
+- proof: {"test": "tools/kalshi-now-fix-768.cjs"}
+
 ## R443 - fix762 AKIMBO $50 PUSH 🧪 - PAPER ONLY, BTC: a new paper book in your $$$ group. Same lines and walls as SESSION + PINK, but a break fires the first time BTC is $50 past a line it was on the other side of (this minute or last minute) - no 1m candle close needed. Never sends an order; it's here to prove the idea on live data before anything changes live. Replay since Oct 19 ($20, one per window): 223 trades, 53%, +$926, all 3 weeks green (vs SESSION + PINK / +15M PIVOTS BTC 57%, +$690). Run after CHANGE-105 (and 110).
 - when: 2026-11-06T02:26:58+00:00
 - Love: "Love Nov 5 2026 4:22 PM PT: "hun we need to change the candle close rule ... how it was more 71% successful after a push of $50" + her card pick ~4:25 PM: "Paper twin first" (BTC, $50 past the line, no candle close)"

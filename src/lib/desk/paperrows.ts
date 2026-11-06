@@ -54,8 +54,10 @@ export async function kalshiNowRows766(): Promise<any[]> {
     const books = new Set<string>(["brk-sesspk", "brk15", "gmid2", "recon-tog", "recon-rej", "recon-dly", "recon-togp"]);
     try { const j = JSON.parse(readFileSync(D("live-today.json"), "utf8")); for (const b of String(j?.book || "").split(",")) if (b) books.add(b); for (const b of Array.isArray(j?.plain) ? j.plain : []) books.add(String(b)); } catch {}
     const side: Record<string, string> = {}; try { const d = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); for (const v of Object.values(d) as any[]) if (v && v.ticker && (v.status === "filled" || v.status === "partial") && !side[v.ticker]) side[v.ticker] = String(v.side || ""); } catch {}
+    // fix768: the book is the 2nd part of the ticket's key (TICKER:book:...) - not the last part (a TOGETHER ":n2" ticket read as a book called "n2" and fell off this card)
+    const own768: Record<string, string> = {}; try { const d = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); for (const [k, v] of Object.entries(d) as [string, any][]) if (v && (v.status === "filled" || v.status === "partial")) { const tk = String(v.ticker || k.split(":")[0]); if (!own768[tk]) own768[tk] = String(k.split(":")[1] || ""); } } catch {}
     const rg: any = await import("./riskguard"); const since = "2026-11-05T14:36:00Z";
-    const rows = (rg.liveTrades() as any[]).filter((t) => books.has(String(t.book)) && String(t.first) >= since).map((t) => {
+    const rows = (rg.liveTrades() as any[]).map((t) => ({ ...t, book: own768[t.ticker] || t.book })).filter((t) => books.has(String(t.book)) && String(t.first) >= since).map((t) => {
       const asset = /GOLD/.test(String(t.ticker)) ? "gold" : /SILVER/.test(String(t.ticker)) ? "silver" : "btc", open = !(Number(t.end) > 0) || Date.now() < Number(t.end);
       return { id: `${t.ticker}:kalshinow766`, book: "kalshinow766", at: t.first, asset, ticker: t.ticker, side: side[t.ticker] === "down" ? "down" : "up", setup: `${t.book} · live on Kalshi`, ask: 0, multiple: null, stake: 0,
         result: open ? "open" : Number(t.pnl) > 0 ? "win" : "loss", exit: open ? "open" : "settled on Kalshi", pnl: open ? null : Number(t.pnl), paper721: true, kalshiTrue: true };

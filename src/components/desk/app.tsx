@@ -3514,6 +3514,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   // TAPS live in their own tab (Love: "not the vibe" to have $2.50 lotto tickets paint the whole ledger red).
   const archSet = new Set<string>(((archQ.data as string[] | undefined) ?? []).filter((b) => !runOn(b as ShiftNight["book"])));
   const ranked = BOOKS.filter((b) => !isTap(b.book) && (b.book === "recon-fresh" || b.book === "recon-togp-fresh" || b.book === "recon-rnp-fresh" /* fix625 */ || !archSet.has(b.book))).map((b) => ({ ...b, s: side(b.book) })).sort(cmp691); // fix691: was $ high to low only
+  { const i768 = ranked.findIndex((b) => b.book === "kalshinow766"); if (i768 > 0) ranked.unshift(...ranked.splice(i768, 1)); } // fix768: ON KALSHI NOW is pinned first in every sort
   const tapRanked = BOOKS.filter((b) => isTap(b.book)).map((b) => ({ ...b, s: side(b.book) })).sort((a, b) => b.s.pnl - a.s.pnl);
   // CARD TAPS (Oct 13 ~3:25 AM PT, Love: "when i click one it takes a few seconds to open and then i think my click didn't
   // register... when i click again... the second click closes it"). The card says OPENING… the instant it's tapped; taps
@@ -3646,7 +3647,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
         <p className="font-mono text-[11px] tabular-nums text-white/80">
           {s.wins}W · {s.losses}L{s.wins + s.losses ? ` · ${Math.round((s.wins / (s.wins + s.losses)) * 100)}% wins` : ""}{s.open ? ` · ${s.open} open` : ""}
         </p>
-        {!isTap(book) && book !== "supernova" && book !== "recon-fresh" && book !== "recon-togp-fresh" && book !== "recon-rnp-fresh" /* fix625 */ && book !== "recon-all" && (
+        {!isTap(book) && book !== "kalshinow766" /* fix768: a record, not a book - no RUN */ && book !== "supernova" && book !== "recon-fresh" && book !== "recon-togp-fresh" && book !== "recon-rnp-fresh" /* fix625 */ && book !== "recon-all" && (
           <div className="mt-auto flex justify-end pt-1">
             <span
               role="button"
