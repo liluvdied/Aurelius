@@ -17,6 +17,7 @@ import { join } from "node:path";
 import { bestTake775 } from "./v1112best.ts"; // fix775: her BEST-table takes also go live on Kalshi at $5 (v1112best.ts decides, the live copier sends)
 import { wallsTake783, wallsSettle783 } from "./v1112walls.ts"; // fix783: BESTIE · WALLS (paper) - BESTIE's takes judged by main's door first
 import { fbTick789 } from "./v1112fb.ts"; // fix789: BESTIE takes the next band when she misses hers over her floor
+import { zoneTick798 } from "./v1112zone.ts"; // fix798: her zone wick rejections (paper set up)
 import { binvTick795 } from "./v1112binv.ts"; // fix795: BESTIE · INVERSE (paper) - her live fills, the other side
 import { ldcTake794, ldcSettle794 } from "./v1112ldc.ts"; // fix794: V.111 - 2 · LDC FADE (paper) + the LDC colour on every take
 import { invTake777, invSettle777 } from "./v1112inv.ts"; // fix777: V.111 - 2 INVERSE (paper) - every take of hers, the opposite side at its real ask
@@ -274,6 +275,7 @@ export async function v1112Tick770(assets: Record<string, any> | null | undefine
     if (dirty) save(true); else save();
     try { await wallsSettle783(assets); } catch {} // fix783: BESTIE · WALLS's bids, take-profit and settlement (taken + skipped rows, their own files)
     try { await fbTick789(assets, s.rows, { read770, fillGaps770, bars770, cutList770, decide: (row: any) => bestTake775(row) }); } catch {} // fix789: BESTIE's next-band reads (her own file; V.111 - 2's book unchanged)
+    try { await zoneTick798(assets, (row: any) => bestTake775(row)); } catch {} // fix798: green / red zone wick rejections ($50 BTC / $1 gold), her own paper rows
     try { await binvTick795(assets); } catch {} // fix795: BESTIE · INVERSE's mirror + 75/95 exit + settlement (its own file)
     try { await ldcSettle794(assets); } catch {} // fix794: LDC FADE's bids, 75/95 exit and settlement (its own file)
     try { await invSettle777(assets); } catch {} // fix777: the inverse paper book's bids, take-profit and settlement (its own file)

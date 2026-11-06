@@ -8256,5 +8256,10 @@
     "what": "shifts.anyHour.gold",
     "why": "fix778 (her card pick Nov 6 ~1:24 AM PT, variant A: BESTIE through ALL hours of the hour map incl 11 PM-12 AM): 'bestie' appended to this list, the way SESSION + PINK (brk-sesspk) is on it - every book already on it stays, nothing removed",
     "R": "R452"
+  },
+  {
+    "what": "const src = rows ?? [...((G.__v1112?.rows as any[] | undefined) ?? []), ...((G.__v1112fb789?.rows as any[] | undefined) ?? [])]; // fix789: + her next-band takes",
+    "why": "fix798 (her words in this change's request): the same line, now also hands BESTIE her zone wick rejection rows (G.__v1112zone798) next to her own and next-band rows - nothing taken out",
+    "R": "R469"
   }
 ]

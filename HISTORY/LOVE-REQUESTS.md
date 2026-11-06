@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R469 - fix798 HER ZONE WICK REJECTIONS (paper set up in V.111 - 2's family): in a window, a closed 1m bar's low reached the GREEN zone (the desk's 5m S1) and price is now $50 (BTC) / $1 (gold) or more back up off that wick low = LONG; the mirror off the RED zone (5m R1) = SHORT. Minutes 1-14, once a minute, one per window, $20 paper at the real ask, scored like V.111 - 2 (her take-profit), settled from Kalshi, fill-log pattern 'V.111 - 2 · Green / Red zone wick rejection' (scores in STATS). These rows count in her own-rows list (fix797) and are decided on it the second they're taken, so the set up can earn its way onto BESTIE's list (more than 10 trades, over 65%, never WORST). Main / REJECTION's BTC 15% zone wick is unchanged. Replay Nov 1-6 ($5 scale, boards from the desk's own snapshots): BTC 63 trades 31 W +$32 (red-zone shorts +$75, green-zone longs -$43); gold 81 trades 36 W -$34. Paper only.
+- when: 2026-11-06T15:20:26+00:00
+- Love: "Love Nov 6 2026 ~5:17 AM PT: "and pls have her register green zone rejections and red zone rejections to enter in when the rejections there pls / a rick rejections of $50 or more on btc $1 for gold""
+- books: V.111 - 2 · zone wick rejections (paper set up)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112zone.ts", "has": "export function zoneRead798("}
+- proof: {"test": "tools/v111-2-zone-798.cjs"}
+
 ## R468 - fix795 BESTIE · INVERSE · PAPER: every window BESTIE actually filled on Kalshi (live-book-done her ':bestie:' ticket filled / partial) is taken here on the OTHER side, same window, at that side's real ask the moment the desk sees her fill; $5; one per window; the live exit on paper (half at 75% of the way, the rest at 95%, else the bell); settled from Kalshi; own file data/bestie-inv-795.json, fill-log venue paper-bestie-inv with her set up on every row ('BESTIE · INVERSE · <her set up>') so it scores by set up in STATS like V.111 - 2's own rows, card in RUNNING. Replay: her 7 live fills 2:01-5:15 AM -> 7 of 7 won, +$16.76 at $5 (BESTIE live 2 W / 5 L, -$35.89); every BEST take since 10 PM (one per window, 37): 23 W, -$1.37. PAPER ONLY - nothing live changes. Run after CHANGE-135.
 - when: 2026-11-06T14:27:18+00:00
 - Love: "Love Nov 6 2026 ~5:14 AM PT: "pls make an inverse of the book running if it's at 33% that is supposed to be the other way around bb" + ~5:34 AM PT: "pls have all of her inverse books scoring on set ups too and the twins and whatever pls so we can stack some up""

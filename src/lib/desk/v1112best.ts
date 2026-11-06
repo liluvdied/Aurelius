@@ -87,7 +87,7 @@ export function liveOn775(): boolean { try { return JSON.parse(readFileSync(D("v
 // minHitPct% won) and the same skip-if-WORST (fix787: $ under 0 = off). The STATS boxes of the other books (main's tap-rejects on session bands) are no longer read.
 export function own797(): boolean { try { return JSON.parse(readFileSync(D("v111-2-live.json"), "utf8"))?.ownRows797 === true; } catch { return false; } }
 export function ownBox797(rows?: any[]): Box775 {
-  const src = rows ?? (G.__v1112?.rows as any[] | undefined) ?? [];
+  const src = rows ?? [...((G.__v1112?.rows as any[] | undefined) ?? []), ...((G.__v1112zone798?.rows as any[] | undefined) ?? [])]; // fix798: + her zone wick rejections
   return { name: "V.111 - 2 OWN", rows: count(src.filter((r) => r && (r.result === "win" || r.result === "loss") && Number.isFinite(Number(r.pnlTp))).map((r) => ({ label: norm(r.setup), profit: Number(r.pnlTp) }))) };
 }
 /** the desk's own sources, read the way the STATS page reads them (live process only) */
@@ -110,7 +110,7 @@ export async function bestTake775(row: any, deps: { boxes?: () => Promise<Box775
  *  (data/v111-2-live.json enabled) is on - off = nothing is handed to Kalshi. */
 export function liveRows775(rows?: any[]): any[] {
   if (!liveOn775()) return [];
-  const src = rows ?? [...((G.__v1112?.rows as any[] | undefined) ?? []), ...((G.__v1112fb789?.rows as any[] | undefined) ?? [])]; // fix789: + her next-band takes
+  const src = rows ?? [...((G.__v1112?.rows as any[] | undefined) ?? []), ...((G.__v1112zone798?.rows as any[] | undefined) ?? []) /* fix798: + her zone wick rejections */, ...((G.__v1112fb789?.rows as any[] | undefined) ?? [])]; // fix789: + her next-band takes
   const out: any[] = [];
   for (const r of src) {
     if (!r?.best775?.ok || !r.ticker || !/15M-/.test(String(r.ticker)) || (r.side !== "up" && r.side !== "down")) continue;
