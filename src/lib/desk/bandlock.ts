@@ -2999,6 +2999,20 @@ export function zoneTolerance497(asset: string, L: Line[], tick: number, side: s
   }
   return "";
 }
+/** fix784: THE $10 LEVEL (fix217 / fix232 / fix440) as its own function - the exact lines impossibleGeo ran inline, moved here word for word so BESTIE's send can ask the
+ *  same question. flipRule true = $1.50 (main + rejection), false = $1 (the other books), as before. "" = clear. */
+export function tenLevel440(asset: string, tick: number, side: string, flipRule: boolean): string {
+  let why = "";
+  if (!why && asset === "gold" && (side === "up" || side === "down")) {
+    const tgt10 = targetNow("gold");
+    if (tgt10 > 0) { const L10 = Math.round(tgt10 / 10) * 10;
+      // fix232 (Love Oct 25 ~8:28 PM PT, card "Tighten to $1": "yes $1 - $1.50 to $2 like you said i'm good w those"; 1,598 gold trades: into a
+      // target 0-50c off the level 64 trades 34% -$486, 50c-$1 off 59 trades -$19, $1-$2 off 145 trades +$55): only targets within $1 of the even $10.
+      if (Math.abs(tgt10 - L10) <= (flipRule ? 1.5 : 1) /* fix440 (Love Oct 28 2026 9:18 PM PT: "within 1.50 ... target = 4040 + price currently 4038 - no longs into the 10 level. only shorts. vis versa."): main + rejection $1.50 */ && Math.abs(tick - L10) >= 0.3 && (side === "up") !== (tick > L10))
+        why = `THE $10 LEVEL: ${side === "up" ? "long up into" : "short down into"} ${L10.toFixed(0)} - the target ${tgt10.toFixed(2)} sits within $${flipRule ? "1.50" : "1"} of that even $10 level and gold reverses there; only trade away from it.`; }
+  }
+  return why;
+}
 export function impossibleGeo(asset: string, L: Line[], tick: number, side: string, twinFade = false, twinPinkAll = false, togpLoose = false /* fix286: the no-pink copy */, rejNoAhead = false /* fix317: the rejection model */, noBBTarget = false /* fix318: rejection model + main */, zoneGuard = 0 /* fix323 */, flipRule = false /* fix325 */, npPink = false /* fix363: the pure no-pink - pink holds only stacked in the outer 10% */): { why: string; below: number | null; above: number | null; pos: number | null; lock: number | null } {
   // HER LIVE TICK AT THE DOOR (fix539, Love Oct 30 2026 7:30 PM PT: "she was good to wait, but after the break she definitely still waiting 3 seconds or more. please take that off, it is not wanted and it is still there. her execution is not this laggy when it is working"): every distance below reads the freshest price - the live wire when under 2 s old, the scan tick only as the fallback -
   // so a break clears her the second it prints on her chart, not when the next scan catches up. The wire is the same Pepperstone feed her chart shows (fix533: one feed).
@@ -3195,14 +3209,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // down into) would help our gold win rate" + card "Make it a live wall now"; study Oct 20-23, 1,492 gold trades, target within $2 of a $10 level: trading INTO the level
   // 94 trades 25.5% -$786, AWAY 170 trades 66.5% +$352): gold only, every book - when the window's target sits within $2 of an even $10 level, no long while price is
   // under that level (up into it) and no short while price is over it (down into it). Trading away from it is clear; price on the level (within 30c) is not judged.
-  if (!why && asset === "gold" && (side === "up" || side === "down")) {
-    const tgt10 = targetNow("gold");
-    if (tgt10 > 0) { const L10 = Math.round(tgt10 / 10) * 10;
-      // fix232 (Love Oct 25 ~8:28 PM PT, card "Tighten to $1": "yes $1 - $1.50 to $2 like you said i'm good w those"; 1,598 gold trades: into a
-      // target 0-50c off the level 64 trades 34% -$486, 50c-$1 off 59 trades -$19, $1-$2 off 145 trades +$55): only targets within $1 of the even $10.
-      if (Math.abs(tgt10 - L10) <= (flipRule ? 1.5 : 1) /* fix440 (Love Oct 28 2026 9:18 PM PT: "within 1.50 ... target = 4040 + price currently 4038 - no longs into the 10 level. only shorts. vis versa."): main + rejection $1.50 */ && Math.abs(tick - L10) >= 0.3 && (side === "up") !== (tick > L10))
-        why = `THE $10 LEVEL: ${side === "up" ? "long up into" : "short down into"} ${L10.toFixed(0)} - the target ${tgt10.toFixed(2)} sits within $${flipRule ? "1.50" : "1"} of that even $10 level and gold reverses there; only trade away from it.`; }
-  }
+  if (!why) why = tenLevel440(asset, tick, side, flipRule); // fix784: THE $10 LEVEL - the same lines, now one function (below) so BESTIE's send can use it too
   // CLEAR OF THE $10 LEVEL (fix376, Oct 28 2026 12:23 AM PT, Love: "yess let's do it" to "she still only trades away from $10 levels, but she waits until price is at least $1.50 clear of the level first" - gold since Oct 11,
   // main/rejection/copy trades pointing AWAY from the nearest even $10 but only 30c-$1.50 off it: 130 trades 45% -$267 (the level pulls price back); $1.50+ off is green): MAIN, REJECTION MODEL, NO-PINK COPY, gold -
   // a trade heading away from the nearest $10 level waits until price is $1.50 clear of it. Under 30c (on the level) is not judged. Her INTO-the-level wall above stays.

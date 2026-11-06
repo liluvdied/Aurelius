@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R458 - fix784 BESTIE'S $10 LEVEL (live BESTIE - an exception to keeping her pure, at her ask; paper BESTIE · WALLS already has it inside main's door): her rule as main + rejection have it (fix217 / fix232 / fix440, R149): gold only - when the window's target sits within $1.50 of an even $10 level, no long while price is under that level (up into it) and no short while price is over it (down into it); trading away from it is clear; price on the level (within 30c) is not judged. Done with the same lines: bandlock.ts's inline $10 block moved word for word into one function tenLevel440 (impossibleGeo calls it exactly as before - flipRule: $1.50 main + rejection, $1 other books), and the live-today send asks it with flipRule true ($1.50) for the books listed in live-switch tenLevelBooks784 = ["bestie"] (kalshi-live.server.ts, the lineup branch). BTC has no $10-level rule on the desk (none added). Replay of BESTIE's 21 takes since 10 PM: blocks 2 gold (11:01 PM short into 4050 - a win; 2:16 AM long into 4070 - a loss), about even at $5. Every other book, wall, size, exit and money rail unchanged.
+- when: 2026-11-06T11:14:06+00:00
+- Love: "Love Nov 6 2026 ~2:31 AM PT: "and let’s please incorporate the $10 level rule we have , only trade away from them / if they are at a $10 level within $1.50 and we are under that level , don’t trade up or down into it only away from it okay 💓""
+- books: BESTIE (bestie) live - gold entries only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "tl784.includes(book)"}
+- proof: {"test": "tools/bestie-ten-784.cjs"}
+
 ## R457 - fix787 SKIP IT IF WORST ANYWHERE: a set up whose label is in ANY STATS box's WORST table (THIS WEEK, LAST 4 DAYS, PRIME BOOK - $ under 0 there, read live, the page's own split) is off BESTIE's list, even when another box has it BEST and over her bar (fix786: more than 10 trades, over 65%). Same label match the BEST rows use. Switch: her file data/v111-2-live.json skipIfWorstAnywhere true. Run after CHANGE-127. Her list right now: Tap-reject at +2σ, -1.5σ, +0.5σ, +1.5σ, -0.5σ; Tap-reject at +1σ (WORST this week / last 4 days) and -2σ are out. Every rail, size, exit and other book unchanged.
 - when: 2026-11-06T11:08:19+00:00
 - Love: "Love Nov 6 2026 ~2:56 AM PT, her card pick (asked: Tap-reject at +1σ is still on BESTIE's list through PRIME BOOK 14/18 while THIS WEEK has it WORST): "Skip it if WORST anywhere""
