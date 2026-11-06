@@ -44,3 +44,22 @@ export function paperBookRows721(): any[] {
   }
   return out;
 }
+
+// fix766 ON KALSHI NOW · AKIMBO LIVE (Love Nov 5 2026 5:06 PM PT: "the new active ledger for what's on kalshi rn doesn't have its own card still bb , can you give her one so we can see the actual record ?"):
+// display only. The card's rows are the desk's REAL Kalshi trades (riskguard.liveTrades: Kalshi fills + settlements, add-ons included) for whatever the live lineup is - the live-today
+// (AKIMBO) books, plain live-today books and her main lineup (2-3 PM hand-over) - since AKIMBO went live (Nov 5 2026 6:36 AM PT). No paper rows. Windows only her hand traded are not desk trades.
+export async function kalshiNowRows766(): Promise<any[]> {
+  try {
+    const C = (G.__kn766 ||= { at: 0, rows: [] as any[] }); if (Date.now() - C.at < 15000) return C.rows;
+    const books = new Set<string>(["brk-sesspk", "brk15", "gmid2", "recon-tog", "recon-rej", "recon-dly", "recon-togp"]);
+    try { const j = JSON.parse(readFileSync(D("live-today.json"), "utf8")); for (const b of String(j?.book || "").split(",")) if (b) books.add(b); for (const b of Array.isArray(j?.plain) ? j.plain : []) books.add(String(b)); } catch {}
+    const side: Record<string, string> = {}; try { const d = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); for (const v of Object.values(d) as any[]) if (v && v.ticker && (v.status === "filled" || v.status === "partial") && !side[v.ticker]) side[v.ticker] = String(v.side || ""); } catch {}
+    const rg: any = await import("./riskguard"); const since = "2026-11-05T14:36:00Z";
+    const rows = (rg.liveTrades() as any[]).filter((t) => books.has(String(t.book)) && String(t.first) >= since).map((t) => {
+      const asset = /GOLD/.test(String(t.ticker)) ? "gold" : /SILVER/.test(String(t.ticker)) ? "silver" : "btc", open = !(Number(t.end) > 0) || Date.now() < Number(t.end);
+      return { id: `${t.ticker}:kalshinow766`, book: "kalshinow766", at: t.first, asset, ticker: t.ticker, side: side[t.ticker] === "down" ? "down" : "up", setup: `${t.book} · live on Kalshi`, ask: 0, multiple: null, stake: 0,
+        result: open ? "open" : Number(t.pnl) > 0 ? "win" : "loss", exit: open ? "open" : "settled on Kalshi", pnl: open ? null : Number(t.pnl), paper721: true, kalshiTrue: true };
+    });
+    C.at = Date.now(); C.rows = rows; return rows;
+  } catch { return []; }
+}

@@ -360,6 +360,18 @@ export function sessionLines(a: any, id = ""): Line[] {
 // 1m candle CLOSED through a line, or (instant) it closed on one side and live price is now through it by her break distance
 // (BTC $10, gold $0.92). Long above it, short below it. "No band between price and the target": apart from the line just
 // broken, no line may sit between live price and the Kalshi strike. No walls to the strike, no bounce/rejection, no centre rule.
+// fix762 AKIMBO $50 PUSH - PAPER TWIN, BTC ONLY (Love Nov 5 2026 4:22 PM PT: "change the candle close rule ... how it was more 71% successful after a push of $50" + card: "Paper twin first"):
+// SESSION + PINK's lines; the break fires the first time live price is $50 past a line it was on the other side of this minute or last minute - no 1m close needed. Paper only.
+function push50Decide762(id: string, L: any[]): { side: "up" | "down"; label: string } | null {
+  try {
+    if (id !== "btc") return null; const q = quoteTick(id); if (!q || Date.now() - q.at > 3000) return null; const tk = Number(q.c), now = Date.now(), since = Math.floor(now / 60000) * 60000 - 60000;
+    const S = ((globalThis as any).__p762 ||= {}) as Record<string, { below: number; above: number }>; let hit: { side: "up" | "down"; px: number; name: string } | null = null;
+    for (const l of L || []) { const px = Number(l?.price); if (!(px > 0)) continue; const k = String(l.name); const s = (S[k] ||= { below: 0, above: 0 }); if (tk < px) s.below = now; if (tk > px) s.above = now;
+      if (tk >= px + 50 && s.below >= since && (!hit || px > hit.px)) hit = { side: "up", px, name: k };
+      if (tk <= px - 50 && s.above >= since && (!hit || px < hit.px)) hit = { side: "down", px, name: k }; }
+    return hit ? { side: hit.side, label: `Break ${hit.side === "up" ? "above" : "below"} ${hit.name} ($50 push)` } : null;
+  } catch { return null; }
+}
 function breakDecide(L: Line[], a: any, last1m: Bar | undefined, noWall = false): { side: "up" | "down"; label: string } | null {
   const spot = Number(a?.spot) || 0;
   if (!(spot > 0) || !last1m || !L.length) return null;
@@ -1041,6 +1053,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
         // SESSION BREAK + PINK TWIN (Oct 19 ~12:38 PM PT, Love: "make another session break twin that keeps all of its original trades, but also trades the
         // pink too"): the session-bands break book exactly; only when it has no setup does the pink get a say.
         if (tf === 5) lanes.push([`brk-sesspk`, [...sess, ...pinkOnly], false]);
+        if (tf === 5 && id === "btc") lanes.push([`push50`, [...sess, ...pinkOnly], false]); // fix762: AKIMBO $50 PUSH paper twin (BTC only)
         // SESSION BREAK + PINK REJECTIONS TWIN (Oct 19 ~1:31 PM PT, Love: "make another twin that trades rejections that way"): the session-bands break
         // book exactly; only when it has no setup, a rejection off the pink (bandlock pinkRejectEntry). Paper.
         if (tf === 5) lanes.push([`brk-sessrj`, [...sess, ...pinkOnly], false]);
@@ -1234,7 +1247,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
             }
           }
           (globalThis as any).__bdLane756 = lane; /* fix756 */
-          let look = lane === "brk-sessrj" ? (breakDecide((L as any[]).filter((l: any) => l.name !== "5m PP"), a, last1m) || (() => { const qR = quoteTick(id); return qR && Date.now() - qR.at <= 3000 ? pinkRejectEntry(id, L as any, qR.c) : null; })()) : lane === "brk-sesspk" ? (breakDecide((L as any[]).filter((l: any) => l.name !== "5m PP"), a, last1m, true) || breakDecide(L, a, last1m, true)) : lane.startsWith("brk") ? breakDecide(L, a, last1m) : decide(L, a, last1m, legacy, legacy ? [] : closed1m, !!aFastOn); // one engine (Oct 19 ~5:46 PM PT)
+          let look = lane === "push50" ? push50Decide762(id, L as any[]) /* fix762 */ : lane === "brk-sessrj" ? (breakDecide((L as any[]).filter((l: any) => l.name !== "5m PP"), a, last1m) || (() => { const qR = quoteTick(id); return qR && Date.now() - qR.at <= 3000 ? pinkRejectEntry(id, L as any, qR.c) : null; })()) : lane === "brk-sesspk" ? (breakDecide((L as any[]).filter((l: any) => l.name !== "5m PP"), a, last1m, true) || breakDecide(L, a, last1m, true)) : lane.startsWith("brk") ? breakDecide(L, a, last1m) : decide(L, a, last1m, legacy, legacy ? [] : closed1m, !!aFastOn); // one engine (Oct 19 ~5:46 PM PT)
           // fix757 AKIMBO BREAK TRACE - LOG ONLY (Love Nov 5 2026 2:01 PM PT: "definitely cut that yes that's what the lag is"): once a second per AKIMBO lane + asset, what she saw at her break read -
           // price, how old it was, the last 1m candle she read, the pink, the call (or none) and the status - to data/akimbo-break-trace.jsonl, so the seconds between a break and her call can be found. Never changes a decision.
           if (lane === "brk-sesspk" || lane === "brk15") { try { const TR757 = ((globalThis as any).__trace757 ||= {}) as Record<string, number>; const k757 = `${lane}:${id}`; if (Date.now() - (TR757[k757] || 0) >= 1000) { TR757[k757] = Date.now(); const pk757 = (L as any[]).find((l: any) => l?.name === "5m PP"); appendFileSync(D("akimbo-break-trace.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, spot: Number(a?.spot) || 0, spotAgeMs: a?.spotAt ? Date.now() - Number(a.spotAt) : null, last1m: last1m ? { t: last1m.t, o: last1m.o, c: last1m.c } : null, pink: pk757 ? Number(pk757.price) : null, target: Number(a?.target) || 0, look: look ? `${look.side} ${look.label}` : null, status: status[id] ?? null }) + "\n"); } } catch {} }
@@ -1753,8 +1766,8 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
           } catch {}
           // a second ticket is for a NEW setup, not the same refused one again
           if (reId && mine.some((r) => r.side === look!.side && r.label === look!.label)) { skipNote("same refused setup again", {}); continue; }
-          if (lane === "brk-sesspk") { const q740 = quoteTick(id), tk740 = q740 && Date.now() - q740.at <= 3000 ? Number(q740.c) : Number(last1m?.c) || 0; const w740 = bb15Wall740(b, id, look!.side, tk740); if (w740) { try { appendFileSync(D("bb15-wall.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, side: look!.side, label: look!.label, why: w740 }) + "\n"); } catch {} continue; } } // fix740: SESSION + PINK only
-          if (lane === "brk-sesspk" || lane === "brk15") { const q741 = quoteTick(id), tk741 = q741 && Date.now() - q741.at <= 3000 ? Number(q741.c) : Number(last1m?.c) || 0; const w741 = zoneWall741(b, id, look!.side, tk741, lane, String(look!.label || ""), (L as any[]) || []); if (w741) { try { appendFileSync(D("zone-wall.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, side: look!.side, label: look!.label, why: w741 }) + "\n"); } catch {} continue; } } // fix741: the akimbo books
+          if (lane === "brk-sesspk" || lane === "push50" /* fix762 */) { const q740 = quoteTick(id), tk740 = q740 && Date.now() - q740.at <= 3000 ? Number(q740.c) : Number(last1m?.c) || 0; const w740 = bb15Wall740(b, id, look!.side, tk740); if (w740) { try { appendFileSync(D("bb15-wall.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, side: look!.side, label: look!.label, why: w740 }) + "\n"); } catch {} continue; } } // fix740: SESSION + PINK only
+          if (lane === "brk-sesspk" || lane === "brk15" || lane === "push50" /* fix762 */) { const q741 = quoteTick(id), tk741 = q741 && Date.now() - q741.at <= 3000 ? Number(q741.c) : Number(last1m?.c) || 0; const w741 = zoneWall741(b, id, look!.side, tk741, lane === "push50" ? "brk-sesspk" : lane /* fix762: same wall as SESSION + PINK */, String(look!.label || ""), (L as any[]) || []); if (w741) { try { appendFileSync(D("zone-wall.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, side: look!.side, label: look!.label, why: w741 }) + "\n"); } catch {} continue; } } // fix741: the akimbo books
           const ask = Number(look.side === "up" ? m.yesAsk : m.noAsk);
           // 1.18x-5x (Oct 11: a 25x short with 2 min left on the strike is a lottery ticket, not her tap-at-4x).
           // OG + PIVOT lanes keep the OG's own rule: 1.18x and up, no cap.

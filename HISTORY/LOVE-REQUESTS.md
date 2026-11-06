@@ -2,6 +2,22 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R443 - fix762 AKIMBO $50 PUSH 🧪 - PAPER ONLY, BTC: a new paper book in your $$$ group. Same lines and walls as SESSION + PINK, but a break fires the first time BTC is $50 past a line it was on the other side of (this minute or last minute) - no 1m candle close needed. Never sends an order; it's here to prove the idea on live data before anything changes live. Replay since Oct 19 ($20, one per window): 223 trades, 53%, +$926, all 3 weeks green (vs SESSION + PINK / +15M PIVOTS BTC 57%, +$690). Run after CHANGE-105 (and 110).
+- when: 2026-11-06T02:26:58+00:00
+- Love: "Love Nov 5 2026 4:22 PM PT: "hun we need to change the candle close rule ... how it was more 71% successful after a push of $50" + her card pick ~4:25 PM: "Paper twin first" (BTC, $50 past the line, no candle close)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix762 AKIMBO $50 PUSH - PAPER TWIN"}
+- proof: {"test": "tools/push50-twin-762.cjs"}
+
+## R442 - fix766 ON KALSHI NOW 💸 · AKIMBO LIVE (display only): a regular card, first in your $$$ group, showing the REAL Kalshi record of whatever is live - AKIMBO (SESSION + PINK, +15M PIVOTS, the gold 2m seat) plus main / TOGETHER in the 2-3 PM hand-over (and any future live-today book) - from Kalshi's own fills and settlements, add-ons included, since AKIMBO went live (Nov 5 6:36 AM PT). $ / W-L / hit %, 4H / 12H / 24H / ALL, tap for each trade. No paper rows. Note: in a window where you also added by hand, Kalshi counts the whole window together. Run after CHANGE-109.
+- when: 2026-11-06T02:26:56+00:00
+- Love: "Love Nov 5 2026 5:06 PM PT: "the new active ledger for what's on kalshi rn doesn't have its own card still bb , can you give her one so we can see the actual record ? 💓""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/paperrows.ts", "has": "fix766 ON KALSHI NOW"}
+- proof: {"test": "tools/kalshi-now-766.cjs"}
+
 ## R441 - fix767 STATS BY THE WEEK (display only): the STATS 'ALL TIME' box was really the last 4 days of this paper book's fills, rolling (720 trades, 360W/360L, -$796.61 matched to the cent), so a new day barely moved it. Adds THIS WEEK above it (Monday 12:00 AM Pacific, scored on her side, one row per setup sent to the page) and an ARCHIVE button: each finished week is kept in data/stats-weeks/<monday>.json and is read only when you open it. The old box is relabelled LAST 4 DAYS. No entries, exits, walls or books touched.
 - when: 2026-11-06T02:17:46+00:00
 - Love: "Love Nov 5 2026 5:52 PM PT: "omg the stats page was supposed to be scoring the whole day babez 😹it still hasn’t moved" / 5:54 PM PT: "no i want it to score for the week if possible bb , and keep the older ones in the view only archive so it doesn’t slow her down""

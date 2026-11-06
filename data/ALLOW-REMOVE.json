@@ -8156,5 +8156,45 @@
     "what": "<p className=\"mt-2 text-xs text-subtle\">Split by result. Each list runs from the highest hit rate down.</p>",
     "why": "fix767 (her words in this change's request): subtitle now says it is the last 4 days, rolling",
     "R": "R441"
+  },
+  {
+    "what": "[\"$$$ 💸\", (b) => [\"og1012\", \"rsi672\", \"eth682\", \"brkout687\", \"akimbo727\", \"akimbo744\", \"brk-sesspk\", \"brk15\", \"gmid2\", \"bmid5\", \"allbb\", \"recon-tzw\", \"inv688\", \"brnw\", \"hm707-rev\", \"hm707-rip\", \"club690\", \"mom704\", \"hb709\", \"cup713\", \"mv694\", \"rp695\"].includes(b)],",
+    "why": "fix766 (her words in this change's request)",
+    "R": "R442"
+  },
+  {
+    "what": "try { const p721 = await import(\"./paperrows\"); for (const r of p721.paperBookRows721()) rows.push(r as any); } catch {} // fix721: tonight's paper books as regular cards (display only)",
+    "why": "fix766 (her words in this change's request)",
+    "R": "R442"
+  },
+  {
+    "what": "let look = lane === \"brk-sessrj\" ? (breakDecide((L as any[]).filter((l: any) => l.name !== \"5m PP\"), a, last1m) || (() => { const qR = quoteTick(id); return qR && Date.now() - qR.at <= 3000 ? pinkRejectEntry(id, L as any, qR.c) : null; })()) : lane === \"brk-sesspk\" ? (breakDecide((L as any[]).filter((l: any) => l.name !== \"5m PP\"), a, last1m, true) || breakDecide(L, a, last1m, true)) : lane.startsWith(\"brk\") ? breakDecide(L, a, last1m) : decide(L, a, last1m, legacy, legacy ? [] : closed1m, !!aFastOn); // one engine (Oct 19 ~5:46 PM PT)",
+    "why": "fix762 (her words in this change's request)",
+    "R": "R443"
+  },
+  {
+    "what": "if (lane === \"brk-sesspk\") { const q740 = quoteTick(id), tk740 = q740 && Date.now() - q740.at <= 3000 ? Number(q740.c) : Number(last1m?.c) || 0; const w740 = bb15Wall740(b, id, look!.side, tk740); if (w740) { try { appendFileSync(D(\"bb15-wall.jsonl\"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, side: look!.side, label: look!.label, why: w740 }) + \"\\n\"); } catch {} continue; } } // fix740: SESSION + PINK only",
+    "why": "fix762 (her words in this change's request)",
+    "R": "R443"
+  },
+  {
+    "what": "if (lane === \"brk-sesspk\" || lane === \"brk15\") { const q741 = quoteTick(id), tk741 = q741 && Date.now() - q741.at <= 3000 ? Number(q741.c) : Number(last1m?.c) || 0; const w741 = zoneWall741(b, id, look!.side, tk741, lane, String(look!.label || \"\"), (L as any[]) || []); if (w741) { try { appendFileSync(D(\"zone-wall.jsonl\"), JSON.stringify({ at: new Date().toISOString(), lane, ticker: m.ticker, side: look!.side, label: look!.label, why: w741 }) + \"\\n\"); } catch {} continue; } } // fix741: the akimbo books",
+    "why": "fix762 (her words in this change's request)",
+    "R": "R443"
+  },
+  {
+    "what": "[\"$$$ 💸\", (b) => [\"kalshinow766\", \"og1012\", \"rsi672\", \"eth682\", \"brkout687\", \"akimbo727\", \"akimbo744\", \"brk-sesspk\", \"brk15\", \"gmid2\", \"bmid5\", \"allbb\", \"recon-tzw\", \"inv688\", \"brnw\", \"hm707-rev\", \"hm707-rip\", \"club690\", \"mom704\", \"hb709\", \"cup713\", \"mv694\", \"rp695\"].includes(b)],",
+    "why": "fix762 (her words in this change's request)",
+    "R": "R443"
+  },
+  {
+    "what": "t(P.includes('if (lane === \"brk-sesspk\" || lane === \"brk15\") { const q741') && (P.match(/zoneWall741\\(b, id, look!\\.side/g) || []).length === 1 /* fix742: the akimbo books' call; the gold 2m middle seat has its own */, \"the zone wall is not on (only) the akimbo books' booking\");",
+    "why": "fix762 (her words in this change's request)",
+    "R": "R443"
+  },
+  {
+    "what": "t(P.includes('if (lane === \"brk-sesspk\") { const q740 = quoteTick(id)') && P.includes(\"bb15Wall740(b, id, look!.side, tk740)\"), \"the wall is not on SESSION + PINK's booking\");",
+    "why": "fix762 (her words in this change's request)",
+    "R": "R443"
   }
 ]
