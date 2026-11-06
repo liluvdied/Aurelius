@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R459 - fix788 BESTIE'S FLOOR 1.6x: live BESTIE's Kalshi orders must pay 1.6x or more on the limit price (62.5c or under); the send refuses anything over that (her copier keeps trying while the window is open, as every floor refusal does - if the ask comes back under 62.5c she still takes it). Every other book keeps its 1.5x. Done with live-switch bookFloor788 {"bestie": 1.6} read at the send's floor check (only ever raises a floor). Run after CHANGE-129. Tonight: none of her BEST takes asked over 62.5c at her decision (highest 62c), so the replay skips none; the 2:01 AM BTC retry that reached a 64c limit would have waited at 62.5c. The 'trade the next band' part is not in this command.
+- when: 2026-11-06T11:54:41+00:00
+- Love: "Love Nov 6 2026 ~2:38 AM PT: "i want to raise the floor to 1.6 , if she misses that i want her to trade the next band too pls" (this command = the 1.6x floor; the next-band part is its own command)"
+- books: BESTIE (bestie) live - entry price floor
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "?.bookFloor788;"}
+- proof: {"test": "tools/bestie-floor-788.cjs"}
+
 ## R458 - fix784 BESTIE'S $10 LEVEL (live BESTIE - an exception to keeping her pure, at her ask; paper BESTIE · WALLS already has it inside main's door): her rule as main + rejection have it (fix217 / fix232 / fix440, R149): gold only - when the window's target sits within $1.50 of an even $10 level, no long while price is under that level (up into it) and no short while price is over it (down into it); trading away from it is clear; price on the level (within 30c) is not judged. Done with the same lines: bandlock.ts's inline $10 block moved word for word into one function tenLevel440 (impossibleGeo calls it exactly as before - flipRule: $1.50 main + rejection, $1 other books), and the live-today send asks it with flipRule true ($1.50) for the books listed in live-switch tenLevelBooks784 = ["bestie"] (kalshi-live.server.ts, the lineup branch). BTC has no $10-level rule on the desk (none added). Replay of BESTIE's 21 takes since 10 PM: blocks 2 gold (11:01 PM short into 4050 - a win; 2:16 AM long into 4070 - a loss), about even at $5. Every other book, wall, size, exit and money rail unchanged.
 - when: 2026-11-06T11:14:06+00:00
 - Love: "Love Nov 6 2026 ~2:31 AM PT: "and let’s please incorporate the $10 level rule we have , only trade away from them / if they are at a $10 level within $1.50 and we are under that level , don’t trade up or down into it only away from it okay 💓""

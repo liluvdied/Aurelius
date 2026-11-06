@@ -871,9 +871,10 @@ async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine
     // Love: 1.38x is the minimum for any Kalshi order. Below that the payout isn't worth the risk.
     // A live-book copy is checked on the limit price (ask + 2c slip room); its paper book already took it at 1.38x+ on the ask.
     const floor = sameLine?.bookCopy ? (await (async () => { try { const fx = (await import("./bandlock")).floorFor(symbolOf(ticker), bookSide === "bid" ? "up" : "down", String(sameLine?.bookCopy || "")); return 1.5; } catch { return 1.5; } })()) : 1.5; /* fix520 (her kept card c37: no order under 1.5x, 66c cap) */ // fix498 (Love Oct 29 2026 10:32 PM PT: "at 1.41 dude pls fix this it’s not worth trading at this multiple. raise her floor to 1.5x pls and make sure she stops taking the worst possible entries again."): her live floor is 1.5x everywhere a copy is priced
-    const ok = multiple + 1e-9 >= floor;
+    const floor788 = (() => { try { const m = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.bookFloor788; const v = Number(m?.[String(sameLine?.bookCopy || "")]); return Number.isFinite(v) && v > floor ? v : 0; } catch { return 0; } })(); // fix788 (Love Nov 6 2026 ~2:38 AM PT: "i want to raise the floor to 1.6"): a book listed in live-switch bookFloor788 gets its own higher floor (only ever higher)
+    const ok = multiple + 1e-9 >= Math.max(floor, floor788);
     if (!ok) {
-      noteGate(ticker, "before", false, `${multiple.toFixed(2)}x under ${floor}`);
+      noteGate(ticker, "before", false, `${multiple.toFixed(2)}x under ${Math.max(floor, floor788)}${floor788 ? " (fix788)" : ""}`);
       return null;
     }
     if (!(sent.__oneDoor instanceof Set)) sent.__oneDoor = new Set();
