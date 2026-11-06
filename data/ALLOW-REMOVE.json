@@ -8266,5 +8266,350 @@
     "what": "return decide775(String(row?.setup || \"\"), bx, now);",
     "why": "fix799 (her words in this change's request): the decision line now keeps its answer and, with her switch on, checks main's target road before returning it - nothing taken out",
     "R": "R470"
+  },
+  {
+    "what": "if (tick > zP && (tick - zP) / (r1 - zP) >= 0.45) return `PINK TO RED (fix594): long at ${Math.round((tick - zP) / (r1 - zP) * 100)}% of pink ${zP.toFixed(2)} to red ${r1.toFixed(2)} - in the top 55% - no long.`;",
+    "why": "fix800 (her card 'Shorts allowed during pink slide'): the same pink-to-zone check, now stepping aside only while her pink slide / climb hold is on - nothing else taken out",
+    "R": "R471"
+  },
+  {
+    "what": "if (tick < zP && (zP - tick) / (zP - s1) >= 0.45) return `PINK TO GREEN (fix594): short at ${Math.round((zP - tick) / (zP - s1) * 100)}% of pink ${zP.toFixed(2)} to green ${s1.toFixed(2)} - in the bottom 55% - no short.`;",
+    "why": "fix800 (her card 'Shorts allowed during pink slide'): the same pink-to-zone check, now stepping aside only while her pink slide / climb hold is on - nothing else taken out",
+    "R": "R471"
+  },
+  {
+    "what": "if (side === \"down\" && zP > 0 && zS1 > 0 && zS1 < zP && tick > zS1 && tick < zP && (tick - zS1) / (zP - zS1) <= zoneGuard) return { why: `PINK TO GREEN (BTC): short at ${Math.round((tick - zS1) / (zP - zS1) * 100)}% of the green ${zS1.toFixed(2)} -> pink ${zP.toFixed(2)} space - no short in the bottom ${Math.round(zoneGuard * 100)}%.`, below: null, above: null, pos: null, lock: null };",
+    "why": "fix800 (her card 'Shorts allowed during pink slide'): the same pink-to-zone check, now stepping aside only while her pink slide / climb hold is on - nothing else taken out",
+    "R": "R471"
+  },
+  {
+    "what": "if (side === \"up\" && zP > 0 && zR1 > zP && tick > zP && tick < zR1 && (tick - zP) / (zR1 - zP) >= 1 - zoneGuard) return { why: `PINK TO RED (BTC): long at ${Math.round((tick - zP) / (zR1 - zP) * 100)}% of the pink ${zP.toFixed(2)} -> red ${zR1.toFixed(2)} space - no long in the top ${Math.round(zoneGuard * 100)}%.`, below: null, above: null, pos: null, lock: null }; }",
+    "why": "fix800 (her card 'Shorts allowed during pink slide'): the same pink-to-zone check, now stepping aside only while her pink slide / climb hold is on - nothing else taken out",
+    "R": "R471"
+  },
+  {
+    "what": "if (ppG > 0 && r1G > ppG && tick > ppG && tick < r1G && (((): boolean => { const vwP = Number((L || []).find((l: Line) => String(l.name) === \"session VWAP\")?.price) || 0, u1P = Number((L || []).find((l: Line) => String(l.name) === \"+1σ\")?.price) || 0, sdP = Math.abs(u1P - vwP); return (tick - ppG) / (r1G - ppG) >= (flipRule ? 0.45 : 0.50) /* fix409 (Love Oct 28 2026 5:39 PM PT: \"55% for shorts and longs pls / main rejection and copy bb\"): main + rejection + copy no gold long in the top 55% of pink -> red; others keep 50% */ /* fix276 (Oct 26 ~11:43 AM PT, Love: \"no longs into the top 40% of the channel from pink to red\" + \"let's make it an even 50% for gold hun\"): top 50% at every band width, was top 40% only once session bands are $10+ apart */ || (!(sdP > 0 && sdP >= 10) && r1G - tick <= 1.5); })()) /* fix134 (Oct 23 12:32 AM PT, Love: \"bring that down to $1.50 ... indefinitely\"): $1.50 under the red, was $2 */ /* fix111: top 40% again once session bands are $10+ apart */ && true /* fix108 (Oct 22 ~7:41 PM PT, Love card \"Both\"): $2 under the red, was top 40% (>= 0.60) */) why = `PINK TO RED: long $${(r1G - tick).toFixed(2)} under the red, at ${Math.round((tick - ppG) / (r1G - ppG) * 100)}% of the pink ${ppG.toFixed(2)} -> red ${r1G.toFixed(2)} space - no gold long in the top ${flipRule ? 55 : 50}% of it (or within $1.50 of the red). /* fix439 */ wait for the red to reject (short) or the pink to reject (long).`;",
+    "why": "fix800 (her card 'Shorts allowed during pink slide'): the same pink-to-zone check, now stepping aside only while her pink slide / climb hold is on - nothing else taken out",
+    "R": "R471"
+  },
+  {
+    "what": "if (!why && asset === \"gold\" && side === \"up\" && !flipRule && !twinFade && !DLY465.has(String(G.__curBook465 || \"\"))) { const pp490 = Number((L || []).find((l: Line) => String(l.name) === \"5m PP\")?.price) || 0, r1490 = Number((L || []).find((l: Line) => String(l.name) === \"5m R1\")?.price) || 0; if (pp490 > 0 && r1490 > pp490 && tick > pp490 && tick < r1490 && (tick - pp490) / (r1490 - pp490) >= 0.45) why = `PINK TO RED: long at ${Math.round((tick - pp490) / (r1490 - pp490) * 100)}% of the pink ${pp490.toFixed(2)} -> red ${r1490.toFixed(2)} space - no gold long in the top 55% of it (fix490).`; } // fix490 (her c10 answer \"GOLD PINK 55%\" + Love Oct 28 5:39 PM: \"55% for shorts and longs pls\" + Oct 29 11:23 AM: \"pink band tolerances dont change book to book\" + 7:34 PM: \"ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED\")",
+    "why": "fix800 (her card 'Shorts allowed during pink slide'): the same pink-to-zone check, now stepping aside only while her pink slide / climb hold is on - nothing else taken out",
+    "R": "R471"
+  },
+  {
+    "what": "if (ppH > 0 && s1H > 0 && s1H < ppH && tick < ppH && tick > s1H && (tick - s1H) / (ppH - s1H) <= (flipRule ? 0.55 /* fix409 (Love Oct 28 2026 5:37 PM PT: \"yeah let's make it 55% hun that's good\" + card \"Main + rejection + copy\"): was 0.60 */ : 0.50) /* fix365 (Love Oct 27 2026 8:39 PM PT: \"we can include the 60% into the rejection models too bb\"): main + rejection model + no-pink copy 60% (the pure no-pink skips this wall, fix363) */ /* fix364 (Love Oct 27 2026 8:38 PM PT: \"yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine\"): MAIN only 60%, every other book keeps 50% */) why = `PINK TO GREEN: short $${(tick - s1H).toFixed(2)} over the green, at ${Math.round((tick - s1H) / (ppH - s1H) * 100)}% of the green ${s1H.toFixed(2)} -> pink ${ppH.toFixed(2)} space - no gold short in the bottom ${flipRule ? 55 : 50}% of it. /* fix439 */ wait for the green to reject (long) or the pink to reject (short).`;",
+    "why": "fix800 (her card 'Shorts allowed during pink slide'): the same pink-to-zone check, now stepping aside only while her pink slide / climb hold is on - nothing else taken out",
+    "R": "R471"
+  },
+  {
+    "what": "if (!why && asset === \"gold\" && side === \"down\" && !flipRule && !twinFade && !DLY465.has(String(G.__curBook465 || \"\"))) { const pp490 = Number((L || []).find((l: Line) => String(l.name) === \"5m PP\")?.price) || 0, s1490 = Number((L || []).find((l: Line) => String(l.name) === \"5m S1\")?.price) || 0; if (pp490 > 0 && s1490 > 0 && s1490 < pp490 && tick < pp490 && tick > s1490 && (tick - s1490) / (pp490 - s1490) <= 0.55) why = `PINK TO GREEN: short at ${Math.round((tick - s1490) / (pp490 - s1490) * 100)}% of the green ${s1490.toFixed(2)} -> pink ${pp490.toFixed(2)} space - no gold short in the bottom 55% of it (fix490).`; } // fix490 (her c10 answer \"GOLD PINK 55%\" + Love Oct 28 5:39 PM: \"55% for shorts and longs pls\" + Oct 29 11:23 AM: \"pink band tolerances dont change book to book\" + 7:34 PM: \"ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED\")",
+    "why": "fix800 (her card 'Shorts allowed during pink slide'): the same pink-to-zone check, now stepping aside only while her pink slide / climb hold is on - nothing else taken out",
+    "R": "R471"
+  },
+  {
+    "what": "appendFileSync(join(process.cwd(), \"data\", \"setup-audit-in.jsonl\"), JSON.stringify({ id: row.id, at: new Date().toISOString(), book: row.book, asset: a5, side: row.side, ticker: row.ticker, label: row.setup, tick: tick5, L: L5, bars: ((G5.__pivBars?.[a5]?.bars || []) as any[]).slice(-100), trail: ((tk && G5[tk]?.[a5]) || []).slice(-12), bb: G5.__bbsr?.[a5] || null, kStrike: G5.__kStrike?.[a5] || null, kGap: G5.__kGap || null, symBtc: G5.__symBtc || null, carried: G5.__sessCarried?.[a5] === true, freshSd: Number(G5.__freshSd?.[a5]) || 0 /* Love Nov 3 2026 4:17 PM PT (\"again she is not taking trades on kalshi ... get her live\"): the board he judges is carried-filtered (fix612), so he is told she is carried and the fresh width (fix615) */ }) + \"\\n\"); } } } catch {}",
+    "why": "fix800: her slide / climb holds now travel with the board to the sub-auditor (engine sends them, he reads them) - nothing taken out",
+    "R": "R471"
+  },
+  {
+    "what": "G.__sdGood = {}; G.__pivBars = { [asset]: { bars: q.bars || [], at: NOW } }; G.__qtrail_1 = { [asset]: q.trail || [] }; G.__bbsr = q.bb ? { [asset]: q.bb } : {}; G.__curBook465 = book; G.__kStrike = q.kStrike ? { [asset]: q.kStrike } : {}; G.__kGap = q.kGap || null; G.__symBtc = q.symBtc || null; // BTC's window target travels with the setup",
+    "why": "fix800: her slide / climb holds now travel with the board to the sub-auditor (engine sends them, he reads them) - nothing taken out",
+    "R": "R471"
+  },
+  {
+    "what": "export function rej668(asset: string, side: string, tick: number, L: Line[], hl?: { o?: number; h: number; l: number } | null): boolean { return !!rejBand668(asset, side, tick, L, hl); } // fix668",
+    "why": "fix801 (her words: on pink slides she waits for it to come to pink and reject, no flip necessary): the same line, now also counting her pink-slide tap - nothing taken out",
+    "R": "R472"
+  },
+  {
+    "what": "if (side === \"up\" && pp514 > tick - pbd514 && pp514 - tick <= cush514) why = `PINK CUSHION: long $${(pp514 - tick).toFixed(2)} under the unbroken pink (${pp514.toFixed(2)}) - inside her $${cush514.toFixed(2)} cushion (fix514). wait for the break or the rejection.`;",
+    "why": "fix801 (her words: on pink slides she waits for it to come to pink and reject, no flip necessary): the same line, now also counting her pink-slide tap - nothing taken out",
+    "R": "R472"
+  },
+  {
+    "what": "if (!why && side === \"down\" && pp514 < tick + pbd514 && tick - pp514 <= cush514) why = `PINK CUSHION: short $${(tick - pp514).toFixed(2)} over the unbroken pink (${pp514.toFixed(2)}) - inside her $${cush514.toFixed(2)} cushion (fix514). wait for the break or the rejection.`;",
+    "why": "fix801 (her words: on pink slides she waits for it to come to pink and reject, no flip necessary): the same line, now also counting her pink-slide tap - nothing taken out",
+    "R": "R472"
+  },
+  {
+    "what": "G.__sdGood = {}; G.__pivBars = { [asset]: { bars: q.bars || [], at: NOW } }; G.__qtrail_1 = { [asset]: q.trail || [] }; G.__bbsr = q.bb ? { [asset]: q.bb } : {}; G.__curBook465 = book; G.__kStrike = q.kStrike ? { [asset]: q.kStrike } : {}; G.__kGap = q.kGap || null; G.__symBtc = q.symBtc || null; G.__slide403 = { on: q.slide800?.gold?.s === true }; G.__slide423bS = { on: q.slide800?.btc?.s === true }; G.__climb464g = { on: q.slide800?.gold?.c === true }; G.__climb464b = { on: q.slide800?.btc?.c === true } /* fix800: her slide / climb holds from the board she sent him */; // BTC's window target travels with the setup",
+    "why": "fix801 (her words: on pink slides she waits for it to come to pink and reject, no flip necessary): the same line, now also counting her pink-slide tap - nothing taken out",
+    "R": "R472"
+  },
+  {
+    "what": "import { liveRows775 } from \"./v1112best\"; // fix775: V.111 - 2's BEST-table takes, handed to the live copier as book \"bestie\"",
+    "why": "fix801 (her words: on pink slides she waits for it to come to pink and reject, no flip necessary): the same line, now also counting her pink-slide tap - nothing taken out",
+    "R": "R472"
+  },
+  {
+    "what": "let v775: any[] = []; try { v775 = liveRows775(); } catch { v775 = []; } // fix775: V.111 - 2 LIVE (only her BEST-table takes, only while data/v111-2-live.json is on)",
+    "why": "fix801 (her words: on pink slides she waits for it to come to pink and reject, no flip necessary): the same line, now also counting her pink-slide tap - nothing taken out",
+    "R": "R472"
+  },
+  {
+    "what": "mine.push({ id: `${r.id}:${pb.book}`, book: pb.book, at: r.at, asset: r.asset || (/ETH/.test(String(r.ticker)) ? \"eth\" : /GOLD/.test(String(r.ticker)) ? \"gold\" : \"btc\") /* fix765b */, ticker: r.ticker, side: r.side, setup: String(r.setup || r.way || r.label || r.key || r.list || (pb.book === \"rsi672\" && r.book ? `${r.book} · ${r.market || \"\"}` : \"\") || pb.title).slice(0, 120), ask, multiple: ask > 0 ? Math.round((1 / ask) * 100) / 100 : null, stake: pb.book === \"bestiewalls\" || pb.book === \"bestiewalls-skip\" || pb.book === \"v1112ldc\" /* fix794 */ || pb.book === \"bestieinv\" /* fix795 */ ? 5 /* fix783 */ : 20, result: r.result === \"open\" ? \"open\" : r.result === \"win\" ? \"win\" : \"loss\", exit: r.result === \"open\" ? \"open\" : r.soldBid != null ? `sold at ${Math.round(Number(r.soldBid) * 100)}c` : \"held to the bell\", pnl: Number.isFinite(pnl as number) ? pnl : null, paper721: true });",
+    "why": "fix802 (her words: we could literally take nothing but pink slides): the same line with PINK SLIDE ONLY's card added - nothing taken out",
+    "R": "R473"
+  },
+  {
+    "what": "const pin5 = (bk: string) => (lt736.includes(bk) ? -1 /* fix736: the akimbo books first */ : bk === \"recon-fresh\" ? 0 : bk === \"twtog\" ? 1 : bk === \"bestieinv\" ? -0.48 /* fix795 */ : bk === \"v1112ldc\" ? -0.45 /* fix794 */ : bk === \"bestiewalls\" ? -0.5 /* fix783: right after the lineup (BESTIE) */ : bk === \"bestiewalls-skip\" ? -0.4 /* fix783 */ : bk === \"v1112inv\" ? 5 /* fix777: right after V.111 - 2 */ : bk === \"fivey123\" ? 2 : bk === \"fivey\" ? 3 : bk === \"v1112\" ? 4 /* fix772 */ : 9);",
+    "why": "fix802 (her words: we could literally take nothing but pink slides): the same line with PINK SLIDE ONLY's card added - nothing taken out",
+    "R": "R473"
+  },
+  {
+    "what": "const runRows = ranked.map((b, i) => ({ ...b, i })).filter((b) => runOn(b.book) || lt736.includes(b.book) /* fix736 */ || (togOn && b.book === \"twtog\") || (freshOn && b.book === \"recon-fresh\") || String(b.book) === \"v1112inv\" /* fix777 */ || String(b.book) === \"bestiewalls\" || String(b.book) === \"bestiewalls-skip\" /* fix783 */ || String(b.book) === \"v1112ldc\" /* fix794 */ || String(b.book) === \"bestieinv\" /* fix795 */ || b.book === \"fivey123\" || b.book === \"fivey\" || String(b.book) === \"v1112\" /* fix772 */).sort((a, b) => pin5(a.book) - pin5(b.book));",
+    "why": "fix802 (her words: we could literally take nothing but pink slides): the same line with PINK SLIDE ONLY's card added - nothing taken out",
+    "R": "R473"
+  },
+  {
+    "what": "<span className=\"text-white/85\">{INLINE_FMT.format(new Date(r.at))} · {r.book === \"bestie\" ? \"BESTIE (LIVE $5)\" /* fix775 */ : r.book === \"v1112inv\" ? \"V.111 - 2 INV (paper)\" /* fix777 */ : String(r.book) === \"bestiewalls\" ? \"BESTIE · WALLS (paper)\" /* fix783 */ : String(r.book) === \"v1112ldc\" ? \"V.111 - 2 · LDC FADE (paper)\" /* fix794 */ : String(r.book) === \"bestieinv\" ? \"BESTIE · INVERSE (paper)\" /* fix795 */ : r.book === \"recon-dly\" ? \"DELAYED ⏳\" : r.book === \"v1112\" ? \"V.111 - 2 (paper)\" /* fix772 */ : \"MAIN 💞\"} · {String(r.asset).toUpperCase()} {r.side === \"up\" ? \"LONG\" : \"SHORT\"} · {r.setup}{r.multiple ? ` · ${Number(r.multiple).toFixed(2)}x` : \"\"}</span>",
+    "why": "fix802 (her words: we could literally take nothing but pink slides): the same line with PINK SLIDE ONLY's card added - nothing taken out",
+    "R": "R473"
+  },
+  {
+    "what": "FILES = {\"inverse-book-688.json\": (\"INVERSE BOOK\", \"setup\"), \"momentum-book-704.json\": (\"MOMENTUM BOOK\", \"setup\"), \"high-multiple-707.json\": (\"HIGH MULTIPLE BOOK\", \"way\"), \"half-band-709.json\": (\"HALF-BAND KEEP BOOK\", \"setup\"), \"cup-book-713.json\": (\"CUP BOOK\", \"setup\"), \"v111-2-770.json\": (\"V.111 - 2\", \"setup\")}  # fix770: V.111 - 2 scored by set up",
+    "why": "fix802 (her words: we could literally take nothing but pink slides): the same line with PINK SLIDE ONLY's card added - nothing taken out",
+    "R": "R473"
+  },
+  {
+    "what": "export function applyAddon664(ao: any): void { try { if (!ao || typeof ao !== \"object\") return; const G = globalThis as any, p = join(process.cwd(), \"data\", \"addon-settings.json\"); if (!existsSync(p)) return; const st = statSync(p); let s: any; if (G.__addon664 && G.__addon664.m === st.mtimeMs) s = G.__addon664.s; else { s = JSON.parse(readFileSync(p, \"utf8\")); G.__addon664 = { m: st.mtimeMs, s }; } const a1 = s?.addOn1, a2 = s?.addOn2; if (a1 && typeof a1.on === \"boolean\") ao.on = a1.on; if (a1 && Number(a1.dollars) > 0) ao.dollars = Math.min(5, Number(a1.dollars)); if (ao.at38 && typeof ao.at38 === \"object\") { if (a2 && typeof a2.on === \"boolean\") ao.at38.on = a2.on; if (a2 && Number(a2.dollars) > 0) ao.at38.dollars = Math.min(5, Number(a2.dollars)); } } catch {} } // fix664",
+    "why": "fix803 (her words: change it to another type-box i can put in the multiple i want and the dollar amount): the same Add-on 2 line, now with her multiple - nothing taken out",
+    "R": "R474"
+  },
+  {
+    "what": "function addonDefaults664(): { addOn1: AddOnBox664; addOn2: AddOnBox664 } { try { const sw = JSON.parse(readFileSync(join(process.cwd(), \"data\", \"live-switch.json\"), \"utf8\")); const a = sw?.addOn || {}; return { addOn1: { on: a.on === true, dollars: Number(a.dollars) || 2 }, addOn2: { on: a?.at38?.on === true, dollars: Number(a?.at38?.dollars) || 3 } }; } catch { return { addOn1: { on: true, dollars: 2 }, addOn2: { on: true, dollars: 3 } }; } }",
+    "why": "fix803 (her words: change it to another type-box i can put in the multiple i want and the dollar amount): the same Add-on 2 line, now with her multiple - nothing taken out",
+    "R": "R474"
+  },
+  {
+    "what": "export const setAddonSettings = createServerFn({ method: \"POST\" }).validator((input: { addOn1: AddOnBox664; addOn2: AddOnBox664; addOn3?: { on: boolean; dollars: number; mult: number } }) => input).handler(async ({ data }): Promise<{ ok: boolean }> => { const c = (b: AddOnBox664) => ({ on: b?.on === true, dollars: Math.max(1, Math.min(5, Math.round(Number(b?.dollars) || 0) || 1)) }); const v = { addOn1: c(data.addOn1), addOn2: c(data.addOn2), addOn3: { ...c(data.addOn3 as any), mult: Math.max(1.5, Math.min(10, Math.round((Number((data.addOn3 as any)?.mult) || 3) * 10) / 10)) } /* fix754: her custom add-on - multiple 1.5x-10x, $1-$5 */, at: new Date().toISOString() }; const p = join(process.cwd(), \"data\", \"addon-settings.json\"); writeFileSync(p + \".tmp\", JSON.stringify(v, null, 1)); renameSync(p + \".tmp\", p); try { appendFileSync(join(process.cwd(), \"data\", \"addon-settings-log.jsonl\"), JSON.stringify(v) + \"\\n\"); } catch {} return { ok: true }; }); // fix664",
+    "why": "fix803 (her words: change it to another type-box i can put in the multiple i want and the dollar amount): the same Add-on 2 line, now with her multiple - nothing taken out",
+    "R": "R474"
+  },
+  {
+    "what": "const rows: [keyof typeof s, string, string][] = [[\"addOn1\", \"Add-on 1\", \"First add-on (at 2.8x). $1-$5.\"], [\"addOn2\", \"Add-on 2\", \"The 3.8x add-on, after Add-on 1 has filled. $1-$5.\"]];",
+    "why": "fix803 (her words: change it to another type-box i can put in the multiple i want and the dollar amount): the same Add-on 2 line, now with her multiple - nothing taken out",
+    "R": "R474"
+  },
+  {
+    "what": "const res = await fetch(`https://external-api.kalshi.com/trade-api/v2/markets/${row.ticker}`, { signal: AbortSignal.timeout(8000) });",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const r = await live.restTakeProfit(row.ticker, row.pos, px, closeIso);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const blm3 = await import(\"./bandlock\");",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const win = await pm.polyWindowFor(closesAt).catch(() => null);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const mine = await pm.polymarketHoldings().catch(() => []);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const got = await live.partLive(row.ticker, 25).catch(() => null);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const payout = await live.flattenTicker(row.ticker, true, 0, false, floor);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const payout = await live.flattenTicker(row.ticker, true);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const payout = await live.flattenTicker(row.ticker, true, 0, false, pinPx);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "g.__aureliusBusy = true;",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await maybeRaise();",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await guardFills();",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const snap = await scanDesk(book.settings);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "trades = await settleRolled(trades, snap.assets);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const locks2 = await import(\"./kalshi-live.server\").then((live) => live.allLocks()).catch(() => ({}));",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await lastMinuteLook(asset, id);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const paper = await kalshiFirst(researchFill(late, asset, book.settings.stake), asset);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await mirrorPaper(asset, paper);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const paper = await kalshiFirst(researchFill(setup, asset, book.settings.stake), asset);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await mirrorPaper(asset, paper);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const paper = await kalshiFirst(researchFill(cross, asset, book.settings.stake), asset);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await mirrorPaper(asset, paper);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const silver = await tryFive(halted, \"KXSILVER15M\", \"SI=F\", \"SILVER\");",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await tendSilver();",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await cashHeld(snap.assets);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "trades = await tryNextHour(trades, snap.assets.btc, halted);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "trades = await tendPolyHour(trades);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "trades = await adoptHeld(trades);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "trades = await alignBooks(trades, snap.assets);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "trades = await bankLive(trades, snap.assets);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "trades = await armHedge(trades, snap.assets);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await live.restAutoSell(trade, exitTargetPct(trade, asset, 75));",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "trades = await sealOffList(trades);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await hourCheck();",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await forkPaper(snap.assets);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await copyPrimeBook(snap.assets);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await copyLiveBookSafe(snap.assets);",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const lined = await import(\"./kalshi-live.server\");",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await lined.alignPrime();",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "await Promise.race([",
+    "why": "fix804 (log only): the same line with its step named for the stall trace - nothing taken out",
+    "R": "R475"
+  },
+  {
+    "what": "const hl656 = fiveHLNow(asset); return band > 0 && pushOff653(asset, side, tick, band, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : 0.1 /* fix656: gold 10c */, hl656 ? (side === \"up\" ? Number(hl656.l) : Number(hl656.h)) : 0); } catch { return false; } } // fix655",
+    "why": "fix807 (her words: a push off of the band that distance, $50 for btc, off the wick + her 2m candle): the same push / flip line, BTC now her $50 wick push - nothing taken out",
+    "R": "R477"
+  },
+  {
+    "what": "if (flipRule) { const pb641 = pushLabel653(asset, side, tick, L, String(G.__inBLC465 ? (G.__curLabel611 || \"\") : (G.__wireLabel619 || G.__curLabel611 || \"\"))) || (typeof rej668 === \"function\" && rej668(asset, side, tick, L)) /* fix668 */ ? \"go\" /* fix655 (Love Nov 4 2026 5:40 PM PT: \"Remove the check that still wants the flip past its open\"): the push off the band with her 2m is the entry */ : pinkBreak641(asset, L, tick, side); if (!why && pb641 === \"back\") why = `PINK BREAK GONE (fix641): price ${tick.toFixed(2)} is back across the pink - not a break ${side === \"up\" ? \"above\" : \"below\"} it any more - no ${side === \"up\" ? \"long\" : \"short\"}.`; if (!why && pb641 !== \"go\" && !turnFlip530(asset, side, tick)) why = `HER FLIP: no 2/3/4/5m candle has TURNED ${side === \"up\" ? \"red to green\" : \"green to red\"} - her flip at the rejection is the entry (fix530).`; cdl = \"\"; } // fix530 (her 4:56 PM): the colour TURN is the flip, no minimum; the $5/10c line below is retired by her word",
+    "why": "fix807 (her words: a push off of the band that distance, $50 for btc, off the wick + her 2m candle): the same push / flip line, BTC now her $50 wick push - nothing taken out",
+    "R": "R477"
+  },
+  {
+    "what": "import { Drawer } from \"vaul\";",
+    "why": "fix808 (display only): the same sheet line, now capped to her screen",
+    "R": "R478"
+  },
+  {
+    "what": "<Drawer.Content className=\"fixed inset-x-0 bottom-0 z-50 rounded-t-xl bg-surface px-5 pb-8 pt-3 text-fg hairline\">",
+    "why": "fix808 (display only): the same sheet line, now capped to her screen",
+    "R": "R478"
   }
 ]

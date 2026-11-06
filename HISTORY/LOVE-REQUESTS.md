@@ -2,6 +2,71 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R478 - fix808 THE SETTINGS SHEET FITS HER SCREEN (display only): the settings sheet had no height limit, so with the add-on rows it grew taller than her phone and its pull-down handle went off the top. Now it is capped at her screen height (inside the safe area), the handle and a new close X stay pinned at the top, and the rows scroll inside. Tapping outside still closes it. No trading code.
+- when: 2026-11-06T16:23:03+00:00
+- Love: "Love Nov 6 2026 ~7:45 AM PT: "every time i pull up the settings tab with the add on toggles the lil handle tab to pull the page down goes too far up and disappears out of frame so i can't exit the page""
+- books: none - display only
+- status: ACTIVE
+- proof: {"code": "src/components/desk/settings-drawer.tsx", "has": "aria-label=\"Close settings\""}
+- proof: {"test": "tools/settings-sheet-808.cjs"}
+
+## R477 - fix807 HER BTC PUSH $50 OFF THE WICK: on BTC her entry off a BAND or ZONE is a $50 push in the direction of the trade, measured from the wick (this 5m candle's high for a short / low for a long at the band she rejected), with her live 2m candle her colour - replacing the candle-past-its-open flip (10c / $2) for BTC. Every book but delayed (delayed keeps its flips and $6). Gold unchanged. Replay Nov 2-6, main + REJ, $10, 75/95: 86% of calls kept, 48% hit, +$486 (+$198 without the 3 best / 3 worst) vs today +$333 (+$54); average multiple 2.38x vs 2.46x. One week of data. Her pink-slide tap and 15% wick rejection keep their own entries. live-switch push807 false = off. PINK TRADES (off / through the 5m PP, including her pink-slide tap) keep her small push: BTC $6 push or her $2 flip, gold 10c (her 7:51 AM words).
+- when: 2026-11-06T16:23:01+00:00
+- Love: "Love Nov 6 2026 ~7:33 AM PT: "wait hun i DONT want it past the candle open , i just want it to be a push off of the band that distance" + ~7:30 AM: "$50 for btc bb" + her cards ~7:35-7:36 AM PT: "Push + 2m candle in her colour" and "BTC $50 off the wick" + ~7:51 AM PT: "let's keep the push requirement 10c on pink trades bb""
+- books: MAIN, REJECTION and every book but DELAYED - BTC entry push
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function push807("}
+- proof: {"test": "tools/btc-push-807.cjs"}
+
+## R476 - fix806 HER SLIDE ENDS THE SECOND IT BREAKS: every second, each active SLIDE UNDER PINK / CLIMB OVER PINK hold is checked with her same release rule (price through the pink by 10% of the channel; her old $8 / 25c slide and $2 / 25c climb break when the channel can't be read) and ends the moment it breaks - before, it was only checked when a main / REJ call came in, on that moment's price, so a break between calls never ended it (about 7% of 'still on' holds in the last 24 h). The on-rule is untouched; the holds only apply to main + REJ (never delayed). Each release is logged to data/slide-release-806.jsonl. live-switch slideRelease806 false = off.
+- when: 2026-11-06T16:23:00+00:00
+- Love: "Love Nov 6 2026 ~7:26 AM PT, her card pick: "Yes, check it every second" (to: the slide is only released when a call comes in, on that moment's price - check every active slide each second and end it the moment price breaks back through pink by 10% of the channel)"
+- books: MAIN + REJECTION - her pink slide / climb hold (never DELAYED)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "export function release806("}
+- proof: {"test": "tools/slide-release-806.cjs"}
+
+## R475 - fix804 THE STALL TRACE - LOG ONLY: her position loop (take-profits + add-ons) went silent 7:00:29 -> 7:06:28 AM PT while her tick sat busy, so the 2.8x add-on waited until 9c. Every await in her tick and position loop now names its step; every 5 s, if her tick has been busy 20 s or more, one line goes to data/tick-stall-804.jsonl with the step it is stuck on. Writes that file only - no order, wall, size, switch or timing changes. Once it catches the stuck step, the real fix is its own command.
+- when: 2026-11-06T16:22:58+00:00
+- Love: "Love Nov 6 2026 ~7:09 AM PT: "babe she's notttt doing her add ons btc was just at 11x and didn't enter anything past $5""
+- books: none - log only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "tick-stall-804.jsonl"}
+- proof: {"test": "tools/stall-trace-804.cjs"}
+
+## R474 - fix803 HER ADD-ON 2 BOX: Add-on 2 (after Add-on 1 has filled) gets a multiple box (1.5x-10x) next to its $ box, in place of the fixed 3.8x. It starts at 3.8x / your current $, so nothing changes until you type. The engine reads both live (at38 cap = 1 / your multiple). Its on/off toggle, the $5 add-on cap, once per position and every other add-on gate are unchanged.
+- when: 2026-11-06T16:22:57+00:00
+- Love: "Love Nov 6 2026 ~7:09 AM PT: "as for the second add on toggle , pls change it to another type-box i can put in the multiple i want and the dollar amount for it instead of the hard 3.8x pls""
+- books: Add-on 2 - every book her add-ons apply to
+- status: ACTIVE
+- proof: {"code": "src/components/desk/settings-drawer.tsx", "has": "aria-label=\"Add-on 2 multiple\""}
+- proof: {"test": "tools/addon2-box-803.cjs"}
+
+## R473 - fix802 PINK SLIDE ONLY (paper): her own card for nothing but her pink-slide take (fix801's record, data/pink-slide-801.json) - BTC + gold, one per window, $5 at the real ask, her live exit (half at 75% / rest at 95% of the way), settled from Kalshi; in RUNNING, scored by set up in STATS. Display only - the copier never reads the card. Needs CHANGE-142 (fix801) in first.
+- when: 2026-11-06T16:22:55+00:00
+- Love: "Love Nov 6 2026 ~6:42 AM PT: "we could literally take nothing but pink slides and it would prolly be our most successful book lol""
+- books: PINK SLIDE ONLY - paper card
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/paperrows.ts", "has": "pink-slide-801.json"}
+- proof: {"test": "tools/pink-slide-only-802.cjs"}
+
+## R472 - fix801 THE PINK SLIDE TAP: while main / REJECTION's SLIDE UNDER PINK hold is on for an asset, the moment price comes back up to the pink (within 5% of the channel) and turns back down (7.5% of the channel off it, never through) she SHORTS at that second's real ask - no flip candle. Mirror while CLIMB OVER PINK is on: down to the pink and back up = the LONG. Best multiple: the first ask at or over her 1.5x floor from the rejection on, only while price is still at the pink (within 25% of the channel) and at most 90 s after it. For that take her walls waive only what her 15% wick rejection already waives (flip, candle colour, thirds) plus the pink cushion; the 55% is already free in the slide (fix800). Money rails, floor, $10 level, past-the-zone, umpire, one ticket per window and the 75/95 exit unchanged. Main + rejection (every live book but delayed). live-switch pinkSlideTap801 false = off. Every take is also recorded at $5 in data/pink-slide-801.json (read by fix802's card).
+- when: 2026-11-06T16:22:53+00:00
+- Love: "Love Nov 6 2026 ~6:40 AM PT: "and yes , on pink slides she waits for it to come to pink and reject. no flip necessary on pink slides just get in at the best multiple she can. those are our strongest set up by far""
+- books: MAIN + REJECTION - her pink-slide tap entry (never DELAYED)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pinkslide801.ts", "has": "export async function pinkSlideTick801("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function tapFree801("}
+- proof: {"test": "tools/pink-slide-tap-801.cjs"}
+
+## R471 - fix800 SHORTS DURING THE PINK SLIDE: while main / REJECTION's SLIDE UNDER PINK hold is on for an asset (no longs), a SHORT is no longer refused by the pink-to-green share (fix594's 55%, the BTC fix323 share, gold's PINK TO GREEN); mirror, because the hold exists both ways: while CLIMB OVER PINK is on (no shorts), a LONG is no longer refused by the pink-to-red share. Everything else still judges (past the green / red boundary, thirds, her flip, pink cushion, the money rails). Every book but the delayed one. Reads the engine's own hold states (and the sub-auditor now gets them with each board, so he judges the 55% the same way); live-switch slideFree800 false turns it off. Replay (refusal ledger Nov 5 6 AM -> now): 6 slide windows had a refused pink-to-green short, 4 priceable: 3 W / 1 L, +$5.21 at $5. It does NOT make her enter at the pink tap itself - her flip still waits there (the 'enter at pink, no flip' rule is its own command).
+- when: 2026-11-06T16:22:51+00:00
+- Love: "Love Nov 6 2026 ~6:34 AM PT: "it flipped both ways on both assets she skipped everything" + her card pick ~6:35 AM PT: "Shorts allowed during pink slide""
+- books: MAIN, REJECTION and every book but DELAYED - the pink-to-zone share during her pink slide / climb
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function slideFree800("}
+- proof: {"test": "tools/slide-shorts-800.cjs"}
+
 ## R470 - fix799 KALSHI'S TARGET IN HER CHART'S TERMS FOR BESTIE: a take of hers that is on her list is still refused when it would have to cross an unbroken band to reach the window's target - main's own check, same code: bandlock.ts targetNow (Kalshi's strike moved onto her chart by the window-open offset, fix519 / fix530; gold = her chart's window open), wallLines / refreshBroken / wallFor and crossToTarget ('no band between price and the target'). Can't verify = refused, like main. Switch: her file data/v111-2-live.json targetGap799 true. Replay of her takes 10 PM - 5:18 AM (boards saved at each take): blocks 14 - 10 W / 4 L, +$26.87 at $5 of winners lost; kept 26 - 9 W, -$34.41. Paper (BESTIE is paper). Run after CHANGE-139.
 - when: 2026-11-06T15:23:03+00:00
 - Love: "Love Nov 6 2026 ~5:18 AM PT: "hun she is supposed to have the price difference on kalshi deducted from tradingview's price""

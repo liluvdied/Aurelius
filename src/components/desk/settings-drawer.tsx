@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Drawer } from "vaul";
+import { Drawer } from "vaul"; // fix808 (Love Nov 6 2026 ~7:45 AM PT: "every time i pull up the settings tab with the add on toggles the lil handle tab to pull the page down goes too far up and disappears out of frame so i can't exit the page"): the sheet is capped at her screen height, its handle + a close X stay pinned, the rows scroll inside
 import { Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { DeskSettings } from "@/lib/desk/types";
@@ -71,8 +71,14 @@ export function SettingsDrawer({
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 z-40 bg-bg/70" />
-        <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 rounded-t-xl bg-surface px-5 pb-8 pt-3 text-fg hairline">
-          <Drawer.Handle className="mx-auto mb-4 h-1 w-10 rounded-full bg-line-strong" />
+        <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 flex max-h-[calc(100dvh-env(safe-area-inset-top)-12px)] flex-col rounded-t-xl bg-surface pt-3 text-fg hairline" /* fix808: never taller than her screen - the handle and close stay in view */>
+          <div className="relative shrink-0 px-5" /* fix808: handle + close X, always visible */>
+            <Drawer.Handle className="mx-auto mb-4 h-1 w-10 rounded-full bg-line-strong" />
+            <Drawer.Close asChild>
+              <button type="button" aria-label="Close settings" className="absolute right-4 -top-1 rounded-full px-2 py-1 text-xl leading-none text-muted">×</button>
+            </Drawer.Close>
+          </div>
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-[calc(2rem+env(safe-area-inset-bottom))]" data-vaul-no-drag="" /* fix808: the rows scroll inside */>
           <Drawer.Title className="font-display text-2xl tracking-tight">Desk</Drawer.Title>
           <p className="mt-1 text-sm text-muted">
             Paper fills only. Live Kalshi orders stay in your hands. Keep this screen open for
@@ -214,6 +220,7 @@ export function SettingsDrawer({
             <AddOnRows664 />
             <AddOn3Row754 />
           </div>
+          </div>
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>
@@ -226,12 +233,21 @@ function AddOnRows664() {
   useEffect(() => { void getAddonSettings().then((v) => setS(v)).catch(() => {}); }, []);
   if (!s) return null;
   const save = (n: typeof s) => { setS(n); void setAddonSettings({ data: n }).catch(() => {}); };
-  const rows: [keyof typeof s, string, string][] = [["addOn1", "Add-on 1", "First add-on (at 2.8x). $1-$5."], ["addOn2", "Add-on 2", "The 3.8x add-on, after Add-on 1 has filled. $1-$5."]];
+  const rows: [keyof typeof s, string, string][] = [["addOn1", "Add-on 1", "First add-on (at 2.8x). $1-$5."], ["addOn2", "Add-on 2", "Type the multiple (1.5x-10x) and the $ ($1-$5). After Add-on 1 has filled."]];
   return (
     <>
       {rows.map(([k, label, hint]) => (
         <Row key={k} label={label} hint={hint}>
           <span className="flex items-center gap-2 font-mono text-sm tabular-nums">
+            {k === "addOn2" ? ( /* fix803: her Add-on 2 multiple box (was a fixed 3.8x) */
+              <>
+                <input type="number" inputMode="decimal" min={1.5} max={10} step={0.1} key={`m2-${(s as any).addOn2.mult ?? 3.8}`} defaultValue={(s as any).addOn2.mult ?? 3.8}
+                  onBlur={(e) => { const m = Math.max(1.5, Math.min(10, Math.round((Number(e.currentTarget.value) || 0) * 10) / 10)); if (m >= 1.5 && m !== ((s as any).addOn2.mult ?? 3.8)) save({ ...s, addOn2: { ...s.addOn2, mult: m } as any }); }}
+                  onKeyDown={(e) => { if (e.key === "Enter") (e.currentTarget as HTMLInputElement).blur(); }}
+                  className="w-14 rounded-[4px] border border-white/30 bg-black px-1 py-0.5 text-right" aria-label="Add-on 2 multiple" />
+                x ·
+              </>
+            ) : null}
             $
             <input
               type="number"

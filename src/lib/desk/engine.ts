@@ -2017,8 +2017,8 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
     peaks = {};
   }
   try {
-    const live = await import("./kalshi-live.server");
-    const held = await live.heldFifteens();
+    g.__stage804 = "cashHeld: import"; const live = await import("./kalshi-live.server");
+    g.__stage804 = "cashHeld: live.heldFifteens"; const held = await live.heldFifteens();
     let changed = false;
     const open = new Set(held.map((row) => row.ticker));
     // NULL AND VOID AT THE CLOSE (fix516, Love Oct 30 2026 8:29 AM PT: "please fix that and make any old orders after a position is closed null and void so it doesnt occur again pls, no leftover orders go out once the position is closed"): the moment a ticker leaves her held list, EVERY resting order on it -
@@ -2061,9 +2061,9 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       // here was HER CALL to remove - take-profit management runs on every position as before. What stays dead is the
       // SECOND POSITION: the hand-window block in kalshi-live (no book entry on a hand-traded ticker, held or exited),
       // one-door, and the same-side resting-order pull.
-      const res = await fetch(`https://external-api.kalshi.com/trade-api/v2/markets/${row.ticker}`, { signal: AbortSignal.timeout(8000) });
+      g.__stage804 = "cashHeld: fetch"; const res = await fetch(`https://external-api.kalshi.com/trade-api/v2/markets/${row.ticker}`, { signal: AbortSignal.timeout(8000) });
       if (!res.ok) continue;
-      const data = await res.json();
+      g.__stage804 = "cashHeld: res.json"; const data = await res.json();
       const yesBid = Number.parseFloat(data.market?.yes_bid_dollars ?? "0");
       const noBid = Number.parseFloat(data.market?.no_bid_dollars ?? "0");
       const yesAsk = Number.parseFloat(data.market?.yes_ask_dollars ?? "0");
@@ -2289,7 +2289,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             void (async () => {
               try {
                 if (cur?.id) await live.cancelTpRest(row.ticker);
-                const r = await live.restTakeProfit(row.ticker, row.pos, px, closeIso);
+                g.__stage804 = "cashHeld: live.restTakeProfit"; const r = await live.restTakeProfit(row.ticker, row.pos, px, closeIso);
                 const reg = g.__aureliusTpRest || (g.__aureliusTpRest = {});
                 reg[row.ticker] = r?.orderId ? { id: r.orderId, px, qty: r.qty } : { id: null, px, qty: Math.floor(qty * 100) / 100, failedAt: Date.now() };
               } catch {
@@ -2430,7 +2430,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           if (addReg[row.ticker] && !(row.ticker in w1)) { try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.ticker === row.ticker && !x.add2) w1[row.ticker] = String(x.why || ""); } catch {} } } catch {} }
           const cap2 = Number(ao2?.maxAsk) > 0 && Number(ao2.maxAsk) < 1 ? Number(ao2.maxAsk) : 0.72;
           if (ao2?.on === true && ao?.on && !aoTwin && Array.isArray(hrs2) && hrs2.map(Number).includes(hB2) && bk2.includes(own2) && (id === "btc" || id === "gold") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !(Date.now() - (try2[row.ticker] || 0) < 5000) && !aoBestie775 /* fix775 */) {
-            const blm3 = await import("./bandlock");
+            g.__stage804 = "cashHeld: import"; const blm3 = await import("./bandlock");
             const t2 = blm3.addOnTouchNow(id);
             const bnd = (w: string) => { const m = /^(?:touched |came within \$[\d.]+ of )(.+?) \(/.exec(String(w || "")); return m ? m[1] : ""; };
             const b2 = bnd(t2), b1 = bnd(w1[row.ticker] || "");
@@ -2491,8 +2491,8 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             // Love holds her own Polymarket BTC position (it would close part of hers). The desk's own tickets don't count.
             void import("./poly-live.server").then(async (pm) => {
               // Only THIS window counts (Oct 4 ~1:35 AM PT: old windows' leftover positions were blocking every ticket).
-              const win = await pm.polyWindowFor(closesAt).catch(() => null);
-              const mine = await pm.polymarketHoldings().catch(() => []);
+              g.__stage804 = "cashHeld: pm.polyWindowFor"; const win = await pm.polyWindowFor(closesAt).catch(() => null);
+              g.__stage804 = "cashHeld: pm.polymarketHoldings"; const mine = await pm.polymarketHoldings().catch(() => []);
               // TOP-UP (Love, Oct 4 ~10:20 AM PT: "you can have poly hedge if i put one in too... sometimes im not lookin and it
               // could use another top up"): her own position on the SAME side as the hedge is fine, the ticket adds to it. Only her
               // position on the OTHER side blocks it, because Polymarket nets the two and the ticket would erase hers.
@@ -2686,7 +2686,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           }
           // A QUARTER AT 75% (fix121, Oct 22 ~11:06 PM PT, Love picked "Quarter at 75%, rest at 90%" - replay of 691 trades: 93% of those reaching 75% went on
           // to 90%, only 12 reversed and lost): the first touch of 75% of the max now sells a quarter (her 25% button), the rest keeps the 90% take profit + trail.
-          const got = await live.partLive(row.ticker, 25).catch(() => null);
+          g.__stage804 = "cashHeld: live.partLive"; const got = await live.partLive(row.ticker, 25).catch(() => null);
           try {
             appendFileSync(join(process.cwd(), "data", "half75-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, entry: Math.round(entryPx * 1000) / 1000, bid, pos: row.pos, got }) + "\n");
           } catch {
@@ -2703,7 +2703,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         if (mirrorOn && pinHit607 && !paperSell) decision.why = `your slider ${Math.round(pinPct)}%`; // fix607
         // Tighter fill: a gate, the lock or a follow-paper exit sells no more than 1c under the bid (was 3c).
         const floor = Math.max(0.02, Math.round((bid - (gateSell || lockSell || paperSell || mirrorOn ? 0.01 : 0.03)) * 100) / 100);
-        const payout = await live.flattenTicker(row.ticker, true, 0, false, floor);
+        g.__stage804 = "cashHeld: live.flattenTicker"; const payout = await live.flattenTicker(row.ticker, true, 0, false, floor);
           if (payout != null) {
             delete peaks[row.ticker];
             delete armedTp[row.ticker];
@@ -2762,7 +2762,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const liveCash = qty * bid;
         const gap = qty > 0 ? (qty - liveCash) / qty : 1;
         if ((room === 5 || room === 10) && gap <= room / 100 && liveCash > row.cost + 0.05) {
-          const payout = await live.flattenTicker(row.ticker, true);
+          g.__stage804 = "cashHeld: live.flattenTicker"; const payout = await live.flattenTicker(row.ticker, true);
           if (payout != null) {
             delete armed[row.ticker];
             writeFileSync(nearFile, JSON.stringify(armed));
@@ -2797,7 +2797,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const liveCash = qty * bid;
         const pinPx = Math.round((Number(pin.ask) / qty) * 100) / 100;
         if (liveCash + 0.01 >= Number(pin.ask) && bid + 0.001 >= pinPx && liveCash > row.cost + 0.05) {
-          const payout = await live.flattenTicker(row.ticker, true, 0, false, pinPx);
+          g.__stage804 = "cashHeld: live.flattenTicker"; const payout = await live.flattenTicker(row.ticker, true, 0, false, pinPx);
           if (payout != null) {
             try {
               const pinFile = join(process.cwd(), "data", "pin-sale.json");
@@ -3776,7 +3776,7 @@ async function tick() {
   void (async () => { try { const r456 = await import("./five5m-rows"), l456 = await import("./five5m"); if (r456.fiveOn()) void l456.fiveTick5m(); void l456.fiveBank5m(); } catch {} })(); // fix456 (R169): the walled-off 5M - her own lane (only while five5m.on) and her own exits (always, for anything she holds); loaded apart
   // READ-ONLY POLYMARKET AUDIT on request (Oct 21, Love): touch data/poly-audit.req -> data/poly-audit.json
   try { const rq = join(process.cwd(), "data", "poly-audit.req"); if (existsSync(rq) && !g.__polyAuditBusy) { g.__polyAuditBusy = true; renameSync(rq, rq + ".done"); void import("./poly-live.server").then((pm) => pm.polyAudit()).catch(() => {}).finally(() => { g.__polyAuditBusy = false; }); } } catch {}
-  g.__aureliusBusy = true;
+  g.__aureliusBusy = true; g.__tickAt804 = Date.now(); g.__stage804 = "tick: start"; // fix804 stall trace (log only)
   try {
     writeFileSync(join(process.cwd(), "data", "heartbeat.json"), JSON.stringify({ at: (/* @__PURE__ */ new Date()).toISOString(), gen: ENGINE_GEN, phase: "start" }));
   } catch {
@@ -3786,8 +3786,8 @@ async function tick() {
   holdModel();
   quietWatch();
   try {
-    await maybeRaise();
-    await guardFills();
+    g.__stage804 = "tick: maybeRaise"; await maybeRaise();
+    g.__stage804 = "tick: guardFills"; await guardFills();
   } catch {
   }
   paceGuard();
@@ -3802,7 +3802,7 @@ async function tick() {
   try {
     const book = readBook();
     g.__lastSettings = book.settings;
-    const snap = await scanDesk(book.settings);
+    g.__stage804 = "tick: scanDesk"; const snap = await scanDesk(book.settings);
     // Monitor: model sentinel + post-trade reviews. Watches only.
     try {
       monitorTick();
@@ -3857,6 +3857,8 @@ async function tick() {
     import("./inverse").then((m) => m.inverseTick688(snap.assets)).catch(() => {});
     // fix705 AT THE PINK TAP (Love Nov 5 2026 ~3:54 AM PT: "can you update her loggings to say why she didn't enter AT the rejection of pink?"). LOG ONLY.
     import("./pinktap").then((m) => m.pinkTapTick705(snap.assets)).catch(() => {});
+    // fix801 THE PINK SLIDE TAP (Love Nov 6 2026 ~6:40 AM PT: "on pink slides she waits for it to come to pink and reject. no flip necessary on pink slides just get in at the best multiple she can"): her take at the pink during her slide / climb.
+    import("./pinkslide801").then((m) => m.pinkSlideTick801(snap.assets)).catch(() => {});
     // fix704 MOMENTUM BOOK (Love Nov 5 2026 3:31 AM PT: "all of em bb !!"). PAPER ONLY (momentum.ts never sends an order).
     import("./momentum").then((m) => m.momentumTick704(snap.assets)).catch(() => {});
     // fix707 HIGH MULTIPLE BOOK (Love Nov 5 2026 ~4:10 AM PT: "let's create a high multiple book too pls. only takes 2.8x +"). PAPER ONLY, 24/7.
@@ -3929,26 +3931,26 @@ async function tick() {
       if (!(bid < floor)) return t;
       return { ...t, lowBid: bid };
     });
-    trades = await settleRolled(trades, snap.assets);
-    const locks2 = await import("./kalshi-live.server").then((live) => live.allLocks()).catch(() => ({}));
+    g.__stage804 = "tick: settleRolled"; trades = await settleRolled(trades, snap.assets);
+    g.__stage804 = "tick: import"; const locks2 = await import("./kalshi-live.server").then((live) => live.allLocks()).catch(() => ({}));
     const has = (setupId) => trades.some((t) => t.setupId === setupId);
     for (const id of ["btc", "gold"]) {
       const asset = snap.assets[id];
       if (goldHalted(id) || halted) continue;
       try {
-        await lastMinuteLook(asset, id);
+        g.__stage804 = "tick: lastMinuteLook"; await lastMinuteLook(asset, id);
       } catch {
       }
       const lateRaw = lateWindow(asset);
       const late = withRightSide(lateRaw, asset);
       if (late && studySetup(late)) await nightLook(late, asset);
       if (late && studySetup(late) && !has(late.id) && !flipped(trades, late.ticker, late.side, late.asset, locks2) && !(await pivotHold(asset, late))) {
-        const paper = await kalshiFirst(researchFill(late, asset, book.settings.stake), asset);
+        g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(late, asset, book.settings.stake), asset);
         if (paper) {
           noteFive(paper);
           noteKiss(paper, asset);
           alarmBetween(asset, paper.side, paper.ticker);
-          await mirrorPaper(asset, paper);
+          g.__stage804 = "tick: mirrorPaper"; await mirrorPaper(asset, paper);
           trades = [paper, ...trades];
           // MAGLEV LANDING (Oct 14 ~7:20 AM PT): her new trade is written to her book right away (not at the end of this
           // pass, after the copier and prime book run) and the pivot books + live copier are told at once.
@@ -3964,12 +3966,12 @@ async function tick() {
       if (probeTicket) trades = [{ ...probeTicket, probe: true, stake: 1, contracts: 1 / Math.max(probeTicket.ask, 0.01) }, ...trades];
       if (studySetup(setup)) await nightLook(setup, asset);
       if (studySetup(setup) && !has(setup.id) && !(await pivotHold(asset, setup))) {
-        const paper = await kalshiFirst(researchFill(setup, asset, book.settings.stake), asset);
+        g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(setup, asset, book.settings.stake), asset);
         if (paper) {
           noteFive(paper);
           noteKiss(paper, asset);
           alarmBetween(asset, paper.side, paper.ticker);
-          await mirrorPaper(asset, paper);
+          g.__stage804 = "tick: mirrorPaper"; await mirrorPaper(asset, paper);
           trades = [paper, ...trades];
           // MAGLEV LANDING (Oct 14 ~7:20 AM PT): her new trade is written to her book right away (not at the end of this
           // pass, after the copier and prime book run) and the pivot books + live copier are told at once.
@@ -3986,30 +3988,30 @@ async function tick() {
       if (!cross || has(cross.id) || flipped(trades, cross.ticker, cross.side, cross.asset, locks2)) continue;
       if (trades.some((t) => t.ticker === cross.ticker && t.result === "open")) continue;
       if (await pivotHold(asset, cross)) continue;
-      const paper = await kalshiFirst(researchFill(cross, asset, book.settings.stake), asset);
+      g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(cross, asset, book.settings.stake), asset);
       if (paper) {
         noteFive(paper);
         noteKiss(paper, asset);
         alarmBetween(asset, paper.side, paper.ticker);
-        await mirrorPaper(asset, paper);
+        g.__stage804 = "tick: mirrorPaper"; await mirrorPaper(asset, paper);
         trades = [paper, ...trades];
         fastLand(trades, book.settings, snap.assets);
       }
     }
-    const silver = await tryFive(halted, "KXSILVER15M", "SI=F", "SILVER");
+    g.__stage804 = "tick: tryFive"; const silver = await tryFive(halted, "KXSILVER15M", "SI=F", "SILVER");
     if (silver && !trades.some((t) => t.result === "open" && t.ticker === silver.ticker && t.side === silver.side)) {
       trades = [silver, ...trades];
     }
-    await tendSilver();
-    await cashHeld(snap.assets);
-    trades = await tryNextHour(trades, snap.assets.btc, halted);
+    g.__stage804 = "tick: tendSilver"; await tendSilver();
+    g.__stage804 = "tick: cashHeld"; await cashHeld(snap.assets);
+    g.__stage804 = "tick: tryNextHour"; trades = await tryNextHour(trades, snap.assets.btc, halted);
     try {
-      trades = await tendPolyHour(trades);
+      g.__stage804 = "tick: tendPolyHour"; trades = await tendPolyHour(trades);
     } catch {
     }
-    trades = await adoptHeld(trades);
-    trades = await alignBooks(trades, snap.assets);
-    trades = await bankLive(trades, snap.assets);
+    g.__stage804 = "tick: adoptHeld"; trades = await adoptHeld(trades);
+    g.__stage804 = "tick: alignBooks"; trades = await alignBooks(trades, snap.assets);
+    g.__stage804 = "tick: bankLive"; trades = await bankLive(trades, snap.assets);
     trades = adoptScouts(trades, snap.assets);
     for (const id of ["btc", "gold"]) {
       const asset = snap.assets[id];
@@ -4039,7 +4041,7 @@ async function tick() {
       if (manualKalshi()) continue;
       continue;
       try {
-        const made = await sendKalshi(
+        g.__stage804 = "tick: sendKalshi"; const made = await sendKalshi(
           {
             id: paper.setupId || `${paper.ticker}:${paper.side}:copy`,
             asset: paper.asset,
@@ -4070,14 +4072,14 @@ async function tick() {
       } catch {
       }
     }
-    trades = await armHedge(trades, snap.assets);
+    g.__stage804 = "tick: armHedge"; trades = await armHedge(trades, snap.assets);
     try {
-      const live = await import("./kalshi-live.server");
+      g.__stage804 = "tick: import"; const live = await import("./kalshi-live.server");
       for (const trade of trades) {
         if (trade.source !== "live" || trade.venue === "polymarket" || trade.result !== "open") continue;
         const asset = snap.assets[trade.asset];
         if (!asset?.market || asset.market.ticker !== trade.ticker) continue;
-        await live.restAutoSell(trade, exitTargetPct(trade, asset, 75));
+        g.__stage804 = "tick: live.restAutoSell"; await live.restAutoSell(trade, exitTargetPct(trade, asset, 75));
       }
     } catch {
     }
@@ -4109,7 +4111,7 @@ async function tick() {
     if (!wrong) {
       writeFileSync(join(process.cwd(), "data", "page.json"), JSON.stringify({ at: (/* @__PURE__ */ new Date()).toISOString(), fix: false }));
     }
-    trades = await sealOffList(trades);
+    g.__stage804 = "tick: sealOffList"; trades = await sealOffList(trades);
     trades = trailPaper(trades, snap.assets);
     try {
       syncPrimeLooks(snap.assets);
@@ -4130,12 +4132,12 @@ async function tick() {
         void scoreMirror(snap.assets);
       } catch {
       }
-      await hourCheck();
-      await forkPaper(snap.assets);
-      await copyPrimeBook(snap.assets);
-      await copyLiveBookSafe(snap.assets);
-      const lined = await import("./kalshi-live.server");
-      await lined.alignPrime();
+      g.__stage804 = "tick: hourCheck"; await hourCheck();
+      g.__stage804 = "tick: forkPaper"; await forkPaper(snap.assets);
+      g.__stage804 = "tick: copyPrimeBook"; await copyPrimeBook(snap.assets);
+      g.__stage804 = "tick: copyLiveBookSafe"; await copyLiveBookSafe(snap.assets);
+      g.__stage804 = "tick: import"; const lined = await import("./kalshi-live.server");
+      g.__stage804 = "tick: lined.alignPrime"; await lined.alignPrime();
     } catch {
     }
     writeBook(trades, book.settings);
@@ -4163,8 +4165,8 @@ async function tick() {
       const last = Number(g.__aureliusWatchAt) || 0;
       if (Date.now() - last > 3e4) {
         g.__aureliusWatchAt = Date.now();
-        const live = await import("./kalshi-live.server");
-        await Promise.race([
+        g.__stage804 = "tick: import"; const live = await import("./kalshi-live.server");
+        g.__stage804 = "tick: Promise.race"; await Promise.race([
           live.watchAccount(readBookShared().trades), // fix621 (Love Nov 1 2026 8:32 PM PT: "the full read-loop speed fix"): only looked at
           new Promise((resolve) => setTimeout(resolve, 4000)),
         ]);
@@ -4931,7 +4933,7 @@ async function copyLiveBook(assets, lane = "") {
     try { const S501 = (gLiveCopy.__auditSent ||= {}); if (!S501[row.id] && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { const G5 = globalThis as any, a5 = String(row.asset);
       const L5 = ((G5.__lawBands?.[a5]?.L || []) as { name: string; price: number }[]).map((l) => ({ name: String(l.name), price: Number(l.price) })), q5 = await (async () => { try { return (await import("./quotes")).quoteTick(a5); } catch { return null; } })(), tick5 = q5 && q5.c > 0 && Date.now() - q5.at < 5000 ? Number(q5.c) : Number(asset?.spot) || 0;
       if (L5.length && tick5 > 0) { S501[row.id] = Date.now(); const tk = Object.keys(G5).filter((k) => /^__qtrail_\d+$/.test(k)).sort((x, y) => Number(y.slice(9)) - Number(x.slice(9)))[0];
-        appendFileSync(join(process.cwd(), "data", "setup-audit-in.jsonl"), JSON.stringify({ id: row.id, at: new Date().toISOString(), book: row.book, asset: a5, side: row.side, ticker: row.ticker, label: row.setup, tick: tick5, L: L5, bars: ((G5.__pivBars?.[a5]?.bars || []) as any[]).slice(-100), trail: ((tk && G5[tk]?.[a5]) || []).slice(-12), bb: G5.__bbsr?.[a5] || null, kStrike: G5.__kStrike?.[a5] || null, kGap: G5.__kGap || null, symBtc: G5.__symBtc || null, carried: G5.__sessCarried?.[a5] === true, freshSd: Number(G5.__freshSd?.[a5]) || 0 /* Love Nov 3 2026 4:17 PM PT ("again she is not taking trades on kalshi ... get her live"): the board he judges is carried-filtered (fix612), so he is told she is carried and the fresh width (fix615) */ }) + "\n"); } } } catch {}
+        appendFileSync(join(process.cwd(), "data", "setup-audit-in.jsonl"), JSON.stringify({ id: row.id, at: new Date().toISOString(), book: row.book, asset: a5, side: row.side, ticker: row.ticker, label: row.setup, tick: tick5, L: L5, bars: ((G5.__pivBars?.[a5]?.bars || []) as any[]).slice(-100), trail: ((tk && G5[tk]?.[a5]) || []).slice(-12), bb: G5.__bbsr?.[a5] || null, kStrike: G5.__kStrike?.[a5] || null, kGap: G5.__kGap || null, symBtc: G5.__symBtc || null, carried: G5.__sessCarried?.[a5] === true, slide800: { gold: { s: G5.__slide403?.on === true, c: G5.__climb464g?.on === true }, btc: { s: G5.__slide423bS?.on === true, c: G5.__climb464b?.on === true } } /* fix800: her slide / climb holds go to the sub-auditor so he judges the 55% the way her door does */, freshSd: Number(G5.__freshSd?.[a5]) || 0 /* Love Nov 3 2026 4:17 PM PT ("again she is not taking trades on kalshi ... get her live"): the board he judges is carried-filtered (fix612), so he is told she is carried and the fresh width (fix615) */ }) + "\n"); } } } catch {}
     // Paper already sold it inside the window and the copy never filled: nothing left to copy. Write it down, no alarm.
     if (row.result !== "open" && market?.ticker === row.ticker && left > 30) {
       done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), status: "skipped", final: true, reason: `paper closed it (${row.exit || row.result}) before the copy filled` };
@@ -6001,4 +6003,26 @@ export function slideBlock658(asset: string, side: string): string { try { if (a
 // live-switch addOn.on / addOn.dollars (Add-on 1, the 2.8x add-on) and addOn.at38.on / at38.dollars (Add-on 2, the 3.8x add-on) every tick. No file = today's settings. Her $5 add-on cap stays.
 // fix753 HER ADD-ON 1 BOX SIZES EVERY HOUR (Love Nov 5 2026 1:46 PM PT: "i set it to $5 and its sending out at $2"): in her off / rejection hours the first add-on was sized by the old
 // live-switch offHourMain.addOn.dollars ($2), not her Add-on 1 box. Now, whenever her box is saved (data/addon-settings.json), its $ sizes Add-on 1 in every hour; the off-hour 2.8x price cap is unchanged.
-export function applyAddon664(ao: any): void { try { if (!ao || typeof ao !== "object") return; const G = globalThis as any, p = join(process.cwd(), "data", "addon-settings.json"); if (!existsSync(p)) return; const st = statSync(p); let s: any; if (G.__addon664 && G.__addon664.m === st.mtimeMs) s = G.__addon664.s; else { s = JSON.parse(readFileSync(p, "utf8")); G.__addon664 = { m: st.mtimeMs, s }; } const a1 = s?.addOn1, a2 = s?.addOn2; if (a1 && typeof a1.on === "boolean") ao.on = a1.on; if (a1 && Number(a1.dollars) > 0) ao.dollars = Math.min(5, Number(a1.dollars)); if (ao.at38 && typeof ao.at38 === "object") { if (a2 && typeof a2.on === "boolean") ao.at38.on = a2.on; if (a2 && Number(a2.dollars) > 0) ao.at38.dollars = Math.min(5, Number(a2.dollars)); } } catch {} } // fix664
+export function applyAddon664(ao: any): void { try { if (!ao || typeof ao !== "object") return; const G = globalThis as any, p = join(process.cwd(), "data", "addon-settings.json"); if (!existsSync(p)) return; const st = statSync(p); let s: any; if (G.__addon664 && G.__addon664.m === st.mtimeMs) s = G.__addon664.s; else { s = JSON.parse(readFileSync(p, "utf8")); G.__addon664 = { m: st.mtimeMs, s }; } const a1 = s?.addOn1, a2 = s?.addOn2; if (a1 && typeof a1.on === "boolean") ao.on = a1.on; if (a1 && Number(a1.dollars) > 0) ao.dollars = Math.min(5, Number(a1.dollars)); if (ao.at38 && typeof ao.at38 === "object") { if (a2 && typeof a2.on === "boolean") ao.at38.on = a2.on; if (a2 && Number(a2.dollars) > 0) ao.at38.dollars = Math.min(5, Number(a2.dollars)); if (a2 && Number(a2.mult) >= 1.5 && Number(a2.mult) <= 10) ao.at38.maxAsk = 1 / Number(a2.mult) /* fix803 (Love Nov 6 2026 ~7:09 AM PT: "pls change it to another type-box i can put in the multiple i want and the dollar amount for it instead of the hard 3.8x"): her Add-on 2 multiple box */; } } catch {} } // fix664
+
+// fix806 HER SLIDE ENDS THE SECOND IT BREAKS (Love Nov 6 2026 ~7:26 AM PT, her card pick: "Yes, check it every second"): her SLIDE UNDER PINK / CLIMB OVER PINK hold used to be released only
+// when a main / REJ call came in, and only on the price at that moment - a break back through the pink between calls never ended it. Now, every second, each active hold is checked with her
+// same release rule (price through the pink by 10% of the channel; her old $8 / 25c slide and $2 / 25c climb break when the channel can't be read) and ends the moment it breaks. The on-rule
+// is untouched. The holds only ever apply to main + REJ (never delayed). Each release goes to data/slide-release-806.jsonl. live-switch slideRelease806 false = off.
+export function brk806(asset: string, p: number, fallback: number): number {
+  try { const L0 = (((globalThis as any).__lawBands || {})[asset] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {}
+  return fallback;
+}
+export function release806(asset: string, now: number): string[] {
+  const G = globalThis as any, out: string[] = [];
+  const sm = ((G[asset === "gold" ? "__slide371" : "__slide423b"])?.s || []) as { t: number; p: number; pp: number }[], last = sm[sm.length - 1];
+  if (!last || now - last.t >= 30000) return out;
+  const S = G[asset === "gold" ? "__slide403" : "__slide423bS"]; if (S?.on === true && last.p > last.pp + brk806(asset, last.p, asset === "gold" ? 0.25 : 8)) { S.on = false; out.push("slide"); }
+  const C = G[asset === "gold" ? "__climb464g" : "__climb464b"]; if (C?.on === true && last.p < last.pp - brk806(asset, last.p, asset === "btc" ? 2 : 0.25)) { C.on = false; out.push("climb"); }
+  return out;
+}
+if (!(globalThis as any).__release806) { (globalThis as any).__release806 = setInterval(() => { try { const G806 = globalThis as any, now = Date.now(); if (!G806.__rel806Sw || now - G806.__rel806Sw.at > 5000) { let on = true; try { on = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.slideRelease806 !== false; } catch {} G806.__rel806Sw = { at: now, on }; } if (!G806.__rel806Sw.on) return; for (const a of ["gold", "btc"]) { const r = release806(a, now); if (r.length) { const sm = (G806[a === "gold" ? "__slide371" : "__slide423b"]?.s || []) as any[], l = sm[sm.length - 1]; try { appendFileSync(join(process.cwd(), "data", "slide-release-806.jsonl"), JSON.stringify({ at: new Date(now).toISOString(), asset: a, ended: r, price: l?.p, pink: l?.pp }) + "\n"); } catch {} } } } catch {} }, 1000); }
+// fix804 THE STALL TRACE - LOG ONLY (Love Nov 6 2026 ~7:09 AM PT: "babe she's notttt doing her add ons btc was just at 11x and didn't enter anything past $5"): her position loop (take-profits + add-ons)
+// went silent 7:00:29 -> 7:06:28 AM PT while her tick sat busy. Every await in her tick and her position loop now names itself (g.__stage804); every 5 s, if her tick has been busy for 20 s or more,
+// one line goes to data/tick-stall-804.jsonl with the step it is stuck on and for how long (once per step per stall). Writes that file only - no order, wall, size, switch or timing is touched.
+if (!(globalThis as any).__stallWatch804) { const G804 = globalThis as any, seen804: Record<string, number> = {}; G804.__stallWatch804 = setInterval(() => { try { if (!G804.__aureliusBusy || !(G804.__tickAt804 > 0)) return; const ms = Date.now() - G804.__tickAt804; if (ms < 20000) return; const k = `${G804.__tickAt804}|${G804.__stage804}`; if (seen804[k]) return; seen804[k] = Date.now(); for (const x of Object.keys(seen804)) if (Date.now() - seen804[x] > 3600000) delete seen804[x]; appendFileSync(join(process.cwd(), "data", "tick-stall-804.jsonl"), JSON.stringify({ at: new Date().toISOString(), busyMs: ms, stage: String(G804.__stage804 || "?") }) + "\n"); } catch {} }, 5000); }
