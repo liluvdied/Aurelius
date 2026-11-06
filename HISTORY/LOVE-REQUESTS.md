@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R436 - fix757 AKIMBO BREAK TRACE (log only - changes no decision, sends nothing): once a second for SESSION + PINK and +15M PIVOTS on each asset, it writes what she saw at her break read - the price and how old it was, the last 1-minute candle, the pink, the Kalshi target, her call (or none) and her status - to data/akimbo-break-trace.jsonl. On the next slow break we can see exactly which second she saw it and what held her (like the ~8 s at 1:47 PM BTC). Run after CHANGE-101.
+- when: 2026-11-06T01:03:38+00:00
+- Love: "Love Nov 5 2026 1:59 PM PT: "she still isn't entering in on breaks quick enough hun" + 2:01 PM: "yes pls / and definitely cut that yes that's what the lag is" (a log-only trace to find the seconds between a break and her call)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix757 AKIMBO BREAK TRACE - LOG ONLY"}
+- proof: {"test": "tools/akimbo-break-trace-757.cjs"}
+
 ## R435 - fix756 AKIMBO BREAKS SOONER: SESSION + PINK and +15M PIVOTS now call a live break once price is 10c (gold) / $5 (BTC) past the line, instead of 33c / $6 - she gets in earlier. Every other break book keeps your liveBreakDist (33c / $6). Every wall and rail is unchanged. Replay since Oct 19 (simple first-break model): gold 246 -> 278 trades, 63% -> 63%, +$676 -> +$965; BTC 321 -> 328, 54% -> 54%, -$199 -> -$152. Run after CHANGE-100.
 - when: 2026-11-06T00:58:58+00:00
 - Love: "Love Nov 5 2026 1:59 PM PT: "she still isn't entering in on breaks quick enough hun" + 2:01 PM: "yes pls" + 2:04 PM: "yes 10c gold , btc $5 pls" (AKIMBO break distance)"
