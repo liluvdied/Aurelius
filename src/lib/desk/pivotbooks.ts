@@ -1487,15 +1487,15 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
           // brk10/brk15 keep the rails on paper (her ask: "install the same rails for the 10m version and we'll see").
           if (lane === "brk15" || lane === "brk10") {
             const q = quoteTick(id);
-            if (!q || Date.now() - q.at > 1500) continue;
+            if (!q || Date.now() - q.at > 1500) { try { const SK761 = ((globalThis as any).__sk761 ||= {}) as Record<string, number>; const k761 = `${lane}:${id}:tick`; if (Date.now() - (SK761[k761] || 0) >= 2000) { SK761[k761] = Date.now(); appendFileSync(D("fast-skip.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look.side, label: look.label, rule: "3 s push gate: no fresh tick (1.5 s)" }) + "\n"); } } catch {} /* fix761: log-only */ continue; }
             const push = tickPush(id, 3000);
             const dead = id === "btc" ? 2 : 0.15;
-            if (!push || (look.side === "up" ? !(push.d >= dead) : !(push.d <= -dead))) continue;
+            if (!push || (look.side === "up" ? !(push.d >= dead) : !(push.d <= -dead))) { try { const SK761 = ((globalThis as any).__sk761 ||= {}) as Record<string, number>; const k761 = `${lane}:${id}:push`; if (Date.now() - (SK761[k761] || 0) >= 2000) { SK761[k761] = Date.now(); appendFileSync(D("fast-skip.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look.side, label: look.label, rule: `3 s push gate: push ${push ? r2(push.d) : "none"} (needs ${look.side === "up" ? "+" : "-"}${dead} her way)` }) + "\n"); } } catch {} /* fix761: log-only */ continue; }
             try { appendFileSync(D("fast-open.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look.side, label: look.label, into: Math.round(900 - left), spot: r2(Number(a?.spot) || 0), tick: q.c, tickAgeMs: Date.now() - q.at, push3s: r2(push.d) }) + "\n"); } catch {}
           }
           // NEVER WITHOUT AN ANSWER (Oct 15, Love: "yes absolutely never - not have an answer for me please"): every twin
           // signal held or skipped AFTER the speed gate writes one line - rule, band, tick, ask - to fast-skip.jsonl.
-          const skipNote = (rule: string, extra: Record<string, unknown>) => { if (lane !== "ogp5-fast" && lane !== "ogp5-sess" && lane !== "ogp5") return; try { const qS = quoteTick(id); appendFileSync(D("fast-skip.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look?.side, label: look?.label, rule, tick: qS ? qS.c : null, ask: r2(Number(look?.side === "up" ? m.yesAsk : m.noAsk) || 0), ...extra }) + "\n"); } catch {} };
+          const skipNote = (rule: string, extra: Record<string, unknown>) => { if (lane !== "ogp5-fast" && lane !== "ogp5-sess" && lane !== "ogp5" && lane !== "brk-sesspk" && lane !== "brk15") return; /* fix761: the AKIMBO books write their skips too */ try { const qS = quoteTick(id); appendFileSync(D("fast-skip.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look?.side, label: look?.label, rule, tick: qS ? qS.c : null, ask: r2(Number(look?.side === "up" ? m.yesAsk : m.noAsk) || 0), ...extra }) + "\n"); } catch {} };
           // PIVOT CHECK IN HER BRAIN (Oct 14 ~9:00 AM PT, Love: "wait why does she just never go in"). The gold pivot gate used to
           // sit only at Kalshi's door: she booked the long, the door held it, and if the pink rejected she had already spent her
           // ticket for the window. Now she checks the 5m red/pink/green walls and the no-chasing rule BEFORE she books: a blocked

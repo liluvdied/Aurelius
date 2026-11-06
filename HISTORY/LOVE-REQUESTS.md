@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R438 - fix761 AKIMBO SKIP REASONS (log only - no decision changes, sends nothing): SESSION + PINK and +15M PIVOTS used to drop some calls without writing why (the +15M PIVOTS 3-second push gate, the paper floor / ask bounds, 'same refused setup again'). Now each of those writes a reason (at most every 2 s per book + asset) to data/fast-skip.jsonl, like her other books already do - so the next 'she just didn't enter' has an answer. Run after CHANGE-103.
+- when: 2026-11-06T01:50:10+00:00
+- Love: "Love Nov 5 2026 4:17 PM PT: "she misses every entry like this hun we need to fix something ... can you look into why that keeps happening for me bb ?" + 4:19 PM: "broke pink down with a 3x and she didn't enter / something is up w her" (log-only: every silent AKIMBO skip gets a reason)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix761: log-only"}
+- proof: {"test": "tools/akimbo-skip-log-761.cjs"}
+
 ## R437 - fix758 BTC AKIMBO ZONE = YOUR OUTER 55%: on BTC, SESSION + PINK and +15M PIVOTS now use the same zone rule as main and rejection (fix594) - no long once price is 45%+ of the way from the pink up to the red zone (the top 55%), no short 45%+ of the way from the pink down to the green - on your board's lines, instead of the $100 / $50 wall. Gold stays exactly as it is. Replay since Oct 19 (BTC, one per window): $100 wall 276 trades 58% +$446 -> 55% rule 771 trades 57% +$696. Run after CHANGE-102.
 - when: 2026-11-06T01:24:30+00:00
 - Love: "Love Nov 5 2026 2:27 PM PT: "oh no we need to update that to the same outer 55% as main and rej. bb / not $2" + 2:29 PM PT (her card): "BTC only, gold stays as is""

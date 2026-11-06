@@ -8046,5 +8046,20 @@
     "what": "const brk = spot > 10000 ? lbCache.btc : spot > 1000 ? lbCache.gold : 0;",
     "why": "fix756 (her words in this change's request)",
     "R": "R435"
+  },
+  {
+    "what": "if (!q || Date.now() - q.at > 1500) continue;",
+    "why": "fix761 (her words in this change's request)",
+    "R": "R438"
+  },
+  {
+    "what": "if (!push || (look.side === \"up\" ? !(push.d >= dead) : !(push.d <= -dead))) continue;",
+    "why": "fix761 (her words in this change's request)",
+    "R": "R438"
+  },
+  {
+    "what": "const skipNote = (rule: string, extra: Record<string, unknown>) => { if (lane !== \"ogp5-fast\" && lane !== \"ogp5-sess\" && lane !== \"ogp5\") return; try { const qS = quoteTick(id); appendFileSync(D(\"fast-skip.jsonl\"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look?.side, label: look?.label, rule, tick: qS ? qS.c : null, ask: r2(Number(look?.side === \"up\" ? m.yesAsk : m.noAsk) || 0), ...extra }) + \"\\n\"); } catch {} };",
+    "why": "fix761 (her words in this change's request)",
+    "R": "R438"
   }
 ]
