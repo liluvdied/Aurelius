@@ -28,6 +28,7 @@ import { SettingsDrawer } from "@/components/desk/settings-drawer";
 import { RsiBooks672 } from "@/components/desk/rsi-books"; // fix672
 import { RungStats680 } from "@/components/desk/stats-rungs"; // fix680
 import { SetupScores708 } from "@/components/desk/setup-scores"; // fix708
+import { SetupBoard773 } from "@/components/desk/setup-board"; // fix773 SETUP SCOREBOARD (display only)
 import { Skips697 } from "@/components/desk/skips"; // fix697
 import { EthBook682 } from "@/components/desk/eth-book"; // fix682
 import { Og1012Card } from "@/components/desk/og-1012"; // fix686
@@ -2239,6 +2240,7 @@ export function DeskApp() {
         ) : null}
         {bookTab === "stats" ? <RungStats680 /> : null}
         {bookTab === "stats" ? <SetupScores708 /> : null} {/* fix708 every book's set ups, her framework */}
+        {bookTab === "stats" ? <SetupBoard773 /> : null} {/* fix773 SETUP SCOREBOARD: our setup / her band read, every book */}
 
         {bookTab === "cash" ? (
           <CashBook
@@ -3248,7 +3250,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   const copyQ = useQuery({ queryKey: ["live-copy-map"], queryFn: () => getLiveCopyMap(), refetchInterval: 30000 });
   // OPEN NOW (Oct 21 ~11:07 AM PT, Love: "i want to see her open trades for the main book / i need to see which positions she is taking"): her main book's
   // and the delayed book's open calls, always loaded (the card lists only load when a card is tapped), on top of RUNNING ON KALSHI - live or paper.
-  const openQ = useQuery({ queryKey: ["open-now"], queryFn: () => getShiftRows({ data: { books: ["recon-tog", "recon-dly"] } }), refetchInterval: 5000 });
+  const openQ = useQuery({ queryKey: ["open-now"], queryFn: () => getShiftRows({ data: { books: ["recon-tog", "recon-dly", "v1112" /* fix772: V.111 - 2's open paper trades too (display only) */] } }), refetchInterval: 5000 });
   const openNow = useMemo(() => ((openQ.data ?? []) as any[]).filter((r) => r.result === "open").sort((a, b) => (a.at < b.at ? 1 : -1)), [openQ.data]);
   const flipAuto = () => {
     const next = !runQ.data?.autoOn;
@@ -4040,8 +4042,9 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
         const freshOn = runOn("recon-tog");
         // FIVEY IN RUNNING (fix213, Oct 25 ~2:46 PM PT, Love: "can you have them in the running tab? since we're running them on poly"): the 1-2-3 BOOK and FIVEY
         // always ride in RUNNING, right under the FRESH SLATE / TOGETHER cards.
-        const pin5 = (bk: string) => (lt736.includes(bk) ? -1 /* fix736: the akimbo books first */ : bk === "recon-fresh" ? 0 : bk === "twtog" ? 1 : bk === "fivey123" ? 2 : bk === "fivey" ? 3 : 9);
-        const runRows = ranked.map((b, i) => ({ ...b, i })).filter((b) => runOn(b.book) || lt736.includes(b.book) /* fix736 */ || (togOn && b.book === "twtog") || (freshOn && b.book === "recon-fresh") || b.book === "fivey123" || b.book === "fivey").sort((a, b) => pin5(a.book) - pin5(b.book));
+        const pin5 = (bk: string) => (lt736.includes(bk) ? -1 /* fix736: the akimbo books first */ : bk === "recon-fresh" ? 0 : bk === "twtog" ? 1 : bk === "fivey123" ? 2 : bk === "fivey" ? 3 : bk === "v1112" ? 4 /* fix772 */ : 9);
+        // fix772 V.111 - 2 IN RUNNING (Love Nov 5 2026 ~8:23 PM PT: "pls put it in the running table so i dont need to go looking :)"): her paper card always rides here, after FIVEY - display only, she still never sends an order.
+        const runRows = ranked.map((b, i) => ({ ...b, i })).filter((b) => runOn(b.book) || lt736.includes(b.book) /* fix736 */ || (togOn && b.book === "twtog") || (freshOn && b.book === "recon-fresh") || b.book === "fivey123" || b.book === "fivey" || String(b.book) === "v1112" /* fix772 */).sort((a, b) => pin5(a.book) - pin5(b.book));
         if (!runRows.length) return null;
         return (
           <div className="mt-3 rounded-2xl px-2 pb-2 pt-2" style={{ border: "1px solid rgba(61,220,132,0.45)", boxShadow: "0 0 18px rgba(61,220,132,0.12)" }}>
@@ -4055,10 +4058,10 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
             </p>
             <LineupModeChips />
             <div className="mb-2 rounded-xl px-2 py-1.5" style={{ border: "1px solid rgba(255,255,255,0.3)" }}>
-              <p className="mb-1 text-[9px] tracking-[0.24em] text-white/70">OPEN NOW · MAIN BOOK + DELAYED · {openNow.length}</p>
+              <p className="mb-1 text-[9px] tracking-[0.24em] text-white/70">OPEN NOW · MAIN BOOK + DELAYED + V.111 - 2 · {openNow.length}</p>
               {openNow.length ? openNow.map((r: any) => { const on = (copyQ.data ?? {})[r.id] === "live"; return (
                 <div key={r.id} className="flex items-baseline justify-between gap-2 border-t border-white/10 py-1 font-mono text-[10px]">
-                  <span className="text-white/85">{INLINE_FMT.format(new Date(r.at))} · {r.book === "recon-dly" ? "DELAYED ⏳" : "MAIN 💞"} · {String(r.asset).toUpperCase()} {r.side === "up" ? "LONG" : "SHORT"} · {r.setup}{r.multiple ? ` · ${Number(r.multiple).toFixed(2)}x` : ""}</span>
+                  <span className="text-white/85">{INLINE_FMT.format(new Date(r.at))} · {r.book === "recon-dly" ? "DELAYED ⏳" : r.book === "v1112" ? "V.111 - 2 (paper)" /* fix772 */ : "MAIN 💞"} · {String(r.asset).toUpperCase()} {r.side === "up" ? "LONG" : "SHORT"} · {r.setup}{r.multiple ? ` · ${Number(r.multiple).toFixed(2)}x` : ""}</span>
                   <span className="shrink-0 tabular-nums" style={{ color: on ? "#3ddc84" : "#ffb86b" }}>{on ? "ON KALSHI" : "PAPER"}</span>
                 </div>); }) : <p className="font-mono text-[10px] text-white/50">{openQ.isLoading ? "loading…" : "no open trades right now"}</p>}
             </div>

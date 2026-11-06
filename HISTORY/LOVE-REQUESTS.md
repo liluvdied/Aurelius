@@ -2,6 +2,23 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R448 - fix773 SETUP SCOREBOARD - display only, a new box on the STATS tab. Every book's settled trades (MAIN, REJECTION, REJ ONLY · NO PINK, DELAYED, the 5M / OG pivot books, the paper twins, the paper books' own files - every book on the desk - and V.111 - 2), picked one book at a time, scored per asset | side | set up for THIS WEEK (Monday 12 AM PT, the same week math as STATS BY THE WEEK) and the LAST 24H: trades, wins, hit %, $ net (each book's own exits - take-profit where it has one), avg ask. Two ways to read it: OUR SETUP = the family of the label the book wrote (pink rejection, break through pink, close through pink, zone rejection, Bollinger rejection, band rejection at each sigma / VWAP, pivot rejection, at a band, window open, next band touch, thirds launch, gold clock ...; anything else shows its own label) and HER BAND READ = what V.111 - 2's own brain (v1112.ts, her 60-minute rolling VWAP, half bands, 1m then 5m then window open) calls the minute each trade went in, from the desk's own 1m bars (kept from tonight on - older trades show 'no bars'), so ours and hers line up on the same names. CUT (red) = 10+ trades and hit under 60% or $ under 0, KEEP (green) = 10+ trades, 60%+ and $ over 0, WATCH = under 10 - the 10 and 60 live in data/setup-verdict-rules.json (not locked) so you can change them. Sort by hit % or $. Past weeks from its own archive (data/setup-board-weeks/) only when opened. The scoring runs in its own low-priority background process at most once a minute - no order, entry, wall or size change. Run after CHANGE-117.
+- when: 2026-11-06T05:03:12+00:00
+- Love: "Love Nov 5 2026 ~8:04 PM PT: "we'll let her get some scores overnight , lets score our own trades by these as well , and create a flip at red - break thru pink - etc scoring system for ours alongside it 💘 we can take things up a notch, we have the mechanics stable, now lets choose what she takes""
+- books: every book (display only)
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "<SetupBoard773 />"}
+- proof: {"test": "tools/setup-board-773.cjs"}
+- proof: {"exists": "src/lib/desk/setupboard773.ts"}
+
+## R447 - fix772 V.111 - 2 IN THE RUNNING TABLE - display only. Her card (V.111 - 2 · HER SEP 24 READS · PAPER) now always rides in the green RUNNING box at the top of the SHIFT cards, right after FIVEY, with her W/L, $ and hit % and her trades under it when tapped (open trade, entry time, side, set up, ask / multiple, result). Her open paper trades also show in the OPEN NOW strip at the top of RUNNING, named 'V.111 - 2 (paper)'. She is still PAPER: not on RUN, in no live list, her own fill-log venue - no order, wall or size changes. Run before CHANGE-118.
+- when: 2026-11-06T05:03:10+00:00
+- Love: "Love Nov 5 2026 ~8:23 PM PT: "pls put it in the running table so i dont need to go looking :)""
+- books: V.111 - 2 (paper)
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "|| String(b.book) === \"v1112\" /* fix772 */"}
+- proof: {"test": "tools/v111-2-running-772.cjs"}
+
 ## R446 - fix770 V.111 - 2 · PAPER BOOK - her own card in your $$$ group, PAPER ONLY (never sends an order, even with LIVE on; in no live list; its fill-log rows are on their own venue so no copier can pick them up). BTC + gold, Kalshi 15m. Her Sep 24 reads exactly (og-replay.mjs, ported line for line - same code once types are stripped, 0 differences on 6,000 random bar sets): yes, the same half bands (±0.5, 1, 1.5, 2, 2.5, 3σ) on the ROLLING 60-MINUTE VWAP (last 60 1m bars, volume weighted) - the 1m read, then the 5m read (last 12 5m bars), then the window-open read (2+ min left). First look wins, one trade per asset per window, read once a minute on closed 1m bars (minutes 1-14). EVERY set up on - data/v111-2-cut.json is the cut list (empty) so set ups can be switched off later without code. $20 at the real ask, held to the bell, scored under your take-profit; every trade lands in the fill log as 'V.111 - 2 · <set up>' with side and ask, so STATS (this week + all time) and SET UP SCORES score it by set up. Run after CHANGE-113 and CHANGE-114.
 - when: 2026-11-06T03:57:20+00:00
 - Love: "Love Nov 5 2026 ~7:05 PM PT: "Give her her own card, V.111 - 2 ... for now lets get her on paper taking every set up under her rules 💞 we will boil it down rather quickly, shes using the same bands? half ? and the rolling 60M vwap ?""

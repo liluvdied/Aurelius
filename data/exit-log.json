@@ -1,5 +1,24 @@
 [
   {
+    "at": "2026-11-06T04:59:32.059Z",
+    "ticker": "KXGOLD15M-26NOV060000-00",
+    "asset": "gold",
+    "side": "up",
+    "stake": 6.7976,
+    "multiple": 1.72,
+    "bidPct": 71,
+    "targetPct": 63.79,
+    "payout": 11.52,
+    "profit": 4.72,
+    "reason": "mirrored BRK-SESSPK paper out: half at 75% (89c) + trail from 90%: best +86%, sold at 99c",
+    "short": false,
+    "yesBid": 0.988,
+    "yesAsk": 0.989,
+    "secondsLeft": null,
+    "spot": 4045.17,
+    "strike": 4043.18
+  },
+  {
     "at": "2026-11-06T02:59:56.433Z",
     "ticker": "KXGOLD15M-26NOV052200-00",
     "asset": "gold",
@@ -1499,24 +1518,5 @@
     "secondsLeft": null,
     "spot": 77803.17,
     "strike": 77675.65
-  },
-  {
-    "at": "2026-11-04T06:12:22.743Z",
-    "ticker": "KXBTC15M-26NOV040115-15",
-    "asset": "btc",
-    "side": "up",
-    "stake": 0.7332,
-    "multiple": 2.13,
-    "bidPct": 98,
-    "targetPct": 100,
-    "payout": 1.46,
-    "profit": 0.73,
-    "reason": "take profit: peaked +100%, sold on the 1% trail (line +100%, 2.13x)",
-    "short": false,
-    "yesBid": 0.934,
-    "yesAsk": 0.935,
-    "secondsLeft": null,
-    "spot": 77734.91,
-    "strike": 77650.94
   }
 ]
