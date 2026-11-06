@@ -24,6 +24,14 @@ export function bar786(): { n: number; h: number } {
   try { const j = JSON.parse(readFileSync(D("v111-2-live.json"), "utf8")); const n = Number(j?.minTrades), h = Number(j?.minHitPct); v = { n: Number.isFinite(n) && n >= 1 ? Math.floor(n) : MIN_TRADES775, h: Number.isFinite(h) && h >= 0 && h < 100 ? h : MIN_HIT775 }; } catch {}
   G.__bar786 = { at: Date.now(), v }; return v;
 }
+// fix787 WORST ANYWHERE = OFF (Love Nov 6 2026 ~2:56 AM PT, her card: "Skip it if WORST anywhere"): a set up whose label is in ANY box's WORST table (THIS WEEK, LAST 4 DAYS,
+// PRIME BOOK - $ under 0 there, the page's own split) is off her list, even when another box has it BEST and over her bar. Same label match as BEST ("−" and "-" the same).
+// Her switch file data/v111-2-live.json "skipIfWorstAnywhere": true (fix787 sets it); missing / false = the fix775 rule (BEST in any one box is enough).
+export function worst787(): boolean {
+  const c = G.__worst787; if (c && Date.now() - c.at < 5000) return c.v;
+  let v = false; try { v = JSON.parse(readFileSync(D("v111-2-live.json"), "utf8"))?.skipIfWorstAnywhere === true; } catch {}
+  G.__worst787 = { at: Date.now(), v }; return v;
+}
 const norm = (s: unknown) => String(s ?? "").replace(/−/g, "-").replace(/\s+/g, " ").trim();
 export type Cell775 = { label: string; n: number; w: number; pnl: number };
 export type Box775 = { name: "THIS WEEK" | "LAST 4 DAYS" | "PRIME BOOK"; rows: Cell775[] };
@@ -62,11 +70,14 @@ const onList = (c: Cell775) => { const b = bar786(); /* fix786 */ return c.pnl >
 export function list775(bx: Box775[]): { label: string; boxes: string[] }[] {
   const m = new Map<string, string[]>();
   for (const b of bx) for (const c of b.rows) if (onList(c)) { const k = norm(c.label); m.set(k, [...(m.get(k) ?? []), `${b.name} ${c.w}/${c.n} +$${c.pnl.toFixed(2)}`]); }
-  return [...m.entries()].map(([label, boxes]) => ({ label, boxes }));
+  const bad787 = worst787() ? new Set(bx.flatMap((b) => b.rows.filter((c) => c.pnl < 0).map((c) => norm(c.label)))) : new Set<string>(); // fix787
+  return [...m.entries()].filter(([label]) => !bad787.has(label)).map(([label, boxes]) => ({ label, boxes }));
 }
 export function decide775(label: string, bx: Box775[], now = Date.now()): Decision775 {
   const k = norm(label), hits: string[] = [], near: string[] = [];
   for (const b of bx) for (const c of b.rows) { if (norm(c.label) !== k) continue; const s = `${b.name} ${c.w}/${c.n} ${c.pnl >= 0 ? "+" : "-"}$${Math.abs(c.pnl).toFixed(2)}${c.pnl >= 0 ? " BEST" : " WORST"}`; (onList(c) ? hits : near).push(s); }
+  const worst787s = worst787() ? near.filter((s) => / WORST$/.test(s)) : []; // fix787: WORST in any box = off
+  if (worst787s.length) return { ok: false, at: new Date(now).toISOString(), label: k, boxes: [], why: `WORST in ${worst787s.join(" · ")} - off her list (fix787: skip it if WORST anywhere)${hits.length ? " (BEST in " + hits.join(" · ") + ")" : ""}` };
   return { ok: hits.length > 0, at: new Date(now).toISOString(), label: k, boxes: hits, why: hits.length ? `on the BEST list: ${hits.join(" · ")}` : `not on the BEST list${near.length ? ": " + near.join(" · ") : " (not scored in any box)"} - needs BEST, ${bar786().n}+ trades and MORE than ${bar786().h}% in one box` }; /* fix786 */
 }
 export function liveOn775(): boolean { try { return JSON.parse(readFileSync(D("v111-2-live.json"), "utf8"))?.enabled === true; } catch { return false; } }

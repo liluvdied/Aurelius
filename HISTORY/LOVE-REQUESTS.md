@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R457 - fix787 SKIP IT IF WORST ANYWHERE: a set up whose label is in ANY STATS box's WORST table (THIS WEEK, LAST 4 DAYS, PRIME BOOK - $ under 0 there, read live, the page's own split) is off BESTIE's list, even when another box has it BEST and over her bar (fix786: more than 10 trades, over 65%). Same label match the BEST rows use. Switch: her file data/v111-2-live.json skipIfWorstAnywhere true. Run after CHANGE-127. Her list right now: Tap-reject at +2σ, -1.5σ, +0.5σ, +1.5σ, -0.5σ; Tap-reject at +1σ (WORST this week / last 4 days) and -2σ are out. Every rail, size, exit and other book unchanged.
+- when: 2026-11-06T11:08:19+00:00
+- Love: "Love Nov 6 2026 ~2:56 AM PT, her card pick (asked: Tap-reject at +1σ is still on BESTIE's list through PRIME BOOK 14/18 while THIS WEEK has it WORST): "Skip it if WORST anywhere""
+- books: BESTIE (bestie) live - which set ups go to Kalshi
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112best.ts", "has": "export function worst787()"}
+- proof: {"test": "tools/bestie-worst-787.cjs"}
+
 ## R456 - fix783 BESTIE · WALLS · PAPER TWIN. Live BESTIE stays exactly as she is (pure - the unadulterated one). A paper twin takes exactly BESTIE's takes (V.111 - 2 takes decided on her BEST list, same side, her real ask, $5) but each is first judged by MAIN's door on the live board that second, the way the sub-auditor judges main (TOGETHER, recon-tog): bandlock.ts impossibleGeo with main's flags (channel 33%, unbroken band ahead, pink cushion, pink-to-red/green 55%, Bollinger, zones, her candle / flip), her zone tolerance and her reach wall. Refused = not taken here; kept on its own card 'BLOCKED - what they would have done' with main's reason, scored as if taken. Taken rows: held to the bell + her take-profit, settled from Kalshi, fill log venue paper-bestie-walls. Tonight's replay (21 BESTIE takes since 10 PM): main's door blocks 19 incl. all 11 winners. Pivot-tolerance version not built (next). Every live book, wall, size, exit and money rail unchanged.
 - when: 2026-11-06T11:05:36+00:00
 - Love: "Love Nov 6 2026 ~2:12 AM PT: "can you include all of the same band / zone tolerances for this book too hun ? she traded into a red zone for btc and a pink and the bollinger for gold we need to fix that real quick and she'll be good 💓 keep an unadulterated version of this one.  , we will do one that has the pivot tolerances 💓" + her card pick: (b) live BESTIE stays pure, the walled version runs as a paper twin"
