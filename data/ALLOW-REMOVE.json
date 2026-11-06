@@ -8261,5 +8261,10 @@
     "what": "const src = rows ?? [...((G.__v1112?.rows as any[] | undefined) ?? []), ...((G.__v1112fb789?.rows as any[] | undefined) ?? [])]; // fix789: + her next-band takes",
     "why": "fix798 (her words in this change's request): the same line, now also hands BESTIE her zone wick rejection rows (G.__v1112zone798) next to her own and next-band rows - nothing taken out",
     "R": "R469"
+  },
+  {
+    "what": "return decide775(String(row?.setup || \"\"), bx, now);",
+    "why": "fix799 (her words in this change's request): the decision line now keeps its answer and, with her switch on, checks main's target road before returning it - nothing taken out",
+    "R": "R470"
   }
 ]

@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R470 - fix799 KALSHI'S TARGET IN HER CHART'S TERMS FOR BESTIE: a take of hers that is on her list is still refused when it would have to cross an unbroken band to reach the window's target - main's own check, same code: bandlock.ts targetNow (Kalshi's strike moved onto her chart by the window-open offset, fix519 / fix530; gold = her chart's window open), wallLines / refreshBroken / wallFor and crossToTarget ('no band between price and the target'). Can't verify = refused, like main. Switch: her file data/v111-2-live.json targetGap799 true. Replay of her takes 10 PM - 5:18 AM (boards saved at each take): blocks 14 - 10 W / 4 L, +$26.87 at $5 of winners lost; kept 26 - 9 W, -$34.41. Paper (BESTIE is paper). Run after CHANGE-139.
+- when: 2026-11-06T15:23:03+00:00
+- Love: "Love Nov 6 2026 ~5:18 AM PT: "hun she is supposed to have the price difference on kalshi deducted from tradingview's price""
+- books: BESTIE (bestie) - which takes she makes
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112best.ts", "has": "export async function target799("}
+- proof: {"test": "tools/bestie-target-799.cjs"}
+
 ## R469 - fix798 HER ZONE WICK REJECTIONS (paper set up in V.111 - 2's family): in a window, a closed 1m bar's low reached the GREEN zone (the desk's 5m S1) and price is now $50 (BTC) / $1 (gold) or more back up off that wick low = LONG; the mirror off the RED zone (5m R1) = SHORT. Minutes 1-14, once a minute, one per window, $20 paper at the real ask, scored like V.111 - 2 (her take-profit), settled from Kalshi, fill-log pattern 'V.111 - 2 · Green / Red zone wick rejection' (scores in STATS). These rows count in her own-rows list (fix797) and are decided on it the second they're taken, so the set up can earn its way onto BESTIE's list (more than 10 trades, over 65%, never WORST). Main / REJECTION's BTC 15% zone wick is unchanged. Replay Nov 1-6 ($5 scale, boards from the desk's own snapshots): BTC 63 trades 31 W +$32 (red-zone shorts +$75, green-zone longs -$43); gold 81 trades 36 W -$34. Paper only.
 - when: 2026-11-06T15:20:26+00:00
 - Love: "Love Nov 6 2026 ~5:17 AM PT: "and pls have her register green zone rejections and red zone rejections to enter in when the rejections there pls / a rick rejections of $50 or more on btc $1 for gold""

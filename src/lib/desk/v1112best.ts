@@ -98,12 +98,27 @@ export async function loadBoxes775(now = Date.now()): Promise<Box775[]> {
   let weekKept = {}; try { weekKept = JSON.parse(readFileSync(D(`stats-weeks/${name}.json`), "utf8")); } catch {}
   return boxes775({ fill: fl.readFillLog() as any[], prime: pb.readPrimeBook() as any[], weekKept, now });
 }
+// fix799 KALSHI'S TARGET IN HER CHART'S TERMS (Love Nov 6 2026 ~5:18 AM PT: "hun she is supposed to have the price difference on kalshi deducted from tradingview's price"): with her
+// switch file data/v111-2-live.json "targetGap799": true, a take of hers that is on the list is still refused when it would have to cross an unbroken band to reach the window's target -
+// main's own check, the same code: bandlock.ts targetNow (Kalshi's strike moved onto her chart by the window-open offset, fix519 / fix530; gold = her chart's window open),
+// wallLines / refreshBroken / wallFor (broken walls don't block the break direction) and crossToTarget ("no band between price and the target", Oct 17). Can't verify = refused, like main.
+export function gap799(): boolean { try { return JSON.parse(readFileSync(D("v111-2-live.json"), "utf8"))?.targetGap799 === true; } catch { return false; } }
+export async function target799(row: any): Promise<string> {
+  const B: any = G.__test799B || (await import("./bandlock")), asset = String(row?.asset || ""), side = String(row?.side || "");
+  const q: any = typeof G.__test799Q === "function" ? G.__test799Q(asset) : (await import("./quotes")).quoteTick(asset);
+  const L = (G.__lawBands?.[asset]?.L || []) as any[], tick = q && Number(q.c) > 0 ? Number(q.c) : Number(row?.spot) || 0;
+  if (!L.length || !(tick > 0)) return "can't verify the target right now (no lines / no tick)";
+  const W = B.wallFor(B.wallLines(asset, L), B.refreshBroken(asset, L, tick), tick, side);
+  return String(B.crossToTarget(asset, W, tick, side, B.targetNow(asset)) || "");
+}
 /** her take, the second she takes it: on the list or not (written on her row as best775 - BESTIE reads it too, so it is decided whatever the switch says). Any error = not on. */
 export async function bestTake775(row: any, deps: { boxes?: () => Promise<Box775[]>; now?: number } = {}): Promise<Decision775> {
   const now = deps.now ?? Date.now();
   try {
     const bx = await (deps.boxes ?? (() => loadBoxes775(now)))();
-    return decide775(String(row?.setup || ""), bx, now);
+    const d775 = decide775(String(row?.setup || ""), bx, now);
+    if (d775.ok && gap799()) { const g = await target799(row).catch(() => "can't verify the target right now"); if (g) return { ...d775, ok: false, boxes: [], why: `TARGET (fix799): ${g} (${d775.why})` }; } // fix799
+    return d775;
   } catch (e: any) { return { ok: false, at: new Date(now).toISOString(), label: norm(row?.setup), boxes: [], why: `the list could not be read (${String(e?.message || e).slice(0, 80)}) - not sent` }; }
 }
 /** her BEST takes as live-book rows for the copier (read from her book in this process). Only rows decided ok, BTC / gold Kalshi 15m, and only while the switch
