@@ -3533,9 +3533,10 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   const FAMS: [string, (b: string) => boolean][] = [
     // NEW ONES (Love, Oct 15 ~3:30 PM PT: "place the ones we have running under one roof... make a new tab for NEW ONES").
     // First in the list so these cards live here even when another family's pattern would also match them.
-    ["AKIMBO 🤹", (b) => b === "akimbo727"], // fix727 first, by the LIVE TODAY row
+    // fix760 $$$ (Love Nov 5 2026 4:02 PM PT: "a new subgroup in the navigation section for all Of our new ones ... just $$$ is fine"): first in the list, so all our new books live here (moved, not
+    // duplicated): AKIMBO and its seats, the Bollinger books, the main wait-distance twin, the inverse book, BRICK no pivot wall and last night's paper books.
+    ["$$$ 💸", (b) => ["akimbo727", "akimbo744", "brk-sesspk", "brk15", "gmid2", "bmid5", "allbb", "recon-tzw", "inv688", "brnw", "hm707-rev", "hm707-rip", "club690", "mom704", "hb709", "cup713", "mv694", "rp695"].includes(b)],
     ["RECONSTRUCTED 🧬", (b) => ["recon-fresh", "recon-togp-fresh", "recon-rnp-fresh" /* fix625 */, "recon-all", "recon-dly", "recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-togp"].includes(b)],
-    ["TONIGHT'S PAPER 🧪", (b) => ["mom704", "hm707-rev", "hm707-rip", "inv688", "club690", "hb709", "cup713", "mv694", "rp695"].includes(b)], // fix721
     ["NEW ONES 🆕", (b) => ["ogp5-sess", "ogp5-c1", "ogp5-c5", "ogp5-hrs", "ogp5-bbsr", "ogp5-dly", "supernova", "ogp5-r15", "ogp5-r30", "ogp5-cb", "ogp5-fast", "ogp5-gw", "ogp5-inv", "ogp5-boll", "ogp5-lock", "ogp5-btco", "ogp5-pv", "brk-sess", "brk-sesspk", "brk-sessrj", "brk5", "brk10", "brk15", "gold-rg"].includes(b)],
     ["HER LINEUP 🪞 TWINS", (b) => /^tw/.test(b) && b !== "twtog"],
     ["BRICK", (b) => /^brick/.test(b) || b === "b11"],

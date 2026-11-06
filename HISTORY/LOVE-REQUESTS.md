@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R429 - fix760 $$$ (display only - no order, rule or setting changes): a new family chip on the Books page, first in the list, named $$$ 💸, holding all our new books - AKIMBO card, SESSION + PINK, +15M PIVOTS, the gold 2m middle seat, BTC 5m middle, the AKIMBO + BTC twin card, ALL-BOLLINGER, main wait-distance twin, the inverse book, BRICK no pivot wall, and last night's paper books (momentum, high multiple both ways, 70% club, half-band, cup, VWAP side, rejection parked). They move into $$$ (the now-empty AKIMBO and TONIGHT'S PAPER chips are removed); RUNNING, the tiers and the find box are unchanged.
+- when: 2026-11-06T00:12:12+00:00
+- Love: "Love Nov 5 2026 4:02 PM PT: "can you make a new subgroup in the navigation section for all Of our new ones ?:) just $$$ is fine idk what else to name them lol""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "fix760 $$$"}
+- proof: {"test": "tools/money-family-760.cjs"}
+
 ## R428 - fix750 PAPER-NOT-ON-KALSHI FLAG + EVALUATION (log / alert only - no rule changes, never sends): her silent alarm (CHANGE-78) now also flags an AKIMBO paper entry the copier never attempted at 20 s (was 2 min), and every flag gets an automatic evaluation of why - the copier's status and reasons, seconds from paper to first attempt, copy timing (wait / gates / order ms, live vs paper ask), the 66c floor, the umpire, LIVE, entries on/off, her hand window, and the wall lines for that book + window - written to data/paper-not-kalshi.jsonl and added to the ALERTS line and the Mac ping as 'WHY: ...'. Nothing else changes.
 - when: 2026-11-05T23:50:32+00:00
 - Love: "Love Nov 5 2026 1:34 PM PT: "can you set up a flag for any orders that were sent out on paper and didn't make it to kalshi , when one does have it trigger an evaluation of why until we see what's halting them and fix that""

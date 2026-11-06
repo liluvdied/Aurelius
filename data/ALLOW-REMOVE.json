@@ -7946,5 +7946,20 @@
     "what": "t(f(row(\"brk15\", \"up\", 60), {}, B, now).kind === \"\", \"it alerted before 2 minutes with no record\");",
     "why": "fix750 (her words in this change's request)",
     "R": "R428"
+  },
+  {
+    "what": "[\"AKIMBO 🤹\", (b) => b === \"akimbo727\"], // fix727 first, by the LIVE TODAY row",
+    "why": "fix760 (her words in this change's request)",
+    "R": "R429"
+  },
+  {
+    "what": "[\"TONIGHT'S PAPER 🧪\", (b) => [\"mom704\", \"hm707-rev\", \"hm707-rip\", \"inv688\", \"club690\", \"hb709\", \"cup713\", \"mv694\", \"rp695\"].includes(b)], // fix721",
+    "why": "fix760 (her words in this change's request)",
+    "R": "R429"
+  },
+  {
+    "what": "t(A.includes('book: \"akimbo727\" as any, title: \"AKIMBO · SESSION + PINK × 15M PIVOTS') && A.includes('[\"AKIMBO 🤹\", (b) => b === \"akimbo727\"]'), \"no AKIMBO card / chip\");",
+    "why": "fix760 (her words in this change's request)",
+    "R": "R429"
   }
 ]
