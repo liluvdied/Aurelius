@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R460 - fix790 BESTIE'S ADD-ONS ON: her switch file data/v111-2-live.json addOns true (it shipped false with fix775 'off until you turn it on'). engine.ts's fix775 gate then stands down and your Add-on boxes apply to BESTIE's live positions exactly like every other book: exactly the add-on toggles you have selected in Settings, read live (right now: Add-on 1 $2 when her side's ask is 35.7c or under, 2+ min left; Add-on 2 (3.8x) $3 at 26.3c or under) - change a toggle and it applies to her too; no copy, nothing extra. The fix775 proof now expects her switch on. Add-on fills sit in the same Kalshi position, so they sell with it on the 75% / 95% exit (fix782) and count in the -$100 day stop like every live trade. No code changed. false turns them off again.
+- when: 2026-11-06T11:58:59+00:00
+- Love: "Love Nov 6 2026 ~2:22 AM PT: "and she didn't do her add on bb" + ~3:26 AM PT: "and she is still not doing her add ons bb" + ~3:29 AM PT: "yes love just the add ons i have in the toggle whatever ones i have selected there okay :)""
+- books: BESTIE (bestie) live - add-ons
+- status: ACTIVE
+- proof: {"config": "data/v111-2-live.json", "key": "addOns", "equals": true}
+- proof: {"test": "tools/bestie-addons-790.cjs"}
+
 ## R459 - fix788 BESTIE'S FLOOR 1.6x: live BESTIE's Kalshi orders must pay 1.6x or more on the limit price (62.5c or under); the send refuses anything over that (her copier keeps trying while the window is open, as every floor refusal does - if the ask comes back under 62.5c she still takes it). Every other book keeps its 1.5x. Done with live-switch bookFloor788 {"bestie": 1.6} read at the send's floor check (only ever raises a floor). Run after CHANGE-129. Tonight: none of her BEST takes asked over 62.5c at her decision (highest 62c), so the replay skips none; the 2:01 AM BTC retry that reached a 64c limit would have waited at 62.5c. The 'trade the next band' part is not in this command.
 - when: 2026-11-06T11:54:41+00:00
 - Love: "Love Nov 6 2026 ~2:38 AM PT: "i want to raise the floor to 1.6 , if she misses that i want her to trade the next band too pls" (this command = the 1.6x floor; the next-band part is its own command)"
