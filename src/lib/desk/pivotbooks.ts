@@ -101,6 +101,16 @@ export function zoneWall741(b: Bar[], asset: string, side: string, tick: number,
       if (!(lp > 0)) { const tf = /^(\d+)m /.exec(nm); const pl = tf ? (globalThis as any).__pivLines739?.[`${asset}:${tf[1]}`] : null; const h2 = pl ? (pl.L || []).find((l: any) => String(l.name) === nm) : null; if (h2) lp = Number(h2.price); }
       if (lp > 0) { const up = m[1] === "above", need = asset === "gold" ? 1 : 50, off = up ? tick - lp : lp - tick, nowM = Math.floor(Date.now() / 60000) * 60; const recent = b.filter((x) => x.t >= nowM - 180);
         const dipped = recent.some((x) => (up ? x.l < lp : x.h > lp)); if (dipped && off >= need) return ""; } } }
+    // fix758 BTC AKIMBO ZONE = HER OUTER 55% (Love Nov 5 2026 2:27 PM PT: "update that to the same outer 55% as main and rej. bb / not $2" + 2:29 PM card: "BTC only, gold stays as is"): on BTC
+    // the AKIMBO books (SESSION + PINK, +15M PIVOTS) use her fix594 zone rule like main / rejection - no long in the top 55% from the pink to the red zone (45%+ of the way up, or past red), no short in
+    // the bottom 55% from the pink to the green - on her board's lines (5m PP / 5m R1 / 5m S1), instead of the $100 / $50 wall. Gold keeps the wall below unchanged.
+    if (asset === "btc" && (lane === "brk-sesspk" || lane === "brk15")) {
+      const px758 = (n: string) => Number((lines || []).find((l: any) => String(l?.name) === n)?.price) || 0, zP = px758("5m PP"), r1 = px758("5m R1"), s1 = px758("5m S1");
+      if (!(zP > 0 && r1 > zP && s1 > 0 && s1 < zP)) return "";
+      if (side === "up" && tick > zP && (tick - zP) / (r1 - zP) >= 0.45) return `PINK TO RED (fix758, her 55%): long at ${Math.round((tick - zP) / (r1 - zP) * 100)}% of pink ${zP.toFixed(2)} to red ${r1.toFixed(2)} - in the top 55% - no long.`;
+      if (side === "down" && tick < zP && (zP - tick) / (zP - s1) >= 0.45) return `PINK TO GREEN (fix758, her 55%): short at ${Math.round((zP - tick) / (zP - s1) * 100)}% of pink ${zP.toFixed(2)} to green ${s1.toFixed(2)} - in the bottom 55% - no short.`;
+      return "";
+    }
     const th = lane === "brk15" ? (asset === "gold" ? 1 : 50) : (asset === "gold" ? 2 : 100);
     const nowSec = Date.now() / 1000; const closed = resample(b, 5).filter((x) => x.t + 300 <= nowSec + 1); const p = closed[closed.length - 1]; if (!p) return "";
     const PP = (p.h + p.l + p.c) / 3, R1 = 2 * PP - p.l, S1 = 2 * PP - p.h;

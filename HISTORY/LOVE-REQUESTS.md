@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R437 - fix758 BTC AKIMBO ZONE = YOUR OUTER 55%: on BTC, SESSION + PINK and +15M PIVOTS now use the same zone rule as main and rejection (fix594) - no long once price is 45%+ of the way from the pink up to the red zone (the top 55%), no short 45%+ of the way from the pink down to the green - on your board's lines, instead of the $100 / $50 wall. Gold stays exactly as it is. Replay since Oct 19 (BTC, one per window): $100 wall 276 trades 58% +$446 -> 55% rule 771 trades 57% +$696. Run after CHANGE-102.
+- when: 2026-11-06T01:24:30+00:00
+- Love: "Love Nov 5 2026 2:27 PM PT: "oh no we need to update that to the same outer 55% as main and rej. bb / not $2" + 2:29 PM PT (her card): "BTC only, gold stays as is""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix758 BTC AKIMBO ZONE = HER OUTER 55%"}
+- proof: {"test": "tools/btc-akimbo-55-758.cjs"}
+
 ## R436 - fix757 AKIMBO BREAK TRACE (log only - changes no decision, sends nothing): once a second for SESSION + PINK and +15M PIVOTS on each asset, it writes what she saw at her break read - the price and how old it was, the last 1-minute candle, the pink, the Kalshi target, her call (or none) and her status - to data/akimbo-break-trace.jsonl. On the next slow break we can see exactly which second she saw it and what held her (like the ~8 s at 1:47 PM BTC). Run after CHANGE-101.
 - when: 2026-11-06T01:03:38+00:00
 - Love: "Love Nov 5 2026 1:59 PM PT: "she still isn't entering in on breaks quick enough hun" + 2:01 PM: "yes pls / and definitely cut that yes that's what the lag is" (a log-only trace to find the seconds between a break and her call)"
