@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R456 - fix783 BESTIE · WALLS · PAPER TWIN. Live BESTIE stays exactly as she is (pure - the unadulterated one). A paper twin takes exactly BESTIE's takes (V.111 - 2 takes decided on her BEST list, same side, her real ask, $5) but each is first judged by MAIN's door on the live board that second, the way the sub-auditor judges main (TOGETHER, recon-tog): bandlock.ts impossibleGeo with main's flags (channel 33%, unbroken band ahead, pink cushion, pink-to-red/green 55%, Bollinger, zones, her candle / flip), her zone tolerance and her reach wall. Refused = not taken here; kept on its own card 'BLOCKED - what they would have done' with main's reason, scored as if taken. Taken rows: held to the bell + her take-profit, settled from Kalshi, fill log venue paper-bestie-walls. Tonight's replay (21 BESTIE takes since 10 PM): main's door blocks 19 incl. all 11 winners. Pivot-tolerance version not built (next). Every live book, wall, size, exit and money rail unchanged.
+- when: 2026-11-06T11:05:36+00:00
+- Love: "Love Nov 6 2026 ~2:12 AM PT: "can you include all of the same band / zone tolerances for this book too hun ? she traded into a red zone for btc and a pink and the bollinger for gold we need to fix that real quick and she'll be good 💓 keep an unadulterated version of this one.  , we will do one that has the pivot tolerances 💓" + her card pick: (b) live BESTIE stays pure, the walled version runs as a paper twin"
+- books: BESTIE · WALLS (bestiewalls) - paper only, BESTIE · WALLS · BLOCKED (bestiewalls-skip) - paper record of the refusals
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112walls.ts", "has": "export async function wallsTake783("}
+- proof: {"test": "tools/bestie-walls-783.cjs"}
+
 ## R455 - fix786 BESTIE'S BAR - MORE THAN 10 TRADES, OVER 65%: BESTIE keeps re-reading the STATS BEST tables live (THIS WEEK, LAST 4 DAYS, PRIME BOOK - all three stay her sources), but a row now counts only with MORE than 10 trades (11+) and MORE than 65% won in that box, and $ 0 or more (BEST) as before. Replaces the 3+ trades / more than 50% bar. The bar lives in her switch file data/v111-2-live.json (minTrades 11, minHitPct 65 - not locked); missing = the old bar. Her list right now: Tap-reject at +2σ, -1.5σ, +0.5σ, +1.5σ, -0.5σ (THIS WEEK / LAST 4 DAYS) - and PRIME BOOK still lets in Tap-reject at +1σ (14/18, 78%) and +0.5σ / +1.5σ / -0.5σ / -1.5σ; Tap-reject at -2σ (3/4) is out. Every rail, size ($5), exit and other book unchanged.
 - when: 2026-11-06T10:55:56+00:00
 - Love: "Love Nov 6 2026 ~2:34 AM PT: "hun did you put her on the best table set ups i sent you pictures of ? they all had like 40 trades" + ~2:35 AM PT: "yes bb over 10 trades over 65%""
