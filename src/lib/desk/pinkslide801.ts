@@ -17,6 +17,7 @@ const D = (f: string) => join(process.cwd(), "data", f);
 const FILE = "pink-slide-801.json";
 export const TAP_LABEL801 = "PINK SLIDE TAP (fix801)", AT_PINK801 = 0.25; // the same two as bandlock.ts (its waiver) - tools/pink-slide-tap-801.cjs proves they match
 export const FLOOR801 = 1.5, STAKE801 = 5, WAIT801 = 90000, MINLEFT801 = 30;
+export const LIVE_ASSETS801: Record<string, boolean> = { btc: true, gold: false }; // fix810
 export const BOOKS801 = ["recon-tog", "recon-rej"]; // every live book but delayed (her standing default) - the books her slide / climb hold lives on
 export type Row801 = { id: string; asset: string; ticker: string; closeTime: string; at: string; tapAt: string; side: "up" | "down"; setup: string; pink: number; W: number; spot: number; ask: number; contracts: number; bestBid: number; half: boolean; halfBid: number | null; restBid: number | null; result: "open" | "win" | "loss"; pnlHold: number | null; pnlTp: number | null; hold: string };
 /** her channel around the pink: the session band right above it minus the one right below (same lines her rejection hook reads) */
@@ -97,6 +98,7 @@ export function liveRows801(): any[] {
   const out: any[] = [];
   for (const r of st().rows) {
     if (!r?.ticker || !/15M-/.test(String(r.ticker))) continue;
+    if (LIVE_ASSETS801[r.asset] !== true) continue; // fix810 (her pick "no flip on btc , flip on gold pls :)"): only BTC's pink-slide takes go live; gold stays on her PINK SLIDE ONLY paper card
     for (const book of BOOKS801) out.push({ id: `${r.ticker}:${book}:ps801`, book, at: r.at, asset: r.asset, ticker: r.ticker, side: r.side, setup: r.setup, ask: r.ask, multiple: r.ask > 0 ? 1 / r.ask : 0, stake: STAKE801, tpPct: 0, peakPct: 0,
       exit: r.result === "open" ? undefined : r.restBid != null ? "sold" : "held to the bell", soldAt: undefined, sellBid: null, result: r.result, pnl: r.pnlTp, bands: null, spot: null, event: null, hourPT: Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date(r.at))) % 24 });
   }

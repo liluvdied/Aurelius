@@ -1,4 +1,5 @@
 import { Component, memo, startTransition, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { getLiveAuto815, setLiveOffHold815 } from "@/lib/desk/fns"; // fix815
 import { useQuery } from "@tanstack/react-query";
 import { Toaster, toast } from "sonner";
 import { RollDigits, useLiveCountdown, useRollingNumber, useRollingPrice } from "@/components/desk/rolling-price";
@@ -1275,6 +1276,19 @@ export function DeskApp() {
     enabled: hydrated && bookTab === "shift",
     refetchInterval: 15000,
   });
+  // fix815 LIVE COMES BACK BEFORE THE WINDOW (Love Nov 6 2026 ~8:46 AM PT): after 3 minutes off - a flashing orange light by LIVE and a toast every 3 minutes until it is back on
+  const live815 = useQuery({ queryKey: ["live-auto-815"], queryFn: () => getLiveAuto815(), refetchInterval: 15000 });
+  const [tick815, setTick815] = useState(0);
+  useEffect(() => { const id = setInterval(() => setTick815((x) => x + 1), 30000); return () => clearInterval(id); }, []);
+  const offMs815 = live815.data && !live815.data.live && live815.data.offSince ? Date.now() - Date.parse(String(live815.data.offSince)) : 0;
+  const liveOff3m815 = offMs815 >= 180000;
+  const toastAt815 = useRef(0);
+  useEffect(() => {
+    if (!liveOff3m815 || Date.now() - toastAt815.current < 175000) return;
+    toastAt815.current = Date.now();
+    const d815: any = live815.data, why815 = d815?.holdUntil && Date.parse(d815.holdUntil) > Date.now() ? "OFF FOR THE DAY is set - it stays off" : d815?.last?.why ? `last check: ${d815.last.why}` : "it turns itself back on 15 s before the next window";
+    toast(`LIVE is OFF (${Math.round(offMs815 / 60000)} min) - ${why815}.`);
+  }, [liveOff3m815, tick815, live815.data]); // eslint-disable-line react-hooks/exhaustive-deps
   const liveQ = useQuery({
     queryKey: ["live-switch"],
     queryFn: () => getLiveSwitch(),
@@ -1982,11 +1996,16 @@ export function DeskApp() {
               aria-pressed={liveQ.data?.live === true}
               aria-label="Toggle live trading"
             >
-              <span className={cn("inline-block size-1.5 rounded-full", liveQ.data?.live === true ? "bg-red-500" : "bg-subtle")} />
+              <span className={cn("inline-block size-1.5 rounded-full", liveQ.data?.live === true ? "bg-red-500" : liveOff3m815 ? "animate-pulse bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.9)]" : "bg-subtle")} /* fix815: flashing orange after 3 min off */ />
               <span className={cn("text-[10px] tracking-[0.16em]", liveQ.data?.live === true ? "text-fg" : "text-muted")}>
                 {liveQ.data?.live === true ? "LIVE ON" : "LIVE OFF"}
               </span>
             </button>
+            {liveQ.data?.live !== true ? (
+              <button type="button" onClick={() => { const on = !((live815.data as any)?.holdUntil && Date.parse(String((live815.data as any).holdUntil)) > Date.now()); void setLiveOffHold815({ data: { on } }).then(() => { toast(on ? "OFF FOR THE DAY - LIVE won't turn itself back on until midnight PT." : "OFF FOR THE DAY cleared - LIVE turns back on before the next window."); void live815.refetch(); }); }} className="flex h-8 items-center rounded-md px-2 text-[9px] tracking-[0.14em] text-muted hairline-soft" aria-label="Off for the day" /* fix815 her deliberate stop */>
+                {(live815.data as any)?.holdUntil && Date.parse(String((live815.data as any).holdUntil)) > Date.now() ? "OFF TODAY ✓" : "OFF TODAY"}
+              </button>
+            ) : null}
             {hydrated ? (
               <button
                 type="button"
@@ -2231,6 +2250,7 @@ export function DeskApp() {
           </div>
         </section>
 
+        {bookTab === "stats" ? <RungStats680 /> : null} {/* fix814: her main + REJ set ups at every band and zone, first on STATS */}
         {bookTab === "stats" ? (
           <Analytics
             trades={trades.filter((t) => t.source !== "live")}
@@ -2238,7 +2258,6 @@ export function DeskApp() {
             events={fillLog.data ?? []}
           />
         ) : null}
-        {bookTab === "stats" ? <RungStats680 /> : null}
         {bookTab === "stats" ? <SetupScores708 /> : null} {/* fix708 every book's set ups, her framework */}
         {bookTab === "stats" ? <SetupBoard773 /> : null} {/* fix773 SETUP SCOREBOARD: our setup / her band read, every book */}
 

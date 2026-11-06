@@ -11,7 +11,10 @@ export function SetupScores708() {
   const [book, setBook] = useState<string>(""), [span, setSpan] = useState<"7d" | "24h">("7d"), [all, setAll] = useState(false);
   const b = book && books.includes(book) ? book : books[0] ?? "";
   const rows = ((d?.books?.[b] ?? []) as any[]).filter((r) => (span === "7d" ? r.n7 : r.n24) > 0);
-  const shown = all ? rows : rows.filter((r) => r.badge !== "WATCH" || (span === "7d" ? r.n7 : r.n24) >= 5);
+  const [sort814, setSort814] = useState<"LIST" | "HIT RATE" | "$$">("LIST"); // fix814 (Love Nov 6 2026 ~8:42 AM PT: "i want the regular session bands and other zones to be formatted the way the other tallies are if we can pls it looks amazing the way you have the others" + "can you add a sorter here too bb ?? by hit rate and $$")
+  const nn = (r: any) => (span === "7d" ? r.n7 : r.n24) || 0, ww = (r: any) => (span === "7d" ? r.w7 : r.w24) || 0, pp = (r: any) => (span === "7d" ? r.p7 : r.p24) || 0;
+  const shown0 = all ? rows : rows.filter((r) => r.badge !== "WATCH" || (span === "7d" ? r.n7 : r.n24) >= 5);
+  const shown = sort814 === "HIT RATE" ? [...shown0].sort((x, y) => ww(y) / Math.max(1, nn(y)) - ww(x) / Math.max(1, nn(x)) || nn(y) - nn(x)) : sort814 === "$$" ? [...shown0].sort((x, y) => pp(y) - pp(x)) : shown0;
   return (
     <section className="mt-3 rounded-xl bg-black p-4">
       <p className="text-[10px] font-medium tracking-[0.22em] text-white/60">SET UP SCORES · EVERY BOOK · HER FRAMEWORK</p>
@@ -22,6 +25,7 @@ export function SetupScores708() {
       <div className="mt-1 flex gap-1">
         {(["7d", "24h"] as const).map((x) => <button key={x} onClick={() => setSpan(x)} className={`rounded-md border px-2 py-0.5 font-mono text-[9px] ${x === span ? "border-white text-white" : "border-white/30 text-white/60"}`}>{x === "7d" ? "7 DAYS" : "24 HOURS"}</button>)}
         <button onClick={() => setAll(!all)} className="rounded-md border border-white/30 px-2 py-0.5 font-mono text-[9px] text-white/60">{all ? "HIDE THIN" : "SHOW ALL"}</button>
+        {(["LIST", "HIT RATE", "$$"] as const).map((x) => <button key={x} onClick={() => setSort814(x)} className={`rounded-md border px-2 py-0.5 font-mono text-[9px] ${x === sort814 ? "border-white text-white" : "border-white/30 text-white/60"}`}>{x}</button>)} {/* fix814 sorter */}
       </div>
       {shown.length === 0 ? <p className="mt-3 text-sm text-white/50">No closed trades in this span yet.</p> : (
         <ul className="mt-3 flex flex-col gap-2">

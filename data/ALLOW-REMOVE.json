@@ -8611,5 +8611,210 @@
     "what": "<Drawer.Content className=\"fixed inset-x-0 bottom-0 z-50 rounded-t-xl bg-surface px-5 pb-8 pt-3 text-fg hairline\">",
     "why": "fix808 (display only): the same sheet line, now capped to her screen",
     "R": "R478"
+  },
+  {
+    "what": "t(B.tapFree801(\"gold\", \"down\", 4039, L) === true, \"slide on, her label, $1 under pink (12% of the channel): the waiver should hold\");",
+    "why": "fix810 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R479"
+  },
+  {
+    "what": "t(B.rej668(\"gold\", \"down\", 4039, L) === true, \"her rejection hook should count the tap\");",
+    "why": "fix810 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R479"
+  },
+  {
+    "what": "G.__curBook465 = \"recon-tog\"; G.__climb464g.on = true; G.__wireLabel619 = \"Rejected up off 5m PP · PINK SLIDE TAP (fix801)\"; t(B.tapFree801(\"gold\", \"up\", 4041, L) === true, \"mirror: climb on, a long at the pink is waived\");",
+    "why": "fix810 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R479"
+  },
+  {
+    "what": "G.__wireLabel619 = \"\"; G.__label801 = lab; t(B.tapFree801(\"gold\", \"down\", 4039, L) === true, \"the sub-auditor's label is read\");",
+    "why": "fix810 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R479"
+  },
+  {
+    "what": "G.__label801 = \"\"; G.__wireLabel619 = lab; fs.writeFileSync(path.join(dir, \"data/live-switch.json\"), JSON.stringify({ pinkSlideTap801: false })); t(B.tapFree801(\"gold\", \"down\", 4039, L) === false, \"switch off = no waiver\");",
+    "why": "fix810 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R479"
+  },
+  {
+    "what": "const lr = P.liveRows801(); t(lr.length === 6 && lr.filter((r) => r.book === \"recon-tog\").length === 3 && lr.filter((r) => r.book === \"recon-rej\").length === 3 && lr.every((r) => r.id.endsWith(\":ps801\")), \"main + rejection get every take\");",
+    "why": "fix810 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R479"
+  },
+  {
+    "what": "console.log(ok ? \"PINK SLIDE TAP 801 TEST ✓ - during her slide / climb she takes the pink rejection at the first ask over 1.5x while still at the pink, no flip; walls waive only flip / candle / thirds / pink cushion for that take; main + rejection, never delayed; switch off = off.\" : \"PINK SLIDE TAP 801 TEST: FAIL\");",
+    "why": "fix810 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R479"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && tick > zP && (tick - zP) / (r1 - zP) >= 0.45) return `PINK TO RED (fix594): long at ${Math.round((tick - zP) / (r1 - zP) * 100)}% of pink ${zP.toFixed(2)} to red ${r1.toFixed(2)} - in the top 55% - no long.`;",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && tick < zP && (zP - tick) / (zP - s1) >= 0.45) return `PINK TO GREEN (fix594): short at ${Math.round((zP - tick) / (zP - s1) * 100)}% of pink ${zP.toFixed(2)} to green ${s1.toFixed(2)} - in the bottom 55% - no short.`;",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && side === \"down\" && zP > 0 && zS1 > 0 && zS1 < zP && tick > zS1 && tick < zP && (tick - zS1) / (zP - zS1) <= zoneGuard) return { why: `PINK TO GREEN (BTC): short at ${Math.round((tick - zS1) / (zP - zS1) * 100)}% of the green ${zS1.toFixed(2)} -> pink ${zP.toFixed(2)} space - no short in the bottom ${Math.round(zoneGuard * 100)}%.`, below: null, above: null, pos: null, lock: null };",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && side === \"up\" && zP > 0 && zR1 > zP && tick > zP && tick < zR1 && (tick - zP) / (zR1 - zP) >= 1 - zoneGuard) return { why: `PINK TO RED (BTC): long at ${Math.round((tick - zP) / (zR1 - zP) * 100)}% of the pink ${zP.toFixed(2)} -> red ${zR1.toFixed(2)} space - no long in the top ${Math.round(zoneGuard * 100)}%.`, below: null, above: null, pos: null, lock: null }; }",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && ppG > 0 && r1G > ppG && tick > ppG && tick < r1G && (((): boolean => { const vwP = Number((L || []).find((l: Line) => String(l.name) === \"session VWAP\")?.price) || 0, u1P = Number((L || []).find((l: Line) => String(l.name) === \"+1σ\")?.price) || 0, sdP = Math.abs(u1P - vwP); return (tick - ppG) / (r1G - ppG) >= (flipRule ? 0.45 : 0.50) /* fix409 (Love Oct 28 2026 5:39 PM PT: \"55% for shorts and longs pls / main rejection and copy bb\"): main + rejection + copy no gold long in the top 55% of pink -> red; others keep 50% */ /* fix276 (Oct 26 ~11:43 AM PT, Love: \"no longs into the top 40% of the channel from pink to red\" + \"let's make it an even 50% for gold hun\"): top 50% at every band width, was top 40% only once session bands are $10+ apart */ || (!(sdP > 0 && sdP >= 10) && r1G - tick <= 1.5); })()) /* fix134 (Oct 23 12:32 AM PT, Love: \"bring that down to $1.50 ... indefinitely\"): $1.50 under the red, was $2 */ /* fix111: top 40% again once session bands are $10+ apart */ && true /* fix108 (Oct 22 ~7:41 PM PT, Love card \"Both\"): $2 under the red, was top 40% (>= 0.60) */) why = `PINK TO RED: long $${(r1G - tick).toFixed(2)} under the red, at ${Math.round((tick - ppG) / (r1G - ppG) * 100)}% of the pink ${ppG.toFixed(2)} -> red ${r1G.toFixed(2)} space - no gold long in the top ${flipRule ? 55 : 50}% of it (or within $1.50 of the red). /* fix439 */ wait for the red to reject (short) or the pink to reject (long).`;",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "if (!why && asset === \"gold\" && side === \"up\" && !slideFree800(asset, side) && !flipRule && !twinFade && !DLY465.has(String(G.__curBook465 || \"\"))) { const pp490 = Number((L || []).find((l: Line) => String(l.name) === \"5m PP\")?.price) || 0, r1490 = Number((L || []).find((l: Line) => String(l.name) === \"5m R1\")?.price) || 0; if (pp490 > 0 && r1490 > pp490 && tick > pp490 && tick < r1490 && (tick - pp490) / (r1490 - pp490) >= 0.45) why = `PINK TO RED: long at ${Math.round((tick - pp490) / (r1490 - pp490) * 100)}% of the pink ${pp490.toFixed(2)} -> red ${r1490.toFixed(2)} space - no gold long in the top 55% of it (fix490).`; } // fix490 (her c10 answer \"GOLD PINK 55%\" + Love Oct 28 5:39 PM: \"55% for shorts and longs pls\" + Oct 29 11:23 AM: \"pink band tolerances dont change book to book\" + 7:34 PM: \"ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED\")",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && ppH > 0 && s1H > 0 && s1H < ppH && tick < ppH && tick > s1H && (tick - s1H) / (ppH - s1H) <= (flipRule ? 0.55 /* fix409 (Love Oct 28 2026 5:37 PM PT: \"yeah let's make it 55% hun that's good\" + card \"Main + rejection + copy\"): was 0.60 */ : 0.50) /* fix365 (Love Oct 27 2026 8:39 PM PT: \"we can include the 60% into the rejection models too bb\"): main + rejection model + no-pink copy 60% (the pure no-pink skips this wall, fix363) */ /* fix364 (Love Oct 27 2026 8:38 PM PT: \"yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine\"): MAIN only 60%, every other book keeps 50% */) why = `PINK TO GREEN: short $${(tick - s1H).toFixed(2)} over the green, at ${Math.round((tick - s1H) / (ppH - s1H) * 100)}% of the green ${s1H.toFixed(2)} -> pink ${ppH.toFixed(2)} space - no gold short in the bottom ${flipRule ? 55 : 50}% of it. /* fix439 */ wait for the green to reject (long) or the pink to reject (short).`;",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "if (!why && asset === \"gold\" && side === \"down\" && !slideFree800(asset, side) && !flipRule && !twinFade && !DLY465.has(String(G.__curBook465 || \"\"))) { const pp490 = Number((L || []).find((l: Line) => String(l.name) === \"5m PP\")?.price) || 0, s1490 = Number((L || []).find((l: Line) => String(l.name) === \"5m S1\")?.price) || 0; if (pp490 > 0 && s1490 > 0 && s1490 < pp490 && tick < pp490 && tick > s1490 && (tick - s1490) / (pp490 - s1490) <= 0.55) why = `PINK TO GREEN: short at ${Math.round((tick - s1490) / (pp490 - s1490) * 100)}% of the green ${s1490.toFixed(2)} -> pink ${pp490.toFixed(2)} space - no gold short in the bottom 55% of it (fix490).`; } // fix490 (her c10 answer \"GOLD PINK 55%\" + Love Oct 28 5:39 PM: \"55% for shorts and longs pls\" + Oct 29 11:23 AM: \"pink band tolerances dont change book to book\" + 7:34 PM: \"ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED\")",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "{ const Zb = (p, s1, s2, r1, r2) => [{ name: \"5m PP\", price: p }, { name: \"5m S1\", price: s1 }, { name: \"5m S2\", price: s2 }, { name: \"5m R1\", price: r1 }, { name: \"5m R2\", price: r2 }], ZB = Zb(78000, 77900, 77800, 78100, 78200), ZG = Zb(3880, 3870, 3860, 3890, 3900);",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "T(\"fix594 BTC short at 30% from pink goes\", !B.zoneSend594(\"btc\", ZB, 77970, \"down\"));",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "T(\"fix594 BTC short at 50% from pink, in the bottom 55%, is refused\", /bottom 55%/.test(B.zoneSend594(\"btc\", ZB, 77950, \"down\")));",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "T(\"fix594 BTC short inside the green zone is refused\", /past the green/.test(B.zoneSend594(\"btc\", ZB, 77850, \"down\")));",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "T(\"fix594 BTC long at 30% from pink goes\", !B.zoneSend594(\"btc\", ZB, 78030, \"up\"));",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "T(\"fix594 BTC long at 50% from pink, in the top 55%, is refused\", /top 55%/.test(B.zoneSend594(\"btc\", ZB, 78050, \"up\")));",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "T(\"fix594 BTC long over the whole red zone is refused, not free and clear\", /past the red/.test(B.zoneSend594(\"btc\", ZB, 78300, \"up\")));",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "T(\"fix594 a long rejecting off the green zone is not flagged\", !B.zoneSend594(\"btc\", ZB, 77850, \"up\"));",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "T(\"fix594 a short rejecting off the red zone is not flagged\", !B.zoneSend594(\"btc\", ZB, 78150, \"down\"));",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "G.__door594Test = true; T(\"fix594 door: the same test refuses at the door\", /bottom 55%/.test(geo(\"btc\", ZB, 77950, \"down\", \"main\"))); T(\"fix594 door: nothing past the red boundary at the door\", /PAST THE RED/.test(geo(\"btc\", ZB, 78300, \"up\", \"main\"))); G.__door594Test = false;",
+    "why": "fix811 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R480"
+  },
+  {
+    "what": "if (/5m PP|\\bpink\\b/i.test(String(label ?? (G.__inBLC465 ? G.__curLabel611 || \"\" : G.__wireLabel619 || G.__curLabel611 || \"\")))) return 0;",
+    "why": "fix812 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R481"
+  },
+  {
+    "what": "console.log(ok ? \"BTC PUSH 807 TEST ✓ - BTC enters on a $50 push off the wick with her 2m candle her colour on band / zone trades (replaces the candle-open flip there); pink trades keep her $6 push / $2 flip; gold, delayed and switch off unchanged.\" : \"BTC PUSH 807 TEST: FAIL\");",
+    "why": "fix812 (her words above): the same line, changed as she asked - nothing of hers taken out",
+    "R": "R481"
+  },
+  {
+    "what": "if (side === \"down\" && P - under.price <= r && tick <= over.price && tick > under.price - d) return `SESSION BAND AHEAD OF THE PINK (fix618): pink ${P.toFixed(2)} sits $${(P - under.price).toFixed(2)} over the unbroken ${under.name} (${under.price.toFixed(2)}), inside her $${r.toFixed(2)} of the $${(over.price - under.price).toFixed(2)} channel - no short until that band breaks`;",
+    "why": "fix813 (her words + card A): the same wall line / test, now mirrored for shorts and checked both ways - nothing of hers taken out",
+    "R": "R482"
+  },
+  {
+    "what": "T(\"fix618 the 5:45:13 PM gold short is refused: pink $1.68 over the band, inside 33% of a $5.69 channel\", /no short until that band breaks/.test(B.pinkAhead618(\"gold\", G545, 3910.23, \"down\")));",
+    "why": "fix813 (her words + card A): the same wall line / test, now mirrored for shorts and checked both ways - nothing of hers taken out",
+    "R": "R482"
+  },
+  {
+    "what": "T(\"fix618 a $10 channel with pink $2 over the band: refused\", /no short until/.test(B.pinkAhead618(\"gold\", G10, 3905, \"down\")));",
+    "why": "fix813 (her words + card A): the same wall line / test, now mirrored for shorts and checked both ways - nothing of hers taken out",
+    "R": "R482"
+  },
+  {
+    "what": "T(\"fix618 gold, pink in the bottom 20% stacked on the band, a short waits\", /no short until that band breaks/.test(B.pinkAhead618(\"gold\", GS, 3910.23, \"down\")));",
+    "why": "fix813 (her words + card A): the same wall line / test, now mirrored for shorts and checked both ways - nothing of hers taken out",
+    "R": "R482"
+  },
+  {
+    "what": "T(\"fix618 BTC, pink in the bottom 20% stacked on the band, a short waits the same\", /no short until that band breaks/.test(B.pinkAhead618(\"btc\", BS, 78455.8, \"down\")));",
+    "why": "fix813 (her words + card A): the same wall line / test, now mirrored for shorts and checked both ways - nothing of hers taken out",
+    "R": "R482"
+  },
+  {
+    "what": "const [period, setPeriod] = useState(\"7d\"); const [book, setBook] = useState(\"all\"); const [asset, setAsset] = useState(\"btc\"); const [fam, setFam] = useState(\"session\"); // fix689",
+    "why": "fix814 (display only, her words above)",
+    "R": "R483"
+  },
+  {
+    "what": "const books = useMemo(() => [\"all\", ...new Set(((q.data?.setups ?? []) as Cell[]).map((c) => c.book).filter((b) => b !== \"all\"))], [q.data]);",
+    "why": "fix814 (display only, her words above)",
+    "R": "R483"
+  },
+  {
+    "what": "const setups = pick((q.data?.setups ?? []) as Cell[]).filter((c) => c.n >= 3).sort((a, b) => b.n - a.n);",
+    "why": "fix814 (display only, her words above)",
+    "R": "R483"
+  },
+  {
+    "what": "<Table rows={setups} cols={[[\"SETUP\", (c) => String(c.setup)], [\"RUNG\", (c) => String(c.rung)]]} />",
+    "why": "fix814 (display only, her words above)",
+    "R": "R483"
+  },
+  {
+    "what": "{bookTab === \"stats\" ? <RungStats680 /> : null}",
+    "why": "fix814 (display only, her words above)",
+    "R": "R483"
+  },
+  {
+    "what": "const shown = all ? rows : rows.filter((r) => r.badge !== \"WATCH\" || (span === \"7d\" ? r.n7 : r.n24) >= 5);",
+    "why": "fix814 (display only, her words above)",
+    "R": "R483"
+  },
+  {
+    "what": "<span className={cn(\"inline-block size-1.5 rounded-full\", liveQ.data?.live === true ? \"bg-red-500\" : \"bg-subtle\")} />",
+    "why": "fix815 (her words above)",
+    "R": "R484"
+  },
+  {
+    "what": "FILES = {\"inverse-book-688.json\": (\"INVERSE BOOK\", \"setup\"), \"momentum-book-704.json\": (\"MOMENTUM BOOK\", \"setup\"), \"high-multiple-707.json\": (\"HIGH MULTIPLE BOOK\", \"way\"), \"half-band-709.json\": (\"HALF-BAND KEEP BOOK\", \"setup\"), \"cup-book-713.json\": (\"CUP BOOK\", \"setup\"), \"v111-2-770.json\": (\"V.111 - 2\", \"setup\"), \"pink-slide-801.json\": (\"PINK SLIDE ONLY\", \"setup\")}  # fix770: V.111 - 2 scored by set up; fix802: PINK SLIDE ONLY scored by set up",
+    "why": "fix816 (her words above): the same scoring line, with her twins and families added",
+    "R": "R485"
+  },
+  {
+    "what": "add(book, r.get(\"asset\"), r.get(\"side\"), str(r.get(fld) or \"?\")[:60], str(r.get(\"at\", \"\")), 1 if r.get(\"result\") == \"win\" else 0, float(p))",
+    "why": "fix816 (her words above): the same scoring line, with her twins and families added",
+    "R": "R485"
   }
 ]

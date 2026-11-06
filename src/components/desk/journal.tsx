@@ -441,6 +441,7 @@ export function Analytics({
   let allN = 0;
   for (const event of events) {
     if (event.kind !== "banked" || event.profit == null || seen.has(event.tradeId)) continue;
+    if (/^paper-v111-2/.test(String((event as any).venue || ""))) continue; // fix814 (Love Nov 6 2026 ~8:37 AM PT: "the stats changed to only V.111  i still want our main & rej set ups being tracked at each band and each zone"): the V.111 family's paper rows stay out of these lists - they are scored in SET UP SCORES
     seen.add(event.tradeId);
     const profit = event.profit;
     allPnl += profit;

@@ -2,6 +2,62 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R485 - fix816 HER TWINS SCORE THEIR SET UPS (logging / display only): SET UP SCORES now also scores MAIN · W/O PINK (recon-rnp), MAIN · TOGETHER NO PINK (recon-togp), MAIN · ZONE WALL TWIN (recon-tzw), MAIN · VWAP SIDE (main-vwap-694), REJ · TOGETHER REJECTIONS ONLY (recon-togr) and REJECTION · PARKED SIDE (rej-parked-695), alongside REJ ONLY · NO PINK, REJECTION · THIRDS AS READ and PINK SLIDE ONLY - each its own pill - plus two pooled pills: MAIN FAMILY (main + its 4 twins) and REJ FAMILY (rejection + its 4 twins), the same set up label counted across the family so the counts grow faster. V.111 books are never in a family. Their history is read in once from the paper archive (last 8 days) so the families fill today. No trading code.
+- when: 2026-11-06T17:17:16+00:00
+- Love: "Love Nov 6 2026 ~8:55 AM PT: "and can you have all of our revised main rej and no pink books logging set ups too ? the dataset will build quicker and we'll know by midnight which ones we cut and which ones we keep""
+- books: none - SET UP SCORES only
+- status: ACTIVE
+- proof: {"code": "tools/setup-scores-708.py", "has": "FAMILY816"}
+- proof: {"test": "tools/twin-setups-816.cjs"}
+
+## R484 - fix815 LIVE COMES BACK BEFORE THE WINDOW: (1) LIVE off 3+ minutes = a flashing orange light by the LIVE switch and a toast every 3 minutes (with why it's still off). (2) 15 s before each 15-minute window, if LIVE is off it turns itself back on through her own LIVE-on path (writeSwitch + liveBook.since - no rail, seal or size touched) ONLY when no CHANGE / RUN-ALL install is running, the umpire is SAFE, entries aren't halted and OFF TODAY isn't set; otherwise it stays off and says why. Every try logged to data/live-auto-on-815.jsonl. (3) OFF TODAY button next to LIVE (shows while LIVE is off) = her deliberate stop until midnight PT; tap again to clear. live-switch autoLive815 false = off.
+- when: 2026-11-06T17:17:14+00:00
+- Love: "Love Nov 6 2026 ~8:46 AM PT: "can you have it post a toast after 3 minutes if it's off ? and a flashing orange light  and have it set to turn itself back on before the window starts if i turned it off to do commands pls lol  if i'm not doing commands i never turned it off on purpose lol""
+- books: the LIVE switch (every live book)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/liveauto815.ts", "has": "export function decide815("}
+- proof: {"test": "tools/live-auto-815.cjs"}
+
+## R483 - fix814 STATS KEEPS MAIN + REJ (display only): her main + REJ set ups at every band and zone (HER BOOKS · SETUP x RUNG, still recorded underneath - 4,222 trades) now sit FIRST on STATS as tally cards (formatted like SET UP SCORES) with a TRADES / HIT RATE / $$ sorter, opening on MAIN with REJECTION one tap away; the V.111 family's paper rows (which share the fill log and had filled the BEST / WORST lists) stay out of those lists - they are scored in SET UP SCORES. BESTIE's own-setup picking is untouched. Its test is a permanent proof (fails if STATS ever drops main / REJ). SET UP SCORES gets the same HIT RATE / $$ sorter.
+- when: 2026-11-06T17:17:12+00:00
+- Love: "Love Nov 6 2026 ~8:37 AM PT: "the stats changed to only V.111  i still want our main & rej set ups being tracked at each band and each zone" + ~8:42 AM PT: "i want the regular session bands and other zones to be formatted the way the other tallies are if we can pls it looks amazing the way you have the others" + "can you add a sorter here too bb ?? by hit rate and $$""
+- books: none - display only
+- status: ACTIVE
+- proof: {"code": "src/components/desk/stats-rungs.tsx", "has": "useState(\"MAIN\")"}
+- proof: {"test": "tools/stats-main-rej-814.cjs"}
+
+## R482 - fix813 THE PINK WALL MIRROR: SESSION BAND AHEAD OF THE PINK (fix618) now frees a SHORT outside her pink tolerance (20% of the channel on BTC, her per-asset pinkSlide580), exactly as it frees the long since Nov 3 - it had only ever been built for longs. BTC's stacked scale (33% at that width) is unchanged. Every book but delayed. Today's 8:31:01 BTC wick short ($81 over pink, past her $53) goes. PERMANENT: the behaviour umpire now fails NOT SAFE if longs and shorts ever diverge on this wall (mirrored boards) or if her BTC pink tolerance widens; the old short-side tests now sit inside her tolerance.
+- when: 2026-11-06T17:17:11+00:00
+- Love: "Love Nov 6 2026 ~8:35 AM PT: "can you fix the pink wall outside of her tolerance babe? that slipped back in somehow solve for that permanently pls" + her card ~8:37 AM PT: A - mirror her Nov 3 7:20 PM rule ("The block stays only inside the pink tolerance. Outside that tolerance the long is free.") to shorts"
+- books: MAIN, REJECTION and every book but DELAYED - fix618 pink wall
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix813"}
+- proof: {"test": "tools/behaviour-umpire.cjs"}
+
+## R481 - fix812 THE BTC $50 PUSH IS FOR BAND TRADES ONLY: fix807's $50 wick push now applies only to BTC band / zone REJECTIONS (her rejection labels off a session band, zone, Bollinger or R/S line). Every other setup (thirds candles, launches, breaks) goes back to her normal flip ($2 candle flip / $6 push). Pink trades keep her small push. At 8:30:04 the 'Candle falling from the top third' short was wrongly held by the $50 push.
+- when: 2026-11-06T17:17:09+00:00
+- Love: "Love Nov 6 2026 ~8:30 AM PT: "babe btc wicked 15% she didn't enter short" (the 8:30:04 'Candle falling from the top third' short was held by the $50 push meant only for band trades)"
+- books: MAIN, REJECTION and every book but DELAYED - BTC $50 push scope
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix812"}
+- proof: {"test": "tools/btc-push-807.cjs"}
+
+## R480 - fix811 THE TINY CHANNEL, GOLD: her PINK TO RED / PINK TO GREEN 55% (fix594 and its gold twins) steps aside when the gap from the pink to the zone on that side is under $5 on GOLD; BTC keeps the full 55%. Every book but delayed; past the zone, cushion, thirds, flip and money rails still judge. Replay Nov 5 6 AM - Nov 6 8 AM: gold 27 extra trades, 78% hit, +$173 at $10 (+$116 trimmed). Today's 8:00:04 gold long ($4.23 gap) goes. The behaviour umpire's BTC 55% board is now $200 wide, plus gold tiny-channel and BTC-still-refused checks. live-switch tinyChannel809 false = off.
+- when: 2026-11-06T17:17:08+00:00
+- Love: "Love Nov 6 2026 ~8:16 AM PT: "yes on the tiny channel bb" + ~8:22 AM PT: "no if the asks are expensive and they're into a red with only a 65% hit rate don't do it  just gold bb""
+- books: MAIN, REJECTION and every book but DELAYED - gold pink-to-zone 55%
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function tiny809("}
+- proof: {"test": "tools/tiny-channel-811.cjs"}
+
+## R479 - fix810 PINK SLIDE TAP, BTC ONLY: her pink-slide tap entry (fix801 - at the pink rejection, no flip) stays on for BTC and is OFF for gold - gold keeps her flip on slides. Gold's slide taps are still recorded on her PINK SLIDE ONLY paper card (never live).
+- when: 2026-11-06T17:17:06+00:00
+- Love: "Love Nov 6 2026 ~8:21 AM PT, her pick: "no flip on btc , flip on gold pls :)""
+- books: MAIN + REJECTION - pink-slide tap (BTC only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const TAP_ASSETS801"}
+- proof: {"test": "tools/pink-slide-tap-801.cjs"}
+
 ## R478 - fix808 THE SETTINGS SHEET FITS HER SCREEN (display only): the settings sheet had no height limit, so with the add-on rows it grew taller than her phone and its pull-down handle went off the top. Now it is capped at her screen height (inside the safe area), the handle and a new close X stay pinned at the top, and the rows scroll inside. Tapping outside still closes it. No trading code.
 - when: 2026-11-06T16:23:03+00:00
 - Love: "Love Nov 6 2026 ~7:45 AM PT: "every time i pull up the settings tab with the add on toggles the lil handle tab to pull the page down goes too far up and disappears out of frame so i can't exit the page""

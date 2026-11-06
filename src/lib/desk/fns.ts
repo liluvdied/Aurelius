@@ -2379,3 +2379,13 @@ export const getLiveToday722 = createServerFn({ method: "GET" }).handler(async (
     return { gateUnlocked: (() => { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "gate-unlock.json"), "utf8"))?.unlocked === true; } catch { return false; } })() /* fix738 */, silent: await (async () => { try { return (await import("./akimbowatch")).recentSilent734(); } catch { return []; } })() /* fix734 */, on: true, book: String(j.book), name: String(j.name || j.book), until: String(j.until), stopAt: Number(j.stopAt) < 0 ? Number(j.stopAt) : null, n: tr.length, w: tr.filter((t: any) => Number(t.pnl) > 0).length, l: tr.filter((t: any) => Number(t.pnl) <= 0).length, pnl: Math.round(pnl * 100) / 100, stopped: Number(j.stopAt) < 0 && pnl <= Number(j.stopAt), recent: tr.slice(-8).reverse().map((t: any) => ({ first: t.first, ticker: t.ticker, pnl: t.pnl })) };
   } catch { return { on: false }; }
 });
+
+// fix815 LIVE COMES BACK BEFORE THE WINDOW (Love Nov 6 2026 ~8:46 AM PT: "can you have it post a toast after 3 minutes if it's off ? and a flashing orange light  and have it set to turn itself back on before the window starts if i turned it off to do commands pls lol  if i'm not doing commands i never turned it off on purpose lol"): the page's status (off since, hold, last auto-on line) and her OFF FOR THE DAY hold (until midnight PT; tap again to clear).
+export const getLiveAuto815 = createServerFn({ method: "GET" }).handler(async () => { try { return (await import("./liveauto815")).liveAutoStatus815(); } catch { return null; } });
+export const setLiveOffHold815 = createServerFn({ method: "POST" }).validator((input: { on: boolean }) => input).handler(async ({ data }) => {
+  const p = join(process.cwd(), "data", "live-off-hold-815.json");
+  if (!data.on) { writeFileSync(p, JSON.stringify({ until: null, at: new Date().toISOString() })); return { holdUntil: null }; }
+  const nowPT = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })), mid = new Date(nowPT); mid.setHours(24, 0, 0, 0);
+  const until = new Date(Date.now() + (mid.getTime() - nowPT.getTime())).toISOString();
+  writeFileSync(p, JSON.stringify({ until, at: new Date().toISOString() })); return { holdUntil: until };
+});

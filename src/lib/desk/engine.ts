@@ -3859,6 +3859,8 @@ async function tick() {
     import("./pinktap").then((m) => m.pinkTapTick705(snap.assets)).catch(() => {});
     // fix801 THE PINK SLIDE TAP (Love Nov 6 2026 ~6:40 AM PT: "on pink slides she waits for it to come to pink and reject. no flip necessary on pink slides just get in at the best multiple she can"): her take at the pink during her slide / climb.
     import("./pinkslide801").then((m) => m.pinkSlideTick801(snap.assets)).catch(() => {});
+    // fix815 LIVE COMES BACK BEFORE THE WINDOW (Love Nov 6 2026 ~8:46 AM PT): loads her every-second auto LIVE-on check (it runs on its own timer).
+    import("./liveauto815").catch(() => {});
     // fix704 MOMENTUM BOOK (Love Nov 5 2026 3:31 AM PT: "all of em bb !!"). PAPER ONLY (momentum.ts never sends an order).
     import("./momentum").then((m) => m.momentumTick704(snap.assets)).catch(() => {});
     // fix707 HIGH MULTIPLE BOOK (Love Nov 5 2026 ~4:10 AM PT: "let's create a high multiple book too pls. only takes 2.8x +"). PAPER ONLY, 24/7.
