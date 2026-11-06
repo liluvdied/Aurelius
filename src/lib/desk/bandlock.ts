@@ -2030,6 +2030,12 @@ export function breakEntry(asset: string, L: Line[], tick: number, o0 = 0, hl0?:
 }
 export function candleBreakAgainst(asset: string, L: Line[], tick: number, side: string, openOverride = 0, hlOverride?: { h: number; l: number } | null, trail?: { t: number; c: number }[]): string {
   const o = openOverride > 0 ? openOverride : fiveOpenNow(asset);
+  // fix751 BACK PAST THE LINE AS FAR AS IT WENT (Love Nov 5 2026 1:36-1:41 PM PT: "breaks past the other way as far as it went / so broke down by $2 / then flipped the other way and pushed off by $2 /
+  // same way we did it yesterday bb" + "yess"): her R355 / fix666 release, now on this candle's same-candle checks too ("a break up is never a short this candle", "a break is a break: no short this
+  // candle" and their mirrors). A line this 5m candle broke DOWN through frees the long once price is back over it by at least how far it went under it this candle (the 5m low), never less than her
+  // live push ($6 BTC / 10c gold); mirror for a line it broke UP through. Every book but the delayed book.
+  const hl751 = hlOverride && typeof hlOverride === "object" ? hlOverride : (openOverride > 0 ? null : fiveHLNow(asset)), push751 = asset === "btc" ? 6 : asset === "gold" ? 0.1 : Infinity;
+  const free751 = (band: any, dir: "up" | "down") => { try { if (/^recon-dly/.test(String(G.__curBook465 || ""))) return false; const P = Number(band?.price); if (!(P > 0) || !hl751 || !(tick > 0)) return false; return dir === "up" ? tick >= P + Math.max(push751, P - Math.min(Number(hl751.l), tick)) : tick <= P - Math.max(push751, Math.max(Number(hl751.h), tick) - P); } catch { return false; } };
   if (!(o > 0) || !(tick > 0)) return "";
   { const rt0 = pinkRetest(asset, L, tick, o, hlOverride, trail); if (rt0 && rt0.side === side) return ""; } // broke, tapped the pink, rejected = trade the rejection
   // NO LONG WHILE IT'S FALLING (Oct 18 ~11:01 PM PT, Love: "she just longed on gold while it was falling down again hun / can you fix that? once and for
@@ -2051,8 +2057,8 @@ export function candleBreakAgainst(asset: string, L: Line[], tick: number, side:
   if (!(openOverride > 0) || trail) {
     const cb = candleBreaks(asset, L, o, tick, trail, hlOverride !== undefined ? hlOverride : (openOverride > 0 ? null : fiveHLNow(asset)));
     const nr = (side === "up" && cb.down) || (side === "down" && cb.up) ? nextBandReject(asset, L, tick, o, hlOverride !== undefined ? hlOverride : (openOverride > 0 ? null : fiveHLNow(asset)), trail) : null;
-    if (side === "up" && cb.down && !(nr && nr.side === "up")) return `this 5m candle broke DOWN through ${cb.down.band.name} (${Number(cb.down.band.price).toFixed(2)}) - a break down is never a long this candle`;
-    if (side === "down" && cb.up && !(nr && nr.side === "down")) return `this 5m candle broke UP through ${cb.up.band.name} (${Number(cb.up.band.price).toFixed(2)}) - a break up is never a short this candle`;
+    if (side === "up" && cb.down && !(nr && nr.side === "up") && !free751(cb.down?.band, "up") /* fix751 */) return `this 5m candle broke DOWN through ${cb.down.band.name} (${Number(cb.down.band.price).toFixed(2)}) - a break down is never a long this candle`;
+    if (side === "down" && cb.up && !(nr && nr.side === "down") && !free751(cb.up?.band, "down") /* fix751 */) return `this 5m candle broke UP through ${cb.up.band.name} (${Number(cb.up.band.price).toFixed(2)}) - a break up is never a short this candle`;
     if (nr && nr.side === side) return "";
     // back under a session band this candle broke UP: long only once price "reverses and flips and starts rising" - her break distance off the low since
     // the high. Mirror for shorts back over a session band this candle broke DOWN.
@@ -2095,8 +2101,8 @@ export function candleBreakAgainst(asset: string, L: Line[], tick: number, side:
   const ex = hlOverride ?? (openOverride > 0 ? null : fiveHLNow(asset));
   if (dist > 0 && ex) {
     const lo = Math.min(ex.l, tick), hi = Math.max(ex.h, tick);
-    if (side === "up") { const b = L.find((l) => o > l.price && lo <= l.price - dist); if (b) return `this 5m candle broke DOWN through ${b.name} (${b.price}) by $${(b.price - lo).toFixed(2)} - a break is a break: no long this candle`; }
-    if (side === "down") { const b = L.find((l) => o < l.price && hi >= l.price + dist); if (b) return `this 5m candle broke UP through ${b.name} (${b.price}) by $${(hi - b.price).toFixed(2)} - a break is a break: no short this candle`; }
+    if (side === "up") { const b = L.find((l) => o > l.price && lo <= l.price - dist && !free751(l, "up") /* fix751 */); if (b) return `this 5m candle broke DOWN through ${b.name} (${b.price}) by $${(b.price - lo).toFixed(2)} - a break is a break: no long this candle`; }
+    if (side === "down") { const b = L.find((l) => o < l.price && hi >= l.price + dist && !free751(l, "down") /* fix751 */); if (b) return `this 5m candle broke UP through ${b.name} (${b.price}) by $${(hi - b.price).toFixed(2)} - a break is a break: no short this candle`; }
   }
   return "";
 }

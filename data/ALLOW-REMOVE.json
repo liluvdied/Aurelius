@@ -7961,5 +7961,25 @@
     "what": "t(A.includes('book: \"akimbo727\" as any, title: \"AKIMBO · SESSION + PINK × 15M PIVOTS') && A.includes('[\"AKIMBO 🤹\", (b) => b === \"akimbo727\"]'), \"no AKIMBO card / chip\");",
     "why": "fix760 (her words in this change's request)",
     "R": "R429"
+  },
+  {
+    "what": "if (side === \"up\" && cb.down && !(nr && nr.side === \"up\")) return `this 5m candle broke DOWN through ${cb.down.band.name} (${Number(cb.down.band.price).toFixed(2)}) - a break down is never a long this candle`;",
+    "why": "fix751 (her words in this change's request)",
+    "R": "R430"
+  },
+  {
+    "what": "if (side === \"down\" && cb.up && !(nr && nr.side === \"down\")) return `this 5m candle broke UP through ${cb.up.band.name} (${Number(cb.up.band.price).toFixed(2)}) - a break up is never a short this candle`;",
+    "why": "fix751 (her words in this change's request)",
+    "R": "R430"
+  },
+  {
+    "what": "if (side === \"up\") { const b = L.find((l) => o > l.price && lo <= l.price - dist); if (b) return `this 5m candle broke DOWN through ${b.name} (${b.price}) by $${(b.price - lo).toFixed(2)} - a break is a break: no long this candle`; }",
+    "why": "fix751 (her words in this change's request)",
+    "R": "R430"
+  },
+  {
+    "what": "if (side === \"down\") { const b = L.find((l) => o < l.price && hi >= l.price + dist); if (b) return `this 5m candle broke UP through ${b.name} (${b.price}) by $${(hi - b.price).toFixed(2)} - a break is a break: no short this candle`; }",
+    "why": "fix751 (her words in this change's request)",
+    "R": "R430"
   }
 ]

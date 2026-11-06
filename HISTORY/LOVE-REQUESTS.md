@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R430 - fix751 BACK PAST THE LINE AS FAR AS IT WENT (every book but delayed): her same-candle check - 'this 5m candle broke UP through the pink / a band - a break up is never a short this candle' (and the mirror for longs) - now has the same release your R355 / fix666 gave her other broke-this-candle walls yesterday: once price is back past that line the other way by at least as far as it went past it this candle (e.g. broke up $2 -> needs $2 back under), and never less than your live push ($6 BTC / 10c gold), the trade is free. Every other gate still applies. Replay since Oct 19 (AKIMBO, the new trades only, real ask, 66c floor, 2+ min left, $20): 122 trades, 47% won, +$239. The delayed book keeps the old rule.
+- when: 2026-11-06T00:18:02+00:00
+- Love: "Love Nov 5 2026 1:36 PM PT: "oh yea no we absolutely need to change that to the distance past where it came from thing bb" + 1:37 PM: "no i meant breaks past the other way as far as it went / so broke down by $2 / then flipped the other way and pushed off by $2 / same way we did it yesterday bb" + 1:41 PM: "yess and a few less missed trades i think it's worth it bb""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix751 BACK PAST THE LINE AS FAR AS IT WENT"}
+- proof: {"test": "tools/break-back-751.cjs"}
+
 ## R429 - fix760 $$$ (display only - no order, rule or setting changes): a new family chip on the Books page, first in the list, named $$$ 💸, holding all our new books - AKIMBO card, SESSION + PINK, +15M PIVOTS, the gold 2m middle seat, BTC 5m middle, the AKIMBO + BTC twin card, ALL-BOLLINGER, main wait-distance twin, the inverse book, BRICK no pivot wall, and last night's paper books (momentum, high multiple both ways, 70% club, half-band, cup, VWAP side, rejection parked). They move into $$$ (the now-empty AKIMBO and TONIGHT'S PAPER chips are removed); RUNNING, the tiers and the find box are unchanged.
 - when: 2026-11-06T00:12:12+00:00
 - Love: "Love Nov 5 2026 4:02 PM PT: "can you make a new subgroup in the navigation section for all Of our new ones ?:) just $$$ is fine idk what else to name them lol""
