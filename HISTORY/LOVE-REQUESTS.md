@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R464 - fix793 BESTIE'S SESSION-BAND SLIDING SCALE (as main and rej): live BESTIE gets main's SESSION BAND AT THE SEND - bandlock.ts sessionBandSend593 with her sliding scale sessionScale593 (fix593): no long into an unbroken session band above / short into one below within BTC $25 when the channel is under $100, 33% of the channel to $500, 20% over $500; gold 33% at a $10 channel sliding to 20% at $20 (20% over). Done with live-switch scaleBooks793 = ["bestie"] in the live-today send branch. Replay of her 25 settled takes since 10 PM: blocks 7 (5 W) - -$11.00 vs taking them. Every other book unchanged.
+- when: 2026-11-06T12:48:45+00:00
+- Love: "Love Nov 6 2026 ~3:26 AM PT: "the same sliding scale for the session bands bb :))" + "as main and rej""
+- books: BESTIE (bestie) live - entries
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "?.scaleBooks793;"}
+- proof: {"test": "tools/bestie-guard-793.cjs"}
+
 ## R463 - fix792 BESTIE'S PINK-TO-ZONE 55%: live BESTIE gets main's zone check at the send - bandlock.ts zoneSend594, the same function main and REJECTION's last line runs: no short in the bottom 55% from the pink down to the green zone, no long in the top 55% from the pink up to the red zone, no trade past the red / green boundary, and her Bollinger fade-past-the-zone block (fix711) that lives in the same check. Done with live-switch zoneBooks792 = ["bestie"] in the live-today send branch. Replay of her 25 settled takes since 10 PM: blocks 6 (4 W) - -$12.75 vs taking them (incl. the 3:16 AM BTC short). Every other book unchanged.
 - when: 2026-11-06T12:06:45+00:00
 - Love: "Love Nov 6 2026 ~3:26 AM PT, her card pick "Both guards" (after "hun she just shorted btc in the bottom of the channel"), guard 2 = pink-to-green / pink-to-red 55% (fix594)"
