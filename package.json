@@ -1,0 +1,13 @@
+{
+  "name": "aurelius-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Aurelius, cloned clean: mechanical wiring only. Paper by default.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": { "ws": "8.18.0" }
+}

@@ -1,0 +1,53 @@
+{
+  "_read_me": "Every number the core uses lives here. null = that rule is OFF until Love types a number. Love's words go in each _why.",
+
+  "assets": {
+    "btc":  { "chart": "PEPPERSTONE:BTCUSD", "kalshiSeries": "KXBTC15M" },
+    "gold": { "chart": "TVC:GOLD",           "kalshiSeries": "KXGOLD15M" }
+  },
+  "_assets_why": "Love Oct 30: 'its supposed to be pepperstone for btc and tvc gold for gold.'",
+
+  "session": { "startHour": 17, "timeZone": "America/New_York" },
+  "_session_why": "Session VWAP resets at 5 PM New York every day (DST handled by the clock, never a fixed UTC hour). Confirm.",
+
+  "bands": { "steps": [0.5, 1, 1.5, 2, 2.5, 3] },
+  "rollingVwap": { "minutes": 60 },
+  "_rollingVwap_why": "Love Nov 5: 'she uses a rolling vwap doesnt she? ... along with the sessions'. Desk today: last 12 x 5m bars = 60 min. Grok OG (R098): rolling 60-min.",
+  "pivots": { "timeframeMin": 5, "emaLength": 7, "rangeBars": 7 },
+  "bollinger": { "timeframeMin": 5, "length": 20, "mult": 2 },
+
+  "maxAskCents": 66,
+  "_maxAskCents_why": "Love: 66c floor.",
+
+  "minAskCents": null,
+  "_minAskCents_why": "Cheapest ask she may buy (smoke test Nov 5: with this off she called 1-2c lottery tickets). Love to fill.",
+
+  "breakPush": { "btc": 5, "gold": 0.10 },
+  "_breakPush_why": "Love: breaks are judged on 5m lines, a 10c push on gold, $5 on BTC.",
+
+  "intoBandWall": { "btc": 25, "gold": null },
+  "_intoBandWall_why": "Love: keep the into-band $25 wall. Gold number to confirm.",
+
+  "thirds": {
+    "scale": { "gold": [[10, 33], [25, 20], [null, 15]], "btc": [[500, 33], [null, 20]] },
+    "marginPct": 3,
+    "bandPassed": { "btc": 2, "gold": 0.33 }
+  },
+  "_thirds_why": "R141 Love Oct 28: '33% NEVER. EVER. LEAVES.' R005/R236 gold sliding 33% under $10, 20% $10-25, 15% over $25 ('gold has a sliding scale love i already answered it'). R237 BTC 20% over $500 ('ITS 20% AT THIS BAND WIDTH'). R335 'make it a 3% margin of error both sides pls'. R336 'Fix the calculation so it matches the chart' (band to band as drawn). R140 a band counts as passed only once price is through it: gold 33c, BTC $2 (R338 'make it $2 on the break'). Scale rows = [channel width up to $, share %]; null = and above.",
+
+  "tapReach": { "btc": null, "gold": null },
+  "_tapReach_why": "How close to a band counts as a tap. Love to fill.",
+
+  "minSecondsLeft": null,
+  "_minSecondsLeft_why": "Latest moment in a window she may enter. Love to fill.",
+
+  "maxPriceAgeSec": null,
+  "_maxPriceAgeSec_why": "A price older than this = no trade. Love to fill.",
+
+  "exit": { "halfAtPctOfRoom": null, "trailArmPctOfRoom": null, "trailPoints": null, "sellAtCents": null },
+  "_exit_why": "Exit plan. All null = hold to the bell. Love to fill.",
+
+  "books": {
+    "main": { "on": true, "setups": ["tap", "closeThrough", "break5m"] }
+  }
+}

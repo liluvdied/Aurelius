@@ -1,0 +1,5 @@
+node_modules/
+secrets/*
+!secrets/README.txt
+data/replay/
+.DS_Store
