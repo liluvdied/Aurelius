@@ -8066,5 +8066,85 @@
     "what": "if (next && !window.confirm(`Turn LIVE on? Real Kalshi and Polymarket orders will be sent, up to $${liveQ.data?.maxDollars ?? 10} each.`)) return;",
     "why": "fix764 (her words in this change's request)",
     "R": "R439"
+  },
+  {
+    "what": "[\"$$$ 💸\", (b) => [\"akimbo727\", \"akimbo744\", \"brk-sesspk\", \"brk15\", \"gmid2\", \"bmid5\", \"allbb\", \"recon-tzw\", \"inv688\", \"brnw\", \"hm707-rev\", \"hm707-rip\", \"club690\", \"mom704\", \"hb709\", \"cup713\", \"mv694\", \"rp695\"].includes(b)],",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<span className=\"flex shrink-0 flex-wrap gap-1\">{([[\"pnl-hi\", \"$ HIGH\"], [\"pnl-lo\", \"$ LOW\"], [\"hit-hi\", \"HIT % HIGH\"], [\"hit-lo\", \"HIT % LOW\"]] as const).map(([k, t]) => <button key={k} type=\"button\" onClick={() => pickSort691(k)} className=\"rounded-[4px] px-1.5 py-0.5 font-mono text-[9px] leading-none\" style={{ border: `1px solid rgba(255,255,255,${sortBy691 === k ? 0.9 : 0.3})`, color: sortBy691 === k ? \"#fff\" : \"rgba(255,255,255,0.55)\" }}>{t}</button>)}</span> {/* fix691 SORT BY */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<RsiBooks672 /> {/* fix672 RSI BOOKS - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<EthBook682 /> {/* fix682 ETH rejections-only - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<Og1012Card /> {/* fix686 OG ORIGINAL · 10.12 - paper, sealed */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<BrkOut687 /> {/* fix687 OUTWARD BREAK - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<Inverse688 /> {/* fix688 INVERSE BOOK - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<Momentum704 /> {/* fix704 MOMENTUM BOOK - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<HighMult707 /> {/* fix707 HIGH MULTIPLE BOOK + TRACKER - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<HalfBand709 /> {/* fix709 HALF-BAND KEEP BOOK - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<Cups713 /> {/* fix713 CUP BOOK - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<Club690 /> {/* fix690 70% CLUB - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<MainVwap694 /> {/* fix694 MAIN VWAP SIDE - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "<RejParked695 /> {/* fix695 REJECTION PARKED SIDE - paper only */}",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "const raw = JSON.parse(readFileSync(p, \"utf8\")); const rows = Array.isArray(raw?.rows) ? raw.rows : [];",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
+  },
+  {
+    "what": "mine.push({ id: `${r.id}:${pb.book}`, book: pb.book, at: r.at, asset: r.asset, ticker: r.ticker, side: r.side, setup: String(r.setup || r.way || r.label || r.key || r.list || pb.title).slice(0, 120), ask, multiple: ask > 0 ? Math.round((1 / ask) * 100) / 100 : null, stake: 20, result: r.result === \"open\" ? \"open\" : r.result === \"win\" ? \"win\" : \"loss\", exit: r.result === \"open\" ? \"open\" : r.soldBid != null ? `sold at ${Math.round(Number(r.soldBid) * 100)}c` : \"held to the bell\", pnl: Number.isFinite(pnl as number) ? pnl : null, paper721: true });",
+    "why": "fix765 (her words in this change's request)",
+    "R": "R440"
   }
 ]

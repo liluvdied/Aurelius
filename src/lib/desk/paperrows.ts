@@ -17,6 +17,10 @@ export const PAPER_BOOKS721: { file: string; book: string; title: string; split?
   { file: "cup-book-713.json", book: "cup713", title: "CUP BOOK · 😊 ☹️ CUPS, HANDLES, DOUBLES (paper)" },
   { file: "main-vwap-694.json", book: "mv694", title: "MAIN · VWAP SIDE ONLY (paper)" },
   { file: "rej-parked-695.json", book: "rp695", title: "REJECTION · PARKED SIDE (paper)" },
+  { file: "rsi-books.json", book: "rsi672", title: "RSI BOOKS · 5M / 15M / 30M / 1H / 4H · PAPER" }, // fix765b
+  { file: "eth-book.json", book: "eth682", title: "ETH · REJECTIONS ONLY · NO PINK · PAPER" }, // fix765b
+  { file: "og-1012.json", book: "og1012", title: "OG ORIGINAL · 10.12 🕯️ · PAPER · SEALED" }, // fix765: a regular card (her sealed rows read as they are)
+  { file: "brk-out-687.json", book: "brkout687", title: "OUTWARD BREAK · SESSION BANDS · PAPER 🤍" }, // fix765
 ];
 export function paperBookRows721(): any[] {
   const out: any[] = [];
@@ -26,14 +30,14 @@ export function paperBookRows721(): any[] {
       const p = D(pb.file); if (!existsSync(p)) continue;
       const st = statSync(p), key = `${st.mtimeMs}:${st.size}`, ck = pb.book;
       if (C[ck]?.key === key) { out.push(...C[ck].rows); continue; }
-      const raw = JSON.parse(readFileSync(p, "utf8")); const rows = Array.isArray(raw?.rows) ? raw.rows : [];
+      const raw = JSON.parse(readFileSync(p, "utf8")); const rows = Array.isArray(raw?.rows) ? raw.rows : Array.isArray(raw) ? raw /* fix765: og-1012.json is a plain list */ : [];
       const mine: any[] = [];
       for (const r of rows) {
         if (!r || !r.id || !r.at || !r.ticker || (r.side !== "up" && r.side !== "down")) continue;
         if (pb.split && pb.split(r) !== pb.book) continue;
         const pnl = r.result === "open" ? null : Number(r.pnlTp ?? r.pnlHold ?? r.pnl ?? NaN);
         const ask = Number(r.ask) || 0;
-        mine.push({ id: `${r.id}:${pb.book}`, book: pb.book, at: r.at, asset: r.asset, ticker: r.ticker, side: r.side, setup: String(r.setup || r.way || r.label || r.key || r.list || pb.title).slice(0, 120), ask, multiple: ask > 0 ? Math.round((1 / ask) * 100) / 100 : null, stake: 20, result: r.result === "open" ? "open" : r.result === "win" ? "win" : "loss", exit: r.result === "open" ? "open" : r.soldBid != null ? `sold at ${Math.round(Number(r.soldBid) * 100)}c` : "held to the bell", pnl: Number.isFinite(pnl as number) ? pnl : null, paper721: true });
+        mine.push({ id: `${r.id}:${pb.book}`, book: pb.book, at: r.at, asset: r.asset || (/ETH/.test(String(r.ticker)) ? "eth" : /GOLD/.test(String(r.ticker)) ? "gold" : "btc") /* fix765b */, ticker: r.ticker, side: r.side, setup: String(r.setup || r.way || r.label || r.key || r.list || (pb.book === "rsi672" && r.book ? `${r.book} · ${r.market || ""}` : "") || pb.title).slice(0, 120), ask, multiple: ask > 0 ? Math.round((1 / ask) * 100) / 100 : null, stake: 20, result: r.result === "open" ? "open" : r.result === "win" ? "win" : "loss", exit: r.result === "open" ? "open" : r.soldBid != null ? `sold at ${Math.round(Number(r.soldBid) * 100)}c` : "held to the bell", pnl: Number.isFinite(pnl as number) ? pnl : null, paper721: true });
       }
       C[ck] = { key, rows: mine }; out.push(...mine);
     } catch {}

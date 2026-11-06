@@ -3351,8 +3351,12 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     { book: "recon-rjt3" as any, title: "RECONSTRUCTED 🧬 · REJECTIONS ONLY · THIRDS AS READ 🧪", note: "fix703 (Love, Nov 5 3:43 AM: \"YES pls fix the two thirds that disagree !!!! that's been happening all week !!\"): REJECTION's exact read and walls, but her thirds judged once - where the read judged them (a candle-in-her-third read keeps its own third; any other read is judged on the read's session-band channel). The door's ONLY IN HER THIRD / IMPOSSIBILITY percent lines stand down for this book only. Paper - decide Nov 11." },
     { book: "akimbo727" as any, title: "AKIMBO · SESSION + PINK × 15M PIVOTS ✨ (clean slate)", note: "fix727 (Love, Nov 5 7:42 AM: \"pls create a new combined card Akimbo so she has a clean slate\"): the akimbo pair on paper exactly as CHANGE-71 trades it live - one ticket per window, the first of the two to call it; when +15M PIVOTS calls the other side of a SESSION + PINK ticket, that ticket is sold at the bid and pivot's side taken. $10 a ticket, from zero at install." },
     { book: "mom704" as any, title: "MOMENTUM BOOK · GO WITH IT (paper)", note: "fix704 paper: gold with the first 2 minutes, BTC with a fresh pink break up, BTC short under -2σ while falling, gold 1σ chase. $20 at the real ask. Card added by fix721 (display only)." },
+    { book: "rsi672" as any, title: "RSI BOOKS · 5M / 15M / 30M / 1H / 4H · PAPER", note: "fix672 (Love Nov 4 9:56 PM): every RSI cell - asset x market x RSI timeframe x level, paper only. Tap: its timeframe / level filters and table, then its trades. Card by fix765 (display only)." },
+    { book: "eth682" as any, title: "ETH · REJECTIONS ONLY · NO PINK · PAPER", note: "fix682 (Love Nov 4 11:38 PM): ETH rejections only, no pink, paper only. Tap for its panel and trades. Card by fix765 (display only)." },
     { book: "hm707-rev" as any, title: "HIGH MULTIPLE · REVERSAL AT THE FARTHEST BAND (paper)", note: "fix707 paper: after a rip through 1+ bands, the turn back at the farthest band, 2.8x+ asks only. Card added by fix721 (display only)." },
     { book: "hm707-rip" as any, title: "HIGH MULTIPLE · WITH THE RIP (paper)", note: "fix707 paper twin: still past the last band crossed, with the rip, 2.8x+ asks only. Card added by fix721 (display only)." },
+    { book: "og1012" as any, title: "OG ORIGINAL · 10.12 🕯️ · PAPER · SEALED", note: "fix686 (Love, Nov 5 ~1:00 AM: put her on her own paper card never to be touched): Oct 12 OG + PIVOT 5M, byte for byte from branch 10.12 · $20 paper · her Oct 12 exits · never edited. Card by fix765 (display only)." },
+    { book: "brkout687" as any, title: "OUTWARD BREAK · SESSION BANDS · PAPER 🤍", note: "fix687 (Love, Nov 5 ~1:00 AM): a 1m close through a session band by her push ($6 BTC / 33c gold), away from the VWAP · $20 paper · 1.38x floor · BTC + gold. Card by fix765 (display only)." },
     { book: "inv688" as any, title: "INVERSE BOOK · HER LOSING SET UPS, FLIPPED (paper)", note: "fix688 paper: the other side of her listed losing set ups (data/inverse-setups.json). Card added by fix721 (display only)." },
     { book: "club690" as any, title: "70% CLUB · HER BEST SET UPS (paper)", note: "fix690 paper: CLUB 70 / HER RULE / HER LADDER lists from the past 14 days. Card added by fix721 (display only)." },
     { book: "hb709" as any, title: "HALF-BAND KEEP BOOK (paper)", note: "fix709 paper: PAPER 24/7's half-band calls, only the set ups SET UP SCORES rate KEEP or LADDER. Card added by fix721 (display only)." },
@@ -3535,7 +3539,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     // First in the list so these cards live here even when another family's pattern would also match them.
     // fix760 $$$ (Love Nov 5 2026 4:02 PM PT: "a new subgroup in the navigation section for all Of our new ones ... just $$$ is fine"): first in the list, so all our new books live here (moved, not
     // duplicated): AKIMBO and its seats, the Bollinger books, the main wait-distance twin, the inverse book, BRICK no pivot wall and last night's paper books.
-    ["$$$ 💸", (b) => ["akimbo727", "akimbo744", "brk-sesspk", "brk15", "gmid2", "bmid5", "allbb", "recon-tzw", "inv688", "brnw", "hm707-rev", "hm707-rip", "club690", "mom704", "hb709", "cup713", "mv694", "rp695"].includes(b)],
+    ["$$$ 💸", (b) => ["og1012", "rsi672", "eth682", "brkout687", "akimbo727", "akimbo744", "brk-sesspk", "brk15", "gmid2", "bmid5", "allbb", "recon-tzw", "inv688", "brnw", "hm707-rev", "hm707-rip", "club690", "mom704", "hb709", "cup713", "mv694", "rp695"].includes(b)],
     ["RECONSTRUCTED 🧬", (b) => ["recon-fresh", "recon-togp-fresh", "recon-rnp-fresh" /* fix625 */, "recon-all", "recon-dly", "recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-togp"].includes(b)],
     ["NEW ONES 🆕", (b) => ["ogp5-sess", "ogp5-c1", "ogp5-c5", "ogp5-hrs", "ogp5-bbsr", "ogp5-dly", "supernova", "ogp5-r15", "ogp5-r30", "ogp5-cb", "ogp5-fast", "ogp5-gw", "ogp5-inv", "ogp5-boll", "ogp5-lock", "ogp5-btco", "ogp5-pv", "brk-sess", "brk-sesspk", "brk-sessrj", "brk5", "brk10", "brk15", "gold-rg"].includes(b)],
     ["HER LINEUP 🪞 TWINS", (b) => /^tw/.test(b) && b !== "twtog"],
@@ -3735,6 +3739,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     return (
       <div key={`inline-${book}`} className="rounded-2xl px-3 py-2 sm:col-span-2" style={{ border: "1px solid rgba(255,255,255,0.25)", boxShadow: "0 0 12px rgba(255,255,255,0.06)" }}>
         <p className="mb-1.5 text-[9px] tracking-[0.24em] text-white/60">{(LABEL[book] ?? book).toUpperCase()} · {xs.length < sorted.length ? `LATEST ${xs.length} OF ${sorted.length}` : `ALL ${sorted.length}`} TRADES · TAP THE CARD AGAIN TO CLOSE</p>
+        {book === "rsi672" ? <RsiBooks672 /> : book === "eth682" ? <EthBook682 /> : book === "hm707-rev" || book === "hm707-rip" ? <HighMult707 /> : null} {/* fix765b: the panel (filters, table, tracker) opens inside its card */}
         {xs.length ? xs.map((r) => {
           const open = r.result === "open" || r.pnl == null;
           // OPEN = ON KALSHI (Oct 15, Love's no-exceptions law): an open row the door did not FILL shows NOT ON KALSHI
@@ -3967,7 +3972,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
       <div className="flex items-baseline justify-between gap-3">
         <div className="flex items-center justify-between gap-2">
           <p className="text-[10px] tracking-[0.28em] text-white/90">PAPER · {ranked.length} LEDGERS · RANKED{h2h ? ` · SINCE ${shiftClock(since)}` : ""}</p>
-          <span className="flex shrink-0 flex-wrap gap-1">{([["pnl-hi", "$ HIGH"], ["pnl-lo", "$ LOW"], ["hit-hi", "HIT % HIGH"], ["hit-lo", "HIT % LOW"]] as const).map(([k, t]) => <button key={k} type="button" onClick={() => pickSort691(k)} className="rounded-[4px] px-1.5 py-0.5 font-mono text-[9px] leading-none" style={{ border: `1px solid rgba(255,255,255,${sortBy691 === k ? 0.9 : 0.3})`, color: sortBy691 === k ? "#fff" : "rgba(255,255,255,0.55)" }}>{t}</button>)}</span> {/* fix691 SORT BY */}
+          {/* fix765: the sorter moved down to the book chips */}
           <button
             type="button"
             onClick={flipAuto}
@@ -4057,18 +4062,18 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
           </div>
         );
       })()}
-      <RsiBooks672 /> {/* fix672 RSI BOOKS - paper only */}
-      <EthBook682 /> {/* fix682 ETH rejections-only - paper only */}
-      <Og1012Card /> {/* fix686 OG ORIGINAL · 10.12 - paper, sealed */}
-      <BrkOut687 /> {/* fix687 OUTWARD BREAK - paper only */}
-      <Inverse688 /> {/* fix688 INVERSE BOOK - paper only */}
-      <Momentum704 /> {/* fix704 MOMENTUM BOOK - paper only */}
-      <HighMult707 /> {/* fix707 HIGH MULTIPLE BOOK + TRACKER - paper only */}
-      <HalfBand709 /> {/* fix709 HALF-BAND KEEP BOOK - paper only */}
-      <Cups713 /> {/* fix713 CUP BOOK - paper only */}
-      <Club690 /> {/* fix690 70% CLUB - paper only */}
-      <MainVwap694 /> {/* fix694 MAIN VWAP SIDE - paper only */}
-      <RejParked695 /> {/* fix695 REJECTION PARKED SIDE - paper only */}
+      {false && <RsiBooks672 />} {/* fix765: opens inside its card now (Love Nov 5 5:08 PM) */}
+      {false && <EthBook682 />} {/* fix765: opens inside its card now (Love Nov 5 5:08 PM) */}
+      {false && <Og1012Card />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <BrkOut687 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <Inverse688 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <Momentum704 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <HighMult707 />} {/* fix765: opens inside its card now (Love Nov 5 5:08 PM) */}
+      {false && <HalfBand709 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <Cups713 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <Club690 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <MainVwap694 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <RejParked695 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
       {/* FAMILIES + FIND (Oct 9). */}
       <div className="mt-3 rounded-2xl px-2 py-2" style={{ border: "1px solid rgba(255,255,255,0.18)" }}>
         {/* RECORDS (Love Nov 4 2026 10:35 AM PT: "draw the files OFF OF MY COMPUTER ... the app is the INTERFACE to view them, not the thing hosting them"): a plain link to the page her laptop builds and serves (7-OPEN-REGISTRAR, http://127.0.0.1:8090). The desk loads none of it. */}
@@ -4080,6 +4085,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
           className="w-full rounded-lg bg-transparent px-2 py-1.5 font-mono text-[10px] tracking-[0.12em] text-white outline-none placeholder:text-white/35"
           style={{ border: "1px solid rgba(255,255,255,0.2)" }}
         />
+        <div className="mt-2 flex items-center gap-2"><span className="font-mono text-[9px] tracking-[0.2em] text-white/55">SORT</span><span className="flex shrink-0 flex-wrap gap-1">{([["pnl-hi", "$ HIGH"], ["pnl-lo", "$ LOW"], ["hit-hi", "HIT % HIGH"], ["hit-lo", "HIT % LOW"]] as const).map(([k, t]) => <button key={k} type="button" onClick={() => pickSort691(k)} className="rounded-[4px] px-1.5 py-0.5 font-mono text-[9px] leading-none" style={{ border: `1px solid rgba(255,255,255,${sortBy691 === k ? 0.9 : 0.3})`, color: sortBy691 === k ? "#fff" : "rgba(255,255,255,0.55)" }}>{t}</button>)}</span></div> {/* fix765 SORT BY, by the books (Love Nov 5 4:53 PM: "pls put this sorter here by the actual books") */}
         <div className="mt-2 flex flex-wrap gap-1.5">
           {["ALL", ...FAMS.map(([n]) => n), "OTHER"].map((n) => {
             const count = n === "ALL" ? ranked.length : ranked.filter((b) => famOf(b.book) === n).length;

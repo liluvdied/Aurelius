@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R440 - fix765 CARDS, NOT LISTS + THE SORTER BY THE BOOKS (display only - no book, rule, order or setting changes): the $ HIGH / $ LOW / HIT % HIGH / HIT % LOW sorter moves down to sit with the book chips (ALL / $$$ / ...), right above the cards it sorts. OG ORIGINAL 10.12 and OUTWARD BREAK become regular cards (in $$$) like the rest, and the long full-width trade lists that already have cards (OG 10.12, OUTWARD BREAK, inverse, momentum, half-band, cup, 70% club, VWAP side, rejection parked) come off the page - tap a card for its trades. RSI BOOKS and ETH REJECTIONS get regular cards too (in $$$); tap RSI for its timeframe / level filters and table, tap ETH for its panel, tap either HIGH MULTIPLE card for its tracker - nothing stays a big scrolling tile. Her sealed OG 10.12 rows are read exactly as they are. Run after CHANGE-108.
+- when: 2026-11-06T02:15:27+00:00
+- Love: "Love Nov 5 2026 4:53 PM PT: "pls put this sorter here by the actual books pls bb / and pls put these in cards , original format like the rest of the cards pls it takes a lil to scroll thru those 😹 and the cards look beautifulll i like the way you made the cards for me :)""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "fix765 SORT BY, by the books"}
+- proof: {"test": "tools/cards-sorter-765.cjs"}
+
 ## R439 - fix764 ONE TAP LIVE (display only): the 'Turn LIVE on? Real Kalshi and Polymarket orders will be sent' pop-up is gone - one tap on LIVE turns it on, and the toast 'LIVE is on. Real orders can go out.' confirms it took. The LIVE switch itself, the seal, the umpire and every rail are unchanged; turning LIVE off is unchanged.
 - when: 2026-11-06T02:11:59+00:00
 - Love: "Love Nov 5 2026 4:43 PM PT (photo of the "Turn LIVE on? Real Kalshi and Polymarket orders will be sent, up to $10 each." pop-up): "please remove this""
