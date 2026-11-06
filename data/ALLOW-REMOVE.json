@@ -8816,5 +8816,135 @@
     "what": "add(book, r.get(\"asset\"), r.get(\"side\"), str(r.get(fld) or \"?\")[:60], str(r.get(\"at\", \"\")), 1 if r.get(\"result\") == \"win\" else 0, float(p))",
     "why": "fix816 (her words above): the same scoring line, with her twins and families added",
     "R": "R485"
+  },
+  {
+    "what": "def acc(): return {\"n\": 0, \"w\": 0, \"pnl\": 0.0}",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "x = A[(per, bk, r[\"asset\"], k, g)]; x[\"n\"] += 1; x[\"w\"] += won; x[\"pnl\"] += r[\"pnl\"]",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "\"setups\": [dict(period=k[0], book=k[1], asset=k[2], setup=k[3], rung=k[4], n=v[\"n\"], w=v[\"w\"], pnl=round(v[\"pnl\"], 2)) for k, v in A.items()],",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "rows[f'{r[\"lane\"]}|{r.get(\"id\")}'] = [r[\"lane\"], r.get(\"asset\"), r.get(\"side\"), norm(r.get(\"label\")), at, 1 if float(r[\"pnl\"]) > 0 else 0, round(float(r[\"pnl\"]), 2)]",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "S = collections.defaultdict(lambda: {\"n24\": 0, \"w24\": 0, \"p24\": 0.0, \"n7\": 0, \"w7\": 0, \"p7\": 0.0})",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "def add(book, asset, side, label, at, win, pnl):",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "if at >= d7: s[\"n7\"] += 1; s[\"w7\"] += win; s[\"p7\"] += pnl",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "if at >= d24: s[\"n24\"] += 1; s[\"w24\"] += win; s[\"p24\"] += pnl",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "if book in FAMILY816 and not book.endswith(\"FAMILY\"): add(FAMILY816[book], asset, side, label, at, win, pnl)  # fix816",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "for ln, asset, side, label, at, win, pnl in rows.values(): add(BOOKS[ln], asset, side, label, at, win, pnl)",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "add(book, r.get(\"asset\"), r.get(\"side\"), norm(r.get(fld[:-1])) if fld.endswith(\"*\") else str(r.get(fld) or \"?\")[:60], str(r.get(\"at\", \"\")), 1 if r.get(\"result\") == \"win\" else 0, float(p))",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "if s[\"n7\"] >= 5 and s[\"w7\"] * 2 < s[\"n7\"]: return \"CUT\"",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "out[book].append({\"setup\": key, **{k: (round(v, 2) if isinstance(v, float) else v) for k, v in s.items()}, \"badge\": badge(s)})",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "res = {\"at\": now.isoformat().replace(\"+00:00\", \"Z\"), \"rule\": \"KEEP = 7 d 15+ trades 65%+ and made money · LADDER = 24 h more than half (3+) or 7 d 60%+ (10+) · CUT = 7 d lost more than it won (5+)\", \"books\": out}",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "const [sort814, setSort814] = useState<\"LIST\" | \"HIT RATE\" | \"$$\">(\"LIST\"); // fix814 (Love Nov 6 2026 ~8:42 AM PT: \"i want the regular session bands and other zones to be formatted the way the other tallies are if we can pls it looks amazing the way you have the others\" + \"can you add a sorter here too bb ?? by hit rate and $$\")",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "const shown = sort814 === \"HIT RATE\" ? [...shown0].sort((x, y) => ww(y) / Math.max(1, nn(y)) - ww(x) / Math.max(1, nn(x)) || nn(y) - nn(x)) : sort814 === \"$$\" ? [...shown0].sort((x, y) => pp(y) - pp(x)) : shown0;",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "{([\"LIST\", \"HIT RATE\", \"$$\"] as const).map((x) => <button key={x} onClick={() => setSort814(x)} className={`rounded-md border px-2 py-0.5 font-mono text-[9px] ${x === sort814 ? \"border-white text-white\" : \"border-white/30 text-white/60\"}`}>{x}</button>)} {/* fix814 sorter */}",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "<span className=\"shrink-0 font-mono text-sm tabular-nums\">{w}/{n}<span className=\"ml-2 text-xs\">{n ? Math.round((100 * w) / n) : 0}%</span><span className=\"ml-2 text-xs\">{money(p)}</span><span className=\"ml-2 text-[10px] font-bold\" style={{ color: COL[r.badge] }}>{r.badge}</span></span>",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "const setups = pick((q.data?.setups ?? []) as Cell[]).filter((c) => c.n >= 3).sort((a, b) => sort814 === \"HIT RATE\" ? (b.w / Math.max(1, b.n) - a.w / Math.max(1, a.n)) || b.n - a.n : sort814 === \"$$\" ? b.pnl - a.pnl : b.n - a.n);",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "<div className=\"mb-1\"><Chips v={sort814} set={setSort814} opts={[\"TRADES\", \"HIT RATE\", \"$$\"]} /></div>",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "<span className=\"shrink-0 font-mono text-sm tabular-nums\">{c.w}/{c.n}<span className=\"ml-2 text-xs\">{Math.round((100 * c.w) / Math.max(1, c.n))}%</span><span className=\"ml-2 text-xs\" style={{ color: c.pnl >= 0 ? \"#7CFFB2\" : \"#FF8A8A\" }}>{money(c.pnl)}</span></span>",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "for (let i = 0; i < 8; i++) rows.push({ id: \"c\" + i, lane: \"recon-tog\", asset: \"btc\", side: \"up\", label: \"Break above 5m PP\", at: iso(30 + i), result: i < 2 ? \"win\" : \"loss\", pnl: i < 2 ? 10 : -20 });",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "t(mn && mn.badge === \"CUT\", \"a set up that lost more than it won is not CUT\");",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "console.log(ok ? \"SET UP SCORES 708 TEST ✓ - every book's set ups scored her way (KEEP 15+ 65%+ and money / LADDER / CUT lost more than won), 24 h + 7 days, read only.\" : \"SET UP SCORES 708 TEST: FAIL\");",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "t(R.includes('opts={[\"TRADES\", \"HIT RATE\", \"$$\"]}') && R.includes(\"her band / zone set ups as tally cards\"), \"her band / zone set ups are not tally cards with a sorter\");",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
+  },
+  {
+    "what": "t(SS.includes('([\"LIST\", \"HIT RATE\", \"$$\"] as const)'), \"SET UP SCORES has no hit rate / $$ sorter\");",
+    "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
+    "R": "R486"
   }
 ]

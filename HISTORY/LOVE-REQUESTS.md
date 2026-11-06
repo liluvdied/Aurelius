@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R486 - fix818 STATS PAYS PER TRADE (display / scoring only): STATS' band / zone cards and SET UP SCORES now show $ / trade and EDGE (hit % minus the average price paid) on every set up, with $ / TRADE and EDGE sort buttons next to TRADES / HIT RATE / $$. The CUT tag is now 30+ trades AND losing money per trade (was 5+ trades and lost more than it won), so a 30% set up that pays 10-20x is never tagged CUT. Each trade's ask is read in once from the paper history. Nothing is cut from trading.
+- when: 2026-11-06T17:43:21+00:00
+- Love: "Love Nov 6 2026 ~9:33 AM PT: "maybe we should be sorting it by ones that are highest paying after all lol a 30% hit rate on one that pays 20x is worth it lol we need to be calculating in how we approach it""
+- books: none - STATS only
+- status: ACTIVE
+- proof: {"code": "tools/setup-scores-708.py", "has": "s[\"n7\"] >= 30 and s[\"p7\"] < 0"}
+- proof: {"test": "tools/pay-per-trade-818.cjs"}
+
 ## R485 - fix816 HER TWINS SCORE THEIR SET UPS (logging / display only): SET UP SCORES now also scores MAIN · W/O PINK (recon-rnp), MAIN · TOGETHER NO PINK (recon-togp), MAIN · ZONE WALL TWIN (recon-tzw), MAIN · VWAP SIDE (main-vwap-694), REJ · TOGETHER REJECTIONS ONLY (recon-togr) and REJECTION · PARKED SIDE (rej-parked-695), alongside REJ ONLY · NO PINK, REJECTION · THIRDS AS READ and PINK SLIDE ONLY - each its own pill - plus two pooled pills: MAIN FAMILY (main + its 4 twins) and REJ FAMILY (rejection + its 4 twins), the same set up label counted across the family so the counts grow faster. V.111 books are never in a family. Their history is read in once from the paper archive (last 8 days) so the families fill today. No trading code.
 - when: 2026-11-06T17:17:16+00:00
 - Love: "Love Nov 6 2026 ~8:55 AM PT: "and can you have all of our revised main rej and no pink books logging set ups too ? the dataset will build quicker and we'll know by midnight which ones we cut and which ones we keep""
