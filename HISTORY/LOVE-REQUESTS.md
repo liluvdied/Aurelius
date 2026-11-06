@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R466 - fix797 BESTIE TAKES HER OWN BEST SET UPS: BESTIE's list is built ONLY from V.111 - 2's OWN settled trades (her own rows, scored under her take-profit - the 'V.111 - 2 · ...' STATS rows), one box by set up label, with the same bar (more than 10 trades, over 65% won) and skip-if-WORST ($ under 0 = off). The STATS boxes she was matching (main's tap-rejects on session bands under the same names) are no longer read. Switch: her file data/v111-2-live.json ownRows797 true (false = back to the STATS boxes). Today NO set up of hers clears the bar yet (closest: Tap-reject at -1.5σ 6/10, 60% - 1 trade short and under 65%), so BESTIE takes nothing until one does. Run after CHANGE-137 (BESTIE is paper while main + REJECTION are live).
+- when: 2026-11-06T13:35:40+00:00
+- Love: "Love Nov 6 2026 ~5:20 AM PT: "why are the winning set ups doing this badly ?????" + ~5:21 AM PT: "and yes obviously bb, bestie needs to take her own best set ups. that's what i asked for i didn't realize you didn't , can we try that now pls?""
+- books: BESTIE (bestie) - which set ups she takes
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112best.ts", "has": "export function ownBox797("}
+- proof: {"test": "tools/bestie-own-797.cjs"}
+
 ## R465 - fix796 MAIN + REJECTION BACK LIVE: data/live-today.json on -> false (nothing else in it changes), so the live lineup goes back to her main lineup in live-switch liveBook - MAIN / TOGETHER (recon-tog), REJECTION (recon-rej) and the DELAYED book (recon-dly) that rides with them - exactly the way they ran before the live-today lineup (fix717 onward). BESTIE leaves live; V.111 - 2 and all her paper twins keep scoring. Kept: every money rail (umpire, day stop, halt, LIVE, sizes, floor, one per window, no flips), the 75% / 95% exit for main + REJECTION (fix782), and every other installed fix. Turning live-today on again puts BESTIE back. No code changed; the fix775 proof also accepts live-today off.
 - when: 2026-11-06T13:31:50+00:00
 - Love: "Love Nov 6 2026 ~5:20 AM PT: "dude our main and rejection on pls i can't do this anymore""

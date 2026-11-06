@@ -34,7 +34,7 @@ export function worst787(): boolean {
 }
 const norm = (s: unknown) => String(s ?? "").replace(/−/g, "-").replace(/\s+/g, " ").trim();
 export type Cell775 = { label: string; n: number; w: number; pnl: number };
-export type Box775 = { name: "THIS WEEK" | "LAST 4 DAYS" | "PRIME BOOK"; rows: Cell775[] };
+export type Box775 = { name: "THIS WEEK" | "LAST 4 DAYS" | "PRIME BOOK" | "V.111 - 2 OWN"; rows: Cell775[] };
 export type Decision775 = { ok: boolean; at: string; label: string; why: string; boxes: string[] };
 
 /** journal.tsx's own count for one box: label -> n, wins (profit > 0), $ */
@@ -81,8 +81,18 @@ export function decide775(label: string, bx: Box775[], now = Date.now()): Decisi
   return { ok: hits.length > 0, at: new Date(now).toISOString(), label: k, boxes: hits, why: hits.length ? `on the BEST list: ${hits.join(" · ")}` : `not on the BEST list${near.length ? ": " + near.join(" · ") : " (not scored in any box)"} - needs BEST, ${bar786().n}+ trades and MORE than ${bar786().h}% in one box` }; /* fix786 */
 }
 export function liveOn775(): boolean { try { return JSON.parse(readFileSync(D("v111-2-live.json"), "utf8"))?.enabled === true; } catch { return false; } }
+// fix797 HER OWN BEST SET UPS (Love Nov 6 2026 ~5:21 AM PT: "and yes obviously bb, bestie needs to take her own best set ups. that's what i asked for i didn't realize you didn't ,
+// can we try that now pls?"): with her switch file data/v111-2-live.json "ownRows797": true, BESTIE's list is built ONLY from V.111 - 2's OWN settled trades (her own rows, scored
+// under her take-profit - the same rows as the "V.111 - 2 · ..." STATS rows), one box "V.111 - 2 OWN", by set up label; the same bar (fix786: minTrades+ trades and MORE than
+// minHitPct% won) and the same skip-if-WORST (fix787: $ under 0 = off). The STATS boxes of the other books (main's tap-rejects on session bands) are no longer read.
+export function own797(): boolean { try { return JSON.parse(readFileSync(D("v111-2-live.json"), "utf8"))?.ownRows797 === true; } catch { return false; } }
+export function ownBox797(rows?: any[]): Box775 {
+  const src = rows ?? (G.__v1112?.rows as any[] | undefined) ?? [];
+  return { name: "V.111 - 2 OWN", rows: count(src.filter((r) => r && (r.result === "win" || r.result === "loss") && Number.isFinite(Number(r.pnlTp))).map((r) => ({ label: norm(r.setup), profit: Number(r.pnlTp) }))) };
+}
 /** the desk's own sources, read the way the STATS page reads them (live process only) */
 export async function loadBoxes775(now = Date.now()): Promise<Box775[]> {
+  if (own797()) return [ownBox797()]; // fix797: her OWN scored rows only
   const fl = await import("./fill-log"), pb = await import("./prime-book");
   const name = new Date(weekStart775(now)).toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
   let weekKept = {}; try { weekKept = JSON.parse(readFileSync(D(`stats-weeks/${name}.json`), "utf8")); } catch {}
