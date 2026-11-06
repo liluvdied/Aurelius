@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R452 - fix778 BESTIE ALL HOURS: BESTIE joins live-switch shifts.anyHour for BTC and gold, the same way SESSION + PINK (brk-sesspk) already does, so the BTC/GOLD hour map no longer skips her in any hour - including 11 PM and 12 AM (the hours the map gives to nobody). Every rail unchanged: the umpire, the -$100 day stop, halt, the LIVE switch, one ticket per window (first call wins), no flips, the 1.38x floor, 2-3 PM PT off (skipHoursPT [14]), end date Sat Nov 7. Every other book's hours exactly as before (proof checks 3552 hour/side answers). No code changed.
+- when: 2026-11-06T09:31:44+00:00
+- Love: "Love Nov 6 2026 ~1:19 AM PT: "babe did you get that fix in ? the winning set ups only ?" -> told BESTIE had 0 live trades, every BEST take skipped by the BTC/GOLD hour map -> Love's card pick ~1:24 AM PT: variant A, BESTIE through ALL hours of the hour map, including 11 PM-12 AM"
+- books: BESTIE (bestie) - live lineup book, V.111 - 2's BEST-list takes, $5
+- status: ACTIVE
+- proof: {"code": "data/live-switch.json", "has": "\"bestie\""}
+- proof: {"test": "tools/bestie-hours-778.cjs"}
+
 ## R451 - fix777 V.111 - 2 INV · HER TAKES FLIPPED · PAPER. Every take of V.111 - 2, the same second, same asset, same 15m window: the OPPOSITE side, priced at that side's real live Kalshi ask in the same read (her long -> short at the no ask; her short -> long at the yes ask; no ask between 1c and 99c = no inverse trade that window, counted as skipped). $20 paper like V.111 - 2, one per window, held to the bell and scored under the same take-profit (half at 75% of the way to $1, the rest trails from 90%, sold 5c off its best bid), settled from Kalshi's own result. Its own file data/v111-2-inv-777.json; settled trades in the fill log as 'V.111 - 2 INV · <set up>' (book 'V.111 - 2 INV', venue 'paper-v111-2-inv' - never 'paper', so nothing mirrors it to Kalshi). PAPER ONLY: no live path, in no live list, never mirrored; BESTIE never reads it (her live rows come from V.111 - 2's own rows, her BEST list matches the raw set up label, never 'V.111 - 2 INV · ...'). Its card 'V.111 - 2 INV · HER TAKES FLIPPED · PAPER' rides in RUNNING right after V.111 - 2; OPEN NOW shows it as 'V.111 - 2 INV (paper)'; the SET UP SCOREBOARD picks it up as its own book; STATS shows its set ups as 'V.111 - 2 INV · <set up>'. V.111 - 2's own trades, card and BESTIE are unchanged. Proof: tools/v111-2-inv-777.cjs; tools/v111-2-770.cjs now also proves her take opens the inverse (and counts her fill-log rows without the inverse's row). Starts from install - no back-fill. Run after CHANGE-121.
 - when: 2026-11-06T09:18:34+00:00
 - Love: "Love Nov 5 2026 ~9:48 PM PT: "and the V.111 version is running at 33% , but that's a good thing we can invert the trades on that 💞""

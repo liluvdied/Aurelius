@@ -8246,5 +8246,15 @@
     "what": "if (ao2?.on === true && ao?.on && !aoTwin && Array.isArray(hrs2) && hrs2.map(Number).includes(hB2) && bk2.includes(own2) && (id === \"btc\" || id === \"gold\") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !(Date.now() - (try2[row.ticker] || 0) < 5000)) {",
     "why": "fix775 (her words in this change's request: 'let me do the add on in the toggle switch if i want to'): same add-on gate with one more check at its end - && !aoBestie775 (BESTIE's positions wait for data/v111-2-live.json addOns true); every other gate and every other book unchanged",
     "R": "R449"
+  },
+  {
+    "what": "shifts.anyHour.btc",
+    "why": "fix778 (her card pick Nov 6 ~1:24 AM PT, variant A: BESTIE through ALL hours of the hour map incl 11 PM-12 AM): 'bestie' appended to this list, the way SESSION + PINK (brk-sesspk) is on it - every book already on it stays, nothing removed",
+    "R": "R452"
+  },
+  {
+    "what": "shifts.anyHour.gold",
+    "why": "fix778 (her card pick Nov 6 ~1:24 AM PT, variant A: BESTIE through ALL hours of the hour map incl 11 PM-12 AM): 'bestie' appended to this list, the way SESSION + PINK (brk-sesspk) is on it - every book already on it stays, nothing removed",
+    "R": "R452"
   }
 ]
