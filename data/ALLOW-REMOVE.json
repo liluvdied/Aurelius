@@ -7991,5 +7991,10 @@
     "what": "t(/if \\(ao\\?\\.on && !aoOne717 \\/\\* fix717 \\*\\//.test(E) && /!aoTwin && !aoOne717 \\/\\* fix717 \\*\\//.test(E), \"the one book can still add on\");",
     "why": "fix752 (her words in this change's request)",
     "R": "R431"
+  },
+  {
+    "what": "r = await (aoTwin ? live.addOnBuy : live.addOnBuy600)(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoOff ? aoOff.aoDollars : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: \"just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those\"): walls skip add-ons like the twin's (was free only for the twin)",
+    "why": "fix753 (her words in this change's request)",
+    "R": "R432"
   }
 ]

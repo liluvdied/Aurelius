@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R432 - fix753 YOUR ADD-ON 1 BOX SIZES EVERY HOUR: in your off / rejection hours (offHourMain - this afternoon included) the first add-on was sized by an old $2 setting (live-switch offHourMain.addOn.dollars), not your Add-on 1 box. Now, whenever your box is saved, its $ ($1-$5) sizes Add-on 1 in every hour. The off-hour price cap (2.8x) and every other gate are unchanged. Run after CHANGE-97.
+- when: 2026-11-06T00:42:55+00:00
+- Love: "Love Nov 5 2026 1:46 PM PT: "the size level isn't working for the add ons hun , i set it to $5 and its sending out at $2" (+ 1:39 PM: "the add on sizer in app isn't functioning properly bb , i made it $5 and it went with $2")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix753 HER ADD-ON 1 BOX SIZES EVERY HOUR"}
+- proof: {"test": "tools/addon-box-hours-753.cjs"}
+
 ## R431 - fix752 ADD-ONS ON FOR AKIMBO: since this morning (fix717 'no add-ons', carried to every AKIMBO seat) any position owned by an AKIMBO book silently skipped Add-on 1 and Add-on 2 - the last desk add-on was 6:36 AM. Now AKIMBO positions take your Add-on 1 / Add-on 2 boxes like your other books, with the same gates: your desk's own position, no take-profit sell in progress, the price cap, once per position, minutes left, and every order still goes through the umpire / ENFORCER / LIVE / seal at the order. Nothing else changes.
 - when: 2026-11-06T00:33:47+00:00
 - Love: "Love Nov 5 2026 1:46 PM PT: "the size level isn't working for the add ons hun , i set it to $5 and its sending out at $2" + 1:49 PM PT (her card): tapped A - "Turn add-ons ON for AKIMBO positions: your Add-on 1 / Add-on 2 boxes apply to them like your other books" + 1:50 PM PT: "yea i want the add ons on. they end up reversing anyways it's a waste of a good dip if not""
