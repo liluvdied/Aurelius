@@ -212,6 +212,7 @@ export function SettingsDrawer({
               </label>
             </Row>
             <AddOnRows664 />
+            <AddOn3Row754 />
           </div>
         </Drawer.Content>
       </Drawer.Portal>
@@ -250,5 +251,31 @@ function AddOnRows664() {
         </Row>
       ))}
     </>
+  );
+}
+
+// fix754 ADD-ON 3, HER CUSTOM ONE (Love Nov 5 2026 1:48 PM PT: "can you add in a third custom box there? that lets me type the multiple and then put in the dollar amount ?"): she types the
+// multiple (1.5x-10x) and the dollars ($1-$5) and turns it on/off. Once per position, when the price reaches her multiple. Saved with her other add-on boxes; read live by the engine.
+function AddOn3Row754() {
+  const [s, setS] = useState<any>(null);
+  useEffect(() => { void getAddonSettings().then((v: any) => setS(v)).catch(() => {}); }, []);
+  if (!s) return null;
+  const a3 = s.addOn3 || { on: false, dollars: 1, mult: 3 };
+  const save = (n: any) => { const all = { ...s, addOn3: { ...a3, ...n } }; setS(all); void setAddonSettings({ data: all }).catch(() => {}); };
+  return (
+    <Row label="Add-on 3" hint="Your custom add-on: type the multiple (1.5x-10x) and the $ ($1-$5). Once per position, when the price reaches your multiple.">
+      <span className="flex items-center gap-2 font-mono text-sm tabular-nums">
+        <input type="number" inputMode="decimal" min={1.5} max={10} step={0.1} key={`m-${a3.mult}`} defaultValue={a3.mult}
+          onBlur={(e) => { const m = Math.max(1.5, Math.min(10, Math.round((Number(e.currentTarget.value) || 0) * 10) / 10)); if (m >= 1.5 && m !== a3.mult) save({ mult: m }); }}
+          onKeyDown={(e) => { if (e.key === "Enter") (e.currentTarget as HTMLInputElement).blur(); }}
+          className="w-14 rounded-[4px] border border-white/30 bg-black px-1 py-0.5 text-right" aria-label="Add-on 3 multiple" />
+        x · $
+        <input type="number" inputMode="numeric" min={1} max={5} step={1} key={`d-${a3.dollars}`} defaultValue={Math.round(a3.dollars)}
+          onBlur={(e) => { const n = Math.max(1, Math.min(5, Math.round(Number(e.currentTarget.value) || 0))); if (n >= 1 && n !== a3.dollars) save({ dollars: n }); }}
+          onKeyDown={(e) => { if (e.key === "Enter") (e.currentTarget as HTMLInputElement).blur(); }}
+          className="w-12 rounded-[4px] border border-white/30 bg-black px-1 py-0.5 text-right" aria-label="Add-on 3 dollars" />
+        <Toggle on={a3.on === true} onChange={(v) => save({ on: v })} />
+      </span>
+    </Row>
   );
 }

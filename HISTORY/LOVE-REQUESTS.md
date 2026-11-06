@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R433 - fix754 ADD-ON 3, YOUR CUSTOM ONE: a third row under Add-on 1 / Add-on 2 in your desk settings - type the multiple (1.5x-10x), the $ ($1-$5), and an on/off toggle (starts OFF until you set it). When a position's price reaches your multiple, ONE buy of your $ on the same side, once per position, on its own (it doesn't wait for Add-on 1 or 2 - whichever multiple price reaches first goes first). Same gates as your add-ons: the desk's own position, no take-profit sell going, BTC / gold, not the delayed twin, minutes left, and the umpire / ENFORCER / LIVE / seal at the order. Run after CHANGE-98.
+- when: 2026-11-06T00:46:55+00:00
+- Love: "Love Nov 5 2026 1:48 PM PT: "can you add in a third custom box there? that lets me type the multiple and then put in the dollar amount ?""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix754 ADD-ON 3, HER CUSTOM ONE"}
+- proof: {"test": "tools/addon-three-754.cjs"}
+
 ## R432 - fix753 YOUR ADD-ON 1 BOX SIZES EVERY HOUR: in your off / rejection hours (offHourMain - this afternoon included) the first add-on was sized by an old $2 setting (live-switch offHourMain.addOn.dollars), not your Add-on 1 box. Now, whenever your box is saved, its $ ($1-$5) sizes Add-on 1 in every hour. The off-hour price cap (2.8x) and every other gate are unchanged. Run after CHANGE-97.
 - when: 2026-11-06T00:42:55+00:00
 - Love: "Love Nov 5 2026 1:46 PM PT: "the size level isn't working for the add ons hun , i set it to $5 and its sending out at $2" (+ 1:39 PM: "the add on sizer in app isn't functioning properly bb , i made it $5 and it went with $2")"

@@ -2360,6 +2360,25 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             })();
           }
         } catch {}
+        // fix754 ADD-ON 3, HER CUSTOM ONE (Love Nov 5 2026 1:48 PM PT: "can you add in a third custom box there? that lets me type the multiple and then put in the dollar amount ?"): data/addon-settings.json
+        // addOn3 { on, mult, dollars }. ONE buy of her $ on the SAME side as soon as the ask pays her multiple (bid at or under 1 / multiple), once per position, on its own - it doesn't wait for
+        // Add-on 1 or 2 (whichever multiple price reaches first goes first). Same gates as her add-ons: her desk's own position, no take-profit sell going, BTC / gold, not the delayed twin, minutes left,
+        // and the order goes through the umpire / ENFORCER / LIVE / seal like every add-on.
+        try {
+          const a3s = (globalThis as any).__addon664?.s?.addOn3; const a3on = a3s?.on === true, a3m = Math.max(1.5, Math.min(10, Number(a3s?.mult) || 0)), a3d = Math.max(1, Math.min(5, Math.round(Number(a3s?.dollars) || 0)));
+          const add3: Record<string, number> = g.__aureliusAdd3 || (g.__aureliusAdd3 = (() => { const s: Record<string, number> = {}; try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.add3 && x.ticker) s[x.ticker] = Date.parse(x.at) || Date.now(); } catch {} } } catch {} return s; })());
+          const try3: Record<string, number> = g.__aureliusTry3 || (g.__aureliusTry3 = {});
+          const cap3 = a3m >= 1.5 ? Math.round((1 / a3m) * 10000) / 10000 : 0;
+          if (a3on && a3d >= 1 && cap3 > 0 && !aoTwin && !aoOne717 && (id === "btc" || id === "gold") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5)) {
+            try3[row.ticker] = Date.now();
+            void (async () => {
+              let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
+              try { r3 = await live.addOnBuy600(row.ticker, mySide, a3d, cap3, true); } catch (err) { r3 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "add-on 3 failed" }; }
+              if (r3?.ok) add3[row.ticker] = Date.now();
+              try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: `Add-on 3 at ${a3m}x (Love Nov 5)`, bid, add3: true, ...(r3 || {}) }) + "\n"); } catch {}
+            })();
+          }
+        } catch {}
         // THE SECOND ADD-ON AT 8 PM BTC (fix455, Love Oct 29 2026 10:17 AM PT: "we can double up on 8pm hun , $10 initial entry and $5 initial add on - $5 secondary add on at the next band price encounters and rejects. same way we have our entry logic wired. candle flips near a band = second add on of $5"): the Oct 28 second add-on (taken out in the 6:45 PM restore) brought back for the hours in live-switch
         // addOn.second.hoursByAsset only (BTC 8 PM, rejection model): once the first add-on has filled, ONE more addOn.second.dollars on the SAME side when price is at a band that is NOT the
         // first add-on's band and a 2-5m candle has flipped her way there (anyFlipMinNow, $5 BTC / 10c gold past its open). Once per position; every wall + wire check still judges it.
