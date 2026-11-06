@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R453 - fix782 (extends fix780) HALF AT 75% / HALF AT 95% OF THE WAY TO $1 ON ALL FOUR LIVE BOOKS: a live position main (TOGETHER, recon-tog), REJECTION (recon-rej), SESSION + PINK (brk-sesspk) or BESTIE (bestie) opened, with no slider of hers on it: the first time its bid reaches 75% of the way from its average price to $1, half sells at the bid; the first time its bid reaches 95% of the way, the rest sells (65c in: 91.25c / 98.25c; a bid that jumps past both sells it all); otherwise it rides to the bell. For these four books this replaces the quarter at 75% of the max (fix121) and the paper-follow exit (mirror), and no 90% take profit / trail, gate, lock the win or resting take profit sells them. Unchanged: her own hand trades' take profit, her slider (wins), HANDS OFF, add-ons, the DELAYED book (recon-dly) and every other book's exits, every paper book's scoring, every entry rule and money rail. live-switch "tp780": false turns it off (old exits back).
+- when: 2026-11-06T10:06:03+00:00
+- Love: "Love Nov 6 2026 ~1:42 AM PT: "it needs to be our current one , half at 75 other half at 95" + ~1:53 AM PT: "the same take profit as our main and rej books hun :)" + her card pick ~1:59 AM PT: "75/95 on all four live books""
+- books: main / TOGETHER (recon-tog), REJECTION (recon-rej), SESSION + PINK (brk-sesspk), BESTIE (bestie) - live exits only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "export const BOOKS780 = [\"recon-tog\", \"recon-rej\", \"brk-sesspk\", \"bestie\"];"}
+- proof: {"test": "tools/tp-half-780.cjs"}
+
 ## R452 - fix778 BESTIE ALL HOURS: BESTIE joins live-switch shifts.anyHour for BTC and gold, the same way SESSION + PINK (brk-sesspk) already does, so the BTC/GOLD hour map no longer skips her in any hour - including 11 PM and 12 AM (the hours the map gives to nobody). Every rail unchanged: the umpire, the -$100 day stop, halt, the LIVE switch, one ticket per window (first call wins), no flips, the 1.38x floor, 2-3 PM PT off (skipHoursPT [14]), end date Sat Nov 7. Every other book's hours exactly as before (proof checks 3552 hour/side answers). No code changed.
 - when: 2026-11-06T09:31:44+00:00
 - Love: "Love Nov 6 2026 ~1:19 AM PT: "babe did you get that fix in ? the winning set ups only ?" -> told BESTIE had 0 live trades, every BEST take skipped by the BTC/GOLD hour map -> Love's card pick ~1:24 AM PT: variant A, BESTIE through ALL hours of the hour map, including 11 PM-12 AM"

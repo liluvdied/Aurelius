@@ -97,6 +97,25 @@ function offHourMain(asset?: string): { dollars: number; aoDollars: number; aoMa
     return d >= 1 && d <= 100 ? { dollars: d, aoDollars: ad > 0 ? ad : 3, aoMax: am > 0 && am < 1 ? am : 0.357 } : null;
   } catch { return null; }
 }
+/** fix780 + fix782 (Love's card Nov 6 ~1:59 AM PT: "75/95 on all four live books"): the four live books - main (TOGETHER, recon-tog), REJECTION (recon-rej), SESSION + PINK
+ *  (brk-sesspk), BESTIE (bestie). Returns the book when one of them opened this live position, else "". */
+export const BOOKS780 = ["recon-tog", "recon-rej", "brk-sesspk", "bestie"];
+function own780(ticker: string): string {
+  try { const o = String(bookOwnerOf(ticker)?.id || "").split(":")[1] || ""; return BOOKS780.includes(o) ? o : ""; } catch { return ""; }
+}
+/** fix780: 75% / 95% of the way runs on this position (one of the four live books', no slider of hers, live-switch tp780 not false). */
+function tp780(ticker: string, pinPct: number): boolean {
+  if (pinPct > 0) return false;
+  try { if (JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.tp780 === false) return false; } catch {}
+  return own780(ticker) !== "";
+}
+/** fix780: which sale is due now - "75" (half), "95" (the rest; also when the bid jumps straight past it) or "" - each once per position. */
+export function step780(ticker: string, entryPx: number, bid: number, d: Record<string, any>): { step: "" | "75" | "95"; e: number; l75: number; l95: number } {
+  const e = Number(d[ticker + ":e"]) > 0 ? Number(d[ticker + ":e"]) : entryPx;
+  const l75 = e + 0.75 * (1 - e), l95 = e + 0.95 * (1 - e);
+  const step = !(e > 0 && e < 1) || !(bid > 0) || d[ticker + ":95"] ? "" : bid >= l95 - 1e-9 ? "95" : bid >= l75 - 1e-9 && !d[ticker + ":75"] ? "75" : "";
+  return { step, e, l75, l95 };
+}
 function botOwnsPosition(row: any): boolean {
   if (!bookOwnedTicker(row.ticker)) return false;
   const o: any = bookOwnerOf(row.ticker);
@@ -2256,7 +2275,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const tpRest = g.__aureliusTpRest || (g.__aureliusTpRest = {});
         const restOn = (liveCfg as { tpRest?: boolean }).tpRest !== false && liveCfg.autoExits !== false;
         const closeIso = String(data.market?.close_time || "");
-        if (restOn && (!mirrorOn || pinPct > 0) && tpOn && tpLine > 0 && entryPx > 0.02 && qty >= 0.01 && closeIso && !tpSell) {
+        if (restOn && !tp780(row.ticker, pinPct) /* fix780: no resting take profit on a four-book position - only 75% / 95% of the way sell it */ && (!mirrorOn || pinPct > 0) && tpOn && tpLine > 0 && entryPx > 0.02 && qty >= 0.01 && closeIso && !tpSell) {
           const px = Math.min(0.99, Math.floor(entryPx * (1 + (mirrorOn ? pinPct : tpLine) / 100) * 100 + 1e-6) / 100); // fix607
           const cur = tpRest[row.ticker];
           const stale = !cur || Math.abs((cur.px ?? 0) - px) >= 0.005 || Math.abs((cur.qty ?? 0) - Math.floor(qty * 100) / 100) > 0.01;
@@ -2541,6 +2560,29 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       // HERS vs YOURS (Love, Oct 5 ~12:30 PM PT: "it just exited my trade early... let me take MINE... and just do that for
       // hers"). The paper locks only touch a position one of her books copied to Kalshi (live-book-done.json says filled on
       // this ticker). A trade Love opened herself keeps only her take profit ladder and her slider.
+      // fix780 HALF AT 75% / HALF AT 95% OF THE WAY TO $1 (Love Nov 6 2026 ~1:42 AM PT: "it needs to be our current one , half at 75 other half at 95"): a live position one of the four live
+      // books opened (fix782, her card "75/95 on all four live books": main / TOGETHER, REJECTION, SESSION + PINK, BESTIE - BOOKS780), with no slider of hers on it: the first time its bid reaches 75% of the way from its
+      // average price to $1, half of it sells at the bid; the first time its bid reaches 95% of the way, the rest sells (65c in: 91.25c / 98.25c).
+      // Otherwise it rides to the bell. Nothing else sells it - not the paper mirror, the quarter at 75% of the max, the 90% take profit / trail, the gates, lock the win
+      // or a resting take profit. Add-ons (above) are unchanged. HANDS OFF still holds; her slider still wins; her own trades keep their exits. Once each per position
+      // (data/tp780.json; the average at the half sale is kept so the 95 line doesn't move after it). live-switch "tp780": false = off (the old exits come back).
+      if (tp780(row.ticker, pinPct)) {
+        if (!handsOff && bid > 0.02) {
+          const f780 = join(process.cwd(), "data", "tp780.json");
+          let d780: Record<string, any> = {};
+          try { d780 = JSON.parse(readFileSync(f780, "utf8")); } catch { d780 = {}; }
+          const s780 = step780(row.ticker, entryPx, bid, d780);
+          if (s780.step) {
+            const now780 = new Date().toISOString();
+            d780[row.ticker + ":" + s780.step] = now780; if (s780.step === "95") d780[row.ticker + ":75"] ||= now780; if (!(Number(d780[row.ticker + ":e"]) > 0)) d780[row.ticker + ":e"] = s780.e;
+            try { writeFileSync(f780, JSON.stringify(Object.fromEntries(Object.entries(d780).slice(-900)))); } catch {}
+            let got: any = null;
+            try { got = s780.step === "75" ? await live.partLive(row.ticker, 50) : await live.flattenTicker(row.ticker, true, 0, false, Math.max(0.02, Math.round((bid - 0.01) * 100) / 100)); } catch { got = null; }
+            try { appendFileSync(join(process.cwd(), "data", "tp780.jsonl"), JSON.stringify({ at: now780, ticker: row.ticker, step: s780.step === "75" ? "half at 75% of the way" : "rest at 95% of the way", line: Math.round((s780.step === "75" ? s780.l75 : s780.l95) * 1000) / 1000, entry: Math.round(s780.e * 1000) / 1000, bid, pos: row.pos, owner: own780(row.ticker), got }) + "\n"); } catch {}
+          }
+        }
+        continue;
+      }
       const bookOwned = botOwnsPosition(row);
       // HER SLIDER = HANDS OFF (Love, Oct 5 ~1 PM PT: "if i set the slider here it wont exit early... ill only set it to the
       // CLEAR winners, so they can run if im supervising, if theyre iffy at all, ill leave the bank on"). Once she sets a
