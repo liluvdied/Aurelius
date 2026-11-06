@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R462 - fix791 BESTIE'S THIRDS (her 33%): live BESTIE gets main's THE WALL at the send - bandlock.ts thirdWallAbsolute, the same function every book's wall runs: no long in the top 33% / no short in the bottom 33% of the session-band channel (band to band as drawn, her channelPct / channelPctTop from live-switch; a band broken her way by her break distance is not a barrier). Done with live-switch thirdsBooks791 = ["bestie"] read in the live-today send branch. Replay of her 25 settled takes since 10 PM: blocks 7 (5 W) - -$11.00 vs taking them. With CHANGE-131 a blocked take lets her look for the next valid set up that window. Every other book unchanged.
+- when: 2026-11-06T12:03:53+00:00
+- Love: "Love Nov 6 2026 ~3:26 AM PT, her card pick "Both guards" (after "hun she just shorted btc in the bottom of the channel"), guard 1 = her thirds - R141 (Oct 29 2026): "her 33% NEVER leaves under any circumstances" / R206: "a hard 33% for the thirds on EVERY Kalshi book""
+- books: BESTIE (bestie) live - entries
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "?.thirdsBooks791;"}
+- proof: {"test": "tools/bestie-guard-791.cjs"}
+
 ## R461 - fix789 BESTIE TAKES THE NEXT VALID SET UP: for BESTIE only, a window stays open to her whenever V.111 - 2's take there did not become BESTIE's - (a) its ask was over her floor (live-switch bookFloor788.bestie, CHANGE-130 = 1.6x / 62.5c; without it 1.5x), (b) it was not on her list (e.g. the 'Open' reads), or (c) the live copier refused / skipped her row for any other gate (data/live-book-done.json). V.111 - 2's same brain keeps reading that window (minutes 1-14, once a minute) for BESTIE only; the first read on her list (the same live list check: bar, skip-if-WORST) with an ask at or under her floor is BESTIE's take, and it goes through every live gate like any of hers ($10 level, floor, umpire, stop...). If that take is itself refused at the wire, the window re-arms. Still one ticket a window (the copier's lock), no flips, either side. V.111 - 2's own paper book is unchanged (one take a window). Replay of tonight since 10 PM (her list now, asks from the bid paths, $5, her take-profit): it would have ADDED about 23 takes, 20 settled: 6 W / 14 L, about -$20.37. Every rail, size, exit and other book unchanged.
 - when: 2026-11-06T12:01:17+00:00
 - Love: "Love Nov 6 2026 ~2:38 AM PT: "i want to raise the floor to 1.6 , if she misses that i want her to trade the next band too pls" + ~3:18 AM PT: "yes let's have her be able to make any valid one of her set ups" (the 1.6x floor is CHANGE-130)"
