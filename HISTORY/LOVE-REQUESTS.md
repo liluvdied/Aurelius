@@ -2,6 +2,16 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R446 - fix770 V.111 - 2 · PAPER BOOK - her own card in your $$$ group, PAPER ONLY (never sends an order, even with LIVE on; in no live list; its fill-log rows are on their own venue so no copier can pick them up). BTC + gold, Kalshi 15m. Her Sep 24 reads exactly (og-replay.mjs, ported line for line - same code once types are stripped, 0 differences on 6,000 random bar sets): yes, the same half bands (±0.5, 1, 1.5, 2, 2.5, 3σ) on the ROLLING 60-MINUTE VWAP (last 60 1m bars, volume weighted) - the 1m read, then the 5m read (last 12 5m bars), then the window-open read (2+ min left). First look wins, one trade per asset per window, read once a minute on closed 1m bars (minutes 1-14). EVERY set up on - data/v111-2-cut.json is the cut list (empty) so set ups can be switched off later without code. $20 at the real ask, held to the bell, scored under your take-profit; every trade lands in the fill log as 'V.111 - 2 · <set up>' with side and ask, so STATS (this week + all time) and SET UP SCORES score it by set up. Run after CHANGE-113 and CHANGE-114.
+- when: 2026-11-06T03:57:20+00:00
+- Love: "Love Nov 5 2026 ~7:05 PM PT: "Give her her own card, V.111 - 2 ... for now lets get her on paper taking every set up under her rules 💞 we will boil it down rather quickly, shes using the same bands? half ? and the rolling 60M vwap ?""
+- books: V.111 - 2 (paper)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112.ts", "has": "fix770 V.111 - 2 · PAPER BOOK"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.v1112Tick770(snap.assets)"}
+- proof: {"test": "tools/v111-2-770.cjs"}
+- proof: {"exists": "tools/v111-2-equiv-770.mjs"}
+
 ## R445 - fix769 RETRY ROWS COUNT UNDER THEIR OWN BOOK (bug fix - no rule, threshold or rail value changes): the risk guard, book watch (ALERTS) and day board read which book owns a live Kalshi ticket from the last part of its key, so a retry row (key ending ':n2', ':m2', ':m3') was filed under a book called 'n2' - e.g. TOGETHER's 5:45 PM BTC +$4.71 tonight. Now the retry tag is stripped first, so it counts under TOGETHER. Today this changes no decision: the per-book bench is off (your Oct 14 call) and the daily stop / give-back count the day's total, which already included it. Run after CHANGE-113.
 - when: 2026-11-06T03:44:12+00:00
 - Love: "Love Nov 5 2026 5:06 PM PT: "the new active ledger for what's on kalshi rn doesn't have its own card still bb , can you give her one so we can see the actual record ? 💓" (bug found building it: a live ticket on a retry row - key ending ":n2" - was counted under a book called "n2" in riskguard / bookwatch / dayboard; fix768 fixed the card, this fixes the shared read)"

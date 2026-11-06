@@ -3822,6 +3822,8 @@ async function tick() {
     import("./halfband").then((m) => m.halfBandTick709(snap.assets)).catch(() => {});
     // fix713 CUP BOOK (Love Nov 5 2026 ~5:38 AM PT: "is there a way we can have her gauge candle formations?"). PAPER ONLY, 24/7.
     import("./cups").then((m) => m.cupTick713(snap.assets)).catch(() => {});
+    // fix770 V.111 - 2 (Love Nov 5 2026 ~7:05 PM PT: "Give her her own card, V.111 - 2 ... for now lets get her on paper taking every set up under her rules"). PAPER ONLY (v1112.ts never sends an order): her Sep 24 reads on the rolling 60m VWAP + half bands.
+    import("./v1112").then((m) => m.v1112Tick770(snap.assets)).catch(() => {});
     // fix734 AKIMBO SILENT ALARM (Love Nov 5 2026 10:13 AM PT: "pls set up 2 minute monitor for her , that pings if she's silent on a window"). ALERT ONLY - never touches an order.
     import("./akimbowatch").then((m) => m.akimboWatch734()).catch(() => {});
     // fix690 70% CLUB (Love Nov 5 2026 ~1:28 AM PT: "only taking the set ups that won over 70%"). PAPER ONLY (club.ts never sends an order).
