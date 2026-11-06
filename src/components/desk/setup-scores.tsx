@@ -21,13 +21,18 @@ export function SetupScores708() {
       <p className="text-[10px] font-medium tracking-[0.22em] text-white/60">SET UP SCORES · EVERY BOOK · HER FRAMEWORK</p>
       <p className="mt-1 font-mono text-[9px] text-white/50">{d?.rule ?? "loading…"}{d?.at ? ` · scored ${new Date(d.at).toLocaleTimeString()}` : ""}</p>
       <div className="mt-2 flex flex-wrap gap-1">
-        {books.map((x) => <button key={x} onClick={() => setBook(x)} className={`rounded-md border px-2 py-0.5 font-mono text-[9px] ${x === b ? "border-white text-white" : "border-white/30 text-white/60"}`}>{x}</button>)}
+        {books.filter((x) => !/INVERSE|\bINV\b/.test(x)).map((x) => <button key={x} onClick={() => setBook(x)} className={`rounded-md border px-2 py-0.5 font-mono text-[9px] ${x === b ? "border-white text-white" : "border-white/30 text-white/60"}`}>{x}</button>)}
+      </div>
+      <p className="mt-2 font-mono text-[9px] tracking-[0.18em] text-white/60">INVERSES</p> {/* fix820 her inverses subgroup */}
+      <div className="mt-1 flex flex-wrap gap-1">
+        {books.filter((x) => /INVERSE|\bINV\b/.test(x)).map((x) => <button key={x} onClick={() => setBook(x)} className={`rounded-md border px-2 py-0.5 font-mono text-[9px] ${x === b ? "border-[#c9a3ff] text-[#c9a3ff]" : "border-[#c9a3ff]/40 text-[#c9a3ff]/70"}`}>{x}</button>)}
       </div>
       <div className="mt-1 flex gap-1">
         {(["7d", "24h"] as const).map((x) => <button key={x} onClick={() => setSpan(x)} className={`rounded-md border px-2 py-0.5 font-mono text-[9px] ${x === span ? "border-white text-white" : "border-white/30 text-white/60"}`}>{x === "7d" ? "7 DAYS" : "24 HOURS"}</button>)}
         <button onClick={() => setAll(!all)} className="rounded-md border border-white/30 px-2 py-0.5 font-mono text-[9px] text-white/60">{all ? "HIDE THIN" : "SHOW ALL"}</button>
         {(["LIST", "HIT RATE", "$$", "$ / TRADE", "EDGE"] as const).map((x) => <button key={x} onClick={() => setSort814(x)} className={`rounded-md border px-2 py-0.5 font-mono text-[9px] ${x === sort814 ? "border-white text-white" : "border-white/30 text-white/60"}`}>{x}</button>)} {/* fix814 sorter */}
       </div>
+      <p className="mt-2 font-mono text-[9px] text-white/60">CUT + FLIP NOW (30+ trades, under 30%, 2.2x or less): {(() => { const cf = (d as any)?.cutflip819 || {}; const xs = [...(cf.MAIN || []).map((x: string) => "MAIN · " + x), ...(cf.REJECTION || []).map((x: string) => "REJ · " + x)]; return xs.length ? xs.join(" · ") : "none yet"; })()}</p> {/* fix819 */}
       {shown.length === 0 ? <p className="mt-3 text-sm text-white/50">No closed trades in this span yet.</p> : (
         <ul className="mt-3 flex flex-col gap-2">
           {shown.map((r: any) => { const n = span === "7d" ? r.n7 : r.n24, w = span === "7d" ? r.w7 : r.w24, p = span === "7d" ? r.p7 : r.p24; return (

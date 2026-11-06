@@ -25,7 +25,11 @@ export const PAPER_BOOKS721: { file: string; book: string; title: string; split?
   { file: "v111-2-inv-777.json", book: "v1112inv", title: "V.111 - 2 INV · HER TAKES FLIPPED · PAPER" }, // fix777: the inverse paper book's card
   { file: "v111-2-ldc-794.json", book: "v1112ldc", title: "V.111 - 2 · LDC FADE · PAPER $5" }, // fix794
   { file: "bestie-inv-795.json", book: "bestieinv", title: "BESTIE · INVERSE · PAPER $5" }, // fix795
-  { file: "pink-slide-801.json", book: "pinkslide802", title: "PINK SLIDE ONLY · PAPER $5" }, // fix802: her pink-slide takes (fix801's record), her own card
+  { file: "pink-slide-801.json", book: "pinkslide802", title: "PINK SLIDE ONLY · PAPER $5" },
+  { file: "inverse-worst-820-book.json", book: "invw-main", title: "MAIN INVERSE-WORST · PAPER $5", split: (r) => (r.book === "invw-main" ? "invw-main" : null) }, // fix820
+  { file: "inverse-worst-820-book.json", book: "invw-rej", title: "REJ INVERSE-WORST · PAPER $5", split: (r) => (r.book === "invw-rej" ? "invw-rej" : null) }, // fix820
+  { file: "inverse-worst-820-book.json", book: "invw-np", title: "NO-PINK INVERSE-WORST · PAPER $5", split: (r) => (r.book === "invw-np" ? "invw-np" : null) }, // fix820
+  { file: "inverse-worst-820-book.json", book: "invw-v1112", title: "V.111 INVERSE-WORST · PAPER $5", split: (r) => (r.book === "invw-v1112" ? "invw-v1112" : null) }, // fix820 // fix802: her pink-slide takes (fix801's record), her own card
   { file: "bestie-walls-783.json", book: "bestiewalls", title: "BESTIE · WALLS · MAIN'S BAND / ZONE DOOR · PAPER $5" }, // fix783
   { file: "bestie-walls-skips-783.json", book: "bestiewalls-skip", title: "BESTIE · WALLS · BLOCKED · WHAT THEY WOULD HAVE DONE" }, // fix783: every take main's door refused + its would-have result
 ];
@@ -44,7 +48,7 @@ export function paperBookRows721(): any[] {
         if (pb.split && pb.split(r) !== pb.book) continue;
         const pnl = r.result === "open" ? null : Number(r.pnlTp ?? r.pnlHold ?? r.pnl ?? NaN);
         const ask = Number(r.ask) || 0;
-        mine.push({ id: `${r.id}:${pb.book}`, book: pb.book, at: r.at, asset: r.asset || (/ETH/.test(String(r.ticker)) ? "eth" : /GOLD/.test(String(r.ticker)) ? "gold" : "btc") /* fix765b */, ticker: r.ticker, side: r.side, setup: String(r.setup || r.way || r.label || r.key || r.list || (pb.book === "rsi672" && r.book ? `${r.book} · ${r.market || ""}` : "") || pb.title).slice(0, 120), ask, multiple: ask > 0 ? Math.round((1 / ask) * 100) / 100 : null, stake: pb.book === "bestiewalls" || pb.book === "bestiewalls-skip" || pb.book === "v1112ldc" /* fix794 */ || pb.book === "bestieinv" /* fix795 */ || pb.book === "pinkslide802" /* fix802 */ ? 5 /* fix783 */ : 20, result: r.result === "open" ? "open" : r.result === "win" ? "win" : "loss", exit: r.result === "open" ? "open" : r.soldBid != null ? `sold at ${Math.round(Number(r.soldBid) * 100)}c` : "held to the bell", pnl: Number.isFinite(pnl as number) ? pnl : null, paper721: true });
+        mine.push({ id: `${r.id}:${pb.book}`, book: pb.book, at: r.at, asset: r.asset || (/ETH/.test(String(r.ticker)) ? "eth" : /GOLD/.test(String(r.ticker)) ? "gold" : "btc") /* fix765b */, ticker: r.ticker, side: r.side, setup: String(r.setup || r.way || r.label || r.key || r.list || (pb.book === "rsi672" && r.book ? `${r.book} · ${r.market || ""}` : "") || pb.title).slice(0, 120), ask, multiple: ask > 0 ? Math.round((1 / ask) * 100) / 100 : null, stake: pb.book === "bestiewalls" || pb.book === "bestiewalls-skip" || pb.book === "v1112ldc" /* fix794 */ || pb.book === "bestieinv" /* fix795 */ || pb.book.startsWith("invw-") /* fix820 */ || pb.book === "pinkslide802" /* fix802 */ ? 5 /* fix783 */ : 20, result: r.result === "open" ? "open" : r.result === "win" ? "win" : "loss", exit: r.result === "open" ? "open" : r.soldBid != null ? `sold at ${Math.round(Number(r.soldBid) * 100)}c` : "held to the bell", pnl: Number.isFinite(pnl as number) ? pnl : null, paper721: true });
       }
       C[ck] = { key, rows: mine }; out.push(...mine);
     } catch {}

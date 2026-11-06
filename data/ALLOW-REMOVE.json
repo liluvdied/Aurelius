@@ -8946,5 +8946,95 @@
     "what": "t(SS.includes('([\"LIST\", \"HIT RATE\", \"$$\"] as const)'), \"SET UP SCORES has no hit rate / $$ sorter\");",
     "why": "fix818 (her words above): the same STATS line with $ / trade and edge; CUT now 30+ trades losing money per trade",
     "R": "R486"
+  },
+  {
+    "what": "if (j.paid == null || !j.L || Date.parse(j.at) < cutoff) continue;",
+    "why": "fix823 (her yes above): the line now also keeps the pinned Oct 30 trades",
+    "R": "R487"
+  },
+  {
+    "what": "if (row.side === \"down\" && (row.asset === \"gold\" || row.asset === \"btc\") && [\"recon-rej\", \"recon-tog\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\") { let hold464 = \"\"; try { hold464 = climbHold464((((globalThis as any)[row.asset === \"gold\" ? \"__slide371\" : \"__slide423b\"])?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any)[row.asset === \"gold\" ? \"__climb464g\" : \"__climb464b\"] ||= { on: false }), Date.now(), String(row.asset)); } catch {}",
+    "why": "fix819 (her words above): the same line, now also reading her cut + flip list - nothing of hers taken out",
+    "R": "R488"
+  },
+  {
+    "what": "{ const lab658 = String((row as any).label || (row as any).setup || \"\"), pink658 = /5m PP/.test(lab658) && (/reject/i.test(lab658) || (row.side === \"up\" ? /^(?:Break|Close) above 5m PP/ : /^(?:Break|Close) below 5m PP/).test(lab658)) /* fix663: a break back across the pink in the slide's direction is off the pink too */; if ((row.side === \"up\" || row.side === \"down\") && (row.asset === \"gold\" || row.asset === \"btc\") && ![\"recon-dly\", \"recon-dlyk\"].includes(String(row.book)) && !(liveToday717() && liveToday717().split(\",\").includes(String(row.book))) /* fix730: the akimbo books skip the pink-slide hold (fix658) - 1:1 with paper */ && done[row.id]?.status !== \"partial\" && !pink658 && !/^(Rejected (up|down) off |Failed break (above|below) |\\dm flip - rejected (up|down) off |\\dm rejection off |Tap-reject at |OG tap-reject (up|down) off |Fake-out turn (over|under) )/.test(lab658) /* fix677 (Love Nov 4 2026 11:06 PM PT: \"yes to change 26 bb , thank you for telling me\" - to Claude's 10:50 PM offer: \"If you want her to take ANY trend-side rejection during a slide (a long off green/a band in a climb, a short off a band in a slide down), with the other side still blocked, tell me in your words and I'll build it as CHANGE-26, all books except delayed\" (her fix658 words, 6:09 PM: \"longs only while pink is on a slide up ... enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down\")): during a slide her trend side takes ANY rejection (off the pink, a band, the green / red zone, a Bollinger) - only her trend side's non-rejection reads still wait; the other side stays held by the slide / climb holds */) { const on658 = slideBlock658(String(row.asset), row.side === \"up\" ? \"down\" : \"up\"); if (on658) { try { const GL: any = ((globalThis as any).__slide658Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); { const why698 = String(`PINK SLIDE (fix658): ${row.side === \"up\" ? \"longs\" : \"shorts\"} only off the pink while it slides - ${lab658 || \"this read\"} waits for the pink rejection. (${on658})`); appendFileSync(join(process.cwd(), \"data\", \"slide-pink.jsonl\"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: why698 }) + \"\\n\"); done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: \"held\", reason: why698.slice(0, 300), firstReason: done[row.id]?.firstReason ?? why698.slice(0, 300) } /* fix698: her skip record says why (not only the side log) - never final, the wall keeps judging */; } } } catch {} continue; } } } // fix658 (Love Nov 4 2026 6:09 PM PT: \"the pink slide rule dictates it is longs only while pink is on a slide up, she doesnt short at red, she waits til it gets to pink and rejects, enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down. she waits for it to come to pink and reject and shorts as she normally would. if it doesnt function like that already thats what i would like\"): while the pink slides her way, her trend side enters ONLY off a pink rejection / flip; the other side is already held by the slide / climb holds below",
+    "why": "fix819 (her words above): the same line, now also reading her cut + flip list - nothing of hers taken out",
+    "R": "R488"
+  },
+  {
+    "what": "if (row.side === \"up\" && (row.asset === \"gold\" || row.asset === \"btc\") && [\"recon-rej\", \"recon-tog\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\") { let hold423 = \"\"; try { hold423 = row.asset === \"gold\" ? slideHold403(((globalThis as any).__slide371?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(((globalThis as any).__slide423b?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {}",
+    "why": "fix819 (her words above): the same line, now also reading her cut + flip list - nothing of hers taken out",
+    "R": "R488"
+  },
+  {
+    "what": "import { liveRows801 } from \"./pinkslide801\"; // fix801: her pink-slide takes, handed to the copier as main + rejection // fix775: V.111 - 2's BEST-table takes, handed to the live copier as book \"bestie\"",
+    "why": "fix819 (her words above): the same line, now also reading her cut + flip list - nothing of hers taken out",
+    "R": "R488"
+  },
+  {
+    "what": "let v775: any[] = []; try { v775 = liveRows775(); } catch { v775 = []; } try { v775 = [...v775, ...liveRows801()]; } catch {} /* fix801 */ // fix775: V.111 - 2 LIVE (only her BEST-table takes, only while data/v111-2-live.json is on)",
+    "why": "fix819 (her words above): the same line, now also reading her cut + flip list - nothing of hers taken out",
+    "R": "R488"
+  },
+  {
+    "what": "FILES = {\"inverse-book-688.json\": (\"INVERSE BOOK\", \"setup\"), \"momentum-book-704.json\": (\"MOMENTUM BOOK\", \"setup\"), \"high-multiple-707.json\": (\"HIGH MULTIPLE BOOK\", \"way\"), \"half-band-709.json\": (\"HALF-BAND KEEP BOOK\", \"setup\"), \"cup-book-713.json\": (\"CUP BOOK\", \"setup\"), \"v111-2-770.json\": (\"V.111 - 2\", \"setup\"), \"pink-slide-801.json\": (\"PINK SLIDE ONLY\", \"setup\"), \"main-vwap-694.json\": (\"MAIN · VWAP SIDE\", \"label*\"), \"rej-parked-695.json\": (\"REJECTION · PARKED SIDE\", \"label*\")}  # fix816: label* = her label grouped the way main's are  # fix770: V.111 - 2 scored by set up; fix802: PINK SLIDE ONLY scored by set up",
+    "why": "fix819 (her words above): the same line, now also reading her cut + flip list - nothing of hers taken out",
+    "R": "R488"
+  },
+  {
+    "what": "res = {\"at\": now.isoformat().replace(\"+00:00\", \"Z\"), \"rule\": \"KEEP = 7 d 15+ trades 65%+ and made money · LADDER = 24 h more than half (3+) or 7 d 60%+ (10+) · CUT = 7 d 30+ trades and losing money per trade · EDGE = hit % minus the average price paid\", \"books\": out}",
+    "why": "fix819 (her words above): the same line, now also reading her cut + flip list - nothing of hers taken out",
+    "R": "R488"
+  },
+  {
+    "what": "FILES = {\"inverse-book-688.json\": (\"INVERSE BOOK\", \"setup\"), \"momentum-book-704.json\": (\"MOMENTUM BOOK\", \"setup\"), \"high-multiple-707.json\": (\"HIGH MULTIPLE BOOK\", \"way\"), \"half-band-709.json\": (\"HALF-BAND KEEP BOOK\", \"setup\"), \"cup-book-713.json\": (\"CUP BOOK\", \"setup\"), \"v111-2-770.json\": (\"V.111 - 2\", \"setup\"), \"pink-slide-801.json\": (\"PINK SLIDE ONLY\", \"setup\"), \"main-vwap-694.json\": (\"MAIN · VWAP SIDE\", \"label*\"), \"rej-parked-695.json\": (\"REJECTION · PARKED SIDE\", \"label*\"), \"flip-819.json\": (\"FLIPS\", \"setup\")}  # fix819: her flips scored on their own  # fix816: label* = her label grouped the way main's are  # fix770: V.111 - 2 scored by set up; fix802: PINK SLIDE ONLY scored by set up",
+    "why": "fix820 (her words above): the same line with her inverse-worst books added",
+    "R": "R489"
+  },
+  {
+    "what": "for fn, (book, fld) in FILES.items():",
+    "why": "fix820 (her words above): the same line with her inverse-worst books added",
+    "R": "R489"
+  },
+  {
+    "what": "res = {\"cutflip819\": CUTFLIP819, \"at\": now.isoformat().replace(\"+00:00\", \"Z\"), \"rule\": \"KEEP = 7 d 15+ trades 65%+ and made money · LADDER = 24 h more than half (3+) or 7 d 60%+ (10+) · CUT = 7 d 30+ trades and losing money per trade · EDGE = hit % minus the average price paid\", \"books\": out}",
+    "why": "fix820 (her words above): the same line with her inverse-worst books added",
+    "R": "R489"
+  },
+  {
+    "what": "{books.map((x) => <button key={x} onClick={() => setBook(x)} className={`rounded-md border px-2 py-0.5 font-mono text-[9px] ${x === b ? \"border-white text-white\" : \"border-white/30 text-white/60\"}`}>{x}</button>)}",
+    "why": "fix820 (her words above): the same line with her inverse-worst books added",
+    "R": "R489"
+  },
+  {
+    "what": "{ file: \"pink-slide-801.json\", book: \"pinkslide802\", title: \"PINK SLIDE ONLY · PAPER $5\" }, // fix802: her pink-slide takes (fix801's record), her own card",
+    "why": "fix820 (her words above): the same line with her inverse-worst books added",
+    "R": "R489"
+  },
+  {
+    "what": "mine.push({ id: `${r.id}:${pb.book}`, book: pb.book, at: r.at, asset: r.asset || (/ETH/.test(String(r.ticker)) ? \"eth\" : /GOLD/.test(String(r.ticker)) ? \"gold\" : \"btc\") /* fix765b */, ticker: r.ticker, side: r.side, setup: String(r.setup || r.way || r.label || r.key || r.list || (pb.book === \"rsi672\" && r.book ? `${r.book} · ${r.market || \"\"}` : \"\") || pb.title).slice(0, 120), ask, multiple: ask > 0 ? Math.round((1 / ask) * 100) / 100 : null, stake: pb.book === \"bestiewalls\" || pb.book === \"bestiewalls-skip\" || pb.book === \"v1112ldc\" /* fix794 */ || pb.book === \"bestieinv\" /* fix795 */ || pb.book === \"pinkslide802\" /* fix802 */ ? 5 /* fix783 */ : 20, result: r.result === \"open\" ? \"open\" : r.result === \"win\" ? \"win\" : \"loss\", exit: r.result === \"open\" ? \"open\" : r.soldBid != null ? `sold at ${Math.round(Number(r.soldBid) * 100)}c` : \"held to the bell\", pnl: Number.isFinite(pnl as number) ? pnl : null, paper721: true });",
+    "why": "fix820 (her words above): the same line with her inverse-worst books added",
+    "R": "R489"
+  },
+  {
+    "what": "if (!String((row as any).setup || (row as any).label || \"\").startsWith(\"FLIP of \") /* fix819 */ && row.side === \"down\" && (row.asset === \"gold\" || row.asset === \"btc\") && [\"recon-rej\", \"recon-tog\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\") { let hold464 = \"\"; try { hold464 = climbHold464((((globalThis as any)[row.asset === \"gold\" ? \"__slide371\" : \"__slide423b\"])?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any)[row.asset === \"gold\" ? \"__climb464g\" : \"__climb464b\"] ||= { on: false }), Date.now(), String(row.asset)); } catch {}",
+    "why": "fix824 (her words above): the same line, now also waving her AWAY FROM LINE takes past the slide hold",
+    "R": "R492"
+  },
+  {
+    "what": "if (!String((row as any).setup || (row as any).label || \"\").startsWith(\"FLIP of \") /* fix819 */ && row.side === \"up\" && (row.asset === \"gold\" || row.asset === \"btc\") && [\"recon-rej\", \"recon-tog\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\") { let hold423 = \"\"; try { hold423 = row.asset === \"gold\" ? slideHold403(((globalThis as any).__slide371?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(((globalThis as any).__slide423b?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {}",
+    "why": "fix824 (her words above): the same line, now also waving her AWAY FROM LINE takes past the slide hold",
+    "R": "R492"
+  },
+  {
+    "what": "let v775: any[] = []; try { v775 = liveRows775(); } catch { v775 = []; } try { v775 = [...v775, ...liveRows801()]; } catch {} /* fix801 */ try { v775 = [...v775, ...liveRows819()]; } catch {} /* fix819 */ // fix775: V.111 - 2 LIVE (only her BEST-table takes, only while data/v111-2-live.json is on)",
+    "why": "fix824 (her words above): the same line, now also waving her AWAY FROM LINE takes past the slide hold",
+    "R": "R492"
+  },
+  {
+    "what": "FILES = {\"inverse-book-688.json\": (\"INVERSE BOOK\", \"setup\"), \"momentum-book-704.json\": (\"MOMENTUM BOOK\", \"setup\"), \"high-multiple-707.json\": (\"HIGH MULTIPLE BOOK\", \"way\"), \"half-band-709.json\": (\"HALF-BAND KEEP BOOK\", \"setup\"), \"cup-book-713.json\": (\"CUP BOOK\", \"setup\"), \"v111-2-770.json\": (\"V.111 - 2\", \"setup\"), \"pink-slide-801.json\": (\"PINK SLIDE ONLY\", \"setup\"), \"main-vwap-694.json\": (\"MAIN · VWAP SIDE\", \"label*\"), \"rej-parked-695.json\": (\"REJECTION · PARKED SIDE\", \"label*\"), \"flip-819.json\": (\"FLIPS\", \"setup\"), \"inverse-worst-820-book.json\": (\"INVERSE-WORST\", \"setup\")}  # fix820 (split per book below)  # fix819: her flips scored on their own  # fix816: label* = her label grouped the way main's are  # fix770: V.111 - 2 scored by set up; fix802: PINK SLIDE ONLY scored by set up",
+    "why": "fix824 (her words above): the same line, now also waving her AWAY FROM LINE takes past the slide hold",
+    "R": "R492"
   }
 ]

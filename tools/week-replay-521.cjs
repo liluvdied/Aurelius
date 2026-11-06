@@ -23,7 +23,7 @@ let mustBlocked = 0;
 for (const line of fs.readFileSync(path.join(root, "data/fill-audit.jsonl"), "utf8").split("\n")) {
   if (!line.trim()) continue;
   let j; try { j = JSON.parse(line); } catch { continue; }
-  if (j.paid == null || !j.L || Date.parse(j.at) < cutoff) continue;
+  if (j.paid == null || !j.L || (Date.parse(j.at) < cutoff && !MUST.some((m) => String(j.at).startsWith(m)))) continue; // fix823 her Oct 30 violation trades stay pinned in - the proof can never age out of the 7-day window
   const tick = Number(j.tick) || 0, side = j.side;
   const pk = (j.L.find((x) => x.name === "5m PP") || {}).price, s1 = (j.L.find((x) => x.name === "5m S1") || {}).price, r1 = (j.L.find((x) => x.name === "5m R1") || {}).price;
   const bars = j.bars || [], lastBar = bars[bars.length - 1];

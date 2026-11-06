@@ -12,7 +12,9 @@ import { archiveRows } from "./archcache";
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { liveRows775 } from "./v1112best";
-import { liveRows801 } from "./pinkslide801"; // fix801: her pink-slide takes, handed to the copier as main + rejection // fix775: V.111 - 2's BEST-table takes, handed to the live copier as book "bestie"
+import { liveRows801 } from "./pinkslide801";
+import { liveRows824 } from "./away824"; // fix824: her AWAY FROM LINE takes
+import { liveRows819 } from "./flip819"; // fix819: her flips of cut set ups // fix801: her pink-slide takes, handed to the copier as main + rejection // fix775: V.111 - 2's BEST-table takes, handed to the live copier as book "bestie"
 import { kget } from "./scanner";
 import { bandOnPath, centerWrong } from "./auto";
 import { paperBandFilter } from "./bandlock";
@@ -407,7 +409,7 @@ export function asNightRows(src?: Row[]): any[] {
     const G = globalThis as any;
     const rs = readShared();
     const key = G.__ogShared?.key;
-    let v775: any[] = []; try { v775 = liveRows775(); } catch { v775 = []; } try { v775 = [...v775, ...liveRows801()]; } catch {} /* fix801 */ // fix775: V.111 - 2 LIVE (only her BEST-table takes, only while data/v111-2-live.json is on)
+    let v775: any[] = []; try { v775 = liveRows775(); } catch { v775 = []; } try { v775 = [...v775, ...liveRows801()]; } catch {} /* fix801 */ try { v775 = [...v775, ...liveRows819()]; } catch {} /* fix819 */ try { v775 = [...v775, ...liveRows824()]; } catch {} /* fix824 */ // fix775: V.111 - 2 LIVE (only her BEST-table takes, only while data/v111-2-live.json is on)
     if (key && G.__anrCache?.key === key && G.__anrCache.n === rs.length) return [...G.__anrCache.rows.map((x: any) => ({ ...x })), ...v775];
     const built = asNightRows(rs);
     if (key) G.__anrCache = { key, n: rs.length, rows: built.map((x: any) => ({ ...x })) };

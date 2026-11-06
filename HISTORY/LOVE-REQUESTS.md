@@ -2,6 +2,62 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R493 - fix825 STATS · EVERY FACTOR (display only): every settled main / REJ trade is matched to the board she saw at the call (setup-audit-in, read incrementally) and scored by each factor on its own - σ spot (which band channel price sat in), set up x σ spot, the line traded, the zone just past the band (fix822), the target by a line (into / away, fix821), her side of the pink, and the hour PT - 7 days / 24 hours, as STATS tally cards with her sorters (hit rate, $$, $/trade, edge) for MAIN, REJECTION and both families. Never touches trading.
+- when: 2026-11-06T19:56:47+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT: "can you take it a bit further and have her score red/green zone trades at the different band levels too? ... every independent factor ... we simply cut the ones that don't pay""
+- books: none - STATS display only
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "<FactorScores825 />"}
+- proof: {"test": "tools/factor-scores-825.cjs"}
+
+## R492 - fix824 AWAY FROM LINE: in the first 5 minutes of each window, when the target sits within $1.50 gold / $50 BTC of a session band (VWAP or a σ line), a Bollinger (upper/middle/lower) or the red/green zone, she takes the side trading AWAY from that line, the first second it applies, only while that side pays her 1.5x floor (ask 66.7c or less). One take per window per asset for main + REJ ($5 each), labelled 'AWAY FROM LINE · <line>' and scored apart in STATS. Her band walls are waived for it (like her flips, fix819); the umpire, freshness, the pink at the wire and every money rail still judge it. Delayed untouched. Replay Oct 30 - Nov 6 ($10, 75/95, before fees): gold 150 trades 60% +$0.87/trade, BTC 183 trades 57% +$0.58/trade; about breakeven on windows with Kalshi's exact strike. live-switch awayLine824 false = off.
+- when: 2026-11-06T19:56:45+00:00
+- Love: "Love Nov 6 2026 ~10:59 AM PT: "yes to the replay. and nonetheless, if a target sits within $1.50 of those i do want her to take the trade the other direction if it is above the floor / beginning of the window oki. and include those in your replay to see how they did compared to ours, if she had entered the other direction at the beginning of the window when it was an option""
+- books: MAIN (recon-tog) + REJECTION (recon-rej) - AWAY FROM LINE takes, $5 each; delayed untouched
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/away824.ts", "has": "export function awaySide824("}
+- proof: {"test": "tools/away-from-line-824.cjs"}
+
+## R491 - fix822 THE ZONE JUST PAST THE BAND: no long when the red zone sits ahead of price inside the first 15% of the channel past the session band she is breaking into (band = VWAP or a σ line); mirror: no short with the green zone in the first 15% of the channel below the band she breaks down through. Every book but delayed. Study (Nov 1-6, main + REJ): entries with that zone went 59 trades, 29% hit, -$4.29/trade vs 47%, +$1.62/trade without. live-switch zonePast822 false = off.
+- when: 2026-11-06T19:56:44+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT: "she just enter btc on the break up the session band with a red zone directly on the other side of it too , can you do some tests on that and let me know if those lose more than they win? when she enters on a break & a green/red zone sits in the bottom/top 10-15% of the band channel she's breaking into on the other side" + her card ~10:52 AM PT: build it live, all books except delayed"
+- books: every book but DELAYED - zone just past the band
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function zonePast822("}
+- proof: {"test": "tools/zone-past-band-822.cjs"}
+
+## R490 - fix821 THE TARGET BY A LINE: when the window's target sits within $1.50 (gold) / $50 (BTC - our scaling; her old record only had gold's $10 levels) of a session band (VWAP or a σ line), a Bollinger (upper / middle / lower) or the red / green zone, an entry that trades INTO that line is refused; trading away from it goes. Judged last in her wall, after every other rule. Every book but delayed; her $10-level rule unchanged. Study (last ~7 days): gold trades INTO such a line hit 16% (-$135), BTC 38% (-$186). live-switch targetLine821 false = off.
+- when: 2026-11-06T19:56:42+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT: "also , not sure if we still have this rule in place , it's an oldie but a goodie 💞 if target is within $1.50 of a session band , bollinger , or a red, or a green zone ; i want her to take the position that trades away from it""
+- books: every book but DELAYED - target by a line
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function target821("}
+- proof: {"test": "tools/target-line-821.cjs"}
+
+## R489 - fix820 THE INVERSE-WORST BOOKS (paper only, never live): MAIN INVERSE-WORST, REJ INVERSE-WORST, NO-PINK INVERSE-WORST and V.111 INVERSE-WORST each watch their family's fresh calls (main = recon-tog; REJ = recon-rej; no pink = recon-rnp / recon-rjnp / recon-togp; V.111 = V.111 - 2) and, when the set up is on that family's WORST list, take the OPPOSITE side that second at the real ask inside her 1.5x floor - $5, her 75/95 exit, settled from Kalshi. WORST list = 30+ trades in 7 days, under 40% hit AND losing money (so a low-hit set up that pays is never inverted), rebuilt with SET UP SCORES every 10 min into data/inverse-worst-820.json. Each book has its own card and SET UP SCORES pill; all inverse books (these + INVERSE BOOK, V.111 INV, BESTIE INVERSE) sit in a new INVERSES pill group.
+- when: 2026-11-06T19:56:40+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT: "and as for the WORST stats over all time , consistent under 40% , 20-30% even better and then create an inverse book on THOSE set ups only for v.111 , and for main rej and no pink pls all individual inverse books and let's create a new subgroup for all of our inverses oki""
+- books: paper only - four INVERSE-WORST books
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/invworst820.ts", "has": "export function decide820("}
+- proof: {"test": "tools/inverse-worst-820.cjs"}
+
+## R488 - fix819 CUT + FLIP (idle until a set up qualifies): a main / REJECTION set up (SET UP SCORES' grouping) with 30+ trades of its own in 7 days, under 30% hit and paying 2.2x or less on average is CUT - her live order on it is refused at the last line (after the umpire). In its place she takes the OPPOSITE side that second, only while it still pays her 1.5x floor (66.7c or less); otherwise skipped. The flip is labelled 'FLIP of <set up>', recorded at $5 (data/flip-819.json, scored in SET UP SCORES as FLIPS) and handed to the copier for the same book; its order skips her band walls (her words: bypass band rules if necessary) but keeps the umpire, freshness, one ticket per window and the money rails. Every cut / flip / skip logged to data/cut-flip-819.jsonl; SET UP SCORES shows 'CUT + FLIP NOW' (none today). Delayed untouched. live-switch cutFlip819 false = off. A 30% set up that pays 10x is never cut.
+- when: 2026-11-06T19:56:38+00:00
+- Love: "Love Nov 6 2026 ~9:52 AM PT: "how many trades would it skip day to day bb ? if we cut anything under 30% ? as for any of the set ups we currently have her taking that have a hit rate under 30% and don't pay over 2.2x can get cut & flipped right now, but only do the flip if it's still above her 1.5 floor bb" + her 30-trade rule (~9:27 AM: "it needs to be at least 30")"
+- books: MAIN + REJECTION live - cut + flip (idle today)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/flip819.ts", "has": "export function qualifies819("}
+- proof: {"test": "tools/cut-flip-819.cjs"}
+
+## R487 - fix823 WEEK REPLAY CLOCK (test only, no rule changes): the fix521 week-replay proof re-judges the last 7 days of fills and MUST find the Oct 30 18:51Z BTC violation long BLOCKED; at 18:51Z Nov 6 that trade aged out of the window, so the proof failed and the umpire would stamp NOT SAFE. Her Oct 30 violation trades are now pinned into the replay so it can never age out; the 7-day window and every rule are unchanged.
+- when: 2026-11-06T19:56:36+00:00
+- Love: "Love Nov 6 2026 ~11:00 AM PT: "yes to the replay" (her yes to the week-replay clock fix: the fix521 proof aged out of its 7-day window at 10:51 AM PT)"
+- books: none - test only (the umpire's fix521 proof)
+- status: ACTIVE
+- proof: {"code": "tools/week-replay-521.cjs", "has": "fix823 her Oct 30 violation trades stay pinned in"}
+- proof: {"test": "tools/week-replay-521.cjs"}
+
 ## R486 - fix818 STATS PAYS PER TRADE (display / scoring only): STATS' band / zone cards and SET UP SCORES now show $ / trade and EDGE (hit % minus the average price paid) on every set up, with $ / TRADE and EDGE sort buttons next to TRADES / HIT RATE / $$. The CUT tag is now 30+ trades AND losing money per trade (was 5+ trades and lost more than it won), so a 30% set up that pays 10-20x is never tagged CUT. Each trade's ask is read in once from the paper history. Nothing is cut from trading.
 - when: 2026-11-06T17:43:21+00:00
 - Love: "Love Nov 6 2026 ~9:33 AM PT: "maybe we should be sorting it by ones that are highest paying after all lol a 30% hit rate on one that pays 20x is worth it lol we need to be calculating in how we approach it""

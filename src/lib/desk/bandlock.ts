@@ -3067,6 +3067,57 @@ export function zoneTolerance497(asset: string, L: Line[], tick: number, side: s
 }
 /** fix784: THE $10 LEVEL (fix217 / fix232 / fix440) as its own function - the exact lines impossibleGeo ran inline, moved here word for word so BESTIE's send can ask the
  *  same question. flipRule true = $1.50 (main + rejection), false = $1 (the other books), as before. "" = clear. */
+// fix821 THE TARGET BY A LINE (Love Nov 6 2026 ~10:43 AM PT: "if target is within $1.50 of a session band , bollinger , or a red, or a green zone ; i want her to take the position that trades away from it"):
+// when the window's target sits within $1.50 (gold) / $50 (BTC, our scaling) of a session band (VWAP or a σ line), a Bollinger (upper / middle / lower) or the red / green zone, an entry that
+// trades INTO that line (a long with the line above price, a short with it below) is refused; trading away from it goes. Every book but delayed; her $10-level rule (fix440) is unchanged.
+// live-switch targetLine821 false = off.
+// fix822 THE ZONE JUST PAST THE BAND (Love Nov 6 2026 ~10:43 AM PT: "she just enter btc on the break up the session band with a red zone directly on the other side of it too ... when she enters on a
+// break & a green/red zone sits in the bottom/top 10-15% of the band channel she's breaking into on the other side" + her card ~10:52 AM PT: live, all books but delayed): no long when the red zone sits
+// ahead of price inside the first 15% of the channel past the session band she is breaking into (band = VWAP or a σ line; channel = that band to the next one up); mirror: no short with the green
+// zone in the first 15% of the channel below the band she breaks down through. Study (Nov 1-6, main + REJ): entries with that zone went 59 trades, 29% hit, -$4.29/trade vs 47% / +$1.62 without.
+// live-switch zonePast822 false = off.
+export const ZONE_PAST822 = 0.15;
+export function zonePast822(asset: string, tick: number, side: string, L: Line[]): string {
+  try {
+    if (DLY465.has(String(G.__curBook465 || "")) || !(tick > 0) || (side !== "up" && side !== "down")) return "";
+    const px = (n: string) => Number((L || []).find((l: Line) => String(l.name) === n)?.price) || 0;
+    const z = side === "up" ? px("5m R1") || px("Red zone") : px("5m S1") || px("Green zone"); if (!(z > 0)) return "";
+    if (side === "up" ? !(z > tick) : !(z < tick)) return "";
+    const S0 = (L || []).filter((l: Line) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name))).map((l: Line) => ({ n: String(l.name), p: Number(l.price) })).sort((a, b) => a.p - b.p);
+    if (S0.length < 3) return "";
+    if (side === "up") {
+      const bi = [...S0.keys()].reverse().find((i) => S0[i].p <= z); if (bi === undefined || bi + 1 >= S0.length || bi < 1) return "";
+      const band = S0[bi], next = S0[bi + 1], below = S0[bi - 1];
+      if (!(z - band.p <= ZONE_PAST822 * (next.p - band.p)) || !(tick >= below.p)) return "";
+      try { if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.zonePast822 === false) return ""; } catch {}
+      return `THE ZONE JUST PAST THE BAND (fix822): the red zone (${z.toFixed(2)}) sits in the first 15% of the channel past the ${band.n} (${band.p.toFixed(2)}) - no long into it.`;
+    }
+    const bi = S0.findIndex((x) => x.p >= z); if (bi <= 0 || bi + 1 >= S0.length) return "";
+    const band = S0[bi], next = S0[bi - 1], above = S0[bi + 1];
+    if (!(band.p - z <= ZONE_PAST822 * (band.p - next.p)) || !(tick <= above.p)) return "";
+    try { if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.zonePast822 === false) return ""; } catch {}
+    return `THE ZONE JUST PAST THE BAND (fix822): the green zone (${z.toFixed(2)}) sits in the first 15% of the channel past the ${band.n} (${band.p.toFixed(2)}) - no short into it.`;
+  } catch { return ""; }
+}
+export const TGT821: Record<string, number> = { gold: 1.5, btc: 50 };
+export function target821(asset: string, tick: number, side: string, L: Line[], target?: number): string {
+  try {
+    if (DLY465.has(String(G.__curBook465 || "")) || !(tick > 0) || (side !== "up" && side !== "down")) return "";
+    const tgt = Number(target ?? targetNow(asset)) || 0, lim = TGT821[asset] || 0; if (!(tgt > 0) || !(lim > 0)) return "";
+    const lines: { name: string; price: number }[] = [];
+    for (const l of (L || [])) { const n = String(l.name), p = Number(l.price); if (p > 0 && /σ$|^session VWAP$|^5m R1$|^5m S1$|^(Red|Green) zone$/.test(n)) lines.push({ name: n === "5m R1" ? "red zone" : n === "5m S1" ? "green zone" : n, price: p }); }
+    const z = G.__bbsr?.[asset]; if (z && Number(z.bbU) > 0 && Number(z.bbL) > 0 && Date.now() - Number(z.at || 0) <= 20000) { lines.push({ name: "Bollinger upper", price: Number(z.bbU) }, { name: "Bollinger middle", price: (Number(z.bbU) + Number(z.bbL)) / 2 }, { name: "Bollinger lower", price: Number(z.bbL) }); }
+    for (const x of lines) {
+      if (Math.abs(tgt - x.price) > lim) continue;
+      const into = side === "up" ? x.price > tick : x.price < tick;
+      if (into) {
+        try { if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.targetLine821 === false) return ""; } catch {}
+        return `THE TARGET BY A LINE (fix821): the target ${tgt.toFixed(2)} sits within $${lim} of the ${x.name} (${x.price.toFixed(2)}) - no ${side === "up" ? "long" : "short"} into it; only away from it.`;
+      }
+    }
+    return "";
+  } catch { return ""; }
+}
 export function tenLevel440(asset: string, tick: number, side: string, flipRule: boolean): string {
   let why = "";
   if (!why && asset === "gold" && (side === "up" || side === "down")) {
@@ -3433,6 +3484,8 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   if (cdl && cdl !== side && (typeof rej668 === "function" && rej668(asset, side, tick, L))) cdl = ""; // fix668: her 20% rejection off the band does not wait for the candle to flip
   if (!why && side === "up" && cdl === "down") why = `HER CANDLE: the 5m candle is falling - a short or nothing, never a long.`;
   if (!why && side === "down" && cdl === "up") why = `HER CANDLE: the 5m candle is rising - a long or nothing, never a short.`;
+  if (!why) why = target821(asset, tick, side, L); // fix821 her target-by-a-line rule (every book but delayed) - judged last, after every other wall
+  if (!why) why = zonePast822(asset, tick, side, L); // fix822 the zone just past the band (every book but delayed)
   if (beyond) return { why, below: below0 ?? null, above: above0 ?? null, pos: Math.round(pos * 1000) / 1000, lock: null };
   return { why, below, above, pos: Math.round(pos * 1000) / 1000, lock: IMPOSSIBLE };
 }

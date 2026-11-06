@@ -2361,6 +2361,13 @@ export const getSetupScores708 = createServerFn({ method: "GET" }).handler(async
   try { const age = Date.now() - statSync(p).mtimeMs; if (age > 600000) throw new Error("old"); } catch { try { const { spawn } = await import("node:child_process"); spawn("nice", ["-n", "19", "python3", "tools/setup-scores-708.py"], { cwd: process.cwd(), detached: true, stdio: "ignore" }).unref(); } catch {} }
   try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; }
 });
+// fix825 STATS · EVERY FACTOR (Love Nov 6 2026 ~10:43 AM PT: "every independent factor ... we simply cut the ones that don't pay"). Read only: serves data/factor-scores-825.json and,
+// when it is older than 10 minutes, rebuilds it in the background (tools/factor-scores-825.py, niced, one run at a time).
+export const getFactorScores825 = createServerFn({ method: "GET" }).handler(async () => {
+  const p = join(process.cwd(), "data", "factor-scores-825.json");
+  try { const age = Date.now() - statSync(p).mtimeMs; if (age > 600000) throw new Error("old"); } catch { try { const { spawn } = await import("node:child_process"); spawn("nice", ["-n", "19", "python3", "tools/factor-scores-825.py"], { cwd: process.cwd(), detached: true, stdio: "ignore" }).unref(); } catch {} }
+  try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; }
+});
 // fix709 HALF-BAND KEEP BOOK paper book (Love Nov 5 2026 ~4:20 AM PT), summarised on the server.
 export const getHalfBand709 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./halfband"); return m.halfBandSummary709(); } catch { return null; } });
 // fix713 CUP BOOK paper book (Love Nov 5 2026 ~5:38 AM PT), summarised on the server.
