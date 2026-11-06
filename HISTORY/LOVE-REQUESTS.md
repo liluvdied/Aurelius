@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R439 - fix764 ONE TAP LIVE (display only): the 'Turn LIVE on? Real Kalshi and Polymarket orders will be sent' pop-up is gone - one tap on LIVE turns it on, and the toast 'LIVE is on. Real orders can go out.' confirms it took. The LIVE switch itself, the seal, the umpire and every rail are unchanged; turning LIVE off is unchanged.
+- when: 2026-11-06T02:11:59+00:00
+- Love: "Love Nov 5 2026 4:43 PM PT (photo of the "Turn LIVE on? Real Kalshi and Polymarket orders will be sent, up to $10 each." pop-up): "please remove this""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "fix764 ONE TAP LIVE"}
+- proof: {"test": "tools/one-tap-live-764.cjs"}
+
 ## R438 - fix761 AKIMBO SKIP REASONS (log only - no decision changes, sends nothing): SESSION + PINK and +15M PIVOTS used to drop some calls without writing why (the +15M PIVOTS 3-second push gate, the paper floor / ask bounds, 'same refused setup again'). Now each of those writes a reason (at most every 2 s per book + asset) to data/fast-skip.jsonl, like her other books already do - so the next 'she just didn't enter' has an answer. Run after CHANGE-103.
 - when: 2026-11-06T01:50:10+00:00
 - Love: "Love Nov 5 2026 4:17 PM PT: "she misses every entry like this hun we need to fix something ... can you look into why that keeps happening for me bb ?" + 4:19 PM: "broke pink down with a 3x and she didn't enter / something is up w her" (log-only: every silent AKIMBO skip gets a reason)"

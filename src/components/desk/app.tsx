@@ -1968,7 +1968,7 @@ export function DeskApp() {
               type="button"
               onClick={() => {
                 const next = liveQ.data?.live !== true;
-                if (next && !window.confirm(`Turn LIVE on? Real Kalshi and Polymarket orders will be sent, up to $${liveQ.data?.maxDollars ?? 10} each.`)) return;
+                // fix764 ONE TAP LIVE (Love Nov 5 2026 4:43 PM PT: "please remove this"): no "Turn LIVE on?" pop-up - one tap turns LIVE on; the toast below says it took. The switch, seal and umpire are unchanged.
                 void setLiveSwitch({ data: { live: next } }).then(() => {
                   toast(next ? "LIVE is on. Real orders can go out." : "LIVE is off. No new orders will be sent.");
                   void liveQ.refetch();

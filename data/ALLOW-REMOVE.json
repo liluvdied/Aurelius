@@ -8061,5 +8061,10 @@
     "what": "const skipNote = (rule: string, extra: Record<string, unknown>) => { if (lane !== \"ogp5-fast\" && lane !== \"ogp5-sess\" && lane !== \"ogp5\") return; try { const qS = quoteTick(id); appendFileSync(D(\"fast-skip.jsonl\"), JSON.stringify({ at: new Date().toISOString(), lane, asset: id, ticker: m.ticker, side: look?.side, label: look?.label, rule, tick: qS ? qS.c : null, ask: r2(Number(look?.side === \"up\" ? m.yesAsk : m.noAsk) || 0), ...extra }) + \"\\n\"); } catch {} };",
     "why": "fix761 (her words in this change's request)",
     "R": "R438"
+  },
+  {
+    "what": "if (next && !window.confirm(`Turn LIVE on? Real Kalshi and Polymarket orders will be sent, up to $${liveQ.data?.maxDollars ?? 10} each.`)) return;",
+    "why": "fix764 (her words in this change's request)",
+    "R": "R439"
   }
 ]
