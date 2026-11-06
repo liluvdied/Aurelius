@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R454 - fix785 SESSION + PINK OFF LIVE - BESTIE ONLY: data/live-today.json lineup goes from 'brk-sesspk,bestie' to 'bestie' (exactly the way fix776 changed it): SESSION + PINK (brk-sesspk) stops sending live orders; its paper keeps running exactly as before; any SESSION + PINK position already open keeps its exits (half at 75% / 95% of the way, fix782). BESTIE (V.111 - 2's BEST set ups, flat $5) is the only live book. Every rail unchanged: the umpire, the -$100 day stop, halt, the LIVE switch, one ticket per window, the 1.38x floor, 2-3 PM PT off (skipHoursPT [14] -> main), end date Sat Nov 7. No code changed. Proofs updated so this lineup passes (no other check weakened): akimbo-726, gold-mid-bb-742, v111-2-live-775 also accept 'bestie'.
+- when: 2026-11-06T10:47:02+00:00
+- Love: "Love Nov 6 2026 ~2:38 AM PT: "hun , pls turn session pink off and only run bestie""
+- books: BESTIE (bestie) alone live; SESSION + PINK (brk-sesspk) paper only
+- status: ACTIVE
+- proof: {"code": "data/live-today.json", "has": "\"book\": \"bestie\","}
+- proof: {"test": "tools/v111-2-live-775.cjs"}
+- proof: {"test": "tools/akimbo-726.cjs"}
+
 ## R453 - fix782 (extends fix780) HALF AT 75% / HALF AT 95% OF THE WAY TO $1 ON ALL FOUR LIVE BOOKS: a live position main (TOGETHER, recon-tog), REJECTION (recon-rej), SESSION + PINK (brk-sesspk) or BESTIE (bestie) opened, with no slider of hers on it: the first time its bid reaches 75% of the way from its average price to $1, half sells at the bid; the first time its bid reaches 95% of the way, the rest sells (65c in: 91.25c / 98.25c; a bid that jumps past both sells it all); otherwise it rides to the bell. For these four books this replaces the quarter at 75% of the max (fix121) and the paper-follow exit (mirror), and no 90% take profit / trail, gate, lock the win or resting take profit sells them. Unchanged: her own hand trades' take profit, her slider (wins), HANDS OFF, add-ons, the DELAYED book (recon-dly) and every other book's exits, every paper book's scoring, every entry rule and money rail. live-switch "tp780": false turns it off (old exits back).
 - when: 2026-11-06T10:06:03+00:00
 - Love: "Love Nov 6 2026 ~1:42 AM PT: "it needs to be our current one , half at 75 other half at 95" + ~1:53 AM PT: "the same take profit as our main and rej books hun :)" + her card pick ~1:59 AM PT: "75/95 on all four live books""
