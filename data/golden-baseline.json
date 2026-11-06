@@ -1,5 +1,5 @@
 {
- "at": "2026-11-06T02:15:27.598941+00:00",
+ "at": "2026-11-06T02:17:46.853418+00:00",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -142,14 +142,15 @@
   "cups.ts": "399cf812a04e0903",
   "paperrows.ts": "028e5ce9cbf3d351",
   "akimbocard.ts": "93050ce006e5038b",
-  "akimbowatch.ts": "77b5e5f09cf30d0a"
+  "akimbowatch.ts": "77b5e5f09cf30d0a",
+  "stats-week.ts": "4787526e2f95ba6b"
  },
  "config": {
   "live": "b5bea41b6c",
   "maxDollars": "ef2d127de3",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "e6b799b18a",
+  "at": "0496ddee41",
   "note": "34fb5e33ce",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -168,7 +169,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "faac9d1308",
+  "liveBook": "413a8bcf99",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -342,7 +343,7 @@
   "data/spine-lock.json": "595fbf87bb2c42df",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "7ddeb89937eeae1d"
+  "data/live-switch.json": "108d0af81cfcdcf1"
  },
  "sealLiveBook": "c8cfbbf7f9",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

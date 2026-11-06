@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R441 - fix767 STATS BY THE WEEK (display only): the STATS 'ALL TIME' box was really the last 4 days of this paper book's fills, rolling (720 trades, 360W/360L, -$796.61 matched to the cent), so a new day barely moved it. Adds THIS WEEK above it (Monday 12:00 AM Pacific, scored on her side, one row per setup sent to the page) and an ARCHIVE button: each finished week is kept in data/stats-weeks/<monday>.json and is read only when you open it. The old box is relabelled LAST 4 DAYS. No entries, exits, walls or books touched.
+- when: 2026-11-06T02:17:46+00:00
+- Love: "Love Nov 5 2026 5:52 PM PT: "omg the stats page was supposed to be scoring the whole day babez 😹it still hasn’t moved" / 5:54 PM PT: "no i want it to score for the week if possible bb , and keep the older ones in the view only archive so it doesn’t slow her down""
+- books: display only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/stats-week.ts", "has": "getStatsWeek767"}
+- proof: {"code": "src/components/desk/journal.tsx", "has": "THIS WEEK"}
+- proof: {"test": "tools/stats-week-767.cjs"}
+
 ## R440 - fix765 CARDS, NOT LISTS + THE SORTER BY THE BOOKS (display only - no book, rule, order or setting changes): the $ HIGH / $ LOW / HIT % HIGH / HIT % LOW sorter moves down to sit with the book chips (ALL / $$$ / ...), right above the cards it sorts. OG ORIGINAL 10.12 and OUTWARD BREAK become regular cards (in $$$) like the rest, and the long full-width trade lists that already have cards (OG 10.12, OUTWARD BREAK, inverse, momentum, half-band, cup, 70% club, VWAP side, rejection parked) come off the page - tap a card for its trades. RSI BOOKS and ETH REJECTIONS get regular cards too (in $$$); tap RSI for its timeframe / level filters and table, tap ETH for its panel, tap either HIGH MULTIPLE card for its tracker - nothing stays a big scrolling tile. Her sealed OG 10.12 rows are read exactly as they are. Run after CHANGE-108.
 - when: 2026-11-06T02:15:27+00:00
 - Love: "Love Nov 5 2026 4:53 PM PT: "pls put this sorter here by the actual books pls bb / and pls put these in cards , original format like the rest of the cards pls it takes a lil to scroll thru those 😹 and the cards look beautifulll i like the way you made the cards for me :)""
