@@ -1467,7 +1467,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   // reduced position sizes ... let's let them thru at $2 pls"): the DELAYED book (recon-dly) sizes its live-switch bookDollars flat - no 1/4-over-3.8x or
   // 3/4-over-2.2x cut. Still under the switch ceiling.
   const offMainD = offMainDollars(bookCopy, ticker);
-  const budget0 = offMainD > 0 ? Math.min(offMainD, kalshiCeil(ticker) /* fix455 */) : bookCopy === "recon-dly" && ownDollars > 0 ? Math.min(ownDollars, maxDollars()) : bookCopy ? budgetFor(Math.min(assetOwn > 0 ? assetOwn : ownDollars > 0 ? ownDollars : cheapDollars > 0 ? cheapDollars : (bookDollarsFor(ticker) || Number(liveBook?.dollars) || 0), maxDollars()), multiple) : budgetFor(full, multiple);
+  const budget0 = offMainD > 0 ? Math.min(offMainD, kalshiCeil(ticker) /* fix455 */) : (bookCopy === "recon-dly" || bookCopy === "bestie" /* fix775: V.111 - 2 LIVE flat $5, Love's card "flat $5" */) && ownDollars > 0 ? Math.min(ownDollars, maxDollars()) : bookCopy ? budgetFor(Math.min(assetOwn > 0 ? assetOwn : ownDollars > 0 ? ownDollars : cheapDollars > 0 ? cheapDollars : (bookDollarsFor(ticker) || Number(liveBook?.dollars) || 0), maxDollars()), multiple) : budgetFor(full, multiple);
   // TOGETHER'S LATE REJECTION AT 1/4 (Oct 18 ~4:13 PM PT, Love): engine passes sizeMul 0.25 when TOGETHER skipped the window's opening.
   const sizeMulL = Number(opts?.sizeMul);
   const budgetC = bookCopy && !(offMainD > 0) && sizeMulL > 0 && sizeMulL < 1 ? Math.round(Number(budget0) * sizeMulL * 100) / 100 : budget0;
@@ -1495,7 +1495,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   if (bookCopy === "recon-dly" && !twinBreak && !(ask > 0 && ask <= 0.505)) { release(key); return { status: "blocked", reason: `TWIN 2x: ask ${ask} pays ${(ask > 0 ? 1 / ask : 0).toFixed(2)}x - waiting for 2x+ (50c or cheaper)` }; }
   // THE TWIN SIZES OFF THE ASK (fix127, Oct 22 ~11:45 PM PT, Love: "flat $2 initially and flat $3 for the add on"): the delayed book counts its $2 off the ask itself,
   // not the reach (which made $2 buy only $1.20-$1.60 when the fill came in at the ask or better).
-  const count0 = Math.floor(budget / (bookCopy === "recon-dly" || offMainD > 0 ? ask : Math.max(ask, reachPx)) * 100) / 100; // fix149: her flat off-hour $2 counts off the ask too
+  const count0 = Math.floor(budget / (bookCopy === "recon-dly" || bookCopy === "bestie" /* fix775 */ || offMainD > 0 ? ask : Math.max(ask, reachPx)) * 100) / 100; // fix149: her flat off-hour $2 counts off the ask too
   const count = topUp > 0 ? Math.min(count0, topUp) : count0;
   if (!(count >= 0.01)) {
     release(key);
@@ -1547,7 +1547,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
       try { const q2 = await liveAsks(ticker).catch(() => null); const a2 = Number(side === "up" ? q2?.yesAsk : q2?.noAsk);
         if (a2 > 0.01 && a2 < 0.99) { const r2 = Math.min(capPx, Math.round((a2 + 0.06) * 100) / 100); // fix500: each knock re-prices at the live ask + 6c at most
           kPx = side === "up" ? Math.min(0.99, capPx, r2) : Math.max(0.01, 1 - capPx, Math.round((1 - r2) * 100) / 100);
-          if (bookCopy !== "recon-dly" && topUp <= 0) kCount = Math.min(count, Math.floor(budget / Math.max(a2, r2) * 100) / 100); } } catch {}
+          if (bookCopy !== "recon-dly" && bookCopy !== "bestie" /* fix775 */ && topUp <= 0) kCount = Math.min(count, Math.floor(budget / Math.max(a2, r2) * 100) / 100); } } catch {}
       if (!(kCount > 0)) break;
       try { placed = await place(ticker, bookSide, kPx, kCount.toFixed(2), false, line, true); } catch { break; }
     }

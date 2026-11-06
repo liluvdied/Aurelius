@@ -8221,5 +8221,30 @@
     "what": "const bookOfKey = (k: string) => { const p = k.split(\":\"); const last = p.pop() || \"\"; if (last !== \"x5\") return last; const base = p.pop() || \"\"; return ({ bank5p: \"bank5px\", claude: \"claudex\", trend: \"trendx\" } as Record<string, string>)[base] || `${base}x`; };",
     "why": "fix769 (her words in this change's request)",
     "R": "R445"
+  },
+  {
+    "what": "const count0 = Math.floor(budget / (bookCopy === \"recon-dly\" || offMainD > 0 ? ask : Math.max(ask, reachPx)) * 100) / 100; // fix149: her flat off-hour $2 counts off the ask too",
+    "why": "fix775 (her words in this change's request, card 'flat $5'): same line, now also counts V.111 - 2 LIVE (bestie) off the ask so her flat $5 is $5 - fix149's rule for the delayed book and her off hours is unchanged",
+    "R": "R449"
+  },
+  {
+    "what": "if (ao?.on && !aoOne717 /* fix717 */ && (!aoTwin || aoTw?.on === true) && (id === \"btc\" || id === \"gold\") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5)) {",
+    "why": "fix775 (her words in this change's request: 'let me do the add on in the toggle switch if i want to'): same add-on gate with one more check at its end - && !aoBestie775 (BESTIE's positions wait for data/v111-2-live.json addOns true); every other gate and every other book unchanged",
+    "R": "R449"
+  },
+  {
+    "what": "if (a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === \"btc\" || id === \"gold\") && addReg[row.ticker] && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5)) {",
+    "why": "fix775 (her words in this change's request: 'let me do the add on in the toggle switch if i want to'): same add-on gate with one more check at its end - && !aoBestie775 (BESTIE's positions wait for data/v111-2-live.json addOns true); every other gate and every other book unchanged",
+    "R": "R449"
+  },
+  {
+    "what": "if (a3on && a3d >= 1 && cap3 > 0 && !aoTwin && !aoOne717 && (id === \"btc\" || id === \"gold\") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5)) {",
+    "why": "fix775 (her words in this change's request: 'let me do the add on in the toggle switch if i want to'): same add-on gate with one more check at its end - && !aoBestie775 (BESTIE's positions wait for data/v111-2-live.json addOns true); every other gate and every other book unchanged",
+    "R": "R449"
+  },
+  {
+    "what": "if (ao2?.on === true && ao?.on && !aoTwin && Array.isArray(hrs2) && hrs2.map(Number).includes(hB2) && bk2.includes(own2) && (id === \"btc\" || id === \"gold\") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !(Date.now() - (try2[row.ticker] || 0) < 5000)) {",
+    "why": "fix775 (her words in this change's request: 'let me do the add on in the toggle switch if i want to'): same add-on gate with one more check at its end - && !aoBestie775 (BESTIE's positions wait for data/v111-2-live.json addOns true); every other gate and every other book unchanged",
+    "R": "R449"
   }
 ]

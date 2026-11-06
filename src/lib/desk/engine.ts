@@ -2303,6 +2303,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         // fix752 ADD-ONS ON FOR AKIMBO (Love Nov 5 2026 1:46 PM PT: "i set it to $5 and its sending out at $2" + 1:49 PM card: A - add-ons ON for AKIMBO positions): the live-today (AKIMBO) books' positions
         // were skipped by every add-on (fix717 "no add-ons"); now her Add-on 1 / Add-on 2 boxes apply to them like her other books - same gates (her position, LIVE, umpire at the order, cap, one per position, time left).
         const aoOne717 = false; // fix752 (was: true for any live-today book's position - fix717 / fix726)
+        const aoBestie775 = (() => { let own776 = ""; try { own776 = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] || ""; } catch { own776 = ""; } if (own776 !== "bestie") return false; try { return JSON.parse(readFileSync(join(process.cwd(), "data", "v111-2-live.json"), "utf8"))?.addOns !== true; } catch { return true; } })(); // fix775 (Love Nov 5 2026 ~9:34 PM PT: "let me do the add on in the toggle switch if i want to after we see how she's doing"): BESTIE's positions take no add-on until data/v111-2-live.json addOns is true - then her Add-on boxes apply to BESTIE like every book; every other book unchanged
         // $2 AT A BAND, 2.8x+ (Oct 17 ~1:15 PM PT, Love: "implement the $2 add on for me at a band, as long as it's over 2.8x actually / so it's
         // effectively 1/5th of the normal position size" + her picks: band rejection her way, once per window, 5+ min left, BTC and gold, her trades
         // only). addOn { on, dollars 2, maxAsk 0.35 }. A refused/unfilled try retries after 5 s; only a fill uses up the window's add-on.
@@ -2315,7 +2316,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const aoOff = aoTwin ? null : offHourMain(id); // fix142: her off hours add $3 at 2.8x+
         const aoMax = aoTwin ? (Number(aoTw?.maxAsk) > 0 ? Number(aoTw.maxAsk) : 0.222) : aoOff ? aoOff.aoMax : Number(ao?.maxAsk) > 0 ? Number(ao!.maxAsk) : 0.55;
         const aoLeft = (Date.parse(aoClose) - Date.now()) / 60000;
-        if (ao?.on && !aoOne717 /* fix717 */ && (!aoTwin || aoTw?.on === true) && (id === "btc" || id === "gold") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5)) {
+        if (ao?.on && !aoOne717 /* fix717 */ && (!aoTwin || aoTw?.on === true) && (id === "btc" || id === "gold") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {
           // $3 TAP REJECTION (Oct 17 ~10:57 PM PT, Love: "let's make it a $3 tap rejection"): bandlock.addOnTapNow replaces the old snap here.
           let why: string | null = null;
           try { const blm = await import("./bandlock"); why = blm.addOnTouchNow(id) || null; /* fix109 (Oct 22 ~7:48 PM PT, Love: "pls have her do them at band taps / no rejection necessary pls"): main-book add-on on a band touch too (walls still judge it); was aoTwin ? touch : addOnTapNow */ void mySide; } catch { why = null; }
@@ -2365,7 +2366,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           const a38 = (ao as any)?.at38; const add38: Record<string, number> = g.__aureliusAdd38 || (g.__aureliusAdd38 = (() => { const s: Record<string, number> = {}; try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.add38 && x.ticker) s[x.ticker] = Date.parse(x.at) || Date.now(); } catch {} } } catch {} return s; })());
           const try38: Record<string, number> = g.__aureliusTry38 || (g.__aureliusTry38 = {});
           const cap38 = Number(a38?.maxAsk) > 0 && Number(a38.maxAsk) < 1 ? Number(a38.maxAsk) : 0.263;
-          if (a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === "btc" || id === "gold") && addReg[row.ticker] && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5)) {
+          if (a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === "btc" || id === "gold") && addReg[row.ticker] && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {
             try38[row.ticker] = Date.now();
             void (async () => {
               let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
@@ -2384,7 +2385,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           const add3: Record<string, number> = g.__aureliusAdd3 || (g.__aureliusAdd3 = (() => { const s: Record<string, number> = {}; try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.add3 && x.ticker) s[x.ticker] = Date.parse(x.at) || Date.now(); } catch {} } } catch {} return s; })());
           const try3: Record<string, number> = g.__aureliusTry3 || (g.__aureliusTry3 = {});
           const cap3 = a3m >= 1.5 ? Math.round((1 / a3m) * 10000) / 10000 : 0;
-          if (a3on && a3d >= 1 && cap3 > 0 && !aoTwin && !aoOne717 && (id === "btc" || id === "gold") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5)) {
+          if (a3on && a3d >= 1 && cap3 > 0 && !aoTwin && !aoOne717 && (id === "btc" || id === "gold") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5) && !aoBestie775 /* fix775 */) {
             try3[row.ticker] = Date.now();
             void (async () => {
               let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
@@ -2409,7 +2410,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           const add2 = g.__aureliusAdd2, w1 = g.__aureliusAdd1Why || (g.__aureliusAdd1Why = {}); const try2 = g.__aureliusAdd2Try || (g.__aureliusAdd2Try = {});
           if (addReg[row.ticker] && !(row.ticker in w1)) { try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.ticker === row.ticker && !x.add2) w1[row.ticker] = String(x.why || ""); } catch {} } } catch {} }
           const cap2 = Number(ao2?.maxAsk) > 0 && Number(ao2.maxAsk) < 1 ? Number(ao2.maxAsk) : 0.72;
-          if (ao2?.on === true && ao?.on && !aoTwin && Array.isArray(hrs2) && hrs2.map(Number).includes(hB2) && bk2.includes(own2) && (id === "btc" || id === "gold") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !(Date.now() - (try2[row.ticker] || 0) < 5000)) {
+          if (ao2?.on === true && ao?.on && !aoTwin && Array.isArray(hrs2) && hrs2.map(Number).includes(hB2) && bk2.includes(own2) && (id === "btc" || id === "gold") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !(Date.now() - (try2[row.ticker] || 0) < 5000) && !aoBestie775 /* fix775 */) {
             const blm3 = await import("./bandlock");
             const t2 = blm3.addOnTouchNow(id);
             const bnd = (w: string) => { const m = /^(?:touched |came within \$[\d.]+ of )(.+?) \(/.exec(String(w || "")); return m ? m[1] : ""; };

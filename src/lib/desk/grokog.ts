@@ -11,6 +11,7 @@
 import { archiveRows } from "./archcache";
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { liveRows775 } from "./v1112best"; // fix775: V.111 - 2's BEST-table takes, handed to the live copier as book "bestie"
 import { kget } from "./scanner";
 import { bandOnPath, centerWrong } from "./auto";
 import { paperBandFilter } from "./bandlock";
@@ -405,10 +406,11 @@ export function asNightRows(src?: Row[]): any[] {
     const G = globalThis as any;
     const rs = readShared();
     const key = G.__ogShared?.key;
-    if (key && G.__anrCache?.key === key && G.__anrCache.n === rs.length) return G.__anrCache.rows.map((x: any) => ({ ...x }));
+    let v775: any[] = []; try { v775 = liveRows775(); } catch { v775 = []; } // fix775: V.111 - 2 LIVE (only her BEST-table takes, only while data/v111-2-live.json is on)
+    if (key && G.__anrCache?.key === key && G.__anrCache.n === rs.length) return [...G.__anrCache.rows.map((x: any) => ({ ...x })), ...v775];
     const built = asNightRows(rs);
     if (key) G.__anrCache = { key, n: rs.length, rows: built.map((x: any) => ({ ...x })) };
-    return built;
+    return [...built, ...v775];
   }
   const out: any[] = [];
   for (const r of src) {
