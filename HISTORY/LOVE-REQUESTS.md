@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R467 - fix794 V.111 - 2 · LDC FADE · PAPER: the winner of data/reports/ldc-study-nov6.md (Nov 1-6 replay, 11 configurations: 204 trades, 50.5%, +$68 at $5; V.111 - 2 as is -$171). V.111 - 2's take of each window is kept only when the 1m LDC fades it - a SHORT only while the 1m LDC is GREEN (buy state), a LONG only while it is RED - else no trade that window; $5 at her real ask; the live exit on paper (half at 75% of the way to $1, rest at 95%, else the bell), settled from Kalshi; own file data/v111-2-ldc-794.json, fill-log venue paper-v111-2-ldc, its card in RUNNING. LDC = a rebuild of TradingView's Lorentzian Classification (published defaults) on the desk's own closed 1m bars - her TV settings may differ. Also writes the LDC colour on every V.111 - 2 take (row ldc794; BESTIE's live rows are those rows) and to data/ldc-colour-794.jsonl. PAPER ONLY - no live book, wall, size or exit changes; V.111 - 2's own trades unchanged. The fix770 proof counts this book's fill-log row apart like the inverse book's.
+- when: 2026-11-06T14:23:45+00:00
+- Love: "Love Nov 6 2026 ~3:53 AM PT: "instead of doing no shorts over vwap like the og model did , i didn't even know it did that it wasn't supposed to be hehe / but instead of no shorts when price is over vwap , can you look into shorting when LDC ribbon is green? / and longing when it's red? / it kind of uses the ldc at a band too ... cannnn you incorporate thattt into a strategy too bb ?? on its own book / whichever configuration of those elements that tests best""
+- books: V.111 - 2 · LDC FADE (v1112ldc) - paper only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112ldc.ts", "has": "export function ldcTake794("}
+- proof: {"test": "tools/v111-2-ldc-794.cjs"}
+
 ## R466 - fix797 BESTIE TAKES HER OWN BEST SET UPS: BESTIE's list is built ONLY from V.111 - 2's OWN settled trades (her own rows, scored under her take-profit - the 'V.111 - 2 · ...' STATS rows), one box by set up label, with the same bar (more than 10 trades, over 65% won) and skip-if-WORST ($ under 0 = off). The STATS boxes she was matching (main's tap-rejects on session bands under the same names) are no longer read. Switch: her file data/v111-2-live.json ownRows797 true (false = back to the STATS boxes). Today NO set up of hers clears the bar yet (closest: Tap-reject at -1.5σ 6/10, 60% - 1 trade short and under 65%), so BESTIE takes nothing until one does. Run after CHANGE-137 (BESTIE is paper while main + REJECTION are live).
 - when: 2026-11-06T13:35:40+00:00
 - Love: "Love Nov 6 2026 ~5:20 AM PT: "why are the winning set ups doing this badly ?????" + ~5:21 AM PT: "and yes obviously bb, bestie needs to take her own best set ups. that's what i asked for i didn't realize you didn't , can we try that now pls?""

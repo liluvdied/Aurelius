@@ -17,6 +17,7 @@ import { join } from "node:path";
 import { bestTake775 } from "./v1112best.ts"; // fix775: her BEST-table takes also go live on Kalshi at $5 (v1112best.ts decides, the live copier sends)
 import { wallsTake783, wallsSettle783 } from "./v1112walls.ts"; // fix783: BESTIE · WALLS (paper) - BESTIE's takes judged by main's door first
 import { fbTick789 } from "./v1112fb.ts"; // fix789: BESTIE takes the next band when she misses hers over her floor
+import { ldcTake794, ldcSettle794 } from "./v1112ldc.ts"; // fix794: V.111 - 2 · LDC FADE (paper) + the LDC colour on every take
 import { invTake777, invSettle777 } from "./v1112inv.ts"; // fix777: V.111 - 2 INVERSE (paper) - every take of hers, the opposite side at its real ask
 
 // ---------------------------------------------------------------- the brain: og-replay.mjs lines 3-112, logic unchanged ----------------------------------------------------------------
@@ -249,6 +250,7 @@ export async function v1112Tick770(assets: Record<string, any> | null | undefine
         side: tk.side, ask, multiple: Math.round((1 / ask) * 100) / 100, floorOk: ask <= 0.667, contracts: STAKE / ask, stake: STAKE, spot: Number(r.spot) || 0, vwap: Number(r.vwap) || 0, stdev: Number(r.stdev) || 0,
         level: Number.isFinite(Number(tk.level)) ? Number(tk.level) : null, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null });
       { const r775 = s.rows[s.rows.length - 1] as any; void bestTake775(r775).then((d) => { r775.best775 = d; save(true); }).then(() => { void wallsTake783(r775, r775.best775).catch(() => {}); /* fix783: BESTIE · WALLS paper twin, the same decided answer BESTIE gets */ }).catch(() => {}); } // fix775: on the BEST list or not, decided this second (her paper trade above is unchanged)
+      try { ldcTake794(s.rows[s.rows.length - 1]); } catch {} // fix794: her take's LDC colour + the LDC FADE paper book (her row's take is unchanged)
       try { invTake777(s.rows[s.rows.length - 1], m); } catch {} // fix777: the inverse paper book takes the other side, same read, same second (her row above is unchanged)
     }
     for (const r of s.rows) {
@@ -271,6 +273,7 @@ export async function v1112Tick770(assets: Record<string, any> | null | undefine
     if (dirty) save(true); else save();
     try { await wallsSettle783(assets); } catch {} // fix783: BESTIE · WALLS's bids, take-profit and settlement (taken + skipped rows, their own files)
     try { await fbTick789(assets, s.rows, { read770, fillGaps770, bars770, cutList770, decide: (row: any) => bestTake775(row) }); } catch {} // fix789: BESTIE's next-band reads (her own file; V.111 - 2's book unchanged)
+    try { await ldcSettle794(assets); } catch {} // fix794: LDC FADE's bids, 75/95 exit and settlement (its own file)
     try { await invSettle777(assets); } catch {} // fix777: the inverse paper book's bids, take-profit and settlement (its own file)
   } catch {} finally { G.__v1112Busy = false; }
 }
