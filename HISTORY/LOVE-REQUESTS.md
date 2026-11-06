@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R455 - fix786 BESTIE'S BAR - MORE THAN 10 TRADES, OVER 65%: BESTIE keeps re-reading the STATS BEST tables live (THIS WEEK, LAST 4 DAYS, PRIME BOOK - all three stay her sources), but a row now counts only with MORE than 10 trades (11+) and MORE than 65% won in that box, and $ 0 or more (BEST) as before. Replaces the 3+ trades / more than 50% bar. The bar lives in her switch file data/v111-2-live.json (minTrades 11, minHitPct 65 - not locked); missing = the old bar. Her list right now: Tap-reject at +2σ, -1.5σ, +0.5σ, +1.5σ, -0.5σ (THIS WEEK / LAST 4 DAYS) - and PRIME BOOK still lets in Tap-reject at +1σ (14/18, 78%) and +0.5σ / +1.5σ / -0.5σ / -1.5σ; Tap-reject at -2σ (3/4) is out. Every rail, size ($5), exit and other book unchanged.
+- when: 2026-11-06T10:55:56+00:00
+- Love: "Love Nov 6 2026 ~2:34 AM PT: "hun did you put her on the best table set ups i sent you pictures of ? they all had like 40 trades" + ~2:35 AM PT: "yes bb over 10 trades over 65%""
+- books: BESTIE (bestie) live - which set ups go to Kalshi
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112best.ts", "has": "export function bar786()"}
+- proof: {"test": "tools/bestie-bar-786.cjs"}
+
 ## R454 - fix785 SESSION + PINK OFF LIVE - BESTIE ONLY: data/live-today.json lineup goes from 'brk-sesspk,bestie' to 'bestie' (exactly the way fix776 changed it): SESSION + PINK (brk-sesspk) stops sending live orders; its paper keeps running exactly as before; any SESSION + PINK position already open keeps its exits (half at 75% / 95% of the way, fix782). BESTIE (V.111 - 2's BEST set ups, flat $5) is the only live book. Every rail unchanged: the umpire, the -$100 day stop, halt, the LIVE switch, one ticket per window, the 1.38x floor, 2-3 PM PT off (skipHoursPT [14] -> main), end date Sat Nov 7. No code changed. Proofs updated so this lineup passes (no other check weakened): akimbo-726, gold-mid-bb-742, v111-2-live-775 also accept 'bestie'.
 - when: 2026-11-06T10:47:02+00:00
 - Love: "Love Nov 6 2026 ~2:38 AM PT: "hun , pls turn session pink off and only run bestie""

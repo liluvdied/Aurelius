@@ -16,6 +16,14 @@ const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
 export const LIVE_BOOK775 = "bestie";
 export const MIN_TRADES775 = 3, MIN_HIT775 = 50;
+// fix786 HER BAR (Love Nov 6 2026 ~2:35 AM PT: "yes bb over 10 trades over 65%"): the list's bar comes from her switch file data/v111-2-live.json - "minTrades" (at least that many
+// trades in the box) and "minHitPct" (MORE than that % won in the box); fix786 sets 11 and 65 (more than 10 trades, over 65%). Missing / unreadable = the fix775 bar (3+, more than 50%).
+export function bar786(): { n: number; h: number } {
+  const c = G.__bar786; if (c && Date.now() - c.at < 5000) return c.v;
+  let v = { n: MIN_TRADES775, h: MIN_HIT775 };
+  try { const j = JSON.parse(readFileSync(D("v111-2-live.json"), "utf8")); const n = Number(j?.minTrades), h = Number(j?.minHitPct); v = { n: Number.isFinite(n) && n >= 1 ? Math.floor(n) : MIN_TRADES775, h: Number.isFinite(h) && h >= 0 && h < 100 ? h : MIN_HIT775 }; } catch {}
+  G.__bar786 = { at: Date.now(), v }; return v;
+}
 const norm = (s: unknown) => String(s ?? "").replace(/−/g, "-").replace(/\s+/g, " ").trim();
 export type Cell775 = { label: string; n: number; w: number; pnl: number };
 export type Box775 = { name: "THIS WEEK" | "LAST 4 DAYS" | "PRIME BOOK"; rows: Cell775[] };
@@ -49,7 +57,7 @@ export function boxes775(src: { fill: any[]; prime: any[]; weekKept: Record<stri
   const pr = src.prime.filter((r) => r && r.result === "closed" && r.profit != null).map((r) => ({ label: String(r.pattern), profit: Number(r.profit) }));
   return [{ name: "THIS WEEK", rows: week }, { name: "LAST 4 DAYS", rows: count(d4) }, { name: "PRIME BOOK", rows: count(pr) }];
 }
-const onList = (c: Cell775) => c.pnl >= 0 && c.n >= MIN_TRADES775 && (100 * c.w) / c.n > MIN_HIT775;
+const onList = (c: Cell775) => { const b = bar786(); /* fix786 */ return c.pnl >= 0 && c.n >= b.n && (100 * c.w) / c.n > b.h; };
 /** the live list right now: every label on it, with the box(es) that put it there */
 export function list775(bx: Box775[]): { label: string; boxes: string[] }[] {
   const m = new Map<string, string[]>();
@@ -59,7 +67,7 @@ export function list775(bx: Box775[]): { label: string; boxes: string[] }[] {
 export function decide775(label: string, bx: Box775[], now = Date.now()): Decision775 {
   const k = norm(label), hits: string[] = [], near: string[] = [];
   for (const b of bx) for (const c of b.rows) { if (norm(c.label) !== k) continue; const s = `${b.name} ${c.w}/${c.n} ${c.pnl >= 0 ? "+" : "-"}$${Math.abs(c.pnl).toFixed(2)}${c.pnl >= 0 ? " BEST" : " WORST"}`; (onList(c) ? hits : near).push(s); }
-  return { ok: hits.length > 0, at: new Date(now).toISOString(), label: k, boxes: hits, why: hits.length ? `on the BEST list: ${hits.join(" · ")}` : `not on the BEST list${near.length ? ": " + near.join(" · ") : " (not scored in any box)"} - needs BEST, 3+ trades and MORE than 50% in one box` };
+  return { ok: hits.length > 0, at: new Date(now).toISOString(), label: k, boxes: hits, why: hits.length ? `on the BEST list: ${hits.join(" · ")}` : `not on the BEST list${near.length ? ": " + near.join(" · ") : " (not scored in any box)"} - needs BEST, ${bar786().n}+ trades and MORE than ${bar786().h}% in one box` }; /* fix786 */
 }
 export function liveOn775(): boolean { try { return JSON.parse(readFileSync(D("v111-2-live.json"), "utf8"))?.enabled === true; } catch { return false; } }
 /** the desk's own sources, read the way the STATS page reads them (live process only) */
