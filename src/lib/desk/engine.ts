@@ -2285,7 +2285,9 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         // MAIN BOOK ONLY (Love, same message: "ONE $2 dollar add on to our main books positions"): the delayed twin's positions never add.
         let aoTwin = false;
         try { aoTwin = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] === "recon-dly"; } catch { aoTwin = false; }
-        let aoOne717 = false; try { const lt = liveToday717(); aoOne717 = !!lt && lt.split(",").some((b) => String(bookOwnerOf(row.ticker)?.id || "").endsWith(":" + b)); /* fix726 */ } catch {} // fix717: the one live book takes no add-ons
+        // fix752 ADD-ONS ON FOR AKIMBO (Love Nov 5 2026 1:46 PM PT: "i set it to $5 and its sending out at $2" + 1:49 PM card: A - add-ons ON for AKIMBO positions): the live-today (AKIMBO) books' positions
+        // were skipped by every add-on (fix717 "no add-ons"); now her Add-on 1 / Add-on 2 boxes apply to them like her other books - same gates (her position, LIVE, umpire at the order, cap, one per position, time left).
+        const aoOne717 = false; // fix752 (was: true for any live-today book's position - fix717 / fix726)
         // $2 AT A BAND, 2.8x+ (Oct 17 ~1:15 PM PT, Love: "implement the $2 add on for me at a band, as long as it's over 2.8x actually / so it's
         // effectively 1/5th of the normal position size" + her picks: band rejection her way, once per window, 5+ min left, BTC and gold, her trades
         // only). addOn { on, dollars 2, maxAsk 0.35 }. A refused/unfilled try retries after 5 s; only a fill uses up the window's add-on.

@@ -7981,5 +7981,15 @@
     "what": "if (side === \"down\") { const b = L.find((l) => o < l.price && hi >= l.price + dist); if (b) return `this 5m candle broke UP through ${b.name} (${b.price}) by $${(hi - b.price).toFixed(2)} - a break is a break: no short this candle`; }",
     "why": "fix751 (her words in this change's request)",
     "R": "R430"
+  },
+  {
+    "what": "let aoOne717 = false; try { const lt = liveToday717(); aoOne717 = !!lt && lt.split(\",\").some((b) => String(bookOwnerOf(row.ticker)?.id || \"\").endsWith(\":\" + b)); /* fix726 */ } catch {} // fix717: the one live book takes no add-ons",
+    "why": "fix752 (her words in this change's request)",
+    "R": "R431"
+  },
+  {
+    "what": "t(/if \\(ao\\?\\.on && !aoOne717 \\/\\* fix717 \\*\\//.test(E) && /!aoTwin && !aoOne717 \\/\\* fix717 \\*\\//.test(E), \"the one book can still add on\");",
+    "why": "fix752 (her words in this change's request)",
+    "R": "R431"
   }
 ]

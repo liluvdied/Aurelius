@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R431 - fix752 ADD-ONS ON FOR AKIMBO: since this morning (fix717 'no add-ons', carried to every AKIMBO seat) any position owned by an AKIMBO book silently skipped Add-on 1 and Add-on 2 - the last desk add-on was 6:36 AM. Now AKIMBO positions take your Add-on 1 / Add-on 2 boxes like your other books, with the same gates: your desk's own position, no take-profit sell in progress, the price cap, once per position, minutes left, and every order still goes through the umpire / ENFORCER / LIVE / seal at the order. Nothing else changes.
+- when: 2026-11-06T00:33:47+00:00
+- Love: "Love Nov 5 2026 1:46 PM PT: "the size level isn't working for the add ons hun , i set it to $5 and its sending out at $2" + 1:49 PM PT (her card): tapped A - "Turn add-ons ON for AKIMBO positions: your Add-on 1 / Add-on 2 boxes apply to them like your other books" + 1:50 PM PT: "yea i want the add ons on. they end up reversing anyways it's a waste of a good dip if not""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix752 ADD-ONS ON FOR AKIMBO"}
+- proof: {"test": "tools/akimbo-addons-752.cjs"}
+
 ## R430 - fix751 BACK PAST THE LINE AS FAR AS IT WENT (every book but delayed): her same-candle check - 'this 5m candle broke UP through the pink / a band - a break up is never a short this candle' (and the mirror for longs) - now has the same release your R355 / fix666 gave her other broke-this-candle walls yesterday: once price is back past that line the other way by at least as far as it went past it this candle (e.g. broke up $2 -> needs $2 back under), and never less than your live push ($6 BTC / 10c gold), the trade is free. Every other gate still applies. Replay since Oct 19 (AKIMBO, the new trades only, real ask, 66c floor, 2+ min left, $20): 122 trades, 47% won, +$239. The delayed book keeps the old rule.
 - when: 2026-11-06T00:18:02+00:00
 - Love: "Love Nov 5 2026 1:36 PM PT: "oh yea no we absolutely need to change that to the distance past where it came from thing bb" + 1:37 PM: "no i meant breaks past the other way as far as it went / so broke down by $2 / then flipped the other way and pushed off by $2 / same way we did it yesterday bb" + 1:41 PM: "yess and a few less missed trades i think it's worth it bb""
