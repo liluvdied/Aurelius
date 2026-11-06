@@ -356,7 +356,10 @@ function breakDecide(L: Line[], a: any, last1m: Bar | undefined, noWall = false)
   const vwL = L.find((l) => l.name === "session VWAP");
   if (!vwL) return null;
   G_LIVEBREAK();
-  const brk = spot > 10000 ? lbCache.btc : spot > 1000 ? lbCache.gold : 0;
+  // fix756 AKIMBO BREAKS SOONER (Love Nov 5 2026 2:04 PM PT: "yes 10c gold , btc $5 pls"): the AKIMBO books (SESSION + PINK, +15M PIVOTS) call a live break once price is 10c (gold) / $5 (BTC)
+  // past the line (was her liveBreakDist 33c / $6). Every other break book keeps liveBreakDist.
+  const ak756 = ["brk-sesspk", "brk15"].includes(String((globalThis as any).__bdLane756 || ""));
+  const brk = spot > 10000 ? (ak756 ? 5 : lbCache.btc) : spot > 1000 ? (ak756 ? 0.1 : lbCache.gold) : 0;
   let hit: { side: "up" | "down"; l: Line; how: string } | null = null, gap = Infinity;
   for (const l of L) {
     const bd = brk > 0 ? brk : 0.15 * l.unit;
@@ -1220,6 +1223,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
             reId = `:t${mine.length + 1}`;
             }
           }
+          (globalThis as any).__bdLane756 = lane; /* fix756 */
           let look = lane === "brk-sessrj" ? (breakDecide((L as any[]).filter((l: any) => l.name !== "5m PP"), a, last1m) || (() => { const qR = quoteTick(id); return qR && Date.now() - qR.at <= 3000 ? pinkRejectEntry(id, L as any, qR.c) : null; })()) : lane === "brk-sesspk" ? (breakDecide((L as any[]).filter((l: any) => l.name !== "5m PP"), a, last1m, true) || breakDecide(L, a, last1m, true)) : lane.startsWith("brk") ? breakDecide(L, a, last1m) : decide(L, a, last1m, legacy, legacy ? [] : closed1m, !!aFastOn); // one engine (Oct 19 ~5:46 PM PT)
           // HER ORDER (Love, Oct 13 ~6:05 AM PT: "a wick/poke through and clear rejection is the entry and a clear visible
           // candle push through a band is a break... a tap at the line and rejection off of it is it, if it breaks thru at all

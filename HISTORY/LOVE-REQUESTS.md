@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R435 - fix756 AKIMBO BREAKS SOONER: SESSION + PINK and +15M PIVOTS now call a live break once price is 10c (gold) / $5 (BTC) past the line, instead of 33c / $6 - she gets in earlier. Every other break book keeps your liveBreakDist (33c / $6). Every wall and rail is unchanged. Replay since Oct 19 (simple first-break model): gold 246 -> 278 trades, 63% -> 63%, +$676 -> +$965; BTC 321 -> 328, 54% -> 54%, -$199 -> -$152. Run after CHANGE-100.
+- when: 2026-11-06T00:58:58+00:00
+- Love: "Love Nov 5 2026 1:59 PM PT: "she still isn't entering in on breaks quick enough hun" + 2:01 PM: "yes pls" + 2:04 PM: "yes 10c gold , btc $5 pls" (AKIMBO break distance)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix756 AKIMBO BREAKS SOONER"}
+- proof: {"test": "tools/akimbo-break-sooner-756.cjs"}
+
 ## R434 - fix763 THE GAP, MEASURED RIGHT (bug fix, no rule change): the desk deducts the TradingView-vs-Kalshi gap from Kalshi's strike to put the target on your chart. The gap was measured against a target that ALREADY had the last window's gap added, so each window's gap was 'true gap minus last window's gap' and flipped sign window to window (today BTC: +87, -75, -49, +35...; at 4:15 PM BTC the target sat ~$87 under your chart, so every short 'had to cross +1 sigma to reach the target' and was refused). Now: your chart price at the open minus Kalshi's own strike, re-measured whenever Kalshi's strike for that window changes, and any gap over $40 BTC / $3 gold is treated as a bad read (the last good gap carries). Logged every time. Run after CHANGE-99.
 - when: 2026-11-06T00:53:59+00:00
 - Love: "Love Nov 5 2026 ~4:30 PM PT: "okay the price on tradingview needs to be deducted from the price and kalshi bb :)" (bug fix: the window-open chart-vs-Kalshi gap was measured against a target that already had the previous window's gap in it)"

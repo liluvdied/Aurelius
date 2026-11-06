@@ -8041,5 +8041,10 @@
     "what": "H.offCapture519({ market: { ticker: \"KXBTC15M-TESTB\" }, target: 77200.00, secondsLeft: 400, spot: 77300.00 });",
     "why": "fix763 (her words in this change's request)",
     "R": "R434"
+  },
+  {
+    "what": "const brk = spot > 10000 ? lbCache.btc : spot > 1000 ? lbCache.gold : 0;",
+    "why": "fix756 (her words in this change's request)",
+    "R": "R435"
   }
 ]
