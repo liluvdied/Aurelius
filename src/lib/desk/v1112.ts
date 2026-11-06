@@ -16,6 +16,7 @@ import { existsSync, readFileSync, renameSync, statSync, writeFileSync } from "n
 import { join } from "node:path";
 import { bestTake775 } from "./v1112best.ts"; // fix775: her BEST-table takes also go live on Kalshi at $5 (v1112best.ts decides, the live copier sends)
 import { wallsTake783, wallsSettle783 } from "./v1112walls.ts"; // fix783: BESTIE · WALLS (paper) - BESTIE's takes judged by main's door first
+import { fbTick789 } from "./v1112fb.ts"; // fix789: BESTIE takes the next band when she misses hers over her floor
 import { invTake777, invSettle777 } from "./v1112inv.ts"; // fix777: V.111 - 2 INVERSE (paper) - every take of hers, the opposite side at its real ask
 
 // ---------------------------------------------------------------- the brain: og-replay.mjs lines 3-112, logic unchanged ----------------------------------------------------------------
@@ -269,6 +270,7 @@ export async function v1112Tick770(assets: Record<string, any> | null | undefine
     }
     if (dirty) save(true); else save();
     try { await wallsSettle783(assets); } catch {} // fix783: BESTIE · WALLS's bids, take-profit and settlement (taken + skipped rows, their own files)
+    try { await fbTick789(assets, s.rows, { read770, fillGaps770, bars770, cutList770, decide: (row: any) => bestTake775(row) }); } catch {} // fix789: BESTIE's next-band reads (her own file; V.111 - 2's book unchanged)
     try { await invSettle777(assets); } catch {} // fix777: the inverse paper book's bids, take-profit and settlement (its own file)
   } catch {} finally { G.__v1112Busy = false; }
 }

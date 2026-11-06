@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R461 - fix789 BESTIE TAKES THE NEXT VALID SET UP: for BESTIE only, a window stays open to her whenever V.111 - 2's take there did not become BESTIE's - (a) its ask was over her floor (live-switch bookFloor788.bestie, CHANGE-130 = 1.6x / 62.5c; without it 1.5x), (b) it was not on her list (e.g. the 'Open' reads), or (c) the live copier refused / skipped her row for any other gate (data/live-book-done.json). V.111 - 2's same brain keeps reading that window (minutes 1-14, once a minute) for BESTIE only; the first read on her list (the same live list check: bar, skip-if-WORST) with an ask at or under her floor is BESTIE's take, and it goes through every live gate like any of hers ($10 level, floor, umpire, stop...). If that take is itself refused at the wire, the window re-arms. Still one ticket a window (the copier's lock), no flips, either side. V.111 - 2's own paper book is unchanged (one take a window). Replay of tonight since 10 PM (her list now, asks from the bid paths, $5, her take-profit): it would have ADDED about 23 takes, 20 settled: 6 W / 14 L, about -$20.37. Every rail, size, exit and other book unchanged.
+- when: 2026-11-06T12:01:17+00:00
+- Love: "Love Nov 6 2026 ~2:38 AM PT: "i want to raise the floor to 1.6 , if she misses that i want her to trade the next band too pls" + ~3:18 AM PT: "yes let's have her be able to make any valid one of her set ups" (the 1.6x floor is CHANGE-130)"
+- books: BESTIE (bestie) live - more chances per window: the next valid set up on her list
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112fb.ts", "has": "export async function fbTick789("}
+- proof: {"test": "tools/bestie-nextband-789.cjs"}
+
 ## R460 - fix790 BESTIE'S ADD-ONS ON: her switch file data/v111-2-live.json addOns true (it shipped false with fix775 'off until you turn it on'). engine.ts's fix775 gate then stands down and your Add-on boxes apply to BESTIE's live positions exactly like every other book: exactly the add-on toggles you have selected in Settings, read live (right now: Add-on 1 $2 when her side's ask is 35.7c or under, 2+ min left; Add-on 2 (3.8x) $3 at 26.3c or under) - change a toggle and it applies to her too; no copy, nothing extra. The fix775 proof now expects her switch on. Add-on fills sit in the same Kalshi position, so they sell with it on the 75% / 95% exit (fix782) and count in the -$100 day stop like every live trade. No code changed. false turns them off again.
 - when: 2026-11-06T11:58:59+00:00
 - Love: "Love Nov 6 2026 ~2:22 AM PT: "and she didn't do her add on bb" + ~3:26 AM PT: "and she is still not doing her add ons bb" + ~3:29 AM PT: "yes love just the add ons i have in the toggle whatever ones i have selected there okay :)""

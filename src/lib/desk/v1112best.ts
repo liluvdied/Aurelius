@@ -100,7 +100,7 @@ export async function bestTake775(row: any, deps: { boxes?: () => Promise<Box775
  *  (data/v111-2-live.json enabled) is on - off = nothing is handed to Kalshi. */
 export function liveRows775(rows?: any[]): any[] {
   if (!liveOn775()) return [];
-  const src = rows ?? (G.__v1112?.rows as any[] | undefined) ?? [];
+  const src = rows ?? [...((G.__v1112?.rows as any[] | undefined) ?? []), ...((G.__v1112fb789?.rows as any[] | undefined) ?? [])]; // fix789: + her next-band takes
   const out: any[] = [];
   for (const r of src) {
     if (!r?.best775?.ok || !r.ticker || !/15M-/.test(String(r.ticker)) || (r.side !== "up" && r.side !== "down")) continue;
