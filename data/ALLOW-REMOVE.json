@@ -8006,5 +8006,40 @@
     "what": "export const setAddonSettings = createServerFn({ method: \"POST\" }).validator((input: { addOn1: AddOnBox664; addOn2: AddOnBox664 }) => input).handler(async ({ data }): Promise<{ ok: boolean }> => { const c = (b: AddOnBox664) => ({ on: b?.on === true, dollars: Math.max(1, Math.min(5, Math.round(Number(b?.dollars) || 0) || 1)) }); const v = { addOn1: c(data.addOn1), addOn2: c(data.addOn2), at: new Date().toISOString() }; const p = join(process.cwd(), \"data\", \"addon-settings.json\"); writeFileSync(p + \".tmp\", JSON.stringify(v, null, 1)); renameSync(p + \".tmp\", p); try { appendFileSync(join(process.cwd(), \"data\", \"addon-settings-log.jsonl\"), JSON.stringify(v) + \"\\n\"); } catch {} return { ok: true }; }); // fix664",
     "why": "fix754 (her words in this change's request)",
     "R": "R433"
+  },
+  {
+    "what": "const tk = asset?.market?.ticker; const tgt = Number(asset?.target ?? asset?.market?.target);",
+    "why": "fix763 (her words in this change's request)",
+    "R": "R434"
+  },
+  {
+    "what": "if (cur && cur.tk === tk) return;",
+    "why": "fix763 (her words in this change's request)",
+    "R": "R434"
+  },
+  {
+    "what": "const off = fresh ? Math.round((spot - tgt) * 100) / 100 : cur ? cur.off : 0;",
+    "why": "fix763 (her words in this change's request)",
+    "R": "R434"
+  },
+  {
+    "what": "R[id] = { tk, off, at: Date.now(), measured: fresh };",
+    "why": "fix763 (her words in this change's request)",
+    "R": "R434"
+  },
+  {
+    "what": "try { appendFileSync(join(process.cwd(), \"data\", \"strike-off519.jsonl\"), JSON.stringify({ at: new Date().toISOString(), asset: id, ticker: tk, target: tgt, chart: spot, off, measured: fresh }) + \"\\n\"); } catch {}",
+    "why": "fix763 (her words in this change's request)",
+    "R": "R434"
+  },
+  {
+    "what": "H.offCapture519({ market: { ticker: \"KXBTC15M-TESTA\" }, target: 77116.70, secondsLeft: 890, spot: 77144.49 });",
+    "why": "fix763 (her words in this change's request)",
+    "R": "R434"
+  },
+  {
+    "what": "H.offCapture519({ market: { ticker: \"KXBTC15M-TESTB\" }, target: 77200.00, secondsLeft: 400, spot: 77300.00 });",
+    "why": "fix763 (her words in this change's request)",
+    "R": "R434"
   }
 ]

@@ -19,13 +19,13 @@ let ok = true;
 const T = (cond, msg) => { if (!cond) { ok = false; console.log("  FAIL - " + msg); } };
 delete globalThis.__ktOff519;
 // 1. open second measured: chart 77144.49 vs target 77116.70 -> off +27.79
-H.offCapture519({ market: { ticker: "KXBTC15M-TESTA" }, target: 77116.70, secondsLeft: 890, spot: 77144.49 });
+H.offCapture519({ market: { ticker: "KXBTC15M-TESTA", kalshiStrike: 77116.70 /* fix763: the gap is measured against the Kalshi strike itself */ }, target: 77116.70, secondsLeft: 890, spot: 77144.49 });
 T(Math.abs(globalThis.__ktOff519.btc.off - 27.79) < 0.001, "the open-second difference was not measured (+27.79 expected)");
 // 2. the strike read in chart terms
 const adj = H.chartStrike519({ market: { ticker: "KXBTC15M-TESTA" } }, 77116.70);
 T(Math.abs(adj - 77144.49) < 0.001, "the strike was not read in chart terms (strike + off)");
 // 3. a late first sight (mid-window) does not fake a measurement - it carries the last one
-H.offCapture519({ market: { ticker: "KXBTC15M-TESTB" }, target: 77200.00, secondsLeft: 400, spot: 77300.00 });
+H.offCapture519({ market: { ticker: "KXBTC15M-TESTB", kalshiStrike: 77200.00 }, target: 77200.00, secondsLeft: 400, spot: 77300.00 });
 T(Math.abs(globalThis.__ktOff519.btc.off - 27.79) < 0.001, "a mid-window first sight should carry the last measured difference, not invent one");
 T(globalThis.__ktOff519.btc.measured === false, "a carried difference must say measured:false");
 // 4. gold independent of btc

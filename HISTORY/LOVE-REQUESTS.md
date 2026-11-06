@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R434 - fix763 THE GAP, MEASURED RIGHT (bug fix, no rule change): the desk deducts the TradingView-vs-Kalshi gap from Kalshi's strike to put the target on your chart. The gap was measured against a target that ALREADY had the last window's gap added, so each window's gap was 'true gap minus last window's gap' and flipped sign window to window (today BTC: +87, -75, -49, +35...; at 4:15 PM BTC the target sat ~$87 under your chart, so every short 'had to cross +1 sigma to reach the target' and was refused). Now: your chart price at the open minus Kalshi's own strike, re-measured whenever Kalshi's strike for that window changes, and any gap over $40 BTC / $3 gold is treated as a bad read (the last good gap carries). Logged every time. Run after CHANGE-99.
+- when: 2026-11-06T00:53:59+00:00
+- Love: "Love Nov 5 2026 ~4:30 PM PT: "okay the price on tradingview needs to be deducted from the price and kalshi bb :)" (bug fix: the window-open chart-vs-Kalshi gap was measured against a target that already had the previous window's gap in it)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix763 THE GAP, MEASURED RIGHT"}
+- proof: {"test": "tools/gap-measured-right-763.cjs"}
+
 ## R433 - fix754 ADD-ON 3, YOUR CUSTOM ONE: a third row under Add-on 1 / Add-on 2 in your desk settings - type the multiple (1.5x-10x), the $ ($1-$5), and an on/off toggle (starts OFF until you set it). When a position's price reaches your multiple, ONE buy of your $ on the same side, once per position, on its own (it doesn't wait for Add-on 1 or 2 - whichever multiple price reaches first goes first). Same gates as your add-ons: the desk's own position, no take-profit sell going, BTC / gold, not the delayed twin, minutes left, and the umpire / ENFORCER / LIVE / seal at the order. Run after CHANGE-98.
 - when: 2026-11-06T00:46:55+00:00
 - Love: "Love Nov 5 2026 1:48 PM PT: "can you add in a third custom box there? that lets me type the multiple and then put in the dollar amount ?""

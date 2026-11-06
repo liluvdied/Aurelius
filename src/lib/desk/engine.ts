@@ -1214,20 +1214,35 @@ function samePolyWindow(ticker, closeTime) {
 // second her chart (Pepperstone BTC / TVC gold) reads its own price; the difference between the two is measured right there and deducted from every
 // judgment of price against that window's strike, by reading the strike in chart terms (strike + the measured difference). Her bands, candles and
 // every other rule stay on her chart untouched. If the open second is missed, the last measured difference for that asset carries until the next open.
+// fix763 THE GAP, MEASURED RIGHT (Love Nov 5 2026 ~4:30 PM PT: "okay the price on tradingview needs to be deducted from the price and kalshi bb :)"): the gap was measured as chart - asset.target,
+// but asset.target is already Kalshi's strike PLUS the last window's gap (kalshi.ts chartStrike), so each window's gap was (true gap - last window's gap) and flipped sign window to window
+// (today: +87, -75, -49, +35 ... - 4:15 PM BTC's target sat $87 under her chart, and every short "had to cross +1 sigma to reach the target"). Now: chart price at the open - Kalshi's OWN strike
+// (market.kalshiStrike), re-measured whenever Kalshi's strike for that window changes (the open read can be provisional); a gap over $40 BTC / $3 gold is a bad read - the last good gap carries.
+// Every measure is logged to data/strike-off519.jsonl.
 function offCapture519(asset) {
   try {
     const G = globalThis; const R = (G.__ktOff519 || (G.__ktOff519 = {}));
-    const tk = asset?.market?.ticker; const tgt = Number(asset?.target ?? asset?.market?.target);
+    const tk = asset?.market?.ticker; const tgt = Number(asset?.market?.kalshiStrike ?? (/^KXBTC15M-/.test(String(tk || "")) ? NaN : (asset?.target ?? asset?.market?.target)));
     if (!tk || !(tgt > 0)) return;
     const id = tk.includes("BTC") ? "btc" : tk.includes("GOLD") ? "gold" : tk.includes("SILVER") ? "silver" : null;
     if (!id) return;
-    const cur = R[id];
-    if (cur && cur.tk === tk) return;
+    const cap = id === "btc" ? 40 : 3, cur = R[id];
+    const lastGood = cur ? (Number.isFinite(Number(cur.lastGood)) ? Number(cur.lastGood) : cur.measured && Math.abs(Number(cur.off)) <= cap ? Number(cur.off) : 0) : 0;
+    const log = (o) => { try { appendFileSync(join(process.cwd(), "data", "strike-off519.jsonl"), JSON.stringify({ at: new Date().toISOString(), asset: id, ticker: tk, ...o }) + "\n"); } catch {} };
+    if (cur && cur.tk === tk) {
+      if (cur.openSpot > 0 && Number.isFinite(Number(cur.kStrike)) && Math.abs(tgt - Number(cur.kStrike)) > 0.004) { // Kalshi's strike for this window changed: measure again from the open price
+        const raw = Math.round((cur.openSpot - tgt) * 100) / 100, bad = Math.abs(raw) > cap;
+        R[id] = { ...cur, kStrike: tgt, off: bad ? lastGood : raw, measured: true, bad, lastGood: bad ? lastGood : raw, at: Date.now() };
+        log({ kalshiStrike: tgt, chartOpen: cur.openSpot, gap: raw, used: R[id].off, why: bad ? `strike changed; gap over $${cap} - kept the last good gap` : "strike changed - re-measured", measured: true });
+      }
+      return;
+    }
     const left = Number(asset?.secondsLeft) || 0; const spot = Number(asset?.spot) || 0;
     const fresh = left >= 875 && spot > 0; // only the window's first ~25 seconds measure the open second itself
-    const off = fresh ? Math.round((spot - tgt) * 100) / 100 : cur ? cur.off : 0;
-    R[id] = { tk, off, at: Date.now(), measured: fresh };
-    try { appendFileSync(join(process.cwd(), "data", "strike-off519.jsonl"), JSON.stringify({ at: new Date().toISOString(), asset: id, ticker: tk, target: tgt, chart: spot, off, measured: fresh }) + "\n"); } catch {}
+    const raw = fresh ? Math.round((spot - tgt) * 100) / 100 : NaN, bad = fresh && Math.abs(raw) > cap;
+    const off = fresh && !bad ? raw : lastGood;
+    R[id] = { tk, off, at: Date.now(), measured: fresh, bad, openSpot: fresh ? spot : 0, kStrike: tgt, lastGood: fresh && !bad ? raw : lastGood };
+    log({ target: tgt, kalshiStrike: tgt, chart: spot, gap: Number.isFinite(raw) ? raw : null, off, measured: fresh, why: !fresh ? "open second missed - last good gap carries" : bad ? `gap over $${cap} - kept the last good gap` : "measured at the open" });
   } catch {}
 }
 function chartStrike519(asset, strike) {
