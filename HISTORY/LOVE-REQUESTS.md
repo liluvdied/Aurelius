@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R546 - fix935 NO COLOUR WALL: the 5m candle colour refusal at the send (fix854 'HER COLOUR' - no long on a red 5m candle / no short on a green one, either feed; fix932 made it both feeds) comes out for every book (delayed never had it). This morning it refused 78 of her orders at the last line. The function stays in the file, unwired. Her push rule (fix918 / fix807: the push off the wick on her side of the band with one 2m or 5m candle her colour) and every other rail are unchanged.
+- when: 2026-11-07T14:43:53+00:00
+- Love: "Love Nov 7 2026 ~6:27 AM PT: "let's take that off pls hun , color 2 feeds issue let's get rid of that wall pls""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix935 NO COLOUR WALL"}
+- proof: {"test": "tools/no-colour-wall-935.cjs"}
+
 ## R545 - fix933 HER SIDE OF THE LINE AT THE SEND for ETH.2 and BTC.2 (ports fix864's lineOf864 / priceOf864 / sideOfLine864 - her Nov 6 8:17 PM words - onto today's door): before every live entry, the line a setup names (session band, pink, red / green zone, Bollinger) is read and a long only goes while price is ABOVE it on both her chart and the live tick, a short only while BELOW it - otherwise the setup waits. ETH.2's live copy already asked for this check (fix900) but the check itself was never installed, so it was silently skipped; BTC.2's live copy had no check at all. Main / REJECTION keep their own same-side check at the last line (sameSideSend595), unchanged.
 - when: 2026-11-07T14:25:39+00:00
 - Love: "Love Nov 7 2026 ~4:13 AM PT: "price needs to be on the same side of the break when she enters a position. and not enter short directly above an unbroken bollinger." + Love Nov 6 2026 ~8:14-8:17 PM PT: "she is notttt on the same side of the break on these trades still i need you to fix that. btc. taken 30 seconds apart. it still isn't over the band. pls see what's causing that and fix that" (ETH.2 / BTC.2 live: her side of the line at the send)"

@@ -9881,5 +9881,10 @@
     "what": "if (side === \"down\" && green) return `HER COLOUR (fix854): the 5m candle is green (${both}) - no short until it's red on both feeds.`;",
     "why": "fix932 (her words in this change's request)",
     "R": "R544"
+  },
+  {
+    "what": "{ const c854 = typeof (B as any).candleColour854 === \"function\" ? (B as any).candleColour854(sym, side, Number(q.c)) : \"\"; if (c854) return c854; } // fix854 her colour on the 5m at the send - every book but delayed",
+    "why": "fix935 (her words in this change's request)",
+    "R": "R546"
   }
 ]
