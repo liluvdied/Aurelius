@@ -3,7 +3,7 @@
   "maxDollars": 1,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-07T13:50:29.859Z",
+  "at": "2026-11-07T14:25:50.749Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -124,7 +124,7 @@
       "recon-dly"
     ],
     "dollars": 1,
-    "since": "2026-11-07T13:50:29.861Z",
+    "since": "2026-11-07T14:25:50.750Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -3132,5 +3132,15 @@
     "addOnMult": 2.8,
     "since": "2026-11-07T00:11:24.926768Z",
     "note849": "fix849 (Love Nov 6 2026 ~6:25 PM PT: 'pls have the eth book run at $5 with a $5 add on pls babez')"
+  },
+  "ethLive872": {
+    "on": true,
+    "dollars": 1.5,
+    "since": "2026-11-07T14:25:32.991734+00:00"
+  },
+  "btcLive899": {
+    "on": true,
+    "dollars": 1.5,
+    "since": "2026-11-07T14:25:34.640242+00:00"
   }
 }

@@ -2,6 +2,46 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R545 - fix933 HER SIDE OF THE LINE AT THE SEND for ETH.2 and BTC.2 (ports fix864's lineOf864 / priceOf864 / sideOfLine864 - her Nov 6 8:17 PM words - onto today's door): before every live entry, the line a setup names (session band, pink, red / green zone, Bollinger) is read and a long only goes while price is ABOVE it on both her chart and the live tick, a short only while BELOW it - otherwise the setup waits. ETH.2's live copy already asked for this check (fix900) but the check itself was never installed, so it was silently skipped; BTC.2's live copy had no check at all. Main / REJECTION keep their own same-side check at the last line (sameSideSend595), unchanged.
+- when: 2026-11-07T14:25:39+00:00
+- Love: "Love Nov 7 2026 ~4:13 AM PT: "price needs to be on the same side of the break when she enters a position. and not enter short directly above an unbroken bollinger." + Love Nov 6 2026 ~8:14-8:17 PM PT: "she is notttt on the same side of the break on these trades still i need you to fix that. btc. taken 30 seconds apart. it still isn't over the band. pls see what's causing that and fix that" (ETH.2 / BTC.2 live: her side of the line at the send)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "export function sideOfLine864("}
+- proof: {"test": "tools/side-of-line-933.cjs"}
+
+## R544 - fix932 FLAT = NEUTRAL + BOTH FEEDS (your card pick, 3:20 AM): her 5m colour at the send refuses only when BOTH feeds (the order wire and your chart) show the wrong colour - and a candle within $3 BTC / 10c gold of its open counts as neutral on that feed. If one feed can't be read, the other decides. 5:17:57 AM BTC: the live price was green over the 5m open (75,850 vs 75,836) but the chart feed sat stale at 75,831 and she refused - now that goes.
+- when: 2026-11-07T14:25:37+00:00
+- Love: "Love Nov 7 2026 3:20 AM PT (11:20:17Z), her card pick on "How should she judge a candle that's basically flat at its open?" - option 1 "Flat = neutral + both feeds": "Within $3 BTC / 10c gold of the open counts as neutral, and she only refuses when BOTH feeds show the wrong colour." + ~5:18 AM PT: "ohhhhhh my gawd bb missed again" (5:17:57 AM BTC: the rejection long off the green zone was refused HER COLOUR with the wire GREEN at 75,850 over its 75,836 open while the chart feed sat stale at 75,831)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix932 FLAT = NEUTRAL + BOTH FEEDS"}
+- proof: {"test": "tools/colour-both-feeds-932.cjs"}
+
+## R543 - fix931 HER ONE PINK RULE ON THE PINK WALLS: UNDER THE PINK = NO LONGS (and its mirror OVER THE PINK = NO SHORTS) now refuse only when price is inside your 20% of the session-band channel from the pink - it applies in every conceivable capacity. Outside it, the pink is not in her way. 5:17:18 AM BTC: your rejection long off -2σ was refused $39.39 under the pink when your 20% was $16.50 - now it goes. Inside 20%, the walls hold exactly as before.
+- when: 2026-11-07T14:25:36+00:00
+- Love: "Love Nov 7 2026 ~4:02-4:07 AM PT: "session band to session band / distance from where price currently is / if a band channel is $100 wide from 0 - 1o / pink tolerance is 20% / she needs $20 of clearance from where price currently is. / it applies in every conceivable capacity" + ~5:18 AM PT: "ohhhhhh my gawd bb missed again" (5:17:18 AM BTC: the rejection long off -2σ was refused by UNDER THE PINK = NO LONGS with price $39.39 under the pink - her 20% of the channel was $16.50)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix931 HER ONE PINK RULE ON THIS WALL"}
+- proof: {"test": "tools/pink-walls-one-rule-931.cjs"}
+
+## R542 - fix899b BTC.2 LIVE: BTC.2 · PINK + THIRDS trades live on Kalshi BTC 15m, $1.50 an entry (its add-on defaults to $3 at 2.8x, never over $5 an order, never worse than 66.7c), through your add-on route: umpire SAFE, LIVE on, entries on, one filled trade a window, never the opposite side of what's held. Its own switch (live-switch btcLive899); on:false = paper again.
+- when: 2026-11-07T14:25:34+00:00
+- Love: "Love Nov 6 2026 ~9:56 PM PT: "put her on pls / let's make 3 analogues - each of those / we will see how they do over the week on real trades / give me ETH.2 pink + thirds live on btc pls 💞" + Love Nov 7 2026 ~4:25 AM PT: "plsss still do have ETH.2 ready for eth and btc if you can bb""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/btclive899.ts", "has": "export async function btcLiveTick899("}
+- proof: {"test": "tools/btc2-live-899b.cjs"}
+
+## R541 - fix910 ETH.2 LIVE: ETH.2 trades live on Kalshi ETH beside your ETH book, $1.50 an entry (its add-on defaults to $3 at 2.8x, never over $5 an order, never worse than 66.7c), through your add-on route: umpire SAFE, LIVE on, entries on, one filled trade a window, never the opposite side of what's held. live-switch ethLive872.on false = paper again.
+- when: 2026-11-07T14:25:32+00:00
+- Love: "Love Nov 6 2026 ~11:05 PM PT, her card pick: "Live right away" (ETH.2 trades live on Kalshi ETH, beside the live ETH book) + Love Nov 7 2026 ~4:25 AM PT: "plsss still do have ETH.2 ready for eth and btc if you can bb""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "data/live-switch.json", "has": "ethLive872"}
+- proof: {"test": "tools/eth2-live-910.cjs"}
+
 ## R540 - fix899 BTC.2 · PINK + THIRDS: ETH.2's rules on BTC (Coinbase BTC-USD, Kalshi BTC 15m) - her rejections off every line incl. her pink, main's failed break, any 5m open, a 7.5% break, a 25% touch, the VWAP break and -2σ short, 45% pink-to-zone, her 1.5x floor, one filled trade a window - with her pink cushion (your ONE pink rule, 20% of the channel) and her thirds kept. Its own rows (data/btc2c-book.json) and card in $$$. Paper here; CHANGE-273 takes it live.
 - when: 2026-11-07T13:49:36+00:00
 - Love: "Love Nov 6 2026 ~9:56 PM PT: "put her on pls / let's make 3 analogues - each of those / we will see how they do over the week on real trades / give me ETH.2 pink + thirds live on btc pls 💞" + Love Nov 7 2026 ~4:25 AM PT: "plsss still do have ETH.2 ready for eth and btc if you can bb""

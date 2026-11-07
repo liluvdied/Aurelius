@@ -797,6 +797,32 @@ async function terminalGate(ticker, bookSide, sameLine) {
 // than 2.5 s, unknown book, or anything unreadable = no order (fails closed). Closes (reduceOnly / forceExit) pass - they only shrink her.
 // fix601 THE EXACT ORDER (Love Nov 1 2026 8:32 AM PT: "the latest umpire verdict must be SAFE on the exact order that is about to leave, not just a file stamp" + 1:06 PM: "please close all remaining gaps"): every opening order is judged in this one place, on the live tick, and its verdict is written to data/order-verdicts.jsonl with its book, side, price and count.
 void import("./refusal-ledger").catch(() => {}); // fix661: her refusal ledger loads with the desk (it registers globalThis.__refusal661 for her read and door)
+// fix933 ON HER SIDE OF THE LINE AT THE SEND for ETH.2 / BTC.2 (Love Nov 7 2026 ~4:13 AM PT: "price needs to be on the same side of the break when she enters a position. and not enter short directly above an unbroken bollinger." + Love Nov 6 2026 ~8:14-8:17 PM PT: "she is notttt on the same side of the break on these trades still i need you to fix that. btc. taken 30 seconds apart. it still isn't over the band. pls see what's causing that and fix that" (ETH.2 / BTC.2 live: her side of the line at the send)): fix864's line reader, ported onto today's door - a long off a line only while price is above it on both feeds, a short only while below. Called by ETH.2's and BTC.2's live copies (side900); main's own last line is unchanged (it keeps sameSideSend595).
+export function lineOf864(label: string): { name: string; side: "up" | "down" } | null {
+  const s = String(label || "").replace(/^Re-aimed[^:]*:\s*/, "").trim();
+  let m = s.match(/^Failed break (above|below) (.+?) - rejected (up|down)/); if (m) return { name: m[2].trim(), side: m[3] === "up" ? "up" : "down" };
+  m = s.match(/^Rejected (up|down) off (.+?)(?: [·(-].*)?$/); if (m) return { name: m[2].trim(), side: m[1] === "up" ? "up" : "down" };
+  m = s.match(/^(?:Break|Close) (above|below) (.+?)(?: [·(-].*)?$/); if (m) return { name: m[2].trim(), side: m[1] === "above" ? "up" : "down" };
+  return null;
+}
+export function priceOf864(name: string, L: any[], bb: any): number {
+  const n = name.replace(/\u2212/g, "-");
+  const find = (k: string) => { const x = (L || []).find((l: any) => String(l.name) === k); return x ? Number(x.price) || 0 : 0; };
+  if (n === "session VWAP" || /^[+-][123]σ$/.test(n) || n === "5m PP") return find(n);
+  if (/^red zone$/i.test(n) || n === "5m R1") return find("5m R1");
+  if (/^green zone$/i.test(n) || n === "5m S1") return find("5m S1");
+  if (/^Bollinger upper$/i.test(n) || /^BB upper$/i.test(n)) return Number(bb?.bbU) || 0;
+  if (/^Bollinger lower$/i.test(n) || /^BB lower$/i.test(n)) return Number(bb?.bbL) || 0;
+  return 0;
+}
+export function sideOfLine864(label: string, L: any[], bb: any, chart: number, wire: number): string {
+  const ln = lineOf864(label); if (!ln) return "";
+  const P = priceOf864(ln.name, L, bb); if (!(P > 0)) return "";
+  const ps = [chart, wire].filter((x) => Number(x) > 0); if (!ps.length) return "";
+  if (ln.side === "up" && !ps.every((x) => x > P)) return `ON HER SIDE OF THE LINE (fix864): "${label}" is a long off ${ln.name} (${P.toFixed(2)}) but price is not above it on both feeds (chart ${chart.toFixed(2)}, live ${wire.toFixed(2)}) - no order.`;
+  if (ln.side === "down" && !ps.every((x) => x < P)) return `ON HER SIDE OF THE LINE (fix864): "${label}" is a short off ${ln.name} (${P.toFixed(2)}) but price is not below it on both feeds (chart ${chart.toFixed(2)}, live ${wire.toFixed(2)}) - no order.`;
+  return "";
+}
 async function finalGate524(ticker, bookSide, sameLine, yesPrice = 0, count = "") {
   const why = await judgeOrder601(ticker, bookSide, sameLine);
   if (why) { try { (await import("./refusal-ledger")).refusal661({ where: "send", lane: String(sameLine?.bookCopy || ""), ticker: String(ticker), side: bookSide === "bid" ? "up" : "down", label: String(sameLine?.label || ""), rule: String(why), ask: Number(yesPrice) || 0 }); } catch {} } // fix661: every refused send also goes to her refusal ledger (log only)
