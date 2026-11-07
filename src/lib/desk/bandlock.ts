@@ -681,6 +681,7 @@ export function tiny809(asset: string, side: string, L: Line[]): boolean {
 // ~2:13 AM PT: "Measure from her entry line — only refuse when price is already 55%+ of the way from the line she trades off to the next line. Entries at 0-5% always go."): BTC only, every book but delayed
 // (zoneSend594 already skips nothing for delayed - it is not in the delayed path). The entry line = the line her read names (band, zone, pink, Bollinger); the next line = the nearest of her lines
 // ahead in the trade's direction. Refused only at 55%+ of that distance. A read that names no line is not judged by this wall. Gold keeps fix594 (pink -> red / green, R316).
+// fix926 UNDO 263 (Love Nov 7 2026 ~3:21 AM PT: "zeeeeero percent correct"): late923 is no longer called - BTC is back on fix594 as before.
 export function late923(L: Line[], tick: number, side: string): string {
   try {
     if (!(tick > 0) || (side !== "up" && side !== "down")) return "";
@@ -703,7 +704,6 @@ export function zoneSend594(asset: string, L: Line[], tick: number, side: string
   const zP = px("5m PP"), r1 = px("5m R1"), s1 = px("5m S1");
   if (!(tick > 0) || !(zP > 0) || !(r1 > zP) || !(s1 > 0) || !(s1 < zP)) return strict ? "ZONE (fix594): the zones can't be read - no order." : "";
   { const w711 = bbFade711(asset, tick, side, r1, s1); if (w711) return w711; } // fix711
-  if (asset === "btc" && typeof late923 === "function") return late923(L, tick, side); // fix923 BTC: her 55% measured from the line she trades off to the next line ahead (her card, Nov 7 2:13 AM) - pink->zone no longer judges BTC
   if (side === "up") {
     if (tick >= r1) return `PAST THE RED ZONE (fix594): long at ${tick.toFixed(2)} at or past the red boundary ${r1.toFixed(2)} - no long.`;
     if (!slideFree800(asset, side) && !tiny809(asset, side, L) /* fix811 */ && tick > zP && (tick - zP) / (r1 - zP) >= 0.45) return `PINK TO RED (fix594): long at ${Math.round((tick - zP) / (r1 - zP) * 100)}% of pink ${zP.toFixed(2)} to red ${r1.toFixed(2)} - in the top 55% - no long.`;

@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R535 - fix926 UNDO 263: takes fix923 back out - BTC's fix594 (pink -> red / green -> pink 55% and past the red / green zone) is exactly as it was before CHANGE-263; late923 stays in the file but nothing calls it; her behaviour proofs for BTC fix594 are back as they were.
+- when: 2026-11-07T11:39:32+00:00
+- Love: "Love Nov 7 2026 ~3:21 AM PT, on the description of CHANGE-263 / fix923 (refuse only when price is 55%+ of the way from her entry line to the next line): "zeeeeero percent correct" + ~3:24 AM PT: "the 55% rule applies to distance from pink to red , and pink to the green zone - not from band to band whatsoever" (SUPERSEDES her ~2:13 AM card pick "Measure from her entry line") + R292 (Oct 31): "a solid 55% of the distance from pink to green, and pink to red / it's universal" - fix923 is taken back out: BTC's fix594 is exactly as it was before (pink -> red / green -> pink 55% and past the zone), until her own 55% words. late923 stays in the file unwired (R534 kept on record, marked undone)."
+- books: main (TOGETHER), REJECTION, every book fix594 judges
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix926 UNDO 263"}
+- proof: {"test": "tools/undo-263-926.cjs"}
+
 ## R534 - fix923 BTC 55% FROM HER ENTRY LINE: on BTC, fix594's PINK TO RED / GREEN 55% and PAST THE ZONE checks are replaced by her card's rule: refuse only when price is already 55%+ of the way from the line her read trades off (band, zone, pink, Bollinger) to the nearest of her lines ahead; entries at her line always go; a read that names no line is not judged by it. Same door + last-line sites (zoneSend594). fix711 (BB fade) unchanged. Gold keeps fix594 (R316).
 - when: 2026-11-07T10:52:02+00:00
 - Love: "Love Nov 7 2026 ~2:00 AM PT: "the 55% of pink to red is not a permitted reason for a skip when she enters at 0-5% of that distance 100% of the time" + her card ~2:13 AM PT "How should the 55% wall work for BTC?" - + ~2:15 AM PT: "thankkkkkk you i was saying that on repeat like that is not a reason 😹💘 a wall is not a wall til you run into it" + her pick: "Measure from her entry line — only refuse when price is already 55%+ of the way from the line she trades off to the next line. Entries at 0-5% always go." (BTC only; gold keeps R316 "the 55% from pink to green and pink to red")"

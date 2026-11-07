@@ -9586,5 +9586,155 @@
     "what": "G.__door594Test = true; T(\"fix594 door: the same test refuses at the door\", /bottom 55%/.test(geo(\"btc\", ZB, 77900, \"down\", \"main\"))); T(\"fix594 door: nothing past the red boundary at the door\", /PAST THE RED/.test(geo(\"btc\", ZB, 78600, \"up\", \"main\"))); G.__door594Test = false;",
     "why": "fix923 (her card)",
     "R": "R534"
+  },
+  {
+    "what": "if (asset === \"btc\" && typeof late923 === \"function\") return late923(L, tick, side); // fix923 BTC: her 55% measured from the line she trades off to the next line ahead (her card, Nov 7 2:13 AM) - pink->zone no longer judges BTC",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "T(\"fix594 (gold since fix923) short at 50% from pink, in the bottom 55%, is refused\", /bottom 55%/.test(B.zoneSend594(\"gold\", ZB, 77900, \"down\")));",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "T(\"fix594 (gold since fix923) short inside the green zone is refused\", /past the green/.test(B.zoneSend594(\"gold\", ZB, 77400, \"down\")));",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "T(\"fix594 (gold since fix923) short under the whole green zone is refused, not free and clear\", /past the green/.test(B.zoneSend594(\"gold\", ZB, 77700, \"down\")));",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "T(\"fix594 (gold since fix923) long at 50% from pink, in the top 55%, is refused\", /top 55%/.test(B.zoneSend594(\"gold\", ZB, 78100, \"up\"))); T(\"fix923 BTC: no read line named = not judged by pink -> zone any more (her card: measure from her entry line)\", !B.zoneSend594(\"btc\", ZB, 78100, \"up\"));",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "T(\"fix594 (gold since fix923) long over the whole red zone is refused, not free and clear\", /past the red/.test(B.zoneSend594(\"gold\", ZB, 78600, \"up\")));",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "T(\"fix811 tiny channel: a gold long at 50% of a $4 pink-to-red goes\", !B.zoneSend594(\"gold\", Zb(3880, 3870, 3860, 3884, 3890), 3882, \"up\")); T(\"fix811 tiny channel is gold only (fix923: BTC is measured from her entry line, so a BTC long naming no line is not judged here)\", !B.zoneSend594(\"btc\", Zb(78000, 77900, 77800, 78100, 78200), 78050, \"up\"));",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "G.__door594Test = true; T(\"fix594 door: the same test refuses at the door (gold since fix923)\", /bottom 55%/.test(geo(\"gold\", ZB, 77900, \"down\", \"main\"))); T(\"fix594 door: nothing past the red boundary at the door (gold since fix923)\", /PAST THE RED/.test(geo(\"gold\", ZB, 78600, \"up\", \"main\"))); G.__door594Test = false;",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "// fix923 proof: BTC 55% FROM HER ENTRY LINE (her card Nov 7 2:13 AM: \"Measure from her entry line ... Entries at 0-5% always go.\")",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "const fs = require(\"fs\"), path = require(\"path\"), os = require(\"os\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log(\"LATE OFF LINE 923 TEST: FAIL - \" + m); } };",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "t(src.includes('if (asset === \"btc\" && typeof late923 === \"function\") return late923(L, tick, side); // fix923'), \"BTC's fix594 is measured from her entry line\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "const ts = require(path.join(root, \"node_modules/typescript\")), out = fs.mkdtempSync(path.join(os.tmpdir(), \"f923-\"));",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "fs.writeFileSync(path.join(out, \"bandlock.js\"), ts.transpileModule(src, { compilerOptions: { module: 1, target: 99 } }).outputText);",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "fs.writeFileSync(path.join(out, \"quotes.js\"), \"exports.quoteTick=()=>null;exports.feedHealth=()=>({ok:true});\"); fs.writeFileSync(path.join(out, \"recon.js\"), \"exports.RECON={};\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "const dir = fs.mkdtempSync(path.join(os.tmpdir(), \"f923d-\")); fs.mkdirSync(path.join(dir, \"data\")); process.chdir(dir); fs.writeFileSync(path.join(dir, \"data/live-switch.json\"), \"{}\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "const B = require(path.join(out, \"bandlock.js\")), G = globalThis; G.__curBook465 = \"recon-tog\"; G.__inBLC465 = true; G.__bbsr = { btc: { bbU: 76210, bbL: 76020, at: Date.now() } }; G.__bb711 = {};",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "// tonight's kind of board: VWAP 75990, +1σ 76077 sits ABOVE the red zone 76060 (narrow channel), pink 76040, green 76020, +2σ 76163",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "const L = [{ name: \"session VWAP\", price: 75990 }, { name: \"+1σ\", price: 76077 }, { name: \"+2σ\", price: 76163 }, { name: \"5m PP\", price: 76040 }, { name: \"5m R1\", price: 76060 }, { name: \"5m S1\", price: 76020 }, { name: \"5m R2\", price: 76110 }];",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "G.__curLabel611 = \"Rejected up off +1σ\";",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "t(B.zoneSend594(\"btc\", L, 76079, \"up\") === \"\", \"a long AT +1σ (2% of the way to the next line) with +1σ above the red zone goes (was PAST THE RED ZONE)\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "t(/LATE OFF HER LINE \\(fix923\\)/.test(B.zoneSend594(\"btc\", L, 76097, \"up\")), \"a late chase at 61% of +1σ -> R2 (76110) is refused\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "G.__curLabel611 = \"Rejected up off Green zone\"; t(B.zoneSend594(\"btc\", L, 76022, \"up\") === \"\", \"a long at the green zone goes\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "G.__curLabel611 = \"Candle rising from the bottom third\"; t(B.zoneSend594(\"btc\", L, 76079, \"up\") === \"\", \"a read that names no line is not judged by this wall\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "G.__curLabel611 = \"Rejected down off +1σ\"; t(B.zoneSend594(\"btc\", L, 76074, \"down\") === \"\" && /LATE OFF HER LINE/.test(B.zoneSend594(\"btc\", L, 76066, \"down\")), \"shorts mirror: at +1σ goes; 59% of +1σ -> red zone 76060 refused\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "G.__curLabel611 = \"Rejected up off +1σ\";",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "const Lg = [{ name: \"session VWAP\", price: 4040 }, { name: \"+1σ\", price: 4080 }, { name: \"-1σ\", price: 4000 }, { name: \"5m PP\", price: 4050 }, { name: \"5m R1\", price: 4065 }, { name: \"5m S1\", price: 4035 }]; G.__bbsr = { gold: { bbU: 4090, bbL: 4000, at: Date.now() } };",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "const g1 = B.zoneSend594(\"gold\", Lg, 4066, \"up\"), g2 = B.zoneSend594(\"gold\", Lg, 4060, \"up\"); t(/PAST THE RED ZONE \\(fix594\\)/.test(g1) && /PINK TO RED \\(fix594\\)/.test(g2), \"gold keeps her pink -> zone 55% (R316) (got \" + g1 + \" | \" + g2 + \")\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "G.__curLabel611 = \"\"; G.__inBLC465 = false;",
+    "why": "fix926 (her words above)",
+    "R": "R535"
+  },
+  {
+    "what": "console.log(ok ? \"LATE OFF LINE 923 TEST ✓ - BTC's 55% is measured from the line she trades off to the next line ahead: entries at her line always go (a long AT +1σ above the red zone), a 55%+ chase is refused; gold keeps pink -> zone.\" : \"LATE OFF LINE 923 TEST: FAIL\");",
+    "why": "fix926 (her words above)",
+    "R": "R535"
   }
 ]
