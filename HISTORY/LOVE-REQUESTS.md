@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R526 - fix911 BANDS -> VANTAGE: fix908 moved her BTC price to Vantage, but the chart her session VWAP / sigma bands are drawn from (tv.ts CHARTS.btc) was still PEPPERSTONE:BTCUSD - frozen since 10:25 PM - so every band sat ~$100 under her chart (desk VWAP 75,867 vs hers 75,967; +2σ 76,011 vs 76,111) and every long read 'over +2σ / top rung'. Now her bands come from VANTAGE:BTCUSD 5m, 5 PM ET session - the same feed as her price and her chart.
+- when: 2026-11-07T08:16:48+00:00
+- Love: "Love Nov 6 2026 ~11:52 PM PT: "it's not trading fine right now hun she is skipping literally every entry" + "hun this is NOT the top rung" (after the Vantage switch her session bands still came from the frozen Pepperstone chart - every band ~$100 under her chart)"
+- books: every BTC book - session bands
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/tv.ts", "has": "symbol: \"VANTAGE:BTCUSD\" /* fix911"}
+- proof: {"test": "tools/bands-vantage-911.cjs"}
+
 ## R525 - fix908 FEED -> VANTAGE: her BTC live price (the quote stream), her band bars (pivotbooks) and nav read VANTAGE:BTCUSD instead of PEPPERSTONE:BTCUSD - Pepperstone froze at 10:25 PM (the desk sat at 75,931 for 30+ min, so main / REJ / no-pink could not read) while Vantage kept updating with her chart. Gold stays on TVC:GOLD; the Coinbase backup feed and every stale-feed guard unchanged. Her bands rebuild from Vantage on the switch.
 - when: 2026-11-07T07:12:20+00:00
 - Love: "Love Nov 6 2026 ~10:58 PM PT: "yeah coinbases chart is frozen too put her on vantage please." (Pepperstone BTC froze at 10:25 PM - the desk sat at 75,931 while Vantage ran 76,026-76,052)"
