@@ -2537,6 +2537,16 @@ export function sessStartMs(now = Date.now(), asset = ""): number {
 // bands hand over to the live session's bands 2 hours after the session start (2 PM -> 4 PM PT) at the latest, or sooner once the new sigma reaches 50%
 // of the old. 5:30:20 PM gold: the desk still carried yesterday's VWAP 4164.83 / sigma 14.94 (new sigma 2.73 never reached 50%), saw -1σ $14.50 above
 // and longed; her chart's live session VWAP sat 50c over her head. `now` is passed by the live caller only; the self-test cases run without it.
+// fix839 FRESH BANDS ARE WALLS AT $50 ON WEEKENDS (Love Nov 6 2026 ~4:36 PM PT: "fml yes that won't work on weekends bb / we need to start counting them at $50 on weekends for sure"): from Friday 2:00 PM PT to Sunday 3:00 PM PT the BTC session carry hands back to the
+// fresh bands (they count as walls again) once the fresh sigma is $50, not $100 - on weekends BTC's fresh sigma sits under $100 a third of the time (8% on weekdays). Weekdays and gold unchanged.
+export const WEEKEND_SD839 = 50;
+export function weekend839(now = Number(G.__now839) || Date.now()): boolean {
+  try {
+    const p = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: 'short', hour: "2-digit", hourCycle: "h23" }).formatToParts(new Date(now));
+    const wd = p.find((x) => x.type === "weekday")?.value, h = Number(p.find((x) => x.type === "hour")?.value);
+    return (wd === "Fri" && h >= 14) || wd === "Sat" || (wd === "Sun" && h < 15);
+  } catch { return false; }
+}
 export function sessCarryPick(c: any, ss: number, v: number, sd: number, now = 0, asset = ""): { v: number; sd: number; carried: boolean } {
   if (c.cur && c.cur.sess !== ss) { c.prev = c.cur; c.cur = null; }
   const fresh = v > 0 && sd > 0;
@@ -2545,7 +2555,7 @@ export function sessCarryPick(c: any, ss: number, v: number, sd: number, now = 0
   const late = false && now > 0 && now - ss >= 7200000 && fresh; // fix164 (Oct 24 ~3:40 PM PT, Love card 'Keep the carry until they widen'): no 2-hour cutoff - the carry holds until the fresh sigma reaches half of the last session's
   // fix167 (Oct 24 ~5:35 PM PT, Love card): BTC hands back to the fresh bands once they are $200+ apart (sd >= 200) - yesterday's width varies too much ; gold once $5+ apart
   const ABS_SD: Record<string, number> = { btc: 100 /* fix527 (Love Oct 30 2026 4:15 PM PT: "lets go ahead and have her start counting bands as walls again at $100 , not $180. they start holding up around $100"); fix168 was 180, fix167 was 200 */, gold: 5 };
-  const wideNow = ABS_SD[asset] > 0 ? sd >= ABS_SD[asset] : sd >= 0.5 * Number(prev?.sd || 0);
+  const wideNow = ABS_SD[asset] > 0 ? sd >= (asset === "btc" && weekend839(now > 0 ? now : undefined) ? WEEKEND_SD839 : ABS_SD[asset]) /* fix839 her weekend $50 */ : sd >= 0.5 * Number(prev?.sd || 0);
   if (prev && !late && (!fresh || !wideNow)) return { v: Number(prev.v), sd: Number(prev.sd), carried: true };
   return { v: fresh ? v : 0, sd: fresh ? sd : 0, carried: false };
 }

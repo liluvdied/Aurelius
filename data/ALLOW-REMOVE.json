@@ -9156,5 +9156,10 @@
     "what": "FILES = {\"inverse-book-688.json\": (\"INVERSE BOOK\", \"setup\"), \"momentum-book-704.json\": (\"MOMENTUM BOOK\", \"setup\"), \"high-multiple-707.json\": (\"HIGH MULTIPLE BOOK\", \"way\"), \"half-band-709.json\": (\"HALF-BAND KEEP BOOK\", \"setup\"), \"cup-book-713.json\": (\"CUP BOOK\", \"setup\"), \"v111-2-770.json\": (\"V.111 - 2\", \"setup\"), \"pink-slide-801.json\": (\"PINK SLIDE ONLY\", \"setup\"), \"away-824.json\": (\"AWAY FROM LINE\", \"setup\"), \"sol-book-832.json\": (\"SOL · REJ ONLY · NO PINK\", \"label\"), \"doge-book-832.json\": (\"DOGE · REJ ONLY · NO PINK\", \"label\"), \"mom-coins-833.json\": (\"MOMENTUM · COINS\", \"setup\"), \"main-vwap-694.json\": (\"MAIN · VWAP SIDE\", \"label*\"), \"rej-parked-695.json\": (\"REJECTION · PARKED SIDE\", \"label*\"), \"flip-819.json\": (\"FLIPS\", \"setup\"), \"inverse-worst-820-book.json\": (\"INVERSE-WORST\", \"setup\")}  # fix820 (split per book below)  # fix819: her flips scored on their own  # fix816: label* = her label grouped the way main's are  # fix770: V.111 - 2 scored by set up; fix802: PINK SLIDE ONLY scored by set up",
     "why": "fix835",
     "R": "R504"
+  },
+  {
+    "what": "const wideNow = ABS_SD[asset] > 0 ? sd >= ABS_SD[asset] : sd >= 0.5 * Number(prev?.sd || 0);",
+    "why": "fix839 (her words above)",
+    "R": "R505"
   }
 ]

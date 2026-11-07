@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R505 - fix839 FRESH BANDS ARE WALLS AT $50 ON WEEKENDS: her session carry (fix527) keeps yesterday's bands as the walls until the fresh BTC sigma reaches $100; from Friday 2:00 PM PT to Sunday 3:00 PM PT that hand-back happens at $50 instead, so the new session's bands count as walls again on quiet weekends (BTC's fresh sigma sits under $100 a third of the weekend vs 8% of weekdays). Weekdays ($100) and gold unchanged.
+- when: 2026-11-07T00:49:50+00:00
+- Love: "Love Nov 6 2026 ~4:36 PM PT: "fml yes that won't work on weekends bb / we need to start counting them at $50 on weekends for sure""
+- books: every book - BTC session carry on weekends
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function weekend839("}
+- proof: {"test": "tools/weekend-fresh-bands-839.cjs"}
+
 ## R504 - fix835 / fix836 THE 1-2-3 BOOK, SEALED + NEW - PAPER ONLY: (835) 1-2-3 · SEALED: her Polymarket BTC 5-minute 1-2-3 book exactly as it stood Oct 26 ~9:30 PM PT (PRE295-BUILD, her ~74% stretch): 82 blocks of her read, walls, lines and doors copied byte for byte from a vault, sealed by sha256 + fingerprint (any change stops both books and says why), cut off from every shared wall (her own sandbox). (836) 1-2-3 · NEW: the same base plus her late door (~3 min left, pushing off a Bollinger / session band / zone), her 1.5x floor, the Bollinger cushion and no trading into a line within $50 of the target. $5 paper, priced at the desk's recorded Polymarket 5m quotes. Replay Nov 2-7: SEALED 209 trades 59% +$81; NEW 186 57% +$46 (her late door alone 21 trades 48% -$4.40). Never an order; live on Polymarket only on her go.
 - when: 2026-11-07T00:29:23+00:00
 - Love: "Love Nov 6 2026 ~3:42 PM PT: "one thing we need to get up and running today bb , our 1-2-3 book on poly / she got turned inside out when i was doing some fixes on other books they bled into her and she was never the same / can you do the same thing you did on the og aurelius on there for me bb ?!" + ~3:45 PM: "honestly i think we can make it even better now together bb""
