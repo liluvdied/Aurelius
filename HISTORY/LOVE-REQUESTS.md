@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R548 - fix940 BNB MOMENTUM LIVE ON KALSHI: her BNB momentum paper book (fix833: with the first 2 minutes, a fresh break up through pink, short under -2σ while falling - on Kalshi KXBNB15M) gets its own live copy: the second the paper book takes a BNB window, buy the same side for $1.50 inside her 1.5x floor (66.7c or less); one filled trade a window; keep knocking while the set up is valid; exits mirror the paper (half at 75%, trail, bell). Every order through her add-on route: umpire SAFE, LIVE on, entries on (her stops / halt), $5 cap, side lock, opposite-side guard. Its own switch: live-switch bnbLive940 (on, $1.50). Paper record at her floor since Nov 6 night: 46 settled, 27 W / 19 L, +$67.52 at $20 paper (TP exits).
+- when: 2026-11-07T22:42:48+00:00
+- Love: "Love Nov 7 2026 ~2:02 PM PT: "omg pls turn on bnb momentum on kalshi bb""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bnblive940.ts", "has": "export async function bnbLiveTick940("}
+- proof: {"test": "tools/bnb-live-940.cjs"}
+
 ## R547 - fix936 THE BLUE VWAP WALL USES HER NORMAL SESSION BAND TOLERANCE: fix397 (no long under / no short over the unbroken blue VWAP when bands are small) kept her within HALF the VWAP-to-1σ width; it now uses what a session band gets at the door (bandTol934 = her session-band scale fix593 capped by her sliding scale fix845; BTC $25 under a $100 width). Today 6:45 AM BTC: VWAP to 1σ $81.74 - half held her long $33.61 under the VWAP; her $25 lets it through. Main and rejection orders (the only ones this wall judges); delayed never comes through here. Carries her band-tolerance helper (bandTol934) itself.
 - when: 2026-11-07T21:58:09+00:00
 - Love: "Love Nov 7 2026 ~6:52 AM PT (asked whether the blue VWAP wall, fix397, should keep "no long / short within half the VWAP to 1σ distance" or use her band tolerance): "no not half luv just her normal session band tolerances""
