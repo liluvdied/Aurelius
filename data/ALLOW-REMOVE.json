@@ -9346,5 +9346,10 @@
     "what": "console.log(ok ? \"WEEKEND FRESH BANDS 839 TEST ✓ - BTC fresh bands count as walls from a $50 sigma Fri 2 PM - Sun 3 PM PT, $100 the rest of the week; gold unchanged.\" : \"WEEKEND FRESH BANDS 839 TEST: FAIL\");",
     "why": "fix853 (her words above)",
     "R": "R519"
+  },
+  {
+    "what": "if (method !== \"POST\" || !/\\/portfolio\\/(events\\/)?orders/.test(path) || !body || body.reduce_only === true) return { body };",
+    "why": "fix869 (her words above)",
+    "R": "R521"
   }
 ]

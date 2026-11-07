@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R521 - fix869 SELLS NEVER CAPPED: her resting take-profits (and any close marked as a close on what she holds) pass the Kalshi per-order cap untouched - at 8:37 PM her BTC DOWN take-profit was cut from $3.26 to the $1 cap, so it only covered 11 of her contracts. Reduce-only exits already passed; every new opening order is still capped.
+- when: 2026-11-07T04:50:52+00:00
+- Love: "Love Nov 6 2026 ~8:41 PM PT (relayed): sells / closes must NEVER be capped by maxDollars - "SELLS NEVER CAPPED" (her 8:37 PM BTC DOWN take-profit was cut to $1 = 11 of her contracts)"
+- books: every live book - exits
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix869 SELLS NEVER CAPPED"}
+- proof: {"test": "tools/sells-never-capped-869.cjs"}
+
 ## R520 - fix854 HER COLOUR ON THE 5M: at the send, no long while the 5m candle is red (price under its open) and no short while it is green (price over its open), on the live tick - every book but delayed. The 7:16 PM REJ long at 75,973.95 under the 5m open 75,977.31 would have been refused. Replay Nov 2-6 (main / REJ / no-pink, BTC): blocked 324 entries that went 39% (-$1.44 a $10 trade); kept 421 at 56% (+$0.54).
 - when: 2026-11-07T03:38:20+00:00
 - Love: "Love Nov 6 2026 ~7:16-7:17 PM PT: "hun she just longed gold on a red candle" + "looked like exactly that hehe, she still needs to wait for the candle to be her color bb" + "that was a for sure short""

@@ -41,7 +41,7 @@ function guardKalshiOrder(method, path, body) {
   // resting take-profit can't be laid on a position count from before that exit (4:43:52 PM: half cashed out, then a take-profit
   // for the FULL old 10.47 filled at once and flipped her short into a 10.47 long).
   if (method === "POST" && body && body.reduce_only === true && body.ticker) { try { ((globalThis as any).__exitAt ||= {})[body.ticker] = Date.now(); } catch {} }
-  if (method !== "POST" || !/\/portfolio\/(events\/)?orders/.test(path) || !body || body.reduce_only === true) return { body };
+  if (method !== "POST" || !/\/portfolio\/(events\/)?orders/.test(path) || !body || body.reduce_only === true || closeOnlyBodies.has(body) /* fix869 SELLS NEVER CAPPED: her take-profits / closes on what she holds are never cut by the per-order cap */) return { body };
   if (!liveOn()) {
     noteBlock({ venue: "kalshi", ticker: body.ticker, reason: "Live switch is OFF" });
     return { refused: "Live switch is OFF. No new Kalshi order was sent." };
