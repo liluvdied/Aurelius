@@ -9851,5 +9851,40 @@
     "what": "[\"$$$ 💸\", (b) => [\"kalshinow766\", \"og1012\", \"rsi672\", \"eth682\", \"brkout687\", \"push50\", \"akimbo727\", \"akimbo744\", \"brk-sesspk\", \"brk15\", \"gmid2\", \"bmid5\", \"allbb\", \"recon-tzw\", \"inv688\", \"brnw\", \"hm707-rev\", \"hm707-rip\", \"club690\", \"mom704\", \"hb709\", \"cup713\", \"mv694\", \"rp695\", \"v1112\", \"bestie\" /* fix775 */ /* fix770 */].includes(b)],",
     "why": "fix872 (her words in this change's request)",
     "R": "R539"
+  },
+  {
+    "what": "[\"$$$ 💸\", (b) => [\"kalshinow766\", \"og1012\", \"rsi672\", \"eth682\", \"eth2872\", \"brkout687\", \"push50\", \"akimbo727\", \"akimbo744\", \"brk-sesspk\", \"brk15\", \"gmid2\", \"bmid5\", \"allbb\", \"recon-tzw\", \"inv688\", \"brnw\", \"hm707-rev\", \"hm707-rip\", \"club690\", \"mom704\", \"hb709\", \"cup713\", \"mv694\", \"rp695\", \"v1112\", \"bestie\" /* fix775 */ /* fix770 */].includes(b)],",
+    "why": "fix899 (her words in this change's request)",
+    "R": "R540"
+  },
+  {
+    "what": "if (!spent521 && !botQ && !clear522) return `UNDER THE PINK = NO LONGS (fix521): price ${tick.toFixed(2)} is $${(pk521 - tick).toFixed(2)} under the pink (${pk521.toFixed(2)}) and falling - a long waits for her 10%/5% reset, or the bottom 25% of pink->green (at the green line).`;",
+    "why": "fix931 (her words in this change's request)",
+    "R": "R543"
+  },
+  {
+    "what": "if (!spent521 && !topQ && !clear522b) return `OVER THE PINK = NO SHORTS (fix521): price ${tick.toFixed(2)} is $${(tick - P).toFixed(2)} over the pink (${P.toFixed(2)}) and rising - a short waits for her 10%/5% reset, or the top 25% of pink->red (at the red line).`;",
+    "why": "fix931 (her words in this change's request)",
+    "R": "R543"
+  },
+  {
+    "what": "const red = (chart && pC < oC) || (wire && pW < oW), green = (chart && pC > oC) || (wire && pW > oW);",
+    "why": "fix932 (her words in this change's request)",
+    "R": "R544"
+  },
+  {
+    "what": "if (side === \"up\" && red) return `HER COLOUR (fix854): the 5m candle is red (${both}) - no long until it's green on both feeds.`;",
+    "why": "fix932 (her words in this change's request)",
+    "R": "R544"
+  },
+  {
+    "what": "if (side === \"down\" && green) return `HER COLOUR (fix854): the 5m candle is green (${both}) - no short until it's red on both feeds.`;",
+    "why": "fix932 (her words in this change's request)",
+    "R": "R544"
+  },
+  {
+    "what": "{ const c854 = typeof (B as any).candleColour854 === \"function\" ? (B as any).candleColour854(sym, side, Number(q.c)) : \"\"; if (c854) return c854; } // fix854 her colour on the 5m at the send - every book but delayed",
+    "why": "fix935 (her words in this change's request)",
+    "R": "R546"
   }
 ]

@@ -830,11 +830,13 @@ export function candleColour854(asset: string, side: string, tick: number): stri
     const oW = trailOpen(asset), pW = Number(tick) || 0;
     const chart = oC > 0 && pC > 0, wire = oW > 0 && pW > 0;
     if (!chart && !wire) return "HER COLOUR (fix854): the 5m candle can't be read on either feed - no order";
-    const red = (chart && pC < oC) || (wire && pW < oW), green = (chart && pC > oC) || (wire && pW > oW);
+    // fix932 FLAT = NEUTRAL + BOTH FEEDS (her card pick 3:20 AM PT: "Within $3 BTC / 10c gold of the open counts as neutral, and she only refuses when BOTH feeds show the wrong colour."): within the flat band a feed is neither colour; a readable feed decides alone only when the other can't be read.
+    const fl932 = asset === "btc" ? 3 : 0.1, rC = chart && pC < oC - fl932, gC = chart && pC > oC + fl932, rW = wire && pW < oW - fl932, gW = wire && pW > oW + fl932;
+    const red = chart && wire ? rC && rW : rC || rW, green = chart && wire ? gC && gW : gC || gW; // fix932: both feeds must agree
     const sh = (p: number, o: number, n: string) => `${n} ${p.toFixed(2)} vs its 5m open ${o.toFixed(2)}`;
     const both = [chart ? sh(pC, oC, "chart") : "", wire ? sh(pW, oW, "wire") : ""].filter(Boolean).join(", ");
-    if (side === "up" && red) return `HER COLOUR (fix854): the 5m candle is red (${both}) - no long until it's green on both feeds.`;
-    if (side === "down" && green) return `HER COLOUR (fix854): the 5m candle is green (${both}) - no short until it's red on both feeds.`;
+    if (side === "up" && red) return `HER COLOUR (fix854): the 5m candle is red (${both}) - no long while both feeds read red (fix932).`;
+    if (side === "down" && green) return `HER COLOUR (fix854): the 5m candle is green (${both}) - no short while both feeds read green (fix932).`;
     return "";
   } catch { return "HER COLOUR (fix854): unreadable - no order"; }
 }
@@ -908,7 +910,8 @@ export function pinkLongWall432(asset: string, L: Line[], tick: number, side: st
       const a522 = S522.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], b522 = S522.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];
       const wide522 = a522 && b522 && a522.price - b522.price > (asset === "btc" ? 700 : 30);
       const clear522 = wide522 && pk521 - tick > (asset === "btc" ? 200 : 4) && turnFlip530(asset, "up", tick) /* fix530: her colour TURN is the flip, no minimum */;
-      if (!spent521 && !botQ && !clear522) return `UNDER THE PINK = NO LONGS (fix521): price ${tick.toFixed(2)} is $${(pk521 - tick).toFixed(2)} under the pink (${pk521.toFixed(2)}) and falling - a long waits for her 10%/5% reset, or the bottom 25% of pink->green (at the green line).`;
+      const one931 = a522 && b522 && a522.price > b522.price && typeof pinkOne927 === "function" ? pk521 - tick >= pinkOne927(asset, a522.price - b522.price) : false; // fix931 HER ONE PINK RULE ON THIS WALL (Love Nov 7 2026 ~4:02-4:07 AM PT: "session band to session band / distance from where price currently is / if a band channel is $100 wide from 0 - 1o / pink tolerance is 20% / she needs $20 of clearance from where price currently is. / it applies in every conceivable capacity" + ~5:18 AM PT: "ohhhhhh my gawd bb missed again" (5:17:18 AM BTC: the rejection long off -2σ was refused by UNDER THE PINK = NO LONGS with price $39.39 under the pink - her 20% of the channel was $16.50)): outside her 20% of the session-band channel, the pink is not in her way
+      if (!spent521 && !botQ && !clear522 && !one931) return `UNDER THE PINK = NO LONGS (fix521): price ${tick.toFixed(2)} is $${(pk521 - tick).toFixed(2)} under the pink (${pk521.toFixed(2)}) and falling - a long waits for her 10%/5% reset, or the bottom 25% of pink->green (at the green line).`;
     }
   } catch {}
   if (pinkBeyond459(asset, L, tick, Number(pk.price))) return ""; // fix459 (R176): only an unbroken pink within 15% gold / 20% BTC of the session-band channel holds a long
@@ -1007,7 +1010,8 @@ export function pinkShortWall464(asset: string, L: Line[], tick: number, side: s
       const a522b = S522b.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], b522b = S522b.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];
       const wide522b = a522b && b522b && a522b.price - b522b.price > (asset === "btc" ? 700 : 30);
       const clear522b = wide522b && tick - P > (asset === "btc" ? 200 : 4) && turnFlip530(asset, "down", tick) /* fix530: her colour TURN is the flip, no minimum */; // her 1:03 PM clearance, mirrored
-      if (!spent521 && !topQ && !clear522b) return `OVER THE PINK = NO SHORTS (fix521): price ${tick.toFixed(2)} is $${(tick - P).toFixed(2)} over the pink (${P.toFixed(2)}) and rising - a short waits for her 10%/5% reset, or the top 25% of pink->red (at the red line).`;
+      const one931b = a522b && b522b && a522b.price > b522b.price && typeof pinkOne927 === "function" ? tick - P >= pinkOne927(asset, a522b.price - b522b.price) : false; // fix931 her one pink rule, mirrored
+      if (!spent521 && !topQ && !clear522b && !one931b) return `OVER THE PINK = NO SHORTS (fix521): price ${tick.toFixed(2)} is $${(tick - P).toFixed(2)} over the pink (${P.toFixed(2)}) and rising - a short waits for her 10%/5% reset, or the top 25% of pink->red (at the red line).`;
     }
   } catch {}
   if (tick > P) {
