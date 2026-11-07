@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R500 - fix833 MOMENTUM ON THE COINS - PAPER: the MOMENTUM BOOK's three setups (with the first 2 minutes, fresh break up through pink, short under -2σ while falling) on DOGE, BNB and SOL's Kalshi 15-minute markets, plus a BTC WITH THE FIRST 2 MINUTES book - Coinbase 1m feed, $20 paper at the real Kalshi ask, once per setup per window, 2+ minutes left, scored held to the bell and under her take-profit with Kalshi fees taken off. PAPER ONLY. Four RECORDS cards (NEW BEST once green) + STATS (MOMENTUM · COINS).
+- when: 2026-11-07T00:07:43+00:00
+- Love: "Love Nov 6 2026 ~3:18 PM PT, her card pick "Yes, all four on paper" (DOGE, BNB, SOL momentum paper books + a BTC first-2-minutes paper book) + ~3:04 PM: "do go ahead and feel free to see if eth does well on momentum's framework, or any of the other cryptos :)""
+- books: DOGE / BNB / SOL momentum + BTC first 2 minutes (paper only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/momcoins833.ts", "has": "export async function momCoinsTick833("}
+- proof: {"test": "tools/momentum-coins-833.cjs"}
+
 ## R499 - fix832 SOL + DOGE PAPER BOOKS: her ETH rejections-only / no-pink paper book (fix682) copied to SOL (Kalshi KXSOL15M, Coinbase SOL-USD) and DOGE (KXDOGE15M, DOGE-USD) - same rules and walls scaled by price, $20 paper at the live ask, her take-profit. PAPER ONLY (no order path). RECORDS cards (they show under NEW BEST once green) and STATS scoring. Natgas / WTI oil are not built: they need a 1-minute price feed the desk doesn't have (no public Coinbase-style source).
 - when: 2026-11-06T23:59:03+00:00
 - Love: "Love Nov 6 2026 ~3:16 PM PT, her card pick "Paper books on the desk" to her ~1:58 PM ask: "can you test all of the other 15M markets on kalshi against our rules and see if they do better than gold does bb? 🏁""

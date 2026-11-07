@@ -3852,6 +3852,8 @@ async function tick() {
     // fix832 SOL + DOGE REJECTIONS ONLY · NO PINK - PAPER (her card "Paper books on the desk"): copies of the ETH paper book. PAPER ONLY.
     import("./solbook832").then((m) => m.solTick832()).catch(() => {});
     import("./dogebook832").then((m) => m.dogeTick832()).catch(() => {});
+    // fix833 MOMENTUM ON THE COINS - PAPER (her card "Yes, all four on paper"): DOGE / BNB / SOL momentum + BTC first 2 minutes. PAPER ONLY.
+    import("./momcoins833").then((m) => m.momCoinsTick833()).catch(() => {});
     // fix686 OG ORIGINAL · 10.12 (Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls"). PAPER ONLY, sealed (og1012.ts never sends an order).
     import("./og1012").then((m) => m.og1012Tick(snap.assets)).catch(() => {});
     // fix687 OUTWARD BREAK · SESSION BANDS (Love Nov 5 2026 ~1:00 AM PT: "a new one too if you have a different idea in mind for it"). PAPER ONLY (brkout.ts never sends an order).
