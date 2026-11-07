@@ -2,6 +2,30 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R525 - fix908 FEED -> VANTAGE: her BTC live price (the quote stream), her band bars (pivotbooks) and nav read VANTAGE:BTCUSD instead of PEPPERSTONE:BTCUSD - Pepperstone froze at 10:25 PM (the desk sat at 75,931 for 30+ min, so main / REJ / no-pink could not read) while Vantage kept updating with her chart. Gold stays on TVC:GOLD; the Coinbase backup feed and every stale-feed guard unchanged. Her bands rebuild from Vantage on the switch.
+- when: 2026-11-07T07:12:20+00:00
+- Love: "Love Nov 6 2026 ~10:58 PM PT: "yeah coinbases chart is frozen too put her on vantage please." (Pepperstone BTC froze at 10:25 PM - the desk sat at 75,931 while Vantage ran 76,026-76,052)"
+- books: every BTC book - price feed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/quotes.ts", "has": "\"VANTAGE:BTCUSD\": \"btc\" /* fix908"}
+- proof: {"test": "tools/feed-vantage-908.cjs"}
+
+## R524 - fix907 LIVE ETH ON HER CHART'S SESSION (her fix862, as ETH.2): her live ETH book's session VWAP and σ bands reset at 00:00 UTC on 5m candles, exactly like her TradingView ETH chart - at 10:51 PM the book drew +1σ at 2,243.40 (5 PM ET on 1m) while her chart's was 2,244.08, so it longed into her band. Now its lines are hers (VWAP 2,241.17, +1σ 2,244.08 at 10:51 PM). Corrected-model replay: +$262 vs the 5 PM session.
+- when: 2026-11-07T07:12:18+00:00
+- Love: "Love Nov 6 2026 ~10:54 PM PT: "it wasn't the red hun the green band is the session band. she was under it" + her card pick ~10:56 PM: "Yes, use my chart's reset" (live ETH on her chart's 00:00 UTC session, 5m - like ETH.2)"
+- books: ETH (live)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethbook.ts", "has": "fix907 HER CHART'S SESSION ON LIVE ETH"}
+- proof: {"test": "tools/eth-session-907.cjs"}
+
+## R523 - fix906 NO ENTRY INTO A LINE (her ETH book, live): main's reach wall, scaled by price (BTC $25 -> ETH ~70c) - no long with an unbroken line (session VWAP / σ, red or green zone, Bollinger, her pink) within reach above, no short with one within reach below. 10:51 PM's long $0.66 under the red zone is refused. Calibrated replay (ETH since Oct 31): 331 trades, $4.07/trade vs $3.79 now - about the same money, fewer bad entries. ETH.2 and BTC.2 inherit it when rebuilt.
+- when: 2026-11-07T07:12:17+00:00
+- Love: "Love Nov 6 2026 ~10:53 PM PT: "hun WHY did the eth book just long directly under a band like this ?????? unacceptable we need to fix that before she can be live" (10:51 PM: long at 2,244.07 with the red zone $0.66 above)"
+- books: ETH (live)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethbook.ts", "has": "LINE IN THE WAY (fix906)"}
+- proof: {"test": "tools/eth-line-in-way-906.cjs"}
+
 ## R522 - fix905 HER REGULAR PINK TOLERANCE ON WEEKENDS: Friday 2 PM to Sunday 3 PM PT her BTC pink cushion (main, REJ, no-pink - every book but delayed) is the regular 20% of the session channel (15% / 10% on huge channels) instead of half the channel under $100 - tonight's $72 channel made it $36, holding 920 calls since 8:30 PM (622 of them $15+ from the pink); now $14.40. Weekdays keep half under $100 and her scale from $100. Four proofs that read her weekday scale are pinned to a weekday.
 - when: 2026-11-07T06:36:59+00:00
 - Love: "Love Nov 6 2026 ~10:24 PM PT: "yeah literally all of the ones she skipped are valid / i had you make the pink tolerance half the channel width under $100 / but change it to the regular pink tolerance during weekends. / drop me that command now by itself pls so she can trade""

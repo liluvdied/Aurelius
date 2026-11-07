@@ -35,11 +35,13 @@ async function bars(): Promise<Bar[]> {
   B.at = Date.now(); return [...B.m.values()].sort((a: Bar, b: Bar) => a.t - b.t);
 }
 const group = (bs: Bar[], n: number): Bar[] => { const out: Bar[] = []; for (const b of bs) { const k = Math.floor(b.t / (n * 60)) * n * 60, x = out[out.length - 1]; if (x && x.t === k) { x.h = Math.max(x.h, b.h); x.l = Math.min(x.l, b.l); x.c = b.c; x.v += b.v; } else out.push({ ...b, t: k }); } return out; };
-/** her bands for ETH: session VWAP ±1/2/3σ (5 PM ET reset), 5m CM pivot (pink / R1 red zone / S1 green zone), Bollinger 20/2 on 5m */
+/** her bands for ETH: session VWAP ±1/2/3σ (00:00 UTC reset on 5m candles, as her chart - fix862), 5m CM pivot (pink / R1 red zone / S1 green zone), Bollinger 20/2 on 5m */
 export function ethBands682(bs: Bar[]): { name: string; price: number }[] {
   const L: { name: string; price: number }[] = []; if (bs.length < 40) return L;
-  const last = bs[bs.length - 1], day = (t: number) => Math.floor((t - 22 * 3600) / 86400); let sv = 0, sp = 0, sp2 = 0;
-  for (const b of bs) { if (day(b.t) !== day(last.t)) continue; const tp = (b.h + b.l + b.c) / 3, w = Math.max(b.v, 1e-9); sv += w; sp += w * tp; sp2 += w * tp * tp; }
+  // fix907 HER CHART'S SESSION ON LIVE ETH (her fix862) (Love Nov 6 2026 ~8:03-8:05 PM PT: "why did she just long eth ???????? it broke the session down????" + "both breaks down" (her TradingView ETH on Coinbase: session VWAP 2,240.79, +1σ 2,243.69, -1σ 2,237.88)): her TradingView session VWAP on Coinbase ETH resets at 00:00 UTC (4 PM PT) and is built from
+  // 5m candles - the book used 5 PM ET on 1m candles, $1.43 under her chart at 8:02 PM, so a break down on her chart read as a bounce here. Now the same as her chart (to the cent at 8:04 PM).
+  const last = bs[bs.length - 1], day = (t: number) => Math.floor(t / 86400); let sv = 0, sp = 0, sp2 = 0;
+  for (const b of group(bs, 5)) { if (day(b.t) !== day(last.t)) continue; const tp = (b.h + b.l + b.c) / 3, w = Math.max(b.v, 1e-9); sv += w; sp += w * tp; sp2 += w * tp * tp; }
   if (sv > 0) { const vw = sp / sv, sd = Math.sqrt(Math.max(sp2 / sv - vw * vw, 0)); if (sd > 0) { L.push({ name: "session VWAP", price: vw }); for (const k of [1, 2, 3]) { L.push({ name: `+${k}σ`, price: vw + k * sd }); L.push({ name: `-${k}σ`, price: vw - k * sd }); } } }
   const b5 = group(bs, 5).slice(-60);
   if (b5.length >= 10) { let ema = 0; b5.forEach((x, i) => { const pp = (x.h + x.l + x.c) / 3; ema = i === 0 ? pp : pp * 0.25 + ema * 0.75; }); const a = b5.slice(-7).reduce((s, x) => s + (x.h - x.l), 0) / 7; L.push({ name: "5m PP", price: ema }, { name: "Red zone", price: ema + a }, { name: "Green zone", price: ema - a }); }
@@ -72,6 +74,11 @@ export function ethRead682(bs: Bar[], L: { name: string; price: number }[], spot
     const w = W / k, cush = (w < 100 ? W / 2 : w < 180 ? W / 3 : w <= 500 ? 0.2 * W : w > 1000 ? 0.1 * W : 0.15 * W); // her BTC pink cushion, by price
     if (call.side === "up" && pk > spot - brk && pk - spot <= cush && pk > spot) return { why: "PINK CUSHION" };
     if (call.side === "down" && pk < spot + brk && spot - pk <= cush && pk < spot) return { why: "PINK CUSHION" };
+  }
+  { // fix906 NO ENTRY INTO A LINE (her ETH book): main's reach wall, scaled by price (BTC $25 -> ETH ~70c) - no long with an unbroken line (σ / VWAP / red or green zone / Bollinger / pink) just above, no short with one just below
+    const reach906 = 25 * k, ls906 = L.filter((l) => /σ$|^session VWAP$|^(Red|Green) zone$|^BB (upper|lower)$|^5m PP$/.test(l.name) && l.price > 0);
+    const a906 = call.side === "up" ? ls906.filter((l) => l.price > spot && l.price - spot <= reach906).sort((x, y) => x.price - y.price)[0] : ls906.filter((l) => l.price < spot && spot - l.price <= reach906).sort((x, y) => y.price - x.price)[0];
+    if (a906) return { why: `LINE IN THE WAY (fix906): ${a906.name} (${a906.price.toFixed(2)}) is $${Math.abs(a906.price - spot).toFixed(2)} ${call.side === "up" ? "above" : "below"} - no ${call.side === "up" ? "long" : "short"} into it (her reach $${reach906.toFixed(2)})` };
   }
   return call;
 }
