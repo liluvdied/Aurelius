@@ -1793,6 +1793,15 @@ export function twoMinHer653(asset: string, side: string, tick: number): boolean
 // Every book but delayed (delayed keeps its flips and $6). Gold unchanged until she picks. live-switch push807 false = off (BTC back to her $6 push / $2 candle flip).
 // fix807 pink trades (Love Nov 6 2026 ~7:51 AM PT: "let's keep the push requirement 10c on pink trades bb" - a bigger push puts the entry past halfway from pink to red): pink trades (off / through
 // the 5m PP) keep her small push - BTC $6 push or her $2 flip, gold 10c; the $50 wick push is for band / zone trades only.
+// fix837 BTC WEEKEND PUSH $5 (Love Nov 6 2026 ~3:49 PM PT: "OH one very important thing , btc wont move $50 on weekends for our push trigger / we need to put it back to $5 every friday at 2:00
+// until sunday at 3:00pm :)"): from Friday 2:00 PM PT until Sunday 3:00 PM PT her BTC band / zone push (fix807) is $5 instead of $50. Every other hour and every other rule unchanged.
+export function weekend837(now = Number(G.__now837) || Date.now()): boolean {
+  try {
+    const p = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: 'short', hour: "2-digit", hourCycle: "h23" }).formatToParts(new Date(now));
+    const wd = p.find((x) => x.type === "weekday")?.value, h = Number(p.find((x) => x.type === "hour")?.value);
+    return (wd === "Fri" && h >= 14) || wd === "Sat" || (wd === "Sun" && h < 15);
+  } catch { return false; }
+}
 export function push807(asset: string, label?: string): number {
   if (asset !== "btc") return 0;
   const lab812 = String(label ?? (G.__inBLC465 ? G.__curLabel611 || "" : G.__wireLabel619 || G.__curLabel611 || ""));
@@ -1803,7 +1812,7 @@ export function push807(asset: string, label?: string): number {
   if (label !== undefined && !/σ$|^session VWAP$|^fresh VWAP$|^(Red|Green) zone$|^5m (R|S)\d$|^(Bollinger|BB) (upper|lower)$/.test(lab812) && !REJ_LABEL611.test(lab812)) return 0; // pushLabel653 hands in the band name
   try { if (DLY465.has(String(G.__curBook465 || ""))) return 0; } catch {}
   try { if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.push807 === false) return 0; } catch {}
-  return 50;
+  return weekend837() ? 5 /* fix837 her weekend $5 */ : 50;
 }
 // fix827 GOLD BAND PUSH 15c / 20c (Love Nov 6 2026 ~11:55 AM PT: "let's make it 20c when bands are over $10 bb , and $15c under that / just a bittt more of a push than where it's at bc those are barely
 // blips of a push ... it's definitely costing fakies , when a few cents more doesn't change the multiple atttt all and will keep us out of the ones that flip for a millisecond and continue melting" + her card

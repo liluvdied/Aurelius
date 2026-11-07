@@ -2,6 +2,37 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R509 - fix842 THE SCORES REBUILD THEMSELVES: SET UP SCORES (tools/setup-scores-708.py - the WORST lists the four inverse-worst books read, CUT + FLIP's list, the STATS tables) and EVERY FACTOR (tools/factor-scores-825.py) now rebuild every 10 minutes from the engine, whether or not the STATS page is open (before, they only rebuilt while STATS was open, so the inverse-worst list file was never written after 10:40 AM and those books sat idle). Niced, one run at a time; read-only.
+- when: 2026-11-07T01:40:13+00:00
+- Love: "Love Nov 6 2026 ~5:08 PM PT: "we have several of them showing as 0 too" (the inverse-worst books idle - SET UP SCORES only rebuilt while STATS was open)"
+- books: none - the scorers (read-only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix842 THE SCORES REBUILD THEMSELVES"}
+- proof: {"test": "tools/scores-self-rebuild-842.cjs"}
+
+## R508 - fix840 BESTIE TO PAPER: her own V.111 - 2 live switch (data/v111-2-live.json enabled) goes false so her card stops saying LIVE - she has been off the live lineup since 5:31 AM PT (only main, REJ and delayed are live). Nothing new goes to Kalshi from BESTIE; she and V.111 - 2 keep scoring on paper; enabled true = live again on her yes. Her proofs now accept on or off.
+- when: 2026-11-07T01:40:11+00:00
+- Love: "Love Nov 6 2026 ~4:59 PM PT: "no we took her off for main and rej yesterday bb" (BESTIE off live - her own V.111 - 2 switch to paper so the card stops saying LIVE)"
+- books: BESTIE - paper
+- status: ACTIVE
+- proof: {"test": "tools/bestie-paper-840.cjs"}
+
+## R507 - fix841 BESTIE'S MOST SUCCESSFUL SET UPS: BESTIE's list (V.111 - 2's own settled set ups, fix797) now takes EVERY set up that is in profit ($ 0 or better) with 5+ settled trades, still never one on a WORST list - it updates itself as each record changes (was more than 10 trades and more than 65%). Paper (BESTIE is off the live lineup). BESTIE stays as she is live-wise (off the live lineup since 5:31 AM PT); her three switch-file proofs now read the new bar.
+- when: 2026-11-07T01:40:09+00:00
+- Love: "Love Nov 6 2026 ~5:06-5:07 PM PT: "just put her on the trades that have been most successful for her bb 💓" + "it doesn't need to be 10+ bb just the ones she's been banking on most , paper first" + "all of them bb we need to get her set ups going" (BESTIE: every set up in profit with 5+ settled trades, never WORST - paper)"
+- books: BESTIE - her list bar
+- status: ACTIVE
+- proof: {"test": "tools/bestie-bar-786.cjs"}
+- proof: {"test": "tools/bestie-own-797.cjs"}
+
+## R506 - fix837 BTC WEEKEND PUSH $5: from Friday 2:00 PM PT until Sunday 3:00 PM PT her BTC band / zone push off the wick (fix807) is $5 instead of $50; the rest of the week stays $50. Gold, pink trades ($6 / $2 flip) and every other rule unchanged. The fix807 proof now pins its $50 check to a weekday.
+- when: 2026-11-07T01:40:08+00:00
+- Love: "Love Nov 6 2026 ~3:49 PM PT: "OH one very important thing , btc wont move $50 on weekends for our push trigger / we need to put it back to $5 every friday at 2:00 until sunday at 3:00pm :)" + ~5:17 PM PT: "babe we cannnnot keep her at $50 for the weekend that is the distance from the bollinger rn no we keep her at $5 for the weekend pls 💓""
+- books: every book but DELAYED - BTC band / zone push on weekends
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function weekend837("}
+- proof: {"test": "tools/weekend-push-837.cjs"}
+
 ## R505 - fix839 FRESH BANDS ARE WALLS AT $50 ON WEEKENDS: her session carry (fix527) keeps yesterday's bands as the walls until the fresh BTC sigma reaches $100; from Friday 2:00 PM PT to Sunday 3:00 PM PT that hand-back happens at $50 instead, so the new session's bands count as walls again on quiet weekends (BTC's fresh sigma sits under $100 a third of the weekend vs 8% of weekdays). Weekdays ($100) and gold unchanged.
 - when: 2026-11-07T00:49:50+00:00
 - Love: "Love Nov 6 2026 ~4:36 PM PT: "fml yes that won't work on weekends bb / we need to start counting them at $50 on weekends for sure""

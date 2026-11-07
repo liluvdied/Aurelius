@@ -1,5 +1,5 @@
 {
- "at": "2026-11-07T00:49:50.403990+00:00",
+ "at": "2026-11-07T01:40:13.475157+00:00",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -8,7 +8,7 @@
   "auto.ts": "ec817b827977b355",
   "autoroll.ts": "78fb6514980c1219",
   "band-check.ts": "b237ae9c8845f659",
-  "bandlock.ts": "21a1f72896ac5fa6",
+  "bandlock.ts": "7d2f825a9cf8298f",
   "bankreplay.ts": "5d765962480ec439",
   "book.ts": "b68263872097dcb5",
   "bookhist.server.ts": "d59046a5705aeb65",
@@ -27,7 +27,7 @@
   "confirm.ts": "9d4790dfd4a9e8ed",
   "dayboard.ts": "e8cbbd6cc5934437",
   "dna.ts": "7e15f742d137607e",
-  "engine.ts": "61bab86f1f038b72",
+  "engine.ts": "b0466ad1c1111e08",
   "feedmatch.ts": "8908213d26d0f9fc",
   "fees.ts": "b31480529d0d4c44",
   "fill-log.ts": "1e136cd46cbbbe7f",
@@ -174,7 +174,7 @@
   "maxDollars": "4a44dc1536",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "096ed22b59",
+  "at": "c20ce42c25",
   "note": "34fb5e33ce",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -193,7 +193,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "d2766cb861",
+  "liveBook": "7750cf0e09",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -374,7 +374,7 @@
   "data/spine-lock.json": "595fbf87bb2c42df",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "2151c2caf5ebe08b"
+  "data/live-switch.json": "33716d6f0661eda6"
  },
  "sealLiveBook": "c8cfbbf7f9",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

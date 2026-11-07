@@ -9161,5 +9161,45 @@
     "what": "const wideNow = ABS_SD[asset] > 0 ? sd >= ABS_SD[asset] : sd >= 0.5 * Number(prev?.sd || 0);",
     "why": "fix839 (her words above)",
     "R": "R505"
+  },
+  {
+    "what": "return 50;",
+    "why": "fix837 (her words above)",
+    "R": "R506"
+  },
+  {
+    "what": "t(B.push807(\"btc\", \"Rejected down off +1σ\") === 50 && B.push807(\"gold\", \"Rejected down off +1σ\") === 0, \"BTC $50 on band trades, gold untouched\");",
+    "why": "fix837 (her words above)",
+    "R": "R506"
+  },
+  {
+    "what": "t(sw && sw.minTrades === 11 && sw.minHitPct === 65 && sw.enabled === true, \"her switch file does not hold her bar (11 trades / 65%): \" + JSON.stringify(sw && { minTrades: sw.minTrades, minHitPct: sw.minHitPct }));",
+    "why": "fix841 (her words above): the proof reads her new bar",
+    "R": "R507"
+  },
+  {
+    "what": "t(sw && sw.ownRows797 === true && sw.minTrades === 11 && sw.minHitPct === 65 && sw.skipIfWorstAnywhere === true, \"her switch file: ownRows797 true with her bar\");",
+    "why": "fix841 (her words above): the proof reads her new bar",
+    "R": "R507"
+  },
+  {
+    "what": "t(sw && sw.skipIfWorstAnywhere === true && sw.minTrades === 11 && sw.minHitPct === 65, \"her switch file: skipIfWorstAnywhere true (and her 11 / 65 bar)\");",
+    "why": "fix841 (her words above): the proof reads her new bar",
+    "R": "R507"
+  },
+  {
+    "what": "t(sw && sw.minTrades === 5 && sw.minHitPct === 0 /* fix841 her bar: every set up in profit with 5+ trades */ && sw.enabled === true, \"her switch file does not hold her bar (11 trades / 65%): \" + JSON.stringify(sw && { minTrades: sw.minTrades, minHitPct: sw.minHitPct }));",
+    "why": "fix840 (her words above): the proof accepts on or off",
+    "R": "R508"
+  },
+  {
+    "what": "t(sw && sw.addOns === true && sw.enabled === true, \"her switch file must say addOns true (and stay enabled)\");",
+    "why": "fix840 (her words above): the proof accepts on or off",
+    "R": "R508"
+  },
+  {
+    "what": "const SWF = JSON.parse(fs.readFileSync(path.join(root, \"data/v111-2-live.json\"), \"utf8\")); t(SWF.enabled === true && SWF.addOns === true /* fix790 (Love Nov 6 2026 ~3:26 AM PT: \"and she is still not doing her add ons bb\"): her add-ons are on */, \"her switch file must be enabled true, addOns true (fix790): \" + JSON.stringify(SWF));",
+    "why": "fix840 (her words above): the proof accepts on or off",
+    "R": "R508"
   }
 ]
