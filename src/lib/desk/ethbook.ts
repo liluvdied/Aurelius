@@ -77,8 +77,8 @@ export function ethRead682(bs: Bar[], L: { name: string; price: number }[], spot
   }
   { // fix906 NO ENTRY INTO A LINE (her ETH book): main's reach wall, scaled by price (BTC $25 -> ETH ~70c) - no long with an unbroken line (σ / VWAP / red or green zone / Bollinger / pink) just above, no short with one just below
     const reach906 = 25 * k, ls906 = L.filter((l) => /σ$|^session VWAP$|^(Red|Green) zone$|^BB (upper|lower)$|^5m PP$/.test(l.name) && l.price > 0);
-    const a906 = call.side === "up" ? ls906.filter((l) => l.price > spot && l.price - spot <= reach906).sort((x, y) => x.price - y.price)[0] : ls906.filter((l) => l.price < spot && spot - l.price <= reach906).sort((x, y) => y.price - x.price)[0];
-    if (a906) return { why: `LINE IN THE WAY (fix906): ${a906.name} (${a906.price.toFixed(2)}) is $${Math.abs(a906.price - spot).toFixed(2)} ${call.side === "up" ? "above" : "below"} - no ${call.side === "up" ? "long" : "short"} into it (her reach $${reach906.toFixed(2)})` };
+    const a906 = call.side === "up" ? ls906.filter((l) => l.price > spot && l.price - spot <= 1.5 /* fix913 FLAT $1.50 ABOVE A LONG (Love Nov 7 12:49 AM PT card: "Flat $1.50") */).sort((x, y) => x.price - y.price)[0] : ls906.filter((l) => l.price < spot && spot - l.price <= reach906).sort((x, y) => y.price - x.price)[0];
+    if (a906) return { why: `LINE IN THE WAY (fix906): ${a906.name} (${a906.price.toFixed(2)}) is $${Math.abs(a906.price - spot).toFixed(2)} ${call.side === "up" ? "above" : "below"} - no ${call.side === "up" ? "long" : "short"} into it (her reach $${(call.side === "up" ? 1.5 : reach906).toFixed(2)}${call.side === "up" ? " - fix913" : ""})` };
   }
   return call;
 }

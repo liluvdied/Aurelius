@@ -9391,5 +9391,25 @@
     "what": "btc: { symbol: \"PEPPERSTONE:BTCUSD\", resolution: \"5\", count: 400, session: \"ny\" }, // Love, Oct 18 ~5:48 PM PT: \"pepperstone\" (Coinbase paused 5 s+ about 60x/hour; Pepperstone the fewest) (session 5 PM ET, as Pepperstone always ran) // was: // Love, Oct 18 ~4:58 PM PT: \"omg price is way closer to kalshi's on coinbases too. i want to try the next few windows on here\" (session 00:00 UTC, her Coinbase chart) // was: // Love, Oct 18 ~4:36 PM PT: \"THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS\" (session from 00:00 UTC = 5 PM PT, as her INDEX chart ran Oct 16) // was: // Love, Oct 18 ~4:31 PM PT: \"we need to switch it back to pepperstones hun... vantages chart DEFINITELY flips more than pepperstones... pepperstone pls\" // // Love, Oct 17 ~5:49 PM PT: back on Vantage (weekend) // Love, Oct 17 ~4:54 PM PT: back on Pepperstone // Love, Oct 17 ~12:03 AM PT: \"let's do vantage hun its the right choice\" (5 PM ET session, proven vs her chart Oct 2) // Love, Oct 16 ~11:58 PM PT: INDEX (her symbol info: session 00:00-24:00 UTC, so her VWAP resets 00:00 UTC = 5 PM PT) // Love, Oct 16 ~10:25 PM PT: \"i want her on pepperstone if we can\" // Love ~3:25 PM PT: \"oanda is freezing too. let's trade vantage\"",
     "why": "fix911 (her words above)",
     "R": "R526"
+  },
+  {
+    "what": "const a906 = call.side === \"up\" ? ls906.filter((l) => l.price > spot && l.price - spot <= reach906).sort((x, y) => x.price - y.price)[0] : ls906.filter((l) => l.price < spot && spot - l.price <= reach906).sort((x, y) => y.price - x.price)[0];",
+    "why": "fix913 (her words above)",
+    "R": "R527"
+  },
+  {
+    "what": "if (a906) return { why: `LINE IN THE WAY (fix906): ${a906.name} (${a906.price.toFixed(2)}) is $${Math.abs(a906.price - spot).toFixed(2)} ${call.side === \"up\" ? \"above\" : \"below\"} - no ${call.side === \"up\" ? \"long\" : \"short\"} into it (her reach $${reach906.toFixed(2)})` };",
+    "why": "fix913 (her words above)",
+    "R": "R527"
+  },
+  {
+    "what": "function pinkSlide580R(asset: string, W: number, pct: number): number { if (asset === \"btc\" && W >= 100 && W < 180 && ![\"recon-dly\", \"recon-dlyk\"].includes(String((globalThis as any).__curBook465 || \"\"))) return 0.2 * W; /* fix845 her scale from $100 */ return asset === \"btc\" ? (W < 100 ? W / 2 : W < 180 ? W / 3 /* fix667 */ : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* fix641 Love Nov 4 2026 1:24 PM PT: \"anything over 1k channel width for btc goes to 10% for pink tolerance\" */ : 0.15 * W) : asset === \"gold\" && W < 5 ? (W < 3 ? W / 2 : W / 3 /* fix667 */) : asset === \"gold\" && W > 25 ? Math.min(pct * W, 3) /* Love Nov 4 2026 10:41 AM PT: \"on gold, past a $25 band width $3 max\" */ : pct * W; /* fix615 */ }",
+    "why": "fix914 (her words above)",
+    "R": "R528"
+  },
+  {
+    "what": "export function pinkSlide580(asset: string, W: number): number { if (asset === \"btc\" && W > 0 && ![\"recon-dly\", \"recon-dlyk\"].includes(String((globalThis as any).__curBook465 || \"\")) && typeof weekend839 === \"function\" && weekend839()) return W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W : 0.15 * W; /* fix905 HER REGULAR PINK TOLERANCE ON WEEKENDS (Fri 2 PM - Sun 3 PM PT): 20% of the channel, 15% / 10% on huge channels - no half under $100 */ if (asset === \"btc\" && W >= 100 && W < 180 && typeof slide845 === \"function\" && slide845(asset, W) < Infinity) return 0.2 * W; /* fix845 her scale from $100 */ return asset === \"btc\" ? (W < 100 ? W / 2 : W < 180 ? W / 3 /* fix667 (Love Nov 4 2026 8:23 PM PT: \"we can keep the 50% under a $100 band width / past $100 we can make it 1/3rd of the channel width of clearance until our sliding scale comes back into place after $180 is reached\"): $100-$180 = a third of the channel, no $60 cap; gold: half under $3, a third from $3 to $5 */ : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* fix641 Love Nov 4 2026 1:24 PM PT: \"anything over 1k channel width for btc goes to 10% for pink tolerance\" */ : 0.15 * W) : asset === \"gold\" && W < 5 ? (W < 3 ? W / 2 : W / 3 /* fix667 (Love ~8:29 PM PT: \"for gold however, let's make it a third from $3 -5 instead of from $2-5 so she has an even $1\"): gold half under $3, a third from $3 to $5 */) : asset === \"gold\" && W > 25 ? Math.min((PINK_PCT459[asset] ?? PINK_PCT429) * W, 3) /* Love Nov 4 2026 10:41 AM PT: \"on gold, past a $25 band width $3 max\" */ : (PINK_PCT459[asset] ?? PINK_PCT429) * W; /* fix615 (Love Nov 1 2026 4:27 PM PT, BTC: \"Until channel width reaches $100: half the channel width (dollar amount). From $100 to $180: half the channel width, capped at $60. Over $180: the normal sliding scale that was already in place.\" + 4:32 PM, gold: \"gold will be 1/2 of the channel width up until $2 , calculated in distance of price to pink and remain capped at $1.50 until the sliding scale goes back into place at $5.\" + 5:20 PM: \"any time bands are under 180\") */ }",
+    "why": "fix914 (her words above)",
+    "R": "R528"
   }
 ]

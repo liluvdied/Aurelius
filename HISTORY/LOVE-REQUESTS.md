@@ -2,6 +2,23 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R528 - fix914 FINISH 243: WEEKEND PINK IN MAIN'S READ - CHANGE-243 (fix905) gave her BTC pink cushion the regular 20% of the channel on weekends (15% / 10% on huge channels) at the door only; main's read (recon.ts pinkRead464, 'THE PINK in the read') kept half the channel under $100 and held tonight's 1:01:19 AM short ($30.93 over the pink, read cushion $40.77). Now one function (bandlock weekendPink914) serves the door and the read, so they cannot drift. Weekdays, delayed and gold unchanged.
+- when: 2026-11-07T09:35:31+00:00
+- Love: "Love Nov 6 2026 ~10:24 PM PT (R522, fix905 - this completes the site 243 missed: main's READ copy of the pink cushion in recon.ts): "i had you make the pink tolerance half the channel width under $100 / but change it to the regular pink tolerance during weekends." + Love Nov 7 2026 ~1:03 AM PT: "she has a 20% pink tolerance. that was a full channel away." + "PINK was NOT the reason" (1:01:19 AM BTC main short "Failed break above Bollinger upper - rejected down" at 76,185.73 held by THE PINK in the read: pink 76,154.80 $30.93 away, channel $81.53, the read still used half = $40.77) + Love Nov 7 2026 12:55 AM PT, card "Keep 198 'momentum only live' in tonight's batch?" - her pick: "Pull 198 out" (supersedes her Nov 6 7:33 PM card "Momentum only live"; CHANGE-198 / fix856 taken out of the batch, kept in used-commands/resting)"
+- books: main (TOGETHER), REJECTION, every recon lane but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix914 FINISH 243 WEEKEND PINK IN MAIN'S READ"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function weekendPink914("}
+- proof: {"test": "tools/weekend-pink-read-914.cjs"}
+
+## R527 - fix913 FLAT $1.50 ABOVE AN ETH LONG: her ETH book takes no long when an unbroken session band, red / green zone, Bollinger or pink sits within $1.50 above the entry (was fix906's 70c, BTC's $25 scaled by price - tonight's 12:32 AM long went in 95c under her BB upper). Shorts keep fix906's reach; BTC unchanged. ETH.2 gets the same $1.50 in its own wall when it installs (fix910).
+- when: 2026-11-07T09:35:29+00:00
+- Love: "Love Nov 7 2026 12:49 AM PT, card "How far above an ETH long should a line block her?" - her pick: "Flat $1.50" (after "hun WHY did the eth book just long directly under a band like this ?????? unacceptable" and "she longed into a band again" - the 12:32 AM ETH long at 2,244.55 went in 95c under her BB upper 2,245.50 and 97c under her red zone 2,245.52; the wall only reached 70c)"
+- books: ETH (Kalshi live)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethbook.ts", "has": "fix913 FLAT $1.50 ABOVE A LONG"}
+- proof: {"test": "tools/eth-long-150-913.cjs"}
+
 ## R526 - fix911 BANDS -> VANTAGE: fix908 moved her BTC price to Vantage, but the chart her session VWAP / sigma bands are drawn from (tv.ts CHARTS.btc) was still PEPPERSTONE:BTCUSD - frozen since 10:25 PM - so every band sat ~$100 under her chart (desk VWAP 75,867 vs hers 75,967; +2σ 76,011 vs 76,111) and every long read 'over +2σ / top rung'. Now her bands come from VANTAGE:BTCUSD 5m, 5 PM ET session - the same feed as her price and her chart.
 - when: 2026-11-07T08:16:48+00:00
 - Love: "Love Nov 6 2026 ~11:52 PM PT: "it's not trading fine right now hun she is skipping literally every entry" + "hun this is NOT the top rung" (after the Vantage switch her session bands still came from the frozen Pepperstone chart - every band ~$100 under her chart)"
