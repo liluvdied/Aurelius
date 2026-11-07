@@ -2,6 +2,53 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R520 - fix854 HER COLOUR ON THE 5M: at the send, no long while the 5m candle is red (price under its open) and no short while it is green (price over its open), on the live tick - every book but delayed. The 7:16 PM REJ long at 75,973.95 under the 5m open 75,977.31 would have been refused. Replay Nov 2-6 (main / REJ / no-pink, BTC): blocked 324 entries that went 39% (-$1.44 a $10 trade); kept 421 at 56% (+$0.54).
+- when: 2026-11-07T03:38:20+00:00
+- Love: "Love Nov 6 2026 ~7:16-7:17 PM PT: "hun she just longed gold on a red candle" + "looked like exactly that hehe, she still needs to wait for the candle to be her color bb" + "that was a for sure short""
+- books: every live book but delayed - entries
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function candleColour854("}
+- proof: {"test": "tools/her-colour-854.cjs"}
+
+## R519 - fix853 WEEKEND $50 TO MONDAY: her weekend rule (fix839) - BTC's new session bands count as walls AND are traded off once their sigma reaches $50 - now runs from Friday 2:00 PM PT to Monday 6:00 AM PT (was to Sunday 3:00 PM), so a quiet Sunday evening keeps today's bands; the weekday $100 comes back Monday 6 AM. The weekend $5 push (fix837) keeps its own hours. Gold unchanged.
+- when: 2026-11-07T03:38:18+00:00
+- Love: "Love Nov 6 2026 ~7:11-7:14 PM PT: "the bands as walls at and traded again after $ 50" + "yesss pls bb" (to: run the weekend $50 until Monday 6 AM PT instead of Sunday 3 PM)"
+- books: every BTC book - session bands on the weekend
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "|| wd === \"Sun\" || (wd === \"Mon\" && h < 6); // fix853"}
+- proof: {"test": "tools/weekend-fresh-bands-839.cjs"}
+
+## R518 - fix852 LIVE BACK 60 s BEFORE THE WINDOW + RUN-ALL FINISHES A HALF-DONE RUN: her auto LIVE-on (fix815) now turns LIVE back on in the last 60 s before each window (was 15 s, one try) and keeps trying every second of that minute - still only when the umpire is SAFE, entries aren't halted, OFF TODAY isn't set and no install of HER desk is running (a rehearsal copy elsewhere no longer counts) - and posts a LIVE AUTO-ON alert.
+- when: 2026-11-07T03:38:17+00:00
+- Love: "Love Nov 6 2026 ~6:48 PM PT: "every time i leave it off bro lmao can you still have it turn itself on 60 seconds before a window starts if i forget bb?" + ~6:39 PM: "it says it's already in bb""
+- books: none - her LIVE switch timing and the RUN-ALL runner
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/liveauto815.ts", "has": "export const LEAD815 = 60;"}
+- proof: {"test": "tools/live-60-finish-852.cjs"}
+
+## R517 - fix850 POLYMARKET TELLS WHY + NO BUY AGAINST A HELD SIDE: her momentum book on Polymarket (fix830) logged every skip as 'no fill / outside her 1.5x floor' because it read the wrong place for Polymarket's reason; it now logs the real one (window, quote outside her floor, cash, nothing filled - with Polymarket's ask) plus the Kalshi ask it copied. And no Polymarket buy goes out on the side opposite to what is already held on that market (it would net the position away, the fix848 lesson); her insurance hedges keep their own rule. Logging + safety only.
+- when: 2026-11-07T03:38:15+00:00
+- Love: "Love Nov 6 2026 ~6:19 PM PT: "haven't seen any bb" (momentum live on Polymarket - its skip reasons were thrown away)"
+- books: MOMENTUM · Polymarket live - skip log + held-side guard
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/poly-live.server.ts", "has": "HELD THE OTHER WAY (fix850)"}
+- proof: {"test": "tools/poly-why-850.cjs"}
+
+## R516 - fix849 ETH AT $5: her ETH rejection book live on Kalshi (fix831) now enters for $5 (was $2.50) and its add-on at 2.8x is $5 (was $3). Same floor, same $5-an-order cap, same add-on trigger; it never trades against a held side (fix848).
+- when: 2026-11-07T03:38:13+00:00
+- Love: "Love Nov 6 2026 ~6:25 PM PT: "pls have the eth book run at $5 with a $5 add on pls babez""
+- books: ETH · REJECTIONS ONLY · NO PINK - live size
+- status: ACTIVE
+- proof: {"test": "tools/eth-five-849.cjs"}
+
+## R515 - fix851 5M BOLLINGER · PAPER: two paper books on Polymarket's BTC 5-minute up/down. 5M BOLLINGER: a closed 1m candle touched the 5m Bollinger (20/2) and closed back off it - with the turn. 5M BOLLINGER · 2M PUSH: a new 2m candle opened within $10 of the 5m Bollinger and pushed $10 away - with the push. 2+ minutes left in the 5m window, her 1.5x floor, once per book per window; stake by distance to the 5m target ($10 already her side, $5 under $25 away, $1 at $25+); her take profit, else the bell. Two regular cards. Paper only - never an order.
+- when: 2026-11-07T03:38:11+00:00
+- Love: "Love Nov 6 2026 ~6:08-6:10 PM PT: "yeah it'll basically be our main book with Bollingers added bb 💓, she enters on a (good) push off of a session or a bollinger, not a flip-blip ... if it's $200 away with 2 minutes left, $1 max lol" + "waiting for a 1M close will have her missing a lottt of genuine moves so we can test a 2-5m flip and push off of a bollinger , they hold as walls a lot harder than sessions i'm realizing""
+- books: 5M BOLLINGER · PAPER, 5M BOLLINGER · 2M PUSH · PAPER
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bb5m851.ts", "has": "export function signals851("}
+- proof: {"test": "tools/bb5m-851.cjs"}
+
 ## R514 - fix848 NEVER TRADE AGAINST A HELD POSITION: Kalshi nets YES and NO on one ticker, so an opening short on a ticker where a YES is held sells it (5:47 / 5:56 PM: her ETH book's short + add-on sold her own 10.93 YES long and left her 3.03 short). Before every opening order - every book's entry, the ETH / add-on route, the add-ons, the top-up - the live position on that ticker is read; anything held on the other side = no order (logged to data/held-other-way-848.jsonl). Exits and take profits untouched.
 - when: 2026-11-07T02:34:14+00:00
 - Love: "Love Nov 6 2026 ~5:58 PM PT: "she just flipped sides on eth, it was long and now it's short""

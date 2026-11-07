@@ -9276,5 +9276,75 @@
     "what": "T(\"fix615 + fix667 the wall stands: $41 over the pink on a $126.76 channel is inside the $42.25 cushion (a third)\", /NO SHORT OVER AN UNBROKEN PINK/.test(B.pinkShortWall464(\"btc\", L, 77986.06, \"down\")));",
     "why": "fix845 (her words above)",
     "R": "R511"
+  },
+  {
+    "what": "ethLive831.dollars",
+    "why": "fix849 (her words above): $5 entries",
+    "R": "R516"
+  },
+  {
+    "what": "ethLive831.addOn",
+    "why": "fix849 (her words above): a $5 add-on",
+    "R": "R516"
+  },
+  {
+    "what": "else log({ id: r.id, action: \"skipped\", setup: r.setup, side: r.side, why: String(G.__polyWhy || \"no fill / outside her 1.5x floor\") });",
+    "why": "fix850 (her words above)",
+    "R": "R517"
+  },
+  {
+    "what": "return whyNull(`sent at ${price}, nothing filled (book moved)`);",
+    "why": "fix850 (her words above)",
+    "R": "R517"
+  },
+  {
+    "what": "export const LEAD815 = 15; // seconds before the window opens",
+    "why": "fix852 (her words above)",
+    "R": "R518"
+  },
+  {
+    "what": "try { const out = execSync(\"pgrep -f 'STAGED-CHANGE-[^ ]*/apply[0-9a-z]*\\\\.sh|BATCH-RUNNER/run-all\\\\.sh' || true\", { encoding: \"utf8\", timeout: 1500 }); return out.trim().length > 0; } catch { return true; } // can't tell = treat as installing (never fights a command)",
+    "why": "fix852 (her words above)",
+    "R": "R518"
+  },
+  {
+    "what": "G.__live815Win = win;",
+    "why": "fix852 (her words above)",
+    "R": "R518"
+  },
+  {
+    "what": "lg.writeSwitch({ live: true, note: \"Turned on automatically 15 s before the window (fix815)\" } as any);",
+    "why": "fix852 (her words above)",
+    "R": "R518"
+  },
+  {
+    "what": "try { const w847 = readFileSync(join(process.cwd(), \"data\", \"alarm-tp-watchdog.jsonl\"), \"utf8\").trim().split(\"\\n\").slice(-50).map((l: string) => { try { return JSON.parse(l); } catch { return null; } }).filter((x: any) => x && now - Date.parse(x.at) < 3600000); for (const x of w847.reverse()) alerts.push({ level: /rescued/.test(String(x.kind)) ? \"amber\" : \"red\", book: \"TP WATCHDOG\", key: `tpw847:${x.at}:${x.kind}`, text: String(x.text || \"\") }); } catch {}",
+    "why": "fix852 (her words above)",
+    "R": "R518"
+  },
+  {
+    "what": "t((M.match(/writeFileSync\\(/g) || []).length === 1 && M.includes('writeFileSync(D(\"live-switch.json.tmp815\")') && (M.match(/appendFileSync\\(D\\(\"/g) || []).length === 1 && M.includes('appendFileSync(D(\"live-auto-on-815.jsonl\")') && (M.match(/writeSwitch\\(/g) || []).length === 1, \"auto LIVE-on may only write LIVE on (her own path), liveBook.since and its own log\");",
+    "why": "fix852 (her words above)",
+    "R": "R518"
+  },
+  {
+    "what": "t(decide815(base, w - 60000) === \"\", \"a minute before: nothing yet\");",
+    "why": "fix852 (her words above)",
+    "R": "R518"
+  },
+  {
+    "what": "console.log(ok ? \"LIVE AUTO 815 TEST ✓ - LIVE off 3 min = flashing orange + a toast every 3 min; 15 s before each window LIVE turns itself back on (her own LIVE-on path) unless an install is running, the umpire isn't SAFE, entries are halted or OFF TODAY is set; every try logged.\" : \"LIVE AUTO 815 TEST: FAIL\");",
+    "why": "fix852 (her words above)",
+    "R": "R518"
+  },
+  {
+    "what": "t(pick(60, friEarly).carried === true && pick(60, sunLate).carried === true, \"Fri before 2 PM / Sun from 3 PM PT is not the weekend\");",
+    "why": "fix853 (her words above)",
+    "R": "R519"
+  },
+  {
+    "what": "console.log(ok ? \"WEEKEND FRESH BANDS 839 TEST ✓ - BTC fresh bands count as walls from a $50 sigma Fri 2 PM - Sun 3 PM PT, $100 the rest of the week; gold unchanged.\" : \"WEEKEND FRESH BANDS 839 TEST: FAIL\");",
+    "why": "fix853 (her words above)",
+    "R": "R519"
   }
 ]

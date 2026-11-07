@@ -796,6 +796,26 @@ function frameOpen521(asset: string, n: number, ms: number): number {
   } catch { return 0; }
 }
 // HER COLOUR AT THE SEND (fix521, Love Oct 30 2026 12:07 PM PT: "The flip must be true BY COLOR. LONG FOR GREEN, SHORT FOR RED. NO EXCEPTIONS. at the moment of send, not only at the earlier read. A borderline candle that fails between read and wire must be blocked. The stamp-trust rule does not override a failed flip at the wire."): the running 5m candle's literal colour at this instant. Unreadable = no order (fails closed).
+// fix854 HER COLOUR ON THE 5M (Love Nov 6 2026 ~7:16-7:17 PM PT: "hun she just longed gold on a red candle" + "looked like exactly that hehe, she still needs to wait for the candle to be her color bb" + "that was a for sure short"): no long while the 5m candle is red (price under its open), no short while it is green
+// (price over its open) - on BOTH feeds at the send (the order wire and her chart), each against its own 5m open. Every book but delayed. Replay Nov 2-6 (main / REJ / no-pink, BTC): the entries it blocks went 324 trades 39% -$1.44 a $10 trade;
+// the ones it keeps 421 trades 56% +$0.54. The 5m open is the desk's own frame open (frameOpen521). Can't read the 5m open = no order (fails closed, like her flip rule).
+export function candleColour854(asset: string, side: string, tick: number): string {
+  // BOTH FEEDS, each against its own 5m open: the order wire (the quote tick at the send vs the 5m open on the quote trail) and her chart (her last 1m price vs the 5m candle's
+  // open on her chart bars) - at 7:16 PM the wire read 75,983.78 (green) while her chart read 75,973.95 under its 75,977.31 open (red). Either one the wrong colour = no order.
+  try {
+    const f0 = Math.floor(Date.now() / 300000) * 300, bars: any[] = (G.__pivBars?.[asset]?.bars ?? []).filter((x: any) => Number(x.t) >= f0).sort((x: any, y: any) => x.t - y.t);
+    const oC = bars.length ? Number(bars[0].o) : 0, pC = bars.length ? Number(bars[bars.length - 1].c) : 0;
+    const oW = trailOpen(asset), pW = Number(tick) || 0;
+    const chart = oC > 0 && pC > 0, wire = oW > 0 && pW > 0;
+    if (!chart && !wire) return "HER COLOUR (fix854): the 5m candle can't be read on either feed - no order";
+    const red = (chart && pC < oC) || (wire && pW < oW), green = (chart && pC > oC) || (wire && pW > oW);
+    const sh = (p: number, o: number, n: string) => `${n} ${p.toFixed(2)} vs its 5m open ${o.toFixed(2)}`;
+    const both = [chart ? sh(pC, oC, "chart") : "", wire ? sh(pW, oW, "wire") : ""].filter(Boolean).join(", ");
+    if (side === "up" && red) return `HER COLOUR (fix854): the 5m candle is red (${both}) - no long until it's green on both feeds.`;
+    if (side === "down" && green) return `HER COLOUR (fix854): the 5m candle is green (${both}) - no short until it's red on both feeds.`;
+    return "";
+  } catch { return "HER COLOUR (fix854): unreadable - no order"; }
+}
 export function herColour520(asset: string, side: string, tick: number): string {
   // HER FLIP AT THE SEND (fix521, her 1:03 PM words: "any 2-5M flip, no close needed. just a candle flip from red->green - or - green->red" +
   // 12:07 PM: "at the moment of send... The stamp-trust rule does not override a failed flip at the wire"): a 2-5m candle that TURNED her way
@@ -2561,7 +2581,7 @@ export function weekend839(now = Number(G.__now839) || Date.now()): boolean {
   try {
     const p = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: 'short', hour: "2-digit", hourCycle: "h23" }).formatToParts(new Date(now));
     const wd = p.find((x) => x.type === "weekday")?.value, h = Number(p.find((x) => x.type === "hour")?.value);
-    return (wd === "Fri" && h >= 14) || wd === "Sat" || (wd === "Sun" && h < 15);
+    return (wd === "Fri" && h >= 14) || wd === "Sat" || wd === "Sun" || (wd === "Mon" && h < 6); // fix853 (Love Nov 6 2026 ~7:11-7:14 PM PT: "the bands as walls at and traded again after $ 50" + "yesss pls bb" (to: run the weekend $50 until Monday 6 AM PT instead of Sunday 3 PM)): her weekend $50 runs to Monday 6 AM PT (was Sunday 3 PM)
   } catch { return false; }
 }
 export function sessCarryPick(c: any, ss: number, v: number, sd: number, now = 0, asset = ""): { v: number; sd: number; carried: boolean } {

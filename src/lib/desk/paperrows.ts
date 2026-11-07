@@ -27,6 +27,8 @@ export const PAPER_BOOKS721: { file: string; book: string; title: string; split?
   { file: "mom-coins-833.json", book: "btcfirst2-833", title: "BTC · WITH THE FIRST 2 MINUTES · PAPER", split: (r) => (r.book === "btcfirst2-833" ? "btcfirst2-833" : null) }, // fix833
   { file: "onetwothree-835.json", book: "onetwothree835", title: "1-2-3 · SEALED · PAPER" }, // fix835: her Oct 26 Polymarket BTC 5m 1-2-3 book, sealed from PRE295
   { file: "onetwothree-836.json", book: "onetwothree836", title: "1-2-3 · NEW · PAPER" }, // fix836: the 1-2-3 base + her late door, 1.5x floor, Bollinger cushion, no line near the target
+  { file: "bb5m-851.json", book: "bb5m851", title: "5M BOLLINGER · PAPER", split: (r) => (r.book === "bb5m851" ? "bb5m851" : null) }, // fix851
+  { file: "bb5m-851.json", book: "bb5m851p", title: "5M BOLLINGER · 2M PUSH · PAPER", split: (r) => (r.book === "bb5m851p" ? "bb5m851p" : null) }, // fix851
   { file: "og-1012.json", book: "og1012", title: "OG ORIGINAL · 10.12 🕯️ · PAPER · SEALED" }, // fix765: a regular card (her sealed rows read as they are)
   { file: "brk-out-687.json", book: "brkout687", title: "OUTWARD BREAK · SESSION BANDS · PAPER 🤍" }, // fix765
   { file: "v111-2-770.json", book: "v1112", title: "V.111 - 2 · HER SEP 24 READS · PAPER" }, // fix770: her own card

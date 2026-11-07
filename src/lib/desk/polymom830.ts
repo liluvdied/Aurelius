@@ -39,7 +39,7 @@ export async function polyMomTick830(now = Date.now(), pmIn?: PM) {
       try {
         const f = await pm.takeSide(r.side, closesAt, c.dollars, c.maxAsk, 0.08, 0.02, ":mom830", "btc");
         if (f && f.filled > 0) { s.pos[r.id] = { id: r.id, slug: f.slug, side: r.side, closesAt, contracts: f.filled, cost: f.filled * f.price, at: new Date(now).toISOString(), status: "open", addOn: false, halfSold: false, sold: 0 }; log({ id: r.id, action: "bought", setup: r.setup, side: r.side, slug: f.slug, contracts: f.filled, price: f.price }); }
-        else log({ id: r.id, action: "skipped", setup: r.setup, side: r.side, why: String(G.__polyWhy || "no fill / outside her 1.5x floor") });
+        else log({ id: r.id, action: "skipped", setup: r.setup, side: r.side, why: String((typeof (pm as any).takeSideWhy === "function" ? (pm as any).takeSideWhy() : "") || G.__polyWhy || "no fill / outside her 1.5x floor"), kalshiAsk: r.ask ?? null /* fix850: the real reason from Polymarket (takeSideWhy), never thrown away */ });
       } catch (e: any) { log({ id: r.id, action: "error", why: String(e?.message || e).slice(0, 160) }); }
     }
     for (const p of Object.values(s.pos)) {

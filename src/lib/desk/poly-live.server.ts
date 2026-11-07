@@ -477,11 +477,16 @@ export async function takeSide(
   if (cash == null || cash < dollars) return whyNull(`Polymarket cash ${cash ?? "unreadable"} < $${dollars}`);
   const window = claimTag.startsWith(":rej5m") ? await polyWindow5(asset, closesAt) /* fix170 */ : asset === "btc" ? await liveWindow(closesAt) : await polyWindowAsset(asset, closesAt); // fix112: gold 15m on Polymarket too
   if (!window) return whyNull("no Polymarket window found for this close time");
+  // fix850 NEVER BUY AGAINST A HELD POLYMARKET SIDE (Love Nov 6 2026 ~6:19 PM PT + the fix848 lesson): a buy on the side opposite to what is already held on this market nets it away -
+  // no order. Her insurance tiers (claim ":ins...") hedge a Kalshi position on purpose and keep their own rule. Reason kept for the caller (takeSideWhy).
+  if (!claimTag.startsWith(":ins")) { try { const h850 = (await polymarketHoldings()).find((x) => x.slug === window.slug); if (h850 && ((side === "up" && h850.net <= -0.01) || (side === "down" && h850.net >= 0.01))) return whyNull(`HELD THE OTHER WAY (fix850): ${Math.abs(h850.net)} ${h850.net > 0 ? "long" : "short"} already held on ${window.slug} - no ${side === "up" ? "long" : "short"}`); } catch {} }
+  let quoted850: number | null = null;
   // Each insurance tier claims its own key (Oct 4): one shared claim per window blocked the $2 16x tier forever.
   const claimKey = window.slug + claimTag;
   if (!claimWindow(claimKey)) return whyNull("this tier already has an order in flight for this window");
   try {
     const quoted = await askFor(window.slug, side);
+    quoted850 = quoted;
     if (quoted == null || quoted < minAsk || quoted > maxAsk) {
       releaseWindow(claimKey);
       return whyNull(quoted == null ? "no Polymarket quote" : `Polymarket ${side} at ${quoted} is outside ${minAsk}-${maxAsk}`);
@@ -529,7 +534,7 @@ export async function takeSide(
     const paid = avg > 0 && avg < 1 ? sidePx(side, avg) : price;
     if (!orderId || !(filled > 0)) {
       releaseWindow(claimKey);
-      return whyNull(`sent at ${price}, nothing filled (book moved)`);
+      return whyNull(`sent at ${price} (Polymarket ask ${quoted850}), nothing filled (book moved)`);
     }
     return { orderId, filled, price: paid, slug: window.slug, target: window.target };
   } catch (err) {

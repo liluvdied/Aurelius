@@ -3866,6 +3866,7 @@ async function tick() {
     // inverse-worst books read, CUT + FLIP's list, STATS) and EVERY FACTOR (tools/factor-scores-825.py), whether or not STATS is open. Niced, one run at a time (each script holds its own lock). Read-only scorers.
     { const G842 = globalThis as any; if (!G842.__score842At || Date.now() - G842.__score842At > 600000) { G842.__score842At = Date.now(); void (async () => { try { const { spawn } = await import("node:child_process"); for (const f842 of ["tools/setup-scores-708.py", "tools/factor-scores-825.py"]) spawn("nice", ["-n", "19", "python3", f842], { cwd: process.cwd(), detached: true, stdio: "ignore" }).unref(); } catch {} })(); } }
     import("./tpwatch847").then((m) => m.tpWatchTick847()).catch(() => {}); // fix847 TP WATCHDOG: tells her (RED on ALERTS) when a 75 / 95 sale is overdue or her exits hit an error - never sells or blocks
+    import("./bb5m851").then((m) => m.bb5mTick851()).catch(() => {}); // fix851 5M BOLLINGER · PAPER (Polymarket BTC 5m, two paper books - never an order)
     // fix686 OG ORIGINAL · 10.12 (Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls"). PAPER ONLY, sealed (og1012.ts never sends an order).
     import("./og1012").then((m) => m.og1012Tick(snap.assets)).catch(() => {});
     // fix835 1-2-3 · SEALED · PAPER + fix836 1-2-3 · NEW · PAPER (Love Nov 6 2026: her Oct 26 Polymarket BTC 5m 1-2-3 book, sealed from PRE295-BUILD, and a NEW twin). PAPER ONLY, sealed (onetwothree835.ts never sends an order).
