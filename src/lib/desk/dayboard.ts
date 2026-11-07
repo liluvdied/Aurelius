@@ -7,7 +7,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { listNight } from "./nightbook";
 // Book of a live-book-done key ("TICKER:book", "TICKER:atr:book", or a 5M-X twin "TICKER:bank5p:x5" = bank5px).
-const bookOfKey = (k: string) => { const p = k.split(":"); const last = p.pop() || ""; if (last !== "x5") return last; const base = p.pop() || ""; return ({ bank5p: "bank5px", claude: "claudex", trend: "trendx" } as Record<string, string>)[base] || `${base}x`; };
+const bookOfKey = (k: string) => { const p = k.split(":"); while (p.length > 2 && /^[nm]\d+$/.test(p[p.length - 1] || "")) p.pop(); /* fix769: a retry row (":n2" / ":m2" / ":m3") belongs to the book named before it */ const last = p.pop() || ""; if (last !== "x5") return last; const base = p.pop() || ""; return ({ bank5p: "bank5px", claude: "claudex", trend: "trendx" } as Record<string, string>)[base] || `${base}x`; };
 
 export type Cell = { n: number; w: number; p: number };
 export type Block = Cell & { days: Record<string, Cell>; hours: Record<string, Record<number, Cell>>; f?: number };

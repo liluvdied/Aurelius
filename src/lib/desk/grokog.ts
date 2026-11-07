@@ -11,6 +11,10 @@
 import { archiveRows } from "./archcache";
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { liveRows775 } from "./v1112best";
+import { liveRows801 } from "./pinkslide801";
+import { liveRows824 } from "./away824"; // fix824: her AWAY FROM LINE takes
+import { liveRows819 } from "./flip819"; // fix819: her flips of cut set ups // fix801: her pink-slide takes, handed to the copier as main + rejection // fix775: V.111 - 2's BEST-table takes, handed to the live copier as book "bestie"
 import { kget } from "./scanner";
 import { bandOnPath, centerWrong } from "./auto";
 import { paperBandFilter } from "./bandlock";
@@ -359,6 +363,9 @@ export const LANE_BOOK: Record<string, string> = { "og-golden": "ogg", "og-hers"
   // Display mapping only: a book still goes to Kalshi only when SHE puts it on RUN / liveBook.books; auto-roll is off and reads listNight only.
   "recon-ogp5": "recon-ogp5", "recon-paper": "recon-paper", "recon-tog": "recon-tog", "recon-rnp": "recon-rnp" /* fix620 */, "recon-top": "recon-top", "recon-rej": "recon-rej", "recon-dly": "recon-dly", "recon-rej5": "recon-rej5", /* fix261 */ "recon-togp": "recon-togp", /* fix281 */ // RECONSTRUCTED (Oct 19 ~6:16 PM PT, Love)
   "ogp5-hold": "ogp5-hold", "paper-247-hold": "pap247-hold", "ogp5-pk2": "ogp5-pk2", "ogp5-pk3": "ogp5-pk3", "paper-247-pk2": "pap247-pk2", "paper-247-pk3": "pap247-pk3", "ogp5-fast": "ogp5-fast", "ogp5-sess": "ogp5-sess", "ogp5-c1": "ogp5-c1", "ogp5-c5": "ogp5-c5", "ogp5-hrs": "ogp5-hrs", "ogp5-bbsr": "ogp5-bbsr", "ogp5-dly": "ogp5-dly", "ogp5-gw": "ogp5-gw", "ogp5-r15": "ogp5-r15", "ogp5-r30": "ogp5-r30", "ogp5-cb": "ogp5-cb", "ogp5-inv": "ogp5-inv", "ogp5-boll": "ogp5-boll", "ogp5-lock": "ogp5-lock", "ogp5-btco": "ogp5-btco", "ogp5-pv": "ogp5-pv", "gold-rg": "gold-rg", "brk-sess": "brk-sess", "brk-sesspk": "brk-sesspk", "brk-sessrj": "brk-sessrj", brk5: "brk5", brk10: "brk10", brk15: "brk15" };
+(LANE_BOOK as any)["recon-rjnp"] = "recon-rjnp"; // fix643: REJECTIONS ONLY, NO PINK gets its own card
+(LANE_BOOK as any)["recon-rjt3"] = "recon-rjt3"; // fix703: REJECTIONS · THIRDS AS READ gets its own card
+(LANE_BOOK as any)["recon-togr"] = "recon-togr"; // fix829: REJ · TOGETHER REJECTIONS ONLY gets its own RECORDS card (display only - a book only goes live when she puts it on RUN)
 // ARCHIVE ON THE CARDS (Oct 13 ~8 PM PT, Love: "yesss i do"): the lineup's older rows (grok-og-archive.jsonl, including the
 // 623 rebuilt Oct 11-13 rows) for the SHIFT cards only. The copier never reads these (it calls asNightRows() with no list).
 export function archiveNightRows(): any[] {
@@ -403,10 +410,11 @@ export function asNightRows(src?: Row[]): any[] {
     const G = globalThis as any;
     const rs = readShared();
     const key = G.__ogShared?.key;
-    if (key && G.__anrCache?.key === key && G.__anrCache.n === rs.length) return G.__anrCache.rows.map((x: any) => ({ ...x }));
+    let v775: any[] = []; try { v775 = liveRows775(); } catch { v775 = []; } try { v775 = [...v775, ...liveRows801()]; } catch {} /* fix801 */ try { v775 = [...v775, ...liveRows819()]; } catch {} /* fix819 */ try { v775 = [...v775, ...liveRows824()]; } catch {} /* fix824 */ // fix775: V.111 - 2 LIVE (only her BEST-table takes, only while data/v111-2-live.json is on)
+    if (key && G.__anrCache?.key === key && G.__anrCache.n === rs.length) return [...G.__anrCache.rows.map((x: any) => ({ ...x })), ...v775];
     const built = asNightRows(rs);
     if (key) G.__anrCache = { key, n: rs.length, rows: built.map((x: any) => ({ ...x })) };
-    return built;
+    return [...built, ...v775];
   }
   const out: any[] = [];
   for (const r of src) {

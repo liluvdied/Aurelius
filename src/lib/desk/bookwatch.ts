@@ -9,7 +9,7 @@ import { join } from "node:path";
 import { listNight } from "./nightbook";
 import { liveTrades } from "./riskguard";
 // Book of a live-book-done key ("TICKER:book", "TICKER:atr:book", or a 5M-X twin "TICKER:bank5p:x5" = bank5px).
-const bookOfKey = (k: string) => { const p = k.split(":"); const last = p.pop() || ""; if (last !== "x5") return last; const base = p.pop() || ""; return ({ bank5p: "bank5px", claude: "claudex", trend: "trendx" } as Record<string, string>)[base] || `${base}x`; };
+const bookOfKey = (k: string) => { const p = k.split(":"); while (p.length > 2 && /^[nm]\d+$/.test(p[p.length - 1] || "")) p.pop(); /* fix769: a retry row (":n2" / ":m2" / ":m3") belongs to the book named before it */ const last = p.pop() || ""; if (last !== "x5") return last; const base = p.pop() || ""; return ({ bank5p: "bank5px", claude: "claudex", trend: "trendx" } as Record<string, string>)[base] || `${base}x`; };
 
 export type Cell = { n: number; w: number; p: number };
 export type BookStatus = { book: string; name: string; running: boolean; now?: string; live: Record<string, Cell>; paper: Record<string, Cell>; last: { at: string; pnl: number }[] };
@@ -116,6 +116,8 @@ export function bookWatch(): BookWatch {
   for (const t of lt) if (t.pnl < 0) lossByBook[t.book] = r2((lossByBook[t.book] ?? 0) - t.pnl);
   const totalLoss = r2(Object.values(lossByBook).reduce((s, x) => s + x, 0));
   const alerts: Alert[] = [];
+  // fix847 TP WATCHDOG (Love Nov 6 2026 ~5:50 PM PT: "pls do set something to notify us or the umpire of something like that next time if we can"): every watchdog alarm of the last hour is a RED alert here (and once on her alarm bar).
+  try { const w847 = readFileSync(join(process.cwd(), "data", "alarm-tp-watchdog.jsonl"), "utf8").trim().split("\n").slice(-50).map((l: string) => { try { return JSON.parse(l); } catch { return null; } }).filter((x: any) => x && now - Date.parse(x.at) < 3600000); for (const x of w847.reverse()) alerts.push({ level: /rescued|auto-on/.test(String(x.kind)) ? "amber" : "red" /* fix852 */, book: "TP WATCHDOG", key: `tpw847:${x.at}:${x.kind}`, text: String(x.text || "") }); } catch {}
   for (const b of books) {
     const nm = b.name;
     const tag = b.running ? "" : " (off Kalshi now)";

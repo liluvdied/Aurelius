@@ -8,7 +8,7 @@ let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log("INDEPEND
 function grab(head) { const i = R.indexOf(head); if (i < 0) { console.log("INDEPENDENT CALLS TEST: FAIL - missing " + head); process.exit(1); }
   const m = /\)\s*:\s*[\w<>| ]+\s*\{/.exec(R.slice(i)); const j = i + m.index + m[0].length - 1; let d = 0;
   for (let k = j; k < R.length; k++) { if (R[k] === "{") d++; else if (R[k] === "}") { d--; if (d === 0) return R.slice(i, k + 1); } } }
-const helpers = [grab("export function isFlip463("), grab("export function freshSameSide463("), grab("export function thirdsRead463(")].map((x) => x.replace(/^export /, "")).join("\n");
+const helpers = [(R.match(/export const MARGIN648 = [^;]+;/) || [""])[0], grab("export function isFlip463("), grab("export function freshSameSide463("), grab("export function thirdsRead463(")].map((x) => x.replace(/^export /, "")).join("\n"); // fix652 (Love Nov 4 2026 4:44 PM PT: "yes" - update the checks): her 3% margin (MARGIN648, fix648) goes along with thirdsRead463
 // her real "prior call" block: from the fix463 line through the re-aim's "return true;"
 const a = R.indexOf("      if (freshSameSide463("), b = R.indexOf("      return true;\n    }", a);
 t(a > 0 && b > a, "the independent-call step is not in her call logic");

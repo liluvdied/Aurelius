@@ -55,6 +55,10 @@ function guardPolyOrder(method: string, path: string, body: unknown): { body?: u
   const order = body as { intent?: string; quantity?: number; marketSlug?: string; price?: { value?: string } } | undefined;
   if (method !== "POST" || !path.startsWith("/v1/orders") || !order || !/BUY/i.test(String(order.intent || ""))) return { body };
   // POLYMARKET SWITCH (Oct 4 ~8:55 PM PT): Polymarket can run while Kalshi's LIVE is off (live-switch "polyLive": true).
+  // fix748 POLYMARKET OBEYS THE UMPIRE (her rule, Oct 29 2026 11:46 AM PT: "if the umpire doesnt call it safe ... trade doesnt go out"): Kalshi's ENFORCER (fix500) refuses every opening order while
+  // the umpire is not SAFE; Polymarket never asked, so it could open orders while Kalshi was frozen. Now an opening Polymarket BUY needs the same SAFE stamp. Sells / closes are never blocked.
+  try { const v748 = JSON.parse(readFileSync(join(process.cwd(), "data", "UMPIRE-VERDICT.json"), "utf8")); if (v748?.ok !== true) { noteBlock({ venue: "polymarket", ticker: order.marketSlug, reason: "THE ENFORCER (fix748): the umpire is not SAFE" }); return { refused: `THE ENFORCER (fix748): the umpire is not SAFE - ${String(v748?.why || "no verdict").slice(0, 120)} - no Polymarket order.` }; } }
+  catch { return { refused: "THE ENFORCER (fix748): no umpire verdict on file - no Polymarket order." }; }
   if (!liveOn() && !polyLiveOn()) {
     noteBlock({ venue: "polymarket", ticker: order.marketSlug, reason: "Live switch is OFF" });
     return { refused: "Live switch is OFF. No new Polymarket order was sent." };
@@ -473,11 +477,16 @@ export async function takeSide(
   if (cash == null || cash < dollars) return whyNull(`Polymarket cash ${cash ?? "unreadable"} < $${dollars}`);
   const window = claimTag.startsWith(":rej5m") ? await polyWindow5(asset, closesAt) /* fix170 */ : asset === "btc" ? await liveWindow(closesAt) : await polyWindowAsset(asset, closesAt); // fix112: gold 15m on Polymarket too
   if (!window) return whyNull("no Polymarket window found for this close time");
+  // fix850 NEVER BUY AGAINST A HELD POLYMARKET SIDE (Love Nov 6 2026 ~6:19 PM PT + the fix848 lesson): a buy on the side opposite to what is already held on this market nets it away -
+  // no order. Her insurance tiers (claim ":ins...") hedge a Kalshi position on purpose and keep their own rule. Reason kept for the caller (takeSideWhy).
+  if (!claimTag.startsWith(":ins")) { try { const h850 = (await polymarketHoldings()).find((x) => x.slug === window.slug); if (h850 && ((side === "up" && h850.net <= -0.01) || (side === "down" && h850.net >= 0.01))) return whyNull(`HELD THE OTHER WAY (fix850): ${Math.abs(h850.net)} ${h850.net > 0 ? "long" : "short"} already held on ${window.slug} - no ${side === "up" ? "long" : "short"}`); } catch {} }
+  let quoted850: number | null = null;
   // Each insurance tier claims its own key (Oct 4): one shared claim per window blocked the $2 16x tier forever.
   const claimKey = window.slug + claimTag;
   if (!claimWindow(claimKey)) return whyNull("this tier already has an order in flight for this window");
   try {
     const quoted = await askFor(window.slug, side);
+    quoted850 = quoted;
     if (quoted == null || quoted < minAsk || quoted > maxAsk) {
       releaseWindow(claimKey);
       return whyNull(quoted == null ? "no Polymarket quote" : `Polymarket ${side} at ${quoted} is outside ${minAsk}-${maxAsk}`);
@@ -525,7 +534,7 @@ export async function takeSide(
     const paid = avg > 0 && avg < 1 ? sidePx(side, avg) : price;
     if (!orderId || !(filled > 0)) {
       releaseWindow(claimKey);
-      return whyNull(`sent at ${price}, nothing filled (book moved)`);
+      return whyNull(`sent at ${price} (Polymarket ask ${quoted850}), nothing filled (book moved)`);
     }
     return { orderId, filled, price: paid, slug: window.slug, target: window.target };
   } catch (err) {

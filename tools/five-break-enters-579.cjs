@@ -36,13 +36,13 @@ const fail = (m) => { ok = false; console.log("5-BREAK TEST: FAIL - " + m); };
 const Lb = [{ name: "-1σ", price: 99000 }, { name: "+1σ", price: 101000 }, { name: "5m PP", price: 100000 }];
 const Zb = { pp: 100000, r1: 103000, r2: 104000, s1: 97000, s2: 96000};
 const bo = 99994; // this 5m candle opened BELOW the pink = came up through it (a real break, not a bounce off it)
-if (!W("btc", Lb, 100004, "up", Zb, bo)) fail("BTC long only $4 past the pink was let through - her $25 tolerance must still hold an unbroken pink");
+if (!W("btc", Lb, 100001, "up", Zb, bo)) fail("BTC long only $1 past (fix651: her break is $2) the pink was let through - her $25 tolerance must still hold an unbroken pink");
 if ( W("btc", Lb, 100005, "up", Zb, bo)) fail("BTC long $5 past the pink (HER BREAK) was BLOCKED - the $25 tolerance is still stopping her $5 entry");
 if ( W("btc", Lb, 100006, "up", Zb, bo)) fail("BTC long $6 past the pink was blocked");
 
 // --- BTC SHORT down through the pink (mirror - every tolerance is two-sided) ---
 const bod = 100006; // opened ABOVE the pink = came down through it
-if (!W("btc", Lb, 99996, "down", Zb, bod)) fail("BTC short only $4 under the pink was let through - the unbroken-pink tolerance must hold the short side too");
+if (!W("btc", Lb, 99999, "down", Zb, bod)) fail("BTC short only $1 under (fix651: her break is $2) the pink was let through - the unbroken-pink tolerance must hold the short side too");
 if ( W("btc", Lb, 99995, "down", Zb, bod)) fail("BTC short $5 under the pink (HER BREAK) was BLOCKED on the short side");
 if ( W("btc", Lb, 99994, "down", Zb, bod)) fail("BTC short $6 under the pink was blocked");
 

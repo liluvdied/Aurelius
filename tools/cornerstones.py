@@ -10,7 +10,7 @@ def need(ok, what):
     if not ok: bad.append(what)
 print("HER CORNERSTONES")
 # retired by Love Oct 28 2026 7:08 PM PT ("not the fucking checkpoint version" - back to the exact checkpoint, 1-5m flip): need("function anyFlipNow(" in B and ("for (const n of [2, 3, 4, 5] /* fix406" in B or "export function realFlipNow(" in B), "1. HER FLIP: the 2/3/4/5m candle reader exists (fix406, Love Oct 28 2026 5:07 PM PT: cut the 1m)")
-need("if (flipRule) { if (!why && !turnFlip530(asset, side, tick))" in B and "export function turnFlip530(" in B, "1. HER FLIP: a 2/3/4/5m candle that TURNS her way - red to green for a long, green to red for a short, no minimum - at her rejection is the entry, immediate on the next tick (her Oct 30 4:56 PM, fix530)")
+need("pb641 !== \"go\" && !turnFlip530(asset, side, tick)) why = `HER FLIP:" in B and "export function pinkBreak641(" in B and "export function turnFlip530(" in B, "1. HER FLIP (a pink break $5 BTC / 25c gold past the pink is the entry with no flip; price back across the pink is refused - fix641, Love Nov 4 2026 1:24 PM PT): a 2/3/4/5m candle that TURNS her way - red to green for a long, green to red for a short, no minimum - at her rejection is the entry, immediate on the next tick (her Oct 30 4:56 PM, fix530)")
 door = re.search(r'const imR = impossibleGeo\([^\n]*', B); wire = re.search(r'const geo = impossibleGeo\([^\n]*', B); cop = re.search(r'else whyR = impossibleGeo\([^\n]*', B)
 for nm, m in (("door", door), ("copier", cop), ("wire", wire)):
     t = m.group(0) if m else ""
@@ -215,8 +215,8 @@ need(all('ZONE_TOL497: Record<string, number> = { gold: 1.5, btc: 0 }; const BB_
      "68. BTC ZONES = HER 55% ONLY: no dollar tolerance around the BTC green/red zones (main, rejection, the 5M); never inside them stays; gold keeps $1.50 (her 12:53 AM, fix559)")
 need(E.count("fix560: her 10% of the channel width") == 6 and "return 0.10 /* fix560" in E and os.path.exists("tools/slide-ten-test-560.cjs") and "tools/slide-ten-test-560.cjs" in open("tools/umpire.py", encoding="utf8").read(),
      "69. SHORTS ONLY ON A PINK DOWNSLOPE TIL HER 10%: longs held under a sliding pink (shorts over a climbing one) until price breaks pink by 10% of the channel width, gold + BTC, main + rejection + copies (not delayed, not the 5M) (her 1:11 AM, fix560)")
-need("export const PINK_BREAK432: Record<string, number> = { gold: 0.25, btc: 5 }; // fix561" in B and 'console.log("STALE/PINK TEST: FAIL - BTC $5 pink break (fix561)")' in open("tools/stale-pink-test-431.cjs", encoding="utf8").read(),
-     "70. HER $5 BREAK AT THE PINK WALLS TOO: no long under / no short over an unbroken pink only until BTC breaks it by $5 (was $8) - main, rejection, every book her pink walls judge (her 8:16 PM + 1:15 AM, fix561)")
+need("export const PINK_BREAK432: Record<string, number> = { gold: 0.25, btc: 2 }; // fix561" in B and 'console.log("STALE/PINK TEST: FAIL - BTC $2 pink break (fix651)")' in open("tools/stale-pink-test-431.cjs", encoding="utf8").read(),
+     "70. HER $2 BREAK AT THE PINK WALLS TOO (fix651, her Nov 4 4:02 PM words: \"make it $2 on the break\"): no long under / no short over an unbroken pink only until BTC breaks it by $2 (was $5) - main, rejection, every book her pink walls judge (her 8:16 PM + 1:15 AM, fix561)")
 QSPRO = open("src/lib/desk/quotes.ts", encoding="utf8").read()
 need("curlGetPro(" in QSPRO and "quote_token" in QSPRO and "const JWT = /eyJ" in QSPRO and "await fetch(url" not in QSPRO and "unauthorized_user_token" in QSPRO,
      "73. PRO SIGN IN: her TradingView Pro token is minted by quote_token, fetched through her Mac curl with her full cookie, matched by JWT shape; both sockets sign in with it; no free-feed fallback (her Oct 31 ~6:35 AM, fix-pro)")
@@ -228,8 +228,8 @@ need("export function onePink565(" in PB565 and "function pinkFresh565(" in PB56
      "74. ONE PINK: her chart's CM Pivot Bands 5m pink, forming candle + live price included, is the ONLY pink - every read, wall, cushion, reach, zone and slide, the 5M included, and it is recomputed at the wire; no closed-candle pink anywhere (her 2:30 + 3:01 AM, fix565)")
 need("export function sameSideSend595(" in B and "B.sameSideSend595(sym, L593, Number(q.c), side)" in K523,
      "75. SAME SIDE AT THE SEND (fix595, her Nov 1 10:37 AM words): a long must be above, a short below, any session band or pink broken this candle, on the live tick at the last line; a band that cannot be read refuses")
-need("(W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60)" in B and "(W < 100 ? W / 2 : W < 180 ? Math.min(W / 2, 60)" in R and "pinkHold596" not in B and "pinkHold596R" not in R and B.count("W < 2 ? W / 2 : Math.min(W / 2, 1.5)") == 1 and R.count("W < 2 ? W / 2 : Math.min(W / 2, 1.5)") == 1,
-     "76. HER PINK CUSHION (fix615, her Nov 1 4:27, 4:32 + 5:20 PM words, replacing fix596): BTC half the channel under $100, half capped at $60 to $180, the normal scale from $180; gold half the channel under $2, half capped at $1.50 to $5, the normal 15% from $5, at any hour")
+need("(W < 100 ? W / 2 : W < 180 ? W / 3" in B and "(W < 100 ? W / 2 : W < 180 ? W / 3" in R and "pinkHold596" not in B and "pinkHold596R" not in R and B.count("W < 3 ? W / 2 : W / 3") == 1 and R.count("W < 3 ? W / 2 : W / 3") == 1,
+     "76. HER PINK CUSHION (fix615, her Nov 1 4:27, 4:32 + 5:20 PM words; fix667, her Nov 4 8:23 PM words: \"we can keep the 50% under a $100 band width / past $100 we can make it 1/3rd of the channel width of clearance until our sliding scale comes back into place after $180 is reached\"): BTC half the channel under $100, a third of it from $100 to $180, the normal scale from $180; gold half the channel under $3, a third from $3 to $5 (her ~8:29 PM words: so she has an even $1), the normal 15% from $5 ($3 max past $25), at any hour")
 need("export function labelHold597(" in B and "labelHold597(String(row.book)" in E and "B.labelHold597(book, sym" in K523,
      "77. REJECTIONS ONLY (fix597, her Nov 1 11:20 + 11:31 AM words): rejection is a rejection-only book at all hours and keeps the candle-from-the-33% and fake-out reads; 2 PM until $100 on BTC, main takes rejections and pink breaks only; at the copier and the last line")
 need("lottoSnipe" not in E and '"snipe"' not in open("data/live-switch.json", encoding="utf8").read(),
@@ -279,13 +279,13 @@ need('"recon-rnp" /* fix620 */' in R and 'book("recon-rnp", np620)' in R and 'St
      "97. THE REJECTION BOOK WITHOUT THE PINK, PAPER ONLY (fix620, her Nov 1 7:50 PM words): the same logic on every other band and zone, no pink entries, no breaks, in no live list")
 need("live.watchAccount(readBookShared().trades)" in E and "const trades = readBookShared().trades;" in E,
      "98. HER TICK READS THE SHARED BOOK (fix621, her Nov 1 8:32 PM words): the two tick readers that only look at live-paper-book.json use the one parsed copy")
-need('let np620: any = firstT && !pink620(firstT) ? firstT : null;' in R and 'bandLockCheck464("recon-tog", id, np620.side' in R and 'if (prior && lane === "recon-rnp") {' in R and 'lane === "recon-rnp" ? "recon-tog" /* fix624' in R,
-     "99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words): main's read, door, free-to-trade and one-call-per-window; only pink entries are out; paper only")
+need('let np620: any = null; /* Love Nov 4 2026 12:26 PM PT' in R and 'if (rejLB && rejReach > 0) { const LN620' in R and 'bandLockCheck464("recon-tog", id, np620.side' in R and 'if (prior && lane === "recon-rnp") {' not in R and 'lane === "recon-rnp" ? "recon-tog" /* fix624' in R,
+     "99. THE TWIN IS MAIN WITHOUT PINK ENTRIES (fix624, her Nov 1 9:37 PM words; Nov 4 12:26 PM: her own non-pink read, never main's call, never waits on main): main's logic, thirds, pink wall and door; only pink entries are out; paper only")
 F625 = open("src/lib/desk/fns.ts", encoding="utf8").read(); A625 = open("src/components/desk/app.tsx", encoding="utf8").read()
 need('r.book === "recon-rnp" && r.at >= RNPF_START' in F625 and 'book: "recon-rnp-fresh", title:' in A625,
      "100. HER PURE NO-PINK CARD (fix625, her Nov 1 10:08 PM words): the main-without-pink twin on its own card with a fresh record from the moment FIX624 landed")
-need("function pureRows626(" in E and "rows = pureRows626([...nb.listNight(), ...extraRows])" in E and "const freshQ = pureRows626(" in E and '`${r.ticker}:recon-tog:${String(r.id).split(":recon-rnp:")[1]}`' in E,
-     "101. THE DELAYED BUTTON IS THE PURE NO-PINK MODEL (fix626, her Nov 1 10:18 PM words): an hour she taps, the twin's rows reach the copier as main's rows; only pink entries are out; delayed stops trading live")
+need("function pureRows626(" in E and "rows = pureRows626([...nb.listNight(), ...extraRows])" in E and "const freshQ = pureRows626(" in E and '`${r.ticker}:recon-tog:${String(r.id).split(":recon-rjnp:")[1]}`' in E and 'if (r?.book === "recon-rnp") continue; // fix674' in E,
+     "101. THE DELAYED BUTTON IS THE REJECTIONS-ONLY NO-PINK MODEL (fix626, her Nov 1 10:18 PM words; fix674, her Nov 4 10:12 PM words: \"i want THAT one in place of the main without pink book so its rejections only\"): an hour she taps, the rejections-only no-pink book's rows reach the copier as main's rows; no pink, no breaks; main without pink and delayed stay paper")
 N628 = open("tools/no-removal-gate.py", encoding="utf8").read(); W628 = open("tools/no-switch-off-gate.py", encoding="utf8").read()
 need("def pill_ok628(new):" in N628 and 'if k.split(".")[0] in P628: continue' in N628 and 'G["pill_ok628"](new)' in W628,
      "102. HER PILL TAPS NEVER TRIP THE UMPIRE (fix628, her Nov 1 10:44 PM words): hours her pill approved are hers; any other change is still judged")

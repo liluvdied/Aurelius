@@ -42,6 +42,11 @@ function doneDocCached() {
   G0.__doneDoc = { m: st.mtimeMs, s: st.size, v };
   return v;
 }
+// fix717 ONE BOOK LIVE TODAY (Love Nov 5 2026 6:03 AM PT: "dude just put brick on for the day" + her card pick 6:21 AM "BREAK BOOK · SESSION ONLY"): while data/live-today.json says on
+// and before its "until" (midnight PT tonight), its "book" is her only live book (main / rejection / no-pink / delayed stay on paper), judged by its own gates only - her walls at the
+// door and the last line stand down for that book alone, like the delayed book - and it gets no add-ons. Umpire, ENFORCER, freshness, LIVE switch and her take-profit still apply.
+// The file expires on its own; CHANGE-63 (NORMAL LINEUP BACK) turns it off in one run.
+function liveToday717(): string { try { const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); return j?.on === true && Date.now() < Date.parse(String(j.until)) && !(Array.isArray(j?.skipHoursPT) && j.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */ && typeof j.book === "string" && /^[a-z0-9-]{2,24}(,[a-z0-9-]{2,24}){0,3}$/.test(j.book) ? j.book : "" /* fix726: one book, or up to 4 comma-joined (akimbo) */; } catch { return ""; } }
 function bookOwnerOf(ticker) {
   try {
     const done = doneDocCached();
@@ -74,10 +79,11 @@ function pureRows626(rs: any[]): any[] {
   const out: any[] = [];
   for (const r of rs) {
     if (r?.book === "recon-dly") continue;
-    if (r?.book !== "recon-rnp") { out.push(r); continue; }
+    if (r?.book === "recon-rnp") continue; // fix674 (Love Nov 4 2026 10:12 PM PT: "for the main without pink book , i created one that is rejections only for session bands too, no breaks i want THAT one in place of the main without pink book so its rejections only"): main without pink goes back to paper - the DELAYED hours are the rejections-only no-pink book's now
+    if (r?.book !== "recon-rjnp") { out.push(r); continue; }
     const dS = sw ? skipHrsA(sw, "recon-dly", r.asset) : null;
     if (!Array.isArray(dS) || dS.map(Number).includes(h)) continue;
-    out.push({ ...r, id: `${r.ticker}:recon-tog:${String(r.id).split(":recon-rnp:")[1]}`, book: "recon-tog", pure626: true });
+    out.push({ ...r, id: `${r.ticker}:recon-tog:${String(r.id).split(":recon-rjnp:")[1]}`, book: "recon-tog", pure626: true });
   }
   return out;
 }
@@ -87,9 +93,28 @@ function offHourMain(asset?: string): { dollars: number; aoDollars: number; aoMa
     const om = sw?.offHourMain; if (!om || om.on !== true) return null;
     const hrs = skipHrsA(sw, "recon-tog", asset); const h = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24; // fix278: per asset
     if (!((Array.isArray(hrs) && hrs.map(Number).includes(h)) || rjA(om, asset).includes(h))) return null; // fix145: her rejection hours too (fix243: per asset)
-    const d = Number(om.dollarsByHour?.[String(h)] ?? om.dollars), ad = Number(om.addOn?.dollarsByHour?.[String(h)] ?? om.addOn?.dollars), am = Number(om.addOn?.maxAsk); // fix289 (Oct 26 ~2:50 PM PT, Love: "we can put it on $2 and $3 for the add on for 2pm pls hun 2pm is the worst"): per-hour entry + add-on
+    const d = Number(om.dollarsByHour?.[String(h)] ?? (Number(sw?.liveBook?.dollars) >= 1 ? Number(sw.liveBook.dollars) : om.dollars) /* fix681: her size slider (liveBook.dollars) sizes the off / rejection hours too */), ad = Number(om.addOn?.dollarsByHour?.[String(h)] ?? om.addOn?.dollars), am = Number(om.addOn?.maxAsk); // fix289 (Oct 26 ~2:50 PM PT, Love: "we can put it on $2 and $3 for the add on for 2pm pls hun 2pm is the worst"): per-hour entry + add-on
     return d >= 1 && d <= 100 ? { dollars: d, aoDollars: ad > 0 ? ad : 3, aoMax: am > 0 && am < 1 ? am : 0.357 } : null;
   } catch { return null; }
+}
+/** fix780 + fix782 (Love's card Nov 6 ~1:59 AM PT: "75/95 on all four live books"): the four live books - main (TOGETHER, recon-tog), REJECTION (recon-rej), SESSION + PINK
+ *  (brk-sesspk), BESTIE (bestie). Returns the book when one of them opened this live position, else "". */
+export const BOOKS780 = ["recon-tog", "recon-rej", "brk-sesspk", "bestie"];
+function own780(ticker: string): string {
+  try { const o = String(bookOwnerOf(ticker)?.id || "").split(":")[1] || ""; return BOOKS780.includes(o) ? o : ""; } catch { return ""; }
+}
+/** fix780: 75% / 95% of the way runs on this position (one of the four live books', no slider of hers, live-switch tp780 not false). */
+function tp780(ticker: string, pinPct: number): boolean {
+  if (pinPct > 0) return false;
+  try { if (JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.tp780 === false) return false; } catch {}
+  return own780(ticker) !== "";
+}
+/** fix780: which sale is due now - "75" (half), "95" (the rest; also when the bid jumps straight past it) or "" - each once per position. */
+export function step780(ticker: string, entryPx: number, bid: number, d: Record<string, any>): { step: "" | "75" | "95"; e: number; l75: number; l95: number } {
+  const e = Number(d[ticker + ":e"]) > 0 ? Number(d[ticker + ":e"]) : entryPx;
+  const l75 = e + 0.75 * (1 - e), l95 = e + 0.95 * (1 - e);
+  const step = !(e > 0 && e < 1) || !(bid > 0) || d[ticker + ":95"] ? "" : bid >= l95 - 1e-9 ? "95" : bid >= l75 - 1e-9 && !d[ticker + ":75"] ? "75" : "";
+  return { step, e, l75, l95 };
 }
 function botOwnsPosition(row: any): boolean {
   if (!bookOwnedTicker(row.ticker)) return false;
@@ -1208,20 +1233,35 @@ function samePolyWindow(ticker, closeTime) {
 // second her chart (Pepperstone BTC / TVC gold) reads its own price; the difference between the two is measured right there and deducted from every
 // judgment of price against that window's strike, by reading the strike in chart terms (strike + the measured difference). Her bands, candles and
 // every other rule stay on her chart untouched. If the open second is missed, the last measured difference for that asset carries until the next open.
+// fix763 THE GAP, MEASURED RIGHT (Love Nov 5 2026 ~4:30 PM PT: "okay the price on tradingview needs to be deducted from the price and kalshi bb :)"): the gap was measured as chart - asset.target,
+// but asset.target is already Kalshi's strike PLUS the last window's gap (kalshi.ts chartStrike), so each window's gap was (true gap - last window's gap) and flipped sign window to window
+// (today: +87, -75, -49, +35 ... - 4:15 PM BTC's target sat $87 under her chart, and every short "had to cross +1 sigma to reach the target"). Now: chart price at the open - Kalshi's OWN strike
+// (market.kalshiStrike), re-measured whenever Kalshi's strike for that window changes (the open read can be provisional); a gap over $40 BTC / $3 gold is a bad read - the last good gap carries.
+// Every measure is logged to data/strike-off519.jsonl.
 function offCapture519(asset) {
   try {
     const G = globalThis; const R = (G.__ktOff519 || (G.__ktOff519 = {}));
-    const tk = asset?.market?.ticker; const tgt = Number(asset?.target ?? asset?.market?.target);
+    const tk = asset?.market?.ticker; const tgt = Number(asset?.market?.kalshiStrike ?? (/^KXBTC15M-/.test(String(tk || "")) ? NaN : (asset?.target ?? asset?.market?.target)));
     if (!tk || !(tgt > 0)) return;
     const id = tk.includes("BTC") ? "btc" : tk.includes("GOLD") ? "gold" : tk.includes("SILVER") ? "silver" : null;
     if (!id) return;
-    const cur = R[id];
-    if (cur && cur.tk === tk) return;
+    const cap = id === "btc" ? 40 : 3, cur = R[id];
+    const lastGood = cur ? (Number.isFinite(Number(cur.lastGood)) ? Number(cur.lastGood) : cur.measured && Math.abs(Number(cur.off)) <= cap ? Number(cur.off) : 0) : 0;
+    const log = (o) => { try { appendFileSync(join(process.cwd(), "data", "strike-off519.jsonl"), JSON.stringify({ at: new Date().toISOString(), asset: id, ticker: tk, ...o }) + "\n"); } catch {} };
+    if (cur && cur.tk === tk) {
+      if (cur.openSpot > 0 && Number.isFinite(Number(cur.kStrike)) && Math.abs(tgt - Number(cur.kStrike)) > 0.004) { // Kalshi's strike for this window changed: measure again from the open price
+        const raw = Math.round((cur.openSpot - tgt) * 100) / 100, bad = Math.abs(raw) > cap;
+        R[id] = { ...cur, kStrike: tgt, off: bad ? lastGood : raw, measured: true, bad, lastGood: bad ? lastGood : raw, at: Date.now() };
+        log({ kalshiStrike: tgt, chartOpen: cur.openSpot, gap: raw, used: R[id].off, why: bad ? `strike changed; gap over $${cap} - kept the last good gap` : "strike changed - re-measured", measured: true });
+      }
+      return;
+    }
     const left = Number(asset?.secondsLeft) || 0; const spot = Number(asset?.spot) || 0;
     const fresh = left >= 875 && spot > 0; // only the window's first ~25 seconds measure the open second itself
-    const off = fresh ? Math.round((spot - tgt) * 100) / 100 : cur ? cur.off : 0;
-    R[id] = { tk, off, at: Date.now(), measured: fresh };
-    try { appendFileSync(join(process.cwd(), "data", "strike-off519.jsonl"), JSON.stringify({ at: new Date().toISOString(), asset: id, ticker: tk, target: tgt, chart: spot, off, measured: fresh }) + "\n"); } catch {}
+    const raw = fresh ? Math.round((spot - tgt) * 100) / 100 : NaN, bad = fresh && Math.abs(raw) > cap;
+    const off = fresh && !bad ? raw : lastGood;
+    R[id] = { tk, off, at: Date.now(), measured: fresh, bad, openSpot: fresh ? spot : 0, kStrike: tgt, lastGood: fresh && !bad ? raw : lastGood };
+    log({ target: tgt, kalshiStrike: tgt, chart: spot, gap: Number.isFinite(raw) ? raw : null, off, measured: fresh, why: !fresh ? "open second missed - last good gap carries" : bad ? `gap over $${cap} - kept the last good gap` : "measured at the open" });
   } catch {}
 }
 function chartStrike519(asset, strike) {
@@ -1977,8 +2017,8 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
     peaks = {};
   }
   try {
-    const live = await import("./kalshi-live.server");
-    const held = await live.heldFifteens();
+    g.__stage804 = "cashHeld: import"; const live = await import("./kalshi-live.server");
+    g.__stage804 = "cashHeld: live.heldFifteens"; const held = await live.heldFifteens();
     let changed = false;
     const open = new Set(held.map((row) => row.ticker));
     // NULL AND VOID AT THE CLOSE (fix516, Love Oct 30 2026 8:29 AM PT: "please fix that and make any old orders after a position is closed null and void so it doesnt occur again pls, no leftover orders go out once the position is closed"): the moment a ticker leaves her held list, EVERY resting order on it -
@@ -2021,9 +2061,9 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       // here was HER CALL to remove - take-profit management runs on every position as before. What stays dead is the
       // SECOND POSITION: the hand-window block in kalshi-live (no book entry on a hand-traded ticker, held or exited),
       // one-door, and the same-side resting-order pull.
-      const res = await fetch(`https://external-api.kalshi.com/trade-api/v2/markets/${row.ticker}`, { signal: AbortSignal.timeout(8000) });
+      g.__stage804 = "cashHeld: fetch"; const res = await fetch(`https://external-api.kalshi.com/trade-api/v2/markets/${row.ticker}`, { signal: AbortSignal.timeout(8000) });
       if (!res.ok) continue;
-      const data = await res.json();
+      g.__stage804 = "cashHeld: res.json"; const data = await res.json();
       const yesBid = Number.parseFloat(data.market?.yes_bid_dollars ?? "0");
       const noBid = Number.parseFloat(data.market?.no_bid_dollars ?? "0");
       const yesAsk = Number.parseFloat(data.market?.yes_ask_dollars ?? "0");
@@ -2235,7 +2275,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const tpRest = g.__aureliusTpRest || (g.__aureliusTpRest = {});
         const restOn = (liveCfg as { tpRest?: boolean }).tpRest !== false && liveCfg.autoExits !== false;
         const closeIso = String(data.market?.close_time || "");
-        if (restOn && (!mirrorOn || pinPct > 0) && tpOn && tpLine > 0 && entryPx > 0.02 && qty >= 0.01 && closeIso && !tpSell) {
+        if (restOn && !tp780(row.ticker, pinPct) /* fix780: no resting take profit on a four-book position - only 75% / 95% of the way sell it */ && (!mirrorOn || pinPct > 0) && tpOn && tpLine > 0 && entryPx > 0.02 && qty >= 0.01 && closeIso && !tpSell) {
           const px = Math.min(0.99, Math.floor(entryPx * (1 + (mirrorOn ? pinPct : tpLine) / 100) * 100 + 1e-6) / 100); // fix607
           const cur = tpRest[row.ticker];
           const stale = !cur || Math.abs((cur.px ?? 0) - px) >= 0.005 || Math.abs((cur.qty ?? 0) - Math.floor(qty * 100) / 100) > 0.01;
@@ -2249,7 +2289,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             void (async () => {
               try {
                 if (cur?.id) await live.cancelTpRest(row.ticker);
-                const r = await live.restTakeProfit(row.ticker, row.pos, px, closeIso);
+                g.__stage804 = "cashHeld: live.restTakeProfit"; const r = await live.restTakeProfit(row.ticker, row.pos, px, closeIso);
                 const reg = g.__aureliusTpRest || (g.__aureliusTpRest = {});
                 reg[row.ticker] = r?.orderId ? { id: r.orderId, px, qty: r.qty } : { id: null, px, qty: Math.floor(qty * 100) / 100, failedAt: Date.now() };
               } catch {
@@ -2267,6 +2307,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       // Replay (Oct 2-4, 19 adds): 9 won, +$13.90. live-switch "addOn": { on, dollars, maxAsk, minLeft }.
       try {
         const ao = (liveCfg as { addOn?: { on?: boolean; dollars?: number; maxAsk?: number; minLeft?: number } }).addOn;
+        try { applyAddon664(ao); } catch {} // fix664: her Add-on 1 / Add-on 2 boxes on the desk (data/addon-settings.json) set on/off and $ live
         // ONE, EVEN ACROSS A RESTART (Oct 20 ~11:38 PM PT, Love: "please make sure only ONE goes out" - an earlier version fired 25 $2 adds and lost $55): the
         // once-per-position latch is rebuilt from data/addon-log.jsonl whenever the desk starts fresh, so a restart can never reopen a window that already added.
         if (!g.__aureliusAddOn) {
@@ -2278,6 +2319,10 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         // MAIN BOOK ONLY (Love, same message: "ONE $2 dollar add on to our main books positions"): the delayed twin's positions never add.
         let aoTwin = false;
         try { aoTwin = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] === "recon-dly"; } catch { aoTwin = false; }
+        // fix752 ADD-ONS ON FOR AKIMBO (Love Nov 5 2026 1:46 PM PT: "i set it to $5 and its sending out at $2" + 1:49 PM card: A - add-ons ON for AKIMBO positions): the live-today (AKIMBO) books' positions
+        // were skipped by every add-on (fix717 "no add-ons"); now her Add-on 1 / Add-on 2 boxes apply to them like her other books - same gates (her position, LIVE, umpire at the order, cap, one per position, time left).
+        const aoOne717 = false; // fix752 (was: true for any live-today book's position - fix717 / fix726)
+        const aoBestie775 = (() => { let own776 = ""; try { own776 = String(bookOwnerOf(row.ticker)?.id || "").split(":")[1] || ""; } catch { own776 = ""; } if (own776 !== "bestie") return false; try { return JSON.parse(readFileSync(join(process.cwd(), "data", "v111-2-live.json"), "utf8"))?.addOns !== true; } catch { return true; } })(); // fix775 (Love Nov 5 2026 ~9:34 PM PT: "let me do the add on in the toggle switch if i want to after we see how she's doing"): BESTIE's positions take no add-on until data/v111-2-live.json addOns is true - then her Add-on boxes apply to BESTIE like every book; every other book unchanged
         // $2 AT A BAND, 2.8x+ (Oct 17 ~1:15 PM PT, Love: "implement the $2 add on for me at a band, as long as it's over 2.8x actually / so it's
         // effectively 1/5th of the normal position size" + her picks: band rejection her way, once per window, 5+ min left, BTC and gold, her trades
         // only). addOn { on, dollars 2, maxAsk 0.35 }. A refused/unfilled try retries after 5 s; only a fill uses up the window's add-on.
@@ -2290,7 +2335,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const aoOff = aoTwin ? null : offHourMain(id); // fix142: her off hours add $3 at 2.8x+
         const aoMax = aoTwin ? (Number(aoTw?.maxAsk) > 0 ? Number(aoTw.maxAsk) : 0.222) : aoOff ? aoOff.aoMax : Number(ao?.maxAsk) > 0 ? Number(ao!.maxAsk) : 0.55;
         const aoLeft = (Date.parse(aoClose) - Date.now()) / 60000;
-        if (ao?.on && (!aoTwin || aoTw?.on === true) && (id === "btc" || id === "gold") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5)) {
+        if (ao?.on && !aoOne717 /* fix717 */ && (!aoTwin || aoTw?.on === true) && (id === "btc" || id === "gold") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {
           // $3 TAP REJECTION (Oct 17 ~10:57 PM PT, Love: "let's make it a $3 tap rejection"): bandlock.addOnTapNow replaces the old snap here.
           let why: string | null = null;
           try { const blm = await import("./bandlock"); why = blm.addOnTouchNow(id) || null; /* fix109 (Oct 22 ~7:48 PM PT, Love: "pls have her do them at band taps / no rejection necessary pls"): main-book add-on on a band touch too (walls still judge it); was aoTwin ? touch : addOnTapNow */ void mySide; } catch { why = null; }
@@ -2322,7 +2367,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             void (async () => {
               let r: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
               try {
-                r = await (aoTwin ? live.addOnBuy : live.addOnBuy600)(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoOff ? aoOff.aoDollars : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: "just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those"): walls skip add-ons like the twin's (was free only for the twin)
+                r = await (aoTwin ? live.addOnBuy : live.addOnBuy600)(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoOff ? (Number((globalThis as any).__addon664?.s?.addOn1?.dollars) > 0 ? Math.min(5, Number(ao.dollars) || 5) /* fix753: her Add-on 1 box wins in her off / rejection hours too */ : aoOff.aoDollars) : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: "just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those"): walls skip add-ons like the twin's (was free only for the twin)
               } catch (err) {
                 r = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "add-on failed" };
               }
@@ -2334,6 +2379,41 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             })();
           }
         }
+        // THE 3.8x ADD-ON (Love Nov 4 2026 9:51 AM PT: "let's make the add on $2 at 2.8x & $3 at 3.8x instead pls"): once her first add-on has FILLED on a position,
+        // ONE more addOn.at38.dollars on the same side as soon as the ask pays 3.8x (addOn.at38.maxAsk 0.263). Same gates as the first add-on (her position, no TP sell, time left).
+        try {
+          const a38 = (ao as any)?.at38; const add38: Record<string, number> = g.__aureliusAdd38 || (g.__aureliusAdd38 = (() => { const s: Record<string, number> = {}; try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.add38 && x.ticker) s[x.ticker] = Date.parse(x.at) || Date.now(); } catch {} } } catch {} return s; })());
+          const try38: Record<string, number> = g.__aureliusTry38 || (g.__aureliusTry38 = {});
+          const cap38 = Number(a38?.maxAsk) > 0 && Number(a38.maxAsk) < 1 ? Number(a38.maxAsk) : 0.263;
+          if (a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === "btc" || id === "gold") && addReg[row.ticker] && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {
+            try38[row.ticker] = Date.now();
+            void (async () => {
+              let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
+              try { r3 = await live.addOnBuy600(row.ticker, mySide, Number(a38.dollars) || 3, cap38, true); } catch (err) { r3 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "3.8x add-on failed" }; }
+              if (r3?.ok) add38[row.ticker] = Date.now();
+              try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: "3.8x add-on (Love Nov 4)", bid, add38: true, ...(r3 || {}) }) + "\n"); } catch {}
+            })();
+          }
+        } catch {}
+        // fix754 ADD-ON 3, HER CUSTOM ONE (Love Nov 5 2026 1:48 PM PT: "can you add in a third custom box there? that lets me type the multiple and then put in the dollar amount ?"): data/addon-settings.json
+        // addOn3 { on, mult, dollars }. ONE buy of her $ on the SAME side as soon as the ask pays her multiple (bid at or under 1 / multiple), once per position, on its own - it doesn't wait for
+        // Add-on 1 or 2 (whichever multiple price reaches first goes first). Same gates as her add-ons: her desk's own position, no take-profit sell going, BTC / gold, not the delayed twin, minutes left,
+        // and the order goes through the umpire / ENFORCER / LIVE / seal like every add-on.
+        try {
+          const a3s = (globalThis as any).__addon664?.s?.addOn3; const a3on = a3s?.on === true, a3m = Math.max(1.5, Math.min(10, Number(a3s?.mult) || 0)), a3d = Math.max(1, Math.min(5, Math.round(Number(a3s?.dollars) || 0)));
+          const add3: Record<string, number> = g.__aureliusAdd3 || (g.__aureliusAdd3 = (() => { const s: Record<string, number> = {}; try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.add3 && x.ticker) s[x.ticker] = Date.parse(x.at) || Date.now(); } catch {} } } catch {} return s; })());
+          const try3: Record<string, number> = g.__aureliusTry3 || (g.__aureliusTry3 = {});
+          const cap3 = a3m >= 1.5 ? Math.round((1 / a3m) * 10000) / 10000 : 0;
+          if (a3on && a3d >= 1 && cap3 > 0 && !aoTwin && !aoOne717 && (id === "btc" || id === "gold") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5) && !aoBestie775 /* fix775 */) {
+            try3[row.ticker] = Date.now();
+            void (async () => {
+              let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
+              try { r3 = await live.addOnBuy600(row.ticker, mySide, a3d, cap3, true); } catch (err) { r3 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "add-on 3 failed" }; }
+              if (r3?.ok) add3[row.ticker] = Date.now();
+              try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: `Add-on 3 at ${a3m}x (Love Nov 5)`, bid, add3: true, ...(r3 || {}) }) + "\n"); } catch {}
+            })();
+          }
+        } catch {}
         // THE SECOND ADD-ON AT 8 PM BTC (fix455, Love Oct 29 2026 10:17 AM PT: "we can double up on 8pm hun , $10 initial entry and $5 initial add on - $5 secondary add on at the next band price encounters and rejects. same way we have our entry logic wired. candle flips near a band = second add on of $5"): the Oct 28 second add-on (taken out in the 6:45 PM restore) brought back for the hours in live-switch
         // addOn.second.hoursByAsset only (BTC 8 PM, rejection model): once the first add-on has filled, ONE more addOn.second.dollars on the SAME side when price is at a band that is NOT the
         // first add-on's band and a 2-5m candle has flipped her way there (anyFlipMinNow, $5 BTC / 10c gold past its open). Once per position; every wall + wire check still judges it.
@@ -2349,8 +2429,8 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           const add2 = g.__aureliusAdd2, w1 = g.__aureliusAdd1Why || (g.__aureliusAdd1Why = {}); const try2 = g.__aureliusAdd2Try || (g.__aureliusAdd2Try = {});
           if (addReg[row.ticker] && !(row.ticker in w1)) { try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.ticker === row.ticker && !x.add2) w1[row.ticker] = String(x.why || ""); } catch {} } } catch {} }
           const cap2 = Number(ao2?.maxAsk) > 0 && Number(ao2.maxAsk) < 1 ? Number(ao2.maxAsk) : 0.72;
-          if (ao2?.on === true && ao?.on && !aoTwin && Array.isArray(hrs2) && hrs2.map(Number).includes(hB2) && bk2.includes(own2) && (id === "btc" || id === "gold") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !(Date.now() - (try2[row.ticker] || 0) < 5000)) {
-            const blm3 = await import("./bandlock");
+          if (ao2?.on === true && ao?.on && !aoTwin && Array.isArray(hrs2) && hrs2.map(Number).includes(hB2) && bk2.includes(own2) && (id === "btc" || id === "gold") && addReg[row.ticker] && !add2[row.ticker] && botOwnsPosition(row) && !(Date.now() - (try2[row.ticker] || 0) < 5000) && !aoBestie775 /* fix775 */) {
+            g.__stage804 = "cashHeld: import"; const blm3 = await import("./bandlock");
             const t2 = blm3.addOnTouchNow(id);
             const bnd = (w: string) => { const m = /^(?:touched |came within \$[\d.]+ of )(.+?) \(/.exec(String(w || "")); return m ? m[1] : ""; };
             const b2 = bnd(t2), b1 = bnd(w1[row.ticker] || "");
@@ -2411,8 +2491,8 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             // Love holds her own Polymarket BTC position (it would close part of hers). The desk's own tickets don't count.
             void import("./poly-live.server").then(async (pm) => {
               // Only THIS window counts (Oct 4 ~1:35 AM PT: old windows' leftover positions were blocking every ticket).
-              const win = await pm.polyWindowFor(closesAt).catch(() => null);
-              const mine = await pm.polymarketHoldings().catch(() => []);
+              g.__stage804 = "cashHeld: pm.polyWindowFor"; const win = await pm.polyWindowFor(closesAt).catch(() => null);
+              g.__stage804 = "cashHeld: pm.polymarketHoldings"; const mine = await pm.polymarketHoldings().catch(() => []);
               // TOP-UP (Love, Oct 4 ~10:20 AM PT: "you can have poly hedge if i put one in too... sometimes im not lookin and it
               // could use another top up"): her own position on the SAME side as the hedge is fine, the ticket adds to it. Only her
               // position on the OTHER side blocks it, because Polymarket nets the two and the ticket would erase hers.
@@ -2480,6 +2560,33 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       // HERS vs YOURS (Love, Oct 5 ~12:30 PM PT: "it just exited my trade early... let me take MINE... and just do that for
       // hers"). The paper locks only touch a position one of her books copied to Kalshi (live-book-done.json says filled on
       // this ticker). A trade Love opened herself keeps only her take profit ladder and her slider.
+      // fix780 HALF AT 75% / HALF AT 95% OF THE WAY TO $1 (Love Nov 6 2026 ~1:42 AM PT: "it needs to be our current one , half at 75 other half at 95"): a live position one of the four live
+      // books opened (fix782, her card "75/95 on all four live books": main / TOGETHER, REJECTION, SESSION + PINK, BESTIE - BOOKS780), with no slider of hers on it: the first time its bid reaches 75% of the way from its
+      // average price to $1, half of it sells at the bid; the first time its bid reaches 95% of the way, the rest sells (65c in: 91.25c / 98.25c).
+      // Otherwise it rides to the bell. Nothing else sells it - not the paper mirror, the quarter at 75% of the max, the 90% take profit / trail, the gates, lock the win
+      // or a resting take profit. Add-ons (above) are unchanged. HANDS OFF still holds; her slider still wins; her own trades keep their exits. Once each per position
+      // (data/tp780.json; the average at the half sale is kept so the 95 line doesn't move after it). live-switch "tp780": false = off (the old exits come back).
+      if (tp780(row.ticker, pinPct)) {
+        // fix846 HER 75 / 95 FIRES (Love Nov 6 2026 ~5:45 PM PT: "babe her take profits are still not engaging, i just closed myself"): this block read handsOff before the line that declares it (further down this loop) -
+        // JavaScript threw "Cannot access 'handsOff' before initialization" on every pass, the try around the whole loop swallowed it, and no 75% / 95% sale ever went out
+        // (data/tp780.json was never written). Her HANDS OFF switch (live-switch autoExits false) is now read right here.
+        const handsOff = (() => { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).autoExits === false; } catch { return false; } })(); // fix846: this block's own HANDS OFF, read here
+        if (!handsOff && bid > 0.02) {
+          const f780 = join(process.cwd(), "data", "tp780.json");
+          let d780: Record<string, any> = {};
+          try { d780 = JSON.parse(readFileSync(f780, "utf8")); } catch { d780 = {}; }
+          const s780 = step780(row.ticker, entryPx, bid, d780);
+          if (s780.step) {
+            const now780 = new Date().toISOString();
+            d780[row.ticker + ":" + s780.step] = now780; if (s780.step === "95") d780[row.ticker + ":75"] ||= now780; if (!(Number(d780[row.ticker + ":e"]) > 0)) d780[row.ticker + ":e"] = s780.e;
+            try { writeFileSync(f780, JSON.stringify(Object.fromEntries(Object.entries(d780).slice(-900)))); } catch {}
+            let got: any = null;
+            try { got = s780.step === "75" ? await live.partLive(row.ticker, 50) : await live.flattenTicker(row.ticker, true, 0, false, Math.max(0.02, Math.round((bid - 0.01) * 100) / 100)); } catch { got = null; }
+            try { appendFileSync(join(process.cwd(), "data", "tp780.jsonl"), JSON.stringify({ at: now780, ticker: row.ticker, step: s780.step === "75" ? "half at 75% of the way" : "rest at 95% of the way", line: Math.round((s780.step === "75" ? s780.l75 : s780.l95) * 1000) / 1000, entry: Math.round(s780.e * 1000) / 1000, bid, pos: row.pos, owner: own780(row.ticker), got }) + "\n"); } catch {}
+          }
+        }
+        continue;
+      }
       const bookOwned = botOwnsPosition(row);
       // HER SLIDER = HANDS OFF (Love, Oct 5 ~1 PM PT: "if i set the slider here it wont exit early... ill only set it to the
       // CLEAR winners, so they can run if im supervising, if theyre iffy at all, ill leave the bank on"). Once she sets a
@@ -2583,7 +2690,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           }
           // A QUARTER AT 75% (fix121, Oct 22 ~11:06 PM PT, Love picked "Quarter at 75%, rest at 90%" - replay of 691 trades: 93% of those reaching 75% went on
           // to 90%, only 12 reversed and lost): the first touch of 75% of the max now sells a quarter (her 25% button), the rest keeps the 90% take profit + trail.
-          const got = await live.partLive(row.ticker, 25).catch(() => null);
+          g.__stage804 = "cashHeld: live.partLive"; const got = await live.partLive(row.ticker, 25).catch(() => null);
           try {
             appendFileSync(join(process.cwd(), "data", "half75-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, entry: Math.round(entryPx * 1000) / 1000, bid, pos: row.pos, got }) + "\n");
           } catch {
@@ -2600,7 +2707,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         if (mirrorOn && pinHit607 && !paperSell) decision.why = `your slider ${Math.round(pinPct)}%`; // fix607
         // Tighter fill: a gate, the lock or a follow-paper exit sells no more than 1c under the bid (was 3c).
         const floor = Math.max(0.02, Math.round((bid - (gateSell || lockSell || paperSell || mirrorOn ? 0.01 : 0.03)) * 100) / 100);
-        const payout = await live.flattenTicker(row.ticker, true, 0, false, floor);
+        g.__stage804 = "cashHeld: live.flattenTicker"; const payout = await live.flattenTicker(row.ticker, true, 0, false, floor);
           if (payout != null) {
             delete peaks[row.ticker];
             delete armedTp[row.ticker];
@@ -2659,7 +2766,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const liveCash = qty * bid;
         const gap = qty > 0 ? (qty - liveCash) / qty : 1;
         if ((room === 5 || room === 10) && gap <= room / 100 && liveCash > row.cost + 0.05) {
-          const payout = await live.flattenTicker(row.ticker, true);
+          g.__stage804 = "cashHeld: live.flattenTicker"; const payout = await live.flattenTicker(row.ticker, true);
           if (payout != null) {
             delete armed[row.ticker];
             writeFileSync(nearFile, JSON.stringify(armed));
@@ -2694,7 +2801,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const liveCash = qty * bid;
         const pinPx = Math.round((Number(pin.ask) / qty) * 100) / 100;
         if (liveCash + 0.01 >= Number(pin.ask) && bid + 0.001 >= pinPx && liveCash > row.cost + 0.05) {
-          const payout = await live.flattenTicker(row.ticker, true, 0, false, pinPx);
+          g.__stage804 = "cashHeld: live.flattenTicker"; const payout = await live.flattenTicker(row.ticker, true, 0, false, pinPx);
           if (payout != null) {
             try {
               const pinFile = join(process.cwd(), "data", "pin-sale.json");
@@ -2731,7 +2838,9 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       mkdirSync(join(process.cwd(), "data"), { recursive: true });
       writeFileSync(peakFile, JSON.stringify(peaks));
     }
-  } catch {
+  } catch (e846) {
+    // fix846: an error in her take-profit loop is written down (data/cash-held-errors.jsonl), never swallowed silently again.
+    try { appendFileSync(join(process.cwd(), "data", "cash-held-errors.jsonl"), JSON.stringify({ at: new Date().toISOString(), error: String((e846 as any)?.message || e846), stack: String((e846 as any)?.stack || "").split("\n").slice(0, 4).join(" | ") }) + "\n"); } catch {}
   }
 }
 async function tendSilver() {
@@ -3412,7 +3521,7 @@ async function polyTwin() {
       if (d && now - Number(d.lastTry || 0) < 4000) continue;
       const base = { book: r.book, asset: r.asset, side: r.side, ticker: r.ticker, setup: r.setup, lastTry: now, tries: (Number(d?.tries) || 0) + 1 };
       const mm = /-(\d\d)([A-Z]{3})(\d\d)(\d\d)(\d\d)/.exec(String(r.ticker));
-      const endMs = mm ? Date.UTC(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4]) + 4, Number(mm[5])) : 0;
+      const endMs = mm ? Date.UTC(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4]) + etOff700(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4])) /* fix700 */, Number(mm[5])) : 0;
       if (!endMs || now > endMs - 60000) { reg[r.id] = { ...base, status: "skipped", final: true, reason: "under a minute left" }; changed = true; continue; }
       const closesAt = new Date(endMs).toISOString();
       const bl: any = (r as any).hedge ? { ok: true } : blm.bandLockCheck(String(r.book), r.asset, r.side, String(r.ticker), String(r.setup || "")); /* fix611 */
@@ -3455,7 +3564,7 @@ async function polyTwin() {
       try { const GM = (g as any).__togMiss || {}; for (const [tk, mv] of Object.entries(GM) as [string, any][]) { if (!/15M-/.test(tk) || !(now - Number(mv?.at) < 15 * 60 * 1000)) continue; if (!firsts[tk] || Number(mv.at) < Date.parse(String(firsts[tk].at))) firsts[tk] = { ticker: tk, side: mv.side, at: new Date(Number(mv.at)).toISOString(), asset: /GOLD/.test(tk) ? "gold" : "btc" }; } } catch {}
       for (const [tk, f] of Object.entries(firsts)) {
         const mm = /-(\d\d)([A-Z]{3})(\d\d)(\d\d)(\d\d)/.exec(tk);
-        const endMs = mm ? Date.UTC(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4]) + 4, Number(mm[5])) : 0;
+        const endMs = mm ? Date.UTC(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4]) + etOff700(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4])) /* fix700 */, Number(mm[5])) : 0;
         if (!endMs || now > endMs - 60000 || now < endMs - 15 * 60 * 1000) continue;
         const asset = String(f.asset) === "gold" ? "gold" : "btc";
         const nearNow = blm.bandsNearNow(asset); if (!nearNow) continue;
@@ -3673,7 +3782,7 @@ async function tick() {
   void (async () => { try { const r456 = await import("./five5m-rows"), l456 = await import("./five5m"); if (r456.fiveOn()) void l456.fiveTick5m(); void l456.fiveBank5m(); } catch {} })(); // fix456 (R169): the walled-off 5M - her own lane (only while five5m.on) and her own exits (always, for anything she holds); loaded apart
   // READ-ONLY POLYMARKET AUDIT on request (Oct 21, Love): touch data/poly-audit.req -> data/poly-audit.json
   try { const rq = join(process.cwd(), "data", "poly-audit.req"); if (existsSync(rq) && !g.__polyAuditBusy) { g.__polyAuditBusy = true; renameSync(rq, rq + ".done"); void import("./poly-live.server").then((pm) => pm.polyAudit()).catch(() => {}).finally(() => { g.__polyAuditBusy = false; }); } } catch {}
-  g.__aureliusBusy = true;
+  g.__aureliusBusy = true; g.__tickAt804 = Date.now(); g.__stage804 = "tick: start"; // fix804 stall trace (log only)
   try {
     writeFileSync(join(process.cwd(), "data", "heartbeat.json"), JSON.stringify({ at: (/* @__PURE__ */ new Date()).toISOString(), gen: ENGINE_GEN, phase: "start" }));
   } catch {
@@ -3683,8 +3792,8 @@ async function tick() {
   holdModel();
   quietWatch();
   try {
-    await maybeRaise();
-    await guardFills();
+    g.__stage804 = "tick: maybeRaise"; await maybeRaise();
+    g.__stage804 = "tick: guardFills"; await guardFills();
   } catch {
   }
   paceGuard();
@@ -3699,7 +3808,7 @@ async function tick() {
   try {
     const book = readBook();
     g.__lastSettings = book.settings;
-    const snap = await scanDesk(book.settings);
+    g.__stage804 = "tick: scanDesk"; const snap = await scanDesk(book.settings);
     // Monitor: model sentinel + post-trade reviews. Watches only.
     try {
       monitorTick();
@@ -3742,6 +3851,64 @@ async function tick() {
     }
     // BTC HOURLY (Love): Kalshi KXBTCD off her 1-hour nav band. Paper only (hourly.ts).
     import("./hourly").then((m) => m.hourTick(snap.assets)).catch(() => {});
+    // fix672 RSI PAPER BOOKS (Love Nov 4 2026 9:56 PM PT): RSI 70/80/90 reversals on 5m-4h, BTC + gold, 15M window + 1H market. PAPER ONLY (rsibooks.ts never sends an order).
+    import("./rsibooks").then((m) => m.rsiTick672(snap.assets)).catch(() => {});
+    // fix682 ETH REJECTIONS ONLY · NO PINK (Love Nov 4 2026 11:38 PM PT: "yess, let us do so please (eth book)"). PAPER ONLY (ethbook.ts never sends an order).
+    import("./ethbook").then((m) => m.ethTick682()).catch(() => {});
+    // fix832 SOL + DOGE REJECTIONS ONLY · NO PINK - PAPER (her card "Paper books on the desk"): copies of the ETH paper book. PAPER ONLY.
+    import("./solbook832").then((m) => m.solTick832()).catch(() => {});
+    import("./dogebook832").then((m) => m.dogeTick832()).catch(() => {});
+    // fix833 MOMENTUM ON THE COINS - PAPER (her card "Yes, all four on paper"): DOGE / BNB / SOL momentum + BTC first 2 minutes. PAPER ONLY.
+    import("./momcoins833").then((m) => m.momCoinsTick833()).catch(() => {});
+    // fix831 ETH REJECTIONS LIVE ON KALSHI (Love Nov 6 2026 ~3:04 PM PT: "yes , and i meant the eth rejection book on kalshi bb"): $2.50 + $3 add-on at 2.8x, through her add-on route.
+    import("./ethlive831").then((m) => m.ethLiveTick831()).catch(() => {});
+    import("./ethbook2").then((m) => m.ethTick872()).catch(() => {}); import("./ethlive2").then((m) => m.ethLiveTick872()).catch(() => {}); // fix872 ETH.2: her ETH book's copy with every revision (fix862-892, 906, 913) and her one pink rule (fix927), and its own live copy (off until CHANGE-271)
+    // fix842 THE SCORES REBUILD THEMSELVES (Love Nov 6 2026 ~5:08 PM PT: "we have several of them showing as 0 too" (the inverse-worst books idle - SET UP SCORES only rebuilt while STATS was open)): every 10 minutes the desk rebuilds SET UP SCORES (tools/setup-scores-708.py - the WORST lists the
+    // inverse-worst books read, CUT + FLIP's list, STATS) and EVERY FACTOR (tools/factor-scores-825.py), whether or not STATS is open. Niced, one run at a time (each script holds its own lock). Read-only scorers.
+    { const G842 = globalThis as any; if (!G842.__score842At || Date.now() - G842.__score842At > 600000) { G842.__score842At = Date.now(); void (async () => { try { const { spawn } = await import("node:child_process"); for (const f842 of ["tools/setup-scores-708.py", "tools/factor-scores-825.py"]) spawn("nice", ["-n", "19", "python3", f842], { cwd: process.cwd(), detached: true, stdio: "ignore" }).unref(); } catch {} })(); } }
+    import("./tpwatch847").then((m) => m.tpWatchTick847()).catch(() => {}); // fix847 TP WATCHDOG: tells her (RED on ALERTS) when a 75 / 95 sale is overdue or her exits hit an error - never sells or blocks
+    import("./backup928").then((m) => m.backupTick928()).catch(() => {}); // fix928 THE DESK BACKS HERSELF UP: tools/github-backup.sh --once at desk start and every hour - detached, niced, never touches trading; log data/github-backup.log
+    import("./bb5m851").then((m) => m.bb5mTick851()).catch(() => {}); // fix851 5M BOLLINGER · PAPER (Polymarket BTC 5m, two paper books - never an order)
+    // fix686 OG ORIGINAL · 10.12 (Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls"). PAPER ONLY, sealed (og1012.ts never sends an order).
+    import("./og1012").then((m) => m.og1012Tick(snap.assets)).catch(() => {});
+    // fix835 1-2-3 · SEALED · PAPER + fix836 1-2-3 · NEW · PAPER (Love Nov 6 2026: her Oct 26 Polymarket BTC 5m 1-2-3 book, sealed from PRE295-BUILD, and a NEW twin). PAPER ONLY, sealed (onetwothree835.ts never sends an order).
+    import("./onetwothree835").then((m) => m.oneTwoThreeTick835(snap.assets)).catch(() => {});
+    // fix687 OUTWARD BREAK · SESSION BANDS (Love Nov 5 2026 ~1:00 AM PT: "a new one too if you have a different idea in mind for it"). PAPER ONLY (brkout.ts never sends an order).
+    import("./brkout").then((m) => m.brkOutTick687(snap.assets)).catch(() => {});
+    // fix688 INVERSE BOOK (Love Nov 5 2026 ~1:05 AM PT: "can you create the inverse set ups book i asked you about earlier too?"). PAPER ONLY (inverse.ts never sends an order).
+    import("./inverse").then((m) => m.inverseTick688(snap.assets)).catch(() => {});
+    // fix705 AT THE PINK TAP (Love Nov 5 2026 ~3:54 AM PT: "can you update her loggings to say why she didn't enter AT the rejection of pink?"). LOG ONLY.
+    import("./pinktap").then((m) => m.pinkTapTick705(snap.assets)).catch(() => {});
+    // fix801 THE PINK SLIDE TAP (Love Nov 6 2026 ~6:40 AM PT: "on pink slides she waits for it to come to pink and reject. no flip necessary on pink slides just get in at the best multiple she can"): her take at the pink during her slide / climb.
+    import("./pinkslide801").then((m) => m.pinkSlideTick801(snap.assets)).catch(() => {});
+    // fix815 LIVE COMES BACK BEFORE THE WINDOW (Love Nov 6 2026 ~8:46 AM PT): loads her every-second auto LIVE-on check (it runs on its own timer).
+    import("./liveauto815").catch(() => {});
+    // fix819 CUT + FLIP (Love Nov 6 2026 ~9:52 AM PT: "as for any of the set ups we ...): her flips of cut set ups.
+    import("./flip819").then((m) => m.flipTick819(snap.assets)).catch(() => {});
+    // fix820 THE INVERSE-WORST BOOKS (Love Nov 6 2026 ~10:43 AM PT). PAPER ONLY.
+    import("./invworst820").then((m) => m.invWorstTick820(snap.assets)).catch(() => {});
+    // fix824 AWAY FROM LINE (Love Nov 6 2026 ~10:59 AM PT: "if a target sits within $1.50 of those i do want her to take the trade the other direction if it is above the floor / beginning of the window").
+    import("./away824").then((m) => m.awayTick824(snap.assets)).catch(() => {});
+    // fix830 MOMENTUM ON POLYMARKET - BTC (Love Nov 6 2026 ~2:56 PM PT: "and can you put the momentum book live on polymarket at $2.50 with a $$3 add on at 2.8x for me bb").
+    import("./polymom830").then((m) => m.polyMomTick830()).catch(() => {});
+    // fix704 MOMENTUM BOOK (Love Nov 5 2026 3:31 AM PT: "all of em bb !!"). PAPER ONLY (momentum.ts never sends an order).
+    import("./momentum").then((m) => m.momentumTick704(snap.assets)).catch(() => {});
+    // fix707 HIGH MULTIPLE BOOK (Love Nov 5 2026 ~4:10 AM PT: "let's create a high multiple book too pls. only takes 2.8x +"). PAPER ONLY, 24/7.
+    import("./hmulti").then((m) => m.highMultTick707(snap.assets)).catch(() => {});
+    // fix709 HALF-BAND KEEP BOOK (Love Nov 5 2026 ~4:20 AM PT: "can we create another book that still uses those [half bands]"). PAPER ONLY, 24/7.
+    import("./halfband").then((m) => m.halfBandTick709(snap.assets)).catch(() => {});
+    // fix713 CUP BOOK (Love Nov 5 2026 ~5:38 AM PT: "is there a way we can have her gauge candle formations?"). PAPER ONLY, 24/7.
+    import("./cups").then((m) => m.cupTick713(snap.assets)).catch(() => {});
+    // fix770 V.111 - 2 (Love Nov 5 2026 ~7:05 PM PT: "Give her her own card, V.111 - 2 ... for now lets get her on paper taking every set up under her rules"). PAPER ONLY (v1112.ts never sends an order): her Sep 24 reads on the rolling 60m VWAP + half bands.
+    import("./v1112").then((m) => m.v1112Tick770(snap.assets)).catch(() => {});
+    // fix734 AKIMBO SILENT ALARM (Love Nov 5 2026 10:13 AM PT: "pls set up 2 minute monitor for her , that pings if she's silent on a window"). ALERT ONLY - never touches an order.
+    import("./akimbowatch").then((m) => m.akimboWatch734()).catch(() => {});
+    // fix690 70% CLUB (Love Nov 5 2026 ~1:28 AM PT: "only taking the set ups that won over 70%"). PAPER ONLY (club.ts never sends an order).
+    import("./club").then((m) => m.clubTick690(snap.assets)).catch(() => {});
+    // fix694 MAIN VWAP SIDE (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"). PAPER ONLY (mainvwap.ts never sends an order).
+    import("./mainvwap").then((m) => m.mainVwap694Tick(snap.assets)).catch(() => {});
+    // fix695 REJECTION PARKED SIDE (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"). PAPER ONLY (rejparked.ts never sends an order).
+    import("./rejparked").then((m) => m.rejParked695Tick(snap.assets)).catch(() => {});
     // TAP + RESCUE (Love): band-touch lotto tickets and rescue adds. Paper only (tap.ts).
     import("./tap").then((m) => m.tapTick(snap.assets)).catch(() => {});
     import("./squeeze").then((m) => m.squeezeTick(snap.assets)).catch(() => {});
@@ -3796,26 +3963,26 @@ async function tick() {
       if (!(bid < floor)) return t;
       return { ...t, lowBid: bid };
     });
-    trades = await settleRolled(trades, snap.assets);
-    const locks2 = await import("./kalshi-live.server").then((live) => live.allLocks()).catch(() => ({}));
+    g.__stage804 = "tick: settleRolled"; trades = await settleRolled(trades, snap.assets);
+    g.__stage804 = "tick: import"; const locks2 = await import("./kalshi-live.server").then((live) => live.allLocks()).catch(() => ({}));
     const has = (setupId) => trades.some((t) => t.setupId === setupId);
     for (const id of ["btc", "gold"]) {
       const asset = snap.assets[id];
       if (goldHalted(id) || halted) continue;
       try {
-        await lastMinuteLook(asset, id);
+        g.__stage804 = "tick: lastMinuteLook"; await lastMinuteLook(asset, id);
       } catch {
       }
       const lateRaw = lateWindow(asset);
       const late = withRightSide(lateRaw, asset);
       if (late && studySetup(late)) await nightLook(late, asset);
       if (late && studySetup(late) && !has(late.id) && !flipped(trades, late.ticker, late.side, late.asset, locks2) && !(await pivotHold(asset, late))) {
-        const paper = await kalshiFirst(researchFill(late, asset, book.settings.stake), asset);
+        g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(late, asset, book.settings.stake), asset);
         if (paper) {
           noteFive(paper);
           noteKiss(paper, asset);
           alarmBetween(asset, paper.side, paper.ticker);
-          await mirrorPaper(asset, paper);
+          g.__stage804 = "tick: mirrorPaper"; await mirrorPaper(asset, paper);
           trades = [paper, ...trades];
           // MAGLEV LANDING (Oct 14 ~7:20 AM PT): her new trade is written to her book right away (not at the end of this
           // pass, after the copier and prime book run) and the pivot books + live copier are told at once.
@@ -3831,12 +3998,12 @@ async function tick() {
       if (probeTicket) trades = [{ ...probeTicket, probe: true, stake: 1, contracts: 1 / Math.max(probeTicket.ask, 0.01) }, ...trades];
       if (studySetup(setup)) await nightLook(setup, asset);
       if (studySetup(setup) && !has(setup.id) && !(await pivotHold(asset, setup))) {
-        const paper = await kalshiFirst(researchFill(setup, asset, book.settings.stake), asset);
+        g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(setup, asset, book.settings.stake), asset);
         if (paper) {
           noteFive(paper);
           noteKiss(paper, asset);
           alarmBetween(asset, paper.side, paper.ticker);
-          await mirrorPaper(asset, paper);
+          g.__stage804 = "tick: mirrorPaper"; await mirrorPaper(asset, paper);
           trades = [paper, ...trades];
           // MAGLEV LANDING (Oct 14 ~7:20 AM PT): her new trade is written to her book right away (not at the end of this
           // pass, after the copier and prime book run) and the pivot books + live copier are told at once.
@@ -3853,30 +4020,30 @@ async function tick() {
       if (!cross || has(cross.id) || flipped(trades, cross.ticker, cross.side, cross.asset, locks2)) continue;
       if (trades.some((t) => t.ticker === cross.ticker && t.result === "open")) continue;
       if (await pivotHold(asset, cross)) continue;
-      const paper = await kalshiFirst(researchFill(cross, asset, book.settings.stake), asset);
+      g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(cross, asset, book.settings.stake), asset);
       if (paper) {
         noteFive(paper);
         noteKiss(paper, asset);
         alarmBetween(asset, paper.side, paper.ticker);
-        await mirrorPaper(asset, paper);
+        g.__stage804 = "tick: mirrorPaper"; await mirrorPaper(asset, paper);
         trades = [paper, ...trades];
         fastLand(trades, book.settings, snap.assets);
       }
     }
-    const silver = await tryFive(halted, "KXSILVER15M", "SI=F", "SILVER");
+    g.__stage804 = "tick: tryFive"; const silver = await tryFive(halted, "KXSILVER15M", "SI=F", "SILVER");
     if (silver && !trades.some((t) => t.result === "open" && t.ticker === silver.ticker && t.side === silver.side)) {
       trades = [silver, ...trades];
     }
-    await tendSilver();
-    await cashHeld(snap.assets);
-    trades = await tryNextHour(trades, snap.assets.btc, halted);
+    g.__stage804 = "tick: tendSilver"; await tendSilver();
+    g.__stage804 = "tick: cashHeld"; await cashHeld(snap.assets);
+    g.__stage804 = "tick: tryNextHour"; trades = await tryNextHour(trades, snap.assets.btc, halted);
     try {
-      trades = await tendPolyHour(trades);
+      g.__stage804 = "tick: tendPolyHour"; trades = await tendPolyHour(trades);
     } catch {
     }
-    trades = await adoptHeld(trades);
-    trades = await alignBooks(trades, snap.assets);
-    trades = await bankLive(trades, snap.assets);
+    g.__stage804 = "tick: adoptHeld"; trades = await adoptHeld(trades);
+    g.__stage804 = "tick: alignBooks"; trades = await alignBooks(trades, snap.assets);
+    g.__stage804 = "tick: bankLive"; trades = await bankLive(trades, snap.assets);
     trades = adoptScouts(trades, snap.assets);
     for (const id of ["btc", "gold"]) {
       const asset = snap.assets[id];
@@ -3906,7 +4073,7 @@ async function tick() {
       if (manualKalshi()) continue;
       continue;
       try {
-        const made = await sendKalshi(
+        g.__stage804 = "tick: sendKalshi"; const made = await sendKalshi(
           {
             id: paper.setupId || `${paper.ticker}:${paper.side}:copy`,
             asset: paper.asset,
@@ -3937,14 +4104,14 @@ async function tick() {
       } catch {
       }
     }
-    trades = await armHedge(trades, snap.assets);
+    g.__stage804 = "tick: armHedge"; trades = await armHedge(trades, snap.assets);
     try {
-      const live = await import("./kalshi-live.server");
+      g.__stage804 = "tick: import"; const live = await import("./kalshi-live.server");
       for (const trade of trades) {
         if (trade.source !== "live" || trade.venue === "polymarket" || trade.result !== "open") continue;
         const asset = snap.assets[trade.asset];
         if (!asset?.market || asset.market.ticker !== trade.ticker) continue;
-        await live.restAutoSell(trade, exitTargetPct(trade, asset, 75));
+        g.__stage804 = "tick: live.restAutoSell"; await live.restAutoSell(trade, exitTargetPct(trade, asset, 75));
       }
     } catch {
     }
@@ -3976,7 +4143,7 @@ async function tick() {
     if (!wrong) {
       writeFileSync(join(process.cwd(), "data", "page.json"), JSON.stringify({ at: (/* @__PURE__ */ new Date()).toISOString(), fix: false }));
     }
-    trades = await sealOffList(trades);
+    g.__stage804 = "tick: sealOffList"; trades = await sealOffList(trades);
     trades = trailPaper(trades, snap.assets);
     try {
       syncPrimeLooks(snap.assets);
@@ -3997,12 +4164,12 @@ async function tick() {
         void scoreMirror(snap.assets);
       } catch {
       }
-      await hourCheck();
-      await forkPaper(snap.assets);
-      await copyPrimeBook(snap.assets);
-      await copyLiveBookSafe(snap.assets);
-      const lined = await import("./kalshi-live.server");
-      await lined.alignPrime();
+      g.__stage804 = "tick: hourCheck"; await hourCheck();
+      g.__stage804 = "tick: forkPaper"; await forkPaper(snap.assets);
+      g.__stage804 = "tick: copyPrimeBook"; await copyPrimeBook(snap.assets);
+      g.__stage804 = "tick: copyLiveBookSafe"; await copyLiveBookSafe(snap.assets);
+      g.__stage804 = "tick: import"; const lined = await import("./kalshi-live.server");
+      g.__stage804 = "tick: lined.alignPrime"; await lined.alignPrime();
     } catch {
     }
     writeBook(trades, book.settings);
@@ -4030,8 +4197,8 @@ async function tick() {
       const last = Number(g.__aureliusWatchAt) || 0;
       if (Date.now() - last > 3e4) {
         g.__aureliusWatchAt = Date.now();
-        const live = await import("./kalshi-live.server");
-        await Promise.race([
+        g.__stage804 = "tick: import"; const live = await import("./kalshi-live.server");
+        g.__stage804 = "tick: Promise.race"; await Promise.race([
           live.watchAccount(readBookShared().trades), // fix621 (Love Nov 1 2026 8:32 PM PT: "the full read-loop speed fix"): only looked at
           new Promise((resolve) => setTimeout(resolve, 4000)),
         ]);
@@ -4643,11 +4810,22 @@ async function copyLaneSafe(assets, ln) {
     void copyLaneSafe(gLiveCopy.__lastAssets || assets, ln);
   }
 }
+// fix700 EASTERN TIME BY THE CALENDAR (Love Nov 5 2026 2:40 AM PT: "and your last question, yes" - to the copier's window clocks that still assumed summer time): her Kalshi tickers
+// carry the window's Eastern close time; UTC = Eastern + 4 h in summer (EDT), + 5 h in winter (EST, first Sunday of November to the second Sunday of March).
+function etOff700(y: number, mo: number, d: number, h: number): number {
+  const sun = (yy: number, m: number, nth: number) => { const first = new Date(Date.UTC(yy, m, 1)).getUTCDay(); return 1 + ((7 - first) % 7) + 7 * (nth - 1); };
+  const t = Date.UTC(y, mo, d, h), start = Date.UTC(y, 2, sun(y, 2, 2), 2), end = Date.UTC(y, 10, sun(y, 10, 1), 1); // local 2 AM spring forward / 2 AM EDT (1 AM EST) fall back
+  return t >= start && t < end ? 4 : 5;
+}
 function copyLaneOf(t) { return /^KXBTC/.test(String(t)) ? "btc" : /^KXGOLD/.test(String(t)) ? "gold" : "other"; }
 // DIRECT WIRE: BRICK / COTC fire to Kalshi in the same instant the paper book books them (nightbook.ts live hook).
 setLiveHook(() => {
   if (gLiveCopy.__lastAssets) void copyLiveBookSafe(gLiveCopy.__lastAssets);
 });
+// fix735 AKIMBO INSTANT BELL (Love Nov 5 2026 ~10:19 AM PT: "can you wire them to go out at the same time? ... so she gets the better prices than paper does"): the akimbo books book on the
+// pivot ledger (grok-og.json), which had no bell - their calls waited for the copier's next pass (8:45 AM 12 s, 10:04 AM 16 s). The pivot ledger now rings this the instant it writes a
+// new call of a live-today book, so the copier runs at once, exactly like the main books' DIRECT WIRE. Same copier, same gates, same rails.
+(globalThis as any).__akimboBell735 = () => { if (gLiveCopy.__lastAssets) void copyLiveBookSafe(gLiveCopy.__lastAssets); };
 // LIVE BOOK (Claude, Oct 3 ~1:45 PM PT, Love: "let's run BRICK on kalshi for the time being... @ $22 position sizes").
 // Every new open row of the book named in live-switch "liveBook" (her main paper book, not a twin) is sent to Kalshi
 // once, in its own window, at liveBook.dollars. The wire guard still needs the live switch ON and caps size.
@@ -4661,7 +4839,8 @@ async function copyLiveBook(assets, lane = "") {
   } catch {
     cfg = null;
   }
-  const books = cfg ? (Array.isArray(cfg.books) ? cfg.books : cfg.book ? [cfg.book] : []) : [];
+  const lt717 = liveToday717(); const books = lt717 ? [lt717] /* fix717: one book alone today */ : cfg ? (Array.isArray(cfg.books) ? cfg.books : cfg.book ? [cfg.book] : []) : [];
+  if (lt717.includes(",")) books.splice(0, books.length, ...lt717.split(",")); // fix726 AKIMBO: both live-today books are copied
   if (!books.length || !(Number(cfg.dollars) > 0) || entriesOff()) return;
   let live;
   try {
@@ -4748,7 +4927,7 @@ async function copyLiveBook(assets, lane = "") {
           // order comes off. A "can't verify" blip never pulls it - only a real rule refusal.
           try {
             const bk = String(id).split(":")[1] || "";
-            const bl = (await import("./bandlock")).bandLockCheck(bk, String(dd.ticker).includes("GOLD") ? "gold" : "btc", dd.side, String(dd.ticker));
+            const G641 = globalThis as any; G641.__restLabel641 = String((r as any)?.setup || ""); /* fix641: a resting pink break is judged as a pink break */ let bl: any; try { bl = (await import("./bandlock")).bandLockCheck(bk, String(dd.ticker).includes("GOLD") ? "gold" : "btc", dd.side, String(dd.ticker)); } finally { G641.__restLabel641 = ""; }
             if (!bl.ok && !/can't verify|not healthy|self-test|no band feed/.test(bl.reason)) {
               await live.cancelLiveOrder(dd.orderId, dd.ticker).catch(() => {});
               (done as any)[id] = { ...dd, at: new Date().toISOString(), parkedDone: true, status: "skipped", final: true, reason: `resting order pulled before it filled: ${bl.reason}` };
@@ -4786,7 +4965,7 @@ async function copyLiveBook(assets, lane = "") {
     try { const S501 = (gLiveCopy.__auditSent ||= {}); if (!S501[row.id] && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { const G5 = globalThis as any, a5 = String(row.asset);
       const L5 = ((G5.__lawBands?.[a5]?.L || []) as { name: string; price: number }[]).map((l) => ({ name: String(l.name), price: Number(l.price) })), q5 = await (async () => { try { return (await import("./quotes")).quoteTick(a5); } catch { return null; } })(), tick5 = q5 && q5.c > 0 && Date.now() - q5.at < 5000 ? Number(q5.c) : Number(asset?.spot) || 0;
       if (L5.length && tick5 > 0) { S501[row.id] = Date.now(); const tk = Object.keys(G5).filter((k) => /^__qtrail_\d+$/.test(k)).sort((x, y) => Number(y.slice(9)) - Number(x.slice(9)))[0];
-        appendFileSync(join(process.cwd(), "data", "setup-audit-in.jsonl"), JSON.stringify({ id: row.id, at: new Date().toISOString(), book: row.book, asset: a5, side: row.side, ticker: row.ticker, label: row.setup, tick: tick5, L: L5, bars: ((G5.__pivBars?.[a5]?.bars || []) as any[]).slice(-100), trail: ((tk && G5[tk]?.[a5]) || []).slice(-12), bb: G5.__bbsr?.[a5] || null, kStrike: G5.__kStrike?.[a5] || null, kGap: G5.__kGap || null, symBtc: G5.__symBtc || null }) + "\n"); } } } catch {}
+        appendFileSync(join(process.cwd(), "data", "setup-audit-in.jsonl"), JSON.stringify({ id: row.id, at: new Date().toISOString(), book: row.book, asset: a5, side: row.side, ticker: row.ticker, label: row.setup, tick: tick5, L: L5, bars: ((G5.__pivBars?.[a5]?.bars || []) as any[]).slice(-100), trail: ((tk && G5[tk]?.[a5]) || []).slice(-12), bb: G5.__bbsr?.[a5] || null, kStrike: G5.__kStrike?.[a5] || null, kGap: G5.__kGap || null, symBtc: G5.__symBtc || null, carried: G5.__sessCarried?.[a5] === true, slide800: { gold: { s: G5.__slide403?.on === true, c: G5.__climb464g?.on === true }, btc: { s: G5.__slide423bS?.on === true, c: G5.__climb464b?.on === true } } /* fix800: her slide / climb holds go to the sub-auditor so he judges the 55% the way her door does */, freshSd: Number(G5.__freshSd?.[a5]) || 0 /* Love Nov 3 2026 4:17 PM PT ("again she is not taking trades on kalshi ... get her live"): the board he judges is carried-filtered (fix612), so he is told she is carried and the fresh width (fix615) */ }) + "\n"); } } } catch {}
     // Paper already sold it inside the window and the copy never filled: nothing left to copy. Write it down, no alarm.
     if (row.result !== "open" && market?.ticker === row.ticker && left > 30) {
       done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), status: "skipped", final: true, reason: `paper closed it (${row.exit || row.result}) before the copy filled` };
@@ -4800,7 +4979,7 @@ async function copyLiveBook(assets, lane = "") {
       {
         const mm = /-(\d\d)([A-Z]{3})(\d\d)(\d\d)(\d\d)/.exec(String(row.ticker));
         const MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-        const endMs = mm ? Date.UTC(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4]) + 4, Number(mm[5])) : 0;
+        const endMs = mm ? Date.UTC(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4]) + etOff700(2000 + Number(mm[1]), MON.indexOf(mm[2]), Number(mm[3]), Number(mm[4])) /* fix700 */, Number(mm[5])) : 0;
         if (endMs && Date.now() < endMs - 30000 && !(market && market.ticker === row.ticker)) {
           // WHY IT WAITED (Oct 21 ~3:25 PM PT, Love okayed the gold-lane logging): 3:15 PM gold's short sat here unsent with no record - the desk's market
           // read for the asset was blank or on another window. Written once per row per minute to data/copy-waits.jsonl.
@@ -4967,13 +5146,14 @@ async function copyLiveBook(assets, lane = "") {
     // SLIDE UNDER PINK (fix371/fix403 gold, back after the checkpoint restore + BTC added as fix423, Love Oct 28 2026 7:18 PM PT card "Put the downslope pink wall back, and on which books?" -> "Main + rejection, gold AND BTC"; Love 7:17 PM: "you see price on a downslope ?????  you see prices rejecting off of pink a hundred times ????? this was in the checkpoint."):
     // MAIN and REJECTION MODEL only, LONGS, Kalshi only - while price slides under an unbroken pink (gold more than $2 / BTC more than $40 lower than 30 min ago),
     // no long until price breaks up through pink (gold 25c, BTC $8). Shorts, the copy, the twin, the 5M and Polymarket untouched. Needs 20 min of samples after a restart.
-    if (row.side === "down" && (row.asset === "gold" || row.asset === "btc") && ["recon-rej", "recon-tog"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let hold464 = ""; try { hold464 = climbHold464((((globalThis as any)[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any)[row.asset === "gold" ? "__climb464g" : "__climb464b"] ||= { on: false }), Date.now(), String(row.asset)); } catch {}
-      if (hold464) { try { const bl503 = await import("./bandlock"); const G503 = globalThis as any, sm503 = ((G503[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []), l503 = sm503[sm503.length - 1]; /* fix513 (Love Oct 30 2026 6:59 AM PT: "Yes, I asked for the pink slide too."): the slide hold outranks the 15%/20% tolerance - it releases only on her 25c / $8 break below */ const qT503 = (await import("./quotes")).quoteTick(String(row.asset)), brk503 = ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[String(row.asset)] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return row.asset === "btc" ? 5 : 0.25; })(Number(qT503?.c) || 0) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */; if (hold464 && l503 && qT503 && qT503.c > 0 && Date.now() - qT503.at < 5000 && ("down" === "down" ? qT503.c < Number(l503.pp) - brk503 : qT503.c > Number(l503.pp) + brk503)) hold464 = ""; /* fix503b: the release reads the live tick - through the pink by her break distance, the hold is over */ if (!hold464 && /5m PP|pink/i.test(String((row as any).setup || "")) && slideRun515(sm503 as any, Date.now(), "up", String(row.asset))) hold464 = `LONGS ONLY AT A CLIMBED PINK (fix515): the pink climbed on three-plus rejections - a pink call is a long only until price breaks pink down by 10% of the channel (fix560) (mirror of her 7:33 + 7:36 AM rule, R197/R198 both sides).`; /* fix515 (Love Oct 30 2026 7:33 AM PT: "once we do the slide roll for pink. Let's make it shorts only at pink. It will win a lot more than the breakes."): a pink call goes one way only while the slope stands - the break the other way is never her trade */ } catch {} } // fix503 (Love Oct 29 2026 11:38-11:41 PM PT: "band distance is $10. 15% of that is $1.50." + "pink tolerance is $1.50 at this band distance , not $4" + "btc is $800, so that tolerance would be $160 at the moment." + "she is treating pink as a bigger barrier than it needs to be. it is not an obstacle at those distances" + 11:34 PM: "she is still only waiting for pink to break at any distance. change that please" + 11:36 PM: "make session bands count again as well and rejections from red green bollingers"): a pink farther than her tolerance holds nothing
-      if (hold464) { try { const GL = ((globalThis as any).__climb464Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: hold464 }) + "\n"); } } catch {} continue; } } // fix464 (R197/R198, Love Oct 29 1:06 PM PT: "it's for both sides"): the upslope pink - no short while price climbs over an unbroken pink
-    if (row.side === "up" && (row.asset === "gold" || row.asset === "btc") && ["recon-rej", "recon-tog"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let hold423 = ""; try { hold423 = row.asset === "gold" ? slideHold403(((globalThis as any).__slide371?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(((globalThis as any).__slide423b?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {}
-      if (hold423) { try { const bl503 = await import("./bandlock"); const G503 = globalThis as any, sm503 = ((G503[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []), l503 = sm503[sm503.length - 1]; /* fix513 (Love Oct 30 2026 6:59 AM PT: "Yes, I asked for the pink slide too."): the slide hold outranks the 15%/20% tolerance - it releases only on her 25c / $8 break below */ const qT503 = (await import("./quotes")).quoteTick(String(row.asset)), brk503 = ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[String(row.asset)] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return row.asset === "btc" ? 5 : 0.25; })(Number(qT503?.c) || 0) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */; if (hold423 && l503 && qT503 && qT503.c > 0 && Date.now() - qT503.at < 5000 && ("up" === "down" ? qT503.c < Number(l503.pp) - brk503 : qT503.c > Number(l503.pp) + brk503)) hold423 = ""; /* fix503b: the release reads the live tick - through the pink by her break distance, the hold is over */ if (!hold423 && /5m PP|pink/i.test(String((row as any).setup || "")) && slideRun515(sm503 as any, Date.now(), "down", String(row.asset))) hold423 = `SHORTS ONLY AT A SLID PINK (fix515): the pink slid on three-plus rejections - a pink call is a short only; the break long is never her trade until price breaks pink up by 10% of the channel (fix560) (her 7:33 + 7:36 AM words).`; /* fix515 (Love Oct 30 2026 7:33 AM PT: "once we do the slide roll for pink. Let's make it shorts only at pink. It will win a lot more than the breakes."): a pink call goes one way only while the slope stands - the break the other way is never her trade */ } catch {} } // fix503 (Love Oct 29 2026 11:38-11:41 PM PT: "band distance is $10. 15% of that is $1.50." + "pink tolerance is $1.50 at this band distance , not $4" + "btc is $800, so that tolerance would be $160 at the moment." + "she is treating pink as a bigger barrier than it needs to be. it is not an obstacle at those distances" + 11:34 PM: "she is still only waiting for pink to break at any distance. change that please" + 11:36 PM: "make session bands count again as well and rejections from red green bollingers"): a pink farther than her tolerance holds nothing
-      if (hold423) { try { const GL = ((globalThis as any).__slide371Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: hold423 }) + "\n"); } } catch {} continue; } }
-    if ((row.asset === "gold" || row.asset === "btc") && !["recon-rej", "recon-tog", "recon-dly", "recon-dlyk"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let h490 = ""; try { const sm490 = ((((globalThis as any)[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []) as { t: number; p: number; pp: number }[]); h490 = row.side === "down" ? climbHold464(sm490, ((globalThis as any)[row.asset === "gold" ? "__climb464g" : "__climb464b"] ||= { on: false }), Date.now(), String(row.asset)) : row.asset === "gold" ? slideHold403(sm490, ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(sm490, ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {} if (h490) { try { const bl503 = await import("./bandlock"); const G503 = globalThis as any, sm503 = ((G503[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []), l503 = sm503[sm503.length - 1]; /* fix513 (Love Oct 30 2026 6:59 AM PT: "Yes, I asked for the pink slide too."): the slide hold outranks the 15%/20% tolerance - it releases only on her 25c / $8 break below */ const qT503 = (await import("./quotes")).quoteTick(String(row.asset)), brk503 = ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[String(row.asset)] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return row.asset === "btc" ? 5 : 0.25; })(Number(qT503?.c) || 0) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */; if (h490 && l503 && qT503 && qT503.c > 0 && Date.now() - qT503.at < 5000 && (String(row.side) === "down" ? qT503.c < Number(l503.pp) - brk503 : qT503.c > Number(l503.pp) + brk503)) h490 = ""; /* fix503b: the release reads the live tick - through the pink by her break distance, the hold is over */ if (!h490 && /5m PP|pink/i.test(String((row as any).setup || "")) && slideRun515(sm503 as any, Date.now(), String(row.side) === "down" ? "up" : "down", String(row.asset))) h490 = `ONE WAY AT A SLOPED PINK (fix515): the pink sloped on three-plus rejections - a pink call goes with the slope only; the break against it is never her trade until price breaks pink by 10% of the channel (fix560) the other way (her 7:33 + 7:36 AM words).`; /* fix515 (Love Oct 30 2026 7:33 AM PT: "once we do the slide roll for pink. Let's make it shorts only at pink. It will win a lot more than the breakes."): a pink call goes one way only while the slope stands - the break the other way is never her trade */ } catch {} } /* fix503: a far pink holds nothing */ if (h490) { try { const GL = ((globalThis as any).__slide490Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: h490 }) + "\n"); } } catch {} continue; } } // fix490 (Love Oct 29 2026 7:34 PM PT: "ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED"): the pink downslide / climb holds every other live book too
+    if (!String((row as any).setup || (row as any).label || "").startsWith("AWAY FROM LINE") /* fix824 */ && !String((row as any).setup || (row as any).label || "").startsWith("FLIP of ") /* fix819 */ && row.side === "down" && (row.asset === "gold" || row.asset === "btc") && ["recon-rej", "recon-tog"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let hold464 = ""; try { hold464 = climbHold464((((globalThis as any)[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any)[row.asset === "gold" ? "__climb464g" : "__climb464b"] ||= { on: false }), Date.now(), String(row.asset)); } catch {}
+      if (hold464) { try { const bl503 = await import("./bandlock"); const G503 = globalThis as any, sm503 = ((G503[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []), l503 = sm503[sm503.length - 1]; /* fix513 (Love Oct 30 2026 6:59 AM PT: "Yes, I asked for the pink slide too."): the slide hold outranks the 15%/20% tolerance - it releases only on her 25c / $8 break below */ const qT503 = (await import("./quotes")).quoteTick(String(row.asset)), brk503 = ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[String(row.asset)] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return (String(row.asset) === "gold" && a0.price - b0.price > 30 ? 0.05 : 0.10) * (a0.price - b0.price); /* fix826 her 5% over a $30 gold channel */ } catch {} return row.asset === "btc" ? 5 : 0.25; })(Number(qT503?.c) || 0) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */; if (hold464 && l503 && qT503 && qT503.c > 0 && Date.now() - qT503.at < 5000 && ("down" === "down" ? qT503.c < Number(l503.pp) - brk503 : qT503.c > Number(l503.pp) + brk503)) hold464 = ""; /* fix503b: the release reads the live tick - through the pink by her break distance, the hold is over */ if (!hold464 && /5m PP|pink/i.test(String((row as any).setup || "")) && slideRun515(sm503 as any, Date.now(), "up", String(row.asset))) hold464 = `LONGS ONLY AT A CLIMBED PINK (fix515): the pink climbed on three-plus rejections - a pink call is a long only until price breaks pink down by 10% of the channel (fix560) (mirror of her 7:33 + 7:36 AM rule, R197/R198 both sides).`; /* fix515 (Love Oct 30 2026 7:33 AM PT: "once we do the slide roll for pink. Let's make it shorts only at pink. It will win a lot more than the breakes."): a pink call goes one way only while the slope stands - the break the other way is never her trade */ } catch {} } // fix503 (Love Oct 29 2026 11:38-11:41 PM PT: "band distance is $10. 15% of that is $1.50." + "pink tolerance is $1.50 at this band distance , not $4" + "btc is $800, so that tolerance would be $160 at the moment." + "she is treating pink as a bigger barrier than it needs to be. it is not an obstacle at those distances" + 11:34 PM: "she is still only waiting for pink to break at any distance. change that please" + 11:36 PM: "make session bands count again as well and rejections from red green bollingers"): a pink farther than her tolerance holds nothing
+      if (hold464) { try { const GL = ((globalThis as any).__climb464Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); { const why698 = String(hold464); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: why698 }) + "\n"); done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "held", reason: why698.slice(0, 300), firstReason: done[row.id]?.firstReason ?? why698.slice(0, 300) } /* fix698: her skip record says why (not only the side log) - never final, the wall keeps judging */; } } } catch {} continue; } } // fix464 (R197/R198, Love Oct 29 1:06 PM PT: "it's for both sides"): the upslope pink - no short while price climbs over an unbroken pink
+    { const lab658 = String((row as any).label || (row as any).setup || ""), pink658 = /5m PP/.test(lab658) && (/reject/i.test(lab658) || (row.side === "up" ? /^(?:Break|Close) above 5m PP/ : /^(?:Break|Close) below 5m PP/).test(lab658)) /* fix663: a break back across the pink in the slide's direction is off the pink too */; if ((row.side === "up" || row.side === "down") && (row.asset === "gold" || row.asset === "btc") && !["recon-dly", "recon-dlyk"].includes(String(row.book)) && !lab658.startsWith("FLIP of ") /* fix819 */ && !(liveToday717() && liveToday717().split(",").includes(String(row.book))) /* fix730: the akimbo books skip the pink-slide hold (fix658) - 1:1 with paper */ && done[row.id]?.status !== "partial" && !pink658 && !/^(Rejected (up|down) off |Failed break (above|below) |\dm flip - rejected (up|down) off |\dm rejection off |Tap-reject at |OG tap-reject (up|down) off |Fake-out turn (over|under) )/.test(lab658) /* fix677 (Love Nov 4 2026 11:06 PM PT: "yes to change 26 bb , thank you for telling me" - to Claude's 10:50 PM offer: "If you want her to take ANY trend-side rejection during a slide (a long off green/a band in a climb, a short off a band in a slide down), with the other side still blocked, tell me in your words and I'll build it as CHANGE-26, all books except delayed" (her fix658 words, 6:09 PM: "longs only while pink is on a slide up ... enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down")): during a slide her trend side takes ANY rejection (off the pink, a band, the green / red zone, a Bollinger) - only her trend side's non-rejection reads still wait; the other side stays held by the slide / climb holds */) { const on658 = slideBlock658(String(row.asset), row.side === "up" ? "down" : "up"); if (on658) { try { const GL: any = ((globalThis as any).__slide658Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); { const why698 = String(`PINK SLIDE (fix658): ${row.side === "up" ? "longs" : "shorts"} only off the pink while it slides - ${lab658 || "this read"} waits for the pink rejection. (${on658})`); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: why698 }) + "\n"); done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "held", reason: why698.slice(0, 300), firstReason: done[row.id]?.firstReason ?? why698.slice(0, 300) } /* fix698: her skip record says why (not only the side log) - never final, the wall keeps judging */; } } } catch {} continue; } } } // fix658 (Love Nov 4 2026 6:09 PM PT: "the pink slide rule dictates it is longs only while pink is on a slide up, she doesnt short at red, she waits til it gets to pink and rejects, enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down. she waits for it to come to pink and reject and shorts as she normally would. if it doesnt function like that already thats what i would like"): while the pink slides her way, her trend side enters ONLY off a pink rejection / flip; the other side is already held by the slide / climb holds below
+    if (!String((row as any).setup || (row as any).label || "").startsWith("AWAY FROM LINE") /* fix824 */ && !String((row as any).setup || (row as any).label || "").startsWith("FLIP of ") /* fix819 */ && row.side === "up" && (row.asset === "gold" || row.asset === "btc") && ["recon-rej", "recon-tog"].includes(String(row.book)) && done[row.id]?.status !== "partial") { let hold423 = ""; try { hold423 = row.asset === "gold" ? slideHold403(((globalThis as any).__slide371?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(((globalThis as any).__slide423b?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {}
+      if (hold423) { try { const bl503 = await import("./bandlock"); const G503 = globalThis as any, sm503 = ((G503[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []), l503 = sm503[sm503.length - 1]; /* fix513 (Love Oct 30 2026 6:59 AM PT: "Yes, I asked for the pink slide too."): the slide hold outranks the 15%/20% tolerance - it releases only on her 25c / $8 break below */ const qT503 = (await import("./quotes")).quoteTick(String(row.asset)), brk503 = ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[String(row.asset)] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return (String(row.asset) === "gold" && a0.price - b0.price > 30 ? 0.05 : 0.10) * (a0.price - b0.price); /* fix826 her 5% over a $30 gold channel */ } catch {} return row.asset === "btc" ? 5 : 0.25; })(Number(qT503?.c) || 0) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */; if (hold423 && l503 && qT503 && qT503.c > 0 && Date.now() - qT503.at < 5000 && ("up" === "down" ? qT503.c < Number(l503.pp) - brk503 : qT503.c > Number(l503.pp) + brk503)) hold423 = ""; /* fix503b: the release reads the live tick - through the pink by her break distance, the hold is over */ if (!hold423 && /5m PP|pink/i.test(String((row as any).setup || "")) && slideRun515(sm503 as any, Date.now(), "down", String(row.asset))) hold423 = `SHORTS ONLY AT A SLID PINK (fix515): the pink slid on three-plus rejections - a pink call is a short only; the break long is never her trade until price breaks pink up by 10% of the channel (fix560) (her 7:33 + 7:36 AM words).`; /* fix515 (Love Oct 30 2026 7:33 AM PT: "once we do the slide roll for pink. Let's make it shorts only at pink. It will win a lot more than the breakes."): a pink call goes one way only while the slope stands - the break the other way is never her trade */ } catch {} } // fix503 (Love Oct 29 2026 11:38-11:41 PM PT: "band distance is $10. 15% of that is $1.50." + "pink tolerance is $1.50 at this band distance , not $4" + "btc is $800, so that tolerance would be $160 at the moment." + "she is treating pink as a bigger barrier than it needs to be. it is not an obstacle at those distances" + 11:34 PM: "she is still only waiting for pink to break at any distance. change that please" + 11:36 PM: "make session bands count again as well and rejections from red green bollingers"): a pink farther than her tolerance holds nothing
+      if (hold423) { try { const GL = ((globalThis as any).__slide371Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); { const why698 = String(hold423); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: why698 }) + "\n"); done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "held", reason: why698.slice(0, 300), firstReason: done[row.id]?.firstReason ?? why698.slice(0, 300) } /* fix698: her skip record says why (not only the side log) - never final, the wall keeps judging */; } } } catch {} continue; } }
+    if ((row.asset === "gold" || row.asset === "btc") && !["recon-rej", "recon-tog", "recon-dly", "recon-dlyk"].includes(String(row.book)) && done[row.id]?.status !== "partial" && !(liveToday717() && liveToday717().split(",").includes(String(row.book))) /* fix720: today's live book(s) skip the slide / climb hold - live takes the same trades as paper */) { let h490 = ""; try { const sm490 = ((((globalThis as any)[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []) as { t: number; p: number; pp: number }[]); h490 = row.side === "down" ? climbHold464(sm490, ((globalThis as any)[row.asset === "gold" ? "__climb464g" : "__climb464b"] ||= { on: false }), Date.now(), String(row.asset)) : row.asset === "gold" ? slideHold403(sm490, ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(sm490, ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {} if (h490) { try { const bl503 = await import("./bandlock"); const G503 = globalThis as any, sm503 = ((G503[row.asset === "gold" ? "__slide371" : "__slide423b"])?.s || []), l503 = sm503[sm503.length - 1]; /* fix513 (Love Oct 30 2026 6:59 AM PT: "Yes, I asked for the pink slide too."): the slide hold outranks the 15%/20% tolerance - it releases only on her 25c / $8 break below */ const qT503 = (await import("./quotes")).quoteTick(String(row.asset)), brk503 = ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[String(row.asset)] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return (String(row.asset) === "gold" && a0.price - b0.price > 30 ? 0.05 : 0.10) * (a0.price - b0.price); /* fix826 her 5% over a $30 gold channel */ } catch {} return row.asset === "btc" ? 5 : 0.25; })(Number(qT503?.c) || 0) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */; if (h490 && l503 && qT503 && qT503.c > 0 && Date.now() - qT503.at < 5000 && (String(row.side) === "down" ? qT503.c < Number(l503.pp) - brk503 : qT503.c > Number(l503.pp) + brk503)) h490 = ""; /* fix503b: the release reads the live tick - through the pink by her break distance, the hold is over */ if (!h490 && /5m PP|pink/i.test(String((row as any).setup || "")) && slideRun515(sm503 as any, Date.now(), String(row.side) === "down" ? "up" : "down", String(row.asset))) h490 = `ONE WAY AT A SLOPED PINK (fix515): the pink sloped on three-plus rejections - a pink call goes with the slope only; the break against it is never her trade until price breaks pink by 10% of the channel (fix560) the other way (her 7:33 + 7:36 AM words).`; /* fix515 (Love Oct 30 2026 7:33 AM PT: "once we do the slide roll for pink. Let's make it shorts only at pink. It will win a lot more than the breakes."): a pink call goes one way only while the slope stands - the break the other way is never her trade */ } catch {} } /* fix503: a far pink holds nothing */ if (h490) { try { const GL = ((globalThis as any).__slide490Log ||= {}); if (!GL[row.id] || Date.now() - GL[row.id] > 60000) { GL[row.id] = Date.now(); { const why698 = String(h490); appendFileSync(join(process.cwd(), "data", "slide-pink.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, book: row.book, asset: row.asset, why: why698 }) + "\n"); done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "held", reason: why698.slice(0, 300), firstReason: done[row.id]?.firstReason ?? why698.slice(0, 300) } /* fix698: her skip record says why (not only the side log) - never final, the wall keeps judging */; } } } catch {} continue; } } // fix490 (Love Oct 29 2026 7:34 PM PT: "ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED"): the pink downslide / climb holds every other live book too
     // LIVE SIT-OUT HOURS (Love, Oct 8 ~12:45 AM PT: "yess let's pause her on gold for those hours for sure"). Gold's 6 PM PT
     // hour (the session open, bands bunched) lost on paper (-$5,092, 41%) and live (31% of 13). live-switch
     // "liveSkipHours": { gold: [18] } (Pacific hours). Live copies only; paper keeps booking so we keep measuring.
@@ -5411,7 +5591,7 @@ async function copyLiveBook(assets, lane = "") {
     if (row.book === "ogp5" || row.book === "pap247") {
       const mmT = /-(\d\d)([A-Z]{3})(\d\d)(\d\d)(\d\d)/.exec(String(row.ticker));
       const MONT = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-      const endT = mmT ? Date.UTC(2000 + Number(mmT[1]), MONT.indexOf(mmT[2]), Number(mmT[3]), Number(mmT[4]) + 4, Number(mmT[5])) : 0;
+      const endT = mmT ? Date.UTC(2000 + Number(mmT[1]), MONT.indexOf(mmT[2]), Number(mmT[3]), Number(mmT[4]) + etOff700(2000 + Number(mmT[1]), MONT.indexOf(mmT[2]), Number(mmT[3]), Number(mmT[4])) /* fix700 */, Number(mmT[5])) : 0;
       if (endT && Date.parse(row.at) - (endT - 900000) > 60000) {
         const tradedT = Object.entries(done).some(([k, v]: [string, any]) => k.startsWith(`${row.ticker}:`) && /^(ogp5|pap247)$/.test(k.split(":")[1] || "") && v && (v.status === "filled" || v.status === "partial"));
         if (!tradedT) {
@@ -5424,7 +5604,7 @@ async function copyLiveBook(assets, lane = "") {
     // STALE CALL GUARD (fix375, Oct 27 2026 11:21 PM PT, Love: "yesss pls" to "add a guard so a call that's over a minute old can never fire right after a seat opens" - 11:20 PM the rejection
     // model's 11:15:11 gold long filled at 64c up at the red the moment her 11 PM seat was switched on): a call that reaches the wire with NO earlier try on Kalshi (no record yet) and is more
     // than 90 s old is written down skipped, never sent. The delayed twin (waits for its touch on purpose) and gold-slide holds (fix371) are exempt. Back as fix425 (Love Oct 28 2026 7:36 PM PT: "stale call guard NEEDS to be in there.").
-    if (!done[row.id] && String(row.book) !== "recon-dly" && !((globalThis as any).__slide371Log || {})[row.id] && Date.parse(String(row.at)) > 0 && Date.now() - Date.parse(String(row.at)) > 90000) { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: `STALE CALL: booked ${Math.round((Date.now() - Date.parse(String(row.at))) / 1000)} s ago and never tried on Kalshi - a seat that just opened never fires an old call (fix375)` }; continue; }
+    if (!done[row.id] && String(row.book) !== "recon-dly" && !((globalThis as any).__slide371Log || {})[row.id] && !((globalThis as any).__climb464Log || {})[row.id] /* fix699 */ && !((globalThis as any).__slide490Log || {})[row.id] /* fix699 */ && Date.parse(String(row.at)) > 0 && Date.now() - Date.parse(String(row.at)) > 90000) { done[row.id] = { at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: `STALE CALL: booked ${Math.round((Date.now() - Date.parse(String(row.at))) / 1000)} s ago and never tried on Kalshi - a seat that just opened never fires an old call (fix375)` }; continue; }
     // fix431 (stale even while retrying) TAKEN OUT as fix444 - Love Oct 28 2026 9:52 PM PT: "too strict , telling you lol" (to: a call a wall holds for over 90 s gets dropped). Held calls stay alive and every order is re-checked at the wire (fix435); the original fix375 stale guard above stays.
     // THE THIRDS FLIP IS OFF FOR MAIN + REJECTION (fix442, Love Oct 28 2026 9:23 PM PT: "yeah no i got rid of the flip." + Oct 27 8:38 PM: "yes the flip is already supposed to be off hun, pls remove that
     // and keep it off" - fix364 only took it off the copy): a call her thirds read turned to the other side ("Top third - seen as a short ... (was: ...)" / "Bottom third ... seen as a long") never goes
@@ -5434,15 +5614,31 @@ async function copyLiveBook(assets, lane = "") {
     // questionnaire era) is gone outright - no time-of-day restriction on rejections exists anywhere. Her ONLY narrow-band rule is the width carry just below
     // (fix471/527), handing back at her $100 BTC / $5 gold. Pink and every wall are valid rejections at every hour on wide bands.
     // 2 PM TIL THE BANDS WIDEN (fix471, Love Oct 29 2026 2:54-2:55 PM PT: "no pp stays, make it 2pm pls" + "and not til 4. its til bands widen out enough", after 2:52 PM: "is she on the bollinger and redgren zones and pink and not session bands after 2pm????"): from the 2 PM PT session reset until that asset's new session bands widen out (pivotbooks' carry hand-back, __sessCarried: BTC sigma $180+, gold $5+), main + rejection take only pink, Bollinger, green/red zone and 5m PP calls; session-band calls are held (not final). The 3 PM rule above stays as it is.
-    if (["recon-rej", "recon-tog"].includes(String(row.book)) /* fix471: main + rejection */ && (globalThis as any).__sessCarried?.[String(row.asset)] === true /* fix471: from the 2 PM PT session reset until her session bands widen out (the carry hand-back: BTC sigma $180+, gold $5+) */ && !(() => { try { const L = ((globalThis as any).__lawBands?.[String(row.asset)]?.L || []) as any[]; const lb = String(row.setup || row.label || ""); const z = L.find((l: any) => String(l.name) === (row.side === "up" ? "5m S1" : "5m R1")); const b = L.filter((l: any) => !/^5m (S1|R1)$/.test(String(l.name)) && lb.includes(String(l.name))).sort((x: any, y: any) => String(y.name).length - String(x.name).length)[0]; return !!(z && b && Math.abs(Number(b.price) - Number(z.price)) <= (String(row.asset) === "gold" ? 2 : 75)); } catch { return false; } })() /* fix472: a rejection off a line inside her green (long) / red (short) zone - within $75 BTC / $2 gold of it - is a zone call */ && !(String(row.book) === "recon-rej" && REJ_KEEPS597.test(String(row.setup || row.label || ""))) /* fix597: rejection keeps the candle-from-the-33% and fake-out reads at all hours */ && !/Bollinger|Green zone|Red zone|5m PP|pink|carried /i.test(String(row.setup || row.label || "")) /* fix471: pink and PP stay; fix617: carry bands also */ && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `2 PM TIL THE BANDS WIDEN = BOLLINGERS, ZONES AND PINK ONLY (fix471): "${String(row.setup || row.label).slice(0, 80)}" is not a Bollinger or green/red zone call` }; continue; }
+    if (["recon-rej", "recon-tog"].includes(String(row.book)) /* fix471: main + rejection */ && (globalThis as any).__sessCarried?.[String(row.asset)] === true /* fix471: from the 2 PM PT session reset until her session bands widen out (the carry hand-back: BTC sigma $180+, gold $5+) */ && !(() => { try { const L = ((globalThis as any).__lawBands?.[String(row.asset)]?.L || []) as any[]; const lb = String(row.setup || row.label || ""); const z = L.find((l: any) => String(l.name) === (row.side === "up" ? "5m S1" : "5m R1")); const b = L.filter((l: any) => !/^5m (S1|R1)$/.test(String(l.name)) && lb.includes(String(l.name))).sort((x: any, y: any) => String(y.name).length - String(x.name).length)[0]; return !!(z && b && Math.abs(Number(b.price) - Number(z.price)) <= (String(row.asset) === "gold" ? 2 : 75)); } catch { return false; } })() /* fix472: a rejection off a line inside her green (long) / red (short) zone - within $75 BTC / $2 gold of it - is a zone call */ && !(String(row.book) === "recon-rej" && REJ_KEEPS597.test(String(row.setup || row.label || ""))) /* fix597: rejection keeps the candle-from-the-33% and fake-out reads at all hours */ && !/Bollinger|Green zone|Red zone|5m PP|pink|carried /i.test(String(row.setup || row.label || "")) && !/(Rejected (up|down) off|Failed break (above|below)|Tap-reject at|\d+m rejection off) (BB (upper|lower)|5m (R1|S1))\b/i.test(String(row.setup || row.label || "")) /* fix471: pink and PP stay; fix617: carry bands also; Love Nov 3 2026 3:49 PM PT ("she is taking them on paper and not on kalshi ... put her on"): her carried-hour Bollinger lines (BB upper/lower) and zone lines (5m R1/S1) count as Bollinger and zone calls - rejections only, as her Bollinger and zone rules already are */ && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `2 PM TIL THE BANDS WIDEN = BOLLINGERS, ZONES AND PINK ONLY (fix471): "${String(row.setup || row.label).slice(0, 80)}" is not a Bollinger or green/red zone call` }; continue; }
     { const h597 = labelHold597(String(row.book), String(row.asset), (globalThis as any).__sessCarried?.[String(row.asset)] === true, String(row.setup || row.label || "")); /* fix597 */ if (h597 && !done[row.id]?.orderId && !["partial", "resting", "filled", "sent"].includes(String(done[row.id]?.status || ""))) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: h597 }; continue; } }
     const frame = asset?.vwap1m?.vwap ? asset.vwap1m : asset?.vwap5m;
     let placed = null;
+    { const lab0 = String(row.setup || row.label || ""), mB = /^(?:Break|Close) above (.+?)$/.exec(lab0); if (mB && row.side === "up" && !(liveToday717() && liveToday717().split(",").includes(String(row.book))) /* fix730: the akimbo books take the break at their paper call, like paper */) { const ln0 = (((globalThis as any).__lawBands?.[String(row.asset)]?.L || []) as any[]).find((l: any) => String(l.name) === mB[1].trim()); const px0 = Number(asset?.spot) || 0; if (ln0 && Number(ln0.price) > 0 && px0 > 0 && !(px0 > Number(ln0.price)) && !done[row.id]?.orderId) { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "blocked", final: false, reason: `NOT A BREAK ABOVE AT THE ORDER: price ${px0.toFixed(2)} is at or below ${mB[1].trim()} (${Number(ln0.price).toFixed(2)}) - no entry` }; continue; } } } // Love Nov 3 2026 7:45 PM PT: "if price is below the band at the moment of the order, it is not a break above. No entry."
     // HIS STAMP BEFORE HER ORDER (fix501): wait at most 250 ms for his verdict on this setup; no stamp or a refused board = not taken this pass (written down, not final - he and her door judge again next pass).
     { let v501: any = null; const t501 = Date.now(); while (Date.now() - t501 < 250) { try { v501 = JSON.parse(readFileSync(join(process.cwd(), "data", "setup-audit-last.json"), "utf8"))?.[row.id] || null; } catch { v501 = null; } if (v501) break; await new Promise((r) => setTimeout(r, 20)); }
+      if (v501 && v501.ok !== true && /^THE IMPOSSIBILITY: her bands can't be read/.test(String(v501.why || "")) && (globalThis as any).__sessCarried?.[String(row.asset)] === true) v501 = { ...v501, ok: true, carried: true }; /* Love Nov 3 2026 4:25 PM PT: "Gold is blocked only because the sub-auditor says her bands can't be read. That is not a real rule. Remove that refusal": while she is carried (fix612) her board has one fresh line by design and he is never told; that refusal no longer holds her order then. Her own door and wire still judge every order in full. */
+      if (!(v501 && v501.ok === true) && String(row.setup || (row as any).label || "").startsWith("FLIP of ")) v501 = { ok: true, flip819: true }; /* fix819: her flip skips the wall stamp - the umpire and freshness still judge it at the last line */
+      if (!(v501 && v501.ok === true) && String(row.setup || (row as any).label || "").startsWith("AWAY FROM LINE")) v501 = { ok: true, away824: true }; /* fix824: her AWAY FROM LINE take skips the wall stamp - the umpire and freshness still judge it at the last line */
       if (!v501 || v501.ok !== true) { const why501 = v501 ? `SUB-AUDITOR: ${String(v501.why || "refused").slice(0, 160)}` : "SUB-AUDITOR: no stamp from him within 250 ms - not taken this pass"; done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: false, bandWait: true, reason: why501 };
         try { const AL = ((globalThis as any).__audit501Log ||= {}); if (!AL[row.id + why501]) { AL[row.id + why501] = 1; appendFileSync(join(process.cwd(), "data", "setup-audit.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, held: why501 }) + "\n"); } } catch {}
         try { delete (gLiveCopy.__auditSent || {})[row.id]; } catch {} continue; } }
+    // fix726 AKIMBO - PIVOT GETS THE STICKS (Love Nov 5 2026 7:32 AM PT: "can you see what passing pivot the sticks does to the numbers in those positions?" + her card pick 7:34 AM: "Pivot gets the sticks, always"):
+    // while two books are live today (data/live-today.json "brk-sesspk,brk15"), one ticket per window - the first to call it. When they disagree, +15M PIVOTS gets the move:
+    // pivot calls the other side of a SESSION + PINK ticket -> that ticket is sold at the bid and pivot's side is taken (the change-her-mind flip in kalshi-live, same gates);
+    // SESSION + PINK calls the other side of a pivot ticket -> pivot keeps it, no order. Replay since Oct 19 at $10: +$1,153, green 14 of 17 days, worst day -$41 (first call wins +$1,058 / -$76).
+    let flip726 = false, from726: [string, any] | null = null;
+    try { const lt726 = liveToday717().split(",").filter(Boolean); if (lt726.length > 1 && lt726.includes(String(row.book))) {
+      const oth = Object.entries(done).find(([k, v]: [string, any]) => k.startsWith(`${row.ticker}:`) && (k.split(":")[1] || "") !== String(row.book) && lt726.includes(k.split(":")[1] || "") && v && (["filled", "partial"].includes(String(v.status)) || (String(v.status) === "resting" && !!v.orderId)) /* fix759: only a real fill (or a live resting order) owns the window - an unfilled try never does */) as [string, any] | undefined;
+      if (oth && oth[1].side && oth[1].side !== row.side) {
+        // fix759 NO FLIPS (Love Nov 5 2026 3:12 PM PT: "no babe don't ever flip a position"): whichever AKIMBO book holds the window keeps it - an opposite call from the other book is skipped and logged, never a sell-and-flip.
+        if (String(row.book) === "brk15") { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: `NO FLIPS (fix759): SESSION + PINK holds ${oth[1].side === "up" ? "LONG" : "SHORT"} this window - never flip a position` }; try { appendFileSync(join(process.cwd(), "data", "akimbo-726.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, ticker: row.ticker, side: row.side, kept: oth[0], what: "no flips (fix759)" }) + "\n"); } catch {} continue; }
+        else { done[row.id] = { ...(done[row.id] || {}), at: new Date().toISOString(), ticker: row.ticker, side: row.side, status: "skipped", final: true, reason: "AKIMBO (fix726): +15M PIVOTS holds the other side this window - pivot keeps the sticks" }; try { appendFileSync(join(process.cwd(), "data", "akimbo-726.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, ticker: row.ticker, side: row.side, kept: oth[0], what: "pivot keeps it" }) + "\n"); } catch {} continue; }
+      } } } catch {}
     const tOrder = Date.now();
     const ask493 = Number(row.side === "up" ? market?.yesAsk : market?.noAsk) || null, age493 = Number((market as any)?.__readAt493) > 0 ? tOrder - Number((market as any).__readAt493) : null; // fix493 (Love Oct 29 2026 9:57 PM PT: "yes make the log and make it a cornerstone. its already supposed to exist"): the live Kalshi ask she ordered off + how old that market read was
     try {
@@ -5451,7 +5647,7 @@ async function copyLiveBook(assets, lane = "") {
         bookCopy: row.book,
         sizeMul: togMul,
         // CHANGE HER MIND (Oct 15, Love): a ":m2"/":m3" pivot row = she changed her mind this window; kalshi-live flips the position.
-        flip: /:m\d$/.test(String(row.id)),
+        flip: false /* fix759 NO FLIPS (Love Nov 5 2026 3:12 PM PT: "don't ever flip a position"): no live order closes a held position to take the other side - was: ":m2"/":m3" change-her-mind rows and fix726 pivot-gets-the-sticks */,
         paperAsk: Number(row.ask) || 0,
         line: { spot: asset?.spot || 0, vwap: frame?.vwap || 0, target: asset?.target ?? 0, stdev: frame?.stdev || 0, label: row.setup, bookCopy: row.book },
         secondsLeft: asset?.secondsLeft
@@ -5460,6 +5656,7 @@ async function copyLiveBook(assets, lane = "") {
       placed = { status: "blocked", reason: err instanceof Error ? err.message.slice(0, 140) : "live book failed" };
     }
     const reason = placed?.reason || "";
+    if (flip726 && from726 && from726[1].status !== "resting" && !/close failed|by hand/.test(reason)) { done[from726[0]] = { ...from726[1], at: new Date().toISOString(), status: "flipped", final: true, reason: `AKIMBO (fix726): sold at the bid when +15M PIVOTS called the other side (${placed?.status || "?"})` }; try { appendFileSync(join(process.cwd(), "data", "akimbo-726.jsonl"), JSON.stringify({ at: new Date().toISOString(), id: row.id, ticker: row.ticker, side: row.side, sold: from726[0], status: placed?.status || null, reason }) + "\n"); } catch {} } // fix726: the sold ticket stops owning the window, pivot's fill does
     // SPEED WATCH (Claude, Oct 8 ~4:20 PM PT, Love: "can you have kalshi get the orders FIRST"): where the time goes between
     // paper booking a trade and the order reaching Kalshi: waiting for the copier run, the gates, and the order itself.
     try {
@@ -5780,33 +5977,33 @@ export function pinkThird584(asset: string, pp: number, dir: "down" | "up"): boo
     const a = S0.filter((l: any) => Number(l.price) > pp).sort((x: any, y: any) => x.price - y.price)[0], b = S0.filter((l: any) => Number(l.price) < pp).sort((x: any, y: any) => y.price - x.price)[0];
     if (!a || !b || !(a.price > b.price)) return false;
     const W = a.price - b.price;
-    return dir === "down" ? (pp - b.price) / W <= 1 / 3 : (a.price - pp) / W <= 1 / 3;
+    return dir === "down" ? (pp - b.price) / W <= 0.44 : (a.price - pp) / W <= 0.44; // fix646 (Love Nov 4 2026 2:54 PM PT: "44% for main & rejection for now pls we will test that"): the slide / climb turns on with the pink in the bottom / top 44% of the channel (was 33%)
   } catch { return false; }
 }
 export function climbHold464(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number, asset: string): string {
   const last = sm[sm.length - 1];
-  const brk = asset === "btc" ? 5 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, nm = asset === "btc" ? "BTC" : "GOLD";
+  const brk = asset === "btc" ? 2 /* fix541: her break is $5 (her 8:16 PM) */ : 0.25, nm = asset === "btc" ? "BTC" : "GOLD"; // fix651 (Love Nov 4 2026 4:02 PM PT: "make it $2 on the break"): BTC break $5 -> $2
   if (!last || now - last.t >= 30000) return "";
-  if (typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584 && !pinkThird584(asset, last.pp, "up")) { S.on = false; return ""; } // fix584: the pink is not in her bottom/top 33% - the slide does nothing
-  if (last.p < last.pp - ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[asset] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return brk; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494: her break (25c / $8 down through pink) frees the short
+  if (last.p < last.pp - ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})[asset] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return (asset === "gold" && a0.price - b0.price > 30 ? 0.05 : 0.10) * (a0.price - b0.price); /* fix826 her 5% over a $30 gold channel */ } catch {} return brk; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494: her break (25c / $8 down through pink) frees the short
   const C494: { hit: boolean; p: number; pp: number }[] = []; let b494 = -1; // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope."): her 5m candles, read off the samples
   for (const x of sm) { const b = Math.floor(x.t / 300000); if (b !== b494) { b494 = b; C494.push({ hit: false, p: x.p, pp: x.pp }); } const k = C494[C494.length - 1]; if (x.p <= x.pp) k.hit = true; k.p = x.p; k.pp = x.pp; }
   let run494 = 0, rejPp494 = 0; // fix494 counted the rejections; fix503c: each must come at a higher PRICE than the one before (her up slope)
   let lastP494 = 0; for (const c of C494) if (c.hit && c.p > c.pp) { run494 = run494 > 0 && c.p > lastP494 ? run494 + 1 : 1; lastP494 = c.p; rejPp494 = c.pp; } // fix503c (Love Oct 29 2026 11:46 PM PT: "that was not a rejection upward / it was the wrong direction in her head hun" + "had the logic backwards" + "price was sloping down / only hold are longs / not shorts / vis versa" + 10:03 PM: "It's sliding when three candles or more have hit it and rejected on a down slope."): the slope is PRICE - an UP slope is each rejection candle closing higher than the one before; no minimum of mine. A pink drifting while price falls is not an up slope, so it never holds a short
-  if (run494 >= 3) { S.on = true; return `${nm} CLIMB OVER PINK: ${run494} candles hit the pink and rejected on an up slope (last at ${rejPp494.toFixed(2)}) with ${asset} ${last.p.toFixed(2)} over it - no short until price breaks down through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.", mirrored for shorts per her 1:24 PM "both sides")
+  const pkS658 = (() => { let r = 0, lp = 0, fpp = 0; for (const c of C494) if (c.hit && c.p > c.pp) { if (r > 0 && c.p > lp) r++; else { r = 1; fpp = c.pp; } lp = c.p; } return rejPp494 > fpp; })(); // fix658: the pink itself sloped UP across her rejections (pink at the last rejection higher than at the first)
+  if (run494 >= 2 /* fix657 (Love Nov 4 2026 6:04 PM PT: lower the pink slide rule to 2 instead of 3 while pink is sloped): 2 rejections on her slope - each closing higher on a climb / lower on a slide (fix503c) */ && pkS658 /* fix658 */) { S.on = true; return `${nm} CLIMB OVER PINK: ${run494} candles hit the pink and rejected on an up slope (last at ${rejPp494.toFixed(2)}) with ${asset} ${last.p.toFixed(2)} over it - no short until price breaks down through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.", mirrored for shorts per her 1:24 PM "both sides")
   if (S.on) return `${nm} CLIMB OVER PINK: ${asset} ${last.p.toFixed(2)} is still over the pink (${last.pp.toFixed(2)}) since her climb - no short until price breaks down through pink by 10% of the channel (fix560).`;
   return "";
 }
 export function slideHold403(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
   const last = sm[sm.length - 1];
   if (!last || now - last.t >= 30000) return "";
-  if (typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584 && !pinkThird584("gold", last.pp, "down")) { S.on = false; return ""; } // fix584: the pink is not in her bottom/top 33% - the slide does nothing
-  if (last.p > last.pp + ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})["gold"] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return 0.25; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494 + fix560 (Love Oct 31 2026 1:11 AM PT: "when the longs are blocked on the pink downslope she is to SHORT there ONLY until price breaks pink by 10% of the channel width for gold and 10% for btc"): her break (10% of the channel up through pink) frees the long
+  if (last.p > last.pp + ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})["gold"] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return ("gold" === "gold" && a0.price - b0.price > 30 ? 0.05 : 0.10) * (a0.price - b0.price); /* fix826 her 5% over a $30 gold channel */ } catch {} return 0.25; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494 + fix560 (Love Oct 31 2026 1:11 AM PT: "when the longs are blocked on the pink downslope she is to SHORT there ONLY until price breaks pink by 10% of the channel width for gold and 10% for btc"): her break (10% of the channel up through pink) frees the long
   const C494: { hit: boolean; p: number; pp: number }[] = []; let b494 = -1; // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope."): her 5m candles, read off the samples
   for (const x of sm) { const b = Math.floor(x.t / 300000); if (b !== b494) { b494 = b; C494.push({ hit: false, p: x.p, pp: x.pp }); } const k = C494[C494.length - 1]; if (x.p >= x.pp) k.hit = true; k.p = x.p; k.pp = x.pp; }
   let run494 = 0, rejPp494 = 0; // fix494 counted the rejections; fix503c: each must come at a lower PRICE than the one before (her down slope)
   let lastP494 = 0; for (const c of C494) if (c.hit && c.p < c.pp) { run494 = run494 > 0 && c.p < lastP494 ? run494 + 1 : 1; lastP494 = c.p; rejPp494 = c.pp; } // fix503c (Love Oct 29 2026 11:46 PM PT: "that was not a rejection upward / it was the wrong direction in her head hun" + "had the logic backwards" + "price was sloping down / only hold are longs / not shorts / vis versa" + 10:03 PM: "It's sliding when three candles or more have hit it and rejected on a down slope."): the slope is PRICE - a DOWN slope is each rejection candle closing lower than the one before; no minimum of mine. It holds longs only
-  if (run494 >= 3) { S.on = true; return `GOLD SLIDE UNDER PINK: ${run494} candles hit the pink and rejected on a down slope (last at ${rejPp494.toFixed(2)}) with gold ${last.p.toFixed(2)} under it - no long until price breaks up through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.")
+  const pkS658 = (() => { let r = 0, lp = 0, fpp = 0; for (const c of C494) if (c.hit && c.p < c.pp) { if (r > 0 && c.p < lp) r++; else { r = 1; fpp = c.pp; } lp = c.p; } return rejPp494 < fpp; })(); // fix658: the pink itself sloped DOWN across her rejections
+  if (run494 >= 2 /* fix657 (Love Nov 4 2026 6:04 PM PT: lower the pink slide rule to 2 instead of 3 while pink is sloped): 2 rejections on her slope - each closing higher on a climb / lower on a slide (fix503c) */ && pkS658 /* fix658 */) { S.on = true; return `GOLD SLIDE UNDER PINK: ${run494} candles hit the pink and rejected on a down slope (last at ${rejPp494.toFixed(2)}) with gold ${last.p.toFixed(2)} under it - no long until price breaks up through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.")
   // fix521 (12:32 PM: "Falling = the running 2-5m candle is red and falling (tick under its high/open). Trail test = price lower than it was 2 minutes ago. pink down to the...): under the pink and lower than 2 minutes ago = sliding, no touches required
   { const ago521 = sm.filter((x) => now - x.t >= 120000).slice(-1)[0];
     if (!(typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584) /* fix584: no blanket "under the pink = no longs" - her slide needs 3 rejections + the bottom 33% */ && last.p < last.pp && ago521 && last.p < ago521.p) { S.on = true; return `GOLD SLIDE UNDER PINK: price ${last.p.toFixed(2)} is under the pink (${last.pp.toFixed(2)}) and lower than 2 minutes ago - no long until her reset (fix521; frees on the 10%-of-the-channel break up)`; } }
@@ -5819,13 +6016,13 @@ export function slideHold403(sm: { t: number; p: number; pp: number }[], S: { on
 export function slideHoldBtc423(sm: { t: number; p: number; pp: number }[], S: { on: boolean }, now: number): string {
   const last = sm[sm.length - 1];
   if (!last || now - last.t >= 30000) return "";
-  if (typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584 && !pinkThird584("btc", last.pp, "down")) { S.on = false; return ""; } // fix584: the pink is not in her bottom/top 33% - the slide does nothing
   if (last.p > last.pp + ((p560: number) => { try { const L0 = (((globalThis as any).__lawBands || {})["btc"] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p560).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p560).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return 0.10 * (a0.price - b0.price); } catch {} return 8; })(last.p) /* fix560: her 10% of the channel width, gold + BTC (her old break only when the channel cannot be read) */) { S.on = false; return ""; } // fix494: her break ($8 up through pink) frees the long
   const C494: { hit: boolean; p: number; pp: number }[] = []; let b494 = -1; // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope."): her 5m candles, read off the samples
   for (const x of sm) { const b = Math.floor(x.t / 300000); if (b !== b494) { b494 = b; C494.push({ hit: false, p: x.p, pp: x.pp }); } const k = C494[C494.length - 1]; if (x.p >= x.pp) k.hit = true; k.p = x.p; k.pp = x.pp; }
   let run494 = 0, rejPp494 = 0; // fix494 counted the rejections; fix503c: each must come at a lower PRICE than the one before (her down slope)
   let lastP494 = 0; for (const c of C494) if (c.hit && c.p < c.pp) { run494 = run494 > 0 && c.p < lastP494 ? run494 + 1 : 1; lastP494 = c.p; rejPp494 = c.pp; } // fix503c (Love Oct 29 2026 11:46 PM PT: "that was not a rejection upward / it was the wrong direction in her head hun" + "had the logic backwards" + "price was sloping down / only hold are longs / not shorts / vis versa" + 10:03 PM: "It's sliding when three candles or more have hit it and rejected on a down slope."): the slope is PRICE - a DOWN slope is each rejection candle closing lower than the one before; no minimum of mine. It holds longs only
-  if (run494 >= 3) { S.on = true; return `BTC SLIDE UNDER PINK: ${run494} candles hit the pink and rejected on a down slope (last at ${rejPp494.toFixed(2)}) with btc ${last.p.toFixed(2)} under it - no long until price breaks up through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.")
+  const pkS658 = (() => { let r = 0, lp = 0, fpp = 0; for (const c of C494) if (c.hit && c.p < c.pp) { if (r > 0 && c.p < lp) r++; else { r = 1; fpp = c.pp; } lp = c.p; } return rejPp494 < fpp; })(); // fix658: the pink itself sloped DOWN across her rejections
+  if (run494 >= 2 /* fix657 (Love Nov 4 2026 6:04 PM PT: lower the pink slide rule to 2 instead of 3 while pink is sloped): 2 rejections on her slope - each closing higher on a climb / lower on a slide (fix503c) */ && pkS658 /* fix658 */) { S.on = true; return `BTC SLIDE UNDER PINK: ${run494} candles hit the pink and rejected on a down slope (last at ${rejPp494.toFixed(2)}) with btc ${last.p.toFixed(2)} under it - no long until price breaks up through pink by 10% of the channel (fix560).`; } // fix494 (Love Oct 29 2026 10:03 PM PT: "Pink isn't sliding when it's lower than 15 minute candle ago. It's sliding when three candles or more have hit it and rejected on a down slope.")
   // fix521 (12:32 PM: "Falling = the running 2-5m candle is red and falling (tick under its high/open). Trail test = price lower than it was 2 minutes ago. pink down to the...): under the pink and lower than 2 minutes ago = sliding, no touches required
   { const ago521 = sm.filter((x) => now - x.t >= 120000).slice(-1)[0];
     if (!(typeof __PINKSLIDE_HERWAY584 !== "undefined" && __PINKSLIDE_HERWAY584) /* fix584: no blanket "under the pink = no longs" - her slide needs 3 rejections + the bottom 33% */ && last.p < last.pp && ago521 && last.p < ago521.p) { S.on = true; return `BTC SLIDE UNDER PINK: price ${last.p.toFixed(2)} is under the pink (${last.pp.toFixed(2)}) and lower than 2 minutes ago - no long until her reset (fix521; frees on the 10%-of-the-channel break up)`; } }
@@ -5834,3 +6031,32 @@ export function slideHoldBtc423(sm: { t: number; p: number; pp: number }[], S: {
 }
 // fix613 THE TICK LOG (Love Nov 1 2026 2:31 PM PT: "Yes. Add the read-only tick log."): every 5 s, the ticks her feed already took go to data/tick-log.jsonl with their arrival time, to lay beside her chart. No rule reads this file and it never touches the feed.
 if (!(globalThis as any).__tickLog613) { const G613 = globalThis as any, seen613: Record<string, number> = {}; G613.__tickLog613 = setInterval(() => { try { const tr = G613[`__qtrail_${G613.__qsVer}`] || {}; let out = ""; for (const a of ["btc", "gold"]) { for (const x of (tr[a] || []) as { t: number; c: number }[]) { if (x.t > (seen613[a] || 0)) { out += JSON.stringify({ t: x.t, a, c: x.c }) + "\n"; seen613[a] = x.t; } } } if (out) void import("node:fs/promises").then((m) => m.appendFile(join(process.cwd(), "data", "tick-log.jsonl"), out)).catch(() => {}); } catch {} }, 5000); G613.__tickLog613.unref?.(); }
+// fix658 THE PINK SLIDE GOES BOTH WAYS FOR ADD-ONS AND READS (Love Nov 4 2026 6:09 PM PT: "the pink slide rule dictates it is longs only while pink is on a slide up, she doesnt short at red, she waits til it gets to pink and rejects, enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down. she waits for it to come to pink and reject and shorts as she normally would. if it doesnt function like that already thats what i would like"): "" = free; otherwise why this side may not trade while the pink slides the other way.
+export function slideBlock658(asset: string, side: string): string { try { if (asset !== "gold" && asset !== "btc") return ""; const G = globalThis as any, sm = ((G[asset === "gold" ? "__slide371" : "__slide423b"])?.s || []) as { t: number; p: number; pp: number }[]; if (side === "down") { const h = climbHold464(sm, (G[asset === "gold" ? "__climb464g" : "__climb464b"] ||= { on: false }), Date.now(), asset); return h ? "no short: " + h : ""; } if (side === "up") { const h = asset === "gold" ? slideHold403(sm, (G.__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(sm, (G.__slide423bS ||= { on: false }), Date.now()); return h ? "no long: " + h : ""; } } catch {} return ""; } // fix658
+// fix664 HER ADD-ON BOXES (Love Nov 4 2026 7:17 PM PT: "can you pls put in a box for our add on in here? with a toggle on/off. a box for Add on 1 & a box for add on 2 with an on/off toggle for them both so i don't need to bug you with them"): data/addon-settings.json { addOn1: { on, dollars }, addOn2: { on, dollars } } (written by her desk settings) overrides
+// live-switch addOn.on / addOn.dollars (Add-on 1, the 2.8x add-on) and addOn.at38.on / at38.dollars (Add-on 2, the 3.8x add-on) every tick. No file = today's settings. Her $5 add-on cap stays.
+// fix753 HER ADD-ON 1 BOX SIZES EVERY HOUR (Love Nov 5 2026 1:46 PM PT: "i set it to $5 and its sending out at $2"): in her off / rejection hours the first add-on was sized by the old
+// live-switch offHourMain.addOn.dollars ($2), not her Add-on 1 box. Now, whenever her box is saved (data/addon-settings.json), its $ sizes Add-on 1 in every hour; the off-hour 2.8x price cap is unchanged.
+export function applyAddon664(ao: any): void { try { if (!ao || typeof ao !== "object") return; const G = globalThis as any, p = join(process.cwd(), "data", "addon-settings.json"); if (!existsSync(p)) return; const st = statSync(p); let s: any; if (G.__addon664 && G.__addon664.m === st.mtimeMs) s = G.__addon664.s; else { s = JSON.parse(readFileSync(p, "utf8")); G.__addon664 = { m: st.mtimeMs, s }; } const a1 = s?.addOn1, a2 = s?.addOn2; if (a1 && typeof a1.on === "boolean") ao.on = a1.on; if (a1 && Number(a1.dollars) > 0) ao.dollars = Math.min(5, Number(a1.dollars)); if (ao.at38 && typeof ao.at38 === "object") { if (a2 && typeof a2.on === "boolean") ao.at38.on = a2.on; if (a2 && Number(a2.dollars) > 0) ao.at38.dollars = Math.min(5, Number(a2.dollars)); if (a2 && Number(a2.mult) >= 1.5 && Number(a2.mult) <= 10) ao.at38.maxAsk = 1 / Number(a2.mult) /* fix803 (Love Nov 6 2026 ~7:09 AM PT: "pls change it to another type-box i can put in the multiple i want and the dollar amount for it instead of the hard 3.8x"): her Add-on 2 multiple box */; } } catch {} } // fix664
+
+// fix806 HER SLIDE ENDS THE SECOND IT BREAKS (Love Nov 6 2026 ~7:26 AM PT, her card pick: "Yes, check it every second"): her SLIDE UNDER PINK / CLIMB OVER PINK hold used to be released only
+// when a main / REJ call came in, and only on the price at that moment - a break back through the pink between calls never ended it. Now, every second, each active hold is checked with her
+// same release rule (price through the pink by 10% of the channel; her old $8 / 25c slide and $2 / 25c climb break when the channel can't be read) and ends the moment it breaks. The on-rule
+// is untouched. The holds only ever apply to main + REJ (never delayed). Each release goes to data/slide-release-806.jsonl. live-switch slideRelease806 false = off.
+export function brk806(asset: string, p: number, fallback: number): number {
+  try { const L0 = (((globalThis as any).__lawBands || {})[asset] || {}).L || []; const S0 = L0.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l: any) => l.price > p).sort((x: any, y: any) => x.price - y.price)[0], b0 = S0.filter((l: any) => l.price < p).sort((x: any, y: any) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return (asset === "gold" && a0.price - b0.price > 30 ? 0.05 : 0.10) * (a0.price - b0.price); /* fix826 her 5% over a $30 gold channel */ } catch {}
+  return fallback;
+}
+export function release806(asset: string, now: number): string[] {
+  const G = globalThis as any, out: string[] = [];
+  const sm = ((G[asset === "gold" ? "__slide371" : "__slide423b"])?.s || []) as { t: number; p: number; pp: number }[], last = sm[sm.length - 1];
+  if (!last || now - last.t >= 30000) return out;
+  const S = G[asset === "gold" ? "__slide403" : "__slide423bS"]; if (S?.on === true && last.p > last.pp + brk806(asset, last.p, asset === "gold" ? 0.25 : 8)) { S.on = false; out.push("slide"); }
+  const C = G[asset === "gold" ? "__climb464g" : "__climb464b"]; if (C?.on === true && last.p < last.pp - brk806(asset, last.p, asset === "btc" ? 2 : 0.25)) { C.on = false; out.push("climb"); }
+  return out;
+}
+if (!(globalThis as any).__release806) { (globalThis as any).__release806 = setInterval(() => { try { const G806 = globalThis as any, now = Date.now(); if (!G806.__rel806Sw || now - G806.__rel806Sw.at > 5000) { let on = true; try { on = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.slideRelease806 !== false; } catch {} G806.__rel806Sw = { at: now, on }; } if (!G806.__rel806Sw.on) return; for (const a of ["gold", "btc"]) { const r = release806(a, now); if (r.length) { const sm = (G806[a === "gold" ? "__slide371" : "__slide423b"]?.s || []) as any[], l = sm[sm.length - 1]; try { appendFileSync(join(process.cwd(), "data", "slide-release-806.jsonl"), JSON.stringify({ at: new Date(now).toISOString(), asset: a, ended: r, price: l?.p, pink: l?.pp }) + "\n"); } catch {} } } } catch {} }, 1000); }
+// fix804 THE STALL TRACE - LOG ONLY (Love Nov 6 2026 ~7:09 AM PT: "babe she's notttt doing her add ons btc was just at 11x and didn't enter anything past $5"): her position loop (take-profits + add-ons)
+// went silent 7:00:29 -> 7:06:28 AM PT while her tick sat busy. Every await in her tick and her position loop now names itself (g.__stage804); every 5 s, if her tick has been busy for 20 s or more,
+// one line goes to data/tick-stall-804.jsonl with the step it is stuck on and for how long (once per step per stall). Writes that file only - no order, wall, size, switch or timing is touched.
+if (!(globalThis as any).__stallWatch804) { const G804 = globalThis as any, seen804: Record<string, number> = {}; G804.__stallWatch804 = setInterval(() => { try { if (!G804.__aureliusBusy || !(G804.__tickAt804 > 0)) return; const ms = Date.now() - G804.__tickAt804; if (ms < 20000) return; const k = `${G804.__tickAt804}|${G804.__stage804}`; if (seen804[k]) return; seen804[k] = Date.now(); for (const x of Object.keys(seen804)) if (Date.now() - seen804[x] > 3600000) delete seen804[x]; appendFileSync(join(process.cwd(), "data", "tick-stall-804.jsonl"), JSON.stringify({ at: new Date().toISOString(), busyMs: ms, stage: String(G804.__stage804 || "?") }) + "\n"); } catch {} }, 5000); }

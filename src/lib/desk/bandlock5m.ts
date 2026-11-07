@@ -174,7 +174,7 @@ export function reconRejectNow(asset: string, L: Line[], tick: number, side: str
 // channel by its width. Gold between $7.50 and $10 slides evenly from 33% to 20%. Every channel wall and the wire's impossibility read this.
 // fix484 (Love Oct 29 2026 her list, g9 marked "Put it back" with her note "$50 btc / $1 gold" + 6:42 PM: "PUT. IT. BACK" + "EVERY ONE OF THEM"): her reach wall, copied 1:1 from bandlock.ts (fix429/fix430/fix443/fix459) - $50 BTC / $1 gold to an unbroken session band or the pink (pink 15% gold / 20% BTC of the channel), zones $1 gold
 const REACH484: Record<string, number> = { gold: 1, btc: 50 };
-const PINKPCT484: Record<string, number> = { gold: 0.15, btc: 0.2 };
+const PINKPCT484: Record<string, number> = { gold: 0.2, btc: 0.2 }; // fix927 ONE PINK RULE: her 20%, both assets
 function reachWall484(asset: string, L: Line[], tick: number, side: string, Z?: Zones | null, open5?: number): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
   const reach = REACH484[asset] ?? 0, d = BREAK_DIST[asset] ?? 0;
@@ -185,7 +185,7 @@ function reachWall484(asset: string, L: Line[], tick: number, side: string, Z?: 
   const sA = S.filter((l) => l.price > tick).sort((a, b) => a.price - b.price)[0], sB = S.filter((l) => l.price < tick).sort((a, b) => b.price - a.price)[0];
   const pinkReach = Math.max(reach, sA && sB && 0.15 > 0 ? Math.round((sA.price - sB.price) * (PINKPCT484[asset] ?? 0.15) * 100) / 100 : 0); // fix459 (R176): gold 15%, BTC 20% of the channel
   for (const b of L.filter((l) => Number(l.price) > 0 && (isSessBand(l) || String(l.name) === "5m PP"))) {
-    const P = Number(b.price), pink = String(b.name) === "5m PP", r = pink ? pinkReach : reach;
+    const P = Number(b.price), pink = String(b.name) === "5m PP", r = pink ? (sA && sB && sA.price > sB.price ? Math.round((sA.price - sB.price) * 0.2 * 100) / 100 /* fix927 ONE PINK RULE: 20% of the channel, no $ floor */ : pinkReach) : reach;
     if (up ? tick >= P + d : tick <= P - d) continue; // broken her way by her break distance - behind her
     if ((up ? tick > P : tick < P) && o5 > 0 && (up ? o5 > P : o5 < P)) continue; // this 5m candle opened past it on her side - a bounce off it, not a poke through it
     const dist = up ? P - tick : tick - P;
@@ -208,7 +208,7 @@ function reachWall484(asset: string, L: Line[], tick: number, side: string, Z?: 
 // fix486 (Love Oct 29 2026 7:34 PM PT: "ALL RULES APPLY TO ALLLLLLL BOOKS ASIDE FROM DELAYED" + 7:36 PM: "no put the rules in for every book other than delayed"): this 5M door gets the 5M's own fix466 walls, copied 1:1 from bandlock5m27.ts (R208-R212)
 export const REACH466: Record<string, number> = { gold: 1, btc: 50 };
 export const PINK_PCT466A = 0.15;
-export const PINK_PCT466: Record<string, number> = { gold: 0.15, btc: 0.2 };
+export const PINK_PCT466: Record<string, number> = { gold: 0.2, btc: 0.2 }; // fix927 ONE PINK RULE: her 20%, both assets
 export const PINK_BREAK466: Record<string, number> = { gold: 0.25, btc: 8 };
 export function reachWall466(asset: string, L: Line[], tick: number, side: string, Z?: Zones | null, open5?: number): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
@@ -220,7 +220,7 @@ export function reachWall466(asset: string, L: Line[], tick: number, side: strin
   const sA = S.filter((l) => l.price > tick).sort((a, b) => a.price - b.price)[0], sB = S.filter((l) => l.price < tick).sort((a, b) => b.price - a.price)[0];
   const pinkReach = Math.max(reach, sA && sB && PINK_PCT466A > 0 ? Math.round((sA.price - sB.price) * (PINK_PCT466[asset] ?? PINK_PCT466A) * 100) / 100 : 0); // fix459 (R176): gold 15%, BTC 20% of the channel
   for (const b of L.filter((l) => Number(l.price) > 0 && (isSessBand(l) || String(l.name) === "5m PP"))) {
-    const P = Number(b.price), pink = String(b.name) === "5m PP", r = pink ? pinkReach : reach;
+    const P = Number(b.price), pink = String(b.name) === "5m PP", r = pink ? (sA && sB && sA.price > sB.price ? Math.round((sA.price - sB.price) * 0.2 * 100) / 100 /* fix927 ONE PINK RULE: 20% of the channel, no $ floor */ : pinkReach) : reach;
     if (up ? tick >= P + d : tick <= P - d) continue; // broken her way by her break distance - behind her
     if ((up ? tick > P : tick < P) && o5 > 0 && (up ? o5 > P : o5 < P)) continue; // this 5m candle opened past it on her side - a bounce off it, not a poke through it
     const dist = up ? P - tick : tick - P;
@@ -2791,5 +2791,5 @@ export function pinkFar503(asset: string, L: Line[], tick: number, pink: number)
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name)));
   const a = S.filter((l) => l.price > tick).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < tick).sort((x, y) => y.price - x.price)[0];
   if (!a || !b || !(a.price > b.price)) return false;
-  return Math.abs(pink - tick) > (asset === "btc" ? 0.2 : 0.15) * (a.price - b.price);
+  return Math.abs(pink - tick) > 0.2 * (a.price - b.price) /* fix927 */;
 }

@@ -2,6 +2,1876 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R539 - fix872 ETH.2: your ETH book copied into its own book - ETH.2, its own rows (data/eth2-book.json) and its own card in $$$ - with every ETH revision: her -2σ short and VWAP break, only a FILLED trade uses the window, keep knocking, add-ons at a better multiple near the next band, no entry into a line (flat $1.50 above a long), and your ONE pink rule (20% of the channel, from CHANGE-267). Its own live copy is built here and stays OFF (it trades only when live-switch ethLive872.on is true, which CHANGE-271 sets). Your original ETH book and its live copy stay exactly as they are.
+- when: 2026-11-07T13:49:34+00:00
+- Love: "Love Nov 6 2026 ~8:54-9:03 PM PT: "keep the original eth book as it is and put all these revisions into ETH.2" + "no it can go live with it hun i meant to tap that my bad bb hehe 💘" + Love Nov 7 2026 ~4:25 AM PT: "plsss still do have ETH.2 ready for eth and btc if you can bb""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethbook2.ts", "has": "export async function ethTick872("}
+- proof: {"test": "tools/eth2-872.cjs"}
+
+## R538 - fix930 A BOLLINGER IS ONLY A BARRIER IN FRONT OF PRICE: the Bollinger fade block (fix711, Nov 5 - 'no long past green after a break of the Bollinger lower', mirror for shorts past red) comes out of the door and the last line for every book. Once price has broken through a Bollinger, it's behind her: the second it reverses, her reversal is her trade (all her other rules still judge it - her 5m colour, her push, her pink, thirds, 1.5x floor). A Bollinger still in front of price keeps its cushion exactly as now. Tonight 4:44-4:46 AM BTC: main called the long off -2σ / -3σ under the Bollinger lower and was refused every second by this block.
+- when: 2026-11-07T13:49:32+00:00
+- Love: "Love Nov 7 2026 ~4:54 AM PT (BTC 4:45 window, price under the 5m Bollinger lower and past the green zone, main refused every long "BOLLINGER FADE PAST GREEN (fix711)"): "hun that is exactly the trade she should be taking she is still not her" + "a bollinger is only a barrier if it's in front of where price currently is. not if it already broke thru the bollinger." + "once it's broken thru the second it reverses she's in on it 🎯" + Love Nov 7 2026 ~4:13 AM PT: "price needs to be on the same side of the break when she enters a position. and not enter short directly above an unbroken bollinger.""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix930 HER BOLLINGER IS A BARRIER ONLY IN FRONT OF PRICE"}
+- proof: {"test": "tools/bollinger-behind-930.cjs"}
+
+## R537 - fix928 THE DESK BACKS HERSELF UP EVERY HOUR: your hourly GitHub backup was a loop started from a Terminal window and it died at the Nov 3 ~1 PM restart (last push Nov 3 12:51 PM). Now the desk itself runs your same backup tool (tools/github-backup.sh --once - it scans for secrets first and pushes NOTHING if a key, .env, .pem or any .secrets value would go up; it only pushes the desk-backup branch) once when the desk starts and then every hour, as long as the desk is running. It runs on the side (detached, lowest priority), never waits, never touches trading, an order, a book or a setting; results and any failure go to data/github-backup.log. .secrets/ stays ignored by git.
+- when: 2026-11-07T13:49:31+00:00
+- Love: "Love Nov 7 2026 ~4:16 AM PT: "yeup i am gonna be on git religiously from now on you can believe that" + "super glad that hourly push you definitely set in place for me totally worked 💘💘💘" (the hourly GitHub backup loop died at the Nov 3 restart)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/backup928.ts", "has": "export function backupTick928("}
+- proof: {"test": "tools/desk-backup-928.cjs"}
+
+## R536 - fix927 HER ONE PINK RULE: the pink tolerance is 20% of the session-band channel price is in (the session band under price to the session band over it), measured from where price is now - a $100 channel needs $20 of clearance, $500 needs $100, $1,200 needs $240, gold $10 needs $2. Every width, BTC and gold, longs and shorts, weekdays and weekends, at the door, main's read, the wire and the last line, every book but delayed (delayed keeps its own) and her walled-off 5M (R169 - it keeps its own). It replaces every other pink cushion: half the channel under $100, a third from $100-$180, the 20 / 15 / 10% scale on pink, the weekend switch (fix905 / fix914), the $25 flat pinks and gold's 15%. NOT touched: her session-band tolerances and sliding scales (proved byte-for-byte), the $2 pink break, the 55% pink -> red / green, thirds, the Bollinger cushion and the zone reach.
+- when: 2026-11-07T13:49:29+00:00
+- Love: "Love Nov 7 2026 ~4:02 AM PT: "session band to session band / distance from where price currently is / if a band channel is $100 wide from 0 - 1o / pink tolerance is 20% / she needs $20 of clearance from where price currently is. / it applies in every conceivable capacity" + "yes 20% of the channel width" + "$500 channel = $100 / 20% tolerance from where price currently stands" + Love Nov 7 2026 ~4:02 AM PT: "yes 20% of the channel width""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function pinkOne927("}
+- proof: {"test": "tools/one-pink-rule-927.cjs"}
+
+## R535 - fix926 UNDO 263: takes fix923 back out - BTC's fix594 (pink -> red / green -> pink 55% and past the red / green zone) is exactly as it was before CHANGE-263; late923 stays in the file but nothing calls it; her behaviour proofs for BTC fix594 are back as they were.
+- when: 2026-11-07T11:39:32+00:00
+- Love: "Love Nov 7 2026 ~3:21 AM PT, on the description of CHANGE-263 / fix923 (refuse only when price is 55%+ of the way from her entry line to the next line): "zeeeeero percent correct" + ~3:24 AM PT: "the 55% rule applies to distance from pink to red , and pink to the green zone - not from band to band whatsoever" (SUPERSEDES her ~2:13 AM card pick "Measure from her entry line") + R292 (Oct 31): "a solid 55% of the distance from pink to green, and pink to red / it's universal" - fix923 is taken back out: BTC's fix594 is exactly as it was before (pink -> red / green -> pink 55% and past the zone), until her own 55% words. late923 stays in the file unwired (R534 kept on record, marked undone)."
+- books: main (TOGETHER), REJECTION, every book fix594 judges
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix926 UNDO 263"}
+- proof: {"test": "tools/undo-263-926.cjs"}
+
+## R534 - fix923 BTC 55% FROM HER ENTRY LINE: on BTC, fix594's PINK TO RED / GREEN 55% and PAST THE ZONE checks are replaced by her card's rule: refuse only when price is already 55%+ of the way from the line her read trades off (band, zone, pink, Bollinger) to the nearest of her lines ahead; entries at her line always go; a read that names no line is not judged by it. Same door + last-line sites (zoneSend594). fix711 (BB fade) unchanged. Gold keeps fix594 (R316).
+- when: 2026-11-07T10:52:02+00:00
+- Love: "Love Nov 7 2026 ~2:00 AM PT: "the 55% of pink to red is not a permitted reason for a skip when she enters at 0-5% of that distance 100% of the time" + her card ~2:13 AM PT "How should the 55% wall work for BTC?" - + ~2:15 AM PT: "thankkkkkk you i was saying that on repeat like that is not a reason 😹💘 a wall is not a wall til you run into it" + her pick: "Measure from her entry line — only refuse when price is already 55%+ of the way from the line she trades off to the next line. Entries at 0-5% always go." (BTC only; gold keeps R316 "the 55% from pink to green and pink to red")"
+- books: main (TOGETHER), REJECTION, every book fix594 judges
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function late923("}
+- proof: {"test": "tools/late-off-line-923.cjs"}
+
+## R533 - fix920 OUTSIDE ORDERS NEVER TAKE A WINDOW: a Kalshi order with no desk client id (her hand / webhook orders, data/outside-orders.json) no longer locks that window for her books ('your hand traded this window - it stays yours' retired for them; logged to data/outside-window-920.jsonl). Kept: never trading against a held position (fix848) and never closing a position she started by hand. Every book.
+- when: 2026-11-07T10:52:01+00:00
+- Love: "Love Nov 7 2026 ~1:24 AM PT: "yes they were mine and they're just webhooks for something you and i did. a while ago they're nothing important bb" + ~1:55 AM PT: "the webhooks are not even for aurelius hun" + "yeah pls do" (to: Kalshi orders with no desk client id must never lock main or any book out of a window) - SUPERSEDES for those orders the Oct 15 2026 ~6:50 PM PT "HER WINDOW, PERIOD" lock ("i do not want her to be able to get a second order out again") and its fix750 (R428) keep; tonight it held main's 1:37:12 AM long (1:30 window) and the 10:15 PM window. Kept: never trading against a held position (fix848) and never closing a position she started by hand (change-her-mind)."
+- books: main (TOGETHER), REJECTION, every book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix920 OUTSIDE ORDERS NEVER TAKE A WINDOW"}
+- proof: {"test": "tools/outside-orders-920.cjs"}
+
+## R532 - fix918 HER PUSH ON HER SIDE OF THE BAND: her BTC band / zone push (fix807: weekday $50, weekend $5 off the wick) now enters the moment the push is met with price on the trading side of the band (over it for a long, under it for a short) and at least ONE of her 2m / 5m candles her colour - the 2m alone no longer has to be her colour; no close. One shared check (pushLabel653) serves the door, and main's read filter (recon.ts fix653 line) now takes her push without the 2m colour too (longs, and the mirror for shorts). Every book but delayed; gold and pink trades unchanged. SUPERSEDES the '2m her colour' part of R344 / R477 for this push.
+- when: 2026-11-07T10:51:59+00:00
+- Love: "Love Nov 7 2026 ~1:46 AM PT: "once it is on the same side of the band hun" + "doesn't need a close" (her BTC band / zone push - fix807, weekend $5 fix837 - enters the moment the push off the wick is met with price on the trading side of the band; no 2m candle colour, no candle turn, no close) + ~1:40 AM PT: "again not her bb mine enters immediately on the flip after $5" + ~2:03 AM PT: "one of the candles does need to be green" + "and they both are" (the push + her side of the band + at least ONE of her 2m / 5m candles her colour; no close) (SUPERSEDES for this push: R344 Nov 4 5:40 PM PT "She enters the second the push is met and a 2m is her color." and the R477 card "Push + 2m candle in her colour" - told to Love as a contradiction; this command is her choice)"
+- books: main (TOGETHER), REJECTION, every book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix918 HER PUSH ON HER SIDE OF THE BAND"}
+- proof: {"test": "tools/push-side-918.cjs"}
+
+## R531 - fix917 EVERY READ GETS ITS CHANCE (MAIN): main's read used to hand on only her top-ranked idea; when that one was a flipped read or her walls refused it, her other valid reads that same second were never tried. Now, when the top read is refused (flip, thirds, pink in the read, her door - main's own why479 check), she tries her next reads in her same order and takes the first one nothing refuses. Ranking unchanged, every wall still judges, still one FILLED trade per window. Main (recon-tog) only.
+- when: 2026-11-07T10:51:57+00:00
+- Love: "Love Nov 6 2026 ~8:40-8:43 PM PT (CHANGE-213 words): "no one read per window pls. for any book ever" + "no hun i don't want her to do multiple i want her to be ABLE to take valid set ups when they appear bb thats it" + Love Nov 4 2026 8:23 PM PT (R357, her wick rejection): "...she can enter in , even if the candle hasn't flipped" + Love Nov 7 2026 ~1:02 AM PT: "she has a wick rejection that takes it the second a candle wicks by 15% of the channel distance." (1:00:55 AM: main's top read was a thirds-flipped break, never her call; her valid "Rejected down off +3σ" wick rejection sat second in line and was never tried)"
+- books: main (TOGETHER)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix917 EVERY READ GETS ITS CHANCE (MAIN)"}
+- proof: {"test": "tools/every-read-917.cjs"}
+
+## R530 - fix916 ZONE PAST THE BAND: HER WORDS - fix822 now matches R491: it judges only her BREAK reads (not rejections); the channel is the session band price is breaking (the σ / VWAP line just behind price) to the next band beyond it; only a red zone (long) / green zone (short) ahead of price inside the first 15% of THAT channel refuses. Was: every read, measured from the σ line under the zone (tonight it refused a +1σ break and +1σ / green-zone rejections over a red zone past +2σ, $85 away). One helper (zoneBreak916). Every book but delayed; switch zonePast822 false = off.
+- when: 2026-11-07T10:51:56+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT (R491, fix822): "she just enter btc on the break up the session band with a red zone directly on the other side of it too , can you do some tests on that and let me know if those lose more than they win? when she enters on a break & a green/red zone sits in the bottom/top 10-15% of the band channel she's breaking into on the other side" + Love Nov 7 2026 ~1:31 AM PT: "my model takes these" + "it broke the band up" (1:30:16 AM "Break above +1σ" at 76,083.20 refused because the red zone 76,166.96 sat 15% past +2σ - the far end of the +1σ->+2σ channel she was breaking into, $85 away; her rejections were refused by it too)"
+- books: main (TOGETHER), REJECTION, every book fix822 judges (all but delayed)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function zoneBreak916("}
+- proof: {"test": "tools/zone-break-916.cjs"}
+
+## R529 - fix915 TARGET BY A LINE: HER 15% OF THE CHANNEL FOR BTC - fix821's BTC tolerance (the window's target within it of a session band, Bollinger or red / green zone = no entry into that line) is 15% of the session-band channel price sits in ($12.84 tonight; was our $50 scaling capped by her sliding scale - $42.50 tonight). One value (TGT915_BTC) for every caller; outside the tolerance she is clear to enter. Gold stays $1.50; books and scope unchanged (every book but delayed). Tonight's 1:15:39 AM break below +2σ (target $21.56 from +1σ) is no longer refused.
+- when: 2026-11-07T10:51:54+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT (R490, fix821): "also , not sure if we still have this rule in place , it's an oldie but a goodie 💞 if target is within $1.50 of a session band , bollinger , or a red, or a green zone ; i want her to take the position that trades away from it" + Love Nov 7 2026 ~1:18 AM PT: "it is $1.50 for gold bb 💘" + ~1:27 AM PT: "oh we can make it 10 of the band bb 💘" (BTC $10 - superseded) + ~1:30 AM PT: "15% of the channel width hun , $10 isnt the number" (BTC = 15% of the channel) + ~1:29 AM PT: "as long as a trade it outside of her band tolerance she is clear to enter bb 💘" (the wall is her band tolerance only: target more than $10 BTC / $1.50 gold from every band, Bollinger and zone = clear) + ~1:16 AM PT: "she's gone dude. 3 breaks in a row this ain't my model bb" - tonight's 1:15:39 AM "Break below +2σ" was refused because the target 76,091.82 sat $21.56 from the +1σ (76,070.26) under our BTC $50 scaling capped to half the channel ($42.50)."
+- books: main (TOGETHER), REJECTION, every book fix821 judges (all but delayed)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const TGT915_BTC = 0.15;"}
+- proof: {"test": "tools/target-line-btc-915.cjs"}
+
+## R528 - fix914 FINISH 243: WEEKEND PINK IN MAIN'S READ - CHANGE-243 (fix905) gave her BTC pink cushion the regular 20% of the channel on weekends (15% / 10% on huge channels) at the door only; main's read (recon.ts pinkRead464, 'THE PINK in the read') kept half the channel under $100 and held tonight's 1:01:19 AM short ($30.93 over the pink, read cushion $40.77). Now one function (bandlock weekendPink914) serves the door and the read, so they cannot drift. Weekdays, delayed and gold unchanged.
+- when: 2026-11-07T09:35:31+00:00
+- Love: "Love Nov 6 2026 ~10:24 PM PT (R522, fix905 - this completes the site 243 missed: main's READ copy of the pink cushion in recon.ts): "i had you make the pink tolerance half the channel width under $100 / but change it to the regular pink tolerance during weekends." + Love Nov 7 2026 ~1:03 AM PT: "she has a 20% pink tolerance. that was a full channel away." + "PINK was NOT the reason" (1:01:19 AM BTC main short "Failed break above Bollinger upper - rejected down" at 76,185.73 held by THE PINK in the read: pink 76,154.80 $30.93 away, channel $81.53, the read still used half = $40.77) + Love Nov 7 2026 12:55 AM PT, card "Keep 198 'momentum only live' in tonight's batch?" - her pick: "Pull 198 out" (supersedes her Nov 6 7:33 PM card "Momentum only live"; CHANGE-198 / fix856 taken out of the batch, kept in used-commands/resting)"
+- books: main (TOGETHER), REJECTION, every recon lane but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix914 FINISH 243 WEEKEND PINK IN MAIN'S READ"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function weekendPink914("}
+- proof: {"test": "tools/weekend-pink-read-914.cjs"}
+
+## R527 - fix913 FLAT $1.50 ABOVE AN ETH LONG: her ETH book takes no long when an unbroken session band, red / green zone, Bollinger or pink sits within $1.50 above the entry (was fix906's 70c, BTC's $25 scaled by price - tonight's 12:32 AM long went in 95c under her BB upper). Shorts keep fix906's reach; BTC unchanged. ETH.2 gets the same $1.50 in its own wall when it installs (fix910).
+- when: 2026-11-07T09:35:29+00:00
+- Love: "Love Nov 7 2026 12:49 AM PT, card "How far above an ETH long should a line block her?" - her pick: "Flat $1.50" (after "hun WHY did the eth book just long directly under a band like this ?????? unacceptable" and "she longed into a band again" - the 12:32 AM ETH long at 2,244.55 went in 95c under her BB upper 2,245.50 and 97c under her red zone 2,245.52; the wall only reached 70c)"
+- books: ETH (Kalshi live)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethbook.ts", "has": "fix913 FLAT $1.50 ABOVE A LONG"}
+- proof: {"test": "tools/eth-long-150-913.cjs"}
+
+## R526 - fix911 BANDS -> VANTAGE: fix908 moved her BTC price to Vantage, but the chart her session VWAP / sigma bands are drawn from (tv.ts CHARTS.btc) was still PEPPERSTONE:BTCUSD - frozen since 10:25 PM - so every band sat ~$100 under her chart (desk VWAP 75,867 vs hers 75,967; +2σ 76,011 vs 76,111) and every long read 'over +2σ / top rung'. Now her bands come from VANTAGE:BTCUSD 5m, 5 PM ET session - the same feed as her price and her chart.
+- when: 2026-11-07T08:16:48+00:00
+- Love: "Love Nov 6 2026 ~11:52 PM PT: "it's not trading fine right now hun she is skipping literally every entry" + "hun this is NOT the top rung" (after the Vantage switch her session bands still came from the frozen Pepperstone chart - every band ~$100 under her chart)"
+- books: every BTC book - session bands
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/tv.ts", "has": "symbol: \"VANTAGE:BTCUSD\" /* fix911"}
+- proof: {"test": "tools/bands-vantage-911.cjs"}
+
+## R525 - fix908 FEED -> VANTAGE: her BTC live price (the quote stream), her band bars (pivotbooks) and nav read VANTAGE:BTCUSD instead of PEPPERSTONE:BTCUSD - Pepperstone froze at 10:25 PM (the desk sat at 75,931 for 30+ min, so main / REJ / no-pink could not read) while Vantage kept updating with her chart. Gold stays on TVC:GOLD; the Coinbase backup feed and every stale-feed guard unchanged. Her bands rebuild from Vantage on the switch.
+- when: 2026-11-07T07:12:20+00:00
+- Love: "Love Nov 6 2026 ~10:58 PM PT: "yeah coinbases chart is frozen too put her on vantage please." (Pepperstone BTC froze at 10:25 PM - the desk sat at 75,931 while Vantage ran 76,026-76,052)"
+- books: every BTC book - price feed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/quotes.ts", "has": "\"VANTAGE:BTCUSD\": \"btc\" /* fix908"}
+- proof: {"test": "tools/feed-vantage-908.cjs"}
+
+## R524 - fix907 LIVE ETH ON HER CHART'S SESSION (her fix862, as ETH.2): her live ETH book's session VWAP and σ bands reset at 00:00 UTC on 5m candles, exactly like her TradingView ETH chart - at 10:51 PM the book drew +1σ at 2,243.40 (5 PM ET on 1m) while her chart's was 2,244.08, so it longed into her band. Now its lines are hers (VWAP 2,241.17, +1σ 2,244.08 at 10:51 PM). Corrected-model replay: +$262 vs the 5 PM session.
+- when: 2026-11-07T07:12:18+00:00
+- Love: "Love Nov 6 2026 ~10:54 PM PT: "it wasn't the red hun the green band is the session band. she was under it" + her card pick ~10:56 PM: "Yes, use my chart's reset" (live ETH on her chart's 00:00 UTC session, 5m - like ETH.2)"
+- books: ETH (live)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethbook.ts", "has": "fix907 HER CHART'S SESSION ON LIVE ETH"}
+- proof: {"test": "tools/eth-session-907.cjs"}
+
+## R523 - fix906 NO ENTRY INTO A LINE (her ETH book, live): main's reach wall, scaled by price (BTC $25 -> ETH ~70c) - no long with an unbroken line (session VWAP / σ, red or green zone, Bollinger, her pink) within reach above, no short with one within reach below. 10:51 PM's long $0.66 under the red zone is refused. Calibrated replay (ETH since Oct 31): 331 trades, $4.07/trade vs $3.79 now - about the same money, fewer bad entries. ETH.2 and BTC.2 inherit it when rebuilt.
+- when: 2026-11-07T07:12:17+00:00
+- Love: "Love Nov 6 2026 ~10:53 PM PT: "hun WHY did the eth book just long directly under a band like this ?????? unacceptable we need to fix that before she can be live" (10:51 PM: long at 2,244.07 with the red zone $0.66 above)"
+- books: ETH (live)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethbook.ts", "has": "LINE IN THE WAY (fix906)"}
+- proof: {"test": "tools/eth-line-in-way-906.cjs"}
+
+## R522 - fix905 HER REGULAR PINK TOLERANCE ON WEEKENDS: Friday 2 PM to Sunday 3 PM PT her BTC pink cushion (main, REJ, no-pink - every book but delayed) is the regular 20% of the session channel (15% / 10% on huge channels) instead of half the channel under $100 - tonight's $72 channel made it $36, holding 920 calls since 8:30 PM (622 of them $15+ from the pink); now $14.40. Weekdays keep half under $100 and her scale from $100. Four proofs that read her weekday scale are pinned to a weekday.
+- when: 2026-11-07T06:36:59+00:00
+- Love: "Love Nov 6 2026 ~10:24 PM PT: "yeah literally all of the ones she skipped are valid / i had you make the pink tolerance half the channel width under $100 / but change it to the regular pink tolerance during weekends. / drop me that command now by itself pls so she can trade""
+- books: main, REJ, no-pink - BTC pink cushion on weekends
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix905 HER REGULAR PINK TOLERANCE ON WEEKENDS"}
+- proof: {"test": "tools/weekend-pink-905.cjs"}
+
+## R521 - fix869 SELLS NEVER CAPPED: her resting take-profits (and any close marked as a close on what she holds) pass the Kalshi per-order cap untouched - at 8:37 PM her BTC DOWN take-profit was cut from $3.26 to the $1 cap, so it only covered 11 of her contracts. Reduce-only exits already passed; every new opening order is still capped.
+- when: 2026-11-07T04:50:52+00:00
+- Love: "Love Nov 6 2026 ~8:41 PM PT (relayed): sells / closes must NEVER be capped by maxDollars - "SELLS NEVER CAPPED" (her 8:37 PM BTC DOWN take-profit was cut to $1 = 11 of her contracts)"
+- books: every live book - exits
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix869 SELLS NEVER CAPPED"}
+- proof: {"test": "tools/sells-never-capped-869.cjs"}
+
+## R520 - fix854 HER COLOUR ON THE 5M: at the send, no long while the 5m candle is red (price under its open) and no short while it is green (price over its open), on the live tick - every book but delayed. The 7:16 PM REJ long at 75,973.95 under the 5m open 75,977.31 would have been refused. Replay Nov 2-6 (main / REJ / no-pink, BTC): blocked 324 entries that went 39% (-$1.44 a $10 trade); kept 421 at 56% (+$0.54).
+- when: 2026-11-07T03:38:20+00:00
+- Love: "Love Nov 6 2026 ~7:16-7:17 PM PT: "hun she just longed gold on a red candle" + "looked like exactly that hehe, she still needs to wait for the candle to be her color bb" + "that was a for sure short""
+- books: every live book but delayed - entries
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function candleColour854("}
+- proof: {"test": "tools/her-colour-854.cjs"}
+
+## R519 - fix853 WEEKEND $50 TO MONDAY: her weekend rule (fix839) - BTC's new session bands count as walls AND are traded off once their sigma reaches $50 - now runs from Friday 2:00 PM PT to Monday 6:00 AM PT (was to Sunday 3:00 PM), so a quiet Sunday evening keeps today's bands; the weekday $100 comes back Monday 6 AM. The weekend $5 push (fix837) keeps its own hours. Gold unchanged.
+- when: 2026-11-07T03:38:18+00:00
+- Love: "Love Nov 6 2026 ~7:11-7:14 PM PT: "the bands as walls at and traded again after $ 50" + "yesss pls bb" (to: run the weekend $50 until Monday 6 AM PT instead of Sunday 3 PM)"
+- books: every BTC book - session bands on the weekend
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "|| wd === \"Sun\" || (wd === \"Mon\" && h < 6); // fix853"}
+- proof: {"test": "tools/weekend-fresh-bands-839.cjs"}
+
+## R518 - fix852 LIVE BACK 60 s BEFORE THE WINDOW + RUN-ALL FINISHES A HALF-DONE RUN: her auto LIVE-on (fix815) now turns LIVE back on in the last 60 s before each window (was 15 s, one try) and keeps trying every second of that minute - still only when the umpire is SAFE, entries aren't halted, OFF TODAY isn't set and no install of HER desk is running (a rehearsal copy elsewhere no longer counts) - and posts a LIVE AUTO-ON alert.
+- when: 2026-11-07T03:38:17+00:00
+- Love: "Love Nov 6 2026 ~6:48 PM PT: "every time i leave it off bro lmao can you still have it turn itself on 60 seconds before a window starts if i forget bb?" + ~6:39 PM: "it says it's already in bb""
+- books: none - her LIVE switch timing and the RUN-ALL runner
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/liveauto815.ts", "has": "export const LEAD815 = 60;"}
+- proof: {"test": "tools/live-60-finish-852.cjs"}
+
+## R517 - fix850 POLYMARKET TELLS WHY + NO BUY AGAINST A HELD SIDE: her momentum book on Polymarket (fix830) logged every skip as 'no fill / outside her 1.5x floor' because it read the wrong place for Polymarket's reason; it now logs the real one (window, quote outside her floor, cash, nothing filled - with Polymarket's ask) plus the Kalshi ask it copied. And no Polymarket buy goes out on the side opposite to what is already held on that market (it would net the position away, the fix848 lesson); her insurance hedges keep their own rule. Logging + safety only.
+- when: 2026-11-07T03:38:15+00:00
+- Love: "Love Nov 6 2026 ~6:19 PM PT: "haven't seen any bb" (momentum live on Polymarket - its skip reasons were thrown away)"
+- books: MOMENTUM · Polymarket live - skip log + held-side guard
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/poly-live.server.ts", "has": "HELD THE OTHER WAY (fix850)"}
+- proof: {"test": "tools/poly-why-850.cjs"}
+
+## R516 - fix849 ETH AT $5: her ETH rejection book live on Kalshi (fix831) now enters for $5 (was $2.50) and its add-on at 2.8x is $5 (was $3). Same floor, same $5-an-order cap, same add-on trigger; it never trades against a held side (fix848).
+- when: 2026-11-07T03:38:13+00:00
+- Love: "Love Nov 6 2026 ~6:25 PM PT: "pls have the eth book run at $5 with a $5 add on pls babez""
+- books: ETH · REJECTIONS ONLY · NO PINK - live size
+- status: ACTIVE
+- proof: {"test": "tools/eth-five-849.cjs"}
+
+## R515 - fix851 5M BOLLINGER · PAPER: two paper books on Polymarket's BTC 5-minute up/down. 5M BOLLINGER: a closed 1m candle touched the 5m Bollinger (20/2) and closed back off it - with the turn. 5M BOLLINGER · 2M PUSH: a new 2m candle opened within $10 of the 5m Bollinger and pushed $10 away - with the push. 2+ minutes left in the 5m window, her 1.5x floor, once per book per window; stake by distance to the 5m target ($10 already her side, $5 under $25 away, $1 at $25+); her take profit, else the bell. Two regular cards. Paper only - never an order.
+- when: 2026-11-07T03:38:11+00:00
+- Love: "Love Nov 6 2026 ~6:08-6:10 PM PT: "yeah it'll basically be our main book with Bollingers added bb 💓, she enters on a (good) push off of a session or a bollinger, not a flip-blip ... if it's $200 away with 2 minutes left, $1 max lol" + "waiting for a 1M close will have her missing a lottt of genuine moves so we can test a 2-5m flip and push off of a bollinger , they hold as walls a lot harder than sessions i'm realizing""
+- books: 5M BOLLINGER · PAPER, 5M BOLLINGER · 2M PUSH · PAPER
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bb5m851.ts", "has": "export function signals851("}
+- proof: {"test": "tools/bb5m-851.cjs"}
+
+## R514 - fix848 NEVER TRADE AGAINST A HELD POSITION: Kalshi nets YES and NO on one ticker, so an opening short on a ticker where a YES is held sells it (5:47 / 5:56 PM: her ETH book's short + add-on sold her own 10.93 YES long and left her 3.03 short). Before every opening order - every book's entry, the ETH / add-on route, the add-ons, the top-up - the live position on that ticker is read; anything held on the other side = no order (logged to data/held-other-way-848.jsonl). Exits and take profits untouched.
+- when: 2026-11-07T02:34:14+00:00
+- Love: "Love Nov 6 2026 ~5:58 PM PT: "she just flipped sides on eth, it was long and now it's short""
+- books: every live book - opening orders
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "export function oppSide848("}
+- proof: {"test": "tools/held-other-way-848.cjs"}
+
+## R513 - fix847 TP WATCHDOG: every 5 s, on its own (outside the take-profit loop), for each live position her four live books opened (main, REJECTION, SESSION + PINK, BESTIE) with no slider of hers: if the bid has sat over its 75% (half) or 95% (rest) line for 20 s and that sale hasn't gone out, a 75 / 95 sale came back with no fill, or her exits / engine tick hit an error, it writes data/alarm-tp-watchdog.jsonl and raises a RED alert on her ALERTS tab and alarm bar. It only tells - it never sells, never turns LIVE off, never blocks an entry. And the umpire now refuses (NOT SAFE at install) any desk code with a variable used before it exists - the crash that silenced her 75 / 95.
+- when: 2026-11-07T02:34:12+00:00
+- Love: "Love Nov 6 2026 ~5:50 PM PT: "pls do set something to notify us or the umpire of something like that next time if we can""
+- books: none - an alarm on her live positions' take profits
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/tpwatch847.ts", "has": "export function judge847("}
+- proof: {"test": "tools/tp-watchdog-847.cjs"}
+- proof: {"test": "tools/tdz-guard-847.cjs"}
+
+## R512 - fix846 HER 75 / 95 FIRES: the half-at-75% / rest-at-95% take profit (fix780 / fix782) on the four live books' positions read her HANDS OFF switch before the line that declares it, so every pass crashed (Cannot access 'handsOff' before initialization) and the try around the take-profit loop swallowed it - no 75/95 sale ever went out (data/tp780.json was never written). The block now reads HANDS OFF itself, and any error in the take-profit loop is written to data/cash-held-errors.jsonl instead of being swallowed. Her lines are unchanged.
+- when: 2026-11-07T02:34:09+00:00
+- Love: "Love Nov 6 2026 ~5:45 PM PT: "babe her take profits are still not engaging, i just closed myself""
+- books: main / REJECTION / SESSION + PINK / BESTIE live positions - take profit
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix846 HER 75 / 95 FIRES"}
+- proof: {"test": "tools/tp-fires-846.cjs"}
+
+## R511 - fix845 HER SLIDING SCALE FROM $100: for BTC (every book but delayed) her sliding scale of the session-band channel now starts at $100 instead of $180 - half the channel under $100, 20% from $100 to $500 (the old $100-$180 third is gone), 15% to $1000, 10% over. Her pink cushion is that scale, and her other BTC cushions are capped by it (the smaller of her $ amount and the scale): session-band and Bollinger reach, the Bollinger cushion, and the target-by-a-line distance. Gold and delayed unchanged.
+- when: 2026-11-07T02:34:07+00:00
+- Love: "Love Nov 6 2026 ~5:40 PM PT: "yess same sliding scale pls bb :) we'll do at $100 and up for the sliding scale to start instead of the normal $180 :)""
+- books: every BTC book but delayed - cushions
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function slide845("}
+- proof: {"test": "tools/slide-from-100-845.cjs"}
+
+## R510 - fix843 INVERSE-WORST AT 15+ TRADES: the four inverse-worst paper books (fix820) flip their family's WORST set ups at 15+ trades in 7 days (was 30+), still under 40% won and losing money. Today: MAIN 1 (GOLD SHORT Rejected down off 5m PP), REJ 2, NO-PINK 7, V.111 0. Paper only.
+- when: 2026-11-07T02:34:05+00:00
+- Love: "Love Nov 6 2026 ~5:18 PM PT, her card: the inverse-worst books' WORST bar 15+ trades in 7 days (still under 40% won and losing money), paper"
+- books: the four inverse-worst books (paper)
+- status: ACTIVE
+- proof: {"code": "tools/setup-scores-708.py", "has": "if n >= 15 and w / n < 0.40 and pl < 0)  # fix843"}
+- proof: {"test": "tools/inverse-worst-820.cjs"}
+
+## R509 - fix842 THE SCORES REBUILD THEMSELVES: SET UP SCORES (tools/setup-scores-708.py - the WORST lists the four inverse-worst books read, CUT + FLIP's list, the STATS tables) and EVERY FACTOR (tools/factor-scores-825.py) now rebuild every 10 minutes from the engine, whether or not the STATS page is open (before, they only rebuilt while STATS was open, so the inverse-worst list file was never written after 10:40 AM and those books sat idle). Niced, one run at a time; read-only.
+- when: 2026-11-07T01:40:13+00:00
+- Love: "Love Nov 6 2026 ~5:08 PM PT: "we have several of them showing as 0 too" (the inverse-worst books idle - SET UP SCORES only rebuilt while STATS was open)"
+- books: none - the scorers (read-only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix842 THE SCORES REBUILD THEMSELVES"}
+- proof: {"test": "tools/scores-self-rebuild-842.cjs"}
+
+## R508 - fix840 BESTIE TO PAPER: her own V.111 - 2 live switch (data/v111-2-live.json enabled) goes false so her card stops saying LIVE - she has been off the live lineup since 5:31 AM PT (only main, REJ and delayed are live). Nothing new goes to Kalshi from BESTIE; she and V.111 - 2 keep scoring on paper; enabled true = live again on her yes. Her proofs now accept on or off.
+- when: 2026-11-07T01:40:11+00:00
+- Love: "Love Nov 6 2026 ~4:59 PM PT: "no we took her off for main and rej yesterday bb" (BESTIE off live - her own V.111 - 2 switch to paper so the card stops saying LIVE)"
+- books: BESTIE - paper
+- status: ACTIVE
+- proof: {"test": "tools/bestie-paper-840.cjs"}
+
+## R507 - fix841 BESTIE'S MOST SUCCESSFUL SET UPS: BESTIE's list (V.111 - 2's own settled set ups, fix797) now takes EVERY set up that is in profit ($ 0 or better) with 5+ settled trades, still never one on a WORST list - it updates itself as each record changes (was more than 10 trades and more than 65%). Paper (BESTIE is off the live lineup). BESTIE stays as she is live-wise (off the live lineup since 5:31 AM PT); her three switch-file proofs now read the new bar.
+- when: 2026-11-07T01:40:09+00:00
+- Love: "Love Nov 6 2026 ~5:06-5:07 PM PT: "just put her on the trades that have been most successful for her bb 💓" + "it doesn't need to be 10+ bb just the ones she's been banking on most , paper first" + "all of them bb we need to get her set ups going" (BESTIE: every set up in profit with 5+ settled trades, never WORST - paper)"
+- books: BESTIE - her list bar
+- status: ACTIVE
+- proof: {"test": "tools/bestie-bar-786.cjs"}
+- proof: {"test": "tools/bestie-own-797.cjs"}
+
+## R506 - fix837 BTC WEEKEND PUSH $5: from Friday 2:00 PM PT until Sunday 3:00 PM PT her BTC band / zone push off the wick (fix807) is $5 instead of $50; the rest of the week stays $50. Gold, pink trades ($6 / $2 flip) and every other rule unchanged. The fix807 proof now pins its $50 check to a weekday.
+- when: 2026-11-07T01:40:08+00:00
+- Love: "Love Nov 6 2026 ~3:49 PM PT: "OH one very important thing , btc wont move $50 on weekends for our push trigger / we need to put it back to $5 every friday at 2:00 until sunday at 3:00pm :)" + ~5:17 PM PT: "babe we cannnnot keep her at $50 for the weekend that is the distance from the bollinger rn no we keep her at $5 for the weekend pls 💓""
+- books: every book but DELAYED - BTC band / zone push on weekends
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function weekend837("}
+- proof: {"test": "tools/weekend-push-837.cjs"}
+
+## R505 - fix839 FRESH BANDS ARE WALLS AT $50 ON WEEKENDS: her session carry (fix527) keeps yesterday's bands as the walls until the fresh BTC sigma reaches $100; from Friday 2:00 PM PT to Sunday 3:00 PM PT that hand-back happens at $50 instead, so the new session's bands count as walls again on quiet weekends (BTC's fresh sigma sits under $100 a third of the weekend vs 8% of weekdays). Weekdays ($100) and gold unchanged.
+- when: 2026-11-07T00:49:50+00:00
+- Love: "Love Nov 6 2026 ~4:36 PM PT: "fml yes that won't work on weekends bb / we need to start counting them at $50 on weekends for sure""
+- books: every book - BTC session carry on weekends
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function weekend839("}
+- proof: {"test": "tools/weekend-fresh-bands-839.cjs"}
+
+## R504 - fix835 / fix836 THE 1-2-3 BOOK, SEALED + NEW - PAPER ONLY: (835) 1-2-3 · SEALED: her Polymarket BTC 5-minute 1-2-3 book exactly as it stood Oct 26 ~9:30 PM PT (PRE295-BUILD, her ~74% stretch): 82 blocks of her read, walls, lines and doors copied byte for byte from a vault, sealed by sha256 + fingerprint (any change stops both books and says why), cut off from every shared wall (her own sandbox). (836) 1-2-3 · NEW: the same base plus her late door (~3 min left, pushing off a Bollinger / session band / zone), her 1.5x floor, the Bollinger cushion and no trading into a line within $50 of the target. $5 paper, priced at the desk's recorded Polymarket 5m quotes. Replay Nov 2-7: SEALED 209 trades 59% +$81; NEW 186 57% +$46 (her late door alone 21 trades 48% -$4.40). Never an order; live on Polymarket only on her go.
+- when: 2026-11-07T00:29:23+00:00
+- Love: "Love Nov 6 2026 ~3:42 PM PT: "one thing we need to get up and running today bb , our 1-2-3 book on poly / she got turned inside out when i was doing some fixes on other books they bled into her and she was never the same / can you do the same thing you did on the og aurelius on there for me bb ?!" + ~3:45 PM: "honestly i think we can make it even better now together bb""
+- books: 1-2-3 · SEALED + 1-2-3 · NEW (paper only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/onetwothree835.ts", "has": "seal835"}
+- proof: {"test": "tools/onetwothree-835.cjs"}
+
+## R503 - fix838 ONE SWITCH: LIVE is the only switch. Turning LIVE on (her tap) also turns entries on - it clears a pause and restarts her pace, exactly what the old ENTRIES pill did; the separate ON / OFF entries pill is removed from the header. Her safety breaker still pauses entries when it trips - that now shows on the LIVE pill itself (orange, 'PAUSED · TAP LIVE OFF / ON') with a toast. Auto LIVE-on before the window (fix815) still never clears a breaker pause. Every other rail unchanged.
+- when: 2026-11-07T00:29:21+00:00
+- Love: "Love Nov 6 2026 ~4:04 PM PT: "hun can you take this extra one off? it's gonna trick me every time i turn it on lol i'm gonna forget i have to do an extra one and she will miss atleast 300 windows this week if it's still there""
+- books: none - her LIVE / entries switches
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/fns.ts", "has": "fix838 ONE SWITCH"}
+- proof: {"test": "tools/one-switch-838.cjs"}
+
+## R502 - fix834 THE BREAKER NEVER RE-TRIPS ON ITS OWN PAUSE LINE: the breaker's backwards-fill rule counted every alarm line matching 'meant X but Kalshi holds Y' in the last 2 hours - including its own 'RED: BREAKER: ... meant DOWN ... holds UP' pause line - so the moment she turned entries back on it re-tripped and wrote a fresh line, again and again. Now it never counts its own pause line, and only counts backwards fills after she last turned entries back on. A new backwards fill still trips it; the 2-hour $ drop, losses in a row and the model check are unchanged. To clear today's pause: run this, then tap the OFF pill (her entries switch) to ON.
+- when: 2026-11-07T00:17:24+00:00
+- Love: "Love Nov 6 2026 ~3:33 PM PT: "she still i've flipped it 3 times bb it's still not back" (her card: ship the fix)"
+- books: none - the breaker's backwards-fill count
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/breaker.ts", "has": "/* fix834: never its own pause line */"}
+- proof: {"test": "tools/breaker-self-alarm-834.cjs"}
+
+## R501 - fix831 ETH REJECTIONS LIVE ON KALSHI: her ETH · REJECTIONS ONLY · NO PINK paper book (fix682) goes live on Kalshi KXETH15M, all hours like its paper card: $2.50 on the same side the second the paper book takes a window (only inside her 1.5x floor), one $3 add-on once that side pays 2.8x, paper's half and last trail sale mirrored (reduce-only sells), else to the bell. Every buy goes through her add-on route (addOnBuy600): the umpire must be SAFE and its gate clear, LIVE on, entries on (halt / breaker), never over $5 an order, the window's side lock. Paper record: 116 trades, 59%, +$774 at $20. live-switch ethLive831.on false = off.
+- when: 2026-11-07T00:11:24+00:00
+- Love: "Love Nov 6 2026 ~2:58 PM PT: "and pls put the rejection book on for eth" + ~3:04 PM: "yes , and i meant the eth rejection book on kalshi bb my bad :)) just the momentum book on poly" ($2.50 + $3 add-on at 2.8x - her yes to that size)"
+- books: ETH · REJECTIONS ONLY · NO PINK - LIVE on Kalshi ($2.50 + $3 add-on at 2.8x), all hours
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethlive831.ts", "has": "export async function ethLiveTick831("}
+- proof: {"test": "tools/eth-live-831.cjs"}
+
+## R500 - fix833 MOMENTUM ON THE COINS - PAPER: the MOMENTUM BOOK's three setups (with the first 2 minutes, fresh break up through pink, short under -2σ while falling) on DOGE, BNB and SOL's Kalshi 15-minute markets, plus a BTC WITH THE FIRST 2 MINUTES book - Coinbase 1m feed, $20 paper at the real Kalshi ask, once per setup per window, 2+ minutes left, scored held to the bell and under her take-profit with Kalshi fees taken off. PAPER ONLY. Four RECORDS cards (NEW BEST once green) + STATS (MOMENTUM · COINS).
+- when: 2026-11-07T00:07:43+00:00
+- Love: "Love Nov 6 2026 ~3:18 PM PT, her card pick "Yes, all four on paper" (DOGE, BNB, SOL momentum paper books + a BTC first-2-minutes paper book) + ~3:04 PM: "do go ahead and feel free to see if eth does well on momentum's framework, or any of the other cryptos :)""
+- books: DOGE / BNB / SOL momentum + BTC first 2 minutes (paper only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/momcoins833.ts", "has": "export async function momCoinsTick833("}
+- proof: {"test": "tools/momentum-coins-833.cjs"}
+
+## R499 - fix832 SOL + DOGE PAPER BOOKS: her ETH rejections-only / no-pink paper book (fix682) copied to SOL (Kalshi KXSOL15M, Coinbase SOL-USD) and DOGE (KXDOGE15M, DOGE-USD) - same rules and walls scaled by price, $20 paper at the live ask, her take-profit. PAPER ONLY (no order path). RECORDS cards (they show under NEW BEST once green) and STATS scoring. Natgas / WTI oil are not built: they need a 1-minute price feed the desk doesn't have (no public Coinbase-style source).
+- when: 2026-11-06T23:59:03+00:00
+- Love: "Love Nov 6 2026 ~3:16 PM PT, her card pick "Paper books on the desk" to her ~1:58 PM ask: "can you test all of the other 15M markets on kalshi against our rules and see if they do better than gold does bb? 🏁""
+- books: SOL + DOGE rejections-only paper books (paper only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/solbook832.ts", "has": "export async function solTick832("}
+- proof: {"test": "tools/coin-books-832.cjs"}
+
+## R498 - fix830 MOMENTUM ON POLYMARKET - BTC: the MOMENTUM BOOK's BTC paper trades (fix704) are mirrored LIVE onto Polymarket's BTC 15-minute market: $2.50 on the same side the second paper books it, only inside her 1.5x floor (ask 66.7c or less), once per window; one $3 add-on once that side pays 2.8x; paper's half (75%) and final trail sale mirrored, otherwise to the bell. Gold never. Every order goes through the guarded Polymarket route (umpire SAFE, LIVE switch, max-dollar cap) and needs Polymarket cash. Paper record (Nov 5-6, $10, take-profit): BTC inside her floor 87 trades, 59%, +$295. live-switch polyMom830.on false = off.
+- when: 2026-11-06T23:59:00+00:00
+- Love: "Love Nov 6 2026 ~2:56 PM PT: "and can you put the momentum book live on polymarket at $2.50 with a $$3 add on at 2.8x for me bb 💘💘" (BTC only - Polymarket mirror; her 1.5x floor kept)"
+- books: MOMENTUM BOOK - BTC only, LIVE on Polymarket ($2.50 + $3 add-on at 2.8x)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/polymom830.ts", "has": "export async function polyMomTick830("}
+- proof: {"test": "tools/poly-momentum-830.cjs"}
+
+## R497 - fix829 FIND THE NEW BOOKS (display only): RECORDS gets two pills that look across every family - NEW BEST 🏆 (every book made since Nov 1 - fix 600+ - plus the reconstructed rejection twins, that is green all time) and INVERSED 🔄 (every inverse / flipped book). REJ · TOGETHER REJECTIONS ONLY (recon-togr) and MAIN · W/O PINK (recon-rnp) get their own cards (they had none), and FIND A BOOK matches the names she sees in STATS (TOGETHER REJECTIONS ONLY, THIRDS AS READ, MOMENTUM BOOK, INVERSE BOOK, 70% CLUB ...). No trading change; a book still goes live only when she puts it on RUN.
+- when: 2026-11-06T23:58:58+00:00
+- Love: "Love Nov 6 2026 ~2:56 PM PT: "can you make a tab for all of the best performers out of the new ones we've made bb / i can't find any of them when i look for them pls make it easier to find these hun idk what happens when i look i cannot find them anywhere , / and all of our inverse books - can you make a subgroup for those here ? INVERSED""
+- books: none - RECORDS display only
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "\"NEW BEST 🏆\", \"INVERSED 🔄\""}
+- proof: {"test": "tools/find-new-books-829.cjs"}
+
+## R496 - fix828 BTC NO LONGS UNDER THE PINK AGAIN: her fix521 wall comes back for BTC LONGS ONLY - no BTC long under the pink while a running 2-5m candle is red, at any distance - except the bottom 25% of the pink->green channel with her real $5 flip (a colour turn alone no longer counts), her wide-channel clearance, or her 5% reset through the pink. Gold and every short keep her Nov 1 pink-slide rule (fix584) as it is. Every book but delayed. Replay Nov 2-6 (main + REJ): blocks 28 BTC longs that went 25% hit, -$154. live-switch btcLong828 false = off.
+- when: 2026-11-06T23:34:47+00:00
+- Love: "Love Nov 6 2026 ~12:46 PM PT: "but yes if it blocks 28 trades that only had a 25% hit rate on them yes 🎯 🎯 🎯" + her card: option 1 (BTC longs only) + ~12:20 PM: "oh definitely don't let those thru bb""
+- books: every book but DELAYED - BTC longs under the pink
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function btcLong828("}
+- proof: {"test": "tools/btc-under-pink-828.cjs"}
+
+## R495 - fix827 GOLD BAND PUSH 15c / 20c: gold's push off a session band, Bollinger, zone or R/S line (her band-rejection entry, pushLabel653) is 20c when the band channel (session bands either side of price) is over $10, 15c when it's $10 or under or can't be read. Gold pink trades keep 10c; BTC unchanged; delayed unchanged. Replay Nov 1-6 (gold band / zone rejections, main + REJ): about -$420 at 10c vs -$274 at 15/20c. live-switch goldPush827 false = 10c.
+- when: 2026-11-06T23:34:45+00:00
+- Love: "Love Nov 6 2026 ~11:55 AM PT: "let's make it 20c when bands are over $10 bb , and $15c under that / just a bittt more of a push than where it's at bc those are barely blips of a push 😹 like i said it's satisfying when she gets in cleanly but it's definitely costing fakies , when a few cents more doesn't change the multiple atttt all and will keep us out of the ones that flip for a millisecond and continue melting" + her card ~12:06 PM PT: band / zone trades only, gold pink trades keep 10c"
+- books: every book but DELAYED - gold band / zone push
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function goldPush827("}
+- proof: {"test": "tools/gold-band-push-827.cjs"}
+
+## R494 - fix826 GOLD WIDE-CHANNEL RELEASE: her gold slide / climb holds (fix560, and the every-second release fix806 + the copier's own release checks) still release when price breaks through the pink by 10% of the channel - but when gold's channel (the session bands either side of price, the same width the 10% reads) is over $30, 5%. BTC unchanged (10%; its channels are always over $30). Main + REJ, like the holds. Replay Nov 1-6: only 5 held windows had a channel over $30; no change in result (36 trades, 69%, +$37 either way).
+- when: 2026-11-06T23:34:43+00:00
+- Love: "Love Nov 6 2026 ~11:55 AM PT: "yes lets keep it 10% bb, but over $30 band widths let's make it 5% , pls bc those do happen on occasion""
+- books: MAIN + REJECTION - gold slide / climb hold release
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "/* fix826 her 5% over a $30 gold channel */"}
+- proof: {"test": "tools/wide-channel-826.cjs"}
+
+## R493 - fix825 STATS · EVERY FACTOR (display only): every settled main / REJ trade is matched to the board she saw at the call (setup-audit-in, read incrementally) and scored by each factor on its own - σ spot (which band channel price sat in), set up x σ spot, the line traded, the zone just past the band (fix822), the target by a line (into / away, fix821), her side of the pink, and the hour PT - 7 days / 24 hours, as STATS tally cards with her sorters (hit rate, $$, $/trade, edge) for MAIN, REJECTION and both families. Never touches trading.
+- when: 2026-11-06T19:56:47+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT: "can you take it a bit further and have her score red/green zone trades at the different band levels too? ... every independent factor ... we simply cut the ones that don't pay""
+- books: none - STATS display only
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "<FactorScores825 />"}
+- proof: {"test": "tools/factor-scores-825.cjs"}
+
+## R492 - fix824 AWAY FROM LINE: in the first 5 minutes of each window, when the target sits within $1.50 gold / $50 BTC of a session band (VWAP or a σ line), a Bollinger (upper/middle/lower) or the red/green zone, she takes the side trading AWAY from that line, the first second it applies, only while that side pays her 1.5x floor (ask 66.7c or less). One take per window per asset for main + REJ ($5 each), labelled 'AWAY FROM LINE · <line>' and scored apart in STATS. Her band walls are waived for it (like her flips, fix819); the umpire, freshness, the pink at the wire and every money rail still judge it. Delayed untouched. Replay Oct 30 - Nov 6 ($10, 75/95, before fees): gold 150 trades 60% +$0.87/trade, BTC 183 trades 57% +$0.58/trade; about breakeven on windows with Kalshi's exact strike. live-switch awayLine824 false = off.
+- when: 2026-11-06T19:56:45+00:00
+- Love: "Love Nov 6 2026 ~10:59 AM PT: "yes to the replay. and nonetheless, if a target sits within $1.50 of those i do want her to take the trade the other direction if it is above the floor / beginning of the window oki. and include those in your replay to see how they did compared to ours, if she had entered the other direction at the beginning of the window when it was an option""
+- books: MAIN (recon-tog) + REJECTION (recon-rej) - AWAY FROM LINE takes, $5 each; delayed untouched
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/away824.ts", "has": "export function awaySide824("}
+- proof: {"test": "tools/away-from-line-824.cjs"}
+
+## R491 - fix822 THE ZONE JUST PAST THE BAND: no long when the red zone sits ahead of price inside the first 15% of the channel past the session band she is breaking into (band = VWAP or a σ line); mirror: no short with the green zone in the first 15% of the channel below the band she breaks down through. Every book but delayed. Study (Nov 1-6, main + REJ): entries with that zone went 59 trades, 29% hit, -$4.29/trade vs 47%, +$1.62/trade without. live-switch zonePast822 false = off.
+- when: 2026-11-06T19:56:44+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT: "she just enter btc on the break up the session band with a red zone directly on the other side of it too , can you do some tests on that and let me know if those lose more than they win? when she enters on a break & a green/red zone sits in the bottom/top 10-15% of the band channel she's breaking into on the other side" + her card ~10:52 AM PT: build it live, all books except delayed"
+- books: every book but DELAYED - zone just past the band
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function zonePast822("}
+- proof: {"test": "tools/zone-past-band-822.cjs"}
+
+## R490 - fix821 THE TARGET BY A LINE: when the window's target sits within $1.50 (gold) / $50 (BTC - our scaling; her old record only had gold's $10 levels) of a session band (VWAP or a σ line), a Bollinger (upper / middle / lower) or the red / green zone, an entry that trades INTO that line is refused; trading away from it goes. Judged last in her wall, after every other rule. Every book but delayed; her $10-level rule unchanged. Study (last ~7 days): gold trades INTO such a line hit 16% (-$135), BTC 38% (-$186). live-switch targetLine821 false = off.
+- when: 2026-11-06T19:56:42+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT: "also , not sure if we still have this rule in place , it's an oldie but a goodie 💞 if target is within $1.50 of a session band , bollinger , or a red, or a green zone ; i want her to take the position that trades away from it""
+- books: every book but DELAYED - target by a line
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function target821("}
+- proof: {"test": "tools/target-line-821.cjs"}
+
+## R489 - fix820 THE INVERSE-WORST BOOKS (paper only, never live): MAIN INVERSE-WORST, REJ INVERSE-WORST, NO-PINK INVERSE-WORST and V.111 INVERSE-WORST each watch their family's fresh calls (main = recon-tog; REJ = recon-rej; no pink = recon-rnp / recon-rjnp / recon-togp; V.111 = V.111 - 2) and, when the set up is on that family's WORST list, take the OPPOSITE side that second at the real ask inside her 1.5x floor - $5, her 75/95 exit, settled from Kalshi. WORST list = 30+ trades in 7 days, under 40% hit AND losing money (so a low-hit set up that pays is never inverted), rebuilt with SET UP SCORES every 10 min into data/inverse-worst-820.json. Each book has its own card and SET UP SCORES pill; all inverse books (these + INVERSE BOOK, V.111 INV, BESTIE INVERSE) sit in a new INVERSES pill group.
+- when: 2026-11-06T19:56:40+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT: "and as for the WORST stats over all time , consistent under 40% , 20-30% even better and then create an inverse book on THOSE set ups only for v.111 , and for main rej and no pink pls all individual inverse books and let's create a new subgroup for all of our inverses oki""
+- books: paper only - four INVERSE-WORST books
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/invworst820.ts", "has": "export function decide820("}
+- proof: {"test": "tools/inverse-worst-820.cjs"}
+
+## R488 - fix819 CUT + FLIP (idle until a set up qualifies): a main / REJECTION set up (SET UP SCORES' grouping) with 30+ trades of its own in 7 days, under 30% hit and paying 2.2x or less on average is CUT - her live order on it is refused at the last line (after the umpire). In its place she takes the OPPOSITE side that second, only while it still pays her 1.5x floor (66.7c or less); otherwise skipped. The flip is labelled 'FLIP of <set up>', recorded at $5 (data/flip-819.json, scored in SET UP SCORES as FLIPS) and handed to the copier for the same book; its order skips her band walls (her words: bypass band rules if necessary) but keeps the umpire, freshness, one ticket per window and the money rails. Every cut / flip / skip logged to data/cut-flip-819.jsonl; SET UP SCORES shows 'CUT + FLIP NOW' (none today). Delayed untouched. live-switch cutFlip819 false = off. A 30% set up that pays 10x is never cut.
+- when: 2026-11-06T19:56:38+00:00
+- Love: "Love Nov 6 2026 ~9:52 AM PT: "how many trades would it skip day to day bb ? if we cut anything under 30% ? as for any of the set ups we currently have her taking that have a hit rate under 30% and don't pay over 2.2x can get cut & flipped right now, but only do the flip if it's still above her 1.5 floor bb" + her 30-trade rule (~9:27 AM: "it needs to be at least 30")"
+- books: MAIN + REJECTION live - cut + flip (idle today)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/flip819.ts", "has": "export function qualifies819("}
+- proof: {"test": "tools/cut-flip-819.cjs"}
+
+## R487 - fix823 WEEK REPLAY CLOCK (test only, no rule changes): the fix521 week-replay proof re-judges the last 7 days of fills and MUST find the Oct 30 18:51Z BTC violation long BLOCKED; at 18:51Z Nov 6 that trade aged out of the window, so the proof failed and the umpire would stamp NOT SAFE. Her Oct 30 violation trades are now pinned into the replay so it can never age out; the 7-day window and every rule are unchanged.
+- when: 2026-11-06T19:56:36+00:00
+- Love: "Love Nov 6 2026 ~11:00 AM PT: "yes to the replay" (her yes to the week-replay clock fix: the fix521 proof aged out of its 7-day window at 10:51 AM PT)"
+- books: none - test only (the umpire's fix521 proof)
+- status: ACTIVE
+- proof: {"code": "tools/week-replay-521.cjs", "has": "fix823 her Oct 30 violation trades stay pinned in"}
+- proof: {"test": "tools/week-replay-521.cjs"}
+
+## R486 - fix818 STATS PAYS PER TRADE (display / scoring only): STATS' band / zone cards and SET UP SCORES now show $ / trade and EDGE (hit % minus the average price paid) on every set up, with $ / TRADE and EDGE sort buttons next to TRADES / HIT RATE / $$. The CUT tag is now 30+ trades AND losing money per trade (was 5+ trades and lost more than it won), so a 30% set up that pays 10-20x is never tagged CUT. Each trade's ask is read in once from the paper history. Nothing is cut from trading.
+- when: 2026-11-06T17:43:21+00:00
+- Love: "Love Nov 6 2026 ~9:33 AM PT: "maybe we should be sorting it by ones that are highest paying after all lol a 30% hit rate on one that pays 20x is worth it lol we need to be calculating in how we approach it""
+- books: none - STATS only
+- status: ACTIVE
+- proof: {"code": "tools/setup-scores-708.py", "has": "s[\"n7\"] >= 30 and s[\"p7\"] < 0"}
+- proof: {"test": "tools/pay-per-trade-818.cjs"}
+
+## R485 - fix816 HER TWINS SCORE THEIR SET UPS (logging / display only): SET UP SCORES now also scores MAIN · W/O PINK (recon-rnp), MAIN · TOGETHER NO PINK (recon-togp), MAIN · ZONE WALL TWIN (recon-tzw), MAIN · VWAP SIDE (main-vwap-694), REJ · TOGETHER REJECTIONS ONLY (recon-togr) and REJECTION · PARKED SIDE (rej-parked-695), alongside REJ ONLY · NO PINK, REJECTION · THIRDS AS READ and PINK SLIDE ONLY - each its own pill - plus two pooled pills: MAIN FAMILY (main + its 4 twins) and REJ FAMILY (rejection + its 4 twins), the same set up label counted across the family so the counts grow faster. V.111 books are never in a family. Their history is read in once from the paper archive (last 8 days) so the families fill today. No trading code.
+- when: 2026-11-06T17:17:16+00:00
+- Love: "Love Nov 6 2026 ~8:55 AM PT: "and can you have all of our revised main rej and no pink books logging set ups too ? the dataset will build quicker and we'll know by midnight which ones we cut and which ones we keep""
+- books: none - SET UP SCORES only
+- status: ACTIVE
+- proof: {"code": "tools/setup-scores-708.py", "has": "FAMILY816"}
+- proof: {"test": "tools/twin-setups-816.cjs"}
+
+## R484 - fix815 LIVE COMES BACK BEFORE THE WINDOW: (1) LIVE off 3+ minutes = a flashing orange light by the LIVE switch and a toast every 3 minutes (with why it's still off). (2) 15 s before each 15-minute window, if LIVE is off it turns itself back on through her own LIVE-on path (writeSwitch + liveBook.since - no rail, seal or size touched) ONLY when no CHANGE / RUN-ALL install is running, the umpire is SAFE, entries aren't halted and OFF TODAY isn't set; otherwise it stays off and says why. Every try logged to data/live-auto-on-815.jsonl. (3) OFF TODAY button next to LIVE (shows while LIVE is off) = her deliberate stop until midnight PT; tap again to clear. live-switch autoLive815 false = off.
+- when: 2026-11-06T17:17:14+00:00
+- Love: "Love Nov 6 2026 ~8:46 AM PT: "can you have it post a toast after 3 minutes if it's off ? and a flashing orange light  and have it set to turn itself back on before the window starts if i turned it off to do commands pls lol  if i'm not doing commands i never turned it off on purpose lol""
+- books: the LIVE switch (every live book)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/liveauto815.ts", "has": "export function decide815("}
+- proof: {"test": "tools/live-auto-815.cjs"}
+
+## R483 - fix814 STATS KEEPS MAIN + REJ (display only): her main + REJ set ups at every band and zone (HER BOOKS · SETUP x RUNG, still recorded underneath - 4,222 trades) now sit FIRST on STATS as tally cards (formatted like SET UP SCORES) with a TRADES / HIT RATE / $$ sorter, opening on MAIN with REJECTION one tap away; the V.111 family's paper rows (which share the fill log and had filled the BEST / WORST lists) stay out of those lists - they are scored in SET UP SCORES. BESTIE's own-setup picking is untouched. Its test is a permanent proof (fails if STATS ever drops main / REJ). SET UP SCORES gets the same HIT RATE / $$ sorter.
+- when: 2026-11-06T17:17:12+00:00
+- Love: "Love Nov 6 2026 ~8:37 AM PT: "the stats changed to only V.111  i still want our main & rej set ups being tracked at each band and each zone" + ~8:42 AM PT: "i want the regular session bands and other zones to be formatted the way the other tallies are if we can pls it looks amazing the way you have the others" + "can you add a sorter here too bb ?? by hit rate and $$""
+- books: none - display only
+- status: ACTIVE
+- proof: {"code": "src/components/desk/stats-rungs.tsx", "has": "useState(\"MAIN\")"}
+- proof: {"test": "tools/stats-main-rej-814.cjs"}
+
+## R482 - fix813 THE PINK WALL MIRROR: SESSION BAND AHEAD OF THE PINK (fix618) now frees a SHORT outside her pink tolerance (20% of the channel on BTC, her per-asset pinkSlide580), exactly as it frees the long since Nov 3 - it had only ever been built for longs. BTC's stacked scale (33% at that width) is unchanged. Every book but delayed. Today's 8:31:01 BTC wick short ($81 over pink, past her $53) goes. PERMANENT: the behaviour umpire now fails NOT SAFE if longs and shorts ever diverge on this wall (mirrored boards) or if her BTC pink tolerance widens; the old short-side tests now sit inside her tolerance.
+- when: 2026-11-06T17:17:11+00:00
+- Love: "Love Nov 6 2026 ~8:35 AM PT: "can you fix the pink wall outside of her tolerance babe? that slipped back in somehow solve for that permanently pls" + her card ~8:37 AM PT: A - mirror her Nov 3 7:20 PM rule ("The block stays only inside the pink tolerance. Outside that tolerance the long is free.") to shorts"
+- books: MAIN, REJECTION and every book but DELAYED - fix618 pink wall
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix813"}
+- proof: {"test": "tools/behaviour-umpire.cjs"}
+
+## R481 - fix812 THE BTC $50 PUSH IS FOR BAND TRADES ONLY: fix807's $50 wick push now applies only to BTC band / zone REJECTIONS (her rejection labels off a session band, zone, Bollinger or R/S line). Every other setup (thirds candles, launches, breaks) goes back to her normal flip ($2 candle flip / $6 push). Pink trades keep her small push. At 8:30:04 the 'Candle falling from the top third' short was wrongly held by the $50 push.
+- when: 2026-11-06T17:17:09+00:00
+- Love: "Love Nov 6 2026 ~8:30 AM PT: "babe btc wicked 15% she didn't enter short" (the 8:30:04 'Candle falling from the top third' short was held by the $50 push meant only for band trades)"
+- books: MAIN, REJECTION and every book but DELAYED - BTC $50 push scope
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix812"}
+- proof: {"test": "tools/btc-push-807.cjs"}
+
+## R480 - fix811 THE TINY CHANNEL, GOLD: her PINK TO RED / PINK TO GREEN 55% (fix594 and its gold twins) steps aside when the gap from the pink to the zone on that side is under $5 on GOLD; BTC keeps the full 55%. Every book but delayed; past the zone, cushion, thirds, flip and money rails still judge. Replay Nov 5 6 AM - Nov 6 8 AM: gold 27 extra trades, 78% hit, +$173 at $10 (+$116 trimmed). Today's 8:00:04 gold long ($4.23 gap) goes. The behaviour umpire's BTC 55% board is now $200 wide, plus gold tiny-channel and BTC-still-refused checks. live-switch tinyChannel809 false = off.
+- when: 2026-11-06T17:17:08+00:00
+- Love: "Love Nov 6 2026 ~8:16 AM PT: "yes on the tiny channel bb" + ~8:22 AM PT: "no if the asks are expensive and they're into a red with only a 65% hit rate don't do it  just gold bb""
+- books: MAIN, REJECTION and every book but DELAYED - gold pink-to-zone 55%
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function tiny809("}
+- proof: {"test": "tools/tiny-channel-811.cjs"}
+
+## R479 - fix810 PINK SLIDE TAP, BTC ONLY: her pink-slide tap entry (fix801 - at the pink rejection, no flip) stays on for BTC and is OFF for gold - gold keeps her flip on slides. Gold's slide taps are still recorded on her PINK SLIDE ONLY paper card (never live).
+- when: 2026-11-06T17:17:06+00:00
+- Love: "Love Nov 6 2026 ~8:21 AM PT, her pick: "no flip on btc , flip on gold pls :)""
+- books: MAIN + REJECTION - pink-slide tap (BTC only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const TAP_ASSETS801"}
+- proof: {"test": "tools/pink-slide-tap-801.cjs"}
+
+## R478 - fix808 THE SETTINGS SHEET FITS HER SCREEN (display only): the settings sheet had no height limit, so with the add-on rows it grew taller than her phone and its pull-down handle went off the top. Now it is capped at her screen height (inside the safe area), the handle and a new close X stay pinned at the top, and the rows scroll inside. Tapping outside still closes it. No trading code.
+- when: 2026-11-06T16:23:03+00:00
+- Love: "Love Nov 6 2026 ~7:45 AM PT: "every time i pull up the settings tab with the add on toggles the lil handle tab to pull the page down goes too far up and disappears out of frame so i can't exit the page""
+- books: none - display only
+- status: ACTIVE
+- proof: {"code": "src/components/desk/settings-drawer.tsx", "has": "aria-label=\"Close settings\""}
+- proof: {"test": "tools/settings-sheet-808.cjs"}
+
+## R477 - fix807 HER BTC PUSH $50 OFF THE WICK: on BTC her entry off a BAND or ZONE is a $50 push in the direction of the trade, measured from the wick (this 5m candle's high for a short / low for a long at the band she rejected), with her live 2m candle her colour - replacing the candle-past-its-open flip (10c / $2) for BTC. Every book but delayed (delayed keeps its flips and $6). Gold unchanged. Replay Nov 2-6, main + REJ, $10, 75/95: 86% of calls kept, 48% hit, +$486 (+$198 without the 3 best / 3 worst) vs today +$333 (+$54); average multiple 2.38x vs 2.46x. One week of data. Her pink-slide tap and 15% wick rejection keep their own entries. live-switch push807 false = off. PINK TRADES (off / through the 5m PP, including her pink-slide tap) keep her small push: BTC $6 push or her $2 flip, gold 10c (her 7:51 AM words).
+- when: 2026-11-06T16:23:01+00:00
+- Love: "Love Nov 6 2026 ~7:33 AM PT: "wait hun i DONT want it past the candle open , i just want it to be a push off of the band that distance" + ~7:30 AM: "$50 for btc bb" + her cards ~7:35-7:36 AM PT: "Push + 2m candle in her colour" and "BTC $50 off the wick" + ~7:51 AM PT: "let's keep the push requirement 10c on pink trades bb""
+- books: MAIN, REJECTION and every book but DELAYED - BTC entry push
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function push807("}
+- proof: {"test": "tools/btc-push-807.cjs"}
+
+## R476 - fix806 HER SLIDE ENDS THE SECOND IT BREAKS: every second, each active SLIDE UNDER PINK / CLIMB OVER PINK hold is checked with her same release rule (price through the pink by 10% of the channel; her old $8 / 25c slide and $2 / 25c climb break when the channel can't be read) and ends the moment it breaks - before, it was only checked when a main / REJ call came in, on that moment's price, so a break between calls never ended it (about 7% of 'still on' holds in the last 24 h). The on-rule is untouched; the holds only apply to main + REJ (never delayed). Each release is logged to data/slide-release-806.jsonl. live-switch slideRelease806 false = off.
+- when: 2026-11-06T16:23:00+00:00
+- Love: "Love Nov 6 2026 ~7:26 AM PT, her card pick: "Yes, check it every second" (to: the slide is only released when a call comes in, on that moment's price - check every active slide each second and end it the moment price breaks back through pink by 10% of the channel)"
+- books: MAIN + REJECTION - her pink slide / climb hold (never DELAYED)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "export function release806("}
+- proof: {"test": "tools/slide-release-806.cjs"}
+
+## R475 - fix804 THE STALL TRACE - LOG ONLY: her position loop (take-profits + add-ons) went silent 7:00:29 -> 7:06:28 AM PT while her tick sat busy, so the 2.8x add-on waited until 9c. Every await in her tick and position loop now names its step; every 5 s, if her tick has been busy 20 s or more, one line goes to data/tick-stall-804.jsonl with the step it is stuck on. Writes that file only - no order, wall, size, switch or timing changes. Once it catches the stuck step, the real fix is its own command.
+- when: 2026-11-06T16:22:58+00:00
+- Love: "Love Nov 6 2026 ~7:09 AM PT: "babe she's notttt doing her add ons btc was just at 11x and didn't enter anything past $5""
+- books: none - log only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "tick-stall-804.jsonl"}
+- proof: {"test": "tools/stall-trace-804.cjs"}
+
+## R474 - fix803 HER ADD-ON 2 BOX: Add-on 2 (after Add-on 1 has filled) gets a multiple box (1.5x-10x) next to its $ box, in place of the fixed 3.8x. It starts at 3.8x / your current $, so nothing changes until you type. The engine reads both live (at38 cap = 1 / your multiple). Its on/off toggle, the $5 add-on cap, once per position and every other add-on gate are unchanged.
+- when: 2026-11-06T16:22:57+00:00
+- Love: "Love Nov 6 2026 ~7:09 AM PT: "as for the second add on toggle , pls change it to another type-box i can put in the multiple i want and the dollar amount for it instead of the hard 3.8x pls""
+- books: Add-on 2 - every book her add-ons apply to
+- status: ACTIVE
+- proof: {"code": "src/components/desk/settings-drawer.tsx", "has": "aria-label=\"Add-on 2 multiple\""}
+- proof: {"test": "tools/addon2-box-803.cjs"}
+
+## R473 - fix802 PINK SLIDE ONLY (paper): her own card for nothing but her pink-slide take (fix801's record, data/pink-slide-801.json) - BTC + gold, one per window, $5 at the real ask, her live exit (half at 75% / rest at 95% of the way), settled from Kalshi; in RUNNING, scored by set up in STATS. Display only - the copier never reads the card. Needs CHANGE-142 (fix801) in first.
+- when: 2026-11-06T16:22:55+00:00
+- Love: "Love Nov 6 2026 ~6:42 AM PT: "we could literally take nothing but pink slides and it would prolly be our most successful book lol""
+- books: PINK SLIDE ONLY - paper card
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/paperrows.ts", "has": "pink-slide-801.json"}
+- proof: {"test": "tools/pink-slide-only-802.cjs"}
+
+## R472 - fix801 THE PINK SLIDE TAP: while main / REJECTION's SLIDE UNDER PINK hold is on for an asset, the moment price comes back up to the pink (within 5% of the channel) and turns back down (7.5% of the channel off it, never through) she SHORTS at that second's real ask - no flip candle. Mirror while CLIMB OVER PINK is on: down to the pink and back up = the LONG. Best multiple: the first ask at or over her 1.5x floor from the rejection on, only while price is still at the pink (within 25% of the channel) and at most 90 s after it. For that take her walls waive only what her 15% wick rejection already waives (flip, candle colour, thirds) plus the pink cushion; the 55% is already free in the slide (fix800). Money rails, floor, $10 level, past-the-zone, umpire, one ticket per window and the 75/95 exit unchanged. Main + rejection (every live book but delayed). live-switch pinkSlideTap801 false = off. Every take is also recorded at $5 in data/pink-slide-801.json (read by fix802's card).
+- when: 2026-11-06T16:22:53+00:00
+- Love: "Love Nov 6 2026 ~6:40 AM PT: "and yes , on pink slides she waits for it to come to pink and reject. no flip necessary on pink slides just get in at the best multiple she can. those are our strongest set up by far""
+- books: MAIN + REJECTION - her pink-slide tap entry (never DELAYED)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pinkslide801.ts", "has": "export async function pinkSlideTick801("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function tapFree801("}
+- proof: {"test": "tools/pink-slide-tap-801.cjs"}
+
+## R471 - fix800 SHORTS DURING THE PINK SLIDE: while main / REJECTION's SLIDE UNDER PINK hold is on for an asset (no longs), a SHORT is no longer refused by the pink-to-green share (fix594's 55%, the BTC fix323 share, gold's PINK TO GREEN); mirror, because the hold exists both ways: while CLIMB OVER PINK is on (no shorts), a LONG is no longer refused by the pink-to-red share. Everything else still judges (past the green / red boundary, thirds, her flip, pink cushion, the money rails). Every book but the delayed one. Reads the engine's own hold states (and the sub-auditor now gets them with each board, so he judges the 55% the same way); live-switch slideFree800 false turns it off. Replay (refusal ledger Nov 5 6 AM -> now): 6 slide windows had a refused pink-to-green short, 4 priceable: 3 W / 1 L, +$5.21 at $5. It does NOT make her enter at the pink tap itself - her flip still waits there (the 'enter at pink, no flip' rule is its own command).
+- when: 2026-11-06T16:22:51+00:00
+- Love: "Love Nov 6 2026 ~6:34 AM PT: "it flipped both ways on both assets she skipped everything" + her card pick ~6:35 AM PT: "Shorts allowed during pink slide""
+- books: MAIN, REJECTION and every book but DELAYED - the pink-to-zone share during her pink slide / climb
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function slideFree800("}
+- proof: {"test": "tools/slide-shorts-800.cjs"}
+
+## R470 - fix799 KALSHI'S TARGET IN HER CHART'S TERMS FOR BESTIE: a take of hers that is on her list is still refused when it would have to cross an unbroken band to reach the window's target - main's own check, same code: bandlock.ts targetNow (Kalshi's strike moved onto her chart by the window-open offset, fix519 / fix530; gold = her chart's window open), wallLines / refreshBroken / wallFor and crossToTarget ('no band between price and the target'). Can't verify = refused, like main. Switch: her file data/v111-2-live.json targetGap799 true. Replay of her takes 10 PM - 5:18 AM (boards saved at each take): blocks 14 - 10 W / 4 L, +$26.87 at $5 of winners lost; kept 26 - 9 W, -$34.41. Paper (BESTIE is paper). Run after CHANGE-139.
+- when: 2026-11-06T15:23:03+00:00
+- Love: "Love Nov 6 2026 ~5:18 AM PT: "hun she is supposed to have the price difference on kalshi deducted from tradingview's price""
+- books: BESTIE (bestie) - which takes she makes
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112best.ts", "has": "export async function target799("}
+- proof: {"test": "tools/bestie-target-799.cjs"}
+
+## R469 - fix798 HER ZONE WICK REJECTIONS (paper set up in V.111 - 2's family): in a window, a closed 1m bar's low reached the GREEN zone (the desk's 5m S1) and price is now $50 (BTC) / $1 (gold) or more back up off that wick low = LONG; the mirror off the RED zone (5m R1) = SHORT. Minutes 1-14, once a minute, one per window, $20 paper at the real ask, scored like V.111 - 2 (her take-profit), settled from Kalshi, fill-log pattern 'V.111 - 2 · Green / Red zone wick rejection' (scores in STATS). These rows count in her own-rows list (fix797) and are decided on it the second they're taken, so the set up can earn its way onto BESTIE's list (more than 10 trades, over 65%, never WORST). Main / REJECTION's BTC 15% zone wick is unchanged. Replay Nov 1-6 ($5 scale, boards from the desk's own snapshots): BTC 63 trades 31 W +$32 (red-zone shorts +$75, green-zone longs -$43); gold 81 trades 36 W -$34. Paper only.
+- when: 2026-11-06T15:20:26+00:00
+- Love: "Love Nov 6 2026 ~5:17 AM PT: "and pls have her register green zone rejections and red zone rejections to enter in when the rejections there pls / a rick rejections of $50 or more on btc $1 for gold""
+- books: V.111 - 2 · zone wick rejections (paper set up)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112zone.ts", "has": "export function zoneRead798("}
+- proof: {"test": "tools/v111-2-zone-798.cjs"}
+
+## R468 - fix795 BESTIE · INVERSE · PAPER: every window BESTIE actually filled on Kalshi (live-book-done her ':bestie:' ticket filled / partial) is taken here on the OTHER side, same window, at that side's real ask the moment the desk sees her fill; $5; one per window; the live exit on paper (half at 75% of the way, the rest at 95%, else the bell); settled from Kalshi; own file data/bestie-inv-795.json, fill-log venue paper-bestie-inv with her set up on every row ('BESTIE · INVERSE · <her set up>') so it scores by set up in STATS like V.111 - 2's own rows, card in RUNNING. Replay: her 7 live fills 2:01-5:15 AM -> 7 of 7 won, +$16.76 at $5 (BESTIE live 2 W / 5 L, -$35.89); every BEST take since 10 PM (one per window, 37): 23 W, -$1.37. PAPER ONLY - nothing live changes. Run after CHANGE-135.
+- when: 2026-11-06T14:27:18+00:00
+- Love: "Love Nov 6 2026 ~5:14 AM PT: "pls make an inverse of the book running if it's at 33% that is supposed to be the other way around bb" + ~5:34 AM PT: "pls have all of her inverse books scoring on set ups too and the twins and whatever pls so we can stack some up""
+- books: BESTIE · INVERSE (bestieinv) - paper only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112binv.ts", "has": "export async function binvTick795("}
+- proof: {"test": "tools/bestie-inv-795.cjs"}
+
+## R467 - fix794 V.111 - 2 · LDC FADE · PAPER: the winner of data/reports/ldc-study-nov6.md (Nov 1-6 replay, 11 configurations: 204 trades, 50.5%, +$68 at $5; V.111 - 2 as is -$171). V.111 - 2's take of each window is kept only when the 1m LDC fades it - a SHORT only while the 1m LDC is GREEN (buy state), a LONG only while it is RED - else no trade that window; $5 at her real ask; the live exit on paper (half at 75% of the way to $1, rest at 95%, else the bell), settled from Kalshi; own file data/v111-2-ldc-794.json, fill-log venue paper-v111-2-ldc, its card in RUNNING. LDC = a rebuild of TradingView's Lorentzian Classification (published defaults) on the desk's own closed 1m bars - her TV settings may differ. Also writes the LDC colour on every V.111 - 2 take (row ldc794; BESTIE's live rows are those rows) and to data/ldc-colour-794.jsonl. PAPER ONLY - no live book, wall, size or exit changes; V.111 - 2's own trades unchanged. The fix770 proof counts this book's fill-log row apart like the inverse book's.
+- when: 2026-11-06T14:23:45+00:00
+- Love: "Love Nov 6 2026 ~3:53 AM PT: "instead of doing no shorts over vwap like the og model did , i didn't even know it did that it wasn't supposed to be hehe / but instead of no shorts when price is over vwap , can you look into shorting when LDC ribbon is green? / and longing when it's red? / it kind of uses the ldc at a band too ... cannnn you incorporate thattt into a strategy too bb ?? on its own book / whichever configuration of those elements that tests best""
+- books: V.111 - 2 · LDC FADE (v1112ldc) - paper only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112ldc.ts", "has": "export function ldcTake794("}
+- proof: {"test": "tools/v111-2-ldc-794.cjs"}
+
+## R466 - fix797 BESTIE TAKES HER OWN BEST SET UPS: BESTIE's list is built ONLY from V.111 - 2's OWN settled trades (her own rows, scored under her take-profit - the 'V.111 - 2 · ...' STATS rows), one box by set up label, with the same bar (more than 10 trades, over 65% won) and skip-if-WORST ($ under 0 = off). The STATS boxes she was matching (main's tap-rejects on session bands under the same names) are no longer read. Switch: her file data/v111-2-live.json ownRows797 true (false = back to the STATS boxes). Today NO set up of hers clears the bar yet (closest: Tap-reject at -1.5σ 6/10, 60% - 1 trade short and under 65%), so BESTIE takes nothing until one does. Run after CHANGE-137 (BESTIE is paper while main + REJECTION are live).
+- when: 2026-11-06T13:35:40+00:00
+- Love: "Love Nov 6 2026 ~5:20 AM PT: "why are the winning set ups doing this badly ?????" + ~5:21 AM PT: "and yes obviously bb, bestie needs to take her own best set ups. that's what i asked for i didn't realize you didn't , can we try that now pls?""
+- books: BESTIE (bestie) - which set ups she takes
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112best.ts", "has": "export function ownBox797("}
+- proof: {"test": "tools/bestie-own-797.cjs"}
+
+## R465 - fix796 MAIN + REJECTION BACK LIVE: data/live-today.json on -> false (nothing else in it changes), so the live lineup goes back to her main lineup in live-switch liveBook - MAIN / TOGETHER (recon-tog), REJECTION (recon-rej) and the DELAYED book (recon-dly) that rides with them - exactly the way they ran before the live-today lineup (fix717 onward). BESTIE leaves live; V.111 - 2 and all her paper twins keep scoring. Kept: every money rail (umpire, day stop, halt, LIVE, sizes, floor, one per window, no flips), the 75% / 95% exit for main + REJECTION (fix782), and every other installed fix. Turning live-today on again puts BESTIE back. No code changed; the fix775 proof also accepts live-today off.
+- when: 2026-11-06T13:31:50+00:00
+- Love: "Love Nov 6 2026 ~5:20 AM PT: "dude our main and rejection on pls i can't do this anymore""
+- books: MAIN (recon-tog) + REJECTION (recon-rej) + DELAYED (recon-dly) live; BESTIE paper
+- status: ACTIVE
+- proof: {"code": "data/live-today.json", "has": "\"on\": false"}
+- proof: {"test": "tools/v111-2-live-775.cjs"}
+
+## R464 - fix793 BESTIE'S SESSION-BAND SLIDING SCALE (as main and rej): live BESTIE gets main's SESSION BAND AT THE SEND - bandlock.ts sessionBandSend593 with her sliding scale sessionScale593 (fix593): no long into an unbroken session band above / short into one below within BTC $25 when the channel is under $100, 33% of the channel to $500, 20% over $500; gold 33% at a $10 channel sliding to 20% at $20 (20% over). Done with live-switch scaleBooks793 = ["bestie"] in the live-today send branch. Replay of her 25 settled takes since 10 PM: blocks 7 (5 W) - -$11.00 vs taking them. Every other book unchanged.
+- when: 2026-11-06T12:48:45+00:00
+- Love: "Love Nov 6 2026 ~3:26 AM PT: "the same sliding scale for the session bands bb :))" + "as main and rej""
+- books: BESTIE (bestie) live - entries
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "?.scaleBooks793;"}
+- proof: {"test": "tools/bestie-guard-793.cjs"}
+
+## R463 - fix792 BESTIE'S PINK-TO-ZONE 55%: live BESTIE gets main's zone check at the send - bandlock.ts zoneSend594, the same function main and REJECTION's last line runs: no short in the bottom 55% from the pink down to the green zone, no long in the top 55% from the pink up to the red zone, no trade past the red / green boundary, and her Bollinger fade-past-the-zone block (fix711) that lives in the same check. Done with live-switch zoneBooks792 = ["bestie"] in the live-today send branch. Replay of her 25 settled takes since 10 PM: blocks 6 (4 W) - -$12.75 vs taking them (incl. the 3:16 AM BTC short). Every other book unchanged.
+- when: 2026-11-06T12:06:45+00:00
+- Love: "Love Nov 6 2026 ~3:26 AM PT, her card pick "Both guards" (after "hun she just shorted btc in the bottom of the channel"), guard 2 = pink-to-green / pink-to-red 55% (fix594)"
+- books: BESTIE (bestie) live - entries
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "?.zoneBooks792;"}
+- proof: {"test": "tools/bestie-guard-792.cjs"}
+
+## R462 - fix791 BESTIE'S THIRDS (her 33%): live BESTIE gets main's THE WALL at the send - bandlock.ts thirdWallAbsolute, the same function every book's wall runs: no long in the top 33% / no short in the bottom 33% of the session-band channel (band to band as drawn, her channelPct / channelPctTop from live-switch; a band broken her way by her break distance is not a barrier). Done with live-switch thirdsBooks791 = ["bestie"] read in the live-today send branch. Replay of her 25 settled takes since 10 PM: blocks 7 (5 W) - -$11.00 vs taking them. With CHANGE-131 a blocked take lets her look for the next valid set up that window. Every other book unchanged.
+- when: 2026-11-06T12:03:53+00:00
+- Love: "Love Nov 6 2026 ~3:26 AM PT, her card pick "Both guards" (after "hun she just shorted btc in the bottom of the channel"), guard 1 = her thirds - R141 (Oct 29 2026): "her 33% NEVER leaves under any circumstances" / R206: "a hard 33% for the thirds on EVERY Kalshi book""
+- books: BESTIE (bestie) live - entries
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "?.thirdsBooks791;"}
+- proof: {"test": "tools/bestie-guard-791.cjs"}
+
+## R461 - fix789 BESTIE TAKES THE NEXT VALID SET UP: for BESTIE only, a window stays open to her whenever V.111 - 2's take there did not become BESTIE's - (a) its ask was over her floor (live-switch bookFloor788.bestie, CHANGE-130 = 1.6x / 62.5c; without it 1.5x), (b) it was not on her list (e.g. the 'Open' reads), or (c) the live copier refused / skipped her row for any other gate (data/live-book-done.json). V.111 - 2's same brain keeps reading that window (minutes 1-14, once a minute) for BESTIE only; the first read on her list (the same live list check: bar, skip-if-WORST) with an ask at or under her floor is BESTIE's take, and it goes through every live gate like any of hers ($10 level, floor, umpire, stop...). If that take is itself refused at the wire, the window re-arms. Still one ticket a window (the copier's lock), no flips, either side. V.111 - 2's own paper book is unchanged (one take a window). Replay of tonight since 10 PM (her list now, asks from the bid paths, $5, her take-profit): it would have ADDED about 23 takes, 20 settled: 6 W / 14 L, about -$20.37. Every rail, size, exit and other book unchanged.
+- when: 2026-11-06T12:01:17+00:00
+- Love: "Love Nov 6 2026 ~2:38 AM PT: "i want to raise the floor to 1.6 , if she misses that i want her to trade the next band too pls" + ~3:18 AM PT: "yes let's have her be able to make any valid one of her set ups" (the 1.6x floor is CHANGE-130)"
+- books: BESTIE (bestie) live - more chances per window: the next valid set up on her list
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112fb.ts", "has": "export async function fbTick789("}
+- proof: {"test": "tools/bestie-nextband-789.cjs"}
+
+## R460 - fix790 BESTIE'S ADD-ONS ON: her switch file data/v111-2-live.json addOns true (it shipped false with fix775 'off until you turn it on'). engine.ts's fix775 gate then stands down and your Add-on boxes apply to BESTIE's live positions exactly like every other book: exactly the add-on toggles you have selected in Settings, read live (right now: Add-on 1 $2 when her side's ask is 35.7c or under, 2+ min left; Add-on 2 (3.8x) $3 at 26.3c or under) - change a toggle and it applies to her too; no copy, nothing extra. The fix775 proof now expects her switch on. Add-on fills sit in the same Kalshi position, so they sell with it on the 75% / 95% exit (fix782) and count in the -$100 day stop like every live trade. No code changed. false turns them off again.
+- when: 2026-11-06T11:58:59+00:00
+- Love: "Love Nov 6 2026 ~2:22 AM PT: "and she didn't do her add on bb" + ~3:26 AM PT: "and she is still not doing her add ons bb" + ~3:29 AM PT: "yes love just the add ons i have in the toggle whatever ones i have selected there okay :)""
+- books: BESTIE (bestie) live - add-ons
+- status: ACTIVE
+- proof: {"config": "data/v111-2-live.json", "key": "addOns", "equals": true}
+- proof: {"test": "tools/bestie-addons-790.cjs"}
+
+## R459 - fix788 BESTIE'S FLOOR 1.6x: live BESTIE's Kalshi orders must pay 1.6x or more on the limit price (62.5c or under); the send refuses anything over that (her copier keeps trying while the window is open, as every floor refusal does - if the ask comes back under 62.5c she still takes it). Every other book keeps its 1.5x. Done with live-switch bookFloor788 {"bestie": 1.6} read at the send's floor check (only ever raises a floor). Run after CHANGE-129. Tonight: none of her BEST takes asked over 62.5c at her decision (highest 62c), so the replay skips none; the 2:01 AM BTC retry that reached a 64c limit would have waited at 62.5c. The 'trade the next band' part is not in this command.
+- when: 2026-11-06T11:54:41+00:00
+- Love: "Love Nov 6 2026 ~2:38 AM PT: "i want to raise the floor to 1.6 , if she misses that i want her to trade the next band too pls" (this command = the 1.6x floor; the next-band part is its own command)"
+- books: BESTIE (bestie) live - entry price floor
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "?.bookFloor788;"}
+- proof: {"test": "tools/bestie-floor-788.cjs"}
+
+## R458 - fix784 BESTIE'S $10 LEVEL (live BESTIE - an exception to keeping her pure, at her ask; paper BESTIE · WALLS already has it inside main's door): her rule as main + rejection have it (fix217 / fix232 / fix440, R149): gold only - when the window's target sits within $1.50 of an even $10 level, no long while price is under that level (up into it) and no short while price is over it (down into it); trading away from it is clear; price on the level (within 30c) is not judged. Done with the same lines: bandlock.ts's inline $10 block moved word for word into one function tenLevel440 (impossibleGeo calls it exactly as before - flipRule: $1.50 main + rejection, $1 other books), and the live-today send asks it with flipRule true ($1.50) for the books listed in live-switch tenLevelBooks784 = ["bestie"] (kalshi-live.server.ts, the lineup branch). BTC has no $10-level rule on the desk (none added). Replay of BESTIE's 21 takes since 10 PM: blocks 2 gold (11:01 PM short into 4050 - a win; 2:16 AM long into 4070 - a loss), about even at $5. Every other book, wall, size, exit and money rail unchanged.
+- when: 2026-11-06T11:14:06+00:00
+- Love: "Love Nov 6 2026 ~2:31 AM PT: "and let’s please incorporate the $10 level rule we have , only trade away from them / if they are at a $10 level within $1.50 and we are under that level , don’t trade up or down into it only away from it okay 💓""
+- books: BESTIE (bestie) live - gold entries only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "tl784.includes(book)"}
+- proof: {"test": "tools/bestie-ten-784.cjs"}
+
+## R457 - fix787 SKIP IT IF WORST ANYWHERE: a set up whose label is in ANY STATS box's WORST table (THIS WEEK, LAST 4 DAYS, PRIME BOOK - $ under 0 there, read live, the page's own split) is off BESTIE's list, even when another box has it BEST and over her bar (fix786: more than 10 trades, over 65%). Same label match the BEST rows use. Switch: her file data/v111-2-live.json skipIfWorstAnywhere true. Run after CHANGE-127. Her list right now: Tap-reject at +2σ, -1.5σ, +0.5σ, +1.5σ, -0.5σ; Tap-reject at +1σ (WORST this week / last 4 days) and -2σ are out. Every rail, size, exit and other book unchanged.
+- when: 2026-11-06T11:08:19+00:00
+- Love: "Love Nov 6 2026 ~2:56 AM PT, her card pick (asked: Tap-reject at +1σ is still on BESTIE's list through PRIME BOOK 14/18 while THIS WEEK has it WORST): "Skip it if WORST anywhere""
+- books: BESTIE (bestie) live - which set ups go to Kalshi
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112best.ts", "has": "export function worst787()"}
+- proof: {"test": "tools/bestie-worst-787.cjs"}
+
+## R456 - fix783 BESTIE · WALLS · PAPER TWIN. Live BESTIE stays exactly as she is (pure - the unadulterated one). A paper twin takes exactly BESTIE's takes (V.111 - 2 takes decided on her BEST list, same side, her real ask, $5) but each is first judged by MAIN's door on the live board that second, the way the sub-auditor judges main (TOGETHER, recon-tog): bandlock.ts impossibleGeo with main's flags (channel 33%, unbroken band ahead, pink cushion, pink-to-red/green 55%, Bollinger, zones, her candle / flip), her zone tolerance and her reach wall. Refused = not taken here; kept on its own card 'BLOCKED - what they would have done' with main's reason, scored as if taken. Taken rows: held to the bell + her take-profit, settled from Kalshi, fill log venue paper-bestie-walls. Tonight's replay (21 BESTIE takes since 10 PM): main's door blocks 19 incl. all 11 winners. Pivot-tolerance version not built (next). Every live book, wall, size, exit and money rail unchanged.
+- when: 2026-11-06T11:05:36+00:00
+- Love: "Love Nov 6 2026 ~2:12 AM PT: "can you include all of the same band / zone tolerances for this book too hun ? she traded into a red zone for btc and a pink and the bollinger for gold we need to fix that real quick and she'll be good 💓 keep an unadulterated version of this one.  , we will do one that has the pivot tolerances 💓" + her card pick: (b) live BESTIE stays pure, the walled version runs as a paper twin"
+- books: BESTIE · WALLS (bestiewalls) - paper only, BESTIE · WALLS · BLOCKED (bestiewalls-skip) - paper record of the refusals
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112walls.ts", "has": "export async function wallsTake783("}
+- proof: {"test": "tools/bestie-walls-783.cjs"}
+
+## R455 - fix786 BESTIE'S BAR - MORE THAN 10 TRADES, OVER 65%: BESTIE keeps re-reading the STATS BEST tables live (THIS WEEK, LAST 4 DAYS, PRIME BOOK - all three stay her sources), but a row now counts only with MORE than 10 trades (11+) and MORE than 65% won in that box, and $ 0 or more (BEST) as before. Replaces the 3+ trades / more than 50% bar. The bar lives in her switch file data/v111-2-live.json (minTrades 11, minHitPct 65 - not locked); missing = the old bar. Her list right now: Tap-reject at +2σ, -1.5σ, +0.5σ, +1.5σ, -0.5σ (THIS WEEK / LAST 4 DAYS) - and PRIME BOOK still lets in Tap-reject at +1σ (14/18, 78%) and +0.5σ / +1.5σ / -0.5σ / -1.5σ; Tap-reject at -2σ (3/4) is out. Every rail, size ($5), exit and other book unchanged.
+- when: 2026-11-06T10:55:56+00:00
+- Love: "Love Nov 6 2026 ~2:34 AM PT: "hun did you put her on the best table set ups i sent you pictures of ? they all had like 40 trades" + ~2:35 AM PT: "yes bb over 10 trades over 65%""
+- books: BESTIE (bestie) live - which set ups go to Kalshi
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112best.ts", "has": "export function bar786()"}
+- proof: {"test": "tools/bestie-bar-786.cjs"}
+
+## R454 - fix785 SESSION + PINK OFF LIVE - BESTIE ONLY: data/live-today.json lineup goes from 'brk-sesspk,bestie' to 'bestie' (exactly the way fix776 changed it): SESSION + PINK (brk-sesspk) stops sending live orders; its paper keeps running exactly as before; any SESSION + PINK position already open keeps its exits (half at 75% / 95% of the way, fix782). BESTIE (V.111 - 2's BEST set ups, flat $5) is the only live book. Every rail unchanged: the umpire, the -$100 day stop, halt, the LIVE switch, one ticket per window, the 1.38x floor, 2-3 PM PT off (skipHoursPT [14] -> main), end date Sat Nov 7. No code changed. Proofs updated so this lineup passes (no other check weakened): akimbo-726, gold-mid-bb-742, v111-2-live-775 also accept 'bestie'.
+- when: 2026-11-06T10:47:02+00:00
+- Love: "Love Nov 6 2026 ~2:38 AM PT: "hun , pls turn session pink off and only run bestie""
+- books: BESTIE (bestie) alone live; SESSION + PINK (brk-sesspk) paper only
+- status: ACTIVE
+- proof: {"code": "data/live-today.json", "has": "\"book\": \"bestie\","}
+- proof: {"test": "tools/v111-2-live-775.cjs"}
+- proof: {"test": "tools/akimbo-726.cjs"}
+
+## R453 - fix782 (extends fix780) HALF AT 75% / HALF AT 95% OF THE WAY TO $1 ON ALL FOUR LIVE BOOKS: a live position main (TOGETHER, recon-tog), REJECTION (recon-rej), SESSION + PINK (brk-sesspk) or BESTIE (bestie) opened, with no slider of hers on it: the first time its bid reaches 75% of the way from its average price to $1, half sells at the bid; the first time its bid reaches 95% of the way, the rest sells (65c in: 91.25c / 98.25c; a bid that jumps past both sells it all); otherwise it rides to the bell. For these four books this replaces the quarter at 75% of the max (fix121) and the paper-follow exit (mirror), and no 90% take profit / trail, gate, lock the win or resting take profit sells them. Unchanged: her own hand trades' take profit, her slider (wins), HANDS OFF, add-ons, the DELAYED book (recon-dly) and every other book's exits, every paper book's scoring, every entry rule and money rail. live-switch "tp780": false turns it off (old exits back).
+- when: 2026-11-06T10:06:03+00:00
+- Love: "Love Nov 6 2026 ~1:42 AM PT: "it needs to be our current one , half at 75 other half at 95" + ~1:53 AM PT: "the same take profit as our main and rej books hun :)" + her card pick ~1:59 AM PT: "75/95 on all four live books""
+- books: main / TOGETHER (recon-tog), REJECTION (recon-rej), SESSION + PINK (brk-sesspk), BESTIE (bestie) - live exits only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "export const BOOKS780 = [\"recon-tog\", \"recon-rej\", \"brk-sesspk\", \"bestie\"];"}
+- proof: {"test": "tools/tp-half-780.cjs"}
+
+## R452 - fix778 BESTIE ALL HOURS: BESTIE joins live-switch shifts.anyHour for BTC and gold, the same way SESSION + PINK (brk-sesspk) already does, so the BTC/GOLD hour map no longer skips her in any hour - including 11 PM and 12 AM (the hours the map gives to nobody). Every rail unchanged: the umpire, the -$100 day stop, halt, the LIVE switch, one ticket per window (first call wins), no flips, the 1.38x floor, 2-3 PM PT off (skipHoursPT [14]), end date Sat Nov 7. Every other book's hours exactly as before (proof checks 3552 hour/side answers). No code changed.
+- when: 2026-11-06T09:31:44+00:00
+- Love: "Love Nov 6 2026 ~1:19 AM PT: "babe did you get that fix in ? the winning set ups only ?" -> told BESTIE had 0 live trades, every BEST take skipped by the BTC/GOLD hour map -> Love's card pick ~1:24 AM PT: variant A, BESTIE through ALL hours of the hour map, including 11 PM-12 AM"
+- books: BESTIE (bestie) - live lineup book, V.111 - 2's BEST-list takes, $5
+- status: ACTIVE
+- proof: {"code": "data/live-switch.json", "has": "\"bestie\""}
+- proof: {"test": "tools/bestie-hours-778.cjs"}
+
+## R451 - fix777 V.111 - 2 INV · HER TAKES FLIPPED · PAPER. Every take of V.111 - 2, the same second, same asset, same 15m window: the OPPOSITE side, priced at that side's real live Kalshi ask in the same read (her long -> short at the no ask; her short -> long at the yes ask; no ask between 1c and 99c = no inverse trade that window, counted as skipped). $20 paper like V.111 - 2, one per window, held to the bell and scored under the same take-profit (half at 75% of the way to $1, the rest trails from 90%, sold 5c off its best bid), settled from Kalshi's own result. Its own file data/v111-2-inv-777.json; settled trades in the fill log as 'V.111 - 2 INV · <set up>' (book 'V.111 - 2 INV', venue 'paper-v111-2-inv' - never 'paper', so nothing mirrors it to Kalshi). PAPER ONLY: no live path, in no live list, never mirrored; BESTIE never reads it (her live rows come from V.111 - 2's own rows, her BEST list matches the raw set up label, never 'V.111 - 2 INV · ...'). Its card 'V.111 - 2 INV · HER TAKES FLIPPED · PAPER' rides in RUNNING right after V.111 - 2; OPEN NOW shows it as 'V.111 - 2 INV (paper)'; the SET UP SCOREBOARD picks it up as its own book; STATS shows its set ups as 'V.111 - 2 INV · <set up>'. V.111 - 2's own trades, card and BESTIE are unchanged. Proof: tools/v111-2-inv-777.cjs; tools/v111-2-770.cjs now also proves her take opens the inverse (and counts her fill-log rows without the inverse's row). Starts from install - no back-fill. Run after CHANGE-121.
+- when: 2026-11-06T09:18:34+00:00
+- Love: "Love Nov 5 2026 ~9:48 PM PT: "and the V.111 version is running at 33% , but that's a good thing we can invert the trades on that 💞""
+- books: V.111 - 2 INV (v1112inv) - paper, every take of V.111 - 2 flipped at the real opposite ask, $20
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112inv.ts", "has": "export function invTake777("}
+- proof: {"code": "src/lib/desk/v1112.ts", "has": "try { invTake777(s.rows[s.rows.length - 1], m); } catch {}"}
+- proof: {"test": "tools/v111-2-inv-777.cjs"}
+
+## R450 - fix776 SESSION + PINK + BESTIE LIVE - PIVOTS OFF LIVE. data/live-today.json lineup goes from 'brk-sesspk,brk15,gmid2,bestie' to 'brk-sesspk,bestie': SESSION + PINK (brk-sesspk) and BESTIE (bestie, V.111 - 2's BEST set ups, flat $5) send to Kalshi; whichever calls the window first gets it, no flips (the other one's opposite call is skipped and logged). +15M PIVOTS (brk15) and GOLD 2M MIDDLE BB (gmid2) are off live; their paper records keep running exactly as before. Every rail unchanged: the umpire, the -$100 day stop (counts both live books), break side, halt, the LIVE switch, one ticket per window, the 1.38x floor, 2-3 PM PT off (skipHoursPT [14] -> main), end date Sat Nov 7 midnight PT. No code changed. Proofs updated so this lineup passes (no other check weakened): akimbo-726 (lineup list also accepts 'brk-sesspk,bestie'), gold-mid-bb-742 (seat 3 must be in the lineup unless the lineup is 'brk-sesspk,bestie'), v111-2-live-775 (lineup = the 4 books or 'brk-sesspk,bestie'). Run after CHANGE-120.
+- when: 2026-11-06T06:01:58+00:00
+- Love: "Love Nov 5 2026 ~9:50 PM PT: "no i want her only on that book hun akimbo is off" + ~9:52 PM PT: "so if bestie beats her she will get in ? and if akimbo breaks she will get in? that's actually a good happy medium honestly but make it session pink only pls not the pivot book i cannot endorse it bb""
+- books: SESSION + PINK (brk-sesspk) + BESTIE (bestie) live, first call wins; +15M PIVOTS (brk15) and GOLD 2M MIDDLE BB (gmid2) paper only
+- status: ACTIVE
+- proof: {"code": "data/live-today.json", "has": "\"book\": \"brk-sesspk,bestie\","}
+- proof: {"test": "tools/akimbo-726.cjs"}
+- proof: {"test": "tools/v111-2-live-775.cjs"}
+
+## R449 - fix775 BESTIE 💞 - V.111 - 2's twin, LIVE ON KALSHI AT $5, her BEST set ups only. Her paper book is unchanged (every take still trades and scores on paper). ADDITIONALLY: the second she takes a set up, the desk checks the BEST tables of the STATS page (THIS WEEK, LAST 4 DAYS, PRIME BOOK - counted exactly as the page counts them; BEST = $ 0 or more). If her set up's label is in BEST in any of the three with 3+ trades and MORE than 50% there, that take goes to Kalshi as her own live book 'bestie' in the live lineup next to AKIMBO (data/live-today.json: brk-sesspk, brk15, gmid2 + bestie - AKIMBO unchanged). Like AKIMBO: her own read is her gate (the main-book walls do not judge her), plus every lineup rail - the umpire must be SAFE, the shared -$100 day stop for the whole lineup, the break-side check, halt and the LIVE switch, the sub-auditor stamp, one ticket per asset per window (first call wins), no flips, the desk's 1.38x price floor, 2-3 PM PT off like the lineup. Size: a flat $5 (live-switch bookDollars bestie = 5, no 3/4 or 1/4 multiple trims for her only - the delayed book's exception; every other book's size unchanged). Exits: the desk's live exit stack (she is not in mirrorPaperBooks). Her card 'BESTIE 💞 · V.111 - 2's BEST SET UPS · LIVE ON KALSHI $5' rides in RUNNING with the lineup; OPEN NOW shows her as 'BESTIE (LIVE $5)'. Add-ons: OFF for BESTIE until data/v111-2-live.json addOns is true - then your Add-on 1 / 2 / 3 boxes apply to her like every other book (no new add-on rule). Off switch: data/v111-2-live.json enabled false (not locked, same file as her add-on switch) - nothing new goes to Kalshi, her paper keeps running. CONTRADICTION, decided by these words: fix770 (R446) made her paper only; its proof now checks that her PAPER book 'v1112' is in no live list, and allows her live copy 'bestie'. The lineup's own end date applies to her too (live-today until Sat Nov 7 midnight PT). AKIMBO's proof (fix726/fix742) now also accepts the 4-book lineup. Run after CHANGE-118.
+- when: 2026-11-06T05:46:18+00:00
+- Love: "Love Nov 5 2026 ~9:25 PM PT: "actually you know what let's place V111 - 2 - best from the set ups only table on at $5 pls we will see if it's her i want to know" + her card picks: venue Kalshi; "Like AKIMBO" (joins the live lineup, her own read + the lineup rails, no main-book walls); "flat $5" (no multiple trims for her) + ~9:26 PM: "and let's create a new twin for her , Prime Book v.2" + "no not that sorry bestie" + "call it bestie" + ~9:34 PM: "you can drop the command for us to put her on Bestie whenever bb, let me do the add on in the toggle switch if i want to after we see how she's doing oki" + earlier picks kept: the BEST tables of STATS THIS WEEK, LAST 4 DAYS and PRIME BOOK ("she can take all of the ones in the best tables for the week and 4 days and most recent , all 3 of them :))"), 3 trades minimum, more than half"
+- books: BESTIE (bestie) - V.111 - 2's BEST set ups live on Kalshi at $5
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112best.ts", "has": "export function decide775("}
+- proof: {"code": "src/lib/desk/grokog.ts", "has": "return [...built, ...v775];"}
+- proof: {"test": "tools/v111-2-live-775.cjs"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "const aoBestie775 = "}
+
+## R448 - fix773 SETUP SCOREBOARD - display only, a new box on the STATS tab. Every book's settled trades (MAIN, REJECTION, REJ ONLY · NO PINK, DELAYED, the 5M / OG pivot books, the paper twins, the paper books' own files - every book on the desk - and V.111 - 2), picked one book at a time, scored per asset | side | set up for THIS WEEK (Monday 12 AM PT, the same week math as STATS BY THE WEEK) and the LAST 24H: trades, wins, hit %, $ net (each book's own exits - take-profit where it has one), avg ask. Two ways to read it: OUR SETUP = the family of the label the book wrote (pink rejection, break through pink, close through pink, zone rejection, Bollinger rejection, band rejection at each sigma / VWAP, pivot rejection, at a band, window open, next band touch, thirds launch, gold clock ...; anything else shows its own label) and HER BAND READ = what V.111 - 2's own brain (v1112.ts, her 60-minute rolling VWAP, half bands, 1m then 5m then window open) calls the minute each trade went in, from the desk's own 1m bars (kept from tonight on - older trades show 'no bars'), so ours and hers line up on the same names. CUT (red) = 10+ trades and hit under 60% or $ under 0, KEEP (green) = 10+ trades, 60%+ and $ over 0, WATCH = under 10 - the 10 and 60 live in data/setup-verdict-rules.json (not locked) so you can change them. Sort by hit % or $. Past weeks from its own archive (data/setup-board-weeks/) only when opened. The scoring runs in its own low-priority background process at most once a minute - no order, entry, wall or size change. Run after CHANGE-117.
+- when: 2026-11-06T05:03:12+00:00
+- Love: "Love Nov 5 2026 ~8:04 PM PT: "we'll let her get some scores overnight , lets score our own trades by these as well , and create a flip at red - break thru pink - etc scoring system for ours alongside it 💘 we can take things up a notch, we have the mechanics stable, now lets choose what she takes""
+- books: every book (display only)
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "<SetupBoard773 />"}
+- proof: {"test": "tools/setup-board-773.cjs"}
+- proof: {"exists": "src/lib/desk/setupboard773.ts"}
+
+## R447 - fix772 V.111 - 2 IN THE RUNNING TABLE - display only. Her card (V.111 - 2 · HER SEP 24 READS · PAPER) now always rides in the green RUNNING box at the top of the SHIFT cards, right after FIVEY, with her W/L, $ and hit % and her trades under it when tapped (open trade, entry time, side, set up, ask / multiple, result). Her open paper trades also show in the OPEN NOW strip at the top of RUNNING, named 'V.111 - 2 (paper)'. She is still PAPER: not on RUN, in no live list, her own fill-log venue - no order, wall or size changes. Run before CHANGE-118.
+- when: 2026-11-06T05:03:10+00:00
+- Love: "Love Nov 5 2026 ~8:23 PM PT: "pls put it in the running table so i dont need to go looking :)""
+- books: V.111 - 2 (paper)
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "|| String(b.book) === \"v1112\" /* fix772 */"}
+- proof: {"test": "tools/v111-2-running-772.cjs"}
+
+## R446 - fix770 V.111 - 2 · PAPER BOOK - her own card in your $$$ group, PAPER ONLY (never sends an order, even with LIVE on; in no live list; its fill-log rows are on their own venue so no copier can pick them up). BTC + gold, Kalshi 15m. Her Sep 24 reads exactly (og-replay.mjs, ported line for line - same code once types are stripped, 0 differences on 6,000 random bar sets): yes, the same half bands (±0.5, 1, 1.5, 2, 2.5, 3σ) on the ROLLING 60-MINUTE VWAP (last 60 1m bars, volume weighted) - the 1m read, then the 5m read (last 12 5m bars), then the window-open read (2+ min left). First look wins, one trade per asset per window, read once a minute on closed 1m bars (minutes 1-14). EVERY set up on - data/v111-2-cut.json is the cut list (empty) so set ups can be switched off later without code. $20 at the real ask, held to the bell, scored under your take-profit; every trade lands in the fill log as 'V.111 - 2 · <set up>' with side and ask, so STATS (this week + all time) and SET UP SCORES score it by set up. Run after CHANGE-113 and CHANGE-114.
+- when: 2026-11-06T03:57:20+00:00
+- Love: "Love Nov 5 2026 ~7:05 PM PT: "Give her her own card, V.111 - 2 ... for now lets get her on paper taking every set up under her rules 💞 we will boil it down rather quickly, shes using the same bands? half ? and the rolling 60M vwap ?""
+- books: V.111 - 2 (paper)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/v1112.ts", "has": "fix770 V.111 - 2 · PAPER BOOK"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.v1112Tick770(snap.assets)"}
+- proof: {"test": "tools/v111-2-770.cjs"}
+- proof: {"exists": "tools/v111-2-equiv-770.mjs"}
+
+## R445 - fix769 RETRY ROWS COUNT UNDER THEIR OWN BOOK (bug fix - no rule, threshold or rail value changes): the risk guard, book watch (ALERTS) and day board read which book owns a live Kalshi ticket from the last part of its key, so a retry row (key ending ':n2', ':m2', ':m3') was filed under a book called 'n2' - e.g. TOGETHER's 5:45 PM BTC +$4.71 tonight. Now the retry tag is stripped first, so it counts under TOGETHER. Today this changes no decision: the per-book bench is off (your Oct 14 call) and the daily stop / give-back count the day's total, which already included it. Run after CHANGE-113.
+- when: 2026-11-06T03:44:12+00:00
+- Love: "Love Nov 5 2026 5:06 PM PT: "the new active ledger for what's on kalshi rn doesn't have its own card still bb , can you give her one so we can see the actual record ? 💓" (bug found building it: a live ticket on a retry row - key ending ":n2" - was counted under a book called "n2" in riskguard / bookwatch / dayboard; fix768 fixed the card, this fixes the shared read)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/riskguard.ts", "has": "fix769: a retry row"}
+- proof: {"test": "tools/book-of-key-769.cjs"}
+
+## R444 - fix768 ON KALSHI NOW, FIXED (display only): the card is pinned first in your $$$ group and first in every sort; its RUN pill is gone (it's a record, not a book); and its count now matches Kalshi's fills - a TOGETHER ticket booked as a second try (':n2', the 5:45 PM BTC +$4.71) was read as a book called 'n2' and fell off the card. No book, rule, order or risk setting changes.
+- when: 2026-11-06T03:44:10+00:00
+- Love: "Love Nov 5 2026 5:06 PM PT: "the new active ledger for what's on kalshi rn doesn't have its own card still bb , can you give her one so we can see the actual record ? 💓" (follow-up to fix766: the card pinned first, no RUN pill on it, and its record matching Kalshi's fills - a TOGETHER ":n2" ticket was read as a book called "n2")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/paperrows.ts", "has": "fix768: the book is the 2nd part"}
+- proof: {"test": "tools/kalshi-now-fix-768.cjs"}
+
+## R443 - fix762 AKIMBO $50 PUSH 🧪 - PAPER ONLY, BTC: a new paper book in your $$$ group. Same lines and walls as SESSION + PINK, but a break fires the first time BTC is $50 past a line it was on the other side of (this minute or last minute) - no 1m candle close needed. Never sends an order; it's here to prove the idea on live data before anything changes live. Replay since Oct 19 ($20, one per window): 223 trades, 53%, +$926, all 3 weeks green (vs SESSION + PINK / +15M PIVOTS BTC 57%, +$690). Run after CHANGE-105 (and 110).
+- when: 2026-11-06T02:26:58+00:00
+- Love: "Love Nov 5 2026 4:22 PM PT: "hun we need to change the candle close rule ... how it was more 71% successful after a push of $50" + her card pick ~4:25 PM: "Paper twin first" (BTC, $50 past the line, no candle close)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix762 AKIMBO $50 PUSH - PAPER TWIN"}
+- proof: {"test": "tools/push50-twin-762.cjs"}
+
+## R442 - fix766 ON KALSHI NOW 💸 · AKIMBO LIVE (display only): a regular card, first in your $$$ group, showing the REAL Kalshi record of whatever is live - AKIMBO (SESSION + PINK, +15M PIVOTS, the gold 2m seat) plus main / TOGETHER in the 2-3 PM hand-over (and any future live-today book) - from Kalshi's own fills and settlements, add-ons included, since AKIMBO went live (Nov 5 6:36 AM PT). $ / W-L / hit %, 4H / 12H / 24H / ALL, tap for each trade. No paper rows. Note: in a window where you also added by hand, Kalshi counts the whole window together. Run after CHANGE-109.
+- when: 2026-11-06T02:26:56+00:00
+- Love: "Love Nov 5 2026 5:06 PM PT: "the new active ledger for what's on kalshi rn doesn't have its own card still bb , can you give her one so we can see the actual record ? 💓""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/paperrows.ts", "has": "fix766 ON KALSHI NOW"}
+- proof: {"test": "tools/kalshi-now-766.cjs"}
+
+## R441 - fix767 STATS BY THE WEEK (display only): the STATS 'ALL TIME' box was really the last 4 days of this paper book's fills, rolling (720 trades, 360W/360L, -$796.61 matched to the cent), so a new day barely moved it. Adds THIS WEEK above it (Monday 12:00 AM Pacific, scored on her side, one row per setup sent to the page) and an ARCHIVE button: each finished week is kept in data/stats-weeks/<monday>.json and is read only when you open it. The old box is relabelled LAST 4 DAYS. No entries, exits, walls or books touched.
+- when: 2026-11-06T02:17:46+00:00
+- Love: "Love Nov 5 2026 5:52 PM PT: "omg the stats page was supposed to be scoring the whole day babez 😹it still hasn’t moved" / 5:54 PM PT: "no i want it to score for the week if possible bb , and keep the older ones in the view only archive so it doesn’t slow her down""
+- books: display only
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/stats-week.ts", "has": "getStatsWeek767"}
+- proof: {"code": "src/components/desk/journal.tsx", "has": "THIS WEEK"}
+- proof: {"test": "tools/stats-week-767.cjs"}
+
+## R440 - fix765 CARDS, NOT LISTS + THE SORTER BY THE BOOKS (display only - no book, rule, order or setting changes): the $ HIGH / $ LOW / HIT % HIGH / HIT % LOW sorter moves down to sit with the book chips (ALL / $$$ / ...), right above the cards it sorts. OG ORIGINAL 10.12 and OUTWARD BREAK become regular cards (in $$$) like the rest, and the long full-width trade lists that already have cards (OG 10.12, OUTWARD BREAK, inverse, momentum, half-band, cup, 70% club, VWAP side, rejection parked) come off the page - tap a card for its trades. RSI BOOKS and ETH REJECTIONS get regular cards too (in $$$); tap RSI for its timeframe / level filters and table, tap ETH for its panel, tap either HIGH MULTIPLE card for its tracker - nothing stays a big scrolling tile. Her sealed OG 10.12 rows are read exactly as they are. Run after CHANGE-108.
+- when: 2026-11-06T02:15:27+00:00
+- Love: "Love Nov 5 2026 4:53 PM PT: "pls put this sorter here by the actual books pls bb / and pls put these in cards , original format like the rest of the cards pls it takes a lil to scroll thru those 😹 and the cards look beautifulll i like the way you made the cards for me :)""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "fix765 SORT BY, by the books"}
+- proof: {"test": "tools/cards-sorter-765.cjs"}
+
+## R439 - fix764 ONE TAP LIVE (display only): the 'Turn LIVE on? Real Kalshi and Polymarket orders will be sent' pop-up is gone - one tap on LIVE turns it on, and the toast 'LIVE is on. Real orders can go out.' confirms it took. The LIVE switch itself, the seal, the umpire and every rail are unchanged; turning LIVE off is unchanged.
+- when: 2026-11-06T02:11:59+00:00
+- Love: "Love Nov 5 2026 4:43 PM PT (photo of the "Turn LIVE on? Real Kalshi and Polymarket orders will be sent, up to $10 each." pop-up): "please remove this""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "fix764 ONE TAP LIVE"}
+- proof: {"test": "tools/one-tap-live-764.cjs"}
+
+## R438 - fix761 AKIMBO SKIP REASONS (log only - no decision changes, sends nothing): SESSION + PINK and +15M PIVOTS used to drop some calls without writing why (the +15M PIVOTS 3-second push gate, the paper floor / ask bounds, 'same refused setup again'). Now each of those writes a reason (at most every 2 s per book + asset) to data/fast-skip.jsonl, like her other books already do - so the next 'she just didn't enter' has an answer. Run after CHANGE-103.
+- when: 2026-11-06T01:50:10+00:00
+- Love: "Love Nov 5 2026 4:17 PM PT: "she misses every entry like this hun we need to fix something ... can you look into why that keeps happening for me bb ?" + 4:19 PM: "broke pink down with a 3x and she didn't enter / something is up w her" (log-only: every silent AKIMBO skip gets a reason)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix761: log-only"}
+- proof: {"test": "tools/akimbo-skip-log-761.cjs"}
+
+## R437 - fix758 BTC AKIMBO ZONE = YOUR OUTER 55%: on BTC, SESSION + PINK and +15M PIVOTS now use the same zone rule as main and rejection (fix594) - no long once price is 45%+ of the way from the pink up to the red zone (the top 55%), no short 45%+ of the way from the pink down to the green - on your board's lines, instead of the $100 / $50 wall. Gold stays exactly as it is. Replay since Oct 19 (BTC, one per window): $100 wall 276 trades 58% +$446 -> 55% rule 771 trades 57% +$696. Run after CHANGE-102.
+- when: 2026-11-06T01:24:30+00:00
+- Love: "Love Nov 5 2026 2:27 PM PT: "oh no we need to update that to the same outer 55% as main and rej. bb / not $2" + 2:29 PM PT (her card): "BTC only, gold stays as is""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix758 BTC AKIMBO ZONE = HER OUTER 55%"}
+- proof: {"test": "tools/btc-akimbo-55-758.cjs"}
+
+## R436 - fix757 AKIMBO BREAK TRACE (log only - changes no decision, sends nothing): once a second for SESSION + PINK and +15M PIVOTS on each asset, it writes what she saw at her break read - the price and how old it was, the last 1-minute candle, the pink, the Kalshi target, her call (or none) and her status - to data/akimbo-break-trace.jsonl. On the next slow break we can see exactly which second she saw it and what held her (like the ~8 s at 1:47 PM BTC). Run after CHANGE-101.
+- when: 2026-11-06T01:03:38+00:00
+- Love: "Love Nov 5 2026 1:59 PM PT: "she still isn't entering in on breaks quick enough hun" + 2:01 PM: "yes pls / and definitely cut that yes that's what the lag is" (a log-only trace to find the seconds between a break and her call)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix757 AKIMBO BREAK TRACE - LOG ONLY"}
+- proof: {"test": "tools/akimbo-break-trace-757.cjs"}
+
+## R435 - fix756 AKIMBO BREAKS SOONER: SESSION + PINK and +15M PIVOTS now call a live break once price is 10c (gold) / $5 (BTC) past the line, instead of 33c / $6 - she gets in earlier. Every other break book keeps your liveBreakDist (33c / $6). Every wall and rail is unchanged. Replay since Oct 19 (simple first-break model): gold 246 -> 278 trades, 63% -> 63%, +$676 -> +$965; BTC 321 -> 328, 54% -> 54%, -$199 -> -$152. Run after CHANGE-100.
+- when: 2026-11-06T00:58:58+00:00
+- Love: "Love Nov 5 2026 1:59 PM PT: "she still isn't entering in on breaks quick enough hun" + 2:01 PM: "yes pls" + 2:04 PM: "yes 10c gold , btc $5 pls" (AKIMBO break distance)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix756 AKIMBO BREAKS SOONER"}
+- proof: {"test": "tools/akimbo-break-sooner-756.cjs"}
+
+## R434 - fix763 THE GAP, MEASURED RIGHT (bug fix, no rule change): the desk deducts the TradingView-vs-Kalshi gap from Kalshi's strike to put the target on your chart. The gap was measured against a target that ALREADY had the last window's gap added, so each window's gap was 'true gap minus last window's gap' and flipped sign window to window (today BTC: +87, -75, -49, +35...; at 4:15 PM BTC the target sat ~$87 under your chart, so every short 'had to cross +1 sigma to reach the target' and was refused). Now: your chart price at the open minus Kalshi's own strike, re-measured whenever Kalshi's strike for that window changes, and any gap over $40 BTC / $3 gold is treated as a bad read (the last good gap carries). Logged every time. Run after CHANGE-99.
+- when: 2026-11-06T00:53:59+00:00
+- Love: "Love Nov 5 2026 ~4:30 PM PT: "okay the price on tradingview needs to be deducted from the price and kalshi bb :)" (bug fix: the window-open chart-vs-Kalshi gap was measured against a target that already had the previous window's gap in it)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix763 THE GAP, MEASURED RIGHT"}
+- proof: {"test": "tools/gap-measured-right-763.cjs"}
+
+## R433 - fix754 ADD-ON 3, YOUR CUSTOM ONE: a third row under Add-on 1 / Add-on 2 in your desk settings - type the multiple (1.5x-10x), the $ ($1-$5), and an on/off toggle (starts OFF until you set it). When a position's price reaches your multiple, ONE buy of your $ on the same side, once per position, on its own (it doesn't wait for Add-on 1 or 2 - whichever multiple price reaches first goes first). Same gates as your add-ons: the desk's own position, no take-profit sell going, BTC / gold, not the delayed twin, minutes left, and the umpire / ENFORCER / LIVE / seal at the order. Run after CHANGE-98.
+- when: 2026-11-06T00:46:55+00:00
+- Love: "Love Nov 5 2026 1:48 PM PT: "can you add in a third custom box there? that lets me type the multiple and then put in the dollar amount ?""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix754 ADD-ON 3, HER CUSTOM ONE"}
+- proof: {"test": "tools/addon-three-754.cjs"}
+
+## R432 - fix753 YOUR ADD-ON 1 BOX SIZES EVERY HOUR: in your off / rejection hours (offHourMain - this afternoon included) the first add-on was sized by an old $2 setting (live-switch offHourMain.addOn.dollars), not your Add-on 1 box. Now, whenever your box is saved, its $ ($1-$5) sizes Add-on 1 in every hour. The off-hour price cap (2.8x) and every other gate are unchanged. Run after CHANGE-97.
+- when: 2026-11-06T00:42:55+00:00
+- Love: "Love Nov 5 2026 1:46 PM PT: "the size level isn't working for the add ons hun , i set it to $5 and its sending out at $2" (+ 1:39 PM: "the add on sizer in app isn't functioning properly bb , i made it $5 and it went with $2")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix753 HER ADD-ON 1 BOX SIZES EVERY HOUR"}
+- proof: {"test": "tools/addon-box-hours-753.cjs"}
+
+## R431 - fix752 ADD-ONS ON FOR AKIMBO: since this morning (fix717 'no add-ons', carried to every AKIMBO seat) any position owned by an AKIMBO book silently skipped Add-on 1 and Add-on 2 - the last desk add-on was 6:36 AM. Now AKIMBO positions take your Add-on 1 / Add-on 2 boxes like your other books, with the same gates: your desk's own position, no take-profit sell in progress, the price cap, once per position, minutes left, and every order still goes through the umpire / ENFORCER / LIVE / seal at the order. Nothing else changes.
+- when: 2026-11-06T00:33:47+00:00
+- Love: "Love Nov 5 2026 1:46 PM PT: "the size level isn't working for the add ons hun , i set it to $5 and its sending out at $2" + 1:49 PM PT (her card): tapped A - "Turn add-ons ON for AKIMBO positions: your Add-on 1 / Add-on 2 boxes apply to them like your other books" + 1:50 PM PT: "yea i want the add ons on. they end up reversing anyways it's a waste of a good dip if not""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix752 ADD-ONS ON FOR AKIMBO"}
+- proof: {"test": "tools/akimbo-addons-752.cjs"}
+
+## R430 - fix751 BACK PAST THE LINE AS FAR AS IT WENT (every book but delayed): her same-candle check - 'this 5m candle broke UP through the pink / a band - a break up is never a short this candle' (and the mirror for longs) - now has the same release your R355 / fix666 gave her other broke-this-candle walls yesterday: once price is back past that line the other way by at least as far as it went past it this candle (e.g. broke up $2 -> needs $2 back under), and never less than your live push ($6 BTC / 10c gold), the trade is free. Every other gate still applies. Replay since Oct 19 (AKIMBO, the new trades only, real ask, 66c floor, 2+ min left, $20): 122 trades, 47% won, +$239. The delayed book keeps the old rule.
+- when: 2026-11-06T00:18:02+00:00
+- Love: "Love Nov 5 2026 1:36 PM PT: "oh yea no we absolutely need to change that to the distance past where it came from thing bb" + 1:37 PM: "no i meant breaks past the other way as far as it went / so broke down by $2 / then flipped the other way and pushed off by $2 / same way we did it yesterday bb" + 1:41 PM: "yess and a few less missed trades i think it's worth it bb""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix751 BACK PAST THE LINE AS FAR AS IT WENT"}
+- proof: {"test": "tools/break-back-751.cjs"}
+
+## R429 - fix760 $$$ (display only - no order, rule or setting changes): a new family chip on the Books page, first in the list, named $$$ 💸, holding all our new books - AKIMBO card, SESSION + PINK, +15M PIVOTS, the gold 2m middle seat, BTC 5m middle, the AKIMBO + BTC twin card, ALL-BOLLINGER, main wait-distance twin, the inverse book, BRICK no pivot wall, and last night's paper books (momentum, high multiple both ways, 70% club, half-band, cup, VWAP side, rejection parked). They move into $$$ (the now-empty AKIMBO and TONIGHT'S PAPER chips are removed); RUNNING, the tiers and the find box are unchanged.
+- when: 2026-11-06T00:12:12+00:00
+- Love: "Love Nov 5 2026 4:02 PM PT: "can you make a new subgroup in the navigation section for all Of our new ones ?:) just $$$ is fine idk what else to name them lol""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "fix760 $$$"}
+- proof: {"test": "tools/money-family-760.cjs"}
+
+## R428 - fix750 PAPER-NOT-ON-KALSHI FLAG + EVALUATION (log / alert only - no rule changes, never sends): her silent alarm (CHANGE-78) now also flags an AKIMBO paper entry the copier never attempted at 20 s (was 2 min), and every flag gets an automatic evaluation of why - the copier's status and reasons, seconds from paper to first attempt, copy timing (wait / gates / order ms, live vs paper ask), the 66c floor, the umpire, LIVE, entries on/off, her hand window, and the wall lines for that book + window - written to data/paper-not-kalshi.jsonl and added to the ALERTS line and the Mac ping as 'WHY: ...'. Nothing else changes.
+- when: 2026-11-05T23:50:32+00:00
+- Love: "Love Nov 5 2026 1:34 PM PT: "can you set up a flag for any orders that were sent out on paper and didn't make it to kalshi , when one does have it trigger an evaluation of why until we see what's halting them and fix that""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/akimbowatch.ts", "has": "fix750 PAPER-NOT-ON-KALSHI EVALUATION"}
+- proof: {"test": "tools/paper-not-kalshi-750.cjs"}
+
+## R427 - fix748 POLYMARKET OBEYS THE UMPIRE: Kalshi's ENFORCER refuses every opening order while the umpire is not SAFE, but the Polymarket route (the $2 rejection / delayed copies) never asked the umpire - so while Kalshi was frozen this morning, Polymarket could still open orders. Now an opening Polymarket BUY needs the same SAFE stamp; no verdict = no order. Sells and closes are never blocked. Nothing else changes. Run after CHANGE-90.
+- when: 2026-11-05T23:48:05+00:00
+- Love: "Love Nov 5 2026 1:03 PM PT: "the 5M bollinger breaks are 71% on btc , pls route those orders to polymarket at $5" - checking that route found Polymarket never asked the umpire; her standing rule (Oct 29 2026 11:46 AM PT): "if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/poly-live.server.ts", "has": "fix748 POLYMARKET OBEYS THE UMPIRE"}
+- proof: {"test": "tools/poly-umpire-748.cjs"}
+
+## R426 - fix759 NO FLIPS: the desk never sells a held live position to take the other side. AKIMBO: whichever book holds the window keeps it - when +15M PIVOTS calls the opposite of SESSION + PINK's filled ticket (or the other way round), the call is skipped and logged 'NO FLIPS - holds LONG/SHORT' (was: pivot sold your position and tried to flip, which at 3:02 PM BTC sold your Down for -$3.25 and then couldn't go long). The old change-her-mind flip (':m2' / ':m3' rows) is off too. A try that never filled no longer counts as holding the window, so the other book can still enter normally. Take-profit and exits are unchanged. Paper cards keep tracking as before (the AKIMBO card still shows 'pivot gets the sticks' on paper). Run after CHANGE-103.
+- when: 2026-11-05T23:40:13+00:00
+- Love: "Love Nov 5 2026 3:10 PM PT: "yo why did she exit a trade early ????" + 3:12 PM PT: "no babe don't ever flip a position" (3:00 PM BTC: the AKIMBO flip sold her filled short when +15M PIVOTS called long, then pivot's long was blocked - she was left flat and Down won)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix759 NO FLIPS"}
+- proof: {"test": "tools/no-flips-759.cjs"}
+
+## R425 - fix755 AKIMBO STEPS ASIDE 2-3 PM PT (every day while AKIMBO is on): from 2:00 to 3:00 PM PT the AKIMBO books stand aside everywhere (copier, door, last line, send gates, bell, silent alarm, LIVE TODAY card) and your normal lineup + hour pills trade that hour, exactly as when AKIMBO is off (your pills at 2 PM: BTC = main, gold = rejection model; delayed both). Every rail stays. Other hours unchanged. It's one setting (data/live-today.json skipHoursPT: [14]) - more hours can be added later.
+- when: 2026-11-05T22:33:27+00:00
+- Love: "Love Nov 5 2026 2:02 PM PT: "and during 2 -3 pm we run main" + "she trades the red /green zone flips and bollingers and pinks" + 2:05 PM PT: "main can go on for rn bb it's ok" (AKIMBO steps aside 2-3 PM PT; her lineup and pills trade that hour)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix755: AKIMBO steps aside"}
+- proof: {"test": "tools/akimbo-aside-755.cjs"}
+
+## R424 - fix746 MAIN · ZONE WALL + MOVING-OFF TWIN - PAPER ONLY: a paper twin of the main book. Every call main books, the twin takes too - except not into her green / red zone ($2 gold / $100 BTC), and a REJECTION or a BREAK / push only once price is already $50 BTC / $1 gold past the line it was called on (Love 12:48 PM: main exactly, just waits those distances on pushes). If price isn't there yet the twin waits and books later in the same window when it gets there, at that moment's price (under 66c, 2+ minutes left) - the real priced result, not a filter (the filter replay was 643 trades, 54%, +$696 vs main 51%, -$1,001). Main itself is unchanged; the twin never sends an order. Run after CHANGE-88.
+- when: 2026-11-05T21:54:48+00:00
+- Love: "Love Nov 5 2026 12:42 PM PT: "how much did it effect our main books positively ? and waiting for a push that distance didn't make our winrate go up for the other books bb ?" + 12:43 PM: "pls do test those yes i want our win rate at 70% :)" (a paper twin of the main book with the zone wall and rejections taken once moving off the line)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix746 MAIN · ZONE WALL + MOVING-OFF TWIN"}
+- proof: {"test": "tools/main-twin-746.cjs"}
+
+## R423 - fix745 ALL-BOLLINGER BOOK - PAPER ONLY: one ticket per asset-window, the first of these on a closed 1m candle: gold - crossing the 2m Bollinger middle, closing over the 2m upper band (long) / under the 2m lower band (short), or closing back under the 2m upper band after being over it (short); BTC - crossing the 5m middle, or closing over / under the 2m upper / lower band. Zone wall ($2 / $100), ask up to 66c, 2+ minutes left. Replay since Oct 19 ($20): 329 trades, 67%, +$2,228, green 15 of 18 days, worst day -$43 (bands rebuilt from 1m bars - close, not exact). Its own card; never sends an order. Run after CHANGE-87.
+- when: 2026-11-05T21:13:01+00:00
+- Love: "Love Nov 5 2026 12:43 PM PT: "pls do test those yes i want our win rate at 70% :)" (the ALL-BOLLINGER book, paper)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix745 ALL-BOLLINGER BOOK - PAPER ONLY"}
+- proof: {"test": "tools/all-bb-745.cjs"}
+
+## R422 - fix743 BTC 5M MIDDLE BOLLINGER SEAT: a new paper book, BTC only - when a closed 1m candle crosses the 5m Bollinger middle line (20-period average of 5m closes) it trades the break that way, once per window, 2+ minutes left, within her 1.5x floor, not into her green / red zone ($100). Replay with exactly these rules since Oct 19 ($20): 95 trades, 62%, +$319, green 13 of 17 days. (seat-only figures pending) PAPER ONLY (Love 12:30 PM: "yes we can just do gold , for rn bb ... we will test our card with one that has btc added and see how it does today"): it is NOT in AKIMBO and never sends an order - its own card, to watch next to AKIMBO. As an AKIMBO seat it would have added little (15 own windows +$30; 13 windows it calls first -$86), so it stays on paper. Plus a full AKIMBO twin card on paper (fix744: AKIMBO + BTC 5M MIDDLE · TWIN): AKIMBO's exact rules over SESSION + PINK, +15M PIVOTS, the gold 2m middle seat and this BTC book, $10, clean slate - to compare with the AKIMBO card today. Run after CHANGE-86.
+- when: 2026-11-05T21:02:13+00:00
+- Love: "Love Nov 5 2026 12:24 PM PT: "yes pls ... but for now yes we can add them into this book" (BTC 5m middle Bollinger break as an AKIMBO seat, after the 12:05 PM gold one: "can you test for the middle bollinger breaks")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix743 BTC 5M MIDDLE BOLLINGER SEAT"}
+- proof: {"test": "tools/btc-mid-bb-743.cjs"}
+
+## R421 - fix742 GOLD 2M MIDDLE BOLLINGER SEAT: a new paper book, gold only - when a closed 1m candle crosses the 2m Bollinger middle line (20-period average of 2m closes) it trades the break that way, once per window, 2+ minutes left, within her 1.5x floor, and not into her green / red zone ($2). Replay since Oct 19 ($20): 146 trades, 60%, +$886, green 14 of 15 days. It is AKIMBO's third seat live (data/live-today.json: brk-sesspk, brk15, gmid2): it only gets a gold window neither SESSION + PINK nor +15M PIVOTS took first; one ticket per window; pivot still gets the sticks; the same -$100 daily stop; the instant bell, price-on-the-break-side check (its line = the 2m middle), silent alarm and her live lists all cover it. Its own card (shows in RUNNING while AKIMBO is on). Run after CHANGE-85. Proof tests updated (intent kept): tools/akimbo-726.cjs now accepts live-today 'brk-sesspk,brk15' OR 'brk-sesspk,brk15,gmid2' (both books still required, every other check unchanged); tools/zone-wall-741.cjs counts the akimbo books' zone-wall call exactly once (zoneWall741(b, id, look!.side) - the seat has its own call), all its fire/skip checks unchanged.
+- when: 2026-11-05T20:38:52+00:00
+- Love: "Love Nov 5 2026 12:05 PM PT: "can you test for the middle bollinger breaks ???? gold specifically i'm prettty sure those are gonna be noice" + her card pick 12:07 PM: "Third AKIMBO seat" (gold 2m middle-Bollinger break goes live inside AKIMBO, only taking gold windows neither book called; one ticket per window still)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix742 GOLD 2M MIDDLE BOLLINGER SEAT"}
+- proof: {"test": "tools/gold-mid-bb-742.cjs"}
+
+## R420 - fix741 AKIMBO ZONE WALL: the akimbo books skip a break that runs into her green / red zone - a short with the green zone (5m S1 of the last closed 5m candle) just below price, a long with the red zone (5m R1) just above: SESSION + PINK within $2 gold / $100 BTC, +15M PIVOTS within $1 / $50. A paper-book rule, so live (1:1) never sends those; each skip written to data/zone-wall.jsonl. Today's 11:31 gold short (green $2.39 below) is the kind it is for. Replay since Oct 19 at $20: SESSION + PINK 61% -> 68%, +$1,570 -> +$1,860 (green 10 -> 14 of 16 days; with the 15m BB wall +$1,903); +15M PIVOTS 57% -> 60%, +$1,157 -> +$1,557 (green 12 -> 13). About half as many SESSION + PINK trades. EXCEPT a rejection that is really moving off (Love 11:53 AM: "not immediately on the flip ... like red by $50 or something like ACTUALLY FALLING off"): a break back across its line after price was on the other side in the last 3 min, already $50 BTC / $1 gold off that line, passes the wall (replay: those were 62-66% winners, +$442 together). Run after CHANGE-84.
+- when: 2026-11-05T20:09:50+00:00
+- Love: "Love Nov 5 2026 11:53 AM PT: "so these books will not take any rejections at all ..? ... maybe we can have her have more strict settings on those? and not immediately on the flip? like red by $50 or something like ACTUALLY FALLING off" + 11:45 AM PT: "how was today's fill pivots ????? it was almost at the green that would be long wouldn't it ??" + 11:47 AM: "yes" (to the AKIMBO ZONE WALL: no short with the green zone just below, no long with the red just above - SESSION + PINK $2 gold / $100 BTC, +15M PIVOTS $1 / $50) + 11:59 AM PT: "yes bb ... can you see what the difference in multiple even is? it's nothing isn't it like .2 or something max for an infinitely more confident trade worth it bb ... yes""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "export function zoneWall741("}
+- proof: {"test": "tools/zone-wall-741.cjs"}
+
+## R419 - fix740 SESSION + PINK 15M BOLLINGER WALL: BREAK BOOK · SESSION + PINK skips a break whose direction runs INTO the opposite 15m Bollinger band (BB 20, 2σ, the same bands as TradingView, on 15m candles) within $50 BTC / $1 gold - a short with the lower band that close below, a long with the upper band that close above. It is a paper-book rule, so live (1:1 with paper) never sends those either; each skip is written to data/bb15-wall.jsonl. +15M PIVOTS unchanged. Replay since Oct 19 at $20: +$1,568 -> +$1,779, green days 10 -> 12 of 16, better in all three weeks. Run after CHANGE-83.
+- when: 2026-11-05T20:02:31+00:00
+- Love: "Love Nov 5 2026 11:39 AM PT: "we should have her use those as a wall instead of the old rsi bollingers we were using that you said held up the least and needed to get kicked lol" + her card pick 11:42 AM: "Yes, SESSION + PINK only" (to "Add a 15m Bollinger wall to SESSION + PINK?")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "export function bb15Wall740("}
+- proof: {"test": "tools/bb15-wall-740.cjs"}
+
+## R418 - fix739 AKIMBO PRICE ON THE BREAK SIDE: for SESSION + PINK and +15M PIVOTS, a 'Break/Close above|below <line>' call only sends - the first order and every re-knock - while the live price is still on the break side of that line (long above it, short below it). If price has gone back across, she stops knocking ('BACK ACROSS <line> (fix739)', which the silent alarm shows). No 1m close needed. Lines: session bands, pink, 5m pivots (her board) and 15m pivots (kept from the pivot book each pass). A line it can't read = no change. Akimbo books only; no other gate is turned back on; all rails kept.
+- when: 2026-11-05T19:41:09+00:00
+- Love: "Love Nov 5 2026 11:35 AM PT: "no , it just needs price on the same side of the break when she enters hun she doesn't need a close""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function breakSide739("}
+- proof: {"test": "tools/break-side-739.cjs"}
+
+## R417 - fix738 GATE KEY: two commands that stay on your Desktop - UNLOCK-GATE and RELOCK-GATE. UNLOCK: the no-removal gate keeps printing its full warning (in that window, in ALERTS, in data/gate-unlock.jsonl) but no longer stops her, and the umpire re-checks right away; a red GATE UNLOCKED line shows on the LIVE TODAY row. RELOCK: takes a fresh save of her as she is, turns the gate back on, umpire re-checks. Only the no-removal gate - every other umpire check, the ENFORCER, LIVE, seal, freshness, the 90 s stale guard, the stops, one position per asset, one ticket per window, hand windows, under 30 s, the 1.5x floor all stay. Run after CHANGE-81.
+- when: 2026-11-05T19:11:54+00:00
+- Love: "Love Nov 5 2026 ~10:59 AM PT: "it's killed a whole morning blocking her , and all of her rules are actually functioning bc of you i only needed the umpire to block her from firing backwards and you fixed her , so let me unlock her with a command myself and leave it stationary on the desktop i will unlock it after it gives me a warning like that and put it back on when im done okay" + ~11:01 AM: "yeah command 80 is saying i can't do it without unlocking it so yes we'll do the lock and keep it on the desktop and i'll put it back on when we're done implementing changes still have it give me the warning , and i'll come to you and ask what happened w it :)""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/no-removal-gate.py", "has": "fix738 GATE KEY"}
+- proof: {"test": "tools/gate-key-738.cjs"}
+
+## R416 - fix737 THE NO-REMOVAL GATE IGNORES HER LIVE SWITCH: every umpire stop today after a CHANGE was this gate reading her own LIVE flip (live / at / note / liveBook.since) as 'settings changed without her words'. Those keys and her size slider (maxDollars, liveBook.dollars) are hers - the umpire gate, verify-golden and the wire seal already treat them that way - so this gate now skips them. Every other setting, her lineup (liveBook.books), every code file and every rule are still guarded exactly as before. This command also finishes CHANGE-80 (its window closed early): re-locks its two files in concrete and marks it done under R415. Running it restores the umpire's SAFE.
+- when: 2026-11-05T19:01:40+00:00
+- Love: "Love Nov 5 2026 ~10:57 AM PT: "please disable this hun for me to unlock and then relock when i want to" (the no-removal gate stopping her every time she flips LIVE)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/no-removal-gate.py", "has": "HER_HANDS737"}
+- proof: {"test": "tools/gate-ignores-live-737.cjs"}
+
+## R415 - fix736 AKIMBO CARDS IN RUNNING (display only): while akimbo (live-today) is on, the real cards of BREAK BOOK · SESSION + PINK and BREAK BOOK · +15M PIVOTS ride first in the RUNNING table with the other running books - the same cards (stats, KALSHI TODAY, trades on tap), and they stay in their groups too. Their RUN button, your lineup, the seal and what trades live are untouched. Run after CHANGE-79.
+- when: 2026-11-05T18:56:57+00:00
+- Love: "Love Nov 5 2026 10:37 AM PT: "can you put both of the ACTUAL cards in the running table babez ? i want to have them both right there so i don't have to find them in the groups" + 10:41 AM: "can you put the cards in the Running Table that our other books are in hun ? i want to be able to see them without digging""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "lt736.includes(b.book) /* fix736 */"}
+- proof: {"test": "tools/akimbo-running-736.cjs"}
+
+## R414 - fix735 AKIMBO INSTANT BELL: the akimbo books (SESSION + PINK, +15M PIVOTS) book their calls on the pivot ledger (grok-og.json), which - unlike the main books' night book - had no bell to wake the copier, so a call could wait for the copier's next pass (8:45 AM BTC long 12 s, 10:04 AM BTC long 16 s; other calls 0.1-0.3 s). Now the pivot ledger rings the copier the instant it writes a new call of a live-today book (under 60 s old, once per call), exactly like the main books' DIRECT WIRE. Same copier, same gates, every rail kept (umpire, ENFORCER, LIVE, seal, fresh prices, 90 s stale guard, stops, one position per asset, one ticket per window, hand windows, under 30 s left, the order price limit). Run after CHANGE-78.
+- when: 2026-11-05T18:48:13+00:00
+- Love: "Love Nov 5 2026 ~10:19 AM PT: "can you wire them to go out at the same time? or send the live path to kalshi , and have paper get it second ? so she gets the better prices than paper does""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "fix735 AKIMBO INSTANT BELL"}
+- proof: {"test": "tools/akimbo-bell-735.cjs"}
+
+## R413 - fix734 AKIMBO SILENT ALARM (alert only - never places, holds or changes an order): whenever SESSION + PINK or +15M PIVOTS books a paper entry and live has no fill for that window - at once if the copier writes down a hold / refusal / drop (with its exact reason: wall, hold, retry door, umpire, stale call, daily stop, price ran...), or 2 minutes after the paper entry with nothing filled - she raises one alert: a Mac notification with a sound, a row on the desk's alarm bar (ALERTS), a red line on the LIVE TODAY row (last 30 min), and data/akimbo-silent.jsonl. Windows you traded by hand are written down quietly (no sound); a second call in a window the other akimbo book already holds on the same side is one-ticket-per-window, not an alert. Run after CHANGE-76 and 77.
+- when: 2026-11-05T18:35:43+00:00
+- Love: "Love Nov 5 2026 10:13 AM PT: "pls set up 2 minute monitor for her , that pings if she's silent on a window ; after entering on paper or some kind of signaling something stopped her so we can remediate the cause before the next window""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/akimbowatch.ts", "has": "fix734 AKIMBO SILENT ALARM"}
+- proof: {"test": "tools/akimbo-silent-734.cjs"}
+
+## R412 - fix733 UMPIRE QUICK RECHECK: when the umpire's ONLY complaint is 'her code changed while the umpire ran' (a timing clash, not a broken rule), the desk re-checks her 3 seconds after her files settle instead of waiting the 5-minute retry - a pause like today's 9:40 AM clears in about a minute by itself. Any real failure (a rule OUT, the request book, the no-removal gate, golden, seal) is exactly as before: NOT SAFE blocks every opening order and retries every 5 minutes. Run after CHANGE-76.
+- when: 2026-11-05T18:21:55+00:00
+- Love: "Love Nov 5 2026 9:43 AM PT: "let's set up a safe path for these two books , so the umpire can't shut down the whole desk if she is doing what she's supposed to be doing" (part B: quick re-check after a mid-run code change)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/umpire-gate.ts", "has": "fix733: the ONLY complaint was a mid-run code change"}
+- proof: {"test": "tools/quick-recheck-733.cjs"}
+
+## R411 - fix732 COMMANDS TAKE TURNS: today's umpire pauses (12:57, 3:28, 3:44-3:50, 4:01, 5:18, 5:29, 7:13, 8:44, 9:40 AM PT) were all 'her code changed while the umpire ran' - two CHANGE commands running at the same time. Every CHANGE sources tools/concrete.sh first; it now holds a lock (data/.change-running-732) for the whole run, so a second CHANGE opened meanwhile shows WAITING and starts by itself the moment the first finishes. A lock from a closed window clears itself. No umpire check is changed. Run this one ALONE (it cannot protect its own install).
+- when: 2026-11-05T17:52:30+00:00
+- Love: "Love Nov 5 2026 9:43 AM PT: "let's set up a safe path for these two books , so the umpire can't shut down the whole desk if she is doing what she's supposed to be doing" (part A: CHANGE commands take turns)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/concrete.sh", "has": "fix732 COMMANDS TAKE TURNS"}
+- proof: {"test": "tools/take-turns-732.cjs"}
+
+## R410 - fix730 AKIMBO EXEMPT AT THE WIRE (Love's words, 9:25 AM): a deliberate exception to her Oct 20 immutable wall at the wire, for the akimbo books only (SESSION + PINK and +15M PIVOTS, while live-today is on - it ends with it). Their own opening orders (marked by the copier in enterLive, good 30 s) skip the wall's geometry (red/green zones, pink-to-red top 55%, thirds, the impossibility) so live takes what their paper books take; the seal and the fresh band list / fresh price checks still apply. Two more copier gates stand down for them too: the pink-slide hold (fix658, held the 9:01 and 9:16 BTC shorts) and the not-a-break-above re-check at the order. Since 8:46 these stopped 7 of 8 akimbo calls. KEPT for them: umpire, ENFORCER, LIVE switch, the seal, fresh band list + fresh price at the wire, the stale-call guard (90 s), the -$100 akimbo stop, the -$200 desk stop + give-back, one BTC / one gold position, one ticket per window, hand-trade windows, under 30 s left, the sub-auditor stamp. Supersedes the split 75/76. Umpire, ENFORCER, LIVE switch, daily stops unchanged; every other book and hand orders unchanged. Run after CHANGE-74.
+- when: 2026-11-05T17:39:46+00:00
+- Love: "Love Nov 5 2026 9:30 AM PT: "do your thing bb, pls check against all other potentialities and we will cover them all in one if we need to okay" + 9:25 AM PT: "ohhh so that's whyyy she's not taking anything ? okay GOOD let's fix both / yes / akimbo exempt , 1:1 with their paper records individually- combined ledger pls / my words" (a deliberate exception to her Oct 20 immutable wall at the wire, for the akimbo books only, while live-today is on; + 7:37 AM: "she needs to take the same trades as both books")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix730 AKIMBO EXEMPT AT THE WIRE"}
+- proof: {"test": "tools/akimbo-wire-730.cjs"}
+
+## R409 - fix729 AKIMBO RETRY KNOCKS: when her first order for a window does not fill at once, the copier retries for up to ~15 s, and each retry ran the auditor-grade door (fix523). SESSION + PINK and +15M PIVOTS are not in her flag table, so that door answered 'unknown book - no order' and the retry stopped (8:39 AM BTC SESSION + PINK try) - live missed trades paper took. Now the live-today books skip only that one retry door, the same way they already skip it at the last line (fix717). The door right before it (bandLockCheck) still runs every knock, and the umpire, ENFORCER, LIVE switch, freshness and both daily stops all still apply. Every other book unchanged.
+- when: 2026-11-05T17:39:37+00:00
+- Love: "Love Nov 5 2026 7:37 AM PT: "let her skip them too btw *** she needs to take the same trades as both books""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix729: the live-today (akimbo) books skip only this retry door"}
+- proof: {"test": "tools/akimbo-retry-729.cjs"}
+
+## R408 - fix727 AKIMBO CARD: a new card AKIMBO · SESSION + PINK × 15M PIVOTS ✨ (clean slate) - the akimbo pair's paper book exactly as CHANGE-71 trades it live (one ticket per window, the first of the two books to call it; when +15M PIVOTS calls the other side of a SESSION + PINK ticket, that ticket is sold at the bid and pivot's side is taken; a SESSION + PINK call against a pivot ticket is ignored), $10 a ticket, from zero at install (kept in data/akimbo-book-727.json). Same card as every book (W/L, hit %, $, 4H/12H/24H/ALL, tap for trades), under its own AKIMBO 🤹 chip first in the list, right under the LIVE TODAY row; the LIVE TODAY row now counts both books' live Kalshi trades today. Display only - the copier never reads it. Run after CHANGE-71 (and 65).
+- when: 2026-11-05T16:43:40+00:00
+- Love: "Love Nov 5 2026 7:42 AM PT: "pls create a new combined card Akimbo so she has a clean slate""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/akimbocard.ts", "has": "fix727 AKIMBO CARD"}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "ak727.akimboRows727()"}
+- proof: {"test": "tools/akimbo-card-727.cjs"}
+
+## R407 - fix720: while live-today is on (data/live-today.json, through Sat under CHANGE-71), every live-today book also skips the copier's slide / climb-under-pink hold for other books (fix490 - engine.ts), so its live calls match its paper card. Replay since Oct 19 for BREAK BOOK · SESSION + PINK: the calls that hold would have stopped = 320 trades, 60%, +$404 at $20 (+$101 at $5) - the same as the rest. Main / rejection keep their own slide hold; every other book keeps fix490; when the switch is off or expired, nothing is different from today. Both akimbo books (SESSION + PINK and +15M PIVOTS) skip it while CHANGE-71 is on. Run AFTER CHANGE-71.
+- when: 2026-11-05T16:43:33+00:00
+- Love: "Love Nov 5 2026 7:37 AM PT: "let her skip them too btw *** she needs to take the same trades as both books" (the copier slide / climb-under-pink holds; earlier 6:47 AM PT question whether the copier's slide / climb-under-pink holds help or hurt BREAK BOOK · SESSION + PINK; replay: the trades they hold won 60% and made +$404 at $20 (+$101 at her $5) - her card pick to let today's one live book skip them"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix720: today's live book(s) skip the slide"}
+- proof: {"test": "tools/one-book-no-slide-hold-720.cjs"}
+
+## R406 - fix726 AKIMBO - PIVOT GETS THE STICKS: BREAK BOOK · SESSION + PINK and BREAK BOOK · +15M PIVOTS are both her live books through Sat Nov 7 PT (data/live-today.json book 'brk-sesspk,brk15', until 2026-11-08 08:00 UTC). One ticket per asset-window, the first book to call it. When they disagree, +15M PIVOTS gets the move: if pivot calls the other side of a SESSION + PINK ticket, that ticket is sold at the bid and pivot's side is taken (her change-her-mind flip, all gates still run); if SESSION + PINK calls the other side of a pivot ticket, pivot keeps it and no order goes. Both judged by their own gates (her walls stand down for these two books), no add-ons, one -$100 daily stop counting both. Every akimbo sell/keep is logged in data/akimbo-726.jsonl. Replay since Oct 19 at $10: +$1,153, green 14 of 17 days, worst day -$41 (first call wins +$1,058 / -$76; sell-and-sit-out +$1,052 / -$59). Run AFTER CHANGE-73 and CHANGE-63 (built on top of both); CHANGE-70 is retired (this replaces it). CHANGE-63 turns it all off.
+- when: 2026-11-05T16:43:23+00:00
+- Love: "Love Nov 5 2026 7:25 AM PT: "just have her take the first one to make it there bb" + 7:26 AM: "yes / time to get serious" + 7:32 AM: "we will run it that way for the week bb. can you test something on there for me though? i want to see what giving pivot the move would do when she would be skipping, or if it's a choppy hour and price breaks a band first, then hits a pivot and then reverses. that's the most likely turn of events. can you see what passing pivot the sticks does to the numbers in those positions?" + her card pick 7:34 AM: "Pivot gets the sticks, always""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix726 AKIMBO - PIVOT GETS THE STICKS"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix726 AKIMBO: both live-today books"}
+- proof: {"test": "tools/akimbo-726.cjs"}
+
+## R405 - fix718 NORMAL LINEUP BACK: turns ONE BOOK LIVE TODAY off (data/live-today.json on: false) - her normal live lineup and schedule trade again, BREAK BOOK · SESSION + PINK goes back to paper, her walls judge every book but delayed again. No code changes (the switch also expires by itself at midnight PT). Run after CHANGE-62.
+- when: 2026-11-05T16:42:58+00:00
+- Love: "Love Nov 5 2026 6:03 AM PT: "dude just put brick on for the day wut r we doin here" + 6:36 AM PT: "but just as of looks compared to the other ones ye run this one" (BREAK BOOK · SESSION + PINK) - one book live for today with only its own gates, a second exception to her Oct 31 law (like the delayed book), today only - and the one-run way back"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"test": "tools/one-book-live-717.cjs"}
+
+## R404 - fix728 THE WATERFALL ON BTC FOR MAIN + REJECTION: her bottom-rung wall (fix296, no BTC short under the session -2σ) lets a short through for main (recon-tog) and rejection (recon-rej) when the running 1m candle is red (price under its open) and no 1m candle closed over pink in the last 15 minutes (her rule: a real reversal blows up through pink). Pink history comes from the copier's own 1-second price + pink sampler; with under 15 minutes of it (right after a restart) the wall stays. Every other wall still judges the short; every other book, gold and the delayed book keep the old rung rule. Works under AKIMBO (main + rejection trade paper) and after CHANGE-63 (they trade live again). Replay Oct 19 - Nov 5, real asks, $20: 37 shorts, 65%, +$323. Replaces the resting CHANGE-59 ($50 green-candle guard). Run FIRST (before CHANGE-63 and the later CHANGE-71).
+- when: 2026-11-05T16:39:52+00:00
+- Love: "Love Nov 5 2026 5:34 AM PT: "we can turn the waterfall on btc but if it has a meaningful move up past pink or has a green rejection move up strongly don't take the short" + 5:43 AM PT: "ya go ahead and put it on love ... we will let her take the shorts down here, just not if there's a sharp spike up to the red band. back down into no mans land it will blow right up thru pink if it's actually reversing" + 7:48 AM PT: "did we put the shorts allowed rule under the bottom rung on for btc on the main book and rej? will run her on there til we have the new books live""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function fall728("}
+- proof: {"test": "tools/waterfall-btc-728.cjs"}
+
+## R403 - fix719 FULL HISTORY ON CARDS (display only): nothing was deleted - the lane books' older trades are all in data/grok-og-archive.jsonl, but that file passed 536 MB (the most one JavaScript string can hold), so the desk's first read of it after every start threw and every lane card (BREAK BOOK · SESSION + PINK, OG x PIVOT 5M, PAPER 24/7...) fell back to its recent rows only (e.g. 21 trades instead of 1,412). The reader now takes the file in 64 MB pieces and keeps its newest 480 MB (about the size it held fine before - since about Oct 15 today), so each card's ALL shows its record again. No book, wall, size, order or exit changes; the night books (DIAMOND, BRICK...) already read their full history from the exit ledger and are unchanged.
+- when: 2026-11-05T15:13:13+00:00
+- Love: "Love Nov 5 2026 6:36 AM PT: "is there any way we can recover the records for these hun ??? :((( i didn't know it would be deleting everything i never would have done it ... no way we can fix that? it's hard to get a read on things with 15 trades""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/archcache.ts", "has": "export const ARCH_CAP719 = 480 * 1024 * 1024"}
+- proof: {"test": "tools/full-history-719.cjs"}
+
+## R402 - fix722 LIVE TODAY ON TOP (display only): while ONE BOOK LIVE TODAY is on (data/live-today.json), a pinned green row at the top of the SHIFT books shows which book is live (BREAK BOOK · SESSION + PINK today), until when, its daily stop, and its live Kalshi trades since midnight PT (W/L and $, the same count the stop uses), refreshed every 20 s. Hidden when nothing is live-today. Her RUN buttons and lineup are untouched (tapping RUN would change her sealed lineup). Needs CHANGE-66 installed first (same fns / app files).
+- when: 2026-11-05T15:13:00+00:00
+- Love: "Love Nov 5 2026 ~6:54 AM PT: "can you put her in the running table? super hard to find her""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/fns.ts", "has": "export const getLiveToday722"}
+- proof: {"test": "tools/live-today-on-top-722.cjs"}
+
+## R401 - fix721 REGULAR CARDS FOR TONIGHT'S PAPER BOOKS (display only): MOMENTUM, HIGH MULTIPLE (one card for the reversal at the farthest band, one for the with-the-rip twin), INVERSE, 70% CLUB, HALF-BAND KEEP, CUP, MAIN · VWAP SIDE and REJECTION · PARKED SIDE now show up as regular SHIFT book cards - $, W/L, hit %, 4H / 12H / 24H / ALL, tap for their trades, the sort buttons and the BEST / WORST tiers - in a new family chip TONIGHT'S PAPER 🧪. Their own panels stay. Read from each book's own file (they never send an order); the copier never reads these rows. Needs CHANGE-61 (cup book) installed first (same fns / app files).
+- when: 2026-11-05T15:12:50+00:00
+- Love: "Love Nov 5 2026 ~6:48 AM PT (about the MOMENTUM and HIGH MULTIPLE panels): "can you make cards for these ones?? like regular ones?""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/paperrows.ts", "has": "export function paperBookRows721("}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "p721.paperBookRows721()"}
+- proof: {"test": "tools/paper-cards-721.cjs"}
+
+## R400 - fix713 CUP BOOK - PAPER ONLY, 24/7 (never sends an order, in no live list): her shapes read on BTC and gold 1m (15 and 20 candles) and 2m (15) candles - CUP (rounding bottom, long over the rim), INVERTED CUP (rounding top, short under the rim), CUP & HANDLE and its mirror, DOUBLE BOTTOM / DOUBLE TOP (close past the neckline) - with the same objective rules as the Nov 5 replay (parabola fit R² >= 0.45, bottom/top in the middle 25-75%, depth >= 2 average candles; handle pullback <= 1/3 of the depth). $20 paper at the real live ask, once per shape per length per window, 2+ min left; held to the bell and under her take-profit. Every shape is scored on SET UP SCORES (CUP BOOK). Replay Oct 19 - Nov 5 (small samples): inverted cup BTC 1m 93% (14) / gold 80% (15); cup BTC 70% (20); double bottom BTC 72% (29); cup & handle 40-71% (5-11). New card on the Books page.
+- when: 2026-11-05T15:12:39+00:00
+- Love: "Love Nov 5 2026 ~5:38 AM PT: "the 'cup' thing that price does when it makes a :) and the move starts rotating upwards? and when it :( and starts going downwards? is there a way we can have her gauge candle formations? bc those are the most reliable out of all of em cup and handles hold infinitely more than bear flags are double bottoms or whatever cup and handles got grip" + ~4:23 AM PT: "let's give them all the attention they deserve and track all of them throughout the week""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/cups.ts", "has": "export async function cupTick713("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.cupTick713(snap.assets)"}
+- proof: {"test": "tools/cup-book-713.cjs"}
+
+## R399 - fix723 THE ONE LIVE BOOK CAN SEND: CHANGE-62 made BREAK BOOK · SESSION + PINK the copier's only book and stood her walls down for it, but the send step (kalshi-live.server.ts, the 'only a named live book' lock) still read her normal lineup (liveBook) and refused every copy as 'brk-sesspk is not a live book' - the 6:46 AM gold long and the 7:00 AM gold short never reached Kalshi. Now, while data/live-today.json is on and unexpired, that book is the live book at the send step too. Every other book is still refused there; her lineup and seal are untouched; off or expired = exactly as before. Umpire, ENFORCER, freshness, LIVE switch, daily stop all still apply.
+- when: 2026-11-05T15:11:52+00:00
+- Love: "Love Nov 5 2026 7:02 AM PT: "that's 2 she missed, did she turn on?" + 7:04 AM (the card shows the 7:00 AM gold short as NOT ON KALSHI) - the send step still checked her normal lineup and refused BREAK BOOK · SESSION + PINK as "not a live book""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "const liveBooks = lt723 ? [lt723] : liveBook ?"}
+- proof: {"test": "tools/live-today-sends-723.cjs"}
+
+## R398 - fix717 ONE BOOK LIVE TODAY - BREAK BOOK · SESSION + PINK (brk-sesspk): her ONLY live book for BTC and gold until midnight PT tonight (data/live-today.json until 2026-11-06 08:00 UTC). Main, rejection, no-pink and delayed keep running on paper. BREAK BOOK · SESSION + PINK is judged by its own gates only: her walls at the door and the last line stand down for this one book (a second exception to her Oct 31 law, today only, like the delayed book); the umpire, ENFORCER, freshness guard, LIVE switch, her slider size and her take-profit all still apply; no add-ons; and it stops itself for the rest of the day once its own live trades since midnight PT are down $100 (stopAt in data/live-today.json). Her lineup (liveBook) and seal untouched. Record (paper archive, real paper trades): since Oct 19 1,412 trades, 61%, +$1,433, green 10 of 16 days, worst day -$135 at $20; forward check Oct 13-26 +$137 then Oct 27-Nov 5 +$1,296 (green 6 of 8 days); about 110 calls a day, so expect a live trade most windows. The switch expires by itself at midnight; CHANGE-63 NORMAL LINEUP BACK turns it off in one run.
+- when: 2026-11-05T14:42:41+00:00
+- Love: "Love Nov 5 2026 6:03 AM PT: "dude just put brick on for the day wut r we doin here" + 6:36 AM PT: "but just as of looks compared to the other ones ye run this one" (BREAK BOOK · SESSION + PINK) - one book live for today with only its own gates, a second exception to her Oct 31 law (like the delayed book), today only"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix717: one book alone today"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function liveToday717("}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix717: the one live book today, its own gates only"}
+- proof: {"test": "tools/one-book-live-717.cjs"}
+
+## R397 - fix711 NO FADING A BOLLINGER BREAK PAST HER ZONE: inside her zone wall (zoneSend594 - the door and the last line, where PAST THE GREEN / RED ZONE already lives): once price has broken the 5m Bollinger lower (now or in the last 5 minutes) and sits at or past the green boundary, no long; mirror - after a break above the Bollinger upper, at or past red, no short. Every book but delayed. Cheap entries stay allowed (no ask floor). Replay Oct 19 - Nov 5: fading that break lost every week (BTC 190 trades 26%, -$1,042; gold 134, 31%, -$561); tonight's 4:17 / 4:30 AM BTC longs off the Bollinger lower both lost. Needs CHANGE-57 installed first (same bandlock.ts).
+- when: 2026-11-05T13:28:18+00:00
+- Love: "Love Nov 5 2026 5:12 AM PT, her pick on the guard card: "Bollinger fade block only - No long off the BB lower past green after a break (mirror for shorts past red). Cheap entries stay allowed." (after 5:11 AM PT: "she's all losses ????? too many in a row love can you see what's up?")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function bbFade711("}
+- proof: {"test": "tools/bb-fade-block-711.cjs"}
+
+## R396 - fix710 GOLD WICK IN DOLLARS: her wick rejection without a flip (fix668, 15% since fix693) is a fixed $1 on gold - the 5m candle's high came within $1 of the level and price is $1 back off it - instead of 15% of the channel (gold's σ swung $8-$50; 15% was ~$1.40 this week, $7 on a $50 day). BTC keeps 15% of the channel (its best setting). Every book but delayed (the delayed book still gets no waiver); every other wall unchanged. Replay Oct 19 - Nov 5, real asks: $1 near / $1 back 50%, +$1,047, weeks +$304 / +$524 / +$219.
+- when: 2026-11-05T13:28:11+00:00
+- Love: "Love Nov 5 2026 ~4:33 AM PT: "i was thinking a gold wick of about $1 would be sufficient, could you test individual dollar levels instead? golds band widths vary so much" + 5:11 AM PT: "just $1 bb i already know it's gonna come to $1.11 and im gonna be like wtf / so $1 for the wick rejection on gold is good bb""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const GOLD_WICK710 = 1;"}
+- proof: {"test": "tools/gold-wick-dollar-710.cjs"}
+
+## R395 - fix709 HALF-BAND KEEP BOOK - PAPER ONLY, 24/7 (never sends an order, in no live list): the original model (PAPER 24/7, auto.ts - session VWAP with the half bands ±0.5σ / ±1.5σ / ±2.5σ beside ±1/±2/±3σ) still runs on paper; this book takes the SAME side of its calls, $20 at the real live ask, but ONLY for set ups her SET UP SCORES panel (CHANGE-55) rates KEEP (7 days 15+ trades, 65%+, made money) or LADDER (24 h more than half, or 7 days 60%+) right now - so the list refines itself through the week and drops set ups that start losing. Right now that is 4 KEEP (gold short tap-reject at -1.5σ 20/23 +$194, BTC long at -0.5σ 17/20 +$137, silver short at +1.5σ 13/16 +$106, gold short at +0.5σ 11/15 +$51) and 15 LADDER. Its own trades are scored on the panel too. The card shows the half bands' live prices for each asset (her TradingView has no half bands). Held to the bell and under her take-profit. Needs CHANGE-55 installed first (same fns/app files) and CHANGE-54 (same engine file).
+- when: 2026-11-05T13:18:00+00:00
+- Love: "Love Nov 5 2026 ~4:20 AM PT: "and the original model used half bands, i don't even have the option for them on my chart. can we create another book that still uses those and then from there refine the set ups on THAT that worked best? by next friday we will have her propped up on concrete""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/halfband.ts", "has": "export async function halfBandTick709("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.halfBandTick709(snap.assets)"}
+- proof: {"test": "tools/half-band-709.cjs"}
+
+## R394 - fix708 SET UP SCORES - EVERY BOOK, HER FRAMEWORK (display / read only): a new panel on the STATS tab in the old RETESTS look. Every current book - MAIN, REJECTION, REJ ONLY · NO PINK, DELAYED, REJECTION · THIRDS AS READ, HALF BANDS · ORIGINAL PAPER 24/7 (the original model's ±0.5/1.5/2.5σ bands), INVERSE, MOMENTUM, HIGH MULTIPLE and the HALF-BAND KEEP book - each set up ranked with wins/trades, hit %, $ and a badge, rolling 24 hours or 7 days: KEEP = 7 days 15+ trades, 65%+ and made money (her rule) · LADDER = 24 h more than half (3+) or 7 days 60%+ (10+) · CUT = 7 days lost more than it won (5+) · WATCH = the rest. Built by tools/setup-scores-708.py from the books' own settled paper rows (archive read incrementally), refreshed at most every 10 minutes while the tab is open. Never touches trading. Needs CHANGE-54 installed first (same fns/app files).
+- when: 2026-11-05T13:17:50+00:00
+- Love: "Love Nov 5 2026 ~4:20 AM PT: "these are good finds bb, let's give them all the attention they deserve and track all of them throughout the week... were you able to to get the stats system scoring under that framework again? we will be able to refine from there within 24 hours.""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/setup-scores-708.py", "has": "fix708 SETUP SCORES - EVERY BOOK, HER FRAMEWORK"}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "export const getSetupScores708"}
+- proof: {"test": "tools/setup-scores-708.cjs"}
+
+## R393 - fix707 HIGH MULTIPLE BOOK + TRACKER - PAPER ONLY, 24/7 (never sends an order, in no live list): (1) REVERSAL AT THE FARTHEST BAND (her read): price ripped through 1+ session bands in the last 15 minutes, reached the next band out (within 5% of the channel - the most distant band of the move, not the nearest) and came back 10% of the channel -> the other way; (2) WITH THE RIP twin (replay Oct 19 - Nov 5: BTC 2.8-5x with a 1+ band rip 51%, +$817; betting against rips lost): still past the last band crossed -> with it. ONLY at a real live ask of 35.7c or less (2.8x+), $20 paper, once per way per window, 2+ min left, held to the bell and under her TP. Every trade logs its hour (PT), σ in bps, bands crossed and the 15-minute range in σ. (3) HIGH-MULTIPLE TRACKER on the same card: every 2.8x+ winner from every book in the last 7 days (her paper rows) with hour and σ context, plus a per-hour tally. Needs CHANGE-52 installed first (same engine/fns/app files).
+- when: 2026-11-05T13:17:39+00:00
+- Love: "Love Nov 5 2026 ~4:10 AM PT: "anddd i want to start tracking when high multiple trades hit bb. im guessing its at the most volatile hours when price rips thru a band or two and stops at the next and reverses. when bands are tight she caught 4 20x + in a row in one afternoon. let's create a high multiple book too pls. only takes 2.8x +. takes the most distant band trade, not the closest. thaaat on volatile hours. i THINK but let's see. we can leave it running 24/7, over the week we will see the pattern""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/hmulti.ts", "has": "export async function highMultTick707("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.highMultTick707(snap.assets)"}
+- proof: {"test": "tools/high-multiple-707.cjs"}
+
+## R392 - fix704 MOMENTUM BOOK - PAPER ONLY (never sends an order, in no live list): the top 'go with it' edges of the Nov 5 sweep (data/reports/dumb-inverse-sweep-nov6.md, Oct 19 - Nov 5 at real logged asks): gold WITH the first 2 minutes of the window (265 trades, 60% at 57c, +$397), BTC WITH a fresh 1m green close up through pink (221, 52% at 49c, +$172), BTC SHORT on a red 1m close under -2σ (41, 63% at 52c, +$142), gold chasing a 1σ+ 2-minute run (thin, flagged). $20 paper at the real live ask of its side, once per setup per window, only with 2+ minutes left; scored held to the bell and under her take-profit; each row marks whether it passes her 1.5x floor. New card on the Books page beside INVERSE BOOK. Needs CHANGE-51 installed first (same engine file). Her books, walls and settings untouched.
+- when: 2026-11-05T13:17:30+00:00
+- Love: "Love Nov 5 2026 3:31 AM PT: "all of em bb !!" (to the MOMENTUM paper book from the how-dumb-can-we-go sweep: gold with the first 2 minutes, BTC with a fresh break up through pink, BTC short under -2σ while falling, gold chasing a 1σ run)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/momentum.ts", "has": "export async function momentumTick704("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.momentumTick704(snap.assets)"}
+- proof: {"test": "tools/momentum-book-704.cjs"}
+
+## R391 - fix705 AT THE PINK TAP - LOG ONLY: the moment price taps her pink (within 5% of its session channel) and turns back the way it came (7.5% off pink, not a break), it writes for main, rejection, no-pink (and the thirds-as-read twin once CHANGE-50 is in) why she did NOT enter at that second: her read not formed yet (no 2/5m candle flipped her way, wick back off pink under her 15%) or the first wall that held the read at that second (pink cushion, 55%, thirds, floor, $10 level...), with the ask at the tap - so the log shows the reason AT the rejection, not the later 'too high'. Lines go into her refusal ledger (where: pink-tap) so SITREP shows them, and into data/pink-tap-705.jsonl. Nothing about when or how she trades changes.
+- when: 2026-11-05T12:05:41+00:00
+- Love: "Love Nov 5 2026 ~3:54 AM PT: "and gold never longing a pink rejection, can you update her loggings to say why she didn't enter AT the rejection of pink? not that it was too high up? that is the reason we need logged.""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pinktap.ts", "has": "export async function pinkTapTick705("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.pinkTapTick705(snap.assets)"}
+- proof: {"test": "tools/pink-tap-log-705.cjs"}
+
+## R390 - fix703 REJECTIONS · THIRDS AS READ - PAPER ONLY (never sends an order, in no live list): a new card that is the REJECTION book's exact read and walls with ONE thirds judgment - the one her read made. Tonight her read said 'Green candle rising from the bottom third' (the 5m candle's low, -2σ -> VWAP) and then HER THIRDS said 'no long in the top 33%' (price now, nearest session lines) - two thirds disagreeing. On this paper book a candle-in-her-third / launched-from read keeps its own third, any other read is judged once on the read's own session-band channel, and the door's ONLY IN HER THIRD / THE IMPOSSIBILITY percent lines stand down (a flag set only around this book's own door check). Pink in the read, pink cushion, 55%, flip, floor, $10 level, Bollinger, zones, top/bottom line all judge it as REJECTION. Every held read writes its reason to recon-skips. Her live books and walls behave byte-for-byte as before (the flag is never on for them). Replay so far: about coin-flip on the extra trades (BTC 53%, gold 50%) - the week on paper decides (Nov 11).
+- when: 2026-11-05T12:00:08+00:00
+- Love: "Love Nov 5 2026 ~3:43 AM PT: "YES pls fix the two thirds that disagree !!!! that's been happening all week !!" (built first as a paper twin of REJECTION, to decide Nov 11; the live version waits for her pick)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix703 REJECTIONS · THIRDS AS READ - PAPER ONLY"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "__thirds703 /* fix703: paper twin only */"}
+- proof: {"test": "tools/thirds-as-read-703.cjs"}
+
+## R389 - fix697 SITREP · EVERY WINDOW, TOOK IT OR WHY NOT (display / log only): at the top of the SITREP tab, one plain line per 15-minute window and asset for the last 12 hours - which live book had it (and who was off that hour), TOOK IT (time, side, price paid) or SKIPPED with the first wall that held it and its numbers (from live-book-done, the refusal ledger, and the copier's pink / climb / slide holds in slide-pink.jsonl that were never written with the rest), plus the runner-up idea; a call that never reached the copier at all is marked to flag. A FLAG button per line (optional note) appends to data/sitrep-flags.jsonl for Claude to read and fix. Built only when the tab is open (cached 60 s), never in her trade loop; no book, rule, wall, size or order path touched. Needs CHANGE-43 installed first (same files).
+- when: 2026-11-05T12:00:01+00:00
+- Love: "Love Nov 5 2026 ~2:17 AM PT: "the intention behind it was to get an answer on every skip so i wouldn't have to ask grok every time ... just have it log every skip and the reason for it so i can look without bugging you. and let's add a flag button so i can flag the flawed ones and we can address it that way instead of typing it out frantically""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/skips.ts", "has": "export function skipLog697("}
+- proof: {"test": "tools/skips-flag-697.cjs"}
+
+## R388 - fix702: her schedule pill takes a save after every tap. Two taps half a second apart (BTC then gold, 3:14:59 AM) started two saves in the same minute; the second crashed on the same folder name, so the newest save held only the BTC tap, her no-switch-off / no-removal gates read gold's 3 AM as a rule switched off, the umpire went NOT SAFE and THE ENFORCER held every live order 3:16-3:33 AM (REJECTION's BTC short, a paper winner). tools/save-her.py now takes saves one at a time (a lock), gives a second save in the same minute its own folder, and names folders in Pacific time by the calendar (PST now; it was a fixed -7 h, an hour ahead all winter). Nothing about any book, rule, wall, size or order changes.
+- when: 2026-11-05T11:59:48+00:00
+- Love: "Love Nov 5 2026 3:31 AM PT: "i put on the regular rejection book and she didn't take the rejections , gold or btc" + Nov 1 2026 10:44 PM PT: "yes please allow me to change the schedule at will without tripping the umpire""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/save-her.py", "has": "fix702: one save at a time"}
+- proof: {"test": "tools/save-race-702.cjs"}
+
+## R387 - fix701 (log only): REJ ONLY · NO PINK re-checks main's walls after its read (Bollinger on her colour, her thirds, the pink, main's door) and used to drop a held read without writing why - 3:01-3:05 AM gold its short off the red zone was held by the pink exactly like main and rejection, but its log only showed the 3:05 floor line. Each of those four now writes its reason to data/recon-skips.jsonl (and her refusal ledger) like the other books, once per window per reason, so SITREP shows it. What it trades, when, and every wall are unchanged.
+- when: 2026-11-05T11:49:17+00:00
+- Love: "Love Nov 5 2026 ~2:17 AM PT: "just have it log every skip and the reason for it so i can look without bugging you" + 3:09 AM PT (on REJ ONLY · NO PINK at the 3:00 gold red zone): "it should have taken the rejection on a flip off of red just like the other book hun" - it did read it; the pink held it as it held the other books, but the no-pink book never wrote that down"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix701: the no-pink book writes why it held a read"}
+- proof: {"test": "tools/rjnp-skips-701.cjs"}
+
+## R386 - fix700: the copier's window-end clocks (4 places) read her tickers' Eastern close time with the right offset - +5 h in winter (EST), +4 h in summer (EDT) - instead of always +4 h. Since Nov 1 they thought every window ended an hour early, which only mattered when a market read blipped. Nothing else changes. Needs CHANGE-46 installed first (same engine.ts).
+- when: 2026-11-05T11:49:03+00:00
+- Love: "Love Nov 5 2026 2:40 AM PT: "and your last question, yes" - to Claude's 2:36 AM: "Prepared but holding for your yes, since they touch the copier: (3) the window clocks know it's winter time (EST)""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "function etOff700("}
+- proof: {"test": "tools/est-clocks-700.cjs"}
+
+## R385 - fix699: the 90-second STALE CALL guard (fix375) no longer throws out a call that the climb-over-pink wall (fix464) or the other books' slide (fix490) held and then let go - the same pass the pink-slide hold (fix371) already had. Every other part of the stale guard unchanged. Needs CHANGE-45 installed first (same engine.ts).
+- when: 2026-11-05T11:48:54+00:00
+- Love: "Love Nov 5 2026 2:40 AM PT: "and your last question, yes" - to Claude's 2:36 AM: "Prepared but holding for your yes, since they touch the copier: (2) a call held by the climb wall can't be thrown out by the 90-second stale guard when it's released""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "__climb464Log || {})[row.id] /* fix699 */"}
+- proof: {"test": "tools/climb-not-stale-699.cjs"}
+
+## R384 - fix698: the copier's four pink holds (climb over pink fix464, the pink slide fix423 / fix658, the other books' slide fix490) still hold exactly as before, but each now writes a 'held' line with its reason into her skip record (data/live-book-done.json) as well as the side log - once a minute, never final, so the wall keeps judging every pass and SITREP shows why. Nothing about when she enters changes. Needs CHANGE-43 installed first (same engine.ts).
+- when: 2026-11-05T11:48:46+00:00
+- Love: "Love Nov 5 2026 2:40 AM PT: "and your last question, yes" - to Claude's 2:36 AM: "Prepared but holding for your yes, since they touch the copier: (1) holds like climb over pink write their reason into your normal skip record""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix698: her skip record says why"}
+- proof: {"test": "tools/held-reason-698.cjs"}
+
+## R383 - fix695 REJECTION · PARKED SIDE - PAPER ONLY (never sends an order): when her REJECTION book (recon-rej paper rows) makes a call and price is PARKED (the last 12 closed 5m candles from her chart's 1m candles all closed on one side of the pink drawn before each), it takes only calls on the parked side (above pink longs, below shorts); not parked = as rejection called it. $20 paper, her 1.5x floor, one per window, skips logged. Study: parked-side rejection trades 58% (+$653) vs across pink 49% (+$74). New card on the Books page. Her books, walls and settings untouched; it only reads her paper rows. Needs CHANGE-42 installed first (same files).
+- when: 2026-11-05T11:47:16+00:00
+- Love: "Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c" - (b) REJECTION twin, when parked (the last hour of 5m closes on one side of pink) only the parked side"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/rejparked.ts", "has": "export async function rejParked695Tick("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.rejParked695Tick(snap.assets)"}
+- proof: {"test": "tools/rejparked-695.cjs"}
+
+## R382 - fix694 MAIN · VWAP SIDE ONLY - PAPER ONLY (never sends an order): when her MAIN book (recon-tog paper rows) makes a call, this twin takes it only on the VWAP side - a long with price above her session VWAP, a short with price below - $20 paper at the live ask, her 1.5x floor, one per window; every skip logged (data/main-vwap-694-skips.jsonl). Study Oct 20 - Nov 5: main with the VWAP about +$120 over 994, against it about -$1,040 over ~1,090. New card on the Books page. Her books, walls and settings untouched; it only reads her paper rows. Needs CHANGE-41 installed first (same files).
+- when: 2026-11-05T11:47:07+00:00
+- Love: "Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c" - (a) MAIN twin, VWAP side only (above the session VWAP longs only, below shorts only)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/mainvwap.ts", "has": "export async function mainVwap694Tick("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.mainVwap694Tick(snap.assets)"}
+- proof: {"test": "tools/mainvwap-694.cjs"}
+
+## R381 - fix693: her wick rejection without a flip (fix668) now needs price back off the band by 15% of the channel width (was 20%), BTC and gold, every book but delayed (the delayed book already keeps its flips). The tap distance (the 5m candle within 15% of the channel of the band) and every other wall are unchanged. Raw replay Oct 19 - Nov 5 on her session bands, pink and zones (before her other walls, 1.5x floor, mostly estimated asks): BTC 20% 778 windows 55% -> 15% 971 windows 55%, the extra 215 windows won 54%; gold 20% 589 at 54% -> 15% 714 at 54%, the extra 134 won 49% (about break even). The fix668 proofs move to the new numbers ($25 < $30 BTC, $2.60 < $3 gold).
+- when: 2026-11-05T11:47:00+00:00
+- Love: "Love Nov 5 2026 ~2:06 AM PT: "she didn't enter on btc at the rejection, doing some head math she was like $30 off from the $60 ish requirement of 20% of the channel width for the wick rejection, can you lower that to 15% for both pls?!" + "yesss maam" (all books except delayed)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "0.15 * W /* fix693: was 0.2 */"}
+- proof: {"test": "tools/wick-15-693.cjs"}
+
+## R380 - fix692 LIGHTER PAGE (display only): the desk page re-downloads three big lists less often - the fill log every 60 s (was 20 s, ~695 KB each), the paper book every 60 s (was 30 s, ~580 KB each), the STATS table every 10 minutes (was every minute, ~419 KB; it only changes every 2 h). About 55% less data pulled into the page while it sits open; every number still shows, just refreshed a little slower. The live snapshot (prices, positions, the trading view) is untouched, and nothing in her trade loop, books, rules, walls or sizes changes. Needs CHANGE-37 and CHANGE-39 installed first (same files).
+- when: 2026-11-05T11:46:52+00:00
+- Love: "Love Nov 5 2026 ~1:35 AM PT (her photos of the desk): "This webpage was reloaded because it was using significant memory." - Claude measured the page for 90 s on the STATS tab: the fill log (695 KB every 20 s, every tab), the paper book (580 KB every 30 s) and the STATS table (419 KB every minute, rebuilt only every 2 h) were most of what it downloads"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "fix692 lighter page"}
+- proof: {"test": "tools/lighter-page-692.cjs"}
+
+## R379 - fix691 SORT BY (display only): the paper cards' ranking gets four buttons next to its title - $ HIGH (as before), $ LOW, HIT % HIGH, HIT % LOW (wins over wins + losses, for the 4H / 12H / 24H / ALL span picked; cards with no closed trade go last) - remembered on this device. Nothing else on the page, and no book, rule, wall, size or order path, is touched. Needs CHANGE-38 installed first (same app.tsx).
+- when: 2026-11-05T11:46:42+00:00
+- Love: "Love Nov 5 2026 ~1:54 AM PT: "let's add sorted by - buttons for all the cards pls!!! highest hit rate & lowest pls!! we'll be able to see the worst performing ones already""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "fix691 SORT BY"}
+- proof: {"test": "tools/sort-by-691.cjs"}
+
+## R378 - fix690 70% CLUB - PAPER ONLY (never sends an order): when her main or rejection book (recon-tog / recon-rej) opens a set up (asset x set up x line x side, the STATS table's key) that is on the nightly list, it takes the SAME side, $20 paper at the live ask, but only when the ask is at least 5c under that set up's own hit rate (a 70% set up is never bought at 72c); once per window per list. Three lists scored side by side, built every night from the PAST 14 days only (no hindsight) by tools/club-list-690.py, which the 2-hour archive starts as its own low-priority process: CLUB 70 = won 70%+ with 15+ trades; HER RULE = won 65%+ with 15+ trades and made money; HER LADDER = won more than half its last 24 h (3+ trades) or 60%+ over the week (10+), dropped only after two bad PT days in a row (each under 50%). Scored held to the bell and under her take-profit. Walk-forward replay Oct 19 - Nov 4 (70% / 15 trades): 34 trades, 62% won, +$134 while all main + rejection was 51%, -$641. New card on the Books page. Needs CHANGE-33 and CHANGE-36 installed first (same files). Her books, walls and settings untouched.
+- when: 2026-11-05T11:46:34+00:00
+- Love: "Love Nov 5 2026 ~1:28 AM PT: "only taking the set ups that won over 70% - thaaaats why my win rate was 70%" + ~1:38 AM PT: "we cut the set ups that lost more than they won, and had a minimum of 65% hit rate. after that we had it at a steady 70-80% - so now that we got those scoring again, we'll be able to do that this week" + ~2:00 AM PT: "then we'll limit it to the set ups that won more than half the time in 24 hours and add in/take out more, and then 60%+ of the time over the week. i would assume some set ups aren't all bad and just have rllly bad days on occasion""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/club.ts", "has": "export async function clubTick690("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.clubTick690(snap.assets)"}
+- proof: {"test": "tools/club-690.cjs"}
+
+## R377 - fix689 STATS (display only): BAND TRAVEL now counts three families of lines crossed since the window before opened - her session bands (as before), her pivots (pink 5m PP, red zone R1, green zone S1) and the Bollinger 20/2 on 5m (built from her band log's prices, the log carries no Bollinger line) - each with follow / fade, N, won %, P&L; a SESSION / PIVOTS / BOLLINGER chip picks the table. Built by the same 2-hour rebuild (tools/rung-stats-680.py, its own process), never in her trade loop. No book, rule, wall or size touched.
+- when: 2026-11-05T11:46:26+00:00
+- Love: "Love Nov 5 2026 ~1:25 AM PT: "could you add the pivots (red green and pink) and the bollingers in on here in the stats?!" (the STATS box: SETUP x RUNG + BAND TRAVEL)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/rung-stats-680.py", "has": "fix689"}
+- proof: {"test": "tools/stats-pivots-bollinger-689.cjs"}
+
+## R376 - fix688 INVERSE BOOK - PAPER ONLY (never sends an order): when her main or rejection book (recon-tog / recon-rej) opens one of the set ups listed in data/inverse-setups.json, this book takes the OTHER side of the same window at that moment - $20 paper at the other side's REAL live ask (logged on every row, with her own ask beside it, so the week gives true $), once per source trade; scored held-to-the-bell and under her take-profit, and marked whether it passes her 1.38x floor. Starts with tonight's five: gold pink shorts -> long, gold red candle falling from the top third -> long, BTC launched from the bottom third -> short, BTC rejected down off +1σ -> long, BTC failed break above -1σ -> long (never the BTC pink longs); plus the band-travel losers from her STATS table, counted its way (bands crossed since the previous window opened): BTC 1 band down + she follows -> long, gold 1 band down + follows -> long, gold 1 band up + follows -> short; and every DELAYED book call flipped (replay Oct 19 - Nov 4 at the other side's ask: 64% of 1,768, +$1,259 held, weeks -$455 / +$742 / +$972). The list is a plain data file: Nov 11's worst losers go in with no code change. New card on the Books page. Needs CHANGE-35 installed first (same engine/fns/app files). Her books, walls and settings untouched; it only reads her paper rows.
+- when: 2026-11-05T11:44:04+00:00
+- Love: "Love Nov 5 2026 ~1:05 AM PT: "while you are making those paper books, can you create the inverse set ups book i asked you about earlier too? all of our least successful set ups... in a week we'll know for sure which set ups lose the most. then we create the inverse" (started with tonight's five from data/reports/confluence-and-inverse-nov6.md; never the BTC pink longs) + ~1:15 AM PT: "can you do the inverse of the biggest losers on here so far? 1 Band traveled the previous window" + ~1:54 AM PT: "i'm pretty sure the delayed book has like a steady 30% hit rate as is, creating an inverse of that would put it at 70% off the bat""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/inverse.ts", "has": "export async function inverseTick688("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.inverseTick688(snap.assets)"}
+- proof: {"test": "tools/inverse-book-688.cjs"}
+
+## R375 - fix687 OUTWARD BREAK · SESSION BANDS - PAPER ONLY (never sends an order), BTC + gold: when her chart's 1m candle CLOSES through a session band (her live VWAP and ±0.5..3σ) by her push ($6 BTC, 33c gold) in the direction away from the VWAP (up through a band at/above it, down through one at/below it), it takes that side at once - 4+ minutes left, her 1.38x floor, one per window, $20 paper at the live ask; scored held-to-the-bell and under her take-profit. Replay Oct 12 - Nov 5: 1,577 trades, 56%, green every week (+$395 / +$304 / +$414 / +$276); break-and-retest (-$1,241) and breaks back toward the VWAP (-$848) lost, so they are not in it. New card on the Books page. Needs CHANGE-34 installed first (same engine/fns/app files). Live books, walls and settings untouched; BREAK BOOK · SESSION ONLY unchanged.
+- when: 2026-11-05T11:43:56+00:00
+- Love: "Love Nov 5 2026 ~1:00 AM PT: "and yes, a session break book for both - we have one and it was doing well last i saw but that was a while ago, a new one too if you have a different idea in mind for it" (the new idea, from Claude's replay Oct 12 - Nov 5: a 1m close through a session band by her push, away from the VWAP - the only break idea green every week)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/brkout.ts", "has": "export async function brkOutTick687("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.brkOutTick687(snap.assets)"}
+- proof: {"test": "tools/brk-out-687.cjs"}
+
+## R374 - fix686 OG ORIGINAL · 10.12 - its own PAPER card, sealed, never sends an order: her Oct 12 OG + PIVOT 5M lane (the 27-2 code) running side by side on today's prices. Entries (resample/pivot/lines/sessionLines/decide + the lane body with the 1.38x floor) and exits (half at 75%, rest arms at 90% with the trail, else the bell; Kalshi settle every 15 s) are copied byte for byte from the vault (data/vault-og-oct12 = git branch 10.12) and checked every tick: vault sha256 + every frozen block against the vault text; any difference = the card stops and says SEAL BROKEN. $20 paper, BTC + gold, one per window, its own store data/og-1012.json, her chart's 1m bars (no extra TradingView reads), new card on the Books page. Needs CHANGE-30 installed first (same engine/fns/app files). No live book, wall or setting touched.
+- when: 2026-11-05T11:43:49+00:00
+- Love: "Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls" (the Oct 12 OG + PIVOT 5M code that went 27-2, vaulted in data/vault-og-oct12 and git branch 10.12)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/og1012.ts", "has": "export async function og1012Tick("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.og1012Tick(snap.assets)"}
+- proof: {"test": "tools/og-1012-686.cjs"}
+
+## R373 - fix685: her REGISTRAR page (every book's full trade record, view only, ~/Desktop/AURELIUS-REGISTRAR) rebuilds itself every 2 hours: the fix654 log archive, which the desk already starts every 2 hours as its own process, now also starts registrar.py at the lowest priority (nice 19, its own session, never waited on). It only reads her saved records (grok-og / night-book files) and writes its own folder. No book, rule, wall, size or live path is touched; nothing new runs inside her tick loop.
+- when: 2026-11-05T09:29:28+00:00
+- Love: "Love Nov 5 2026 ~12:05 AM PT: "can you recover those? in a view only capacity that wont slow down the desk?" (the old books' trade records) - the registrar (~/Desktop/AURELIUS-REGISTRAR, view only) now rebuilds itself every 2 hours instead of by hand"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/log-archive-654.py", "has": "# fix685"}
+- proof: {"test": "tools/registrar-rebuild-685.cjs"}
+
+## R372 - fix684: the band law's self-test (bandlock.ts bandSelfTest, every 10 min) checks HER CURRENT numbers. 8 of its fixed checks still expected rules she has since changed on purpose: the BTC pink break / pink wait / at-the-session-band wait / pink rejection at $5-$8 (now $2, fix651; $5 fix580) and gold 5m R1 as a wall (not a wall since fix618, both assets). Because the test failed, __bandLawBroken was true and the old PAPER books refused every order since Nov 3 10:53 PM PT (BREAK BOOK · SESSION ONLY, ogp5-boll/-cb/-r30/-fast/-inv/-bbsr/-sess, ogp15-both, tap3x ...). The 8 checks now test her $2 / fix618 rules (both directions); every other check unchanged. No trading function, wall, size or live book is touched; her live recon books never read this flag. The old paper books come back on paper.
+- when: 2026-11-05T08:57:03+00:00
+- Love: "Love Nov 5 2026 ~12:30 AM PT: "yes to both" - to turning BREAK BOOK · SESSION ONLY back on, paper only (the old paper books have refused every order since Nov 3 10:53 PM PT with "band law failed its self-test": the self-test still expected her old numbers - the $8/$6 BTC pink wait and $5 rejection (fix580, then Love Nov 4 2026 4:02 PM PT: "make it $2 on the break.") and gold 5m R1/S1 as walls (fix618 Love Nov 1 2026 6:10 PM PT: "This applies to both gold and BTC."))"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "// fix684: only $1.50 under -> a rejection"}
+- proof: {"test": "tools/selftest-catches-up-684.cjs"}
+
+## R371 - fix683: her two no-pink books - MAIN WITHOUT PINK (recon-rnp) and REJECTIONS ONLY · NO PINK (recon-rjnp, live in her DELAYED hours) - may take a pink REJECTION (Rejected off / Failed break - rejected / 1-5m rejection off the 5m PP) only when the pink and the session band under price both sit in the bottom 25% of the session channel with price there (a long), or both in the top 25% (a short). Every other pink read stays out (mid-channel pinks, pink breaks, the wrong side). All their other walls unchanged; main, rejection and every other book untouched.
+- when: 2026-11-05T08:56:48+00:00
+- Love: "Love Nov 4 2026 11:57 PM PT: "& yes i want her to take them on the no pink if they're in the same 25% bb [heart]" + 11:50 PM: "if pink is sitting in the same top/bottom 25% of the channel as a session band , the no pink book can take the pink rejections then" (replay Oct 19 -> now: those pink rejections 100 trades, 56%, +$1.83 a trade vs every other pink rejection 534, 54%, +$0.38)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const edge683: string ="}
+- proof: {"test": "tools/no-pink-edge-683.cjs"}
+
+## R370 - fix682 ETH · REJECTIONS ONLY · NO PINK - PAPER ONLY (never sends an order): her rejections-only rules re-drawn for ETH (her live pipeline carries only BTC and gold): Coinbase ETH-USD 1m feed; her session VWAP ±1/2/3σ (5 PM ET), 5m CM pivot (pink, red zone R1, green zone S1), Bollinger 20/2; a rejection off a session band / zone / Bollinger (15% of the channel near, not broken by her break, back off by her push with the live 2m her colour, or 20% of the channel off - her no-flip rejection); walls: thirds 33%, past red/green, pink-to-red/green 45%, her pink cushion, 1.5x floor, one per window; BTC $ distances scaled by price. Paper $20 on Kalshi KXETH15M at the live ask under her take-profit; new ETH card on the Books page. Live books, walls and settings untouched.
+- when: 2026-11-05T08:56:34+00:00
+- Love: "Love Nov 4 2026 11:38 PM PT: "yess, let us do so please ❤️‍🔥 (eth book)" - to Claude's 11:36 PM offer: "an ETH rejections-only PAPER book ... so it gets real numbers with all of her walls during the freeze week. It's its own command and paper only" (broker study: ETH rejection 64% won from the entry, 188 Kalshi-settled trades)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethbook.ts", "has": "export async function ethTick682("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.ethTick682()"}
+- proof: {"test": "tools/eth-book-682.cjs"}
+
+## R369 - fix681: her size slider (liveBook.dollars) now also sizes the entries that were held at offHourMain.dollars ($1): main's off hours, the rejection book's live hours and the DELAYED-hour book (rejections-only no-pink, sent as main) - kalshi-live.server.ts offMainDollars + engine.ts offHourMain read the slider first. A per-hour size she sets (offHourMain.dollarsByHour) still wins; the add-on sizes (add-on boxes / offHourMain.addOn) are untouched; the delayed paper book unchanged. Her switch ceiling (maxDollars = the slider) still caps every order.
+- when: 2026-11-05T07:28:25+00:00
+- Love: "Love Nov 4 2026 11:23 PM PT: "OHH that's what that was , okaay yes since we replaced the delayed book with this one that's fine bb :)" - to: her size slider sizing every live entry fully (main regular + off hours, the rejection hours, the rejections-only DELAYED-hour book), every live book except the delayed paper book (Claude's 11:21 PM finding: offHourMain.dollars $1, her Nov 3 4:03 PM "entry $1 on every live book every hour", sat under the slider)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "/* fix681: her size slider"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "/* fix681: her size slider"}
+- proof: {"test": "tools/slider-all-681.cjs"}
+
+## R368 - fix680 DISPLAY ONLY: the STATS tab gets 'HER BOOKS · SETUP × RUNG + BAND TRAVEL' - every main / rejection / main-without-pink / rejections-only-no-pink trade (14 days, $20 paper under her TP) grouped by setup (Rejected off, Failed break, Break, Close, Tap-reject, N-m rejection, Fake-out turn, candle reads) x the band it names, and by bands crossed since the window before opened (0, 1, 2, 3+ up/down) x follow / fade; filter today / 7d / all, BTC / gold, book. Built by tools/rung-stats-680.py into data/rung-stats.json, rebuilt every 2 h by her log archive (fix654). Never touches trading.
+- when: 2026-11-05T07:28:12+00:00
+- Love: "Love Nov 4 2026 11:20 PM PT: "stats tables too bb sorry !!" - to the coordinator's list item 3: "live STATS tables (setup x rung for real books, band travel follow/fade), display only" + her 11:05 PM words: "in our stats page in the original we were tracking the success rates of each set up on each rung ... i'd like to get back to doing that ... and on top of that i want to start tracking this: window started (this window or last) in -2σ channel, price moved up to +1σ, a long there, a short there = success rate""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/fns.ts", "has": "export const getRungStats680"}
+- proof: {"code": "src/components/desk/app.tsx", "has": "<RungStats680 />"}
+- proof: {"test": "tools/rung-stats-680-test.py"}
+
+## R367 - fix679 LOG ONLY: when main's read (bonesDecide, recon.ts) has 2+ ideas, every idea (best first, up to 8) and what main's door (bandLockCheck as recon-tog, quiet) says about each is written to data/idea-ledger-679.jsonl, at most every 10 s per asset; the file rotates every 2 h with her other logs. She still takes only her single best idea - nothing she trades changes. For the Nov 11 review: how often a refused top idea hid one the walls would have passed.
+- when: 2026-11-05T07:27:59+00:00
+- Love: "Love Nov 4 2026 11:18 PM PT: "no i sent that before i saw those hun , just for the tracker for now bb" - the log-only tracker: every idea in her read + what each wall says (Claude's 11:12 PM offer: "I'd add a log-only change that records every idea in each read and what every wall says about it")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "__lastPool679"}
+- proof: {"test": "tools/idea-ledger-679.cjs"}
+
+## R366 - fix677: the copier's pink-slide gate (fix658/fix663, engine.ts) lets her trend side take ANY rejection during a pink slide or climb - Rejected off / Failed break - rejected / 1-5m rejection / tap-reject / fake-out turn off a band, the green or red zone, a Bollinger or the pink (tonight 10:45 PM gold 'Rejected up off Green zone' long in a climb and 10:02 PM gold 'Failed break above session VWAP - rejected down' short in a slide). Trend-side breaks and candle reads still wait for the pink; the counter-trend side stays held by the slide / climb holds (unchanged). Every other wall still judges. Every book but delayed.
+- when: 2026-11-05T07:27:46+00:00
+- Love: "Love Nov 4 2026 11:06 PM PT: "yes to change 26 bb , thank you for telling me" - to Claude's 10:50 PM offer: "If you want her to take ANY trend-side rejection during a slide (a long off green/a band in a climb, a short off a band in a slide down), with the other side still blocked, tell me in your words and I'll build it as CHANGE-26, all books except delayed" (her fix658 words, 6:09 PM: "longs only while pink is on a slide up ... enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "/* fix677 ("}
+- proof: {"test": "tools/slide-any-rej-677.cjs"}
+
+## R365 - fix676: tools/verify-golden.py treats her LIVE switch as hers (like her size slider, fix632): the top-level live (true/false), at and note stamps never count as drift, and liveBook only counts as unchanged when its lineup minus since/at/note/dollars still hashes to her approved seal (sealLiveBook - the same seal THE SEAL checks at the door). Turning LIVE on or off from the desk no longer makes the umpire go NOT SAFE; no re-sign needed. Every code file, every rule, every other setting and the lineup are still checked exactly as before. LIVE off still stops new orders at once (the engine reads live on every pass - unchanged).
+- when: 2026-11-05T07:27:35+00:00
+- Love: "Love Nov 4 2026 10:29 PM PT: "OH yes let's do it :))" - to: her LIVE flips in the desk header treated as trusted like her size slider, so the umpire no longer goes NOT SAFE on the live / at / note stamps after she turns LIVE on or off; rules and code stay sealed (Claude's offer since 7:50 PM PT: "the LIVE flip that never needs a re-sign")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/verify-golden.py", "has": "def flip676(k, ls):"}
+- proof: {"test": "tools/live-flip-676.py"}
+
+## R364 - fix675: completes fix668 (CHANGE-17). Her 20% rejection off a band (15% tap, 20% of the channel back off the extreme, this 5m candle) now also passes the four candle-DIRECTION walls that held it at 10:04:13 PM PT BTC: the door's 'the candle is falling from the top third - a short, never a long' (bandlock.ts thirdsMove ~1139), the send's 'THE THIRDS AT THE WIRE' (~2809) and the two 'price is falling/rising from the top/bottom third of her channel' walls (awayVerdict ~454/458, reconThirdAgainst ~982/987). Her thirds by POSITION (33%), 45%, past red/green, pink, break walls and the 1.5x floor still judge. Every book but delayed (rej668 returns false for the delayed book). Built on CHANGE-20 (bandlock.ts).
+- when: 2026-11-05T06:36:26+00:00
+- Love: "Love Nov 4 2026 10:20 PM PT: "our new 20% wick rejection rule didn't fire just now on btc love it was definitely over 20% , can you look into why she didn't enter on that for me as well?" (her CHANGE-17 words, Nov 4 8:23 PM PT: "she can enter in , even if the candle hasn't flipped")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "!rejFlip611(asset, side, qR.c) /* fix619 */ && !(typeof rej668 === \"function\" && rej668(asset, side, qR.c, lbR.L))"}
+- proof: {"test": "tools/rej20-thirds-675.cjs"}
+
+## R363 - fix674: her DELAYED-button hours (fix626, today 10 PM PT BTC + gold - whatever her schedule pill gives the DELAYED button) now trade live through her rejections-only no-pink book (recon-rjnp, fix643/fix673) as main's rows - same copier, size, take-profit, add-ons, walls and send as main. Main without pink (recon-rnp) goes back to paper and keeps its record; the delayed twin stays paper. Every other hour unchanged. Cornerstone 101 updated with her words; the schedule panel's DELAYED label reads REJECTIONS ONLY · NO PINK. Built on CHANGE-21 (engine.ts).
+- when: 2026-11-05T06:36:05+00:00
+- Love: "Love Nov 4 2026 10:12 PM PT: "for the main without pink book , i created one that is rejections only for session bands too, no breaks i want THAT one in place of the main without pink book so its rejections only""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "if (r?.book === \"recon-rnp\") continue; // fix674"}
+- proof: {"test": "tools/delayed-to-rejonly-674.cjs"}
+
+## R362 - fix673: her rejections-only no-pink book (recon-rjnp, fix643) matched to main: it already reads with main's bonesDecide (main's zone + band flip settings, main's band list and reach, every read fix tonight: push $6/10c, 15% near-band, CHANGE-17 no-flip rejection, gold Bollinger cut), main's thirds, the pink wall (CHANGE-16 edge) and main's door (every wall: 45%, past red/green, break-back CHANGE-14/15, HER FLIP, 1.5x at the copier). This adds: her fake-out turns off a session band / zone / Bollinger (main and rejection take them), keeps ONLY rejection reads (a candle-from-the-third / launch / seen-as read is not a rejection), and re-aims to a fresh read like main (fix463). No breaks, no pink, as she built it. Paper until CHANGE-23 moves the DELAYED hours to it.
+- when: 2026-11-05T06:35:51+00:00
+- Love: "Love Nov 4 2026 10:12 PM PT: "for the main without pink book , i created one that is rejections only for session bands too, no breaks i want THAT one in place of the main without pink book so its rejections only i made it earlier, without you , when there were still issues - so pls confirm it is the same entry logic and everything in every way, and match all the fixes we just made , so it's the same - just no breaks and no pink trades all rejections""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "rj643 = rejFO; // fix673"}
+- proof: {"test": "tools/rej-only-sync-673.cjs"}
+
+## R361 - fix672 RSI PAPER BOOKS (paper only - never sends an order): RSI(14, Wilder) on 5m/15m/30m/1h/4h candles from her one-minute closes (seeded from her band log, live candle included). 20 books (5 timeframes x 4 levels): short when RSI first crosses 70/80/85/90, long when it first crosses 30/20/15/10 (her mirror), re-armed 2 points back inside. Each signal paper-trades BTC and gold on the 15M window and the 1H market (KXBTCD / KXGOLDH, strike nearest price), $20 at the live ask. Per trade: hours until price moved her way 0.25% / 0.5% (24 h), worst move against first, settle, P&L held and under her TP. New RSI BOOKS section on the Books page (filter asset / market / RSI timeframe / level). Live books, walls and the umpire untouched.
+- when: 2026-11-05T06:35:38+00:00
+- Love: "Love Nov 4 2026 9:56 PM PT: "i want to paper test those 1H kalshi markets , once gold has hit an RSI of 70 + 80+ and 90+ 3 different paper books testing each level i want to place reversal trades when those rsi values are hit , when they hit them then i want to track how many hours AFTER the move up/down has taken place, until the trade worked out in our favor ... we will test them on 5M , 15M , 30M , and 1H, and 4H (on second thought) timeframe RSI's ... and for our regular 15M windows, i want to test those out as well ... we can make a new subsection here for the RSI books ... andd i would like them tested on both btc and on Gold" + ~10:05 PM PT: "as for the 15M windows rsi books, the 80-85 will be our best chance there, 90+ will be very successful as well""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/rsibooks.ts", "has": "export async function rsiTick672("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "m.rsiTick672(snap.assets)"}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "export const getRsiBooks672"}
+- proof: {"code": "src/components/desk/app.tsx", "has": "<RsiBooks672 />"}
+- proof: {"test": "tools/rsi-books-672.cjs"}
+
+## R360 - fix671: gold Bollinger reads are cut - in the read (bonesDecide drops any gold candidate whose label names the Bollinger / BB, so the next best read speaks) and at the door (bandLockCheck refuses a gold order whose label names the Bollinger / BB, every book but delayed). BTC Bollinger, BTC session-band rejections and every other read unchanged. Built on top of CHANGE-19 (fix670).
+- when: 2026-11-05T06:35:24+00:00
+- Love: "Love Nov 4 2026 9:16 PM PT: "cut gold bollinger reads, keep btc as is""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "GOLD BOLLINGER CUT (fix671)"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "cands2.filter((c) => !/Bollinger|BB (upper|lower)/.test(String(c.label))); // fix671"}
+- proof: {"test": "tools/gold-boll-cut-671.cjs"}
+
+## R359 - fix670: the 8 band-list freshness checks in bandlock.ts (door channel + closest band, paper filter, wall at the wire, near-band reads) accept a band list up to 30 s old during the first 15 s of each 15m window (15 s otherwise, as before) - the read at :00-:09 is no longer refused as 'band list not fresh' at every window change. The pink is recomputed live on each read; live price freshness (2 s, fix654; 3 s at the wall) unchanged. Every book but delayed (the delayed door shares bandlock - its freshness is the same check). Built on top of CHANGE-18 (fix669).
+- when: 2026-11-05T06:34:58+00:00
+- Love: "Love Nov 4 2026 9:16 PM PT: "yes, let her use a band list up to 30 seconds old in the first 15 seconds of each window" (live price stays 2 s fresh, fix654 unchanged)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function bandAge670()"}
+- proof: {"test": "tools/window-start-670.cjs"}
+
+## R358 - fix669: her BTC push off the band is $6 (was $10) everywhere she waited $10 - the read's pink / failed-break / previous-candle / nearest-band pushes (recon.ts, 8 sites, longs and shorts) and the door + send push (pushLabel653, bandlock.ts). Her 2m colour still applies. Gold keeps its 10c push. Every book but delayed (the 5M is off). Built on her current files (independent of CHANGE-16/17).
+- when: 2026-11-05T05:14:06+00:00
+- Love: "Love Nov 4 2026 8:54 PM PT: "as for the $10 push for btc we said we'd come back to, we can bring that to $6 , it will be better when volume is low" + ~8:56 PM PT: "yes, $6 push in both directions, in place of where she was waiting $10 now pls , and yes all books but delayed""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "asset === \"btc\" ? 6 /* fix669"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "asset === \"btc\" ? 6 /* fix669"}
+- proof: {"test": "tools/push-six-669.cjs"}
+
+## R357 - fix668: a new entry - this 5m candle came within 15% of the channel of a band (session band, VWAP, pink, red/green zone, Bollinger; opened on the near side of it) and price is now 20% of the channel or more back off the candle's extreme at that band (from its high for a short, its low for a long), still on the near side - she may enter even though no candle has flipped (the 5m can still be green for the short / red for the long). Channel = the session bands either side of that band. It waives only the candle colour / flip checks (door HER FLIP, HER CANDLE, price is rising/falling; HER FLIP AT THE SEND; the read's RED FALLING / GREEN RISING 5M and thirds splices) and casts the read; every other wall (thirds, 45%, past red/green, pink cushion, break walls, 1.5x floor, umpire) still judges. Every book but delayed (the 5M is off). Her 'inverse for shorts' read as the mirror for longs.
+- when: 2026-11-05T05:05:39+00:00
+- Love: "Love Nov 4 2026 8:23 PM PT: "if price comes up to a band (within 15% of it) , and then price rejects near the band by 20% of the channel width or more , she can enter in , even if the candle hasn't flipped / so if price rejects on a green 5M candle , and the body of the candle pushes down by 20% of the channel width - she can enter short even if the candle hasn't flipped and it is still green okay / inverse for shorts""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function rejBand668("}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "label: `Rejected ${sd668} off ${r668.name}`"}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "B.rej668(sym, side, Number(q.c)"}
+- proof: {"test": "tools/rej-no-flip-668.cjs"}
+
+## R356 - fix667: her pink cushion (pinkSlide580 at the door + pinkSlide580R in the read) - BTC half the channel under $100 (kept), a third of the channel from $100 to $180 (was half capped at $60), her sliding scale from $180 unchanged; gold (her ~8:29 PM words): half under $3, a third from $3 to $5, then 15% ($3 max past $25) unchanged. And when the pink and the session band she trades off both sit in the outer 25% of the session-band channel at that end (bottom for a long, top for a short) with price there too, the pink cushion does not hold her - she enters at the start of the channel (door PINK CUSHION + read pinkRead464). Every other wall unchanged. Every book but delayed (the 5M is off).
+- when: 2026-11-05T05:05:25+00:00
+- Love: "Love Nov 4 2026 8:23 PM PT: "let's revise / if pink and the session band are both sitting in the top/bottom 25 % she is clear to enter at the beginning of the channel , / we can keep the 50% under a $100 band width / past $100 we can make it 1/3rd of the channel width of clearance until our sliding scale comes back into place after $180 is reached" + ~8:29 PM PT (gold): "for gold however, let's make it a third from $3 -5 instead of from $2-5 so she has an even $1""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "W < 180 ? W / 3"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function pinkEdge667("}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const q667 = 0.25 * (a.price - b.price)"}
+- proof: {"test": "tools/pink-third-667.cjs"}
+
+## R355 - fix666: her broke-this-candle walls (fix441, fix457/fix483 release) free the other side once price is back PAST THE BAND the other way by the same distance it broke (the furthest it went past the band this candle; her break distance at least) - e.g. band 100 broke to 75 -> a long is clear above 125, a band that broke up by $10 frees shorts $10 under it. The push and her 2m colour still apply as usual. Every book but delayed (the 5M is off).
+- when: 2026-11-05T03:51:44+00:00
+- Love: "Love Nov 4 2026 7:26 PM PT: "it's not supposed to block that trade for the rest of the window if a band breaks, it only needs to break the other way by at least same the distance it broke down initially. so if price broke a band down for $10 for example, a long can be taken if it flips back up and pushes up by more than $10" + 7:29 PM: "past the band the other way" + "if price broke the band by $25, flips up, and then pushes up past $25 (the same distance that it broke down by) she is clear to long""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "tick < P + Math.max(d, P - lo)"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "/* fix666: back past the band by the same distance it broke"}
+- proof: {"test": "tools/break-back-666.cjs"}
+
+## R354 - fix665: her broke-this-candle walls (fix441 BROKE IT THIS CANDLE and fix457 BROKE UP/DOWN THIS CANDLE) hold only reads off the band that broke - a rejection SHORT off a band ABOVE a band that broke up, or a rejection LONG off a band BELOW a band that broke down, is no longer held by them (the read's label names its band). Every other wall still judges it. Every book but delayed (the 5M keeps its own copy and is off). Her second sentence is recorded as a guiding rule only.
+- when: 2026-11-05T03:47:55+00:00
+- Love: "Love Nov 4 2026 7:23 PM PT: "yes a rejection off a band above should be allowed after a break of the band below" + "any valid set up at an entry is to be taken if she hasn't executed a trade that window""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "function rejAway665("}
+- proof: {"test": "tools/band-above-665.cjs"}
+
+## R353 - fix664 HER ADD-ON BOXES: Desk settings gets two rows like Position size - Add-on 1 (her first add-on, at 2.8x) and Add-on 2 (the 3.8x add-on, which only comes after Add-on 1 has filled) - each a $1-$5 box and an on/off toggle. Saved to data/addon-settings.json (survives restarts; not part of her sealed settings, so a tap never trips the umpire or the seal, like her size slider). engine.ts applyAddon664 applies them every tick over live-switch addOn / addOn.at38; no file = today's settings. Her $5 add-on cap stays; triggers unchanged.
+- when: 2026-11-05T03:44:21+00:00
+- Love: "Love Nov 4 2026 7:17 PM PT: "can you pls put in a box for our add on in here? with a toggle on/off. a box for Add on 1 & a box for add on 2 with an on/off toggle for them both so i don't need to bug you with them""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "export function applyAddon664("}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "export const setAddonSettings"}
+- proof: {"code": "src/components/desk/settings-drawer.tsx", "has": "<AddOnRows664 />"}
+- proof: {"test": "tools/addon-boxes-664.cjs"}
+
+## R352 - fix663: in a pink slide (fix658) her trend side takes any read off the pink - a rejection, a failed break, or a break back across the pink in the slide's direction (Break / Close above 5m PP on a climb, below on a slide); reads off every other band still wait. Every other wall unchanged.
+- when: 2026-11-05T03:20:30+00:00
+- Love: "Love Nov 4 2026 7:10 PM PT (to "during a pink slide, any read off the pink counts - rejection, failed break or break back across the pink in the slide's direction; other bands still held"): "yes""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix663: a break back across the pink"}
+- proof: {"test": "tools/slide-off-pink-663.cjs"}
+
+## R351 - fix662 (a bug in fix655): the three book-level wall checks in recon.ts (why479 log, main + rejection, every other book) now hand the read's label to her walls, so fix655's push-off-the-band entry (push met + 2m her colour = no flip past its open) also works for main and every book - it only reached the rejection book's read before. No new rule.
+- when: 2026-11-05T03:20:00+00:00
+- Love: "Love Nov 4 2026 7:10 PM PT (to "pass main's label so the push-off-band entry works on main too"): "yes""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "String(look.label || \"\") /* fix662"}
+- proof: {"test": "tools/label-to-walls-662.cjs"}
+
+## R350 - fix661 LOG ONLY - every refused trade (her read, the door, the send; every book) also writes one line to data/refusal-ledger.jsonl: where it was refused, the rule and its fix, the book, the asset, her side's live Kalshi ask and multiple (1/ask), price's % in the session-band channel (0 = bottom band, 100 = top), its % from the pink toward the red zone (+) or green zone (-), and the minute into the window. Asynchronous write (never waits on the disk), deduped per rule/book/side/minute; rotated by the 2-hour archive (fix654). Decides nothing.
+- when: 2026-11-05T03:19:40+00:00
+- Love: "Love Nov 4 2026 7:02 PM PT: "yes, let's do that for all refused trades going forward. log the multiple for it, and percentage up/down in the channel. it will tell us which rule was holding her and how we should go about handling""
+- books: every book (log only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/refusal-ledger.ts", "has": "export function refusal661("}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "__refusal661?.({ where: \"read\""}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "__refusal661?.({ where: \"door\""}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "refusal661({ where: \"send\""}
+- proof: {"test": "tools/refusal-ledger-661.cjs"}
+
+## R349 - fix660 NIGHTLY RESTART: tools/nightly-restart-660.sh runs in the background (nohup; click 9-START-NIGHTLY-RESTART on the Desktop after a Mac restart). Every day at 2:05 PM PT (PLACEHOLDER - gold's daily break; Love to confirm) it saves her, waits until no order is in flight (no order in the last 90 s, nothing mid-try; at most 10 min), stops the desk and starts exactly one (her RESTART - ONE DESK steps), waits for live prices and logs whether the umpire is SAFE and entries are on (data/nightly-restart.jsonl). It never touches LIVE, rules, books, sizes or orders.
+- when: 2026-11-05T02:50:52+00:00
+- Love: "Love Nov 4 2026 6:20 PM PT: (a nightly restart of the desk) "yes""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/nightly-restart-660.sh", "has": "RESTART_AT="}
+- proof: {"test": "tools/nightly-restart-660-test.cjs"}
+
+## R348 - fix659 DISPLAY ONLY: getHeldOrders (fns.ts) leaves out a 15m position once its window is over (the close time in its ticker, Eastern) - LIVE ORDERS stops showing the last window's trade while Kalshi settles it. No order, no sell, no change to her books, positions or exits.
+- when: 2026-11-05T02:50:31+00:00
+- Love: "Love Nov 4 2026 6:13 PM PT: "her entrey on the 6:00 window was perfect. the desk was showing the last windows short still, so i thought she shorted there. pls fix that too, so it closes the last windows position on the desk when the windoow is over""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/fns.ts", "has": "export function windowOver659("}
+- proof: {"test": "tools/window-close-659.cjs"}
+
+## R347 - fix658 THE PINK SLIDE, HER WAY: the slide / climb is ON with 2 pink rejections (fix657) while price steps her way (fix503c) AND the pink itself slopes that way (pink at the last rejection higher - climb - / lower - slide - than at the first). The 44% pink-share gate (fix584/646) no longer applies to the slide. While a climb is ON: no shorts from any band or zone, every book but delayed (climbHold464, unchanged release: price breaks down through pink by 10% of the channel, fix560), and longs ONLY off a pink rejection / flip (any other long read waits - engine.ts copier, logged in slide-pink.jsonl). Mirror on a down slide. Add-ons are left exactly as they are (Love 6:20 PM PT: "no , add ons are okay as is").
+- when: 2026-11-05T02:44:32+00:00
+- Love: "Love Nov 4 2026 6:09 PM PT: "the pink slide rule dictates it is longs only while pink is on a slide up, she doesnt short at red, she waits til it gets to pink and rejects, enters on the flip/rejection like she normally would. inverse for shorts, shorts only on a slide down. she waits for it to come to pink and reject and shorts as she normally would. if it doesnt function like that already thats what i would like""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "export function slideBlock658("}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "&& pkS658 /* fix658 */) { S.on = true;"}
+
+## R346 - fix657: (1) NEAR A BAND = the 15% of the channel closest to it - recon.ts bonesDecide nr (her near-band reach for every rejection read, and so the fix656 push off a candle near the band) is 15% of the session-band channel around price (was gold 50c / BTC $75 pink, $10 other bands); an unreadable channel keeps the old reach. (2) PINK SLIDE / CLIMB AT 2: engine.ts climbHold464 + the gold and BTC slide holds turn on at 2 rejections (was 3) on her slope - each rejection candle closing higher than the one before on a climb, lower on a slide (fix503c, unchanged). The 44% pink share (fix646) is unchanged.
+- when: 2026-11-05T02:43:56+00:00
+- Love: "Love Nov 4 2026 6:04 PM PT: "in regards to the near a band - lets make it 15% of the channel width , the 15% closest to the band is sufficient" + "lets lower the pink slide rule to 2 of them instead of 3 while pink is sloped up or down as well pls""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const nr = W657 > 0 ? 0.15 * W657"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "if (run494 >= 2 /* fix657"}
+
+## R345 - fix656: pushOff653 / pushLabel653 - gold push 10c (was her one tap 30c); BTC stays $10. The candle does not have to reach the band: near it is enough (her existing near-band reach in the read, recon.ts nr: gold within 50c of the band, BTC within $75 of the pink / $10 of other bands), and the push is measured from the band, or from that candle's own high/low when it stopped short of the band (whichever is nearer price), in her direction, with the live 2m her colour. At the door and the send the candle's high/low is the live 5m's.
+- when: 2026-11-05T02:43:36+00:00
+- Love: "Love Nov 4 2026 5:52 PM PT: "gold needs a 10c push, not just a tap - and it doesn't need to be on the band itself , just a flip /band candle near it and pushing down in a candle our color""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "push: number, ext = 0): boolean { const ref = ext > 0 ?"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix656: gold 10c"}
+
+## R344 - fix655: pushLabel653 (bandlock.ts) - a band rejection (Rejected / Failed break / Tap-reject / 2m flip off a band) whose push off ITS band is met (BTC $10 / gold her one tap 30c, unchanged) with the live 2m her colour no longer needs a 2-5m flip past its open: HER FLIP at the door (impossibleGeo, main + rejection) and HER FLIP AT THE SEND (kalshi-live.server.ts fix592) both let it through; the 5m holds (HER CANDLE, price rising/falling, RED FALLING 5M) step aside for it too. Breaks keep their own rules. fix521's flip-at-send function is not called anywhere (left as it is).
+- when: 2026-11-05T02:43:16+00:00
+- Love: "Love Nov 4 2026 5:40 PM PT: "The push is from the band. She enters the second the push is met and a 2m is her color. Remove the check that still wants the flip past its open.""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function pushLabel653("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "const pb641 = pushLabel653(asset, side, tick, L, "}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "!B.pushLabel653(sym, side, Number(q.c)"}
+
+## R343 - fix654 THE CLEAR STICKS + DATED FILES EVERY 2 HOURS: the paper twins (pivotbooks.ts) no longer re-copy parent trades older than a day (they refilled ~4,500 rows into grok-og.json every hour, each archived ~75 times); every 2 hours tools/log-archive-654.py (its own process, off her loop) moves rows older than a day from 13 write-only logs (gold-law, behaviour-umpire, band-lock, copy-timing, fast-skip, latency-shadow, pure-walls, order-trail, pink-break, tick-log, band-log, slow-ops, loop-lag) into data/archive/logs/<date-time>/<log>.gz - kept forever, never deleted; the last day stays; logged in auto-clear.jsonl. Her hourly cache clear is unchanged.
+- when: 2026-11-05T02:42:59+00:00
+- Love: "Love Nov 4 2026 5:27 PM PT: "cahce clear that sticks, yes - push everything to athe dated file for that, never deleted. make it do that every 2 hours to keep her fast pls""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/pivotbooks.ts", "has": "if (Date.now() - Date.parse(t.openedAt) > 24 * 3600000) continue; // fix654"}
+- proof: {"code": "src/lib/desk/selfcheck.ts", "has": "log-archive-654.py"}
+- proof: {"test": "tools/archive-654b.cjs"}
+
+## R342 - fix654 FRESHNESS GUARD at the last line (kalshi-live.server.ts judgeOrder601, every book): no opening order on a price tick older than 2 s, or right after her engine froze more than 2 s (fns.ts 100 ms heartbeat).
+- when: 2026-11-05T02:42:44+00:00
+- Love: "Love Nov 4 2026 5:27 PM PT: "freshness guard, 2 seconds""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "FRESHNESS (fix654): the last price tick is"}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "G654.__lagLast654 = Date.now(); }, 100)"}
+- proof: {"test": "tools/freshness-654a.cjs"}
+
+## R340 - fix653 PUSH OFF THE BAND: every pink rejection (Rejected / Failed break off 5m PP, the previous-candle tap, and fix645's push off the nearest pink) measures her push FROM THE BAND in the direction of the trade - her same push, $10 BTC / one tap gold - with the live 2m candle her colour (green for a long, red for a short, any amount); never from the candle open, and the $0 any-candle-under-its-open path (pfU/pfD) no longer counts. For a band rejection with her flip and her 2m colour, RED FALLING / GREEN RISING 5M (recon read), HER CANDLE (5m) and the 5m price-is-rising/falling hold at the door step aside - she does not wait for the 5m. Replays the 5:02:57 PM BTC short (green 2m) as refused. Every book but delayed (the 5M stays off).
+- when: 2026-11-05T02:42:25+00:00
+- Love: "Love Nov 4 2026 5:25 PM PT: "make it so its a push from the band, not past its open. a 2m green pushing off the band is good, no waiting for the 5m . not past the candles open. just in the direction of the trade. thats number 1" + 5:27 PM PT: "pink rejections need the same push as the others, not $0""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function pushOff653("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function twoMinHer653("}
+- proof: {"test": "tools/push-off-band-653.cjs"}
+
+## R341 - PROCESS: every fix is its own CHANGE command, numbered in install order, so one element can be changed or taken out without the others (the Nov 4 bundle of fix653-658 was split before it was ever installed).
+- when: 2026-11-05T02:42:25+00:00
+- Love: "Love Nov 4 2026 6:13 PM PT: "keep all fixes as individual commands so we can track everything and they arent bundled together, it will be easier to untangle if we need to change individual elements without taking others out""
+- books: process
+- status: ACTIVE
+- proof: {"code": "data/CHANGES-DONE/STAGED-CHANGE-push-off-band-653", "has": "R"}
+
+## R339 - fix652 CHECKS ONLY, no trading code: (1) tools/check-her-rules.cjs and tools/independent-calls-test-463.cjs carry her 3% margin (MARGIN648, fix648) when they lift thirdsRead463 out of recon.ts - they crashed on it after fix649; (2) tools/thirds-five-583.cjs holds her $2 break (fix651): $1 still waits, $2 frees; (3) the $5 code proofs of R294, R305 and R306 are superseded by their $2 text from fix651 (kept in the book, marked superseded, never deleted).
+- when: 2026-11-05T00:51:56+00:00
+- Love: "Love Nov 4 2026 4:02 PM PT: "make it $2 on the break." + 4:44 PM PT (on updating the checks that still held $5, no trading code): "yes""
+- books: every live book (checks only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "btc: 2 }; // fix561"}
+- proof: {"code": "tools/cornerstones.py", "has": "70. HER $2 BREAK AT THE PINK WALLS TOO"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const brkL580 = String(l.name) === \"5m PP\" ? (asset === \"btc\" ? 2 : 0.25) : brk;"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const BREAK: Record<string, number> = { btc: 2, gold: 0.33 };"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const BREAK_DIST: Record<string, number> = { btc: 2, gold: 0.33 };"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "const rel583 = asset === \"btc\" ? 2 : dist;"}
+- proof: {"code": "tools/check-her-rules.cjs", "has": "one(RC, \"export const MARGIN648 = \")"}
+- proof: {"code": "tools/independent-calls-test-463.cjs", "has": "export const MARGIN648 = [^;]+;"}
+- proof: {"test": "tools/thirds-five-583.cjs"}
+- proof: {"test": "tools/check-her-rules.cjs"}
+- proof: {"test": "tools/independent-calls-test-463.cjs"}
+
+## R338 - fix651: BTC break $5 -> $2 at every break site - BREAK_DIST, PINK_BREAK, PINK_BREAK432 (bandlock), her pink-break push (fix641), the pink cushion break (fix541/pbd514), the thirds-wall release off the low/high (fix583 rel583, both walls), engine's brk (fix541), recon's BREAK, brkL580 and brk (fix580/fix541). Gold untouched. Her flips, the fake-out proximity and every other $5 stay. Cornerstone 70 and the tests that held $5 now hold $2.
+- when: 2026-11-05T00:39:50+00:00
+- Love: "Love Nov 4 2026 4:02 PM PT: "make it $2 on the break." + 4:19 PM: "Then build the $2 break as its own command.""
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const BREAK_DIST: Record<string, number> = { btc: 2, gold: 0.33 };"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const BREAK: Record<string, number> = { btc: 2, gold: 0.33 };"}
+- proof: {"test": "tools/pink-break-casts-580.cjs"}
+
+## R337 - fix650: the WICK THROUGH (fix457) block is out - the two lines in brokeThisCandle457 that refused a long with price back under a band the candle broke up through (and the short mirror) for the rest of the candle. Nothing else in fix457 changes. tools/broke-candle-test-457.cjs now checks a wick through is no longer refused.
+- when: 2026-11-05T00:39:30+00:00
+- Love: "Love Nov 4 2026 4:19 PM PT: "A wick through the band does not block the entry for the rest of the window. Once price is back on the same side of the band, a candle is her color, and the push is met, she enters. Print the exact line that does the wick-through block and remove only that block.""
+- books: every live book
+- status: ACTIVE
+- proof: {"test": "tools/broke-candle-test-457.cjs"}
+
+## R335 - fix648: her thirds (33% / 20% / her gold sliding share, session band to session band) refuse 3% of the channel early, both sides - in her read (thirdsRead463, MARGIN648) and at her door (ONLY IN HER THIRD, MARGIN648B). The 3:15 PM BTC short at 34% of a 33% line is refused.
+- when: 2026-11-05T00:39:12+00:00
+- Love: "Love Nov 4 2026 3:42 PM PT: "make it a 3% margin of error both sides pls" (3:21 PM: "hun i told you to create a 5% margin of error in both directions so a trade can't get in by 1%")"
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "f >= 1 - k487 - MARGIN648 : f <= k487 + MARGIN648; // fix648"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "pos <= TH + MARGIN648B"}
+- proof: {"test": "tools/margin-648.cjs"}
+
+## R336 - fix649: her channel percentage is band to band as drawn - the session band this 5m candle just broke in the trade's direction is the back edge of the channel price is now in (channelOnly + awayVerdict); it no longer vanishes and merges two channels. The 3:50:35 PM BTC short at 80487.07 read 32% of -1σ -> +1σ with the broken VWAP skipped; it is 65% of -1σ -> VWAP and is no longer refused. The edge in front stays unbroken only; her 33% / 20% shares are untouched.
+- when: 2026-11-05T00:39:12+00:00
+- Love: "Love Nov 4 2026 4:02 PM PT: "Fix the calculation so it matches the chart." ("even after that move (the blue line i drew) it was still not 66% of the way through the channel. she is still clear to short anywhere BUT the bottom /Top 33%.")"
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "brokeNow.has(l.name)); // fix649"}
+- proof: {"test": "tools/channel-649.cjs"}
+
+## R334 - fix647 LOG ONLY: every rule in her read's thirds / candle / flip filter (THIRDS, BTC 33%, RED FALLING 5M, GREEN RISING 5M, PAST THE WHOLE CHANNEL) writes its own line to data/skip-reasons.jsonl - the read decides exactly as before. tools/skip-scorecard.py (read only) settles every refused 15m window per rule from her price log (SAVED = would have lost, MISSED = would have won) and lists her taken trades by setup, worst first -> data/SKIP-SCORECARD.txt.
+- when: 2026-11-04T23:20:31+00:00
+- Love: "Love Nov 4 2026 3:11 PM PT: "please give them all their own line so we can test and track them individually" + "add any other metrics that will help gather data to refine her entries and stop bleeds""
+- books: recon-tog, recon-rej
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "appendFileSync(D(\"skip-reasons.jsonl\")"}
+- proof: {"exists": "tools/skip-scorecard.py"}
+- proof: {"test": "tools/skip-lines-647.cjs"}
+
+## R333 - fix646: her pink slide / climb (3 rejections, longs or shorts only until a 10% break) turns on with the pink in the bottom / top 44% of the channel - was 33% (fix584). One threshold in pinkThird584, shared by every book that reads the slide.
+- when: 2026-11-04T23:04:01+00:00
+- Love: "Love Nov 4 2026 2:54 PM PT: "44% for main & rejection for now pls we will test that""
+- books: recon-tog, recon-rej
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "(pp - b.price) / W <= 0.44 : (a.price - pp) / W <= 0.44; // fix646"}
+- proof: {"test": "tools/slide-her-way-584.cjs"}
+
+## R332 - fix645: trade away from the closest band with no touch - the nearest line over price + a 2/5m candle turned or born red past its open (the pink also needs her $10 BTC / tap gold push off its candle open) = the short off it; nearest line under + green = the long. Every wall still judges it.
+- when: 2026-11-04T22:36:42+00:00
+- Love: "Love Nov 4 2026 2:29-2:30 PM PT: "i DO want her to trade if a candle is born our color & is under a band pushing off , and i DO want her to long if a candle is born our color & is over a band &&& is pushing off." + "i don't want that in. i never asked for it to need a touch." + "it just needs to push away from a band or zone with the push requirement""
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "cands.push({ side: \"down\", label: `Rejected down off ${nb645.name}`, d, rank: 1 }); // fix645"}
+- proof: {"test": "tools/zone-reject-644.cjs"}
+
+## R331 - fix644: the red zone is read as an area - a candle that reached the red zone (or ran past it) and falls by her tap on a 2/5m candle turned or born red is the short (Rejected down off Red zone), wherever it sits against 5m R1; back under the Bollinger upper on red is the Bollinger rejection, not a break. Mirror for the green zone / Bollinger lower on green. Every wall still judges it. + fix642b (Claude's own bug in fix642, found 2:23 PM and stopped with LIVE off): a break counts only when price was on the other side of that band in this 5m candle or on a 1m close within the last 15 minutes - a band price merely sits past is never a break (2:14 PM 'Break below Red zone').
+- when: 2026-11-04T22:31:34+00:00
+- Love: "Love Nov 4 2026 2:22-2:23 PM PT: "i wanted her to short" + "the candle flipped red from a red zone" + (a red candle falling from inside or above the red zone, or back under the Bollinger upper, after the push, counts as the short, even while price is still above the red line - mirror for green?) "yes""
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "if (String(l.name) === \"Red zone\" && cur.h >= p - nr && spot <= cur.h - tap"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "if (/^(Bollinger|BB) upper$/.test(String(l.name)) && cur.h >= p && spot < p && spot <= cur.h - tap"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "cands.splice(i642, 1); } } // fix642b"}
+- proof: {"test": "tools/zone-reject-644.cjs"}
+- proof: {"test": "tools/held-break-642.cjs"}
+
+## R330 - fix643: a NEW PAPER book recon-rjnp (card RECONSTRUCTED · REJECTIONS ONLY · NO PINK): rejections only off the session bands, the green / red zone and the Bollingers - no pink trades, no breaks - on a 2/5m candle turned or born her colour after the push, through main's thirds, pink wall and door (55%, red falling 5m, every wall). The no-pink book recon-rnp is untouched. In no live list.
+- when: 2026-11-04T22:19:47+00:00
+- Love: "Love Nov 4 2026 2:10 PM PT: "let's keep that one the way it was , and create a new rejection only model with pink excluded as well. she only trades rejections of session bands, red/green zones and bollingers. nothing else. same rules we just went over. only takes rejections , no pinks and no breaks pls" + "keep that no pink as it is , we will have another one that does that""
+- books: recon-rjnp (paper)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "RECON.add(\"recon-rjnp\"); // fix643"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "if (rj643 && book(\"recon-rjnp\", rj643)) changed = true; } catch {} // fix643"}
+- proof: {"code": "src/lib/desk/grokog.ts", "has": "(LANE_BOOK as any)[\"recon-rjnp\"] = \"recon-rjnp\";"}
+- proof: {"code": "src/components/desk/app.tsx", "has": "{ book: \"recon-rjnp\" as any, title: \"RECONSTRUCTED 🧬 · REJECTIONS ONLY · NO PINK\""}
+- proof: {"test": "tools/rej-nopink-643.cjs"}
+
+## R329 - fix642: past the pink ($5 BTC / 25c gold), a session band or the green / red zone (her $5 BTC / 33c gold break) and still past it, on a 2/5m candle that turned or was born her colour past its open, she enters - no new cross needed, both ways. The pink break now waits for that candle too (fix641's no-flip go is gone by her 'yes'). Zone breaks on her colour now count (fix67/fix297 still hold every other zone read). The 55%, the red-falling-5m rule and her thirds stay.
+- when: 2026-11-04T22:01:01+00:00
+- Love: "Love Nov 4 2026 1:53 PM PT: "Once the pink is broken and price is still above it, she longs. She does not wait for another cross. The same for shorts below. The 55% and the red-falling-5m rule stay." + 1:53 PM: "not just pink. a session band or green zone or red zone. a flip or a candle born it's color after the push requirement." + 1:55 PM (does the pink break wait for a green candle too?): "yes" + 1:56 PM: "she enters at price pushing off of any band or zone in her color at the push requirement please""
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "cur.o >= p && spot >= p + brkL580 && (() => { try { return turnFlip530(asset, \"up\", spot); }"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "cur.o <= p && spot <= p - brkL580 && (() => { try { return turnFlip530(asset, \"down\", spot); }"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "for (const c of held642) if (!cands2.includes(c)) cands2.push(c); // fix642"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "if (!turnFlip530(asset, side, tick)) return \"\"; // fix642"}
+- proof: {"test": "tools/held-break-642.cjs"}
+- proof: {"test": "tools/behaviour-umpire.cjs"}
+
+## R328 - fix641 (R327 put in whole - the send file had not gone in, and R327 had no checkable proof): a pink break (Break/Close above/below 5m PP) enters the moment price is $5 BTC / 25c gold past the pink - no 2/5m flip needed, at her walls, the send and on resting orders; price back across the pink before the order = refused (PINK BREAK GONE). Rejections still need the flip. Red falling 5m candle still refuses longs. 55% stays. BTC pink tolerance 10% of the channel over $1,000 (15% $500-$1,000 unchanged). Gold over $25 = $3 unchanged.
+- when: 2026-11-04T21:39:01+00:00
+- Love: "Love Nov 4 2026 1:24 PM PT: "Yes. A pink break enters the moment the push is met. Price must still be on the same side of the band at the fill. If it flips before the fill, refuse it at the door. The flip is still required on rejections." + "anything over 1k channel width for btc goes to 10% for pink tolerance." + "for gold anything over $25 goes to $3 for pink tolerance okay" + 1:32 PM: "that's good bb thank you i input it""
+- books: every live book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function pinkBreak641("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "pb641 !== \"go\" && !turnFlip530(asset, side, tick)) why = `HER FLIP:"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "pb641c !== \"go\" && !turnFlip530(asset, side, tick)"}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "PINK BREAK GONE AT THE SEND (fix641)"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "G641.__restLabel641 = String((r as any)?.setup || \"\");"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W"}
+- proof: {"test": "tools/behaviour-umpire.cjs"}
+
+## R327 - A pink break (Break/Close above/below 5m PP) enters the moment price is $5 BTC / 25c gold past the pink - no 2/5m flip needed; price back across the pink before the order = refused (her walls, the send, and resting orders). Rejections still need the flip. Red falling 5m candle still refuses longs. 55% stays. BTC pink tolerance 10% of the channel over $1,000 (15% $500-$1,000 unchanged). Gold over $25 = $3 (already live since 10:41 AM, unchanged).
+- when: 2026-11-04T21:33:51+00:00
+- Love: "Love Nov 4 2026 1:24 PM PT: "Yes. A pink break enters the moment the push is met. Price must still be on the same side of the band at the fill. If it flips before the fill, refuse it at the door. The flip is still required on rejections." + "anything over 1k channel width for btc goes to 10% for pink tolerance." + "for gold anything over $25 goes to $3 for pink tolerance okay""
+- books: every live book
+- status: ACTIVE
+- proof: "b"
+- proof: "e"
+- proof: "h"
+- proof: "a"
+- proof: "v"
+- proof: "i"
+- proof: "o"
+- proof: "u"
+- proof: "r"
+- proof: "-"
+- proof: "u"
+- proof: "m"
+- proof: "p"
+- proof: "i"
+- proof: "r"
+- proof: "e"
+- proof: " "
+- proof: "f"
+- proof: "i"
+- proof: "x"
+- proof: "6"
+- proof: "2"
+- proof: "6"
+- proof: " "
+- proof: "s"
+- proof: "c"
+- proof: "e"
+- proof: "n"
+- proof: "e"
+- proof: "s"
+- proof: " "
+- proof: "("
+- proof: "1"
+- proof: "6"
+- proof: ")"
+- proof: " "
+- proof: "+"
+- proof: " "
+- proof: "e"
+- proof: "v"
+- proof: "e"
+- proof: "r"
+- proof: "y"
+- proof: " "
+- proof: "e"
+- proof: "x"
+- proof: "i"
+- proof: "s"
+- proof: "t"
+- proof: "i"
+- proof: "n"
+- proof: "g"
+- proof: " "
+- proof: "t"
+- proof: "e"
+- proof: "s"
+- proof: "t"
+- proof: " "
+- proof: "p"
+- proof: "a"
+- proof: "s"
+- proof: "s"
+- proof: "e"
+- proof: "s"
+- proof: " "
+- proof: "o"
+- proof: "n"
+- proof: " "
+- proof: "t"
+- proof: "h"
+- proof: "e"
+- proof: " "
+- proof: "c"
+- proof: "h"
+- proof: "a"
+- proof: "n"
+- proof: "g"
+- proof: "e"
+- proof: "d"
+- proof: " "
+- proof: "f"
+- proof: "i"
+- proof: "l"
+- proof: "e"
+- proof: "s"
+
+## R326 - MAIN WITHOUT PINK (recon-rnp, paper) takes her own non-pink read every pass - main's logic on main's lines without the pink, main's thirds, pink wall and door - never main's call, never main's next-best, never waits on main's order record
+- when: 2026-11-04T20:31:35+00:00
+- Love: "Love Nov 4 2026 12:26-12:30 PM PT: "The pink-excluded book is not limited to main's calls. When a valid setup appears that is not a pink trade, she takes it on her own. She does not wait for main and does not take main's next-best." + "Unlocked. Go.""
+- books: 
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "let np620: any = null; /* Love Nov 4 2026 12:26 PM PT"}
+- proof: {"code": "src/lib/desk/recon.ts", "lacks": "if (prior && lane === \"recon-rnp\") {"}
+
 ## R325 - fix632 her position sizing slider's numbers, maxDollars and liveBook.dollars, never count as drift. Every other setting is still checked.
 - when: 2026-11-02T08:58:53+00:00
 - Love: "Love Nov 1 2026 11:32 PM PT: "i already have a position sizing slider. you told me any change makes the umpire stop all orders. don't have that in place for position sizes.""

@@ -112,11 +112,17 @@ def pill_ok628(new):
     except Exception:
         return set()
 
+# fix737 (Love Nov 5 2026 ~10:57 AM PT: "please disable this hun for me to unlock and then relock when i want to"): every time she turned LIVE back on during a CHANGE, this gate read
+# live / at / note / liveBook.since as "settings changed without her words" and the umpire stopped the whole desk. These are her own hands - the same set the umpire gate (fix477),
+# verify-golden (fix632/fix676) and the wire seal already treat as hers: LIVE on/off and its stamps, and her size slider. Every other setting is still guarded exactly as before.
+HER_HANDS737 = {"live", "at", "note", "maxDollars", "liveBook.dollars", "liveBook.note", "liveBook.at", "liveBook.since"}
+
 def config_losses(old, new):
     O = flat(json.load(open(old, encoding="utf8"))); N = flat(json.load(open(new, encoding="utf8")))
     out = []; P628 = pill_ok628(new)
     for k, v in O.items():
         if k.split(".")[0] in P628: continue  # fix628
+        if k in HER_HANDS737: continue  # fix737: her LIVE switch and size slider are hers - flipping them is never a rule change
         if k not in N: out.append(("setting gone", k))
         elif N[k] != v: out.append(("setting changed", f"{k}: {json.dumps(v, ensure_ascii=False)[:80]} -> {json.dumps(N[k], ensure_ascii=False)[:80]}"))
     return out
@@ -150,6 +156,20 @@ if __name__ == "__main__":
         if not saves: print("NO-REMOVAL GATE: no save to compare against"); sys.exit(1)
         old, new = saves[-1], "."
     bad = gate(old, new)
+    # fix738 GATE KEY (Love Nov 5 2026 ~10:59-11:01 AM PT: "let me unlock her with a command myself and leave it stationary on the desktop ... still have it give me the warning"): while Love's
+    # UNLOCK-GATE command has her gate unlocked (data/gate-unlock.json), this gate still prints the FULL warning and logs every change (data/gate-unlock.jsonl) but does not stop her.
+    # RELOCK-GATE takes a fresh save and turns it back on. Only this gate - every other umpire check, the ENFORCER and every rail are unchanged.
+    try: U738 = json.load(open("data/gate-unlock.json", encoding="utf8")).get("unlocked") is True
+    except Exception: U738 = False
+    if bad and U738:
+        print(f"NO-REMOVAL GATE ✓ UNLOCKED BY LOVE - WARNING: {len(bad)} change(s) she would have refused (old: {old}) - logged, not stopped:")
+        for f, k, i in bad[:60]: print(f"  ⚠ {f} [{k}] {i[:200]}")
+        try:
+            import datetime
+            with open("data/gate-unlock.jsonl", "a", encoding="utf8") as fh:
+                for f, k, i in bad: fh.write(json.dumps({"at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "file": f, "kind": k, "item": i[:300], "old": old}, ensure_ascii=False) + "\n")
+        except Exception: pass
+        sys.exit(0)
     if bad:
         print(f"NO-REMOVAL GATE: REFUSED - {len(bad)} change(s) to Love's rules/settings without her words - taken out, or put in unasked (old: {old}):")
         for f, k, i in bad[:60]: print(f"  ✗ {f} [{k}] {i[:200]}")

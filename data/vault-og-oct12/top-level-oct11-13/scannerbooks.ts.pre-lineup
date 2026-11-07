@@ -1,0 +1,74 @@
+// SCANNER BOOKS (Claude, Oct 11 ~7 PM PT, Love: "could you add a combo's tab that actually shows the trades when i click it
+// in the scanner tab... let's make all of the cards clickable to show their trades on there too, highest performance toggle
+// too, and the 4, 12, 24 and all buttons"). Read only: every paper book the SCANNER tab follows, as one list of trades per
+// book, so the tab can filter by time, sort by performance and open any card's trades.
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+
+export type SBRow = { at: string; label: string; side: string; entry: number | null; result: string; pnl: number | null; exit: string | null };
+export type SBook = { id: string; title: string; family: string; rows: SBRow[] };
+const rd = (f: string, d: any) => { try { const p = join(process.cwd(), "data", f); return existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : d; } catch { return d; } };
+const LANE_TITLE: Record<string, string> = {
+  "og-golden": "OG · OCT 1 FEED", "og-hers": "OG · YOUR BANDS", grok: "GROK BUILDER",
+  "paper-247": "PAPER · 24/7", "paper-best": "PAPER · HER BEST HOURS", "paper-winners": "PAPER · WINNING SETUPS", "paper-20": "PAPER · 20% ROAD", "open-road": "PAPER · WHAT THE BAND BENCHED",
+  "brick-nowall": "BRICK · NO PIVOT WALL", "squeeze-nowall": "SQUEEZE · NO PIVOT WALL",
+};
+function laneTitle(l: string) {
+  if (LANE_TITLE[l]) return LANE_TITLE[l];
+  const bank = l.endsWith("-bank");
+  const b = l.replace(/-bank$/, "");
+  let m = /^piv(\d+)$/.exec(b); if (m) return `PIVOT ${m[1]}M${bank ? " · BANK" : ""}`;
+  m = /^sp(\d+)$/.exec(b); if (m) return `SESSION + PIVOT ${m[1]}M${bank ? " · BANK" : ""}`;
+  m = /^ogp(\d+)$/.exec(b); if (m) return `OG 👑 + PIVOT ${m[1]}M${bank ? " · BANK" : ""}`;
+  if (LANE_TITLE[b]) return `${LANE_TITLE[b]}${bank ? " · BANK" : ""}`;
+  return l.toUpperCase();
+}
+const res = (r: any, pnl: number | null) => (r === "open" ? "open" : pnl == null ? String(r || "open") : pnl > 0.05 ? "win" : pnl < -0.05 ? "loss" : "flat");
+
+export function scannerBooks(): SBook[] {
+  const out: SBook[] = [];
+  const add = (id: string, title: string, family: string, row: SBRow) => {
+    let b = out.find((x) => x.id === id);
+    if (!b) { b = { id, title, family, rows: [] }; out.push(b); }
+    b.rows.push(row);
+  };
+  // COMBOS
+  try {
+    const titles: Record<string, string> = { "crypto-late": "CRYPTO · LAST 5 MIN · 88c+", "mix-5x": "CRYPTO + COMMODITIES · OTHER SIDE 5x+", "mix-7x": "CRYPTO + COMMODITIES · OTHER SIDE 7x+", "comm-5x": "COMMODITIES ONLY · OTHER SIDE 5x+", claude: "CLAUDE'S PICKS ✦" };
+    for (const c of rd("combos.json", []) as any[]) {
+      const lane = c.lane || "crypto-late";
+      const legs = (c.legs || []).map((l: any) => l.kind === "sports" ? `${l.note || l.series} ${Math.round(l.ask * 100)}c` : `${String(l.series).replace(/^KX|15M$/g, "")} ${String(l.side).toUpperCase()}`).join(" · ");
+      add(`combo:${lane}`, `COMBO 🧩 ${titles[lane] || lane}`, "COMBOS", { at: c.at, label: `${(c.legs || []).length} legs · ${c.multiple}x · ${legs}`, side: "", entry: Number(c.cost) || null, result: res(c.result, c.pnl), pnl: c.pnl ?? null, exit: c.exit ?? null });
+    }
+  } catch {}
+  // OG / PIVOT / PAPER lanes
+  try {
+    const g = rd("grok-og.json", []);
+    const rows: any[] = Array.isArray(g) ? g : g?.rows ?? [];
+    for (const r of rows) {
+      const lane = r.lane || "grok";
+      if (/-skipped$/.test(lane)) continue;
+      const fam = /^paper-|^open-road/.test(lane) ? "PAPER" : "OG & PIVOT";
+      add(`lane:${lane}`, laneTitle(lane), fam, { at: r.at, label: `${String(r.asset).toUpperCase()} ${r.side === "up" ? "LONG" : "SHORT"} · ${r.label}`, side: r.side, entry: Number(r.ask) || null, result: res(r.result, r.pnl), pnl: r.pnl ?? null, exit: r.exit ?? null });
+    }
+  } catch {}
+  // SPORTS (CLOSER + LONGSHOT)
+  try {
+    const c = rd("closer.json", {});
+    for (const t of c?.trades ?? []) add(`closer:${t.lane}`, `CLOSER 🏈 · ${String(t.lane).toUpperCase()}`, "SPORTS", { at: t.at, label: `${t.league} · ${t.team} · ${t.game}`, side: "yes", entry: Number(t.ask) || null, result: res(t.result, t.pnl), pnl: t.pnl ?? null, exit: null });
+    for (const t of c?.shots ?? []) add(`shot:${t.book}`, `LONGSHOT 🎯 · ${t.book}`, "SPORTS", { at: t.at, label: `${t.league} · ${t.team} · ${t.game}`, side: t.side, entry: Number(t.ask) || null, result: res(t.result, t.pnl), pnl: t.pnl ?? null, exit: null });
+  } catch {}
+  // CLIMATE
+  try {
+    for (const t of rd("climate-wide.json", []) as any[]) add(`climate:${t.kind}`, `CLIMATE · ${String(t.kind).toUpperCase()}`, "CLIMATE", { at: t.at, label: String(t.title || t.ticker).slice(0, 110), side: t.side, entry: Number(t.ask) || null, result: res(t.result, t.pnl), pnl: t.pnl ?? null, exit: null });
+  } catch {}
+  // HOURLY LONGSHOTS (held to the bell)
+  try {
+    for (const t of rd("hour-lotto.json", []) as any[]) {
+      const p = t?.exits?.hold?.pnl;
+      add(`hour:${t.rule}`, `HOURLY LONGSHOTS · ${String(t.rule).toUpperCase()} · HOLD`, "HOURLY", { at: t.at, label: `BTC ${t.side === "up" ? "ABOVE" : "BELOW"} ${t.strike} · ${t.why || ""}`, side: t.side, entry: Number(t.ask) || null, result: t.done ? res("x", p ?? null) : "open", pnl: t.done ? p ?? null : null, exit: null });
+    }
+  } catch {}
+  for (const b of out) b.rows.sort((a, c) => (a.at < c.at ? 1 : -1));
+  return out;
+}

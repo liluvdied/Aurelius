@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getStatsArchive767, getStatsWeek767 } from "@/lib/desk/stats-week";
 import { money, multiple, pct, reachText, usd } from "@/lib/desk/format";
 import { goldHaltFill } from "@/lib/desk/hours";
 import { firedBackwards, outcomeProfit, sized } from "@/lib/desk/paper";
@@ -439,6 +441,7 @@ export function Analytics({
   let allN = 0;
   for (const event of events) {
     if (event.kind !== "banked" || event.profit == null || seen.has(event.tradeId)) continue;
+    if (/^paper-v111-2/.test(String((event as any).venue || ""))) continue; // fix814 (Love Nov 6 2026 ~8:37 AM PT: "the stats changed to only V.111  i still want our main & rej set ups being tracked at each band and each zone"): the V.111 family's paper rows stay out of these lists - they are scored in SET UP SCORES
     seen.add(event.tradeId);
     const profit = event.profit;
     allPnl += profit;
@@ -454,6 +457,23 @@ export function Analytics({
   const allRows = [...all.entries()];
   const allBest = orderRows(allRows.filter(([, row]) => row.pnl >= 0), rankBy, false);
   const allWorst = orderRows(allRows.filter(([, row]) => row.pnl < 0), rankBy, true);
+
+  // fix767 THIS WEEK: scored on the server by the week (Monday 12 AM Pacific); past weeks in a view-only archive.
+  const week767 = useQuery({ queryKey: ["stats-week-767"], queryFn: () => getStatsWeek767(), refetchInterval: 60000, refetchOnWindowFocus: false });
+  const [openWeek767, setOpenWeek767] = useState<string | null>(null);
+  const [showArchive767, setShowArchive767] = useState(false);
+  const archive767 = useQuery({
+    queryKey: ["stats-archive-767", openWeek767],
+    queryFn: () => getStatsArchive767({ data: { week: openWeek767 as string } }),
+    enabled: !!openWeek767,
+    staleTime: Infinity,
+  });
+  const wk = week767.data?.now;
+  const weekBest = orderRows((wk?.rows ?? []).filter(([, row]) => row.pnl >= 0), rankBy, false);
+  const weekWorst = orderRows((wk?.rows ?? []).filter(([, row]) => row.pnl < 0), rankBy, true);
+  const oldWk = archive767.data;
+  const oldBest = orderRows((oldWk?.rows ?? []).filter(([, row]) => row.pnl >= 0), rankBy, false);
+  const oldWorst = orderRows((oldWk?.rows ?? []).filter(([, row]) => row.pnl < 0), rankBy, true);
 
   return (
     <div className="flex flex-col gap-4 pb-16">
@@ -493,7 +513,56 @@ export function Analytics({
       <section className="rounded-xl bg-surface p-4 hairline">
         <div className="flex items-end justify-between gap-3">
           <div>
-            <p className="text-[10px] font-medium tracking-[0.22em] text-muted">ALL TIME</p>
+            <p className="text-[10px] font-medium tracking-[0.22em] text-muted">THIS WEEK</p>
+            <p className={`mt-1 font-mono text-3xl tabular-nums leading-none ${(wk?.pnl ?? 0) >= 0 ? "text-up" : "text-down"}`}>
+              {wk ? money(wk.pnl) : "—"}
+            </p>
+          </div>
+          <p className="text-right font-mono text-xs tabular-nums text-white">
+            {wk ? `${wk.w}W / ${wk.n - wk.w}L` : ""}
+            <span className="mt-1 block text-[10px] text-subtle">
+              {wk && wk.n ? pct((wk.w / wk.n) * 100, 0) : "—"} hit
+            </span>
+          </p>
+        </div>
+        <p className="mt-2 text-xs text-subtle">Since Monday 12:00 AM Pacific. Starts over every Monday; the finished week goes to the archive.</p>
+        <RankTable title="BEST" rows={weekBest} />
+        <RankTable title="WORST" rows={weekWorst} />
+        <button
+          type="button"
+          onClick={() => setShowArchive767(!showArchive767)}
+          className="mt-4 rounded-md border border-white/25 px-3 py-1 text-[10px] tracking-[0.16em] text-white/70"
+        >
+          {showArchive767 ? "HIDE ARCHIVE" : `ARCHIVE · ${week767.data?.past.length ?? 0} WEEKS`}
+        </button>
+        {showArchive767 ? (
+          <div className="mt-3 flex flex-col gap-2">
+            {(week767.data?.past ?? []).length === 0 ? <p className="text-xs text-white/50">No finished weeks saved yet.</p> : null}
+            {(week767.data?.past ?? []).map((name) => (
+              <div key={name}>
+                <button
+                  type="button"
+                  onClick={() => setOpenWeek767(openWeek767 === name ? null : name)}
+                  className={`w-full rounded-md border px-3 py-2 text-left font-mono text-xs ${openWeek767 === name ? "border-white text-white" : "border-white/25 text-white/60"}`}
+                >
+                  Week of {name}
+                  {openWeek767 === name && oldWk ? ` · ${money(oldWk.pnl)} · ${oldWk.w}W / ${oldWk.n - oldWk.w}L · ${oldWk.n ? pct((oldWk.w / oldWk.n) * 100, 0) : "—"} hit` : ""}
+                </button>
+                {openWeek767 === name && oldWk ? (
+                  <>
+                    <RankTable title="BEST" rows={oldBest} />
+                    <RankTable title="WORST" rows={oldWorst} />
+                  </>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </section>
+      <section className="rounded-xl bg-surface p-4 hairline">
+        <div className="flex items-end justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-medium tracking-[0.22em] text-muted">LAST 4 DAYS</p>
             <p className={`mt-1 font-mono text-3xl tabular-nums leading-none ${allPnl >= 0 ? "text-up" : "text-down"}`}>
               {money(allPnl)}
             </p>
@@ -505,7 +574,7 @@ export function Analytics({
             </span>
           </p>
         </div>
-        <p className="mt-2 text-xs text-subtle">Split by result. Each list runs from the highest hit rate down.</p>
+        <p className="mt-2 text-xs text-subtle">The last 4 days, rolling (not all time). Split by result. Each list runs from the highest hit rate down.</p>
         <RankTable title="BEST" rows={allBest} />
         <RankTable title="WORST" rows={allWorst} />
       </section>

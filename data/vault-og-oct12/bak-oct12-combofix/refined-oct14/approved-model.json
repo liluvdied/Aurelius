@@ -1,0 +1,15 @@
+{
+ "at": "2026-10-14T19:43:30.031206Z",
+ "note": "Oct 12 ~9:55 PM PT: combos skip legs Kalshi isn't offering (invalid_parameters fix), accept two-sided quotes with 'no' only, $1 combo test on her tap. Love: 'yess... try on the next ones @ the full $10... $1 as a test'. + maker-confirm wait (25 s, quote status, next-best only if the maker clearly backs out). + comboBuy sizes by the shown price (sizePx) so a $10 JOIN spends ~$10. + top-up after a fill so a combo spends ~its dollars (Oct 13 ~1:55 AM PT). | Oct 14 ~3:25 AM PT (Love: 'please make sure... that was so not okay'): HAND GUARD - a book's resting Kalshi order is pulled when Love holds the other side by hand. | Oct 14 ~4:40 AM PT (Love: 'gold fasho... get her at 74%'): GOLD 5M PIVOT GATE on PAPER 24/7's live gold copies. | Oct 14 ~5:55 AM PT (Love: 'she cannot short that'): ABNORMAL SWING GUARD in the copier. | Oct 14 ~6:05 AM PT (Love: 'every gold trade that ever leaves the terminal'): TERMINAL GATE in kalshi-live sendOrder/addOnBuy (gold 5m pivots + swing guard). | Oct 14 ~6:15 AM PT (Love: 'anywhere else but AT the band'): pivot-gate copies wait for a better entry instead of skipping the window. | Oct 14 ~7:20 AM PT (Love: 'install the fastest rails you possibly can'): MAGLEV - 1 s main loop + background scan warmer, scan cache 1.5 s, BTC/gold charts 3 s, fast landing of new PAPER trades, copier every 1 s. + scan hands back its latest snapshot and refreshes in the background (loop never waits on the network). | Oct 14 ~9:00 AM PT (Love: 'yes pls'): PIVOT CHECK IN HER BRAIN - PAPER 24/7 runs the gold pivot check before booking (pivotHold). | Oct 14 ~9:30 AM PT: pivot hold also inside kalshiFirst, fails closed for gold; engine-alive token. | Oct 14 ~12:55 PM PT (Love): FAST CLOSE - flattenTicker reads cancel/position/orders/quote in parallel and sells off them.",
+ "files": {
+  "engine.ts": "d24646c37cc7a4d7",
+  "prime-book.ts": "a02496bc92dabc75",
+  "kalshi-live.server.ts": "872efa5069a8fd75",
+  "paper.ts": "eaba2d666963f580",
+  "auto.ts": "ec817b827977b355",
+  "setup.ts": "c8dd52b18a164f8a",
+  "vwap.ts": "78918a253309f5e0",
+  "scan.ts": "b297d7e997d90502",
+  "kalshi.ts": "163205f06ddfa973"
+ }
+}

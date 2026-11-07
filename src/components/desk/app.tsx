@@ -1,4 +1,5 @@
 import { Component, memo, startTransition, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { getLiveAuto815, setLiveOffHold815 } from "@/lib/desk/fns"; // fix815
 import { useQuery } from "@tanstack/react-query";
 import { Toaster, toast } from "sonner";
 import { RollDigits, useLiveCountdown, useRollingNumber, useRollingPrice } from "@/components/desk/rolling-price";
@@ -18,11 +19,30 @@ import { PositionsTab } from "@/components/desk/kalshi-positions";
 import { pointsFromFills, pointsFromPrime, TapeBook } from "@/components/desk/kalshi-tape";
 import { HedgeBook } from "@/components/desk/hedge-book";
 import { ScheduleLiveCard } from "@/components/desk/schedule-live";
+import { LiveToday722 } from "@/components/desk/live-today"; // fix722
+import { getLiveToday722 as getLiveToday736 } from "@/lib/desk/fns"; // fix736
 import { LookPanel } from "@/components/desk/look-panel";
 import { Positions } from "@/components/desk/positions";
 import { ScaleBook } from "@/components/desk/scale";
 import { SitRep, explainExit, explainTake, whyTrade } from "@/components/desk/sitrep";
 import { SettingsDrawer } from "@/components/desk/settings-drawer";
+import { RsiBooks672 } from "@/components/desk/rsi-books"; // fix672
+import { RungStats680 } from "@/components/desk/stats-rungs"; // fix680
+import { SetupScores708 } from "@/components/desk/setup-scores"; // fix708
+import { FactorScores825 } from "@/components/desk/factor-scores"; // fix825
+import { SetupBoard773 } from "@/components/desk/setup-board"; // fix773 SETUP SCOREBOARD (display only)
+import { Skips697 } from "@/components/desk/skips"; // fix697
+import { EthBook682 } from "@/components/desk/eth-book"; // fix682
+import { Og1012Card } from "@/components/desk/og-1012"; // fix686
+import { BrkOut687 } from "@/components/desk/brk-out"; // fix687
+import { Inverse688 } from "@/components/desk/inverse-book"; // fix688
+import { Momentum704 } from "@/components/desk/momentum-book"; // fix704
+import { HighMult707 } from "@/components/desk/high-multiple"; // fix707
+import { HalfBand709 } from "@/components/desk/half-band"; // fix709
+import { Cups713 } from "@/components/desk/cup-book"; // fix713
+import { Club690 } from "@/components/desk/club"; // fix690
+import { MainVwap694 } from "@/components/desk/mainvwap"; // fix694
+import { RejParked695 } from "@/components/desk/rejparked"; // fix695
 import { autoDecision } from "@/lib/desk/auto";
 import { lateWindow } from "@/lib/desk/setup";
 import { askDeskGrok, armLiveNow, askHelp, closeNow, exitLiveOrder, getAltBoards, getAudit, getBookMode, getComboRows, getDecidedRows, getDeskSnapshot, getExitLog, getFillLog, getFuelRows, getHalfRows, getHeldOrders, getKalshiCash, getLeanRows, getLiveSize, getLiveSpots, getLiveSwitch, setLiveSwitch, getRunBooks, getSchedule, getArchived, setArchived, setRunBook, saveRunPreset, applyRunPreset, stepOut, getNightHist, getShiftSummary, getShiftRows, setAutoRoll, getLiveByBook,
@@ -1013,7 +1033,7 @@ export function DeskApp() {
   const book = useQuery({
     queryKey: ["book"],
     queryFn: () => pullBook(),
-    refetchInterval: foreground ? 30000 : false, // Oct 14 (lighter page): was 12 s, every tab, even in the background
+    refetchInterval: foreground ? 60000 : false, // Oct 14 (lighter page): was 12 s, every tab, even in the background; fix692: was 30 s (~580 KB each)
     refetchOnWindowFocus: false,
     staleTime: 4000,
   });
@@ -1062,7 +1082,7 @@ export function DeskApp() {
     queryKey: ["fill-log"],
     queryFn: () => getFillLog(),
     enabled: hydrated,
-    refetchInterval: foreground ? 20000 : false,
+    refetchInterval: foreground ? 60000 : false, // fix692 lighter page: was every 20 s (~695 KB each)
     refetchOnWindowFocus: false,
   });
   const exitLog = useQuery({
@@ -1190,6 +1210,9 @@ export function DeskApp() {
     refetchInterval: foreground ? 15000 : false,
     refetchOnWindowFocus: false,
   });
+  // fix838: a breaker pause is told once, loudly, on the one switch
+  const paused838 = useRef<string>("");
+  useEffect(() => { const p = watch.data?.entries === false; const key = p ? "p" : ""; if (p && paused838.current !== key) toast("She's PAUSED by her safety breaker - tap LIVE off, then on, to bring her back."); paused838.current = key; }, [watch.data?.entries]);
   const trailQ = useQuery({
     queryKey: ["trail"],
     queryFn: () => getTrail(),
@@ -1257,6 +1280,19 @@ export function DeskApp() {
     enabled: hydrated && bookTab === "shift",
     refetchInterval: 15000,
   });
+  // fix815 LIVE COMES BACK BEFORE THE WINDOW (Love Nov 6 2026 ~8:46 AM PT): after 3 minutes off - a flashing orange light by LIVE and a toast every 3 minutes until it is back on
+  const live815 = useQuery({ queryKey: ["live-auto-815"], queryFn: () => getLiveAuto815(), refetchInterval: 15000 });
+  const [tick815, setTick815] = useState(0);
+  useEffect(() => { const id = setInterval(() => setTick815((x) => x + 1), 30000); return () => clearInterval(id); }, []);
+  const offMs815 = live815.data && !live815.data.live && live815.data.offSince ? Date.now() - Date.parse(String(live815.data.offSince)) : 0;
+  const liveOff3m815 = offMs815 >= 180000;
+  const toastAt815 = useRef(0);
+  useEffect(() => {
+    if (!liveOff3m815 || Date.now() - toastAt815.current < 175000) return;
+    toastAt815.current = Date.now();
+    const d815: any = live815.data, why815 = d815?.holdUntil && Date.parse(d815.holdUntil) > Date.now() ? "OFF FOR THE DAY is set - it stays off" : d815?.last?.why ? `last check: ${d815.last.why}` : "it turns itself back on 15 s before the next window";
+    toast(`LIVE is OFF (${Math.round(offMs815 / 60000)} min) - ${why815}.`);
+  }, [liveOff3m815, tick815, live815.data]); // eslint-disable-line react-hooks/exhaustive-deps
   const liveQ = useQuery({
     queryKey: ["live-switch"],
     queryFn: () => getLiveSwitch(),
@@ -1915,21 +1951,7 @@ export function DeskApp() {
                 )}
               />
             </span>
-            <button
-              type="button"
-              onClick={() => {
-                const next = !(watch.data?.entries === true);
-                void setEntries({ data: { on: next } }).then(() => {
-                  toast(next ? "Entries on. $25." : "Entries off. Open trades can still cash.");
-                  void watch.refetch();
-                });
-              }}
-              className="flex h-8 items-center rounded-md px-2 text-[10px] tracking-[0.16em] hairline-soft"
-              aria-pressed={watch.data?.entries === true}
-              aria-label="Toggle new entries"
-            >
-              {watch.data?.entries === false ? "OFF" : "ON"}
-            </button>
+            {/* fix838 ONE SWITCH (Love Nov 6 2026 ~4:04 PM PT: "hun can you take this extra one off? it's gonna trick me every time i turn it on lol i'm gonna forget i have to do an extra one and she will miss atleast 300 windows this week if it's still there"): the separate ENTRIES pill is gone - LIVE is the one switch (LIVE on = entries on). */}
             <button
               type="button"
               onClick={() => {
@@ -1951,9 +1973,10 @@ export function DeskApp() {
               type="button"
               onClick={() => {
                 const next = liveQ.data?.live !== true;
-                if (next && !window.confirm(`Turn LIVE on? Real Kalshi and Polymarket orders will be sent, up to $${liveQ.data?.maxDollars ?? 10} each.`)) return;
+                // fix764 ONE TAP LIVE (Love Nov 5 2026 4:43 PM PT: "please remove this"): no "Turn LIVE on?" pop-up - one tap turns LIVE on; the toast below says it took. The switch, seal and umpire are unchanged.
                 void setLiveSwitch({ data: { live: next } }).then(() => {
                   toast(next ? "LIVE is on. Real orders can go out." : "LIVE is off. No new orders will be sent.");
+                  void watch.refetch(); /* fix838: LIVE on = entries on */
                   void liveQ.refetch();
                 });
               }}
@@ -1964,11 +1987,16 @@ export function DeskApp() {
               aria-pressed={liveQ.data?.live === true}
               aria-label="Toggle live trading"
             >
-              <span className={cn("inline-block size-1.5 rounded-full", liveQ.data?.live === true ? "bg-red-500" : "bg-subtle")} />
+              <span className={cn("inline-block size-1.5 rounded-full", liveQ.data?.live === true && watch.data?.entries === false ? "animate-pulse bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.9)]" /* fix838 paused */ : liveQ.data?.live === true ? "bg-red-500" : liveOff3m815 ? "animate-pulse bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.9)]" : "bg-subtle")} /* fix815: flashing orange after 3 min off */ />
               <span className={cn("text-[10px] tracking-[0.16em]", liveQ.data?.live === true ? "text-fg" : "text-muted")}>
-                {liveQ.data?.live === true ? "LIVE ON" : "LIVE OFF"}
+                {liveQ.data?.live === true ? (watch.data?.entries === false ? "PAUSED · TAP LIVE OFF / ON" : "LIVE ON") : "LIVE OFF"} {/* fix838: a breaker pause shows on LIVE itself */}
               </span>
             </button>
+            {liveQ.data?.live !== true ? (
+              <button type="button" onClick={() => { const on = !((live815.data as any)?.holdUntil && Date.parse(String((live815.data as any).holdUntil)) > Date.now()); void setLiveOffHold815({ data: { on } }).then(() => { toast(on ? "OFF FOR THE DAY - LIVE won't turn itself back on until midnight PT." : "OFF FOR THE DAY cleared - LIVE turns back on before the next window."); void live815.refetch(); }); }} className="flex h-8 items-center rounded-md px-2 text-[9px] tracking-[0.14em] text-muted hairline-soft" aria-label="Off for the day" /* fix815 her deliberate stop */>
+                {(live815.data as any)?.holdUntil && Date.parse(String((live815.data as any).holdUntil)) > Date.now() ? "OFF TODAY ✓" : "OFF TODAY"}
+              </button>
+            ) : null}
             {hydrated ? (
               <button
                 type="button"
@@ -2213,6 +2241,7 @@ export function DeskApp() {
           </div>
         </section>
 
+        {bookTab === "stats" ? <RungStats680 /> : null} {/* fix814: her main + REJ set ups at every band and zone, first on STATS */}
         {bookTab === "stats" ? (
           <Analytics
             trades={trades.filter((t) => t.source !== "live")}
@@ -2220,6 +2249,9 @@ export function DeskApp() {
             events={fillLog.data ?? []}
           />
         ) : null}
+        {bookTab === "stats" ? <SetupScores708 /> : null} {/* fix708 every book's set ups, her framework */}
+        {bookTab === "stats" ? <FactorScores825 /> : null} {/* fix825 every factor on its own, main + REJ */}
+        {bookTab === "stats" ? <SetupBoard773 /> : null} {/* fix773 SETUP SCOREBOARD: our setup / her band read, every book */}
 
         {bookTab === "cash" ? (
           <CashBook
@@ -2259,6 +2291,7 @@ export function DeskApp() {
 
         {bookTab === "log" ? <FillLog events={fillLog.data ?? []} /> : null}
 
+        {bookTab === "sitrep" ? <Skips697 /> : null} {/* fix697 every window: took it or why not, with a FLAG */}
         {bookTab === "sitrep" ? (
           <SitRep
             rows={exitLog.data ?? []}
@@ -3208,6 +3241,12 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   const h2h = since !== "9999";
   // 12H / 24H / ALL on every card (Love, Oct 3 ~9 PM PT): one switch, every card's numbers follow it.
   const [span, setSpan] = useState<"4h" | "12h" | "24h" | "all">("all");
+  // fix691 SORT BY (Love Nov 5 2026 ~1:54 AM PT: "let's add sorted by - buttons for all the cards pls!!! highest hit rate & lowest pls!!"): $ or hit rate, high or low, for the span picked; remembered on this device. Display only.
+  const [sortBy691, setSortBy691] = useState<"pnl-hi" | "pnl-lo" | "hit-hi" | "hit-lo">("pnl-hi");
+  useEffect(() => { try { const v = localStorage.getItem("sortBy691"); if (v === "pnl-hi" || v === "pnl-lo" || v === "hit-hi" || v === "hit-lo") setSortBy691(v); } catch {} }, []);
+  const pickSort691 = (v: "pnl-hi" | "pnl-lo" | "hit-hi" | "hit-lo") => { setSortBy691(v); try { localStorage.setItem("sortBy691", v); } catch {} };
+  const hit691 = (s: { wins: number; losses: number }) => (s.wins + s.losses ? s.wins / (s.wins + s.losses) : -1);
+  const cmp691 = (a: { s: { pnl: number; wins: number; losses: number } }, b: { s: { pnl: number; wins: number; losses: number } }) => { if (sortBy691 === "pnl-lo") return a.s.pnl - b.s.pnl; if (sortBy691 === "hit-hi") return hit691(b.s) - hit691(a.s) || b.s.pnl - a.s.pnl; if (sortBy691 === "hit-lo") { const x = hit691(a.s), y = hit691(b.s); if (x < 0 || y < 0) return (x < 0 ? 1 : 0) - (y < 0 ? 1 : 0); return x - y || a.s.pnl - b.s.pnl; } return b.s.pnl - a.s.pnl; };
   // RUN per book (Love, Oct 5): green = this book sends to Kalshi, red = paper only. First book to fire owns the window.
   const runQ = useQuery({ queryKey: ["run-books"], queryFn: () => getRunBooks(), refetchInterval: 10000 });
   const schedQ = useQuery({ queryKey: ["schedule-pill"], queryFn: () => getSchedule(), refetchInterval: 60000 });
@@ -3215,11 +3254,14 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   const [showArch, setShowArch] = useState(false);
   const [runBusy, setRunBusy] = useState<string | null>(null);
   const runOn = (book: string) => (runQ.data?.books ?? []).includes(book);
+  // fix736 (Love Nov 5 2026 10:37-10:41 AM PT: "can you put the cards in the Running Table that our other books are in hun ? i want to be able to see them without digging"): the live-today (akimbo) books' own cards ride in RUNNING too - display only (their RUN button, the lineup and the copier are untouched).
+  const lt736Q = useQuery({ queryKey: ["live-today-722"], queryFn: () => getLiveToday736(), refetchInterval: 20000, staleTime: 15000 });
+  const lt736: string[] = (lt736Q.data as any)?.on ? String((lt736Q.data as any).book || "").split(",").filter(Boolean) : [];
   const liveQ2 = useQuery({ queryKey: ["live-by-book"], queryFn: () => getLiveByBook(), refetchInterval: 30000 });
   const copyQ = useQuery({ queryKey: ["live-copy-map"], queryFn: () => getLiveCopyMap(), refetchInterval: 30000 });
   // OPEN NOW (Oct 21 ~11:07 AM PT, Love: "i want to see her open trades for the main book / i need to see which positions she is taking"): her main book's
   // and the delayed book's open calls, always loaded (the card lists only load when a card is tapped), on top of RUNNING ON KALSHI - live or paper.
-  const openQ = useQuery({ queryKey: ["open-now"], queryFn: () => getShiftRows({ data: { books: ["recon-tog", "recon-dly"] } }), refetchInterval: 5000 });
+  const openQ = useQuery({ queryKey: ["open-now"], queryFn: () => getShiftRows({ data: { books: ["recon-tog", "recon-dly", "v1112" /* fix772: V.111 - 2's open paper trades too (display only) */, "v1112inv" /* fix777 */, "bestie" /* fix775 */, "bestiewalls" /* fix783 */] } }), refetchInterval: 5000 });
   const openNow = useMemo(() => ((openQ.data ?? []) as any[]).filter((r) => r.result === "open").sort((a, b) => (a.at < b.at ? 1 : -1)), [openQ.data]);
   const flipAuto = () => {
     const next = !runQ.data?.autoOn;
@@ -3319,6 +3361,48 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     { book: "recon-rnp-fresh", title: "RECONSTRUCTED 🧬 · PURE NO PINK · MAIN WITHOUT PINK ENTRIES · FRESH SLATE ✨ (since 10:04 PM Nov 1)", note: "fix625 (Love, Nov 1 10:08 PM: \"create a new card for the new pure (no-pink) model with a fresh record\"): the paper twin on main's read, door and window rules, with only pink entries out, from the moment FIX624 landed. Paper." },
     { book: "recon-togp-fresh", title: "RECONSTRUCTED 🧬 · NO PINK · FRESH SLATE ✨ (since 2:30 PM Oct 26)", note: "fix288 (Love, Oct 26 2:31 PM: \"can we get a fresh card for this model too? she should have a clean record\"): the no-pink copy's own trades from 2:30 PM PT Oct 26 only - after fix284-286 (free re-aim, $25 Bollinger cushion, no fake-out floor). Same trades as the NO PINK card, fresh ledger." },
     { book: "recon-togp", title: "RECONSTRUCTED 🧬 · TOGETHER · NO PINK", note: "fix281 (Love, Oct 26 1:10 PM): the main book copied 1:1 - her exact booked call each window, same walls, same door and wire - with only pink (5m PP) breaks and rejections left out. Live in her rejection hours in place of the rejection model; paper the rest." },
+    { book: "recon-rjt3" as any, title: "RECONSTRUCTED 🧬 · REJECTIONS ONLY · THIRDS AS READ 🧪", note: "fix703 (Love, Nov 5 3:43 AM: \"YES pls fix the two thirds that disagree !!!! that's been happening all week !!\"): REJECTION's exact read and walls, but her thirds judged once - where the read judged them (a candle-in-her-third read keeps its own third; any other read is judged on the read's session-band channel). The door's ONLY IN HER THIRD / IMPOSSIBILITY percent lines stand down for this book only. Paper - decide Nov 11." },
+    { book: "akimbo727" as any, title: "AKIMBO · SESSION + PINK × 15M PIVOTS ✨ (clean slate)", note: "fix727 (Love, Nov 5 7:42 AM: \"pls create a new combined card Akimbo so she has a clean slate\"): the akimbo pair on paper exactly as CHANGE-71 trades it live - one ticket per window, the first of the two to call it; when +15M PIVOTS calls the other side of a SESSION + PINK ticket, that ticket is sold at the bid and pivot's side taken. $10 a ticket, from zero at install." },
+    { book: "v1112" as any, title: "V.111 - 2 · HER SEP 24 READS · PAPER", note: "fix770 (Love, Nov 5 ~7:05 PM: give her her own card, V.111 - 2 ... lets get her on paper taking every set up under her rules): paper only - BTC + gold, Kalshi 15m. Her Sep 24 reads exactly (og-replay.mjs): the 1m read on the rolling 60-minute VWAP with her half bands ±0.5 to ±3σ, then the 5m read (last 12 5m bars), then the window-open read (2+ min left); first look wins, one per window, read once a minute on closed 1m bars. Every set up on (cut list: data/v111-2-cut.json). $20 at the real ask, held to the bell, scored under her take-profit; each trade in the fill log as V.111 - 2 · its set up." },
+    { book: "v1112inv" as any, title: "V.111 - 2 INV · HER TAKES FLIPPED · PAPER", note: "fix777 (Love, Nov 5 ~9:48 PM: and the V.111 version is running at 33% , but that's a good thing we can invert the trades on that): paper only. Every take of V.111 - 2, the same second, same asset, same window - the OPPOSITE side at that side's real Kalshi ask. $20 like her, held to the bell, scored under the same take-profit; each trade in the fill log as V.111 - 2 INV · its set up. Never live, never mirrored." },
+    { book: "bestie" as any, title: "BESTIE 💞 · V.111 - 2's BEST SET UPS · LIVE ON KALSHI $5", note: "fix775 (Love, Nov 5 ~9:25-9:34 PM: let's place V111 - 2 - best from the set ups only table on at $5 pls we will see if it's her i want to know + card picks Kalshi, like AKIMBO, flat $5 + call it bestie): V.111 - 2's twin. Every take of V.111 - 2 whose set up is in a BEST table of STATS (THIS WEEK, LAST 4 DAYS or PRIME BOOK) with 3+ trades and MORE than 50% goes to Kalshi at a flat $5, in the live lineup next to AKIMBO - first call wins the window, no flips, the umpire, the shared -$100 day stop, halt and LIVE. V.111 - 2's own paper card keeps every take. Add-ons off for her until data/v111-2-live.json addOns is true (then your Add-on boxes apply like every book). Off: data/v111-2-live.json enabled false." },
+    { book: "invw-main" as any, title: "MAIN INVERSE-WORST · PAPER $5", note: "fix820 (Love, Nov 6 ~10:43 AM: create an inverse book on THOSE set ups only ... all individual inverse books): paper only. The OPPOSITE side of its family's WORST set ups (30+ trades in 7 days, under 40% hit and losing money), at the real ask inside her 1.5x floor, $5, her 75/95 exit, settled from Kalshi. The list updates as SET UP SCORES does." },
+    { book: "invw-rej" as any, title: "REJ INVERSE-WORST · PAPER $5", note: "fix820 (Love, Nov 6 ~10:43 AM: create an inverse book on THOSE set ups only ... all individual inverse books): paper only. The OPPOSITE side of its family's WORST set ups (30+ trades in 7 days, under 40% hit and losing money), at the real ask inside her 1.5x floor, $5, her 75/95 exit, settled from Kalshi. The list updates as SET UP SCORES does." },
+    { book: "invw-np" as any, title: "NO-PINK INVERSE-WORST · PAPER $5", note: "fix820 (Love, Nov 6 ~10:43 AM: create an inverse book on THOSE set ups only ... all individual inverse books): paper only. The OPPOSITE side of its family's WORST set ups (30+ trades in 7 days, under 40% hit and losing money), at the real ask inside her 1.5x floor, $5, her 75/95 exit, settled from Kalshi. The list updates as SET UP SCORES does." },
+    { book: "invw-v1112" as any, title: "V.111 INVERSE-WORST · PAPER $5", note: "fix820 (Love, Nov 6 ~10:43 AM: create an inverse book on THOSE set ups only ... all individual inverse books): paper only. The OPPOSITE side of its family's WORST set ups (30+ trades in 7 days, under 40% hit and losing money), at the real ask inside her 1.5x floor, $5, her 75/95 exit, settled from Kalshi. The list updates as SET UP SCORES does." },
+    { book: "pinkslide802" as any, title: "PINK SLIDE ONLY · PAPER $5", note: "fix802 (Love, Nov 6 ~6:42 AM: we could literally take nothing but pink slides and it would prolly be our most successful book lol): paper only, never live. Only her pink-slide take (fix801): while her SLIDE UNDER PINK hold is on, price comes back to the pink and rejects -> the short at the first ask over 1.5x while still at the pink, no flip; mirror while CLIMB OVER PINK is on -> the long. BTC + gold, one per window, $5 at the real ask, the live exit (half at 75% / rest at 95% of the way), settled from Kalshi. Scored by set up in STATS." },
+    { book: "bestieinv" as any, title: "BESTIE · INVERSE · PAPER $5", note: "fix795 (Love, Nov 6 ~5:14 AM: pls make an inverse of the book running if it's at 33% that is supposed to be the other way around): paper only. Every window BESTIE actually filled on Kalshi, taken here on the OTHER side at that side's real ask the moment her fill shows, $5, the live exit (half at 75% / rest at 95% of the way), settled from Kalshi. Replay of her live fills 2:01-5:15 AM Nov 6: 7 of 7, +$16.76." },
+    { book: "v1112ldc" as any, title: "V.111 - 2 · LDC FADE · PAPER $5", note: "fix794 (Love, Nov 6 ~3:53 AM: shorting when LDC ribbon is green and longing when it's red ... on its own book): paper only. V.111 - 2's take of each window, kept only when the 1m LDC fades it - a short only while the LDC is GREEN, a long only while it is RED. $5 at her real ask, the live exit (half at 75% / rest at 95% of the way), settled from Kalshi. The winner of data/reports/ldc-study-nov6.md (Nov 1-6: 204 trades, 50.5%, +$68). LDC = a rebuild of Lorentzian Classification (published defaults) on the desk's 1m bars." },
+    { book: "bestiewalls" as any, title: "BESTIE · WALLS · MAIN'S BAND / ZONE DOOR · PAPER $5", note: "fix783 (Love, Nov 6 ~2:12 AM: can you include all of the same band / zone tolerances for this book too hun ... keep an unadulterated version of this one + her card: live BESTIE stays pure, the walled one on paper): paper only, never live. Exactly BESTIE's takes (same side, her real ask, $5) - each first judged by MAIN's door on the live board that second, the way the sub-auditor judges main (channel 33%, unbroken band ahead, pink cushion, pink-to-red/green 55%, Bollinger, zones, her candle / flip, her reach wall). Refused = not taken here. Held to the bell + her take-profit. BESTIE live is unchanged." },
+    { book: "bestiewalls-skip" as any, title: "BESTIE · WALLS · BLOCKED · WHAT THEY WOULD HAVE DONE", note: "fix783: every BESTIE take main's door refused, main's reason first, scored as if taken ($5, same take-profit) - what the walls saved or cost. Never traded, never in the fill log." },
+    { book: "mom704" as any, title: "MOMENTUM BOOK · GO WITH IT (paper)", note: "fix704 paper: gold with the first 2 minutes, BTC with a fresh pink break up, BTC short under -2σ while falling, gold 1σ chase. $20 at the real ask. Card added by fix721 (display only)." },
+    { book: "rsi672" as any, title: "RSI BOOKS · 5M / 15M / 30M / 1H / 4H · PAPER", note: "fix672 (Love Nov 4 9:56 PM): every RSI cell - asset x market x RSI timeframe x level, paper only. Tap: its timeframe / level filters and table, then its trades. Card by fix765 (display only)." },
+    { book: "momdoge833" as any, title: "DOGE · MOMENTUM · PAPER", note: "fix833 (Love, Nov 6 ~3:18 PM card: all four on paper): the MOMENTUM BOOK's three setups (first 2 minutes, fresh break up through pink, short under -2σ) on DOGE's Kalshi 15M market at the real ask, fees counted. Paper only." },
+    { book: "mombnb833" as any, title: "BNB · MOMENTUM · PAPER", note: "fix833 (Love, Nov 6 ~3:18 PM card: all four on paper): the MOMENTUM BOOK's three setups (first 2 minutes, fresh break up through pink, short under -2σ) on BNB's Kalshi 15M market at the real ask, fees counted. Paper only." },
+    { book: "momsol833" as any, title: "SOL · MOMENTUM · PAPER", note: "fix833 (Love, Nov 6 ~3:18 PM card: all four on paper): the MOMENTUM BOOK's three setups (first 2 minutes, fresh break up through pink, short under -2σ) on SOL's Kalshi 15M market at the real ask, fees counted. Paper only." },
+    { book: "btcfirst2-833" as any, title: "BTC · WITH THE FIRST 2 MINUTES · PAPER", note: "fix833 (Love, Nov 6 ~3:18 PM card: all four on paper): go with the first 2 minutes of each BTC window, real Kalshi ask, fees counted. Paper only." },
+    { book: "sol832" as any, title: "SOL · REJECTIONS ONLY · NO PINK · PAPER", note: "fix832 (Love, Nov 6 ~3:16 PM card: paper books on the desk): her ETH rejections-only book copied to SOL (Kalshi KXSOL15M, Coinbase SOL-USD), same rules scaled by price. Paper only." },
+    { book: "doge832" as any, title: "DOGE · REJECTIONS ONLY · NO PINK · PAPER", note: "fix832 (Love, Nov 6 ~3:16 PM card: paper books on the desk): her ETH rejections-only book copied to DOGE (Kalshi KXDOGE15M, Coinbase DOGE-USD), same rules scaled by price. Paper only." },
+    { book: "eth682" as any, title: "ETH · REJECTIONS ONLY · NO PINK · PAPER", note: "fix682 (Love Nov 4 11:38 PM): ETH rejections only, no pink, paper only. Tap for its panel and trades. Card by fix765 (display only)." },
+    { book: "hm707-rev" as any, title: "HIGH MULTIPLE · REVERSAL AT THE FARTHEST BAND (paper)", note: "fix707 paper: after a rip through 1+ bands, the turn back at the farthest band, 2.8x+ asks only. Card added by fix721 (display only)." },
+    { book: "hm707-rip" as any, title: "HIGH MULTIPLE · WITH THE RIP (paper)", note: "fix707 paper twin: still past the last band crossed, with the rip, 2.8x+ asks only. Card added by fix721 (display only)." },
+    { book: "kalshinow766" as any, title: "ON KALSHI NOW 💸 · AKIMBO LIVE", note: "fix766 (Love, Nov 5 5:06 PM: the new active ledger for what's on kalshi rn ... so we can see the actual record): the REAL Kalshi record of whatever is live - AKIMBO (SESSION + PINK, +15M PIVOTS, gold 2m seat) and main / TOGETHER in the 2-3 PM hand-over - from Kalshi fills and settlements, add-ons included, since AKIMBO went live (Nov 5 6:36 AM). No paper rows. Display only." },
+    { book: "onetwothree835" as any, title: "1-2-3 · SEALED · PAPER", note: "fix835 (Love, Nov 6): her Oct 25-26 Polymarket BTC 5-minute 1-2-3 book as it stood in PRE295-BUILD (Oct 26 ~9:30 PM PT), sealed byte for byte - the rejection model's streak read, her walls judged at the call ($25 pink cushion, chart Bollinger), the 1m / 2m / 3m flip doors and the late door, ask+4c never past 1.38x, no buys under 30c, half at 75% / rest at 90%, -$45 day stop, 1 h pause after 4 losses. $5 paper on the desk's recorded Polymarket 5m quotes. Stops itself if the seal breaks. Paper only." },
+    { book: "onetwothree836" as any, title: "1-2-3 · NEW · PAPER", note: "fix836 (Love, Nov 6): the sealed 1-2-3 base plus her late door (~3:00 left, pushing off a Bollinger, session band or red/green zone with the live 1m her colour), her 1.5x floor (66c max), the Bollinger cushion ($50 / 10% of the channel) and no trading into a line within $50 of the target. $5 paper on the desk's recorded Polymarket 5m quotes. Paper only." },
+    { book: "bb5m851" as any, title: "5M BOLLINGER · PAPER", note: "fix851 (Love, Nov 6 ~6:10 PM): Polymarket BTC 5-minute, paper. A 1m candle touches the 5m Bollinger (20/2) and closes back off it - with the turn, 2+ min left, her 1.5x floor. Stake by distance to the 5m target: her side $10, under $25 away $5, $25+ away $1. Her take profit, else the bell." },
+    { book: "bb5m851p" as any, title: "5M BOLLINGER · 2M PUSH · PAPER", note: "fix851 twin (Love, Nov 6 ~6:10 PM): Polymarket BTC 5-minute, paper. A new 2m candle opens within $10 of the 5m Bollinger and pushes $10 away - with the push, 2+ min left, her 1.5x floor, same stakes and take profit." },
+    { book: "eth2872" as any, title: "ETH.2 · EVERY REVISION", note: "fix872 (Love, Nov 6 ~8:54 PM: keep the original eth book as it is and put all these revisions into ETH.2 - and it can go live): her ETH book copied, plus every revision (her -2σ short, the VWAP break, only a fill uses the window, keep knocking, add-ons near the next band, no entry into a line, flat $1.50 above a long) and her one pink rule (20% of the channel). Its live copy is switched by live-switch ethLive872." },
+    { book: "og1012" as any, title: "OG ORIGINAL · 10.12 🕯️ · PAPER · SEALED", note: "fix686 (Love, Nov 5 ~1:00 AM: put her on her own paper card never to be touched): Oct 12 OG + PIVOT 5M, byte for byte from branch 10.12 · $20 paper · her Oct 12 exits · never edited. Card by fix765 (display only)." },
+    { book: "brkout687" as any, title: "OUTWARD BREAK · SESSION BANDS · PAPER 🤍", note: "fix687 (Love, Nov 5 ~1:00 AM): a 1m close through a session band by her push ($6 BTC / 33c gold), away from the VWAP · $20 paper · 1.38x floor · BTC + gold. Card by fix765 (display only)." },
+    { book: "inv688" as any, title: "INVERSE BOOK · HER LOSING SET UPS, FLIPPED (paper)", note: "fix688 paper: the other side of her listed losing set ups (data/inverse-setups.json). Card added by fix721 (display only)." },
+    { book: "club690" as any, title: "70% CLUB · HER BEST SET UPS (paper)", note: "fix690 paper: CLUB 70 / HER RULE / HER LADDER lists from the past 14 days. Card added by fix721 (display only)." },
+    { book: "hb709" as any, title: "HALF-BAND KEEP BOOK (paper)", note: "fix709 paper: PAPER 24/7's half-band calls, only the set ups SET UP SCORES rate KEEP or LADDER. Card added by fix721 (display only)." },
+    { book: "cup713" as any, title: "CUP BOOK · CUPS, HANDLES, DOUBLES (paper)", note: "fix713 paper: cup, inverted cup, cup & handle, double bottom / top on 1m and 2m. Card added by fix721 (display only)." },
+    { book: "mv694" as any, title: "MAIN · VWAP SIDE ONLY (paper)", note: "fix694 paper: main's calls on the VWAP side only. Card added by fix721 (display only)." },
+    { book: "rp695" as any, title: "REJECTION · PARKED SIDE (paper)", note: "fix695 paper: rejection's calls on the parked side. Card added by fix721 (display only)." },
+    { book: "recon-rjnp" as any, title: "RECONSTRUCTED 🧬 · REJECTIONS ONLY · NO PINK", note: "fix643 (Love, Nov 4 2:10 PM: \"a new rejection only model with pink excluded as well. she only trades rejections of session bands, red/green zones and bollingers. nothing else.\"): rejections only off the session bands, green / red zone and Bollingers, on a 2/5m candle turned or born her colour after the push. No pink trades, no breaks. Main's thirds, pink wall and door. Paper." },
+    { book: "recon-togr" as any, title: "REJ · TOGETHER REJECTIONS ONLY (paper)", note: "fix250 (Love, Oct 26 ~1:03 AM: \"make a copy of the main book that trades rejections only\"): a literal copy of TOGETHER - the same call, one call per window - with every break left out (Break / Close above / below). Paper only. Card added fix829 so she can find it." }, // fix829
+    { book: "recon-rnp" as any, title: "MAIN · W/O PINK (paper)", note: "fix620: main's twin with pink taken out of the read. Paper only. Card added fix829 so she can find it." }, // fix829
     { book: "recon-rej", title: "RECONSTRUCTED 🧬 · REJECTIONS ONLY", note: "Her Oct 20 twin: only rejections - shorts off the band above, longs off the band below, candle flips and zone flips included, every break muted. Every trade ends up coming back, most of the time. Paper, same door as her siblings." },
     { book: "brk-sess", title: "NEW 🆕 · BREAK BOOK · SESSION ONLY (paper)", note: "Breaks only: a 1m close or a live $5 / 92c push through a session band, entered in the break's direction; no band between price and the strike. Paper, $20." },
     { book: "brk-sessrj", title: "NEW 🆕 · BREAK BOOK · SESSION + PINK REJECTIONS (paper)", note: "The session-band break book's trades + REJECTIONS off the pink when it has no setup: price taps the pink (BTC $3 / gold 30c) without breaking it and pushes back that far = trade away from it. Paper, $20." },
@@ -3326,6 +3410,12 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     { book: "brk5", title: "NEW 🆕 · BREAK BOOK · +5M PIVOTS (paper)", note: "The Break Book with the 5m pivot lines added. Paper, $20." },
     { book: "brk10", title: "NEW 🆕 · BREAK BOOK · +10M PIVOTS (paper)", note: "The Break Book with the 10m pivot lines added. Paper, $20." },
     { book: "brk15", title: "NEW 🆕 · BREAK BOOK · +15M PIVOTS (paper)", note: "The Break Book with the 15m pivot lines added. Paper, $20." },
+    { book: "recon-tzw" as any, title: "MAIN · ZONE WALL + MOVING-OFF TWIN (paper)", note: "fix746 (Love, Nov 5 12:42-12:43 PM: how much did it effect our main books / i want our win rate at 70%): paper twin of the main book - same calls, but not into her green/red zone, and rejections only once price is $50 BTC / $1 gold off the line (it waits and books later in the window at that moment's price). Main unchanged. Paper, $20." },
+    { book: "allbb" as any, title: "ALL-BOLLINGER BOOK (paper)", note: "fix745 (Love, Nov 5 12:43 PM: pls do test those yes i want our win rate at 70%): paper only - one ticket per asset-window: gold 2m middle cross, 2m upper / lower band breaks, 2m upper fade; BTC 5m middle cross, 2m upper / lower breaks; zone wall; 1.5x floor. Replay +$2,228, 67%, green 15/18. Paper, $20." },
+    { book: "akimbo744" as any, title: "AKIMBO + BTC 5M MIDDLE · TWIN (paper)", note: "fix744 (Love, Nov 5 12:30 PM - we will test our card with one that has btc added and see how it does today): paper only - AKIMBO's exact rules over SESSION + PINK, +15M PIVOTS, the gold 2m middle seat AND the BTC 5m middle book; compare with the AKIMBO card. $10 a ticket, clean slate." },
+    { book: "bmid5" as any, title: "BTC · 5M MIDDLE BOLLINGER BREAK (paper test)", note: "fix743 (Love, Nov 5 12:24 PM): BTC only - a closed 1m candle crossing the 5m Bollinger middle line, traded that way; not into her green/red zone ($100); 1.5x floor. PAPER ONLY - to watch next to AKIMBO. Paper, $20." },
+    { book: "push50" as any, title: "AKIMBO $50 PUSH 🧪 (paper, BTC)", note: "fix762 (Love, Nov 5 4:22 PM: change the candle close rule ... after a push of $50 + card: Paper twin first): SESSION + PINK's lines and walls; a break fires the first time BTC is $50 past a line it was on the other side of this or last minute - no 1m close needed. Paper only, $20." },
+    { book: "gmid2" as any, title: "AKIMBO SEAT 3 · GOLD · 2M MIDDLE BOLLINGER BREAK", note: "fix742 (Love, Nov 5 12:05-12:07 PM): gold only - a closed 1m candle crossing the 2m Bollinger middle line, traded that way; not into her green/red zone ($2); 1.5x floor. Live as AKIMBO's third seat: only gold windows neither SESSION + PINK nor +15M PIVOTS took. Paper, $20." },
     { book: "twrevsp5", title: "SESSION + PIVOT 5M · REVISED HOURS (twin)", note: "SP5 on the revised hours. Paper, $20." },
     { book: "twrevogp15", title: "OG 👑 + PIVOT 15M · REVISED HOURS (twin)", note: "OG PIVOT 15M on the revised hours. Paper, $20." },
     { book: "twrevogp5", title: "OG + PIVOT 5M · REVISED HOURS (twin)", note: "OG+PIVOT 5M on the revised hours. Paper, $20." },
@@ -3461,7 +3551,8 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   ];
   // TAPS live in their own tab (Love: "not the vibe" to have $2.50 lotto tickets paint the whole ledger red).
   const archSet = new Set<string>(((archQ.data as string[] | undefined) ?? []).filter((b) => !runOn(b as ShiftNight["book"])));
-  const ranked = BOOKS.filter((b) => !isTap(b.book) && (b.book === "recon-fresh" || b.book === "recon-togp-fresh" || b.book === "recon-rnp-fresh" /* fix625 */ || !archSet.has(b.book))).map((b) => ({ ...b, s: side(b.book) })).sort((a, b) => b.s.pnl - a.s.pnl);
+  const ranked = BOOKS.filter((b) => !isTap(b.book) && (b.book === "recon-fresh" || b.book === "recon-togp-fresh" || b.book === "recon-rnp-fresh" /* fix625 */ || !archSet.has(b.book))).map((b) => ({ ...b, s: side(b.book) })).sort(cmp691); // fix691: was $ high to low only
+  { const i768 = ranked.findIndex((b) => b.book === "kalshinow766"); if (i768 > 0) ranked.unshift(...ranked.splice(i768, 1)); } // fix768: ON KALSHI NOW is pinned first in every sort
   const tapRanked = BOOKS.filter((b) => isTap(b.book)).map((b) => ({ ...b, s: side(b.book) })).sort((a, b) => b.s.pnl - a.s.pnl);
   // CARD TAPS (Oct 13 ~3:25 AM PT, Love: "when i click one it takes a few seconds to open and then i think my click didn't
   // register... when i click again... the second click closes it"). The card says OPENING… the instant it's tapped; taps
@@ -3487,6 +3578,9 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   const FAMS: [string, (b: string) => boolean][] = [
     // NEW ONES (Love, Oct 15 ~3:30 PM PT: "place the ones we have running under one roof... make a new tab for NEW ONES").
     // First in the list so these cards live here even when another family's pattern would also match them.
+    // fix760 $$$ (Love Nov 5 2026 4:02 PM PT: "a new subgroup in the navigation section for all Of our new ones ... just $$$ is fine"): first in the list, so all our new books live here (moved, not
+    // duplicated): AKIMBO and its seats, the Bollinger books, the main wait-distance twin, the inverse book, BRICK no pivot wall and last night's paper books.
+    ["$$$ 💸", (b) => ["kalshinow766", "og1012", "rsi672", "eth682", "eth2872", "brkout687", "push50", "akimbo727", "akimbo744", "brk-sesspk", "brk15", "gmid2", "bmid5", "allbb", "recon-tzw", "inv688", "brnw", "hm707-rev", "hm707-rip", "club690", "mom704", "hb709", "cup713", "mv694", "rp695", "v1112", "bestie" /* fix775 */ /* fix770 */].includes(b)],
     ["RECONSTRUCTED 🧬", (b) => ["recon-fresh", "recon-togp-fresh", "recon-rnp-fresh" /* fix625 */, "recon-all", "recon-dly", "recon-ogp5", "recon-paper", "recon-tog", "recon-top", "recon-rej", "recon-togp"].includes(b)],
     ["NEW ONES 🆕", (b) => ["ogp5-sess", "ogp5-c1", "ogp5-c5", "ogp5-hrs", "ogp5-bbsr", "ogp5-dly", "supernova", "ogp5-r15", "ogp5-r30", "ogp5-cb", "ogp5-fast", "ogp5-gw", "ogp5-inv", "ogp5-boll", "ogp5-lock", "ogp5-btco", "ogp5-pv", "brk-sess", "brk-sesspk", "brk-sessrj", "brk5", "brk10", "brk15", "gold-rg"].includes(b)],
     ["HER LINEUP 🪞 TWINS", (b) => /^tw/.test(b) && b !== "twtog"],
@@ -3500,12 +3594,20 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     ["OG 👑 · PIVOT 📐 · PAPER", (b) => ["twtog", "ogg", "ogh", "oggb", "oghb", "grokb", "pap247", "papbest", "papwin", "pap20", "brnw", "sqnw"].includes(b) || /^piv|^sp\d|^ogp/.test(b)],
   ];
   const famOf = (b: string) => (FAMS.find(([, f]) => f(b)) || ["OTHER"])[0];
+  // fix829 NEW BEST + INVERSED (Love Nov 6 2026 ~2:56 PM PT: 'can you make a tab for all of the best performers out of the new ones we've made bb / i can't find any of them when i look for them pls make it easier to find these hun ... and all of our inverse books - can you make a subgroup for those here ? INVERSED'): two pills that look ACROSS the families - NEW BEST = every book made since Nov 1 (fix 600+ in its card note, plus
+  // the reconstructed rejection twins) that is in the green all time, best first; INVERSED = every inverse / flipped book. They don't move a book out of its own family.
+  const fixNo829 = (b: string) => { const c = BOOKS.find((x) => x.book === b); const m = /fix(\d{3})/.exec(String(c?.note || "")); return m ? Number(m[1]) : 0; };
+  const newBest829 = (b: string) => (fixNo829(b) >= 600 || ["recon-togr", "recon-rjt3", "recon-rjnp", "recon-rnp", "recon-togp", "recon-tzw"].includes(b)) && record(b as any).pnl > 0;
+  const inversed829 = (b: { book: string; title: string }) => /inv/i.test(b.book) || /INVERSE|INVERTED|FLIPPED|\bINV\b|CUT \+ FLIP/i.test(b.title);
+  const SPECIAL829: Record<string, (b: { book: string; title: string }) => boolean> = { "NEW BEST 🏆": (b) => newBest829(b.book), "INVERSED 🔄": inversed829 };
   const famOk = (b: { book: string; title: string }) => {
     const q = findQ.trim().toLowerCase();
     if (q) return `${b.book} ${b.title} ${LABEL[b.book] || ""}`.toLowerCase().includes(q);
+    if (SPECIAL829[fam]) return SPECIAL829[fam](b); // fix829
     return fam === "ALL" || famOf(b.book) === fam;
   };
   const LABEL: Record<string, string> = { twtog: "TOGETHER 💞", twhyb: "HYBRID ✨", twtrend: "TREND ASSASSIN 🗡️", twflush: "TWIN NO FLUSH", twrev2: "TWIN REV + 8/10 OFF", twrev: "TWIN REVISED HRS", twrev5: "TWIN REV + $5 SNIPES", twrevsp5: "SP5 REV HRS", twrevogp15: "OGP15 REV HRS", twrevogp5: "OGP5 REV HRS", twlive: "TWIN AS LIVE", twbtc: "TWIN BTC", twgold: "TWIN GOLD", twclean: "TWIN CLEAN", twno45: "TWIN NO <45c", twnocs: "TWIN NO CLOSE-σ", twsp5b: "SP5 BTC TWIN", twogp15b: "OGP15 BTC TWIN", twogp5b: "OGP5 BTC TWIN", pap20: "PAPER 20%", oggb: "OG BANK OCT1", oghb: "OG BANK", ogp2b: "OG+PIV BANK 2M", ogp5b: "OG+PIV BANK 5M", ogp10b: "OG+PIV BANK 10M", ogp15b: "OG+PIV BANK 15M", ogp2: "OG+PIV 2M", ogp5: "OG+PIV 5M", ogp10: "OG+PIV 10M", ogp15: "OG+PIV 15M", ogg: "OG · OCT 1", ogh: "OG · YOURS", grokb: "GROK", pap247: "PAPER 24/7", papbest: "PAPER BEST HRS", papwin: "PAPER WINNERS", piv2: "PIVOT 2M", piv5: "PIVOT 5M", piv10: "PIVOT 10M", piv15: "PIVOT 15M", sp2: "SESS+PIV 2M", sp5: "SESS+PIV 5M", sp10: "SESS+PIV 10M", sp15: "SESS+PIV 15M", brnw: "BRICK NO-WALL", sqnw: "SQUEEZE NO-WALL", original: "ORIG", new: "NEW", refined: "REFINED", golden: "GOLDEN", optA: "OPT A", optB: "OPT B", claude: "CLAUDE", trend: "TREND", brick: "BRICK", cotc: "COTC", diamond: "DIAMOND", diamond25: "DIAMOND 25%", confirm: "CONFIRM", brk1: "1ST BREAK", sole5: "5M SOLE", sole10: "10M SOLE", sole15: "15M SOLE", sole5p: "5M SOLE+", sole5z: "5M ZONE", sole5v: "5M VANTAGE", brickc: "BRICK CLEAN", lastmin: "LAST MIN", lastgrant: "YOU+GRANT", bank: "BANK", bank2: "BANK 2", bank5p: "BANK SOLE+", brickx: "BRICK 5M-X", bank5px: "BANK SOLE+ 5M-X", brickt: "BRICK TVC", brickp: "BRICK PUSH", claudex: "CLAUDE 5M-X", trendx: "TREND 5M-X", brk: "BREAK", hold90: "HOLD 90", tap3x: "TAP 3x", taphold: "TAP HOLD", rescue: "RESCUE", hour: "HOURLY", snap50: "SNAP +50", snap100: "SNAP +100", snap200: "SNAP +200", snap300: "SNAP +300", snaphold: "SNAP HOLD", x16_50: "16x +50", x16_100: "16x +100", x16_200: "16x +200", x16_300: "16x +300", x16hold: "16x HOLD", squeeze: "SQUEEZE", bricks: "BRICK SESSION", brickcr: "CLEAN RIDE", brickc75: "CLEAN 75%", brickcf: "CLEAN FEES", brickcm: "CLEAN MAKER", brickcpt: "CLEAN PATIENT", brickcx: "CUT 2 BANDS", brickcw: "CUT WALL", brickcl: "CUT LATE", brickch: "HALF 75%", reent: "RE-ENTRY", vine: "VINE", gall: "GOLD ALL", gclear: "GOLD CLEAR", dcd: "DECIDED", new24: "NEW 24/7", rt100: "RIP&TAP 100", rt200: "RIP&TAP 200", rt90: "RIP&TAP 90%", w5: "WAIT 5", anchor: "ANCHOR", phr: "PRIME HRS", rvw: "REVERSAL", snapb: "SNAPBACK", snpt: "SNAP TVC", b11: "BRICK 1:1 REAL", cfol: "CANDLE FOLLOW", ldc1: "LDC 1M", ldc5: "LDC 5M", ldc15: "LDC 15M", ldc2: "LDC 2M", ldc10: "LDC 10M", ldc20: "LDC 20M", ldc30: "LDC 30M", vwap1: "VWAP 1M", vwap2: "VWAP 2M", vwap5: "VWAP 5M", vwap10: "VWAP 10M", vwap15: "VWAP 15M", vwap30: "VWAP 30M", vlc: "VWAP+LDC", newp: "NEW PATIENT", diap: "DIAMOND PATIENT" };
+  Object.assign(LABEL, { "recon-togr": "REJ · TOGETHER REJECTIONS ONLY", "recon-rjt3": "REJECTION · THIRDS AS READ", "recon-rjnp": "REJ ONLY · NO PINK", "recon-rnp": "MAIN · W/O PINK", "recon-togp": "MAIN · TOGETHER NO PINK", "recon-tzw": "MAIN · ZONE WALL TWIN", "recon-rej": "REJECTION", "recon-tog": "MAIN", mom704: "MOMENTUM BOOK", inv688: "INVERSE BOOK", club690: "70% CLUB", hb709: "HALF-BAND KEEP BOOK", "hm707-rev": "HIGH MULTIPLE BOOK REVERSAL", "hm707-rip": "HIGH MULTIPLE BOOK RIP", "invw-main": "MAIN INVERSE-WORST", "invw-rej": "REJ INVERSE-WORST", "invw-np": "NO-PINK INVERSE-WORST", "invw-v1112": "V.111 INVERSE-WORST" }); // fix829: FIND A BOOK matches the names she sees in STATS
   // A book's whole record, every row it ever booked (not only head to head).
   const record = (book: ShiftNight["book"]) => sumQ.data?.books?.[book]?.rec ?? { n: 0, pnl: 0, wins: 0, losses: 0, from: "9999" };
   // OFF HOURS on each card (Love, Oct 3: "if any books have off hours can you include them in their cards"). Pacific time.
@@ -3591,7 +3693,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
         <p className="font-mono text-[11px] tabular-nums text-white/80">
           {s.wins}W · {s.losses}L{s.wins + s.losses ? ` · ${Math.round((s.wins / (s.wins + s.losses)) * 100)}% wins` : ""}{s.open ? ` · ${s.open} open` : ""}
         </p>
-        {!isTap(book) && book !== "supernova" && book !== "recon-fresh" && book !== "recon-togp-fresh" && book !== "recon-rnp-fresh" /* fix625 */ && book !== "recon-all" && (
+        {!isTap(book) && book !== "kalshinow766" /* fix768: a record, not a book - no RUN */ && book !== "supernova" && book !== "recon-fresh" && book !== "recon-togp-fresh" && book !== "recon-rnp-fresh" /* fix625 */ && book !== "recon-all" && (
           <div className="mt-auto flex justify-end pt-1">
             <span
               role="button"
@@ -3686,6 +3788,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     return (
       <div key={`inline-${book}`} className="rounded-2xl px-3 py-2 sm:col-span-2" style={{ border: "1px solid rgba(255,255,255,0.25)", boxShadow: "0 0 12px rgba(255,255,255,0.06)" }}>
         <p className="mb-1.5 text-[9px] tracking-[0.24em] text-white/60">{(LABEL[book] ?? book).toUpperCase()} · {xs.length < sorted.length ? `LATEST ${xs.length} OF ${sorted.length}` : `ALL ${sorted.length}`} TRADES · TAP THE CARD AGAIN TO CLOSE</p>
+        {book === "rsi672" ? <RsiBooks672 /> : book === "eth682" ? <EthBook682 /> : book === "hm707-rev" || book === "hm707-rip" ? <HighMult707 /> : null} {/* fix765b: the panel (filters, table, tracker) opens inside its card */}
         {xs.length ? xs.map((r) => {
           const open = r.result === "open" || r.pnl == null;
           // OPEN = ON KALSHI (Oct 15, Love's no-exceptions law): an open row the door did not FILL shows NOT ON KALSHI
@@ -3913,10 +4016,12 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   );
   return (
     <section className="rounded-[22px] border border-white/25 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
+      <LiveToday722 /> {/* fix722 the one live book today, pinned on top */}
       <ScheduleLiveCard /> {/* fix385 (Love Oct 28 2026 12:04 PM PT): the new schedule, live trades only, labelled by book */}
       <div className="flex items-baseline justify-between gap-3">
         <div className="flex items-center justify-between gap-2">
           <p className="text-[10px] tracking-[0.28em] text-white/90">PAPER · {ranked.length} LEDGERS · RANKED{h2h ? ` · SINCE ${shiftClock(since)}` : ""}</p>
+          {/* fix765: the sorter moved down to the book chips */}
           <button
             type="button"
             onClick={flipAuto}
@@ -3980,8 +4085,9 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
         const freshOn = runOn("recon-tog");
         // FIVEY IN RUNNING (fix213, Oct 25 ~2:46 PM PT, Love: "can you have them in the running tab? since we're running them on poly"): the 1-2-3 BOOK and FIVEY
         // always ride in RUNNING, right under the FRESH SLATE / TOGETHER cards.
-        const pin5 = (bk: string) => (bk === "recon-fresh" ? 0 : bk === "twtog" ? 1 : bk === "fivey123" ? 2 : bk === "fivey" ? 3 : 9);
-        const runRows = ranked.map((b, i) => ({ ...b, i })).filter((b) => runOn(b.book) || (togOn && b.book === "twtog") || (freshOn && b.book === "recon-fresh") || b.book === "fivey123" || b.book === "fivey").sort((a, b) => pin5(a.book) - pin5(b.book));
+        const pin5 = (bk: string) => (lt736.includes(bk) ? -1 /* fix736: the akimbo books first */ : bk === "recon-fresh" ? 0 : bk === "twtog" ? 1 : bk === "pinkslide802" ? -0.49 /* fix802 */ : bk === "bestieinv" ? -0.48 /* fix795 */ : bk === "v1112ldc" ? -0.45 /* fix794 */ : bk === "bestiewalls" ? -0.5 /* fix783: right after the lineup (BESTIE) */ : bk === "bestiewalls-skip" ? -0.4 /* fix783 */ : bk === "v1112inv" ? 5 /* fix777: right after V.111 - 2 */ : bk === "fivey123" ? 2 : bk === "fivey" ? 3 : bk === "v1112" ? 4 /* fix772 */ : 9);
+        // fix772 V.111 - 2 IN RUNNING (Love Nov 5 2026 ~8:23 PM PT: "pls put it in the running table so i dont need to go looking :)"): her paper card always rides here, after FIVEY - display only, she still never sends an order.
+        const runRows = ranked.map((b, i) => ({ ...b, i })).filter((b) => runOn(b.book) || lt736.includes(b.book) /* fix736 */ || (togOn && b.book === "twtog") || (freshOn && b.book === "recon-fresh") || String(b.book) === "v1112inv" /* fix777 */ || String(b.book) === "bestiewalls" || String(b.book) === "bestiewalls-skip" /* fix783 */ || String(b.book) === "v1112ldc" /* fix794 */ || String(b.book) === "pinkslide802" /* fix802 */ || String(b.book) === "bestieinv" /* fix795 */ || b.book === "fivey123" || b.book === "fivey" || String(b.book) === "v1112" /* fix772 */).sort((a, b) => pin5(a.book) - pin5(b.book));
         if (!runRows.length) return null;
         return (
           <div className="mt-3 rounded-2xl px-2 pb-2 pt-2" style={{ border: "1px solid rgba(61,220,132,0.45)", boxShadow: "0 0 18px rgba(61,220,132,0.12)" }}>
@@ -3995,10 +4101,10 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
             </p>
             <LineupModeChips />
             <div className="mb-2 rounded-xl px-2 py-1.5" style={{ border: "1px solid rgba(255,255,255,0.3)" }}>
-              <p className="mb-1 text-[9px] tracking-[0.24em] text-white/70">OPEN NOW · MAIN BOOK + DELAYED · {openNow.length}</p>
+              <p className="mb-1 text-[9px] tracking-[0.24em] text-white/70">OPEN NOW · MAIN BOOK + DELAYED + V.111 - 2 · {openNow.length}</p>
               {openNow.length ? openNow.map((r: any) => { const on = (copyQ.data ?? {})[r.id] === "live"; return (
                 <div key={r.id} className="flex items-baseline justify-between gap-2 border-t border-white/10 py-1 font-mono text-[10px]">
-                  <span className="text-white/85">{INLINE_FMT.format(new Date(r.at))} · {r.book === "recon-dly" ? "DELAYED ⏳" : "MAIN 💞"} · {String(r.asset).toUpperCase()} {r.side === "up" ? "LONG" : "SHORT"} · {r.setup}{r.multiple ? ` · ${Number(r.multiple).toFixed(2)}x` : ""}</span>
+                  <span className="text-white/85">{INLINE_FMT.format(new Date(r.at))} · {r.book === "bestie" ? "BESTIE (LIVE $5)" /* fix775 */ : r.book === "v1112inv" ? "V.111 - 2 INV (paper)" /* fix777 */ : String(r.book) === "bestiewalls" ? "BESTIE · WALLS (paper)" /* fix783 */ : String(r.book) === "v1112ldc" ? "V.111 - 2 · LDC FADE (paper)" /* fix794 */ : String(r.book) === "pinkslide802" ? "PINK SLIDE ONLY (paper)" /* fix802 */ : String(r.book) === "bestieinv" ? "BESTIE · INVERSE (paper)" /* fix795 */ : r.book === "recon-dly" ? "DELAYED ⏳" : r.book === "v1112" ? "V.111 - 2 (paper)" /* fix772 */ : "MAIN 💞"} · {String(r.asset).toUpperCase()} {r.side === "up" ? "LONG" : "SHORT"} · {r.setup}{r.multiple ? ` · ${Number(r.multiple).toFixed(2)}x` : ""}</span>
                   <span className="shrink-0 tabular-nums" style={{ color: on ? "#3ddc84" : "#ffb86b" }}>{on ? "ON KALSHI" : "PAPER"}</span>
                 </div>); }) : <p className="font-mono text-[10px] text-white/50">{openQ.isLoading ? "loading…" : "no open trades right now"}</p>}
             </div>
@@ -4006,8 +4112,22 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
           </div>
         );
       })()}
+      {false && <RsiBooks672 />} {/* fix765: opens inside its card now (Love Nov 5 5:08 PM) */}
+      {false && <EthBook682 />} {/* fix765: opens inside its card now (Love Nov 5 5:08 PM) */}
+      {false && <Og1012Card />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <BrkOut687 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <Inverse688 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <Momentum704 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <HighMult707 />} {/* fix765: opens inside its card now (Love Nov 5 5:08 PM) */}
+      {false && <HalfBand709 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <Cups713 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <Club690 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <MainVwap694 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
+      {false && <RejParked695 />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
       {/* FAMILIES + FIND (Oct 9). */}
       <div className="mt-3 rounded-2xl px-2 py-2" style={{ border: "1px solid rgba(255,255,255,0.18)" }}>
+        {/* RECORDS (Love Nov 4 2026 10:35 AM PT: "draw the files OFF OF MY COMPUTER ... the app is the INTERFACE to view them, not the thing hosting them"): a plain link to the page her laptop builds and serves (7-OPEN-REGISTRAR, http://127.0.0.1:8090). The desk loads none of it. */}
+        <a href="http://127.0.0.1:8090/" target="_blank" rel="noopener noreferrer" className="mb-2 inline-block rounded-lg px-3 py-1.5 font-mono text-[10px] font-bold tracking-[0.18em] text-white" style={{ border: "1.5px solid #5dff9c", boxShadow: "0 0 10px rgba(93,255,156,0.35)" }}>RECORDS · GREEN BOOKS ALL TIME ↗</a>
         <input
           value={findQ}
           onChange={(e) => setFindQ(e.target.value)}
@@ -4015,9 +4135,10 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
           className="w-full rounded-lg bg-transparent px-2 py-1.5 font-mono text-[10px] tracking-[0.12em] text-white outline-none placeholder:text-white/35"
           style={{ border: "1px solid rgba(255,255,255,0.2)" }}
         />
+        <div className="mt-2 flex items-center gap-2"><span className="font-mono text-[9px] tracking-[0.2em] text-white/55">SORT</span><span className="flex shrink-0 flex-wrap gap-1">{([["pnl-hi", "$ HIGH"], ["pnl-lo", "$ LOW"], ["hit-hi", "HIT % HIGH"], ["hit-lo", "HIT % LOW"]] as const).map(([k, t]) => <button key={k} type="button" onClick={() => pickSort691(k)} className="rounded-[4px] px-1.5 py-0.5 font-mono text-[9px] leading-none" style={{ border: `1px solid rgba(255,255,255,${sortBy691 === k ? 0.9 : 0.3})`, color: sortBy691 === k ? "#fff" : "rgba(255,255,255,0.55)" }}>{t}</button>)}</span></div> {/* fix765 SORT BY, by the books (Love Nov 5 4:53 PM: "pls put this sorter here by the actual books") */}
         <div className="mt-2 flex flex-wrap gap-1.5">
-          {["ALL", ...FAMS.map(([n]) => n), "OTHER"].map((n) => {
-            const count = n === "ALL" ? ranked.length : ranked.filter((b) => famOf(b.book) === n).length;
+          {["ALL", ...FAMS.map(([n]) => n), "OTHER"].flatMap((n) => (n === "ALL" ? ["ALL", "NEW BEST 🏆", "INVERSED 🔄"] : [n])).map((n) => { /* fix829 NEW BEST + INVERSED */
+            const count = n === "ALL" ? ranked.length : SPECIAL829[n] ? ranked.filter(SPECIAL829[n]).length : ranked.filter((b) => famOf(b.book) === n).length;
             const on = fam === n && !findQ.trim();
             return (
               <button

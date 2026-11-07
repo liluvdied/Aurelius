@@ -379,6 +379,7 @@ export const armNear = createServerFn({ method: "POST" })
 // STALE-PRICE GUARD helper (Oct 16 ~9:55 AM PT, Love): marks when a freeze of 1 s+ ends, so pivotbooks can refuse prices that sat queued through it.
 if (typeof window === "undefined") { const G = globalThis as any; if (!G.__stallMeter) { G.__stallMeter = true; let last = Date.now(); setInterval(() => { const now = Date.now(); if (now - last - 100 > 1000) G.__stallEndAt = now; last = now; }, 100); } }
 if (typeof window === "undefined") void (async () => { const { appendFileSync } = await import("node:fs"); const { join } = await import("node:path"); const G = globalThis as any; if (!G.__lagMeter) { G.__lagMeter = true; let last = Date.now(), worst = 0, since = Date.now(); setInterval(() => { const now = Date.now(); const lag = now - last - 100; if (lag > worst) worst = lag; last = now; if (now - since >= 10000) { try { appendFileSync(join(process.cwd(), "data", "loop-lag.jsonl"), JSON.stringify({ at: new Date().toISOString(), worstMs: Math.max(0, worst) }) + "\n"); } catch {} worst = 0; since = now; } }, 100); } })();
+if (typeof window === "undefined") { const G654 = globalThis as any; if (!G654.__lag654) { G654.__lag654 = true; G654.__lagLast654 = Date.now(); setInterval(() => { G654.__lagLast654 = Date.now(); }, 100); } } // fix654 (Love Nov 4 2026 5:27 PM PT: "freshness guard, 2 seconds"): her loop's heartbeat every 100 ms - the last line refuses an order when it is more than 2 s stale (the loop froze)
 // CPU PROFILE ON REQUEST (Oct 21 ~11:50 AM PT, Love picked "Unfreeze her engine" - record only): when data/cpu-profile.req appears, the server records a
 // 30 s CPU profile to data/cpu-<time>.cpuprofile and renames the request to .done - to find what holds her event loop besides the big JSON files.
 if (typeof window === "undefined") { const G = globalThis as any; if (!G.__cpuProf) { G.__cpuProf = true; setInterval(async () => { if (G.__cpuProfOn) return; try { const fs = await import("node:fs"); const { join } = await import("node:path"); const req = join(process.cwd(), "data", "cpu-profile.req"); if (!fs.existsSync(req)) return; fs.renameSync(req, req + ".done"); G.__cpuProfOn = true; const { Session } = await import("node:inspector"); const s = new Session(); s.connect(); s.post("Profiler.enable", () => s.post("Profiler.start", () => setTimeout(() => s.post("Profiler.stop", (e: any, r: any) => { try { if (!e && r?.profile) fs.writeFileSync(join(process.cwd(), "data", `cpu-${Date.now()}.cpuprofile`), JSON.stringify(r.profile)); } catch {} try { s.disconnect(); } catch {} G.__cpuProfOn = false; }), 30000))); } catch { G.__cpuProfOn = false; } }, 5000); } }
@@ -523,13 +524,15 @@ function parkHeld(rows: HeldOrder[]): HeldOrder[] {
 const heldView: { rows: HeldOrder[]; at: number; empty: number } = { rows: [], at: 0, empty: 0 };
 const quoteMem = new Map<string, { value: number; target: number | null; at?: string }>();
 
+// fix659 THE DESK CLOSES A FINISHED WINDOW (Love Nov 4 2026 6:13 PM PT: "her entrey on the 6:00 window was perfect. the desk was showing the last windows short still, so i thought she shorted there. pls fix that too, so it closes the last windows position on the desk when the windoow is over"): DISPLAY ONLY - once a 15m window is over (the time in its ticker, Kalshi's Eastern close), its position leaves LIVE ORDERS while Kalshi settles it. No order, no sell, no book or exit change.
+export function windowOver659(ticker: string): boolean { try { const m = /-(\d{2})([A-Z]{3})(\d{2})(\d{2})(\d{2})-/.exec(String(ticker)); if (!m) return false; const mo = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"].indexOf(m[2]); if (mo < 0) return false; const guess = Date.UTC(2000 + Number(m[1]), mo, Number(m[3]), Number(m[4]), Number(m[5])); const p = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).formatToParts(new Date(guess)); const v = (k: string) => Number(p.find((x) => x.type === k)?.value); const off = Date.UTC(v("year"), v("month") - 1, v("day"), v("hour"), v("minute")) - guess; return Date.now() >= guess - off; } catch { return false; } } // fix659
 export const getHeldOrders = createServerFn({ method: "GET" }).handler(async (): Promise<HeldOrder[]> => {
   ensureEngine();
   const live = await import("./kalshi-live.server");
-  const held = await live.heldFifteens();
+  const held = (await live.heldFifteens()).filter((r: any) => !windowOver659(String(r?.ticker || ""))); // fix659: a finished window leaves LIVE ORDERS (display only)
   if (!held.length) {
     heldView.empty += 1;
-    if (heldView.empty < 2 && heldView.rows.length) return heldView.rows.map((r) => ({ ...r, stale: true }));
+    if (heldView.empty < 2 && heldView.rows.length) return heldView.rows.filter((r) => !windowOver659(String(r.ticker))).map((r) => ({ ...r, stale: true })); // fix659
   } else {
     heldView.empty = 0;
   }
@@ -1230,6 +1233,9 @@ async function nightLightCached(): Promise<NightRow[]> {
   for (const r of all) if (isOld(r)) m.set((r as any).id, r);
   for (const r of all) if (!isOld(r)) m.set((r as any).id, r);
   const rows = [...m.values()];
+  try { const p721 = await import("./paperrows"); for (const r of p721.paperBookRows721()) rows.push(r as any); try { for (const r of await p721.kalshiNowRows766()) rows.push(r as any); } catch {} /* fix766 ON KALSHI NOW card */ } catch {} // fix721: tonight's paper books as regular cards (display only)
+  try { const ak727 = await import("./akimbocard"); for (const r of ak727.akimboRows727()) rows.push(r as any); } catch {} // fix727: the AKIMBO card (display only)
+  try { const ak744 = await import("./akimbocard"); for (const r of ak744.akimboTwinRows744()) rows.push(r as any); } catch {} // fix744: the AKIMBO + BTC twin card (paper)
   // FIVEY + 1-2-3 BOOK (fix212, Oct 25 ~2:20 PM PT, Love: "i want to look at her trades / let's have the new 123 book have its own card with its own ledger"): her live Polymarket 5m trades as two cards
   try { for (const r of fiveNightRows()) rows.push(r as NightRow); } catch {}
   gS.__shiftLight = { at: Date.now(), rows };
@@ -1452,6 +1458,8 @@ export const setLiveSwitch = createServerFn({ method: "POST" })
   .validator((input: { live: boolean }) => input)
   .handler(async ({ data }): Promise<LiveSwitch> => { armGate524("setLiveSwitch");
     const out = writeSwitch({ live: data.live === true, note: data.live === true ? "Turned on from the desk" : "Turned off from the desk" });
+    // fix838 ONE SWITCH (Love Nov 6 2026 ~4:04 PM PT: "hun can you take this extra one off? it's gonna trick me every time i turn it on lol i'm gonna forget i have to do an extra one and she will miss atleast 300 windows this week if it's still there"): turning LIVE on also turns entries on - clears a pause (halt.json) and restarts her pace, exactly what the old ENTRIES pill did. LIVE off is unchanged.
+    if (data.live === true) { try { const at838 = new Date().toISOString(); writeFileSync(join(process.cwd(), "data", "halt.json"), JSON.stringify({ off: false, at: at838, since: at838, reason: "", losses: [] })); let eq838: number | null = null; try { eq838 = JSON.parse(readFileSync(join(process.cwd(), "data", "kalshi-cash.json"), "utf8")).cash ?? null; } catch {} writeFileSync(join(process.cwd(), "data", "pace.json"), JSON.stringify({ from: at838, at: at838, paused: false, wins: 0, n: 0, net: 0, equity: eq838, peak: eq838 })); } catch {} }
     // Turning Kalshi LIVE on starts the copy fresh (Oct 5): rows the books booked while LIVE was off are not sent late
     // and do not raise false REDs. Only rows booked after this moment go to Kalshi.
     if (data.live === true) {
@@ -2315,4 +2323,78 @@ export const getScheduleLive = createServerFn({ method: "GET" }).handler(async (
     }
   } catch {}
   return { since: SCHEDULE_LIVE_START, trades: out.sort((a, b) => (a.at < b.at ? 1 : -1)) };
+});
+// fix664 HER ADD-ON BOXES (Love Nov 4 2026 7:17 PM PT: "can you pls put in a box for our add on in here? with a toggle on/off. a box for Add on 1 & a box for add on 2 with an on/off toggle for them both so i don't need to bug you with them"): read / save data/addon-settings.json. Not part of her sealed live-switch settings, so a tap never trips the umpire or the seal (same as her size slider).
+type AddOnBox664 = { on: boolean; dollars: number };
+function addonDefaults664(): { addOn1: AddOnBox664; addOn2: AddOnBox664 } { try { const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")); const a = sw?.addOn || {}; return { addOn1: { on: a.on === true, dollars: Number(a.dollars) || 2 }, addOn2: { on: a?.at38?.on === true, dollars: Number(a?.at38?.dollars) || 3, mult: Number(a?.at38?.maxAsk) > 0 ? Math.round(10 / Number(a.at38.maxAsk)) / 10 : 3.8 /* fix803 */ } as any }; } catch { return { addOn1: { on: true, dollars: 2 }, addOn2: { on: true, dollars: 3 } }; } }
+export const getAddonSettings = createServerFn({ method: "GET" }).handler(async (): Promise<{ addOn1: AddOnBox664; addOn2: AddOnBox664 }> => { const d = addonDefaults664(); try { const s = JSON.parse(readFileSync(join(process.cwd(), "data", "addon-settings.json"), "utf8")); return { addOn1: { ...d.addOn1, ...(s?.addOn1 || {}) }, addOn2: { ...d.addOn2, ...(s?.addOn2 || {}) }, addOn3: { on: false, dollars: 1, mult: 3, ...(s?.addOn3 || {}) } /* fix754 */ } as any; } catch { return { ...d, addOn3: { on: false, dollars: 1, mult: 3 } } as any; } }); // fix664 + fix754
+export const setAddonSettings = createServerFn({ method: "POST" }).validator((input: { addOn1: AddOnBox664; addOn2: AddOnBox664; addOn3?: { on: boolean; dollars: number; mult: number } }) => input).handler(async ({ data }): Promise<{ ok: boolean }> => { const c = (b: AddOnBox664) => ({ on: b?.on === true, dollars: Math.max(1, Math.min(5, Math.round(Number(b?.dollars) || 0) || 1)) }); const v = { addOn1: c(data.addOn1), addOn2: { ...c(data.addOn2), mult: Math.max(1.5, Math.min(10, Math.round((Number((data.addOn2 as any)?.mult) || 3.8) * 10) / 10)) } /* fix803: her Add-on 2 multiple box, 1.5x-10x (3.8x until she types) */, addOn3: { ...c(data.addOn3 as any), mult: Math.max(1.5, Math.min(10, Math.round((Number((data.addOn3 as any)?.mult) || 3) * 10) / 10)) } /* fix754: her custom add-on - multiple 1.5x-10x, $1-$5 */, at: new Date().toISOString() }; const p = join(process.cwd(), "data", "addon-settings.json"); writeFileSync(p + ".tmp", JSON.stringify(v, null, 1)); renameSync(p + ".tmp", p); try { appendFileSync(join(process.cwd(), "data", "addon-settings-log.jsonl"), JSON.stringify(v) + "\n"); } catch {} return { ok: true }; }); // fix664
+// fix672 RSI BOOKS (Love Nov 4 2026 9:56 PM PT: "we can make a new subsection here for the RSI books"): the paper RSI books, summarised on the server so the page stays light.
+export const getRsiBooks672 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./rsibooks"); return m.rsiSummary672(); } catch { return { at: "", cells: [], recent: [] }; } });
+// fix680 STATS (Love Nov 4 2026 11:20 PM PT: "stats tables too bb sorry !!"): setup x rung + band travel for her real books, from data/rung-stats.json (tools/rung-stats-680.py, every 2 h). Display only.
+export const getRungStats680 = createServerFn({ method: "GET" }).handler(async () => { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "rung-stats.json"), "utf8")); } catch { return { at: "", trades: 0, setups: [], travel: [] }; } });
+// fix682 the ETH rejections-only paper book (Love Nov 4 2026 11:38 PM PT: "yess, let us do so please (eth book)"), summarised on the server.
+export const getEthBook682 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./ethbook"); return m.ethSummary682(); } catch { return null; } });
+// fix686 OG ORIGINAL · 10.12 - the sealed Oct 12 paper card (Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls"), summarised on the server.
+export const getOg1012 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./og1012"); return m.og1012Summary(); } catch { return null; } });
+// fix687 OUTWARD BREAK · SESSION BANDS paper book (Love Nov 5 2026 ~1:00 AM PT: "a new one too if you have a different idea in mind for it"), summarised on the server.
+export const getBrkOut687 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./brkout"); return m.brkOutSummary687(); } catch { return null; } });
+// fix688 INVERSE BOOK paper book (Love Nov 5 2026 ~1:05 AM PT: "can you create the inverse set ups book i asked you about earlier too?"), summarised on the server.
+export const getInverse688 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./inverse"); return m.inverseSummary688(); } catch { return null; } });
+// fix690 70% CLUB paper book (Love Nov 5 2026 ~1:28 AM PT: "only taking the set ups that won over 70%"), summarised on the server.
+export const getClub690 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./club"); return m.clubSummary690(); } catch { return null; } });
+// fix694 MAIN VWAP SIDE paper book (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"), summarised on the server.
+export const getMainVwap694 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./mainvwap"); return m.mainVwap694Summary(); } catch { return null; } });
+// fix695 REJECTION PARKED SIDE paper book (Love Nov 5 2026 ~2:00 AM PT: "yes to all of the paper books, a, b & c"), summarised on the server.
+export const getRejParked695 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./rejparked"); return m.rejParked695Summary(); } catch { return null; } });
+// fix697 EVERY SKIP IN PLAIN WORDS + A FLAG (Love Nov 5 2026 ~2:17 AM PT: "just have it log every skip and the reason for it so i can look without bugging you. and let's add a flag button"). Display / log only.
+export const getSkips697 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./skips"); return m.skipLog697(12); } catch { return []; } });
+export const flagSkip697 = createServerFn({ method: "POST" })
+  .validator((input: { id: string; note?: string; line?: string }) => { armGate524("flagSkip697"); if (!input || typeof input.id !== "string" || !input.id) throw new Error("id"); return { id: String(input.id).slice(0, 120), note: String(input.note || "").slice(0, 500), line: String(input.line || "").slice(0, 600) }; })
+  .handler(async ({ data }) => { try { const m = await import("./skips"); return { ok: m.flagSkip697(data.id, data.note, data.line) }; } catch { return { ok: false }; } });
+// fix704 MOMENTUM BOOK paper book (Love Nov 5 2026 3:31 AM PT: "all of em bb !!"), summarised on the server.
+export const getMomentum704 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./momentum"); return m.momentumSummary704(); } catch { return null; } });
+// fix707 HIGH MULTIPLE BOOK + TRACKER (Love Nov 5 2026 ~4:10 AM PT), summarised on the server.
+export const getHighMult707 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./hmulti"); return m.highMultSummary707(); } catch { return null; } });
+// fix708 SET UP SCORES - every book, her framework (Love Nov 5 2026 ~4:20 AM PT: "were you able to to get the stats system scoring under that framework again?"). Read only:
+// serves data/setup-scores-708.json and, when it is older than 10 minutes, rebuilds it in the background (tools/setup-scores-708.py, niced, one run at a time).
+export const getSetupScores708 = createServerFn({ method: "GET" }).handler(async () => {
+  const p = join(process.cwd(), "data", "setup-scores-708.json");
+  try { const age = Date.now() - statSync(p).mtimeMs; if (age > 600000) throw new Error("old"); } catch { try { const { spawn } = await import("node:child_process"); spawn("nice", ["-n", "19", "python3", "tools/setup-scores-708.py"], { cwd: process.cwd(), detached: true, stdio: "ignore" }).unref(); } catch {} }
+  try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; }
+});
+// fix825 STATS · EVERY FACTOR (Love Nov 6 2026 ~10:43 AM PT: "every independent factor ... we simply cut the ones that don't pay"). Read only: serves data/factor-scores-825.json and,
+// when it is older than 10 minutes, rebuilds it in the background (tools/factor-scores-825.py, niced, one run at a time).
+export const getFactorScores825 = createServerFn({ method: "GET" }).handler(async () => {
+  const p = join(process.cwd(), "data", "factor-scores-825.json");
+  try { const age = Date.now() - statSync(p).mtimeMs; if (age > 600000) throw new Error("old"); } catch { try { const { spawn } = await import("node:child_process"); spawn("nice", ["-n", "19", "python3", "tools/factor-scores-825.py"], { cwd: process.cwd(), detached: true, stdio: "ignore" }).unref(); } catch {} }
+  try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; }
+});
+// fix709 HALF-BAND KEEP BOOK paper book (Love Nov 5 2026 ~4:20 AM PT), summarised on the server.
+export const getHalfBand709 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./halfband"); return m.halfBandSummary709(); } catch { return null; } });
+// fix713 CUP BOOK paper book (Love Nov 5 2026 ~5:38 AM PT), summarised on the server.
+export const getCups713 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./cups"); return m.cupSummary713(); } catch { return null; } });
+// fix722 LIVE TODAY ON TOP (Love Nov 5 2026 ~6:54 AM PT: "can you put her in the running table? super hard to find her"): read only - the one live book from data/live-today.json
+// and its live trades since midnight PT (her Kalshi fills, the same count the daily stop uses).
+export const getLiveToday722 = createServerFn({ method: "GET" }).handler(async () => {
+  try {
+    const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8"));
+    const on = j?.on === true && Date.now() < Date.parse(String(j.until)) && !(Array.isArray(j?.skipHoursPT) && j.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */;
+    if (!on) return { on: false };
+    const nowPT = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })), mid = new Date(nowPT); mid.setHours(0, 0, 0, 0);
+    const since = Date.now() - (nowPT.getTime() - mid.getTime());
+    let tr: any[] = []; try { tr = (await import("./riskguard")).liveTrades().filter((t: any) => String(j.book).split(",").includes(String(t.book)) /* fix727: both akimbo books */ && Date.parse(String(t.first)) >= since); } catch {}
+    const pnl = tr.reduce((s: number, t: any) => s + (Number(t.pnl) || 0), 0);
+    return { gateUnlocked: (() => { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "gate-unlock.json"), "utf8"))?.unlocked === true; } catch { return false; } })() /* fix738 */, silent: await (async () => { try { return (await import("./akimbowatch")).recentSilent734(); } catch { return []; } })() /* fix734 */, on: true, book: String(j.book), name: String(j.name || j.book), until: String(j.until), stopAt: Number(j.stopAt) < 0 ? Number(j.stopAt) : null, n: tr.length, w: tr.filter((t: any) => Number(t.pnl) > 0).length, l: tr.filter((t: any) => Number(t.pnl) <= 0).length, pnl: Math.round(pnl * 100) / 100, stopped: Number(j.stopAt) < 0 && pnl <= Number(j.stopAt), recent: tr.slice(-8).reverse().map((t: any) => ({ first: t.first, ticker: t.ticker, pnl: t.pnl })) };
+  } catch { return { on: false }; }
+});
+
+// fix815 LIVE COMES BACK BEFORE THE WINDOW (Love Nov 6 2026 ~8:46 AM PT: "can you have it post a toast after 3 minutes if it's off ? and a flashing orange light  and have it set to turn itself back on before the window starts if i turned it off to do commands pls lol  if i'm not doing commands i never turned it off on purpose lol"): the page's status (off since, hold, last auto-on line) and her OFF FOR THE DAY hold (until midnight PT; tap again to clear).
+export const getLiveAuto815 = createServerFn({ method: "GET" }).handler(async () => { try { return (await import("./liveauto815")).liveAutoStatus815(); } catch { return null; } });
+export const setLiveOffHold815 = createServerFn({ method: "POST" }).validator((input: { on: boolean }) => input).handler(async ({ data }) => {
+  const p = join(process.cwd(), "data", "live-off-hold-815.json");
+  if (!data.on) { writeFileSync(p, JSON.stringify({ until: null, at: new Date().toISOString() })); return { holdUntil: null }; }
+  const nowPT = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })), mid = new Date(nowPT); mid.setHours(24, 0, 0, 0);
+  const until = new Date(Date.now() + (mid.getTime() - nowPT.getTime())).toISOString();
+  writeFileSync(p, JSON.stringify({ until, at: new Date().toISOString() })); return { holdUntil: until };
 });

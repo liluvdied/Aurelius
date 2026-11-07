@@ -11,7 +11,7 @@ const parts=[
  "type Line={name:string;price:number;unit?:number};","type Bar={t:number;o:number;h:number;l:number;c:number};","type Piv={pp:number;r1:number;s1:number;r2:number;s2:number;a:number};",
  grab("const BREAK:"),grab("const TAP:"),grab("const REACH:"),grab("const REACH_PCT ="),
  // stubs for flip helpers (breaks don't use them)
- "function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(){return false;}",
+ "function pushLabel653(a,s,sp,L,lab){return false;} function twoMinHer653(a,s,sp){return !!(globalThis.__two653&&globalThis.__two653[s]);} function pushOff653(a,s,sp,p,x){return (s==='up'?sp>=p+x:sp<=p-x)&&twoMinHer653(a,s,sp);} /* fix653: her 2m colour + push from the band */ function anyFlip406Now(a,s,sp,x){return false;} function anyFlipNow(a,s,sp){return false;} function pfFlipOk(a,s,sp){return false;} function anyGreen521(){return false;} function anyRed521(){return false;} function turnFlip530(){return false;}",
  grab("export function bonesDecide("),
 ].map(x=>x.replace(/^export /,""));
 const js=ts.transpileModule(parts.join("\n"),{compilerOptions:{target:ts.ScriptTarget.ES2020}}).outputText;
@@ -26,14 +26,14 @@ function up(tick){const r=brk(null,tick);return r&&r.side==="up"?r.label:null;}
 let ok=true;
 const fail=(m)=>{ok=false;console.log("PINK-BREAK-CASTS: FAIL - "+m);};
 // PINK: must cast the break at $5 (100005), and NOT yet at $4 (100004)
-const p4=up(100004), p5=up(100005);
+const p4=up(100001), p5=up(100002); // fix651: her $2 - not at $1, at $2
 console.log("  pink break @ $4 (100004): "+(p4||"none")+"   @ $5 (100005): "+(p5||"none"));
 if(p4&&/5m PP/.test(p4)) fail("the pink break cast at only $4 (should wait for her $5)");
 if(!(p5&&/Break above 5m PP/.test(p5))) fail("the pink break did NOT cast at her $5 (still waiting past $5) -> "+(p5||"none"));
 // SESSION band +1σ: her $5 - must NOT cast at $4, must cast at $5
 // move pink far away so only +1σ is the break candidate near tick
 function brkB(tick){const L=[{name:"5m PP",price:90000},{name:"+1σ",price:100100},{name:"+2σ",price:103000},{name:"-1σ",price:97000}];const cur={o:100090,h:tick,l:100090};return bones("btc",L,tick,undefined,cur,null,[],false,0,false,false,false);}
-const b5=brkB(100104), b6=brkB(100105);
+const b5=brkB(100101), b6=brkB(100102); // fix651: her $2 - not at $1, at $2
 const bl5=b5&&b5.side==="up"?b5.label:null, bl6=b6&&b6.side==="up"?b6.label:null;
 console.log("  +1σ break @ $4 (100104): "+(bl5||"none")+"   @ $5 (100105): "+(bl6||"none"));
 if(bl5&&/\+1σ/.test(bl5)) fail("the SESSION +1σ break cast at only $4 (should wait for her $5)");

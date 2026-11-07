@@ -1,0 +1,103 @@
+// COMBO GUARD (Claude, Oct 11 ~8:15 PM PT, Love: "yesss i would like, can we do both?... absolutely let's build that for all
+// combos in profit"). Kalshi publishes no live price for combos (the app's Cash out is a quote on request), so the desk worked
+// out nothing for them. Now, every ~30 s, for every combo she holds on Kalshi (KXMVE...):
+//  - its value is estimated from its own legs: settled legs count 1 (won) or 0 (lost), open legs at their live bid; the
+//    product is what one contract is worth if every remaining leg is priced fairly. Kalshi's real cash-out quote is usually
+//    LOWER than this (makers take a spread), so this is the guide, not the price she'd get;
+//  - her gate: ARMS once the estimate has been +60% over what she paid; the floor starts at +40% and rises 5 points for every
+//    5 points of best gain (the paper combo gate). The estimate back at the floor = an ALERT on the desk ("cash it out now").
+//  - auto cash-out (Kalshi RFQ) is built but OFF until we confirm on one live quote which side means "sell":
+//    live-switch comboGuard { on, autoCashOut }. Status: data/combo-guard.json.
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { kget } from "./scanner";
+
+const D = (f: string) => join(process.cwd(), "data", f);
+const r2 = (n: number) => Math.round(n * 100) / 100;
+const num = (v: unknown) => { const n = Number.parseFloat(String(v ?? "")); return Number.isFinite(n) ? n : NaN; };
+const g = globalThis as unknown as { __cgAt?: number; __cgBusy?: boolean };
+type St = { ticker: string; title: string; qty: number; entry: number; cost: number; est: number; gainPct: number; best: number; armed: boolean; floor: number | null; legs: { t: string; side: string; state: string; px: number }[]; alerted?: string; at: string };
+
+function alarm(text: string) {
+  try {
+    const f = D("alarm.json");
+    const rows = existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : [];
+    const list = Array.isArray(rows) ? rows : [];
+    if (!list.some((r: any) => r.text === text)) list.unshift({ at: new Date().toISOString(), text });
+    writeFileSync(f, JSON.stringify(list.slice(0, 200)));
+  } catch {
+  }
+}
+
+export async function comboGuardTick() {
+  if (g.__cgBusy || (g.__cgAt && Date.now() - g.__cgAt < 30000)) return;
+  g.__cgAt = Date.now();
+  g.__cgBusy = true;
+  try {
+    // one-shot RFQ probe (never accepts): data/rfq-probe-req.json {ticker, contracts} -> data/rfq-probe.json
+    try {
+      const rq = D("rfq-probe-req.json");
+      if (existsSync(rq)) {
+        const req = JSON.parse(readFileSync(rq, "utf8"));
+        if (req?.ticker && !req.done) {
+          writeFileSync(rq, JSON.stringify({ ...req, done: new Date().toISOString() }));
+          const live: any = await import("./kalshi-live.server");
+          const res = await live.rfqProbe(String(req.ticker), Number(req.contracts) || 1);
+          writeFileSync(D("rfq-probe.json"), JSON.stringify(res, null, 1));
+        }
+      }
+    } catch (e) {
+      try { writeFileSync(D("rfq-probe.json"), JSON.stringify({ error: String(e).slice(0, 300) })); } catch {}
+    }
+    let cfg: any = {};
+    try { cfg = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.comboGuard ?? {}; } catch {}
+    if (cfg.on === false) return;
+    const prev: Record<string, St> = (() => { try { return Object.fromEntries((JSON.parse(readFileSync(D("combo-guard.json"), "utf8"))?.rows ?? []).map((r: St) => [r.ticker, r])); } catch { return {}; } })();
+    const { listPositions } = await import("./positions");
+    const pos = (await listPositions(true)).filter((p) => /^KXMVE/.test(p.ticker) && p.qty > 0);
+    const out: St[] = [];
+    for (const p of pos) {
+      let legs: { t: string; side: string; state: string; px: number }[] = [];
+      try {
+        const m = (await kget(`/trade-api/v2/markets/${p.ticker}`))?.market;
+        const sel: any[] = m?.mve_selected_legs ?? [];
+        for (const l of sel) {
+          const t = String(l.market_ticker || l.ticker || "");
+          const side = String(l.side || "yes").toLowerCase();
+          if (!t) continue;
+          const lm = (await kget(`/trade-api/v2/markets/${t}`))?.market;
+          const res = lm?.result;
+          if (res === "yes" || res === "no") legs.push({ t, side, state: res === side ? "won" : "lost", px: res === side ? 1 : 0 });
+          else legs.push({ t, side, state: "open", px: num(side === "yes" ? lm?.yes_bid_dollars : lm?.no_bid_dollars) || 0 });
+          await new Promise((r) => setTimeout(r, 150));
+        }
+      } catch {
+      }
+      if (!legs.length) continue;
+      const est = legs.reduce((a, l) => a * l.px, 1);
+      const entry = p.entry > 0 ? p.entry : p.cost / p.qty;
+      const gain = entry > 0 ? (est / entry - 1) * 100 : 0;
+      const was = prev[p.ticker];
+      const best = Math.max(was?.best ?? -100, gain);
+      const armed = (was?.armed ?? false) || best >= 60;
+      const floor = armed ? 40 + 5 * Math.floor((best - 60) / 5) : null;
+      const row: St = { ticker: p.ticker, title: p.title, qty: p.qty, entry: r2(entry), cost: p.cost, est: Math.round(est * 1000) / 1000, gainPct: r2(gain), best: r2(best), armed, floor, legs, alerted: was?.alerted, at: new Date().toISOString() };
+      if (armed && floor != null && gain <= floor && !was?.alerted) {
+        row.alerted = new Date().toISOString();
+        const open = legs.filter((l) => l.state === "open").map((l) => `${l.t} ${Math.round(l.px * 100)}c`).join(", ");
+        alarm(`RED: COMBO GUARD · cash it out now: ${p.title.slice(0, 60)} was up +${Math.round(best)}% (est.), back to +${Math.round(gain)}% (floor +${floor}%). Open legs: ${open || "none"}.`);
+      } else if (armed && !was?.armed) {
+        alarm(`COMBO GUARD · armed: ${p.title.slice(0, 60)} is up +${Math.round(gain)}% (est.). Floor +${floor}% and rising.`);
+      }
+      out.push(row);
+    }
+    writeFileSync(D("combo-guard.json"), JSON.stringify({ at: new Date().toISOString(), autoCashOut: cfg.autoCashOut === true, rows: out }, null, 1));
+  } catch (e) {
+    try { writeFileSync(D("combo-guard.json"), JSON.stringify({ at: new Date().toISOString(), error: String(e).slice(0, 200) })); } catch {}
+  } finally {
+    g.__cgBusy = false;
+  }
+}
+export function comboGuard() {
+  try { return JSON.parse(readFileSync(D("combo-guard.json"), "utf8")); } catch { return null; }
+}

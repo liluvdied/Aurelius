@@ -2719,3 +2719,53 @@ LIVE back on after fix425 2026-10-29T02:37:06.682417+00:00 ({'engine.ts': 'bc53a
 2026-11-02T08:58:53Z R325 fix632 (Love, FIX632-SLIDER-NEVER-TRIPS.command): her size slider never trips the umpire
 2026-11-02T09:01:08Z ARM-THE-DESK: armed 4 hours by her password
 2026-11-03T20:11:58Z CACHE CLEARED BY HAND (Love, CLEAR-HER-CACHE.command): 0 rows to the archive, 13 stay
+2026-11-03T23:40:23Z LIVE-ON APPROVED (golden baseline: live, at, note, liveBook + live-switch.json fingerprint only; no code, no rules) - Love Nov 3 2026 3:37 PM PT: "Turn her back on. Approve the current LIVE-on state so the umpire passes. Update the golden baseline for the LIVE switch only. Do not change any rules." + 3:40 PM PT: "go ... turn her on"
+2026-11-03T23:49:57Z BREAKER PAUSE CLEARED (halt.json off:false; tripped 11:01 AM PT on "auto.ts changed", auto.ts now matches approved-model.json; no code, no rules) - Love Nov 3 2026 3:48 PM PT: "she is still not taking her entries hun. fix it. no excuses. find what it is and fix it."
+2026-11-03T23:51:56Z FIX471 BB/ZONE NAMES (engine.ts f665432e3eafba6f; one regex in the 2 PM window: BB upper/lower + 5m R1/S1 rejections count as Bollinger/zone calls; approved-model + golden baseline re-signed for engine.ts only) - Love Nov 3 2026 3:48-3:49 PM PT: "she is still not taking her entries hun. fix it. no excuses. find what it is and fix it." + "put her on dude. paper is taking them. put her on my main book"
+2026-11-03T23:56:44Z ARM-THE-DESK: armed 4 hours by her password
+2026-11-04T00:04:00Z SIZING (live-switch: maxDollars 2, liveBook $1, offHourMain $1 + addOn $2 @ <=0.25, addOn $2 @ <=0.25, addOn.second off, addOnRed1 off; old values in sizeNov3Prev; golden re-signed) - Love Nov 3 2026 4:03 PM PT: "go" to: entry $1 on every live book every hour; one $2 add-on per position only at 4x+ (ask <= 25c); second add-on off; reversal add-on off; per-order ceiling $2 (her ask 3:55 PM: "place her on her $1 and one $2 add on of 4x + , when 4x + is reached")
+2026-11-04T00:06:18Z UMPIRE BACK TO SAFE: engine.ts bce0b4d826eaaa8d keeps fix617 text verbatim (BB/5m R1-S1 check split out); main addOn parked OFF at 0.357 ($2 kept) until cornerstone #80 ($5 at 2.8x, Nov 1) is retired in Love's words for her Nov 3 4:03 PM "$2 at 4x+"
+2026-11-04T00:07:59Z main addOn back ON at 0.357 with $2 (request R311 proof: addOn.on true + maxAsk 0.357) - her Nov 3 "$2 at 4x+" waits on R311 + cornerstone #80 being retired in her words (tools locked)
+2026-11-04T00:19:20Z SUB-AUDITOR BOARD: engine.ts 0b8b638dc4e5f99e sends carried + freshSd with each setup (gold refused "bands can't be read" while carried). Love Nov 3 4:17 PM PT: "again she is not taking trades on kalshi ... get her live"
+2026-11-04T00:26:43Z GOLD UNBLOCKED: engine.ts 3a3882d29d93e87b - the sub-auditor's "bands can't be read" no longer holds an order while the asset is carried. Love Nov 3 4:25 PM PT: "Remove that refusal for gold and every other asset ... Do not add new checks."
+2026-11-04T01:08:20Z PINK REJECTION EARLY: recon.ts 073526e7a795f7a5 (6 lines: 5m PP rejection books on spot < / > cur.o or her flip; the $10 BTC / tap gold past-open wait removed); spine, approved-model, golden re-signed - Love Nov 3 2026 5:03-5:08 PM PT: "Change the rejection entry so that a valid pink rejection books the moment the candle turns against the pink ... Do not wait for the touch ... Keep the existing thirds, walls, and flip rules" + "i ran your command in terminal" (recon.ts unlocked by Love)
+2026-11-04T02:35:41Z DST SESSION ANCHOR: tv.ts 261436a4a3b54b97 + pivotbooks.ts 85ccdac9554baf83 - session VWAP anchor 5 PM New York (22:00 UTC now), was fixed 21:00 UTC - Love Nov 3 2026 6:35 PM PT: "Unlocked. Apply the 21:00 fix to both files now. Re-sign so the umpire stays SAFE ... No other changes."
+2026-11-04T03:46:45Z BREAK ABOVE AT THE ORDER: engine.ts bc1ad63fe33222f5 - a "Break/Close above X" long is refused at the order when price is at or below X. Love Nov 3 7:45 PM PT: "if price is below the band at the moment of the order, it is not a break above. No entry."
+2026-11-04T17:25:24Z FIX618 LONGS INSIDE PINK TOLERANCE ONLY (bandlock.ts 2c091d9410ecc992) + UMPIRE OVERRIDE 618 (tools/behaviour-umpire.cjs, data/umpire-override-618.json) - Love Nov 3 7:20 PM + Nov 4 9:23 AM PT
+2026-11-04T17:39:54Z ADD-ONS $4 (addOn + offHourMain.addOn $2 -> $4, maxDollars $2 -> $4; old values in addOn4Prev) - Love Nov 4 9:38 AM PT
+2026-11-04T17:53:08Z ADD-ONS $2 @2.8x + $3 @3.8x (engine.ts be19692632b48f58 3.8x add-on; live-switch addOn $2 @0.357, offHourMain.addOn $2 @0.357, addOn.at38 $3 @0.263; old in addOn38Prev) - Love Nov 4 9:51 AM PT
+2026-11-04T18:23:56Z FLIP 2m/5m + $2 BTC; RED FALLING 5m REFUSES LONG (bandlock 8dfe4c8ee2f97aba, recon 3034742815ce50be; band-flip-test-446 + behaviour-umpire updated) - Love Nov 4 2026 10:20-10:23 AM PT: "A red falling 5m candle refuses the long. No 2-5m flip overrides it." + "make it only the 2M or 5M candle pls / must be pushing off of the band in the direction of the trade in our color by a factor of 10 cents for gold or $2 for btc"
+2026-11-04T18:25:19Z REVERTED red-5m long change in recon.ts (073526e7a795f7a5) + band-flip-test-446 - check-her-rules.cjs (locked) replay still requires the flip override. 2m/5m + $2 BTC flip kept.
+2026-11-04T18:36:16Z RED FALLING 5m REFUSES THE LONG (recon 3034742815ce50be; band-flip-test-446 + both-sides-replays-469 updated) - Love Nov 4 2026 10:20-10:35 AM PT: "A red falling 5m candle refuses the long. No 2-5m flip overrides it." + "unlocked bb"
+2026-11-04T18:42:11Z GOLD PINK TOLERANCE $3 MAX OVER A $25 CHANNEL (bandlock 18c902a16e01e4a0 pinkSlide580, recon ead767cda1242239 pinkSlide580R) - Love Nov 4 2026 10:41 AM PT: "on gold , past a $25 band width $3 max. 7.25 isn't necessary love"
+2026-11-04T18:43:24Z REVERTED gold $3 pink cap (requests + pink-flag-25-test failed)
+2026-11-04T18:50:19Z GOLD PINK $3 MAX OVER A $25 CHANNEL (bandlock 18c902a16e01e4a0, recon ead767cda1242239, pink-flag-25-test updated) - Love Nov 4 2026 10:41 AM PT: "on gold , past a $25 band width $3 max. 7.25 isn't necessary love" + 10:49 AM "go"
+2026-11-04T19:13:21Z BREAKER PAUSE CLEARED (tripped 10:50:10 AM PT during the gold $3 cap write; model approved again)
+2026-11-04T20:14:03Z PINK REJECTION PUSH BACK (recon 69ea4ff5cb6e5385, 6 lines) - Love Nov 4 2026 12:13 PM PT: "yes they all need the push that's what it is" (pink rejections need the $10 BTC / one-tap gold push again)
+2026-11-04T20:31:35Z MAIN WITHOUT PINK OWN READ (recon 5e17a6753bf47818; cornerstone #99 + manifest; R326 supersedes R321) - Love Nov 4 2026 12:26-12:30 PM PT: "The pink-excluded book is not limited to main's calls. When a valid setup appears that is not a pink trade, she takes it on her own. She does not wait for main and does not take main's next-best." + "Unlocked. Go."
+2026-11-05T10:34:19.659Z HOURS (Love, in-app schedule pill): 2 AM PT -> DELAYED twin
+2026-11-05T10:34:57.447Z HOURS (Love, in-app schedule pill): 2 AM PT -> DELAYED twin
+2026-11-05T10:56:33.290Z HOURS (Love, in-app schedule pill): 3 AM PT -> DELAYED twin
+2026-11-05T10:56:33.958Z HOURS (Love, in-app schedule pill): 3 AM PT -> DELAYED twin
+2026-11-05T11:14:59.061Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (BTC only)
+2026-11-05T11:14:59.596Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (GOLD only)
+2026-11-05T11:32:33.622Z HOURS (Love, in-app schedule pill): 3 AM PT -> MAIN book (BTC only)
+2026-11-05T11:32:34.204Z HOURS (Love, in-app schedule pill): 3 AM PT -> MAIN book (GOLD only)
+2026-11-05T11:57:20.582Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (BTC only)
+2026-11-05T11:57:22.341Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (GOLD only)
+2026-11-05T11:57:23.067Z HOURS (Love, in-app schedule pill): 3 AM PT -> DELAYED twin
+2026-11-05T11:57:23.858Z HOURS (Love, in-app schedule pill): 3 AM PT -> DELAYED twin
+2026-11-05T12:01:38.957Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (BTC only)
+2026-11-05T12:01:39.644Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (GOLD only)
+2026-11-05T12:01:41.354Z HOURS (Love, in-app schedule pill): 4 AM PT -> DELAYED twin
+2026-11-05T12:01:42.513Z HOURS (Love, in-app schedule pill): 4 AM PT -> DELAYED twin
+2026-11-07T06:20:23.054Z HOURS (Love, in-app schedule pill): 10 PM PT -> REJECTION model (BTC only)
+2026-11-07T06:20:24.537Z HOURS (Love, in-app schedule pill): 10 PM PT -> MAIN book (BTC only)
+2026-11-07T07:00:28.741Z HOURS (Love, in-app schedule pill): 11 PM PT -> MAIN book (BTC only)
+2026-11-07T08:35:05.958Z HOURS (Love, in-app schedule pill): 12 AM PT -> MAIN book (BTC only)
+2026-11-07T10:04:53.469Z HOURS (Love, in-app schedule pill): 2 AM PT -> MAIN book (BTC only)
+2026-11-07T10:04:57.072Z HOURS (Love, in-app schedule pill): 3 AM PT -> MAIN book (BTC only)
+2026-11-07T10:04:58.321Z HOURS (Love, in-app schedule pill): 3 AM PT -> MAIN book (GOLD only)
+2026-11-07T10:04:59.950Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (GOLD only)
+2026-11-07T10:05:02.201Z HOURS (Love, in-app schedule pill): 4 AM PT -> MAIN book (BTC only)
+2026-11-07T10:05:03.822Z HOURS (Love, in-app schedule pill): 4 AM PT -> MAIN book (GOLD only)

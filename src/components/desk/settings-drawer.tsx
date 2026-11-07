@@ -1,8 +1,10 @@
 import type { ReactNode } from "react";
-import { Drawer } from "vaul";
+import { Drawer } from "vaul"; // fix808 (Love Nov 6 2026 ~7:45 AM PT: "every time i pull up the settings tab with the add on toggles the lil handle tab to pull the page down goes too far up and disappears out of frame so i can't exit the page"): the sheet is capped at her screen height, its handle + a close X stay pinned, the rows scroll inside
 import { Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { DeskSettings } from "@/lib/desk/types";
+import { useEffect, useState } from "react"; // fix664
+import { getAddonSettings, setAddonSettings } from "@/lib/desk/fns"; // fix664
 const PAPER_STOPS = [5, 10, 15, 20, 25, 30, 40, 50, 75, 100, 150, 200, 250, 300, 400, 500, 750, 1000];
 
 function Row({
@@ -69,8 +71,14 @@ export function SettingsDrawer({
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 z-40 bg-bg/70" />
-        <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 rounded-t-xl bg-surface px-5 pb-8 pt-3 text-fg hairline">
-          <Drawer.Handle className="mx-auto mb-4 h-1 w-10 rounded-full bg-line-strong" />
+        <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 flex max-h-[calc(100dvh-env(safe-area-inset-top)-12px)] flex-col rounded-t-xl bg-surface pt-3 text-fg hairline" /* fix808: never taller than her screen - the handle and close stay in view */>
+          <div className="relative shrink-0 px-5" /* fix808: handle + close X, always visible */>
+            <Drawer.Handle className="mx-auto mb-4 h-1 w-10 rounded-full bg-line-strong" />
+            <Drawer.Close asChild>
+              <button type="button" aria-label="Close settings" className="absolute right-4 -top-1 rounded-full px-2 py-1 text-xl leading-none text-muted">×</button>
+            </Drawer.Close>
+          </div>
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-[calc(2rem+env(safe-area-inset-bottom))]" data-vaul-no-drag="" /* fix808: the rows scroll inside */>
           <Drawer.Title className="font-display text-2xl tracking-tight">Desk</Drawer.Title>
           <p className="mt-1 text-sm text-muted">
             Paper fills only. Live Kalshi orders stay in your hands. Keep this screen open for
@@ -209,9 +217,81 @@ export function SettingsDrawer({
                 />
               </label>
             </Row>
+            <AddOnRows664 />
+            <AddOn3Row754 />
+          </div>
           </div>
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>
+  );
+}
+// fix664 HER ADD-ON BOXES (Love Nov 4 2026 7:17 PM PT: "a box for Add on 1 & a box for add on 2 with an on/off toggle for them both so i don't need to bug you with them").
+// Add-on 1 = her first add-on (2.8x); Add-on 2 = the 3.8x add-on (it only comes after Add-on 1 has filled). $1-$5 each (her $5 add-on cap). Saved on the desk, read live by the engine.
+function AddOnRows664() {
+  const [s, setS] = useState<{ addOn1: { on: boolean; dollars: number }; addOn2: { on: boolean; dollars: number } } | null>(null);
+  useEffect(() => { void getAddonSettings().then((v) => setS(v)).catch(() => {}); }, []);
+  if (!s) return null;
+  const save = (n: typeof s) => { setS(n); void setAddonSettings({ data: n }).catch(() => {}); };
+  const rows: [keyof typeof s, string, string][] = [["addOn1", "Add-on 1", "First add-on (at 2.8x). $1-$5."], ["addOn2", "Add-on 2", "Type the multiple (1.5x-10x) and the $ ($1-$5). After Add-on 1 has filled."]];
+  return (
+    <>
+      {rows.map(([k, label, hint]) => (
+        <Row key={k} label={label} hint={hint}>
+          <span className="flex items-center gap-2 font-mono text-sm tabular-nums">
+            {k === "addOn2" ? ( /* fix803: her Add-on 2 multiple box (was a fixed 3.8x) */
+              <>
+                <input type="number" inputMode="decimal" min={1.5} max={10} step={0.1} key={`m2-${(s as any).addOn2.mult ?? 3.8}`} defaultValue={(s as any).addOn2.mult ?? 3.8}
+                  onBlur={(e) => { const m = Math.max(1.5, Math.min(10, Math.round((Number(e.currentTarget.value) || 0) * 10) / 10)); if (m >= 1.5 && m !== ((s as any).addOn2.mult ?? 3.8)) save({ ...s, addOn2: { ...s.addOn2, mult: m } as any }); }}
+                  onKeyDown={(e) => { if (e.key === "Enter") (e.currentTarget as HTMLInputElement).blur(); }}
+                  className="w-14 rounded-[4px] border border-white/30 bg-black px-1 py-0.5 text-right" aria-label="Add-on 2 multiple" />
+                x ·
+              </>
+            ) : null}
+            $
+            <input
+              type="number"
+              inputMode="numeric"
+              min={1}
+              max={5}
+              step={1}
+              key={`${k}-${s[k].dollars}`}
+              defaultValue={Math.round(s[k].dollars)}
+              onBlur={(e) => { const n = Math.max(1, Math.min(5, Math.round(Number(e.currentTarget.value) || 0))); if (n >= 1 && n !== s[k].dollars) save({ ...s, [k]: { ...s[k], dollars: n } }); }}
+              onKeyDown={(e) => { if (e.key === "Enter") (e.currentTarget as HTMLInputElement).blur(); }}
+              className="w-12 rounded-[4px] border border-white/30 bg-black px-1 py-0.5 text-right"
+              aria-label={`${label} dollars`}
+            />
+            <Toggle on={s[k].on} onChange={(v) => save({ ...s, [k]: { ...s[k], on: v } })} />
+          </span>
+        </Row>
+      ))}
+    </>
+  );
+}
+
+// fix754 ADD-ON 3, HER CUSTOM ONE (Love Nov 5 2026 1:48 PM PT: "can you add in a third custom box there? that lets me type the multiple and then put in the dollar amount ?"): she types the
+// multiple (1.5x-10x) and the dollars ($1-$5) and turns it on/off. Once per position, when the price reaches her multiple. Saved with her other add-on boxes; read live by the engine.
+function AddOn3Row754() {
+  const [s, setS] = useState<any>(null);
+  useEffect(() => { void getAddonSettings().then((v: any) => setS(v)).catch(() => {}); }, []);
+  if (!s) return null;
+  const a3 = s.addOn3 || { on: false, dollars: 1, mult: 3 };
+  const save = (n: any) => { const all = { ...s, addOn3: { ...a3, ...n } }; setS(all); void setAddonSettings({ data: all }).catch(() => {}); };
+  return (
+    <Row label="Add-on 3" hint="Your custom add-on: type the multiple (1.5x-10x) and the $ ($1-$5). Once per position, when the price reaches your multiple.">
+      <span className="flex items-center gap-2 font-mono text-sm tabular-nums">
+        <input type="number" inputMode="decimal" min={1.5} max={10} step={0.1} key={`m-${a3.mult}`} defaultValue={a3.mult}
+          onBlur={(e) => { const m = Math.max(1.5, Math.min(10, Math.round((Number(e.currentTarget.value) || 0) * 10) / 10)); if (m >= 1.5 && m !== a3.mult) save({ mult: m }); }}
+          onKeyDown={(e) => { if (e.key === "Enter") (e.currentTarget as HTMLInputElement).blur(); }}
+          className="w-14 rounded-[4px] border border-white/30 bg-black px-1 py-0.5 text-right" aria-label="Add-on 3 multiple" />
+        x · $
+        <input type="number" inputMode="numeric" min={1} max={5} step={1} key={`d-${a3.dollars}`} defaultValue={Math.round(a3.dollars)}
+          onBlur={(e) => { const n = Math.max(1, Math.min(5, Math.round(Number(e.currentTarget.value) || 0))); if (n >= 1 && n !== a3.dollars) save({ dollars: n }); }}
+          onKeyDown={(e) => { if (e.key === "Enter") (e.currentTarget as HTMLInputElement).blur(); }}
+          className="w-12 rounded-[4px] border border-white/30 bg-black px-1 py-0.5 text-right" aria-label="Add-on 3 dollars" />
+        <Toggle on={a3.on === true} onChange={(v) => save({ on: v })} />
+      </span>
+    </Row>
   );
 }

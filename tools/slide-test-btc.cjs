@@ -18,7 +18,8 @@ const t = (c, m) => { if (!c) { ok = false; console.log("SLIDE TEST BTC: FAIL - 
 const sm3 = mk([[true, 79880, 79950], [true, 79820, 79900], [true, 79760, 79845], [false, 79700, 79800]]);
 if (!/SLIDE UNDER PINK/.test(H(sm3, { on: false }, 1e12 + 3 * 300000 + 160000))) { ok = false; console.log("SLIDE TEST BTC: FAIL - 3 rejections on a down slope did not hold the long"); }
 const sm2 = mk([[true, 79880, 79950], [true, 79820, 79900], [false, 79760, 79845]]);
-if (H(sm2, { on: false }, 1e12 + 2 * 300000 + 160000)) { ok = false; console.log("SLIDE TEST BTC: FAIL - 2 rejections held the long"); }
+if (!/SLIDE UNDER PINK/.test(H(sm2, { on: false }, 1e12 + 2 * 300000 + 160000))) { ok = false; console.log("SLIDE TEST BTC: FAIL - 2 rejections on a down slope did not hold the long (fix657: her rule is two)"); } // fix657 (Love Nov 4 2026 6:04 PM PT: "lets lower the pink slide rule to 2 of them instead of 3 while pink is sloped up or down as well pls")
+if (H(mk([[true, 79880, 79950], [false, 79820, 79900]]), { on: false }, 1e12 + 1 * 300000 + 160000)) { ok = false; console.log("SLIDE TEST BTC: FAIL - 1 rejection held the long (fix657)"); }
 const S3 = { on: true };
 if (H(sm3.concat([{ t: 1e12 + 4 * 300000, p: 79809, pp: 79800 }]), S3, 1e12 + 4 * 300000 + 1000) || S3.on) { ok = false; console.log("SLIDE TEST BTC: FAIL - an $8 break up through pink did not free the long"); }
 console.log(ok ? "SLIDE TEST BTC \u2713 - three or more candles hitting the pink and rejecting on a down slope hold the long; an $8 pink break frees." : "SLIDE TEST BTC: FAIL");
