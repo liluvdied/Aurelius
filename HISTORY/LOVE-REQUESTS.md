@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R522 - fix905 HER REGULAR PINK TOLERANCE ON WEEKENDS: Friday 2 PM to Sunday 3 PM PT her BTC pink cushion (main, REJ, no-pink - every book but delayed) is the regular 20% of the session channel (15% / 10% on huge channels) instead of half the channel under $100 - tonight's $72 channel made it $36, holding 920 calls since 8:30 PM (622 of them $15+ from the pink); now $14.40. Weekdays keep half under $100 and her scale from $100. Four proofs that read her weekday scale are pinned to a weekday.
+- when: 2026-11-07T06:36:59+00:00
+- Love: "Love Nov 6 2026 ~10:24 PM PT: "yeah literally all of the ones she skipped are valid / i had you make the pink tolerance half the channel width under $100 / but change it to the regular pink tolerance during weekends. / drop me that command now by itself pls so she can trade""
+- books: main, REJ, no-pink - BTC pink cushion on weekends
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix905 HER REGULAR PINK TOLERANCE ON WEEKENDS"}
+- proof: {"test": "tools/weekend-pink-905.cjs"}
+
 ## R521 - fix869 SELLS NEVER CAPPED: her resting take-profits (and any close marked as a close on what she holds) pass the Kalshi per-order cap untouched - at 8:37 PM her BTC DOWN take-profit was cut from $3.26 to the $1 cap, so it only covered 11 of her contracts. Reduce-only exits already passed; every new opening order is still capped.
 - when: 2026-11-07T04:50:52+00:00
 - Love: "Love Nov 6 2026 ~8:41 PM PT (relayed): sells / closes must NEVER be capped by maxDollars - "SELLS NEVER CAPPED" (her 8:37 PM BTC DOWN take-profit was cut to $1 = 11 of her contracts)"

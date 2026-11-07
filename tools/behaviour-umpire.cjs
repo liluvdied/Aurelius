@@ -1,6 +1,7 @@
 // BEHAVIOUR UMPIRE (Love Oct 28 2026 6:22 PM PT: "please create an umpire that ACTUALLY checks if the conditions are met and not just the code is there"
 // + 6:27 PM "LOCK. THEM. POUR CONCRETE OVER THEM."). Loads her real bandlock.ts, replays real situations, and checks she refuses / allows exactly as Love said.
 // usage: node tools/behaviour-umpire.js [path/to/bandlock.ts]   exit 0 = every rule behaves, 1 = something broke (refuse the install)
+globalThis.__now839 = Date.parse("2026-11-04T20:00:00Z"); // fix905: these proofs read her WEEKDAY pink scale; the weekend scale has its own proof (tools/weekend-pink-905.cjs)
 const path = require("path"), fs = require("fs");
 const ROOT = path.join(__dirname, ".."); const ts = require(path.join(ROOT, "node_modules/typescript"));
 const file = process.argv[2] ? path.resolve(process.argv[2]) : path.join(ROOT, "src/lib/desk/bandlock.ts");

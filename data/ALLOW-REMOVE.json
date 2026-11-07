@@ -9351,5 +9351,10 @@
     "what": "if (method !== \"POST\" || !/\\/portfolio\\/(events\\/)?orders/.test(path) || !body || body.reduce_only === true) return { body };",
     "why": "fix869 (her words above)",
     "R": "R521"
+  },
+  {
+    "what": "export function pinkSlide580(asset: string, W: number): number { if (asset === \"btc\" && W >= 100 && W < 180 && typeof slide845 === \"function\" && slide845(asset, W) < Infinity) return 0.2 * W; /* fix845 her scale from $100 */ return asset === \"btc\" ? (W < 100 ? W / 2 : W < 180 ? W / 3 /* fix667 (Love Nov 4 2026 8:23 PM PT: \"we can keep the 50% under a $100 band width / past $100 we can make it 1/3rd of the channel width of clearance until our sliding scale comes back into place after $180 is reached\"): $100-$180 = a third of the channel, no $60 cap; gold: half under $3, a third from $3 to $5 */ : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* fix641 Love Nov 4 2026 1:24 PM PT: \"anything over 1k channel width for btc goes to 10% for pink tolerance\" */ : 0.15 * W) : asset === \"gold\" && W < 5 ? (W < 3 ? W / 2 : W / 3 /* fix667 (Love ~8:29 PM PT: \"for gold however, let's make it a third from $3 -5 instead of from $2-5 so she has an even $1\"): gold half under $3, a third from $3 to $5 */) : asset === \"gold\" && W > 25 ? Math.min((PINK_PCT459[asset] ?? PINK_PCT429) * W, 3) /* Love Nov 4 2026 10:41 AM PT: \"on gold, past a $25 band width $3 max\" */ : (PINK_PCT459[asset] ?? PINK_PCT429) * W; /* fix615 (Love Nov 1 2026 4:27 PM PT, BTC: \"Until channel width reaches $100: half the channel width (dollar amount). From $100 to $180: half the channel width, capped at $60. Over $180: the normal sliding scale that was already in place.\" + 4:32 PM, gold: \"gold will be 1/2 of the channel width up until $2 , calculated in distance of price to pink and remain capped at $1.50 until the sliding scale goes back into place at $5.\" + 5:20 PM: \"any time bands are under 180\") */ }",
+    "why": "fix905 (her words above)",
+    "R": "R522"
   }
 ]

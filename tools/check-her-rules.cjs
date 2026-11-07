@@ -1,6 +1,7 @@
 // CHECK HER RULES (R199/R200/R204, Love Oct 29 2026 1:08 PM PT: "check every rule for both sides. twice. then do it again" + 1:15 PM: "double check that every rule and cornerstone works on
 // both sides, for main and rejection"). READ-ONLY. Lifts her REAL wall / read / hold functions out of the code she is running (or a folder you name) and plays today's real misses plus
 // every rule LONG and its mirror SHORT (prices reflected, zones swapped). Prints a table; any ✗ goes to the top in red. Usage: node tools/check-her-rules.cjs [desk folder]
+globalThis.__now839 = Date.parse("2026-11-04T20:00:00Z"); // fix905: these proofs read her WEEKDAY pink scale; the weekend scale has its own proof (tools/weekend-pink-905.cjs)
 const fs = require("fs"), path = require("path");
 const root = process.env.AUR_ROOT || path.join(__dirname, "..");
 const ARGS = process.argv.slice(2).filter((a) => !a.startsWith("--")), ONLY5 = process.argv.includes("--only5m"), NO5 = process.argv.includes("--no5m");
