@@ -2781,3 +2781,11 @@
 {"at":"2026-11-07T14:44:26.524902Z","ticker":"KXBTC15M-26NOV070945-45","action":"sell","side":"yes","qty":"0.76","yes":"0.0010","status":"executed"}
 {"at":"2026-11-07T15:21:08.206052Z","ticker":"KXBTC15M-26NOV071030-30","action":"buy","side":"yes","qty":"8.97","yes":"0.9990","status":"executed"}
 {"at":"2026-11-07T15:35:35.652318Z","ticker":"KXBTC15M-26NOV071045-45","action":"buy","side":"yes","qty":"36.25","yes":"0.9990","status":"executed"}
+{"at":"2026-11-07T21:55:29.769638Z","ticker":"KXBTC15M-26NOV071700-00","action":"sell","side":"no","qty":"12.93","yes":"0.0100","status":"resting"}
+{"at":"2026-11-07T21:55:18.527292Z","ticker":"KXBTC15M-26NOV071700-00","action":"buy","side":"no","qty":"12.93","yes":"0.0010","status":"executed"}
+{"at":"2026-11-07T21:55:29.769638Z","ticker":"KXBTC15M-26NOV071700-00","action":"sell","side":"no","qty":"12.93","yes":"0.0100","status":"canceled"}
+{"at":"2026-11-07T22:00:40.607441Z","ticker":"KXETH15M-26NOV071715-15","action":"buy","side":"no","qty":"9.53","yes":"0.0010","status":"executed"}
+{"at":"2026-11-07T22:00:40.606624Z","ticker":"KXETH15M-26NOV071715-15","action":"buy","side":"no","qty":"9.73","yes":"0.0010","status":"canceled"}
+{"at":"2026-11-07T22:07:54.029492Z","ticker":"KXBTC15M-26NOV071715-15","action":"sell","side":"no","qty":"18.95","yes":"0.0300","status":"resting"}
+{"at":"2026-11-07T22:07:33.470513Z","ticker":"KXBTC15M-26NOV071715-15","action":"buy","side":"no","qty":"18.95","yes":"0.0010","status":"executed"}
+{"at":"2026-11-07T22:07:54.029492Z","ticker":"KXBTC15M-26NOV071715-15","action":"sell","side":"no","qty":"18.95","yes":"0.0300","status":"canceled"}

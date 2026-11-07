@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R547 - fix936 THE BLUE VWAP WALL USES HER NORMAL SESSION BAND TOLERANCE: fix397 (no long under / no short over the unbroken blue VWAP when bands are small) kept her within HALF the VWAP-to-1σ width; it now uses what a session band gets at the door (bandTol934 = her session-band scale fix593 capped by her sliding scale fix845; BTC $25 under a $100 width). Today 6:45 AM BTC: VWAP to 1σ $81.74 - half held her long $33.61 under the VWAP; her $25 lets it through. Main and rejection orders (the only ones this wall judges); delayed never comes through here. Carries her band-tolerance helper (bandTol934) itself.
+- when: 2026-11-07T21:58:09+00:00
+- Love: "Love Nov 7 2026 ~6:52 AM PT (asked whether the blue VWAP wall, fix397, should keep "no long / short within half the VWAP to 1σ distance" or use her band tolerance): "no not half luv just her normal session band tolerances""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix936 HER NORMAL SESSION BAND TOLERANCE ON THE BLUE VWAP WALL"}
+- proof: {"test": "tools/blue-vwap-band-tol-936.cjs"}
+
 ## R546 - fix935 NO COLOUR WALL: the 5m candle colour refusal at the send (fix854 'HER COLOUR' - no long on a red 5m candle / no short on a green one, either feed; fix932 made it both feeds) comes out for every book (delayed never had it). This morning it refused 78 of her orders at the last line. The function stays in the file, unwired. Her push rule (fix918 / fix807: the push off the wick on her side of the band with one 2m or 5m candle her colour) and every other rail are unchanged.
 - when: 2026-11-07T14:43:53+00:00
 - Love: "Love Nov 7 2026 ~6:27 AM PT: "let's take that off pls hun , color 2 feeds issue let's get rid of that wall pls""
