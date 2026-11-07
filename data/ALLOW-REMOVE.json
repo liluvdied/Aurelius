@@ -9901,5 +9901,165 @@
     "what": "if (side === \"down\" && q.c > vw397 && q.c - vw397 <= c397) return deny(`THE BLUE VWAP WALL: short $${(q.c - vw397).toFixed(2)} over the unbroken session VWAP ${vw397.toFixed(2)} - bands are small (VWAP to 1σ $${w397.toFixed(2)}), no short within half of that ($${c397.toFixed(2)}). Wait for price under the VWAP.`, { tick: q.c }); } }",
     "why": "fix936 (her words in this change's request)",
     "R": "R547"
+  },
+  {
+    "what": "if (book === \"recon-tog\" /* fix618: gold too */ && carried && !rej && !(/^(Break|Broke|Close|Falling, broke|Rising, broke)/i.test(lb) && /5m PP|pink|carried /i.test(lb) /* fix617 */)) return `2 PM TIL $100 = REJECTIONS ONLY (fix597): \"${lb.slice(0, 80)}\" is not a rejection or a pink break - no order.`;",
+    "why": "fix942 (her words in this change's request)",
+    "R": "R549"
+  },
+  {
+    "what": "T(\"fix597 main in the BTC window refuses a session-band break\", /REJECTIONS ONLY/.test(H(\"recon-tog\", \"btc\", true, \"Break above +1σ\")));",
+    "why": "fix942 (her words in this change's request)",
+    "R": "R549"
+  },
+  {
+    "what": "T(\"fix597 main in the BTC window holds the third reads\", /REJECTIONS ONLY/.test(H(\"recon-tog\", \"btc\", true, \"Launched from the bottom third (low 1) - a long until the top third\")));",
+    "why": "fix942 (her words in this change's request)",
+    "R": "R549"
+  },
+  {
+    "what": "T(\"fix618 gold main reads the same 2 PM window\", /REJECTIONS ONLY/.test(B.labelHold597(\"recon-tog\", \"gold\", true, \"Break above +1σ\")));",
+    "why": "fix942 (her words in this change's request)",
+    "R": "R549"
+  },
+  {
+    "what": "T(\"fix617 a session band break is still held\", /REJECTIONS ONLY/.test(B.labelHold597(\"recon-tog\", \"btc\", true, \"Break above +1σ\")));",
+    "why": "fix942 (her words in this change's request)",
+    "R": "R549"
+  },
+  {
+    "what": "T(\"fix618 the 2 PM label hold reads gold the same\", /REJECTIONS ONLY/.test(B.labelHold597(\"recon-tog\", \"gold\", true, \"Break above +1σ\")));",
+    "why": "fix942 (her words in this change's request)",
+    "R": "R549"
+  },
+  {
+    "what": "need('(asset === \"btc\" || asset === \"gold\") && G.__sessCarried?.[asset] === true' in B and 'if (book === \"recon-tog\" /* fix618: gold too */ && carried' in B and 'const tight344 = false /* fix618 */' in B and 'false /* fix618 */ && row.asset === \"gold\"' in E and 'false /* fix618 */ && row.asset === \"btc\"' in E and \"THE LAST RUNG\" in B and \"THE LAST CHANNEL\" in B and \"THE $10 LEVEL\" in B,",
+    "why": "fix942 (her words in this change's request)",
+    "R": "R549"
+  },
+  {
+    "what": "if (vw397 > 0 && w397 > 0 && w397 < (asset === \"btc\" ? 150 : 3)) { const c397 = typeof bandTol934 === \"function\" ? bandTol934(asset, w397) : w397 / 2; /* fix936 HER NORMAL SESSION BAND TOLERANCE ON THE BLUE VWAP WALL (Love Nov 7 2026 ~6:52 AM PT (asked whether the blue VWAP wall, fix397, should keep \"no long / short within half the VWAP to 1σ distance\" or use her band tolerance): \"no not half luv just her normal session band tolerances\"): the wall's distance is what a session band gets at the door (bandTol934 - her session-band scale capped by her sliding scale), not half the VWAP to 1σ width. This wall runs only for main and rejection orders (delayed never comes through here). */",
+    "why": "fix943 (her words in this change's request)",
+    "R": "R550"
+  },
+  {
+    "what": "t(!!NEW.slideHold403(g, s1, now), \"gold: rejections under a falling pink mid-channel did NOT hold the long - fix658 (Love Nov 4 2026 6:09 PM PT: 'the pink slide rule dictates it is longs only while pink is on a slide up ... inverse for shorts' - no 44% share in her words)\");",
+    "why": "fix944 (her words in this change's request)",
+    "R": "R551"
+  },
+  {
+    "what": "t(!!NEW.slideHoldBtc423(b, s2, now), \"BTC: rejections under a falling pink mid-channel did NOT hold the long (fix658)\");",
+    "why": "fix944 (her words in this change's request)",
+    "R": "R551"
+  },
+  {
+    "what": "const s3 = { on: false }; t(!!NEW.climbHold464(c, s3, now, \"gold\"), \"gold climb: rejections over a rising pink mid-channel did NOT hold the short (fix658)\");",
+    "why": "fix944 (her words in this change's request)",
+    "R": "R551"
+  },
+  {
+    "what": "set([], []); t(!!NEW.slideHold403(g, S(), now), \"no readable channel: the slide under a falling pink did NOT hold (fix658: her slide needs no channel share)\");",
+    "why": "fix944 (her words in this change's request)",
+    "R": "R551"
+  },
+  {
+    "what": "for (const x of sm) { const b = Math.floor(x.t / 300000); if (b !== b494) { b494 = b; C494.push({ hit: false, p: x.p, pp: x.pp }); } const k = C494[C494.length - 1]; if (x.p <= x.pp) k.hit = true; k.p = x.p; k.pp = x.pp; }",
+    "why": "fix945 (her words in this change's request)",
+    "R": "R552"
+  },
+  {
+    "what": "let lastP494 = 0; for (const c of C494) if (c.hit && c.p > c.pp) { run494 = run494 > 0 && c.p > lastP494 ? run494 + 1 : 1; lastP494 = c.p; rejPp494 = c.pp; } // fix503c (Love Oct 29 2026 11:46 PM PT: \"that was not a rejection upward / it was the wrong direction in her head hun\" + \"had the logic backwards\" + \"price was sloping down / only hold are longs / not shorts / vis versa\" + 10:03 PM: \"It's sliding when three candles or more have hit it and rejected on a down slope.\"): the slope is PRICE - an UP slope is each rejection candle closing higher than the one before; no minimum of mine. A pink drifting while price falls is not an up slope, so it never holds a short",
+    "why": "fix945 (her words in this change's request)",
+    "R": "R552"
+  },
+  {
+    "what": "for (const x of sm) { const b = Math.floor(x.t / 300000); if (b !== b494) { b494 = b; C494.push({ hit: false, p: x.p, pp: x.pp }); } const k = C494[C494.length - 1]; if (x.p >= x.pp) k.hit = true; k.p = x.p; k.pp = x.pp; }",
+    "why": "fix945 (her words in this change's request)",
+    "R": "R552"
+  },
+  {
+    "what": "let lastP494 = 0; for (const c of C494) if (c.hit && c.p < c.pp) { run494 = run494 > 0 && c.p < lastP494 ? run494 + 1 : 1; lastP494 = c.p; rejPp494 = c.pp; } // fix503c (Love Oct 29 2026 11:46 PM PT: \"that was not a rejection upward / it was the wrong direction in her head hun\" + \"had the logic backwards\" + \"price was sloping down / only hold are longs / not shorts / vis versa\" + 10:03 PM: \"It's sliding when three candles or more have hit it and rejected on a down slope.\"): the slope is PRICE - a DOWN slope is each rejection candle closing lower than the one before; no minimum of mine. It holds longs only",
+    "why": "fix945 (her words in this change's request)",
+    "R": "R552"
+  },
+  {
+    "what": "for (const x of sm) { const b = Math.floor(x.t / 300000); if (b !== b494) { b494 = b; C494.push({ hit: false, p: x.p, pp: x.pp }); } const k = C494[C494.length - 1]; if (x.p >= x.pp) k.hit = true; k.p = x.p; k.pp = x.pp; }",
+    "why": "fix945 (her words in this change's request)",
+    "R": "R552"
+  },
+  {
+    "what": "let lastP494 = 0; for (const c of C494) if (c.hit && c.p < c.pp) { run494 = run494 > 0 && c.p < lastP494 ? run494 + 1 : 1; lastP494 = c.p; rejPp494 = c.pp; } // fix503c (Love Oct 29 2026 11:46 PM PT: \"that was not a rejection upward / it was the wrong direction in her head hun\" + \"had the logic backwards\" + \"price was sloping down / only hold are longs / not shorts / vis versa\" + 10:03 PM: \"It's sliding when three candles or more have hit it and rejected on a down slope.\"): the slope is PRICE - a DOWN slope is each rejection candle closing lower than the one before; no minimum of mine. It holds longs only",
+    "why": "fix945 (her words in this change's request)",
+    "R": "R552"
+  },
+  {
+    "what": "if (side === \"down\") { const top = S.find((x: number) => x >= P), bot = [...S].reverse().find((x: number) => x < P); if (top === undefined || bot === undefined) continue; const W = asset === \"gold\" ? GOLD_WICK710 / 0.15 : top - bot; if (!(W > 0)) continue;",
+    "why": "fix937 (her words in this change's request)",
+    "R": "R553"
+  },
+  {
+    "what": "if (o5 <= P && Math.abs(hi - P) <= 0.15 * W && tick < P && hi - tick >= 0.15 * W /* fix693: was 0.2 */ && Math.abs(hi - P) < bd) { bd = Math.abs(hi - P); best = { name: nm, price: P, w: W }; } }",
+    "why": "fix937 (her words in this change's request)",
+    "R": "R553"
+  },
+  {
+    "what": "else { const bot = [...S].reverse().find((x: number) => x <= P), top = S.find((x: number) => x > P); if (top === undefined || bot === undefined) continue; const W = asset === \"gold\" ? GOLD_WICK710 / 0.15 : top - bot; if (!(W > 0)) continue;",
+    "why": "fix937 (her words in this change's request)",
+    "R": "R553"
+  },
+  {
+    "what": "if (o5 >= P && Math.abs(lo - P) <= 0.15 * W && tick > P && tick - lo >= 0.15 * W /* fix693: was 0.2 */ && Math.abs(lo - P) < bd) { bd = Math.abs(lo - P); best = { name: nm, price: P, w: W }; } } }",
+    "why": "fix937 (her words in this change's request)",
+    "R": "R553"
+  },
+  {
+    "what": "t(!B.rej668(\"btc\", \"down\", 80165, L, { o: 80120, h: 80190, l: 80115 }), \"only $25 back down (needs $30, fix693 15%) counted\"); t(B.rej668(\"btc\", \"down\", 80158, L, { o: 80120, h: 80190, l: 80115 }), \"$32 back down (15% = $30, fix693) was not hers\");",
+    "why": "fix937 (her words in this change's request)",
+    "R": "R553"
+  },
+  {
+    "what": "t(!B.rej668(\"btc\", \"up\", 80030, L, { o: 80060, h: 80065, l: 80005 }), \"mirror: only $25 up counted\");",
+    "why": "fix937 (her words in this change's request)",
+    "R": "R553"
+  },
+  {
+    "what": "t(!B.rej668(\"gold\", \"down\", 4118.9, LG, { o: 4114, h: 4119.8, l: 4113.9 }), \"gold: $0.90 back down (needs $1, fix710) counted\"); t(B.rej668(\"gold\", \"down\", 4118.7, LG, { o: 4114, h: 4119.8, l: 4113.9 }), \"gold: $1.10 back down ($1, fix710) was not hers\");",
+    "why": "fix937 (her words in this change's request)",
+    "R": "R553"
+  },
+  {
+    "what": "t(!BL.rej668(\"btc\", \"up\", 80300, L, { o: 80301.83, h: 80381.43, l: 80281.21 }), \"short of 20% counted\");",
+    "why": "fix937 (her words in this change's request)",
+    "R": "R553"
+  },
+  {
+    "what": "const P = Number(b.price), pink = String(b.name) === \"5m PP\", r = pink ? ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : ((typeof pinkOne927 === \"function\" && (asset === \"btc\" || !DLY465.has(String(G.__curBook465 || \"\"))) && sA && sB) ? pinkOne927(asset, sA.price - sB.price) /* fix927 her one pink rule, gold too */ : carryPink615 > 0 ? carryPink615 : pinkReach)) : /^BB /.test(String(b.name)) ? Math.min(reach509, sA && sB && typeof slide845 === \"function\" ? slide845(asset, sA.price - sB.price) : Infinity) /* fix845 */ : ((typeof carryOn612 === \"function\" && carryOn612(asset)) && !(sA && sB)) ? (asset === \"btc\" ? 25 : REACH429[asset] ?? 1) /* fix612 + fix618 */ : Math.min(sessionScale593(asset, sA && sB ? sA.price - sB.price : 0), sA && sB && typeof slide845 === \"function\" ? slide845(asset, sA.price - sB.price) : Infinity) /* fix845 */; // fix593: session bands use her scale; pink and the Bollinger lines keep their own",
+    "why": "fix938 (her words in this change's request)",
+    "R": "R554"
+  },
+  {
+    "what": "const one931 = a522 && b522 && a522.price > b522.price && typeof pinkOne927 === \"function\" ? pk521 - tick >= pinkOne927(asset, a522.price - b522.price) : false; // fix931 HER ONE PINK RULE ON THIS WALL (Love Nov 7 2026 ~4:02-4:07 AM PT: \"session band to session band / distance from where price currently is / if a band channel is $100 wide from 0 - 1o / pink tolerance is 20% / she needs $20 of clearance from where price currently is. / it applies in every conceivable capacity\" + ~5:18 AM PT: \"ohhhhhh my gawd bb missed again\" (5:17:18 AM BTC: the rejection long off -2σ was refused by UNDER THE PINK = NO LONGS with price $39.39 under the pink - her 20% of the channel was $16.50)): outside her 20% of the session-band channel, the pink is not in her way",
+    "why": "fix938 (her words in this change's request)",
+    "R": "R554"
+  },
+  {
+    "what": "const one931b = a522b && b522b && a522b.price > b522b.price && typeof pinkOne927 === \"function\" ? tick - P >= pinkOne927(asset, a522b.price - b522b.price) : false; // fix931 her one pink rule, mirrored",
+    "why": "fix938 (her words in this change's request)",
+    "R": "R554"
+  },
+  {
+    "what": "const W538 = above - below, cush514 = ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkOne927 === \"function\") ? pinkOne927(asset, W538) /* fix927 */ : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, W538 < 180 && W538 >= 75 ? 0.75 * W538 : 0.20 * W538)) : 0.15 * W538)); // fix538 (Love Oct 30 2026 3:49 PM PT: \"when bands are under over $80 - until they hit $180 , she needs at least 3/4 of a band channel width for pink tolerances... at any bands distance - she needs a minimum of $75 during weekdays. on weekends, it could differ.\" (the same law her fix525/526 click installed, reaching the one pink-cushion site it missed)): her $75 weekday floor + 3/4 at $75-$180 width reach the cushion too - the one site her 3:49 PM click missed",
+    "why": "fix938 (her words in this change's request)",
+    "R": "R554"
+  },
+  {
+    "what": "const S = (L || []).filter((l: Line) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name))).map((l: Line) => Number(l.price)).sort((x: number, y: number) => x - y); if (S.length < 2) return null;",
+    "why": "fix946 (her words in this change's request)",
+    "R": "R555"
+  },
+  {
+    "what": "for (const l of (L || [])) { const P = Number(l.price), nm = String(l.name); if (!(P > 0) || !/σ$|^session VWAP$|^5m PP$|^(Red|Green) zone$|^5m (R1|S1)$|^(Bollinger|BB) (upper|lower)$/.test(nm)) continue;",
+    "why": "fix946 (her words in this change's request)",
+    "R": "R555"
   }
 ]

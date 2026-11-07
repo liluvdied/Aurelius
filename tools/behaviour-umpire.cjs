@@ -289,12 +289,12 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix597 rejection keeps the candle-from-the-33% reads", !H("recon-rej", "btc", true, "Launched from the bottom third (low 77601.39) - a long until the top third") && !H("recon-rej", "btc", false, "Red candle falling from the top third"));
   T("fix597 rejection keeps the fake-out read", !H("recon-rej", "btc", true, "Fake-out turn over session VWAP"));
   T("fix597 main in the BTC window takes a pink break", !H("recon-tog", "btc", true, "Break above 5m PP"));
-  T("fix597 main in the BTC window refuses a session-band break", /REJECTIONS ONLY/.test(H("recon-tog", "btc", true, "Break above +1σ")));
+  T("fix942 main in the BTC window trades a session-band break (her words name only zones, Bollingers and pink)", !H("recon-tog", "btc", true, "Break above +1σ"));
   T("fix597 main in the BTC window refuses a zone break", /REJECTIONS ONLY/.test(H("recon-tog", "btc", true, "Break above Red zone")));
   T("fix597 main in the BTC window takes a rejection", !H("recon-tog", "btc", true, "Rejected down off Bollinger upper"));
-  T("fix597 main in the BTC window holds the third reads", /REJECTIONS ONLY/.test(H("recon-tog", "btc", true, "Launched from the bottom third (low 1) - a long until the top third")));
+  T("fix942 main in the BTC window trades the third reads", !H("recon-tog", "btc", true, "Launched from the bottom third (low 1) - a long until the top third")); T("fix942 a Bollinger read that is not a rejection still waits", /REJECTIONS ONLY/.test(H("recon-tog", "btc", true, "AWAY FROM LINE · Bollinger lower")));
   T("fix597 main outside the window keeps her breaks", !H("recon-tog", "btc", false, "Break above +1σ"));
-  T("fix618 gold main reads the same 2 PM window", /REJECTIONS ONLY/.test(B.labelHold597("recon-tog", "gold", true, "Break above +1σ")));
+  T("fix942 the 2 PM window is BTC only (her words) - gold main trades a session-band break", !B.labelHold597("recon-tog", "gold", true, "Break above +1σ"));
   T("fix597 delayed is untouched", !H("recon-dly", "btc", true, "Break above +1σ"));
   const F0 = Date.parse("2026-11-02T20:30:00Z"), f0 = F0 / 1000; NOW = F0 + 65000;
   const L9 = [{ name: "session VWAP", price: 77700 }, { name: "+1σ", price: 77900 }, { name: "-1σ", price: 77500 }, { name: "+2σ", price: 78100 }, { name: "-2σ", price: 77300 }];
@@ -405,7 +405,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   G.__sessCarry.gold = { cur: { sd: 3 }, prev: { v: 3954, sd: 48 } }; T("fix618 gold has carry bands under her $5", B.carryExtra617("gold").length === 7); G.__sessCarry.gold.cur.sd = 5; T("fix618 gold at her $5 they leave", B.carryExtra617("gold").length === 0);
   T("fix617 no wall or thirds counts a carry line", !x.some((l) => /σ$|^session VWAP$|^fresh VWAP$|VWAP/.test(l.name)));
   T("fix617 a break of a carry band passes the 2 PM label hold on main", !B.labelHold597("recon-tog", "btc", true, "Break above carried +1"));
-  T("fix617 a session band break is still held", /REJECTIONS ONLY/.test(B.labelHold597("recon-tog", "btc", true, "Break above +1σ")));
+  T("fix942 a session band break trades in the window (her words)", !B.labelHold597("recon-tog", "btc", true, "Break above +1σ"));
   G.__sessCarry = keepC;
 }
 // fix618 (Love Nov 1 2026 6:10 PM PT): the same entry logic, the real 5:45 PM boards
@@ -436,7 +436,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
     T("fix813 longs and shorts never diverge on this wall (mirrored boards, " + 14 + " ticks)", div === 0, "diverged on " + div); }
   T("fix618 gold's 10c and BTC's $2 are her only flip difference (Love Nov 4 10:23 AM)", /asset === "gold" \? 0\.1 : 2\b/.test(B.turnFlip530.toString()));
   T("fix618 gold's walls are the same lines as BTC's", B.wallLines("gold", G545).length === B.wallLines("btc", B545).length);
-  T("fix618 the 2 PM label hold reads gold the same", /REJECTIONS ONLY/.test(B.labelHold597("recon-tog", "gold", true, "Break above +1σ")));
+  T("fix942 the 2 PM label hold is BTC only", !B.labelHold597("recon-tog", "gold", true, "Break above Red zone"));
 }
 // fix619 (Love Nov 1 2026 7:35 PM PT): a turn or born her colour on any 2-5m candle
 { const keep = NOW, keepB = G.__pivBars, keepT = G.__qtrail_1; NOW = Date.parse("2026-11-02T02:50:30Z"); G.__sessCarried = {};
