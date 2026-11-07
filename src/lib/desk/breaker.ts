@@ -45,7 +45,7 @@ export function breakerTick() {
     for (const t of trades) { if (clearedAt && Date.parse(t.closedAt) < clearedAt) break; if (Number(t.profit) < 0) streak++; else break; }
     // post-fill backwards alarms in the last 2 hours
     const alarms: any[] = rd("alarm.json", []);
-    const backwards = (Array.isArray(alarms) ? alarms : []).filter((a) => /^RED: .* meant .* but Kalshi holds /.test(String(a.text)) && Date.parse(a.at) >= since);
+    const backwards = (Array.isArray(alarms) ? alarms : []).filter((a) => /^RED: .* meant .* but Kalshi holds /.test(String(a.text)) && !/^RED: BREAKER:/.test(String(a.text)) /* fix834: never its own pause line */ && Date.parse(a.at) >= since && !(clearedAt && Date.parse(a.at) < clearedAt) /* fix834: only alarms after she turned entries back on */); // fix834 (Love Nov 6 2026 ~3:33 PM PT: "she still i've flipped it 3 times bb it's still not back")
     // model approval
     const appr = rd("approved-model.json", {})?.files ?? {};
     const bad: string[] = [];

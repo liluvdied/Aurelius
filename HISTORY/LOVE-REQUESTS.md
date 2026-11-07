@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R502 - fix834 THE BREAKER NEVER RE-TRIPS ON ITS OWN PAUSE LINE: the breaker's backwards-fill rule counted every alarm line matching 'meant X but Kalshi holds Y' in the last 2 hours - including its own 'RED: BREAKER: ... meant DOWN ... holds UP' pause line - so the moment she turned entries back on it re-tripped and wrote a fresh line, again and again. Now it never counts its own pause line, and only counts backwards fills after she last turned entries back on. A new backwards fill still trips it; the 2-hour $ drop, losses in a row and the model check are unchanged. To clear today's pause: run this, then tap the OFF pill (her entries switch) to ON.
+- when: 2026-11-07T00:17:24+00:00
+- Love: "Love Nov 6 2026 ~3:33 PM PT: "she still i've flipped it 3 times bb it's still not back" (her card: ship the fix)"
+- books: none - the breaker's backwards-fill count
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/breaker.ts", "has": "/* fix834: never its own pause line */"}
+- proof: {"test": "tools/breaker-self-alarm-834.cjs"}
+
 ## R501 - fix831 ETH REJECTIONS LIVE ON KALSHI: her ETH · REJECTIONS ONLY · NO PINK paper book (fix682) goes live on Kalshi KXETH15M, all hours like its paper card: $2.50 on the same side the second the paper book takes a window (only inside her 1.5x floor), one $3 add-on once that side pays 2.8x, paper's half and last trail sale mirrored (reduce-only sells), else to the bell. Every buy goes through her add-on route (addOnBuy600): the umpire must be SAFE and its gate clear, LIVE on, entries on (halt / breaker), never over $5 an order, the window's side lock. Paper record: 116 trades, 59%, +$774 at $20. live-switch ethLive831.on false = off.
 - when: 2026-11-07T00:11:24+00:00
 - Love: "Love Nov 6 2026 ~2:58 PM PT: "and pls put the rejection book on for eth" + ~3:04 PM: "yes , and i meant the eth rejection book on kalshi bb my bad :)) just the momentum book on poly" ($2.50 + $3 add-on at 2.8x - her yes to that size)"
