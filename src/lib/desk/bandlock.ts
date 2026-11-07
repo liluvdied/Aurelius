@@ -677,11 +677,33 @@ export function tiny809(asset: string, side: string, L: Line[]): boolean {
     return true;
   } catch { return false; }
 }
+// fix923 BTC 55% FROM HER ENTRY LINE (Love Nov 7 2026 ~2:00 AM PT: "the 55% of pink to red is not a permitted reason for a skip when she enters at 0-5% of that distance 100% of the time" + her card
+// ~2:13 AM PT: "Measure from her entry line — only refuse when price is already 55%+ of the way from the line she trades off to the next line. Entries at 0-5% always go."): BTC only, every book but delayed
+// (zoneSend594 already skips nothing for delayed - it is not in the delayed path). The entry line = the line her read names (band, zone, pink, Bollinger); the next line = the nearest of her lines
+// ahead in the trade's direction. Refused only at 55%+ of that distance. A read that names no line is not judged by this wall. Gold keeps fix594 (pink -> red / green, R316).
+export function late923(L: Line[], tick: number, side: string): string {
+  try {
+    if (!(tick > 0) || (side !== "up" && side !== "down")) return "";
+    const lab = String(G.__inBLC465 ? (G.__curLabel611 || "") : (G.__wireLabel619 || G.__curLabel611 || ""));
+    const m = /(?: off | above | below | at | · )([^()·]+?)(?: \(|$| - rejected (?:up|down)| - )/.exec(lab); const nm0 = m ? m[1].trim() : ""; if (!nm0) return "";
+    const z = G.__bbsr?.["btc"]; const bU = Number(z?.bbU) || 0, bL = Number(z?.bbL) || 0;
+    const named = (n: string): number => { const px = (k: string) => Number((L || []).find((l: Line) => String(l.name) === k)?.price) || 0;
+      return px(n) || (/^Green zone$/i.test(n) ? px("5m S1") : /^Red zone$/i.test(n) ? px("5m R1") : /^(5m PP|pink)$/i.test(n) ? px("5m PP") : /^(Bollinger|BB) upper$/i.test(n) ? bU : /^(Bollinger|BB) lower$/i.test(n) ? bL : /^Bollinger middle$/i.test(n) && bU > 0 && bL > 0 ? (bU + bL) / 2 : 0); };
+    const P = named(nm0); if (!(P > 0)) return "";
+    const all = [...(L || []).filter((l: Line) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$|^5m (PP|R1|S1|R2|S2)$/.test(String(l.name))).map((l: Line) => ({ n: String(l.name), p: Number(l.price) })), ...(bU > 0 ? [{ n: "Bollinger upper", p: bU }] : []), ...(bL > 0 ? [{ n: "Bollinger lower", p: bL }] : [])];
+    const ahead = side === "up" ? all.filter((x) => x.p > Math.max(P, tick) + 0.01).sort((a, b) => a.p - b.p)[0] : all.filter((x) => x.p < Math.min(P, tick) - 0.01).sort((a, b) => b.p - a.p)[0];
+    if (!ahead) return "";
+    const f = side === "up" ? (tick - P) / (ahead.p - P) : (P - tick) / (P - ahead.p);
+    if (!(f >= 0.55)) return "";
+    return `LATE OFF HER LINE (fix923): ${side === "up" ? "long" : "short"} at ${Math.round(f * 100)}% of the way from ${nm0} (${P.toFixed(2)}) to ${ahead.n} (${ahead.p.toFixed(2)}) - 55%+ of the way, no chase.`;
+  } catch { return ""; }
+}
 export function zoneSend594(asset: string, L: Line[], tick: number, side: string, strict = true): string {
   const px = (n: string) => Number((L || []).find((l: Line) => String(l.name) === n)?.price) || 0;
   const zP = px("5m PP"), r1 = px("5m R1"), s1 = px("5m S1");
   if (!(tick > 0) || !(zP > 0) || !(r1 > zP) || !(s1 > 0) || !(s1 < zP)) return strict ? "ZONE (fix594): the zones can't be read - no order." : "";
   { const w711 = bbFade711(asset, tick, side, r1, s1); if (w711) return w711; } // fix711
+  if (asset === "btc" && typeof late923 === "function") return late923(L, tick, side); // fix923 BTC: her 55% measured from the line she trades off to the next line ahead (her card, Nov 7 2:13 AM) - pink->zone no longer judges BTC
   if (side === "up") {
     if (tick >= r1) return `PAST THE RED ZONE (fix594): long at ${tick.toFixed(2)} at or past the red boundary ${r1.toFixed(2)} - no long.`;
     if (!slideFree800(asset, side) && !tiny809(asset, side, L) /* fix811 */ && tick > zP && (tick - zP) / (r1 - zP) >= 0.45) return `PINK TO RED (fix594): long at ${Math.round((tick - zP) / (r1 - zP) * 100)}% of pink ${zP.toFixed(2)} to red ${r1.toFixed(2)} - in the top 55% - no long.`;
@@ -1860,7 +1882,7 @@ export function pushLabel653(asset: string, side: string, tick: number, L: Line[
   try { const lab = String(label || ""); if (!REJ_LABEL611.test(lab)) return false; const m = /(?: off | above | below | at )(.+?)(?: - rejected (?:up|down))?$/.exec(lab); if (!m) return false; // fix655
     const nm = m[1].trim(), px = (n: string) => Number((L || []).find((l: Line) => String(l.name) === n)?.price) || 0, bz = G.__bbsr?.[asset]; // fix655
     const band = px(nm) || (nm === "Green zone" ? px("5m S1") : nm === "Red zone" ? px("5m R1") : /^(Bollinger|BB) upper$/.test(nm) ? Number(bz?.bbU) || 0 : /^(Bollinger|BB) lower$/.test(nm) ? Number(bz?.bbL) || 0 : 0); // fix655
-    const hl656 = fiveHLNow(asset), p807 = typeof push807 === "function" ? push807(asset, nm) : 0, ext807 = hl656 ? (side === "up" ? Number(hl656.l) : Number(hl656.h)) : 0; if (p807 > 0) return band > 0 && ext807 > 0 && pushOff653(asset, side, tick, ext807, p807, 0) /* fix807: measured from the wick (this 5m candle's high for a short / low for a long) */; return band > 0 && pushOff653(asset, side, tick, band, asset === "btc" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: "we can bring that to $6"): BTC push $10 -> $6 */ : nm === "5m PP" ? 0.1 /* fix656: gold 10c - pink trades keep 10c (fix827) */ : goldPush827(L, tick) /* fix827 gold band / zone push 15c / 20c */, ext807); } catch { return false; } } // fix655
+    const hl656 = fiveHLNow(asset), p807 = typeof push807 === "function" ? push807(asset, nm) : 0, ext807 = hl656 ? (side === "up" ? Number(hl656.l) : Number(hl656.h)) : 0; if (p807 > 0) return band > 0 && ext807 > 0 && (side === "up" ? tick >= ext807 + p807 && tick > band : tick <= ext807 - p807 && tick < band) && (twoMinHer653(asset, side, tick) || (() => { const o918 = fiveOpenNow(asset); return o918 > 0 && (side === "up" ? tick > o918 : tick < o918); })()) /* fix807: measured from the wick (this 5m candle's high for a short / low for a long) + fix918 HER PUSH ON HER SIDE OF THE BAND (Love Nov 7 2026 ~1:46 AM PT: "once it is on the same side of the band hun" + "doesn't need a close"): the push met with price on the trading side of the band and ONE of her candles (2m or 5m) her colour IS the entry - no close (Love 2:03 AM: "one of the candles does need to be green") */; return band > 0 && pushOff653(asset, side, tick, band, asset === "btc" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: "we can bring that to $6"): BTC push $10 -> $6 */ : nm === "5m PP" ? 0.1 /* fix656: gold 10c - pink trades keep 10c (fix827) */ : goldPush827(L, tick) /* fix827 gold band / zone push 15c / 20c */, ext807); } catch { return false; } } // fix655
 // fix656 (Love Nov 4 2026 5:52 PM PT: "gold needs a 10c push, not just a tap - and it doesn't need to be on the band itself , just a flip /band candle near it and pushing down in a candle our color"): the candle does not have to reach the band - near it (her near-band reach in the read, recon.ts nr) is enough; the push is measured from the band, or from the candle's own high/low when it stopped short of the band (whichever is nearer price), so she still needs the push her way. Gold push 10c.
 /** fix653: her push is measured FROM THE BAND she pushes off (her push distance, in the direction of the trade), with the live 2m her colour - never from the candle's open. */
 // fix668 A REJECTION WITHOUT A FLIP (Love Nov 4 2026 8:23 PM PT: "if price comes up to a band (within 15% of it) , and then price rejects near the band by 20% of the channel width or more , she can enter in , even if the candle hasn't flipped / so if price rejects on a green 5M candle , and the body of the candle pushes down by 20% of the channel width - she can enter short even if the candle hasn't flipped and it is still green okay / inverse for shorts"): this 5m candle came within 15% of the channel of a band (opened on the near side of it) and price is now back on the near side, 20% of the channel or more
@@ -3147,34 +3169,42 @@ export function zoneTolerance497(asset: string, L: Line[], tick: number, side: s
 // zone in the first 15% of the channel below the band she breaks down through. Study (Nov 1-6, main + REJ): entries with that zone went 59 trades, 29% hit, -$4.29/trade vs 47% / +$1.62 without.
 // live-switch zonePast822 false = off.
 export const ZONE_PAST822 = 0.15;
-export function zonePast822(asset: string, tick: number, side: string, L: Line[]): string {
+// fix916 ZONE PAST THE BAND: HER WORDS (R491: "when she enters on a break & a green/red zone sits in the bottom/top 10-15% of the band channel she's breaking into on the other side"):
+// only her BREAK reads are judged (rejections are not); the band is the session band price is breaking (the σ / VWAP line just behind price), the channel is that band to the
+// next band beyond it, and only a red zone (long) / green zone (short) ahead of price inside the first 15% of THAT channel refuses. One helper (zoneBreak916) - the door calls it.
+export function zoneBreak916(asset: string, tick: number, side: string, L: Line[], label: string): string {
   try {
     if (DLY465.has(String(G.__curBook465 || "")) || !(tick > 0) || (side !== "up" && side !== "down")) return "";
+    if (!/^Break (above|below) /.test(String(label || ""))) return ""; // fix916: her words - "when she enters on a break"
     const px = (n: string) => Number((L || []).find((l: Line) => String(l.name) === n)?.price) || 0;
     const z = side === "up" ? px("5m R1") || px("Red zone") : px("5m S1") || px("Green zone"); if (!(z > 0)) return "";
     if (side === "up" ? !(z > tick) : !(z < tick)) return "";
     const S0 = (L || []).filter((l: Line) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name))).map((l: Line) => ({ n: String(l.name), p: Number(l.price) })).sort((a, b) => a.p - b.p);
-    if (S0.length < 3) return "";
+    if (S0.length < 2) return "";
     if (side === "up") {
-      const bi = [...S0.keys()].reverse().find((i) => S0[i].p <= z); if (bi === undefined || bi + 1 >= S0.length || bi < 1) return "";
-      const band = S0[bi], next = S0[bi + 1], below = S0[bi - 1];
-      if (!(z - band.p <= ZONE_PAST822 * (next.p - band.p)) || !(tick >= below.p)) return "";
+      const bi = [...S0.keys()].reverse().find((k) => S0[k].p <= tick); if (bi === undefined || bi + 1 >= S0.length) return ""; // the band she broke up through (just under price)
+      const band = S0[bi], next = S0[bi + 1];
+      if (!(z > band.p && z - band.p <= ZONE_PAST822 * (next.p - band.p))) return "";
       try { if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.zonePast822 === false) return ""; } catch {}
-      return `THE ZONE JUST PAST THE BAND (fix822): the red zone (${z.toFixed(2)}) sits in the first 15% of the channel past the ${band.n} (${band.p.toFixed(2)}) - no long into it.`;
+      return `THE ZONE JUST PAST THE BAND (fix822/fix916): the red zone (${z.toFixed(2)}) sits in the first 15% of the ${band.n} (${band.p.toFixed(2)}) -> ${next.n} channel she is breaking into - no long into it.`;
     }
-    const bi = S0.findIndex((x) => x.p >= z); if (bi <= 0 || bi + 1 >= S0.length) return "";
-    const band = S0[bi], next = S0[bi - 1], above = S0[bi + 1];
-    if (!(band.p - z <= ZONE_PAST822 * (band.p - next.p)) || !(tick <= above.p)) return "";
+    const bi = S0.findIndex((x) => x.p >= tick); if (bi <= 0) return ""; // the band she broke down through (just over price)
+    const band = S0[bi], next = S0[bi - 1];
+    if (!(z < band.p && band.p - z <= ZONE_PAST822 * (band.p - next.p))) return "";
     try { if (JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.zonePast822 === false) return ""; } catch {}
-    return `THE ZONE JUST PAST THE BAND (fix822): the green zone (${z.toFixed(2)}) sits in the first 15% of the channel past the ${band.n} (${band.p.toFixed(2)}) - no short into it.`;
+    return `THE ZONE JUST PAST THE BAND (fix822/fix916): the green zone (${z.toFixed(2)}) sits in the first 15% of the ${band.n} (${band.p.toFixed(2)}) -> ${next.n} channel she is breaking into - no short into it.`;
   } catch { return ""; }
 }
+export function zonePast822(asset: string, tick: number, side: string, L: Line[], label?: string): string {
+  return zoneBreak916(asset, tick, side, L, String(label ?? (G.__inBLC465 ? (G.__curLabel611 || "") : (G.__wireLabel619 || G.__curLabel611 || "")))); // fix916: her words (was: any read, channel past the band under the zone)
+}
 export const TGT821: Record<string, number> = { gold: 1.5, btc: 50 };
+export const TGT915_BTC = 0.15; // fix915 HER 15% OF THE CHANNEL FOR BTC (Love Nov 7 2026 ~1:30 AM PT: "15% of the channel width hun , $10 isnt the number"): BTC target-by-a-line tolerance = 15% of the session-band channel price sits in (the one value every caller reads); gold keeps TGT821.gold $1.50
 export function target821(asset: string, tick: number, side: string, L: Line[], target?: number): string {
   try {
     if (DLY465.has(String(G.__curBook465 || "")) || !(tick > 0) || (side !== "up" && side !== "down")) return "";
     const S845 = (L || []).filter((l: Line) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name))).map((l: Line) => Number(l.price)), a845 = Math.min(...S845.filter((p) => p > tick)), b845 = Math.max(...S845.filter((p) => p < tick));
-    const tgt = Number(target ?? targetNow(asset)) || 0, lim = Math.min(TGT821[asset] || 0, Number.isFinite(a845 - b845) && typeof slide845 === "function" ? Math.round(100 * slide845(asset, a845 - b845)) / 100 : Infinity) /* fix845 */; if (!(tgt > 0) || !(lim > 0)) return "";
+    const tgt = Number(target ?? targetNow(asset)) || 0, lim = asset === "btc" ? (Number.isFinite(a845 - b845) ? Math.round(100 * TGT915_BTC * (a845 - b845)) / 100 : 0) /* fix915: BTC = 15% of the channel (TGT915_BTC) - no $50, no sliding-scale cap */ : Math.min(TGT821[asset] || 0, Number.isFinite(a845 - b845) && typeof slide845 === "function" ? Math.round(100 * slide845(asset, a845 - b845)) / 100 : Infinity) /* fix845 */; if (!(tgt > 0) || !(lim > 0)) return "";
     const lines: { name: string; price: number }[] = [];
     for (const l of (L || [])) { const n = String(l.name), p = Number(l.price); if (p > 0 && /σ$|^session VWAP$|^5m R1$|^5m S1$|^(Red|Green) zone$/.test(n)) lines.push({ name: n === "5m R1" ? "red zone" : n === "5m S1" ? "green zone" : n, price: p }); }
     const z = G.__bbsr?.[asset]; if (z && Number(z.bbU) > 0 && Number(z.bbL) > 0 && Date.now() - Number(z.at || 0) <= 20000) { lines.push({ name: "Bollinger upper", price: Number(z.bbU) }, { name: "Bollinger middle", price: (Number(z.bbU) + Number(z.bbL)) / 2 }, { name: "Bollinger lower", price: Number(z.bbL) }); }

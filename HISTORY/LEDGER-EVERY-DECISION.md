@@ -1,9 +1,27 @@
-# Every decision Love has made - rebuilt 2026-11-07T09:40:13.001224+00:00
+# Every decision Love has made - rebuilt 2026-11-07T10:53:58.364811+00:00
 
-1538 decisions with Love's words or card picks, out of 2298 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1544 decisions with Love's words or card picks, out of 2304 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-07T10:05:03.822Z  ·  diary line 2771
+- Full entry: 2026-11-07T10:05:03.822Z HOURS (Love, in-app schedule pill): 4 AM PT -> MAIN book (GOLD only)
+
+## 2026-11-07T10:05:02.201Z  ·  diary line 2770
+- Full entry: 2026-11-07T10:05:02.201Z HOURS (Love, in-app schedule pill): 4 AM PT -> MAIN book (BTC only)
+
+## 2026-11-07T10:04:59.950Z  ·  diary line 2769
+- Full entry: 2026-11-07T10:04:59.950Z HOURS (Love, in-app schedule pill): 3 AM PT -> REJECTION model (GOLD only)
+
+## 2026-11-07T10:04:58.321Z  ·  diary line 2768
+- Full entry: 2026-11-07T10:04:58.321Z HOURS (Love, in-app schedule pill): 3 AM PT -> MAIN book (GOLD only)
+
+## 2026-11-07T10:04:57.072Z  ·  diary line 2767
+- Full entry: 2026-11-07T10:04:57.072Z HOURS (Love, in-app schedule pill): 3 AM PT -> MAIN book (BTC only)
+
+## 2026-11-07T10:04:53.469Z  ·  diary line 2766
+- Full entry: 2026-11-07T10:04:53.469Z HOURS (Love, in-app schedule pill): 2 AM PT -> MAIN book (BTC only)
 
 ## 2026-11-07T08:35:05.958Z  ·  diary line 2765
 - Full entry: 2026-11-07T08:35:05.958Z HOURS (Love, in-app schedule pill): 12 AM PT -> MAIN book (BTC only)

@@ -2,6 +2,54 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R534 - fix923 BTC 55% FROM HER ENTRY LINE: on BTC, fix594's PINK TO RED / GREEN 55% and PAST THE ZONE checks are replaced by her card's rule: refuse only when price is already 55%+ of the way from the line her read trades off (band, zone, pink, Bollinger) to the nearest of her lines ahead; entries at her line always go; a read that names no line is not judged by it. Same door + last-line sites (zoneSend594). fix711 (BB fade) unchanged. Gold keeps fix594 (R316).
+- when: 2026-11-07T10:52:02+00:00
+- Love: "Love Nov 7 2026 ~2:00 AM PT: "the 55% of pink to red is not a permitted reason for a skip when she enters at 0-5% of that distance 100% of the time" + her card ~2:13 AM PT "How should the 55% wall work for BTC?" - + ~2:15 AM PT: "thankkkkkk you i was saying that on repeat like that is not a reason 😹💘 a wall is not a wall til you run into it" + her pick: "Measure from her entry line — only refuse when price is already 55%+ of the way from the line she trades off to the next line. Entries at 0-5% always go." (BTC only; gold keeps R316 "the 55% from pink to green and pink to red")"
+- books: main (TOGETHER), REJECTION, every book fix594 judges
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function late923("}
+- proof: {"test": "tools/late-off-line-923.cjs"}
+
+## R533 - fix920 OUTSIDE ORDERS NEVER TAKE A WINDOW: a Kalshi order with no desk client id (her hand / webhook orders, data/outside-orders.json) no longer locks that window for her books ('your hand traded this window - it stays yours' retired for them; logged to data/outside-window-920.jsonl). Kept: never trading against a held position (fix848) and never closing a position she started by hand. Every book.
+- when: 2026-11-07T10:52:01+00:00
+- Love: "Love Nov 7 2026 ~1:24 AM PT: "yes they were mine and they're just webhooks for something you and i did. a while ago they're nothing important bb" + ~1:55 AM PT: "the webhooks are not even for aurelius hun" + "yeah pls do" (to: Kalshi orders with no desk client id must never lock main or any book out of a window) - SUPERSEDES for those orders the Oct 15 2026 ~6:50 PM PT "HER WINDOW, PERIOD" lock ("i do not want her to be able to get a second order out again") and its fix750 (R428) keep; tonight it held main's 1:37:12 AM long (1:30 window) and the 10:15 PM window. Kept: never trading against a held position (fix848) and never closing a position she started by hand (change-her-mind)."
+- books: main (TOGETHER), REJECTION, every book
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix920 OUTSIDE ORDERS NEVER TAKE A WINDOW"}
+- proof: {"test": "tools/outside-orders-920.cjs"}
+
+## R532 - fix918 HER PUSH ON HER SIDE OF THE BAND: her BTC band / zone push (fix807: weekday $50, weekend $5 off the wick) now enters the moment the push is met with price on the trading side of the band (over it for a long, under it for a short) and at least ONE of her 2m / 5m candles her colour - the 2m alone no longer has to be her colour; no close. One shared check (pushLabel653) serves the door, and main's read filter (recon.ts fix653 line) now takes her push without the 2m colour too (longs, and the mirror for shorts). Every book but delayed; gold and pink trades unchanged. SUPERSEDES the '2m her colour' part of R344 / R477 for this push.
+- when: 2026-11-07T10:51:59+00:00
+- Love: "Love Nov 7 2026 ~1:46 AM PT: "once it is on the same side of the band hun" + "doesn't need a close" (her BTC band / zone push - fix807, weekend $5 fix837 - enters the moment the push off the wick is met with price on the trading side of the band; no 2m candle colour, no candle turn, no close) + ~1:40 AM PT: "again not her bb mine enters immediately on the flip after $5" + ~2:03 AM PT: "one of the candles does need to be green" + "and they both are" (the push + her side of the band + at least ONE of her 2m / 5m candles her colour; no close) (SUPERSEDES for this push: R344 Nov 4 5:40 PM PT "She enters the second the push is met and a 2m is her color." and the R477 card "Push + 2m candle in her colour" - told to Love as a contradiction; this command is her choice)"
+- books: main (TOGETHER), REJECTION, every book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix918 HER PUSH ON HER SIDE OF THE BAND"}
+- proof: {"test": "tools/push-side-918.cjs"}
+
+## R531 - fix917 EVERY READ GETS ITS CHANCE (MAIN): main's read used to hand on only her top-ranked idea; when that one was a flipped read or her walls refused it, her other valid reads that same second were never tried. Now, when the top read is refused (flip, thirds, pink in the read, her door - main's own why479 check), she tries her next reads in her same order and takes the first one nothing refuses. Ranking unchanged, every wall still judges, still one FILLED trade per window. Main (recon-tog) only.
+- when: 2026-11-07T10:51:57+00:00
+- Love: "Love Nov 6 2026 ~8:40-8:43 PM PT (CHANGE-213 words): "no one read per window pls. for any book ever" + "no hun i don't want her to do multiple i want her to be ABLE to take valid set ups when they appear bb thats it" + Love Nov 4 2026 8:23 PM PT (R357, her wick rejection): "...she can enter in , even if the candle hasn't flipped" + Love Nov 7 2026 ~1:02 AM PT: "she has a wick rejection that takes it the second a candle wicks by 15% of the channel distance." (1:00:55 AM: main's top read was a thirds-flipped break, never her call; her valid "Rejected down off +3σ" wick rejection sat second in line and was never tried)"
+- books: main (TOGETHER)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/recon.ts", "has": "fix917 EVERY READ GETS ITS CHANCE (MAIN)"}
+- proof: {"test": "tools/every-read-917.cjs"}
+
+## R530 - fix916 ZONE PAST THE BAND: HER WORDS - fix822 now matches R491: it judges only her BREAK reads (not rejections); the channel is the session band price is breaking (the σ / VWAP line just behind price) to the next band beyond it; only a red zone (long) / green zone (short) ahead of price inside the first 15% of THAT channel refuses. Was: every read, measured from the σ line under the zone (tonight it refused a +1σ break and +1σ / green-zone rejections over a red zone past +2σ, $85 away). One helper (zoneBreak916). Every book but delayed; switch zonePast822 false = off.
+- when: 2026-11-07T10:51:56+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT (R491, fix822): "she just enter btc on the break up the session band with a red zone directly on the other side of it too , can you do some tests on that and let me know if those lose more than they win? when she enters on a break & a green/red zone sits in the bottom/top 10-15% of the band channel she's breaking into on the other side" + Love Nov 7 2026 ~1:31 AM PT: "my model takes these" + "it broke the band up" (1:30:16 AM "Break above +1σ" at 76,083.20 refused because the red zone 76,166.96 sat 15% past +2σ - the far end of the +1σ->+2σ channel she was breaking into, $85 away; her rejections were refused by it too)"
+- books: main (TOGETHER), REJECTION, every book fix822 judges (all but delayed)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function zoneBreak916("}
+- proof: {"test": "tools/zone-break-916.cjs"}
+
+## R529 - fix915 TARGET BY A LINE: HER 15% OF THE CHANNEL FOR BTC - fix821's BTC tolerance (the window's target within it of a session band, Bollinger or red / green zone = no entry into that line) is 15% of the session-band channel price sits in ($12.84 tonight; was our $50 scaling capped by her sliding scale - $42.50 tonight). One value (TGT915_BTC) for every caller; outside the tolerance she is clear to enter. Gold stays $1.50; books and scope unchanged (every book but delayed). Tonight's 1:15:39 AM break below +2σ (target $21.56 from +1σ) is no longer refused.
+- when: 2026-11-07T10:51:54+00:00
+- Love: "Love Nov 6 2026 ~10:43 AM PT (R490, fix821): "also , not sure if we still have this rule in place , it's an oldie but a goodie 💞 if target is within $1.50 of a session band , bollinger , or a red, or a green zone ; i want her to take the position that trades away from it" + Love Nov 7 2026 ~1:18 AM PT: "it is $1.50 for gold bb 💘" + ~1:27 AM PT: "oh we can make it 10 of the band bb 💘" (BTC $10 - superseded) + ~1:30 AM PT: "15% of the channel width hun , $10 isnt the number" (BTC = 15% of the channel) + ~1:29 AM PT: "as long as a trade it outside of her band tolerance she is clear to enter bb 💘" (the wall is her band tolerance only: target more than $10 BTC / $1.50 gold from every band, Bollinger and zone = clear) + ~1:16 AM PT: "she's gone dude. 3 breaks in a row this ain't my model bb" - tonight's 1:15:39 AM "Break below +2σ" was refused because the target 76,091.82 sat $21.56 from the +1σ (76,070.26) under our BTC $50 scaling capped to half the channel ($42.50)."
+- books: main (TOGETHER), REJECTION, every book fix821 judges (all but delayed)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export const TGT915_BTC = 0.15;"}
+- proof: {"test": "tools/target-line-btc-915.cjs"}
+
 ## R528 - fix914 FINISH 243: WEEKEND PINK IN MAIN'S READ - CHANGE-243 (fix905) gave her BTC pink cushion the regular 20% of the channel on weekends (15% / 10% on huge channels) at the door only; main's read (recon.ts pinkRead464, 'THE PINK in the read') kept half the channel under $100 and held tonight's 1:01:19 AM short ($30.93 over the pink, read cushion $40.77). Now one function (bandlock weekendPink914) serves the door and the read, so they cannot drift. Weekdays, delayed and gold unchanged.
 - when: 2026-11-07T09:35:31+00:00
 - Love: "Love Nov 6 2026 ~10:24 PM PT (R522, fix905 - this completes the site 243 missed: main's READ copy of the pink cushion in recon.ts): "i had you make the pink tolerance half the channel width under $100 / but change it to the regular pink tolerance during weekends." + Love Nov 7 2026 ~1:03 AM PT: "she has a 20% pink tolerance. that was a full channel away." + "PINK was NOT the reason" (1:01:19 AM BTC main short "Failed break above Bollinger upper - rejected down" at 76,185.73 held by THE PINK in the read: pink 76,154.80 $30.93 away, channel $81.53, the read still used half = $40.77) + Love Nov 7 2026 12:55 AM PT, card "Keep 198 'momentum only live' in tonight's batch?" - her pick: "Pull 198 out" (supersedes her Nov 6 7:33 PM card "Momentum only live"; CHANGE-198 / fix856 taken out of the batch, kept in used-commands/resting)"

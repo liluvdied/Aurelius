@@ -1384,8 +1384,9 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
     try {
       const ooH = JSON.parse(readFileSync(join(process.cwd(), "data", "outside-orders.json"), "utf8"));
       if (Array.isArray(ooH) && ooH.some((o) => o?.ticker === ticker && o?.status === "executed")) {
-        release(key);
-        return { status: "blocked", reason: "your hand traded this window - it stays yours" };
+        // fix920 OUTSIDE ORDERS NEVER TAKE A WINDOW (Love Nov 7 2026 ~1:55 AM PT: "the webhooks are not even for aurelius hun" + "yeah pls do"): an order with no desk client id no longer locks
+        // this window for her books - logged only. Never trading against a held position (fix848) and never closing her hand position (change her mind) still stand.
+        try { appendFileSync(join(process.cwd(), "data", "outside-window-920.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker, book: bookCopy, side, note: "outside order on this window - not a lock (fix920)" }) + "\n"); } catch {}
       }
     } catch {
     }

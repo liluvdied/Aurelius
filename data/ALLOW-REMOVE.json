@@ -9411,5 +9411,180 @@
     "what": "export function pinkSlide580(asset: string, W: number): number { if (asset === \"btc\" && W > 0 && ![\"recon-dly\", \"recon-dlyk\"].includes(String((globalThis as any).__curBook465 || \"\")) && typeof weekend839 === \"function\" && weekend839()) return W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W : 0.15 * W; /* fix905 HER REGULAR PINK TOLERANCE ON WEEKENDS (Fri 2 PM - Sun 3 PM PT): 20% of the channel, 15% / 10% on huge channels - no half under $100 */ if (asset === \"btc\" && W >= 100 && W < 180 && typeof slide845 === \"function\" && slide845(asset, W) < Infinity) return 0.2 * W; /* fix845 her scale from $100 */ return asset === \"btc\" ? (W < 100 ? W / 2 : W < 180 ? W / 3 /* fix667 (Love Nov 4 2026 8:23 PM PT: \"we can keep the 50% under a $100 band width / past $100 we can make it 1/3rd of the channel width of clearance until our sliding scale comes back into place after $180 is reached\"): $100-$180 = a third of the channel, no $60 cap; gold: half under $3, a third from $3 to $5 */ : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* fix641 Love Nov 4 2026 1:24 PM PT: \"anything over 1k channel width for btc goes to 10% for pink tolerance\" */ : 0.15 * W) : asset === \"gold\" && W < 5 ? (W < 3 ? W / 2 : W / 3 /* fix667 (Love ~8:29 PM PT: \"for gold however, let's make it a third from $3 -5 instead of from $2-5 so she has an even $1\"): gold half under $3, a third from $3 to $5 */) : asset === \"gold\" && W > 25 ? Math.min((PINK_PCT459[asset] ?? PINK_PCT429) * W, 3) /* Love Nov 4 2026 10:41 AM PT: \"on gold, past a $25 band width $3 max\" */ : (PINK_PCT459[asset] ?? PINK_PCT429) * W; /* fix615 (Love Nov 1 2026 4:27 PM PT, BTC: \"Until channel width reaches $100: half the channel width (dollar amount). From $100 to $180: half the channel width, capped at $60. Over $180: the normal sliding scale that was already in place.\" + 4:32 PM, gold: \"gold will be 1/2 of the channel width up until $2 , calculated in distance of price to pink and remain capped at $1.50 until the sliding scale goes back into place at $5.\" + 5:20 PM: \"any time bands are under 180\") */ }",
     "why": "fix914 (her words above)",
     "R": "R528"
+  },
+  {
+    "what": "const tgt = Number(target ?? targetNow(asset)) || 0, lim = Math.min(TGT821[asset] || 0, Number.isFinite(a845 - b845) && typeof slide845 === \"function\" ? Math.round(100 * slide845(asset, a845 - b845)) / 100 : Infinity) /* fix845 */; if (!(tgt > 0) || !(lim > 0)) return \"\";",
+    "why": "fix915 (her words above)",
+    "R": "R529"
+  },
+  {
+    "what": "const Lb = [{ name: \"+1σ\", price: 80300 }, { name: \"5m R1\", price: 80420 }]; t(/no long into it/.test(B.target821(\"btc\", 80100, \"up\", Lb, 80260)) && B.target821(\"btc\", 80100, \"up\", Lb, 80200) === \"\", \"BTC $50 scaling wrong\");",
+    "why": "fix915 (her words above)",
+    "R": "R529"
+  },
+  {
+    "what": "console.log(ok ? \"TARGET BY A LINE 821 TEST ✓ - target within $1.50 gold / $50 BTC of a session band, Bollinger or red / green zone = no entry INTO that line, only away; delayed and the $10 level unchanged.\" : \"TARGET BY A LINE 821 TEST: FAIL\");",
+    "why": "fix915 (her words above)",
+    "R": "R529"
+  },
+  {
+    "what": "t(/lim = Math\\.min\\(TGT821\\[asset\\] \\|\\| 0, Number\\.isFinite\\(a845 - b845\\) && typeof slide845/.test(src), \"the target-by-a-line distance is not capped by her scale\");",
+    "why": "fix915 (her words above)",
+    "R": "R529"
+  },
+  {
+    "what": "export function zonePast822(asset: string, tick: number, side: string, L: Line[]): string {",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "if (S0.length < 3) return \"\";",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "const bi = [...S0.keys()].reverse().find((i) => S0[i].p <= z); if (bi === undefined || bi + 1 >= S0.length || bi < 1) return \"\";",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "const band = S0[bi], next = S0[bi + 1], below = S0[bi - 1];",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "if (!(z - band.p <= ZONE_PAST822 * (next.p - band.p)) || !(tick >= below.p)) return \"\";",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "return `THE ZONE JUST PAST THE BAND (fix822): the red zone (${z.toFixed(2)}) sits in the first 15% of the channel past the ${band.n} (${band.p.toFixed(2)}) - no long into it.`;",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "const bi = S0.findIndex((x) => x.p >= z); if (bi <= 0 || bi + 1 >= S0.length) return \"\";",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "const band = S0[bi], next = S0[bi - 1], above = S0[bi + 1];",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "if (!(band.p - z <= ZONE_PAST822 * (band.p - next.p)) || !(tick <= above.p)) return \"\";",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "return `THE ZONE JUST PAST THE BAND (fix822): the green zone (${z.toFixed(2)}) sits in the first 15% of the channel past the ${band.n} (${band.p.toFixed(2)}) - no short into it.`;",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "t(/no long into it/.test(B.zonePast822(\"btc\", 75660, \"up\", L)), \"the break up through +1σ with red 12% past it should be refused\");",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "t(/no long into it/.test(B.zonePast822(\"btc\", 75600, \"up\", L)), \"a long just under +1σ with red just past it should be refused\");",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "t(B.zonePast822(\"btc\", 75660, \"down\", L) === \"\", \"the short is free\");",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "const L2 = L.map((l) => (l.name === \"5m R1\" ? { ...l, price: 75720 } : l)); t(B.zonePast822(\"btc\", 75660, \"up\", L2) === \"\", \"red 28% past the band: free\");",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "t(B.zonePast822(\"btc\", 75690, \"up\", L) === \"\", \"price already past the red zone: not this wall\");",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "t(/no short into it/.test(B.zonePast822(\"gold\", 4041, \"down\", L3)), \"mirror: break down through -1σ with green 10% past it should be refused\");",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "G.__curBook465 = \"recon-dly\"; t(B.zonePast822(\"btc\", 75660, \"up\", L) === \"\", \"delayed touched\");",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "G.__curBook465 = \"recon-tog\"; fs.writeFileSync(path.join(dir, \"data/live-switch.json\"), JSON.stringify({ zonePast822: false })); t(B.zonePast822(\"btc\", 75660, \"up\", L) === \"\", \"switch off = off\");",
+    "why": "fix916 (her words above)",
+    "R": "R530"
+  },
+  {
+    "what": "const hl656 = fiveHLNow(asset), p807 = typeof push807 === \"function\" ? push807(asset, nm) : 0, ext807 = hl656 ? (side === \"up\" ? Number(hl656.l) : Number(hl656.h)) : 0; if (p807 > 0) return band > 0 && ext807 > 0 && pushOff653(asset, side, tick, ext807, p807, 0) /* fix807: measured from the wick (this 5m candle's high for a short / low for a long) */; return band > 0 && pushOff653(asset, side, tick, band, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : nm === \"5m PP\" ? 0.1 /* fix656: gold 10c - pink trades keep 10c (fix827) */ : goldPush827(L, tick) /* fix827 gold band / zone push 15c / 20c */, ext807); } catch { return false; } } // fix655",
+    "why": "fix918 (her words above)",
+    "R": "R532"
+  },
+  {
+    "what": "try { const G647 = globalThis as any, slot647 = Math.floor(Date.now() / 300000), seen647 = (G647.__skip647 ||= {}); for (const c of seenL) { const r647: string[] = []; if (c.side === \"up\") { if (f >= 1 - k) r647.push(\"THIRDS: long in her top share of the channel\"); if (fix33 && f >= 0.67) r647.push(\"BTC 33%: long in the top 33%\"); if (!(typeof rejBand668 === \"function\" && !!rejBand668(asset, \"up\", spot, L, cur)) /* fix668 */ && (falling && !m1(c) && !((fl446(c) || pushLabel653(asset, \"up\", spot, L, String(c.label))) && twoMinHer653(asset, \"up\", spot)))) r647.push(\"RED FALLING 5M: no long\"); /* fix653 */ if (spot > topS) r647.push(\"PAST THE WHOLE CHANNEL: no long\"); } else { if (f <= k) r647.push(\"THIRDS: short in her bottom share of the channel\"); if (fix33 && f <= 0.33) r647.push(\"BTC 33%: short in the bottom 33%\"); if (!(typeof rejBand668 === \"function\" && !!rejBand668(asset, \"down\", spot, L, cur)) /* fix668 */ && (rising && !m1(c) && !fl446(c))) r647.push(\"GREEN RISING 5M: no short\"); if (spot < botS) r647.push(\"PAST THE WHOLE CHANNEL: no short\"); } for (const r of r647) { const key647 = `${asset}|${rejOnly ? \"rej\" : \"main\"}|${c.side}|${r}|${slot647}`; if (seen647[key647]) continue; seen647[key647] = 1; appendFileSync(D(\"skip-reasons.jsonl\"), JSON.stringify({ at: new Date().toISOString(), asset, read: rejOnly ? \"rejections\" : \"main\", side: c.side, setup: c.label, rule: r, spot, chanPct: Math.round(f * 1000) / 10, o5: cur.o, h5: cur.h, l5: cur.l }) + \"\\n\"); } } for (const k647 of Object.keys(seen647)) if (Number(k647.split(\"|\").pop()) < slot647 - 2) delete seen647[k647]; } catch {} // fix647",
+    "why": "fix918 (her words above)",
+    "R": "R532"
+  },
+  {
+    "what": "return seenL.filter((c) => !((c.side === \"up\" && (f >= 1 - k || (fix33 && f >= 0.67) || (!(typeof rejBand668 === \"function\" && !!rejBand668(asset, \"up\", spot, L, cur)) /* fix668 */ && (falling && !m1(c) && !((fl446(c) || pushLabel653(asset, \"up\", spot, L, String(c.label))) && twoMinHer653(asset, \"up\", spot)))) /* fix653 (Love Nov 4 2026 5:25 PM PT: \"a 2m green pushing off the band is good, no waiting for the 5m\"): a band rejection with her 2m does not wait for the 5m */ /* was: Love Nov 3 2026 7:45 PM + Nov 4 10:20 AM PT: \"A red falling 5m candle refuses the long. No 2-5m flip overrides it.\" */ || spot > topS)) || (c.side === \"down\" && (f <= k || (fix33 && f <= 0.33) || (!(typeof rejBand668 === \"function\" && !!rejBand668(asset, \"down\", spot, L, cur)) /* fix668 */ && (rising && !m1(c) && !fl446(c))) || spot < botS))));",
+    "why": "fix918 (her words above)",
+    "R": "R532"
+  },
+  {
+    "what": "G.__pivBars.btc.bars = bars.map((b) => (b.t >= f2 ? { ...b, o: 79960 } : b)); t(!B.pushLabel653(\"btc\", \"down\", 79975, L, lab), \"2m candle green (price over its open) - no push\");",
+    "why": "fix918 (her words above)",
+    "R": "R532"
+  },
+  {
+    "what": "t(R.includes(\"(falling && !m1(c) && !((fl446(c) || pushLabel653(asset, \\\"up\\\", spot, L, String(c.label))) && twoMinHer653(asset, \\\"up\\\", spot)))\"), \"RED FALLING 5M still holds a band rejection that has her 2m\");",
+    "why": "fix918 (her words above)",
+    "R": "R532"
+  },
+  {
+    "what": "return { status: \"blocked\", reason: \"your hand traded this window - it stays yours\" };",
+    "why": "fix920 (her words above)",
+    "R": "R533"
+  },
+  {
+    "what": "T(\"fix594 BTC short at 50% from pink, in the bottom 55%, is refused\", /bottom 55%/.test(B.zoneSend594(\"btc\", ZB, 77900, \"down\")));",
+    "why": "fix923 (her card)",
+    "R": "R534"
+  },
+  {
+    "what": "T(\"fix594 BTC short inside the green zone is refused\", /past the green/.test(B.zoneSend594(\"btc\", ZB, 77400, \"down\")));",
+    "why": "fix923 (her card)",
+    "R": "R534"
+  },
+  {
+    "what": "T(\"fix594 BTC short under the whole green zone is refused, not free and clear\", /past the green/.test(B.zoneSend594(\"btc\", ZB, 77700, \"down\")));",
+    "why": "fix923 (her card)",
+    "R": "R534"
+  },
+  {
+    "what": "T(\"fix594 BTC long at 50% from pink, in the top 55%, is refused\", /top 55%/.test(B.zoneSend594(\"btc\", ZB, 78100, \"up\")));",
+    "why": "fix923 (her card)",
+    "R": "R534"
+  },
+  {
+    "what": "T(\"fix594 BTC long over the whole red zone is refused, not free and clear\", /past the red/.test(B.zoneSend594(\"btc\", ZB, 78600, \"up\")));",
+    "why": "fix923 (her card)",
+    "R": "R534"
+  },
+  {
+    "what": "T(\"fix811 tiny channel: a gold long at 50% of a $4 pink-to-red goes\", !B.zoneSend594(\"gold\", Zb(3880, 3870, 3860, 3884, 3890), 3882, \"up\")); T(\"fix811 tiny channel is gold only: a BTC long at 50% of a $100 pink-to-red is still refused\", /top 55%/.test(B.zoneSend594(\"btc\", Zb(78000, 77900, 77800, 78100, 78200), 78050, \"up\")));",
+    "why": "fix923 (her card)",
+    "R": "R534"
+  },
+  {
+    "what": "G.__door594Test = true; T(\"fix594 door: the same test refuses at the door\", /bottom 55%/.test(geo(\"btc\", ZB, 77900, \"down\", \"main\"))); T(\"fix594 door: nothing past the red boundary at the door\", /PAST THE RED/.test(geo(\"btc\", ZB, 78600, \"up\", \"main\"))); G.__door594Test = false;",
+    "why": "fix923 (her card)",
+    "R": "R534"
   }
 ]

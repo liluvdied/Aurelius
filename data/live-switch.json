@@ -3,7 +3,7 @@
   "maxDollars": 1,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-07T09:35:34.818Z",
+  "at": "2026-11-07T10:52:28.600Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -124,7 +124,7 @@
       "recon-dly"
     ],
     "dollars": 1,
-    "since": "2026-11-07T09:35:34.820Z",
+    "since": "2026-11-07T10:52:28.601Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -1011,9 +1011,6 @@
       23
     ],
     "recon-tog": [
-      2,
-      3,
-      4,
       5,
       16
     ],
@@ -1021,6 +1018,7 @@
       0,
       1,
       3,
+      4,
       5,
       6,
       7,
@@ -1567,7 +1565,6 @@
     },
     "note": "Oct 23 ~1:20 PM PT, Love: off hours (bookSkipHours recon-tog) the main book trades Kalshi at $2 + one $3 add-on at 2.8x+ (next band touch, or a flip near a band); the delayed twin trades Polymarket only (polyTwin), off Kalshi (fix142) | fix201 Oct 25 ~4:36 AM PT, Love: 'lets put the rejection model on at $5 and a $5 add on hun' - $5 + $5 add-on",
     "rejHours": [
-      3,
       5,
       10,
       16,
@@ -1592,7 +1589,6 @@
         23
       ],
       "btc": [
-        3,
         5,
         7,
         10,
@@ -1662,9 +1658,6 @@
   "bookSkipHoursByAsset": {
     "btc": {
       "recon-tog": [
-        2,
-        3,
-        4,
         5,
         16,
         17
@@ -1672,7 +1665,9 @@
       "recon-dly": [
         0,
         1,
+        2,
         3,
+        4,
         5,
         6,
         7,
@@ -1698,7 +1693,6 @@
       "recon-tog": [
         2,
         3,
-        4,
         5,
         8,
         14,
@@ -1711,6 +1705,7 @@
         0,
         1,
         3,
+        4,
         5,
         6,
         7,
