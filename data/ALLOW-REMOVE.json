@@ -9886,5 +9886,20 @@
     "what": "{ const c854 = typeof (B as any).candleColour854 === \"function\" ? (B as any).candleColour854(sym, side, Number(q.c)) : \"\"; if (c854) return c854; } // fix854 her colour on the 5m at the send - every book but delayed",
     "why": "fix935 (her words in this change's request)",
     "R": "R546"
+  },
+  {
+    "what": "if (vw397 > 0 && w397 > 0 && w397 < (asset === \"btc\" ? 150 : 3)) { const c397 = w397 / 2;",
+    "why": "fix936 (her words in this change's request)",
+    "R": "R547"
+  },
+  {
+    "what": "if (side === \"up\" && q.c < vw397 && vw397 - q.c <= c397) return deny(`THE BLUE VWAP WALL: long $${(vw397 - q.c).toFixed(2)} under the unbroken session VWAP ${vw397.toFixed(2)} - bands are small (VWAP to 1σ $${w397.toFixed(2)}), no long within half of that ($${c397.toFixed(2)}). Wait for price over the VWAP.`, { tick: q.c });",
+    "why": "fix936 (her words in this change's request)",
+    "R": "R547"
+  },
+  {
+    "what": "if (side === \"down\" && q.c > vw397 && q.c - vw397 <= c397) return deny(`THE BLUE VWAP WALL: short $${(q.c - vw397).toFixed(2)} over the unbroken session VWAP ${vw397.toFixed(2)} - bands are small (VWAP to 1σ $${w397.toFixed(2)}), no short within half of that ($${c397.toFixed(2)}). Wait for price under the VWAP.`, { tick: q.c }); } }",
+    "why": "fix936 (her words in this change's request)",
+    "R": "R547"
   }
 ]
