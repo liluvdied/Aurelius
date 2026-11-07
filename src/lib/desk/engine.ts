@@ -3849,6 +3849,9 @@ async function tick() {
     import("./rsibooks").then((m) => m.rsiTick672(snap.assets)).catch(() => {});
     // fix682 ETH REJECTIONS ONLY · NO PINK (Love Nov 4 2026 11:38 PM PT: "yess, let us do so please (eth book)"). PAPER ONLY (ethbook.ts never sends an order).
     import("./ethbook").then((m) => m.ethTick682()).catch(() => {});
+    // fix832 SOL + DOGE REJECTIONS ONLY · NO PINK - PAPER (her card "Paper books on the desk"): copies of the ETH paper book. PAPER ONLY.
+    import("./solbook832").then((m) => m.solTick832()).catch(() => {});
+    import("./dogebook832").then((m) => m.dogeTick832()).catch(() => {});
     // fix686 OG ORIGINAL · 10.12 (Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls"). PAPER ONLY, sealed (og1012.ts never sends an order).
     import("./og1012").then((m) => m.og1012Tick(snap.assets)).catch(() => {});
     // fix687 OUTWARD BREAK · SESSION BANDS (Love Nov 5 2026 ~1:00 AM PT: "a new one too if you have a different idea in mind for it"). PAPER ONLY (brkout.ts never sends an order).
@@ -3867,6 +3870,8 @@ async function tick() {
     import("./invworst820").then((m) => m.invWorstTick820(snap.assets)).catch(() => {});
     // fix824 AWAY FROM LINE (Love Nov 6 2026 ~10:59 AM PT: "if a target sits within $1.50 of those i do want her to take the trade the other direction if it is above the floor / beginning of the window").
     import("./away824").then((m) => m.awayTick824(snap.assets)).catch(() => {});
+    // fix830 MOMENTUM ON POLYMARKET - BTC (Love Nov 6 2026 ~2:56 PM PT: "and can you put the momentum book live on polymarket at $2.50 with a $$3 add on at 2.8x for me bb").
+    import("./polymom830").then((m) => m.polyMomTick830()).catch(() => {});
     // fix704 MOMENTUM BOOK (Love Nov 5 2026 3:31 AM PT: "all of em bb !!"). PAPER ONLY (momentum.ts never sends an order).
     import("./momentum").then((m) => m.momentumTick704(snap.assets)).catch(() => {});
     // fix707 HIGH MULTIPLE BOOK (Love Nov 5 2026 ~4:10 AM PT: "let's create a high multiple book too pls. only takes 2.8x +"). PAPER ONLY, 24/7.

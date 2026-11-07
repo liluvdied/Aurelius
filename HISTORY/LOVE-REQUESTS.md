@@ -2,6 +2,30 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R499 - fix832 SOL + DOGE PAPER BOOKS: her ETH rejections-only / no-pink paper book (fix682) copied to SOL (Kalshi KXSOL15M, Coinbase SOL-USD) and DOGE (KXDOGE15M, DOGE-USD) - same rules and walls scaled by price, $20 paper at the live ask, her take-profit. PAPER ONLY (no order path). RECORDS cards (they show under NEW BEST once green) and STATS scoring. Natgas / WTI oil are not built: they need a 1-minute price feed the desk doesn't have (no public Coinbase-style source).
+- when: 2026-11-06T23:59:03+00:00
+- Love: "Love Nov 6 2026 ~3:16 PM PT, her card pick "Paper books on the desk" to her ~1:58 PM ask: "can you test all of the other 15M markets on kalshi against our rules and see if they do better than gold does bb? 🏁""
+- books: SOL + DOGE rejections-only paper books (paper only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/solbook832.ts", "has": "export async function solTick832("}
+- proof: {"test": "tools/coin-books-832.cjs"}
+
+## R498 - fix830 MOMENTUM ON POLYMARKET - BTC: the MOMENTUM BOOK's BTC paper trades (fix704) are mirrored LIVE onto Polymarket's BTC 15-minute market: $2.50 on the same side the second paper books it, only inside her 1.5x floor (ask 66.7c or less), once per window; one $3 add-on once that side pays 2.8x; paper's half (75%) and final trail sale mirrored, otherwise to the bell. Gold never. Every order goes through the guarded Polymarket route (umpire SAFE, LIVE switch, max-dollar cap) and needs Polymarket cash. Paper record (Nov 5-6, $10, take-profit): BTC inside her floor 87 trades, 59%, +$295. live-switch polyMom830.on false = off.
+- when: 2026-11-06T23:59:00+00:00
+- Love: "Love Nov 6 2026 ~2:56 PM PT: "and can you put the momentum book live on polymarket at $2.50 with a $$3 add on at 2.8x for me bb 💘💘" (BTC only - Polymarket mirror; her 1.5x floor kept)"
+- books: MOMENTUM BOOK - BTC only, LIVE on Polymarket ($2.50 + $3 add-on at 2.8x)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/polymom830.ts", "has": "export async function polyMomTick830("}
+- proof: {"test": "tools/poly-momentum-830.cjs"}
+
+## R497 - fix829 FIND THE NEW BOOKS (display only): RECORDS gets two pills that look across every family - NEW BEST 🏆 (every book made since Nov 1 - fix 600+ - plus the reconstructed rejection twins, that is green all time) and INVERSED 🔄 (every inverse / flipped book). REJ · TOGETHER REJECTIONS ONLY (recon-togr) and MAIN · W/O PINK (recon-rnp) get their own cards (they had none), and FIND A BOOK matches the names she sees in STATS (TOGETHER REJECTIONS ONLY, THIRDS AS READ, MOMENTUM BOOK, INVERSE BOOK, 70% CLUB ...). No trading change; a book still goes live only when she puts it on RUN.
+- when: 2026-11-06T23:58:58+00:00
+- Love: "Love Nov 6 2026 ~2:56 PM PT: "can you make a tab for all of the best performers out of the new ones we've made bb / i can't find any of them when i look for them pls make it easier to find these hun idk what happens when i look i cannot find them anywhere , / and all of our inverse books - can you make a subgroup for those here ? INVERSED""
+- books: none - RECORDS display only
+- status: ACTIVE
+- proof: {"code": "src/components/desk/app.tsx", "has": "\"NEW BEST 🏆\", \"INVERSED 🔄\""}
+- proof: {"test": "tools/find-new-books-829.cjs"}
+
 ## R496 - fix828 BTC NO LONGS UNDER THE PINK AGAIN: her fix521 wall comes back for BTC LONGS ONLY - no BTC long under the pink while a running 2-5m candle is red, at any distance - except the bottom 25% of the pink->green channel with her real $5 flip (a colour turn alone no longer counts), her wide-channel clearance, or her 5% reset through the pink. Gold and every short keep her Nov 1 pink-slide rule (fix584) as it is. Every book but delayed. Replay Nov 2-6 (main + REJ): blocks 28 BTC longs that went 25% hit, -$154. live-switch btcLong828 false = off.
 - when: 2026-11-06T23:34:47+00:00
 - Love: "Love Nov 6 2026 ~12:46 PM PT: "but yes if it blocks 28 trades that only had a 25% hit rate on them yes 🎯 🎯 🎯" + her card: option 1 (BTC longs only) + ~12:20 PM: "oh definitely don't let those thru bb""

@@ -19,6 +19,8 @@ export const PAPER_BOOKS721: { file: string; book: string; title: string; split?
   { file: "rej-parked-695.json", book: "rp695", title: "REJECTION · PARKED SIDE (paper)" },
   { file: "rsi-books.json", book: "rsi672", title: "RSI BOOKS · 5M / 15M / 30M / 1H / 4H · PAPER" }, // fix765b
   { file: "eth-book.json", book: "eth682", title: "ETH · REJECTIONS ONLY · NO PINK · PAPER" }, // fix765b
+  { file: "sol-book-832.json", book: "sol832", title: "SOL · REJECTIONS ONLY · NO PINK · PAPER" }, // fix832
+  { file: "doge-book-832.json", book: "doge832", title: "DOGE · REJECTIONS ONLY · NO PINK · PAPER" }, // fix832
   { file: "og-1012.json", book: "og1012", title: "OG ORIGINAL · 10.12 🕯️ · PAPER · SEALED" }, // fix765: a regular card (her sealed rows read as they are)
   { file: "brk-out-687.json", book: "brkout687", title: "OUTWARD BREAK · SESSION BANDS · PAPER 🤍" }, // fix765
   { file: "v111-2-770.json", book: "v1112", title: "V.111 - 2 · HER SEP 24 READS · PAPER" }, // fix770: her own card

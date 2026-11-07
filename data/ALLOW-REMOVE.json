@@ -9081,5 +9081,20 @@
     "what": "const botQ = (s1 > 0 && s1 < pk521 ? tick <= s1 + 0.25 * (pk521 - s1) : false) && turnFlip530(asset, \"up\", tick) /* fix530: her colour TURN is the flip, no minimum */; // her B + \"with the color flip\" (12:42 PM): the exception demands her full flip (2-5m, 10c gold / $5 BTC past its open, her c1) AND a real colour turn (red -> green, never a candle born green - her fix416 words)",
     "why": "fix828 (her words + card above): the same fix521 wall, back on for BTC longs; BTC's bottom-25% exception needs her real $5 flip",
     "R": "R496"
+  },
+  {
+    "what": "{[\"ALL\", ...FAMS.map(([n]) => n), \"OTHER\"].map((n) => {",
+    "why": "fix829 (her words above): display only",
+    "R": "R497"
+  },
+  {
+    "what": "const count = n === \"ALL\" ? ranked.length : ranked.filter((b) => famOf(b.book) === n).length;",
+    "why": "fix829 (her words above): display only",
+    "R": "R497"
+  },
+  {
+    "what": "FILES = {\"inverse-book-688.json\": (\"INVERSE BOOK\", \"setup\"), \"momentum-book-704.json\": (\"MOMENTUM BOOK\", \"setup\"), \"high-multiple-707.json\": (\"HIGH MULTIPLE BOOK\", \"way\"), \"half-band-709.json\": (\"HALF-BAND KEEP BOOK\", \"setup\"), \"cup-book-713.json\": (\"CUP BOOK\", \"setup\"), \"v111-2-770.json\": (\"V.111 - 2\", \"setup\"), \"pink-slide-801.json\": (\"PINK SLIDE ONLY\", \"setup\"), \"away-824.json\": (\"AWAY FROM LINE\", \"setup\"), \"main-vwap-694.json\": (\"MAIN · VWAP SIDE\", \"label*\"), \"rej-parked-695.json\": (\"REJECTION · PARKED SIDE\", \"label*\"), \"flip-819.json\": (\"FLIPS\", \"setup\"), \"inverse-worst-820-book.json\": (\"INVERSE-WORST\", \"setup\")}  # fix820 (split per book below)  # fix819: her flips scored on their own  # fix816: label* = her label grouped the way main's are  # fix770: V.111 - 2 scored by set up; fix802: PINK SLIDE ONLY scored by set up",
+    "why": "fix832",
+    "R": "R499"
   }
 ]
