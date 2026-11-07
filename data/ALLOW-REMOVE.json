@@ -9201,5 +9201,80 @@
     "what": "const SWF = JSON.parse(fs.readFileSync(path.join(root, \"data/v111-2-live.json\"), \"utf8\")); t(SWF.enabled === true && SWF.addOns === true /* fix790 (Love Nov 6 2026 ~3:26 AM PT: \"and she is still not doing her add ons bb\"): her add-ons are on */, \"her switch file must be enabled true, addOns true (fix790): \" + JSON.stringify(SWF));",
     "why": "fix840 (her words above): the proof accepts on or off",
     "R": "R508"
+  },
+  {
+    "what": "W820[fam] = sorted(k for k, (n, w, pl) in pool.items() if n >= 30 and w / n < 0.40 and pl < 0)",
+    "why": "fix843 (her card above): 15+ instead of 30+",
+    "R": "R510"
+  },
+  {
+    "what": "try: json.dump({**W820, \"rule\": \"30+ trades in 7 days, under 40% hit and losing money (fix820)\", \"at\": now.isoformat()}, open(\"data/inverse-worst-820.json.tmp\", \"w\"), indent=1, ensure_ascii=False); os.replace(\"data/inverse-worst-820.json.tmp\", \"data/inverse-worst-820.json\")",
+    "why": "fix843 (her card above): 15+ instead of 30+",
+    "R": "R510"
+  },
+  {
+    "what": "t(P.includes(\"W820[fam] = sorted(k for k, (n, w, pl) in pool.items() if n >= 30 and w / n < 0.40 and pl < 0)\") && U.includes(\">INVERSES</p>\"), \"no WORST lists / no INVERSES pills\");",
+    "why": "fix843 (her card above): 15+ instead of 30+",
+    "R": "R510"
+  },
+  {
+    "what": "const P = Number(b.price), pink = String(b.name) === \"5m PP\", r = pink ? ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : ((typeof pinkSlide580 === \"function\" && asset === \"btc\" && sA && sB) ? pinkSlide580(asset, sA.price - sB.price) : carryPink615 > 0 ? carryPink615 : pinkReach)) : /^BB /.test(String(b.name)) ? reach509 : ((typeof carryOn612 === \"function\" && carryOn612(asset)) && !(sA && sB)) ? (asset === \"btc\" ? 25 : REACH429[asset] ?? 1) /* fix612 + fix618 */ : sessionScale593(asset, sA && sB ? sA.price - sB.price : 0); // fix593: session bands use her scale; pink and the Bollinger lines keep their own",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "export function pinkSlide580(asset: string, W: number): number { return asset === \"btc\" ? (W < 100 ? W / 2 : W < 180 ? W / 3 /* fix667 (Love Nov 4 2026 8:23 PM PT: \"we can keep the 50% under a $100 band width / past $100 we can make it 1/3rd of the channel width of clearance until our sliding scale comes back into place after $180 is reached\"): $100-$180 = a third of the channel, no $60 cap; gold: half under $3, a third from $3 to $5 */ : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* fix641 Love Nov 4 2026 1:24 PM PT: \"anything over 1k channel width for btc goes to 10% for pink tolerance\" */ : 0.15 * W) : asset === \"gold\" && W < 5 ? (W < 3 ? W / 2 : W / 3 /* fix667 (Love ~8:29 PM PT: \"for gold however, let's make it a third from $3 -5 instead of from $2-5 so she has an even $1\"): gold half under $3, a third from $3 to $5 */) : asset === \"gold\" && W > 25 ? Math.min((PINK_PCT459[asset] ?? PINK_PCT429) * W, 3) /* Love Nov 4 2026 10:41 AM PT: \"on gold, past a $25 band width $3 max\" */ : (PINK_PCT459[asset] ?? PINK_PCT429) * W; /* fix615 (Love Nov 1 2026 4:27 PM PT, BTC: \"Until channel width reaches $100: half the channel width (dollar amount). From $100 to $180: half the channel width, capped at $60. Over $180: the normal sliding scale that was already in place.\" + 4:32 PM, gold: \"gold will be 1/2 of the channel width up until $2 , calculated in distance of price to pink and remain capped at $1.50 until the sliding scale goes back into place at $5.\" + 5:20 PM: \"any time bands are under 180\") */ }",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "const tgt = Number(target ?? targetNow(asset)) || 0, lim = TGT821[asset] || 0; if (!(tgt > 0) || !(lim > 0)) return \"\";",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "if (!why && side === \"up\" && bUC > tick && bUC - tick <= w10g286) why = `BOLLINGER CUSHION: long $${(bUC - tick).toFixed(2)} under the Bollinger upper (${bUC.toFixed(2)}) - inside the $${w10g286.toFixed(2)} cushion. Wait for the break or the rejection.`;",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "if (!why && side === \"down\" && bLC > 0 && bLC < tick && tick - bLC <= w10g286) why = `BOLLINGER CUSHION: short $${(tick - bLC).toFixed(2)} over the Bollinger lower (${bLC.toFixed(2)}) - inside the $${w10g286.toFixed(2)} cushion. Wait for the break or the rejection.`;",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "function pinkSlide580R(asset: string, W: number, pct: number): number { return asset === \"btc\" ? (W < 100 ? W / 2 : W < 180 ? W / 3 /* fix667 */ : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* fix641 Love Nov 4 2026 1:24 PM PT: \"anything over 1k channel width for btc goes to 10% for pink tolerance\" */ : 0.15 * W) : asset === \"gold\" && W < 5 ? (W < 3 ? W / 2 : W / 3 /* fix667 */) : asset === \"gold\" && W > 25 ? Math.min(pct * W, 3) /* Love Nov 4 2026 10:41 AM PT: \"on gold, past a $25 band width $3 max\" */ : pct * W; /* fix615 */ }",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "t(nr(B.pinkSlide580(\"btc\", 121.8), 40.6), \"7:52 PM BTC: a $121.80 channel should be $40.60 (a third), was $60\");",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "t(nr(B.pinkSlide580(\"btc\", 150), 50) && nr(B.pinkSlide580(\"btc\", 179), 59.667), \"BTC $100-$180 is not a third\");",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "console.log(ok ? \"PINK THIRD 667 TEST ✓ - BTC half under $100, a third $100-$180 (7:52 PM $121.80 channel -> $40.60), her scale from $180; gold half under $3, a third $3-$5 ($1 at $3); pink + her band in the same outer 25% = no cushion (door + read), both sides.\" : \"PINK THIRD 667 TEST: FAIL\"); process.exit(ok ? 0 : 1);",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "T(\"fix593 door: BTC long $90 under the band on a $300 channel is refused\", !!B.reachWall429(\"btc\", Sb(77700, 78000), 77910, \"up\", Z593, 77905));",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "T(\"fix667 BTC $100 to $180 reads a third of the channel\", Math.abs(B.pinkSlide580(\"btc\", 100) - 33.333) < 0.01 && Math.abs(B.pinkSlide580(\"btc\", 126.76) - 42.253) < 0.01 && Math.abs(B.pinkSlide580(\"btc\", 179) - 59.667) < 0.01);",
+    "why": "fix845 (her words above)",
+    "R": "R511"
+  },
+  {
+    "what": "T(\"fix615 + fix667 the wall stands: $41 over the pink on a $126.76 channel is inside the $42.25 cushion (a third)\", /NO SHORT OVER AN UNBROKEN PINK/.test(B.pinkShortWall464(\"btc\", L, 77986.06, \"down\")));",
+    "why": "fix845 (her words above)",
+    "R": "R511"
   }
 ]

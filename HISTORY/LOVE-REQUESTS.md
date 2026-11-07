@@ -2,6 +2,47 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R514 - fix848 NEVER TRADE AGAINST A HELD POSITION: Kalshi nets YES and NO on one ticker, so an opening short on a ticker where a YES is held sells it (5:47 / 5:56 PM: her ETH book's short + add-on sold her own 10.93 YES long and left her 3.03 short). Before every opening order - every book's entry, the ETH / add-on route, the add-ons, the top-up - the live position on that ticker is read; anything held on the other side = no order (logged to data/held-other-way-848.jsonl). Exits and take profits untouched.
+- when: 2026-11-07T02:34:14+00:00
+- Love: "Love Nov 6 2026 ~5:58 PM PT: "she just flipped sides on eth, it was long and now it's short""
+- books: every live book - opening orders
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "export function oppSide848("}
+- proof: {"test": "tools/held-other-way-848.cjs"}
+
+## R513 - fix847 TP WATCHDOG: every 5 s, on its own (outside the take-profit loop), for each live position her four live books opened (main, REJECTION, SESSION + PINK, BESTIE) with no slider of hers: if the bid has sat over its 75% (half) or 95% (rest) line for 20 s and that sale hasn't gone out, a 75 / 95 sale came back with no fill, or her exits / engine tick hit an error, it writes data/alarm-tp-watchdog.jsonl and raises a RED alert on her ALERTS tab and alarm bar. It only tells - it never sells, never turns LIVE off, never blocks an entry. And the umpire now refuses (NOT SAFE at install) any desk code with a variable used before it exists - the crash that silenced her 75 / 95.
+- when: 2026-11-07T02:34:12+00:00
+- Love: "Love Nov 6 2026 ~5:50 PM PT: "pls do set something to notify us or the umpire of something like that next time if we can""
+- books: none - an alarm on her live positions' take profits
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/tpwatch847.ts", "has": "export function judge847("}
+- proof: {"test": "tools/tp-watchdog-847.cjs"}
+- proof: {"test": "tools/tdz-guard-847.cjs"}
+
+## R512 - fix846 HER 75 / 95 FIRES: the half-at-75% / rest-at-95% take profit (fix780 / fix782) on the four live books' positions read her HANDS OFF switch before the line that declares it, so every pass crashed (Cannot access 'handsOff' before initialization) and the try around the take-profit loop swallowed it - no 75/95 sale ever went out (data/tp780.json was never written). The block now reads HANDS OFF itself, and any error in the take-profit loop is written to data/cash-held-errors.jsonl instead of being swallowed. Her lines are unchanged.
+- when: 2026-11-07T02:34:09+00:00
+- Love: "Love Nov 6 2026 ~5:45 PM PT: "babe her take profits are still not engaging, i just closed myself""
+- books: main / REJECTION / SESSION + PINK / BESTIE live positions - take profit
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/engine.ts", "has": "fix846 HER 75 / 95 FIRES"}
+- proof: {"test": "tools/tp-fires-846.cjs"}
+
+## R511 - fix845 HER SLIDING SCALE FROM $100: for BTC (every book but delayed) her sliding scale of the session-band channel now starts at $100 instead of $180 - half the channel under $100, 20% from $100 to $500 (the old $100-$180 third is gone), 15% to $1000, 10% over. Her pink cushion is that scale, and her other BTC cushions are capped by it (the smaller of her $ amount and the scale): session-band and Bollinger reach, the Bollinger cushion, and the target-by-a-line distance. Gold and delayed unchanged.
+- when: 2026-11-07T02:34:07+00:00
+- Love: "Love Nov 6 2026 ~5:40 PM PT: "yess same sliding scale pls bb :) we'll do at $100 and up for the sliding scale to start instead of the normal $180 :)""
+- books: every BTC book but delayed - cushions
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function slide845("}
+- proof: {"test": "tools/slide-from-100-845.cjs"}
+
+## R510 - fix843 INVERSE-WORST AT 15+ TRADES: the four inverse-worst paper books (fix820) flip their family's WORST set ups at 15+ trades in 7 days (was 30+), still under 40% won and losing money. Today: MAIN 1 (GOLD SHORT Rejected down off 5m PP), REJ 2, NO-PINK 7, V.111 0. Paper only.
+- when: 2026-11-07T02:34:05+00:00
+- Love: "Love Nov 6 2026 ~5:18 PM PT, her card: the inverse-worst books' WORST bar 15+ trades in 7 days (still under 40% won and losing money), paper"
+- books: the four inverse-worst books (paper)
+- status: ACTIVE
+- proof: {"code": "tools/setup-scores-708.py", "has": "if n >= 15 and w / n < 0.40 and pl < 0)  # fix843"}
+- proof: {"test": "tools/inverse-worst-820.cjs"}
+
 ## R509 - fix842 THE SCORES REBUILD THEMSELVES: SET UP SCORES (tools/setup-scores-708.py - the WORST lists the four inverse-worst books read, CUT + FLIP's list, the STATS tables) and EVERY FACTOR (tools/factor-scores-825.py) now rebuild every 10 minutes from the engine, whether or not the STATS page is open (before, they only rebuilt while STATS was open, so the inverse-worst list file was never written after 10:40 AM and those books sat idle). Niced, one run at a time; read-only.
 - when: 2026-11-07T01:40:13+00:00
 - Love: "Love Nov 6 2026 ~5:08 PM PT: "we have several of them showing as 0 too" (the inverse-worst books idle - SET UP SCORES only rebuilt while STATS was open)"

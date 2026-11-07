@@ -308,6 +308,25 @@ function windowLockSide(ticker) {
   } catch {}
   return "";
 }
+// fix848 NEVER TRADE AGAINST A HELD POSITION (Love Nov 6 2026 ~5:58 PM PT: "she just flipped sides on eth, it was long and now it's short"): Kalshi nets YES and NO on one ticker, so an opening "short" on a ticker
+// where a YES is held SELLS that YES (and past it, flips it short) - at 5:47 / 5:56 PM her ETH book's short and its add-on sold her own 10.93 YES long and left her 3.03 short.
+// Before ANY opening order (every book's entry, every add-on, the top-up) the live position on that ticker is read: anything held on the other side = no order, logged.
+// Exits (reduce-only sales, her take profits) are untouched.
+export function oppSide848(pos: number, bookSide: string): string {
+  const p = Number(pos) || 0;
+  if (p >= 0.01 && bookSide === "ask") return `HELD THE OTHER WAY (fix848): ${p.toFixed(2)} YES is held on this ticker - a short here would sell it - no order`;
+  if (p <= -0.01 && bookSide === "bid") return `HELD THE OTHER WAY (fix848): ${Math.abs(p).toFixed(2)} NO is held on this ticker - a long here would sell it - no order`;
+  return "";
+}
+async function oppHeld848(ticker: string, bookSide: string): Promise<string> {
+  try {
+    const rows = await heldFifteens();
+    const row = (rows || []).find((r: any) => r?.ticker === ticker);
+    const why = row ? oppSide848(Number(row.pos), bookSide) : "";
+    if (why) { try { appendFileSync(join(process.cwd(), "data", "held-other-way-848.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker, bookSide, pos: row.pos, why }) + "\n"); } catch {} }
+    return why;
+  } catch { return ""; }
+}
 async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding = false, forceExit = false) {
   // LIVE BOOK lock (Love, Oct 3): while a live book is named, no other route may OPEN a position. Exits always pass.
   if (!reduceOnly) {
@@ -890,6 +909,7 @@ async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine
     const reg = (sent.__aureliusReach ||= {});
     reg[ticker] = { ask: Number(sameLine.askPx), at: Date.now() };
   }
+  if (!reduceOnly && !forceExit) { const o848 = await oppHeld848(ticker, bookSide); if (o848) { sent.__aureliusBlock = o848; return null; } } // fix848
   if (!reduceOnly && !forceExit) { (globalThis as any).__wireLabel619 = String(sameLine?.label || ""); /* fix619 */ const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send
   const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
     ticker,
@@ -1694,6 +1714,7 @@ async function topUpFlat609(ticker, side, dollars, maxAsk, line) {
   const bookSide = side === "up" ? "bid" : "ask";
   try { if (JSON.parse(readFileSync(join(process.cwd(), "data", "halt.json"), "utf8")).off !== false) return { ok: false, reason: "TOP-UP (fix609): entries are off" }; } catch { return { ok: false, reason: "TOP-UP (fix609): the entries switch can't be read" }; }
   if (!(Number(dollars) > 0 && Number(dollars) <= 5)) return { ok: false, reason: `TOP-UP (fix609): $${dollars} is over her $5 cap` };
+  { const o848 = await oppHeld848(ticker, bookSide); if (o848) return { ok: false, reason: `TOP-UP (fix609): ${o848}` }; } // fix848
   const w = await finalGate524(ticker, bookSide, line); if (w) return { ok: false, reason: `TOP-UP (fix609): ${w}` };
   const quote = await liveAsks(ticker);
   const ask = side === "up" ? quote?.yesAsk : quote?.noAsk;
@@ -1715,6 +1736,7 @@ async function addOnBuy600(ticker, side, dollars, maxAsk) {
   try { if (JSON.parse(readFileSync(join(process.cwd(), "data", "halt.json"), "utf8")).off !== false) return no("entries are off"); } catch { return no("the entries switch can't be read"); }
   if (!(Number(dollars) > 0 && Number(dollars) <= 5)) return no(`$${dollars} is over her $5 cap`);
   { const lk = windowLockSide(ticker); if (lk && lk !== side) return no(`window is ${lk === "up" ? "LONG" : "SHORT"} only`); }
+  { const o848 = await oppHeld848(ticker, side === "up" ? "bid" : "ask"); if (o848) return no(o848); } // fix848
   const quote = await liveAsks(ticker);
   const ask = side === "up" ? quote?.yesAsk : quote?.noAsk;
   if (!(ask > 0.02) || ask > maxAsk + 1e-9) return { ok: false, reason: `ask ${ask ?? "?"} over ${maxAsk}` };
@@ -1732,6 +1754,7 @@ async function addOnBuy600(ticker, side, dollars, maxAsk) {
 async function addOnBuy(ticker, side, dollars, maxAsk, free = false) {
   return { ok: false, reason: "ADD-ON DISABLED (fix524, Love Oct 30 2026 1:36 PM PT: \"Disable it. Hard refusal. It does not remain as a path that can send without the umpire.\")" }; // the body below is dead and never runs
   { const lk = windowLockSide(ticker); if (lk && lk !== side) return { ok: false, reason: `directional lock: window is ${lk === "up" ? "LONG" : "SHORT"} only` }; }
+  { const o848 = await oppHeld848(ticker, side === "up" ? "bid" : "ask"); if (o848) return { ok: false, reason: o848 }; } // fix848
   // BAND LOCK on top-ups too (Oct 16 ~2:36 PM PT, Love): same gate, judged for the book that owns the window.
   if (!free && /^KX(GOLD|BTC)/.test(String(ticker))) {
     try {

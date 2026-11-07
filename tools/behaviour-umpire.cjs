@@ -223,7 +223,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix593 send: a Bollinger line is not part of this check", !B.sessionBandSend593("btc", Sb(77700, 78000, [{ name: "BB upper", price: 77885 }]), 77880, "up"));
   T("fix593 send: pink is not part of this check", !B.sessionBandSend593("btc", Sb(77700, 78000, [{ name: "5m PP", price: 77885 }]), 77880, "up"));
   const Z593 = { r1: 90000, r2: 91000, s1: 1000, s2: 900 };
-  T("fix593 door: BTC long $90 under the band on a $300 channel is refused", !!B.reachWall429("btc", Sb(77700, 78000), 77910, "up", Z593, 77905));
+  T("fix593 + fix845 door: BTC long $50 under the band on a $300 channel is refused (her scale caps the reach at $60)", !!B.reachWall429("btc", Sb(77700, 78000), 77950, "up", Z593, 77945));
   T("fix593 door: BTC long $120 under the band on a $300 channel goes", !B.reachWall429("btc", Sb(77700, 78000), 77880, "up", Z593, 77875));
   T("fix593 door: gold long $3 under on a $15 channel is refused", !!B.reachWall429("gold", Sb(3870, 3885), 3882, "up", Z593, 3881));
   T("fix593 door: gold long $5 under on a $15 channel goes", !B.reachWall429("gold", Sb(3870, 3885), 3880, "up", Z593, 3879));
@@ -267,7 +267,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   NOW = NOON; G.__sessCarried = { btc: false };
   T("fix615 BTC over $180 is the normal scale, 20%", Math.abs(B.pinkSlide580("btc", 188) - 37.6) < 0.01);
   T("fix615 BTC under $100 reads half the channel", B.pinkSlide580("btc", 90) === 45);
-  T("fix667 BTC $100 to $180 reads a third of the channel", Math.abs(B.pinkSlide580("btc", 100) - 33.333) < 0.01 && Math.abs(B.pinkSlide580("btc", 126.76) - 42.253) < 0.01 && Math.abs(B.pinkSlide580("btc", 179) - 59.667) < 0.01);
+  T("fix845 BTC $100 to $180 reads her scale (20% of the channel, was a third - fix667)", Math.abs(B.pinkSlide580("btc", 100) - 20) < 0.01 && Math.abs(B.pinkSlide580("btc", 126.76) - 25.352) < 0.01 && Math.abs(B.pinkSlide580("btc", 179) - 35.8) < 0.01);
   T("fix615 BTC from $180 the normal scale is back", Math.abs(B.pinkSlide580("btc", 180) - 36) < 0.01 && Math.abs(B.pinkSlide580("btc", 600) - 90) < 0.01);
   T("fix615 gold under $2 reads half the channel", B.pinkSlide580("gold", 1) === 0.5 && B.pinkSlide580("gold", 1.9) === 0.95);
   T("fix667 gold half under $3, a third from $3 to $5", B.pinkSlide580("gold", 2) === 1 && B.pinkSlide580("gold", 3) === 1 && Math.abs(B.pinkSlide580("gold", 4.5) - 1.5) < 0.001);
@@ -388,7 +388,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
 // fix615 (Love Nov 1 2026 4:27 PM PT): the cushion's size only, the wall itself unchanged
 { const keep = NOW; NOW = Date.parse("2026-11-01T23:30:12Z"); G.__sessCarried = {};
   const L = [{ name: "session VWAP", price: 77797.56 }, { name: "+1σ", price: 77924.32 }, { name: "+2σ", price: 78051.08 }, { name: "-1σ", price: 77670.8 }, { name: "5m PP", price: 77945.06 }, { name: "5m S1", price: 77794.86 }, { name: "5m R1", price: 78095.25 }];
-  T("fix615 + fix667 the wall stands: $41 over the pink on a $126.76 channel is inside the $42.25 cushion (a third)", /NO SHORT OVER AN UNBROKEN PINK/.test(B.pinkShortWall464("btc", L, 77986.06, "down")));
+  T("fix615 + fix845 the wall stands: $20 over the pink on a $126.76 channel is inside the $25.35 cushion (her scale from $100)", /NO SHORT OVER AN UNBROKEN PINK/.test(B.pinkShortWall464("btc", L, 77965.06, "down")));
   T("fix615 + fix667 the wall stands: $43 over the pink is past the cushion and free", !B.pinkShortWall464("btc", L, 77988.06, "down"));
   G.__sessCarried = { btc: true }; G.__freshSd = { btc: 60 };
   T("fix615 carried on a $60 channel, the cushion is $30", B.carryTol615("btc") === 30);

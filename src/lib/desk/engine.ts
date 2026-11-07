@@ -2567,6 +2567,10 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       // or a resting take profit. Add-ons (above) are unchanged. HANDS OFF still holds; her slider still wins; her own trades keep their exits. Once each per position
       // (data/tp780.json; the average at the half sale is kept so the 95 line doesn't move after it). live-switch "tp780": false = off (the old exits come back).
       if (tp780(row.ticker, pinPct)) {
+        // fix846 HER 75 / 95 FIRES (Love Nov 6 2026 ~5:45 PM PT: "babe her take profits are still not engaging, i just closed myself"): this block read handsOff before the line that declares it (further down this loop) -
+        // JavaScript threw "Cannot access 'handsOff' before initialization" on every pass, the try around the whole loop swallowed it, and no 75% / 95% sale ever went out
+        // (data/tp780.json was never written). Her HANDS OFF switch (live-switch autoExits false) is now read right here.
+        const handsOff = (() => { try { return JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")).autoExits === false; } catch { return false; } })(); // fix846: this block's own HANDS OFF, read here
         if (!handsOff && bid > 0.02) {
           const f780 = join(process.cwd(), "data", "tp780.json");
           let d780: Record<string, any> = {};
@@ -2834,7 +2838,9 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
       mkdirSync(join(process.cwd(), "data"), { recursive: true });
       writeFileSync(peakFile, JSON.stringify(peaks));
     }
-  } catch {
+  } catch (e846) {
+    // fix846: an error in her take-profit loop is written down (data/cash-held-errors.jsonl), never swallowed silently again.
+    try { appendFileSync(join(process.cwd(), "data", "cash-held-errors.jsonl"), JSON.stringify({ at: new Date().toISOString(), error: String((e846 as any)?.message || e846), stack: String((e846 as any)?.stack || "").split("\n").slice(0, 4).join(" | ") }) + "\n"); } catch {}
   }
 }
 async function tendSilver() {
@@ -3859,6 +3865,7 @@ async function tick() {
     // fix842 THE SCORES REBUILD THEMSELVES (Love Nov 6 2026 ~5:08 PM PT: "we have several of them showing as 0 too" (the inverse-worst books idle - SET UP SCORES only rebuilt while STATS was open)): every 10 minutes the desk rebuilds SET UP SCORES (tools/setup-scores-708.py - the WORST lists the
     // inverse-worst books read, CUT + FLIP's list, STATS) and EVERY FACTOR (tools/factor-scores-825.py), whether or not STATS is open. Niced, one run at a time (each script holds its own lock). Read-only scorers.
     { const G842 = globalThis as any; if (!G842.__score842At || Date.now() - G842.__score842At > 600000) { G842.__score842At = Date.now(); void (async () => { try { const { spawn } = await import("node:child_process"); for (const f842 of ["tools/setup-scores-708.py", "tools/factor-scores-825.py"]) spawn("nice", ["-n", "19", "python3", f842], { cwd: process.cwd(), detached: true, stdio: "ignore" }).unref(); } catch {} })(); } }
+    import("./tpwatch847").then((m) => m.tpWatchTick847()).catch(() => {}); // fix847 TP WATCHDOG: tells her (RED on ALERTS) when a 75 / 95 sale is overdue or her exits hit an error - never sells or blocks
     // fix686 OG ORIGINAL · 10.12 (Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls"). PAPER ONLY, sealed (og1012.ts never sends an order).
     import("./og1012").then((m) => m.og1012Tick(snap.assets)).catch(() => {});
     // fix835 1-2-3 · SEALED · PAPER + fix836 1-2-3 · NEW · PAPER (Love Nov 6 2026: her Oct 26 Polymarket BTC 5m 1-2-3 book, sealed from PRE295-BUILD, and a NEW twin). PAPER ONLY, sealed (onetwothree835.ts never sends an order).

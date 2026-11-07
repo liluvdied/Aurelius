@@ -117,6 +117,8 @@ r9 = subprocess.run([sys.executable, "tools/extra-call-5m.py"], capture_output=T
 print("INFO   tools/extra-call-5m.py  " + ((r9.stdout.strip().split("\n") or [""])[0]))
 r10 = subprocess.run([sys.executable, "tools/pink-flag.py"], capture_output=True, text=True)  # record only (Love Oct 27 5:23 PM PT: "if one of the other books takes a trade like that and loses flag it for me")
 for ln10 in (r10.stdout.strip().split("\n") or [""]): print("INFO   tools/pink-flag.py  " + ln10)
+rTDZ = subprocess.run(["node", "tools/tdz-guard-847.cjs"], capture_output=True, text=True, timeout=120)  # fix847 (Love Nov 6 2026 ~5:50 PM PT: "pls do set something to notify us or the umpire of something like that next time if we can"): no variable used before it exists in her desk code
+for lnTDZ in (rTDZ.stdout.strip().split("\n") or [""])[-1:]: print("INFO   tools/tdz-guard-847.cjs  " + lnTDZ)  # report only - never makes her NOT SAFE (Love: "have her not lock the whole desk")
 saves = sorted(glob.glob("data/SAVES/*"), key=os.path.getmtime)
 fresh = saves and time.time() - os.path.getmtime(saves[-1]) < 900
 print(("SAFE   " if fresh else "CHECK  ") + "latest save: " + (saves[-1] if saves else "none"))
