@@ -1,9 +1,9 @@
 {
- "at": "2026-11-07T10:51:59.585126+00:00",
+ "at": "2026-11-07T13:49:29.352857+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "6c00a610309d3a6a"
+  "recon.ts": "6b86261e5fc54149"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -784,6 +784,12 @@
    "by": "Love",
    "quote": "Love Nov 7 2026 ~1:46 AM PT: \"once it is on the same side of the band hun\" + \"doesn't need a close\" (her BTC band / zone push - fix807, weekend $5 fix837 - enters the moment the push off the wick is met with price on the trading side of the band; no 2m candle colour, no candle turn, no close) + ~1:40 AM PT: \"again not her bb mine enters immediately on the flip after $5\" + ~2:03 AM PT: \"one of the candles does need to be green\" + \"and they both are\" (the push + her side of the band + at least ONE of her 2m / 5m candles her colour; no close) (SUPERSEDES for this push: R344 Nov 4 5:40 PM PT \"She enters the second the push is met and a 2m is her color.\" and the R477 card \"Push + 2m candle in her colour\" - told to Love as a contradiction; this command is her choice) (R532, fix918)",
    "recon.ts": "6c00a610309d3a6a"
+  },
+  {
+   "at": "2026-11-07T13:49:29.352857+00:00",
+   "by": "Love",
+   "quote": "Love Nov 7 2026 ~4:02 AM PT: \"session band to session band / distance from where price currently is / if a band channel is \\$100 wide from 0 - 1o / pink tolerance is 20% / she needs \\$20 of clearance from where price currently is. / it applies in every conceivable capacity\" + \"yes 20% of the channel width\" + \"\\$500 channel = \\$100 / 20% tolerance from where price currently stands\" + Love Nov 7 2026 ~4:02 AM PT: \"yes 20% of the channel width\" (R536, fix927)",
+   "recon.ts": "6b86261e5fc54149"
   }
  ],
  "R": "R266",

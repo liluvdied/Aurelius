@@ -17,6 +17,8 @@ export const PAPER_BOOKS721: { file: string; book: string; title: string; split?
   { file: "cup-book-713.json", book: "cup713", title: "CUP BOOK · 😊 ☹️ CUPS, HANDLES, DOUBLES (paper)" },
   { file: "main-vwap-694.json", book: "mv694", title: "MAIN · VWAP SIDE ONLY (paper)" },
   { file: "rej-parked-695.json", book: "rp695", title: "REJECTION · PARKED SIDE (paper)" },
+  { file: "eth2-book.json", book: "eth2872", title: "ETH.2 · EVERY REVISION" }, // fix872 ETH.2
+  { file: "btc2c-book.json", book: "btc2c899", title: "BTC.2 · PINK + THIRDS" }, // fix899
   { file: "rsi-books.json", book: "rsi672", title: "RSI BOOKS · 5M / 15M / 30M / 1H / 4H · PAPER" }, // fix765b
   { file: "eth-book.json", book: "eth682", title: "ETH · REJECTIONS ONLY · NO PINK · PAPER" }, // fix765b
   { file: "sol-book-832.json", book: "sol832", title: "SOL · REJECTIONS ONLY · NO PINK · PAPER" }, // fix832

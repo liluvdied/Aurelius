@@ -2,6 +2,46 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R540 - fix899 BTC.2 · PINK + THIRDS: ETH.2's rules on BTC (Coinbase BTC-USD, Kalshi BTC 15m) - her rejections off every line incl. her pink, main's failed break, any 5m open, a 7.5% break, a 25% touch, the VWAP break and -2σ short, 45% pink-to-zone, her 1.5x floor, one filled trade a window - with her pink cushion (your ONE pink rule, 20% of the channel) and her thirds kept. Its own rows (data/btc2c-book.json) and card in $$$. Paper here; CHANGE-273 takes it live.
+- when: 2026-11-07T13:49:36+00:00
+- Love: "Love Nov 6 2026 ~9:56 PM PT: "put her on pls / let's make 3 analogues - each of those / we will see how they do over the week on real trades / give me ETH.2 pink + thirds live on btc pls 💞" + Love Nov 7 2026 ~4:25 AM PT: "plsss still do have ETH.2 ready for eth and btc if you can bb""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/btc2c.ts", "has": "export async function btcTick899("}
+- proof: {"test": "tools/btc2c-899.cjs"}
+
+## R539 - fix872 ETH.2: your ETH book copied into its own book - ETH.2, its own rows (data/eth2-book.json) and its own card in $$$ - with every ETH revision: her -2σ short and VWAP break, only a FILLED trade uses the window, keep knocking, add-ons at a better multiple near the next band, no entry into a line (flat $1.50 above a long), and your ONE pink rule (20% of the channel, from CHANGE-267). Its own live copy is built here and stays OFF (it trades only when live-switch ethLive872.on is true, which CHANGE-271 sets). Your original ETH book and its live copy stay exactly as they are.
+- when: 2026-11-07T13:49:34+00:00
+- Love: "Love Nov 6 2026 ~8:54-9:03 PM PT: "keep the original eth book as it is and put all these revisions into ETH.2" + "no it can go live with it hun i meant to tap that my bad bb hehe 💘" + Love Nov 7 2026 ~4:25 AM PT: "plsss still do have ETH.2 ready for eth and btc if you can bb""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethbook2.ts", "has": "export async function ethTick872("}
+- proof: {"test": "tools/eth2-872.cjs"}
+
+## R538 - fix930 A BOLLINGER IS ONLY A BARRIER IN FRONT OF PRICE: the Bollinger fade block (fix711, Nov 5 - 'no long past green after a break of the Bollinger lower', mirror for shorts past red) comes out of the door and the last line for every book. Once price has broken through a Bollinger, it's behind her: the second it reverses, her reversal is her trade (all her other rules still judge it - her 5m colour, her push, her pink, thirds, 1.5x floor). A Bollinger still in front of price keeps its cushion exactly as now. Tonight 4:44-4:46 AM BTC: main called the long off -2σ / -3σ under the Bollinger lower and was refused every second by this block.
+- when: 2026-11-07T13:49:32+00:00
+- Love: "Love Nov 7 2026 ~4:54 AM PT (BTC 4:45 window, price under the 5m Bollinger lower and past the green zone, main refused every long "BOLLINGER FADE PAST GREEN (fix711)"): "hun that is exactly the trade she should be taking she is still not her" + "a bollinger is only a barrier if it's in front of where price currently is. not if it already broke thru the bollinger." + "once it's broken thru the second it reverses she's in on it 🎯" + Love Nov 7 2026 ~4:13 AM PT: "price needs to be on the same side of the break when she enters a position. and not enter short directly above an unbroken bollinger.""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix930 HER BOLLINGER IS A BARRIER ONLY IN FRONT OF PRICE"}
+- proof: {"test": "tools/bollinger-behind-930.cjs"}
+
+## R537 - fix928 THE DESK BACKS HERSELF UP EVERY HOUR: your hourly GitHub backup was a loop started from a Terminal window and it died at the Nov 3 ~1 PM restart (last push Nov 3 12:51 PM). Now the desk itself runs your same backup tool (tools/github-backup.sh --once - it scans for secrets first and pushes NOTHING if a key, .env, .pem or any .secrets value would go up; it only pushes the desk-backup branch) once when the desk starts and then every hour, as long as the desk is running. It runs on the side (detached, lowest priority), never waits, never touches trading, an order, a book or a setting; results and any failure go to data/github-backup.log. .secrets/ stays ignored by git.
+- when: 2026-11-07T13:49:31+00:00
+- Love: "Love Nov 7 2026 ~4:16 AM PT: "yeup i am gonna be on git religiously from now on you can believe that" + "super glad that hourly push you definitely set in place for me totally worked 💘💘💘" (the hourly GitHub backup loop died at the Nov 3 restart)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/backup928.ts", "has": "export function backupTick928("}
+- proof: {"test": "tools/desk-backup-928.cjs"}
+
+## R536 - fix927 HER ONE PINK RULE: the pink tolerance is 20% of the session-band channel price is in (the session band under price to the session band over it), measured from where price is now - a $100 channel needs $20 of clearance, $500 needs $100, $1,200 needs $240, gold $10 needs $2. Every width, BTC and gold, longs and shorts, weekdays and weekends, at the door, main's read, the wire and the last line, every book but delayed (delayed keeps its own) and her walled-off 5M (R169 - it keeps its own). It replaces every other pink cushion: half the channel under $100, a third from $100-$180, the 20 / 15 / 10% scale on pink, the weekend switch (fix905 / fix914), the $25 flat pinks and gold's 15%. NOT touched: her session-band tolerances and sliding scales (proved byte-for-byte), the $2 pink break, the 55% pink -> red / green, thirds, the Bollinger cushion and the zone reach.
+- when: 2026-11-07T13:49:29+00:00
+- Love: "Love Nov 7 2026 ~4:02 AM PT: "session band to session band / distance from where price currently is / if a band channel is $100 wide from 0 - 1o / pink tolerance is 20% / she needs $20 of clearance from where price currently is. / it applies in every conceivable capacity" + "yes 20% of the channel width" + "$500 channel = $100 / 20% tolerance from where price currently stands" + Love Nov 7 2026 ~4:02 AM PT: "yes 20% of the channel width""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function pinkOne927("}
+- proof: {"test": "tools/one-pink-rule-927.cjs"}
+
 ## R535 - fix926 UNDO 263: takes fix923 back out - BTC's fix594 (pink -> red / green -> pink 55% and past the red / green zone) is exactly as it was before CHANGE-263; late923 stays in the file but nothing calls it; her behaviour proofs for BTC fix594 are back as they were.
 - when: 2026-11-07T11:39:32+00:00
 - Love: "Love Nov 7 2026 ~3:21 AM PT, on the description of CHANGE-263 / fix923 (refuse only when price is 55%+ of the way from her entry line to the next line): "zeeeeero percent correct" + ~3:24 AM PT: "the 55% rule applies to distance from pink to red , and pink to the green zone - not from band to band whatsoever" (SUPERSEDES her ~2:13 AM card pick "Measure from her entry line") + R292 (Oct 31): "a solid 55% of the distance from pink to green, and pink to red / it's universal" - fix923 is taken back out: BTC's fix594 is exactly as it was before (pink -> red / green -> pink 55% and past the zone), until her own 55% words. late923 stays in the file unwired (R534 kept on record, marked undone)."

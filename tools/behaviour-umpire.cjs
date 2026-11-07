@@ -162,7 +162,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   const f2 = B.pinkLongWall432("btc", Lb(78098.0), 78080.0, "up"); T("fix507/fix509: BTC long with the pink $18 over (inside her temporary $25 cap, fix542) still waits for the pink at the door (fix432)", /UNBROKEN PINK/.test(f2), f2 || "(clear)");
   const Lg = (pp) => [{ name: "-1σ", price: 3990.0 }, { name: "session VWAP", price: 4000.0 }, { name: "+1σ", price: 4010.0 }, { name: "5m PP", price: pp }, { name: "5m R1", price: 4030.0 }, { name: "5m R2", price: 4032.0 }, { name: "5m S1", price: 3970.0 }, { name: "5m S2", price: 3968.0 }];
   board("gold", 3994.0, 3993.8, 3993.5, [4009.0, 3975.0]); // $10 channel: her 15% = $1.50
-  const f3 = geoL("gold", Lg(3995.6), 3994.0, "up", "main"); T(FLAT25 ? "fix571 weekend $25: gold long with the pink $1.60 over (16%) is HELD by the flat $25 overlay (__PINKFLAT25 on)" : "fix507: gold long with the unbroken pink $1.60 over price (16% of a $10 channel) is not held by the pink", FLAT25 ? /PINK/.test(f3) : !/PINK/.test(f3), f3 || "(clear)");
+  const f3 = geoL("gold", Lg(3995.6), 3994.0, "up", "main"); T(FLAT25 ? "fix571 weekend $25: gold long with the pink $1.60 over (16%) is HELD by the flat $25 overlay (__PINKFLAT25 on)" : "fix927 ONE PINK RULE: gold long with the unbroken pink $1.60 over price (16% of a $10 channel) IS held - her 20% needs $2.00 of clearance", /PINK/.test(f3), f3 || "(clear)");
   const f4 = B.pinkLongWall432("gold", Lg(3994.9), 3994.0, "up"); T("fix507/fix509: gold long with the pink 90c over (9%, inside her 15%) still waits for the pink at the door (fix432)", /UNBROKEN PINK/.test(f4), f4 || "(clear)");
 }
 
@@ -392,7 +392,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   T("fix615 + fix845 the wall stands: $20 over the pink on a $126.76 channel is inside the $25.35 cushion (her scale from $100)", /NO SHORT OVER AN UNBROKEN PINK/.test(B.pinkShortWall464("btc", L, 77965.06, "down")));
   T("fix615 + fix667 the wall stands: $43 over the pink is past the cushion and free", !B.pinkShortWall464("btc", L, 77988.06, "down"));
   G.__sessCarried = { btc: true }; G.__freshSd = { btc: 60 };
-  T("fix615 carried on a $60 channel, the cushion is $30", B.carryTol615("btc") === 30);
+  T("fix927 carried on a $60 channel, her one 20% pink = $12", Math.abs(B.carryTol615("btc") - 12) < 1e-9);
   G.__sessCarried = {}; G.__freshSd = {}; NOW = keep;
 }
 // fix617 (Love Nov 1 2026 4:57 PM PT): carry bands also

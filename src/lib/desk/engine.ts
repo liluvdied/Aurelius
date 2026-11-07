@@ -3862,10 +3862,13 @@ async function tick() {
     import("./momcoins833").then((m) => m.momCoinsTick833()).catch(() => {});
     // fix831 ETH REJECTIONS LIVE ON KALSHI (Love Nov 6 2026 ~3:04 PM PT: "yes , and i meant the eth rejection book on kalshi bb"): $2.50 + $3 add-on at 2.8x, through her add-on route.
     import("./ethlive831").then((m) => m.ethLiveTick831()).catch(() => {});
+    import("./ethbook2").then((m) => m.ethTick872()).catch(() => {}); import("./ethlive2").then((m) => m.ethLiveTick872()).catch(() => {}); // fix872 ETH.2: her ETH book's copy with every revision (fix862-892, 906, 913) and her one pink rule (fix927), and its own live copy (off until CHANGE-271)
+    import("./btc2c").then((m) => m.btcTick899()).catch(() => {}); // fix899 BTC.2 · PINK + THIRDS (paper here; CHANGE-273 adds its live copy)
     // fix842 THE SCORES REBUILD THEMSELVES (Love Nov 6 2026 ~5:08 PM PT: "we have several of them showing as 0 too" (the inverse-worst books idle - SET UP SCORES only rebuilt while STATS was open)): every 10 minutes the desk rebuilds SET UP SCORES (tools/setup-scores-708.py - the WORST lists the
     // inverse-worst books read, CUT + FLIP's list, STATS) and EVERY FACTOR (tools/factor-scores-825.py), whether or not STATS is open. Niced, one run at a time (each script holds its own lock). Read-only scorers.
     { const G842 = globalThis as any; if (!G842.__score842At || Date.now() - G842.__score842At > 600000) { G842.__score842At = Date.now(); void (async () => { try { const { spawn } = await import("node:child_process"); for (const f842 of ["tools/setup-scores-708.py", "tools/factor-scores-825.py"]) spawn("nice", ["-n", "19", "python3", f842], { cwd: process.cwd(), detached: true, stdio: "ignore" }).unref(); } catch {} })(); } }
     import("./tpwatch847").then((m) => m.tpWatchTick847()).catch(() => {}); // fix847 TP WATCHDOG: tells her (RED on ALERTS) when a 75 / 95 sale is overdue or her exits hit an error - never sells or blocks
+    import("./backup928").then((m) => m.backupTick928()).catch(() => {}); // fix928 THE DESK BACKS HERSELF UP: tools/github-backup.sh --once at desk start and every hour - detached, niced, never touches trading; log data/github-backup.log
     import("./bb5m851").then((m) => m.bb5mTick851()).catch(() => {}); // fix851 5M BOLLINGER · PAPER (Polymarket BTC 5m, two paper books - never an order)
     // fix686 OG ORIGINAL · 10.12 (Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls"). PAPER ONLY, sealed (og1012.ts never sends an order).
     import("./og1012").then((m) => m.og1012Tick(snap.assets)).catch(() => {});

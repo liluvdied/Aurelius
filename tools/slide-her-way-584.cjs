@@ -44,7 +44,7 @@ set([], []); t(!!NEW.slideHold403(g, S(), now), "no readable channel: the slide 
 // bandlock fix521 blanket walls stand down
 const bparts = [grab(B, "export function pinkLongWall432("), grab(B, "export function pinkShortWall464(")];
 if (bparts.some((p) => !p)) { console.log("SLIDE HER WAY 584 TEST: FAIL - a pink wall is missing from bandlock.ts"); process.exit(1); }
-const stubs = "type Line = { name: string; price: number; unit?: number };\nconst PINK_BREAK432 = { btc: 5, gold: 0.25 }; const __PINKFLAT25 = false; function pinkSlide580(a, W) { return 1e9; } function anyRed521() { return true; } function anyGreen521() { return true; } function turnFlip530() { return false; } function pinkSpent515c() { return false; } function pinkBeyond459() { return true; }\n";
+const stubs = "type Line = { name: string; price: number; unit?: number };\nconst PINK_BREAK432 = { btc: 5, gold: 0.25 }; const __PINKFLAT25 = false; function pinkSlide580(a, W) { return 1e9; } function pinkOne927(a, W) { return 1e9; } /* fix927 */ function anyRed521() { return true; } function anyGreen521() { return true; } function turnFlip530() { return false; } function pinkSpent515c() { return false; } function pinkBeyond459() { return true; }\n";
 const buildB = (f) => new Function(ts.transpileModule(stubs + "const __PINKSLIDE_HERWAY584 = " + f + ";\n" + bparts.join("\n"), { compilerOptions: { target: 99 } }).outputText + "; return { pinkLongWall432, pinkShortWall464 };")();
 const BN = buildB("true"), BO = buildB("false");
 const L = [{ name: "5m PP", price: 78000 }, { name: "5m S1", price: 77000 }, { name: "5m R1", price: 79000 }, { name: "+1σ", price: 78500 }, { name: "-1σ", price: 77500 }];

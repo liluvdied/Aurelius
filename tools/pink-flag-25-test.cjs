@@ -12,7 +12,7 @@ t(/export const __PINKFLAT25\s*=\s*(true|false)\s*;/.test(src), "bandlock.ts has
 function grab(head) { const i = src.indexOf(head); if (i < 0) { console.log("PINK FLAG25 TEST: FAIL - missing " + head); process.exit(1); } let j; if (/function/.test(head)) { const m = /\)\s*:\s*[\w<>| ]+\s*\{/.exec(src.slice(i)); j = i + m.index + m[0].length - 1; } else j = src.indexOf("{", src.indexOf("=", i)); let d = 0; for (let k = j; k < src.length; k++) { if (src[k] === "{") d++; else if (src[k] === "}") { d--; if (d === 0) return /function/.test(head) ? src.slice(i, k + 1) : src.slice(i, src.indexOf(";", k) + 1); } } }
 const one = (h) => src.slice(src.indexOf(h), src.indexOf("\n", src.indexOf(h)));
 const hasSlide580 = src.indexOf("export function pinkSlide580(") >= 0; // fix580: her pink scale (BTC $25 under $100 / 20% $100-$500 / 15% over $500; gold 15%)
-const body = [one("export const PINK_PCT429"), grab("export const PINK_PCT459"), ...(hasSlide580 ? [one("export function pinkSlide580(")] : []), grab("export function pinkFar503(")].map((x) => x.replace(/^export /, "")).join("\n");
+const body = [one("export const PINK_PCT429"), grab("export const PINK_PCT459"), ...(hasSlide580 ? [one("export function pinkSlide580(")] : []), one("export const DLY465"), one("export function pinkOne927(") /* fix927 her one pink rule */, grab("export function pinkFar503(")].map((x) => x.replace(/^export /, "")).join("\n");
 const buildF = (flagVal) => { const js = ts.transpileModule("type Line = { name: string; price: number; unit?: number };\nconst __PINKFLAT25 = " + flagVal + ";\nconst pinkHold596 = () => false; // fix596: the flag is judged away from her 2 PM window\n" + body, { compilerOptions: { target: ts.ScriptTarget.ES2020 } }).outputText; return new Function(js + "; return pinkFar503;")(); };
 const Ftrue = buildF(true), Ffalse = buildF(false);
 const board = (lo, hi) => (tick, pink) => [{ name: "-1σ", price: lo }, { name: "+1σ", price: hi }, { name: "5m PP", price: pink }];
@@ -20,7 +20,7 @@ const readTol = (F, asset, lo, hi) => { const mk = board(lo, hi), tick = (lo + h
 const near = (x, y, m) => Math.abs(x - y) <= (m || 0.02);
 // faithful replica of her LIVE pink law (the overlay's else-branch), day-robust
 const weekend = /Sat|Sun/.test(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", weekday: "short" }).format(new Date()));
-const live = (a, W) => a === "btc" ? (W < 100 ? W / 2 : W < 180 ? W / 3 /* fix667 */ : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* fix641 Love Nov 4 1:24 PM */ : 0.15 * W) : W < 5 ? (W < 3 ? W / 2 : W / 3 /* fix667 */) : W > 25 ? Math.min(0.15 * W, 3) : 0.15 * W; // fix615 her pink cushion; Love Nov 4 10:41 AM: gold $3 max past a $25 channel
+const live = (a, W) => 0.2 * W; // fix927 ONE PINK RULE (Love Nov 7 2026 ~4:02 AM PT): her one pink tolerance - 20% of the session-band channel, every width, both assets
 const WIDTHS = [["gold", 3997.5, 4002.5, 5], ["gold", 4040, 4080, 40], ["gold", 3900, 4100, 200], ["btc", 79975, 80025, 50], ["btc", 80000, 80300, 300], ["btc", 79650, 80350, 700], ["btc", 79330, 80670, 1340] /* fix641: over $1,000 = 10% */];
 // FLAG TRUE => flat $25 both assets, every width
 for (const [asset, lo, hi, W] of WIDTHS) { const got = readTol(Ftrue, asset, lo, hi); t(near(got, 25), `flag TRUE: ${asset} W=$${W} should be a flat $25, got $${got.toFixed(3)}`); }

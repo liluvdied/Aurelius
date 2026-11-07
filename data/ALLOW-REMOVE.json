@@ -9736,5 +9736,125 @@
     "what": "console.log(ok ? \"LATE OFF LINE 923 TEST ✓ - BTC's 55% is measured from the line she trades off to the next line ahead: entries at her line always go (a long AT +1σ above the red zone), a 55%+ chase is refused; gold keeps pink -> zone.\" : \"LATE OFF LINE 923 TEST: FAIL\");",
     "why": "fix926 (her words above)",
     "R": "R535"
+  },
+  {
+    "what": "const P = Number(b.price), pink = String(b.name) === \"5m PP\", r = pink ? ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : ((typeof pinkSlide580 === \"function\" && asset === \"btc\" && sA && sB) ? pinkSlide580(asset, sA.price - sB.price) : carryPink615 > 0 ? carryPink615 : pinkReach)) : /^BB /.test(String(b.name)) ? Math.min(reach509, sA && sB && typeof slide845 === \"function\" ? slide845(asset, sA.price - sB.price) : Infinity) /* fix845 */ : ((typeof carryOn612 === \"function\" && carryOn612(asset)) && !(sA && sB)) ? (asset === \"btc\" ? 25 : REACH429[asset] ?? 1) /* fix612 + fix618 */ : Math.min(sessionScale593(asset, sA && sB ? sA.price - sB.price : 0), sA && sB && typeof slide845 === \"function\" ? slide845(asset, sA.price - sB.price) : Infinity) /* fix845 */; // fix593: session bands use her scale; pink and the Bollinger lines keep their own",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "return Math.abs(pink - tick) > (((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkSlide580 === \"function\") ? pinkSlide580(asset, a.price - b.price) : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, a.price - b.price < 180 && a.price - b.price >= 75 ? 0.75 * (a.price - b.price) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price))) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price)))) /* fix526: her 3/4 at $75-$180 width + the $75 weekday floor */;",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "return pink - tick > (((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkSlide580 === \"function\") ? pinkSlide580(asset, a.price - b.price) : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, a.price - b.price < 180 && a.price - b.price >= 75 ? 0.75 * (a.price - b.price) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price))) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price)))) /* fix526: her 3/4 at $75-$180 width + the $75 weekday floor */;",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "if (a && b && a.price > b.price && tick - P > (((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkSlide580 === \"function\") ? pinkSlide580(asset, a.price - b.price) : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, a.price - b.price < 180 && a.price - b.price >= 75 ? 0.75 * (a.price - b.price) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price))) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price)))) /* fix526: her 3/4 at $75-$180 width + the $75 weekday floor */) return \"\";",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "export function carryTol615(asset: string): number { const w = Number(G.__freshSd?.[asset]) || 0; return w > 0 ? pinkSlide580(asset, w) : asset === \"btc\" ? 25 : 1.5; }",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "if (side === \"down\" && P - under.price <= r && tick <= over.price && tick > under.price - d && Math.abs(tick - P) <= pinkSlide580(asset, over.price - under.price) /* fix813 (Love Nov 6 2026 ~8:35 AM PT: \"can you fix the pink wall outside of her tolerance babe? that slipped back in somehow solve for that permanently pls\" + her card: A - mirror her Nov 3 7:20 PM rule to shorts): outside her pink tolerance the short is free, the same as the long */) return `SESSION BAND AHEAD OF THE PINK (fix618): pink ${P.toFixed(2)} sits $${(P - under.price).toFixed(2)} over the unbroken ${under.name} (${under.price.toFixed(2)}), inside her $${r.toFixed(2)} of the $${(over.price - under.price).toFixed(2)} channel - no short until that band breaks`;",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "if (side === \"up\" && over.price - P <= r && tick >= under.price && tick < over.price + d && Math.abs(tick - P) <= pinkSlide580(asset, over.price - under.price) /* Love Nov 3 2026 7:20 PM PT: \"The block stays only inside the pink tolerance. Outside that tolerance the long is free.\" */) return `SESSION BAND AHEAD OF THE PINK (fix618): pink ${P.toFixed(2)} sits $${(over.price - P).toFixed(2)} under the unbroken ${over.name} (${over.price.toFixed(2)}), inside her $${r.toFixed(2)} of the $${(over.price - under.price).toFixed(2)} channel - no long until that band breaks`;",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "const W538 = above - below, cush514 = ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkSlide580 === \"function\") ? pinkSlide580(asset, W538) : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, W538 < 180 && W538 >= 75 ? 0.75 * W538 : 0.20 * W538)) : 0.15 * W538)); // fix538 (Love Oct 30 2026 3:49 PM PT: \"when bands are under over $80 - until they hit $180 , she needs at least 3/4 of a band channel width for pink tolerances... at any bands distance - she needs a minimum of $75 during weekdays. on weekends, it could differ.\" (the same law her fix525/526 click installed, reaching the one pink-cushion site it missed)): her $75 weekday floor + 3/4 at $75-$180 width reach the cushion too - the one site her 3:49 PM click missed",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "const tol550 = ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkSlide580R === \"function\") ? pinkSlide580R(asset, W550, pct) : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY: her $25 pink, lifted with the cap-lift click */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, W550 < 180 && W550 >= 75 ? 0.75 * W550 : pct * W550)) : pct * W550));",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "const PINKPCT484: Record<string, number> = { gold: 0.15, btc: 0.2 };",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "const P = Number(b.price), pink = String(b.name) === \"5m PP\", r = pink ? pinkReach : reach;",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "export const PINK_PCT466: Record<string, number> = { gold: 0.15, btc: 0.2 };",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "const P = Number(b.price), pink = String(b.name) === \"5m PP\", r = pink ? pinkReach : reach;",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "return Math.abs(pink - tick) > (asset === \"btc\" ? 0.2 : 0.15) * (a.price - b.price);",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "const f3 = geoL(\"gold\", Lg(3995.6), 3994.0, \"up\", \"main\"); T(FLAT25 ? \"fix571 weekend $25: gold long with the pink $1.60 over (16%) is HELD by the flat $25 overlay (__PINKFLAT25 on)\" : \"fix507: gold long with the unbroken pink $1.60 over price (16% of a $10 channel) is not held by the pink\", FLAT25 ? /PINK/.test(f3) : !/PINK/.test(f3), f3 || \"(clear)\");",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "T(\"fix615 carried on a $60 channel, the cushion is $30\", B.carryTol615(\"btc\") === 30);",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "const body = [one(\"export const PINK_PCT429\"), grab(\"export const PINK_PCT459\"), ...(hasSlide580 ? [one(\"export function pinkSlide580(\")] : []), grab(\"export function pinkFar503(\")].map((x) => x.replace(/^export /, \"\")).join(\"\\n\");",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "const live = (a, W) => a === \"btc\" ? (W < 100 ? W / 2 : W < 180 ? W / 3 /* fix667 */ : W <= 500 ? 0.2 * W : W > 1000 ? 0.1 * W /* fix641 Love Nov 4 1:24 PM */ : 0.15 * W) : W < 5 ? (W < 3 ? W / 2 : W / 3 /* fix667 */) : W > 25 ? Math.min(0.15 * W, 3) : 0.15 * W; // fix615 her pink cushion; Love Nov 4 10:41 AM: gold $3 max past a $25 channel",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "const stubs = \"type Line = { name: string; price: number; unit?: number };\\nconst PINK_BREAK432 = { btc: 5, gold: 0.25 }; const __PINKFLAT25 = false; function pinkSlide580(a, W) { return 1e9; } function anyRed521() { return true; } function anyGreen521() { return true; } function turnFlip530() { return false; } function pinkSpent515c() { return false; } function pinkBeyond459() { return true; }\\n\";",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "const f1 = rsrc.match(/function pinkSlide580R\\([\\s\\S]*?\\n/)[0], i = rsrc.indexOf(\"export function pinkRead464(\"), j = rsrc.indexOf(\"return Math.abs(pink - spot) <= tol550;\\n}\", i) + \"return Math.abs(pink - spot) <= tol550;\\n}\".length;",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "t(Math.abs(Rd.pinkSlide580R(\"btc\", 81.53, 0.2) - 81.53 / 2) < 1e-9 && Rd.pinkRead464(\"btc\", L, 76185.73, \"down\", 76154.80) === true, \"weekday: main's read keeps half the channel under $100 (unchanged)\");",
+    "why": "fix927 (her words in this change's request)",
+    "R": "R536"
+  },
+  {
+    "what": "{ const w711 = bbFade711(asset, tick, side, r1, s1); if (w711) return w711; } // fix711",
+    "why": "fix930 (her words in this change's request)",
+    "R": "R538"
+  },
+  {
+    "what": "[\"$$$ 💸\", (b) => [\"kalshinow766\", \"og1012\", \"rsi672\", \"eth682\", \"brkout687\", \"push50\", \"akimbo727\", \"akimbo744\", \"brk-sesspk\", \"brk15\", \"gmid2\", \"bmid5\", \"allbb\", \"recon-tzw\", \"inv688\", \"brnw\", \"hm707-rev\", \"hm707-rip\", \"club690\", \"mom704\", \"hb709\", \"cup713\", \"mv694\", \"rp695\", \"v1112\", \"bestie\" /* fix775 */ /* fix770 */].includes(b)],",
+    "why": "fix872 (her words in this change's request)",
+    "R": "R539"
+  },
+  {
+    "what": "[\"$$$ 💸\", (b) => [\"kalshinow766\", \"og1012\", \"rsi672\", \"eth682\", \"eth2872\", \"brkout687\", \"push50\", \"akimbo727\", \"akimbo744\", \"brk-sesspk\", \"brk15\", \"gmid2\", \"bmid5\", \"allbb\", \"recon-tzw\", \"inv688\", \"brnw\", \"hm707-rev\", \"hm707-rip\", \"club690\", \"mom704\", \"hb709\", \"cup713\", \"mv694\", \"rp695\", \"v1112\", \"bestie\" /* fix775 */ /* fix770 */].includes(b)],",
+    "why": "fix899 (her words in this change's request)",
+    "R": "R540"
   }
 ]
