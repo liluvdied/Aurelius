@@ -1,4 +1,4 @@
-# Every decision Love has made - rebuilt 2026-11-07T00:18:51.181548+00:00
+# Every decision Love has made - rebuilt 2026-11-07T00:30:55.384493+00:00
 
 1534 decisions with Love's words or card picks, out of 2294 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
@@ -1877,7 +1877,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-27T19:54:53Z  ·  diary line 2209  ·  fix162, fix333
 - Love: “no keep main as is. i was asking why she didn't short AFTER it broke pink?”
-- fix162 in her code without its number (see her words in the code comments)
+- fix162 IN HER CODE
 - fix333 in her code without its number (see her words in the code comments)
 - Full entry: [2026-10-27T19:54:53Z] DIAGNOSIS (no change): 12:45 PM gold window - main short 'Rejected down off Red zone' held by main's PINK 10%; after the dip price was at most 32c under pink 4061.34, gold break distance is 33c (fix162), so pink stayed unbroken. Love 12:54 PM PT: "no keep main as is. i was asking why she didn't short AFTER it broke pink?" - main unchanged (fix333 prepared, NOT installed).
 
@@ -1999,7 +1999,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-27T17:49:18.639040+00:00  ·  diary line 2171  ·  fix313, fix320  ·  books: delayed twin, main, no-pink copy, rejection
 - Love: “we can put her back on her schedule at $5 with a $5 add on on each books best hours like before / can we do that and see how she does today pls? and start fresh on a good note?”
-- fix313 taken back / replaced (see its entries)
+- fix313 IN HER CODE
 - fix320 a setting (hours/sizes follow her latest pick)
 - Full entry: 2026-10-27T17:49:18.639040+00:00 fix320 SCHEDULE BACK (config only, no code thawed): every book back on its best hours exactly as at 3 AM PT before fix313 (rejHoursByAsset = fix313Prev; gold 10 PM rejection / main skips gold 22; liveSkipHours gold [4,9,13,23] btc [8,18,23] = liveSkipHoursPrev315; twin skips unchanged), liveBook [recon-tog, recon-rej, recon-dly, recon-togp], every size $5 + one $5 add-on: Love Oct 27 10:46 AM PT: "we can put her back on her schedule at $5 with a $5 add on on each books best hours like before / can we do that and see how she does today pls? and start fresh on a good note?" + 10:47 AM: "it'd be around 5" + 10:48 AM: "noo i'm saying backwards fires since 5 am not 6:30 bb / and i want the same schedule we had in place for each books best hours before. none of those changed right?"
 
@@ -2074,13 +2074,13 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Full entry: 2026-10-27T10:49:40.597798+00:00 THAW (fix314 COPY = CANDLE FLIP AT A BAND ONLY: the no-pink copy (recon-togp) books main's read only when it is a band rejection (Rejected up/down off, Nm rejection off, Tap-reject at, Failed break ... rejected, Fake-out turn) and not pink; thirds calls (Launched from / Candle falling-rising from / third - seen as) and plain breaks are skipped; HER CANDLE and every wall unchanged; main, twin, rejection untouched): Love Oct 27 3:49 AM PT: "just get her to trade the candle flip at a band bro dont do me like this pls" (after 3:33 AM BTC short booked as 'Launched from the top third' fired on a pink break)
 
 ## 2026-10-27T10:31:44.871739+00:00  ·  diary line 2145  ·  fix313  ·  books: main, no-pink copy
-- fix313 taken back / replaced (see its entries)
+- fix313 IN HER CODE
 - Full entry: 2026-10-27T10:31:44.871739+00:00 fix313b SEAL RE-SIGNED for fix313's lineup (liveBook.books = [recon-togp]); fix313 updated config hashes but missed sealLiveBook, so 3:30 AM PT opening orders were held by THE SEAL. Love's words: fix313 quote above.
 
 ## 2026-10-27T10:19:09.254898+00:00  ·  diary line 2144  ·  fix312, fix313  ·  books: main, no-pink copy
 - Love: “all i want is a working copy of the main book. identical. 1;1. just without trading pink breaks, or rejections, she just trades the session band rejections , and the green/red pivot zones and the bollingers, she sits out pink trades and waits for price to hit the extremes, and then she enters the same exact way our main book does, no difference whatsover. mirro her identically without pink pls ... and place her on live at $1 until we can confirm she is working again”
 - fix312 IN HER CODE
-- fix313 taken back / replaced (see its entries)
+- fix313 IN HER CODE
 - Full entry: 2026-10-27T10:19:09.254898+00:00 fix313 NO-PINK COPY ALONE LIVE AT $1 (config only, no code thawed): Love Oct 27 3:14 AM PT: "all i want is a working copy of the main book. identical. 1;1. just without trading pink breaks, or rejections, she just trades the session band rejections , and the green/red pivot zones and the bollingers, she sits out pink trades and waits for price to hit the extremes, and then she enters the same exact way our main book does, no difference whatsover. mirro her identically without pink pls ... and place her on live at $1 until we can confirm she is working again" -> live true; liveBook.books = [recon-togp] only (main, rejection, twin paper); copy live every hour except her Kalshi off hours (offHourMain.rejHoursByAsset all hours); every live size $1 (maxDollars, liveBook.dollars, offHourMain.dollars + add-on, addOn). Copy logic unchanged = fix312 (main's read minus 5m PP/pink calls, gold $1.50 pink cushion). Undo values in live-switch fix313Prev; backup live-switch.json.pre-fix313.bak
 
 ## 2026-10-27T09:58:01.953853+00:00  ·  diary line 2141  ·  fix283, fix286, fix311, fix312  ·  books: main, no-pink copy
@@ -2226,7 +2226,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 ## 2026-10-26T22:28:00.208904+00:00  ·  diary line 2085  ·  fix292  ·  books: main, no-pink copy
 - Love: “Pink cushion $25 for the copy”
 - Card pick: **Pink cushion $25 for the copy**
-- fix292 a setting (hours/sizes follow her latest pick)
+- fix292 IN HER CODE
 - Full entry: 2026-10-26T22:28:00.208904+00:00 THAW (fix292 no-pink copy (recon-togp) BTC PINK 10% cushion capped at $25 (bandlock impossibleGeo w10e when togpLoose); main and gold unchanged): Love Oct 26 3:24 PM PT card "Pink cushion $25 for the copy" (question: "Loosen the pink wall for the no-pink copy in tight BTC channels?"; 3:16 PM BTC long held by a $50 cushion in a $68 channel)
 
 ## 2026-10-26T22:13:01.071714+00:00  ·  diary line 2082  ·  fix291
@@ -2415,7 +2415,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-26T09:58:00.129246+00:00  ·  diary line 1988  ·  fix262
 - Love: “hun we did this earlier. its 10% or $2. whichever comes first”
-- fix262 a setting (hours/sizes follow her latest pick)
+- fix262 IN HER CODE
 - Full entry: 2026-10-26T09:58:00.129246+00:00 THAW (fix262 gold PINK 10% cushion never under $2 (max(10% of channel, $2))): Love Oct 26 2:50 AM PT: "hun we did this earlier. its 10% or $2. whichever comes first"
 
 ## 2026-10-26T09:53:00.336781+00:00  ·  diary line 1985  ·  fix246, fix261  ·  books: 5m book, rejection
@@ -2907,7 +2907,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Love: “Drop it”
 - Card pick: **Drop it**
 - fix76 a setting (hours/sizes follow her latest pick)
-- fix178 a setting (hours/sizes follow her latest pick)
+- fix178 IN HER CODE
 - Full entry: 2026-10-25T05:20:29.927295+00:00 THAW (fix178 BOLLINGER BOUNCE IN HER CANDLE (fix76, $75) retired - Bollinger cushion and other walls still judge): Love Oct 24 ~10:20 PM PT card "Drop it" on "Keep the Bollinger bounce rule blocking shorts and longs like this?"
 
 ## 2026-10-25T05:05:08.540481+00:00  ·  diary line 1688  ·  fix177  ·  books: main
@@ -2989,8 +2989,8 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-25T00:09:49.780443+00:00  ·  diary line 1647  ·  fix162, fix166
 - Love: “i want to keep the distance away part, and we can lower it from $5 to $3”
-- fix162 a setting (hours/sizes follow her latest pick)
-- fix166 a setting (hours/sizes follow her latest pick)
+- fix162 IN HER CODE
+- fix166 IN HER CODE
 - Full entry: 2026-10-25T00:09:49.780443+00:00 THAW (fix166 BTC pink counts as broken once price is $3 past it (was $5, fix162); $50/10% cushion unchanged): Love 5:09 PM PT Oct 24: "i want to keep the distance away part, and we can lower it from $5 to $3"
 
 ## 2026-10-25T00:03:03.016328+00:00  ·  diary line 1644  ·  fix165
@@ -3021,12 +3021,12 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Love: “Pink holds it on BTC”
 - Card pick: **Pink holds it on BTC**
 - fix139 IN HER CODE
-- fix163 a setting (hours/sizes follow her latest pick)
+- fix163 IN HER CODE
 - Full entry: 2026-10-24T17:32:00.267502+00:00 THAW (fix163 on BTC the PINK cushion wall also holds the fake-out turn (fix139/141 waiver now gold only)): Love 10:31 AM PT Oct 24 card: "Pink holds it on BTC" (10:30 BTC fake-out turn short under -1 sigma went in $26 over an unbroken pink)
 
 ## 2026-10-24T17:18:06.524278+00:00  ·  diary line 1631  ·  fix162
 - Love: “make it a break of $5 bb”
-- fix162 a setting (hours/sizes follow her latest pick)
+- fix162 IN HER CODE
 - Full entry: 2026-10-24T17:18:06.524278+00:00 THAW (fix162 PINK cushion: pink counts as broken only once price is $5 past it on BTC (gold 33c break distance); a tick through stays unbroken): Love 10:17 AM PT Oct 24: "make it a break of $5 bb" (10:15 BTC short filled 33c under an unbroken pink after the $50 wall refused it 48 times)
 
 ## 2026-10-24T15:00:08.179254+00:00  ·  diary line 1628  ·  fix161
@@ -3054,7 +3054,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-24T03:27:52.895907+00:00  ·  diary line 1617  ·  fix158
 - Love: “we can lower it to $50 temporarily for the time being / we'll move it back when there's some more movement and things aren't so slow”
-- fix158 a setting (hours/sizes follow her latest pick)
+- fix158 IN HER CODE
 - Full entry: 2026-10-24T03:27:52.895907+00:00 THAW (fix158 BTC BOLLINGER OVER/UNDER THE BAND distance $100 -> $50 (temporary, slow market)): Love 8:27 PM PT: "we can lower it to $50 temporarily for the time being / we'll move it back when there's some more movement and things aren't so slow"
 
 ## 2026-10-24T02:05:28.496108+00:00  ·  diary line 1614  ·  fix157
@@ -3074,7 +3074,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-23T22:52:13.464552+00:00  ·  diary line 1605  ·  fix154
 - Love: “keep the make it a 1 tick blip, just make it over $10 over the band so it can't go a few cents over again and it's a real valid trade if she does”
-- fix154 a setting (hours/sizes follow her latest pick)
+- fix154 IN HER CODE
 - Full entry: 2026-10-23T22:52:13.464552+00:00 THAW (fix154 BTC BACK OVER BY $10: after this 5m candle went under the session band below, a long needs price $10+ back over it (mirror short); fake-out turn exempt): Love 3:51 PM PT: "keep the make it a 1 tick blip, just make it over $10 over the band so it can't go a few cents over again and it's a real valid trade if she does"
 
 ## 2026-10-23T22:22:29.127079+00:00  ·  diary line 1602  ·  fix24, fix153
@@ -3247,7 +3247,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Love: “oh no the delayed entry book is clear to take the opposite side hun”
 - Love: “Skip target-past-a-band”
 - Card pick: **Skip target-past-a-band**
-- fix123 a setting (hours/sizes follow her latest pick)
+- fix123 IN HER CODE
 - Full entry: 2026-10-23T06:22:34.995871+00:00 THAW (fix123 DELAYED twin skips TARGET PAST A BAND (gold) - door, paper, wire, poly twin wall; every other wall unchanged): Love 11:21 PM PT: "oh no the delayed entry book is clear to take the opposite side hun" + picked "Skip target-past-a-band"
 
 ## 2026-10-23T06:09:44.370038+00:00  ·  diary line 1509  ·  fix122
@@ -3357,7 +3357,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 ## 2026-10-23T02:34:35.612877+00:00  ·  diary line 1455  ·  fix106
 - Love: “Keep the trend-through-bands rule after it blocked tonight's gold long?”
 - Card pick: **Keep the trend-through-bands rule after it blocked tonight's gold long?**
-- fix106 in her code without its number (see her words in the code comments)
+- fix106 IN HER CODE
 - Full entry: 2026-10-23T02:34:35.612877+00:00 THAW (fix106 TREND THROUGH THE BANDS dropped): Love 7:34 PM PT card "Keep the trend-through-bands rule after it blocked tonight's gold long?" -> "Drop it"
 
 ## 2026-10-23T02:31:20.581778+00:00  ·  diary line 1452  ·  fix105
@@ -3393,12 +3393,12 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 - Love: “Yes, both guards”
 - Card pick: **Yes, both guards**
 - fix98 IN HER CODE
-- fix99 in her code without its number (see her words in the code comments)
+- fix99 IN HER CODE
 - Full entry: 2026-10-23T01:03:09.465576+00:00 SPINE RE-SIGN for fix98+fix99 (recon 9264c4ab56aad7e9) - Claude missed it at install; RECONSTRUCTED books were not booking ~5:55-6:04 PM PT. Love 5:18 PM PT picked "Yes, both guards"; 5:55 PM: "okay yes limit it to the current candle , live price only and pls make sure that is stitched up properly" (fix98+fix99 re-sign, missed at install 5:55-5:57 PM)
 
 ## 2026-10-23T00:56:22.813140+00:00  ·  diary line 1434  ·  fix99
 - Love: “okay yes limit it to the current candle , live price only and pls make sure that is stitched up properly”
-- fix99 in her code without its number (see her words in the code comments)
+- fix99 IN HER CODE
 - Full entry: 2026-10-23T00:56:22.813140+00:00 THAW (fix99 recon 1m close breaks only inside the running 5m candle): Love 5:55 PM PT: "okay yes limit it to the current candle , live price only and pls make sure that is stitched up properly"
 
 ## 2026-10-23T00:54:58.950870+00:00  ·  diary line 1431  ·  fix98
@@ -3459,7 +3459,7 @@ Status: IN HER CODE = the fix number is in her code right now (the umpire checks
 
 ## 2026-10-22T20:36:18.076501+00:00  ·  diary line 1402  ·  fix89
 - Love: “let's make that $3.50 at the moment ... and let's also set it to - as long as she doesn't actually enter into the position within $2 of the pink band as well for the moment”
-- fix89 a setting (hours/sizes follow her latest pick)
+- fix89 IN HER CODE
 - Full entry: 2026-10-22T20:36:18.076501+00:00 THAW (fix89 gold band-to-pink $3.50 + entry > $2 from pink): Love 1:35 PM PT: "let's make that $3.50 at the moment ... and let's also set it to - as long as she doesn't actually enter into the position within $2 of the pink band as well for the moment"
 
 ## 2026-10-22T20:21:40.406936+00:00  ·  diary line 1399  ·  fix88

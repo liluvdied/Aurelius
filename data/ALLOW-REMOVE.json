@@ -9106,5 +9106,55 @@
     "what": "const backwards = (Array.isArray(alarms) ? alarms : []).filter((a) => /^RED: .* meant .* but Kalshi holds /.test(String(a.text)) && Date.parse(a.at) >= since);",
     "why": "fix834 (her words above)",
     "R": "R502"
+  },
+  {
+    "what": "const next = !(watch.data?.entries === true);",
+    "why": "fix838 (her words above)",
+    "R": "R503"
+  },
+  {
+    "what": "void setEntries({ data: { on: next } }).then(() => {",
+    "why": "fix838 (her words above)",
+    "R": "R503"
+  },
+  {
+    "what": "toast(next ? \"Entries on. $25.\" : \"Entries off. Open trades can still cash.\");",
+    "why": "fix838 (her words above)",
+    "R": "R503"
+  },
+  {
+    "what": "void watch.refetch();",
+    "why": "fix838 (her words above)",
+    "R": "R503"
+  },
+  {
+    "what": "aria-pressed={watch.data?.entries === true}",
+    "why": "fix838 (her words above)",
+    "R": "R503"
+  },
+  {
+    "what": "aria-label=\"Toggle new entries\"",
+    "why": "fix838 (her words above)",
+    "R": "R503"
+  },
+  {
+    "what": "{watch.data?.entries === false ? \"OFF\" : \"ON\"}",
+    "why": "fix838 (her words above)",
+    "R": "R503"
+  },
+  {
+    "what": "<span className={cn(\"inline-block size-1.5 rounded-full\", liveQ.data?.live === true ? \"bg-red-500\" : liveOff3m815 ? \"animate-pulse bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.9)]\" : \"bg-subtle\")} /* fix815: flashing orange after 3 min off */ />",
+    "why": "fix838 (her words above)",
+    "R": "R503"
+  },
+  {
+    "what": "{liveQ.data?.live === true ? \"LIVE ON\" : \"LIVE OFF\"}",
+    "why": "fix838 (her words above)",
+    "R": "R503"
+  },
+  {
+    "what": "FILES = {\"inverse-book-688.json\": (\"INVERSE BOOK\", \"setup\"), \"momentum-book-704.json\": (\"MOMENTUM BOOK\", \"setup\"), \"high-multiple-707.json\": (\"HIGH MULTIPLE BOOK\", \"way\"), \"half-band-709.json\": (\"HALF-BAND KEEP BOOK\", \"setup\"), \"cup-book-713.json\": (\"CUP BOOK\", \"setup\"), \"v111-2-770.json\": (\"V.111 - 2\", \"setup\"), \"pink-slide-801.json\": (\"PINK SLIDE ONLY\", \"setup\"), \"away-824.json\": (\"AWAY FROM LINE\", \"setup\"), \"sol-book-832.json\": (\"SOL · REJ ONLY · NO PINK\", \"label\"), \"doge-book-832.json\": (\"DOGE · REJ ONLY · NO PINK\", \"label\"), \"mom-coins-833.json\": (\"MOMENTUM · COINS\", \"setup\"), \"main-vwap-694.json\": (\"MAIN · VWAP SIDE\", \"label*\"), \"rej-parked-695.json\": (\"REJECTION · PARKED SIDE\", \"label*\"), \"flip-819.json\": (\"FLIPS\", \"setup\"), \"inverse-worst-820-book.json\": (\"INVERSE-WORST\", \"setup\")}  # fix820 (split per book below)  # fix819: her flips scored on their own  # fix816: label* = her label grouped the way main's are  # fix770: V.111 - 2 scored by set up; fix802: PINK SLIDE ONLY scored by set up",
+    "why": "fix835",
+    "R": "R504"
   }
 ]

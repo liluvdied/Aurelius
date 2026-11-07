@@ -2,6 +2,22 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R504 - fix835 / fix836 THE 1-2-3 BOOK, SEALED + NEW - PAPER ONLY: (835) 1-2-3 · SEALED: her Polymarket BTC 5-minute 1-2-3 book exactly as it stood Oct 26 ~9:30 PM PT (PRE295-BUILD, her ~74% stretch): 82 blocks of her read, walls, lines and doors copied byte for byte from a vault, sealed by sha256 + fingerprint (any change stops both books and says why), cut off from every shared wall (her own sandbox). (836) 1-2-3 · NEW: the same base plus her late door (~3 min left, pushing off a Bollinger / session band / zone), her 1.5x floor, the Bollinger cushion and no trading into a line within $50 of the target. $5 paper, priced at the desk's recorded Polymarket 5m quotes. Replay Nov 2-7: SEALED 209 trades 59% +$81; NEW 186 57% +$46 (her late door alone 21 trades 48% -$4.40). Never an order; live on Polymarket only on her go.
+- when: 2026-11-07T00:29:23+00:00
+- Love: "Love Nov 6 2026 ~3:42 PM PT: "one thing we need to get up and running today bb , our 1-2-3 book on poly / she got turned inside out when i was doing some fixes on other books they bled into her and she was never the same / can you do the same thing you did on the og aurelius on there for me bb ?!" + ~3:45 PM: "honestly i think we can make it even better now together bb""
+- books: 1-2-3 · SEALED + 1-2-3 · NEW (paper only)
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/onetwothree835.ts", "has": "seal835"}
+- proof: {"test": "tools/onetwothree-835.cjs"}
+
+## R503 - fix838 ONE SWITCH: LIVE is the only switch. Turning LIVE on (her tap) also turns entries on - it clears a pause and restarts her pace, exactly what the old ENTRIES pill did; the separate ON / OFF entries pill is removed from the header. Her safety breaker still pauses entries when it trips - that now shows on the LIVE pill itself (orange, 'PAUSED · TAP LIVE OFF / ON') with a toast. Auto LIVE-on before the window (fix815) still never clears a breaker pause. Every other rail unchanged.
+- when: 2026-11-07T00:29:21+00:00
+- Love: "Love Nov 6 2026 ~4:04 PM PT: "hun can you take this extra one off? it's gonna trick me every time i turn it on lol i'm gonna forget i have to do an extra one and she will miss atleast 300 windows this week if it's still there""
+- books: none - her LIVE / entries switches
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/fns.ts", "has": "fix838 ONE SWITCH"}
+- proof: {"test": "tools/one-switch-838.cjs"}
+
 ## R502 - fix834 THE BREAKER NEVER RE-TRIPS ON ITS OWN PAUSE LINE: the breaker's backwards-fill rule counted every alarm line matching 'meant X but Kalshi holds Y' in the last 2 hours - including its own 'RED: BREAKER: ... meant DOWN ... holds UP' pause line - so the moment she turned entries back on it re-tripped and wrote a fresh line, again and again. Now it never counts its own pause line, and only counts backwards fills after she last turned entries back on. A new backwards fill still trips it; the 2-hour $ drop, losses in a row and the model check are unchanged. To clear today's pause: run this, then tap the OFF pill (her entries switch) to ON.
 - when: 2026-11-07T00:17:24+00:00
 - Love: "Love Nov 6 2026 ~3:33 PM PT: "she still i've flipped it 3 times bb it's still not back" (her card: ship the fix)"

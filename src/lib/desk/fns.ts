@@ -1458,6 +1458,8 @@ export const setLiveSwitch = createServerFn({ method: "POST" })
   .validator((input: { live: boolean }) => input)
   .handler(async ({ data }): Promise<LiveSwitch> => { armGate524("setLiveSwitch");
     const out = writeSwitch({ live: data.live === true, note: data.live === true ? "Turned on from the desk" : "Turned off from the desk" });
+    // fix838 ONE SWITCH (Love Nov 6 2026 ~4:04 PM PT: "hun can you take this extra one off? it's gonna trick me every time i turn it on lol i'm gonna forget i have to do an extra one and she will miss atleast 300 windows this week if it's still there"): turning LIVE on also turns entries on - clears a pause (halt.json) and restarts her pace, exactly what the old ENTRIES pill did. LIVE off is unchanged.
+    if (data.live === true) { try { const at838 = new Date().toISOString(); writeFileSync(join(process.cwd(), "data", "halt.json"), JSON.stringify({ off: false, at: at838, since: at838, reason: "", losses: [] })); let eq838: number | null = null; try { eq838 = JSON.parse(readFileSync(join(process.cwd(), "data", "kalshi-cash.json"), "utf8")).cash ?? null; } catch {} writeFileSync(join(process.cwd(), "data", "pace.json"), JSON.stringify({ from: at838, at: at838, paused: false, wins: 0, n: 0, net: 0, equity: eq838, peak: eq838 })); } catch {} }
     // Turning Kalshi LIVE on starts the copy fresh (Oct 5): rows the books booked while LIVE was off are not sent late
     // and do not raise false REDs. Only rows booked after this moment go to Kalshi.
     if (data.live === true) {

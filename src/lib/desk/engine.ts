@@ -3858,6 +3858,8 @@ async function tick() {
     import("./ethlive831").then((m) => m.ethLiveTick831()).catch(() => {});
     // fix686 OG ORIGINAL · 10.12 (Love Nov 5 2026 ~1:00 AM PT: "for 10.12 put her on her own paper card never to be touched pls"). PAPER ONLY, sealed (og1012.ts never sends an order).
     import("./og1012").then((m) => m.og1012Tick(snap.assets)).catch(() => {});
+    // fix835 1-2-3 · SEALED · PAPER + fix836 1-2-3 · NEW · PAPER (Love Nov 6 2026: her Oct 26 Polymarket BTC 5m 1-2-3 book, sealed from PRE295-BUILD, and a NEW twin). PAPER ONLY, sealed (onetwothree835.ts never sends an order).
+    import("./onetwothree835").then((m) => m.oneTwoThreeTick835(snap.assets)).catch(() => {});
     // fix687 OUTWARD BREAK · SESSION BANDS (Love Nov 5 2026 ~1:00 AM PT: "a new one too if you have a different idea in mind for it"). PAPER ONLY (brkout.ts never sends an order).
     import("./brkout").then((m) => m.brkOutTick687(snap.assets)).catch(() => {});
     // fix688 INVERSE BOOK (Love Nov 5 2026 ~1:05 AM PT: "can you create the inverse set ups book i asked you about earlier too?"). PAPER ONLY (inverse.ts never sends an order).

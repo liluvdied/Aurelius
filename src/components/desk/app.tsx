@@ -1210,6 +1210,9 @@ export function DeskApp() {
     refetchInterval: foreground ? 15000 : false,
     refetchOnWindowFocus: false,
   });
+  // fix838: a breaker pause is told once, loudly, on the one switch
+  const paused838 = useRef<string>("");
+  useEffect(() => { const p = watch.data?.entries === false; const key = p ? "p" : ""; if (p && paused838.current !== key) toast("She's PAUSED by her safety breaker - tap LIVE off, then on, to bring her back."); paused838.current = key; }, [watch.data?.entries]);
   const trailQ = useQuery({
     queryKey: ["trail"],
     queryFn: () => getTrail(),
@@ -1948,21 +1951,7 @@ export function DeskApp() {
                 )}
               />
             </span>
-            <button
-              type="button"
-              onClick={() => {
-                const next = !(watch.data?.entries === true);
-                void setEntries({ data: { on: next } }).then(() => {
-                  toast(next ? "Entries on. $25." : "Entries off. Open trades can still cash.");
-                  void watch.refetch();
-                });
-              }}
-              className="flex h-8 items-center rounded-md px-2 text-[10px] tracking-[0.16em] hairline-soft"
-              aria-pressed={watch.data?.entries === true}
-              aria-label="Toggle new entries"
-            >
-              {watch.data?.entries === false ? "OFF" : "ON"}
-            </button>
+            {/* fix838 ONE SWITCH (Love Nov 6 2026 ~4:04 PM PT: "hun can you take this extra one off? it's gonna trick me every time i turn it on lol i'm gonna forget i have to do an extra one and she will miss atleast 300 windows this week if it's still there"): the separate ENTRIES pill is gone - LIVE is the one switch (LIVE on = entries on). */}
             <button
               type="button"
               onClick={() => {
@@ -1987,6 +1976,7 @@ export function DeskApp() {
                 // fix764 ONE TAP LIVE (Love Nov 5 2026 4:43 PM PT: "please remove this"): no "Turn LIVE on?" pop-up - one tap turns LIVE on; the toast below says it took. The switch, seal and umpire are unchanged.
                 void setLiveSwitch({ data: { live: next } }).then(() => {
                   toast(next ? "LIVE is on. Real orders can go out." : "LIVE is off. No new orders will be sent.");
+                  void watch.refetch(); /* fix838: LIVE on = entries on */
                   void liveQ.refetch();
                 });
               }}
@@ -1997,9 +1987,9 @@ export function DeskApp() {
               aria-pressed={liveQ.data?.live === true}
               aria-label="Toggle live trading"
             >
-              <span className={cn("inline-block size-1.5 rounded-full", liveQ.data?.live === true ? "bg-red-500" : liveOff3m815 ? "animate-pulse bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.9)]" : "bg-subtle")} /* fix815: flashing orange after 3 min off */ />
+              <span className={cn("inline-block size-1.5 rounded-full", liveQ.data?.live === true && watch.data?.entries === false ? "animate-pulse bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.9)]" /* fix838 paused */ : liveQ.data?.live === true ? "bg-red-500" : liveOff3m815 ? "animate-pulse bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.9)]" : "bg-subtle")} /* fix815: flashing orange after 3 min off */ />
               <span className={cn("text-[10px] tracking-[0.16em]", liveQ.data?.live === true ? "text-fg" : "text-muted")}>
-                {liveQ.data?.live === true ? "LIVE ON" : "LIVE OFF"}
+                {liveQ.data?.live === true ? (watch.data?.entries === false ? "PAUSED · TAP LIVE OFF / ON" : "LIVE ON") : "LIVE OFF"} {/* fix838: a breaker pause shows on LIVE itself */}
               </span>
             </button>
             {liveQ.data?.live !== true ? (
@@ -3397,6 +3387,8 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     { book: "hm707-rev" as any, title: "HIGH MULTIPLE · REVERSAL AT THE FARTHEST BAND (paper)", note: "fix707 paper: after a rip through 1+ bands, the turn back at the farthest band, 2.8x+ asks only. Card added by fix721 (display only)." },
     { book: "hm707-rip" as any, title: "HIGH MULTIPLE · WITH THE RIP (paper)", note: "fix707 paper twin: still past the last band crossed, with the rip, 2.8x+ asks only. Card added by fix721 (display only)." },
     { book: "kalshinow766" as any, title: "ON KALSHI NOW 💸 · AKIMBO LIVE", note: "fix766 (Love, Nov 5 5:06 PM: the new active ledger for what's on kalshi rn ... so we can see the actual record): the REAL Kalshi record of whatever is live - AKIMBO (SESSION + PINK, +15M PIVOTS, gold 2m seat) and main / TOGETHER in the 2-3 PM hand-over - from Kalshi fills and settlements, add-ons included, since AKIMBO went live (Nov 5 6:36 AM). No paper rows. Display only." },
+    { book: "onetwothree835" as any, title: "1-2-3 · SEALED · PAPER", note: "fix835 (Love, Nov 6): her Oct 25-26 Polymarket BTC 5-minute 1-2-3 book as it stood in PRE295-BUILD (Oct 26 ~9:30 PM PT), sealed byte for byte - the rejection model's streak read, her walls judged at the call ($25 pink cushion, chart Bollinger), the 1m / 2m / 3m flip doors and the late door, ask+4c never past 1.38x, no buys under 30c, half at 75% / rest at 90%, -$45 day stop, 1 h pause after 4 losses. $5 paper on the desk's recorded Polymarket 5m quotes. Stops itself if the seal breaks. Paper only." },
+    { book: "onetwothree836" as any, title: "1-2-3 · NEW · PAPER", note: "fix836 (Love, Nov 6): the sealed 1-2-3 base plus her late door (~3:00 left, pushing off a Bollinger, session band or red/green zone with the live 1m her colour), her 1.5x floor (66c max), the Bollinger cushion ($50 / 10% of the channel) and no trading into a line within $50 of the target. $5 paper on the desk's recorded Polymarket 5m quotes. Paper only." },
     { book: "og1012" as any, title: "OG ORIGINAL · 10.12 🕯️ · PAPER · SEALED", note: "fix686 (Love, Nov 5 ~1:00 AM: put her on her own paper card never to be touched): Oct 12 OG + PIVOT 5M, byte for byte from branch 10.12 · $20 paper · her Oct 12 exits · never edited. Card by fix765 (display only)." },
     { book: "brkout687" as any, title: "OUTWARD BREAK · SESSION BANDS · PAPER 🤍", note: "fix687 (Love, Nov 5 ~1:00 AM): a 1m close through a session band by her push ($6 BTC / 33c gold), away from the VWAP · $20 paper · 1.38x floor · BTC + gold. Card by fix765 (display only)." },
     { book: "inv688" as any, title: "INVERSE BOOK · HER LOSING SET UPS, FLIPPED (paper)", note: "fix688 paper: the other side of her listed losing set ups (data/inverse-setups.json). Card added by fix721 (display only)." },
