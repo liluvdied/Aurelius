@@ -1,6 +1,6 @@
 # Her change history
 
-Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 17:55 from her desk branch and her requests book.
+Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 18:03 from her desk branch and her requests book.
 
 ## 1. PINK BREAK = THE ENTRY, put in whole (fix641, R328)
 - When: 2026-11-04 13:39:42 -0800
@@ -1504,5 +1504,21 @@ Every install, oldest first: what she did BEFORE, what she does AFTER, Love's ow
 - Her words: Love Nov 7 2026 ~5:20 PM PT: "hun she IS NOT doing her add ons. please fix that" + 3:26 PM: "fix the add on thing now pls let the add ons work as i set them" + 3:17 PM: "wick rejection is the ONLY instance she may enter without the candle our color" (her colour is an ENTRY rule)
 - Before: (the code as it was in the previous entry - see the diff)
 - After: fix967 HER ADD-ONS FIRE AS SHE SET THEM: since 4:11 PM her colour check (297) also ran on add-ons, so an add-on at her 2.8x (price moved against her, candle not her colour) was refused - 14 times at 5:07 PM on BTC. Her colour rule is for ENTRIES; it stays on every entry, including the BTC / gold copies. Add-ons go at her multiple again with every other rail ($5 cap, umpire, LIVE, side lock, opposite guard).
+- Files: -
+
+## 189. MOMENTUM HER COLOUR AND ZONE (fix965, R570)
+- When: 2026-11-07 18:00:11 -0800
+- Commit: [14a31696](https://github.com/liluvdied/Aurelius/commit/14a316962a4d88e0d0a12f74f65adf34c0c61586)
+- Her words: Love Nov 7 2026 ~5:38 PM PT, her card pick "Price just back over it" + ~5:34 PM PT: "not the middle hun. just back over the bollinger" + ~5:22 PM PT: "okay no fix the color issue on momentum. 2M or 5M must be her color unless it is a wick rejection. even if a 1m closed above pink. and she was in the red zone over pink when she longed." + 5:32 PM: "dude momentum is very broken it's backwards in its logic / bnb broke the bollinger DOWN and she entered long"
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix965 MOMENTUM NEEDS HER COLOUR + NO LONG IN THE RED ZONE: every momentum entry (the coin books - BNB, SOL, DOGE, BTC first-2 - and BTC / gold momentum; the BNB live copy and the Polymarket momentum copy follow those rows) now needs her 2m OR 5m candle her colour (price past that candle's open her way); a 1m close over or under pink alone is no longer enough. And no long at or past the red zone above pink, no short at or past the green zone below pink (main's inside-the-zone wall). And after a 5m closes under the Bollinger lower (last 15 min), no long until price is back over the Bollinger lower; after a close over the upper, no short until back under the upper (the coin books, from their own Coinbase 5m Bollinger 20/2). Refusals log to data/momentum-colour-965.jsonl.
+- Files: src/lib/desk/bnblive940.ts (+11/-2), src/lib/desk/btclive899.ts (+10/-1), src/lib/desk/ethlive2.ts (+10/-1), src/lib/desk/ethlive831.ts (+10/-1), src/lib/desk/momcoins833.ts (+19/-1), src/lib/desk/momentum.ts (+10/-0)
+
+## 190. ADD ONS FROM HER SETTINGS (fix969, R571)
+- When: 2026-11-07 18:03:34 -0800
+- Commit: [18028d9c](https://github.com/liluvdied/Aurelius/commit/18028d9cbda8706c5aeacdb9324278453859b172)
+- Her words: Love Nov 7 2026 ~5:42 PM PT: "hun pls let it run my add ons i have set in the settings. make it unilateral" + 5:40 PM: "ADD ONS DO NOT COUNT FOR CANDLE COLOR." + 3:26 PM: "let the add ons work as i set them"
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix969 HER ADD-ON BOXES ON EVERY COPY: ETH.1, ETH.2, BTC.2 and BNB now take their add-ons ONLY from her add-on settings (add-on 1 / 2 / 3: on, $, multiple - today $3 at 2.8x, $5 at 4.4x, $2 at 8.8x). Each box once per position at its multiple, a better price than her entry, spent only when it fills, $5 an order, through her add-on route; no colour check on add-ons. Main and rejection already read her boxes. Their own per-book add-on numbers (ETH.1 $5, ETH.2 / BTC.2 / BNB $3) are no longer used.
 - Files: -
 
