@@ -31,6 +31,15 @@ export function signals704(asset: string, bars: Bar1[], open0: number, spot: num
 }
 function st(): { rows: Row704[]; seen: Record<string, number> } { if (G.__mom704) return G.__mom704; let s = { rows: [] as Row704[], seen: {} as Record<string, number> }; try { if (existsSync(D(FILE))) s = { seen: {}, ...JSON.parse(readFileSync(D(FILE), "utf8")) }; } catch {} G.__mom704 = s; return s; }
 function save(force = false) { if (!force && G.__mom704SaveAt && Date.now() - G.__mom704SaveAt < 10000) return; G.__mom704SaveAt = Date.now(); try { const s = st(); s.rows = s.rows.slice(-4000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE)); } catch {} }
+// fix965 (Love Nov 7 2026 ~5:38 PM PT, her card pick "Price just back over it" + ~5:34 PM PT: "not the middle hun. just back over the bollinger" + ~5:22 PM PT: "okay no fix the color issue on momentum. 2M or 5M must be her color unless it is a wick rejection. even if a 1m closed above pink. and she was in the red zone over pink when she longed." + 5:32 PM: "dude momentum is very broken it's backwards in its logic / bnb broke the bollinger DOWN and she entered long"): momentum needs her 2m OR 5m candle her colour and no long at / past the red zone (5m R1), no short at / past the green zone (5m S1) - main's zone wall (fix429).
+export function gate965m(bars: { t: number; o: number }[], spot: number, nowMs: number, side: string, r1: number, s1: number): string {
+  const f2 = Math.floor(nowMs / 120000) * 120000, f5 = Math.floor(nowMs / 300000) * 300000; const b2 = bars.find((b) => b.t >= f2), b5 = bars.find((b) => b.t >= f5); const o2 = b2 ? b2.o : 0, o5 = b5 ? b5.o : 0;
+  if (!(o2 > 0) && !(o5 > 0)) return "HER COLOUR (fix965): no 2m / 5m candle to read";
+  const her = side === "up" ? (o2 > 0 && spot > o2) || (o5 > 0 && spot > o5) : (o2 > 0 && spot < o2) || (o5 > 0 && spot < o5); if (!her) return `HER COLOUR (fix965): neither the 2m nor the 5m is ${side === "up" ? "green" : "red"}`;
+  if (side === "up" && r1 > 0 && spot >= r1) return `RED ZONE (fix965): at or past the red zone ${r1.toFixed(2)} - no long`; if (side === "down" && s1 > 0 && spot <= s1) return `GREEN ZONE (fix965): at or past the green zone ${s1.toFixed(2)} - no short`;
+  return "";
+}
+function zones965(asset: string): { r1: number; s1: number } { try { const j = G.__mom704Pv?.j; return { r1: Number(j?.[asset]?.["5m"]?.r1) || 0, s1: Number(j?.[asset]?.["5m"]?.s1) || 0 }; } catch { return { r1: 0, s1: 0 }; } }
 function pink704(asset: string): number { // her 5m pink as the desk publishes it (data/pivot-now.json), read at most every 5 s
   const c = (G.__mom704Pv ||= { at: 0, j: null as any });
   try { if (Date.now() - c.at > 5000) { c.at = Date.now(); const p = D("pivot-now.json"); if (existsSync(p) && Date.now() - statSync(p).mtimeMs < 60000) c.j = JSON.parse(readFileSync(p, "utf8")); else c.j = null; } } catch { c.j = null; }
@@ -53,6 +62,7 @@ export async function momentumTick704(assets: Record<string, any> | null | undef
       const sig = signals704(id, fresh ? k.bars : [], Number(k.open[w0]) || 0, px, (now - w0) / 1000, Number(a?.vwap1m?.vwap) || 0, Number(a?.vwap1m?.stdev) || 0, pink704(id));
       for (const g of sig) {
         const key = `${m.ticker}:${g.key}`; if (s.seen[key]) continue;
+        { const z965 = zones965(id); if (gate965m([...k.bars, ...(k.cur ? [k.cur] : [])], px, now, g.side, z965.r1, z965.s1)) continue; } // fix965 her colour + zones
         const ask = Number(g.side === "up" ? m.yesAsk : m.noAsk); if (!(ask > 0.01 && ask < 0.99)) continue;
         s.seen[key] = now;
         s.rows.push({ id: `${key}:mom`, setup: SETUPS704.find((x) => x.key === g.key)!.name, asset: id, ticker: m.ticker, closeTime: new Date(now + left * 1000).toISOString(), at: new Date().toISOString(), side: g.side, why: g.why, ask, floorOk: ask <= 0.667, contracts: 20 / ask, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null });

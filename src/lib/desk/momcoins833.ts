@@ -36,6 +36,24 @@ export function lines833(bars: Bar[], nowSec: number): { pink: number; vwap: num
   const vw = xs.reduce((s, v) => s + v, 0) / xs.length, sd = Math.sqrt(xs.reduce((s, v) => s + (v - vw) ** 2, 0) / xs.length);
   return { pink: ema, vwap: vw, sd };
 }
+// fix965 MOMENTUM NEEDS HER COLOUR + NO LONG IN THE RED ZONE (Love Nov 7 2026 ~5:38 PM PT, her card pick "Price just back over it" + ~5:34 PM PT: "not the middle hun. just back over the bollinger" + ~5:22 PM PT: "okay no fix the color issue on momentum. 2M or 5M must be her color unless it is a wick rejection. even if a 1m closed above pink. and she was in the red zone over pink when she longed." + 5:32 PM: "dude momentum is very broken it's backwards in its logic / bnb broke the bollinger DOWN and she entered long"): every momentum entry needs her 2m OR 5m candle her colour (price past that candle's open her way) - a 1m close over / under pink
+// alone is not enough - and no long at or past the red zone (pink + the 7-candle 5m average range, as her ETH / coin books draw it), no short at or past the green zone (main's "inside the red / green zone" wall, fix429).
+export function gate965(bs: { t: number; o: number; h: number; l: number; c: number }[], spot: number, nowS: number, side: string, pink: number): string {
+  const f2 = Math.floor(nowS / 120) * 120, f5 = Math.floor(nowS / 300) * 300; const b2 = bs.find((b) => b.t >= f2), b5 = bs.find((b) => b.t >= f5);
+  const o2 = b2 ? b2.o : 0, o5 = b5 ? b5.o : 0; if (!(o2 > 0) && !(o5 > 0)) return "HER COLOUR (fix965): no 2m / 5m candle to read - no entry";
+  const her = side === "up" ? (o2 > 0 && spot > o2) || (o5 > 0 && spot > o5) : (o2 > 0 && spot < o2) || (o5 > 0 && spot < o5);
+  if (!her) return `HER COLOUR (fix965): neither the 2m (opened ${o2}) nor the 5m (opened ${o5}) is ${side === "up" ? "green" : "red"} at ${spot} - no ${side === "up" ? "long" : "short"}`;
+  if (pink > 0) { const g5: { h: number; l: number }[] = []; for (const b of bs) { const k = Math.floor(b.t / 300) * 300, x: any = g5[g5.length - 1]; if (x && x.t === k) { x.h = Math.max(x.h, b.h); x.l = Math.min(x.l, b.l); } else g5.push({ t: k, h: b.h, l: b.l } as any); }
+    const last7 = g5.slice(-7); const a = last7.length ? last7.reduce((s, x) => s + (x.h - x.l), 0) / last7.length : 0;
+    if (a > 0 && side === "up" && spot >= pink + a) return `RED ZONE (fix965): ${spot} is at or past the red zone (${(pink + a).toPrecision(6)}) over pink - no long`;
+    if (a > 0 && side === "down" && spot <= pink - a) return `GREEN ZONE (fix965): ${spot} is at or past the green zone (${(pink - a).toPrecision(6)}) under pink - no short`; }
+  { const c5: { t: number; c: number }[] = []; for (const b of bs) { const k = Math.floor(b.t / 300) * 300, x = c5[c5.length - 1]; if (x && x.t === k) x.c = b.c; else c5.push({ t: k, c: b.c }); }
+    const done = c5.filter((x) => x.t + 300 <= nowS); if (done.length >= 22) { const bb = (i: number) => { const cs = done.slice(i - 19, i + 1).map((x) => x.c), m = cs.reduce((s, v) => s + v, 0) / 20, sd = Math.sqrt(cs.reduce((s, v) => s + (v - m) ** 2, 0) / 20); return { m, u: m + 2 * sd, l: m - 2 * sd }; };
+      const n = done.length - 1, now5 = bb(n); let brokeDn = false, brokeUp = false; for (let i = Math.max(19, n - 2); i <= n; i++) { const z = bb(i); if (done[i].c < z.l) brokeDn = true; if (done[i].c > z.u) brokeUp = true; }
+      if (side === "up" && brokeDn && spot < now5.l) return `BOLLINGER BROKE DOWN (fix965): a 5m closed under the Bollinger lower in the last 15 min and price ${spot} is not back over it (${now5.l.toPrecision(6)}) - no long`;
+      if (side === "down" && brokeUp && spot > now5.u) return `BOLLINGER BROKE UP (fix965): a 5m closed over the Bollinger upper in the last 15 min and price ${spot} is not back under it (${now5.u.toPrecision(6)}) - no short`; } }
+  return "";
+}
 /** pure signals. closed = closed 1m bars (oldest first); open0 = the window's first price; spot = now; el = seconds into the window */
 export function signals833(setups: string[], closed: Bar[], open0: number, spot: number, el: number, ln: { pink: number; vwap: number; sd: number }): { key: string; side: "up" | "down"; why: string }[] {
   const out: { key: string; side: "up" | "down"; why: string }[] = [], n = closed.length, b1 = closed[n - 1], b0 = closed[n - 2];
@@ -78,7 +96,7 @@ export async function momCoinsTick833() {
       const fresh = last && last.t === Math.floor(nowS / 60) * 60 - 60 && nowS % 60 < 20;
       const first = bs.find((b) => b.t === w0); const open0 = first ? first.o : 0, spot = bs[bs.length - 1].c;
       if (left >= 120) {
-        const sig = signals833(c.setups, fresh ? closed : [], open0, spot, el, lines833(bs, nowS));
+        const ln965 = lines833(bs, nowS); const sig = signals833(c.setups, fresh ? closed : [], open0, spot, el, ln965).filter((g) => { const w965 = gate965(bs, spot, nowS, g.side, ln965.pink); if (w965) { try { const K = (G.__mc965 ||= {}); const kk = `${mk.ticker}:${g.key}`; if (!K[kk]) { K[kk] = 1; appendFileSync(D("momentum-colour-965.jsonl"), JSON.stringify({ at: new Date().toISOString(), coin: c.id, ticker: mk.ticker, setup: g.key, side: g.side, spot, why: w965 }) + "\n"); } } catch {} } return !w965; }); // fix965 her colour + zones
         for (const g of sig) {
           const key = `${mk.ticker}:${g.key}`; if (s.seen[key]) continue;
           const ask = Number(g.side === "up" ? mk.yesAsk : mk.noAsk); if (!(ask > 0.01 && ask < 0.99)) continue;

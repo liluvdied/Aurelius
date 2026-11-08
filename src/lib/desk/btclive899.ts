@@ -11,7 +11,7 @@ import { join } from "node:path";
 const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
 export type Cfg831 = { on: boolean; dollars: number; addOn: number; addOnMult: number; maxAsk: number };
-export function cfg831(): Cfg831 {
+function cfgBase969(): Cfg831 {
   let c: any = {}; try { c = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.btcLive899 || {}; } catch {}
   const k863 = coin863("btc"); if (k863) return { on: c.on === true, dollars: k863.entry, addOn: k863.addOn1.on ? k863.addOn1.dollars : 0, addOnMult: k863.addOn1.mult, maxAsk: 0.667 }; // fix863 her ETH coin
   return { on: c.on === true, dollars: Math.min(5, Number(c.dollars) > 0 ? Number(c.dollars) : 2.5), addOn: Math.min(5, Number(c.addOn) > 0 ? Number(c.addOn) : 3), addOnMult: Number(c.addOnMult) > 1 ? Number(c.addOnMult) : 2.8, maxAsk: 0.667 };
@@ -49,6 +49,10 @@ export async function btcLiveTick899(now = Date.now(), liveIn?: Live, mkIn?: Mk)
       if (p.status !== "open") continue;
       if (now >= Date.parse(p.closeTime)) { p.status = "bell"; dirty = true; log({ id: p.id, action: "bell" }); continue; }
       const paper = rows.find((x) => x?.id === p.id);
+      for (const [i969, b969] of boxes969().entries()) { if (i969 === 0 || !b969.on || !(b969.dollars > 0)) continue; const k969 = "ao" + (i969 + 1); if ((p as any)[k969]) continue; const T969 = ((G as any).__aoTry969 ||= {}); if (Date.now() - Number(T969[p.id + k969] || 0) < 10000) continue; // fix969 her add-on 2 / 3
+        const m969 = await mk.fetchMarket(p.ticker).catch(() => null); const a969 = m969 ? Number(p.side === "up" ? m969.yesAsk : m969.noAsk) : 0;
+        if (addOnNow831(a969, b969.mult) && (!(Number((p as any).px) > 0) || a969 <= Number((p as any).px) - 0.02)) { T969[p.id + k969] = Date.now(); try { const o = await live.addOnBuy600(p.ticker, p.side, b969.dollars, 1 / b969.mult); log({ id: p.id, action: o?.ok ? "add-on " + (i969 + 1) : "add-on " + (i969 + 1) + " missed", filled: o?.filled ?? 0, px: o?.px ?? null, why: o?.ok ? "" : String(o?.reason || "") }); if (o?.ok) { p.filled += Number(o.filled) || 0; (p as any)[k969] = true; dirty = true; } } catch (e: any) { log({ id: p.id, action: "add-on " + (i969 + 1) + " error", why: String(e?.message || e).slice(0, 160) }); } }
+      }
       if (!p.addOn && c.addOn > 0 && Date.now() - Number(((G as any).__aoTry954 || {})[p.id] || 0) >= 10000 /* fix954 */) {
         const m = await mk.fetchMarket(p.ticker).catch(() => null); const ask = m ? Number(p.side === "up" ? m.yesAsk : m.noAsk) : 0;
         if (addOnNow831(ask, c.addOnMult) && (!(Number(p.px) > 0) || ask <= Number(p.px) - 0.02) /* fix891: a better multiple than her entry */ && await nextBand891(p.side)) {
@@ -77,3 +81,8 @@ export async function side933(label: string, side: string): Promise<string> {
     return String(K.sideOfLine864(String(label || ""), L, bb, chart, wire) || "");
   } catch { return ""; }
 }
+
+// fix969 HER ADD-ON BOXES, EVERY BOOK (Love Nov 7 2026 ~5:42 PM PT: "hun pls let it run my add ons i have set in the settings. make it unilateral" + 5:40 PM: "ADD ONS DO NOT COUNT FOR CANDLE COLOR." + 3:26 PM: "let the add ons work as i set them"): this copy reads its add-ons ONLY from her add-on settings (data/addon-settings.json: add-on 1 / 2 / 3 - on, $, multiple;
+// add-on 1 with no multiple = 2.8x) - each box once per position, at its multiple, a better price than her entry, spent only when it fills, $5 an order, through her add-on route (no colour - her 5:40 PM words).
+export function boxes969(): { on: boolean; dollars: number; mult: number }[] { try { const j = JSON.parse(readFileSync(join(process.cwd(), "data", "addon-settings.json"), "utf8")) || {}; return [1, 2, 3].map((n) => { const b = j["addOn" + n] || {}; return { on: b.on === true, dollars: Math.min(5, Number(b.dollars) > 0 ? Number(b.dollars) : 0), mult: Number(b.mult) > 1 ? Number(b.mult) : 2.8 }; }); } catch { return []; } }
+export function cfg831(): Cfg831 { const c = cfgBase969(); const b = boxes969()[0]; if (b) { c.addOn = b.on ? b.dollars : 0; c.addOnMult = b.mult; } return c; } // fix969 add-on 1 = her box 1

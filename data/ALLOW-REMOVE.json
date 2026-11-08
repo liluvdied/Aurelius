@@ -10256,5 +10256,35 @@
     "what": "{ const a951 = /^KXGOLD/.test(String(ticker)) ? \"gold\" : /^KXBTC/.test(String(ticker)) ? \"btc\" : \"\"; if (a951) { const B951: any = await import(\"./bandlock\"); const q951 = (await import(\"./quotes\")).quoteTick(a951); const t951 = Number(q951?.c) || 0; const L951 = (((globalThis as any).__lawBands?.[a951]?.L) || []) as any[]; if (!(t951 > 0)) return no(\"no live price to check her colour (fix951)\"); if (!(B951.rej668?.(a951, side, t951, L951)) && !(B951.herColour949?.(a951, side, t951))) return no(\"NOT HER COLOUR (fix951): neither the 2m nor the 5m candle is her colour\"); } } // fix951 her colour on every add-on and every BTC / gold copy",
     "why": "fix967 (her words in this change's request)",
     "R": "R569"
+  },
+  {
+    "what": "const sig = signals833(c.setups, fresh ? closed : [], open0, spot, el, lines833(bs, nowS));",
+    "why": "fix965 (her words in this change's request)",
+    "R": "R570"
+  },
+  {
+    "what": "export function cfg831(): Cfg831 {",
+    "why": "fix969 (her words in this change's request)",
+    "R": "R571"
+  },
+  {
+    "what": "export function cfg831(): Cfg831 {",
+    "why": "fix969 (her words in this change's request)",
+    "R": "R571"
+  },
+  {
+    "what": "export function cfg831(): Cfg831 {",
+    "why": "fix969 (her words in this change's request)",
+    "R": "R571"
+  },
+  {
+    "what": "export function cfg831(): Cfg831 {",
+    "why": "fix969 (her words in this change's request)",
+    "R": "R571"
+  },
+  {
+    "what": "if (!p.addOn && c.addOn > 0 && Date.now() - Number(((G as any).__aoTry954 || {})[p.id] || 0) >= 10000 /* fix954 */ && false /* fix940: no add-on on BNB */) {",
+    "why": "fix969 (her words in this change's request)",
+    "R": "R571"
   }
 ]
