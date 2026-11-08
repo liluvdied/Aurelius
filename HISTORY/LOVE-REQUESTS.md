@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R581 - fix1021 AWAY FROM LINE OFF: on her 11:00 PM word, main's AWAY FROM LINE setup (fix824 - at a window's open it took the side away from a line near the target, with no candle-colour check) stops trading live on every book. The code is kept, not deleted. LIVE, main / rejection / delayed and everything else stay exactly as they are.
+- when: 2026-11-08T07:07:36+00:00
+- Love: "Love Nov 7 2026 11:00 PM PT: "yes - take that set up off" (main's AWAY FROM LINE, fix824 - it longed BTC at the 10:45 PM open on a red candle; Love 10:46 PM: "she just longed btc on a fully red candle btw hun, for your checklist to fix")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/away-line-off-1021.cjs", "has": "fix1021"}
+- proof: {"test": "tools/away-line-off-1021.cjs"}
+
 ## R580 - fix1019 MAIN ONLY: on her 10:08 PM yes and 10:13 PM "POLY MOMENTUM OFF / MAIN ONLY", BTC.2, ETH.2, BNB, Poly momentum and the XRP 5m Poly lane that fired backwards tonight stop sending live orders until her rulebook drop. Their paper books keep running, nothing is deleted, open positions and take-profits are untouched, and on:true brings each back. LIVE and main / rejection / delayed stay exactly as they are.
 - when: 2026-11-08T06:31:06+00:00
 - Love: "Love Nov 7 2026 10:13 PM PT: "POLY MOMENTUM OFFFFF / MAIN ONLY" + 10:08 PM PT: YES to "switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live." (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up)"
