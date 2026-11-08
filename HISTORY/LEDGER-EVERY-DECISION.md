@@ -1,9 +1,12 @@
-# Every decision Love has made - rebuilt 2026-11-08T17:12:17.673978+00:00
+# Every decision Love has made - rebuilt 2026-11-08T18:28:57.943843+00:00
 
-1548 decisions with Love's words or card picks, out of 2308 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1549 decisions with Love's words or card picks, out of 2309 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-08T18:28:07.894Z  ·  diary line 2776
+- Full entry: 2026-11-08T18:28:07.894Z HOURS (Love, in-app schedule pill): 10 AM PT -> MAIN book (BTC only)
 
 ## 2026-11-08T09:56:31Z  ·  diary line 2775
 - Full entry: 2026-11-08T09:56:31Z CACHE CLEARED BY HAND (Love, CLEAR-HER-CACHE.command): 9 rows to the archive, 192 stay

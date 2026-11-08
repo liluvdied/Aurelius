@@ -24104,3 +24104,4 @@
 {"at":"2026-11-08T14:00:47.062Z","ticker":"KXBTC15M-26NOV080915-15","book":"recon-tog","side":"down","label":"Break below 5m PP","price":0,"count":"","tick":75811.34,"verdict":"SAFE","why":""}
 {"at":"2026-11-08T17:16:09.108Z","ticker":"KXBTC15M-26NOV081230-30","book":"recon-tog","side":"up","label":"Failed break below -2σ - rejected up","price":0.53,"count":"3.57","tick":75587.3,"verdict":"SAFE","why":""}
 {"at":"2026-11-08T17:16:09.369Z","ticker":"KXBTC15M-26NOV081230-30","book":"recon-tog","side":"up","label":"Failed break below -2σ - rejected up","price":0,"count":"","tick":75588.91,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T18:15:31.149Z","ticker":"KXBTC15M-26NOV081330-30","book":"recon-rej","side":"down","label":"Rejected down off session VWAP","price":0.48,"count":"4.34","tick":75762.55,"verdict":"SAFE","why":""}
