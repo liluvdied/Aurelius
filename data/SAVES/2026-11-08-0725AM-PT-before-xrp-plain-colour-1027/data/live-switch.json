@@ -1,10 +1,10 @@
 {
-  "live": true,
-  "maxDollars": 1,
+  "live": false,
+  "maxDollars": 2,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-08T09:13:45.489Z",
-  "note": "Turned on from the desk",
+  "at": "2026-11-08T15:25:42.263Z",
+  "note": "Turned off by the install for the file swap (fix1025)",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
   ],
@@ -123,8 +123,8 @@
       "recon-rej",
       "recon-dly"
     ],
-    "dollars": 1,
-    "since": "2026-11-08T09:13:45.493Z",
+    "dollars": 2,
+    "since": "2026-11-08T14:42:49.872Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
