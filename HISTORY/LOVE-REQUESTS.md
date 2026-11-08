@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R584 - fix1025 LIVE KICKSTARTS ITSELF: (1) LIVE turns itself back on 60 s before EVERY 5-minute window (:x0 / :x5), not just the 15m ones. (2) An install only keeps LIVE off while it is swapping files (part 1) - each CHANGE / RUN-ALL now says which part it is in (data/install-phase-1025.json); its GitHub save, umpire and 'press return to close' never keep LIVE off again; a part-1 note older than 20 min is ignored and logged. (3) Every CHANGE and RUN-ALL turns LIVE OFF by itself at the start (part1 written first; never within 90 s of a 5m / 15m window open - it waits until the open + 10 s) and back on BY ITSELF once the files are in (umpire SAFE, entries not halted, no OFF FOR THE DAY) - no more 'NOW TURN LIVE ON ... press return'. If it can't, it says why and fix815 retries before the next window. Halt, breaker, entries-off, OFF FOR THE DAY, the umpire, seal, freshness, floors and caps are untouched.
+- when: 2026-11-08T09:21:29+00:00
+- Love: "Love Sat Nov 7 2026 11:55 PM PT: "fml dude i forget to turn it back on every single time when it tells me to turn it off and then turn it back on. why do we need to dooo that hun??? / and can we actually actually actually implement the kickstart if an install was in progress and i forgot to turn it back on afterwards hun? / 60 seconds before a window / i want it on for every window - indefinitely ok / have it kickstart itself back up , if i want to turn it off i will turn it off off myself" (at 2026-11-08T07:29:00Z LIVE "stayed off: a CHANGE / RUN-ALL install is running" - CHANGE-358 was past its commit, in its GitHub save - and the 11:30 PM window was missed)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/liveauto815.ts", "has": "fix1025 LIVE KICKSTARTS ITSELF"}
+- proof: {"code": "data/BATCH-RUNNER/run-all.sh", "has": "prep1025 # fix1025 LIVE-OFF-1025"}
+- proof: {"test": "tools/live-kickstart-1025.cjs"}
+
 ## R583 - fix1024 XRP 5M BACK LIVE: on her 11:24 PM word, her XRP 5m Polymarket lane (fix961 + fix1004, exactly as it ran tonight) trades live again at $1 with her 66c cap. Its code is unchanged. Everything else stays as it is.
 - when: 2026-11-08T07:52:27+00:00
 - Love: "Love Nov 7 2026 11:24 PM PT: "as for the 5M xrp that's been running on paper at 78 % , so that one is good to go rn? can we just put that one live in the meantime while the others are being written up?""
