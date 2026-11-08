@@ -2587,5 +2587,115 @@
   "status": "skipped",
   "final": true,
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV081345-45:recon-tog:KXBTC15M-26NOV081345-45:recon-tog": {
+  "at": "2026-11-08T18:35:40.284Z",
+  "ticker": "KXBTC15M-26NOV081345-45",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "THE ENFORCER (fix500): the umpire is not SAFE - tools/requests.py is OUT; her code changed while the umpire ran",
+  "firstTryAt": "2026-11-08T18:35:01.628Z",
+  "bookedAt": "2026-11-08T18:35:27.218Z",
+  "tries": 137,
+  "final": false,
+  "paid": 0.25,
+  "orderId": "01a1bc71-d478-793b-8417-6ca671323fee"
+ },
+ "KXBTC15M-26NOV081345-45:recon-rej:KXBTC15M-26NOV081345-45:recon-rej": {
+  "at": "2026-11-08T18:35:04.179Z",
+  "ticker": "KXBTC15M-26NOV081345-45",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV081400-00:recon-rej:KXBTC15M-26NOV081400-00:recon-rej": {
+  "at": "2026-11-08T18:45:23.672Z",
+  "ticker": "KXBTC15M-26NOV081400-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV081400-00:recon-tog:KXBTC15M-26NOV081400-00:recon-tog": {
+  "at": "2026-11-08T18:45:24.183Z",
+  "ticker": "KXBTC15M-26NOV081400-00",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-11-08T18:45:24.183Z",
+  "bookedAt": "2026-11-08T18:45:23.398Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.51,
+  "orderId": "01a1bc7a-bdb8-78ef-a1a2-de7e72eac202"
+ },
+ "KXBTC15M-26NOV081415-15:recon-rej:KXBTC15M-26NOV081415-15:recon-rej": {
+  "at": "2026-11-08T19:00:18.972Z",
+  "ticker": "KXBTC15M-26NOV081415-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV081415-15:recon-tog:KXBTC15M-26NOV081415-15:recon-tog": {
+  "at": "2026-11-08T19:14:30.695Z",
+  "ticker": "KXBTC15M-26NOV081415-15",
+  "side": "up",
+  "status": "missed",
+  "reason": "window ended before it filled (last: BTC SLIDE UNDER PINK: 2 candles hit the pink and rejected on a down slope (last at 75809.58) with btc 75745.67 under it - no long until price breaks up through pink by 10% of the channel (fix560).)",
+  "firstReason": "break retry stopped: NOT ON HER SIDE (fix951): \"Break below 5m PP\" is a short off 5m PP (75829.64) but price 75834.36 is not below it - no entry.",
+  "firstTryAt": "2026-11-08T19:00:20.660Z",
+  "bookedAt": "2026-11-08T19:01:02.629Z",
+  "tries": 1034,
+  "final": true,
+  "paid": null,
+  "orderId": null
+ },
+ "KXBTC15M-26NOV081430-30:recon-tog:KXBTC15M-26NOV081430-30:recon-tog": {
+  "at": "2026-11-08T19:16:07.758Z",
+  "ticker": "KXBTC15M-26NOV081430-30",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "PINK SLIDE (fix658): shorts only off the pink while it slides - Break below session VWAP waits for the pink rejection. (no long: BTC SLIDE UNDER PINK: 2 candles hit the pink and rejected on a down slope (last at 75809.58) with btc 75747.34 under it - no long until price breaks up through pink by 10%",
+  "firstTryAt": "2026-11-08T19:16:07.758Z",
+  "bookedAt": "2026-11-08T19:16:06.884Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.4,
+  "orderId": "01a1bc96-e0d8-7af6-a1e0-f29fd16b77be"
+ },
+ "KXBTC15M-26NOV081430-30:recon-rej:KXBTC15M-26NOV081430-30:recon-rej": {
+  "at": "2026-11-08T19:16:02.154Z",
+  "ticker": "KXBTC15M-26NOV081430-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV081445-45:recon-tog:KXBTC15M-26NOV081445-45:recon-tog": {
+  "at": "2026-11-08T19:30:18.635Z",
+  "ticker": "KXBTC15M-26NOV081445-45",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "break retry stopped: NOT HER COLOUR (fix951): \"Break above 5m PP\" - neither the 2m nor the 5m candle is green at 75790.46 (only a wick rejection may enter without her colour) - no entry.",
+  "firstTryAt": "2026-11-08T19:30:16.643Z",
+  "bookedAt": "2026-11-08T19:30:17.563Z",
+  "tries": 8,
+  "final": false,
+  "paid": 0.39,
+  "orderId": "01a1bca3-dd10-7023-a1e8-03dffc3667ba"
+ },
+ "KXBTC15M-26NOV081445-45:recon-rej:KXBTC15M-26NOV081445-45:recon-rej": {
+  "at": "2026-11-08T19:30:18.027Z",
+  "ticker": "KXBTC15M-26NOV081445-45",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
  }
 }
