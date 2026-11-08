@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R579 - fix1004 XRP-POLY-CORNERSTONES: her XRP 5m Polymarket lane (xrp5m961) moves to main's CURRENT configuration (her 8:53 PM "new one pls": rejections, breaks and failed breaks incl. the Bollinger middle; thirds, past the zone, pink-to-zone 55%, pink 20% cushion, her line-in-the-way reach, her $25 Bollinger wall with the broken-Bollinger rule, all scaled to XRP) and enters only through her cornerstones - (a) her colour that is REAL (2m or 5m candle her colour by her push over its open; a 1-tick colour is not her colour), (b) price on her side of the line, (c) the push off the 5m low / high (bands $0.0005, pink $0.0010), (d) no long under an unbroken Bollinger middle / upper within her $25 wall scaled to XRP, (e) rule C mirrored: no long while the 5m is red and under the Bollinger middle. The only exception: a REAL wick rejection ($0.0005 back off the wick) skips colour only, labelled (wick). Only the XRP Poly lane changes.
+- when: 2026-11-08T05:13:53+00:00
+- Love: "Love Nov 7 2026 8:49 PM PT: "hun she longed xrp on poly when the candle was red and under a bollinger. candles need to be her color. the wick rejections didn't trigger so she entered on a red candle pushing" + 8:53 PM: "ok you can put her on the new configuration bb ... new one pls" + 7:31 PM: "it needs to be ON THE SAME SIDE OF THE BAND. 100% OF THE TIME ... FLIP (or born candle) AND PUSH. NOTHING ELSE" + 7:40 PM XRP push: bands 0.05c, pink 0.10c, wick $0.0005"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/xrp5m961.ts", "has": "fix1004 XRP-POLY-CORNERSTONES"}
+- proof: {"test": "tools/xrp-5m-poly-961.cjs"}
+
 ## R578 - fix1002 ALL BOOKS IN THE TABLES (display only): every current book and ledger gets a row in the RUNNING ON KALSHI + POLY table and in the i . O . i · ITEMS OF INTEREST table - main, rej, delayed, the no-pink books, ETH.2, ETH.1, BTC.2, BNB momentum (live + paper), BTC momentum on Poly, XRP 5M on Poly, the old 5M lane - tagged LIVE / PAPER / OFF and KALSHI / POLY, with today's trades, W, L and $ from each book's own log / state file (live main / rej also show their real Kalshi line). XRP on Kalshi, XRP rej, BTC 5M, ETH 5M and the push / wick shadow get their rows by themselves once their files exist. Reads files only: no order, no switch, no wall, no live book touched.
 - when: 2026-11-08T04:57:05+00:00
 - Love: "Love Nov 7 2026 8:37 PM PT: "can you put all of these books and ledgers into the running iOi table && running tables for me bb?""

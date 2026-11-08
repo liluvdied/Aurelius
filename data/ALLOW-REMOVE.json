@@ -10351,5 +10351,120 @@
     "what": "polyTwin.rej5m.on",
     "R": "R577",
     "why": "fix981: her old Polymarket 5M lane switched OFF (kept, not deleted) - Love Nov 7 5:55 PM card \"Turn the old lane off\" + \"just off , not deleted\""
+  },
+  {
+    "what": "/** pure: main's Nov 3 read for XRP (now in seconds) - a call or the reason none */",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "const colour = (side: string) => (side === \"up\" ? spot > o2 || spot > o5 : spot < o2 || spot < o5); // Nov 3: her 2m OR 5m candle her colour",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "let call: { side: \"up\" | \"down\"; label: string } | null = null, pinkSetup = false;",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (o5 <= pk && spot >= pk + brk && spot > o2) { call = { side: \"up\", label: \"Break above 5m PP\" }; pinkSetup = true; }",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "else if (o5 >= pk && spot <= pk - brk && spot < o2) { call = { side: \"down\", label: \"Break below 5m PP\" }; pinkSetup = true; }",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "else if (l5 <= pk - brk && spot > pk && spot > o2) { call = { side: \"up\", label: \"Failed break below 5m PP - rejected up\" }; pinkSetup = true; }",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "else if (h5 >= pk + brk && spot < pk && spot < o2) { call = { side: \"down\", label: \"Failed break above 5m PP - rejected down\" }; pinkSetup = true; }",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (!call) for (const l of L) {",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (!/σ$|^session VWAP$|^(Red|Green) zone$|^BB (upper|lower)$/.test(l.name)) continue; const P = l.price;",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (!call && o5 >= P && l5 <= P + nr && l5 > P - brk && spot > P && colour(\"up\")) call = { side: \"up\", label: `Rejected up off ${l.name}` };",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (!call && o5 <= P && h5 >= P - nr && h5 < P + brk && spot < P && colour(\"down\")) call = { side: \"down\", label: `Rejected down off ${l.name}` };",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (!call) return { why: \"no setup\" };",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (call.side === \"up\" && f >= 0.67) return { why: \"THIRDS: long in the top 33%\" };",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (call.side === \"down\" && f <= 0.33) return { why: \"THIRDS: short in the bottom 33%\" };",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (call.side === \"up\" && spot >= r1) return { why: \"PAST THE RED ZONE\" }; if (call.side === \"down\" && spot <= s1) return { why: \"PAST THE GREEN ZONE\" };",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (call.side === \"up\" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: \"PINK TO RED 45%\" };",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (call.side === \"down\" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: \"PINK TO GREEN 45%\" };",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (!pinkSetup) { const w = W / k, cush = w < 100 ? W / 2 : w < 180 ? W / 3 : w <= 500 ? 0.2 * W : w > 1000 ? 0.1 * W : 0.15 * W;",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (call.side === \"up\" && pk > spot && pk - spot <= cush) return { why: \"PINK CUSHION: pink just above the long\" };",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "if (call.side === \"down\" && pk < spot && spot - pk <= cush) return { why: \"PINK CUSHION: pink just below the short\" }; }",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "r = M.xrpRead961(bs, L, 2.2834, now); t(!(\"side\" in r && r.side === \"up\"), \"no long without her 2m or 5m candle green\");",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "r = M.xrpRead961([bar(now - 150, 2.3165, 2.318, 2.3151, 2.317), bar(now - 30, 2.316, 2.3175, 2.316, 2.3172)], [{ name: \"session VWAP\", price: 2.30 }, { name: \"+1σ\", price: 2.32 }, { name: \"-1σ\", price: 2.28 }, { name: \"BB upper\", price: 2.315 }], 2.3172, now); t(!(\"side\" in r), \"a long in the top 33% must be refused (thirds)\");",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
+  },
+  {
+    "what": "console.log(ok ? \"XRP 5M POLY 961 TEST ✓ - XRP 5m on Polymarket with main's Nov 3 entries (rejections with her 2m / 5m colour, pink break, failed break) and her walls, $1 through the Polymarket guard, stale feed = no trade.\" : \"XRP 5M POLY 961 TEST: FAIL\");",
+    "why": "fix1004 (her words in this change's request)",
+    "R": "R579"
   }
 ]
