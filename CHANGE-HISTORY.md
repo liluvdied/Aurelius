@@ -1,6 +1,6 @@
 # Her change history
 
-Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 20:08 from her desk branch and her requests book.
+Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 21:08 from her desk branch and her requests book.
 
 ## 1. PINK BREAK = THE ENTRY, put in whole (fix641, R328)
 - When: 2026-11-04 13:39:42 -0800
@@ -1553,4 +1553,28 @@ Every install, oldest first: what she did BEFORE, what she does AFTER, Love's ow
 - Before: (the code as it was in the previous entry - see the diff)
 - After: fix994 HER 5M POLYMARKET MARKETS FOUND: her XRP 5m lane asked Polymarket US for the EVENT name (xrp-updown-5m-...z) as if it were the market, so every window came back 'not found' (12 set ups, 0 orders). Now any 5m event name is looked up first (the same lookup her BTC 5m uses) and its real market is quoted and bought. Covers XRP now and BTC / ETH 5m. Every lookup is logged (data/poly5-resolve-994.jsonl) so the first window proves it.
 - Files: src/lib/desk/poly-live.server.ts (+14/-0)
+
+## 195. POLY 5M MARKET NAMES (fix1001, R576)
+- When: 2026-11-07 20:32:17 -0800
+- Commit: [f1a41c4a](https://github.com/liluvdied/Aurelius/commit/f1a41c4abdae5d5976c8b0fec0cd125ea73ec148)
+- Her words: Love Nov 7 2026 ~7:19-7:21 PM PT: her links polymarket.us/event/xrp-updown-5m-2026-11-08-0315z (and eth / sol / btc) - the XRP lane found set ups and sent none ("no Polymarket XRP 5m window found"); her public event pages name the real markets cpcxrp-xrp-updown-5m-...z / cpceth-eth-... / cpcsol-sol-... / cpc-btc-...
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix1001 HER 5M MARKETS BY THEIR REAL NAMES: Polymarket US names each 5m market cpc<asset>-<asset>-updown-5m-<date>-<time>z (XRP cpcxrp-xrp-..., ETH cpceth-eth-..., SOL cpcsol-sol-...; BTC cpc-btc-...) - read off her own event pages. CHANGE-334 looked the event up another way and found nothing (8:12 PM: still 'no window'). Now those names are tried first; the first window logs the market it found.
+- Files: src/lib/desk/poly-live.server.ts (+2/-0)
+
+## 196. OLD 5M LANE OFF (fix981, R577)
+- When: 2026-11-07 21:05:33 -0800
+- Commit: [975dc060](https://github.com/liluvdied/Aurelius/commit/975dc06038b342abb22dffcb66ffd7705840cbac)
+- Her words: Love Nov 7 2026 ~5:55 PM PT, her card pick "Turn the old lane off" + "just off , not deleted" (the OLD Polymarket 5M lane, polyTwin.rej5m - BTC, armed at $5 - goes off as her new BTC 5M lane (CHANGE-316) comes on)
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix981 THE OLD POLYMARKET 5M LANE OFF: her old BTC 5M lane on Polymarket (polyTwin.rej5m, armed at $5) is switched off - nothing deleted, its settings and records stay (on:true brings it back). Her new BTC 5M lane (CHANGE-316, $2.50, cornerstones) takes the 5m windows. Her walled 5M model files are untouched.
+- Files: src/components/desk/app.tsx (+30/-0), src/lib/desk/allbooks1002.ts (+163/-0), src/lib/desk/fns.ts (+3/-0)
+
+## 197. ALL BOOKS IN TABLES (fix1002, R578)
+- When: 2026-11-07 21:08:54 -0800
+- Commit: [d04f1b6e](https://github.com/liluvdied/Aurelius/commit/d04f1b6eeb77d8417947b8540486ffb1c2a8b110)
+- Her words: Love Nov 7 2026 8:37 PM PT: "can you put all of these books and ledgers into the running iOi table && running tables for me bb?"
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix1002 ALL BOOKS IN THE TABLES (display only): every current book and ledger gets a row in the RUNNING ON KALSHI + POLY table and in the i . O . i · ITEMS OF INTEREST table - main, rej, delayed, the no-pink books, ETH.2, ETH.1, BTC.2, BNB momentum (live + paper), BTC momentum on Poly, XRP 5M on Poly, the old 5M lane - tagged LIVE / PAPER / OFF and KALSHI / POLY, with today's trades, W, L and $ from each book's own log / state file (live main / rej also show their real Kalshi line). XRP on Kalshi, XRP rej, BTC 5M, ETH 5M and the push / wick shadow get their rows by themselves once their files exist. Reads files only: no order, no switch, no wall, no live book touched.
+- Files: -
 
