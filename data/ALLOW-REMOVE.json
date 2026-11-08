@@ -10286,5 +10286,40 @@
     "what": "if (!p.addOn && c.addOn > 0 && Date.now() - Number(((G as any).__aoTry954 || {})[p.id] || 0) >= 10000 /* fix954 */ && false /* fix940: no add-on on BNB */) {",
     "why": "fix969 (her words in this change's request)",
     "R": "R571"
+  },
+  {
+    "what": "const px = Math.min(maxAsk, Math.round((ask + 0.01) * 100) / 100);",
+    "why": "fix987 (her words in this change's request)",
+    "R": "R572"
+  },
+  {
+    "what": "const px = Math.min(maxAsk, Math.round((ask + 0.01) * 100) / 100);",
+    "why": "fix987 (her words in this change's request)",
+    "R": "R572"
+  },
+  {
+    "what": "const px = Math.min(maxAsk, Math.round((ask + 0.01) * 100) / 100);",
+    "why": "fix987 (her words in this change's request)",
+    "R": "R572"
+  },
+  {
+    "what": "const px2 = Math.min(maxAsk, Math.round((ask2 + 0.01) * 100) / 100);",
+    "why": "fix987 (her words in this change's request)",
+    "R": "R572"
+  },
+  {
+    "what": "ethLive831.offNote989",
+    "R": "R573",
+    "why": "fix989 ethLive831.offNote989"
+  },
+  {
+    "what": "ethLive831.since",
+    "R": "R573",
+    "why": "fix989 ethLive831.since"
+  },
+  {
+    "what": "ethLive831.on",
+    "R": "R573",
+    "why": "fix989: ETH.1 switched OFF (kept, not deleted) - Love Nov 7 7:00 PM"
   }
 ]

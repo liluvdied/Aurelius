@@ -3,7 +3,7 @@
   "maxDollars": 3,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-08T01:56:54.822Z",
+  "at": "2026-11-08T03:11:01.633Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -124,7 +124,7 @@
       "recon-dly"
     ],
     "dollars": 3,
-    "since": "2026-11-08T01:56:54.824Z",
+    "since": "2026-11-08T03:11:01.634Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -3123,12 +3123,13 @@
     "since": "2026-11-06T23:59:00.538403Z"
   },
   "ethLive831": {
-    "on": true,
+    "on": false,
     "dollars": 5,
     "addOn": 5,
     "addOnMult": 2.8,
-    "since": "2026-11-07T00:11:24.926768Z",
-    "note849": "fix849 (Love Nov 6 2026 ~6:25 PM PT: 'pls have the eth book run at $5 with a $5 add on pls babez')"
+    "since": "2026-11-08T03:10:50.748404+00:00",
+    "note849": "fix849 (Love Nov 6 2026 ~6:25 PM PT: 'pls have the eth book run at $5 with a $5 add on pls babez')",
+    "offNote989": "fix989 Love Nov 7 7:00 PM: \"only the new ETH rej book only the first one is out\" - ETH.1 off, ETH.2 stays. Records kept; on:true brings it back."
   },
   "ethLive872": {
     "on": true,

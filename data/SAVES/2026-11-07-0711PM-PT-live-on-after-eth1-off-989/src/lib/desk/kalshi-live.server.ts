@@ -1751,7 +1751,7 @@ async function topUpFlat609(ticker, side, dollars, maxAsk, line) {
   const quote = await liveAsks(ticker);
   const ask = side === "up" ? quote?.yesAsk : quote?.noAsk;
   if (!(ask > 0.02) || ask > maxAsk + 1e-9) return { ok: false, reason: `ask ${ask ?? "?"} over ${maxAsk}` };
-  const px = Math.min(maxAsk, Math.round((ask + 0.01) * 100) / 100);
+  const px = Math.floor(Math.min(maxAsk + 1e-9, Math.round((ask + 0.01) * 100) / 100) * 100) / 100; /* fix987 whole cents (her 4.4x / 8.8x caps were sent as 0.2273 / 0.1136 - Kalshi refused them) */
   const count = Math.floor(Number(dollars) / px * 100) / 100;
   if (!(count >= 0.01)) return { ok: false, reason: "size" };
   const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", { ticker, client_order_id: randomUUID(), side: bookSide, count: count.toFixed(2), price: money(side === "up" ? px : Math.round((1 - px) * 100) / 100), time_in_force: "immediate_or_cancel", self_trade_prevention_type: "taker_at_cross", post_only: false, reduce_only: false, cancel_order_on_pause: true, exchange_index: 2 });
@@ -1760,6 +1760,7 @@ async function topUpFlat609(ticker, side, dollars, maxAsk, line) {
   const filled = Number.parseFloat(data.fill_count ?? "0") || 0;
   return { ok: filled > 0, filled, px, ask, orderId: data.order_id, reason: filled > 0 ? "" : "no fill" };
 }
+// fix987 HER ADD-ONS IN WHOLE CENTS (Love Nov 7 2026 ~6:37 PM PT: "hun again she is not doing her add ons pls make sure everything i asked you for is FUNCTIONAL before shipping anything and saying it's done" (6:08:47 PM: her BTC add-on 2 at 4.4x went to Kalshi at "0.2273" and Kalshi refused it "invalid price")): every add-on price is rounded DOWN to a whole cent under her multiple's cap (4.4x = 22c, 8.8x = 11c) - never a 4-decimal price Kalshi refuses.
 async function addOnBuy600(ticker, side, dollars, maxAsk, kind953 = "addon") {
   const no = (reason) => ({ ok: false, reason: `ADD-ON (fix600): ${reason} - no order` });
   maxAsk = Math.min(Number(maxAsk) || 0, 0.66); // fix956 HER 66c CAP ON THE COPIES AND ADD-ONS (Love Oct 30 2026 (R266, her kept card c37): "THE 1.5x FLOOR: no order under 1.5x (66c cap)" + Nov 7 3:24 PM PT: "DO NOT HAVE THEM SKIP EVERY WALL"): ETH.1 / ETH.2 / BTC.2 / BNB entries and every add-on pay 66c at most, like main (66.7c = 1.499x was under her 1.5x floor)
@@ -1774,7 +1775,7 @@ async function addOnBuy600(ticker, side, dollars, maxAsk, kind953 = "addon") {
   const quote = await liveAsks(ticker);
   const ask = side === "up" ? quote?.yesAsk : quote?.noAsk;
   if (!(ask > 0.02) || ask > maxAsk + 1e-9) return { ok: false, reason: `ask ${ask ?? "?"} over ${maxAsk}` };
-  const px = Math.min(maxAsk, Math.round((ask + 0.01) * 100) / 100);
+  const px = Math.floor(Math.min(maxAsk + 1e-9, Math.round((ask + 0.01) * 100) / 100) * 100) / 100; /* fix987 whole cents (her 4.4x / 8.8x caps were sent as 0.2273 / 0.1136 - Kalshi refused them) */
   const count = Math.floor(Number(dollars) / px * 100) / 100;
   if (!(count >= 0.01)) return { ok: false, reason: "size" };
   const aoBody = { ticker, client_order_id: randomUUID(), side: side === "up" ? "bid" : "ask", count: count.toFixed(2), price: money(side === "up" ? px : Math.round((1 - px) * 100) / 100), time_in_force: "immediate_or_cancel", self_trade_prevention_type: "taker_at_cross", post_only: false, reduce_only: false, cancel_order_on_pause: true, exchange_index: 2 };
@@ -1802,7 +1803,7 @@ async function addOnBuy(ticker, side, dollars, maxAsk, free = false) {
   const quote = await liveAsks(ticker);
   const ask = side === "up" ? quote?.yesAsk : quote?.noAsk;
   if (!(ask > 0.02) || ask > maxAsk + 1e-9) return { ok: false, reason: `ask ${ask ?? "?"} over ${maxAsk}` };
-  const px = Math.min(maxAsk, Math.round((ask + 0.01) * 100) / 100);
+  const px = Math.floor(Math.min(maxAsk + 1e-9, Math.round((ask + 0.01) * 100) / 100) * 100) / 100; /* fix987 whole cents (her 4.4x / 8.8x caps were sent as 0.2273 / 0.1136 - Kalshi refused them) */
   const count = Math.floor(Number(dollars) / px * 100) / 100;
   if (!(count >= 0.01)) return { ok: false, reason: "size" };
   const aoBody = {
@@ -1836,7 +1837,7 @@ async function addOnBuy(ticker, side, dollars, maxAsk, free = false) {
       const q2 = await liveAsks(ticker);
       const ask2 = side === "up" ? q2?.yesAsk : q2?.noAsk;
       if (ask2 > 0.02 && ask2 <= maxAsk + 1e-9) {
-        const px2 = Math.min(maxAsk, Math.round((ask2 + 0.01) * 100) / 100);
+        const px2 = Math.floor(Math.min(maxAsk + 1e-9, Math.round((ask2 + 0.01) * 100) / 100) * 100) / 100; /* fix987 whole cents */
         const c2 = Math.floor(shortBy / ask2 * 100) / 100;
         if (c2 >= 0.01) {
           const b2 = { ...aoBody, client_order_id: randomUUID(), count: c2.toFixed(2), price: money(side === "up" ? px2 : Math.round((1 - px2) * 100) / 100) };

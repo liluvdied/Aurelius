@@ -2819,3 +2819,14 @@
 {"at":"2026-11-08T01:40:45.501168Z","ticker":"KXETH15M-26NOV072045-45","action":"buy","side":"no","qty":"20.44","yes":"0.0010","status":"executed"}
 {"at":"2026-11-08T01:40:39.310022Z","ticker":"KXBNB15M-26NOV072045-45","action":"buy","side":"yes","qty":"25.38","yes":"0.9990","status":"executed"}
 {"at":"2026-11-08T02:01:31.656617Z","ticker":"KXBTC15M-26NOV072115-15","action":"buy","side":"yes","qty":"7.76","yes":"0.9990","status":"executed"}
+{"at":"2026-11-08T02:25:11.913184Z","ticker":"KXBNB15M-26NOV072130-30","action":"sell","side":"no","qty":"48.57","yes":"0.0800","status":"resting"}
+{"at":"2026-11-08T02:25:04.558329Z","ticker":"KXBNB15M-26NOV072130-30","action":"buy","side":"no","qty":"48.57","yes":"0.0010","status":"executed"}
+{"at":"2026-11-08T02:25:11.913184Z","ticker":"KXBNB15M-26NOV072130-30","action":"sell","side":"no","qty":"48.57","yes":"0.0800","status":"canceled"}
+{"at":"2026-11-08T02:34:15.558353Z","ticker":"KXBNB15M-26NOV072145-45","action":"buy","side":"yes","qty":"11.99","yes":"0.9990","status":"executed"}
+{"at":"2026-11-08T02:36:55.82867Z","ticker":"KXBTC15M-26NOV072145-45","action":"buy","side":"no","qty":"9.46","yes":"0.0010","status":"executed"}
+{"at":"2026-11-08T03:01:04.95029Z","ticker":"KXBTC15M-26NOV072215-15","action":"buy","side":"no","qty":"14.91","yes":"0.0010","status":"executed"}
+{"at":"2026-11-08T03:01:03.825705Z","ticker":"KXBTC15M-26NOV072215-15","action":"buy","side":"no","qty":"15.07","yes":"0.0010","status":"canceled"}
+{"at":"2026-11-08T03:01:03.82504Z","ticker":"KXBTC15M-26NOV072215-15","action":"buy","side":"no","qty":"15.07","yes":"0.0010","status":"canceled"}
+{"at":"2026-11-08T03:01:03.824308Z","ticker":"KXBTC15M-26NOV072215-15","action":"buy","side":"no","qty":"15.38","yes":"0.0010","status":"canceled"}
+{"at":"2026-11-08T03:01:18.313463Z","ticker":"KXETH15M-26NOV072215-15","action":"buy","side":"no","qty":"16.42","yes":"0.0010","status":"executed"}
+{"at":"2026-11-08T03:04:27.158526Z","ticker":"KXBNB15M-26NOV072215-15","action":"buy","side":"no","qty":"19.78","yes":"0.0010","status":"executed"}

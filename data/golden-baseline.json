@@ -1,5 +1,5 @@
 {
- "at": "2026-11-08T01:56:51.218344+00:00",
+ "at": "2026-11-08T03:10:50.726044+00:00",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -47,7 +47,7 @@
   "hourprobe.ts": "29d64ab796819e96",
   "hours.ts": "f53f287126dbe9a3",
   "insurance.ts": "4c605102c7a99ab6",
-  "kalshi-live.server.ts": "339f495e270b9c63",
+  "kalshi-live.server.ts": "732bbaecb7af0754",
   "kalshi.ts": "e9818fe7fa9d597c",
   "labjob.ts": "f1466c1ac9b1bdc0",
   "labpull.ts": "d6a06f758c25e88e",
@@ -183,7 +183,7 @@
   "maxDollars": "4e07408562",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "3b4a0890cb",
+  "at": "9af3480901",
   "note": "34fb5e33ce",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -202,7 +202,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "a538ca853b",
+  "liveBook": "af4ffe9763",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -376,7 +376,7 @@
   "zoneBooks792": "0f99d1dc51",
   "scaleBooks793": "0f99d1dc51",
   "polyMom830": "da06fd623e",
-  "ethLive831": "918daa9999",
+  "ethLive831": "675dd7a065",
   "ethLive872": "c3fc232bf9",
   "btcLive899": "95c3865c54",
   "bnbLive940": "82a64e4e3a"
@@ -386,7 +386,7 @@
   "data/spine-lock.json": "e2238650bc5ca96a",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "302f09eac92037eb"
+  "data/live-switch.json": "ca7beeb73e6825d0"
  },
  "sealLiveBook": "c8cfbbf7f9",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."
