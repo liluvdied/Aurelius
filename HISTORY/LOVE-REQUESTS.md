@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R572 - fix987 HER ADD-ONS IN WHOLE CENTS: her add-on 2 (4.4x) and add-on 3 (8.8x) caps are 22.727c and 11.36c; when the ask sat just under the cap the desk sent the raw cap ("0.2273") and Kalshi refused it as an invalid price (6:08:47 and 6:08:53 PM tonight, BTC). Every add-on price is now rounded down to a whole cent under her cap (22c / 11c), so it goes. Nothing else changes.
+- when: 2026-11-08T02:47:25+00:00
+- Love: "Love Nov 7 2026 ~6:37 PM PT: "hun again she is not doing her add ons pls make sure everything i asked you for is FUNCTIONAL before shipping anything and saying it's done" (6:08:47 PM: her BTC add-on 2 at 4.4x went to Kalshi at "0.2273" and Kalshi refused it "invalid price")"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix987 HER ADD-ONS IN WHOLE CENTS"}
+- proof: {"test": "tools/add-on-cents-987.cjs"}
+
 ## R571 - fix969 HER ADD-ON BOXES ON EVERY COPY: ETH.1, ETH.2, BTC.2 and BNB now take their add-ons ONLY from her add-on settings (add-on 1 / 2 / 3: on, $, multiple - today $3 at 2.8x, $5 at 4.4x, $2 at 8.8x). Each box once per position at its multiple, a better price than her entry, spent only when it fills, $5 an order, through her add-on route; no colour check on add-ons. Main and rejection already read her boxes. Their own per-book add-on numbers (ETH.1 $5, ETH.2 / BTC.2 / BNB $3) are no longer used.
 - when: 2026-11-08T01:56:51+00:00
 - Love: "Love Nov 7 2026 ~5:42 PM PT: "hun pls let it run my add ons i have set in the settings. make it unilateral" + 5:40 PM: "ADD ONS DO NOT COUNT FOR CANDLE COLOR." + 3:26 PM: "let the add ons work as i set them""
