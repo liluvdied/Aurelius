@@ -10321,5 +10321,20 @@
     "what": "ethLive831.on",
     "R": "R573",
     "why": "fix989: ETH.1 switched OFF (kept, not deleted) - Love Nov 7 7:00 PM"
+  },
+  {
+    "what": "if (!why && side === \"up\" && bUC > tick && bUC - tick <= w10g845) why = `BOLLINGER CUSHION: long $${(bUC - tick).toFixed(2)} under the Bollinger upper (${bUC.toFixed(2)}) - inside the $${w10g845.toFixed(2)} cushion. Wait for the break or the rejection.`;",
+    "why": "fix995 (her words in this change's request)",
+    "R": "R574"
+  },
+  {
+    "what": "if (!why && side === \"down\" && bLC > 0 && bLC < tick && tick - bLC <= w10g845) why = `BOLLINGER CUSHION: short $${(tick - bLC).toFixed(2)} over the Bollinger lower (${bLC.toFixed(2)}) - inside the $${w10g845.toFixed(2)} cushion. Wait for the break or the rejection.`;",
+    "why": "fix995 (her words in this change's request)",
+    "R": "R574"
+  },
+  {
+    "what": "t(src.includes(\"const w10g845 = asset === \\\"btc\\\" && above > below ? Math.min(w10g286, typeof slide845 === \\\"function\\\" ? slide845(asset, above - below) : Infinity) : w10g286;\") && (src.match(/<= w10g845\\) why = `BOLLINGER CUSHION/g) || []).length === 2, \"the Bollinger cushion is not capped by her scale\");",
+    "why": "fix995 (her words in this change's request)",
+    "R": "R574"
   }
 ]
