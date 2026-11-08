@@ -1,6 +1,6 @@
 # Her change history
 
-Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 18:50 from her desk branch and her requests book.
+Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 20:08 from her desk branch and her requests book.
 
 ## 1. PINK BREAK = THE ENTRY, put in whole (fix641, R328)
 - When: 2026-11-04 13:39:42 -0800
@@ -1529,4 +1529,28 @@ Every install, oldest first: what she did BEFORE, what she does AFTER, Love's ow
 - Before: (the code as it was in the previous entry - see the diff)
 - After: fix987 HER ADD-ONS IN WHOLE CENTS: her add-on 2 (4.4x) and add-on 3 (8.8x) caps are 22.727c and 11.36c; when the ask sat just under the cap the desk sent the raw cap ("0.2273") and Kalshi refused it as an invalid price (6:08:47 and 6:08:53 PM tonight, BTC). Every add-on price is now rounded down to a whole cent under her cap (22c / 11c), so it goes. Nothing else changes.
 - Files: src/lib/desk/kalshi-live.server.ts (+5/-4)
+
+## 192. ETH1 OFF (fix989, R573)
+- When: 2026-11-07 19:14:10 -0800
+- Commit: [e679c44a](https://github.com/liluvdied/Aurelius/commit/e679c44a5eac2b7e70cf8ff7207780fac2994b6d)
+- Her words: Love Nov 7 2026 ~7:00 PM PT: "babe only the new ETH rej book only the first one is out" (ETH.1 off - ETH.2, her ETH rejection book, stays live)
+- Before: R516: fix849 ETH AT $5: her ETH rejection book live on Kalshi (fix831) now enters for $5 (was $2.50) and its add-on at 2.8x is $5 (was $3). Same floor, same $5-an-order cap, same add-on trigger; it never trades against a held side (fix848).
+- After: fix989 ETH.1 OFF: her first ETH book's live copy (ETH.1, ethLive831) is switched off - nothing deleted, its settings and records stay (on:true brings it back). ETH.2, her ETH rejection book, stays live.
+- Files: -
+
+## 193. BROKEN BOLLINGER NOT A WALL (fix995, R574)
+- When: 2026-11-07 19:45:18 -0800
+- Commit: [7f163208](https://github.com/liluvdied/Aurelius/commit/7f163208218be4ce6d341cf89ca7ae806edfec87)
+- Her words: Love Nov 7 2026 7:18 PM PT: "A BOLLINGER IS NOT A WALL ONCE IT HAS BROKEN PAST IT. A BROKEN BOLLINGER UP - IS NOT A WALL ON THE WAY BACK DOWN."
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix995 A BROKEN BOLLINGER IS NOT A WALL ON THE WAY BACK: a Bollinger line (upper, middle, lower) price has broken past is no wall for the move back through it. For a short: the Bollinger upper is never its wall while price is over it (broken up), and a middle / lower below price is no wall once this 5m candle traded under it (price crossed back up through it). Mirror for a long: the lower is never its wall while price is under it, and a middle / upper above is no wall once this 5m candle traded over it. Applies to her $25 Bollinger wall (fix962, BTC) and her Bollinger cushion (fix173, BTC + gold). An unbroken Bollinger ahead - the middle included while unbroken - still walls. Every book but delayed. Tonight 7:15:06 PM BTC: the short 'Rejected down off carried mid' at 75,903.35, refused 'BOLLINGER WALL: the Bollinger upper (75889.60) is $13.75 below' - price was over the upper; now it goes.
+- Files: src/lib/desk/bandlock.ts (+11/-3)
+
+## 194. XRP POLY MARKET FINDER (fix994, R575)
+- When: 2026-11-07 20:08:55 -0800
+- Commit: [a1815fe5](https://github.com/liluvdied/Aurelius/commit/a1815fe55b9887c9c410872f459920aa92258e2b)
+- Her words: Love Nov 7 2026 ~7:19 PM PT: her link https://polymarket.us/event/xrp-updown-5m-2026-11-08-0315z (Polymarket US lists XRP 5m - the lane had found 12 set ups since 5:42 PM and sent none: "no Polymarket XRP 5m window found") + 5:13 PM: "no , live pls"
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix994 HER 5M POLYMARKET MARKETS FOUND: her XRP 5m lane asked Polymarket US for the EVENT name (xrp-updown-5m-...z) as if it were the market, so every window came back 'not found' (12 set ups, 0 orders). Now any 5m event name is looked up first (the same lookup her BTC 5m uses) and its real market is quoted and bought. Covers XRP now and BTC / ETH 5m. Every lookup is logged (data/poly5-resolve-994.jsonl) so the first window proves it.
+- Files: src/lib/desk/poly-live.server.ts (+14/-0)
 
