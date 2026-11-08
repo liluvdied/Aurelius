@@ -2,6 +2,63 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R562 - fix955 ETH.1's ADD-ON AT A BETTER PRICE: ETH.1's add-on fired in the same second as her entry at the same price (4 times today). Like ETH.2 and BTC.2 (fix891), it now waits until the add-on side is at least 2c cheaper than her entry (a better multiple).
+- when: 2026-11-08T00:10:52+00:00
+- Love: "Love Nov 7 2026 ~3:26 PM PT: "fix the add on thing now pls let the add ons work as i set them" + 3:23 PM: "she is NOT. doing her add ons""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethlive831.ts", "has": "fix955"}
+- proof: {"test": "tools/eth1-add-on-better-955.cjs"}
+
+## R561 - fix954 HER ADD-ON IS SPENT ONLY WHEN IT FILLS: ETH.1, ETH.2, BTC.2 and BNB marked their one add-on as used BEFORE sending it, so one refusal (ask moved, no cash, LIVE off) threw it away for that position. Now it is marked only when the add-on fills; a refused try waits 10 seconds and tries again while the position is open.
+- when: 2026-11-08T00:10:50+00:00
+- Love: "Love Nov 7 2026 ~3:26 PM PT: "fix the add on thing now pls let the add ons work as i set them" + 3:23 PM: "she is NOT. doing her add ons""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/ethlive831.ts", "has": "fix954"}
+- proof: {"test": "tools/add-on-not-burned-954.cjs"}
+
+## R560 - fix953 HER ADD-ONS AT THEIR OWN SIZE: every add-on (main, rejection, the akimbo books, BTC.2, ETH.1 / ETH.2, BNB) goes in at the $ she set in her add-on boxes instead of being cut down to her entry size slider ($2 today cut her $3 / $5 add-ons to $2). Her $5 per-order cap, 1.5x floor, umpire, LIVE switch, entries on, the window side lock and the opposite-side guard all still hold. Entries (including the ETH / BTC.2 / BNB copies' entries) stay on her slider.
+- when: 2026-11-08T00:10:48+00:00
+- Love: "Love Nov 7 2026 ~3:26 PM PT: "fix the add on thing now pls let the add ons work as i set them" + 3:23 PM: "she is NOT. doing her add ons""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix953 HER ADD-ONS AT THEIR OWN SIZE"}
+- proof: {"test": "tools/add-ons-own-size-953.cjs"}
+
+## R559 - fix951 HER COLOUR AND HER SIDE AT ENTRY: every entry - every label (rejections, breaks, taps, thirds, away-from-line, flips) and every book but delayed - is refused AT THE DOOR and again AT THE SEND unless (1) price is on the trade's side of the line it enters off (a long above it, a short below it; wick rejections too) and (2) the 2m or 5m candle is her colour at that second (flat is not her colour). The only colour exemption is a true wick rejection (fix668; off a carried band a wick still needs her colour, fix949). The send check comes before the akimbo / flip / away-from-line paths, and flips (fix819) and away-from-line takes (fix824) no longer skip her walls anywhere - the send, the copier's wall stamp and her slide / climb holds (her 3:24 PM words), and every add-on and every BTC / gold copy (BTC.2) is checked for her colour too. The ETH / BNB copies have no candle feed here yet (her BTC / gold feed only) - they are listed as open in the report.
+- when: 2026-11-08T00:10:46+00:00
+- Love: "Love Nov 7 2026 ~3:24 PM PT: "DO NOT HAVE THEM SKIP EVERY WALL WHAT THE FUCK" + ~3:19 PM: "the candle ALWAYS NEEDS TO BE THE SAME COLOR. EVERY TIME. NO EXCEPTIONS. PRICE ON THE SAME SIDE OF THE BAND AT ENTRY. NO EXCEPTIONS. wick rejection is the ONLY instance she may enter without the candle our color." + 3:20 PM: "OH MY GOD. YES. ITS SUPPOSED TO BE REJECTED AT THE DOOR IF IT ISNT ON THE SAME SIDE.""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function herEntry951("}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix951 her colour and her side AT THE SEND"}
+- proof: {"test": "tools/colour-side-951.cjs"}
+
+## R558 - fix950 HER PINK BREAK STILL GOING HER WAY: at the last line before the order, a pink break (Break / Close above / below 5m PP) goes only while price has not already turned back by her break ($2 BTC / 25c gold) from its high (long) / low (short) of the last 5 seconds; if it has, she waits and goes again if it re-breaks. Every book but delayed. Today 3:15:21 PM BTC: the long went $2.95 under its 3:15:18 top and was back through the pink 7 seconds later - this waits. Her candle colour at entry is CHANGE-297.
+- when: 2026-11-08T00:10:45+00:00
+- Love: "Love Nov 7 2026 ~3:17 PM PT: "she entered in 30 seconds after it broke up / it broke DOWN when she entered" + her card pick ~3:18 PM: "Candle in her colour too" (her colour lives in CHANGE-297)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix950 HER PINK BREAK STILL GOING HER WAY"}
+- proof: {"test": "tools/pink-break-turning-950.cjs"}
+
+## R557 - fix949 A WICK OFF A CARRIED BAND NEEDS HER COLOUR: her carried bands (yesterday's session lines, fix617) stay tradeable, but a wick rejection off one no longer skips the candle check - the 2m or 5m candle must be her colour (green for a long, red for a short; the live candle, no close). Her real session bands, zones, Bollingers and the pink keep the wick-without-a-flip entry (fix668 / 290 / 292). Every book but delayed. Today 2:45:13 PM BTC: the short off carried -1 at 75,793 on green 2m and 5m candles would have waited.
+- when: 2026-11-08T00:10:43+00:00
+- Love: "Love Nov 7 2026 ~3:00 PM PT, her card pick "Keep, but need her colour" ("Carried bands stay tradeable, but a wick rejection off one needs the candle in her colour.") - to "How should she treat carried bands from yesterday?" after 2:56 PM: "whyyyyy did she short btc ?!?! it broke pink UP on a green candle !!!! there's no zone she's at dude she is so broken""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function herColour949("}
+- proof: {"test": "tools/carried-needs-colour-949.cjs"}
+
+## R556 - fix948 HER CHANGE HISTORY BRANCH: a new tool (tools/change-history.py) builds CHANGE-HISTORY.md - every install oldest to newest: the change, time, her own words (R), BEFORE (what it replaced), AFTER, the code files and a GitHub link to the exact diff; an UNDO links the change it undoes - and publishes it on its own branch 'change-history' on her GitHub (one commit per rebuild; her desk branch and working folder untouched; nothing from .secrets). RUN-ALL runs it in the background after every install - a failed push never blocks an install and never touches LIVE. No trading code changes.
+- when: 2026-11-08T00:10:41+00:00
+- Love: "Love Nov 7 2026 ~2:46 PM PT: "i want to set it up to have a branch of the git be a fulll code change history / where it was before and what we did / a clear chain from one to one""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/change-history.py", "has": "fix948 HER CHANGE HISTORY"}
+- proof: {"test": "tools/change-history-948.cjs"}
+
 ## R555 - fix946 HER WICK USES HER CARRIED BANDS (and her 2:39 PM words, pinned by its proof: "make it just a wick at a bollinger or red/green zone pls 2-3" - a wick rejection there needs no flip or push): her wick rejection (290, 10% of the channel) measures its channel on the session bands; after the 2 PM reset the fresh session bands are not on her list (her carried bands are, fix612 / 617), so the wick had nothing to measure and never fired. With no fresh session bands, her carried bands (carried mid / +-1-3) are the wick's channel and count as wick lines. No rule changes. Every book but delayed. Today 2:30 PM BTC: the wick to ~75,713 off green, back to 75,778 - no read; now it reads the long.
 - when: 2026-11-07T22:58:02+00:00
 - Love: "Love Nov 7 2026 ~2:33 PM PT: "hun she is NOT entering on the wick rejections pls fix her she is still stilllll broken i am telling you" + 2:34 PM: "yes 10%" (her wick rejection at 10% of the channel) - after the 2 PM reset the fresh session bands are not on her list (her carried bands are), so the wick had no channel to measure"

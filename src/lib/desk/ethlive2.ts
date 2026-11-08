@@ -48,7 +48,7 @@ export async function ethLiveTick872(now = Date.now(), liveIn?: Live, mkIn?: Mk)
       { const w900 = await side900(String(r.label || ""), String(r.side)); if (w900) { const S900 = (G.__s872 ||= {}); if (!S900[r.id]) { S900[r.id] = 1; log({ id: r.id, action: "waiting", side: r.side, label: r.label, why: w900 }); } continue; } } // fix900: on her side of the line, or wait while the set up is valid
       s.seen[r.id] = now; dirty = true;
       try {
-        const o = await live.addOnBuy600(r.ticker, r.side, c.dollars, c.maxAsk);
+        const o = await live.addOnBuy600(r.ticker, r.side, c.dollars, c.maxAsk, "entry") /* fix953: an entry stays on her slider */;
         if (o?.ok && o.filled > 0) { s.pos[r.id] = { id: r.id, ticker: r.ticker, side: r.side, closeTime: r.closeTime, at: new Date(now).toISOString(), status: "open", addOn: false, halfSold: false, filled: o.filled, px: Number(o.px) || 0 /* fix891 */ }; log({ id: r.id, action: "bought", side: r.side, label: r.label, filled: o.filled, px: o.px }); }
         else { const K890 = (G.__el872k ||= {}); K890[r.id] = (K890[r.id] || 0) + 1; if (Date.parse(String(r.closeTime)) - now >= 60000 && now - Date.parse(String(r.at)) <= 180000) delete s.seen[r.id]; /* fix890 KEEP KNOCKING: not filled / ask over her floor / not SAFE yet - she tries again in 2 s while the set up is valid */ if (K890[r.id] === 1 || K890[r.id] % 15 === 0) log({ id: r.id, action: "skipped", side: r.side, label: r.label, why: `${String(o?.reason || "no fill")} - knocking again (try ${K890[r.id]})` }); }
       } catch (e: any) { log({ id: r.id, action: "error", why: String(e?.message || e).slice(0, 160) }); }
@@ -57,11 +57,11 @@ export async function ethLiveTick872(now = Date.now(), liveIn?: Live, mkIn?: Mk)
       if (p.status !== "open") continue;
       if (now >= Date.parse(p.closeTime)) { p.status = "bell"; dirty = true; log({ id: p.id, action: "bell" }); continue; }
       const paper = rows.find((x) => x?.id === p.id);
-      if (!p.addOn && c.addOn > 0) {
+      if (!p.addOn && c.addOn > 0 && Date.now() - Number(((G as any).__aoTry954 || {})[p.id] || 0) >= 10000 /* fix954 */) {
         const m = await mk.fetchMarket(p.ticker).catch(() => null); const ask = m ? Number(p.side === "up" ? m.yesAsk : m.noAsk) : 0;
         if (addOnNow831(ask, c.addOnMult) && (!(Number(p.px) > 0) || ask <= Number(p.px) - 0.02) /* fix891: a better multiple than her entry */ && await nextBand891(p.side)) {
-          p.addOn = true; dirty = true;
-          try { const o = await live.addOnBuy600(p.ticker, p.side, c.addOn, 1 / c.addOnMult); log({ id: p.id, action: o?.ok ? "add-on" : "add-on missed", filled: o?.filled ?? 0, px: o?.px ?? null, why: o?.ok ? "" : String(o?.reason || "") }); if (o?.ok) p.filled += Number(o.filled) || 0; } catch (e: any) { log({ id: p.id, action: "add-on error", why: String(e?.message || e).slice(0, 160) }); }
+          dirty = true; ((G as any).__aoTry954 ||= {})[p.id] = Date.now(); // fix954: her add-on is spent only when it FILLS - a refused try waits 10 s (below) and tries again
+          try { const o = await live.addOnBuy600(p.ticker, p.side, c.addOn, 1 / c.addOnMult); log({ id: p.id, action: o?.ok ? "add-on" : "add-on missed", filled: o?.filled ?? 0, px: o?.px ?? null, why: o?.ok ? "" : String(o?.reason || "") }); if (o?.ok) { p.filled += Number(o.filled) || 0; p.addOn = true; /* fix954 */ } } catch (e: any) { log({ id: p.id, action: "add-on error", why: String(e?.message || e).slice(0, 160) }); }
         }
       }
       if (paper && paper.half && !p.halfSold) { p.halfSold = true; dirty = true; try { const x = await live.partLive(p.ticker, 50); log({ id: p.id, action: "sold half", out: x ? { filled: x.filled, payout: x.payout } : null }); } catch (e: any) { log({ id: p.id, action: "sell error", why: String(e?.message || e).slice(0, 160) }); } }
