@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R575 - fix994 HER 5M POLYMARKET MARKETS FOUND: her XRP 5m lane asked Polymarket US for the EVENT name (xrp-updown-5m-...z) as if it were the market, so every window came back 'not found' (12 set ups, 0 orders). Now any 5m event name is looked up first (the same lookup her BTC 5m uses) and its real market is quoted and bought. Covers XRP now and BTC / ETH 5m. Every lookup is logged (data/poly5-resolve-994.jsonl) so the first window proves it.
+- when: 2026-11-08T04:05:35+00:00
+- Love: "Love Nov 7 2026 ~7:19 PM PT: her link https://polymarket.us/event/xrp-updown-5m-2026-11-08-0315z (Polymarket US lists XRP 5m - the lane had found 12 set ups since 5:42 PM and sent none: "no Polymarket XRP 5m window found") + 5:13 PM: "no , live pls""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/poly-live.server.ts", "has": "export async function resolve5m994("}
+- proof: {"test": "tools/poly5-resolve-994.cjs"}
+
 ## R574 - fix995 A BROKEN BOLLINGER IS NOT A WALL ON THE WAY BACK: a Bollinger line (upper, middle, lower) price has broken past is no wall for the move back through it. For a short: the Bollinger upper is never its wall while price is over it (broken up), and a middle / lower below price is no wall once this 5m candle traded under it (price crossed back up through it). Mirror for a long: the lower is never its wall while price is under it, and a middle / upper above is no wall once this 5m candle traded over it. Applies to her $25 Bollinger wall (fix962, BTC) and her Bollinger cushion (fix173, BTC + gold). An unbroken Bollinger ahead - the middle included while unbroken - still walls. Every book but delayed. Tonight 7:15:06 PM BTC: the short 'Rejected down off carried mid' at 75,903.35, refused 'BOLLINGER WALL: the Bollinger upper (75889.60) is $13.75 below' - price was over the upper; now it goes.
 - when: 2026-11-08T03:41:57+00:00
 - Love: "Love Nov 7 2026 7:18 PM PT: "A BOLLINGER IS NOT A WALL ONCE IT HAS BROKEN PAST IT. A BROKEN BOLLINGER UP - IS NOT A WALL ON THE WAY BACK DOWN.""

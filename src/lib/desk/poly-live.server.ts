@@ -344,7 +344,20 @@ function diag5(slug: string, status: number, body: string) {
   const G = globalThis as any; const seen = (G.__diag5 ||= {}) as Record<string, number>; if (Date.now() - (seen[slug] || 0) < 15000) return; seen[slug] = Date.now();
   try { appendFileSync(join(process.cwd(), "data", "poly5-diag.jsonl"), JSON.stringify({ at: new Date().toISOString(), slug, status, body: body.slice(0, 600) }) + "\n"); } catch {}
 }
+// fix994 HER 5M EVENT -> MARKET (Love Nov 7 2026 ~7:19 PM PT: her link https://polymarket.us/event/xrp-updown-5m-2026-11-08-0315z (Polymarket US lists XRP 5m - the lane had found 12 set ups since 5:42 PM and sent none: "no Polymarket XRP 5m window found") + 5:13 PM: "no , live pls"): a Polymarket US 5m EVENT slug (e.g. xrp-updown-5m-2026-11-08-0315z) is not its MARKET slug (BTC's market is cpc-btc-...). Any 5m event slug handed to
+// bookTop / buySlug / the add-on buy is resolved to its open market's slug first (the same event lookup her BTC 5m window uses); the answer is cached and logged to data/poly5-resolve-994.jsonl.
+const EV994 = /^[a-z]+-updown-5m-\d{4}-\d{2}-\d{2}-\d{4}z$/;
+export async function resolve5m994(slug: string): Promise<string> {
+  if (!EV994.test(String(slug))) return slug; const GR = globalThis as any; const C = (GR.__ev994 ||= {}) as Record<string, { s: string; at: number }>; const hit = C[slug]; if (hit && (hit.s !== slug || Date.now() - hit.at < 20000)) return hit.s;
+  for (const [path, q] of [[`/v1/events/slug/${slug}`, ""], [`/v1/events/${slug}`, ""], ["/v1/events", `?slug=${slug}`], ["/v1/markets", `?eventSlug=${slug}`]] as [string, string][]) {
+    try { const res = await poly("GET", path, q); if (!res.ok) continue; const j: any = await res.json().catch(() => null); const evs: any[] = Array.isArray(j?.events) ? j.events : j?.event ? [j.event] : j ? [j] : [];
+      const ms: any[] = [...evs.flatMap((x: any) => (Array.isArray(x?.markets) ? x.markets : [])), ...(Array.isArray(j?.markets) ? j.markets : [])]; const mk = ms.find((m: any) => m?.slug && !m.closed);
+      if (mk?.slug) { C[slug] = { s: String(mk.slug), at: Date.now() }; try { appendFileSync(join(process.cwd(), "data", "poly5-resolve-994.jsonl"), JSON.stringify({ at: new Date().toISOString(), event: slug, market: String(mk.slug), via: path }) + "\n"); } catch {} return String(mk.slug); } } catch {}
+  }
+  C[slug] = { s: slug, at: Date.now() }; return slug;
+}
 export async function bookTop(slug: string): Promise<{ bid: number; ask: number } | null> {
+  slug = await resolve5m994(slug); // fix994: an event slug -> its market
   const res = await poly("GET", `/v1/markets/${slug}/bbo`);
   if (!res.ok) { diag5(slug, res.status, await res.text().catch(() => "")); return null; }
   const txt5 = await res.text();
@@ -624,6 +637,7 @@ export async function buySlug(
   maxAsk: number,
   target: number | null,
 ): Promise<HedgeFill | null> {
+  slug = await resolve5m994(slug); // fix994: an event slug -> its market
   if (hourSlugs().includes(slug)) return null;
   const cash = await polymarketCash();
   if (cash == null || cash < dollars) return null;
