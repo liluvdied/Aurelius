@@ -10306,5 +10306,20 @@
     "what": "const px2 = Math.min(maxAsk, Math.round((ask2 + 0.01) * 100) / 100);",
     "why": "fix987 (her words in this change's request)",
     "R": "R572"
+  },
+  {
+    "what": "ethLive831.offNote989",
+    "R": "R573",
+    "why": "fix989 ethLive831.offNote989"
+  },
+  {
+    "what": "ethLive831.since",
+    "R": "R573",
+    "why": "fix989 ethLive831.since"
+  },
+  {
+    "what": "ethLive831.on",
+    "R": "R573",
+    "why": "fix989: ETH.1 switched OFF (kept, not deleted) - Love Nov 7 7:00 PM"
   }
 ]

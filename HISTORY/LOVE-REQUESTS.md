@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R573 - fix989 ETH.1 OFF: her first ETH book's live copy (ETH.1, ethLive831) is switched off - nothing deleted, its settings and records stay (on:true brings it back). ETH.2, her ETH rejection book, stays live.
+- when: 2026-11-08T03:10:50+00:00
+- Love: "Love Nov 7 2026 ~7:00 PM PT: "babe only the new ETH rej book only the first one is out" (ETH.1 off - ETH.2, her ETH rejection book, stays live)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/eth1-off-989.cjs", "has": "fix989"}
+- proof: {"test": "tools/eth1-off-989.cjs"}
+
 ## R572 - fix987 HER ADD-ONS IN WHOLE CENTS: her add-on 2 (4.4x) and add-on 3 (8.8x) caps are 22.727c and 11.36c; when the ask sat just under the cap the desk sent the raw cap ("0.2273") and Kalshi refused it as an invalid price (6:08:47 and 6:08:53 PM tonight, BTC). Every add-on price is now rounded down to a whole cent under her cap (22c / 11c), so it goes. Nothing else changes.
 - when: 2026-11-08T02:47:25+00:00
 - Love: "Love Nov 7 2026 ~6:37 PM PT: "hun again she is not doing her add ons pls make sure everything i asked you for is FUNCTIONAL before shipping anything and saying it's done" (6:08:47 PM: her BTC add-on 2 at 4.4x went to Kalshi at "0.2273" and Kalshi refused it "invalid price")"
