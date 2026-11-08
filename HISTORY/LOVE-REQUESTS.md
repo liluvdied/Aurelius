@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R583 - fix1024 XRP 5M BACK LIVE: on her 11:24 PM word, her XRP 5m Polymarket lane (fix961 + fix1004, exactly as it ran tonight) trades live again at $1 with her 66c cap. Its code is unchanged. Everything else stays as it is.
+- when: 2026-11-08T07:52:27+00:00
+- Love: "Love Nov 7 2026 11:24 PM PT: "as for the 5M xrp that's been running on paper at 78 % , so that one is good to go rn? can we just put that one live in the meantime while the others are being written up?""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/xrp5m-live-again-1024.cjs", "has": "fix1024"}
+- proof: {"test": "tools/xrp5m-live-again-1024.cjs"}
+
 ## R582 - fix1018 PEPPERSTONE FIRST, VANTAGE ONLY ON A FREEZE: her BTC chart is PEPPERSTONE:BTCUSD again (candles, session bands, pink, zones, Bollingers, the tick). Only when Pepperstone's price has not updated for MORE than 10 s (a reconnect re-sending the frozen price is not an update) while Vantage is updating does BTC read VANTAGE:BTCUSD; the first real Pepperstone update puts her straight back. One feed at a time - a switch clears the old feed's bars and trail (new lines from the new feed). Every switch, both ways, is logged to data/feed-switch-1018.jsonl (time + stale seconds). The fix519 Kalshi difference is measured at each window open on the live chart and re-measured at a mid-window switch (logged). One picker for every reader: btcSymbol1018() in tv.ts. Gold stays TVC:GOLD; every freshness / umpire / floor guard unchanged. Supersedes fix908/fix911's Vantage pins (R525/R526).
 - when: 2026-11-08T07:22:27+00:00
 - Love: "Love Nov 7 2026 9:58 PM PT, answering "is she back on pepperstone's chart?": "yes pepperstone / vantage is ONLY used in the event pepperstones feed freezes for more than 10 seconds" + 9:55 PM: "she is supposed to deduct the difference from her chart and the kalshi price / that is a cornerstone" (cornerstone 48, fix519) + Love Nov 7 2026 11:12 PM PT: "any time she uses any chart , a backup or not the difference from tradingview needs to be deducted from kalshi's price / and price itself is immaterial hun aside from trading the actual bands themselves , she has nothing else to worry about / she just needs to trade them as we designed" (the offset is re-captured on whichever feed is live, primary or backup, at every switch and window open; bands and price always from the same feed)"
