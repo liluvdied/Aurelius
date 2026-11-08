@@ -1,6 +1,6 @@
 # Her change history
 
-Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 21:08 from her desk branch and her requests book.
+Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 21:17 from her desk branch and her requests book.
 
 ## 1. PINK BREAK = THE ENTRY, put in whole (fix641, R328)
 - When: 2026-11-04 13:39:42 -0800
@@ -1577,4 +1577,12 @@ Every install, oldest first: what she did BEFORE, what she does AFTER, Love's ow
 - Before: (the code as it was in the previous entry - see the diff)
 - After: fix1002 ALL BOOKS IN THE TABLES (display only): every current book and ledger gets a row in the RUNNING ON KALSHI + POLY table and in the i . O . i · ITEMS OF INTEREST table - main, rej, delayed, the no-pink books, ETH.2, ETH.1, BTC.2, BNB momentum (live + paper), BTC momentum on Poly, XRP 5M on Poly, the old 5M lane - tagged LIVE / PAPER / OFF and KALSHI / POLY, with today's trades, W, L and $ from each book's own log / state file (live main / rej also show their real Kalshi line). XRP on Kalshi, XRP rej, BTC 5M, ETH 5M and the push / wick shadow get their rows by themselves once their files exist. Reads files only: no order, no switch, no wall, no live book touched.
 - Files: -
+
+## 198. XRP POLY CORNERSTONES (fix1004, R579)
+- When: 2026-11-07 21:17:13 -0800
+- Commit: [a9ec060a](https://github.com/liluvdied/Aurelius/commit/a9ec060aacc2d4ba56673924f053b1475f2527c5)
+- Her words: Love Nov 7 2026 8:49 PM PT: "hun she longed xrp on poly when the candle was red and under a bollinger. candles need to be her color. the wick rejections didn't trigger so she entered on a red candle pushing" + 8:53 PM: "ok you can put her on the new configuration bb ... new one pls" + 7:31 PM: "it needs to be ON THE SAME SIDE OF THE BAND. 100% OF THE TIME ... FLIP (or born candle) AND PUSH. NOTHING ELSE" + 7:40 PM XRP push: bands 0.05c, pink 0.10c, wick $0.0005
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix1004 XRP-POLY-CORNERSTONES: her XRP 5m Polymarket lane (xrp5m961) moves to main's CURRENT configuration (her 8:53 PM "new one pls": rejections, breaks and failed breaks incl. the Bollinger middle; thirds, past the zone, pink-to-zone 55%, pink 20% cushion, her line-in-the-way reach, her $25 Bollinger wall with the broken-Bollinger rule, all scaled to XRP) and enters only through her cornerstones - (a) her colour that is REAL (2m or 5m candle her colour by her push over its open; a 1-tick colour is not her colour), (b) price on her side of the line, (c) the push off the 5m low / high (bands $0.0005, pink $0.0010), (d) no long under an unbroken Bollinger middle / upper within her $25 wall scaled to XRP, (e) rule C mirrored: no long while the 5m is red and under the Bollinger middle. The only exception: a REAL wick rejection ($0.0005 back off the wick) skips colour only, labelled (wick). Only the XRP Poly lane changes.
+- Files: src/lib/desk/xrp5m961.ts (+51/-23)
 
