@@ -2,6 +2,30 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R565 - fix957 RUN-ALL TELLS YOU LIVE IS OFF: when RUN-ALL finds nothing waiting and LIVE is off (you turned it off for the install), it now says so in big letters: turn LIVE back on. It still never touches LIVE itself. Nothing else changes.
+- when: 2026-11-08T01:08:05+00:00
+- Love: "Love Nov 7 2026 ~3:29 PM PT: "not ready" (her RUN-ALL said "Nothing waiting" and LIVE was left off from 3:29 PM - her ETH wick at 3:32 PM was refused "the live switch is off") + 3:31 PM: "i need to keep them on""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "data/BATCH-RUNNER/run-all.sh", "has": "fix957: nothing waiting with LIVE off says so"}
+- proof: {"test": "tools/nothing-waiting-live-957.cjs"}
+
+## R564 - fix959 AKIMBO FACES THE DOOR: the live-today / akimbo books (BESTIE etc., off today) used to skip her door entirely - no colour, no same side, no pink, no bands. If you turn them on, they now meet the same door as main. Nothing else changes; delayed is untouched.
+- when: 2026-11-08T01:08:03+00:00
+- Love: "Love Nov 7 2026 ~3:24 PM PT: "DO NOT HAVE THEM SKIP EVERY WALL WHAT THE FUCK" + ~3:21 PM: "ITS SUPPOSED TO BE REJECTED AT THE DOOR IF IT ISNT ON THE SAME SIDE""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "fix959 AKIMBO FACES THE DOOR"}
+- proof: {"test": "tools/akimbo-door-959.cjs"}
+
+## R563 - fix956 HER 66c CAP ON THE COPIES AND ADD-ONS: ETH.1, ETH.2, BTC.2 and BNB entries and every add-on went out at up to 66.7c (1.499x) - just under her 1.5x floor. They now pay 66c at most, the same as main. Nothing else changes.
+- when: 2026-11-08T01:08:02+00:00
+- Love: "Love Oct 30 2026 (R266, her kept card c37): "THE 1.5x FLOOR: no order under 1.5x (66c cap)" + Nov 7 3:24 PM PT: "DO NOT HAVE THEM SKIP EVERY WALL""
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "fix956 HER 66c CAP ON THE COPIES AND ADD-ONS"}
+- proof: {"test": "tools/copies-66c-956.cjs"}
+
 ## R562 - fix955 ETH.1's ADD-ON AT A BETTER PRICE: ETH.1's add-on fired in the same second as her entry at the same price (4 times today). Like ETH.2 and BTC.2 (fix891), it now waits until the add-on side is at least 2c cheaper than her entry (a better multiple).
 - when: 2026-11-08T00:10:52+00:00
 - Love: "Love Nov 7 2026 ~3:26 PM PT: "fix the add on thing now pls let the add ons work as i set them" + 3:23 PM: "she is NOT. doing her add ons""

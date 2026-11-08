@@ -1762,6 +1762,7 @@ async function topUpFlat609(ticker, side, dollars, maxAsk, line) {
 }
 async function addOnBuy600(ticker, side, dollars, maxAsk, kind953 = "addon") {
   const no = (reason) => ({ ok: false, reason: `ADD-ON (fix600): ${reason} - no order` });
+  maxAsk = Math.min(Number(maxAsk) || 0, 0.66); // fix956 HER 66c CAP ON THE COPIES AND ADD-ONS (Love Oct 30 2026 (R266, her kept card c37): "THE 1.5x FLOOR: no order under 1.5x (66c cap)" + Nov 7 3:24 PM PT: "DO NOT HAVE THEM SKIP EVERY WALL"): ETH.1 / ETH.2 / BTC.2 / BNB entries and every add-on pay 66c at most, like main (66.7c = 1.499x was under her 1.5x floor)
   try { const v600 = JSON.parse(readFileSync(join(process.cwd(), "data", "UMPIRE-VERDICT.json"), "utf8")); if (v600?.ok !== true) return no("the umpire is not SAFE"); } catch { return no("the umpire stamp can't be read"); }
   { const ug600 = (globalThis as any).__umpGate461, u600 = typeof ug600 === "function" ? ug600("recon-rej") : "the umpire gate is not running"; if (u600) return no(String(u600).slice(0, 160)); }
   if (!liveOn()) return no("the live switch is off");
