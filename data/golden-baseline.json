@@ -1,5 +1,5 @@
 {
- "at": "2026-11-08T15:25:47.221253+00:00",
+ "at": "2026-11-08T15:32:01.766322Z",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -177,7 +177,9 @@
   "btclive899.ts": "6bcfdd4707a07862",
   "bnblive940.ts": "f7c895de27ba0151",
   "xrp5m961.ts": "2a934a7c4529afb2",
-  "allbooks1002.ts": "a6f8f4e3c80d484b"
+  "allbooks1002.ts": "a6f8f4e3c80d484b",
+  "src/lib/desk/bandlock.ts": "ce65755339c1a6fe",
+  "tools/push-band-1030.cjs": "a8f88513cfe9584f"
  },
  "config": {
   "live": "b5bea41b6c",

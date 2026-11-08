@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R586 - BTC band/zone push $5 always (not only weekends), measured from the band itself. BTC pink fallback $6->$5. ETH push 25c added to pushLabel653 fallback + push751. (XRP push change is in CHANGE-369, xrp5m961.ts only.)
+- when: 2026-11-08T15:32:01+00:00
+- Love: "yeah we need to lower her push down to $5 again hun by the time she gets to the push requirement shes already at the red + its not the candles open she needs to push past. its the band itself + can we do that bb? + she doesnt have a valid reason for not entering at the push of $5 off of pink hun . shes still doing that. please reinforce that, and make sure she gets in AT pink, not halfway after the move has already taken place + eth 25c eth and 0.00025 for xrp pls"
+- books: all main books (recon-tog, recon-rej, recon-ogp5, recon-rjt3, recon-rjnp, recon-rejx, recon-b2, recon-rej5)
+- status: ACTIVE
+- proof: {"code": "tools/push-band-1030.cjs", "has": "push807 returns 5 at every hour; push measured from band not wick; fix656 kept; fix918 2m-or-5m colour kept; pink and gold unchanged; pink fallback $5"}
+
 ## R585 - fix1027 XRP 5M PLAIN COLOUR: in her XRP 5m Polymarket lane (xrp5m961.ts cornerstones1004) her colour is the 2m or 5m candle's CURRENT colour - red for a short, green for a long, any amount vs its open; the $0.0005 (bands) / $0.0010 (pink) colour cushion over the open is removed (it was not hers). Her push off the turn stays its own check exactly as before; wick rejections stay exempt from colour; same side of the band, rule C, her Bollinger wall and every lane wall are unchanged. No keep-watching (357 ships separately), no wick door. One line changes.
 - when: 2026-11-08T15:25:47+00:00
 - Love: "Love Nov 8 2026 12:19 AM PT: "okay whatever opening color candle lock you instituted that is now blocking trades please remove it and do not implement any rules that i didn't ask for anymore pls" + 12:22 AM PT: "color of the candle still needs to be the same as our trade, aside from the wick rejection exemption. but the 'opening color' of the window or the candle has zero bearing on the trigger of the trade itself / candle flips green - push distance met ==== get in / i do not care if the window opened green so now she can't take a valid short when it appears that is absolutely insane lol no""
