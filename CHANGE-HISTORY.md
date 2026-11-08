@@ -1,6 +1,6 @@
 # Her change history
 
-Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 18:03 from her desk branch and her requests book.
+Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 18:50 from her desk branch and her requests book.
 
 ## 1. PINK BREAK = THE ENTRY, put in whole (fix641, R328)
 - When: 2026-11-04 13:39:42 -0800
@@ -1521,4 +1521,12 @@ Every install, oldest first: what she did BEFORE, what she does AFTER, Love's ow
 - Before: (the code as it was in the previous entry - see the diff)
 - After: fix969 HER ADD-ON BOXES ON EVERY COPY: ETH.1, ETH.2, BTC.2 and BNB now take their add-ons ONLY from her add-on settings (add-on 1 / 2 / 3: on, $, multiple - today $3 at 2.8x, $5 at 4.4x, $2 at 8.8x). Each box once per position at its multiple, a better price than her entry, spent only when it fills, $5 an order, through her add-on route; no colour check on add-ons. Main and rejection already read her boxes. Their own per-book add-on numbers (ETH.1 $5, ETH.2 / BTC.2 / BNB $3) are no longer used.
 - Files: -
+
+## 191. ADD ONS WHOLE CENTS (fix987, R572)
+- When: 2026-11-07 18:50:57 -0800
+- Commit: [2875d588](https://github.com/liluvdied/Aurelius/commit/2875d588194211a4e9f2065d54fc2e8c80d0e109)
+- Her words: Love Nov 7 2026 ~6:37 PM PT: "hun again she is not doing her add ons pls make sure everything i asked you for is FUNCTIONAL before shipping anything and saying it's done" (6:08:47 PM: her BTC add-on 2 at 4.4x went to Kalshi at "0.2273" and Kalshi refused it "invalid price")
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix987 HER ADD-ONS IN WHOLE CENTS: her add-on 2 (4.4x) and add-on 3 (8.8x) caps are 22.727c and 11.36c; when the ask sat just under the cap the desk sent the raw cap ("0.2273") and Kalshi refused it as an invalid price (6:08:47 and 6:08:53 PM tonight, BTC). Every add-on price is now rounded down to a whole cent under her cap (22c / 11c), so it goes. Nothing else changes.
+- Files: src/lib/desk/kalshi-live.server.ts (+5/-4)
 
