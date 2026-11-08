@@ -24049,3 +24049,14 @@
 {"at":"2026-11-08T09:18:08.734Z","ticker":"KXBTC15M-26NOV080430-30","book":"recon-tog","side":"down","label":"Failed break above +1σ - rejected down","price":0.43,"count":"1.63","tick":75780.7,"verdict":"SAFE","why":""}
 {"at":"2026-11-08T09:18:10.594Z","ticker":"KXBTC15M-26NOV080430-30","book":"recon-tog","side":"down","label":"Failed break above +1σ - rejected down","price":0.43,"count":"1.63","tick":75778.25,"verdict":"SAFE","why":""}
 {"at":"2026-11-08T09:18:12.276Z","ticker":"KXBTC15M-26NOV080430-30","book":"recon-tog","side":"down","label":"Failed break above +1σ - rejected down","price":0.34,"count":"1.51","tick":75779.12,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T09:31:05.090Z","ticker":"KXBTC15M-26NOV080445-45","book":"recon-tog","side":"down","label":"Break below +1σ","price":0.54,"count":"2.08","tick":75783.57,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T09:31:06.834Z","ticker":"KXBTC15M-26NOV080445-45","book":"recon-tog","side":"down","label":"Break below +1σ","price":0.54,"count":"2.08","tick":75785.17,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T09:31:08.504Z","ticker":"KXBTC15M-26NOV080445-45","book":"recon-tog","side":"down","label":"Break below +1σ","price":0.54,"count":"2.08","tick":75785.61,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T09:31:10.541Z","ticker":"KXBTC15M-26NOV080445-45","book":"recon-tog","side":"down","label":"Break below +1σ","price":0.47,"count":"1.88","tick":75785.87,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T09:31:10.871Z","ticker":"KXBTC15M-26NOV080445-45","book":"recon-tog","side":"down","label":"Break below +1σ","price":0,"count":"","tick":75785.87,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T09:45:30.360Z","ticker":"KXBTC15M-26NOV080500-00","book":"recon-tog","side":"down","label":"Break below Red zone","price":0.35,"count":"1.51","tick":75947.9,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T09:45:30.851Z","ticker":"KXBTC15M-26NOV080500-00","book":"recon-tog","side":"down","label":"Break below Red zone","price":0,"count":"","tick":75947.9,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T10:00:16.806Z","ticker":"KXBTC15M-26NOV080515-15","book":"recon-tog","side":"up","label":"Break above 5m PP","price":0.58,"count":"1.61","tick":75835.16,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T10:00:17.055Z","ticker":"KXBTC15M-26NOV080515-15","book":"recon-tog","side":"up","label":"Break above 5m PP","price":0,"count":"","tick":75835.16,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T10:15:19.047Z","ticker":"KXBTC15M-26NOV080530-30","book":"recon-tog","side":"down","label":"Break below 5m PP","price":0.41,"count":"3.12","tick":75777.55,"verdict":"SAFE","why":""}
+{"at":"2026-11-08T10:15:19.386Z","ticker":"KXBTC15M-26NOV080530-30","book":"recon-tog","side":"down","label":"Break below 5m PP","price":0,"count":"","tick":75777.55,"verdict":"SAFE","why":""}
