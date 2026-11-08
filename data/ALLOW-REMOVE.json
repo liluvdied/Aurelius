@@ -10876,20 +10876,5 @@
     "what": "console.log(ok ? \"LIVE 60 + FINISH 852 TEST ✓ - LIVE turns itself back on in the last 60 s before each window (keeps trying; umpire SAFE, entries clear, no install of HER desk running, OFF TODAY respected) with a LIVE AUTO-ON alert. (RUN-ALL's finisher is its own command - it can't be installed by a running RUN-ALL.)\" : \"LIVE 60 + FINISH 852 TEST: FAIL\");",
     "why": "fix1025 (her words in this change's request)",
     "R": "R584"
-  },
-  {
-    "what": "export const cornerstones1004 = (x: { side: \"up\" | \"down\"; spot: number; line: number; lineName: string; label: string; o2: number; o5: number; lo5: number; hi5: number; push: number; wall: number; bbUp: number; bbMid: number; bbLo: number; wick?: boolean }): string => { const s = x.side === \"up\" ? 1 : -1, d = (a: number, b: number) => s * (a - b), why: string[] = [], turn = s > 0 ? x.lo5 : x.hi5; if (!x.wick && !(d(x.spot, x.o2) >= x.push - 1e-9 || d(x.spot, x.o5) >= x.push - 1e-9)) why.push(`COLOUR (fix1004): her 2m / 5m candle is not ${s > 0 ? \"green\" : \"red\"} by her push $${x.push} over its open (2m ${d(x.spot, x.o2).toFixed(4)}, 5m ${d(x.spot, x.o5).toFixed(4)}) - a 1-tick colour is not her colour`); if (!(d(x.spot, x.line) > 0)) why.push(`SAME SIDE (fix1004): price is not on her side of ${x.lineName}`); if (d(x.spot, turn) < x.push - 1e-9) why.push(`PUSH (fix1004): only $${d(x.spot, turn).toFixed(4)} off the 5m ${s > 0 ? \"low\" : \"high\"}, her push is $${x.push}`); for (const [n, b] of [[\"upper\", x.bbUp], [\"middle\", x.bbMid], [\"lower\", x.bbLo]] as [string, number][]) if (b > 0 && d(b, x.spot) >= 0 && d(b, x.spot) <= x.wall && !new RegExp(\"(Bollinger|BB) \" + n, \"i\").test(x.label) && !(n === (s > 0 ? \"lower\" : \"upper\") || (s > 0 ? x.hi5 > b : x.lo5 < b))) why.push(`BOLLINGER WALL (fix1004 / fix962 / fix995): the unbroken Bollinger ${n} is $${d(b, x.spot).toFixed(5)} ${s > 0 ? \"above the long\" : \"below the short\"} (her $25 wall = $${x.wall.toFixed(5)})`); if (x.bbMid > 0 && d(x.spot, x.o5) < 0 && d(x.spot, x.bbMid) < 0) why.push(`RULE C (fix1004): no ${s > 0 ? \"long while the 5m is red and under\" : \"short while the 5m is green and over\"} the Bollinger middle - \"the candle was red and under a bollinger\"`); return why.join(\" + \"); };",
-    "why": "fix1027 (her words in this change's request)",
-    "R": "R585"
-  },
-  {
-    "what": "r = M.xrpRead961(bs, L, 2.2804, now); t(!(\"side\" in r) && /COLOUR \\(fix1004\\)/.test(r.why) && /PUSH \\(fix1004\\)/.test(r.why), \"fix1004: a 1-tick colour with no push must be refused: \" + JSON.stringify(r));",
-    "why": "fix1027 (her words in this change's request)",
-    "R": "R585"
-  },
-  {
-    "what": "r = M.xrpRead961(b2, L2, 1.1589, n2); t(!(\"side\" in r) && /RULE C \\(fix1004\\)/.test(r.why) && /COLOUR \\(fix1004\\)/.test(r.why), \"fix1004: the 04:46:23 red-candle long under the Bollinger must be refused: \" + JSON.stringify(r)); }",
-    "why": "fix1027 (her words in this change's request)",
-    "R": "R585"
   }
 ]

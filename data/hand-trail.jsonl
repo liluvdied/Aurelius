@@ -3190,3 +3190,16 @@
 {"at":"2026-11-08T16:00:28.372403Z","ticker":"KXBTC15M-26NOV081115-15","action":"buy","side":"no","qty":"4.18","yes":"0.0010","status":"canceled"}
 {"at":"2026-11-08T16:03:52.21392Z","ticker":"KXBTC15M-26NOV081115-15","action":"buy","side":"no","qty":"6.15","yes":"0.0010","status":"executed"}
 {"at":"2026-11-08T16:04:01.423479Z","ticker":"KXXRP15M-26NOV081115-15","action":"buy","side":"no","qty":"5.78","yes":"0.0010","status":"executed"}
+{"at":"2026-11-08T17:17:20.997077Z","ticker":"KXBNB15M-26NOV081230-30","action":"buy","side":"no","qty":"4.37","yes":"0.0010","status":"executed"}
+{"at":"2026-11-08T17:17:46.908742Z","ticker":"KXETH15M-26NOV081230-30","action":"sell","side":"no","qty":"5.17","yes":"0.0300","status":"resting"}
+{"at":"2026-11-08T17:17:35.896729Z","ticker":"KXETH15M-26NOV081230-30","action":"buy","side":"no","qty":"5.17","yes":"0.0010","status":"executed"}
+{"at":"2026-11-08T17:17:46.908742Z","ticker":"KXETH15M-26NOV081230-30","action":"sell","side":"no","qty":"5.17","yes":"0.0300","status":"canceled"}
+{"at":"2026-11-08T17:19:29.782649Z","ticker":"KXBNB15M-26NOV081230-30","action":"buy","side":"no","qty":"7.04","yes":"0.0010","status":"executed"}
+{"at":"2026-11-08T17:20:08.817126Z","ticker":"KXBNB15M-26NOV081230-30","action":"buy","side":"no","qty":"8.56","yes":"0.0010","status":"executed"}
+{"at":"2026-11-08T17:22:59.036539Z","ticker":"KXXRP15M-26NOV081230-30","action":"buy","side":"yes","qty":"5.66","yes":"0.9990","status":"canceled"}
+{"at":"2026-11-08T17:22:59.035736Z","ticker":"KXXRP15M-26NOV081230-30","action":"buy","side":"yes","qty":"5.66","yes":"0.9990","status":"canceled"}
+{"at":"2026-11-08T17:22:59.03503Z","ticker":"KXXRP15M-26NOV081230-30","action":"buy","side":"yes","qty":"5.78","yes":"0.9990","status":"canceled"}
+{"at":"2026-11-08T17:22:41.526521Z","ticker":"KXXRP15M-26NOV081230-30","action":"buy","side":"yes","qty":"7.04","yes":"0.9990","status":"executed"}
+{"at":"2026-11-08T17:22:40.256319Z","ticker":"KXXRP15M-26NOV081230-30","action":"buy","side":"yes","qty":"7.16","yes":"0.9990","status":"canceled"}
+{"at":"2026-11-08T17:22:40.255462Z","ticker":"KXXRP15M-26NOV081230-30","action":"buy","side":"yes","qty":"7.16","yes":"0.9990","status":"canceled"}
+{"at":"2026-11-08T17:22:40.2547Z","ticker":"KXXRP15M-26NOV081230-30","action":"buy","side":"yes","qty":"7.31","yes":"0.9990","status":"canceled"}
