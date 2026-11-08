@@ -2398,3 +2398,6 @@ export const setLiveOffHold815 = createServerFn({ method: "POST" }).validator((i
   const until = new Date(Date.now() + (mid.getTime() - nowPT.getTime())).toISOString();
   writeFileSync(p, JSON.stringify({ until, at: new Date().toISOString() })); return { holdUntil: until };
 });
+// fix1002 ALL BOOKS IN THE TABLES (Love Nov 7 2026 8:37 PM PT: "can you put all of these books and ledgers into the running iOi table && running tables for me bb?"): read only - one row per current book / ledger for the
+// RUNNING table and the i . O . i table (today's trades / W / L / $ from each book's own file). Never sends, cancels or writes anything.
+export const getAllBooks1002 = createServerFn({ method: "GET" }).handler(async () => { try { return await (await import("./allbooks1002")).allBooksRows1002(); } catch { return null; } });
