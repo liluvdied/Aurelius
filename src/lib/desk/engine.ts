@@ -3876,6 +3876,8 @@ async function tick() {
     import("./ethbook").then((m) => m.ethTick682()).catch(() => {});
     // fix961 XRP 5M ON POLYMARKET - MAIN'S NOV 3 MODEL (Love Nov 7 2026 ~5:13 PM PT: "for now let's get the xrp 5M book set up / just put it on the nov 3 save point and we'll see how she does on the first couple windows" + "main" + "it's on poly" + "no , live pls"): her own XRP lane (xrp5m961.ts), live at $1 through the desk's Polymarket buy (umpire, LIVE, cap, 1.5x floor, cash, one per window).
     import("./xrp5m961").then((m) => m.xrpTick961()).catch(() => {});
+    // XRP 5M POLY TWIN (Perplexity, Love Nov 8 2026): the walled-off twin of fix961 without RULE C - its own file, own data, OFF until data/xrp5m-twin-cfg.json says on.
+    import("./xrp5mtwin").then((m) => m.xrpTickTwin()).catch(() => {});
     // fix832 SOL + DOGE REJECTIONS ONLY · NO PINK - PAPER (her card "Paper books on the desk"): copies of the ETH paper book. PAPER ONLY.
     import("./solbook832").then((m) => m.solTick832()).catch(() => {});
     import("./dogebook832").then((m) => m.dogeTick832()).catch(() => {});
