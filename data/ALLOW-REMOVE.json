@@ -10756,5 +10756,15 @@
     "what": "console.log(ok ? \"BANDS VANTAGE 911 TEST ✓ - her BTC session VWAP and sigma bands are drawn from VANTAGE:BTCUSD 5m (5 PM ET), the same feed as her price - not the frozen Pepperstone chart.\" : \"BANDS VANTAGE 911 TEST: FAIL\");",
     "why": "fix1018 (her words in this change's request)",
     "R": "R582"
+  },
+  {
+    "what": "\"offNote1019\": \"fix1019 Love Nov 7 2026 10:13 PM PT: \\\"POLY MOMENTUM OFFFFF / MAIN ONLY\\\" + 10:08 PM PT: YES to \\\"switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live.\\\" (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up) - live copy OFF until her rulebook drop; paper keeps running; settings and records kept; on:true brings it back.\"",
+    "why": "fix1024 (her words in this change's request)",
+    "R": "R583"
+  },
+  {
+    "what": "const xc = JSON.parse(fs.readFileSync(path.join(root, \"data/xrp5m-961-cfg.json\"), \"utf8\")); t(xc.on === false && /fix1019/.test(String(xc.offNote1019 || \"\")), \"the XRP 5m Poly lane must be off (paper)\");",
+    "why": "fix1024 (her words in this change's request)",
+    "R": "R583"
   }
 ]
