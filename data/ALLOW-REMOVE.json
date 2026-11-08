@@ -10061,5 +10061,150 @@
     "what": "for (const l of (L || [])) { const P = Number(l.price), nm = String(l.name); if (!(P > 0) || !/σ$|^session VWAP$|^5m PP$|^(Red|Green) zone$|^5m (R1|S1)$|^(Bollinger|BB) (upper|lower)$/.test(nm)) continue;",
     "why": "fix946 (her words in this change's request)",
     "R": "R555"
+  },
+  {
+    "what": "export function rej668(asset: string, side: string, tick: number, L: Line[], hl?: { o?: number; h: number; l: number } | null): boolean { return !!rejBand668(asset, side, tick, L, hl) || tapFree801(asset, side, tick, L) /* fix801: her pink-slide tap is her rejection off the pink */; } // fix668",
+    "why": "fix949 (her words in this change's request)",
+    "R": "R557"
+  },
+  {
+    "what": "t(BL.includes(\"return !!rejBand668(asset, side, tick, L, hl) || tapFree801(asset, side, tick, L)\"), \"her rejection hook does not count the pink-slide tap\");",
+    "why": "fix949 (her words in this change's request)",
+    "R": "R557"
+  },
+  {
+    "what": "{ const f819 = await import(\"./flip819\"); const c819 = f819.cutWhy819(book, sym, side, String(sameLine?.label || \"\")); if (c819) return c819; if (f819.isFlip819(book, String(sameLine?.label || \"\"))) return \"\"; } // fix819 her cut + flip (the umpire and freshness above still judge the flip)",
+    "why": "fix951 (her words in this change's request)",
+    "R": "R559"
+  },
+  {
+    "what": "{ const a824 = await import(\"./away824\"); if (a824.isAway824(book, String(sameLine?.label || \"\"))) return \"\"; } // fix824 her AWAY FROM LINE take (the umpire, freshness and the pink at the wire above still judge it)",
+    "why": "fix951 (her words in this change's request)",
+    "R": "R559"
+  },
+  {
+    "what": "if (!String((row as any).setup || (row as any).label || \"\").startsWith(\"AWAY FROM LINE\") /* fix824 */ && !String((row as any).setup || (row as any).label || \"\").startsWith(\"FLIP of \") /* fix819 */ && row.side === \"down\" && (row.asset === \"gold\" || row.asset === \"btc\") && [\"recon-rej\", \"recon-tog\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\") { let hold464 = \"\"; try { hold464 = climbHold464((((globalThis as any)[row.asset === \"gold\" ? \"__slide371\" : \"__slide423b\"])?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any)[row.asset === \"gold\" ? \"__climb464g\" : \"__climb464b\"] ||= { on: false }), Date.now(), String(row.asset)); } catch {}",
+    "why": "fix951 (her words in this change's request)",
+    "R": "R559"
+  },
+  {
+    "what": "if (!String((row as any).setup || (row as any).label || \"\").startsWith(\"AWAY FROM LINE\") /* fix824 */ && !String((row as any).setup || (row as any).label || \"\").startsWith(\"FLIP of \") /* fix819 */ && row.side === \"up\" && (row.asset === \"gold\" || row.asset === \"btc\") && [\"recon-rej\", \"recon-tog\"].includes(String(row.book)) && done[row.id]?.status !== \"partial\") { let hold423 = \"\"; try { hold423 = row.asset === \"gold\" ? slideHold403(((globalThis as any).__slide371?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide403 ||= { on: false }), Date.now()) : slideHoldBtc423(((globalThis as any).__slide423b?.s || []) as { t: number; p: number; pp: number }[], ((globalThis as any).__slide423bS ||= { on: false }), Date.now()); } catch {}",
+    "why": "fix951 (her words in this change's request)",
+    "R": "R559"
+  },
+  {
+    "what": "if (!(v501 && v501.ok === true) && String(row.setup || (row as any).label || \"\").startsWith(\"FLIP of \")) v501 = { ok: true, flip819: true }; /* fix819: her flip skips the wall stamp - the umpire and freshness still judge it at the last line */",
+    "why": "fix951 (her words in this change's request)",
+    "R": "R559"
+  },
+  {
+    "what": "if (!(v501 && v501.ok === true) && String(row.setup || (row as any).label || \"\").startsWith(\"AWAY FROM LINE\")) v501 = { ok: true, away824: true }; /* fix824: her AWAY FROM LINE take skips the wall stamp - the umpire and freshness still judge it at the last line */",
+    "why": "fix951 (her words in this change's request)",
+    "R": "R559"
+  },
+  {
+    "what": "t(K.includes('a824.isAway824(book, String(sameLine?.label || \"\"))') && K.indexOf(\"a824.isAway824\") > K.indexOf(\"THE UMPIRE AT THE LAST LINE (fix601): \\\" + String(u601)\"), \"the last line does not judge AWAY after the umpire\");",
+    "why": "fix951 (her words in this change's request)",
+    "R": "R559"
+  },
+  {
+    "what": "let cap = kalshiCeil(body.ticker); // fix455: Kalshi ceiling by hour (else maxDollars)",
+    "why": "fix953 (her words in this change's request)",
+    "R": "R560"
+  },
+  {
+    "what": "async function addOnBuy600(ticker, side, dollars, maxAsk) {",
+    "why": "fix953 (her words in this change's request)",
+    "R": "R560"
+  },
+  {
+    "what": "const o = await live.addOnBuy600(r.ticker, r.side, c.dollars, c.maxAsk);",
+    "why": "fix953 (her words in this change's request)",
+    "R": "R560"
+  },
+  {
+    "what": "const o = await live.addOnBuy600(r.ticker, r.side, c.dollars, c.maxAsk);",
+    "why": "fix953 (her words in this change's request)",
+    "R": "R560"
+  },
+  {
+    "what": "const o = await live.addOnBuy600(r.ticker, r.side, c.dollars, c.maxAsk);",
+    "why": "fix953 (her words in this change's request)",
+    "R": "R560"
+  },
+  {
+    "what": "const o = await live.addOnBuy600(r.ticker, r.side, c.dollars, c.maxAsk);",
+    "why": "fix953 (her words in this change's request)",
+    "R": "R560"
+  },
+  {
+    "what": "if (!p.addOn && c.addOn > 0) {",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "p.addOn = true; dirty = true;",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "try { const o = await live.addOnBuy600(p.ticker, p.side, c.addOn, 1 / c.addOnMult); log({ id: p.id, action: o?.ok ? \"add-on\" : \"add-on missed\", filled: o?.filled ?? 0, px: o?.px ?? null, why: o?.ok ? \"\" : String(o?.reason || \"\") }); if (o?.ok) p.filled += Number(o.filled) || 0; } catch (e: any) { log({ id: p.id, action: \"add-on error\", why: String(e?.message || e).slice(0, 160) }); }",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "if (!p.addOn && c.addOn > 0) {",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "p.addOn = true; dirty = true;",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "try { const o = await live.addOnBuy600(p.ticker, p.side, c.addOn, 1 / c.addOnMult); log({ id: p.id, action: o?.ok ? \"add-on\" : \"add-on missed\", filled: o?.filled ?? 0, px: o?.px ?? null, why: o?.ok ? \"\" : String(o?.reason || \"\") }); if (o?.ok) p.filled += Number(o.filled) || 0; } catch (e: any) { log({ id: p.id, action: \"add-on error\", why: String(e?.message || e).slice(0, 160) }); }",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "if (!p.addOn && c.addOn > 0) {",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "p.addOn = true; dirty = true;",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "try { const o = await live.addOnBuy600(p.ticker, p.side, c.addOn, 1 / c.addOnMult); log({ id: p.id, action: o?.ok ? \"add-on\" : \"add-on missed\", filled: o?.filled ?? 0, px: o?.px ?? null, why: o?.ok ? \"\" : String(o?.reason || \"\") }); if (o?.ok) p.filled += Number(o.filled) || 0; } catch (e: any) { log({ id: p.id, action: \"add-on error\", why: String(e?.message || e).slice(0, 160) }); }",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "if (!p.addOn && c.addOn > 0 && false /* fix940: no add-on on BNB */) {",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "p.addOn = true; dirty = true;",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "try { const o = await live.addOnBuy600(p.ticker, p.side, c.addOn, 1 / c.addOnMult); log({ id: p.id, action: o?.ok ? \"add-on\" : \"add-on missed\", filled: o?.filled ?? 0, px: o?.px ?? null, why: o?.ok ? \"\" : String(o?.reason || \"\") }); if (o?.ok) p.filled += Number(o.filled) || 0; } catch (e: any) { log({ id: p.id, action: \"add-on error\", why: String(e?.message || e).slice(0, 160) }); }",
+    "why": "fix954 (her words in this change's request)",
+    "R": "R561"
+  },
+  {
+    "what": "if (o?.ok && o.filled > 0) { s.pos[r.id] = { id: r.id, ticker: r.ticker, side: r.side, closeTime: r.closeTime, at: new Date(now).toISOString(), status: \"open\", addOn: false, halfSold: false, filled: o.filled }; log({ id: r.id, action: \"bought\", side: r.side, label: r.label, filled: o.filled, px: o.px }); }",
+    "why": "fix955 (her words in this change's request)",
+    "R": "R562"
+  },
+  {
+    "what": "if (addOnNow831(ask, c.addOnMult)) {",
+    "why": "fix955 (her words in this change's request)",
+    "R": "R562"
   }
 ]
