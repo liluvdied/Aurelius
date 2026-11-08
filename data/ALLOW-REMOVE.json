@@ -10206,5 +10206,30 @@
     "what": "if (addOnNow831(ask, c.addOnMult)) {",
     "why": "fix955 (her words in this change's request)",
     "R": "R562"
+  },
+  {
+    "what": "{ const lt717 = liveToday717(); if (lt717 && String(book) === lt717) return { ok: true }; } // fix717: the one live book today, its own gates only",
+    "why": "fix959 (her words in this change's request)",
+    "R": "R564"
+  },
+  {
+    "what": "{ const lt726 = liveToday717(); if (lt726.includes(\",\") && lt726.split(\",\").includes(String(book))) return { ok: true }; } // fix726 AKIMBO: both live-today books, their own gates only",
+    "why": "fix959 (her words in this change's request)",
+    "R": "R564"
+  },
+  {
+    "what": "t(B.includes('lt726.split(\",\").includes(String(book))) return { ok: true }; } // fix726'), \"her door does not stand down for both books\");",
+    "why": "fix959 (her words in this change's request)",
+    "R": "R564"
+  },
+  {
+    "what": "t(/const lt717 = liveToday717\\(\\); if \\(lt717 && String\\(book\\) === lt717\\) return \\{ ok: true \\}; \\} \\/\\/ fix717/.test(B), \"her door still judges the one book today\");",
+    "why": "fix959 (her words in this change's request)",
+    "R": "R564"
+  },
+  {
+    "what": "[ ${#PENDING[@]} -gt 0 ] || { say \"Nothing waiting - every CHANGE on the Desktop is already in.\"; exit 0; }",
+    "why": "fix957 (her words in this change's request)",
+    "R": "R565"
   }
 ]
