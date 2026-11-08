@@ -1,6 +1,6 @@
 # Her change history
 
-Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 17:17 from her desk branch and her requests book.
+Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 17:55 from her desk branch and her requests book.
 
 ## 1. PINK BREAK = THE ENTRY, put in whole (fix641, R328)
 - When: 2026-11-04 13:39:42 -0800
@@ -1472,5 +1472,37 @@ Every install, oldest first: what she did BEFORE, what she does AFTER, Love's ow
 - Her words: Love Nov 7 2026 ~3:29 PM PT: "not ready" (her RUN-ALL said "Nothing waiting" and LIVE was left off from 3:29 PM - her ETH wick at 3:32 PM was refused "the live switch is off") + 3:31 PM: "i need to keep them on"
 - Before: (the code as it was in the previous entry - see the diff)
 - After: fix957 RUN-ALL TELLS YOU LIVE IS OFF: when RUN-ALL finds nothing waiting and LIVE is off (you turned it off for the install), it now says so in big letters: turn LIVE back on. It still never touches LIVE itself. Nothing else changes.
+- Files: -
+
+## 185. XRP 5M POLY NOV3 MAIN (fix961, R566)
+- When: 2026-11-07 17:45:54 -0800
+- Commit: [3e0cc61e](https://github.com/liluvdied/Aurelius/commit/3e0cc61edbf2fbb3c6c5adf44469cbef32226d67)
+- Her words: Love Nov 7 2026 ~5:13 PM PT: "for now let's get the xrp 5M book set up / just put it on the nov 3 save point and we'll see how she does on the first couple windows" + "main" + "it's on poly" + "no , live pls"
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix961 XRP 5M ON POLYMARKET (LIVE, $1): her own XRP lane on Polymarket's 5-minute XRP up/down markets, using MAIN'S NOV 3 MODEL: rejections off her session bands / zones / Bollinger with her 2m or 5m candle her colour, her pink break and failed pink break, with the Nov 3 walls (thirds, past the zone, pink-to-zone 45%, pink cushion). Her lines come from Coinbase XRP-USD 1m; dollar numbers scaled to XRP's price. 5-minute windows: once per window, never in its last minute. $1 a trade (half her $2 slider), through the desk's Polymarket buy: umpire SAFE, LIVE on, the $ cap, 66c (1.5x), cash. No add-ons in this first version. Turn off: data/xrp5m-961-cfg.json on:false.
+- Files: src/lib/desk/bandlock.ts (+14/-0), src/lib/desk/bnblive940.ts (+2/-2), src/lib/desk/engine.ts (+2/-0), src/lib/desk/kalshi-live.server.ts (+1/-1), src/lib/desk/recon.ts (+2/-1), src/lib/desk/xrp5m961.ts (+112/-0)
+
+## 186. BTC BOLLINGER 25 WALL (fix962, R567)
+- When: 2026-11-07 17:49:08 -0800
+- Commit: [c6828516](https://github.com/liluvdied/Aurelius/commit/c6828516894848323cf66522ba0e1db27bad4ca2)
+- Her words: Love Nov 7 2026 ~5:17 PM PT: "she entered properly on btc just now hun. but she entered in right above a bollinger. we need to make it a $25 wall in front of those" + 5:19 PM: "melted immediately. and yes the middle counts as a wall and as an entry. if it starts losing we will take it off but so far ignoring the middle has been very bad"
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix962 / fix963 HER BOLLINGER MIDDLE + $25 BOLLINGER WALL (BTC): the Bollinger MIDDLE is now one of main's entry lines (rejections off it, same triggers as her other lines), and no short when a Bollinger line (upper, middle or lower) is $25 or less below price, no long when one is $25 or less above - unless she is entering OFF that Bollinger (her rejection there is her setup) or price already broke it by her break. One switch takes the middle back out. Every book but delayed; gold unchanged.
+- Files: -
+
+## 187. BNB ADD ONS ON (fix964, R568)
+- When: 2026-11-07 17:52:10 -0800
+- Commit: [47244ffe](https://github.com/liluvdied/Aurelius/commit/47244ffed70f7eb58037bd8e66cf8e8987e985b1)
+- Her words: Love Nov 7 2026 ~5:20 PM PT: "she IS NOT doing her add ons. please fix that" (BNB 15m UP open at 11.76x with no add-on) + 3:26 PM: "fix the add on thing now pls let the add ons work as i set them"
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix964 HER BNB ADD-ON: BNB's live copy was built with no add-on. Now, like ETH.2 and BTC.2, it adds $3 once its side pays 2.8x (once per position, spent only when it fills), through her add-on route: $5 cap, umpire SAFE, LIVE on, the window side lock and the opposite-side guard all still hold.
+- Files: -
+
+## 188. ADD ONS FIRE AS SET (fix967, R569)
+- When: 2026-11-07 17:55:13 -0800
+- Commit: [83dc78d2](https://github.com/liluvdied/Aurelius/commit/83dc78d278b3d877769a476ae1867d58b65c89d0)
+- Her words: Love Nov 7 2026 ~5:20 PM PT: "hun she IS NOT doing her add ons. please fix that" + 3:26 PM: "fix the add on thing now pls let the add ons work as i set them" + 3:17 PM: "wick rejection is the ONLY instance she may enter without the candle our color" (her colour is an ENTRY rule)
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix967 HER ADD-ONS FIRE AS SHE SET THEM: since 4:11 PM her colour check (297) also ran on add-ons, so an add-on at her 2.8x (price moved against her, candle not her colour) was refused - 14 times at 5:07 PM on BTC. Her colour rule is for ENTRIES; it stays on every entry, including the BTC / gold copies. Add-ons go at her multiple again with every other rail ($5 cap, umpire, LIVE, side lock, opposite guard).
 - Files: -
 
