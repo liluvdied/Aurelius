@@ -2448,12 +2448,17 @@
   "reason": "REJECTION trades live only in Love's rejection hours"
  },
  "KXBTC15M-26NOV080430-30:recon-tog:ps801": {
-  "at": "2026-11-08T09:24:39.829Z",
+  "at": "2026-11-08T09:28:32.521Z",
   "ticker": "KXBTC15M-26NOV080430-30",
   "side": "down",
-  "status": "skipped",
+  "status": "blocked",
+  "reason": "this window already traded",
+  "firstReason": "this window already traded",
+  "firstTryAt": "2026-11-08T09:25:02.530Z",
+  "bookedAt": "2026-11-08T09:24:06.740Z",
+  "tries": 816,
   "final": false,
-  "bandWait": true,
-  "reason": "SUB-AUDITOR: THE IMPOSSIBILITY: short at 16% of the 75791.33 -> 75858.42 channel - the bottom 33%, into the unbroken band below. never."
+  "paid": null,
+  "orderId": null
  }
 }
