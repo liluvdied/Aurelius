@@ -10766,5 +10766,115 @@
     "what": "const xc = JSON.parse(fs.readFileSync(path.join(root, \"data/xrp5m-961-cfg.json\"), \"utf8\")); t(xc.on === false && /fix1019/.test(String(xc.offNote1019 || \"\")), \"the XRP 5m Poly lane must be off (paper)\");",
     "why": "fix1024 (her words in this change's request)",
     "R": "R583"
+  },
+  {
+    "what": "const toNext = 900 - Math.floor(nowMs / 1000) % 900; // seconds to the next :00 / :15 / :30 / :45",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "export function installing815(): boolean {",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "try { const out = execSync(\"pgrep -f 'STAGED-CHANGE-[^ ]*/apply[0-9a-z]*\\\\.sh|BATCH-RUNNER/run-all\\\\.sh|BATCH-RUNS/[^ ]*-part[12]\\\\.sh' || true\", { encoding: \"utf8\", timeout: 1500 }); const me = process.cwd();",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "for (const pid of out.split(/\\s+/).filter(Boolean)) { let args = \"\", cwd = \"\"; try { args = execSync(`ps -o args= -p ${pid}`, { encoding: \"utf8\", timeout: 1000 }); } catch {} try { cwd = (execSync(`lsof -a -p ${pid} -d cwd -Fn`, { encoding: \"utf8\", timeout: 1500 }).split(\"\\n\").find((l) => l.startsWith(\"n\")) || \"\").slice(1); } catch {} if (args.includes(me) || cwd === me) return true; }",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "return false; } catch { return true; } // can't tell = treat as installing (never fights a command)",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "const toNext = 900 - Math.floor(nowMs / 1000) % 900; if (toNext > LEAD815) return;",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "const win = Math.floor(nowMs / 900000) + 1; if (G.__live815Win === win) return;",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "const why = decide815({ live: sw.live === true, installing: installing815(), umpireSafe: umpire?.ok === true, halted: halt?.off === true, holdUntil: Date.parse(String(hold?.until || \"\")) || 0, switchOn: sw.autoLive815 !== false }, nowMs);",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "if (done) { G.__live815Win = win; try { appendFileSync(D(\"alarm-tp-watchdog.jsonl\"), JSON.stringify({ at: new Date(nowMs).toISOString(), kind: \"live auto-on\", text: `LIVE AUTO-ON: LIVE was off ${Math.round((win * 900000 - nowMs) / 1000)} s before the ${new Date(win * 900000).toLocaleTimeString(\"en-US\", { timeZone: \"America/Los_Angeles\", hour: \"numeric\", minute: \"2-digit\" })} window - turned back on (umpire SAFE, entries clear, no install running).` }) + \"\\n\"); } catch {} } // fix852: tells her on ALERTS",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "try { appendFileSync(D(\"live-auto-on-815.jsonl\"), JSON.stringify({ at: new Date(nowMs).toISOString(), window: new Date(win * 900000).toISOString(), action: why === \"on\" ? (done ? \"LIVE turned on\" : \"tried - LIVE still off\") : \"stayed off\", why: why === \"on\" ? \"\" : why }) + \"\\n\"); } catch {}",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "if (!G.__live815) G.__live815 = setInterval(() => { void liveAutoTick815(); }, 1000);",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "stop() { say \"\"; say \"STOP: $1\"; say \"Send Claude a picture of this window.\"; cleanup; exit 1; }",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "say \">>> TURN LIVE ON on the desk, then come back here and press return. <<<\"",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "while :; do read -r -p \"\" _ || sleep 2; [ \"$(live)\" = \"True\" ] && break; echo \"LIVE still reads off - turn LIVE on, then press return.\"; done",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "grep -q 'NOW TURN LIVE ON' \"$ap\" && grep -q '^while :; do read' \"$ap\" && grep -q '^\\[ \"$(live)\" = \"False\" \\]' \"$ap\" \\",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "liveon=next(i for i,l in enumerate(L) if \"NOW TURN LIVE ON\" in l)",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "say \">>> NOW TURN LIVE ON on the desk, then come back here and press return. (Just once.) <<<\"",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "while :; do read -r -p \"\" _ || sleep 2; [ \"$(live)\" = \"True\" ] && break; echo \"LIVE still reads off - turn LIVE on, then press return.\"; done",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "t((M.match(/writeFileSync\\(/g) || []).length === 1 && M.includes('writeFileSync(D(\"live-switch.json.tmp815\")') && (M.match(/appendFileSync\\(D\\(\"/g) || []).length === 2 && M.includes('appendFileSync(D(\"alarm-tp-watchdog.jsonl\")') /* fix852: + her LIVE AUTO-ON alert */ && M.includes('appendFileSync(D(\"live-auto-on-815.jsonl\")') && (M.match(/writeSwitch\\(/g) || []).length === 1, \"auto LIVE-on may only write LIVE on (her own path), liveBook.since and its own log\");",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "console.log(ok ? \"LIVE AUTO 815 TEST ✓ - LIVE off 3 min = flashing orange + a toast every 3 min; 60 s before each window (fix852) LIVE turns itself back on (her own LIVE-on path) unless an install is running, the umpire isn't SAFE, entries are halted or OFF TODAY is set; every try logged.\" : \"LIVE AUTO 815 TEST: FAIL\");",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "t(M.includes(\"if (args.includes(me) || cwd === me) return true;\"), \"a rehearsal copy elsewhere can still keep her LIVE off\");",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
+  },
+  {
+    "what": "console.log(ok ? \"LIVE 60 + FINISH 852 TEST ✓ - LIVE turns itself back on in the last 60 s before each window (keeps trying; umpire SAFE, entries clear, no install of HER desk running, OFF TODAY respected) with a LIVE AUTO-ON alert. (RUN-ALL's finisher is its own command - it can't be installed by a running RUN-ALL.)\" : \"LIVE 60 + FINISH 852 TEST: FAIL\");",
+    "why": "fix1025 (her words in this change's request)",
+    "R": "R584"
   }
 ]
