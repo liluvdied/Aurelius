@@ -2,6 +2,16 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R582 - fix1018 PEPPERSTONE FIRST, VANTAGE ONLY ON A FREEZE: her BTC chart is PEPPERSTONE:BTCUSD again (candles, session bands, pink, zones, Bollingers, the tick). Only when Pepperstone's price has not updated for MORE than 10 s (a reconnect re-sending the frozen price is not an update) while Vantage is updating does BTC read VANTAGE:BTCUSD; the first real Pepperstone update puts her straight back. One feed at a time - a switch clears the old feed's bars and trail (new lines from the new feed). Every switch, both ways, is logged to data/feed-switch-1018.jsonl (time + stale seconds). The fix519 Kalshi difference is measured at each window open on the live chart and re-measured at a mid-window switch (logged). One picker for every reader: btcSymbol1018() in tv.ts. Gold stays TVC:GOLD; every freshness / umpire / floor guard unchanged. Supersedes fix908/fix911's Vantage pins (R525/R526).
+- when: 2026-11-08T07:22:27+00:00
+- Love: "Love Nov 7 2026 9:58 PM PT, answering "is she back on pepperstone's chart?": "yes pepperstone / vantage is ONLY used in the event pepperstones feed freezes for more than 10 seconds" + 9:55 PM: "she is supposed to deduct the difference from her chart and the kalshi price / that is a cornerstone" (cornerstone 48, fix519) + Love Nov 7 2026 11:12 PM PT: "any time she uses any chart , a backup or not the difference from tradingview needs to be deducted from kalshi's price / and price itself is immaterial hun aside from trading the actual bands themselves , she has nothing else to worry about / she just needs to trade them as we designed" (the offset is re-captured on whichever feed is live, primary or backup, at every switch and window open; bands and price always from the same feed)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/tv.ts", "has": "export function btcSymbol1018("}
+- proof: {"code": "src/lib/desk/quotes.ts", "has": "if (live18 !== sym18) continue;"}
+- proof: {"code": "src/lib/desk/engine.ts", "has": "feed switch - re-measured at the switch (fix1018)"}
+- proof: {"test": "tools/pepperstone-first-1018.cjs"}
+
 ## R581 - fix1021 AWAY FROM LINE OFF: on her 11:00 PM word, main's AWAY FROM LINE setup (fix824 - at a window's open it took the side away from a line near the target, with no candle-colour check) stops trading live on every book. The code is kept, not deleted. LIVE, main / rejection / delayed and everything else stay exactly as they are.
 - when: 2026-11-08T07:07:36+00:00
 - Love: "Love Nov 7 2026 11:00 PM PT: "yes - take that set up off" (main's AWAY FROM LINE, fix824 - it longed BTC at the 10:45 PM open on a red candle; Love 10:46 PM: "she just longed btc on a fully red candle btw hun, for your checklist to fix")"
