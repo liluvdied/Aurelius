@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R580 - fix1019 MAIN ONLY: on her 10:08 PM yes and 10:13 PM "POLY MOMENTUM OFF / MAIN ONLY", BTC.2, ETH.2, BNB, Poly momentum and the XRP 5m Poly lane that fired backwards tonight stop sending live orders until her rulebook drop. Their paper books keep running, nothing is deleted, open positions and take-profits are untouched, and on:true brings each back. LIVE and main / rejection / delayed stay exactly as they are.
+- when: 2026-11-08T06:31:06+00:00
+- Love: "Love Nov 7 2026 10:13 PM PT: "POLY MOMENTUM OFFFFF / MAIN ONLY" + 10:08 PM PT: YES to "switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live." (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up)"
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "tools/copy-books-paper-1019.cjs", "has": "fix1019"}
+- proof: {"test": "tools/copy-books-paper-1019.cjs"}
+
 ## R579 - fix1004 XRP-POLY-CORNERSTONES: her XRP 5m Polymarket lane (xrp5m961) moves to main's CURRENT configuration (her 8:53 PM "new one pls": rejections, breaks and failed breaks incl. the Bollinger middle; thirds, past the zone, pink-to-zone 55%, pink 20% cushion, her line-in-the-way reach, her $25 Bollinger wall with the broken-Bollinger rule, all scaled to XRP) and enters only through her cornerstones - (a) her colour that is REAL (2m or 5m candle her colour by her push over its open; a 1-tick colour is not her colour), (b) price on her side of the line, (c) the push off the 5m low / high (bands $0.0005, pink $0.0010), (d) no long under an unbroken Bollinger middle / upper within her $25 wall scaled to XRP, (e) rule C mirrored: no long while the 5m is red and under the Bollinger middle. The only exception: a REAL wick rejection ($0.0005 back off the wick) skips colour only, labelled (wick). Only the XRP Poly lane changes.
 - when: 2026-11-08T05:13:53+00:00
 - Love: "Love Nov 7 2026 8:49 PM PT: "hun she longed xrp on poly when the candle was red and under a bollinger. candles need to be her color. the wick rejections didn't trigger so she entered on a red candle pushing" + 8:53 PM: "ok you can put her on the new configuration bb ... new one pls" + 7:31 PM: "it needs to be ON THE SAME SIDE OF THE BAND. 100% OF THE TIME ... FLIP (or born candle) AND PUSH. NOTHING ELSE" + 7:40 PM XRP push: bands 0.05c, pink 0.10c, wick $0.0005"

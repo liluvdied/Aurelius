@@ -10466,5 +10466,90 @@
     "what": "console.log(ok ? \"XRP 5M POLY 961 TEST ✓ - XRP 5m on Polymarket with main's Nov 3 entries (rejections with her 2m / 5m colour, pink break, failed break) and her walls, $1 through the Polymarket guard, stale feed = no trade.\" : \"XRP 5M POLY 961 TEST: FAIL\");",
     "why": "fix1004 (her words in this change's request)",
     "R": "R579"
+  },
+  {
+    "what": "ethLive872.since",
+    "R": "R580",
+    "why": "fix1019 switch time"
+  },
+  {
+    "what": "ethLive872.offNote1019",
+    "R": "R580",
+    "why": "fix1019 note"
+  },
+  {
+    "what": "ethLive872.on",
+    "R": "R580",
+    "why": "fix1019: switched to paper on her 10:08 PM yes (kept, not deleted)"
+  },
+  {
+    "what": "btcLive899.since",
+    "R": "R580",
+    "why": "fix1019 switch time"
+  },
+  {
+    "what": "btcLive899.offNote1019",
+    "R": "R580",
+    "why": "fix1019 note"
+  },
+  {
+    "what": "btcLive899.on",
+    "R": "R580",
+    "why": "fix1019: switched to paper on her 10:08 PM yes (kept, not deleted)"
+  },
+  {
+    "what": "bnbLive940.since",
+    "R": "R580",
+    "why": "fix1019 switch time"
+  },
+  {
+    "what": "bnbLive940.offNote1019",
+    "R": "R580",
+    "why": "fix1019 note"
+  },
+  {
+    "what": "bnbLive940.on",
+    "R": "R580",
+    "why": "fix1019: switched to paper on her 10:08 PM yes (kept, not deleted)"
+  },
+  {
+    "what": "polyMom830.since",
+    "R": "R580",
+    "why": "fix1019 switch time"
+  },
+  {
+    "what": "polyMom830.offNote1019",
+    "R": "R580",
+    "why": "fix1019 note"
+  },
+  {
+    "what": "polyMom830.on",
+    "R": "R580",
+    "why": "fix1019: switched to paper on her 10:08 PM yes (kept, not deleted)"
+  },
+  {
+    "what": "xrp5m-961-cfg.on",
+    "R": "R580",
+    "why": "fix1019: XRP 5m Poly lane to paper on her 10:13 PM main only"
+  },
+  {
+    "what": "\"note\": \"fix961 XRP 5m Polymarket, main's Nov 3 model. Love Nov 7 5:13 PM: \\\"no , live pls\\\". on:false turns it off.\"",
+    "why": "fix1019 (her words in this change's request)",
+    "R": "R580"
+  },
+  {
+    "what": "t(sw.btcLive899 && sw.btcLive899.on === true && Number(sw.btcLive899.dollars) === 1.5, \"BTC.2 must be LIVE at $1.50\");",
+    "why": "fix1019 (her words in this change's request)",
+    "R": "R580"
+  },
+  {
+    "what": "t(sw.ethLive872 && sw.ethLive872.on === true && Number(sw.ethLive872.dollars) === 1.5, \"ETH.2 must be LIVE at $1.50\");",
+    "why": "fix1019 (her words in this change's request)",
+    "R": "R580"
+  },
+  {
+    "what": "const ok = !!r && r.on === false && /fix989/.test(String(r.offNote989 || \"\")) && !!e2 && e2.on === true;",
+    "why": "fix1019 (her words in this change's request)",
+    "R": "R580"
   }
 ]

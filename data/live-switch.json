@@ -1,9 +1,9 @@
 {
   "live": true,
-  "maxDollars": 3,
+  "maxDollars": 1,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-08T05:13:57.767Z",
+  "at": "2026-11-08T06:31:13.320Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -123,8 +123,8 @@
       "recon-rej",
       "recon-dly"
     ],
-    "dollars": 3,
-    "since": "2026-11-08T05:13:57.768Z",
+    "dollars": 1,
+    "since": "2026-11-08T06:31:13.325Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -3114,7 +3114,7 @@
     "bestie"
   ],
   "polyMom830": {
-    "on": true,
+    "on": false,
     "dollars": 2.5,
     "addOn": 3,
     "addOnMult": 2.8,
@@ -3122,7 +3122,8 @@
     "assets": [
       "btc"
     ],
-    "since": "2026-11-06T23:59:00.538403Z"
+    "since": "2026-11-08T06:31:06.705589+00:00",
+    "offNote1019": "fix1019 Love Nov 7 2026 10:13 PM PT: \"POLY MOMENTUM OFFFFF / MAIN ONLY\" + 10:08 PM PT: YES to \"switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live.\" (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up) - live copy OFF until her rulebook drop; paper keeps running; settings and records kept; on:true brings it back."
   },
   "ethLive831": {
     "on": false,
@@ -3134,18 +3135,21 @@
     "offNote989": "fix989 Love Nov 7 7:00 PM: \"only the new ETH rej book only the first one is out\" - ETH.1 off, ETH.2 stays. Records kept; on:true brings it back."
   },
   "ethLive872": {
-    "on": true,
+    "on": false,
     "dollars": 1.5,
-    "since": "2026-11-07T14:25:32.991734+00:00"
+    "since": "2026-11-08T06:31:06.705380+00:00",
+    "offNote1019": "fix1019 Love Nov 7 2026 10:13 PM PT: \"POLY MOMENTUM OFFFFF / MAIN ONLY\" + 10:08 PM PT: YES to \"switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live.\" (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up) - live copy OFF until her rulebook drop; paper keeps running; settings and records kept; on:true brings it back."
   },
   "btcLive899": {
-    "on": true,
+    "on": false,
     "dollars": 1.5,
-    "since": "2026-11-07T14:25:34.640242+00:00"
+    "since": "2026-11-08T06:31:06.705527+00:00",
+    "offNote1019": "fix1019 Love Nov 7 2026 10:13 PM PT: \"POLY MOMENTUM OFFFFF / MAIN ONLY\" + 10:08 PM PT: YES to \"switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live.\" (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up) - live copy OFF until her rulebook drop; paper keeps running; settings and records kept; on:true brings it back."
   },
   "bnbLive940": {
-    "on": true,
+    "on": false,
     "dollars": 1.5,
-    "since": "2026-11-07T22:42:48.935048+00:00"
+    "since": "2026-11-08T06:31:06.705577+00:00",
+    "offNote1019": "fix1019 Love Nov 7 2026 10:13 PM PT: \"POLY MOMENTUM OFFFFF / MAIN ONLY\" + 10:08 PM PT: YES to \"switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live.\" (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up) - live copy OFF until her rulebook drop; paper keeps running; settings and records kept; on:true brings it back."
   }
 }
