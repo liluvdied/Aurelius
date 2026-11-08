@@ -1,9 +1,9 @@
 {
- "at": "2026-11-07T13:49:29.352857+00:00",
+ "at": "2026-11-08T01:41:40.374866+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "6b86261e5fc54149"
+  "recon.ts": "5a83b6c0ef759c5f"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -790,6 +790,12 @@
    "by": "Love",
    "quote": "Love Nov 7 2026 ~4:02 AM PT: \"session band to session band / distance from where price currently is / if a band channel is \\$100 wide from 0 - 1o / pink tolerance is 20% / she needs \\$20 of clearance from where price currently is. / it applies in every conceivable capacity\" + \"yes 20% of the channel width\" + \"\\$500 channel = \\$100 / 20% tolerance from where price currently stands\" + Love Nov 7 2026 ~4:02 AM PT: \"yes 20% of the channel width\" (R536, fix927)",
    "recon.ts": "6b86261e5fc54149"
+  },
+  {
+   "at": "2026-11-08T01:41:40.374866+00:00",
+   "by": "Love",
+   "quote": "Love Nov 7 2026 ~5:17 PM PT: \"she entered properly on btc just now hun. but she entered in right above a bollinger. we need to make it a \\$25 wall in front of those\" + 5:19 PM: \"melted immediately. and yes the middle counts as a wall and as an entry. if it starts losing we will take it off but so far ignoring the middle has been very bad\" (R567, fix962)",
+   "recon.ts": "5a83b6c0ef759c5f"
   }
  ],
  "R": "R266",

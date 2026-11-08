@@ -1,6 +1,6 @@
 // fix940 BNB MOMENTUM LIVE ON KALSHI (Love Nov 7 2026 ~2:02 PM PT: "omg pls turn on bnb momentum on kalshi bb"): her BNB momentum paper book (fix833 - WITH THE FIRST 2 MINUTES, WITH A FRESH BREAK UP THROUGH PINK, SHORT UNDER -2σ WHILE FALLING,
 // on Kalshi KXBNB15M) gets its own live copy: the second the paper book takes a BNB window, buy the same side for $1.50 - only inside her 1.5x floor (66.7c or less), one filled trade a window,
-// keep knocking while the set up is valid (3 min, 1+ min left); exits mirror the paper (half at her 75%, the rest on its trail sale, else the bell). No add-on.
+// keep knocking while the set up is valid (3 min, 1+ min left); exits mirror the paper (half at her 75%, the rest on its trail sale, else the bell). Add-on: fix964 ($3 at 2.8x, once, spent only when it fills - fix954).
 // Every order goes through her add-on route (addOnBuy600): the umpire SAFE and its gate clear, LIVE on, entries on (halt / her stops), never over $5 an order, the window's side lock, the
 // opposite-side guard. Sells are reduce-only (partLive). live-switch bnbLive940 { on, dollars } - on:false = off. Log: data/bnb-live-940.jsonl, state: data/bnb-live-940.json.
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
@@ -10,7 +10,7 @@ const D = (f: string) => join(process.cwd(), "data", f);
 export type Cfg831 = { on: boolean; dollars: number; addOn: number; addOnMult: number; maxAsk: number };
 export function cfg831(): Cfg831 {
   let c: any = {}; try { c = JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.bnbLive940 || {}; } catch {}
-  return { on: c.on === true, dollars: Math.min(5, Number(c.dollars) > 0 ? Number(c.dollars) : 1.5), addOn: 0, addOnMult: Number(c.addOnMult) > 1 ? Number(c.addOnMult) : 2.8, maxAsk: 0.667 };
+  return { on: c.on === true, dollars: Math.min(5, Number(c.dollars) > 0 ? Number(c.dollars) : 1.5), addOn: Math.min(5, Number(c.addOn) > 0 ? Number(c.addOn) : 3) /* fix964 HER BNB ADD-ON (Love Nov 7 2026 ~5:20 PM PT: "she IS NOT doing her add ons. please fix that" (BNB 15m UP open at 11.76x with no add-on) + 3:26 PM: "fix the add on thing now pls let the add ons work as i set them"): like ETH.2 / BTC.2 - $3 once the side pays 2.8x (bnbLive940 addOn / addOnMult change it), through addOnBuy600 */, addOnMult: Number(c.addOnMult) > 1 ? Number(c.addOnMult) : 2.8, maxAsk: 0.667 };
 }
 type Pos = { id: string; ticker: string; side: "up" | "down"; closeTime: string; at: string; status: "open" | "sold" | "bell"; addOn: boolean; halfSold: boolean; filled: number; px?: number /* fix891 */ };
 function st(): { pos: Record<string, Pos>; seen: Record<string, number> } { if (G.__bnb940) return G.__bnb940; let s = { pos: {} as Record<string, Pos>, seen: {} as Record<string, number> }; try { if (existsSync(D("bnb-live-940.json"))) s = { pos: {}, seen: {}, ...JSON.parse(readFileSync(D("bnb-live-940.json"), "utf8")) }; } catch {} G.__bnb940 = s; return s; }
