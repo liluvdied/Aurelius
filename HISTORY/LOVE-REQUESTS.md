@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R576 - fix1001 HER 5M MARKETS BY THEIR REAL NAMES: Polymarket US names each 5m market cpc<asset>-<asset>-updown-5m-<date>-<time>z (XRP cpcxrp-xrp-..., ETH cpceth-eth-..., SOL cpcsol-sol-...; BTC cpc-btc-...) - read off her own event pages. CHANGE-334 looked the event up another way and found nothing (8:12 PM: still 'no window'). Now those names are tried first; the first window logs the market it found.
+- when: 2026-11-08T04:28:49+00:00
+- Love: "Love Nov 7 2026 ~7:19-7:21 PM PT: her links polymarket.us/event/xrp-updown-5m-2026-11-08-0315z (and eth / sol / btc) - the XRP lane found set ups and sent none ("no Polymarket XRP 5m window found"); her public event pages name the real markets cpcxrp-xrp-updown-5m-...z / cpceth-eth-... / cpcsol-sol-... / cpc-btc-..."
+- books: every live book but delayed
+- status: ACTIVE
+- proof: {"code": "src/lib/desk/poly-live.server.ts", "has": "fix1001 HER 5M MARKET NAMES"}
+- proof: {"test": "tools/poly5-names-1001.cjs"}
+
 ## R575 - fix994 HER 5M POLYMARKET MARKETS FOUND: her XRP 5m lane asked Polymarket US for the EVENT name (xrp-updown-5m-...z) as if it were the market, so every window came back 'not found' (12 set ups, 0 orders). Now any 5m event name is looked up first (the same lookup her BTC 5m uses) and its real market is quoted and bought. Covers XRP now and BTC / ETH 5m. Every lookup is logged (data/poly5-resolve-994.jsonl) so the first window proves it.
 - when: 2026-11-08T04:05:35+00:00
 - Love: "Love Nov 7 2026 ~7:19 PM PT: her link https://polymarket.us/event/xrp-updown-5m-2026-11-08-0315z (Polymarket US lists XRP 5m - the lane had found 12 set ups since 5:42 PM and sent none: "no Polymarket XRP 5m window found") + 5:13 PM: "no , live pls""
