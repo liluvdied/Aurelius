@@ -3,7 +3,7 @@
   "maxDollars": 3,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-08T04:28:58.402Z",
+  "at": "2026-11-08T05:13:57.767Z",
   "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -124,7 +124,7 @@
       "recon-dly"
     ],
     "dollars": 3,
-    "since": "2026-11-08T04:28:58.403Z",
+    "since": "2026-11-08T05:13:57.768Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
@@ -246,7 +246,7 @@
     "touch": false,
     "hedgeTwin": false,
     "rej5m": {
-      "on": true,
+      "on": false,
       "dollars": 5,
       "assets": [
         "btc"
@@ -276,10 +276,12 @@
         23
       ],
       "dollarsPrev358": 5,
-      "dollarsPrev410": 7.5
+      "dollarsPrev410": 7.5,
+      "offNote981": "fix981 Love Nov 7 5:55 PM card: \"Turn the old lane off\" - her new BTC 5M lane (fix974) replaces it. Records kept; on:true brings it back."
     },
     "no15m": true,
-    "no15mNote": "fix236 Oct 25 ~9:16 PM PT, Love card 'Stop 15m, 5m to $10': no Polymarket 15m entries; since Oct 23 Poly 15m gold 5-24 -$40.63, BTC 45-62 +$10.82 vs 5m 13-2 +$55.25 since the 72% rule"
+    "no15mNote": "fix236 Oct 25 ~9:16 PM PT, Love card 'Stop 15m, 5m to $10': no Polymarket 15m entries; since Oct 23 Poly 15m gold 5-24 -$40.63, BTC 45-62 +$10.82 vs 5m 13-2 +$55.25 since the 72% rule",
+    "since": "2026-11-08T04:57:03.157669+00:00"
   },
   "addOn": {
     "twin": {

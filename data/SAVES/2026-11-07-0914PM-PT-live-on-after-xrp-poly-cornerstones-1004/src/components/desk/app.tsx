@@ -21,6 +21,7 @@ import { HedgeBook } from "@/components/desk/hedge-book";
 import { ScheduleLiveCard } from "@/components/desk/schedule-live";
 import { LiveToday722 } from "@/components/desk/live-today"; // fix722
 import { getLiveToday722 as getLiveToday736 } from "@/lib/desk/fns"; // fix736
+import { getAllBooks1002 } from "@/lib/desk/fns"; // fix1002 ALL BOOKS IN THE TABLES (display only)
 import { LookPanel } from "@/components/desk/look-panel";
 import { Positions } from "@/components/desk/positions";
 import { ScaleBook } from "@/components/desk/scale";
@@ -4109,10 +4110,15 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
                   <span className="shrink-0 tabular-nums" style={{ color: on ? "#3ddc84" : "#ffb86b" }}>{on ? "ON KALSHI" : "PAPER"}</span>
                 </div>); }) : <p className="font-mono text-[10px] text-white/50">{openQ.isLoading ? "loading…" : "no open trades right now"}</p>}
             </div>
+            <AllBooks1002 title="EVERY BOOK + LEDGER · TODAY" color="#3ddc84" /> {/* fix1002 (Love Nov 7 2026 8:37 PM PT: 'can you put all of these books and ledgers into the running iOi table && running tables for me bb?'): every book and ledger rides in RUNNING too - display only */}
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">{runRows.map((b) => [Col({ book: b.book, title: `${b.i + 1}. ${b.title}`, note: b.note, s: b.s }), Inline({ book: b.book })])}</div>
           </div>
         );
       })()}
+      {/* fix1002 i . O . i · ITEMS OF INTEREST (Love Nov 7 2026 8:37 PM PT: 'can you put all of these books and ledgers into the running iOi table && running tables for me bb?'): every current book and ledger, LIVE / PAPER / OFF, KALSHI / POLY, today's trades / W / L / $ from its own file - display only */}
+      <div className="mt-3 rounded-2xl px-2 pb-2 pt-2" style={{ border: "1px solid rgba(201,167,255,0.45)", boxShadow: "0 0 18px rgba(201,167,255,0.10)" }}>
+        <AllBooks1002 title="i . O . i · ITEMS OF INTEREST · EVERY BOOK + LEDGER" color="#c9a7ff" />
+      </div>
       {false && <RsiBooks672 />} {/* fix765: opens inside its card now (Love Nov 5 5:08 PM) */}
       {false && <EthBook682 />} {/* fix765: opens inside its card now (Love Nov 5 5:08 PM) */}
       {false && <Og1012Card />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}
@@ -5125,6 +5131,30 @@ function LineupModeChips() {
         style={bounce === "on" ? { border: "1px solid #ffd479", color: "#000", background: "#ffd479" } : { border: "1px solid rgba(255,255,255,0.3)", color: "rgba(255,255,255,0.7)" }}>
         {bounce === "on" ? "BOUNCE 🛡️ ON" : "BOUNCE OFF · PLAIN BREAKS"}
       </button>
+    </div>
+  );
+}
+
+// fix1002 ALL BOOKS IN THE TABLES (Love Nov 7 2026 8:37 PM PT: "can you put all of these books and ledgers into the running iOi table && running tables for me bb?"): display only - one row per current book / ledger
+// (LIVE / PAPER / OFF, KALSHI / POLY) with today's trades, W / L and $ from its own log / state file. Books not installed yet have no row until their file exists.
+function AllBooks1002({ title, color }: { title: string; color: string }) {
+  const q = useQuery({ queryKey: ["all-books-1002"], queryFn: () => getAllBooks1002(), refetchInterval: 20000, staleTime: 15000 });
+  const d = q.data as any; const rows: any[] = d?.rows ?? [];
+  const usd = (n: number) => `${n >= 0 ? "+" : "−"}$${Math.abs(Number(n) || 0).toFixed(2)}`;
+  const tag = (t: string, c: string) => <span className="rounded-[4px] px-1 py-px text-[8px] tracking-[0.14em]" style={{ border: `1px solid ${c}`, color: c }}>{t}</span>;
+  return (
+    <div className="mb-2 rounded-xl px-2 py-1.5" style={{ border: "1px solid rgba(255,255,255,0.3)" }}>
+      <p className="mb-1 text-[9px] tracking-[0.24em]" style={{ color }}>● {title} · {rows.length}{d ? ` · ${d.day} PT · LIVE SWITCH ${d.live ? "ON" : "OFF"}` : ""}</p>
+      {rows.length ? rows.map((r) => (
+        <div key={r.key} className="border-t border-white/10 py-1 font-mono text-[10px]">
+          <div className="flex items-baseline justify-between gap-2">
+            <span className="flex flex-wrap items-baseline gap-1 text-white/85">{tag(r.status, r.status === "LIVE" ? "#3ddc84" : r.status === "PAPER" ? "#ffb86b" : "rgba(255,255,255,0.45)")}{tag(r.venue, r.venue === "POLY" ? "#7cc4ff" : "#c9a7ff")}<span>{r.name}</span></span>
+            <span className="shrink-0 tabular-nums" style={{ color: r.pnl > 0.05 ? "#3ddc84" : r.pnl < -0.05 ? "#ff5c5c" : "rgba(255,255,255,0.7)" }}>{r.n} today · {r.w}W {r.l}L{r.open ? ` · ${r.open} open` : ""} · {usd(r.pnl)}</span>
+          </div>
+          {r.real ? <p className="text-[9px] text-white/70">ON KALSHI (REAL) TODAY: {r.real.n} · {r.real.w}W {r.real.l}L · {usd(r.real.pnl)}</p> : null}
+          <p className="text-[8px] text-white/45">{r.file} · last {r.last}{r.note ? ` · ${r.note}` : ""}</p>
+        </div>
+      )) : <p className="font-mono text-[10px] text-white/50">{q.isLoading ? "loading…" : "no books read"}</p>}
     </div>
   );
 }
