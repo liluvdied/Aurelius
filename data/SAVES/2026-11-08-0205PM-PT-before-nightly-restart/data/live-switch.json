@@ -1,10 +1,10 @@
 {
-  "live": false,
-  "maxDollars": 2,
+  "live": true,
+  "maxDollars": 1,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-08T18:26:24.824Z",
-  "note": "Turned off from the desk",
+  "at": "2026-11-08T18:29:02.710Z",
+  "note": "Turned on from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
   ],
@@ -123,8 +123,8 @@
       "recon-rej",
       "recon-dly"
     ],
-    "dollars": 2,
-    "since": "2026-11-08T16:12:21.455Z",
+    "dollars": 1,
+    "since": "2026-11-08T18:29:02.712Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
