@@ -1,6 +1,6 @@
 # Her change history
 
-Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 16:32 from her desk branch and her requests book.
+Every install, oldest first: what she did BEFORE, what she does AFTER, Love's own words, the files and the exact code diff. Rebuilt 2026-11-07 17:17 from her desk branch and her requests book.
 
 ## 1. PINK BREAK = THE ENTRY, put in whole (fix641, R328)
 - When: 2026-11-04 13:39:42 -0800
@@ -1448,5 +1448,29 @@ Every install, oldest first: what she did BEFORE, what she does AFTER, Love's ow
 - Her words: Love Nov 7 2026 ~3:26 PM PT: "fix the add on thing now pls let the add ons work as i set them" + 3:23 PM: "she is NOT. doing her add ons"
 - Before: (the code as it was in the previous entry - see the diff)
 - After: fix955 ETH.1's ADD-ON AT A BETTER PRICE: ETH.1's add-on fired in the same second as her entry at the same price (4 times today). Like ETH.2 and BTC.2 (fix891), it now waits until the add-on side is at least 2c cheaper than her entry (a better multiple).
+- Files: -
+
+## 182. COPIES 66C CAP (fix956, R563)
+- When: 2026-11-07 17:11:03 -0800
+- Commit: [ab2badc8](https://github.com/liluvdied/Aurelius/commit/ab2badc8756830c28c6110cbbe3a11c7855ea220)
+- Her words: Love Oct 30 2026 (R266, her kept card c37): "THE 1.5x FLOOR: no order under 1.5x (66c cap)" + Nov 7 3:24 PM PT: "DO NOT HAVE THEM SKIP EVERY WALL"
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix956 HER 66c CAP ON THE COPIES AND ADD-ONS: ETH.1, ETH.2, BTC.2 and BNB entries and every add-on went out at up to 66.7c (1.499x) - just under her 1.5x floor. They now pay 66c at most, the same as main. Nothing else changes.
+- Files: src/lib/desk/bandlock.ts (+3/-2), src/lib/desk/kalshi-live.server.ts (+1/-0)
+
+## 183. AKIMBO FACES THE DOOR (fix959, R564)
+- When: 2026-11-07 17:14:03 -0800
+- Commit: [b80dba70](https://github.com/liluvdied/Aurelius/commit/b80dba706a998faae28a3fbe0ee6ba43b2f82b43)
+- Her words: Love Nov 7 2026 ~3:24 PM PT: "DO NOT HAVE THEM SKIP EVERY WALL WHAT THE FUCK" + ~3:21 PM: "ITS SUPPOSED TO BE REJECTED AT THE DOOR IF IT ISNT ON THE SAME SIDE"
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix959 AKIMBO FACES THE DOOR: the live-today / akimbo books (BESTIE etc., off today) used to skip her door entirely - no colour, no same side, no pink, no bands. If you turn them on, they now meet the same door as main. Nothing else changes; delayed is untouched.
+- Files: -
+
+## 184. NOTHING WAITING SAYS LIVE OFF (fix957, R565)
+- When: 2026-11-07 17:17:14 -0800
+- Commit: [c7f1b566](https://github.com/liluvdied/Aurelius/commit/c7f1b5666f73d3222938683a9ff158eaae253f34)
+- Her words: Love Nov 7 2026 ~3:29 PM PT: "not ready" (her RUN-ALL said "Nothing waiting" and LIVE was left off from 3:29 PM - her ETH wick at 3:32 PM was refused "the live switch is off") + 3:31 PM: "i need to keep them on"
+- Before: (the code as it was in the previous entry - see the diff)
+- After: fix957 RUN-ALL TELLS YOU LIVE IS OFF: when RUN-ALL finds nothing waiting and LIVE is off (you turned it off for the install), it now says so in big letters: turn LIVE back on. It still never touches LIVE itself. Nothing else changes.
 - Files: -
 
