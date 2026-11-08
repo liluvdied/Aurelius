@@ -24,6 +24,7 @@ import { lessonHold, noteForming, noteOpen } from "./review";
 import { scoreMirror } from "./mirror";
 import { flagBetween } from "./watchdog";
 import { quoteTick } from "./quotes";
+import { btcFeed1018, feedSwitchLog1018, BTC_PRIMARY1018 } from "./tv"; // fix1018
 import { turnNow, labelHold597, REJ_KEEPS597, addOnAt28600, sliderLine607 } from "./bandlock";
 
 var g = globalThis;
@@ -1246,11 +1247,29 @@ function offCapture519(asset) {
     const id = tk.includes("BTC") ? "btc" : tk.includes("GOLD") ? "gold" : tk.includes("SILVER") ? "silver" : null;
     if (!id) return;
     const cap = id === "btc" ? 40 : 3, cur = R[id];
+    // fix1018 THE DIFFERENCE ON WHICHEVER CHART IS LIVE (Love 9:58 PM: "vantage is ONLY used in the event pepperstones feed freezes for more than 10 seconds" + 9:55 PM:
+    // "she is supposed to deduct the difference from her chart and the kalshi price / that is a cornerstone"): the open-second gap is measured on the live chart;
+    // a switch mid-window re-measures it AT the switch (the gap moves by the Vantage-Pepperstone level at that moment) and logs it. The $40 / $3 bad-read guard is
+    // unchanged on Pepperstone; on Vantage it judges the read against that same level (Vantage runs ~$95 over Pepperstone), so a Vantage window is measured, not dropped.
+    const f18 = id === "btc" && typeof btcFeed1018 === "function" ? btcFeed1018() : null; const gap18 = f18 && f18.live !== BTC_PRIMARY1018 ? Number(f18.gapVP) || 0 : 0;
+    if (f18 && cur) {
+      if (!cur.feed) { cur.feed = f18.live; cur.shift18 = f18.shift; }
+      else if (cur.feed !== f18.live) {
+        const d18 = Math.round((f18.shift - (Number(cur.shift18) || 0)) * 100) / 100, was18 = Number(cur.off), from18 = cur.feed;
+        cur.off = Math.round((was18 + d18) * 100) / 100;
+        if (Number.isFinite(Number(cur.lastGood))) cur.lastGood = Math.round((Number(cur.lastGood) + d18) * 100) / 100;
+        if (cur.openSpot > 0) cur.openSpot = Math.round((cur.openSpot + d18) * 100) / 100;
+        cur.feed = f18.live; cur.shift18 = f18.shift; cur.at = Date.now();
+        const row18 = { at: new Date().toISOString(), asset: id, ticker: tk, why: "feed switch - re-measured at the switch (fix1018)", from: from18, to: f18.live, offBefore: was18, feedLevel: d18, off: cur.off, kalshiStrike: tgt };
+        try { appendFileSync(join(process.cwd(), "data", "strike-off519.jsonl"), JSON.stringify(row18) + "\n"); } catch {}
+        feedSwitchLog1018({ ...row18, where: "fix519 offset" });
+      }
+    }
     const lastGood = cur ? (Number.isFinite(Number(cur.lastGood)) ? Number(cur.lastGood) : cur.measured && Math.abs(Number(cur.off)) <= cap ? Number(cur.off) : 0) : 0;
     const log = (o) => { try { appendFileSync(join(process.cwd(), "data", "strike-off519.jsonl"), JSON.stringify({ at: new Date().toISOString(), asset: id, ticker: tk, ...o }) + "\n"); } catch {} };
     if (cur && cur.tk === tk) {
       if (cur.openSpot > 0 && Number.isFinite(Number(cur.kStrike)) && Math.abs(tgt - Number(cur.kStrike)) > 0.004) { // Kalshi's strike for this window changed: measure again from the open price
-        const raw = Math.round((cur.openSpot - tgt) * 100) / 100, bad = Math.abs(raw) > cap;
+        const raw = Math.round((cur.openSpot - tgt) * 100) / 100, bad = Math.abs(raw - gap18) > cap; // fix1018 judged on the live chart
         R[id] = { ...cur, kStrike: tgt, off: bad ? lastGood : raw, measured: true, bad, lastGood: bad ? lastGood : raw, at: Date.now() };
         log({ kalshiStrike: tgt, chartOpen: cur.openSpot, gap: raw, used: R[id].off, why: bad ? `strike changed; gap over $${cap} - kept the last good gap` : "strike changed - re-measured", measured: true });
       }
@@ -1258,10 +1277,10 @@ function offCapture519(asset) {
     }
     const left = Number(asset?.secondsLeft) || 0; const spot = Number(asset?.spot) || 0;
     const fresh = left >= 875 && spot > 0; // only the window's first ~25 seconds measure the open second itself
-    const raw = fresh ? Math.round((spot - tgt) * 100) / 100 : NaN, bad = fresh && Math.abs(raw) > cap;
+    const raw = fresh ? Math.round((spot - tgt) * 100) / 100 : NaN, bad = fresh && Math.abs(raw - gap18) > cap; // fix1018 judged on the live chart
     const off = fresh && !bad ? raw : lastGood;
-    R[id] = { tk, off, at: Date.now(), measured: fresh, bad, openSpot: fresh ? spot : 0, kStrike: tgt, lastGood: fresh && !bad ? raw : lastGood };
-    log({ target: tgt, kalshiStrike: tgt, chart: spot, gap: Number.isFinite(raw) ? raw : null, off, measured: fresh, why: !fresh ? "open second missed - last good gap carries" : bad ? `gap over $${cap} - kept the last good gap` : "measured at the open" });
+    R[id] = { tk, off, at: Date.now(), measured: fresh, bad, openSpot: fresh ? spot : 0, kStrike: tgt, lastGood: fresh && !bad ? raw : lastGood, ...(f18 ? { feed: f18.live, shift18: f18.shift } : {}) }; // fix1018 which chart measured it
+    log({ feed: f18 ? f18.live : undefined /* fix1018 */, target: tgt, kalshiStrike: tgt, chart: spot, gap: Number.isFinite(raw) ? raw : null, off, measured: fresh, why: !fresh ? "open second missed - last good gap carries" : bad ? `gap over $${cap} - kept the last good gap` : "measured at the open" });
   } catch {}
 }
 function chartStrike519(asset, strike) {

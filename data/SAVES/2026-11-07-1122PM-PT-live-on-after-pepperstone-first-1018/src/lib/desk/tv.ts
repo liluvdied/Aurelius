@@ -16,7 +16,7 @@ const CHARTS = {
   // Love, Oct 2 ~10:20 PM PT: "pepperstone then !!!!" -- her lines held best there: 59% of touches bounced $30
   // (next best 49%), only 35% broke through; 5 PM ET anchor beat midnight UTC (59% vs 49%). Kalshi same call 98.2%.
 // BTC ON OANDA (Oct 16 ~3:20 PM PT, Love: "let's put her on oanda the pepperstone chart is freezing"). Pepperstone is now the second feed.
-  btc: { symbol: "VANTAGE:BTCUSD" /* fix911 her session bands from Vantage (Pepperstone froze Nov 6 10:25 PM PT) */, resolution: "5", count: 400, session: "ny" }, // Love, Oct 18 ~5:48 PM PT: "pepperstone" (Coinbase paused 5 s+ about 60x/hour; Pepperstone the fewest) (session 5 PM ET, as Pepperstone always ran) // was: // Love, Oct 18 ~4:58 PM PT: "omg price is way closer to kalshi's on coinbases too. i want to try the next few windows on here" (session 00:00 UTC, her Coinbase chart) // was: // Love, Oct 18 ~4:36 PM PT: "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS" (session from 00:00 UTC = 5 PM PT, as her INDEX chart ran Oct 16) // was: // Love, Oct 18 ~4:31 PM PT: "we need to switch it back to pepperstones hun... vantages chart DEFINITELY flips more than pepperstones... pepperstone pls" // // Love, Oct 17 ~5:49 PM PT: back on Vantage (weekend) // Love, Oct 17 ~4:54 PM PT: back on Pepperstone // Love, Oct 17 ~12:03 AM PT: "let's do vantage hun its the right choice" (5 PM ET session, proven vs her chart Oct 2) // Love, Oct 16 ~11:58 PM PT: INDEX (her symbol info: session 00:00-24:00 UTC, so her VWAP resets 00:00 UTC = 5 PM PT) // Love, Oct 16 ~10:25 PM PT: "i want her on pepperstone if we can" // Love ~3:25 PM PT: "oanda is freezing too. let's trade vantage"
+  btc: { symbol: "PEPPERSTONE:BTCUSD" /* fix1018 her primary - btcSymbol1018() reads VANTAGE:BTCUSD only while Pepperstone is frozen 10 s+ (fix911 Vantage pin superseded) */, resolution: "5", count: 400, session: "ny" }, // Love, Oct 18 ~5:48 PM PT: "pepperstone" (Coinbase paused 5 s+ about 60x/hour; Pepperstone the fewest) (session 5 PM ET, as Pepperstone always ran) // was: // Love, Oct 18 ~4:58 PM PT: "omg price is way closer to kalshi's on coinbases too. i want to try the next few windows on here" (session 00:00 UTC, her Coinbase chart) // was: // Love, Oct 18 ~4:36 PM PT: "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS" (session from 00:00 UTC = 5 PM PT, as her INDEX chart ran Oct 16) // was: // Love, Oct 18 ~4:31 PM PT: "we need to switch it back to pepperstones hun... vantages chart DEFINITELY flips more than pepperstones... pepperstone pls" // // Love, Oct 17 ~5:49 PM PT: back on Vantage (weekend) // Love, Oct 17 ~4:54 PM PT: back on Pepperstone // Love, Oct 17 ~12:03 AM PT: "let's do vantage hun its the right choice" (5 PM ET session, proven vs her chart Oct 2) // Love, Oct 16 ~11:58 PM PT: INDEX (her symbol info: session 00:00-24:00 UTC, so her VWAP resets 00:00 UTC = 5 PM PT) // Love, Oct 16 ~10:25 PM PT: "i want her on pepperstone if we can" // Love ~3:25 PM PT: "oanda is freezing too. let's trade vantage"
   // Love, Oct 6 ~7:30 AM PT: "CHANGE GOLD TO TVC". Feed lab: TVC:GOLD bands respected 61.9% of touches vs OANDA 52.3%;
   // the paper twin BRICK·TVC GOLD ran 14/17 +$148 vs BRICK gold 12/16 +$80 the same morning. OANDA is the backup.
   gold: { symbol: "TVC:GOLD", resolution: "15", count: 300, session: "ny" },
@@ -271,6 +271,69 @@ const FALLBACK: Record<string, string> = { "OANDA:BTCUSD": BTC_WEEKEND, "KRAKEN:
 // backup here. Vantage sits ~$100 over Pepperstone, so a swap moved every band $100 for a moment and she judged the wrong side.
 // A missed Pepperstone read keeps Pepperstone's own last bars and her feed-health guard holds entries until it ticks again.
 export const feedNow: Record<string, string> = {};
+// fix1018 PEPPERSTONE FIRST, VANTAGE ONLY ON A FREEZE (Love Nov 7 2026 9:58 PM PT: "yes pepperstone / vantage is ONLY used in the event pepperstones feed freezes for more than 10 seconds" + 9:55 PM: "she is supposed to deduct the
+// difference from her chart and the kalshi price / that is a cornerstone"). Her BTC chart is PEPPERSTONE:BTCUSD - candles, session bands, pink, zones,
+// Bollingers and the tick. Only when Pepperstone's own price has not UPDATED for more than 10 s (an update = a new price, or the exchange's own time moving on;
+// a reconnect re-sending the same frozen price is NOT an update - Nov 6 10:25 PM it re-sent 75,931.48 every ~48 s for 95 minutes) while Vantage is updating
+// does BTC read VANTAGE:BTCUSD, and the first real Pepperstone update puts her straight back. One feed at a time (fix557's intent): a switch means new lines
+// from the new feed, never two feeds in one candle. Every switch, both ways, is written to data/feed-switch-1018.jsonl with the time and the stale seconds.
+// btcSymbol1018() is the ONE place her BTC feed is picked (tv.ts candles, nav, pivotbooks, the quote stream, and rulebook1007's per-asset feed call it).
+export const BTC_PRIMARY1018 = "PEPPERSTONE:BTCUSD";
+export const BTC_FREEZE_BACKUP1018 = "VANTAGE:BTCUSD";
+export const FREEZE_MS1018 = 10000;
+type Side1018 = { at: number; c: number; ex: number; seenAt: number };
+type Feed1018 = { live: string; since: number; watchAt: number; pep: Side1018; van: Side1018; gapVP: number; gapAt: number; shift: number; seq: number; last: Record<string, unknown> | null };
+function f1018(): Feed1018 {
+  return (TVG.__feed1018 ||= { live: BTC_PRIMARY1018, since: 0, watchAt: 0, pep: { at: 0, c: 0, ex: 0, seenAt: 0 }, van: { at: 0, c: 0, ex: 0, seenAt: 0 }, gapVP: 0, gapAt: 0, shift: 0, seq: 0, last: null });
+}
+/** fix1018: one row to data/feed-switch-1018.jsonl (server only; tv.ts is also bundled for the browser). */
+export function feedSwitchLog1018(row: Record<string, unknown>) {
+  if (typeof window !== "undefined") return;
+  try {
+    const line = JSON.stringify(row) + "\n"; const p = `${process.cwd()}/data/feed-switch-1018.jsonl`;
+    const fs = (globalThis as any).process?.getBuiltinModule?.("node:fs");
+    if (fs) fs.appendFileSync(p, line); else void import("node:fs").then((m) => m.appendFileSync(p, line)).catch(() => {});
+  } catch {}
+}
+function switch1018(s: Feed1018, to: string, now: number, pepStaleMs: number, why: string) {
+  const from = s.live;
+  const px = (sym: string) => (sym === BTC_PRIMARY1018 ? s.pep.c : s.van.c);
+  // the level between the two charts, from the last moment BOTH were updating (Pepperstone's frozen print is up to 10 s old at a freeze)
+  const gap = s.gapAt > 0 ? s.gapVP : px(BTC_FREEZE_BACKUP1018) - px(BTC_PRIMARY1018);
+  const delta = Math.round((to === BTC_FREEZE_BACKUP1018 ? gap : -gap) * 100) / 100;
+  s.live = to; s.since = now; s.seq += 1; s.shift = Math.round((s.shift + delta) * 100) / 100;
+  s.last = { at: new Date(now).toISOString(), from, to, staleS: Math.round(pepStaleMs / 100) / 10, fromPrice: px(from), toPrice: px(to), delta, seq: s.seq, why };
+  feedNow.btc = to;
+  feedSwitchLog1018(s.last);
+}
+/** fix1018: her BTC feed right now - PEPPERSTONE:BTCUSD unless Pepperstone has not updated for MORE than 10 s while Vantage is updating. */
+export function btcSymbol1018(now = Date.now()): string {
+  const s = f1018();
+  if (!s.watchAt) return s.live; // nothing watched yet (a script, the browser): her primary
+  const pepStale = now - Math.max(s.pep.at, s.watchAt);
+  if (s.live === BTC_PRIMARY1018) {
+    if (pepStale > FREEZE_MS1018 && s.van.at > 0 && now - s.van.at <= FREEZE_MS1018) switch1018(s, BTC_FREEZE_BACKUP1018, now, pepStale, "Pepperstone has not updated for more than 10 s - Vantage stands in");
+  } else if (s.pep.at > s.since && now - s.pep.at <= FREEZE_MS1018) {
+    switch1018(s, BTC_PRIMARY1018, now, now - s.since, "Pepperstone is updating again - back on her chart");
+  }
+  return s.live;
+}
+/** fix1018: a BTC price pushed by the quote stream (quotes.ts) for either chart. Returns the live feed after it. */
+export function feedTick1018(sym: string, c: number, exMs = 0, now = Date.now()): string {
+  const s = f1018();
+  const side = sym === BTC_PRIMARY1018 ? s.pep : sym === BTC_FREEZE_BACKUP1018 ? s.van : null;
+  if (!side || !(c > 0)) return btcSymbol1018(now);
+  if (!s.watchAt) s.watchAt = now;
+  if (c !== side.c || (exMs > 0 && exMs > side.ex)) side.at = now; // an UPDATE: a new price, or the exchange's time moved on
+  side.c = c; if (exMs > 0) side.ex = Math.max(side.ex, exMs); side.seenAt = now;
+  if (now - s.pep.at <= 2000 && now - s.van.at <= 2000 && s.pep.c > 0 && s.van.c > 0) { s.gapVP = Math.round((s.van.c - s.pep.c) * 100) / 100; s.gapAt = now; }
+  return btcSymbol1018(now);
+}
+/** fix1018: the feed state for the desk (quote-stream.json), the fix519 offset and the proofs. */
+export function btcFeed1018(now = Date.now()) {
+  const live = btcSymbol1018(now); const s = f1018();
+  return { live, since: s.since, seq: s.seq, shift: s.shift, gapVP: s.gapVP, gapAt: s.gapAt, pepStaleS: s.pep.at ? Math.round((now - s.pep.at) / 100) / 10 : null, vanStaleS: s.van.at ? Math.round((now - s.van.at) / 100) / 10 : null, last: s.last };
+}
 function staleBars(bars: Candle[], resolution: string): boolean {
   const last = bars[bars.length - 1];
   if (!last) return true;
@@ -392,43 +455,46 @@ export async function chartCandles(id: ChartId): Promise<{ candles: Candle[]; pr
   // Oct 14 ~7:45 AM PT: 3 s on all three tripled TradingView's refused reads (and twice swapped BTC to the backup feed),
   // so: BTC bars 4 s, gold's 15m bars 6 s (gold's live price comes from the 1m nav read anyway), band bars stay 15 s.
   const ttl = id === "btc" ? 4000 : id === "gold" ? 6000 : 15000;
-  if (hit && Date.now() - hit.at < ttl) return { candles: hit.candles, product: hit.product || chart.symbol };
-  const fl = inflightCharts.get(id);
+  const sym18 = id === "btc" ? btcSymbol1018() : chart.symbol; // fix1018 her BTC feed now (Pepperstone; Vantage only on a 10 s+ freeze)
+  const same18 = !!hit && (hit.product || chart.symbol) === sym18; // fix1018: bars from the feed she just left are never served - a switch means new lines
+  if (hit && same18 && Date.now() - hit.at < ttl) return { candles: hit.candles, product: hit.product || chart.symbol }; // fix1018 same feed only
+  const fl = inflightCharts.get(id + "|" + sym18); // fix1018 one read per feed
   const kick = () => {
-    if (inflightCharts.get(id)) return inflightCharts.get(id)!;
-    const run = chartCandlesNow(id, memory.get(id)).finally(() => inflightCharts.delete(id));
-    inflightCharts.set(id, run);
+    const k18 = id + "|" + sym18; // fix1018 one read per feed
+    if (inflightCharts.get(k18)) return inflightCharts.get(k18)!;
+    const run = chartCandlesNow(id, memory.get(id), sym18).finally(() => inflightCharts.delete(k18));
+    inflightCharts.set(k18, run);
     return run;
   };
   // Bars under 20 s old come back at once while the fresh read runs in the background (BTC / gold only).
-  if ((id === "btc" || id === "gold") && hit && Date.now() - hit.at < 20000) {
+  if ((id === "btc" || id === "gold") && hit && same18 && Date.now() - hit.at < 20000) { // fix1018 same feed only
     void kick().catch(() => {});
     return { candles: hit.candles, product: hit.product || chart.symbol };
   }
   if (fl) return fl;
   return kick();
 }
-const inflightCharts = new Map<ChartId, Promise<{ candles: Candle[]; product: string }>>();
-async function chartCandlesNow(id: ChartId, hit: { at: number; candles: Candle[]; product?: string } | undefined): Promise<{ candles: Candle[]; product: string }> {
+const inflightCharts = new Map<string, Promise<{ candles: Candle[]; product: string }>>(); // fix1018 keyed id|feed
+async function chartCandlesNow(id: ChartId, hit: { at: number; candles: Candle[]; product?: string } | undefined, sym18: string = CHARTS[id].symbol): Promise<{ candles: Candle[]; product: string }> { // fix1018 the live feed's symbol
   const chart = CHARTS[id];
   try {
     let candles: Candle[] = [];
-    let product: string = chart.symbol;
+    let product: string = sym18; // fix1018
     try {
-      candles = await pull(id);
+      candles = await pull(id, sym18); // fix1018
     } catch {
       candles = [];
     }
-    const alt = FALLBACK[chart.symbol];
+    const alt = FALLBACK[sym18]; // fix1018
     // NO FEED FLICKER (Claude, Oct 9 ~1 PM PT, Love: "every time it doesn't go thru its the one that wins... can we remedy
     // that"): one missed Pepperstone read used to swap BTC to the backup feed (Vantage) for a single refresh, and the backup's
     // session VWAP sits ~$50 higher with a wider sigma (82,456 / 480 vs 82,406 / 425, caught live at 12:56 PM PT). Every
     // band jumped for ~10 s, 26 times today, and the live gates held trades on lines that aren't on her chart. Now a single
     // failed read keeps her own feed's last good bars (up to 90 s old); the backup only takes over if her feed is really out.
     const primaryBad = candles.length < minBars(id) || staleBars(candles, chart.resolution);
-    if (alt && primaryBad && hit && (hit.product || chart.symbol) === chart.symbol && Date.now() - hit.at < 90000) {
-      flipLog({ at: new Date().toISOString(), id, kept: chart.symbol, ageMs: Date.now() - hit.at });
-      return { candles: hit.candles, product: chart.symbol };
+    if (alt && primaryBad && hit && (hit.product || chart.symbol) === sym18 && Date.now() - hit.at < 90000) { // fix1018
+      flipLog({ at: new Date().toISOString(), id, kept: sym18, ageMs: Date.now() - hit.at }); // fix1018
+      return { candles: hit.candles, product: sym18 }; // fix1018
     }
     if (alt && primaryBad) {
       candles = await pull(id, alt).catch(() => [] as Candle[]);
@@ -441,13 +507,13 @@ async function chartCandlesNow(id: ChartId, hit: { at: number; candles: Candle[]
     }
     if (candles.length < minBars(id)) throw new Error(`${chart.symbol} short`);
     feedNow[id] = product;
-    if (product !== chart.symbol) {
+    if (product !== sym18) { // fix1018 (a fix1018 freeze switch is logged in feed-switch-1018.jsonl)
       flipLog({ at: new Date().toISOString(), id, backup: product });
     }
     memory.set(id, { at: Date.now(), candles, product });
     return { candles, product };
   } catch (err) {
-    if (hit) return { candles: hit.candles, product: chart.symbol };
+    if (hit) return { candles: hit.candles, product: hit.product || chart.symbol }; // fix1018 her last bars keep their own feed's name
     throw err;
   }
 }

@@ -13,7 +13,7 @@
 // (Oct 7-10 lab: those 62 trades won 53% for -$98). Twins copy the parent's result.
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { chartRaw } from "./tv";
+import { chartRaw, btcSymbol1018, feedSwitchLog1018 } from "./tv"; // fix1018
 import { quoteTick, tickPush, feedHealth } from "./quotes";
 import { zoneRejection, goldLaw } from "./goldlaw";
 import { reconTick } from "./recon";
@@ -70,10 +70,21 @@ const PINK_TWIN_FROM = Date.parse("2026-10-18T23:05:00Z"); // PINK THEORY twins 
 type Piv = { pp: number; r1: number; s1: number; r2: number; s2: number; a: number };
 const g = globalThis as unknown as { __pivBars?: Record<string, { at: number; bars: Bar[] }>; __pivBusy?: boolean };
 // BTC ON OANDA (Oct 16 ~3:20 PM PT, Love: "let's put her on oanda the pepperstone chart is freezing"). Pepperstone is now the second feed.
-const SYM: Record<string, string> = { btc: "VANTAGE:BTCUSD" /* fix908 her bands from Vantage */, gold: "TVC:GOLD" }; // Love, Oct 18 ~5:48 PM PT: "pepperstone" (Coinbase paused 5 s+ about 60x/hour; Pepperstone the fewest) // // Love, Oct 18 ~4:58 PM PT: "omg price is way closer to kalshi's on coinbases too. i want to try the next few windows on here" // // Love, Oct 18 ~4:36 PM PT: "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS" // // Love, Oct 18 ~4:31 PM PT: "we need to switch it back to pepperstones hun... vantages chart DEFINITELY flips more than pepperstones... pepperstone pls" // // Love, Oct 17 ~5:49 PM PT: "we need to go back on vantage... when we have some real inflows we'll trade pepperstone" // Love, Oct 17 ~4:54 PM PT: "please put her back on pepperstones charts vantage is unbearably slow" // Love, Oct 17 ~12:03 AM PT: Vantage // Love, Oct 16 ~11:58 PM PT: INDEX // Love, Oct 16 ~10:25 PM PT: "i want her on pepperstone if we can" (Vantage since ~3:25 PM PT) // Love ~3:25 PM PT: "let's trade vantage"
+const SYM: Record<string, string> = { btc: "PEPPERSTONE:BTCUSD" /* fix1018 her primary - pivSym1018() reads Vantage only while Pepperstone is frozen 10 s+ */, gold: "TVC:GOLD" }; // Love, Oct 18 ~5:48 PM PT: "pepperstone" (Coinbase paused 5 s+ about 60x/hour; Pepperstone the fewest) // // Love, Oct 18 ~4:58 PM PT: "omg price is way closer to kalshi's on coinbases too. i want to try the next few windows on here" // // Love, Oct 18 ~4:36 PM PT: "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS" // // Love, Oct 18 ~4:31 PM PT: "we need to switch it back to pepperstones hun... vantages chart DEFINITELY flips more than pepperstones... pepperstone pls" // // Love, Oct 17 ~5:49 PM PT: "we need to go back on vantage... when we have some real inflows we'll trade pepperstone" // Love, Oct 17 ~4:54 PM PT: "please put her back on pepperstones charts vantage is unbearably slow" // Love, Oct 17 ~12:03 AM PT: Vantage // Love, Oct 16 ~11:58 PM PT: INDEX // Love, Oct 16 ~10:25 PM PT: "i want her on pepperstone if we can" (Vantage since ~3:25 PM PT) // Love ~3:25 PM PT: "let's trade vantage"
 // FEED SWITCH RESET (Oct 18 ~4:31 PM PT, back to Pepperstone): a new BTC chart shifts price ~$90 against every remembered band level, so on a symbol
 // change the memories built on the old feed are cleared - broken bands, rejection memory, DELAYED's band sides, the Kalshi gap and the cached 1m bars.
 { const GF = globalThis as any; if (GF.__symBtc !== SYM.btc) { GF.__symBtc = SYM.btc; try { delete GF.__dlyState; if (GF.__brokenWalls) GF.__brokenWalls.btc = {}; if (GF.__rejMem) GF.__rejMem.btc = {}; if (GF.__kGap) GF.__kGap = { at: 0, gap: 0, vAt: 0 }; if (GF.__pivBars) delete GF.__pivBars.btc; if (GF.__lawBands) delete GF.__lawBands.btc; } catch {} } }
+// fix1018 PEPPERSTONE FIRST, VANTAGE ONLY ON A FREEZE (Love Nov 7 2026 9:58 PM PT: "yes pepperstone / vantage is ONLY used in the event pepperstones feed freezes for more than 10 seconds"): her 1m bars follow btcSymbol1018(). Each switch, both ways,
+// runs the FEED SWITCH RESET above (Oct 18 law: memories built on the old feed are cleared) and is logged - new lines from the new feed.
+function pivSym1018(): string {
+  const s = btcSymbol1018(); const GF = globalThis as any;
+  if (GF.__symBtc !== s) {
+    const was = GF.__symBtc; GF.__symBtc = s;
+    try { delete GF.__dlyState; if (GF.__brokenWalls) GF.__brokenWalls.btc = {}; if (GF.__rejMem) GF.__rejMem.btc = {}; if (GF.__kGap) GF.__kGap = { at: 0, gap: 0, vAt: 0 }; if (GF.__pivBars) delete GF.__pivBars.btc; if (GF.__lawBands) delete GF.__lawBands.btc; if (GF.__pivFetch) GF.__pivFetch.btc = null; } catch {}
+    feedSwitchLog1018({ at: new Date().toISOString(), where: "pivotbooks", from: was ?? null, to: s, cleared: "1m bars, band laws, broken walls, rejection memory (Oct 18 feed switch reset)" });
+  }
+  return s;
+}
 
 // fix740 SESSION + PINK 15M BOLLINGER WALL (Love Nov 5 2026 11:39 AM PT: "we should have her use those as a wall" + card 11:42 AM "Yes, SESSION + PINK only"): BREAK BOOK · SESSION + PINK
 // skips a break that runs INTO the opposite 15m Bollinger band (BB 20, 2σ on 15m closes, the live 15m candle included) within $50 BTC / $1 gold - a short with the lower band that close
@@ -618,6 +629,7 @@ function withForming522(id: string, bars: Bar[]): Bar[] {
     return [...bars, { t: minStart, o, h, l, c: tr[tr.length - 1].c } as Bar];
   } catch { return bars; }
 }
+  const sym18 = id === "btc" ? pivSym1018() : SYM[id]; // fix1018 her BTC feed now
   const c = (g.__pivBars ||= {});
   // Oct 13 ~5:40 AM PT (Love: entries late): a fresh pull as soon as each 1m candle closes (2 s after the minute) instead of
   // reusing bars up to 55 s old, so a break or bounce is seen on the candle that made it.
@@ -637,13 +649,13 @@ function withForming522(id: string, bars: Bar[]): Bar[] {
     if (!PF[id] || Date.now() - PF[id].at > 15000) {
       const job = { at: Date.now() };
       PF[id] = job;
-      void (chartRaw(SYM[id], "1", 900) as Promise<unknown>).then((bx: any) => { const b2 = (bx || []) as Bar[]; b2.sort((x, y) => x.t - y.t); if (b2.length) c[id] = { at: Date.now(), bars: b2 }; }).catch(() => {}).finally(() => { if (PF[id] === job) PF[id] = null; });
+      void (chartRaw(sym18, "1", 900) as Promise<unknown>).then((bx: any) => { const b2 = (bx || []) as Bar[]; b2.sort((x, y) => x.t - y.t); if (b2.length && (id !== "btc" || btcSymbol1018() === sym18)) c[id] = { at: Date.now(), bars: b2 }; /* fix1018 never stores the feed she just left */ }).catch(() => {}).finally(() => { if (PF[id] === job) PF[id] = null; });
     }
     return withForming522(id, c[id].bars); // fix522
   }
-  const b = (await chartRaw(SYM[id], "1", 900)) as unknown as Bar[];
+  const b = (await chartRaw(sym18, "1", 900)) as unknown as Bar[]; // fix1018
   b.sort((x, y) => x.t - y.t);
-  if (b.length) c[id] = { at: Date.now(), bars: b };
+  if (b.length && (id !== "btc" || btcSymbol1018() === sym18)) c[id] = { at: Date.now(), bars: b }; // fix1018 never stores the feed she just left
   return withForming522(id, c[id]?.bars ?? []); // fix522
 }
 // OWN CLOCK (Oct 13 ~11:40 PM PT, Love: "her execution is still really slow... she's been catching 1.4x sometimes when she

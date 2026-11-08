@@ -10,6 +10,7 @@ import * as crypto from "node:crypto";
 import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { spawn } from "node:child_process";
+import { feedTick1018, btcFeed1018, BTC_PRIMARY1018 } from "./tv"; // fix1018 her BTC feed is picked in ONE place
 
 // SECOND FEED (Oct 16 ~2:05 PM PT, Love: "use vantage as the second feed"): Vantage ticks ride the same socket as btc_v / gold_v.
 // SECOND FEED -> OANDA (Oct 16 ~3:10 PM PT, Love: "find a better alternative for the secondary feed... one that respects the pivots
@@ -22,7 +23,7 @@ import { spawn } from "node:child_process";
 // of the charts with volume (27.5%), Kalshi same-way 93.7%, ~$26 from the strike, 0 missing minutes in 3.5 days. Pepperstone was "untenable for the
 // break model" (Love). Vantage stays the logged-only second feed.
 // VANTAGE (Oct 17 ~12:03 AM PT, Love: "let's do vantage hun its the right choice"): BTC = VANTAGE (her chart); INDEX the logged-only second feed.
-const SYM: Record<string, string> = { "VANTAGE:BTCUSD": "btc" /* fix908 VANTAGE (Love Nov 6 ~10:58 PM: put her on vantage please - Pepperstone froze at 10:25 PM) */, "TVC:GOLD": "gold" }; // fix557 ONE FEED (Love Oct 30 2026 11:39 PM PT: "including THE INDEX ONE FEED."): the INDEX:BTCUSD / OANDA:XAUUSD second ticks are no longer subscribed - // Love, Oct 18 ~5:48 PM PT: "pepperstone" (Coinbase paused 5 s+ about 60x/hour; Pepperstone the fewest) (INDEX stays the second feed = Kalshi gap reference) // // Love, Oct 18 ~4:58 PM PT: "omg price is way closer to kalshi's on coinbases too. i want to try the next few windows on here" (INDEX back as the second feed = the Kalshi gap reference) // // Love, Oct 18 ~4:36 PM PT: "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS" (Pepperstone = second feed) // // BTC on VANTAGE (Love ~3:25 PM PT: "oanda is freezing too. let's trade vantage"), Pepperstone second // Oct 18 ~4:31 PM PT: BTC back on PEPPERSTONE (Love: "vantages chart DEFINITELY flips more than pepperstones... pepperstone pls")
+const SYM: Record<string, string> = { "PEPPERSTONE:BTCUSD": "btc" /* fix1018 her primary */, "VANTAGE:BTCUSD": "btc" /* fix1018 watched standby - written as her price ONLY while btcSymbol1018() says Pepperstone is frozen 10 s+ (fix908 Vantage pin superseded) */, "TVC:GOLD": "gold" }; // fix557 ONE FEED (Love Oct 30 2026 11:39 PM PT: "including THE INDEX ONE FEED."): the INDEX:BTCUSD / OANDA:XAUUSD second ticks are no longer subscribed - // Love, Oct 18 ~5:48 PM PT: "pepperstone" (Coinbase paused 5 s+ about 60x/hour; Pepperstone the fewest) (INDEX stays the second feed = Kalshi gap reference) // // Love, Oct 18 ~4:58 PM PT: "omg price is way closer to kalshi's on coinbases too. i want to try the next few windows on here" (INDEX back as the second feed = the Kalshi gap reference) // // Love, Oct 18 ~4:36 PM PT: "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS" (Pepperstone = second feed) // // BTC on VANTAGE (Love ~3:25 PM PT: "oanda is freezing too. let's trade vantage"), Pepperstone second // Oct 18 ~4:31 PM PT: BTC back on PEPPERSTONE (Love: "vantages chart DEFINITELY flips more than pepperstones... pepperstone pls")
 type Tick = { c: number; at: number; ex?: number }; // ex = the exchange's own time on the price (lp_time), when sent
 const g = globalThis as unknown as { __qtk?: Record<string, Tick>; __qtrail?: Record<string, { t: number; c: number }[]>; __qsOn?: boolean; __qsSock?: tls.TLSSocket | null; __qsSocks?: (tls.TLSSocket | null)[]; __qsBackoffs?: number[]; __qsSlotTick?: number[]; __qsBackoff?: number; __qsLastTick?: number; __qsStatAt?: number; __qsErr?: string; __qsVer?: number; __qsTimer?: ReturnType<typeof setInterval> };
 
@@ -55,6 +56,7 @@ function status(extra?: string) {
       sockets: (g.__qsSocks || []).map(Boolean),
       btc: t.btc ? { c: t.btc.c, ageMs: now - t.btc.at, exAgeMs: t.btc.ex ? now - t.btc.ex : null } : null,
       gold: t.gold ? { c: t.gold.c, ageMs: now - t.gold.at, exAgeMs: t.gold.ex ? now - t.gold.ex : null } : null,
+      btcFeed1018: (() => { try { return btcFeed1018(now); } catch { return null; } })(), // fix1018 which BTC chart is live (Pepperstone; Vantage only on a 10 s+ freeze)
       // [fix557 OUT - ONE FEED, Love Oct 30 2026 11:39 PM PT] btc_v: t.btc_v ? { c: t.btc_v.c, ageMs: now - t.btc_v.at } : null,
       // [fix557 OUT - ONE FEED, Love Oct 30 2026 11:39 PM PT] gold_v: t.gold_v ? { c: t.gold_v.c, ageMs: now - t.gold_v.at } : null,
       signedIn: Boolean((g as any).__tvAuth?.signed), signNote: String((g as any).__tvAuth?.note || ""),
@@ -141,6 +143,18 @@ function connectStream(slot = 0) {
           const d = msg.p?.[1];
           const asset = SYM[String(d?.n)];
           const lp = Number(d?.v?.lp);
+          // fix1018 PEPPERSTONE FIRST, VANTAGE ONLY ON A FREEZE (Love Nov 7 2026 9:58 PM PT: "yes pepperstone / vantage is ONLY used in the event pepperstones feed freezes for more than 10 seconds"): both BTC charts are watched; only the live one's
+          // tick becomes her price. On a switch her trail starts fresh from the new feed (never two feeds in one candle) and the feed must run clean again.
+          if (asset === "btc" && Number.isFinite(lp) && lp > 0) {
+            const lpt18 = Number(d?.v?.lp_time), sym18 = String(d?.n);
+            const live18 = feedTick1018(sym18, lp, Number.isFinite(lpt18) && lpt18 > 0 ? lpt18 * 1000 : 0);
+            const G18 = g as any;
+            if (G18.__qLive1018 !== live18) {
+              const was18 = G18.__qLive1018; G18.__qLive1018 = live18;
+              if (was18) { const tr18 = G18[`__qtrail_${QS_VER}`]; if (tr18) tr18.btc = []; const h18 = G18[`__qhealth_${QS_VER}`]?.btc; if (h18) h18.gapEndAt = Date.now(); }
+            }
+            if (live18 !== sym18) continue; // the standby chart is watched, never written as her price
+          }
           if (asset && Number.isFinite(lp) && lp > 0) {
             const now = Date.now();
             const lpt = Number(d?.v?.lp_time);
@@ -183,7 +197,7 @@ export function tickPush(asset: string, backMs = 3000): { d: number; from: numbe
   return { d: to.c - from.c, from: from.c, to: to.c, spanMs: to.t - from.t };
 }
 
-const QS_VER = 33; // v33 Oct 31 ~6:35 AM PT: PRO SIGN-IN - token minted by quote_token, fetched through her Mac curl with her full cookie, matched by JWT shape (Love: connect to Pro, no free feed, no field named token) // v31 Oct 30 ~11:50 PM PT: ONE FEED (fix557) - Pepperstone + TVC only, the INDEX / OANDA second ticks unsubscribed (Love) // // v30 Oct 21 ~4:13 PM PT: door retest rolled back (price stream went stale with the session on the socket) - same as v28 // // v28 Oct 21 ~2:10 PM PT: the door rolled back (gold socket kept getting closed with her session on it) - same as v26 // // v26 Oct 21 ~1:56 PM PT: sign-in reads the escaped / authToken form too (Love) // // v25 Oct 21 ~1:53 PM PT: sign-in check - tries home + chart page, notes what TradingView answered (Love) // // v24 Oct 21 ~1:20 PM PT: signs in with her TradingView session when .secrets/tv-session exists (Love) // // v23 Oct 18 ~5:48 PM PT: BTC on PEPPERSTONE (Love) // // v22 Oct 18 ~4:58 PM PT: BTC on COINBASE (Love) // // v21 Oct 18 ~4:56 PM PT: second feed (logged only) = COINBASE to time its ticks (Love: "what about coinbase's chart... does it tick fast enough") // // v20 Oct 18 ~4:36 PM PT: BTC on INDEX (Love) // // v19 Oct 18 ~4:31 PM PT: BTC back on PEPPERSTONE (Love) // // v18 Oct 17 ~5:49 PM PT: BTC back on VANTAGE (Love) // v17 Oct 17 ~4:54 PM PT: BTC back on PEPPERSTONE (Love) // v16 Oct 17 ~12:04 AM PT: BTC = VANTAGE (Love), INDEX logged second // v15 Oct 16 ~11:59 PM PT: BTC = INDEX:BTCUSD (Love), Vantage the logged second feed // v14 Oct 16 ~10:30 PM PT: BTC = PEPPERSTONE again (Love), Vantage the logged second feed // v13 Oct 16 ~6:15 PM PT: watchdog counts only open markets (gold closed was recycling BTC every ~50 s) // v10 Oct 16 ~3:23 PM PT: per-version tick stores so sockets left over from older reloads can never feed her a price // +1 Oct 16 ~2:06 PM PT: reconnect so the Vantage second feed is subscribed (+ gap log) // v3 (Oct 15 ~3:15 PM PT, Love: "this execution speed is untenable, she will miss nearly every entry"):
+const QS_VER = 34; // v34 Nov 7 2026 ~10 PM PT: fix1018 Pepperstone first, Vantage watched as the freeze standby (Love 9:58 PM) // v33 Oct 31 ~6:35 AM PT: PRO SIGN-IN - token minted by quote_token, fetched through her Mac curl with her full cookie, matched by JWT shape (Love: connect to Pro, no free feed, no field named token) // v31 Oct 30 ~11:50 PM PT: ONE FEED (fix557) - Pepperstone + TVC only, the INDEX / OANDA second ticks unsubscribed (Love) // // v30 Oct 21 ~4:13 PM PT: door retest rolled back (price stream went stale with the session on the socket) - same as v28 // // v28 Oct 21 ~2:10 PM PT: the door rolled back (gold socket kept getting closed with her session on it) - same as v26 // // v26 Oct 21 ~1:56 PM PT: sign-in reads the escaped / authToken form too (Love) // // v25 Oct 21 ~1:53 PM PT: sign-in check - tries home + chart page, notes what TradingView answered (Love) // // v24 Oct 21 ~1:20 PM PT: signs in with her TradingView session when .secrets/tv-session exists (Love) // // v23 Oct 18 ~5:48 PM PT: BTC on PEPPERSTONE (Love) // // v22 Oct 18 ~4:58 PM PT: BTC on COINBASE (Love) // // v21 Oct 18 ~4:56 PM PT: second feed (logged only) = COINBASE to time its ticks (Love: "what about coinbase's chart... does it tick fast enough") // // v20 Oct 18 ~4:36 PM PT: BTC on INDEX (Love) // // v19 Oct 18 ~4:31 PM PT: BTC back on PEPPERSTONE (Love) // // v18 Oct 17 ~5:49 PM PT: BTC back on VANTAGE (Love) // v17 Oct 17 ~4:54 PM PT: BTC back on PEPPERSTONE (Love) // v16 Oct 17 ~12:04 AM PT: BTC = VANTAGE (Love), INDEX logged second // v15 Oct 16 ~11:59 PM PT: BTC = INDEX:BTCUSD (Love), Vantage the logged second feed // v14 Oct 16 ~10:30 PM PT: BTC = PEPPERSTONE again (Love), Vantage the logged second feed // v13 Oct 16 ~6:15 PM PT: watchdog counts only open markets (gold closed was recycling BTC every ~50 s) // v10 Oct 16 ~3:23 PM PT: per-version tick stores so sockets left over from older reloads can never feed her a price // +1 Oct 16 ~2:06 PM PT: reconnect so the Vantage second feed is subscribed (+ gap log) // v3 (Oct 15 ~3:15 PM PT, Love: "this execution speed is untenable, she will miss nearly every entry"):
 // TWO redundant TradingView connections per desk - the ticker takes the newest tick across both, so one connection going
 // quiet (the gold silences, the BTC 83 s gap) no longer stalls the freshness gates and the entries behind them. // bump on any change to the stream/watchdog: the globalThis guards outlive module reloads,
 // so without a version the OLD watchdog interval keeps running and the new code never arms (found at the 2 PM audit).
@@ -305,6 +319,9 @@ export function ensureQuoteStream() {
         g.__qsSock = null;
         g.__qsErr = `an asset went ${Math.round(stalest / 1000)} s without a tick: recycling both connections`;
       }
+      // fix1018: while Vantage stands in, her own chart stays under repair - Pepperstone 45 s+ without an update recycles ONE socket at a time
+      // (the other keeps Vantage flowing, so her price never gaps for the repair).
+      try { const f18 = btcFeed1018(now); const G18 = g as any; if (f18.live !== BTC_PRIMARY1018 && (f18.pepStaleS ?? 0) > 45 && now - (G18.__pepFix1018 || 0) > 45000) { G18.__pepFix1018 = now; const i18 = (G18.__pepSlot1018 = 1 - (G18.__pepSlot1018 || 0)); const o18 = (g.__qsSocks || [])[i18]; if (o18) { try { o18.destroy(); } catch {} } } } catch {}
       status();
     }, 8000).unref?.();
   }

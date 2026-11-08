@@ -3,7 +3,7 @@
 // deviation of that center line over 7 bars. Reference only: logged and shown, not traded on yet.
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { chartRaw } from "./tv";
+import { chartRaw, btcSymbol1018 } from "./tv"; // fix1018
 import { quoteTick } from "./quotes";
 
 function debug(key: string, msg: string) {
@@ -51,7 +51,7 @@ function to10(bars5: Bar[]): Bar[] {
 
 // Gold on TVC:GOLD (Love, Oct 6 ~7:30 AM PT), OANDA as the backup if TVC goes quiet.
 // BTC ON OANDA (Oct 16 ~3:20 PM PT, Love: "let's put her on oanda the pepperstone chart is freezing"). Pepperstone is now the second feed.
-const SYMBOL: Record<string, string> = { btc: "VANTAGE:BTCUSD" /* fix908 */, gold: "TVC:GOLD" }; // Love, Oct 18 ~5:48 PM PT: "pepperstone" (Coinbase paused 5 s+ about 60x/hour; Pepperstone the fewest) // was: { btc: "COINBASE:BTCUSD", gold: "TVC:GOLD" }; // Love, Oct 18 ~4:58 PM PT: "omg price is way closer to kalshi's on coinbases too. i want to try the next few windows on here" // was: { btc: "INDEX:BTCUSD", gold: "TVC:GOLD" }; // Love, Oct 18 ~4:36 PM PT: "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS" // was: { btc: "PEPPERSTONE:BTCUSD", gold: "TVC:GOLD" }; // Love, Oct 18 ~4:31 PM PT: "we need to switch it back to pepperstones hun... vantages chart DEFINITELY flips more than pepperstones... pepperstone pls" // // Love, Oct 17 ~5:49 PM PT: back on Vantage // Love, Oct 17 ~4:54 PM PT: back on Pepperstone // Love, Oct 17 ~12:03 AM PT: Vantage // Love, Oct 16 ~11:58 PM PT: INDEX // Love, Oct 16 ~10:25 PM PT: "i want her on pepperstone if we can"
+const SYMBOL: Record<string, string> = { btc: "PEPPERSTONE:BTCUSD" /* fix1018 her primary - navSym1018() reads Vantage only while Pepperstone is frozen 10 s+ */, gold: "TVC:GOLD" }; // Love, Oct 18 ~5:48 PM PT: "pepperstone" (Coinbase paused 5 s+ about 60x/hour; Pepperstone the fewest) // was: { btc: "COINBASE:BTCUSD", gold: "TVC:GOLD" }; // Love, Oct 18 ~4:58 PM PT: "omg price is way closer to kalshi's on coinbases too. i want to try the next few windows on here" // was: { btc: "INDEX:BTCUSD", gold: "TVC:GOLD" }; // Love, Oct 18 ~4:36 PM PT: "THE INDEX CHART... ON INDEX IT TAPPED AND REJECTED. INDEX PLS" // was: { btc: "PEPPERSTONE:BTCUSD", gold: "TVC:GOLD" }; // Love, Oct 18 ~4:31 PM PT: "we need to switch it back to pepperstones hun... vantages chart DEFINITELY flips more than pepperstones... pepperstone pls" // // Love, Oct 17 ~5:49 PM PT: back on Vantage // Love, Oct 17 ~4:54 PM PT: back on Pepperstone // Love, Oct 17 ~12:03 AM PT: Vantage // Love, Oct 16 ~11:58 PM PT: INDEX // Love, Oct 16 ~10:25 PM PT: "i want her on pepperstone if we can"
 // (was Vantage from ~3:25 PM PT) // Love ~3:25 PM PT: "let's trade vantage"
 const mem = new Map<string, { at: number; frame: NavFrame | null; goodAt?: number }>();
 const closes = new Map<string, { at: number; close: number; t: number; prev: number; o: number; h: number; l: number }>();
@@ -60,6 +60,17 @@ const lives = new Map<string, { at: number; t: number; h: number; l: number; c: 
 // ATR(14) on CLOSED 5-minute bars (Claude, Oct 2 night, Love: "work it out to ATR, it shouldn't be one set
 // price for all points of the day"). Her DNA's reach breathes with the market through this.
 const atrs = new Map<string, { at: number; atr: number }>();
+// fix1018 (Love Nov 7 2026 9:58 PM PT: "yes pepperstone / vantage is ONLY used in the event pepperstones feed freezes for more than 10 seconds"): her nav frames follow btcSymbol1018(); on a switch every BTC frame / close / live candle / ATR
+// from the feed she left is dropped, so no frame ever mixes the two charts.
+function navSym1018(asset: string): string {
+  if (asset !== "btc") return SYMBOL[asset];
+  const s = btcSymbol1018(); const G = globalThis as any;
+  if (G.__navSym1018 !== s) {
+    if (G.__navSym1018) { for (const k of [...mem.keys()]) if (k.startsWith("btc:")) mem.delete(k); for (const k of [...closes.keys()]) if (k.startsWith("btc:")) closes.delete(k); lives.delete("btc"); atrs.delete("btc"); }
+    G.__navSym1018 = s;
+  }
+  return s;
+}
 /** The live 1-minute candle's last price (the same TVC / Pepperstone chart her lines come from), if read in the last 20 s. */
 /** Her live price WITH when it arrived. QUOTE STREAM FIRST (Oct 15, Love: "fire with speed without firing backwards"):
  * the pushed tick from quotes.ts is the newest truth; the polled 1m candle read stays as the fallback, so losing the
@@ -86,13 +97,15 @@ export function atr14(bars: Bar[]): number | null {
 
 async function frameFor(asset: string, res: "1" | "5" | "10" | "15" | "60", ttl: number): Promise<NavFrame | null> {
   const key = `${asset}:${res}`;
+  const sym18 = navSym1018(asset); // fix1018
   const hit = mem.get(key);
   if (hit && Date.now() - hit.at < ttl) return hit.frame;
   try {
     // TradingView will not serve 10-minute bars to the desk, so 10m bars are built from 5m bars
     // (two 5m bars per 10m bar, aligned to :00/:10/:20..., same as her chart).
     const get = async (sym: string) => (res === "10" ? to10((await chartRaw(sym, "5", 90)) as Bar[]) : ((await chartRaw(sym, res, 40)) as Bar[]));
-    let bars = await get(SYMBOL[asset]).catch(() => [] as Bar[]);
+    let bars = await get(sym18).catch(() => [] as Bar[]); // fix1018
+    if (asset === "btc" && btcSymbol1018() !== sym18) return null; // fix1018: a read from the feed she just left is never stored
     // Weekend: OANDA BTC is closed Fri 5 PM ET - Sun 5 PM ET; Kalshi BTC is not. Read Coinbase then.
     const lastT = bars.length ? Math.max(...bars.map((b) => b.t)) : 0;
     // Love, Oct 3 ~5:50 PM PT: backup is Vantage (Coinbase held her bands worst); Coinbase only if Vantage is quiet too.
