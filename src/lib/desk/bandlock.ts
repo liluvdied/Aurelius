@@ -745,6 +745,14 @@ export function labelHold597(book: string, asset: string, carried: boolean, labe
 export function addOnAt28600(bid: number, maxAsk: number): string { return bid > 0.02 && maxAsk > 0 && bid <= maxAsk ? `price reached ${(1 / maxAsk).toFixed(1)}x (fix600)` : ""; } // fix600 (Love Nov 1 2026 12:27 PM PT): "add as soon as price reaches 2.8x. No band-touch requirement."
 // fix607 (Love Nov 1 2026 1:40 PM PT: "keep our take profit structure in place for all trades. if i set my slider at a price before that, simultaneously you can allow the position to close at the price i select when i set the slider myself if it comes before the take profits structure we have in place , without ignoring the trade entirely once the slider is set. both coexisting"): the line that comes first is the line.
 export function sliderLine607(pinPct: number, tableArm: number): number { return pinPct > 0 && tableArm > 0 ? Math.min(pinPct, tableArm) : pinPct > 0 ? pinPct : tableArm; }
+// fix995 A BROKEN BOLLINGER IS NOT A WALL ON THE WAY BACK (Love Nov 7 2026 7:18 PM PT: "A BOLLINGER IS NOT A WALL ONCE IT HAS BROKEN PAST IT. A BROKEN BOLLINGER UP - IS NOT A WALL ON THE WAY BACK DOWN."):
+// a Bollinger line (upper, middle, lower) price has broken past is no wall for the move back through it. A short's Bollinger below price is no wall when price is over the UPPER (broken up), or this 5m candle traded under that line
+// (price crossed back up through it - the short goes back down through a broken line); mirror for a long: no wall from the LOWER when price is under it, or from a line this 5m candle traded over. An unbroken Bollinger
+// ahead (the middle included, while unbroken) stays her wall - her $25 Bollinger wall (fix962) and her Bollinger cushion (fix173). Every book but delayed, BTC and gold (the $25 wall is BTC only, as before).
+export function bbBroke995(asset: string, side: string, tick: number, P: number, n: string): boolean { try { if (!(tick > 0) || !(P > 0)) return false; const hl = fiveHLNow(asset);
+  if (side === "down" && P <= tick) return /upper/i.test(n) || (!!hl && Number(hl.l) > 0 && Number(hl.l) < P);
+  if (side === "up" && P >= tick) return /lower/i.test(n) || (!!hl && Number(hl.h) > 0 && Number(hl.h) > P);
+  return false; } catch { return false; } } // fix995
 // fix962 HER $25 BOLLINGER WALL (BTC) (Love Nov 7 2026 ~5:17 PM PT: "she entered properly on btc just now hun. but she entered in right above a bollinger. we need to make it a $25 wall in front of those" + 5:19 PM: "melted immediately. and yes the middle counts as a wall and as an entry. if it starts losing we will take it off but so far ignoring the middle has been very bad"): no BTC short with a Bollinger line (5m 20/2: upper, MIDDLE, lower) $25 or less below price, no long with one $25 or less above -
 // unless the trade is OFF that Bollinger line (her rejection at it is her setup, not a wall) or price already broke it by her break. Every book but delayed. BB_MID963 = false takes the middle back out.
 export const BB_MID963 = true; // fix963 her Bollinger MIDDLE counts (wall + entry line) - false = off ("if it starts losing we will take it off")
@@ -752,7 +760,7 @@ export function bbWall962(asset: string, tick: number, side: string, label = "")
   try { if (asset !== "btc" || !(tick > 0) || (side !== "up" && side !== "down")) return "";
     const z = G.__bbsr?.[asset]; if (!z || Date.now() - Number(z.at) > 20000) return ""; const bU = Number(z.bbU) || 0, bL = Number(z.bbL) || 0;
     const lines = [{ n: "upper", p: bU }, { n: "lower", p: bL }, ...(BB_MID963 && bU > 0 && bL > 0 ? [{ n: "middle", p: (bU + bL) / 2 }] : [])].filter((x) => x.p > 0 && !new RegExp("(Bollinger|BB) " + x.n, "i").test(String(label)));
-    for (const x of lines) {
+    for (const x of lines) { if (typeof bbBroke995 === "function" && bbBroke995(asset, side, tick, x.p, x.n)) continue; // fix995 a Bollinger price broke past is no wall on the way back
       if (side === "down" && tick >= x.p && tick - x.p <= 25) return `BOLLINGER WALL (fix962): the Bollinger ${x.n} (${x.p.toFixed(2)}) is $${(tick - x.p).toFixed(2)} below - no short into it (her $25 wall)`;
       if (side === "up" && tick <= x.p && x.p - tick <= 25) return `BOLLINGER WALL (fix962): the Bollinger ${x.n} (${x.p.toFixed(2)}) is $${(x.p - tick).toFixed(2)} above - no long into it (her $25 wall)`;
     }
@@ -3450,8 +3458,8 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
         // fix286 (Oct 26 ~2:27 PM PT, Love card "Drop BB cushion + fake-out floor" + "we will drop it to $25 hun not completely"): the no-pink copy's BTC Bollinger cushion is $25.
         const w10g286 = togpLoose && asset === "btc" && (above - below) <= 100 /* fix302 (Love card "Match pink ($25 only <=$100)") */ ? Math.min(w10g, 25) : w10g;
         const w10g845 = asset === "btc" && above > below ? Math.min(w10g286, typeof slide845 === "function" ? slide845(asset, above - below) : Infinity) : w10g286; // fix845 her sliding scale from $100 caps the Bollinger cushion
-        if (!why && side === "up" && bUC > tick && bUC - tick <= w10g845) why = `BOLLINGER CUSHION: long $${(bUC - tick).toFixed(2)} under the Bollinger upper (${bUC.toFixed(2)}) - inside the $${w10g845.toFixed(2)} cushion. Wait for the break or the rejection.`;
-        if (!why && side === "down" && bLC > 0 && bLC < tick && tick - bLC <= w10g845) why = `BOLLINGER CUSHION: short $${(tick - bLC).toFixed(2)} over the Bollinger lower (${bLC.toFixed(2)}) - inside the $${w10g845.toFixed(2)} cushion. Wait for the break or the rejection.`;
+        if (!why && side === "up" && bUC > tick && bUC - tick <= w10g845 && !(typeof bbBroke995 === "function" && bbBroke995(asset, "up", tick, bUC, "upper")) /* fix995 */) why = `BOLLINGER CUSHION: long $${(bUC - tick).toFixed(2)} under the Bollinger upper (${bUC.toFixed(2)}) - inside the $${w10g845.toFixed(2)} cushion. Wait for the break or the rejection.`;
+        if (!why && side === "down" && bLC > 0 && bLC < tick && tick - bLC <= w10g845 && !(typeof bbBroke995 === "function" && bbBroke995(asset, "down", tick, bLC, "lower")) /* fix995 */) why = `BOLLINGER CUSHION: short $${(tick - bLC).toFixed(2)} over the Bollinger lower (${bLC.toFixed(2)}) - inside the $${w10g845.toFixed(2)} cushion. Wait for the break or the rejection.`;
         // BOLLINGER BROKEN ONLY ON A 1M CLOSE (fix225, Oct 25 ~6:18 PM PT, Love card "1m close past it" + "gold just longed directly into an unbroken bollinger and
         // immediately reversed we need to fix that hun" - 6:15 PM gold long went the moment a tick poked 2c over the upper, 3999.35 vs 3999.33): a tick past the
         // Bollinger frees her only once the last finished 1m candle closed past it too.
