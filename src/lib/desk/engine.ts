@@ -3855,6 +3855,8 @@ async function tick() {
     import("./rsibooks").then((m) => m.rsiTick672(snap.assets)).catch(() => {});
     // fix682 ETH REJECTIONS ONLY · NO PINK (Love Nov 4 2026 11:38 PM PT: "yess, let us do so please (eth book)"). PAPER ONLY (ethbook.ts never sends an order).
     import("./ethbook").then((m) => m.ethTick682()).catch(() => {});
+    // fix961 XRP 5M ON POLYMARKET - MAIN'S NOV 3 MODEL (Love Nov 7 2026 ~5:13 PM PT: "for now let's get the xrp 5M book set up / just put it on the nov 3 save point and we'll see how she does on the first couple windows" + "main" + "it's on poly" + "no , live pls"): her own XRP lane (xrp5m961.ts), live at $1 through the desk's Polymarket buy (umpire, LIVE, cap, 1.5x floor, cash, one per window).
+    import("./xrp5m961").then((m) => m.xrpTick961()).catch(() => {});
     // fix832 SOL + DOGE REJECTIONS ONLY · NO PINK - PAPER (her card "Paper books on the desk"): copies of the ETH paper book. PAPER ONLY.
     import("./solbook832").then((m) => m.solTick832()).catch(() => {});
     import("./dogebook832").then((m) => m.dogeTick832()).catch(() => {});

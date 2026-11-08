@@ -10231,5 +10231,60 @@
     "what": "[ ${#PENDING[@]} -gt 0 ] || { say \"Nothing waiting - every CHANGE on the Desktop is already in.\"; exit 0; }",
     "why": "fix957 (her words in this change's request)",
     "R": "R565"
+  },
+  {
+    "what": "try { const zB = (globalThis as any).__bbsr?.[id]; if (!quietR() && zB && Number(zB.bbU) > 0 && Number(zB.bbL) > 0 && Date.now() - Number(zB.at) <= 20000) LB.push({ name: \"Bollinger upper\", price: Number(zB.bbU), unit: Number(L[0]?.unit) || 0 }, { name: \"Bollinger lower\", price: Number(zB.bbL), unit: Number(L[0]?.unit) || 0 }); } catch {}",
+    "why": "fix962 (her words in this change's request)",
+    "R": "R567"
+  },
+  {
+    "what": "// keep knocking while the set up is valid (3 min, 1+ min left); exits mirror the paper (half at her 75%, the rest on its trail sale, else the bell). No add-on.",
+    "why": "fix964 (her words in this change's request)",
+    "R": "R568"
+  },
+  {
+    "what": "return { on: c.on === true, dollars: Math.min(5, Number(c.dollars) > 0 ? Number(c.dollars) : 1.5), addOn: 0, addOnMult: Number(c.addOnMult) > 1 ? Number(c.addOnMult) : 2.8, maxAsk: 0.667 };",
+    "why": "fix964 (her words in this change's request)",
+    "R": "R568"
+  },
+  {
+    "what": "fs.writeFileSync(\"data/live-switch.json\", JSON.stringify({ bnbLive940: { on: true, dollars: 1.5 } })); let c = M.cfg831(); t(c.on === true && c.dollars === 1.5 && c.addOn === 0, \"her switch: on, $1.50, no add-on\");",
+    "why": "fix964 (her words in this change's request)",
+    "R": "R568"
+  },
+  {
+    "what": "{ const a951 = /^KXGOLD/.test(String(ticker)) ? \"gold\" : /^KXBTC/.test(String(ticker)) ? \"btc\" : \"\"; if (a951) { const B951: any = await import(\"./bandlock\"); const q951 = (await import(\"./quotes\")).quoteTick(a951); const t951 = Number(q951?.c) || 0; const L951 = (((globalThis as any).__lawBands?.[a951]?.L) || []) as any[]; if (!(t951 > 0)) return no(\"no live price to check her colour (fix951)\"); if (!(B951.rej668?.(a951, side, t951, L951)) && !(B951.herColour949?.(a951, side, t951))) return no(\"NOT HER COLOUR (fix951): neither the 2m nor the 5m candle is her colour\"); } } // fix951 her colour on every add-on and every BTC / gold copy",
+    "why": "fix967 (her words in this change's request)",
+    "R": "R569"
+  },
+  {
+    "what": "const sig = signals833(c.setups, fresh ? closed : [], open0, spot, el, lines833(bs, nowS));",
+    "why": "fix965 (her words in this change's request)",
+    "R": "R570"
+  },
+  {
+    "what": "export function cfg831(): Cfg831 {",
+    "why": "fix969 (her words in this change's request)",
+    "R": "R571"
+  },
+  {
+    "what": "export function cfg831(): Cfg831 {",
+    "why": "fix969 (her words in this change's request)",
+    "R": "R571"
+  },
+  {
+    "what": "export function cfg831(): Cfg831 {",
+    "why": "fix969 (her words in this change's request)",
+    "R": "R571"
+  },
+  {
+    "what": "export function cfg831(): Cfg831 {",
+    "why": "fix969 (her words in this change's request)",
+    "R": "R571"
+  },
+  {
+    "what": "if (!p.addOn && c.addOn > 0 && Date.now() - Number(((G as any).__aoTry954 || {})[p.id] || 0) >= 10000 /* fix954 */ && false /* fix940: no add-on on BNB */) {",
+    "why": "fix969 (her words in this change's request)",
+    "R": "R571"
   }
 ]
