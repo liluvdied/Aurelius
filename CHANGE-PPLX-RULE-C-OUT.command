@@ -45,6 +45,7 @@ grep -q 'RULE C (fix1004): no' $F && undo "RULE C is still in the file"
 python3 tools/verify-golden.py | head -3
 python3 tools/no-removal-gate.py | head -3
 python3 tools/no-removal-gate.py >/dev/null 2>&1 || undo "the no-removal gate refused"
+if [ -z "${AUR_TEST:-}" ]; then echo ""; echo "=================================================================="; echo "  Now turn LIVE back ON in the desk header (her checks need LIVE on)."; echo "=================================================================="; while [ "$(python3 -c "import json;print('ON' if json.load(open('data/live-switch.json')).get('live') else 'OFF')")" = "OFF" ]; do read -r -p "        Press Enter once LIVE is back on... " _; done; echo "  OK - LIVE is on"; fi
 python3 tools/requests.py check 2>&1 | tail -2
 python3 tools/requests.py check >/dev/null 2>&1 || undo "the request book check failed"
 [ -f tools/xrp-5m-poly-961.cjs ] && { node tools/xrp-5m-poly-961.cjs >/dev/null 2>&1 && echo "  OK her XRP 5M test passes" || undo "her XRP 5M test failed"; }
@@ -56,4 +57,4 @@ cd "$ROOT"; concrete_lock schg; cd "$ROOT"; echo "  OK locked"
 echo "  running the umpire (about 2 minutes)..."; python3 tools/umpire-stamp.py >/dev/null 2>&1
 git add $F data/golden-baseline.json data/approved-model.json data/ALLOW-REMOVE.json data/LOVE-REQUESTS.jsonl >/dev/null 2>&1; git -c user.name="Love" -c user.email="liluvdied@users.noreply.github.com" commit -q -m "RULE C out of the XRP 5M Poly book ($R, Perplexity)" >/dev/null 2>&1
 python3 -c "import json;v=json.load(open('data/UMPIRE-VERDICT.json'));print('UMPIRE:', 'SAFE' if v.get('ok') else 'NOT SAFE - '+str(v.get('why')))"
-echo ""; echo ">>> Now turn LIVE back ON in the desk header. <<<"
+echo ""; echo ">>> DONE. LIVE stays on; she trades once the umpire says SAFE. <<<"
