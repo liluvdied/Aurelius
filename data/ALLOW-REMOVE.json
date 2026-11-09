@@ -10876,5 +10876,745 @@
     "what": "console.log(ok ? \"LIVE 60 + FINISH 852 TEST ✓ - LIVE turns itself back on in the last 60 s before each window (keeps trying; umpire SAFE, entries clear, no install of HER desk running, OFF TODAY respected) with a LIVE AUTO-ON alert. (RUN-ALL's finisher is its own command - it can't be installed by a running RUN-ALL.)\" : \"LIVE 60 + FINISH 852 TEST: FAIL\");",
     "why": "fix1025 (her words in this change's request)",
     "R": "R584"
+  },
+  {
+    "what": "const now = Date.parse(\"2026-11-06T23:20:10Z\"), close = \"2026-11-06T23:30:00Z\";",
+    "why": "fix1040 (her words in this change's request)",
+    "R": "R585"
+  },
+  {
+    "what": "const rows = [{ id: \"e1\", ticker: \"KXETH15M-26NOV061830-30\", side: \"down\", result: \"open\", at: \"2026-11-06T23:20:00Z\", closeTime: close, ask: 0.55, label: \"Rejected down off +1σ\" }, { id: \"e2\", ticker: \"KXETH15M-26NOV061830-30\", side: \"up\", result: \"open\", at: \"2026-11-06T23:20:00Z\", closeTime: close, ask: 0.8 }];",
+    "why": "fix1040 (her words in this change's request)",
+    "R": "R585"
+  },
+  {
+    "what": "fs.writeFileSync(path.join(dir, \"data/live-switch.json\"), JSON.stringify({ ethLive831: { on: false } })); G.__el831 = null; rows.push({ id: \"e3\", ticker: \"KXETH15M-26NOV061830-30\", side: \"up\", result: \"open\", at: \"2026-11-06T23:20:20Z\", closeTime: close, ask: 0.5 }); fs.writeFileSync(path.join(dir, \"data/eth-book.json\"), JSON.stringify({ rows }));",
+    "why": "fix1040 (her words in this change's request)",
+    "R": "R585"
+  },
+  {
+    "what": "const now = Date.parse(\"2026-11-06T22:47:10Z\"), close = \"2026-11-06T23:00:02.260Z\";",
+    "why": "fix1040 (her words in this change's request)",
+    "R": "R585"
+  },
+  {
+    "what": "const rows = [{ id: \"a\", asset: \"btc\", side: \"down\", result: \"open\", at: \"2026-11-06T22:47:00Z\", closeTime: close }, { id: \"g\", asset: \"gold\", side: \"up\", result: \"open\", at: \"2026-11-06T22:47:00Z\", closeTime: close }];",
+    "why": "fix1040 (her words in this change's request)",
+    "R": "R585"
+  },
+  {
+    "what": "t(X.closeOf830(close) === \"2026-11-06T23:00:00.000Z\", \"window close not rounded\");",
+    "why": "fix1040 (her words in this change's request)",
+    "R": "R585"
+  },
+  {
+    "what": "fs.writeFileSync(path.join(dir, \"data/live-switch.json\"), JSON.stringify({ polyMom830: { on: false } })); G.__pm830 = null; rows.push({ id: \"b\", asset: \"btc\", side: \"up\", result: \"open\", at: \"2026-11-06T22:47:20Z\", closeTime: close }); fs.writeFileSync(path.join(dir, \"data/momentum-book-704.json\"), JSON.stringify({ rows }));",
+    "why": "fix1040 (her words in this change's request)",
+    "R": "R585"
+  },
+  {
+    "what": "export const cornerstones1004 = (x: { side: \"up\" | \"down\"; spot: number; line: number; lineName: string; label: string; o2: number; o5: number; lo5: number; hi5: number; push: number; wall: number; bbUp: number; bbMid: number; bbLo: number; wick?: boolean }): string => { const s = x.side === \"up\" ? 1 : -1, d = (a: number, b: number) => s * (a - b), why: string[] = [], turn = s > 0 ? x.lo5 : x.hi5; if (!x.wick && !(d(x.spot, x.o2) >= x.push - 1e-9 || d(x.spot, x.o5) >= x.push - 1e-9)) why.push(`COLOUR (fix1004): her 2m / 5m candle is not ${s > 0 ? \"green\" : \"red\"} by her push $${x.push} over its open (2m ${d(x.spot, x.o2).toFixed(4)}, 5m ${d(x.spot, x.o5).toFixed(4)}) - a 1-tick colour is not her colour`); if (!(d(x.spot, x.line) > 0)) why.push(`SAME SIDE (fix1004): price is not on her side of ${x.lineName}`); if (d(x.spot, turn) < x.push - 1e-9) why.push(`PUSH (fix1004): only $${d(x.spot, turn).toFixed(4)} off the 5m ${s > 0 ? \"low\" : \"high\"}, her push is $${x.push}`); for (const [n, b] of [[\"upper\", x.bbUp], [\"middle\", x.bbMid], [\"lower\", x.bbLo]] as [string, number][]) if (b > 0 && d(b, x.spot) >= 0 && d(b, x.spot) <= x.wall && !new RegExp(\"(Bollinger|BB) \" + n, \"i\").test(x.label) && !(n === (s > 0 ? \"lower\" : \"upper\") || (s > 0 ? x.hi5 > b : x.lo5 < b))) why.push(`BOLLINGER WALL (fix1004 / fix962 / fix995): the unbroken Bollinger ${n} is $${d(b, x.spot).toFixed(5)} ${s > 0 ? \"above the long\" : \"below the short\"} (her $25 wall = $${x.wall.toFixed(5)})`); if (x.bbMid > 0 && d(x.spot, x.o5) < 0 && d(x.spot, x.bbMid) < 0) why.push(`RULE C (fix1004): no ${s > 0 ? \"long while the 5m is red and under\" : \"short while the 5m is green and over\"} the Bollinger middle - \"the candle was red and under a bollinger\"`); return why.join(\" + \"); };",
+    "why": "fix1027 (her words in this change's request)",
+    "R": "R586"
+  },
+  {
+    "what": "return weekend837() ? 5 /* fix837 her weekend $5 */ : 50;",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "const hl656 = fiveHLNow(asset), p807 = typeof push807 === \"function\" ? push807(asset, nm) : 0, ext807 = hl656 ? (side === \"up\" ? Number(hl656.l) : Number(hl656.h)) : 0; if (p807 > 0) return band > 0 && ext807 > 0 && (side === \"up\" ? tick >= ext807 + p807 && tick > band : tick <= ext807 - p807 && tick < band) && (twoMinHer653(asset, side, tick) || (() => { const o918 = fiveOpenNow(asset); return o918 > 0 && (side === \"up\" ? tick > o918 : tick < o918); })()) /* fix807: measured from the wick (this 5m candle's high for a short / low for a long) + fix918 HER PUSH ON HER SIDE OF THE BAND (Love Nov 7 2026 ~1:46 AM PT: \"once it is on the same side of the band hun\" + \"doesn't need a close\"): the push met with price on the trading side of the band and ONE of her candles (2m or 5m) her colour IS the entry - no close (Love 2:03 AM: \"one of the candles does need to be green\") */; return band > 0 && pushOff653(asset, side, tick, band, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : nm === \"5m PP\" ? 0.1 /* fix656: gold 10c - pink trades keep 10c (fix827) */ : goldPush827(L, tick) /* fix827 gold band / zone push 15c / 20c */, ext807); } catch { return false; } } // fix655",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "const hl751 = hlOverride && typeof hlOverride === \"object\" ? hlOverride : (openOverride > 0 ? null : fiveHLNow(asset)), push751 = asset === \"btc\" ? 6 : asset === \"gold\" ? 0.1 : Infinity;",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "if (cur.o > p && cur.l <= p + nr && cur.l > p - brk && spot >= cur.l + tap && spot > p && (l.name !== \"5m PP\" || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : 0.1 /* fix656: gold 10c */, cur.l) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Rejected up off ${l.name}`, d, rank: 1 });",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "if (cur.o < p && cur.h >= p - nr && cur.h < p + brk && spot <= cur.h - tap && spot < p && (l.name !== \"5m PP\" || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : 0.1 /* fix656: gold 10c */, cur.h) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Rejected down off ${l.name}`, d, rank: 1 });",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "if (cur.o > p && cur.l <= p - brk && spot >= cur.l + tap && spot > p && (l.name !== \"5m PP\" || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : 0.1 /* fix656: gold 10c */, cur.l) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Failed break below ${l.name} - rejected up`, d, rank: 1 });",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "if (cur.o < p && cur.h >= p + brk && spot <= cur.h - tap && spot < p && (l.name !== \"5m PP\" || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : 0.1 /* fix656: gold 10c */, cur.h) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Failed break above ${l.name} - rejected down`, d, rank: 1 });",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "if (prev.l <= p + nr && prev.l > p - brk && cur.l > p - brk && cur.l > prev.l - tap && spot >= prev.l + tap && spot > p && (l.name !== \"5m PP\" || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : 0.1 /* fix656: gold 10c */, prev.l) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" */)) cands.push({ side: \"up\", label: `Rejected up off ${l.name}`, d, rank: 1 });",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "if (prev.h >= p - nr && prev.h < p + brk && cur.h < p + brk && cur.h < prev.h + tap && spot <= prev.h - tap && spot < p && (l.name !== \"5m PP\" || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : 0.1 /* fix656: gold 10c */, prev.h) /* fix653: her push from the band, 2m her colour */ /* Love Nov 4 2026 12:13 PM PT: \"yes they all need the push\" - the push is back */)) cands.push({ side: \"down\", label: `Rejected down off ${l.name}`, d, rank: 1 });",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "if (p > spot && (!pk || pushOff653(asset, \"down\", spot, p, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : 0.1 /* fix656: gold 10c */, cur.h)) /* fix653 */ && (() => { try { return turnFlip530(asset, \"down\", spot); } catch { return false; } })()) cands.push({ side: \"down\", label: `Rejected down off ${nb645.name}`, d, rank: 1 }); // fix645",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "if (p < spot && (!pk || pushOff653(asset, \"up\", spot, p, asset === \"btc\" ? 6 /* fix669 (Love Nov 4 2026 8:54 PM PT: \"we can bring that to $6\"): BTC push $10 -> $6 */ : 0.1 /* fix656: gold 10c */, cur.l)) /* fix653 */ && (() => { try { return turnFlip530(asset, \"up\", spot); } catch { return false; } })()) cands.push({ side: \"up\", label: `Rejected up off ${nb645.name}`, d, rank: 1 }); } } // fix645",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "G.__now837 = Date.parse(\"2026-11-04T19:00:00Z\"); /* fix837: a Wednesday - her weekday $50 */ t(B.push807(\"btc\", \"Rejected down off +1σ\") === 50 && B.push807(\"gold\", \"Rejected down off +1σ\") === 0, \"BTC $50 on band trades, gold untouched\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "G.__wireLabel619 = \"Rejected down off Red zone\"; t(B.push807(\"btc\") === 50, \"a rejection off the red zone uses the $50 push\"); G.__wireLabel619 = \"\";",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "t(B.push807(\"btc\", \"+1σ\") === 50 && B.push807(\"btc\", \"Red zone\") === 50, \"band names handed in by her push check use the $50 push\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "t(B.pushLabel653(\"btc\", \"down\", 79980, [{ name: \"5m PP\", price: 80000 }, { name: \"+1σ\", price: 80400 }, { name: \"session VWAP\", price: 79600 }], \"Rejected down off 5m PP\"), \"a pink rejection on BTC still enters on her $6 push\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "t(!B.pushLabel653(\"btc\", \"down\", 79985, L, lab), \"$45 off the wick (80030 -> 79985) is not her push\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "t((R.match(/pushOff653\\(asset, \"up\", spot, p, asset === \"btc\" \\? 6 \\/\\* fix669[^*]*\\*\\/ : 0\\.1 \\/\\* fix656: gold 10c \\*\\/, (cur|prev)\\.[lh]\\)/g) || []).length === 4, \"a pink long push in recon.ts is not measured from the band (4 sites)\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "t((R.match(/pushOff653\\(asset, \"down\", spot, p, asset === \"btc\" \\? 6 \\/\\* fix669[^*]*\\*\\/ : 0\\.1 \\/\\* fix656: gold 10c \\*\\/, (cur|prev)\\.[lh]\\)/g) || []).length === 4, \"a pink short push in recon.ts is not measured from the band (4 sites)\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "G.__now837 = Date.parse(\"2026-11-04T19:00:00Z\"); t(!B.pushLabel653(\"btc\", \"up\", 76081.88, L, lab) && B.pushLabel653(\"btc\", \"up\", 76127.00, L, lab), \"weekday: her $50 off the wick, same side rule\"); G.__pivBars.btc.bars = bars;",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "const six = /asset === \"btc\" \\? 6 \\/\\* fix669/g;",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "t((R.match(six) || []).length === 8, \"not all 8 read push sites in recon.ts are $6 (longs + shorts, pink, failed break, previous candle, nearest band)\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "t((B.match(six) || []).length === 1, \"the door / send push (pushLabel653) is not $6\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "console.log(ok ? \"PUSH SIX 669 TEST ✓ - BTC push off the band is $6 at every site (read x8, door/send x1), both directions; gold 10c unchanged.\" : \"PUSH SIX 669 TEST: FAIL\"); process.exit(ok ? 0 : 1);",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "t(src.includes(\"return weekend837() ? 5 /* fix837 her weekend $5 */ : 50;\"), \"the weekend push is not in her BTC push\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "G.__now837 = Date.parse(\"2026-11-04T19:00:00Z\"); t(B.push807(\"btc\", \"Rejected down off +1σ\") === 50, \"weekday BTC band push should stay $50\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "console.log(ok ? \"WEEKEND PUSH 837 TEST ✓ - BTC's band / zone push is $5 from Friday 2:00 PM PT to Sunday 3:00 PM PT, $50 the rest of the week; gold and pink trades unchanged.\" : \"WEEKEND PUSH 837 TEST: FAIL\");",
+    "why": "fix1030 (her words in this change's request)",
+    "R": "R587"
+  },
+  {
+    "what": "export const PUSH1004 = { band: 0.0005, pink: 0.001, wick: 0.0005 };",
+    "why": "fix1031 (her words in this change's request)",
+    "R": "R588"
+  },
+  {
+    "what": "r = M.xrpRead961(bs, L, 2.2804, now); t(!(\"side\" in r) && /PUSH \\(fix1004\\)/.test(r.why), \"fix1004: a 1-tick colour with no push must be refused (fix1027: the 1 tick is her colour now - her push holds it): \" + JSON.stringify(r));",
+    "why": "fix1031 (her words in this change's request)",
+    "R": "R588"
+  },
+  {
+    "what": "return o > 0 && tick > 0 && (side === \"up\" ? tick > o : side === \"down\" ? tick < o : false); } catch { return false; } } // fix653",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "const hl656 = fiveHLNow(asset), p807 = typeof push807 === \"function\" ? push807(asset, nm) : 0, ext807 = hl656 ? (side === \"up\" ? Number(hl656.l) : Number(hl656.h)) : 0; if (p807 > 0) return band > 0 && ext807 > 0 && (side === \"up\" ? tick >= Math.max(band, ext807) + p807 && tick > band : tick <= Math.min(band, ext807) - p807 && tick < band) /* fix1030 HER PUSH OFF THE BAND ITSELF (Love Nov 8 2026 ~12:58 AM PT: \"its not the candles open she needs to push past. its the band itself\" + \"can we do that bb?\"): measured from the BAND, or from the candle own extreme only when the candle stopped short of the band (her fix656 rule, whichever is nearer price) - was measured from the 5m wick, so a deep wick pushed her entry far past the band */ && (twoMinHer653(asset, side, tick) || (() => { const o918 = fiveOpenNow(asset); return o918 > 0 && (side === \"up\" ? tick > o918 : tick < o918); })()) /* fix807: measured from the wick (this 5m candle's high for a short / low for a long) + fix918 HER PUSH ON HER SIDE OF THE BAND (Love Nov 7 2026 ~1:46 AM PT: \"once it is on the same side of the band hun\" + \"doesn't need a close\"): the push met with price on the trading side of the band and ONE of her candles (2m or 5m) her colour IS the entry - no close (Love 2:03 AM: \"one of the candles does need to be green\") */; return band > 0 && pushOff653(asset, side, tick, band, asset === \"btc\" ? 5 /* fix669 $10->$6, fix1030 $6->$5 (Love Nov 8 2026: \"she doesnt have a valid reason for not entering at the push of $5 off of pink\"): BTC pink/fallback push $5 */ : asset === \"eth\" ? 0.25 /* fix1030 ETH push 25c (Love Nov 8 2026 7:17 AM PT: \"eth 25c eth\") */ : nm === \"5m PP\" ? 0.1 /* fix656: gold 10c - pink trades keep 10c (fix827) */ : goldPush827(L, tick) /* fix827 gold band / zone push 15c / 20c */, ext807); } catch { return false; } } // fix655",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "export function herColour949(asset: string, side: string, tick: number): boolean { try { if (typeof twoMinHer653 === \"function\" && twoMinHer653(asset, side, tick)) return true; const o5 = fiveOpenNow(asset); return o5 > 0 && (side === \"up\" ? tick > o5 : tick < o5); } catch { return false; } }",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "//   The ONLY exception: a REAL wick rejection off a line (came within 15% of the channel, pulled back $0.0005 from the wick toward her side) - labelled \"(wick)\", it skips colour (a) only - \"she entered on a red candle pushing\".",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "export const cornerstones1004 = (x: { side: \"up\" | \"down\"; spot: number; line: number; lineName: string; label: string; o2: number; o5: number; lo5: number; hi5: number; push: number; wall: number; bbUp: number; bbMid: number; bbLo: number; wick?: boolean }): string => { const s = x.side === \"up\" ? 1 : -1, d = (a: number, b: number) => s * (a - b), why: string[] = [], turn = s > 0 ? x.lo5 : x.hi5; if (!x.wick && !(d(x.spot, x.o2) > 0 || d(x.spot, x.o5) > 0)) why.push(`COLOUR (fix1027): her 2m / 5m candle is not ${s > 0 ? \"green\" : \"red\"} (2m ${d(x.spot, x.o2).toFixed(4)}, 5m ${d(x.spot, x.o5).toFixed(4)} vs its open)`); /* fix1027 PLAIN COLOUR (Love Nov 8 2026 12:19-12:22 AM PT: \"okay whatever opening color candle lock you instituted that is now blocking trades please remove it\" + \"color of the candle still needs to be the same as our trade, aside from the wick rejection exemption ... candle flips green - push distance met ==== get in\"): her colour is the 2m or 5m candle's current colour, any amount past its open - the $0.0005 / $0.0010 cushion over the open is gone; her push off the turn stays its own check, wicks stay exempt, same side stays */ if (!(d(x.spot, x.line) > 0)) why.push(`SAME SIDE (fix1004): price is not on her side of ${x.lineName}`); if (d(x.spot, turn) < x.push - 1e-9) why.push(`PUSH (fix1004): only $${d(x.spot, turn).toFixed(4)} off the 5m ${s > 0 ? \"low\" : \"high\"}, her push is $${x.push}`); for (const [n, b] of [[\"upper\", x.bbUp], [\"middle\", x.bbMid], [\"lower\", x.bbLo]] as [string, number][]) if (b > 0 && d(b, x.spot) >= 0 && d(b, x.spot) <= x.wall && !new RegExp(\"(Bollinger|BB) \" + n, \"i\").test(x.label) && !(n === (s > 0 ? \"lower\" : \"upper\") || (s > 0 ? x.hi5 > b : x.lo5 < b))) why.push(`BOLLINGER WALL (fix1004 / fix962 / fix995): the unbroken Bollinger ${n} is $${d(b, x.spot).toFixed(5)} ${s > 0 ? \"above the long\" : \"below the short\"} (her $25 wall = $${x.wall.toFixed(5)})`); if (x.bbMid > 0 && d(x.spot, x.o5) < 0 && d(x.spot, x.bbMid) < 0) why.push(`RULE C (fix1004): no ${s > 0 ? \"long while the 5m is red and under\" : \"short while the 5m is green and over\"} the Bollinger middle - \"the candle was red and under a bollinger\"`); return why.join(\" + \"); };",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "const W = up - dn, f = (spot - dn) / W, nr = 0.15 * W;",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "const o5 = in5[0].o, h5 = Math.max(...in5.map((b) => b.h), spot), l5 = Math.min(...in5.map((b) => b.l), spot), o2 = in2[0].o;",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "const base = { side: c.side, spot, line: c.line, lineName: c.lineName, label: c.label, o2, o5, lo5: l5, hi5: h5, push: c.pink ? PUSH1004.pink : PUSH1004.band, wall, bbUp: bu, bbMid: bm, bbLo: bl };",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "G.__pivBars.btc.bars = bars.map((b) => (b.t >= f2 ? { ...b, o: 79960 } : b)); if (f2 > f5) t(B.pushLabel653(\"btc\", \"down\", 79975, L, lab), \"fix918: the push on her side of the band enters with the 2m green while her 5m is red (one candle her colour, Love 2:03 AM)\"); G.__pivBars.btc.bars = bars.map((b) => ({ ...b, o: 79960 })); t(!B.pushLabel653(\"btc\", \"down\", 79975, L, lab), \"fix918: 2m AND 5m both green - no short (one candle must be her colour)\"); t(!B.pushLabel653(\"btc\", \"down\", 80005, L, lab) , \"fix918: back over the band = not her side - no push\");",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "t(B.herColour949(\"btc\", \"down\", 75793.3) === false, \"2:45 PM: both candles green - not her colour for a short\");",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "t(B.rej668(\"btc\", \"down\", 75793.3, L, { o: 75777, h: 75800, l: 75775 }) === false, \"2:45:13 PM: the short off carried -1 on green candles must NOT pass on the wick\");",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "const names = [\"export function twoMinHer653(\", \"export function pushOff653(\", \"export function pushLabel653(\", \"export function push807(\", \"export function weekend837(\", \"export function goldPush827(\"];",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "const F = new Function(ts.transpileModule(pre + parts.join(\"\\n\") + \"\\n; return { twoMinHer653, pushOff653, pushLabel653, push807, weekend837, setTr: (x: any) => { __tr = x; } };\", { compilerOptions: { target: 99 } }).outputText)();",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "set(75860, 75858, { o: 75860, h: 75860, l: 75820 }); // 2m red and 5m red at 75855.01 -> no long",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "t(!F.pushLabel653(\"btc\", \"up\", 75855.01, L, \"Rejected up off +1σ\"), \"a long with neither her 2m nor her 5m green was taken\");",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "t(F.pushLabel653(\"btc\", \"up\", 80491, Lp, \"Rejected up off 5m PP\"), \"fix655: a green 2m only $1 past its open but $11 off the pink was refused at the send (no flip past its open is needed)\");",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "t(F.pushLabel653(\"btc\", \"up\", 80492, Lp, \"Failed break below 5m PP - rejected up\"), \"fix655: a failed-break rejection off the pink did not read its band\");",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "t(!B.pushLabel653(\"btc\", \"up\", 76081.88, L, lab), \"push met over the band but BOTH candles red (2m and 5m opened 76,090) - one candle must be green (Love 2:03 AM)\"); G.__pivBars.btc.bars = bars.map((b) => (b.t === f5 ? { ...b, o: 76078 } : b)); t(B.pushLabel653(\"btc\", \"up\", 76081.88, L, lab), \"tonight 1:45 AM: $5 off the wick, over +1σ, the 5m green - she enters with the 2m still red, no close\"); G.__pivBars.btc.bars = bars;",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "r = M.xrpRead961(bs, L, 2.2834, now); t(\"side\" in r && r.side === \"up\" && / \\(wick\\)$/.test(r.label), \"fix1004: both candles red but a REAL wick rejection ($0.0033 back off the wick) is her only exception, labelled (wick): \" + JSON.stringify(r));",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "t(X.includes(\"d(x.spot, x.o2) > 0 || d(x.spot, x.o5) > 0\"), \"her colour is not the plain candle colour\");",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "t(r.side === \"down\" && /5m PP/.test(String(r.label)), \"a red candle with her push met does not enter: \" + JSON.stringify(r));",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "console.log(ok ? \"XRP PLAIN COLOUR 1027 TEST ✓ - her XRP 5m colour is the candle's current colour (any amount); her push stays its own check; wicks stay exempt.\" : \"XRP PLAIN COLOUR 1027 TEST: FAIL\");",
+    "why": "fix1032 (her words in this change's request)",
+    "R": "R589"
+  },
+  {
+    "what": "for (const r of fresh831(rows, s.seen, now, c.maxAsk)) {",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "else log({ id: r.id, action: \"skipped\", side: r.side, label: r.label, why: String(o?.reason || \"no fill\") });",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "if (cfg?.on && m?.ticker && m.closeTime && Number(a?.secondsLeft) > 60 && !Object.values(reg).some((e) => e.ticker === m.ticker)) {",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "log({ status: \"error\", id: row.id, why: String(err?.message || err).slice(0, 160) });",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "reg[row.id] = { ...base, status: \"missed\", why: pm.takeSideWhy() };",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "log({ status: \"missed\", id: row.id, side: row.side, why: reg[row.id].why });",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "else log({ id: r.id, action: \"skipped\", setup: r.setup, side: r.side, why: String((typeof (pm as any).takeSideWhy === \"function\" ? (pm as any).takeSideWhy() : \"\") || G.__polyWhy || \"no fill / outside her 1.5x floor\"), kalshiAsk: r.ask ?? null /* fix850: the real reason from Polymarket (takeSideWhy), never thrown away */ });",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "if (!(ask != null && ask > 0.02 && ask <= c.maxAsk)) { row.live = `skipped: ask ${ask ?? \"?\"} over her 66c (1.5x floor)`; s.rows.push(row); save(); log({ id, action: \"skipped\", side: r.side, label: r.label, slug, ask, why: row.live }); return; }",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "row.live = f && f.filled > 0 ? `bought ${f.filled} @ ${f.price}` : \"no fill / refused at the wire (umpire, LIVE, cash or the ask moved)\";",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "} catch (e: any) { row.live = \"error: \" + String(e?.message || e).slice(0, 120); log({ id, action: \"error\", why: row.live }); }",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "fs.writeFileSync(path.join(out, \"x.js\"), ts.transpileModule(X, { compilerOptions: { module: 1, target: 99 } }).outputText.replace('require(\"./ethbook\")', \"({ ethBands682: () => [] })\"));",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "console.log(ok ? \"XRP 5M POLY 961 TEST ✓ - XRP 5m on Polymarket with main's current setups and walls through her cornerstones (fix1004: real colour by her push, same side, push off the turn, Bollinger wall, rule C; only a real wick skips colour) and her walls, $1 through the Polymarket guard, stale feed = no trade.\" : \"XRP 5M POLY 961 TEST: FAIL\");",
+    "why": "fix1017 (her words in this change's request)",
+    "R": "R590"
+  },
+  {
+    "what": "if (ao?.on && !aoOne717 /* fix717 */ && (!aoTwin || aoTw?.on === true) && (id === \"btc\" || id === \"gold\") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "r = await (aoTwin ? live.addOnBuy : live.addOnBuy600)(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoOff ? (Number((globalThis as any).__addon664?.s?.addOn1?.dollars) > 0 ? Math.min(5, Number(ao.dollars) || 5) /* fix753: her Add-on 1 box wins in her off / rejection hours too */ : aoOff.aoDollars) : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: \"just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those\"): walls skip add-ons like the twin's (was free only for the twin)",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "if (a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === \"btc\" || id === \"gold\") && addReg[row.ticker] && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "try { r3 = await live.addOnBuy600(row.ticker, mySide, Number(a38.dollars) || 3, cap38, true); } catch (err) { r3 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : \"3.8x add-on failed\" }; }",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "if (a3on && a3d >= 1 && cap3 > 0 && !aoTwin && !aoOne717 && (id === \"btc\" || id === \"gold\") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5) && !aoBestie775 /* fix775 */) {",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "try { r3 = await live.addOnBuy600(row.ticker, mySide, a3d, cap3, true); } catch (err) { r3 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : \"add-on 3 failed\" }; }",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "async function addOnBuy600(ticker, side, dollars, maxAsk, kind953 = \"addon\") {",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "if (!claimWindow(slug)) return null;",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "const price = Math.min(0.9, Math.round((quoted + 0.02) * 100) / 100);",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "function book(): { rows: Row[]; seen: Record<string, number> } { if (G.__xrp961) return G.__xrp961; let s = { rows: [] as Row[], seen: {} as Record<string, number> }; try { if (existsSync(D(\"xrp5m-961-book.json\"))) s = { rows: [], seen: {}, ...JSON.parse(readFileSync(D(\"xrp5m-961-book.json\"), \"utf8\")) }; } catch {} G.__xrp961 = s; return s; }",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "const s = book(); const id = `xrp5m-${start}`; if (s.seen[id]) return;",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "t(E.includes(\": aoOff.aoDollars) : Number(ao.dollars) || 5, aoCap, true);\"), \"no-box fallback changed\");",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "t(E.includes(\"live.addOnBuy600(row.ticker, mySide, a3d, cap3, true)\") && E.includes(\"bid <= cap3\") && E.includes(\"!add3[row.ticker] && botOwnsPosition(row) && !tpSell\") && E.includes(\"const cap3 = a3m >= 1.5 ? Math.round((1 / a3m) * 10000) / 10000 : 0;\"), \"Add-on 3 does not fire once per position at her multiple with the add-on gates\");",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "t(/a38\\?\\.on === true && ao\\?\\.on && !aoTwin && !aoOne717 \\/\\* fix717 \\*\\/ && \\(id === \"btc\" \\|\\| id === \"gold\"\\) && addReg\\[row\\.ticker\\] && !add38\\[row\\.ticker\\] && botOwnsPosition\\(row\\)/.test(E), \"Add-on 2's other gates changed\");",
+    "why": "fix1029 (her words in this change's request)",
+    "R": "R591"
+  },
+  {
+    "what": "const qR = quoteTick(asset); if (!qR || !(qR.c > 0) || Date.now() - qR.at > 3000) return deny(\"can't verify the price right now (no fresh price)\");",
+    "why": "fix1035 (her words in this change's request)",
+    "R": "R592"
+  },
+  {
+    "what": "if (!q || !(q.c > 0) || Date.now() - q.at > 3000) return deny(\"can't verify the closest band right now (no fresh price)\");",
+    "why": "fix1035 (her words in this change's request)",
+    "R": "R592"
+  },
+  {
+    "what": "else if (!qR || !(qR.c > 0) || now - qR.at > 3000) whyR = \"can't verify (no fresh price)\";",
+    "why": "fix1035 (her words in this change's request)",
+    "R": "R592"
+  },
+  {
+    "what": "else if (!q || !(q.c > 0) || now - q.at > 3000) why = \"can't verify (no fresh price)\";",
+    "why": "fix1035 (her words in this change's request)",
+    "R": "R592"
+  },
+  {
+    "what": "if (!q || !(q.c > 0) || Date.now() - q.at > 3000) return \"can't verify the price right now (no fresh price)\";",
+    "why": "fix1035 (her words in this change's request)",
+    "R": "R592"
+  },
+  {
+    "what": "if (!q || !(q.c > 0) || Date.now() - q.at > 3000) return deny(\"THE WALL AT THE WIRE: no fresh price - can't verify, no opening order\");",
+    "why": "fix1035 (her words in this change's request)",
+    "R": "R592"
+  },
+  {
+    "what": "const iSeal = w.indexOf(\"const seal = sealDrift(); if (seal) return deny(seal);\"), iFresh = w.indexOf('return deny(\"THE WALL AT THE WIRE: no fresh price'), iEx = w.indexOf(\"const a730 = \"), iGeo = w.indexOf(\"const geo = impossibleGeo(\");",
+    "why": "fix1035 (her words in this change's request)",
+    "R": "R592"
+  },
+  {
+    "what": "if (flipRule) { const pb641 = pushLabel653(asset, side, tick, L, String(G.__inBLC465 ? (G.__curLabel611 || \"\") : (G.__wireLabel619 || G.__curLabel611 || \"\"))) || (typeof rej668 === \"function\" && rej668(asset, side, tick, L)) /* fix668 */ ? \"go\" /* fix655 (Love Nov 4 2026 5:40 PM PT: \"Remove the check that still wants the flip past its open\"): the push off the band with her 2m is the entry */ : pinkBreak641(asset, L, tick, side); if (!why && pb641 === \"back\") why = `PINK BREAK GONE (fix641): price ${tick.toFixed(2)} is back across the pink - not a break ${side === \"up\" ? \"above\" : \"below\"} it any more - no ${side === \"up\" ? \"long\" : \"short\"}.`; if (!why && pb641 !== \"go\" && push807(asset) > 0) why = `HER FLIP (fix807 BTC push): no $${push807(asset)} push off the band (from the wick) with her 2m candle her colour yet - no ${side === \"up\" ? \"long\" : \"short\"}.`; if (!why && !(push807(asset) > 0) && pb641 !== \"go\" && !turnFlip530(asset, side, tick)) why = `HER FLIP: no 2/3/4/5m candle has TURNED ${side === \"up\" ? \"red to green\" : \"green to red\"} - her flip at the rejection is the entry (fix530).`; cdl = \"\"; } // fix530 (her 4:56 PM): the colour TURN is the flip, no minimum; the $5/10c line below is retired by her word",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "if (togpLoose && !flipRule) { const pb641c = pinkBreak641(asset, L, tick, side); if (!why && pb641c === \"back\") why = `PINK BREAK GONE (fix641): price ${tick.toFixed(2)} is back across the pink - not a break ${side === \"up\" ? \"above\" : \"below\"} it any more - no ${side === \"up\" ? \"long\" : \"short\"}.`; if (!why && pb641c !== \"go\" && !turnFlip530(asset, side, tick) /* fix592: no fake-out waiver */ && !(typeof rej668 === \"function\" && rej668(asset, side, tick, L)) /* fix668 */) why = `HER FLIP: no 2/3/4/5m candle has TURNED ${side === \"up\" ? \"red to green\" : \"green to red\"} - her flip at the rejection is the entry (fix530).`; cdl = \"\"; } // fix349/fix359 minimum retired by her 4:56 PM word",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "if (!why && side === \"up\" && cdl === \"down\") why = `HER CANDLE: the 5m candle is falling - a short or nothing, never a long.`;",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "if (!why && side === \"down\" && cdl === \"up\") why = `HER CANDLE: the 5m candle is rising - a long or nothing, never a short.`;",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "import { weekendPink914 } from \"./bandlock\"; // fix914 FINISH 243: main's read pink uses the door's own weekend cushion (one function, no second copy to drift)",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "try { const G647 = globalThis as any, slot647 = Math.floor(Date.now() / 300000), seen647 = (G647.__skip647 ||= {}); for (const c of seenL) { const r647: string[] = []; if (c.side === \"up\") { if (f >= 1 - k) r647.push(\"THIRDS: long in her top share of the channel\"); if (fix33 && f >= 0.67) r647.push(\"BTC 33%: long in the top 33%\"); if (!(typeof rejBand668 === \"function\" && !!rejBand668(asset, \"up\", spot, L, cur)) /* fix668 */ && (falling && !m1(c) && !((fl446(c) && twoMinHer653(asset, \"up\", spot)) || pushLabel653(asset, \"up\", spot, L, String(c.label)) /* fix918 her push on her side of the band - no 2m colour (Love Nov 7: \"once it is on the same side of the band hun\" + \"doesn't need a close\") */))) r647.push(\"RED FALLING 5M: no long\"); /* fix653 */ if (spot > topS) r647.push(\"PAST THE WHOLE CHANNEL: no long\"); } else { if (f <= k) r647.push(\"THIRDS: short in her bottom share of the channel\"); if (fix33 && f <= 0.33) r647.push(\"BTC 33%: short in the bottom 33%\"); if (!(typeof rejBand668 === \"function\" && !!rejBand668(asset, \"down\", spot, L, cur)) /* fix668 */ && (rising && !m1(c) && !(fl446(c) || pushLabel653(asset, \"down\", spot, L, String(c.label)) /* fix918 mirror */))) r647.push(\"GREEN RISING 5M: no short\"); if (spot < botS) r647.push(\"PAST THE WHOLE CHANNEL: no short\"); } for (const r of r647) { const key647 = `${asset}|${rejOnly ? \"rej\" : \"main\"}|${c.side}|${r}|${slot647}`; if (seen647[key647]) continue; seen647[key647] = 1; appendFileSync(D(\"skip-reasons.jsonl\"), JSON.stringify({ at: new Date().toISOString(), asset, read: rejOnly ? \"rejections\" : \"main\", side: c.side, setup: c.label, rule: r, spot, chanPct: Math.round(f * 1000) / 10, o5: cur.o, h5: cur.h, l5: cur.l }) + \"\\n\"); } } for (const k647 of Object.keys(seen647)) if (Number(k647.split(\"|\").pop()) < slot647 - 2) delete seen647[k647]; } catch {} // fix647",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "return seenL.filter((c) => !((c.side === \"up\" && (f >= 1 - k || (fix33 && f >= 0.67) || (!(typeof rejBand668 === \"function\" && !!rejBand668(asset, \"up\", spot, L, cur)) /* fix668 */ && (falling && !m1(c) && !((fl446(c) && twoMinHer653(asset, \"up\", spot)) || pushLabel653(asset, \"up\", spot, L, String(c.label)) /* fix918 her push on her side of the band - no 2m colour (Love Nov 7: \"once it is on the same side of the band hun\" + \"doesn't need a close\") */))) /* fix653 (Love Nov 4 2026 5:25 PM PT: \"a 2m green pushing off the band is good, no waiting for the 5m\"): a band rejection with her 2m does not wait for the 5m */ /* was: Love Nov 3 2026 7:45 PM + Nov 4 10:20 AM PT: \"A red falling 5m candle refuses the long. No 2-5m flip overrides it.\" */ || spot > topS)) || (c.side === \"down\" && (f <= k || (fix33 && f <= 0.33) || (!(typeof rejBand668 === \"function\" && !!rejBand668(asset, \"down\", spot, L, cur)) /* fix668 */ && (rising && !m1(c) && !(fl446(c) || pushLabel653(asset, \"down\", spot, L, String(c.label)) /* fix918 mirror */))) || spot < botS))));",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "if (lookT && /Bollinger/.test(String(lookT.label)) && !(lookT.side === \"up\" ? spot > cur.o : spot < cur.o) && !(() => { try { return turnFlip530(id, lookT.side, spot); /* fix619 */ } catch { return false; } })() /* fix345 (Oct 27 2026 5:05 PM PT, Love: \"ya it is on the 2m hun\" + card \"Should a 2m flip be enough for her to short a Bollinger rejection?\" -> \"Any 1–5m flip counts\"): any 1/2/3/4/5m candle flipped her way (HER FLIP, Cornerstone #1) lets the Bollinger call stand */) lookT = reachT > 0 ? bonesDecide(id, L, spot, last1m, cur, prev, b, false, reachT) : look5;",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "if (lookR && /Bollinger/.test(String(lookR.label)) && !(lookR.side === \"up\" ? spot > cur.o : spot < cur.o) && !(() => { try { return turnFlip530(id, lookR!.side, spot); } catch { return false; } })() /* fix619 */) lookR = bonesDecide(id, rejL || LR, spot, last1m, cur, prev, b, true, rejReach, false, false, true /* fix446: rejection */);",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "if (rd620 && /Bollinger/.test(String(rd620.label)) && !(rd620.side === \"up\" ? spot > cur.o : spot < cur.o) && !turnFlip530(id, rd620.side, spot)) rd620 = bonesDecide(id, (rejL || LN620).filter((l: any) => String(l.name) !== \"5m PP\"), spot, last1m, cur, prev, b, false, rejReach);",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "if (rj643 && /Bollinger|BB (upper|lower)/.test(String(rj643.label)) && !(rj643.side === \"up\" ? spot > cur.o : spot < cur.o) && !turnFlip530(id, rj643.side, spot)) { skip701(\"BOLLINGER ON HER COLOUR (fix643): a Bollinger rejection waits for the 5m her colour or her flip\"); rj643 = null; } // fix643: a Bollinger rejection on her colour, as main (fix345 / fix619)",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "t(!run(\"Rejected up off -1σ\", \"up\", true, false, true), \"Love Nov 4: a band-rejection long on a red falling 5m went through on a 2-5m green flip (the flip no longer overrides it)\");",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "t(!run(\"Rejected up off -1σ\", \"up\", true, false, false), \"a band-rejection long on a red 5m with NO 2-5m flip went through\");",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "t(!run(\"Break above 5m PP\", \"up\", true, false, true), \"a non-rejection long went through on a red 5m (a 2m flip elsewhere must not bypass HER CANDLE)\");",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "console.log(ok ? \"BAND FLIP TEST ✓ - a 2-5m flip red->green / green->red at a band rejection is her entry (main + rejection); other reads still follow the 5m; no flip = held.\" : \"BAND FLIP TEST: FAIL\");",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "return { long: geo2(\"gold\", L, px, \"up\"), short: geo2(\"gold\", L, px, \"down\") };",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "const gr = dojiCase(true, true), rg = dojiCase(false, false);",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "T(FLAT25 ? \"DOJI: RED doji then GREEN candle - the short is still refused under the weekend $25 (its pink cushion catches it first)\" : \"DOJI: RED doji then GREEN candle - the short is refused (doji LONG only, or her rising candle first)\", /DOJI AFTER THE TREND[^\\n]*LONG only|HER CANDLE: the 5m candle is rising/.test(rg.short) || (FLAT25 && /PINK CUSHION/.test(rg.short)), rg.short);",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "const lo = !run(\"Rejected up off -1σ\", \"up\", true, false, true) /* Love Nov 4 2026: a red falling 5m refuses the long, no flip overrides it */ && !run(\"Rejected up off -1σ\", \"up\", true, false, false) && !run(\"Break above 5m PP\", \"up\", true, false, true);",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "const sh = run(\"Rejected down off +1σ\", \"down\", false, true, true) && !run(\"Rejected down off +1σ\", \"down\", false, true, false) && !run(\"Break below 5m PP\", \"down\", false, true, true);",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "t(lo && sh, lo, sh, `main + rejection: ${asset} band rejection on a 5m against her = entry only on a real 2-5m flip; a break never rides someone else's flip`); } }",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "t(src.includes(\"export function push807(asset: string, label?: string): number {\") && src.includes(\"HER FLIP (fix807 BTC push): no $${push807(asset)} push off the band (from the wick) with her 2m candle her colour yet\") && src.includes(\"!(push807(asset) > 0) && pb641 !== \\\"go\\\" && !turnFlip530(asset, side, tick)) why = `HER FLIP:\"), \"her BTC push does not replace the candle-open flip at her wall\");",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "t(R.includes(\"(falling && !m1(c) && !((fl446(c) && twoMinHer653(asset, \\\"up\\\", spot)) || pushLabel653(asset, \\\"up\\\", spot, L, String(c.label)) /* fix918\"), \"RED FALLING 5M: her flip still needs her 2m; her band push on her side of the band no longer does (fix918, Love Nov 7)\");",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "t(src.includes(\"fix918 HER PUSH ON HER SIDE OF THE BAND\") && (src.match(/export function pushLabel653\\(/g) || []).length === 1, \"one shared push check (door + read both call pushLabel653)\"); const rsrc = fs.readFileSync(path.join(root, \"src/lib/desk/recon.ts\"), \"utf8\"); t(rsrc.includes(\"(fl446(c) && twoMinHer653(asset, \\\"up\\\", spot)) || pushLabel653(asset, \\\"up\\\", spot, L, String(c.label)) /* fix918\") && rsrc.includes(\"!(fl446(c) || pushLabel653(asset, \\\"down\\\", spot, L, String(c.label)) /* fix918 mirror */)\"), \"main\\'s read takes her push without the 2m colour (2:00:22 AM green-zone long stays in her pool)\");",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "t(RC.includes(\"label: `Rejected ${sd668} off ${r668.name}`\") && (RC.match(/rejBand668\\(asset, \"down\", spot, L, cur\\)\\) \\/\\* fix668 \\*\\//g) || []).length >= 3, \"the read does not cast or keep her 20% rejection\");",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "T(\"the long is still refused without her 2m green (the read decides as before)\", !(r&&r.side===\"up\"), r&&r.label);",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "T(\"its reason is on its own line: RED FALLING 5M\", lines.some((x)=>x.rule===\"RED FALLING 5M: no long\"&&x.side===\"up\"&&x.asset===\"btc\"), JSON.stringify(lines.map((x)=>x.rule)));",
+    "why": "fix1034 (her words in this change's request)",
+    "R": "R594"
+  },
+  {
+    "what": "if (o5 <= P && Math.abs(hi - P) <= 0.15 * W && tick < P && hi - tick >= 0.1 * W /* fix937 her 10% of the channel (was 15%, fix693) */ && Math.abs(hi - P) < bd) { bd = Math.abs(hi - P); best = { name: nm, price: P, w: W }; } }",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "if (o5 >= P && Math.abs(lo - P) <= 0.15 * W && tick > P && tick - lo >= 0.1 * W /* fix937 her 10% of the channel (was 15%, fix693) */ && Math.abs(lo - P) < bd) { bd = Math.abs(lo - P); best = { name: nm, price: P, w: W }; } } }",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "if (c.rej && !c.pink && !cornerstones1004({ ...base, push: PUSH1004.wick, wick: true })) { call = { side: c.side, label: c.label + \" (wick)\" }; break; } // fix1004: a REAL wick rejection skips colour only",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "const wick = B.rej668(\"btc\", \"down\", 75807, L);",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "t(wick === true && B.herEntry951(\"btc\", \"down\", 75807, \"Rejected down off Red zone\", L) === \"\", \"a true wick rejection (to 75,816 at red 75,817.2, back $9) may enter on a green candle\");",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "t(!B.rej668(\"gold\", \"down\", 4118.9, LG, { o: 4114, h: 4119.8, l: 4113.9 }), \"gold: $0.90 back down (needs $2, fix937) counted\"); t(B.rej668(\"gold\", \"down\", 4117.7, LG, { o: 4114, h: 4119.8, l: 4113.9 }), \"gold: $2.10 back down (10% of her $20 channel, fix937) was not hers\");",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "t((S.match(/>= 0\\.1 \\* W \\/\\* fix937/g) || []).length === 2 && (S.match(/const W = top - bot; \\/\\* fix937/g) || []).length === 2, \"the wick's move back is not 10% on both sides\");",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "t(!!B.rejBand668(\"btc\", \"down\", 75966.0, L, hl(75976.45)), \"6:52 AM: $10.45 back off the 75,976.45 wick (10% of $81.74 = $8.17) must be her wick rejection\");",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "t(!B.rejBand668(\"btc\", \"down\", 75970.0, L, hl(75976.45)), \"$6.45 back is not yet 10%\");",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "globalThis.__curBook465 = \"recon-dly\"; t(!B.rejBand668(\"btc\", \"down\", 75966.0, L, hl(75976.45)), \"delayed keeps its flips\"); globalThis.__curBook465 = \"recon-tog\";",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "console.log(ok ? \"WICK 10 937 TEST ✓ - her wick rejection counts at 10% of the channel (6:52 AM BTC: in at $8.17 back, not $12.26); her pink walls still judge it; delayed unchanged.\" : \"WICK 10 937 TEST: FAIL\");",
+    "why": "fix1036 (her words in this change's request)",
+    "R": "R595"
+  },
+  {
+    "what": "if (cur.o > 0 && cur.l > 0 && spot >= cur.l + tap && spot >= cur.o + mvO) {",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "if (cur.o > 0 && cur.h > 0 && spot <= cur.h - tap && spot <= cur.o - mvO) {",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "export const cornerstones1004 = (x: { side: \"up\" | \"down\"; spot: number; line: number; lineName: string; label: string; o2: number; o5: number; lo2: number; hi2: number; lo5: number; hi5: number; push: number; wall: number; bbUp: number; bbMid: number; bbLo: number; wick?: boolean }): string => { const s = x.side === \"up\" ? 1 : -1, d = (a: number, b: number) => s * (a - b), why: string[] = [], turn = s > 0 ? x.lo5 : x.hi5; if (!x.wick && !(d(x.spot, s > 0 ? x.lo2 : x.hi2) >= x.push - 1e-9 || d(x.spot, s > 0 ? x.lo5 : x.hi5) >= x.push - 1e-9)) why.push(`COLOUR (fix1032): her 2m / 5m candle is not ${s > 0 ? \"green\" : \"red\"} by her push $${x.push} from the ${s > 0 ? \"low\" : \"high\"} (2m ${d(x.spot, s > 0 ? x.lo2 : x.hi2).toFixed(4)}, 5m ${d(x.spot, s > 0 ? x.lo5 : x.hi5).toFixed(4)})`); /* fix1027 PLAIN COLOUR (Love Nov 8 2026 12:19-12:22 AM PT: \"okay whatever opening color candle lock you instituted that is now blocking trades please remove it\" + \"color of the candle still needs to be the same as our trade, aside from the wick rejection exemption ... candle flips green - push distance met ==== get in\"): her colour is the 2m or 5m candle's current colour, any amount past its open - the $0.0005 / $0.0010 cushion over the open is gone; her push off the turn stays its own check, wicks stay exempt, same side stays */ if (!(d(x.spot, x.line) > 0)) why.push(`SAME SIDE (fix1004): price is not on her side of ${x.lineName}`); if (d(x.spot, turn) < x.push - 1e-9) why.push(`PUSH (fix1004): only $${d(x.spot, turn).toFixed(4)} off the 5m ${s > 0 ? \"low\" : \"high\"}, her push is $${x.push}`); for (const [n, b] of [[\"upper\", x.bbUp], [\"middle\", x.bbMid], [\"lower\", x.bbLo]] as [string, number][]) if (b > 0 && d(b, x.spot) >= 0 && d(b, x.spot) <= x.wall && !new RegExp(\"(Bollinger|BB) \" + n, \"i\").test(x.label) && !(n === (s > 0 ? \"lower\" : \"upper\") || (s > 0 ? x.hi5 > b : x.lo5 < b))) why.push(`BOLLINGER WALL (fix1004 / fix962 / fix995): the unbroken Bollinger ${n} is $${d(b, x.spot).toFixed(5)} ${s > 0 ? \"above the long\" : \"below the short\"} (her $25 wall = $${x.wall.toFixed(5)})`); if (x.bbMid > 0 && d(x.spot, x.o5) < 0 && d(x.spot, x.bbMid) < 0) why.push(`RULE C (fix1004): no ${s > 0 ? \"long while the 5m is red and under\" : \"short while the 5m is green and over\"} the Bollinger middle - \"the candle was red and under a bollinger\"`); return why.join(\" + \"); };",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "T(\"HER FLIP: only 5c past its open is not enough (10c gold)\", typeof B.anyFlip406Now === \"function\" && !B.anyFlip406Now(\"gold\", \"down\", 4053.95, 0.1), \"anyFlip406Now\");",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "T(\"HER FLIP: a red 1m alone is not a flip (no 1m, every 2-5m green)\", typeof B.anyFlip406Now === \"function\" && !B.anyFlip406Now(\"gold\", \"down\", 4054.3, 0.1), \"anyFlip406Now\");",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "set592(\"btc\", 77870, 77856, 77856, 77860, 77845); T(\"fix592 BTC flip path: green then red, only $1 under, is refused (Love Nov 4: $2 BTC)\", !B.turnFlip530(\"btc\", \"down\", 77855));",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "set592(\"btc\", 77870, 77856, 77856, 77856, 77840); T(\"fix592 BTC: red right after a red one with no flip is refused\", !B.turnFlip530(\"btc\", \"down\", 77845));",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "set592(\"btc\", 77840, 77856, 77856, 77870, 77856); T(\"fix592 hard block: she cannot short a green rising candle\", !B.turnFlip530(\"btc\", \"down\", 77865));",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "set592(\"btc\", 77856, 77840, 77840, 77840, 77825); T(\"fix592 hard block: she cannot long a red falling candle\", !B.turnFlip530(\"btc\", \"up\", 77830));",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "set592(\"gold\", 3872, 3871, 3871, 3871.2, 3870.5); T(\"fix592 gold flip path: green then red, 5c under, is refused\", !B.turnFlip530(\"gold\", \"down\", 3870.95));",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "T(\"fix611 a rejection with no flip stays refused\", /BROKE IT/.test(B.brokeThisCandle441(\"btc\", L611, 77725, \"up\", 77790, HL)));",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "let r = M.xrpRead961(bars(1.1642, 1.1645, 1.1633, 1.1636, 1.1633), L, 1.1633, now);",
+    "why": "fix1038 (her words in this change's request)",
+    "R": "R596"
+  },
+  {
+    "what": "const price = claimTag ? Math.min(Math.floor(maxAsk * 100 + 1e-9) / 100, Math.round((quoted + 0.02) * 100) / 100) /* fix1029 an add-on never pays over its cap (her rung, strictly better than her entry) */ : Math.min(0.9, Math.round((quoted + 0.02) * 100) / 100);",
+    "why": "fix1039 (her words in this change's request)",
+    "R": "R599"
+  },
+  {
+    "what": "const pl = src(\"poly-live.server.ts\"); t(/claimWindow\\(slug \\+ claimTag\\)/.test(pl) && /claimTag \\? Math\\.min\\(Math\\.floor\\(maxAsk \\* 100 \\+ 1e-9\\) \\/ 100/.test(pl) && /: Math\\.min\\(0\\.9, Math\\.round\\(\\(quoted \\+ 0\\.02\\) \\* 100\\) \\/ 100\\);/.test(pl), \"Polymarket: an add-on claims its own key and never pays over its cap; the entry price line is unchanged\");",
+    "why": "fix1039 (her words in this change's request)",
+    "R": "R599"
+  },
+  {
+    "what": "export function bbBroke995(asset: string, side: string, tick: number, P: number, n: string): boolean { try { if (!(tick > 0) || !(P > 0)) return false; const hl = fiveHLNow(asset);",
+    "why": "fix1041 (her words in this change's request)",
+    "R": "R600"
+  },
+  {
+    "what": "export const cornerstones1004 = (x: { side: \"up\" | \"down\"; spot: number; line: number; lineName: string; label: string; o2: number; o5: number; lo2: number; hi2: number; lo5: number; hi5: number; push: number; wall: number; bbUp: number; bbMid: number; bbLo: number; wick?: boolean }): string => { const s = x.side === \"up\" ? 1 : -1, d = (a: number, b: number) => s * (a - b), why: string[] = [], turn = s > 0 ? x.lo5 : x.hi5; if (!x.wick && !(d(x.spot, s > 0 ? x.lo2 : x.hi2) >= x.push - 1e-9 || d(x.spot, s > 0 ? x.lo5 : x.hi5) >= x.push - 1e-9)) why.push(`COLOUR (fix1032): her 2m / 5m candle is not ${s > 0 ? \"green\" : \"red\"} by her push $${x.push} from the ${s > 0 ? \"low\" : \"high\"} (2m ${d(x.spot, s > 0 ? x.lo2 : x.hi2).toFixed(4)}, 5m ${d(x.spot, s > 0 ? x.lo5 : x.hi5).toFixed(4)})`); /* fix1027 PLAIN COLOUR (Love Nov 8 2026 12:19-12:22 AM PT: \"okay whatever opening color candle lock you instituted that is now blocking trades please remove it\" + \"color of the candle still needs to be the same as our trade, aside from the wick rejection exemption ... candle flips green - push distance met ==== get in\"): her colour is the 2m or 5m candle's current colour, any amount past its open - the $0.0005 / $0.0010 cushion over the open is gone; her push off the turn stays its own check, wicks stay exempt, same side stays */ if (!(d(x.spot, x.line) > 0)) why.push(`SAME SIDE (fix1004): price is not on her side of ${x.lineName}`); const from1038 = s > 0 ? Math.max(turn, x.line) : Math.min(turn, x.line); /* fix1038 (Love Nov 8 2026 2:54 PM PT: \"she said it's still operating on the candle open. so if the candle opening price is $100 away , it could be green that whole time and not enter until after it crosses the open by $50. it's a huge flaw hun that needs to be addressed / set it to distance from the band like we discussed\" + \"the high and low of that candle not the open\"): her push is measured from the BAND (or the candle's own low / high when it stopped short of the band - her fix656 rule), never the candle open */ if (d(x.spot, from1038) < x.push - 1e-9) why.push(`PUSH (fix1004): only $${d(x.spot, from1038).toFixed(4)} past ${s > 0 ? \"the band / 5m low\" : \"the band / 5m high\"} (fix1038 from the band), her push is $${x.push}`); for (const [n, b] of [[\"upper\", x.bbUp], [\"middle\", x.bbMid], [\"lower\", x.bbLo]] as [string, number][]) if (b > 0 && d(b, x.spot) >= 0 && d(b, x.spot) <= x.wall && !new RegExp(\"(Bollinger|BB) \" + n, \"i\").test(x.label) && !(n === (s > 0 ? \"lower\" : \"upper\") || (s > 0 ? x.hi5 > b : x.lo5 < b))) why.push(`BOLLINGER WALL (fix1004 / fix962 / fix995): the unbroken Bollinger ${n} is $${d(b, x.spot).toFixed(5)} ${s > 0 ? \"above the long\" : \"below the short\"} (her $25 wall = $${x.wall.toFixed(5)})`); if (x.bbMid > 0 && d(x.spot, x.o5) < 0 && d(x.spot, x.bbMid) < 0) why.push(`RULE C (fix1004): no ${s > 0 ? \"long while the 5m is red and under\" : \"short while the 5m is green and over\"} the Bollinger middle - \"the candle was red and under a bollinger\"`); return why.join(\" + \"); };",
+    "why": "fix1041 (her words in this change's request)",
+    "R": "R600"
+  },
+  {
+    "what": "t(!/BOLLINGER WALL/.test(M.cornerstones1004({ side: \"up\", spot: 1.0010, line: 1.0, lineName: \"x\", label: \"Rejected up off x\", o2: 1.0004, o5: 1.0004, lo5: 1.0001, hi5: 1.0014, push: 0.0005, wall: 0.0003, bbUp: 1.003, bbMid: 1.0012, bbLo: 0.999 })), \"fix995: a Bollinger the 5m already broke past is no wall on the way back\");",
+    "why": "fix1041 (her words in this change's request)",
+    "R": "R600"
+  },
+  {
+    "what": "export const cornerstones1004 = (x: { side: \"up\" | \"down\"; spot: number; line: number; lineName: string; label: string; o2: number; o5: number; lo2: number; hi2: number; lo5: number; hi5: number; push: number; wall: number; bbUp: number; bbMid: number; bbLo: number; wick?: boolean }): string => { const s = x.side === \"up\" ? 1 : -1, d = (a: number, b: number) => s * (a - b), why: string[] = [], turn = s > 0 ? x.lo5 : x.hi5; if (!x.wick && !(d(x.spot, s > 0 ? x.lo2 : x.hi2) >= x.push - 1e-9 || d(x.spot, s > 0 ? x.lo5 : x.hi5) >= x.push - 1e-9)) why.push(`COLOUR (fix1032): her 2m / 5m candle is not ${s > 0 ? \"green\" : \"red\"} by her push $${x.push} from the ${s > 0 ? \"low\" : \"high\"} (2m ${d(x.spot, s > 0 ? x.lo2 : x.hi2).toFixed(4)}, 5m ${d(x.spot, s > 0 ? x.lo5 : x.hi5).toFixed(4)})`); /* fix1027 PLAIN COLOUR (Love Nov 8 2026 12:19-12:22 AM PT: \"okay whatever opening color candle lock you instituted that is now blocking trades please remove it\" + \"color of the candle still needs to be the same as our trade, aside from the wick rejection exemption ... candle flips green - push distance met ==== get in\"): her colour is the 2m or 5m candle's current colour, any amount past its open - the $0.0005 / $0.0010 cushion over the open is gone; her push off the turn stays its own check, wicks stay exempt, same side stays */ if (!(d(x.spot, x.line) > 0)) why.push(`SAME SIDE (fix1004): price is not on her side of ${x.lineName}`); const from1038 = s > 0 ? Math.max(turn, x.line) : Math.min(turn, x.line); /* fix1038 (Love Nov 8 2026 2:54 PM PT: \"she said it's still operating on the candle open. so if the candle opening price is $100 away , it could be green that whole time and not enter until after it crosses the open by $50. it's a huge flaw hun that needs to be addressed / set it to distance from the band like we discussed\" + \"the high and low of that candle not the open\"): her push is measured from the BAND (or the candle's own low / high when it stopped short of the band - her fix656 rule), never the candle open */ if (d(x.spot, from1038) < x.push - 1e-9) why.push(`PUSH (fix1004): only $${d(x.spot, from1038).toFixed(4)} past ${s > 0 ? \"the band / 5m low\" : \"the band / 5m high\"} (fix1038 from the band), her push is $${x.push}`); for (const [n, b] of [[\"upper\", x.bbUp], [\"middle\", x.bbMid], [\"lower\", x.bbLo]] as [string, number][]) if (b > 0 && d(b, x.spot) >= 0 && d(b, x.spot) <= x.wall && !new RegExp(\"(Bollinger|BB) \" + n, \"i\").test(x.label) && !(n === (s > 0 ? \"lower\" : \"upper\") || (n !== \"middle\" /* fix1041 the middle Bollinger stays her wall after a break and retest - only the outers stop */ && (s > 0 ? x.hi5 > b : x.lo5 < b)))) why.push(`BOLLINGER WALL (fix1004 / fix962 / fix995): the unbroken Bollinger ${n} is $${d(b, x.spot).toFixed(5)} ${s > 0 ? \"above the long\" : \"below the short\"} (her $25 wall = $${x.wall.toFixed(5)})`); if (x.bbMid > 0 && d(x.spot, x.o5) < 0 && d(x.spot, x.bbMid) < 0) why.push(`RULE C (fix1004): no ${s > 0 ? \"long while the 5m is red and under\" : \"short while the 5m is green and over\"} the Bollinger middle - \"the candle was red and under a bollinger\"`); return why.join(\" + \"); };",
+    "why": "fix1042 (her words in this change's request)",
+    "R": "R601"
+  },
+  {
+    "what": "r = M.xrpRead961(b2, L2, 1.1589, n2); t(!(\"side\" in r) && /RULE C \\(fix1004\\)/.test(r.why), \"fix1004: the 04:46:23 red-candle long under the Bollinger must be refused (fix1027: her 2m was green by $0.0001 - plain colour - so rule C holds it): \" + JSON.stringify(r)); }",
+    "why": "fix1042 (her words in this change's request)",
+    "R": "R601"
   }
 ]

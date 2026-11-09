@@ -1,0 +1,89 @@
+// FEED TWIN (Claude, Oct 2 ~11 PM PT, Love: "can we run them both simultaneously beside each other?").
+// PAPER STUDY ONLY. Never trades, never changes what any book takes. Every BTC setup the desk looks at
+// is checked against her DNA twice: on PEPPERSTONE lines (the desk's own, data/bands-now.json) and on
+// VANTAGE lines (built here the same way: session VWAP + 0.5σ steps from 5 PM ET, 5m/10m/15m nav with
+// upper/lower, every price of the minute). Both answers go to data/feed-twin.jsonl; scripts/feed-twin.py
+// settles them against Kalshi so the two feeds' ledgers sit side by side ($50 a trade, held to the bell).
+import { appendFileSync } from "node:fs";
+import { join } from "node:path";
+import { chartRaw } from "./tv";
+import { atr14, computeNav } from "./nav";
+import { dnaCheck, dnaNow, dnaNowFrame, dnaFrameCheck, type DnaBands } from "./dna";
+
+type Bar = { t: number; o: number; h: number; l: number; c: number; v: number };
+const TWIN = "VANTAGE:BTCUSD";
+const g = globalThis as unknown as { __twin?: { at: number; b: DnaBands | null }; __twinSeen?: Set<string> };
+
+function to10(b5: Bar[]): Bar[] {
+  const out = new Map<number, Bar>();
+  for (const b of b5) {
+    const k = Math.floor(b.t / 600) * 600;
+    const cur = out.get(k);
+    if (!cur) out.set(k, { ...b, t: k });
+    else out.set(k, { t: k, o: cur.o, h: Math.max(cur.h, b.h), l: Math.min(cur.l, b.l), c: b.c, v: (cur.v || 0) + (b.v || 0) });
+  }
+  return [...out.values()];
+}
+function sessStart(t: number) {
+  const s = new Date(t * 1000);
+  s.setUTCHours(21, 0, 0, 0);
+  let x = s.getTime() / 1000;
+  if (t < x) x -= 86400;
+  return x;
+}
+export async function twinBands(): Promise<DnaBands | null> {
+  const hit = g.__twin;
+  if (hit && Date.now() - hit.at < 15000) return hit.b;
+  try {
+    const [b5, b15, b1] = await Promise.all([chartRaw(TWIN, "5", 400), chartRaw(TWIN, "15", 40), chartRaw(TWIN, "1", 10)]) as [Bar[], Bar[], Bar[]];
+    [b5, b15, b1].forEach((xs) => xs.sort((a, b) => a.t - b.t));
+    if (!b5.length || Date.now() / 1000 - b5[b5.length - 1].t > 20 * 60) return null; // stale twin: skip, never guess
+    const s0 = sessStart(b5[b5.length - 1].t);
+    const ss = b5.filter((b) => b.t >= s0 && b.v > 0);
+    let pv = 0, vv = 0, sq = 0;
+    for (const b of ss) { const tp = (b.h + b.l + b.c) / 3; pv += tp * b.v; vv += b.v; sq += b.v * tp * tp; }
+    const vwap = vv > 0 ? pv / vv : null;
+    const sd = vv > 0 && vwap ? Math.sqrt(Math.max(sq / vv - vwap * vwap, 0)) : null;
+    const lv = b1[b1.length - 1];
+    const k1 = b1[b1.length - 2];
+    const b: DnaBands = {
+      vwap, sd, spot: lv?.c ?? null,
+      nav: { m5: computeNav(b5.slice(-40)), m10: computeNav(to10(b5.slice(-90))), m15: computeNav(b15), close1m: k1?.c ?? null, atr5m: atr14(b5), live1m: lv ? { h: lv.h, l: lv.l, c: lv.c } : null },
+    };
+    g.__twin = { at: Date.now(), b };
+    return b;
+  } catch {
+    return hit?.b ?? null;
+  }
+}
+
+/** Called from nightLook for every BTC setup, before her DNA decides. pepWhy = the desk's own answer. */
+export async function twinLook(s: { ticker: string; side: "up" | "down"; ask: number; label: string }, pepSpot: number, target: number | null | undefined, pepWhy: string | null) {
+  try {
+    if (!s?.ticker || !(s.ask > 0.02 && s.ask < 0.98)) return;
+    const seen = (g.__twinSeen ??= new Set());
+    const key = `${s.ticker}:${s.side}`;
+    if (seen.has(key)) return;
+    const vb = await twinBands();
+    if (!vb || !(Number(vb.spot) > 0) || !(pepSpot > 0)) return;
+    seen.add(key);
+    // Vantage reads its own price scale (about +$20 vs Kalshi): the strike is moved onto that scale.
+    const off = Number(vb.spot) - pepSpot;
+    const t = Number(target) || 0;
+    const vanWhy = dnaCheck("btc", s.side, Number(vb.spot), t > 0 ? t + off : t, vb);
+    // FEED vs FEED on her CURRENT law (Love, Oct 3 ~8:35 PM PT: "compare how they do on vantage compared to pepperstone"):
+    // the 25% channel rule on all her lines, and 5M SOLE's lines, answered on each feed's own lines.
+    let pepChan = null, vanChan = null, pep5 = null, van5 = null;
+    try {
+      pepChan = dnaNow("btc", s.side, pepSpot, t, "chan");
+      vanChan = dnaCheck("btc", s.side, Number(vb.spot), t > 0 ? t + off : t, vb, "chan");
+      pep5 = dnaNowFrame("btc", s.side, pepSpot, t, "m5");
+      van5 = dnaFrameCheck("btc", s.side, Number(vb.spot), t > 0 ? t + off : t, vb, "m5");
+    } catch {
+    }
+    const row = { at: new Date().toISOString(), ticker: s.ticker, side: s.side, ask: s.ask, label: s.label, target: t || null, pepSpot, vanSpot: vb.spot, pepWhy, vanWhy, pepChan, vanChan, pep5, van5 };
+    appendFileSync(join(process.cwd(), "data", "feed-twin.jsonl"), JSON.stringify(row) + "\n");
+  } catch {
+    // study only
+  }
+}

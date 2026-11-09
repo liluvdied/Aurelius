@@ -32,11 +32,11 @@ T("REAL FLIP: a candle that went green then turned red counts", typeof B.realFli
 G.__pivBars = { gold: { bars: [{ t: sec("2026-10-29T01:15:00Z"), o: 4053.0, h: 4054.55, l: 4052.9, c: 4054.0 }, { t: sec("2026-10-29T01:16:00Z"), o: 4054.0, h: 4054.0, l: 4053.81, c: 4053.81 }] } };
 G.__qtrail_1 = { gold: [{ t: NOW - 3000, c: 4054.0 }, { t: NOW - 500, c: 4053.81 }] };
 T("HER FLIP: a candle born red and falling 19c is a short flip (6:16:04 PM gold)", typeof B.anyFlip406Now === "function" && B.anyFlip406Now("gold", "down", 4053.81, 0.1), "anyFlip406Now");
-T("HER FLIP: only 5c past its open is not enough (10c gold)", typeof B.anyFlip406Now === "function" && !B.anyFlip406Now("gold", "down", 4053.95, 0.1), "anyFlip406Now");
+T("fix1038 HER FLIP: 60c down off the 4054.55 high is her colour (her 10c gold cushion) - 5c past the open no longer matters", typeof B.anyFlip406Now === "function" && B.anyFlip406Now("gold", "down", 4053.95, 0.1), "anyFlip406Now");
 NOW = Date.parse("2026-10-29T01:17:30Z");
 G.__pivBars = { gold: { bars: [{ t: sec("2026-10-29T01:15:00Z"), o: 4053.0, h: 4053.3, l: 4052.9, c: 4053.2 }, { t: sec("2026-10-29T01:16:00Z"), o: 4053.2, h: 4054.5, l: 4053.1, c: 4054.5 }, { t: sec("2026-10-29T01:17:00Z"), o: 4054.5, h: 4054.6, l: 4054.3, c: 4054.3 }] } };
 G.__qtrail_1 = { gold: [{ t: NOW - 3000, c: 4054.4 }, { t: NOW - 500, c: 4054.3 }] };
-T("HER FLIP: a red 1m alone is not a flip (no 1m, every 2-5m green)", typeof B.anyFlip406Now === "function" && !B.anyFlip406Now("gold", "down", 4054.3, 0.1), "anyFlip406Now");
+T("fix1038 HER FLIP: 30c down off the 4054.6 high is her colour even with every 2-5m above its open", typeof B.anyFlip406Now === "function" && B.anyFlip406Now("gold", "down", 4054.3, 0.1) && !B.anyFlip406Now("gold", "down", 4054.55, 0.1), "anyFlip406Now");
 NOW = Date.parse("2026-10-29T01:16:04Z");
 
 // 2. SESSION BAND AHEAD (Love Oct 28 6:32 PM: "EVEN if price ticked 1 millimeter over it it was STILL underneath a band") - 5:50:57 PM BTC long
@@ -67,13 +67,13 @@ const dojiCase = (dojiGreen, afterRed) => {
   const mv = afterRed ? -1 : 1; db.push({ t: sec("2026-10-29T01:35:00Z"), o: d0 + cc, h: d0 + cc + (mv > 0 ? 1.2 : 0.05), l: d0 + cc - (mv < 0 ? 1.2 : 0.05), c: d0 + cc + mv * 1.1 }, { t: sec("2026-10-29T01:36:00Z"), o: d0 + cc + mv * 1.1, h: d0 + cc + mv * 1.1 + 0.1, l: d0 + cc + mv * 1.1 - 0.1, c: d0 + cc + mv * 1.3 }, { t: sec("2026-10-29T01:37:00Z"), o: d0 + cc + mv * 1.3, h: d0 + cc + mv * 1.3 + 0.1, l: d0 + cc + mv * 1.3 - 0.1, c: d0 + cc + mv * 1.4 });
   const px = d0 + cc + mv * 1.4; G.__pivBars = { gold: { bars: db } }; G.__qtrail_1 = { gold: [{ t: NOW - 3000, c: px }, { t: NOW - 500, c: px }] };
   const L = [{ name: "session VWAP", price: px - 15 }, { name: "+1σ", price: px - 4.5 }, { name: "+2σ", price: px + 4.5 }, { name: "-1σ", price: px - 25 }, { name: "5m PP", price: px - 10 }];
-  return { long: geo2("gold", L, px, "up"), short: geo2("gold", L, px, "down") };
+  return { long: geo2("gold", L, px, "up"), short: geo2("gold", L, px, "down"), px, L };
 };
 const geo2 = (asset, L, tick, side) => { try { return B.impossibleGeo(asset, L, tick, side, ...PLAIN).why || ""; } catch (e) { return "ERROR " + e.message; } };
-const gr = dojiCase(true, true), rg = dojiCase(false, false);
+const gr = dojiCase(true, true), rg = dojiCase(false, false), rgPx = rg.px, rgL = rg.L; // fix1034: G.__pivBars stay on the rg scene for herEntry951
 T("DOJI: GREEN doji then RED candle - the long is refused by the doji", /DOJI AFTER THE TREND[^\n]*SHORT only/.test(gr.long), gr.long);
 T("DOJI: GREEN doji then RED candle - the doji never blocks the SHORT", !/DOJI/.test(gr.short), gr.short || "(clear)");
-T(FLAT25 ? "DOJI: RED doji then GREEN candle - the short is still refused under the weekend $25 (its pink cushion catches it first)" : "DOJI: RED doji then GREEN candle - the short is refused (doji LONG only, or her rising candle first)", /DOJI AFTER THE TREND[^\n]*LONG only|HER CANDLE: the 5m candle is rising/.test(rg.short) || (FLAT25 && /PINK CUSHION/.test(rg.short)), rg.short);
+T(FLAT25 ? "DOJI: RED doji then GREEN candle - the short is still refused under the weekend $25 (its pink cushion catches it first)" : "DOJI: RED doji then GREEN candle - the short is refused (doji LONG only, or her colour rule at the door - fix1034)", /DOJI AFTER THE TREND[^\n]*LONG only/.test(rg.short) || /NOT HER COLOUR \(fix951\)/.test(B.herEntry951("gold", "down", rgPx, "Rejected down off +2σ", rgL) || "") || (FLAT25 && /PINK CUSHION/.test(rg.short)), rg.short || B.herEntry951("gold", "down", rgPx, "Rejected down off +2σ", rgL)); /* fix1034: HER CANDLE (5m vs its open) is gone; the against-colour short is now refused by her colour rule at the door (fix951: neither the 2m nor the 5m red) */
 T("DOJI: RED doji then GREEN candle - the doji never blocks the LONG", !/DOJI/.test(rg.long), rg.long || "(clear)");
 
 // ---- fix499 (Love Oct 29 2026 10:44 PM PT: "ensure at every single rule in there is enforced and cannot get out if it does not meet every single one of those" + 10:45 PM:
@@ -192,17 +192,17 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   const t0 = sec("2026-11-01T12:00:00Z"), t1 = sec("2026-11-01T11:59:00Z");
   const set592 = (asset, po, pc, o, h, l) => { G.__pivBars = { [asset]: { bars: [{ t: t1, o: po, h: Math.max(po, pc), l: Math.min(po, pc), c: pc }, { t: t0, o, h, l, c: l }] } }; };
   set592("btc", 77870, 77856, 77856, 77860, 77845); T("fix592 BTC flip path: green then red, $6 under its open, goes", B.turnFlip530("btc", "down", 77850));
-  set592("btc", 77870, 77856, 77856, 77860, 77845); T("fix592 BTC flip path: green then red, only $1 under, is refused (Love Nov 4: $2 BTC)", !B.turnFlip530("btc", "down", 77855));
+  set592("btc", 77870, 77856, 77856, 77860, 77845); T("fix1038 BTC: $5 down off the 77860 high is her colour (her $5 cushion); $3 is not", B.turnFlip530("btc", "down", 77855) && !B.turnFlip530("btc", "down", 77857));
   set592("btc", 77840, 77856, 77856, 77856, 77840); T("fix592 BTC born path: red right after a green one, $11 under, goes", B.turnFlip530("btc", "down", 77845));
   set592("btc", 77840, 77856, 77856, 77856, 77850); T("fix592 BTC born path: red right after a green one, only $1 under, is refused (Love Nov 4: $2 BTC)", !B.turnFlip530("btc", "down", 77855));
-  set592("btc", 77870, 77856, 77856, 77856, 77840); T("fix592 BTC: red right after a red one with no flip is refused", !B.turnFlip530("btc", "down", 77845));
+  set592("btc", 77870, 77856, 77856, 77856, 77840); T("fix1038 BTC: $11 down off the 77856 high is her colour - a candle flipped or born her colour counts (her 5:12 PM + 2:54 PM words)", B.turnFlip530("btc", "down", 77845));
   set592("btc", 77856, 77840, 77840, 77850, 77835); T("fix592 BTC flip path: red then green, $6 over, goes", B.turnFlip530("btc", "up", 77846));
   set592("btc", 77856, 77840, 77840, 77856, 77840); T("fix592 BTC born path: green right after a red one, $10 over, goes", B.turnFlip530("btc", "up", 77850));
-  set592("btc", 77840, 77856, 77856, 77870, 77856); T("fix592 hard block: she cannot short a green rising candle", !B.turnFlip530("btc", "down", 77865));
-  set592("btc", 77856, 77840, 77840, 77840, 77825); T("fix592 hard block: she cannot long a red falling candle", !B.turnFlip530("btc", "up", 77830));
+  set592("btc", 77840, 77856, 77856, 77870, 77856); T("fix592 + fix1038 hard block: she cannot short a candle still rising - $3 off its 77870 high is not her $5 colour", !B.turnFlip530("btc", "down", 77867));
+  set592("btc", 77856, 77840, 77840, 77840, 77825); T("fix592 + fix1038 hard block: she cannot long a candle still falling - $3 off its 77825 low is not her $5 colour", !B.turnFlip530("btc", "up", 77828));
   set592("gold", 3870, 3871, 3871, 3871, 3870.5); T("fix592 gold born path: red right after a green one, 40c under, goes", B.turnFlip530("gold", "down", 3870.6));
   set592("gold", 3872, 3871, 3871, 3871.2, 3870.5); T("fix592 gold flip path: green then red, 20c under, goes", B.turnFlip530("gold", "down", 3870.8));
-  set592("gold", 3872, 3871, 3871, 3871.2, 3870.5); T("fix592 gold flip path: green then red, 5c under, is refused", !B.turnFlip530("gold", "down", 3870.95));
+  set592("gold", 3872, 3871, 3871, 3871.2, 3870.5); T("fix592 + fix1038 gold: 5c off the 3871.20 high is not her 10c colour", !B.turnFlip530("gold", "down", 3871.15));
 }
 // fix593 (Love Nov 1 2026 9:19 AM PT): her session-band scale, door and last line the same; past the last band = refused; pink not part of it
 { const near = (a, b) => Math.abs(a - b) < 0.0001, Sb = (below, above, extra) => [{ name: "-1σ", price: below }, { name: "+1σ", price: above }, ...(extra || [])];
@@ -362,7 +362,7 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
   G.__curLabel611 = "1m rejection off -1σ";
   T("fix611 a 1m rejection gets no pass", /BROKE IT/.test(B.brokeThisCandle441("btc", L611, 77725, "up", 77790, HL)));
   G.__curLabel611 = LB; G.__pivBars = { btc: { bars: [{ t: t0(5), o: 77790, h: 77795, l: 77700, c: 77700 }, { t: t0(6), o: 77770, h: 77775, l: 77720, c: 77725 }, { t: t0(7), o: 77728, h: 77728, l: 77724, c: 77725 }] } };
-  T("fix611 a rejection with no flip stays refused", /BROKE IT/.test(B.brokeThisCandle441("btc", L611, 77725, "up", 77790, HL)));
+  T("fix611 + fix1038 a rejection $25 up off the 77,700 low is her colour - it goes (flipped or born her colour, no open needed)", !/BROKE IT/.test(B.brokeThisCandle441("btc", L611, 77725, "up", 77790, HL)) && /BROKE IT/.test(B.brokeThisCandle441("btc", L611, 77702, "up", 77790, HL)));
   G.__curLabel611 = ""; G.__pivBars = keepB;
   const Lc = [{ name: "session VWAP", price: 77751.95 }, { name: "+1σ", price: 77930 }, { name: "-1σ", price: 77573 }, { name: "fresh VWAP", price: 77794.2 }, { name: "fresh +1σ", price: 77827 }, { name: "fresh -1σ", price: 77760 }, { name: "5m PP", price: 77774.8 }, { name: "5m S1", price: 77700 }, { name: "5m R1", price: 77850 }];
   G.__sessCarried = { btc: true, gold: true }; G.__curBook465 = "";

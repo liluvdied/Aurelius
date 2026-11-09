@@ -34,12 +34,14 @@ export async function polyMomTick830(now = Date.now(), pmIn?: PM) {
     let rows: any[] = []; try { rows = JSON.parse(readFileSync(D("momentum-book-704.json"), "utf8"))?.rows || []; } catch {}
     const s = st(); let dirty = false;
     for (const r of fresh830(rows, s.seen, now)) {
-      s.seen[r.id] = now; dirty = true;
       const closesAt = closeOf830(r.closeTime);
+      if (Object.values(s.pos).some((p) => p.closesAt === closesAt && Number(p.contracts) > 0)) { s.seen[r.id] = now; dirty = true; continue; } // fix1017 one ticket per window: a window that filled is never bought again (fix1017 KEEP WATCHING, Love Nov 7 2026 9:21 PM PT: "they apply to literally every single thing traded on my accounts luv")
+      const T1017 = (G.__pm830Try ||= {}) as Record<string, number>; if (now - Number(T1017[r.id] || 0) < 5000) continue; T1017[r.id] = now; // fix1017 a skipped look is tried again at most every 5 s
+      s.seen[r.id] = now; dirty = true;
       try {
         const f = await pm.takeSide(r.side, closesAt, c.dollars, c.maxAsk, 0.08, 0.02, ":mom830", "btc");
         if (f && f.filled > 0) { s.pos[r.id] = { id: r.id, slug: f.slug, side: r.side, closesAt, contracts: f.filled, cost: f.filled * f.price, at: new Date(now).toISOString(), status: "open", addOn: false, halfSold: false, sold: 0 }; log({ id: r.id, action: "bought", setup: r.setup, side: r.side, slug: f.slug, contracts: f.filled, price: f.price }); }
-        else log({ id: r.id, action: "skipped", setup: r.setup, side: r.side, why: String((typeof (pm as any).takeSideWhy === "function" ? (pm as any).takeSideWhy() : "") || G.__polyWhy || "no fill / outside her 1.5x floor"), kalshiAsk: r.ask ?? null /* fix850: the real reason from Polymarket (takeSideWhy), never thrown away */ });
+        else { const K1017 = (G.__pm830k ||= {}); K1017[r.id] = (K1017[r.id] || 0) + 1; if (Date.parse(String(r.closeTime)) - now >= 60000 && now - Date.parse(String(r.at)) <= 60000) delete s.seen[r.id]; if (K1017[r.id] === 1) log({ id: r.id, action: "skipped", setup: r.setup, side: r.side, why: String((typeof (pm as any).takeSideWhy === "function" ? (pm as any).takeSideWhy() : "") || G.__polyWhy || "no fill / outside her 1.5x floor"), kalshiAsk: r.ask ?? null /* fix850: the real reason from Polymarket (takeSideWhy), never thrown away */ }); } // fix1017 an ask over her floor / no fill does not spend the window - she looks again (every 5 s, logged once) while the set up is fresh; only a fill spends it
       } catch (e: any) { log({ id: r.id, action: "error", why: String(e?.message || e).slice(0, 160) }); }
     }
     for (const p of Object.values(s.pos)) {

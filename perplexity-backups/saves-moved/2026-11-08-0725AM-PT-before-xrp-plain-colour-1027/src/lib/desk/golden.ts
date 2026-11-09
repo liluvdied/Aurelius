@@ -1,0 +1,301 @@
+// GOLDEN WINDOW (Claude, 2026-10-02, Love's ask): "put her back exactly where she was Oct 1,
+// 12:45–3:30 PM PT." The Kalshi log shows the desk's trades in that window were Bitcoin
+// tap-rejects on the frozen spine/THIS-ONE model. Its entry brain (auto.ts, spine-ready.ts,
+// vwap.ts) is still byte-identical in src/. What changed right around 3:30 PM was the FEED under it:
+//   then: BTC bands from OANDA:BTCUSD 5m, session from 00:00 UTC (5 PM PT), σ about $475
+//   now:  BTC bands from OANDA:BTCUSD 5m, session from 17:00 ET (2 PM PT), σ about $75-90
+//   (proven to the dollar against the desk's own Oct 1 log: data/golden-proof.json)
+//   then: gold setups AND bands on OANDA 15m (matched 4167.24 / σ 9.732 to the cent)
+//   now:  gold setups on 15m, bands on 5m
+// Same setup builder and 1.38x floor as today. Exits = her table that afternoon (33 / 44 / 50 / 60 /
+// max−15, hard sell): the 2:07 PM Kalshi win sold at +59.8% on a 1.69x = her 60% line.
+// This rebuilds that exact signature beside the live desk and books it on the night paper ledger
+// as GOLDEN. Paper only. It never sends an order and the live desk never reads it.
+import { chartCandles } from "./tv";
+import { buildSetup, lateWindow } from "./setup";
+import { bandInWay } from "./auto";
+import { readySpine } from "./spine-ready";
+import { computeVwap, bandRun, detectPattern, resample5m, sortAsc } from "./vwap";
+import { goldBookClosed } from "./hours";
+import { DEFAULT_SETTINGS, type AssetId, type AssetSnapshot, type Pattern, type Setup } from "./types";
+import { goldenConsider, setBookTag } from "./nightbook";
+import { dnaLog, dnaNow } from "./dna";
+import { writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+const EMPTY: Pattern = { kind: "none", side: null, band: null, quality: 0, label: "No band interaction", reasons: ["Waiting on tape."] };
+const g = globalThis as unknown as { __goldenBusy?: boolean; __goldenAt?: number; __goldenSeen?: Record<string, unknown> };
+
+function studySetup(setup: Setup | null): setup is Setup {
+  if (!setup || !setup.side || setup.pattern?.kind === "none") return false;
+  const label = setup.pattern?.label || "";
+  if (label.startsWith("Watching") || label.startsWith("No band")) return false;
+  return setup.pattern.kind === "tap_reject" || setup.pattern.kind === "break_retest" || label.startsWith("Open ") || label.startsWith("Gold clock");
+}
+
+/** The Oct 1 afternoon snapshot of one asset: THIS-ONE feed + THIS-ONE scan, today's Kalshi market. */
+async function goldenAsset(id: "btc" | "gold", live: AssetSnapshot): Promise<AssetSnapshot | null> {
+  const tape = await chartCandles(id === "btc" ? "btcGolden" : "goldGolden").catch(() => null);
+  if (!tape) return null;
+  const candles = sortAsc(tape.candles);
+  const last = candles[candles.length - 1];
+  const spot = last?.c ?? 0;
+  if (!(spot > 0)) return null;
+  const market = live.market;
+  const secondsLeft = live.secondsLeft;
+  const c5 = resample5m(candles);
+  const vwap1m = candles.length ? computeVwap(candles) : null;
+  const vwap5m = c5.length ? computeVwap(c5.slice(-12)) : null;
+  let pattern1m = candles.length ? detectPattern(candles, vwap1m) : EMPTY;
+  const pattern5m = c5.length ? detectPattern(c5, vwap5m) : EMPTY;
+  if (vwap1m && spot > 0) {
+    const spine = readySpine(id, candles, vwap1m.vwap, vwap1m.stdev, spot, market?.target ?? 0);
+    pattern1m = spine ?? EMPTY;
+    if (pattern1m.side && bandInWay(pattern1m.side, spot, vwap1m.vwap, vwap1m.stdev, id)) pattern1m = EMPTY;
+  }
+  const target = market?.target ?? null;
+  const delta = target != null ? spot - target : null;
+  let setup = buildSetup({ asset: id as AssetId, market, pattern1m, pattern5m, secondsLeft, delta, settings: DEFAULT_SETTINGS });
+  if (setup && setup.pattern.kind !== "tap_reject") {
+    const run = bandRun(candles, vwap1m);
+    if (run.violent && run.bands < 2) setup = { ...setup, watchOnly: true };
+  }
+  if (id === "gold" && goldBookClosed() && setup) setup = { ...setup, watchOnly: true };
+  const spark = candles.slice(-32).map((c) => c.c).filter((n) => n > 0);
+  return { ...live, product: tape.product, spot, close: spot, target, delta, deltaBps: null, vwap1m, vwap5m, pattern1m, pattern5m, setup, spark, sparkVwap: spark.map(() => vwap1m?.vwap ?? spot) };
+}
+
+/** Every desk tick (throttled to 10s): look for a golden-window setup and book it on paper. */
+export async function goldenTick(assets: Record<string, AssetSnapshot> | null | undefined) {
+  // FAST LOOP FOR HER BOOKS (Oct 13 ~5:40 AM PT, Love: "she used to get in right at the beginning... she's getting in a bit
+  // late"). Her live books (pivotbooks) were read only once per full golden pass: 10 s minimum, often 30-45 s while the other
+  // books' chart reads finished, so entries booked ~30-45 s into the window. Now they run on their own every 3 s.
+  const gf = g as any;
+  if (assets && (!gf.__pivFastAt || Date.now() - gf.__pivFastAt > 3000)) {
+    gf.__pivFastAt = Date.now();
+    void import("./pivotbooks").then((m) => { m.ensurePivotClock(); return m.pivotBooksTick(assets); }).catch(() => {});
+  }
+  if (!assets || g.__goldenBusy) return;
+  if (g.__goldenAt && Date.now() - g.__goldenAt < 10000) return;
+  g.__goldenBusy = true;
+  g.__goldenAt = Date.now();
+  void goldenProof();
+  void import("./feedmatch").then((m) => m.feedMatchOnce()).catch(() => {});
+  void import("./hist").then((m) => m.histDumpOnce()).catch(() => {});
+  void import("./hist").then((m) => m.pepHistOnce()).catch(() => {});
+  const seen: Record<string, unknown> = {};
+  // GROK OG (Oct 11, Love: "reanimate her"): Grok's own exits on her open paper tickets.
+  try {
+    await (await import("./grokog")).grokExitTick(assets);
+  } catch {
+  }
+  // PIVOT BOOKS (Oct 11, Love): CM Pivot Bands 2/5/10/15m alone + with her session bands, and BRICK / SQUEEZE no-wall twins.
+  // (her pivot books now run on the fast loop at the top of goldenTick)
+  // COMBO TRACKER (Oct 11, Love): near-decided crypto 15m legs stacked into one $10 paper combo per window, her 60/40 gate.
+  void import("./combos").then((m) => m.comboTick()).catch(() => {});
+  // 1H COMBOS (Oct 13 ~12:45 AM PT, Love): paper book of ~1.2x hourly crypto legs stacked to 1.75-2.15x, real price shadowed.
+  void import("./hourcombos").then((m) => m.hourComboTick()).catch(() => {});
+  // PATTERN BOOK (Oct 13 ~1:25 AM PT, Love): paper forward test of the 15M windows that leaned one way across 68 days.
+  void import("./patternbook").then((m) => m.patternTick()).catch(() => {});
+  void import("./lastminute").then((m) => m.lastMinuteTick()).catch(() => {});
+  void import("./fingerprint").then((m) => m.fingerprintTick(assets)).catch(() => {});
+  void import("./comboguard").then((m) => m.comboGuardTick()).catch(() => {});
+  void import("./breaker").then((m) => m.breakerTick()).catch(() => {});
+  void import("./labjob").then((m) => m.labTick()).catch(() => {});
+  // CHART TWINS (paper, Oct 18 ~10:25 PM PT, Love): band-edge + pink twins on the Vantage and Pepperstone charts, BTC + gold.
+  void import("./charttwins").then((m) => m.chartTwinsTick(assets)).catch(() => {});
+  void import("./metals").then((m) => m.metalsTick()).catch(() => {});
+  try {
+    for (const id of ["btc", "gold"] as const) {
+      const live = assets[id];
+      if (!live?.market?.ticker) continue;
+      const snap = await goldenAsset(id, live).catch(() => null);
+      if (!snap) continue;
+      const sd = snap.vwap1m?.stdev ?? null;
+      const vw = snap.vwap1m?.vwap ?? null;
+      seen[id] = { spot: snap.spot, vwap: vw, sd, pattern: snap.pattern1m.label, setup: snap.setup?.pattern.label ?? null, side: snap.setup?.side ?? null, watchOnly: snap.setup?.watchOnly ?? null };
+      const bands = vw && sd ? { vwap: vw, sd, spot: snap.spot, feed: snap.product } : null;
+      const late = lateWindow(snap);
+      // (Love, 3:00 PM: "golden will be gold when you give her her true DNA") — GOLDEN carries it now.
+      // TWO DNAs (Love, Oct 2 ~midnight): her fix ("fixed") books as always; the DNA x ATR twin books tagged rows.
+      const dnaOk = (side: "up" | "down", label: string, ticker: string, mode: "fixed" | "atr" | "free" | "chan" = "fixed") => {
+        const why = dnaNow(id, side, live.spot || 0, live.target ?? 0, mode);
+        if (why && mode === "fixed") dnaLog(id, side, label, ticker, why, "golden");
+        return !why;
+      };
+      // Book tags: main ("free" = before 11:55, no DNA) untagged, her 11:55 fix -> "fix", DNA x ATR -> "atr".
+      const inMode = (mode: "fixed" | "atr" | "free" | "chan", fn: () => void) => {
+        setBookTag(mode === "atr" ? "atr" : mode === "fixed" ? "fix" : "");
+        try {
+          fn();
+        } finally {
+          setBookTag("");
+        }
+      };
+      for (const m of ["chan", "fixed", "atr"] as const) {
+        if (late && studySetup(late) && !late.watchOnly && dnaOk(late.side, late.pattern.label, late.ticker, m)) inMode(m, () => goldenConsider({ ticker: late.ticker, side: late.side, ask: late.ask, label: late.pattern.label }, id, bands));
+      }
+      // GROK OG: Grok's builder, nothing on top (no DNA, no band-in-front guard), one ticket per window.
+      try {
+        const go = await import("./grokog");
+        go.ogConsider("og-golden", id, { ...snap, market: live.market, target: live.target ?? snap.target, secondsLeft: live.secondsLeft });
+        go.ogConsider("og-hers", id, live);
+        if (late && studySetup(late) && !late.watchOnly) go.grokConsider(late, id, snap.secondsLeft);
+        else if (snap.setup && studySetup(snap.setup) && !snap.setup.watchOnly && !(snap.secondsLeft > 0 && snap.secondsLeft < 120)) go.grokConsider(snap.setup, id, snap.secondsLeft);
+      } catch {
+      }
+      const setup = snap.setup;
+      if (snap.secondsLeft > 0 && snap.secondsLeft < 120) continue;
+      if (!studySetup(setup) || setup.watchOnly) continue;
+      // Main book = her fix exactly (old band guard + DNA $100 / $2.50); twin = DNA x ATR (Oct 3 ~1 AM PT, Love).
+      const oldGuard = Boolean(vw && sd && bandInWay(setup.side, snap.spot, vw, sd, id));
+      const modes = (["chan", "fixed", "atr"] as const).filter((m) => (m === "atr" || m === "chan" || !oldGuard) && dnaOk(setup.side, setup.pattern.label, setup.ticker, m));
+      if (!modes.length) continue;
+      for (const m of modes) inMode(m, () => goldenConsider({ ticker: setup.ticker, side: setup.side, ask: setup.ask, label: setup.pattern.label }, id, bands));
+      // OPTION A (BTC only): this 5 PM-start setup, then every NEW rule checked on Love's own bands.
+      if (id === "btc") {
+        try {
+          const kl = await import("./kalshi-live.server");
+          const frame = live.vwap1m?.vwap ? live.vwap1m : live.vwap5m;
+          for (const m of modes) {
+            const why = kl.wouldRefuse(setup.ticker, setup.side, { spot: live.spot || 0, vwap: frame?.vwap || 0, stdev: frame?.stdev || 0, target: live.target ?? 0, label: setup.pattern.label, dnaMode: m }, setup.ask);
+            if (!why) inMode(m, () => goldenConsider({ ticker: setup.ticker, side: setup.side, ask: setup.ask, label: setup.pattern.label }, id, bands, "optA"));
+          }
+        } catch {
+          // paper only
+        }
+      }
+    }
+  } finally {
+    g.__goldenSeen = seen;
+    try {
+      writeFileSync(join(process.cwd(), "data", "golden-now.json"), JSON.stringify({ at: new Date().toISOString(), ...seen }, null, 1));
+    } catch {
+      // diagnostic only
+    }
+    g.__goldenBusy = false;
+  }
+}
+
+// One-shot proof (Claude): rebuild Oct 1's BTC session VWAP on the golden feed at the moments the
+// desk recorded it (fill-log: 20:46Z 83912.10, 21:46Z 83991.05) to show the feeds match.
+const gp = globalThis as unknown as { __goldenProof2?: boolean };
+export async function goldenProof() {
+  if (gp.__goldenProof2) return;
+  gp.__goldenProof2 = true;
+  try {
+    const { chartRaw } = await import("./tv");
+    const out: Record<string, unknown> = { at: new Date().toISOString() };
+    for (const [symbol, res, count] of [["BITSTAMP:BTCUSD", "15", 300], ["OANDA:BTCUSD", "5", 800]] as const) {
+      const bars = await chartRaw(symbol, res, count);
+      const rows: Record<string, unknown> = { bars: bars.length, first: bars[0]?.t ?? null };
+      for (const [at, anchor] of [["2026-10-01T20:46:00Z", "2026-10-01T00:00:00Z"], ["2026-10-01T21:46:00Z", "2026-10-01T00:00:00Z"], ["2026-10-01T22:52:00Z", "2026-10-01T00:00:00Z"], ["2026-10-01T21:46:00Z", "2026-10-01T21:00:00Z"], ["2026-10-01T22:52:00Z", "2026-10-01T21:00:00Z"]] as const) {
+        const t = Date.parse(at) / 1000;
+        const s0 = Date.parse(anchor) / 1000;
+        const xs = bars.filter((b) => b.t >= s0 && b.t <= t);
+        let pv = 0, v = 0;
+        for (const c of xs) { const tp = (c.h + c.l + c.c) / 3; pv += tp * c.v; v += c.v; }
+        const vw = v > 0 ? pv / v : 0;
+        let acc = 0;
+        for (const c of xs) { const tp = (c.h + c.l + c.c) / 3; acc += c.v * (tp - vw) ** 2; }
+        rows[`${at.slice(11, 16)}Z from ${anchor.slice(11, 16)}Z`] = { n: xs.length, vwap: Math.round(vw * 100) / 100, sd: v > 0 ? Math.round(Math.sqrt(acc / v) * 100) / 100 : null };
+      }
+      out[symbol] = rows;
+    }
+    // Gold: the desk logged VWAP 4167.24, σ 9.73 at 20:46:21Z Oct 1 (session from 17:00 ET Sep 30).
+    for (const [res, count] of [["15", 300], ["5", 800]] as const) {
+      const bars = await chartRaw("OANDA:XAUUSD", res, count);
+      const s0 = Date.parse("2026-09-30T21:00:00Z") / 1000;
+      const t = Date.parse("2026-10-01T20:46:00Z") / 1000;
+      const step = Number(res) * 60;
+      for (const [name, xs] of [["with live bar", bars.filter((b) => b.t >= s0 && b.t <= t)], ["closed bars", bars.filter((b) => b.t >= s0 && b.t + step <= t)]] as const) {
+        let pv = 0, v = 0;
+        for (const c of xs) { const tp = (c.h + c.l + c.c) / 3; pv += tp * c.v; v += c.v; }
+        const vw = v > 0 ? pv / v : 0;
+        let acc = 0;
+        for (const c of xs) { const tp = (c.h + c.l + c.c) / 3; acc += c.v * (tp - vw) ** 2; }
+        out[`gold ${res}m ${name}`] = { n: xs.length, vwap: Math.round(vw * 100) / 100, sd: v > 0 ? Math.round(Math.sqrt(acc / v) * 1000) / 1000 : null, logged: { vwap: 4167.24, sd: 9.732 } };
+      }
+    }
+    writeFileSync(join(process.cwd(), "data", "golden-proof.json"), JSON.stringify(out, null, 1));
+  } catch (e) {
+    try { writeFileSync(join(process.cwd(), "data", "golden-proof.json"), JSON.stringify({ error: String(e) })); } catch {}
+  }
+}
+
+// One-shot (Claude, Love 8:03 PM PT: "we're using the BTC chart on my screen, the all-time index"):
+// which symbol + session anchor matches her chart's VWAP Session (BTC 84,599.23 / ETH 2,676.94 at 8:03 PM)?
+const gp3 = globalThis as unknown as { __indexProof?: boolean };
+export async function indexProof() {
+  if ((gp3 as unknown as { __ip2?: boolean }).__ip2) return;
+  (gp3 as unknown as { __ip2?: boolean }).__ip2 = true;
+  const { chartRaw } = await import("./tv");
+  const out: Record<string, unknown> = { at: new Date().toISOString(), herChart: { btc: 84599.23, eth: 2676.94, at: "2026-10-03T03:03:21Z" } };
+  const t = Date.parse("2026-10-03T03:03:21Z") / 1000;
+  for (const sym of ["INDEX:BTCUSD", "BNC:BLX", "INDEX:SOLUSD", "INDEX:ETHUSD", "COINBASE:BTCUSD", "BITSTAMP:BTCUSD", "COINBASE:SOLUSD"]) {
+    try {
+      const bars = await chartRaw(sym, "5", 400);
+      if (!bars.length) { const b1 = await chartRaw(sym, "1", 300); (out as Record<string, unknown>)[sym + " 1m"] = { bars: b1.length, last: b1[b1.length - 1]?.c ?? null }; }
+      const row: Record<string, unknown> = { bars: bars.length, last: bars[bars.length - 1]?.c ?? null };
+      for (const [name, anchor] of [["00:00 UTC", "2026-10-03T00:00:00Z"], ["17:00 ET", "2026-10-02T21:00:00Z"]] as const) {
+        const s0 = Date.parse(anchor) / 1000;
+        const xs = bars.filter((b) => b.t >= s0 && b.t <= t);
+        let pv = 0, v = 0;
+        for (const c of xs) { const tp = (c.h + c.l + c.c) / 3; pv += tp * c.v; v += c.v; }
+        row[name] = v > 0 ? Math.round((pv / v) * 100) / 100 : null;
+      }
+      out[sym] = row;
+    } catch (e) {
+      out[sym] = { error: String(e) };
+    }
+  }
+  writeFileSync(join(process.cwd(), "data", "index-proof2.json"), JSON.stringify(out, null, 1));
+}
+
+
+// One-shot (Claude, Love 8:28 PM PT: "get off the all-time index, I'm on OANDA"): which feed matches her
+// BTC VWAP Session 84,552.18 at 8:28:48 PM PT (03:28:48Z)?
+const gp4 = globalThis as unknown as { __feedProof?: boolean };
+export async function feedProof() {
+  if (gp4.__feedProof) return;
+  gp4.__feedProof = true;
+  const { chartRaw } = await import("./tv");
+  const out: Record<string, unknown> = { at: new Date().toISOString(), herChart: { vwap: 84552.18, price: 84580.73, at: "2026-10-03T03:28:48Z" } };
+  const t = Date.parse("2026-10-03T03:28:48Z") / 1000;
+  for (const sym of ["VANTAGE:BTCUSD", "OANDA:BTCUSD", "COINBASE:BTCUSD", "INDEX:BTCUSD", "PEPPERSTONE:BTCUSD"]) {
+    try {
+      const bars = await chartRaw(sym, "5", 400);
+      const row: Record<string, unknown> = { bars: bars.length, lastBarAgoMin: bars.length ? Math.round((Date.now() / 1000 - bars[bars.length - 1].t) / 60) : null, last: bars[bars.length - 1]?.c ?? null };
+      for (const [name, anchor] of [["00:00 UTC", "2026-10-03T00:00:00Z"], ["17:00 ET", "2026-10-02T21:00:00Z"]] as const) {
+        const s0 = Date.parse(anchor) / 1000;
+        const xs = bars.filter((b) => b.t >= s0 && b.t <= t);
+        let pv = 0, v = 0;
+        for (const c of xs) { const tp = (c.h + c.l + c.c) / 3; pv += tp * c.v; v += c.v; }
+        row[name] = v > 0 ? Math.round((pv / v) * 100) / 100 : null;
+      }
+      out[sym] = row;
+    } catch (e) {
+      out[sym] = { error: String(e) };
+    }
+  }
+  writeFileSync(join(process.cwd(), "data", "feed-proof.json"), JSON.stringify(out, null, 1));
+}
+
+
+// One-shot (Claude, Love 9:15 PM PT: "put her on Kraken"): Kraken VWAP Session, both anchors, right now.
+const gp5 = globalThis as unknown as { __krakenProof?: boolean };
+export async function krakenProof() {
+  if (gp5.__krakenProof) return;
+  gp5.__krakenProof = true;
+  const { chartRaw } = await import("./tv");
+  const bars = await chartRaw("KRAKEN:BTCUSD", "5", 400).catch(() => []);
+  const out: Record<string, unknown> = { at: new Date().toISOString(), bars: bars.length, last: bars[bars.length - 1]?.c ?? null };
+  for (const [name, anchor] of [["00:00 UTC", "2026-10-03T00:00:00Z"], ["17:00 ET", "2026-10-02T21:00:00Z"]] as const) {
+    const s0 = Date.parse(anchor) / 1000;
+    const xs = bars.filter((b) => b.t >= s0);
+    let pv = 0, v = 0;
+    for (const c of xs) { const tp = (c.h + c.l + c.c) / 3; pv += tp * c.v; v += c.v; }
+    out[name] = v > 0 ? Math.round((pv / v) * 10) / 10 : null;
+  }
+  writeFileSync(join(process.cwd(), "data", "kraken-proof.json"), JSON.stringify(out, null, 1));
+}

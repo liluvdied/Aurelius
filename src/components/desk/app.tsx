@@ -57,6 +57,7 @@ import { sessionStats, useDesk } from "@/lib/desk/store";
 import { LOOK_DEFAULT, loadLook, saveLook, type Look } from "@/lib/desk/look";
 import { Sparkline } from "@/components/desk/sparkline";
 import { TrajectoryPanel } from "@/components/desk/trajectory";
+import { PushShadow983 } from "@/components/desk/push-shadow"; // fix983 which push is the YEUP (paper shadow test)
 import { overlayDesk } from "@/lib/desk/ticker";
 import type { AssetId, AssetSnapshot, DeskSnapshot, Setup } from "@/lib/desk/types";
 import { cn } from "@/lib/cn";
@@ -2251,6 +2252,7 @@ export function DeskApp() {
           />
         ) : null}
         {bookTab === "stats" ? <SetupScores708 /> : null} {/* fix708 every book's set ups, her framework */}
+        {bookTab === "stats" ? <PushShadow983 /> : null} {/* fix983 PUSH SHADOW TEST: every candidate push per asset, paper, real Kalshi asks */}
         {bookTab === "stats" ? <FactorScores825 /> : null} {/* fix825 every factor on its own, main + REJ */}
         {bookTab === "stats" ? <SetupBoard773 /> : null} {/* fix773 SETUP SCOREBOARD: our setup / her band read, every book */}
 
