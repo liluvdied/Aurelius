@@ -3539,15 +3539,15 @@
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
  },
  "KXGOLD15M-26NOV091330-30:recon-rej:KXGOLD15M-26NOV091330-30:recon-rej": {
-  "at": "2026-11-09T18:22:54.173Z",
+  "at": "2026-11-09T18:26:07.995Z",
   "ticker": "KXGOLD15M-26NOV091330-30",
   "side": "down",
   "status": "blocked",
-  "reason": "BOLLINGER CUSHION: short $1.36 over the Bollinger lower (4099.74) - inside the $1.50 cushion. Wait for the break or the rejection.",
+  "reason": "NOT ON HER SIDE (fix951): \"Rejected down off 5m PP\" is a short off 5m PP (4103.24) but price 4103.94 is not below it - no entry.",
   "firstReason": "Blocked by the band lock: PINK CUSHION: short $-0.24 over the unbroken pink (4103.74) - inside her $1.47 cushion (fix514). wait for the break or the rejection.",
   "firstTryAt": "2026-11-09T18:16:20.993Z",
   "bookedAt": "2026-11-09T18:16:16.170Z",
-  "tries": 467,
+  "tries": 1018,
   "final": false,
   "paid": null,
   "orderId": null
