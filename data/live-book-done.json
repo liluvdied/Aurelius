@@ -3707,15 +3707,15 @@
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
  },
  "KXGOLD15M-26NOV091330-30:recon-rej:KXGOLD15M-26NOV091330-30:recon-rej": {
-  "at": "2026-11-09T18:16:30.079Z",
+  "at": "2026-11-09T18:19:29.523Z",
   "ticker": "KXGOLD15M-26NOV091330-30",
   "side": "down",
   "status": "blocked",
-  "reason": "{\"error\":{\"code\":\"insufficient_balance\",\"message\":\"insufficient balance\"}}",
+  "reason": "unfilled",
   "firstReason": "Blocked by the band lock: PINK CUSHION: short $-0.24 over the unbroken pink (4103.74) - inside her $1.47 cushion (fix514). wait for the break or the rejection.",
   "firstTryAt": "2026-11-09T18:16:20.993Z",
   "bookedAt": "2026-11-09T18:16:16.170Z",
-  "tries": 14,
+  "tries": 113,
   "final": false,
   "paid": null,
   "orderId": null
