@@ -1528,20 +1528,6 @@
   "paid": null,
   "orderId": null
  },
- "KXBTC15M-26NOV071830-30:recon-tog:KXBTC15M-26NOV071830-30:recon-tog": {
-  "at": "2026-11-07T23:15:22.255Z",
-  "ticker": "KXBTC15M-26NOV071830-30",
-  "side": "up",
-  "status": "filled",
-  "reason": "",
-  "firstReason": "",
-  "firstTryAt": "2026-11-07T23:15:22.255Z",
-  "bookedAt": "2026-11-07T23:15:19.661Z",
-  "tries": 1,
-  "final": false,
-  "paid": 0.52,
-  "orderId": "01a1b84b-8b28-7612-90c4-efca6d56ea8d"
- },
  "KXBTC15M-26NOV071845-45:recon-tog:away824": {
   "at": "2026-11-07T23:41:06.054Z",
   "ticker": "KXBTC15M-26NOV071845-45",
@@ -1549,34 +1535,6 @@
   "status": "blocked",
   "final": false,
   "reason": "2 PM TIL $100 = REJECTIONS ONLY (fix597): \"AWAY FROM LINE · Bollinger lower\" is not a rejection or a pink break - no order."
- },
- "KXBTC15M-26NOV071900-00:recon-tog:KXBTC15M-26NOV071900-00:recon-tog": {
-  "at": "2026-11-07T23:49:02.683Z",
-  "ticker": "KXBTC15M-26NOV071900-00",
-  "side": "down",
-  "status": "filled",
-  "reason": "",
-  "firstReason": "",
-  "firstTryAt": "2026-11-07T23:49:02.683Z",
-  "bookedAt": "2026-11-07T23:49:01.857Z",
-  "tries": 1,
-  "final": false,
-  "paid": 0.21,
-  "orderId": "01a1b86a-61b0-7f92-8cc5-f46301ea6387"
- },
- "KXBTC15M-26NOV071915-15:recon-rej:KXBTC15M-26NOV071915-15:recon-rej": {
-  "at": "2026-11-08T00:00:15.852Z",
-  "ticker": "KXBTC15M-26NOV071915-15",
-  "side": "down",
-  "status": "filled",
-  "reason": "",
-  "firstReason": "",
-  "firstTryAt": "2026-11-08T00:00:15.852Z",
-  "bookedAt": "2026-11-08T00:00:08.465Z",
-  "tries": 1,
-  "final": false,
-  "paid": 0.62,
-  "orderId": "01a1b874-a698-764c-8dff-9967d1edab3e"
  },
  "KXBTC15M-26NOV071915-15:recon-rej:away824": {
   "at": "2026-11-08T00:11:10.254Z",
@@ -2316,14 +2274,6 @@
   "paid": 0.39,
   "orderId": "01a1bca3-dd10-7023-a1e8-03dffc3667ba"
  },
- "KXBTC15M-26NOV081500-00:recon-rej:KXBTC15M-26NOV081500-00:recon-rej": {
-  "at": "2026-11-08T19:45:17.960Z",
-  "ticker": "KXBTC15M-26NOV081500-00",
-  "side": "up",
-  "status": "skipped",
-  "final": true,
-  "reason": "REJECTION trades live only in Love's rejection hours"
- },
  "KXBTC15M-26NOV081500-00:recon-tog:KXBTC15M-26NOV081500-00:recon-tog": {
   "at": "2026-11-08T19:45:20.328Z",
   "ticker": "KXBTC15M-26NOV081500-00",
@@ -2337,14 +2287,6 @@
   "final": false,
   "paid": 0.66,
   "orderId": "01a1bcb1-a080-702e-b427-9199f94556be"
- },
- "KXBTC15M-26NOV081515-15:recon-rej:KXBTC15M-26NOV081515-15:recon-rej": {
-  "at": "2026-11-08T20:00:06.327Z",
-  "ticker": "KXBTC15M-26NOV081515-15",
-  "side": "up",
-  "status": "skipped",
-  "final": true,
-  "reason": "REJECTION trades live only in Love's rejection hours"
  },
  "KXBTC15M-26NOV081515-15:recon-tog:KXBTC15M-26NOV081515-15:recon-tog": {
   "at": "2026-11-08T20:00:06.984Z",
@@ -2360,14 +2302,6 @@
   "paid": 0.48,
   "orderId": "01a1bcbf-2570-77ed-9894-4d7840df3e7a"
  },
- "KXBTC15M-26NOV081530-30:recon-rej:KXBTC15M-26NOV081530-30:recon-rej": {
-  "at": "2026-11-08T20:15:19.822Z",
-  "ticker": "KXBTC15M-26NOV081530-30",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "REJECTION trades live only in Love's rejection hours"
- },
  "KXBTC15M-26NOV081530-30:recon-tog:KXBTC15M-26NOV081530-30:recon-tog": {
   "at": "2026-11-08T20:15:21.223Z",
   "ticker": "KXBTC15M-26NOV081530-30",
@@ -2381,36 +2315,6 @@
   "final": false,
   "paid": 0.53,
   "orderId": "01a1bccd-17c0-7c74-bede-d7e5074b97b0"
- },
- "KXBTC15M-26NOV081530-30:recon-rej:ps801": {
-  "at": "2026-11-08T20:23:33.933Z",
-  "ticker": "KXBTC15M-26NOV081530-30",
-  "side": "down",
-  "status": "skipped",
-  "final": true,
-  "reason": "REJECTION trades live only in Love's rejection hours"
- },
- "KXBTC15M-26NOV081530-30:recon-tog:ps801": {
-  "at": "2026-11-08T20:29:32.500Z",
-  "ticker": "KXBTC15M-26NOV081530-30",
-  "side": "down",
-  "status": "missed",
-  "reason": "window ended before it filled (last: this window already traded)",
-  "firstReason": "this window already traded",
-  "firstTryAt": "2026-11-08T20:23:33.987Z",
-  "bookedAt": "2026-11-08T20:23:33.545Z",
-  "tries": 1079,
-  "final": true,
-  "paid": null,
-  "orderId": null
- },
- "KXBTC15M-26NOV081545-45:recon-rej:KXBTC15M-26NOV081545-45:recon-rej": {
-  "at": "2026-11-08T20:30:07.949Z",
-  "ticker": "KXBTC15M-26NOV081545-45",
-  "side": "up",
-  "status": "skipped",
-  "final": true,
-  "reason": "REJECTION trades live only in Love's rejection hours"
  },
  "KXBTC15M-26NOV081545-45:recon-tog:KXBTC15M-26NOV081545-45:recon-tog": {
   "at": "2026-11-08T20:30:08.907Z",
@@ -2757,21 +2661,26 @@
   "orderId": "01a1bd8d-52b0-77d7-91d1-aa2a6e4fd904"
  },
  "KXBTC15M-26NOV081915-15:recon-rej:KXBTC15M-26NOV081915-15:recon-rej": {
-  "at": "2026-11-09T00:05:25.578Z",
+  "at": "2026-11-09T00:09:24.290Z",
+  "ticker": "KXBTC15M-26NOV081915-15",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "break retry stopped: NOT HER COLOUR (fix951): \"Rejected down off session VWAP\" - neither the 2m nor the 5m candle is red at 74642.45 (only a wick rejection may enter without her colour) - no entry.",
+  "firstTryAt": "2026-11-09T00:07:15.113Z",
+  "bookedAt": "2026-11-09T00:08:34.473Z",
+  "tries": 61,
+  "final": false,
+  "paid": 0.66,
+  "orderId": "01a1bda3-5f38-72a6-b47f-de4f598cefd0"
+ },
+ "KXBTC15M-26NOV081915-15:recon-tog:KXBTC15M-26NOV081915-15:recon-tog": {
+  "at": "2026-11-09T00:08:42.632Z",
   "ticker": "KXBTC15M-26NOV081915-15",
   "side": "down",
   "status": "skipped",
-  "final": false,
-  "bandWait": true,
-  "reason": "SUB-AUDITOR: PINK TO GREEN (fix594): short at 87% of pink 74738.91 to green 74496.05 - in the bottom 55% - no short."
- },
- "KXBTC15M-26NOV081915-15:recon-tog:KXBTC15M-26NOV081915-15:recon-tog": {
-  "at": "2026-11-09T00:05:17.462Z",
-  "ticker": "KXBTC15M-26NOV081915-15",
-  "side": "down",
-  "status": "held",
-  "reason": "PINK SLIDE (fix658): shorts only off the pink while it slides - Break below session VWAP waits for the pink rejection. (no long: BTC SLIDE UNDER PINK: 2 candles hit the pink and rejected on a down slope (last at 74817.16) with btc 74520.35 under it - no long until price breaks up through pink by 10%",
-  "firstReason": "PINK SLIDE (fix658): shorts only off the pink while it slides - Break below session VWAP waits for the pink rejection. (no long: BTC SLIDE UNDER PINK: 2 candles hit the pink and rejected on a down slope (last at 74846.30) with btc 74682.72 under it - no long until price breaks up through pink by 10%"
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
  },
  "KXGOLD15M-26NOV081915-15:recon-rej:KXGOLD15M-26NOV081915-15:recon-rej": {
   "at": "2026-11-09T00:00:17.702Z",
@@ -2794,5 +2703,203 @@
   "status": "skipped",
   "final": true,
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV081915-15:recon-rej:ps801": {
+  "at": "2026-11-09T00:14:30.304Z",
+  "ticker": "KXBTC15M-26NOV081915-15",
+  "side": "down",
+  "status": "missed",
+  "reason": "window ended before it filled (last: this window already traded)",
+  "firstReason": "this window already traded",
+  "firstTryAt": "2026-11-09T00:10:08.773Z",
+  "bookedAt": "2026-11-09T00:10:04.370Z",
+  "tries": 983,
+  "final": true,
+  "paid": null,
+  "orderId": null
+ },
+ "KXBTC15M-26NOV081915-15:recon-tog:ps801": {
+  "at": "2026-11-09T00:10:04.489Z",
+  "ticker": "KXBTC15M-26NOV081915-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV081930-30:recon-rej:KXBTC15M-26NOV081930-30:recon-rej": {
+  "at": "2026-11-09T00:16:08.403Z",
+  "ticker": "KXBTC15M-26NOV081930-30",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "break retry stopped: NOT ON HER SIDE (fix951): \"Failed break above +1σ - rejected down\" is a short off +1σ (75049.92) but price 75072.51 is not below it - no entry.",
+  "firstTryAt": "2026-11-09T00:16:06.044Z",
+  "bookedAt": "2026-11-09T00:16:03.481Z",
+  "tries": 6,
+  "final": false,
+  "paid": 0.11,
+  "orderId": "01a1bda9-8d40-753f-939e-88f4983f3ea7"
+ },
+ "KXBTC15M-26NOV081930-30:recon-tog:KXBTC15M-26NOV081930-30:recon-tog": {
+  "at": "2026-11-09T00:16:06.051Z",
+  "ticker": "KXBTC15M-26NOV081930-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26NOV081930-30:recon-tog:KXGOLD15M-26NOV081930-30:recon-tog": {
+  "at": "2026-11-09T00:16:37.437Z",
+  "ticker": "KXGOLD15M-26NOV081930-30",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26NOV081930-30:recon-rej:KXGOLD15M-26NOV081930-30:recon-rej": {
+  "at": "2026-11-09T00:17:02.129Z",
+  "ticker": "KXGOLD15M-26NOV081930-30",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-11-09T00:17:02.129Z",
+  "bookedAt": "2026-11-09T00:17:01.559Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.56,
+  "orderId": "01a1bdaa-5c48-70ea-b213-15c55ba1686f"
+ },
+ "KXGOLD15M-26NOV081945-45:recon-rej:KXGOLD15M-26NOV081945-45:recon-rej": {
+  "at": "2026-11-09T00:30:34.452Z",
+  "ticker": "KXGOLD15M-26NOV081945-45",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-11-09T00:30:34.452Z",
+  "bookedAt": "2026-11-09T00:30:33.915Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.54,
+  "orderId": "01a1bdb6-c410-711a-a160-95287d3cdba2"
+ },
+ "KXGOLD15M-26NOV081945-45:recon-tog:KXGOLD15M-26NOV081945-45:recon-tog": {
+  "at": "2026-11-09T00:30:34.458Z",
+  "ticker": "KXGOLD15M-26NOV081945-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV081945-45:recon-rej:KXBTC15M-26NOV081945-45:recon-rej": {
+  "at": "2026-11-09T00:32:17.366Z",
+  "ticker": "KXBTC15M-26NOV081945-45",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-11-09T00:32:17.366Z",
+  "bookedAt": "2026-11-09T00:32:16.721Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.44,
+  "orderId": "01a1bdb8-5668-77cc-8814-fd46529a914e"
+ },
+ "KXBTC15M-26NOV081945-45:recon-tog:KXBTC15M-26NOV081945-45:recon-tog": {
+  "at": "2026-11-09T00:32:17.371Z",
+  "ticker": "KXBTC15M-26NOV081945-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV082000-00:recon-tog:KXBTC15M-26NOV082000-00:recon-tog": {
+  "at": "2026-11-09T00:45:08.692Z",
+  "ticker": "KXBTC15M-26NOV082000-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26NOV082000-00:recon-tog:KXGOLD15M-26NOV082000-00:recon-tog": {
+  "at": "2026-11-09T00:45:20.547Z",
+  "ticker": "KXGOLD15M-26NOV082000-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV082000-00:recon-rej:KXBTC15M-26NOV082000-00:recon-rej": {
+  "at": "2026-11-09T00:46:05.492Z",
+  "ticker": "KXBTC15M-26NOV082000-00",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-11-09T00:46:05.492Z",
+  "bookedAt": "2026-11-09T00:45:36.466Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.43,
+  "orderId": "01a1bdc4-f8c8-7f22-b478-29a4c5f96282"
+ },
+ "KXGOLD15M-26NOV082000-00:recon-rej:KXGOLD15M-26NOV082000-00:recon-rej": {
+  "at": "2026-11-09T00:55:13.147Z",
+  "ticker": "KXGOLD15M-26NOV082000-00",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "break retry stopped: NOT HER COLOUR (fix951): \"Failed break above +2σ - rejected down\" - neither the 2m nor the 5m candle is red at 4098.48 (only a wick rejection may enter without her colour) - no entry.",
+  "firstTryAt": "2026-11-09T00:53:25.214Z",
+  "bookedAt": "2026-11-09T00:55:02.659Z",
+  "tries": 288,
+  "final": false,
+  "paid": 0.64,
+  "orderId": "01a1bdcd-5180-7898-b3a8-5a2625d69e05"
+ },
+ "KXGOLD15M-26NOV082015-15:recon-rej:KXGOLD15M-26NOV082015-15:recon-rej": {
+  "at": "2026-11-09T01:00:27.891Z",
+  "ticker": "KXGOLD15M-26NOV082015-15",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-11-09T01:00:27.891Z",
+  "bookedAt": "2026-11-09T01:00:27.346Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.55,
+  "orderId": "01a1bdd2-1ff8-7533-8a28-b4e9f60bc0b1"
+ },
+ "KXGOLD15M-26NOV082015-15:recon-tog:KXGOLD15M-26NOV082015-15:recon-tog": {
+  "at": "2026-11-09T01:00:27.896Z",
+  "ticker": "KXGOLD15M-26NOV082015-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV082015-15:recon-tog:KXBTC15M-26NOV082015-15:recon-tog": {
+  "at": "2026-11-09T01:05:07.761Z",
+  "ticker": "KXBTC15M-26NOV082015-15",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-11-09T01:05:07.761Z",
+  "bookedAt": "2026-11-09T01:05:05.882Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.27,
+  "orderId": "01a1bdd6-65b8-752a-ad51-1f04d1e17ae8"
+ },
+ "KXBTC15M-26NOV082015-15:recon-rej:KXBTC15M-26NOV082015-15:recon-rej": {
+  "at": "2026-11-09T01:05:13.660Z",
+  "ticker": "KXBTC15M-26NOV082015-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
  }
 }
