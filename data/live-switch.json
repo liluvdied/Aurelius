@@ -3,8 +3,8 @@
   "maxDollars": 1,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-09T18:38:37.751Z",
-  "note": "Love paused live completely (Nov 9 2026)",
+  "at": "2026-11-09T19:48:53.711Z",
+  "note": "Turned off from the desk",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
   ],
@@ -121,16 +121,17 @@
     "books": [
       "recon-tog",
       "recon-rej",
-      "recon-dly"
+      "recon-dly",
+      "lastmin"
     ],
     "dollars": 1,
-    "since": "2026-11-09T17:41:07.560Z",
+    "since": "2026-11-09T19:17:44.030Z",
     "cotcSince": "2026-10-04T01:25:26.486786Z",
     "trendSince": "2026-10-03T23:59:26.343880Z",
     "prevBooks": [
-      "brk-sess",
-      "twlive",
-      "piv15"
+      "recon-tog",
+      "recon-rej",
+      "recon-dly"
     ],
     "sole5Since": "2026-10-04T01:04:09.282659Z",
     "sole5vSince": "2026-10-04T02:00:09.833392Z",
@@ -195,7 +196,8 @@
     "twrev5RunSince": "2026-10-19T19:14:48.108Z",
     "brkSesspkSince": "2026-10-19T19:45:00Z",
     "minDollars": 10,
-    "minNote": "fix177 Oct 24 ~10:05 PM PT, Love: main book Kalshi entries never under $10 (floor under the multiple cuts)"
+    "minNote": "fix177 Oct 24 ~10:05 PM PT, Love: main book Kalshi entries never under $10 (floor under the multiple cuts)",
+    "lastminRunSince": "2026-11-09T19:55:57.809Z"
   },
   "tpOfMax": 90,
   "netBelow": [],
@@ -448,11 +450,11 @@
     {
       "name": "⏮ LAST LINEUP",
       "books": [
-        "brk-sess",
-        "twlive",
-        "piv15"
+        "recon-tog",
+        "recon-rej",
+        "recon-dly"
       ],
-      "savedAt": "2026-10-19T19:14:48.108Z"
+      "savedAt": "2026-11-09T19:55:57.809Z"
     },
     {
       "name": "🌙 MAIN LINEUP",
