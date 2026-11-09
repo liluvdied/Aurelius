@@ -32,11 +32,12 @@ export async function ethLiveTick831(now = Date.now(), liveIn?: Live, mkIn?: Mk)
     let rows: any[] = []; try { rows = JSON.parse(readFileSync(D("eth-book.json"), "utf8"))?.rows || []; } catch {}
     const s = st(); let dirty = false;
     for (const r of fresh831(rows, s.seen, now, c.maxAsk)) {
+      if (Object.values(s.pos).some((p) => p.ticker === r.ticker && Number(p.filled) > 0)) { s.seen[r.id] = now; dirty = true; continue; } // fix1017 one ticket per window: a window that filled is never bought again (fix1017 KEEP WATCHING, Love Nov 7 2026 9:21 PM PT: "they apply to literally every single thing traded on my accounts luv")
       s.seen[r.id] = now; dirty = true;
       try {
         const o = await live.addOnBuy600(r.ticker, r.side, c.dollars, c.maxAsk, "entry") /* fix953: an entry stays on her slider */;
         if (o?.ok && o.filled > 0) { s.pos[r.id] = { id: r.id, ticker: r.ticker, side: r.side, closeTime: r.closeTime, at: new Date(now).toISOString(), status: "open", addOn: false, halfSold: false, filled: o.filled, px: Number(o.px) || 0 } as any; /* fix955: her entry price, for the add-on's better multiple */ log({ id: r.id, action: "bought", side: r.side, label: r.label, filled: o.filled, px: o.px }); }
-        else log({ id: r.id, action: "skipped", side: r.side, label: r.label, why: String(o?.reason || "no fill") });
+        else { const K1017 = (G.__el831k ||= {}); K1017[r.id] = (K1017[r.id] || 0) + 1; if (Date.parse(String(r.closeTime)) - now >= 60000 && now - Date.parse(String(r.at)) <= 60000) delete s.seen[r.id]; if (K1017[r.id] === 1 || K1017[r.id] % 15 === 0) log({ id: r.id, action: "skipped", side: r.side, label: r.label, why: `${String(o?.reason || "no fill")} - knocking again (try ${K1017[r.id]})` }); } // fix1017 an ask over her 66c / no fill does not spend the window - she knocks again while the set up is fresh; only a fill spends it
       } catch (e: any) { log({ id: r.id, action: "error", why: String(e?.message || e).slice(0, 160) }); }
     }
     for (const p of Object.values(s.pos)) {

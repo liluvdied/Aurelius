@@ -31,7 +31,7 @@ export async function bnbLiveTick940(now = Date.now(), liveIn?: Live, mkIn?: Mk)
     const live: Live = liveIn || ((await import("./kalshi-live.server")) as any), mk: Mk = mkIn || ((await import("./kalshi")) as any);
     let rows: any[] = []; try { rows = (JSON.parse(readFileSync(D("mom-coins-833.json"), "utf8"))?.rows || []).filter((x: any) => String(x?.asset) === "bnb").map((x: any) => ({ ...x, label: x.label || x.setup })); } catch {}
     const s = st(); let dirty = false;
-    for (const r of fresh831(rows, s.seen, now, c.maxAsk)) {
+    for (const r of fresh831(rows, s.seen, now, 1 /* fix1017: the paper's own over-66c look no longer spends the live window - the live ask is judged at the wire (addOnBuy600: 66c cap) and fix890 knocks again */)) {
       if (Object.values(s.pos).some((p) => p.ticker === r.ticker && Number(p.filled) > 0)) { s.seen[r.id] = now; dirty = true; log({ id: r.id, action: "skipped", side: r.side, label: r.label, why: "ONE FILLED TRADE A WINDOW (fix871): this window already filled" }); continue; } // fix871: only a fill uses the window
       s.seen[r.id] = now; dirty = true;
       try {

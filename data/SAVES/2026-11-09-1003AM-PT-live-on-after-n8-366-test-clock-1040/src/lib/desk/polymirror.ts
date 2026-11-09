@@ -88,11 +88,13 @@ export async function polyMirrorTick(assets: any) {
     }
 
     // ENTRIES: the first mirrored-book paper trade in the open BTC window.
-    if (cfg?.on && m?.ticker && m.closeTime && Number(a?.secondsLeft) > 60 && !Object.values(reg).some((e) => e.ticker === m.ticker)) {
+    const T1017 = ((globalThis as any).__pmir1017 ||= {}) as Record<string, number>; // fix1017 KEEP WATCHING (fix1017 KEEP WATCHING, Love Nov 7 2026 9:21 PM PT: "they apply to literally every single thing traded on my accounts luv"): a missed look (ask over her cap / no fill) does not spend the window - tried again at most every 5 s; a fill, a skip or an error at the wire still does
+    if (cfg?.on && m?.ticker && m.closeTime && Number(a?.secondsLeft) > 60 && !Object.values(reg).some((e) => e.ticker === m.ticker && e.status !== "missed") && Date.now() - Number(T1017[m.ticker] || 0) >= 5000) {
       const row = rows
         .filter((r) => books.includes(r.book) && r.asset === "btc" && !r.dnaMode && !(r as any).stale && r.result === "open" && r.ticker === m.ticker && (!since || r.at >= since))
         .sort((x, y) => (x.at < y.at ? -1 : 1))[0];
       if (row) {
+        T1017[m.ticker] = Date.now(); const prev1017 = reg[row.id]; let err1017 = false; // fix1017
         const base: Mirror = { id: row.id, book: row.book, ticker: row.ticker, slug: "", side: row.side as "up" | "down", contracts: 0, cost: 0, at: new Date().toISOString(), status: "pending" };
         reg[row.id] = base;
         changed = true;
@@ -104,15 +106,15 @@ export async function polyMirrorTick(assets: any) {
           log({ status: "skipped", id: row.id, why: reg[row.id].why });
         } else {
           const fill = await pm.takeSide(row.side as "up" | "down", m.closeTime, dollars, maxAsk, 0.05, 0.02, ":mirror").catch((err: any) => {
-            log({ status: "error", id: row.id, why: String(err?.message || err).slice(0, 160) });
+            log({ status: "error", id: row.id, why: String(err?.message || err).slice(0, 160) }); err1017 = true; // fix1017: an error at the wire spends the window (the order may have gone out)
             return null;
           });
           if (fill) {
             reg[row.id] = { ...base, slug: fill.slug, contracts: fill.filled, cost: fill.price, status: "open" };
             log({ status: "filled", id: row.id, book: row.book, setup: row.setup, side: row.side, slug: fill.slug, contracts: fill.filled, price: fill.price, paperAsk: row.ask });
           } else {
-            reg[row.id] = { ...base, status: "missed", why: pm.takeSideWhy() };
-            log({ status: "missed", id: row.id, side: row.side, why: reg[row.id].why });
+            reg[row.id] = { ...base, status: err1017 ? "skipped" : "missed", why: err1017 ? "error at the wire - the window is spent (fix1017)" : pm.takeSideWhy() };
+            if (err1017 || prev1017?.status !== "missed") log({ status: reg[row.id].status, id: row.id, side: row.side, why: reg[row.id].why }); // fix1017 a miss is logged once a window
           }
         }
       }

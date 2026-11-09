@@ -1,9 +1,9 @@
 {
- "at": "2026-11-08T01:41:40.374866+00:00",
+ "at": "2026-11-09T17:40:37.529972+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "5a83b6c0ef759c5f"
+  "recon.ts": "8c38fabb3183714a"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -796,6 +796,24 @@
    "by": "Love",
    "quote": "Love Nov 7 2026 ~5:17 PM PT: \"she entered properly on btc just now hun. but she entered in right above a bollinger. we need to make it a \\$25 wall in front of those\" + 5:19 PM: \"melted immediately. and yes the middle counts as a wall and as an entry. if it starts losing we will take it off but so far ignoring the middle has been very bad\" (R567, fix962)",
    "recon.ts": "5a83b6c0ef759c5f"
+  },
+  {
+   "at": "2026-11-09T17:40:16.532564+00:00",
+   "by": "Love",
+   "quote": "Love Nov 8 2026 12:58 AM PT: \"yes thats one of the bugs we need to fix hun, and its not the candles open she needs to push past. its the band itself\" + 12:59 AM: \"can we do that bb?\" + 6:51 AM PT: \"yeah we need to lower her push down to $5 again hun by the time she gets to the push requirement shes already at the red\" + 6:53 AM PT: \"then she doesnt have a valid reason for not entering at the push of $5 off of pink hun . shes still doing that. please reinforce that, and make sure she gets in AT pink, not halfway after the move has already taken place\" + 6:53 AM PT: \"omggg we neeed to make it from the band. i asked the lasst chat to do that earlier , not sure why she said she did and then didnt but\" + 7:17 AM PT: \"lowered push distances back to $5 for btc until this afternoon, then we can put her at $25 eth 25c eth and 0.00025 for xrp pls\" (R587, fix1030)",
+   "recon.ts": "1794032b9435b289"
+  },
+  {
+   "at": "2026-11-09T17:40:32.467595+00:00",
+   "by": "Love",
+   "quote": "Love Nov 8 2026 5:12 PM PT: \"you were asking me if she was to ONLY GET IN IF THE CANDLE FLIPPED and i said no because it would never take a trade if candle was born red pushing off of a band\" + Love Nov 8 2026 1:37 AM PT: \"candle is our color , she gets in / if a flip occurs or not i don't care / candle our color + push = get in / i just don't understand the question and what the difference is in the options / are you saying she will ONLY enter on candles that flip ???? if so NO\" + 12:19 AM PT: \"okay whatever opening color candle lock you instituted that is now blocking trades please remove it and do not implement any rules that i didn't ask for anymore pls\" + 12:22 AM PT: \"color of the candle still needs to be the same as our trade, aside from the wick rejection exemption. but the 'opening color' of the window or the candle has zero bearing on the trigger of the trade itself / candle flips green - push distance met ==== get in\" + 1:39 AM PT: \"i don't understand why the 5m opening candle color lock got in there , how did that happen?\" + 7:17 AM PT: \"the open color block we need to get that gone so she can take trades again\" + her rules R559 (Nov 7 3:19 PM PT: \"the candle ALWAYS NEEDS TO BE THE SAME COLOR. EVERY TIME. NO EXCEPTIONS. PRICE ON THE SAME SIDE OF THE BAND AT ENTRY. NO EXCEPTIONS. wick rejection is the ONLY instance she may enter without the candle our color.\") + R340 (Nov 4 5:25 PM PT: \"make it so its a push from the band, not past its open. a 2m green pushing off the band is good, no waiting for the 5m . not past the candles open.\") (R594, fix1034)",
+   "recon.ts": "e01f4ec5128699d2"
+  },
+  {
+   "at": "2026-11-09T17:40:37.529972+00:00",
+   "by": "Love",
+   "quote": "Love Nov 8 2026 2:54 PM PT: \"she said it's still operating on the candle open. so if the candle opening price is $100 away , it could be green that whole time and not enter until after it crosses the open by $50. it's a huge flaw hun that needs to be addressed / set it to distance from the band like we discussed\" + \"the high and low of that candle not the open\" + 7:36 AM PT: \"the color check shouldn't be using the open as a barometer hun it needs to be the high or low of the candle. not the open\" + Love Nov 8 2026 5:28 PM PT: \"no no book does candle open period hun no no no 😹💘 / delayed included we don't do that at this desk 👇😹💓 / and no set all paper tickets to $20 always , i noticed some are at $1 / $20 for all of them pls / and oh my god no that's a huge move absolutely not lol same push distances bb 💓\" (R596, fix1038)",
+   "recon.ts": "8c38fabb3183714a"
   }
  ],
  "R": "R266",

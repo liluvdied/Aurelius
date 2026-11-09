@@ -33,6 +33,7 @@ export const BOOKS1002: Book1002[] = [
   { key: "btc5m974", name: "BTC · 5M", venue: "POLY", file: "btc5m-974.jsonl", kind: "p5m", status: () => onLive(cfgOf("btc5m-974-cfg.json")) },
   { key: "eth5m975", name: "ETH · 5M", venue: "POLY", file: "eth5m-975.jsonl", kind: "p5m", status: () => onLive(cfgOf("eth5m-975-cfg.json")) },
   { key: "old5m", name: "OLD 5M LANE", venue: "POLY", file: "five-book.json", kind: "five", status: (sw) => (sw?.polyTwin?.on === true && sw?.polyTwin?.rej5m?.on === true ? "LIVE" : "OFF") },
+  { key: "perplexities1037", name: "PERPLEXITIES", venue: "POLY", file: "perplexities.jsonl", kind: "p5m", status: () => "PAPER", note: "Perplexity's XRP 5m twin (fix961 without rule C) - paper, never an order (fix1037)" },
   { key: "push983", name: "PUSH / WICK SHADOW", venue: "KALSHI", file: "push-shadow-983.jsonl", kind: "shadow", status: () => "PAPER", note: "a shadow test - resolved tickets, no money" },
 ];
 

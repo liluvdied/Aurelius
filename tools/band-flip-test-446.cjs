@@ -10,11 +10,11 @@ const js = ts.transpileModule("function F(asset, spot, seenL, f, k, fix33, falli
 const F = new Function(js + "; return F;")();
 const run = (label, side, falling, rising, flip, bandFlip = true, two = false) => F("gold", 4041, [{ side, label }], 0.4, 0.33, false, falling, rising, Infinity, -Infinity, bandFlip, () => flip, () => two).length === 1; // fix653: two = her live 2m colour
 let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log("BAND FLIP TEST: FAIL - " + m); } };
-t(!run("Rejected up off -1σ", "up", true, false, true), "Love Nov 4: a band-rejection long on a red falling 5m went through on a 2-5m green flip (the flip no longer overrides it)");
+t(run("Rejected up off -1σ", "up", true, false, true), "fix1034: a band-rejection long under the 5m open was dropped by the read (the open has no bearing - her colour + push is judged at the door)");
 t(run("Rejected up off -1σ", "up", true, false, true, true, true), "Love Nov 4 5:25 PM (fix653): a band-rejection long with her flip AND her 2m green pushing off the band still waited for the 5m"); // fix653
-t(!run("Rejected up off -1σ", "up", true, false, false), "a band-rejection long on a red 5m with NO 2-5m flip went through");
-t(!run("Break above 5m PP", "up", true, false, true), "a non-rejection long went through on a red 5m (a 2m flip elsewhere must not bypass HER CANDLE)");
+t(run("Rejected up off -1σ", "up", true, false, false), "fix1034: a candle born her colour counts like a flip (Love 5:12 PM) - the read kept it only on a flip (Love 1:37 AM: \"if a flip occurs or not i don't care\")");
+t(run("Break above 5m PP", "up", true, false, true), "fix1034: a break long under the 5m open was dropped by the read");
 t(run("Rejected down off Red zone", "down", false, true, true), "mirror: a band-rejection short on a green 5m with a real 2-5m red flip was thrown out");
 t(/true \/\* fix446: main \*\//.test(R) && (R.match(/true \/\* fix446: rejection \*\//g) || []).length === 3, "fix446 is not wired to main + rejection only");
-console.log(ok ? "BAND FLIP TEST ✓ - a 2-5m flip red->green / green->red at a band rejection is her entry (main + rejection); other reads still follow the 5m; no flip = held." : "BAND FLIP TEST: FAIL");
+console.log(ok ? "BAND FLIP TEST ✓ - fix1034: the read no longer drops a call on the 5m vs its open, a flip or a candle born her colour (her 5:12 PM words); her colour + push is judged at the door and the send." : "BAND FLIP TEST: FAIL");
 process.exit(ok ? 0 : 1);

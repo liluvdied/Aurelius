@@ -638,22 +638,23 @@ export async function buySlug(
   dollars: number,
   maxAsk: number,
   target: number | null,
+  claimTag = "", // fix1029: an add-on claims its own key (slug + tag) so the entry's one-buy-per-window claim stays as is; "" = the entry, unchanged
 ): Promise<HedgeFill | null> {
   slug = await resolve5m994(slug); // fix994: an event slug -> its market
   if (hourSlugs().includes(slug)) return null;
   const cash = await polymarketCash();
   if (cash == null || cash < dollars) return null;
-  if (!claimWindow(slug)) return null;
+  if (!claimWindow(slug + claimTag)) return null;
   try {
     const quoted = await askFor(slug, side);
     if (quoted == null || quoted < 0.08 || quoted > maxAsk) {
-      releaseWindow(slug);
+      releaseWindow(slug + claimTag);
       return null;
     }
-    const price = Math.min(0.9, Math.round((quoted + 0.02) * 100) / 100);
+    const price = claimTag ? Math.min(Math.floor(maxAsk * 100 + 1e-9) / 100, Math.round((quoted + 0.02) * 100) / 100) /* fix1029 an add-on never pays over its cap (her rung, strictly better than her entry) */ : Math.min(0.9, Math.floor(maxAsk * 100 + 1e-9) / 100, Math.round((quoted + 0.02) * 100) / 100) /* fix1039 (her rule R266 (Oct 30 2026, her kept card c37): "THE 1.5x FLOOR: no order under 1.5x (66c cap)" - today 12:55:57 PM PT her XRP lane bought at 67c (1.49x): the ask was checked at 66c, then the order went out at the ask + 2c): the order price never goes over the caller's cap (her 66c) - the +2c slip stops at it */;
     const quantity = Math.floor((dollars / price) * 100) / 100;
     if (!(quantity >= 0.01) || quantity * price > dollars + 0.001) {
-      releaseWindow(slug);
+      releaseWindow(slug + claimTag);
       return null;
     }
     const res = await poly("POST", "/v1/orders", "", {
@@ -667,7 +668,7 @@ export async function buySlug(
       manualOrderIndicator: "MANUAL_ORDER_INDICATOR_AUTOMATED",
     });
     if (!res.ok) {
-      releaseWindow(slug);
+      releaseWindow(slug + claimTag);
       return null;
     }
     const data = (await res.json()) as {
@@ -684,13 +685,13 @@ export async function buySlug(
     const avg = Number.parseFloat(order?.avgPx?.value ?? "");
     const paid = avg > 0 && avg < 1 ? sidePx(side, avg) : price;
     if (!orderId || !(filled > 0)) {
-      releaseWindow(slug);
+      releaseWindow(slug + claimTag);
       return null;
     }
     rememberHour(slug);
     return { orderId, filled, price: paid, slug, target };
   } catch (err) {
-    releaseWindow(slug);
+    releaseWindow(slug + claimTag);
     throw err;
   }
 }

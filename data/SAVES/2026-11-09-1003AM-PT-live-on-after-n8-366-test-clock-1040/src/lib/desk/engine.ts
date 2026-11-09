@@ -2354,7 +2354,12 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
         const aoOff = aoTwin ? null : offHourMain(id); // fix142: her off hours add $3 at 2.8x+
         const aoMax = aoTwin ? (Number(aoTw?.maxAsk) > 0 ? Number(aoTw.maxAsk) : 0.222) : aoOff ? aoOff.aoMax : Number(ao?.maxAsk) > 0 ? Number(ao!.maxAsk) : 0.55;
         const aoLeft = (Date.parse(aoClose) - Date.now()) / 60000;
-        if (ao?.on && !aoOne717 /* fix717 */ && (!aoTwin || aoTw?.on === true) && (id === "btc" || id === "gold") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {
+        // fix1029 ADD-ONS FROM HER BOXES AT HER RUNG (Love Sat Nov 7 2026 9:10 PM PT: "hun THE ADD ON BUG NEEDS TO BE FIXED. IT IS NOT GOING ON AT THE MULTIPLE I SAID." + 9:10 PM: "it CANNNOTTT ENTER AT THE SAME PRICE AS THE INITIAL ENTRY" + earlier: "pls get her to ONLY do the add ons AT the specified multiples , NOT before" + Nov 8 2026 12:49 AM PT, her card pick: "Automatic from my boxes"): her entry price + time are kept the first time the desk sees the position; every automatic add-on below (not the delayed twin) needs rung1029 - its box multiple HIGHER than her entry's multiple, the ASK at the rung, 5 s after the entry, priced in whole cents STRICTLY better than her entry. Box $ and multiples are read from her boxes as before (applyAddon664 / addOn3; box 1 has no multiple box - its 2.8x is live-switch addOn.maxAsk).
+        const E1029: Record<string, { px: number; at: number; sign: number }> = g.__ent1029 || (g.__ent1029 = {}); if (!E1029[row.ticker] || E1029[row.ticker].sign !== Math.sign(row.pos)) E1029[row.ticker] = { px: entryPx, at: Date.now(), sign: Math.sign(row.pos) };
+        const e1029 = E1029[row.ticker], ask1029 = mySide === "up" ? yesAsk : noAsk; // fix1029
+        const { rung1029 } = await import("./xrp5m961"); // fix1029 her rung rule lives with the XRP lane (pure); the engine already loads that module
+        const r1g1029 = rung1029(e1029.px, aoMax > 0 ? 1 / aoMax : 0, ask1029, e1029.at, Date.now()); // fix1029 add-on 1 (box 1)
+        if (ao?.on && !aoOne717 /* fix717 */ && (!aoTwin || aoTw?.on === true) && (id === "btc" || id === "gold") && botOwnsPosition(row) && !tpSell && (ao.noLimit ? true : !addReg[row.ticker]) && !(Date.now() - (addTry[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= Math.max(aoMax, 0.294) && aoLeft >= (Number(ao.minLeft) || 5) && (aoTwin || r1g1029.go) /* fix1029 */ && !aoBestie775 /* fix775 */) {
           // $3 TAP REJECTION (Oct 17 ~10:57 PM PT, Love: "let's make it a $3 tap rejection"): bandlock.addOnTapNow replaces the old snap here.
           let why: string | null = null;
           try { const blm = await import("./bandlock"); why = blm.addOnTouchNow(id) || null; /* fix109 (Oct 22 ~7:48 PM PT, Love: "pls have her do them at band taps / no rejection necessary pls"): main-book add-on on a band touch too (walls still judge it); was aoTwin ? touch : addOnTapNow */ void mySide; } catch { why = null; }
@@ -2386,7 +2391,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
             void (async () => {
               let r: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
               try {
-                r = await (aoTwin ? live.addOnBuy : live.addOnBuy600)(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoOff ? (Number((globalThis as any).__addon664?.s?.addOn1?.dollars) > 0 ? Math.min(5, Number(ao.dollars) || 5) /* fix753: her Add-on 1 box wins in her off / rejection hours too */ : aoOff.aoDollars) : Number(ao.dollars) || 5, aoCap, true); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: "just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those"): walls skip add-ons like the twin's (was free only for the twin)
+                r = await (aoTwin ? live.addOnBuy : live.addOnBuy600)(row.ticker, mySide, aoTwin ? (Number(aoTw?.dollars) || 3) : aoOff ? (Number((globalThis as any).__addon664?.s?.addOn1?.dollars) > 0 ? Math.min(5, Number(ao.dollars) || 5) /* fix753: her Add-on 1 box wins in her off / rejection hours too */ : aoOff.aoDollars) : Number(ao.dollars) || 5, aoTwin ? aoCap : Math.min(aoCap, r1g1029.cap) /* fix1029 */, true, aoTwin ? 0 : e1029.px /* fix1029 */); // FREE ADD-ON BOTH BOOKS (fix110, Oct 22 ~7:53 PM PT, Love: "just the next band it comes near, not a valid rejection or candle color necessary bb, just first interaction - 3.8x + ... just a flat $2 on those"): walls skip add-ons like the twin's (was free only for the twin)
               } catch (err) {
                 r = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "add-on failed" };
               }
@@ -2404,11 +2409,12 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           const a38 = (ao as any)?.at38; const add38: Record<string, number> = g.__aureliusAdd38 || (g.__aureliusAdd38 = (() => { const s: Record<string, number> = {}; try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.add38 && x.ticker) s[x.ticker] = Date.parse(x.at) || Date.now(); } catch {} } } catch {} return s; })());
           const try38: Record<string, number> = g.__aureliusTry38 || (g.__aureliusTry38 = {});
           const cap38 = Number(a38?.maxAsk) > 0 && Number(a38.maxAsk) < 1 ? Number(a38.maxAsk) : 0.263;
-          if (a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === "btc" || id === "gold") && addReg[row.ticker] && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {
+          const r38g1029 = rung1029(e1029.px, cap38 > 0 ? 1 / cap38 : 0, ask1029, e1029.at, Date.now()); // fix1029 add-on 2 (box 2)
+          if (a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === "btc" || id === "gold") && (addReg[row.ticker] || r1g1029.passed /* fix1029: an add-on 1 rung her entry already passed does not hold add-on 2 back */) && r38g1029.go /* fix1029 */ && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {
             try38[row.ticker] = Date.now();
             void (async () => {
               let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
-              try { r3 = await live.addOnBuy600(row.ticker, mySide, Number(a38.dollars) || 3, cap38, true); } catch (err) { r3 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "3.8x add-on failed" }; }
+              try { r3 = await live.addOnBuy600(row.ticker, mySide, Number(a38.dollars) || 3, Math.min(cap38, r38g1029.cap) /* fix1029 */, true, e1029.px); } catch (err) { r3 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "3.8x add-on failed" }; }
               if (r3?.ok) add38[row.ticker] = Date.now();
               try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: "3.8x add-on (Love Nov 4)", bid, add38: true, ...(r3 || {}) }) + "\n"); } catch {}
             })();
@@ -2423,11 +2429,12 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           const add3: Record<string, number> = g.__aureliusAdd3 || (g.__aureliusAdd3 = (() => { const s: Record<string, number> = {}; try { for (const ln of readFileSync(join(process.cwd(), "data", "addon-log.jsonl"), "utf8").split("\n").slice(-600)) { try { const x = JSON.parse(ln); if (x && x.ok && x.add3 && x.ticker) s[x.ticker] = Date.parse(x.at) || Date.now(); } catch {} } } catch {} return s; })());
           const try3: Record<string, number> = g.__aureliusTry3 || (g.__aureliusTry3 = {});
           const cap3 = a3m >= 1.5 ? Math.round((1 / a3m) * 10000) / 10000 : 0;
-          if (a3on && a3d >= 1 && cap3 > 0 && !aoTwin && !aoOne717 && (id === "btc" || id === "gold") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5) && !aoBestie775 /* fix775 */) {
+          const r3g1029 = rung1029(e1029.px, a3m, ask1029, e1029.at, Date.now()); // fix1029 add-on 3 (box 3)
+          if (a3on && a3d >= 1 && cap3 > 0 && r3g1029.go /* fix1029 */ && !aoTwin && !aoOne717 && (id === "btc" || id === "gold") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5) && !aoBestie775 /* fix775 */) {
             try3[row.ticker] = Date.now();
             void (async () => {
               let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
-              try { r3 = await live.addOnBuy600(row.ticker, mySide, a3d, cap3, true); } catch (err) { r3 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "add-on 3 failed" }; }
+              try { r3 = await live.addOnBuy600(row.ticker, mySide, a3d, Math.min(cap3, r3g1029.cap) /* fix1029 */, true, e1029.px); } catch (err) { r3 = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "add-on 3 failed" }; }
               if (r3?.ok) add3[row.ticker] = Date.now();
               try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: `Add-on 3 at ${a3m}x (Love Nov 5)`, bid, add3: true, ...(r3 || {}) }) + "\n"); } catch {}
             })();
@@ -3876,6 +3883,10 @@ async function tick() {
     import("./ethbook").then((m) => m.ethTick682()).catch(() => {});
     // fix961 XRP 5M ON POLYMARKET - MAIN'S NOV 3 MODEL (Love Nov 7 2026 ~5:13 PM PT: "for now let's get the xrp 5M book set up / just put it on the nov 3 save point and we'll see how she does on the first couple windows" + "main" + "it's on poly" + "no , live pls"): her own XRP lane (xrp5m961.ts), live at $1 through the desk's Polymarket buy (umpire, LIVE, cap, 1.5x floor, cash, one per window).
     import("./xrp5m961").then((m) => m.xrpTick961()).catch(() => {});
+    // fix1037 PERPLEXITIES - PAPER (her ask, Nov 8 2026 2:46 PM PT): Perplexity's XRP 5m twin as a paper book - never an order
+    import("./perplexities1037").then((m) => { void m.perpTick1037(); void m.perpSettle1037(); }).catch(() => {});
+    // fix983 PUSH SHADOW TEST - PAPER (Love Nov 7 2026 6:29 PM PT: "let's keep the numbers we set in place for now , can you test all of these numbers over night (scaled for the weekends) and the first day or two of the week? we should know rather quickly which one is the YEUP 🎯🎯🎯"): every candidate push (her live numbers, the sliding scale, % of W, the fixed-$ ladder) scored side by side on her real turns and real Kalshi asks, BTC / gold / ETH / BNB / XRP / SOL. Never sends an order; her live numbers unchanged.
+    import("./pushshadow983").then((m) => m.pushShadowTick983()).catch(() => {});
     // fix832 SOL + DOGE REJECTIONS ONLY · NO PINK - PAPER (her card "Paper books on the desk"): copies of the ETH paper book. PAPER ONLY.
     import("./solbook832").then((m) => m.solTick832()).catch(() => {});
     import("./dogebook832").then((m) => m.dogeTick832()).catch(() => {});

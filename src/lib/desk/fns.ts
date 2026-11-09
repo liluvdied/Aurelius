@@ -2363,6 +2363,8 @@ export const getSetupScores708 = createServerFn({ method: "GET" }).handler(async
   try { const age = Date.now() - statSync(p).mtimeMs; if (age > 600000) throw new Error("old"); } catch { try { const { spawn } = await import("node:child_process"); spawn("nice", ["-n", "19", "python3", "tools/setup-scores-708.py"], { cwd: process.cwd(), detached: true, stdio: "ignore" }).unref(); } catch {} }
   try { return JSON.parse(readFileSync(p, "utf8")); } catch { return null; }
 });
+// fix983 PUSH SHADOW TEST (Love Nov 7 2026 6:29 PM PT: "let's keep the numbers we set in place for now , can you test all of these numbers over night (scaled for the weekends) and the first day or two of the week? we should know rather quickly which one is the YEUP 🎯🎯🎯"): display only - every candidate push per asset, from data/push-shadow-983.json (paper).
+export const getPushShadow983 = createServerFn({ method: "GET" }).handler(async () => { try { const m = await import("./pushshadow983"); return m.pushShadowSummary983(); } catch { return null; } });
 // fix825 STATS · EVERY FACTOR (Love Nov 6 2026 ~10:43 AM PT: "every independent factor ... we simply cut the ones that don't pay"). Read only: serves data/factor-scores-825.json and,
 // when it is older than 10 minutes, rebuilds it in the background (tools/factor-scores-825.py, niced, one run at a time).
 export const getFactorScores825 = createServerFn({ method: "GET" }).handler(async () => {
