@@ -3685,15 +3685,15 @@
   "orderId": null
  },
  "KXGOLD15M-26NOV091315-15:recon-rej:KXGOLD15M-26NOV091315-15:recon-rej": {
-  "at": "2026-11-09T18:09:56.438Z",
+  "at": "2026-11-09T18:13:14.253Z",
   "ticker": "KXGOLD15M-26NOV091315-15",
   "side": "down",
   "status": "blocked",
-  "reason": "NOT ON HER SIDE (fix951): \"Failed break above 5m PP - rejected down\" is a short off 5m PP (4103.66) but price 4104.84 is not below it - no entry.",
+  "reason": "NOT ON HER SIDE (fix951): \"Failed break above 5m PP - rejected down\" is a short off 5m PP (4103.83) but price 4104.52 is not below it - no entry.",
   "firstReason": "Blocked by the band lock: NOT HER COLOUR (fix951): \"Rejected down off 5m PP\" - neither the 2m nor the 5m candle is red at 4103.13 (only a wick rejection may enter without her colour) - no entry.",
   "firstTryAt": "2026-11-09T18:00:23.996Z",
   "bookedAt": "2026-11-09T18:06:14.374Z",
-  "tries": 1507,
+  "tries": 2126,
   "final": false,
   "paid": null,
   "orderId": null
