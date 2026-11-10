@@ -452,13 +452,30 @@ export function freshSameSide463(lane: string, priorSide: string, priorLabel: st
 // "NO LONGS IN TOP 33% . NO SHORTS IN THE BOTTOM 33%"): main + rejection - her read never calls a long in the top 33% of the session-band channel (the unbroken session band above her),
 // nor a short in the bottom 33% (the one below). The walls still check at the door. 12:31 PM gold: long read at 88% up the 4004.95 -> -1σ 4018.29 channel - never her call.
 export const MARGIN648 = 0.03; // fix648 (Love Nov 4 2026 3:42 PM PT: "make it a 3% margin of error both sides pls" (after a 3:15 PM BTC short got in at 34% of a 33% thirds line)): every thirds share (33% / 20% / her gold sliding share) refuses 3% of the channel early, both sides - so nothing gets in by 1%
+// fix1050 HER THIRDS, SESSION BAND TO SESSION BAND AS HER CHART DRAWS THEM (Love Nov 9 2026 8:16 PM PT: "session band to session band. is how she calculates thirds. NO OTHER BANDS ARE IN THAT CALCULATION. EXAMPLE = SITTING AT A BAND / PRICE BREAKS THRU / FALLS = TOP THIRD"):
+// (1) her carried session bands (the last session's VWAP and bands that stay on her chart until the new ones open up - her fix617 rule, until $180 BTC / $5 gold) are session bands too;
+// (2) price sitting at a session band (within 10% of her session band width - her wick tolerance, Nov 7 "yes 10%") and leaving it: that band is the edge it is leaving - a short at a band is the TOP third of the channel under it, a long at a band the BOTTOM third of the channel over it.
+export function carried1050(asset: string): { name: string; price: number }[] {
+  const c = (globalThis as any).__sessCarry?.[asset], p = c?.prev, v = Number(p?.v) || 0, sd = Number(p?.sd) || 0;
+  if (!(v > 0 && sd > 0) || !(Number(c?.cur?.sd) < (asset === "btc" ? 180 : 5))) return [];
+  return [{ name: "carried mid", price: v }, ...[1, 2, 3].flatMap((s) => [{ name: `carried +${s}`, price: v + s * sd }, { name: `carried -${s}`, price: v - s * sd }])];
+}
+export function at1050(L: { name: string; price: number }[], spot: number): number {
+  const vw = L.find((l) => String(l.name) === "session VWAP"), u1 = L.find((l) => String(l.name) === "+1σ");
+  const sd = vw && u1 ? Math.abs(Number(u1.price) - Number(vw.price)) : 0;
+  return sd > 0 ? 0.1 * sd : spot >= 20000 ? 5 : 0.25;
+}
 export function thirdsRead463(L: { name: string; price: number }[], spot: number, side: string): boolean {
   if (!(spot > 0) || !(side === "up" || side === "down")) return false;
   if ((globalThis as any).__sessCarried?.[spot >= 20000 ? "btc" : "gold"] === true) return false; // fix612 + fix618: while carried, one blue line has no thirds
   const S = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name)));
-  const a = S.filter((l) => l.price > spot).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < spot).sort((x, y) => y.price - x.price)[0];
+  S.push(...(typeof carried1050 === "function" ? carried1050(spot >= 20000 ? "btc" : "gold") : [])); // fix1050 her carried session bands are session bands too
+  let a = S.filter((l) => l.price > spot).sort((x, y) => x.price - y.price)[0], b = S.filter((l) => l.price < spot).sort((x, y) => y.price - x.price)[0];
   if (!a || !b || !(a.price > b.price)) return false;
-  const f = (spot - b.price) / (a.price - b.price), k483 = a.price - b.price > 1000 ? 0.2 : 0.33; // fix483 (Love Oct 29 2026 her list, c4 marked Right with her note: "btc over 1000 - 20%" + 6:41 PM: "WVERYTHING I ANSERED. NEEDS. TO. BE. IN."): only BTC channels reach $1,000
+  { const t = typeof at1050 === "function" ? at1050(L, spot) : 0; // fix1050 SITTING AT A BAND / PRICE BREAKS THRU / FALLS = TOP THIRD (her 8:16 PM words): price at the band = that band is the edge it is leaving
+    if (side === "down" && spot - b.price <= t) { const nb = S.filter((l) => l.price < b.price).sort((x, y) => y.price - x.price)[0]; if (nb) { a = b; b = nb; } }
+    else if (side === "up" && a.price - spot <= t) { const na = S.filter((l) => l.price > a.price).sort((x, y) => x.price - y.price)[0]; if (na) { b = a; a = na; } } }
+  const f = Math.min(1, Math.max(0, (spot - b.price) / (a.price - b.price))), k483 = a.price - b.price > 1000 ? 0.2 : 0.33; // fix483 (Love Oct 29 2026 her list, c4 marked Right with her note: "btc over 1000 - 20%" + 6:41 PM: "WVERYTHING I ANSERED. NEEDS. TO. BE. IN."): only BTC channels reach $1,000
   const k485 = spot < 20000 ? (a.price - b.price > 25 ? 0.15 : a.price - b.price >= 10 ? 0.2 : 0.33) : k483; // fix485 (Love Oct 29 2026 7:20 PM PT: "gold has a sliding scale love i already answered it" (her list, c4 marked Right: gold 33% under $10, 20% on $10-25 channels, 15% over $25; BTC 33% up to $1,000, 20% over - her note "btc over 1000 - 20%"))
   const k487 = spot >= 20000 && a.price - b.price > 500 ? 0.2 : k485; // fix487 (Love Oct 29 2026 7:49 PM PT: "ITS 20% AT THIS BAND WIDTH" (a $963 BTC channel; her list c4 marked Right: BTC 20% over $500 - her note "btc over 1000" = the full band, both sides))
   return side === "up" ? f >= 1 - k487 - MARGIN648 : f <= k487 + MARGIN648; // fix648: her thirds refuse 3% early, both sides
