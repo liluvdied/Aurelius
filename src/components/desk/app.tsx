@@ -31,7 +31,8 @@ import { RsiBooks672 } from "@/components/desk/rsi-books"; // fix672
 import { RungStats680 } from "@/components/desk/stats-rungs"; // fix680
 import { SetupScores708 } from "@/components/desk/setup-scores"; // fix708
 import { FactorScores825 } from "@/components/desk/factor-scores"; // fix825
-import { SetupBoard773 } from "@/components/desk/setup-board"; // fix773 SETUP SCOREBOARD (display only)
+import { SetupBoard773 } from "@/components/desk/setup-board";
+import { LiveWire1044 } from "@/components/desk/live-wire"; // fix1044 LIVE WIRE + WTF BOOK (display + her WTF tap only) // fix773 SETUP SCOREBOARD (display only)
 import { Skips697 } from "@/components/desk/skips"; // fix697
 import { EthBook682 } from "@/components/desk/eth-book"; // fix682
 import { Og1012Card } from "@/components/desk/og-1012"; // fix686
@@ -986,7 +987,7 @@ function ModeSwitch({
 }
 
 export function DeskApp() {
-  const [bookTab, setBookTab] = useState<"mode" | "shift" | "paper" | "prime" | "lead" | "open" | "watch" | "lean" | "fuel" | "symbols" | "mirror" | "markets" | "kalshi" | "poly" | "cash" | "stats" | "scale" | "hedge" | "log" | "audit" | "look" | "outside" | "notes" | "pnl" | "day" | "alerts" | "sitrep" | "books" | "traj" | "scanner" | "positions" | "scope">("kalshi");
+  const [bookTab, setBookTab] = useState<"mode" | "wire" | "shift" | "paper" | "prime" | "lead" | "open" | "watch" | "lean" | "fuel" | "symbols" | "mirror" | "markets" | "kalshi" | "poly" | "cash" | "stats" | "scale" | "hedge" | "log" | "audit" | "look" | "outside" | "notes" | "pnl" | "day" | "alerts" | "sitrep" | "books" | "traj" | "scanner" | "positions" | "scope">("kalshi");
   const [span, setSpan] = useState<"12" | "24" | "all">("24");
   const [deskNote, setDeskNote] = useState("");
   const [cashVenue, setCashVenue] = useState<CashVenue>("kalshi");
@@ -1070,7 +1071,7 @@ export function DeskApp() {
     queryKey: ["spots"],
     queryFn: () => getLiveSpots(),
     // The live tapes (MARKETS, and OPEN NOW on SHIFT) glide between quotes; fresher quotes = livelier tape (Oct 4).
-    refetchInterval: foreground ? (bookTab === "shift" || bookTab === "markets" ? 2000 : 8000) : 12000,
+    refetchInterval: foreground ? (bookTab === "wire" ? 1000 /* fix1044: her LIVE WIRE moves every second */ : bookTab === "shift" || bookTab === "markets" ? 2000 : 8000) : 12000,
     refetchOnWindowFocus: false,
     staleTime: 400,
   });
@@ -2082,6 +2083,7 @@ export function DeskApp() {
         </label>
         <div className="flex flex-nowrap gap-1 overflow-x-auto overflow-y-hidden px-3 pb-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <DeskTab active={bookTab === "mode"} label="MODE" onClick={() => setBookTab("mode")} />
+          <DeskTab active={bookTab === "wire"} label="⚡ LIVE WIRE" onClick={() => setBookTab("wire")} /> {/* fix1044 */}
           <DeskTab active={bookTab === "shift"} label="SHIFT" onClick={() => setBookTab("shift")} />
           <DeskTab active={bookTab === "alerts"} label={(bookWatchQ.data?.alerts ?? []).some((a) => a.level === "red") ? `ALERTS · ${(bookWatchQ.data?.alerts ?? []).length} ●` : (bookWatchQ.data?.alerts ?? []).length ? `ALERTS · ${(bookWatchQ.data?.alerts ?? []).length}` : "ALERTS"} onClick={() => setBookTab("alerts")} />
           <DeskTab active={bookTab === "kalshi"} label="KALSHI" onClick={() => setBookTab("kalshi")} />
@@ -2254,6 +2256,7 @@ export function DeskApp() {
         {bookTab === "stats" ? <SetupScores708 /> : null} {/* fix708 every book's set ups, her framework */}
         {bookTab === "stats" ? <PushShadow983 /> : null} {/* fix983 PUSH SHADOW TEST: every candidate push per asset, paper, real Kalshi asks */}
         {bookTab === "stats" ? <FactorScores825 /> : null} {/* fix825 every factor on its own, main + REJ */}
+        {bookTab === "wire" ? <LiveWire1044 snap={snap} /> : null} {/* fix1044 LIVE WIRE + WTF BOOK */}
         {bookTab === "stats" ? <SetupBoard773 /> : null} {/* fix773 SETUP SCOREBOARD: our setup / her band read, every book */}
 
         {bookTab === "cash" ? (

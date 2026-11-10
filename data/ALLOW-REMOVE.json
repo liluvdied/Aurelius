@@ -11616,5 +11616,115 @@
     "what": "r = M.xrpRead961(b2, L2, 1.1589, n2); t(!(\"side\" in r) && /RULE C \\(fix1004\\)/.test(r.why), \"fix1004: the 04:46:23 red-candle long under the Bollinger must be refused (fix1027: her 2m was green by $0.0001 - plain colour - so rule C holds it): \" + JSON.stringify(r)); }",
     "why": "fix1042 (her words in this change's request)",
     "R": "R601"
+  },
+  {
+    "what": "for (const [i969, b969] of boxes969().entries()) { if (i969 === 0 || !b969.on || !(b969.dollars > 0)) continue; const k969 = \"ao\" + (i969 + 1); if ((p as any)[k969]) continue; const T969 = ((G as any).__aoTry969 ||= {}); if (Date.now() - Number(T969[p.id + k969] || 0) < 10000) continue; // fix969 her add-on 2 / 3",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "for (const [i969, b969] of boxes969().entries()) { if (i969 === 0 || !b969.on || !(b969.dollars > 0)) continue; const k969 = \"ao\" + (i969 + 1); if ((p as any)[k969]) continue; const T969 = ((G as any).__aoTry969 ||= {}); if (Date.now() - Number(T969[p.id + k969] || 0) < 10000) continue; // fix969 her add-on 2 / 3",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "if (a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === \"btc\" || id === \"gold\") && (addReg[row.ticker] || r1g1029.passed /* fix1029: an add-on 1 rung her entry already passed does not hold add-on 2 back */) && r38g1029.go /* fix1029 */ && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "if (a3on && a3d >= 1 && cap3 > 0 && r3g1029.go /* fix1029 */ && !aoTwin && !aoOne717 && (id === \"btc\" || id === \"gold\") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5) && !aoBestie775 /* fix775 */) {",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "for (const [i969, b969] of boxes969().entries()) { if (i969 === 0 || !b969.on || !(b969.dollars > 0)) continue; const k969 = \"ao\" + (i969 + 1); if ((p as any)[k969]) continue; const T969 = ((G as any).__aoTry969 ||= {}); if (Date.now() - Number(T969[p.id + k969] || 0) < 10000) continue; // fix969 her add-on 2 / 3",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "for (const [i969, b969] of boxes969().entries()) { if (i969 === 0 || !b969.on || !(b969.dollars > 0)) continue; const k969 = \"ao\" + (i969 + 1); if ((p as any)[k969]) continue; const T969 = ((G as any).__aoTry969 ||= {}); if (Date.now() - Number(T969[p.id + k969] || 0) < 10000) continue; // fix969 her add-on 2 / 3",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "if (execd) return false;",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "if (prior.side === look.side) return false;",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "const bx = boxes1029().filter((b) => b.on && b.dollars > 0 && b.mult >= 1.5 && !done[b.k]); if (!bx.length) return;",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "const start = Math.floor(T0 / 300000) * 300 + 300, id = `xrp5m-${start}`, slug = \"xrp-updown-5m-test\";",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "ask = 0.23; globalThis.__xrp961At = 0; await X.xrpTick961(at(30), pm); t(buys.length === 2 && buys[1].tag === \":add1029add2\" && buys[1].cap === 0.23 && buys[1].dollars === 3, \"box 2: $3 at 4.2x (23c) after box 1 filled\");",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "ask = 0.1; globalThis.__xrp961At = 0; await X.xrpTick961(at(50), pm); t(buys.length === 3 && buys[2].tag === \":add1029add3\" && buys[2].cap === 0.1 && buys[2].dollars === 1, \"box 3: $1 at 10x (10c)\");",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "ask = 0.05; globalThis.__xrp961At = 0; await X.xrpTick961(at(70), pm); t(buys.length === 3, \"each box fills once a window\");",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "ask = 0.23; globalThis.__xrp961At = 0; await X.xrpTick961((start + 300) * 1000 + 60000, pm); t(buys.length === 1 && buys[0].side === \"down\" && buys[0].tag === \":add1029add2\" && buys[0].cap === 0.23, \"box 2 goes once box 1 was passed: \" + JSON.stringify(buys));",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "const en = src(\"engine.ts\"); t((en.match(/r1g1029\\.go|r38g1029\\.go|r3g1029\\.go/g) || []).length === 3 && (en.match(/, true, (aoTwin \\? 0 : )?e1029\\.px/g) || []).length === 3, \"main / rej: add-on 1 / 2 / 3 each need her rung and carry her entry price to the wire\");",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "t(ln && (E.match(/&& !aoBestie775 \\/\\* fix775 \\*\\/\\) \\{/g) || []).length === 4 && E.includes(\"const aoOne717 = false; // fix752\"), \"BESTIE's add-on gate is not on all four add-ons (or fix752's line changed)\");",
+    "why": "fix1043 (her words in this change's request)",
+    "R": "R602"
+  },
+  {
+    "what": "import { SetupBoard773 } from \"@/components/desk/setup-board\"; // fix773 SETUP SCOREBOARD (display only)",
+    "why": "fix1044 (her words in this change's request)",
+    "R": "R603"
+  },
+  {
+    "what": "const [bookTab, setBookTab] = useState<\"mode\" | \"shift\" | \"paper\" | \"prime\" | \"lead\" | \"open\" | \"watch\" | \"lean\" | \"fuel\" | \"symbols\" | \"mirror\" | \"markets\" | \"kalshi\" | \"poly\" | \"cash\" | \"stats\" | \"scale\" | \"hedge\" | \"log\" | \"audit\" | \"look\" | \"outside\" | \"notes\" | \"pnl\" | \"day\" | \"alerts\" | \"sitrep\" | \"books\" | \"traj\" | \"scanner\" | \"positions\" | \"scope\">(\"kalshi\");",
+    "why": "fix1044 (her words in this change's request)",
+    "R": "R603"
+  },
+  {
+    "what": "refetchInterval: foreground ? (bookTab === \"shift\" || bookTab === \"markets\" ? 2000 : 8000) : 12000,",
+    "why": "fix1044 (her words in this change's request)",
+    "R": "R603"
+  },
+  {
+    "what": "const tick = async (sec) => { G.__xrp961At = 0; feed(B.map((b) => ({ ...b, t: b.t + (sec - n0 - ((sec - n0) % 300)) }))); await M.xrpTick961(sec * 1000, pm); };",
+    "why": "fix1049 (her words in this change's request)",
+    "R": "R604"
+  },
+  {
+    "what": "} catch (e) { t(false, \"fix1017 lane test threw: \" + e.stack); } finally { process.chdir(here); delete G.__t1017L; }",
+    "why": "fix1049 (her words in this change's request)",
+    "R": "R604"
+  },
+  {
+    "what": "-> [\"recon-tog\", \"recon-rej\", \"recon-dly\", \"lastmin\", \"cup713\"]",
+    "why": "fix1049 her lineup (Love Nov 9 2026 6:22 PM PT: \"i want last minute on\" + \"cups and handles too\")",
+    "R": "R604"
   }
 ]
