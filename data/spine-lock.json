@@ -1,9 +1,9 @@
 {
- "at": "2026-11-10T20:00:10.985711+00:00",
+ "at": "2026-11-10T20:23:13.169834+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "3072ca1d72495c8b"
+  "recon.ts": "b05c1908a51beee1"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -844,6 +844,12 @@
    "by": "Love",
    "quote": "Love Nov 10 2026 11:14 AM PT: \"fix the no reason for refusal please. make sure every trade has one.\" + \"yes. please build it.\" + 11:37 AM PT: \"please get it to work.\" (R636, fix1074)",
    "recon.ts": "3072ca1d72495c8b"
+  },
+  {
+   "at": "2026-11-10T20:23:13.169834+00:00",
+   "by": "Love",
+   "quote": "Love Nov 10 2026 12:10 PM PT: \"she did not enter before the floor again. she had nothing but room and the window opened on a red falling candle from the bollinger.\" + Nov 7 2026 ~7:00 AM PT (her pocket rule): \"if price is hovering inside here and it's tight like this she only needs 50% of the distance from red to pink okay\" + \"anytime price is in there\" + Nov 10: \"please stop implementing pieces of them, and not all of them.\" (R638, fix1076)",
+   "recon.ts": "b05c1908a51beee1"
   }
  ],
  "R": "R266",
