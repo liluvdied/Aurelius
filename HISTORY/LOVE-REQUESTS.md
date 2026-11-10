@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R620 - fix1058 Keep Polymarket entry and add-on fill keys separate and release a Kalshi retry lock only when the opposite-position check prevented any send. Keep price, position, and confirmed-fill protections.
+- when: 2026-11-10T08:11:17+00:00
+- Love: "Love: "please fix the BTC add-on bug and the Kalshi retry lock, test both before anything goes live, and put the installer on my desktop""
+- books: BTC 5m add-ons, Kalshi live books
+- status: ACTIVE
+- proof: {"test": "tools/order-retry-locks.cjs"}
+- proof: {"test": "tools/floor-at-the-fill-1039.cjs"}
+
 ## R619 - fix1057 Live XRP 15m on Kalshi alongside the paper ledger, through the existing guarded order endpoint, with the XRP model rechecked at the wire, one opening fill per window, the $1/66c limit and the paper model take profits.
 - when: 2026-11-10T07:27:54+00:00
 - Love: "Love: "i would like the 15m book for xrp live as well""

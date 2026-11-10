@@ -1,9 +1,13 @@
-# Every decision Love has made - rebuilt 2026-11-10T07:35:39.110740+00:00
+# Every decision Love has made - rebuilt 2026-11-10T08:41:07.459424+00:00
 
-1554 decisions with Love's words or card picks, out of 2314 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1555 decisions with Love's words or card picks, out of 2315 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-10T08:11:17.716338+00:00  ·  diary line 2788
+- Love: “please fix the BTC add-on bug and the Kalshi retry lock, test both before anything goes live, and put the installer on my desktop”
+- Full entry: 2026-11-10T08:11:17.716338+00:00 R620: Love: "please fix the BTC add-on bug and the Kalshi retry lock, test both before anything goes live, and put the installer on my desktop"
 
 ## 2026-11-10T07:27:54.187217+00:00  ·  diary line 2786
 - Love: “i would like the 15m book for xrp live as well”
