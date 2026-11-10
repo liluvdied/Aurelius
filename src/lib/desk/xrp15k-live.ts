@@ -61,6 +61,7 @@ export async function judgeXrp15(ticker: string, side: Xrp15Side, label: string,
   const upper = lines.find((line) => line.name === "+1σ")?.price;
   checked?.({ spot, vwap, stdev: vwap && upper ? upper - vwap : undefined });
   const r = xrpRead961(bs, lines, spot, now / 1000); // 15m has no 5m-open filter
+  try { appendFileSync(D("xrp15-board-1070.jsonl"), JSON.stringify({ at: new Date(now).toISOString(), ticker, side, label, spot, read: "side" in r ? { side: r.side, label: r.label } : { why: r.why }, lines }) + "\n"); } catch {} // fix1070 LOG ONLY (Love Nov 10 2026 11:14 AM PT: "she just longed xrp while it was under a band" + "make sure every trade has one"): her XRP 15m last line writes the board it judged (price + every line she read) to data/xrp15-board-1070.jsonl, so each XRP entry can be checked against her bands. Never changes a decision.
   if (!("side" in r)) return r.why;
   return r.side === side && r.label === label ? "" : "XRP 15m setup changed before the order";
 }
