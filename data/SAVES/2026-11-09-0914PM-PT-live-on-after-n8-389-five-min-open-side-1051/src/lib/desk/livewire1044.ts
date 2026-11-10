@@ -5,7 +5,7 @@ import { createServerFn } from "@tanstack/react-start";
 
 const G = globalThis as any;
 async function fsx() { const fs = await import("node:fs"); const { join } = await import("node:path"); return { fs, D: (...p: string[]) => join(process.cwd(), "data", ...p) }; }
-export type Wire1044 = { id: string; book: string; at: string; asset: string; ticker: string; side: string; setup: string; ask: number; stake: number; result: string; pnl: number | null; exit: string; spot: number };
+export type Wire1044 = { id: string; book: string; at: string; asset: string; ticker: string; side: string; setup: string; ask: number; stake: number; result: string; pnl: number | null; exit: string; spot: number; lastBid?: number };
 // the books that are meant to follow HER rules - only these are judged for the auto WTF (the inverse / momentum / other books break them on purpose); her tap works on every book
 export const AUTO_BOOKS1044 = new Set(["recon-tog", "recon-rej", "recon-dly", "recon-dlyk", "recon-togp", "recon-togr", "recon-np", "recon-rjnp", "recon-rnp"]);
 const num = (v: any) => (Number.isFinite(Number(v)) ? Number(v) : 0);
@@ -13,7 +13,7 @@ function norm(r: any, src: string): Wire1044 | null {
   if (!r || typeof r !== "object" || !r.ticker || !r.at) return null;
   const ask = num(r.ask) > 0 ? num(r.ask) : num(r.multiple) > 1 ? 1 / num(r.multiple) : 0;
   const pnl = r.pnl != null ? num(r.pnl) : r.profit != null ? num(r.profit) : null;
-  return { id: String(r.id || `${r.ticker}:${r.book || r.lane}:${r.at}`), book: String(r.book || r.lane || src), at: String(r.at), asset: String(r.asset || ""), ticker: String(r.ticker), side: String(r.side || ""), setup: String(r.setup || r.label || r.pattern || ""), ask, stake: num(r.stake) > 0 ? num(r.stake) : 20, result: String(r.result || (pnl == null ? "open" : "closed")), pnl, exit: String(r.exit || ""), spot: num(r.spotAt) || num(r.spot) };
+  return { id: String(r.id || `${r.ticker}:${r.book || r.lane}:${r.at}`), book: String(r.book || r.lane || src), at: String(r.at), asset: String(r.asset || ""), ticker: String(r.ticker), side: String(r.side || ""), setup: String(r.setup || r.label || r.pattern || ""), ask, stake: num(r.stake) > 0 ? num(r.stake) : 20, result: String(r.result || (pnl == null ? "open" : "closed")), pnl, exit: String(r.exit || ""), spot: num(r.spotAt) || num(r.spot), lastBid: num(r.lastBid) };
 }
 async function readJ(file: string): Promise<any> {
   const { fs, D } = await fsx(); const p = D(file); const C = (G.__lw1044c ||= {});
@@ -25,7 +25,9 @@ export async function wireRows1044(hours = 24, cap = 600): Promise<Wire1044[]> {
   const push = (rows: any, src: string) => { if (!Array.isArray(rows)) return; for (let i = rows.length - 1; i >= 0; i--) { const w = norm(rows[i], src); if (w && Date.parse(w.at) >= cut) out.push(w); } };
   push(await readJ("night-book.json"), "night");
   const og = await readJ("grok-og.json"); push(Array.isArray(og) ? og : og?.rows, "lane");
-  try { const pr = await import("./paperrows"); push(pr.paperBookRows721(), "paper"); } catch {}
+  try { const pr = await import("./paperrows"); push(pr.paperBookRows721().filter((r: any) => !String(r.book).startsWith("p5m-")), "paper"); } catch {}
+  // fix1045: the 5m paper books straight from their files, with the live bid they track (so LIVE WIRE moves on them too)
+  for (const c of ["btc", "eth", "xrp", "xrp15k"]) { const b = await readJ(`p5m-1045-${c}.json`); if (Array.isArray(b?.rows)) push(b.rows.map((r: any) => ({ ...r, book: `p5m-${c}` })), "p5m"); }
   // her XRP 5m Polymarket lane + PERPLEXITIES (paper twin): their own files; only windows that actually bought (or paper-bought), not the skipped looks
   for (const [file, book, stake] of [["xrp5m-961-book.json", "xrp5m961", 0], ["perplexities-book.json", "PERPLEXITIES", 20]] as [string, string, number][]) {
     const b = await readJ(file); const rs = Array.isArray(b?.rows) ? b.rows : [];

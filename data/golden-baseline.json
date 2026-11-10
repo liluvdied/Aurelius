@@ -1,5 +1,5 @@
 {
- "at": "2026-11-10T04:01:32.860366+00:00",
+ "at": "2026-11-10T05:11:53.210016+00:00",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -176,20 +176,20 @@
   "btc2c.ts": "e879b4bda665dd8f",
   "btclive899.ts": "69d9897a9d5fb0c8",
   "bnblive940.ts": "cbee6437591ecf35",
-  "xrp5m961.ts": "18dff3dce7156487",
+  "xrp5m961.ts": "6f2e2d9f0615ccae",
   "allbooks1002.ts": "a582ebf1d1b12a63",
   "pushshadow983.ts": "f2f5067d4e6a7cee",
   "perplexities1037.ts": "cf3b32986b3f8e28",
   "livewire1044.ts": "452d785ff653de4f",
   "bookgrid1046.ts": "ac93932368e44e41",
-  "p5m1045.ts": "cc28acdf8abd0f2f"
+  "p5m1045.ts": "200aad67dc98fcd9"
  },
  "config": {
   "live": "b5bea41b6c",
   "maxDollars": "6b86b273ff",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "d32b690bc8",
+  "at": "922e917858",
   "note": "34fb5e33ce",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -208,7 +208,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "2c6fda42e6",
+  "liveBook": "31e09aa209",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -393,7 +393,7 @@
   "data/spine-lock.json": "7bb94c558135be86",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "392f06a5e37ae7af"
+  "data/live-switch.json": "3843488652e8fc95"
  },
  "sealLiveBook": "18713feb41",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

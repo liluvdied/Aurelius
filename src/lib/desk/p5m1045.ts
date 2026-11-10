@@ -6,7 +6,7 @@
 // It also writes the window's real bid / ask every ~6 s to data/poly5-quotes-<coin>.jsonl (ETH / XRP had no recorded prices) so her TP can score them later. Off: data/p5m-1045-cfg.json {"on": false}.
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { xrpRead961 } from "./xrp5m961";
+import { xrpRead961, openSide1051, win5Open1051 } from "./xrp5m961"; // fix1051
 import { ethBands682 } from "./ethbook";
 
 const G = globalThis as any;
@@ -69,7 +69,7 @@ async function coinTick(c: string, nowMs: number, pm: PM) {
   const id = `${c}5m-${f}`;
   if (left >= 60 && slug && !b.rows.some((x) => x.id === id)) {
     const spot = bs[bs.length - 1].c, r = xrpRead961(bs, ethBands682(bs as any), spot, now, { band: COINS1045[c].push, pink: COINS1045[c].push, wick: COINS1045[c].push * 2 }) as any;
-    if (r && r.side) {
+    if (r && r.side && openSide1051(r.side, spot, win5Open1051(bs, now)) /* fix1051 her 5m books: only on her side of the 5m open - else keep watching the window */) {
       const top = await pm.bookTop(slug).catch(() => null);
       const ask = top ? (r.side === "up" ? Number(top.ask) : Math.round((1 - Number(top.bid)) * 100) / 100) : 0;
       if (ask > 0.02 && ask <= FLOOR1045) { b.rows.push({ id, ws: f, at: new Date(nowMs).toISOString(), asset: c, ticker: slug, side: r.side, setup: r.label, ask, stake: STAKE1045, result: "open", pnl: null, spot }); dirty = true; }

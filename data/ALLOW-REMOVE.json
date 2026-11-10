@@ -11776,5 +11776,25 @@
     "what": "t((A.match(/<AllBooks1002 /g) || []).length === 2 && A.includes(\"● RUNNING ON KALSHI + POLY\") && A.includes(\"i . O . i · ITEMS OF INTEREST\"), \"the rows must ride in the RUNNING table and the i . O . i table\");",
     "why": "fix1045 (her words in this change's request)",
     "R": "R605"
+  },
+  {
+    "what": "const r = xrpRead961(bs, ethBands682(bs as any), spot, now);",
+    "why": "fix1051 (her words in this change's request)",
+    "R": "R606"
+  },
+  {
+    "what": "import { xrpRead961 } from \"./xrp5m961\";",
+    "why": "fix1051 (her words in this change's request)",
+    "R": "R606"
+  },
+  {
+    "what": "fs.writeFileSync(path.join(out, \"xrp5m961.js\"), \"exports.xrpRead961=(bs,L,spot,now,p)=>{globalThis.__push=p;return {side:'up',label:'Rejected up off -1σ'};};\");",
+    "why": "fix1051 (her words in this change's request)",
+    "R": "R606"
+  },
+  {
+    "what": "const B = [bar(n0 - 150, 2.284, 2.285, 2.2801, 2.282), bar(n0 - 90, 2.282, 2.283, 2.2802, 2.281), bar(n0 - 30, 2.281, 2.2835, 2.281, 2.2834)];",
+    "why": "fix1051 (her words in this change's request)",
+    "R": "R606"
   }
 ]
