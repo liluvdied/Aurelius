@@ -904,6 +904,7 @@ export const AUDIT_FLAGS523: Record<string, [boolean, boolean, boolean, boolean,
   "recon-tog": [false, false, false, false, true, 0.55, true, false],
   "recon-rej": [false, false, false, true, true, 0.55, true, false],
   "recon-togp": [false, false, true, false, false, 0, false, false],
+  "cup713": [false, false, false, false, true, 0.55, true, false], // fix523: Cup retains its pattern read and uses the full shared walls
 };
 // AUDITOR-GRADE AT THE WIRE (fix523): the exact judgment the fill auditor runs, on the LIVE board, in the instant before the order is allowed to
 // leave. If the auditor would refuse this board, the order never goes. Board unreadable = no order (fails closed).
