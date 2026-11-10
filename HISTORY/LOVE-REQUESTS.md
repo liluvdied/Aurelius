@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R622 - fix1062 PAPER NEVER TAKES A TRADE LIVE WOULD NOT TAKE: her books' new paper rows (main, rejection, delayed and their copies: recon-tog / rej / dly / dlyk / togp / togr / np / rjnp / rnp) now also pass live's own order door (bandLockCheck - the same check every live order of that book passes) inside her paper DNA gate, at the moment they book. A row live's door refuses is not recorded (logged once in data/paper-door-1062.jsonl) and is checked again if the book books it again. Nothing about live orders changes.
+- when: 2026-11-10T10:30:11+00:00
+- Love: "Love Nov 10 2026 1:15 AM PT: "they are on kalshi. I DONT WANT THE PAPER RECORDS TAKING TRADES THAT LIVE WOULD NOT TAKE HOW MANY TIMES DO I NEED TO ASK THE SAME THING""
+- books: paper rows of main / rej / delayed and their copies (Kalshi)
+- status: ACTIVE
+- proof: {"test": "tools/paper-door-1062.cjs"}
+
 ## R621 - Use the same current executable quote for Kalshi BTC MAIN/REJ entry retry limits and size checks. Recheck missing or over-cap asks without sending.
 - when: 2026-11-10T09:08:40+00:00
 - Love: "please fix this hun. she only takes the ones that lose. skips every one that wins. im talking about kalshi, btc"
