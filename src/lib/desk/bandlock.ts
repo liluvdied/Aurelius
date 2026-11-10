@@ -3719,3 +3719,20 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   if (beyond) return { why, below: below0 ?? null, above: above0 ?? null, pos: Math.round(pos * 1000) / 1000, lock: null };
   return { why, below, above, pos: Math.round(pos * 1000) / 1000, lock: IMPOSSIBLE };
 }
+// fix1068 BOLLINGER BLOCK (Love Nov 10 2026 10:17 AM PT: "just put the $1.50 bollinger , or 10%. whichever is smaller. block in for gold please. 10% of the channel for the rest of the assets please." + 10:13 AM PT: "she just longed gold directly under a bollinger again"): no long just under her Bollinger middle or upper, no short just over her Bollinger middle or lower. A short from over the upper band or a long from under the lower band (price outside her Bollinger coming back in - her wick rejection) is not blocked by this rule. "Just" = gold: $1.50 or 10% of the session-band channel price sits in, whichever is smaller; every other asset: 10% of that channel. Measured from PRICE to the line (fix821 measures her target to the line - it stays as it is). Bollinger = her chart's 5m Bollinger (__bbsr, 20 s fresh) unless the caller hands its own. No Bollinger or (not gold) no channel to read = this rule says nothing; her other walls still judge. Judged at the last line before the POST, every book but delayed (fix558).
+export function bollBlock1068(asset: string, tick: number, side: string, L: { name: string; price: number }[], bb?: { bbU: number; bbL: number } | null): string {
+  try {
+    if (!(tick > 0) || (side !== "up" && side !== "down")) return "";
+    let z: any = bb; if (!z) { const g = (globalThis as any).__bbsr?.[asset]; if (g && Date.now() - Number(g.at || 0) <= 20000) z = g; }
+    const U = Number(z?.bbU), Lo = Number(z?.bbL); if (!(U > 0) || !(Lo > 0) || !(U > Lo)) return "";
+    const S = (L || []).filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name))).map((l) => Number(l.price));
+    const a = Math.min(...S.filter((p) => p > tick)), b = Math.max(...S.filter((p) => p < tick)), W = a - b, ten = Number.isFinite(W) && W > 0 ? 0.1 * W : 0;
+    const lim = asset === "gold" ? (ten > 0 ? Math.min(1.5, ten) : 1.5) : ten; if (!(lim > 0)) return "";
+    for (const x of [{ name: "Bollinger upper", price: U }, { name: "Bollinger middle", price: (U + Lo) / 2 }, { name: "Bollinger lower", price: Lo }]) {
+      const d = side === "up" ? x.price - tick : tick - x.price;
+      if (side === "up" ? (x.name === "Bollinger lower") : (x.name === "Bollinger upper")) continue; /* price outside her Bollinger coming back in (a short from over the upper, a long from under the lower) is her rejection, not an entry into a line */
+      if (d > 0 && d <= lim) return `BOLLINGER BLOCK (fix1068): ${side === "up" ? "long" : "short"} at ${tick.toFixed(asset === "xrp" ? 5 : 2)} is ${d.toFixed(asset === "xrp" ? 5 : 2)} ${side === "up" ? "under" : "over"} the unbroken ${x.name} (${x.price.toFixed(asset === "xrp" ? 5 : 2)}) - inside her ${lim.toFixed(asset === "xrp" ? 5 : 2)} (${asset === "gold" ? "$1.50 or 10% of the channel, whichever is smaller" : "10% of the channel"}) - no ${side === "up" ? "long" : "short"} into it.`;
+    }
+    return "";
+  } catch { return ""; }
+}
