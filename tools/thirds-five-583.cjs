@@ -11,7 +11,7 @@ function grab(src, head) { const i = src.indexOf(head); if (i < 0) return null; 
 const f = grab(B, "export function reconThirdAgainst(");
 if (!f) { console.log("THIRDS $5 583 TEST: FAIL - reconThirdAgainst missing"); process.exit(1); }
 const stubs = "type Line = { name: string; price: number }; const G: any = globalThis; let __open = 0; function fiveOpenNow(a) { return __open; } function wallFor(x) { return x; } function wallLines(a, L) { return L; } function isSessBand(l) { return /σ$|^session VWAP$/.test(String(l.name)); }\n";
-const R = new Function(ts.transpileModule(stubs + f + "; return { reconThirdAgainst, setOpen: (o) => { __open = o; } };", { compilerOptions: { target: 99 } }).outputText)();
+const R = new Function(ts.transpileModule(stubs + require("./thirds-fixture.cjs")(ts, B) + "\n" + f + "; return { reconThirdAgainst, setOpen: (o) => { __open = o; } };", { compilerOptions: { target: 99 } }).outputText)();
 const now = Date.now(), f0 = Math.floor(now / 300000) * 300000;
 const L = [{ name: "+1σ", price: 77300 }, { name: "-1σ", price: 77000 }, { name: "session VWAP", price: 76800 }];
 const run = (asset, Lx, open, trail, tick, side) => { R.setOpen(open); globalThis.__qtrail_1 = { [asset]: trail.map((c, i) => ({ t: f0 + 1000 * (i + 1), c })) }; return R.reconThirdAgainst(asset, Lx, tick, side, new Map()); };

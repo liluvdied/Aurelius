@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+// fix1036 her wick rejection: arms within 10% of a band, fires at 15% of the channel back off the wick extreme (past the band), never from the candle open - main / rej (bandlock rejBand668) and the XRP 5m lane.
+"use strict";
+const fs = require("fs"), path = require("path"); const root = process.env.AUR_ROOT || path.join(__dirname, "..");
+let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log("WICK 15 1036 TEST: FAIL - " + m); } };
+const S = fs.readFileSync(path.join(root, "src/lib/desk/bandlock.ts"), "utf8"), X = fs.readFileSync(path.join(root, "src/lib/desk/xrp5m961.ts"), "utf8");
+t((S.match(/Math\.abs\((hi|lo) - P\) <= 0\.10 \* W \/\* fix1036/g) || []).length === 2, "main / rej: the wick does not arm within 10% of the band on both sides");
+t(/hi - tick >= 0\.15 \* W \/\* fix1036/.test(S) && /tick - lo >= 0\.15 \* W \/\* fix1036/.test(S), "main / rej: the pull-back is not 15% of the channel off the wick extreme");
+t(!/hi - tick >= 0\.1 \* W|tick - lo >= 0\.1 \* W/.test(S), "a 10% pull-back is still in rejBand668");
+t(/push: 0\.15 \* W[^\n]*wick: true/.test(X) && /Math\.abs\(extreme - l\.price\) > nr/.test(X) && /nr = 0\.10 \* W/.test(X), "XRP lane: the wick does not arm within 10% and fire at 15% of the channel");
+t(!/push: PUSH1004\.wick, wick: true/.test(X), "XRP lane still fires its wick on a flat $0.0005");
+const ts = require(path.join(root, "node_modules/typescript"));
+const source = S.slice(S.indexOf("export function rejBand668"), S.indexOf("// fix937 HER WICK REJECTION AT 10%"));
+const mod = { exports: {} };
+new Function("exports", "G", "DLY465", ts.transpileModule(source, { compilerOptions: { module: 1, target: 99 } }).outputText)(mod.exports, {}, new Set());
+const { rejBand668 } = mod.exports;
+const lines = [{ name: "-1σ", price: 79900 }, { name: "session VWAP", price: 80000 }, { name: "+1σ", price: 80100 }];
+t(rejBand668("btc", "down", 79989, lines, { o: 80030, h: 80004, l: 79989 })?.price === 80000, "short wick at 15% must qualify even when the open is above the band");
+t(!rejBand668("btc", "down", 79990, lines, { o: 80030, h: 80004, l: 79990 }), "14% is too early");
+t(!rejBand668("btc", "up", 80010, lines, { o: 79960, h: 80010, l: 79989 }), "a wick over 10% from the band does not arm");
+t(rejBand668("btc", "up", 80011, lines, { o: 79970, h: 80011, l: 79996 })?.price === 80000, "long wick mirrors the short");
+const xrpMod = { exports: {} };
+const readSource = X.slice(X.indexOf("export const PUSH1004"), X.indexOf("type PM ="));
+new Function("exports", ts.transpileModule(readSource, { compilerOptions: { module: 1, target: 99 } }).outputText)(xrpMod.exports);
+const now = 300010;
+const xrpLines = [{ name: "-1σ", price: 2.28 }, { name: "+1σ", price: 2.30 }, { name: "BB lower", price: 2.29 }];
+const bar = { t: 300000, o: 2.2899, l: 2.2897, h: 2.2927, c: 2.2927 };
+const xrp = (price) => xrpMod.exports.xrpRead961([bar], xrpLines, price, now);
+t(/wick/.test(xrp(2.2927).label), "XRP wick must use the extreme at exactly 15%, even when the candle opened across the band");
+t(!xrp(2.29269).side, "XRP wick below 15% must wait");
+console.log(ok ? "WICK 15 1036 TEST ✓ - her wick rejection arms within 10% of a band and fires the second the pull-back off the wick extreme is 15% of her channel - main / rej and the XRP 5m lane; never from the candle open" : "WICK 15 1036 TEST: FAIL");
+process.exit(ok ? 0 : 1);
