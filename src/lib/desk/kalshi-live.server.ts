@@ -1201,13 +1201,13 @@ function hold(key) {
 function release(key) {
   sent.__aureliusSent?.delete(key);
 }
-async function liveAsks(ticker) {
+async function liveAsks(ticker, requiredSide?: "up" | "down") {
   const res = await fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(2500) }).catch(() => fetch(`${ROOT}/trade-api/v2/markets/${ticker}`, { signal: AbortSignal.timeout(2500) }));
   if (!res.ok) return null;
   const data = await res.json();
   const yes = Number.parseFloat(data.market?.yes_ask_dollars ?? "");
   const no = Number.parseFloat(data.market?.no_ask_dollars ?? "");
-  if (!(yes > 0) || !(no > 0)) return null;
+  if ((requiredSide !== "down" && !(yes > 0)) || (requiredSide !== "up" && !(no > 0))) return null;
   return { yesAsk: yes, noAsk: no };
 }
 function paperShape(label) {
@@ -1440,7 +1440,8 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   // SPEED PASS (Claude, Oct 8 ~7:15 PM PT, Love: "yes please" to the speed pass): the quote read used to wait for the
   // positions read to finish (~75 ms each, one after the other). Both are reads, so they now go out together; every check
   // below still runs in the same order before any order is sent.
-  const quoteP = liveAsks(ticker).catch(() => null);
+  const btcCopy = /^KXBTC15M-/.test(ticker) && (bookCopy === "recon-tog" || bookCopy === "recon-rej");
+  const quoteP = liveAsks(ticker, btcCopy ? side : undefined).catch(() => null);
   const open = await fifteenOpen();
   const here = open.find((row) => row.ticker === ticker);
   // FILL FIX (Love, Oct 5 ~9 PM PT: "yes to the fill fix"): at 8:48 PM BRICK's $20 BTC order found only 0.02 contracts at
@@ -1513,6 +1514,10 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
     return { status: "blocked", reason: "symbol already open" };
   }
   const quote = await quoteP;
+  if (btcCopy && !quote) {
+    release(key);
+    return { status: "blocked", reason: "Kalshi BTC entry: no current ask" };
+  }
   const yes = quote?.yesAsk ?? yesAsk;
   const no = quote?.noAsk ?? noAsk;
   const ask = side === "up" ? yes : no;
@@ -1640,7 +1645,11 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   // Oct 6: clear the last block reason first; a stale "gold is off Kalshi" from hours ago was being reported on BTC misses.
   sent.__aureliusBlock = "";
   try {
-    placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, line, true);
+    if (btcCopy && ask > capPx) {
+      sent.__aureliusBlock = `Kalshi BTC entry: ask ${(ask * 100).toFixed(1)}¢ above ${Math.round(capPx * 100)}¢ limit`;
+    } else {
+      placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, line, true);
+    }
   } catch (err) {
     release(key);
     return { status: "blocked", reason: err instanceof Error ? err.message.slice(0, 140) : "copy failed" };
@@ -1662,12 +1671,27 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
       // filled 30 s later at 58c when the loop restarted. Each knock now re-reads the live ask and bids ask + 20% (at least 3c), never past her floor cap;
       // the count shrinks so the cost stays inside the budget.
       let kPx = yesPrice, kCount = count;
-      try { const q2 = await liveAsks(ticker).catch(() => null); const a2 = Number(side === "up" ? q2?.yesAsk : q2?.noAsk);
-        if (a2 > 0.01 && a2 < 0.99) { const r2 = Math.min(capPx, Math.round((a2 + 0.06) * 100) / 100); // fix500: each knock re-prices at the live ask + 6c at most
-          kPx = side === "up" ? Math.min(0.99, capPx, r2) : Math.max(0.01, 1 - capPx, Math.round((1 - r2) * 100) / 100);
-          if (bookCopy !== "recon-dly" && bookCopy !== "bestie" /* fix775 */ && topUp <= 0) kCount = Math.min(count, Math.floor(budget / Math.max(a2, r2) * 100) / 100); } } catch {}
+      const q2 = await liveAsks(ticker, btcCopy ? side : undefined).catch(() => null);
+      const a2 = Number(side === "up" ? q2?.yesAsk : q2?.noAsk);
+      const hasAsk = a2 > 0.01 && a2 < 0.99;
+      // Keep checking within the retry window when BTC's current ask is missing or above the limit.
+      if (btcCopy && (!hasAsk || a2 > capPx)) {
+        sent.__aureliusBlock = hasAsk
+          ? `Kalshi BTC retry: ask ${(a2 * 100).toFixed(1)}¢ above ${Math.round(capPx * 100)}¢ limit`
+          : "Kalshi BTC retry: no current ask";
+        continue;
+      }
+      if (a2 > 0.01 && a2 < 0.99) { const r2 = Math.min(capPx, Math.round((a2 + 0.06) * 100) / 100); // fix500: each knock re-prices at the live ask + 6c at most
+        kPx = side === "up" ? Math.min(0.99, capPx, r2) : Math.max(0.01, 1 - capPx, Math.round((1 - r2) * 100) / 100);
+        if (bookCopy !== "recon-dly" && bookCopy !== "bestie" && topUp <= 0) {
+          kCount = Math.min(count, Math.floor(budget / Math.max(a2, r2) * 100) / 100);
+        }
+      }
       if (!(kCount > 0)) break;
-      try { placed = await place(ticker, bookSide, kPx, kCount.toFixed(2), false, line, true); } catch { break; }
+      // The wire size checks must see the quote this attempt was priced on.
+      const retryLine = btcCopy ? { ...line, askPx: a2, multiple: Math.round(100 / a2) / 100 } : line;
+      if (btcCopy) sent.__aureliusBlock = "";
+      try { placed = await place(ticker, bookSide, kPx, kCount.toFixed(2), false, retryLine, true); } catch { break; }
     }
   }
   if (!placed || !(placed.filled > 0)) {
