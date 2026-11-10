@@ -19,6 +19,7 @@ import { PositionsTab } from "@/components/desk/kalshi-positions";
 import { pointsFromFills, pointsFromPrime, TapeBook } from "@/components/desk/kalshi-tape";
 import { HedgeBook } from "@/components/desk/hedge-book";
 import { ScheduleLiveCard } from "@/components/desk/schedule-live";
+import { BookGrid1046 } from "@/components/desk/book-grid"; // fix1046 her book grid under NEW SCHEDULE
 import { LiveToday722 } from "@/components/desk/live-today"; // fix722
 import { getLiveToday722 as getLiveToday736 } from "@/lib/desk/fns"; // fix736
 import { getAllBooks1002 } from "@/lib/desk/fns"; // fix1002 ALL BOOKS IN THE TABLES (display only)
@@ -4025,6 +4026,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
     <section className="rounded-[22px] border border-white/25 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
       <LiveToday722 /> {/* fix722 the one live book today, pinned on top */}
       <ScheduleLiveCard /> {/* fix385 (Love Oct 28 2026 12:04 PM PT): the new schedule, live trades only, labelled by book */}
+      <BookGrid1046 /> {/* fix1046 (Love Nov 9 2026): her books as a little table of cards right under NEW SCHEDULE - tap one for its trades */}
       <div className="flex items-baseline justify-between gap-3">
         <div className="flex items-center justify-between gap-2">
           <p className="text-[10px] tracking-[0.28em] text-white/90">PAPER · {ranked.length} LEDGERS · RANKED{h2h ? ` · SINCE ${shiftClock(since)}` : ""}</p>
@@ -4115,15 +4117,16 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
                   <span className="shrink-0 tabular-nums" style={{ color: on ? "#3ddc84" : "#ffb86b" }}>{on ? "ON KALSHI" : "PAPER"}</span>
                 </div>); }) : <p className="font-mono text-[10px] text-white/50">{openQ.isLoading ? "loading…" : "no open trades right now"}</p>}
             </div>
-            <AllBooks1002 title="EVERY BOOK + LEDGER · TODAY" color="#3ddc84" /> {/* fix1002 (Love Nov 7 2026 8:37 PM PT: 'can you put all of these books and ledgers into the running iOi table && running tables for me bb?'): every book and ledger rides in RUNNING too - display only */}
+            <BookGrid1046 /> {/* fix1046b her cards with their trades replace the purple / yellow EVERY BOOK table (Love Nov 9 2026 12:37 PM PT) */}{false && <AllBooks1002 title="EVERY BOOK + LEDGER · TODAY" color="#3ddc84" />} {/* fix1002 (Love Nov 7 2026 8:37 PM PT: 'can you put all of these books and ledgers into the running iOi table && running tables for me bb?'): every book and ledger rides in RUNNING too - display only */}
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">{runRows.map((b) => [Col({ book: b.book, title: `${b.i + 1}. ${b.title}`, note: b.note, s: b.s }), Inline({ book: b.book })])}</div>
           </div>
         );
       })()}
       {/* fix1002 i . O . i · ITEMS OF INTEREST (Love Nov 7 2026 8:37 PM PT: 'can you put all of these books and ledgers into the running iOi table && running tables for me bb?'): every current book and ledger, LIVE / PAPER / OFF, KALSHI / POLY, today's trades / W / L / $ from its own file - display only */}
+      {false && ( /* fix1046b the purple i . O . i table is gone - her cards (with their trades) are under NEW SCHEDULE and in RUNNING (Love Nov 9 2026 12:37 PM PT, her card pick) */
       <div className="mt-3 rounded-2xl px-2 pb-2 pt-2" style={{ border: "1px solid rgba(201,167,255,0.45)", boxShadow: "0 0 18px rgba(201,167,255,0.10)" }}>
         <AllBooks1002 title="i . O . i · ITEMS OF INTEREST · EVERY BOOK + LEDGER" color="#c9a7ff" />
-      </div>
+      </div>)}
       {false && <RsiBooks672 />} {/* fix765: opens inside its card now (Love Nov 5 5:08 PM) */}
       {false && <EthBook682 />} {/* fix765: opens inside its card now (Love Nov 5 5:08 PM) */}
       {false && <Og1012Card />} {/* fix765: shown as a regular card now (Love Nov 5 4:53 PM) */}

@@ -3,6 +3,8 @@
 // Only real Kalshi positions since the new schedule began, each labelled with the book that took it. Read-only.
 import { useQuery } from "@tanstack/react-query";
 import { getScheduleLive } from "@/lib/desk/fns";
+import { getBookGrid1046 } from "@/lib/desk/bookgrid1046"; // fix1046c
+import { GRID_BOOKS1046 } from "@/components/desk/book-grid"; // fix1046c
 
 const NAME: Record<string, string> = {
   "recon-tog": "MAIN 💞",
@@ -22,6 +24,12 @@ const clock = (at: string) =>
 export function ScheduleLiveCard() {
   const q = useQuery({ queryKey: ["schedule-live"], queryFn: () => getScheduleLive(), refetchInterval: 30000 });
   const trades = q.data?.trades ?? [];
+  // fix1046c every trade her books took (last 24 h), paper included, each labelled with its book - tap one and that book's record opens in her cards below
+  const pq = useQuery({ queryKey: ["book-grid-1046"], queryFn: () => getBookGrid1046({ data: { books: GRID_BOOKS1046.map((b) => b.key) } }), refetchInterval: 10000, staleTime: 5000, placeholderData: (p) => p });
+  const nm1046 = (k: string) => GRID_BOOKS1046.find((b) => b.key === k)?.name ?? k;
+  const paper1046 = Object.entries((pq.data ?? {}) as Record<string, any>).flatMap(([k, v]) => ((v?.trades ?? []) as any[]).map((t) => ({ ...t, gk: k })));
+  const all1046 = [...trades.map((t) => ({ kind: "live" as const, at: t.at, t })), ...paper1046.map((t) => ({ kind: "paper" as const, at: t.at, t }))].sort((a, b) => (a.at < b.at ? 1 : -1));
+  const openBook1046 = (k: string) => { try { window.dispatchEvent(new CustomEvent("open-book-1046", { detail: k })); document.querySelector("[data-grid1046]")?.scrollIntoView({ behavior: "smooth", block: "start" }); } catch {} };
   const done = trades.filter((t) => t.pnl != null);
   const total = done.reduce((s, t) => s + (t.pnl ?? 0), 0);
   const wins = done.filter((t) => (t.pnl ?? 0) > 0.05).length;
@@ -55,10 +63,24 @@ export function ScheduleLiveCard() {
         </div>
       ) : null}
       <div className="mt-3 max-h-80 overflow-y-auto">
-        {trades.length === 0 ? (
+        {all1046.length === 0 ? (
           <p className="text-[11px] text-white/55">No live trades yet on the new schedule.</p>
         ) : (
-          trades.map((t) => (
+          all1046.map((x) => x.kind === "paper" ? (
+            <div key={"p:" + x.t.gk + ":" + x.t.id} role="button" tabIndex={0} onClick={() => openBook1046(x.t.gk)} className="flex cursor-pointer items-baseline justify-between gap-2 border-t border-white/10 py-1.5">
+              <div className="min-w-0">
+                <p className="text-[10px] tracking-[0.14em] text-white">
+                  {nm1046(x.t.gk)} · {x.t.gk === "xrp5m961" ? "POLY" : "PAPER"} · {String(x.t.asset).toUpperCase()} {x.t.side === "up" ? "LONG" : x.t.side === "down" ? "SHORT" : x.t.side}
+                </p>
+                <p className="font-mono text-[9px] text-white/50">
+                  {clock(x.t.at)} · ${Number(x.t.stake || 0).toFixed(2)} in{x.t.ask > 0 ? ` @ ${Math.round(x.t.ask * 100)}c` : ""}{x.t.setup ? ` · ${String(x.t.setup).slice(0, 60)}` : ""}
+                </p>
+              </div>
+              <p className="shrink-0 font-mono text-[12px] tabular-nums" style={{ color: x.t.result === "open" || x.t.pnl == null ? "#ffd479" : x.t.pnl >= 0 ? UP : DOWN }}>
+                {x.t.result === "open" ? "OPEN" : x.t.pnl == null ? "—" : sign(Number(x.t.pnl))}
+              </p>
+            </div>
+          ) : [x.t].map((t) => (
             <div key={t.ticker} className="flex items-baseline justify-between gap-2 border-t border-white/10 py-1.5">
               <div className="min-w-0">
                 <p className="text-[10px] tracking-[0.14em] text-white">
@@ -72,7 +94,7 @@ export function ScheduleLiveCard() {
                 {t.pnl == null ? "OPEN" : sign(t.pnl)}
               </p>
             </div>
-          ))
+          ))[0])
         )}
       </div>
     </div>
