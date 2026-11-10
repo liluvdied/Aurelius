@@ -91,7 +91,7 @@ export async function ldcSettle794(assets: Record<string, any> | null | undefine
       const fm = typeof G.__v1112FetchMarket === "function" ? G.__v1112FetchMarket : (await import("./kalshi")).fetchMarket;
       const mk = await fm(r.ticker).catch(() => null); const res = mk?.result === "yes" ? "up" : mk?.result === "no" ? "down" : ""; if (!res) continue;
       const won = res === r.side, pay = won ? 1 : 0, c = r.contracts, h = r.half ? c / 2 : 0, rest = c - h;
-      r.result = won ? "win" : "loss"; r.pnlHold = Math.round((c * pay - STAKE) * 100) / 100; r.pnlTp = Math.round(((r.half ? h * r.halfBid : 0) + rest * (r.soldBid != null ? r.soldBid : pay) - STAKE) * 100) / 100;
+      r.result = won ? "win" : "loss"; r.pnlHold = Math.round((c * pay - (r.contracts * r.ask)) * 100) / 100; r.pnlTp = Math.round(((r.half ? h * r.halfBid : 0) + rest * (r.soldBid != null ? r.soldBid : pay) - (r.contracts * r.ask)) * 100) / 100;
       logFill794(r); r.logged = true; dirty = true;
     }
     if (dirty) save();

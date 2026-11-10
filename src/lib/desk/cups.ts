@@ -1,6 +1,6 @@
 // fix713 CUP BOOK - PAPER (Love Nov 5 2026 ~5:38 AM PT: "the 'cup' thing that price does when it makes a 😊 and the move starts rotating upwards? and when it ☹️ and starts going downwards?
 // is there a way we can have her gauge candle formations? ... cup and handles hold infinitely more than bear flags or double bottoms" + ~4:23 AM PT: "let's give them all the attention they
-// deserve and track all of them throughout the week"). PAPER ONLY: never places, sizes, cancels or reads a live order; never touches a live book, wall, umpire or switch. 24/7.
+// deserve and track all of them throughout the week"). The model books paper trades 24/7. Its rows are eligible for the guarded copier when CUP BOOK is on RUN.
 // On 1m (15 and 20 candles) and 2m (15 candles) her shapes, the same rules as the Nov 5 replay (scratchpad rp/cup2.py):
 //   😊 CUP: a parabola through the closes opens up (R² >= 0.45, bottom in the middle 25-75%, depth >= 2 average candles) -> long when a candle closes over the left rim
 //   ☹️ INVERTED CUP: the mirror -> short when a candle closes under the left rim
@@ -102,4 +102,19 @@ export function cupSummary713() {
   for (const r of rows) { const b = (by[`${r.asset.toUpperCase()} ${r.setup}`] ||= { n: 0, w: 0, l: 0, hold: 0, tp: 0 }); b.n++; if (r.result === "open") tot.open++; if (r.result === "win") { tot.w++; b.w++; } if (r.result === "loss") { tot.l++; b.l++; } tot.hold += r.pnlHold || 0; tot.tp += r.pnlTp || 0; b.hold += r.pnlHold || 0; b.tp += r.pnlTp || 0; }
   const rd = (x: number) => Math.round(x * 100) / 100;
   return { ...tot, hold: rd(tot.hold), tp: rd(tot.tp), by: Object.entries(by).map(([k, v]) => ({ setup: k, ...v, hold: rd(v.hold), tp: rd(v.tp) })), recent: rows.slice(-20).reverse().map((r) => ({ at: r.at, asset: r.asset, setup: r.setup, side: r.side, ask: r.ask, result: r.result, pnlHold: r.pnlHold, pnlTp: r.pnlTp })) };
+}
+
+
+/** Keep the paper row ID stable through entry, retry and exit checks in the copier. */
+export function cupCopyRows713() {
+  return st().rows.map((row) => ({
+    ...row,
+    id: `${row.id}:cup713`,
+    book: "cup713",
+    multiple: row.ask > 0 ? 1 / row.ask : 0,
+    stake: 20,
+    pnl: row.pnlTp ?? row.pnlHold,
+    result: row.result === "open" && row.soldBid != null ? "sold" : row.result,
+    exit: row.soldBid != null ? "paper took profit" : null,
+  }));
 }

@@ -178,7 +178,7 @@ export type DeskSettings = {
 export const DEFAULT_SETTINGS: DeskSettings = {
   minMultiple: 1.5, // fix520 (her kept card c37)
   maxMultiple: 4.5,
-  stake: 10,
+  stake: 20,
   liveStake: 33,
   autoPaper: true,
   autoGrok: true,

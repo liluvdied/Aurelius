@@ -15,7 +15,7 @@ import type { KalshiMarket } from "./types";
 const BASE = "https://external-api.kalshi.com/trade-api/v2";
 const FILE = () => join(process.cwd(), "data", "hour-lotto.json");
 const STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
-export type Lotto = { id: string; rule: "signal" | "control"; at: string; ticker: string; strike: number; side: "up" | "down"; ask: number; why: string; close: string; peakBid: number; exits: Record<"x3" | "x5" | "c50" | "hold", { pnl: number | null; at?: string }>; done: boolean; result?: string };
+export type Lotto = { id: string; rule: "signal" | "control"; at: string; ticker: string; strike: number; side: "up" | "down"; ask: number; stake?: number; why: string; close: string; peakBid: number; exits: Record<"x3" | "x5" | "c50" | "hold", { pnl: number | null; at?: string }>; done: boolean; result?: string };
 const g = globalThis as unknown as { __lotAt?: number; __lotBusy?: boolean; __lotMk?: { at: number; ms: KalshiMarket[] }; __lotLastBar?: string };
 const r2 = (n: number) => Math.round(n * 100) / 100;
 const fee = (p: number, n: number) => r2(0.07 * p * (1 - p) * n);
@@ -59,7 +59,7 @@ function open(rows: Lotto[], rule: Lotto["rule"], m: KalshiMarket, side: "up" | 
   const id = `${m.ticker}:${side}:${rule}`;
   if (rows.some((r) => r.id === id)) return false;
   const ask = side === "up" ? m.yesAsk : m.noAsk;
-  rows.unshift({ id, rule, at: new Date().toISOString(), ticker: m.ticker, strike: m.target ?? 0, side, ask, why, close: m.closeTime, peakBid: 0, exits: { x3: { pnl: null }, x5: { pnl: null }, c50: { pnl: null }, hold: { pnl: null } }, done: false });
+  rows.unshift({ id, rule, at: new Date().toISOString(), ticker: m.ticker, strike: m.target ?? 0, side, ask, stake: STAKE, why, close: m.closeTime, peakBid: 0, exits: { x3: { pnl: null }, x5: { pnl: null }, c50: { pnl: null }, hold: { pnl: null } }, done: false });
   return true;
 }
 
@@ -74,7 +74,8 @@ export async function hourLottoTick(assets: Record<string, any> | null | undefin
     for (const r of rows.filter((x) => !x.done).slice(0, 20)) {
       const m = await fetchMarket(r.ticker);
       if (!m) continue;
-      const n = STAKE / r.ask;
+      const stake = r.stake ?? 5;
+      const n = stake / r.ask;
       const bid = r.side === "up" ? m.yesBid : m.noBid;
       if (bid > r.peakBid) {
         r.peakBid = bid;
@@ -82,7 +83,7 @@ export async function hourLottoTick(assets: Record<string, any> | null | undefin
       }
       const sell = (k: "x3" | "x5" | "c50", hit: boolean) => {
         if (r.exits[k].pnl == null && hit && Date.now() < Date.parse(r.close)) {
-          r.exits[k] = { pnl: r2(n * bid - STAKE - fee(r.ask, n) - fee(bid, n)), at: new Date().toISOString() };
+          r.exits[k] = { pnl: r2(n * bid - stake - fee(r.ask, n) - fee(bid, n)), at: new Date().toISOString() };
           changed = true;
         }
       };
@@ -91,7 +92,7 @@ export async function hourLottoTick(assets: Record<string, any> | null | undefin
       sell("c50", bid >= 0.5);
       if (m.result === "yes" || m.result === "no") {
         const won = (m.result === "yes") === (r.side === "up");
-        for (const k of ["x3", "x5", "c50", "hold"] as const) if (r.exits[k].pnl == null) r.exits[k] = { pnl: r2(won ? n - STAKE - fee(r.ask, n) : -STAKE - fee(r.ask, n)) };
+        for (const k of ["x3", "x5", "c50", "hold"] as const) if (r.exits[k].pnl == null) r.exits[k] = { pnl: r2(won ? n - stake - fee(r.ask, n) : -stake - fee(r.ask, n)) };
         r.done = true;
         r.result = m.result;
         changed = true;

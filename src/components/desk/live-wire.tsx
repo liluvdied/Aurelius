@@ -20,16 +20,17 @@ export function LiveWire1044({ snap }: { snap: any }) {
   const live = (r: any): number | null => {
     if (r.result !== "open" || !(r.ask > 0)) return null;
     const m = snap?.assets?.[r.asset]?.market;
-    if (!m || m.ticker !== r.ticker) return r.lastBid > 0 ? r.stake * (r.lastBid / r.ask - 1) : null; // fix1045: the 5m paper books carry their own live bid
-    const bid = Number(r.side === "up" ? m.yesBid : m.noBid);
-    return bid > 0 ? r.stake * (bid / r.ask - 1) : null;
+    const bid = m?.ticker === r.ticker ? Number(r.side === "up" ? m.yesBid : m.noBid) : r.lastBid;
+    if (!(bid > 0)) return null;
+    const contracts = r.contracts ?? r.stake / r.ask;
+    return contracts * bid + (r.proceeds ?? 0) - r.stake;
   };
-  const wtf = async (id: string) => { await addWtf1044({ data: { id, note } }); setSent((s) => ({ ...s, [id]: true })); setNoteFor(""); setNote(""); void qc.invalidateQueries({ queryKey: ["wtf-1044"] }); };
+  const wtf = async (id: string) => { const result = await addWtf1044({ data: { id, note } }); if (!result.ok) return; setSent((s) => ({ ...s, [id]: true })); setNoteFor(""); setNote(""); void qc.invalidateQueries({ queryKey: ["wtf-1044"] }); };
   const openNow = shown.filter((r) => r.result === "open"); const openPnl = openNow.reduce((s, r) => s + (live(r) ?? 0), 0);
   return (
     <section className="mt-3 rounded-xl bg-black p-4 text-white">
       <div className="flex items-center justify-between gap-2">
-        <p className="text-[10px] font-medium tracking-[0.22em] text-white/70">⚡ LIVE WIRE · EVERY TRADE, EVERY BOOK · PAPER</p>
+        <p className="text-[10px] font-medium tracking-[0.22em] text-white/70">⚡ LIVE WIRE · TRADES BY BOOK · LIVE & PAPER</p>
         <div className="flex gap-1"><button className={btn(view === "wire")} onClick={() => setView("wire")}>LIVE WIRE</button><button className={btn(view === "wtf")} onClick={() => setView("wtf")}>🤬 WTF BOOK</button></div>
       </div>
       {view === "wire" ? (
@@ -44,7 +45,7 @@ export function LiveWire1044({ snap }: { snap: any }) {
                 <li key={r.id} className="rounded-md border border-white/20 px-3 py-2">
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
-                      <p className="text-xs"><span className="font-mono text-white/60">{pt(r.at)}</span> · <span className="text-white">{r.book}</span> · {String(r.asset).toUpperCase()} {r.side === "up" ? "LONG" : r.side === "down" ? "SHORT" : r.side} · {r.ask > 0 ? `${Math.round(r.ask * 100)}c (${(1 / r.ask).toFixed(2)}x)` : ""}</p>
+                      <p className="text-xs"><span className="font-mono text-white/60">{pt(r.at)}</span> · <span className="text-white">{r.book}</span> · {r.real ? "LIVE" : "PAPER"} · {String(r.asset).toUpperCase()} {r.side === "up" ? "LONG" : r.side === "down" ? "SHORT" : r.side} · {r.ask > 0 ? `${Math.round(r.ask * 100)}c (${(1 / r.ask).toFixed(2)}x)` : ""}</p>
                       <p className="mt-0.5 truncate text-[11px] text-white/70">{r.setup}</p>
                       {r.result !== "open" && r.exit ? <p className="mt-0.5 truncate text-[10px] text-white/50">{r.exit}</p> : null}
                     </div>
