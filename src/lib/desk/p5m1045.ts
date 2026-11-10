@@ -20,7 +20,7 @@ const file = (c: string) => D(`p5m-1045-${c}.json`);
 function book(c: string): { rows: any[] } { try { const j = JSON.parse(readFileSync(file(c), "utf8")); return Array.isArray(j?.rows) ? j : { rows: [] }; } catch { return { rows: [] }; } }
 function save(c: string, b: { rows: any[] }) { const p = file(c), t = p + ".tmp"; b.rows = b.rows.slice(-3000); writeFileSync(t, JSON.stringify(b)); renameSync(t, p); }
 async function j(url: string): Promise<any> { const r = await fetch(url, { headers: { Accept: "application/json", "User-Agent": "aurelius-p5m/1.0" }, signal: AbortSignal.timeout(8000) }); return r.ok ? r.json() : null; }
-async function bars(c: string): Promise<Bar[]> {
+export async function bars1045(c: string): Promise<Bar[]> {
   const B = ((G.__p5m1045Bars ||= {})[c] ||= { at: 0, m: new Map<number, Bar>() });
   if (Date.now() - B.at < 5000 && B.m.size) return [...B.m.values()].sort((a: Bar, b: Bar) => a.t - b.t);
   const need = B.m.size < 600 ? 3 : 1;
@@ -54,7 +54,7 @@ export function settle1045(r: any, won: boolean): any {
 }
 async function coinTick(c: string, nowMs: number, pm: PM) {
   const now = nowMs / 1000, f = Math.floor(now / 300) * 300, left = f + 300 - now, b = book(c); let dirty = false;
-  const bs = await bars(c); if (!bs.length) return;
+  const bs = await bars1045(c); if (!bs.length) return;
   // open rows: her TP on the live bid, then the close from the candles
   for (const r of b.rows.filter((x) => x.result === "open")) {
     const ws = Number(r.ws);
@@ -90,7 +90,7 @@ async function k15Tick(nowMs: number, km: KM) {
   }
   const ticker = km.fifteenTicker("KXXRP15M", nowMs), id = `xrp15k-${f}`;
   if (left >= 120 && !b.rows.some((x) => x.id === id)) {
-    const bs = await bars("xrp"); if (bs.length) {
+    const bs = await bars1045("xrp"); if (bs.length) {
       const spot = bs[bs.length - 1].c, r = xrpRead961(bs, ethBands682(bs as any), spot, now) as any; // her XRP lane's own push (PUSH1004)
       if (r && r.side) { const m = await km.fetchMarket(ticker).catch(() => null); const ask = m ? Number(r.side === "up" ? m.yesAsk : m.noAsk) : 0;
         if (ask > 0.02 && ask <= FLOOR1045) { b.rows.push({ id, ws: f, at: new Date(nowMs).toISOString(), asset: "xrp", ticker, side: r.side, setup: r.label, ask, stake: STAKE1045, result: "open", pnl: null, spot }); dirty = true; } }

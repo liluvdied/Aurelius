@@ -17,7 +17,8 @@ export const GRID_BOOKS1046: { key: string; name: string }[] = [
   { key: "p5m-xrp", name: "XRP 5M · NEW" },
   { key: "p5m-btc", name: "BTC 5M · NEW" },
   { key: "p5m-eth", name: "ETH 5M · NEW" },
-  { key: "p5m-xrp15k", name: "XRP 15M · KALSHI" },
+  { key: "p5m-xrp15k", name: "XRP 15M · KALSHI PAPER" },
+  { key: "xrp15k", name: "XRP 15M · KALSHI LIVE" },
 ];
 const UP = "#3ddc84", DOWN = "#ff5c5c";
 const sign = (n: number) => `${n >= 0 ? "+" : "−"}$${Math.abs(n).toFixed(2)}`;
@@ -26,7 +27,7 @@ const clock = (at: string) => { try { return new Date(at).toLocaleTimeString("en
 export function BookGrid1046({ only, heart }: { only?: string[]; heart?: (book: string) => ReactNode } = {}) {
   const [open, setOpen] = useState("");
   const size = useDesk((s) => s.settings.stake) || 20; // fix1048 her Paper size box moves the cards (her XRP lane is real dollars - never re-figured)
-  const real = (k: string) => k === "xrp5m961" || k === "btc5m1055" || k === "eth5m1055"; // fix1055 real-dollar lanes are never re-figured
+  const real = (k: string) => k === "xrp5m961" || k === "btc5m1055" || k === "eth5m1055" || k === "xrp15k"; // fix1055 real-dollar lanes are never re-figured
   // fix1046c a tap on a trade in NEW SCHEDULE opens that book's record here (Love Nov 9 2026 12:42 PM PT: "if i tap one of the trades it pulls up the record for the rest of that book")
   useEffect(() => { const f = (e: Event) => { const k = String((e as CustomEvent).detail || ""); if (GRID_BOOKS1046.some((b) => b.key === k)) setOpen(k); }; window.addEventListener("open-book-1046", f); return () => window.removeEventListener("open-book-1046", f); }, []);
   const q = useQuery({ queryKey: ["book-grid-1046"], queryFn: () => getBookGrid1046({ data: { books: GRID_BOOKS1046.map((b) => b.key) } }), refetchInterval: 10000, staleTime: 5000, placeholderData: (p) => p });

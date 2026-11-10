@@ -106,6 +106,11 @@ export async function wireRows1044(hours = 24, cap = 600): Promise<Wire1044[]> {
       const done = r.result === "win" || r.result === "loss"; return { id: `${book}:${r.id}`, book, at: r.at, asset: book.startsWith("btc") ? "btc" : book.startsWith("eth") ? "eth" : "xrp" /* fix1055 */, venue: "poly", real: book !== "PERPLEXITIES", ticker: r.slug || r.id, side: r.side, setup: r.label, ask: f ? Number(f[2]) : Number(r.ask), stake: st,
         result: done ? r.result : Date.parse(String(r.closesAt || "")) > Date.now() ? "open" : "settling", pnl: done ? (r.perDollar != null ? Number(r.perDollar) * st : r.result === "win" ? st * (1 / (Number(r.ask) || 0.5) - 1) : -st) : null, exit: done ? "settled at the 5m close" : "", spot: Number(r.spot) || 0 }; }), book);
   }
+  const xrp15 = await readJ("xrp15k-live-book.json"); // fix1057 live fills have their own record
+  if (Array.isArray(xrp15?.rows)) push(xrp15.rows.filter((r: any) => r.orderId).map((r: any) => ({
+    ...r, id: `xrp15k:${r.ticker}`, book: "xrp15k", asset: "xrp", venue: "kalshi", real: true,
+    contracts: r.remaining, proceeds: r.proceeds,
+  })), "xrp15k");
   for (const row of await copyTrades1044()) if (Date.parse(row.at) >= cut) out.push(row);
   const seen = new Set<string>(); const uniq = out.filter((w) => (seen.has(w.id) ? false : (seen.add(w.id), true)));
   return uniq.sort((a, b) => (a.at < b.at ? 1 : -1)).slice(0, cap);

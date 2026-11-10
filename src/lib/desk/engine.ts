@@ -3906,6 +3906,7 @@ async function tick() {
     import("./floor1053").catch(() => {}); // fix1053 her 1.5x floor on every paper book (shared through globalThis)
     // fix1045 5M PAPER BOOKS · NEW BRAIN (Love Nov 9 2026: "make cards for all of them and put them in a place i can see what they're taking"): BTC / ETH / XRP Polymarket 5m, PAPER only - never an order.
     import("./p5m1045").then((m) => m.p5mTick1045()).catch(() => {});
+    import("./xrp15k-live").then((m) => m.xrp15Tick()).catch(() => {}); // fix1057 guarded XRP 15m live route
     // fix1037 PERPLEXITIES - PAPER (her ask, Nov 8 2026 2:46 PM PT): Perplexity's XRP 5m twin as a paper book - never an order
     import("./perplexities1037").then((m) => { void m.perpTick1037(); void m.perpSettle1037(); }).catch(() => {});
     // fix983 PUSH SHADOW TEST - PAPER (Love Nov 7 2026 6:29 PM PT: "let's keep the numbers we set in place for now , can you test all of these numbers over night (scaled for the weekends) and the first day or two of the week? we should know rather quickly which one is the YEUP 🎯🎯🎯"): every candidate push (her live numbers, the sliding scale, % of W, the fixed-$ ladder) scored side by side on her real turns and real Kalshi asks, BTC / gold / ETH / BNB / XRP / SOL. Never sends an order; her live numbers unchanged.
