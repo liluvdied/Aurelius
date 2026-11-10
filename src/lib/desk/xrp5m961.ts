@@ -81,7 +81,7 @@ export const cornerstones1004 = (x: { side: "up" | "down"; spot: number; line: n
 export function win5Open1051(bs: { t: number; o: number }[], now: number): number { const f = Math.floor(now / 300) * 300; const b = bs.find((x) => x.t === f); return b ? Number(b.o) : NaN; }
 export function openSide1051(side: "up" | "down", spot: number, open5: number): boolean { return open5 > 0 && (side === "up" ? spot > open5 : spot < open5); }
 /** pure: her XRP read on main's current configuration (now in seconds) - a call or the reason none; fix1004: every entry through her cornerstones */
-export function xrpRead961(bs: Bar[], L: { name: string; price: number }[], spot: number, now = Date.now() / 1000, pushIn?: { band: number; pink: number; wick: number } /* fix1045: the 5m paper books pass their coin's push; her XRP lane keeps PUSH1004 */, windowOpen?: number, rules?: { blockShortBelowMinus2?: boolean }): { side: "up" | "down"; label: string } | { why: string } {
+export function xrpRead961(bs: Bar[], L: { name: string; price: number }[], spot: number, now = Date.now() / 1000, pushIn?: { band: number; pink: number; wick: number } /* fix1045: the 5m paper books pass their coin's push; her XRP lane keeps PUSH1004 */, windowOpen?: number): { side: "up" | "down"; label: string } | { why: string } {
   if (!bs.length || now - bs[bs.length - 1].t > 120) return { why: "STALE FEED: no XRP minute in 120 s - no trade" };
   if (windowOpen !== undefined && !(windowOpen > 0)) return { why: "missing 5m window opening bar - still watching" };
   const k = spot / 80000, brk = 2 * k;
@@ -110,11 +110,6 @@ export function xrpRead961(bs: Bar[], L: { name: string; price: number }[], spot
   // fix1004 main's walls (bandlock.ts), scaled to XRP - "" = clear
   const reach = (W / k < 100 ? 25 : 50) * k;
   const walls = (side: "up" | "down", pinkSetup: boolean): string => { const u = side === "up";
-    if (!u && rules?.blockShortBelowMinus2) {
-      const lowerRung = px("-2σ");
-      if (!(lowerRung > 0)) return "ETH MAIN BOTTOM RUNG: no session -2σ to verify the short";
-      if (spot < lowerRung) return `ETH MAIN BOTTOM RUNG: price ${spot.toFixed(2)} is below session -2σ (${lowerRung.toFixed(2)})`;
-    }
     if (u && f >= 0.67) return "THIRDS: long in the top 33%"; if (!u && f <= 0.33) return "THIRDS: short in the bottom 33%";
     if (pk && r1 && s1) {
       if (u && spot >= r1) return "PAST THE RED ZONE (fix594)"; if (!u && spot <= s1) return "PAST THE GREEN ZONE (fix594)";
@@ -152,18 +147,6 @@ export function xrpRead961(bs: Bar[], L: { name: string; price: number }[], spot
     if (!why && allowedSide(side, label)) return { side, label };
   }
   return { why: wrongSide || first || "no setup" };
-}
-/** Recheck the original call on the asset's latest trade after venue reads finish. */
-export async function judgeCoinEntry(product: "BTC-USD" | "ETH-USD" | "XRP-USD", side: "up" | "down", label: string, read: (spot: number, now: number) => ReturnType<typeof xrpRead961>): Promise<string> {
-  const tick = await fetch(`https://api.exchange.coinbase.com/products/${product}/ticker`, { signal: AbortSignal.timeout(2000) })
-    .then((res) => res.ok ? res.json() : null).catch(() => null);
-  const now = Date.now(), spot = Number(tick?.price), age = now - Date.parse(String(tick?.time ?? ""));
-  if (!(spot > 0 && age >= 0 && age <= 2000)) return `${product} has no trade tick within 2 seconds`;
-  const lag = Number((globalThis as any).__lagLast654) || 0;
-  if (lag > 0 && now - lag > 2000) return "entry held after an engine delay"; // fix654
-  const current = read(spot, now / 1000);
-  if ("why" in current) return current.why;
-  return current.side === side && current.label === label ? "" : "setup changed before the order";
 }
 type PM = Pick<typeof import("./poly-live.server"), "buySlug" | "bookTop">;
 /** fix1055x Look up the actual XRP market first and use its first successful quote. */
@@ -215,8 +198,7 @@ export async function xrpTick961(nowMs = Date.now(), pmIn?: PM) {
     if (!(ask != null && ask > 0.02 && ask <= c.maxAsk)) { RT[id] = nowMs; row.live = `skipped: ask ${ask ?? "?"} over her 66c (1.5x floor) - still watching this window (fix1017)`; if (once1017(ask == null ? "noask" : "ask")) { s.rows.push(row); save(); log({ id, action: "skipped", side: r.side, label: r.label, slug, ask, why: row.live }); } return; } // fix1017 an over-cap look does not spend the window
     try {
       let wireCode = "unknown", wireReason = "";
-      const f = await pm.buySlug(r.side, slug, c.dollars, c.maxAsk, null, "", (code: string, reason: string) => { wireCode = code; wireReason = reason; }, (end - 60) * 1000,
-        () => judgeCoinEntry("XRP-USD", r.side, r.label, (spot, now) => xrpRead961(bs, ethBands682(bs), spot, now, undefined, win5Open1051(bs, now))));
+      const f = await pm.buySlug(r.side, slug, c.dollars, c.maxAsk, null, "", (code: string, reason: string) => { wireCode = code; wireReason = reason; }, (end - 60) * 1000);
       row.live = f && f.filled > 0 ? `bought ${f.filled} @ ${f.price}` : `no fill / refused at the wire${wireReason ? `: ${wireReason}` : ""} - still watching this window (fix1017)`;
       if (f && f.filled > 0) s.seen[id] = nowMs; else { RT[id] = nowMs; if (!once1017(`wire:${wireCode}`)) return; } // fix1017 ONLY a fill spends the window; a no fill / refusal keeps watching
       log({ id, action: f && f.filled > 0 ? "bought" : "skipped", side: r.side, label: r.label, slug, ask, filled: f?.filled ?? 0, price: f?.price ?? null, why: f && f.filled > 0 ? "" : row.live });
@@ -257,8 +239,7 @@ async function addOns1029(s: any, id: string, nowMs: number, pmIn?: PM) {
   try { if (b2t.on && b2t.dollars > 0 && nowMs - Number(RT[id + "trig"] || 0) >= RETRY1017_MS) { const bsT = await bars(); const spT = bsT.length ? bsT[bsT.length - 1].c : 0; const rd = spT > 0 ? xrpRead961(bsT, ethBands682(bsT as any), spT, nowMs / 1000) : ({ why: "no bars" } as any);
     const kT = "side" in rd ? "trig|" + String(rd.label) + "|" + Math.floor(nowMs / 60000) : ""; const gT = trigPx1043(px, ask, at, nowMs);
     if ("side" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + "trig"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk);
-      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, ":add1043" + Math.floor(nowMs / 60000), undefined, Date.parse(e.closesAt) - 60000,
-        () => judgeCoinEntry("XRP-USD", e.side, rd.label, (spot, now) => xrpRead961(bsT, ethBands682(bsT), spot, now, undefined))); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? "trigger add-on" : "trigger add-on missed", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }
+      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, ":add1043" + Math.floor(nowMs / 60000)); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? "trigger add-on" : "trigger add-on missed", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }
       catch (er: any) { done[kT] = nowMs; save(); log({ id, action: "trigger add-on error", why: String(er?.message || er).slice(0, 120) }); } } } } catch {}
   for (const b of bx) {
     if (nowMs - Number(RT[id + b.k] || 0) < RETRY1017_MS) continue;

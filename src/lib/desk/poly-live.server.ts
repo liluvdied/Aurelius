@@ -3,7 +3,6 @@ import { join } from "node:path";
 import { createPrivateKey, sign, type KeyObject } from "node:crypto";
 import type { KalshiMarket, Side } from "./types";
 import { liveOn, maxDollars, noteBlock } from "./live-guard";
-void import("./umpire-gate").catch(() => {});
 
 const ROOT = "https://api.polymarket.us";
 const HEDGE_DOLLARS = 10;
@@ -69,9 +68,10 @@ function guardPolyOrder(method: string, path: string, body: unknown): { body?: u
   // $3 Down ticket at 5c as if it were $57.
   const px = /SHORT/i.test(String(order.intent || "")) ? 1 - yesPx : yesPx;
   const qty = Number(order.quantity);
-  // Historical fix358 (Oct 27 2026 6:55 PM PT, Love: "raise her stake to $10 on the other hours" + card "$7.50 now").
-  // The later $1 Polymarket 5m limit supersedes that stake override.
-  const cap = /-5m-/.test(String(order.marketSlug || "")) ? Math.min(1, maxDollars()) : maxDollars();
+  // fix358 (Oct 27 2026 6:55 PM PT, Love: "raise her stake to $10 on the other hours" + card "$7.50 now"): a Polymarket 5M order (5m market slug) may go up to
+  // polyTwin.rej5m.dollars; every other order keeps the live cap (maxDollars). Kalshi never reads this.
+  let cap = maxDollars();
+  try { if (/-5m-/.test(String(order.marketSlug || ""))) { const r5c = Number(JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.polyTwin?.rej5m?.dollars); if (r5c > cap) cap = r5c; } } catch {}
   if (px > 0 && qty > 0 && qty * px > cap + 1e-6) {
     const fixed = Math.floor((cap / px) * 100) / 100;
     noteBlock({ venue: "polymarket", ticker: order.marketSlug, reason: `Size cut from $${(qty * px).toFixed(2)} to the $${cap} cap` });
@@ -85,23 +85,6 @@ async function poly(method: string, path: string, query = "", rawBody?: unknown)
   const guarded = guardPolyOrder(method, path, rawBody);
   if (guarded.refused) return new Response(JSON.stringify({ error: guarded.refused }), { status: 403, headers: { "Content-Type": "application/json" } });
   const body = guarded.body;
-  const order = body as { intent?: string; marketSlug?: string } | undefined;
-  if (method === "POST" && path.startsWith("/v1/orders") && /BUY/i.test(String(order?.intent || ""))) {
-    let reason = "";
-    try {
-      const halt = JSON.parse(readFileSync(join(process.cwd(), "data", "halt.json"), "utf8"));
-      if (halt?.off === true) reason = "ENTRIES ARE OFF (fix604)";
-    } catch {}
-    if (!reason) {
-      const gate = (globalThis as any).__umpGate461;
-      reason = typeof gate === "function" ? gate("polymarket") : "THE UMPIRE GATE is not running";
-    }
-    if (reason) {
-      const error = `THE ENFORCER (fix748): ${reason}`;
-      noteBlock({ venue: "polymarket", ticker: order?.marketSlug, reason: error });
-      return new Response(JSON.stringify({ error }), { status: 403, headers: { "Content-Type": "application/json" } });
-    }
-  }
   const timestamp = Date.now().toString();
   const signature = sign(null, Buffer.from(`${timestamp}${method}${path}`), privateKey()).toString("base64");
   return fetch(ROOT + path + query, {
@@ -673,7 +656,6 @@ export async function buySlug(
   claimTag = "", // fix1029: an add-on claims its own key (slug + tag) so the entry's one-buy-per-window claim stays as is; "" = the entry, unchanged
   onRefused?: (code: string, reason: string) => void,
   deadlineMs?: number, // fix1055x 5m entries cannot send in their last minute even after slow reads
-  recheck?: () => Promise<string>,
 ): Promise<HedgeFill | null> {
   // fix1056 Keep the venue audit and the XRP lane's refusal in sync.
   const why1056 = (code: string, why: string, details: Record<string, unknown> = {}): null => {
@@ -682,16 +664,8 @@ export async function buySlug(
   };
   maxAsk = Math.min(maxAsk, 0.66);
   slug = await resolve5m994(slug); // fix994: an event slug -> its market
-  const fiveMinute = /-5m-/.test(slug);
-  if (fiveMinute) dollars = Math.min(dollars, 1);
-  // The $1 limit is for the window, including a partial entry. No additional buy.
-  const extraBuy = fiveMinute && claimTag !== "";
   const claimKey = slug + claimTag; // fix1058 match the durable record to the in-flight claim
-  if (extraBuy || hourSlugs(claimTag).includes(claimKey)) {
-    return why1056(extraBuy ? "size" : "already-bought", extraBuy
-      ? "Polymarket 5m is limited to one $1 entry per window"
-      : "this market already has a recorded buy for this entry or add-on");
-  }
+  if (hourSlugs(claimTag).includes(claimKey)) return why1056("already-bought", "this market already has a recorded buy for this entry or add-on");
   // A read-only failure before the POST is safe to retry in the same window.
   const cash = await polymarketCash().catch((error) => {
     if (deadlineMs === undefined) throw error; return null;
@@ -712,10 +686,9 @@ export async function buySlug(
       releaseWindow(claimKey);
       return why1056("size", "order size is below the minimum or above its dollar limit", { quoted, price, quantity });
     }
-    const setupRefusal = recheck ? await recheck().catch(() => "could not recheck the setup") : "";
-    if (setupRefusal || (deadlineMs !== undefined && Date.now() > deadlineMs)) {
+    if (deadlineMs !== undefined && Date.now() > deadlineMs) {
       releaseWindow(claimKey);
-      return why1056(setupRefusal ? "setup" : "late", setupRefusal || "5m window reached its final minute before the order could be sent"); // fix1017 final-minute cutoff
+      return why1056("late", "5m window reached its final minute before the order could be sent"); // fix1017 final-minute cutoff
     }
     const res = await poly("POST", "/v1/orders", "", {
       marketSlug: slug,
