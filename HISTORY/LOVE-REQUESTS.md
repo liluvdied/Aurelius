@@ -2,6 +2,35 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R629 - XRP 15m Kalshi retries a transient stale Coinbase ticker within the existing two-second request budget and requires a fresh trade and the same setup before a send.
+- when: 2026-11-10T11:39:57+00:00
+- Love: ""pls fix the open issue""
+- books: xrp15k
+- status: ACTIVE
+- proof: {"test": "tools/xrp-15m-kalshi-live.cjs"}
+
+## R626 - ETH 5m live entry and trigger add-on honor the MAIN lower-rung guard. Hold any short below the ETH session -2 sigma band. Preserve eligible rejection shorts above it and longs below it.
+- when: 2026-11-10T11:28:59+00:00
+- Love: "Love: "eth shorted under a session abdn on the 5m last window. please fix that for me hun" | "1:36 a.m. signal" | "yes please fix that immediately""
+- books: ETH 5m Polymarket
+- status: ACTIVE
+- proof: {"test": "tools/eth-main-bottom-rung.cjs"}
+
+## R627 - Polymarket live opening orders use the same matching Umpire gate (fix461, fix748) and entries-off check (fix604) as Kalshi. Preserve current entry limits and exit behavior.
+- when: 2026-11-10T11:28:59+00:00
+- Love: "Love: "all books trading need to be on the updated framework""
+- books: Polymarket live books
+- status: ACTIVE
+- proof: {"test": "tools/poly-main-preflight.cjs"}
+
+## R628 - Recheck each Polymarket BTC/ETH/XRP 5m entry and setup-trigger add-on on a same-asset trade within 2 seconds at the send (fix654); keep its reader and window rules (fix1055x, fix1055, fix1043, fix1017), and give Cup the full shared live wall flags (fix523).
+- when: 2026-11-10T11:28:59+00:00
+- Love: "Love: "Keep each book’s strategy and update the shared checks""
+- books: BTC ETH XRP Polymarket 5m, Kalshi Cup
+- status: ACTIVE
+- proof: {"test": "tools/poly-5m-entry-recheck.cjs"}
+- proof: {"test": "tools/cup-shared-checks.cjs"}
+
 ## R625 - fix1065 HER PINK SLIDE TAKES PRECEDENCE OVER HER THIRDS: while main's own pink slide is on for gold / BTC (slideBlock658 says no long), her door no longer refuses a SHORT for sitting in the bottom third of her channel; while main's climb is on (no short), it no longer refuses a LONG in the top third. 14 thirds walls in bandlock.ts ask main's slide first (THE WALL top/bottom, candle from the third, THE IMPOSSIBILITY, ONLY IN HER THIRD, falling-from-the-top / rising-from-the-bottom). Every other wall still judges the trade. Main's slide unreadable = her thirds stand. Replay: at 2:15:17 AM PT main's BTC slide was on (2 rejections on a down-sloped pink, with CHANGE-400's 44% removal), so the 2:15 BTC short is no longer refused by THE IMPOSSIBILITY.
 - when: 2026-11-10T11:25:11+00:00
 - Love: "Love Nov 10 2026 2:41 AM PT: "again. i told you the pink slide rule takes precedence over the bottom 3rd for shorts. inverse for longs.""

@@ -2785,5 +2785,183 @@
   "status": "skipped",
   "final": true,
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26NOV100645-45:recon-rej:KXGOLD15M-26NOV100645-45:recon-rej": {
+  "at": "2026-11-10T11:30:14.678Z",
+  "ticker": "KXGOLD15M-26NOV100645-45",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "break retry stopped: NOT HER COLOUR (fix951): \"Rejected down off 5m PP\" - neither the 2m nor the 5m candle is red at 4073.90 (only a wick rejection may enter without her colour) - no entry.",
+  "firstTryAt": "2026-11-10T11:30:10.601Z",
+  "bookedAt": "2026-11-10T11:30:08.300Z",
+  "tries": 8,
+  "final": false,
+  "paid": 0.44,
+  "orderId": "01a1c539-0d88-77b8-9d50-e14e47397b7d"
+ },
+ "KXGOLD15M-26NOV100645-45:recon-tog:KXGOLD15M-26NOV100645-45:recon-tog": {
+  "at": "2026-11-10T11:30:10.667Z",
+  "ticker": "KXGOLD15M-26NOV100645-45",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV100645-45:recon-rej:ps801": {
+  "at": "2026-11-10T11:35:06.353Z",
+  "ticker": "KXBTC15M-26NOV100645-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV100645-45:recon-tog:ps801": {
+  "at": "2026-11-10T11:44:02.433Z",
+  "ticker": "KXBTC15M-26NOV100645-45",
+  "side": "up",
+  "status": "blocked",
+  "reason": "break retry stopped: ON HER SIDE (fix434): -1σ (74370.51) is not broken by her $2 - price is 69% of the way from -2σ to it - no long in her top 33%",
+  "firstReason": "BOLLINGER WALL (fix962): the Bollinger middle (74208.06) is $15.46 above - no long into it (her $25 wall)",
+  "firstTryAt": "2026-11-10T11:35:06.457Z",
+  "bookedAt": "2026-11-10T11:35:05.967Z",
+  "tries": 1015,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXBTC15M-26NOV100645-45:recon-rej:KXBTC15M-26NOV100645-45:recon-rej": {
+  "at": "2026-11-10T11:37:51.210Z",
+  "ticker": "KXBTC15M-26NOV100645-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV100645-45:recon-tog:KXBTC15M-26NOV100645-45:recon-tog": {
+  "at": "2026-11-10T11:43:56.006Z",
+  "ticker": "KXBTC15M-26NOV100645-45",
+  "side": "up",
+  "status": "skipped",
+  "reason": "paper closed it (half at 75% (83c) + trail from 90%: best +267%, sold at 99c) before the copy filled",
+  "firstReason": "your hand trade holds this window (she goes in if you exit)",
+  "firstTryAt": "2026-11-10T11:37:51.572Z",
+  "bookedAt": "2026-11-10T11:37:50.788Z",
+  "tries": 672,
+  "final": true,
+  "paid": null,
+  "orderId": null
+ },
+ "KXGOLD15M-26NOV100700-00:recon-rej:KXGOLD15M-26NOV100700-00:recon-rej": {
+  "at": "2026-11-10T11:45:49.374Z",
+  "ticker": "KXGOLD15M-26NOV100700-00",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "break retry stopped: HER WALL (fix429): 5m PP (4073.42) is unbroken - price only $0.25 through it, under her $0.33 break - no short into it (her $1.5113571428571504 reach)",
+  "firstTryAt": "2026-11-10T11:45:38.877Z",
+  "bookedAt": "2026-11-10T11:45:36.437Z",
+  "tries": 23,
+  "final": false,
+  "paid": 0.6,
+  "orderId": "01a1c547-51e0-7383-893a-32a8a8812a53"
+ },
+ "KXGOLD15M-26NOV100700-00:recon-tog:KXGOLD15M-26NOV100700-00:recon-tog": {
+  "at": "2026-11-10T11:45:38.962Z",
+  "ticker": "KXGOLD15M-26NOV100700-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV100700-00:recon-rej:KXBTC15M-26NOV100700-00:recon-rej": {
+  "at": "2026-11-10T11:59:32.464Z",
+  "ticker": "KXBTC15M-26NOV100700-00",
+  "side": "down",
+  "status": "missed",
+  "reason": "window ended before it filled (last: BTC CLIMB OVER PINK: 3 candles hit the pink and rejected on an up slope (last at 74244.65) with btc 74304.23 over it - no short until price breaks down through pink by 10% of the channel (fix560).)",
+  "firstReason": "BTC CLIMB OVER PINK: 2 candles hit the pink and rejected on an up slope (last at 74188.04) with btc 74287.48 over it - no short until price breaks down through pink by 10% of the channel (fix560).",
+  "final": true
+ },
+ "KXBTC15M-26NOV100700-00:recon-tog:KXBTC15M-26NOV100700-00:recon-tog": {
+  "at": "2026-11-10T11:59:32.488Z",
+  "ticker": "KXBTC15M-26NOV100700-00",
+  "side": "down",
+  "status": "missed",
+  "reason": "window ended before it filled (last: BTC CLIMB OVER PINK: 3 candles hit the pink and rejected on an up slope (last at 74244.65) with btc 74303.84 over it - no short until price breaks down through pink by 10% of the channel (fix560).)",
+  "firstReason": "BTC CLIMB OVER PINK: 2 candles hit the pink and rejected on an up slope (last at 74188.04) with btc 74285.21 over it - no short until price breaks down through pink by 10% of the channel (fix560).",
+  "final": true
+ },
+ "KXBTC15M-26NOV100700-00:recon-rej:ps801": {
+  "at": "2026-11-10T11:55:19.213Z",
+  "ticker": "KXBTC15M-26NOV100700-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV100700-00:recon-tog:ps801": {
+  "at": "2026-11-10T11:59:32.495Z",
+  "ticker": "KXBTC15M-26NOV100700-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "bandWait": true,
+  "reason": "band never broke before the window closed (last: SUB-AUDITOR: THE IMPOSSIBILITY: long at 82% of the 74049.01 -> 74361.83 channel - the top 33%, into the unbroken band above. never.)"
+ },
+ "KXBTC15M-26NOV100715-15:recon-rej:ps801": {
+  "at": "2026-11-10T12:00:32.513Z",
+  "ticker": "KXBTC15M-26NOV100715-15",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV100715-15:recon-tog:ps801": {
+  "at": "2026-11-10T12:04:00.258Z",
+  "ticker": "KXBTC15M-26NOV100715-15",
+  "side": "up",
+  "status": "skipped",
+  "final": false,
+  "bandWait": true,
+  "reason": "SUB-AUDITOR: THE IMPOSSIBILITY: long at 73% of the 74046.62 -> 74359.65 channel - the top 33%, into the unbroken band above. never."
+ },
+ "KXGOLD15M-26NOV100715-15:recon-rej:KXGOLD15M-26NOV100715-15:recon-rej": {
+  "at": "2026-11-10T12:01:00.682Z",
+  "ticker": "KXGOLD15M-26NOV100715-15",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXGOLD15M-26NOV100715-15:recon-tog:KXGOLD15M-26NOV100715-15:recon-tog": {
+  "at": "2026-11-10T12:04:00.124Z",
+  "ticker": "KXGOLD15M-26NOV100715-15",
+  "side": "up",
+  "status": "blocked",
+  "reason": "PAST THE RED ZONE (fix594): long at 4077.01 at or past the red boundary 4076.96 - no long.",
+  "firstReason": "{\"error\":\"Live switch is OFF. No new Kalshi order was sent.\"}",
+  "firstTryAt": "2026-11-10T12:01:02.143Z",
+  "bookedAt": "2026-11-10T12:02:31.226Z",
+  "tries": 221,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXBTC15M-26NOV100715-15:recon-rej:KXBTC15M-26NOV100715-15:recon-rej": {
+  "at": "2026-11-10T12:03:51.860Z",
+  "ticker": "KXBTC15M-26NOV100715-15",
+  "side": "down",
+  "status": "held",
+  "reason": "BTC CLIMB OVER PINK: btc 74304.87 is still over the pink (74271.31) since her climb - no short until price breaks down through pink by 10% of the channel (fix560).",
+  "firstReason": "BTC CLIMB OVER PINK: 3 candles hit the pink and rejected on an up slope (last at 74244.65) with btc 74257.98 over it - no short until price breaks down through pink by 10% of the channel (fix560)."
+ },
+ "KXBTC15M-26NOV100715-15:recon-tog:KXBTC15M-26NOV100715-15:recon-tog": {
+  "at": "2026-11-10T12:03:52.113Z",
+  "ticker": "KXBTC15M-26NOV100715-15",
+  "side": "down",
+  "status": "held",
+  "reason": "BTC CLIMB OVER PINK: btc 74304.87 is still over the pink (74271.31) since her climb - no short until price breaks down through pink by 10% of the channel (fix560).",
+  "firstReason": "BTC CLIMB OVER PINK: 3 candles hit the pink and rejected on an up slope (last at 74244.65) with btc 74257.98 over it - no short until price breaks down through pink by 10% of the channel (fix560)."
  }
 }

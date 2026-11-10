@@ -2788,3 +2788,7 @@ LIVE back on after fix425 2026-10-29T02:37:06.682417+00:00 ({'engine.ts': 'bc53a
 2026-11-10T08:11:17.716338+00:00 R620: Love: "please fix the BTC add-on bug and the Kalshi retry lock, test both before anything goes live, and put the installer on my desktop"
 
 2026-11-10T09:08:40.663644+00:00 Codex R621 | please fix this hun. she only takes the ones that lose. skips every one that wins. im talking about kalshi, btc | Kalshi BTC entry retry quote consistency.
+
+2026-11-10T11:28:59.188866+00:00 Codex R626, R627, R628 | Love: "Keep each book’s strategy and update the shared checks" | Reconciled the reviewed Shared Checks with CHANGE-399 and CHANGE-400.
+
+2026-11-10T11:39:57.950102+00:00 Codex R629 | "pls fix the open issue" | XRP 15m Kalshi retries a transient stale Coinbase ticker within the existing two-second request budget and requires a fresh trade and the same setup before a send.

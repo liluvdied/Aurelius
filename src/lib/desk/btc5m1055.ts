@@ -19,6 +19,7 @@ import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } f
 import { join } from "node:path";
 import { ethBands682 } from "./ethbook";
 import { xrpRead961, win5Open1051, rung1029, trigPx1043, boxes1029 } from "./xrp5m961"; // fix1055 her one brain
+import { judgeCoinEntry } from "./xrp5m961";
 const PUSH1055 = { band: 5, pink: 5, wick: 10 }; // fix1055 BTC push - the 5m books' (fix1045) numbers behind her 5m table
 
 const G = globalThis as any;
@@ -88,7 +89,8 @@ export async function btcTick1055(nowMs = Date.now(), pmIn?: PM) {
     { const d1063 = await door1063(r.side, slug, r.label); if (d1063) { RT[id] = nowMs; row.live = `refused: ${d1063} - still watching this window`; if (once1063(d1063)) { s.rows.push(row); save(); log({ id, action: "skipped", side: r.side, label: r.label, slug, ask, why: row.live }); } return; } } // fix1063 main's door before the order
     try {
       let wireCode = "unknown", wireReason = "";
-      const f = await pm.buySlug(r.side, slug, c.dollars, c.maxAsk, null, "", (code: string, reason: string) => { wireCode = code; wireReason = reason; }, (end - 60) * 1000);
+      const f = await pm.buySlug(r.side, slug, c.dollars, c.maxAsk, null, "", (code: string, reason: string) => { wireCode = code; wireReason = reason; }, (end - 60) * 1000,
+        () => judgeCoinEntry("BTC-USD", r.side, r.label, (spot, now) => xrpRead961(bs, ethBands682(bs), spot, now, PUSH1055, win5Open1051(bs, now))));
       row.live = f && f.filled > 0 ? `bought ${f.filled} @ ${f.price}` : `no fill / refused at the wire${wireReason ? `: ${wireReason}` : ""} - still watching this window (fix1017)`;
       if (f && f.filled > 0) s.seen[id] = nowMs; else { RT[id] = nowMs; if (!once1017(`wire:${wireCode}`)) return; } // fix1017 ONLY a fill spends the window; a no fill / refusal keeps watching
       log({ id, action: f && f.filled > 0 ? "bought" : "skipped", side: r.side, label: r.label, slug, ask, filled: f?.filled ?? 0, price: f?.price ?? null, why: f && f.filled > 0 ? "" : row.live });
@@ -106,7 +108,8 @@ async function addOns1029(s: any, id: string, nowMs: number, pmIn?: PM) {
   try { if (b2t.on && b2t.dollars > 0 && nowMs - Number(RT[id + "trig"] || 0) >= RETRY1017_MS) { const bsT = await bars(); const spT = bsT.length ? bsT[bsT.length - 1].c : 0; const rd = spT > 0 ? xrpRead961(bsT, ethBands682(bsT as any), spT, nowMs / 1000, PUSH1055) : ({ why: "no bars" } as any);
     const kT = "side" in rd ? "trig|" + String(rd.label) + "|" + Math.floor(nowMs / 60000) : ""; const gT = trigPx1043(px, ask, at, nowMs);
     if ("side" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + "trig"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk); const dT1063 = await door1063(e.side, e.slug, String(rd.label)); if (dT1063) { log({ id, action: "trigger add-on refused", side: e.side, slug: e.slug, why: dT1063 }); } else
-      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, ":add1043" + Math.floor(nowMs / 60000)); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? "trigger add-on" : "trigger add-on missed", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }
+      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, ":add1043" + Math.floor(nowMs / 60000), undefined, Date.parse(e.closesAt) - 60000,
+        () => judgeCoinEntry("BTC-USD", e.side, rd.label, (spot, now) => xrpRead961(bsT, ethBands682(bsT), spot, now, PUSH1055))); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? "trigger add-on" : "trigger add-on missed", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }
       catch (er: any) { done[kT] = nowMs; save(); log({ id, action: "trigger add-on error", why: String(er?.message || er).slice(0, 120) }); } } } } catch {}
   for (const b of bx) {
     if (nowMs - Number(RT[id + b.k] || 0) < RETRY1017_MS) continue;

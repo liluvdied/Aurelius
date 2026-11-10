@@ -1,5 +1,6 @@
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { setTimeout as wait } from "node:timers/promises";
 import { bars1045 } from "./p5m1045";
 import { xrpRead961 } from "./xrp5m961";
 import { ethBands682 } from "./ethbook";
@@ -43,17 +44,33 @@ export function xrp15MarketOK(m: Pick<KalshiMarket, "ticker" | "status" | "close
   return m.ticker === ticker && !m.result && /^(active|open)$/i.test(m.status) &&
     Date.parse(m.closeTime) === end && end - now >= XRP15_CLOSE_GUARD_MS;
 }
+const XRP15_TICK_MAX_AGE_MS = 2000;
+async function freshXrp15Tick(): Promise<{ spot: number; at: number } | null> {
+  const signal = AbortSignal.timeout(2000);
+  // A quiet XRP tape can leave the first ticker response just outside the freshness rule.
+  // Recheck within the same two-second wire budget, using Coinbase's trade time.
+  for (let attempt = 0; attempt < 4 && !signal.aborted; attempt++) {
+    if (attempt > 0) await wait(450, undefined, { signal }).catch(() => {});
+    if (signal.aborted) break;
+    const tick = await fetch("https://api.exchange.coinbase.com/products/XRP-USD/ticker", { signal, cache: "no-store" })
+      .then((response) => response.ok ? response.json() : null).catch(() => null);
+    const spot = Number(tick?.price), at = Date.parse(String(tick?.time ?? ""));
+    const age = Date.now() - at;
+    if (!signal.aborted && Number.isFinite(spot) && spot > 0 && age >= 0 && age <= XRP15_TICK_MAX_AGE_MS) return { spot, at };
+  }
+  return null;
+}
 /** The last-line check uses the exact same setup on a newly read Coinbase XRP trade. */
 export async function judgeXrp15(ticker: string, side: Xrp15Side, label: string, checked?: (quote: { spot: number; vwap?: number; stdev?: number }) => void): Promise<string> {
   if (!xrp15Enabled()) return "XRP 15m is paper only";
   const km = await import("./kalshi");
   const bs = await bars1045("xrp");
   if (!bs.length) return "XRP 15m has no candles at the wire";
-  const tick = await fetch("https://api.exchange.coinbase.com/products/XRP-USD/ticker", { signal: AbortSignal.timeout(2000) })
-    .then((response) => response.ok ? response.json() : null).catch(() => null);
-  const now = Date.now(), spot = Number(tick?.price), age = now - Date.parse(String(tick?.time ?? ""));
+  const tick = await freshXrp15Tick();
+  const now = Date.now();
   if (ticker !== km.fifteenTicker("KXXRP15M", now + 1) || xrp15End(now) - now < XRP15_CLOSE_GUARD_MS) return "XRP 15m window is no longer eligible";
-  if (!(spot > 0) || !(age >= 0 && age <= 2000)) return "XRP 15m has no trade tick within 2 seconds";
+  if (!tick || tick.at > now || now - tick.at > XRP15_TICK_MAX_AGE_MS) return "XRP 15m has no trade tick within 2 seconds";
+  const { spot } = tick;
   const lag = Number((globalThis as any).__lagLast654) || 0;
   if (lag > 0 && now - lag > 2000) return "XRP 15m is waiting after an engine delay";
   const lines = ethBands682(bs);

@@ -1,9 +1,13 @@
-# Every decision Love has made - rebuilt 2026-11-10T11:27:05.237960+00:00
+# Every decision Love has made - rebuilt 2026-11-10T12:01:48.843364+00:00
 
-1555 decisions with Love's words or card picks, out of 2316 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1556 decisions with Love's words or card picks, out of 2318 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-10T11:28:59.188866+00:00  ·  diary line 2792
+- Love: “Keep each book’s strategy and update the shared checks”
+- Full entry: 2026-11-10T11:28:59.188866+00:00 Codex R626, R627, R628 | Love: "Keep each book’s strategy and update the shared checks" | Reconciled the reviewed Shared Checks with CHANGE-399 and CHANGE-400.
 
 ## 2026-11-10T08:11:17.716338+00:00  ·  diary line 2788
 - Love: “please fix the BTC add-on bug and the Kalshi retry lock, test both before anything goes live, and put the installer on my desktop”

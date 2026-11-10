@@ -19,11 +19,17 @@ import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } f
 import { join } from "node:path";
 import { ethBands682 } from "./ethbook";
 import { xrpRead961, win5Open1051, rung1029, trigPx1043, boxes1029 } from "./xrp5m961"; // fix1055 her one brain
+import { judgeCoinEntry } from "./xrp5m961";
 const PUSH1055 = { band: 0.25, pink: 0.25, wick: 0.5 }; // fix1055 ETH push - the 5m books' (fix1045) numbers behind her 5m table
+// Apply MAIN’s lower-rung wall. The waterfall exception is specific to BTC MAIN/REJ.
+const ETH_MAIN_RUNG = { blockShortBelowMinus2: true };
 
 const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
 type Bar = { t: number; o: number; h: number; l: number; c: number; v: number };
+function readEth1055(bs: Bar[], lines: ReturnType<typeof ethBands682>, spot: number, now: number, push: typeof PUSH1055, windowOpen?: number) {
+  return xrpRead961(bs, lines, spot, now, push, windowOpen, ETH_MAIN_RUNG);
+}
 export type Cfg1055 = { on: boolean; dollars: number; maxAsk: number };
 export function cfg1055(): Cfg1055 {
   let c: any = {}; try { c = JSON.parse(readFileSync(D("eth5m-1055-cfg.json"), "utf8")) || {}; } catch {}
@@ -73,7 +79,7 @@ export async function ethTick1055(nowMs = Date.now(), pmIn?: PM) {
     const readAt = Date.now() / 1000;
     if (end - readAt < 60) return;
     const spot = bs.at(-1)?.c ?? 0;
-    const r = xrpRead961(bs, ethBands682(bs), spot, readAt, PUSH1055, win5Open1051(bs, readAt)); // fix1055x test the window side while choosing the setup
+    const r = readEth1055(bs, ethBands682(bs), spot, readAt, PUSH1055, win5Open1051(bs, readAt)); // fix1055x test the window side while choosing the setup
     if (!("side" in r)) { const W = (G.__eth1055Why ||= {}); if (W[id] !== r.why) { W[id] = r.why; if (!/^no setup$/.test(r.why)) log({ id, action: "waiting", why: r.why }); } return; }
     const pm: PM = pmIn || ((await import("./poly-live.server")) as any);
     const slug = await windowSlug(pm, start);
@@ -84,7 +90,8 @@ export async function ethTick1055(nowMs = Date.now(), pmIn?: PM) {
     if (!(ask != null && ask > 0.02 && ask <= c.maxAsk)) { RT[id] = nowMs; row.live = `skipped: ask ${ask ?? "?"} over her 66c (1.5x floor) - still watching this window (fix1017)`; if (once1017(ask == null ? "noask" : "ask")) { s.rows.push(row); save(); log({ id, action: "skipped", side: r.side, label: r.label, slug, ask, why: row.live }); } return; } // fix1017 an over-cap look does not spend the window
     try {
       let wireCode = "unknown", wireReason = "";
-      const f = await pm.buySlug(r.side, slug, c.dollars, c.maxAsk, null, "", (code: string, reason: string) => { wireCode = code; wireReason = reason; }, (end - 60) * 1000);
+      const f = await pm.buySlug(r.side, slug, c.dollars, c.maxAsk, null, "", (code: string, reason: string) => { wireCode = code; wireReason = reason; }, (end - 60) * 1000,
+        () => judgeCoinEntry("ETH-USD", r.side, r.label, (spot, now) => readEth1055(bs, ethBands682(bs), spot, now, PUSH1055, win5Open1051(bs, now))));
       row.live = f && f.filled > 0 ? `bought ${f.filled} @ ${f.price}` : `no fill / refused at the wire${wireReason ? `: ${wireReason}` : ""} - still watching this window (fix1017)`;
       if (f && f.filled > 0) s.seen[id] = nowMs; else { RT[id] = nowMs; if (!once1017(`wire:${wireCode}`)) return; } // fix1017 ONLY a fill spends the window; a no fill / refusal keeps watching
       log({ id, action: f && f.filled > 0 ? "bought" : "skipped", side: r.side, label: r.label, slug, ask, filled: f?.filled ?? 0, price: f?.price ?? null, why: f && f.filled > 0 ? "" : row.live });
@@ -99,10 +106,11 @@ async function addOns1029(s: any, id: string, nowMs: number, pmIn?: PM) {
   const pm: PM = pmIn || ((await import("./poly-live.server")) as any); const top = await pm.bookTop(e.slug).catch(() => null); if (!top) return;
   const ask = e.side === "up" ? Number(top.ask) : Math.round((1 - Number(top.bid)) * 100) / 100;
   // fix1043 HER TRIGGER ADD-ON ON THE XRP LANE: her lane's own read (xrpRead961, same walls as her entry) calls the SAME side again = a genuine entry trigger; 2.5x+, strictly better than her entry (trigPx1043), $ = her Add-on 2 box, one per distinct trigger (setup + 1 minute), no count limit
-  try { if (b2t.on && b2t.dollars > 0 && nowMs - Number(RT[id + "trig"] || 0) >= RETRY1017_MS) { const bsT = await bars(); const spT = bsT.length ? bsT[bsT.length - 1].c : 0; const rd = spT > 0 ? xrpRead961(bsT, ethBands682(bsT as any), spT, nowMs / 1000, PUSH1055) : ({ why: "no bars" } as any);
+  try { if (b2t.on && b2t.dollars > 0 && nowMs - Number(RT[id + "trig"] || 0) >= RETRY1017_MS) { const bsT = await bars(); const spT = bsT.length ? bsT[bsT.length - 1].c : 0; const rd = spT > 0 ? readEth1055(bsT, ethBands682(bsT as any), spT, nowMs / 1000, PUSH1055) : ({ why: "no bars" } as any);
     const kT = "side" in rd ? "trig|" + String(rd.label) + "|" + Math.floor(nowMs / 60000) : ""; const gT = trigPx1043(px, ask, at, nowMs);
     if ("side" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + "trig"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk);
-      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, ":add1043" + Math.floor(nowMs / 60000)); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? "trigger add-on" : "trigger add-on missed", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }
+      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, ":add1043" + Math.floor(nowMs / 60000), undefined, Date.parse(e.closesAt) - 60000,
+        () => judgeCoinEntry("ETH-USD", e.side, rd.label, (spot, now) => readEth1055(bsT, ethBands682(bsT), spot, now, PUSH1055))); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? "trigger add-on" : "trigger add-on missed", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }
       catch (er: any) { done[kT] = nowMs; save(); log({ id, action: "trigger add-on error", why: String(er?.message || er).slice(0, 120) }); } } } } catch {}
   for (const b of bx) {
     if (nowMs - Number(RT[id + b.k] || 0) < RETRY1017_MS) continue;
