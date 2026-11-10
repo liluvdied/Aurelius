@@ -31,16 +31,16 @@ t(!!OLD.slideHold403(blanket, S(), now), "control: switch false - the old blanke
 // pink MID-channel (gold pink 4020 in 4005-4035; btc 79800 in 79500-80100)
 set([{ name: "+1σ", price: 4035 }, { name: "session VWAP", price: 4005 }], [{ name: "+1σ", price: 80100 }, { name: "session VWAP", price: 79500 }]);
 const s1 = { on: true }, s2 = { on: true };
-t(!NEW.slideHold403(g, s1, now), "fix944 her 44% is back (Love Nov 7 2:23-2:24 PM): gold rejections under a falling pink mid-channel must NOT hold - was fix658 (Love Nov 4 2026 6:09 PM PT: 'the pink slide rule dictates it is longs only while pink is on a slide up ... inverse for shorts' - no 44% share in her words)");
-t(!NEW.slideHoldBtc423(b, s2, now), "fix944: BTC rejections under a falling pink mid-channel must NOT hold (her 44%)");
+t(!!NEW.slideHold403(g, s1, now), "fix1064 (Love Nov 10 1:58 AM PT) gold rejections under a falling pink mid-channel now HOLD the long (the 44% exception is off) - was fix944 her 44% is back (Love Nov 7 2:23-2:24 PM): gold rejections under a falling pink mid-channel must NOT hold - was fix658 (Love Nov 4 2026 6:09 PM PT: 'the pink slide rule dictates it is longs only while pink is on a slide up ... inverse for shorts' - no 44% share in her words)");
+t(!!NEW.slideHoldBtc423(b, s2, now), "fix1064: BTC rejections under a falling pink mid-channel must HOLD (44% exception off)");
 t(!!OLD.slideHold403(g, S(), now), "control: switch false - the old slide no longer holds mid-channel (test board broken)");
 // climb mirror: pink in the TOP 33% (gold pink 4020 in 3995-4022) holds shorts; mid-channel does not
 set([{ name: "+1σ", price: 4026 }, { name: "session VWAP", price: 3995 }], [{ name: "+1σ", price: 80250 }, { name: "session VWAP", price: 79750 }]);
 t(!!NEW.climbHold464(c, S(), now, "gold"), "gold climb: 3 rejections up + pink in the top 33% did NOT hold the short");
 set([{ name: "+1σ", price: 4035 }, { name: "session VWAP", price: 4005 }], [{ name: "+1σ", price: 80250 }, { name: "session VWAP", price: 79750 }]);
-const s3 = { on: false }; t(!NEW.climbHold464(c, s3, now, "gold"), "fix944: gold climb over a rising pink mid-channel must NOT hold (her 44%)");
+const s3 = { on: false }; t(!!NEW.climbHold464(c, s3, now, "gold"), "fix1064: gold climb over a rising pink mid-channel must HOLD the short (44% exception off)");
 // no channel readable = the slide does nothing
-set([], []); t(!NEW.slideHold403(g, S(), now), "fix944: no readable channel - the slide does nothing (her R307: in every other case the slide rule does nothing)");
+set([], []); t(!!NEW.slideHold403(g, S(), now), "fix1064: a sliding pink holds even with no readable channel (44% exception off)");
 // bandlock fix521 blanket walls stand down
 const bparts = [grab(B, "export function pinkLongWall432("), grab(B, "export function pinkShortWall464(")];
 if (bparts.some((p) => !p)) { console.log("SLIDE HER WAY 584 TEST: FAIL - a pink wall is missing from bandlock.ts"); process.exit(1); }
@@ -51,5 +51,5 @@ const L = [{ name: "5m PP", price: 78000 }, { name: "5m S1", price: 77000 }, { n
 t(/UNDER THE PINK = NO LONGS/.test(BO.pinkLongWall432("btc", L, 77900, "up")), "control: switch false did not show UNDER THE PINK (board broken)");
 t(!/UNDER THE PINK = NO LONGS/.test(BN.pinkLongWall432("btc", L, 77900, "up")), "the blanket UNDER THE PINK = NO LONGS still holds");
 t(!/OVER THE PINK = NO SHORTS/.test(BN.pinkShortWall464("btc", L, 78100, "down")), "the blanket OVER THE PINK = NO SHORTS still holds");
-console.log(ok ? "SLIDE HER WAY 584 TEST ✓ - the pink slide holds only after 3 rejections with the pink in the bottom 33% (longs) / top 33% (shorts); every other case it does nothing; the blanket walls are gone." : "SLIDE HER WAY 584 TEST: FAIL");
+console.log(ok ? "SLIDE HER WAY 584 TEST ✓ - the pink slide holds after her rejections on the slope wherever the pink sits (fix1064: 44% exception off); the blanket walls are gone." : "SLIDE HER WAY 584 TEST: FAIL");
 process.exit(ok ? 0 : 1);
