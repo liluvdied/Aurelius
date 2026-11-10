@@ -2,6 +2,18 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R639 - fix1077 + fix1078 + fix1079 SHE TAKES HER TRADES, one install Love saw replayed on her own Nov 10 ticks (12:00 to 1:15 PM, table aurelius/replay-nov10-noon-to-115.md) before saying yes. (1) fix1078 her Nov 7 pink pocket rule (pocket938: inside the pink to Red / Green zone pocket her clearance is 50% of the pocket) now measures the pink at the three walls that still used 20% of the channel alone (pinkFar503, pinkBeyond459, pinkShortWall464); with fix1076 all 8 pink measures on her main desk go through her pocket, and a guard test fails if one is left out. (2) fix1079 her read's flip (Top third - seen as a short / Bottom third - seen as a long) and the thirds filter beside it ask her read wall's own thirds (thirdsRead463: session band to session band, gold 33% under $10 / 20% on $10-25 / 15% over $25, BTC 33% up to $500 / 20% over, her 3% margin) - they used a flat 67% / 33% (and a flat BTC 33%), which turned a gold long at 78% of a $39.72 channel into a short and then refused it as a flipped read. (3) fix1077 BTC target by a line: her 15% of the channel, never over $25 (it was $101 on today's $673 channel). Gold keeps its $1.50. Not changed: her CLIMB OVER PINK / SLIDE holds, THE $10 LEVEL, her 1.5x floor, her Bollinger walls, the delayed book, XRP, BNB, ETH and the 5 minute books. Her spine lock is re-signed by this install.
+- when: 2026-11-10T21:45:12+00:00
+- Love: "Love Nov 10 2026 1:30 PM PT: "YES. GET IT LIVE. PLEASE. I DONT CARE IF THE TRADES WIN. I CARE THAT SHE TAKES THEM. WE WILL REFINE HER SET UPS FROM THERE." + 12:36 PM PT: "STOPPPPPP PUTTING IT IN ONE PLACE AND NOT THE OTHER." + 12:39 PM PT: "ITS SESSION BAND. TO SESSION BAND." + Oct 29 2026 7:20 PM PT: "gold has a sliding scale love i already answered it" + 7:49 PM PT: "ITS 20% AT THIS BAND WIDTH" + Nov 7 2026 ~7:00 AM PT (her pocket rule): "anytime price is in there""
+- books: main and every reconstructed book but delayed: BTC + gold
+- status: ACTIVE
+- proof: {"test": "tools/thirds-one-measure-1079.cjs"}
+- proof: {"test": "tools/pink-pocket-every-wall-1078.cjs"}
+- proof: {"test": "tools/btc-target-line-cap-1077.cjs"}
+- proof: {"test": "tools/spine-signed-1074.cjs"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const top1079 = thirdsRead463("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "Math.min(25 /* fix1077"}
+
 ## R638 - fix1076 HER PINK POCKET REACHES HER READ: her Nov 7 pocket rule (fix938) went into her door but not into main's read wall (pinkRead464 in recon.ts), which kept 20% of the session-band channel. Now the read measures the pink exactly as her door does: inside the pocket between the pink and 5m R1 (shorts and longs), or the pink and 5m S1, her pink clearance is 50% of that pocket; outside the pocket her one pink rule (20%) is unchanged. The pink always counts. Every book but delayed. Proven on her 12:15:09 PM Nov 10 BTC short (Rejected down off Bollinger upper, $84.61 over the pink, pocket $76.08): the read no longer refuses it; at 12:15:22 ($65.09 over) it still holds, the same as her door. Two lines of recon.ts changed under these words; her spine lock is re-signed by this install.
 - when: 2026-11-10T20:23:13+00:00
 - Love: "Love Nov 10 2026 12:10 PM PT: "she did not enter before the floor again. she had nothing but room and the window opened on a red falling candle from the bollinger." + Nov 7 2026 ~7:00 AM PT (her pocket rule): "if price is hovering inside here and it's tight like this she only needs 50% of the distance from red to pink okay" + "anytime price is in there" + Nov 10: "please stop implementing pieces of them, and not all of them.""
