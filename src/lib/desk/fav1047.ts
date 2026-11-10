@@ -3,13 +3,13 @@
 import { createServerFn } from "@tanstack/react-start";
 
 async function io() { const fs = await import("node:fs"); const { join } = await import("node:path"); return { fs, P: join(process.cwd(), "data", "fav-books.json") }; }
-export async function readFav1047(): Promise<string[]> {
-  const { fs, P } = await io();
+function readBooks({ fs, P }: Awaited<ReturnType<typeof io>>): string[] {
   try { const j = JSON.parse(fs.readFileSync(P, "utf8")); return Array.isArray(j?.books) ? j.books.map(String).filter(Boolean) : []; } catch { return []; }
 }
+export async function readFav1047(): Promise<string[]> { return readBooks(await io()); }
 export async function writeFav1047(book: string, on: boolean): Promise<string[]> {
-  const { fs, P } = await io(); const b = String(book || "").slice(0, 80); if (!b) return readFav1047();
-  const cur = (await readFav1047()).filter((x) => x !== b); const next = on ? [...cur, b] : cur;
+  const ctx = await io(); const { fs, P } = ctx; const b = String(book || "").slice(0, 80); if (!b) return readBooks(ctx);
+  const cur = readBooks(ctx).filter((x) => x !== b); const next = on ? [...cur, b] : cur;
   const t = P + ".tmp"; fs.writeFileSync(t, JSON.stringify({ books: next, at: new Date().toISOString() })); fs.renameSync(t, P); return next;
 }
 export const getFav1047 = createServerFn({ method: "GET" }).handler(async (): Promise<string[]> => readFav1047());

@@ -1,6 +1,6 @@
 import { Component, memo, startTransition, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { getLiveAuto815, setLiveOffHold815 } from "@/lib/desk/fns"; // fix815
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Toaster, toast } from "sonner";
 import { RollDigits, useLiveCountdown, useRollingNumber, useRollingPrice } from "@/components/desk/rolling-price";
 import { AssetCard, AltCard } from "@/components/desk/asset-card";
@@ -19,7 +19,7 @@ import { PositionsTab } from "@/components/desk/kalshi-positions";
 import { pointsFromFills, pointsFromPrime, TapeBook } from "@/components/desk/kalshi-tape";
 import { HedgeBook } from "@/components/desk/hedge-book";
 import { ScheduleLiveCard } from "@/components/desk/schedule-live";
-import { BookGrid1046 } from "@/components/desk/book-grid"; // fix1046 her book grid under NEW SCHEDULE
+import { BookGrid1046, GRID_BOOKS1046 } from "@/components/desk/book-grid"; // fix1046 her book grid under NEW SCHEDULE
 import { LiveToday722 } from "@/components/desk/live-today"; // fix722
 import { getLiveToday722 as getLiveToday736 } from "@/lib/desk/fns"; // fix736
 import { getAllBooks1002 } from "@/lib/desk/fns"; // fix1002 ALL BOOKS IN THE TABLES (display only)
@@ -3267,12 +3267,18 @@ function NightCard({ scale = 1, size = 50, whatIf, favOnly = false }: { rows?: S
   // fix1047 HER HEARTS (Love Nov 9 2026 ~11:54 AM PT: "can you just give me a tiny lil hollow heart button on each card next to the run button / and then it lets me pick which books i want to look at in a favorites tab too"):
   // a hollow ♡ next to RUN on every card; tap = hearted (♥, shows in her ♡ FAVORITES tab), tap again = off. Saved in data/fav-books.json. Display only - never an order.
   const favQ1047 = useQuery({ queryKey: ["fav-1047"], queryFn: () => getFav1047(), staleTime: 5000, refetchInterval: 30000 });
-  const [favLocal1047, setFavLocal1047] = useState<string[] | null>(null);
-  const fav1047: string[] = favLocal1047 ?? ((favQ1047.data as string[] | undefined) ?? []);
-  const flipFav1047 = (book: string) => {
-    const on = !fav1047.includes(book);
-    setFavLocal1047(on ? [...fav1047.filter((x) => x !== book), book] : fav1047.filter((x) => x !== book));
-    void setFav1047({ data: { book, on } }).then((r) => setFavLocal1047(r as string[])).catch(() => { setFavLocal1047(null); toast("♡ didn't save, try again"); });
+  const fav1047 = favQ1047.data ?? [];
+  const favPending1047 = useRef(false);
+  const favCache1047 = useQueryClient();
+  const flipFav1047 = async (book: string) => {
+    if (favPending1047.current || !favQ1047.isSuccess) return;
+    favPending1047.current = true;
+    try {
+      await favCache1047.cancelQueries({ queryKey: ["fav-1047"] });
+      const next = await setFav1047({ data: { book, on: !fav1047.includes(book) } });
+      favCache1047.setQueryData(["fav-1047"], next);
+    } catch { toast("♡ didn't save, try again"); }
+    finally { favPending1047.current = false; }
   };
   const Heart1047 = (book: string) => {
     const on1047 = fav1047.includes(book);
@@ -3280,15 +3286,18 @@ function NightCard({ scale = 1, size = 50, whatIf, favOnly = false }: { rows?: S
       <span
         role="button"
         tabIndex={0}
+        aria-pressed={on1047}
+        aria-label={on1047 ? `Remove ${book} from Favorites` : `Add ${book} to Favorites`}
         title={on1047 ? "In your FAVORITES. Tap to take it out" : "Tap to add to your FAVORITES"}
         onClick={(e) => {
           e.stopPropagation();
-          flipFav1047(book);
+          void flipFav1047(book);
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
             e.stopPropagation();
-            flipFav1047(book);
+            void flipFav1047(book);
           }
         }}
         className="px-1 text-[14px] leading-none"
@@ -4065,14 +4074,16 @@ function NightCard({ scale = 1, size = 50, whatIf, favOnly = false }: { rows?: S
   // fix1047 her ♡ FAVORITES tab: only the books she hearted, the same cards - tap one and its trades pull up the same way.
   if (favOnly) {
     const favRows1047 = fav1047.map((k) => BOOKS.find((b) => b.book === k)).filter(Boolean).map((b: any) => ({ ...b, s: side(b.book) }));
+    const gridFavorites = GRID_BOOKS1046.filter((card) => fav1047.includes(card.key) && !BOOKS.some((book) => book.book === card.key)).map((card) => card.key);
     return (
       <section className="rounded-[22px] border border-white/25 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
-        <p className="mb-2 text-[10px] tracking-[0.24em]" style={{ color: "#ff7ab6" }}>♡ FAVORITES · {favRows1047.length}</p>
+        <p className="mb-2 text-[10px] tracking-[0.24em]" style={{ color: "#ff7ab6" }}>♡ FAVORITES · {favRows1047.length + gridFavorites.length}</p>
         {favRows1047.length ? (
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">{favRows1047.map((b) => [Col({ book: b.book, title: b.title, note: b.note, s: b.s }), Inline({ book: b.book })])}</div>
-        ) : (
+        ) : gridFavorites.length === 0 ? (
           <p className="text-[11px] text-white/60">{favQ1047.isLoading ? "loading…" : "No favorites yet. Tap the little ♡ next to RUN on any book card in SHIFT and it shows up here."}</p>
-        )}
+        ) : null}
+        {gridFavorites.length > 0 && <BookGrid1046 only={gridFavorites} heart={Heart1047} />}
       </section>
     );
   }
@@ -4080,7 +4091,7 @@ function NightCard({ scale = 1, size = 50, whatIf, favOnly = false }: { rows?: S
     <section className="rounded-[22px] border border-white/25 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
       <LiveToday722 /> {/* fix722 the one live book today, pinned on top */}
       <ScheduleLiveCard /> {/* fix385 (Love Oct 28 2026 12:04 PM PT): the new schedule, live trades only, labelled by book */}
-      <BookGrid1046 /> {/* fix1046 (Love Nov 9 2026): her books as a little table of cards right under NEW SCHEDULE - tap one for its trades */}
+      <BookGrid1046 heart={Heart1047} /> {/* fix1046 (Love Nov 9 2026): her books as a little table of cards right under NEW SCHEDULE - tap one for its trades */}
       <div className="flex items-baseline justify-between gap-3">
         <div className="flex items-center justify-between gap-2">
           <p className="text-[10px] tracking-[0.28em] text-white/90">PAPER · {ranked.length} LEDGERS · RANKED{h2h ? ` · SINCE ${shiftClock(since)}` : ""}</p>
@@ -4171,7 +4182,7 @@ function NightCard({ scale = 1, size = 50, whatIf, favOnly = false }: { rows?: S
                   <span className="shrink-0 tabular-nums" style={{ color: on ? "#3ddc84" : "#ffb86b" }}>{on ? "ON KALSHI" : "PAPER"}</span>
                 </div>); }) : <p className="font-mono text-[10px] text-white/50">{openQ.isLoading ? "loading…" : "no open trades right now"}</p>}
             </div>
-            <BookGrid1046 /> {/* fix1046b her cards with their trades replace the purple / yellow EVERY BOOK table (Love Nov 9 2026 12:37 PM PT) */}{false && <AllBooks1002 title="EVERY BOOK + LEDGER · TODAY" color="#3ddc84" />} {/* fix1002 (Love Nov 7 2026 8:37 PM PT: 'can you put all of these books and ledgers into the running iOi table && running tables for me bb?'): every book and ledger rides in RUNNING too - display only */}
+            <BookGrid1046 heart={Heart1047} /> {/* fix1046b her cards with their trades replace the purple / yellow EVERY BOOK table (Love Nov 9 2026 12:37 PM PT) */}{false && <AllBooks1002 title="EVERY BOOK + LEDGER · TODAY" color="#3ddc84" />} {/* fix1002 (Love Nov 7 2026 8:37 PM PT: 'can you put all of these books and ledgers into the running iOi table && running tables for me bb?'): every book and ledger rides in RUNNING too - display only */}
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">{runRows.map((b) => [Col({ book: b.book, title: `${b.i + 1}. ${b.title}`, note: b.note, s: b.s }), Inline({ book: b.book })])}</div>
           </div>
         );

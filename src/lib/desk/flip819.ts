@@ -71,7 +71,7 @@ async function settle(assets: Record<string, any>) {
     if (m?.ticker === r.ticker && r.restBid == null) { const bid = Number(r.side === "up" ? m.yesBid : m.noBid) || 0; if (bid > 0) { if (!r.half && bid >= r.ask + 0.75 * (1 - r.ask)) { r.half = true; r.halfBid = bid; dirty = true; } if (r.half && bid >= r.ask + 0.95 * (1 - r.ask)) { r.restBid = bid; dirty = true; } } }
     if (now < Date.parse(r.closeTime) + 20000) continue;
     const mk = await fetchMarket(r.ticker).catch(() => null); const res = mk?.result === "yes" ? "up" : mk?.result === "no" ? "down" : ""; if (!res) continue;
-    const won = res === r.side, c = r.contracts, h = r.half ? c / 2 : 0; r.result = won ? "win" : "loss"; r.pnlTp = Math.round(((r.half ? h * r.halfBid : 0) + (c - h) * (r.restBid != null ? r.restBid : won ? 1 : 0) - STAKE819) * 100) / 100; dirty = true;
+    const won = res === r.side, c = r.contracts, h = r.half ? c / 2 : 0; r.result = won ? "win" : "loss"; r.pnlTp = Math.round(((r.half ? h * r.halfBid : 0) + (c - h) * (r.restBid != null ? r.restBid : won ? 1 : 0) - (r.contracts * r.ask)) * 100) / 100; dirty = true;
   }
   if (dirty) save();
 }

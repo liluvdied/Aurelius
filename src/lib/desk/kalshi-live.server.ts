@@ -250,6 +250,7 @@ function symbolOf(ticker) {
   if (ticker.includes("BTC")) return "btc";
   if (ticker.includes("GOLD")) return "gold";
   if (ticker.includes("ETH")) return "eth";
+  if (/^KXXRP15M-/.test(ticker)) return "xrp"; // fix1057 dedicated XRP symbol
   if (ticker.includes("SOL")) return "sol";
   if (ticker.includes("WTI")) return "wti";
   if (ticker.includes("NATGAS")) return "natgas";
@@ -337,13 +338,15 @@ async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding
       let lt723o = ""; try { const j = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); if (j?.on === true && Date.now() < Date.parse(String(j.until)) && !(Array.isArray(j?.skipHoursPT) && j.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */ && typeof j.book === "string") lt723o = j.book; } catch {} // fix723: the one live book today passes the order lock too
       const books = lt723o ? [lt723o] : lb ? (Array.isArray(lb.books) ? lb.books : lb.book ? [lb.book] : []) : [];
       if (lt723o.includes(",")) books.splice(0, books.length, ...lt723o.split(",")); // fix726 AKIMBO
-      if (books.length && !books.includes(line?.bookCopy)) {
+      const xrp15 = line?.bookCopy === "xrp15k" && /^KXXRP15M-/.test(String(ticker));
+      const xrp15Armed = xrp15 && !lt723o && (await import("./xrp15k-live")).xrp15Enabled(); // fix1057 dedicated owner-approved XRP lane
+      if ((xrp15 && !xrp15Armed) || (books.length && !books.includes(line?.bookCopy) && !xrp15Armed)) {
         sent.__aureliusBlock = `Blocked. Only ${books.map((b) => String(b).toUpperCase()).join(" + ")} go live right now.`;
         return null;
       }
       // BAND LOCK AT THE LAST LINE (Oct 16 ~2:36 PM PT, Love: "i do not want a book trading on kalshi that does not operate on
       // that framework"): every opening order from every path runs her side-of-the-band gate + the feed-health guard here too.
-      if (!/^KX(GOLD|BTC)/.test(String(ticker)) && line?.bookCopy) { sent.__aureliusBlock = "Blocked: no band framework for this market - books only open gold and BTC"; return null; }
+      if (!/^KX(GOLD|BTC)/.test(String(ticker)) && line?.bookCopy && !(line.bookCopy === "xrp15k" && /^KXXRP15M-/.test(String(ticker)))) { sent.__aureliusBlock = "Blocked: no band framework for this market - books only open gold and BTC"; return null; }
       if (/^KX(GOLD|BTC)/.test(String(ticker)) && !line?.gateTest) {
         const bl = (await import("./bandlock")).bandLockCheck(String(line?.bookCopy || ""), String(ticker).includes("GOLD") ? "gold" : "btc", bookSide === "bid" ? "up" : "down", String(ticker), String(line?.label || "")); /* fix611 */
         if (!bl.ok) { sent.__aureliusBlock = `Blocked by the band lock: ${bl.reason}`; return null; }
@@ -351,7 +354,7 @@ async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding
     } catch {
       // EVERY ORDER PASSES HER WALLS OR DOES NOT GO (fix435, Love Oct 28 2026 9:01 PM PT: "wall check on re aims AND EVERY SINGLE TRADE THAT EVER LEAVES THIS DESK are 100% NECESSARY.
       // AND MUST FAIL TO SEND OUT A LIVE ORDER IF THEY ARE NOT MET."): if her walls can't be checked for a main or rejection opening order (re-aims included), it is refused - never sent unchecked.
-      if (line?.bookCopy === "recon-tog" || line?.bookCopy === "recon-rej") { sent.__aureliusBlock = "Blocked: her walls could not be checked for this order - it does not go out unchecked (fix435)"; return null; }
+      if (line?.bookCopy === "recon-tog" || line?.bookCopy === "recon-rej" || line?.bookCopy === "xrp15k") { sent.__aureliusBlock = "Blocked: her walls could not be checked for this order - it does not go out unchecked (fix435)"; return null; }
     }
     if ((line?.bookCopy === "recon-tog" || line?.bookCopy === "recon-rej") && line?.gateTest) { sent.__aureliusBlock = "Blocked: main and rejection never skip her walls (fix435)"; return null; } // fix435: no gate-test bypass for main + rejection
     if (line?.bookCopy) { const ug461 = (globalThis as any).__umpGate461; const u461 = typeof ug461 === "function" ? ug461(String(line.bookCopy)) : "THE UMPIRE GATE is not running - no opening order for any book (fix461/fix558)"; /* fix558: every book, not just main + rejection */ if (u461) { sent.__aureliusBlock = `Blocked: ${u461}`; return null; } } // fix461 (R185/R186, Love Oct 29 2026 11:46 AM PT: "if the umpire doesnt call it safe against every cornerstone/rule , trade doesnt go out" + 11:50 AM "without making the orders lag"): main + rejection opening orders need the umpire's SAFE stamp on the code running now - an in-memory check; exits never come here
@@ -828,11 +831,18 @@ export function sideOfLine864(label: string, L: any[], bb: any, chart: number, w
 async function finalGate524(ticker, bookSide, sameLine, yesPrice = 0, count = "") {
   const why = await judgeOrder601(ticker, bookSide, sameLine);
   if (why) { try { (await import("./refusal-ledger")).refusal661({ where: "send", lane: String(sameLine?.bookCopy || ""), ticker: String(ticker), side: bookSide === "bid" ? "up" : "down", label: String(sameLine?.label || ""), rule: String(why), ask: Number(yesPrice) || 0 }); } catch {} } // fix661: every refused send also goes to her refusal ledger (log only)
-  try { const s601 = String(ticker).includes("GOLD") ? "gold" : "btc", q601 = (await import("./quotes")).quoteTick(s601); appendFileSync(join(process.cwd(), "data", "order-verdicts.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker, book: String(sameLine?.bookCopy || ""), side: bookSide === "bid" ? "up" : "down", label: String(sameLine?.label || "").slice(0, 80), price: Number(yesPrice) || 0, count: String(count), tick: q601?.c ?? null, verdict: why ? "REFUSED" : "SAFE", why }) + "\n"); } catch {}
+  try { const s601 = String(ticker).includes("GOLD") ? "gold" : "btc", q601 = sameLine?.bookCopy === "xrp15k" ? { c: sameLine.spot } : (await import("./quotes")).quoteTick(s601); appendFileSync(join(process.cwd(), "data", "order-verdicts.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker, book: String(sameLine?.bookCopy || ""), side: bookSide === "bid" ? "up" : "down", label: String(sameLine?.label || "").slice(0, 80), price: Number(yesPrice) || 0, count: String(count), tick: q601?.c ?? null, verdict: why ? "REFUSED" : "SAFE", why }) + "\n"); } catch {}
   return why;
 }
 async function judgeOrder601(ticker, bookSide, sameLine) {
   try {
+    // fix1057 The XRP book is judged against its own live feed and unchanged XRP setup reader.
+    if (sameLine?.bookCopy === "xrp15k" && /^KXXRP15M-/.test(String(ticker))) {
+      const umpire = (globalThis as any).__umpGate461;
+      const refusal = typeof umpire === "function" ? umpire("xrp15k") : "no Umpire gate";
+      if (refusal) return String(refusal);
+      return await (await import("./xrp15k-live")).judgeXrp15(ticker, bookSide === "bid" ? "up" : "down", String(sameLine.label || ""), (quote) => Object.assign(sameLine, quote));
+    }
     if (!/^KX(GOLD|BTC)/.test(String(ticker))) return "no band framework for this market - no order (fix524)";
     const sym = String(ticker).includes("GOLD") ? "gold" : "btc";
     const side = bookSide === "bid" ? "up" : "down";
@@ -936,7 +946,7 @@ async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine
     }
     sent.__oneDoor.add(ticker);
   }
-  if (!reduceOnly && sameLine?.bookCopy && Number(sameLine?.askPx) > 0) {
+  if (!reduceOnly && sameLine?.bookCopy && sameLine.bookCopy !== "xrp15k" && Number(sameLine?.askPx) > 0) {
     const reg = (sent.__aureliusReach ||= {});
     reg[ticker] = { ask: Number(sameLine.askPx), at: Date.now() };
   }
@@ -994,7 +1004,7 @@ async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine
     const closeAt = windowClose(ticker);
     recordFire({
       ticker, asset: sym, side: fside, setup: sameLine?.label || "",
-      book: sameLine?.primeCopy ? "prime" : sameLine?.paperBook ? "paper book" : sameLine?.paperCopy ? "paper copy" : sameLine?.gateTest ? "gate test" : "other",
+      book: sameLine?.bookCopy === "xrp15k" ? "xrp15k" : sameLine?.primeCopy ? "prime" : sameLine?.paperBook ? "paper book" : sameLine?.paperCopy ? "paper copy" : sameLine?.gateTest ? "gate test" : "other",
       spot: Number(sameLine?.spot) || null, target: Number(sameLine?.target) || null,
       vwap: Number(sameLine?.vwap) || null, stdev: Number(sameLine?.stdev) || null,
       bands: bandLevels(Number(sameLine?.vwap), Number(sameLine?.stdev)),
@@ -1280,6 +1290,51 @@ async function sendPaperBook(side, ticker, yesAsk, noAsk, opts) {
   const paid = side === "up" ? placed.yesPrice : Math.round((1 - placed.yesPrice) * 1e4) / 1e4;
   return { status: "filled", orderId: placed.orderId, filled: placed.filled, yesPrice: placed.yesPrice, paid };
 }
+/** fix1057 XRP 15m is one IOC through the same guarded Kalshi send, with no top-ups. */
+export async function enterXrp15(ticker: string, side: "up" | "down", label: string, target: number) {
+  if (!/^KXXRP15M-/.test(ticker) || !liveOn() || !kalshiArmed()) return null;
+  const key = `xrp15:${ticker}`;
+  if (!hold(key)) return null;
+  try {
+    const [quote, positionResponse, cash] = await Promise.all([
+      liveAsks(ticker),
+      kalshi("GET", "/trade-api/v2/portfolio/positions", "?limit=100&count_filter=position"),
+      kalshiCash(),
+    ]);
+    if (!quote || !positionResponse.ok || !(cash > 0)) return null;
+    const positions = (await positionResponse.json())?.market_positions;
+    if (!Array.isArray(positions) || positions.some((row) => row.ticker === ticker && Math.abs(Number(row.position_fp)) >= 0.01)) return null;
+    const ask = Number(side === "up" ? quote.yesAsk : quote.noAsk);
+    if (!(ask > 0.02 && ask <= 0.66)) return null;
+    const limit = Math.min(0.66, Math.floor((ask + 0.03) * 100 + 1e-9) / 100);
+    const dollars = Math.min(1, maxDollars(), cash);
+    const count = contractsFor(limit, dollars);
+    if (!count) return null;
+    const yes = side === "up" ? limit : 1 - limit;
+    const result = await place(ticker, side === "up" ? "bid" : "ask", yes, count, false, {
+      bookCopy: "xrp15k", label, target, dollars, askPx: ask,
+    });
+    if (!result?.filled) return null;
+    markDone(ticker);
+    writeSeal(ticker, side);
+    return { orderId: result.orderId, filled: result.filled, paid: side === "up" ? result.yesPrice : 1 - result.yesPrice };
+  } finally {
+    release(key);
+  }
+}
+
+/** Only reduce a verified book-owned position and never increase exposure. */
+export async function exitXrp15(ticker: string, side: "up" | "down", owned: number, quantity: number, bid: number) {
+  if (!/^KXXRP15M-/.test(ticker) || !(bid > 0 && bid < 1) || !(quantity > 0 && quantity <= owned)) return null;
+  const pos = await signedPosition(ticker);
+  if (Math.abs(pos - (side === "up" ? owned : -owned)) > 0.001) return null;
+  const count = Math.floor(quantity * 100 + 1e-9) / 100;
+  if (count < 0.01) return null;
+  const yes = side === "up" ? bid : 1 - bid;
+  const result = await place(ticker, side === "up" ? "ask" : "bid", yes, count.toFixed(2), true, undefined, false, true);
+  return result?.filled ? { filled: result.filled, paid: side === "up" ? result.yesPrice : 1 - result.yesPrice } : null;
+}
+
 async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, opts) {
   try { const j730 = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); const bc730 = String(opts?.bookCopy || ""); if (bc730 && j730?.on === true && Date.now() < Date.parse(String(j730.until)) && !(Array.isArray(j730?.skipHoursPT) && j730.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */ && String(j730.book || "").split(",").includes(bc730)) ((globalThis as any).__akimboWire730 ||= {})[String(ticker).toUpperCase() + "|" + side] = { at: Date.now(), book: bc730 }; } catch {} // fix730: mark the akimbo book's own order for the wall at the wire
   if (opts?.paperBook) {

@@ -8,7 +8,7 @@ let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log("INDEPEND
 function grab(head) { const i = R.indexOf(head); if (i < 0) { console.log("INDEPENDENT CALLS TEST: FAIL - missing " + head); process.exit(1); }
   const m = /\)\s*:\s*[\w<>| ]+\s*\{/.exec(R.slice(i)); const j = i + m.index + m[0].length - 1; let d = 0;
   for (let k = j; k < R.length; k++) { if (R[k] === "{") d++; else if (R[k] === "}") { d--; if (d === 0) return R.slice(i, k + 1); } } }
-const helpers = [(R.match(/export const MARGIN648 = [^;]+;/) || [""])[0], grab("export function isFlip463("), grab("export function freshSameSide463("), grab("export function thirdsRead463(")].map((x) => x.replace(/^export /, "")).join("\n"); // fix652 (Love Nov 4 2026 4:44 PM PT: "yes" - update the checks): her 3% margin (MARGIN648, fix648) goes along with thirdsRead463
+const helpers = [require("./thirds-fixture.cjs")(ts, fs.readFileSync(path.join(root, "src/lib/desk/bandlock.ts"), "utf8")),(R.match(/export const MARGIN648 = [^;]+;/) || [""])[0], grab("export function isFlip463("), grab("export function freshSameSide463("), grab("export function thirdsRead463(")].map((x) => x.replace(/^export /, "")).join("\n"); // fix652 (Love Nov 4 2026 4:44 PM PT: "yes" - update the checks): her 3% margin (MARGIN648, fix648) goes along with thirdsRead463
 // her real "prior call" block: from the fix463 line through the re-aim's "return true;"
 const a = R.indexOf("      if (freshSameSide463("), b = R.indexOf("      return true;\n    }", a);
 t(a > 0 && b > a, "the independent-call step is not in her call logic");
@@ -28,7 +28,7 @@ const Lg = [{ name: "-2σ", price: 4004.95 }, { name: "-1σ", price: 4018.29 }, 
 t(thirds(Lg, 4016.65, "up"), "12:31:31 gold: a LONG read at 88% up under -1σ 4018.29 was not stopped at the read");
 t(!thirds(Lg, 4016.22, "down"), "12:31:40 gold: the SHORT read at 85% up was stopped - it must be free");
 t(thirds(Lg, 4006.5, "down") && !thirds(Lg, 4006.5, "up"), "bottom 33%: short must stop at the read, long must be free");
-t(R.includes("thirdsRead463(sessionLines(ax, id), spot, firstTog.side)) firstTog = null") && R.includes("thirdsRead463(sessionLines(ax, id), spot, lookRM.side)) lookRM = null"), "her thirds are not in the read for main AND rejection");
+t(R.includes("thirdsRead463(sessionLines(ax, id), spot, firstTog.side, id)) firstTog = null") && R.includes("thirdsRead463(sessionLines(ax, id), spot, lookRM.side, id)) lookRM = null"), "her thirds are not in the read for main AND rejection");
 t(!/lookR5 = .*thirdsRead463/.test(R), "the 5M read lane got the thirds change");
 const flip = "Top third - seen as a short under 4018.29 (was: 1m rejection off Bollinger upper)";
 for (const lane of ["recon-tog", "recon-rej"]) {

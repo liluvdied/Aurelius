@@ -156,10 +156,19 @@ export async function fetchMarket(ticker: string): Promise<KalshiMarket | null> 
 //   1. the same series asked for by several parts of the desk at once (ticker, scan, candles, mirror, leadlag) is read ONCE and shared, and reused for 1 s
 //   2. a read that fails (429 or otherwise) is tried once more after 0.4 s
 //   3. if it still fails, the last good read of THIS SAME window (same ticker, still open, under 30 s old) is used instead of a blank, so the copier keeps her window
+function activeSeriesWindow(series: string, ticker: string, close: string, status: string, now = Date.now()): boolean {
+  if (!/15M$/i.test(series)) return true;
+  const end = Date.parse(close);
+  return ticker === fifteenTicker(series, now + 1) && ["active", "open"].includes(status.toLowerCase()) && end > now && end - now <= 900000;
+}
+function pickSeriesWindow(series: string, markets: RawMarket[]): RawMarket | null {
+  return pickLive(markets.filter((market) => activeSeriesWindow(series, market.ticker ?? "", market.close_time ?? "", market.status ?? "")));
+}
+
 const MK470: any = ((globalThis as any).__mk470 ||= { inflight: {}, fresh: {}, good: {} });
 export async function fetchSeriesMarket(series: string): Promise<KalshiMarket | null> {
   const f = MK470.fresh[series];
-  if (f && Date.now() - f.at < 1000) return f.m;
+  if (f && Date.now() - f.at < 1000 && activeSeriesWindow(series, f.m.ticker, f.m.closeTime, String(f.m.status))) return f.m;
   if (MK470.inflight[series]) return MK470.inflight[series];
   const run = (async () => {
     let m: KalshiMarket | null = null;
@@ -168,7 +177,7 @@ export async function fetchSeriesMarket(series: string): Promise<KalshiMarket | 
     if (m) { try { (m as any).__readAt493 = Date.now(); } catch {} } // fix493 (Love Oct 29 2026 9:57 PM PT: "yes make the log and make it a cornerstone. its already supposed to exist"): stamp when this market read came back, so the order log shows a reused read's age
     if (m) { MK470.good[series] = { at: Date.now(), m }; MK470.fresh[series] = { at: Date.now(), m }; return m; }
     const g = MK470.good[series];
-    if (g && Date.now() - g.at < 30000 && g.m?.ticker === fifteenTicker(series) && Date.parse(g.m.closeTime) > Date.now() + 30000) return g.m;
+    if (g && Date.now() - g.at < 30000 && g.m && activeSeriesWindow(series, g.m.ticker, g.m.closeTime, String(g.m.status)) && Date.parse(g.m.closeTime) > Date.now() + 30000) return g.m;
     return null;
   })();
   MK470.inflight[series] = run;
@@ -182,14 +191,14 @@ async function fetchSeriesMarketRead470(series: string): Promise<KalshiMarket | 
   // the copier sat waiting for a ticker match that never came (her 12:30 gold short). Ask Kalshi for THIS window's own
   // ticker first; only if that read fails does the old list path run. Market selection only - no rule changes.
   try {
-    const own = await fetchMarket(fifteenTicker(series));
-    if (own && ["active", "open"].includes(String(own.status).toLowerCase()) && Date.parse(own.closeTime) > Date.now()) return own;
+    const own = await fetchMarket(fifteenTicker(series, Date.now() + 1));
+    if (own && ["active", "open"].includes(String(own.status).toLowerCase()) && Date.parse(own.closeTime) > Date.now() && activeSeriesWindow(series, own.ticker, own.closeTime, String(own.status))) return own;
   } catch {
   }
   const openUrl = `${BASE}/markets?series_ticker=${encodeURIComponent(series)}&status=open&limit=10`;
   try {
     const open = await fetchJson<MarketsResponse>(openUrl);
-    const picked = pickLive(open.markets ?? []);
+    const picked = pickSeriesWindow(series, open.markets ?? []);
     if (picked) return mapMarket(picked);
   } catch {
     // fall through to unfiltered
@@ -197,6 +206,6 @@ async function fetchSeriesMarketRead470(series: string): Promise<KalshiMarket | 
 
   const anyUrl = `${BASE}/markets?series_ticker=${encodeURIComponent(series)}&limit=8`;
   const any = await fetchJson<MarketsResponse>(anyUrl);
-  const picked = pickLive(any.markets ?? []);
+  const picked = pickSeriesWindow(series, any.markets ?? []);
   return picked ? mapMarket(picked) : null;
 }
