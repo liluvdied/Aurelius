@@ -14,6 +14,10 @@ import { RECON } from "./recon";
 type Line = { name: string; price: number; unit?: number };
 const LAW_BOOKS = /^ogp5-(fast|gw|boll|lock)$/;
 const G = globalThis as any;
+// fix1065 HER PINK SLIDE TAKES PRECEDENCE OVER HER THIRDS (Love Nov 10 2026 2:41 AM PT: "again. i told you the pink slide rule takes precedence over the bottom 3rd for shorts. inverse for longs."):
+// while main's own pink slide is on for gold / BTC (slideBlock658 says "no long" - her 2 rejections on a down-sloped pink, not yet freed by the 10% break), a SHORT is not refused for sitting in the bottom
+// third of her channel; while main's climb is on (slideBlock658 says "no short"), a LONG is not refused for sitting in the top third. Every other wall still judges it. Main's slide unreadable = her thirds stand.
+function slideFree1065(asset: string, side: string): boolean { try { if (asset !== "gold" && asset !== "btc") return false; const f = (globalThis as any).__slideBlock658Fn; if (typeof f !== "function") return false; return side === "down" ? !!f(asset, "up") : side === "up" ? !!f(asset, "down") : false; } catch { return false; } }
 const D = (f: string) => join(process.cwd(), "data", f);
 
 // Its own closest-band math (not imported), so a regression elsewhere can't fool it.
@@ -471,11 +475,11 @@ export function awayVerdict(asset: string, L: Line[], tick: number, side: string
       if (side === "up") {
         let hi = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c >= hi.c) { hi = p; i0 = i; } });
         const loAfter = Math.min(...pts.slice(i0).map((p) => p.c));
-        if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < rel583) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no long while it falls`;
+        if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < rel583 && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no long while it falls`;
       } else {
         let lo = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c <= lo.c) { lo = p; i0 = i; } });
         const hiAfter = Math.max(...pts.slice(i0).map((p) => p.c));
-        if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < rel583) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no short while it rises`;
+        if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < rel583 && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no short while it rises`;
       }
     }
   }
@@ -1196,12 +1200,12 @@ export function reconThirdAgainst(asset: string, L: Line[], tick: number, side: 
   if (side === "up") {
     let hi = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c >= hi.c) { hi = p; i0 = i; } });
     const loAfter = Math.min(...pts.slice(i0).map((p) => p.c));
-    if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < rel583) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a short, not a long`;
+    if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (hi.c - dn.price) / w >= 0.67 && hi.c - tick >= dist / 2 && tick - loAfter < rel583 && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) return `price is falling from the top third of her channel (high ${hi.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a short, not a long`;
   }
   if (side === "down") {
     let lo = pts[0], i0 = 0; pts.forEach((p, i) => { if (p.c <= lo.c) { lo = p; i0 = i; } });
     const hiAfter = Math.max(...pts.slice(i0).map((p) => p.c));
-    if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < rel583) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a long, not a short`;
+    if (!(typeof rej668 === "function" && rej668(asset, side, tick, L)) /* fix675 */ && (lo.c - dn.price) / w <= 0.33 && tick - lo.c >= dist / 2 && hiAfter - tick < rel583 && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) return `price is rising from the bottom third of her channel (low ${lo.c.toFixed(2)}, now ${tick.toFixed(2)}, ${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - that's a long, not a short`;
   }
   return "";
 }
@@ -1289,8 +1293,8 @@ export function thirdWallAbsolute(asset: string, L: Line[], tick: number, side: 
   // UNBROKEN BAND. NO SHORTS IN THE BOTTOM 33% INTO AN UNBROKEN BAND. I DID NOT ASK YOU TO MAKE HER REJECTIONS ONLY I SAID TO
   // TRADE THE BREAKS TOO." The wall below is her law in full: the forbidden zone is the third nearest the unbroken band, the
   // launch carries across the candle turn, and a band broken in the trade's direction trades free.)
-  if (side === "up" && frac >= 1 - cpTop && !brokeDir(up, "up")) return `THE WALL: top ${Math.round(cpTop * 100)}% of the ${dn.name} -> ${up.name} channel (${dn.price.toFixed(2)} to ${up.price.toFixed(2)}) - no long into ${up.name}, it is unbroken. no excuses`;
-  if (side === "down" && frac <= cp && (leanFloor || !brokeDir(dn, "down"))) return `THE WALL: bottom ${Math.round(cp * 100)}% of the ${dn.name} -> ${up.name} channel (${dn.price.toFixed(2)} to ${up.price.toFixed(2)}) - no short into ${dn.name}, it is unbroken. no excuses`;
+  if (side === "up" && frac >= 1 - cpTop && !brokeDir(up, "up") && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) return `THE WALL: top ${Math.round(cpTop * 100)}% of the ${dn.name} -> ${up.name} channel (${dn.price.toFixed(2)} to ${up.price.toFixed(2)}) - no long into ${up.name}, it is unbroken. no excuses`;
+  if (side === "down" && frac <= cp && (leanFloor || !brokeDir(dn, "down")) && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) return `THE WALL: bottom ${Math.round(cp * 100)}% of the ${dn.name} -> ${up.name} channel (${dn.price.toFixed(2)} to ${up.price.toFixed(2)}) - no short into ${dn.name}, it is unbroken. no excuses`;
   // THE LAUNCH COUNTS ACROSS THE CANDLE TURN (Oct 20 ~8:23 AM PT, Love, caps hers: "price = top 33% of the channel, RED CANDLE
   // FALLING FROM THE BAND = NO LONGS. price = bottom 33% of the channel, GREEN CANDLE RISING FROM THE BAND = NO SHORTS."): the
   // 8:15:11 AM gold short fired 11 seconds into a fresh candle, blind to the green rise launched off the band in the candle
@@ -1308,8 +1312,8 @@ export function thirdWallAbsolute(asset: string, L: Line[], tick: number, side: 
       // A rejection at the opposite band ends the move (Oct 20 ~9:19 AM PT, Love: "price rejected the bottom band on gold.
       // long. now"): once price has turned tap-distance off the move's own extreme, the fall (or rise) is over and the other
       // side opens.
-      if (side === "down" && (launchLo - dn.price) / w <= cp && tick >= launchLo + tapT && launchHi - tick < tapT && !brokeDir(dn, "down")) return `THE WALL: green candle rising from the band (launched ${launchLo.toFixed(2)}, bottom third of ${dn.name} -> ${up.name}) - no shorts. no excuses`;
-      if (side === "up" && (launchHi - dn.price) / w >= 1 - cpTop && tick <= launchHi - tapT && tick - launchLo < tapT && !brokeDir(up, "up")) return `THE WALL: red candle falling from the band (launched ${launchHi.toFixed(2)}, top third of ${dn.name} -> ${up.name}) - no longs. no excuses`;
+      if (side === "down" && (launchLo - dn.price) / w <= cp && tick >= launchLo + tapT && launchHi - tick < tapT && !brokeDir(dn, "down") && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) return `THE WALL: green candle rising from the band (launched ${launchLo.toFixed(2)}, bottom third of ${dn.name} -> ${up.name}) - no shorts. no excuses`;
+      if (side === "up" && (launchHi - dn.price) / w >= 1 - cpTop && tick <= launchHi - tapT && tick - launchLo < tapT && !brokeDir(up, "up") && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) return `THE WALL: red candle falling from the band (launched ${launchHi.toFixed(2)}, top third of ${dn.name} -> ${up.name}) - no longs. no excuses`;
     }
   } catch {}
   return "";
@@ -3063,8 +3067,8 @@ export function dlyThirds(asset: string, L: Line[], tick: number, side: string):
   const below = edges.filter((x: number) => x <= tick).pop(), above = edges.find((x: number) => x > tick);
   if (below === undefined || above === undefined || !(above > below)) return "";
   const pos = (tick - below) / (above - below), TH = asset === "btc" ? DLY_BTC_EDGE /* fix307: Love 1:36 AM "yes 5% band tolerances" - BTC keeps her 5% edge */ : lockPctFor(asset, above - below), thTxt = Math.round(TH * 100);
-  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && side === "up" && pos >= 1 - TH) return `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${thTxt}%, into the unbroken band above. never.`;
-  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && side === "down" && pos <= TH) return `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${thTxt}%, into the unbroken band below. never.`;
+  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && side === "up" && pos >= 1 - TH && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) return `THE IMPOSSIBILITY: long at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the top ${thTxt}%, into the unbroken band above. never.`;
+  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && side === "down" && pos <= TH && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) return `THE IMPOSSIBILITY: short at ${Math.round(pos * 100)}% of the ${below.toFixed(2)} -> ${above.toFixed(2)} channel - the bottom ${thTxt}%, into the unbroken band below. never.`;
   return "";
 }
 // UNDER ALL HER RULES (Oct 21 ~11:23 AM PT, Love: "when i said anywhere i meant she could trade under our rules. anywhere. not abandon them entirely"):
@@ -3428,8 +3432,8 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   const vw344 = Number((L || []).find((l: Line) => String(l.name) === "session VWAP")?.price) || 0;
   const tightUp = tight344 && !(vw344 > 0 && Math.abs(above - vw344) < 0.005), tightDn = tight344 && !(vw344 > 0 && Math.abs(below - vw344) < 0.005);
   let why = "";
-  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightUp && (thirds || !beyond) && side === "up" && thirdPos >= 1 - TH) why = `THE IMPOSSIBILITY: long at ${Math.round(thirdPos * 100)}% of the ${thirdBelow.toFixed(2)} -> ${thirdAbove.toFixed(2)} channel - the top ${pctTxt}%, into the unbroken band above. never.`;
-  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightDn && (thirds || !beyond) && side === "down" && thirdPos <= TH) why = `THE IMPOSSIBILITY: short at ${Math.round(thirdPos * 100)}% of the ${thirdBelow.toFixed(2)} -> ${thirdAbove.toFixed(2)} channel - the bottom ${pctTxt}%, into the unbroken band below. never.`;
+  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightUp && (thirds || !beyond) && side === "up" && thirdPos >= 1 - TH && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) why = `THE IMPOSSIBILITY: long at ${Math.round(thirdPos * 100)}% of the ${thirdBelow.toFixed(2)} -> ${thirdAbove.toFixed(2)} channel - the top ${pctTxt}%, into the unbroken band above. never.`;
+  if (!(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightDn && (thirds || !beyond) && side === "down" && thirdPos <= TH && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) why = `THE IMPOSSIBILITY: short at ${Math.round(thirdPos * 100)}% of the ${thirdBelow.toFixed(2)} -> ${thirdAbove.toFixed(2)} channel - the bottom ${pctTxt}%, into the unbroken band below. never.`;
   // BREAK INTO A ZONE (fix238, Oct 25 ~9:25 PM PT, Love: "do her trades that break a session band and go right into a red zone or green zone typically do well ..?
   // or do they reverse almost immediately afterwards ... is this another one of the bleeds" -> "yeeeup we stopping bleeds bb"; ~/brkzone.py, 3,260 recon calls Oct 20-26:
   // a break landing inside a zone 28 trades 50% -$113, gold break with a zone ahead before the next band 107 trades 46% -$296, BTC with a zone ahead 123 trades +$170):
@@ -3685,8 +3689,8 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // Oct 22 ~3:20 AM PT, Love: "the session bands hun, same way we have her set up at 33% both ways / we will do 20% after bands exceed $500 apart / 33% under that" -
   // on BTC her thirds slide with THE IMPOSSIBILITY (33% to $500 wide, 20% past). Gold keeps the fixed third.
   const thTxt = Math.round(TH * 100);
-  if (!why && !(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightUp && side === "up" && thirdPos >= 1 - TH - MARGIN648B) why = `ONLY IN HER THIRD: long at ${Math.round(thirdPos * 100)}% of the ${thirdBelow.toFixed(2)} -> ${thirdAbove.toFixed(2)} channel - no long in the top ${thTxt}%, under the unbroken band above.`;
-  if (!why && !(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightDn && side === "down" && thirdPos <= TH + MARGIN648B) why = `ONLY IN HER THIRD: short at ${Math.round(thirdPos * 100)}% of the ${thirdBelow.toFixed(2)} -> ${thirdAbove.toFixed(2)} channel - no short in the bottom ${thTxt}%, over the unbroken band below.`;
+  if (!why && !(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightUp && side === "up" && thirdPos >= 1 - TH - MARGIN648B && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) why = `ONLY IN HER THIRD: long at ${Math.round(thirdPos * 100)}% of the ${thirdBelow.toFixed(2)} -> ${thirdAbove.toFixed(2)} channel - no long in the top ${thTxt}%, under the unbroken band above.`;
+  if (!why && !(globalThis as any).__thirds703 /* fix703: paper twin only */ && !tightDn && side === "down" && thirdPos <= TH + MARGIN648B && !(typeof slideFree1065 === "function" && slideFree1065(asset, side)) /* fix1065 */) why = `ONLY IN HER THIRD: short at ${Math.round(thirdPos * 100)}% of the ${thirdBelow.toFixed(2)} -> ${thirdAbove.toFixed(2)} channel - no short in the bottom ${thTxt}%, over the unbroken band below.`;
   // HER CANDLE (Oct 20 ~8:07 PM PT, Love: "she is clear to long a rising candle that either came up from the bottom, or broke pink upwards, she can long
   // anywhere but the top 33% of the channel, same for shorts on a falling candle that fell from the band, or broke the pink downwards ... hardwired into her
   // architecture, no other method of operations"): a rising 5m candle (over its open, lifted the tap off its low) is a long or nothing; a falling one (under
