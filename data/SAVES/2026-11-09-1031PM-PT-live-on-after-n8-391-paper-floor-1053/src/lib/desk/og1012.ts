@@ -18,7 +18,7 @@ const VAULT_ENTRY = "data/vault-og-oct12/top-level-oct11-13/pivotbooks.ts.pre-fl
 const VAULT_EXIT = "data/vault-og-oct12/bak-oct12-combofix/grokog.ts.bak-0242", VAULT_EXIT_SHA = "c1b45fdcbc5c0ab99e84ff39e37a5b61eaa4610a77c40750ebb70e0924d9b735";
 const FILE = () => D("og-1012.json");
 const read = (): any[] => { try { return existsSync(FILE()) ? JSON.parse(readFileSync(FILE(), "utf8")) : []; } catch { return []; } };
-const write = (rows: any[]) => { if (rows.length > 8000) { try { appendFileSync(D("og-1012-archive.jsonl"), rows.slice(8000).map((r) => JSON.stringify(r)).join("\n") + "\n"); } catch {} } writeFileSync(FILE() + ".tmp", JSON.stringify(rows.slice(0, 8000))); renameSync(FILE() + ".tmp", FILE()); };
+const write = (rows: any[]) => { ((globalThis as any).__purge1053 || ((x: any) => x))(rows, "og-1012"); /* fix1053 */ if (rows.length > 8000) { try { appendFileSync(D("og-1012-archive.jsonl"), rows.slice(8000).map((r) => JSON.stringify(r)).join("\n") + "\n"); } catch {} } writeFileSync(FILE() + ".tmp", JSON.stringify(rows.slice(0, 8000))); renameSync(FILE() + ".tmp", FILE()); };
 const g = {} as { __grokSettleAt?: number }; // this card's own settle clock (never the live books' globals)
 const kget = async (p: string) => { const mk = await fetchMarket(String(p).split("/").pop() || ""); return { market: { result: mk?.result } }; }; // Kalshi's public market read, shaped like Oct 12's kget
 type Row = any; // Oct 12 grokog.ts rows (the frozen settle block names this type)

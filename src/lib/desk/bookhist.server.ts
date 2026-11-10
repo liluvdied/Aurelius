@@ -41,7 +41,7 @@ export async function wholeBookHistory(book: string, liveIds: Set<string>): Prom
     const lanes = new Set(Object.entries(gk.LANE_BOOK).filter(([, b]) => b === book).map(([l]) => l));
     if (lanes.size) {
       const cur = new Set([...(gk.asNightRows() as any[]), ...(gk.archiveNightRows() as any[])].map((r) => String(r.id))); // already on the card
-      const arch = (archiveRows() as any[]).filter((r) => r && lanes.has(r.lane) && r.pnl != null).reverse(); // newest copy of a row first
+      const arch = (archiveRows() as any[]).filter((r) => r && lanes.has(r.lane) && r.pnl != null && !(Number((r as any)?.ask) > 0.66) /* fix1053 */).reverse(); // newest copy of a row first
       for (const e of gk.asNightRows(arch) as any[]) {
         const id = String(e.id);
         if (cur.has(id) || liveIds.has(id) || seen.has(id) || typeof e.pnl !== "number") continue;
@@ -61,10 +61,10 @@ export async function laneArchiveHist(exclude: Set<string>): Promise<[string, nu
   const { archiveRows } = await import("./archcache");
   const arch = archiveRows() as any[];
   let c = G.__laneHist as { n: number; rows: [string, string, number, number][] } | undefined;
-  if (!c || c.n !== arch.length || !(c as any).v1048 /* fix1048: rebuild once at $20 */) {
+  if (!c || c.n !== arch.length || !(c as any).v1048 /* fix1048: rebuild once at $20 */ || !(c as any).v1053 /* fix1053: rebuild once without the tickets over her floor */) {
     const byId = new Map<string, [string, string, number, number]>();
     for (const r of arch) {
-      if (!r || r.pnl == null || typeof r.pnl !== "number" || r.result === "open" || !r.id || !r.ticker) continue;
+      if (!r || r.pnl == null || typeof r.pnl !== "number" || r.result === "open" || !r.id || !r.ticker || (Number((r as any)?.ask) > 0.66) /* fix1053 */) continue;
       const book = (gk.LANE_BOOK as Record<string, string>)[r.lane || "grok"];
       if (!book) continue;
       const t = Date.parse(r.at);
@@ -72,7 +72,7 @@ export async function laneArchiveHist(exclude: Set<string>): Promise<[string, nu
       const id = `${r.ticker}:${book}:${r.id}`;
       byId.set(id, [id, book, t, Number(r.stake) > 0 ? (Number(r.pnl) * 20) / Number(r.stake) : Number(r.pnl)] /* fix1048 at $20 a ticket */);
     }
-    c = G.__laneHist = { n: arch.length, rows: [...byId.values()], v1048: true } as any;
+    c = G.__laneHist = { n: arch.length, rows: [...byId.values()], v1048: true, v1053: true } as any;
   }
   const out: [string, number, number][] = [];
   for (const [id, book, t, p] of c!.rows) if (!exclude.has(id)) out.push([book, t, p]);

@@ -22,7 +22,7 @@ async function readJ(file: string): Promise<any> {
 /** every book's trades of the last `hours`, newest first */
 export async function wireRows1044(hours = 24, cap = 600): Promise<Wire1044[]> {
   const cut = Date.now() - hours * 3600000, out: Wire1044[] = [];
-  const push = (rows: any, src: string) => { if (!Array.isArray(rows)) return; for (let i = rows.length - 1; i >= 0; i--) { const w = norm(rows[i], src); if (w && Date.parse(w.at) >= cut) out.push(w); } };
+  const push = (rows: any, src: string) => { if (!Array.isArray(rows)) return; for (let i = rows.length - 1; i >= 0; i--) { const w = norm(rows[i], src); if (w && w.book !== "xrp5m961" && (Number((w as any)?.ask) > 0.66)) continue; /* fix1053 her record: no paper ticket over her 66c floor (her real XRP lane is never hidden) */ if (w && Date.parse(w.at) >= cut) out.push(w); } };
   push(await readJ("night-book.json"), "night");
   const og = await readJ("grok-og.json"); push(Array.isArray(og) ? og : og?.rows, "lane");
   try { const pr = await import("./paperrows"); push(pr.paperBookRows721().filter((r: any) => !String(r.book).startsWith("p5m-")), "paper"); } catch {}

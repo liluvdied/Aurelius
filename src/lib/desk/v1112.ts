@@ -187,7 +187,7 @@ function save(force = false) {
   if (!force && G.__v1112SaveAt && Date.now() - G.__v1112SaveAt < 10000) return;
   G.__v1112SaveAt = Date.now();
   try {
-    const s = st(); s.rows = s.rows.slice(-4000); const old = Date.now() - 6 * 3600000;
+    const s = st(); ((globalThis as any).__purge1053 || ((x: any) => x))(s.rows, "v111-2"); /* fix1053 */ s.rows = s.rows.slice(-4000); const old = Date.now() - 6 * 3600000;
     for (const k of Object.keys(s.taken)) if (s.taken[k] < old) delete s.taken[k];
     for (const k of Object.keys(s.read)) if (s.read[k] < old) delete s.read[k];
     writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE));

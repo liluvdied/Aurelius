@@ -50,7 +50,7 @@ export function shapes713(seg: Bar[], prevC: number, c: number): { name: string;
   return out;
 }
 function st(): { rows: Row713[]; seen: Record<string, number> } { if (G.__cup713) return G.__cup713; let s = { rows: [] as Row713[], seen: {} as Record<string, number> }; try { if (existsSync(D(FILE))) s = { seen: {}, ...JSON.parse(readFileSync(D(FILE), "utf8")) }; } catch {} G.__cup713 = s; return s; }
-function save(force = false) { if (!force && G.__cup713SaveAt && Date.now() - G.__cup713SaveAt < 10000) return; G.__cup713SaveAt = Date.now(); try { const s = st(); s.rows = s.rows.slice(-4000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE)); } catch {} }
+function save(force = false) { if (!force && G.__cup713SaveAt && Date.now() - G.__cup713SaveAt < 10000) return; G.__cup713SaveAt = Date.now(); try { const s = st(); ((globalThis as any).__purge1053 || ((x: any) => x))(s.rows, "cup713"); /* fix1053 */ s.rows = s.rows.slice(-4000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE)); } catch {} }
 const TF713: [string, number, number][] = [["1m", 60, 15], ["1m", 60, 20], ["2m", 120, 15]];
 export async function cupTick713(assets: Record<string, any> | null | undefined) {
   if (!assets || G.__cup713Busy) return;

@@ -37,7 +37,7 @@ function sess5pmET(now = Date.now()): number {
   return Math.floor((now - secs * 1000) / 60000) * 60000;
 }
 function load(): { rows: any[] } { try { const j = JSON.parse(readFileSync(D("chart-twins.json"), "utf8")); return Array.isArray(j?.rows) ? j : { rows: [] }; } catch { return { rows: [] }; } }
-function save(st: { rows: any[] }) {
+function save(st: { rows: any[] }) { ((globalThis as any).__purge1053 || ((x: any) => x))(st.rows, "chart-twins"); // fix1053
   const sum: Record<string, any> = {};
   for (const t of [...TWINS, ...REJ]) {
     const rs = st.rows.filter((r) => r.twin === t.id && (r.result === "win" || r.result === "loss"));

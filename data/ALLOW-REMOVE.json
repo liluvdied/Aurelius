@@ -12266,5 +12266,105 @@
     "what": "const f = (spot - b.price) / (a.price - b.price), k483 = a.price - b.price > 1000 ? 0.2 : 0.33; // fix483 (Love Oct 29 2026 her list, c4 marked Right with her note: \"btc over 1000 - 20%\" + 6:41 PM: \"WVERYTHING I ANSERED. NEEDS. TO. BE. IN.\"): only BTC channels reach $1,000",
     "why": "fix1050 (her words in this change's request)",
     "R": "R610"
+  },
+  {
+    "what": "if (!e.id || !e.book || e.stale || c.seen.has(e.id) || typeof e.pnl !== \"number\") continue;",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "const rows0 = [...listNight(), ...extra].filter((r: any) => !arch.has(String(r.book))).map((r: any) => { if (!r.bands && !r.nav) return r; const { bands, nav, ...rest } = r; return rest; }) as NightRow[];",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "const rows = listNight().filter((r) => !r.dnaMode && !(r as { stale?: boolean }).stale && r.result !== \"open\" && r.pnl != null && r.stake > 0 && r.ask > 0);",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "function save(st: { rows: any[] }) {",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "function save(force = false) { if (!force && G.__mom704SaveAt && Date.now() - G.__mom704SaveAt < 10000) return; G.__mom704SaveAt = Date.now(); try { const s = st(); s.rows = s.rows.slice(-4000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + \".tmp\"), JSON.stringify(s)); renameSync(D(FILE + \".tmp\"), D(FILE)); } catch {} }",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "function save(force = false) { if (!force && G.__inv688SaveAt && Date.now() - G.__inv688SaveAt < 10000) return; G.__inv688SaveAt = Date.now(); try { const s = st(); s.rows = s.rows.slice(-4000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + \".tmp\"), JSON.stringify(s)); renameSync(D(FILE + \".tmp\"), D(FILE)); } catch {} }",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "function save(force = false) { if (!force && G.__cup713SaveAt && Date.now() - G.__cup713SaveAt < 10000) return; G.__cup713SaveAt = Date.now(); try { const s = st(); s.rows = s.rows.slice(-4000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + \".tmp\"), JSON.stringify(s)); renameSync(D(FILE + \".tmp\"), D(FILE)); } catch {} }",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "const write = (rows: any[]) => { if (rows.length > 8000) { try { appendFileSync(D(\"og-1012-archive.jsonl\"), rows.slice(8000).map((r) => JSON.stringify(r)).join(\"\\n\") + \"\\n\"); } catch {} } writeFileSync(FILE() + \".tmp\", JSON.stringify(rows.slice(0, 8000))); renameSync(FILE() + \".tmp\", FILE()); };",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "const mine = rows.filter((r) => r && r.at && (!split || r.book === split) && ptDay(Date.parse(String(r.at)) || 0) === today && (r.side === \"up\" || r.side === \"down\"));",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "const mine = og.filter((r) => r && r.lane === b.lane && !r.stale && ptDay(Date.parse(String(r.at)) || 0) === today);",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "const arch = (archiveRows() as any[]).filter((r) => r && lanes.has(r.lane) && r.pnl != null).reverse(); // newest copy of a row first",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "if (!c || c.n !== arch.length || !(c as any).v1048 /* fix1048: rebuild once at $20 */) {",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "if (!r || r.pnl == null || typeof r.pnl !== \"number\" || r.result === \"open\" || !r.id || !r.ticker) continue;",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "c = G.__laneHist = { n: arch.length, rows: [...byId.values()], v1048: true } as any;",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "function save() { try { const s = st(); s.rows = s.rows.slice(-6000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + \".tmp\"), JSON.stringify(s)); renameSync(D(FILE + \".tmp\"), D(FILE)); } catch {} }",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "const write = (rows: Row[]) => { writeFileSync(D(\"climate-wide.json.tmp\"), JSON.stringify(rows.slice(0, 20000))); renameSync(D(\"climate-wide.json.tmp\"), D(\"climate-wide.json\")); };",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "function save() { try { const s = st(); s.rows = s.rows.slice(-4000); writeFileSync(D(FILE + \".tmp\"), JSON.stringify(s)); renameSync(D(FILE + \".tmp\"), D(FILE)); } catch {} }",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "function save() { try { const s = st(), old = Date.now() - 6 * 3600000; s.rows = s.rows.slice(-4000); for (const k of Object.keys(s.read)) if (s.read[k] < old) delete s.read[k]; writeFileSync(D(FILE + \".tmp\"), JSON.stringify(s)); renameSync(D(FILE + \".tmp\"), D(FILE)); } catch {} }",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "const s = st(); s.rows = s.rows.slice(-4000); const old = Date.now() - 6 * 3600000;",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
+  },
+  {
+    "what": "const push = (rows: any, src: string) => { if (!Array.isArray(rows)) return; for (let i = rows.length - 1; i >= 0; i--) { const w = norm(rows[i], src); if (w && Date.parse(w.at) >= cut) out.push(w); } };",
+    "why": "fix1053 (her words in this change's request)",
+    "R": "R611"
   }
 ]

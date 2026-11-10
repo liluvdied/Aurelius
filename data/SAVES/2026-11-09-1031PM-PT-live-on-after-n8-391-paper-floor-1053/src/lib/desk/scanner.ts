@@ -102,6 +102,7 @@ function readPaper(): ScanPaper[] {
   }
 }
 function writePaper(rows: ScanPaper[]) {
+  ((globalThis as any).__purge1053 || ((x: any) => x))(rows, "scanner-paper"); // fix1053
   writeFileSync(FILE(), JSON.stringify(rows.slice(0, 3000)));
 }
 

@@ -18,7 +18,7 @@ function st(): { rows: any[]; read: Record<string, number> } {
   let s = { rows: [] as any[], read: {} as Record<string, number> }; try { if (existsSync(D(FILE))) s = { rows: [], read: {}, ...JSON.parse(readFileSync(D(FILE), "utf8")) }; } catch {}
   G.__v1112zone798 = s; return s;
 }
-function save() { try { const s = st(), old = Date.now() - 6 * 3600000; s.rows = s.rows.slice(-4000); for (const k of Object.keys(s.read)) if (s.read[k] < old) delete s.read[k]; writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE)); } catch {} }
+function save() { try { const s = st(), old = Date.now() - 6 * 3600000; ((globalThis as any).__purge1053 || ((x: any) => x))(s.rows, "v111-2-zone"); /* fix1053 */ s.rows = s.rows.slice(-4000); for (const k of Object.keys(s.read)) if (s.read[k] < old) delete s.read[k]; writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE)); } catch {} }
 /** the read: bars = this window's closed 1m bars, price = now, L = the desk's lines. */
 export function zoneRead798(asset: string, bars: { l: number; h: number }[], price: number, L: { name: string; price: number }[]): { side: "up" | "down"; label: string; level: number; wick: number } | null {
   const px = (n: string) => Number((L || []).find((l) => String(l.name) === n)?.price) || 0;

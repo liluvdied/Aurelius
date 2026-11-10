@@ -129,7 +129,7 @@ function p5mLedger(file: string, today: string) {
 // fix1002: a paper book's own rows (the same $ the paper cards use: take-profit, else held, else pnl).
 function paperFile(file: string, split: string | undefined, today: string) {
   const raw = J(file); const rows: any[] = Array.isArray(raw?.rows) ? raw.rows : Array.isArray(raw) ? raw : raw?.rows && typeof raw.rows === "object" ? Object.values(raw.rows) : [];
-  const mine = rows.filter((r) => r && r.at && (!split || r.book === split) && ptDay(Date.parse(String(r.at)) || 0) === today && (r.side === "up" || r.side === "down"));
+  const mine = rows.filter((r) => r && r.at && !(Number((r as any)?.ask) > 0.66) /* fix1053 */ && (!split || r.book === split) && ptDay(Date.parse(String(r.at)) || 0) === today && (r.side === "up" || r.side === "down"));
   const done = mine.filter((r) => r.result !== "open" && Number.isFinite(Number(r.pnlTp ?? r.pnlHold ?? r.pnl))).map((r) => Number(r.pnlTp ?? r.pnlHold ?? r.pnl));
   return { n: mine.length, open: mine.length - done.length, ...score(done), note: "paper", last: mine.reduce((m, r) => Math.max(m, Date.parse(String(r.at)) || 0), 0) };
 }
@@ -147,7 +147,7 @@ export async function allBooksRows1002(now = Date.now()): Promise<{ at: string; 
     try {
       if (b.kind === "recon") {
         if (!og) { const g = J("grok-og.json"); og = Array.isArray(g) ? g : []; }
-        const mine = og.filter((r) => r && r.lane === b.lane && !r.stale && ptDay(Date.parse(String(r.at)) || 0) === today);
+        const mine = og.filter((r) => r && r.lane === b.lane && !r.stale && !(Number((r as any)?.ask) > 0.66) /* fix1053 */ && ptDay(Date.parse(String(r.at)) || 0) === today);
         const done = mine.filter((r) => r.result !== "open" && Number.isFinite(Number(r.pnl))).map((r) => Number(r.pnl));
         s = { n: mine.length, open: mine.length - done.length, ...score(done), note: "paper record at $20 a call", last: mine.reduce((m, r) => Math.max(m, Date.parse(String(r.at)) || 0), 0) };
         const rt = real.filter((t) => String(t.book) === b.lane && ptDay(Date.parse(String(t.first)) || 0) === today).map((t) => Number(t.pnl) || 0);

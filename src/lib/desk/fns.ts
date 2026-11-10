@@ -1025,7 +1025,7 @@ function ledgerHistRows(): [string, string, number, number, number][] {
         if (!line.trim()) continue;
         try {
           const e = JSON.parse(line);
-          if (!e.id || !e.book || e.stale || c.seen.has(e.id) || typeof e.pnl !== "number") continue;
+          if (!e.id || !e.book || e.stale || c.seen.has(e.id) || typeof e.pnl !== "number" || (Number((e as any)?.ask) > 0.66) /* fix1053 her record: no paper ticket over her 66c floor */) continue;
           c.seen.add(e.id);
           c.rows.push([String(e.id), String(e.book), Date.parse(e.at || ""), Number(e.pnl), Number(e.stake) || 0 /* fix1048 */]);
         } catch {}
@@ -1396,7 +1396,7 @@ async function nightAll(light = false): Promise<NightRow[]> {
   // shown on the page) are dropped. This list went out every 15 s at ~4.6 MB.
   let arch = new Set<string>();
   try { const sw = JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8")); const run = new Set<string>(sw?.liveBook?.books ?? []); arch = new Set<string>((sw?.archivedBooks ?? []).filter((b: string) => !run.has(b))); } catch {}
-  const rows0 = [...listNight(), ...extra].filter((r: any) => !arch.has(String(r.book))).map((r: any) => { if (!r.bands && !r.nav) return r; const { bands, nav, ...rest } = r; return rest; }) as NightRow[];
+  const rows0 = [...listNight(), ...extra].filter((r: any) => !arch.has(String(r.book)) && !(Number((r as any)?.ask) > 0.66) /* fix1053 */).map((r: any) => { if (!r.bands && !r.nav) return r; const { bands, nav, ...rest } = r; return rest; }) as NightRow[];
   const { lonePurple } = await import("./nightbook");
   // 2 FEEDS: Vantage's verdict on the same window + side (first one logged), from data/feed-twin.jsonl.
   const van = new Map<string, boolean>();
@@ -2001,7 +2001,7 @@ export const getPathExits = createServerFn({ method: "POST" })
 export type TrajBook = { book: string; n: number; wins: number; rets: number[]; asks: number[]; perDay: number; from: string | null; to: string | null; live?: boolean };
 export const getTrajectory = createServerFn({ method: "GET" }).handler(async (): Promise<TrajBook[]> => {
   const out: TrajBook[] = [];
-  const rows = listNight().filter((r) => !r.dnaMode && !(r as { stale?: boolean }).stale && r.result !== "open" && r.pnl != null && r.stake > 0 && r.ask > 0);
+  const rows = listNight().filter((r) => !r.dnaMode && !(r as { stale?: boolean }).stale && r.result !== "open" && r.pnl != null && r.stake > 0 && r.ask > 0 && !(Number((r as any)?.ask) > 0.66) /* fix1053 */);
   const by = new Map<string, NightRow[]>();
   for (const r of rows) {
     const a = by.get(r.book) || [];

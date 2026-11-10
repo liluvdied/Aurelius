@@ -3900,6 +3900,7 @@ async function tick() {
     import("./ethbook").then((m) => m.ethTick682()).catch(() => {});
     // fix961 XRP 5M ON POLYMARKET - MAIN'S NOV 3 MODEL (Love Nov 7 2026 ~5:13 PM PT: "for now let's get the xrp 5M book set up / just put it on the nov 3 save point and we'll see how she does on the first couple windows" + "main" + "it's on poly" + "no , live pls"): her own XRP lane (xrp5m961.ts), live at $1 through the desk's Polymarket buy (umpire, LIVE, cap, 1.5x floor, cash, one per window).
     import("./xrp5m961").then((m) => m.xrpTick961()).catch(() => {});
+    import("./floor1053").catch(() => {}); // fix1053 her 1.5x floor on every paper book (shared through globalThis)
     // fix1045 5M PAPER BOOKS · NEW BRAIN (Love Nov 9 2026: "make cards for all of them and put them in a place i can see what they're taking"): BTC / ETH / XRP Polymarket 5m, PAPER only - never an order.
     import("./p5m1045").then((m) => m.p5mTick1045()).catch(() => {});
     // fix1037 PERPLEXITIES - PAPER (her ask, Nov 8 2026 2:46 PM PT): Perplexity's XRP 5m twin as a paper book - never an order
