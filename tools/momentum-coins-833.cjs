@@ -1,0 +1,27 @@
+// fix833 proof: MOMENTUM ON THE COINS - PAPER (her card "Yes, all four on paper").
+const fs = require("fs"), path = require("path"), os = require("os");
+const root = process.env.AUR_ROOT || path.join(__dirname, "..");
+let ok = true; const t = (c, m) => { if (!c) { ok = false; console.log("MOMENTUM COINS 833 TEST: FAIL - " + m); } };
+const rd = (f) => fs.readFileSync(path.join(root, f), "utf8");
+const M = rd("src/lib/desk/momcoins833.ts"), E = rd("src/lib/desk/engine.ts"), P = rd("src/lib/desk/paperrows.ts"), A = rd("src/components/desk/app.tsx"), SS = rd("tools/setup-scores-708.py");
+const code = M.replace(/\/\/.*$/gm, "");
+t(!/kalshi-live|sendOrder|placeOrder|portfolio\/|"POST"|live-switch|bandlock|umpire/.test(code), "the coin books reach an order / live path");
+t(E.includes('import("./momcoins833").then((m) => m.momCoinsTick833())'), "not running");
+t(["momdoge833", "mombnb833", "momsol833", "btcfirst2-833"].every((b) => P.includes(`book: "${b}"`) && A.includes(`book: "${b}" as any`)), "a card is missing");
+t(SS.includes('"mom-coins-833.json": ("MOMENTUM · COINS", "setup")'), "not scored in STATS");
+const ts = require(path.join(root, "node_modules/typescript")), out = fs.mkdtempSync(path.join(os.tmpdir(), "mc833-"));
+const momentum = fs.readFileSync(path.join(root, "src/lib/desk/momentum.ts"), "utf8");
+const colour = momentum.slice(momentum.indexOf("export function momentumColour("), momentum.indexOf("export function gate965m("));
+fs.writeFileSync(path.join(out, "momentum.js"), ts.transpileModule(colour, { compilerOptions: { module: 1, target: 99 } }).outputText);
+fs.writeFileSync(path.join(out, "m.js"), ts.transpileModule(M, { compilerOptions: { module: 1, target: 99 } }).outputText); fs.writeFileSync(path.join(out, "kalshi.js"), "exports.fetchMarket=async()=>null;exports.mapMarket=(x)=>x;");
+const X = require(path.join(out, "m.js"));
+t(Math.abs(X.fee833(20, 0.5) - 0.35) < 1e-9, "Kalshi fee wrong");
+const ln = { pink: 100, vwap: 110, sd: 2 };
+let s = X.signals833(["first2", "pinkup", "under2"], [], 100, 101, 130, ln); t(s.length === 1 && s[0].key === "first2" && s[0].side === "up", "first 2 minutes wrong");
+t(X.signals833(["first2"], [], 100, 101, 200, ln).length === 0, "first 2 minutes fired after minute 3");
+s = X.signals833(["pinkup"], [{ t: 0, o: 99, h: 99, l: 99, c: 99.5 }, { t: 60, o: 99.6, h: 100.5, l: 99.6, c: 100.3 }], 0, 100.3, 400, ln); t(s.length === 1 && s[0].key === "pinkup", "pink break up wrong");
+s = X.signals833(["under2"], [{ t: 0, o: 106, h: 106, l: 105, c: 105.5 }, { t: 60, o: 105.5, h: 105.6, l: 105, c: 105.2 }], 0, 105.2, 400, ln); t(s.length === 1 && s[0].side === "down", "under -2σ wrong");
+t(X.signals833(["first2"], [{ t: 0, o: 99, h: 99, l: 99, c: 99.5 }, { t: 60, o: 99.6, h: 100.5, l: 99.6, c: 100.3 }], 0, 100.3, 400, ln).length === 0, "BTC took a setup it doesn't run");
+t(X.book833("btc") === "btcfirst2-833" && X.book833("doge") === "momdoge833", "book ids wrong");
+console.log(ok ? "MOMENTUM COINS 833 TEST ✓ - DOGE / BNB / SOL momentum (first 2 minutes, pink up, under -2σ) + BTC first 2 minutes, paper at the real Kalshi ask with fees, cards + STATS; paper only." : "MOMENTUM COINS 833 TEST: FAIL");
+process.exit(ok ? 0 : 1);

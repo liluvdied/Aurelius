@@ -16,7 +16,7 @@ const r2 = (n: number) => Math.round(n * 100) / 100;
 const num = (v: unknown) => { const n = Number.parseFloat(String(v ?? "")); return Number.isFinite(n) ? n : NaN; };
 type Leg = { ticker: string; series: string; side: "yes" | "no"; ask: number; bid?: number; result?: string; kind?: "crypto" | "comm" | "sports"; wp?: number; note?: string; hedge?: { at: string; a: number; legBid: number; cover: number } };
 type Hedge = { n: number; flips: number; pnl5: number; pnlCover: number; cost5: number; costCover: number };
-type Combo = { hedge?: Hedge; id: string; lane?: string; at: string; window: string; legs: Leg[]; cost: number; multiple: number; secondsLeft: number; best: number; lastPct: number; result: "open" | "sold" | "win" | "loss"; exit: string | null; pnl: number | null; holdPnl: number | null; ctx?: Record<string, any>; tp?: Record<string, number | null> };
+type Combo = { stake?: number; hedge?: Hedge; id: string; lane?: string; at: string; window: string; legs: Leg[]; cost: number; multiple: number; secondsLeft: number; best: number; lastPct: number; result: "open" | "sold" | "win" | "loss"; exit: string | null; pnl: number | null; holdPnl: number | null; ctx?: Record<string, any>; tp?: Record<string, number | null> };
 const read = (): Combo[] => { try { return existsSync(D("combos.json")) ? JSON.parse(readFileSync(D("combos.json"), "utf8")) : []; } catch { return []; } };
 const write = (rows: Combo[]) => { writeFileSync(D("combos.json.tmp"), JSON.stringify(rows.slice(0, 3000))); renameSync(D("combos.json.tmp"), D("combos.json")); };
 const g = globalThis as unknown as { __cbQ?: { lane?: string; id: string; legs: any[]; est: number; tries?: number; nb?: number }[]; __cbQBusy?: boolean; __cbQN?: number; __cbAt?: number; __cbBusy?: boolean; __cbSeries?: { at: number; v: string[] }; __cbComm?: { at: number; v: string[] }; __cbSettleAt?: number };
@@ -103,6 +103,7 @@ export async function comboTick() {
     try { writeFileSync(D("combos-status.json"), JSON.stringify({ at: new Date().toISOString(), series, comm, toClose, markets: mk.map((m) => ({ t: m.ticker, close: m.close_time, ya: m.yes_ask_dollars, na: m.no_ask_dollars })) }, null, 1)); } catch {}
     // mark + gate
     for (const c of open) {
+      const stake = c.stake ?? 100;
       let prod = 1, ok = true;
       for (const l of c.legs) {
         const m = byT.get(l.ticker);
@@ -114,7 +115,7 @@ export async function comboTick() {
         // side's ask, once: a FIFTH of the stake ($20 on $100; Love: "1/5th for the paper testing"), and a "cover" size that pays back the combo's whole $100 if that leg flips.
         if (!l.hedge && b <= 0.85 && l.ask - b >= 0.08) {
           const oa = num(l.side === "yes" ? m?.no_ask_dollars : m?.yes_ask_dollars);
-          if (oa > 0.01 && oa < 0.5) l.hedge = { at: new Date().toISOString(), a: oa, legBid: b, cover: r2((STAKE * oa) / (1 - oa)) };
+          if (oa > 0.01 && oa < 0.5) l.hedge = { at: new Date().toISOString(), a: oa, legBid: b, cover: r2((stake * oa) / (1 - oa)) };
         }
         prod *= b;
       }
@@ -131,7 +132,7 @@ export async function comboTick() {
       const maxGain = 1 / c.cost - 1;
       for (const k of [50, 75, 90]) {
         c.tp ||= {};
-        if (c.tp[`at${k}`] == null && maxGain > 0 && prod / c.cost - 1 >= (k / 100) * maxGain) c.tp[`at${k}`] = r2(STAKE * (prod / c.cost) - STAKE);
+        if (c.tp[`at${k}`] == null && maxGain > 0 && prod / c.cost - 1 >= (k / 100) * maxGain) c.tp[`at${k}`] = r2(stake * (prod / c.cost) - stake);
       }
       // SCALE GATE (Love, Oct 12 ~4 PM PT): arm at 50% of the way to the max, floor 30% of the way, +5 per 5 of best.
       const mg = maxGain * 100, armAt = 0.5 * mg;
@@ -139,7 +140,7 @@ export async function comboTick() {
         const floor = Math.round((0.3 * mg + 5 * Math.floor((c.best - armAt) / 5)) * 100) / 100;
         if (pct <= floor) {
           c.result = "sold";
-          c.pnl = r2(STAKE * (prod / c.cost) - STAKE);
+          c.pnl = r2(stake * (prod / c.cost) - stake);
           c.exit = `gate: best +${Math.round(c.best)}%, floor +${floor}%, cashed out at +${Math.round(pct)}%`;
         }
       }
@@ -164,7 +165,7 @@ export async function comboTick() {
         if (legs.length >= L.minLegs) {
           const cost = legs.reduce((p, l) => p * l.ask, 1);
           (g.__cbQ ||= []).push({ lane: L.id, id: `combo:${L.id}:${win}`, legs: legs.map((l) => ({ market_ticker: l.ticker, event_ticker: l.ticker.replace(/-[^-]+$/, ""), side: l.side, ask: l.ask })), est: cost });
-          rows.unshift({ id: `combo:${L.id}:${win}`, lane: L.id, at: new Date().toISOString(), window: win, legs, cost: r2(cost * 10000) / 10000, multiple: r2(1 / cost), secondsLeft: toClose, best: 0, lastPct: 0, result: "open", exit: null, pnl: null, holdPnl: null, ctx: ctxOf(L.id, legs, toClose, cost), tp: {} });
+          rows.unshift({ id: `combo:${L.id}:${win}`, lane: L.id, at: new Date().toISOString(), window: win, legs, cost: r2(cost * 10000) / 10000, multiple: r2(1 / cost), secondsLeft: toClose, best: 0, lastPct: 0, result: "open", stake: STAKE, exit: null, pnl: null, holdPnl: null, ctx: ctxOf(L.id, legs, toClose, cost), tp: {} });
           changed = true;
         }
       }
@@ -205,7 +206,7 @@ export async function comboTick() {
           // Oct 12 ~7:55 PM PT (Love: "we can turn on claude's picks for combos too... welcome to take on kalshi while she rests"):
           // real-price check every time, and a live buy (same guards) while her lineup sits out the hour.
           (g.__cbQ ||= []).push({ lane: CLAUDE.id, id: `combo:${CLAUDE.id}:${win}`, legs: pickL.map((l) => ({ market_ticker: l.ticker, event_ticker: l.ticker.replace(/-[^-]+$/, ""), side: l.side, ask: l.ask })), est: cost });
-          rows.unshift({ id: `combo:${CLAUDE.id}:${win}`, lane: CLAUDE.id, at: new Date().toISOString(), window: win, legs: pickL, cost: r2(cost * 10000) / 10000, multiple: r2(1 / cost), secondsLeft: toClose, best: 0, lastPct: 0, result: "open", exit: null, pnl: null, holdPnl: null, ctx: ctxOf(CLAUDE.id, pickL, toClose, cost), tp: {} });
+          rows.unshift({ id: `combo:${CLAUDE.id}:${win}`, lane: CLAUDE.id, at: new Date().toISOString(), window: win, legs: pickL, cost: r2(cost * 10000) / 10000, multiple: r2(1 / cost), secondsLeft: toClose, best: 0, lastPct: 0, result: "open", stake: STAKE, exit: null, pnl: null, holdPnl: null, ctx: ctxOf(CLAUDE.id, pickL, toClose, cost), tp: {} });
           changed = true;
         }
       }
@@ -224,7 +225,8 @@ export async function comboTick() {
           if (l.result !== l.side) all = false;
         }
         if (!done) continue;
-        c.holdPnl = all ? r2(STAKE / c.cost - STAKE) : -STAKE;
+        const stake = c.stake ?? 100;
+        c.holdPnl = all ? r2(stake / c.cost - stake) : -stake;
         const lv: any = (c as any).live;
         // LIVE LEGS + FEE (Oct 13 ~12:40 AM PT): a live combo can hold fewer legs than paper (Kalshi wasn't offering one), so it
         // settles on ITS legs: 12:30 AM mix-7x paper missed ETH, her real NATGAS/GOLD/COPPER combo (no ETH) won. Kalshi's fee
@@ -242,8 +244,8 @@ export async function comboTick() {
           for (const l of hs) {
             const flip = l.result !== l.side, x = l.hedge!;
             if (flip) h.flips++;
-            h.cost5 = r2(h.cost5 + STAKE / 5); h.costCover = r2(h.costCover + x.cover);
-            h.pnl5 = r2(h.pnl5 + (flip ? STAKE / 5 / x.a - STAKE / 5 : -STAKE / 5));
+            h.cost5 = r2(h.cost5 + stake / 5); h.costCover = r2(h.costCover + x.cover);
+            h.pnl5 = r2(h.pnl5 + (flip ? stake / 5 / x.a - stake / 5 : -stake / 5));
             h.pnlCover = r2(h.pnlCover + (flip ? x.cover / x.a - x.cover : -x.cover));
           }
           c.hedge = h;
@@ -409,7 +411,7 @@ async function smPass() {
       c.sm = { reads: r.reads, kept: r.kept.length, of: c.legs.length, twin: r.kept.length >= need };
       if (r.kept.length >= need && !rows.some((x) => x.id === id.replace(/^combo:([^:]+):/, "combo:$1-sm:"))) {
         const cost = r.kept.reduce((p, l) => p * l.ask, 1);
-        rows.unshift({ id: id.replace(/^combo:([^:]+):/, "combo:$1-sm:"), lane: `${laneOf(c)}-sm`, at: new Date().toISOString(), window: c.window, legs: r.kept, cost: Math.round(cost * 10000) / 10000, multiple: r2(1 / cost), secondsLeft: c.secondsLeft, best: 0, lastPct: 0, result: "open", exit: null, pnl: null, holdPnl: null, tp: {}, sm: { reads: r.reads, kept: r.kept.length, of: c.legs.length, twin: true } } as any);
+        rows.unshift({ id: id.replace(/^combo:([^:]+):/, "combo:$1-sm:"), lane: `${laneOf(c)}-sm`, at: new Date().toISOString(), window: c.window, legs: r.kept, cost: Math.round(cost * 10000) / 10000, multiple: r2(1 / cost), secondsLeft: c.secondsLeft, best: 0, lastPct: 0, result: "open", stake: STAKE, exit: null, pnl: null, holdPnl: null, tp: {}, sm: { reads: r.reads, kept: r.kept.length, of: c.legs.length, twin: true } } as any);
       }
     }
     write(rows);
@@ -467,6 +469,6 @@ export function comboLessons() {
   const hedge = { n: hc.length, legs: hc.reduce((a, c) => a + c.hedge!.n, 0), flips: hc.reduce((a, c) => a + c.hedge!.flips, 0), combo: r2(hc.reduce((a, c) => a + (c.pnl || 0), 0)), with5: r2(hc.reduce((a, c) => a + (c.pnl || 0) + c.hedge!.pnl5, 0)), withCover: r2(hc.reduce((a, c) => a + (c.pnl || 0) + c.hedge!.pnlCover, 0)), hedge5: r2(hc.reduce((a, c) => a + c.hedge!.pnl5, 0)), hedgeCover: r2(hc.reduce((a, c) => a + c.hedge!.pnlCover, 0)), open: read().filter((c) => c.holdPnl == null && c.legs.some((l) => l.hedge)).length };
   // REAL PRICE: CRYPTO · LAST 5 MIN combos with a Kalshi maker quote, scored at that price held to the bell vs paper's price.
   const qs = read().filter((c: any) => c.quote?.ask > 0 && c.holdPnl != null);
-  const realPrice = { n: qs.length, paper: r2(qs.reduce((a, c) => a + (c.holdPnl || 0), 0)), real: r2(qs.reduce((a, c: any) => a + ((c.holdPnl || 0) > 0 ? STAKE / c.quote.ask - STAKE : -STAKE), 0)), avgPaper: qs.length ? r2(qs.reduce((a, c) => a + c.cost, 0) / qs.length) : null, avgReal: qs.length ? r2(qs.reduce((a, c: any) => a + c.quote.ask, 0) / qs.length) : null, wins: qs.filter((c) => (c.holdPnl || 0) > 0).length };
+  const realPrice = { n: qs.length, paper: r2(qs.reduce((a, c) => a + (c.holdPnl || 0), 0)), real: r2(qs.reduce((a, c: any) => a + ((c.holdPnl || 0) > 0 ? (c.stake ?? 100) / c.quote.ask - (c.stake ?? 100) : -(c.stake ?? 100)), 0)), avgPaper: qs.length ? r2(qs.reduce((a, c) => a + c.cost, 0) / qs.length) : null, avgReal: qs.length ? r2(qs.reduce((a, c: any) => a + c.quote.ask, 0) / qs.length) : null, wins: qs.filter((c) => (c.holdPnl || 0) > 0).length };
   return { n: rows.length, buckets, worst: worst.slice(0, 6), best: [...worst].reverse().slice(0, 6), legMiss, legPx, exits, hedge, realPrice };
 }

@@ -19,7 +19,7 @@ export const TAP_LABEL801 = "PINK SLIDE TAP (fix801)", AT_PINK801 = 0.25; // the
 export const FLOOR801 = 1.5, STAKE801 = 20 /* fix1048 */, WAIT801 = 90000, MINLEFT801 = 30;
 export const LIVE_ASSETS801: Record<string, boolean> = { btc: true, gold: false }; // fix810
 export const BOOKS801 = ["recon-tog", "recon-rej"]; // every live book but delayed (her standing default) - the books her slide / climb hold lives on
-export type Row801 = { id: string; asset: string; ticker: string; closeTime: string; at: string; tapAt: string; side: "up" | "down"; setup: string; pink: number; W: number; spot: number; ask: number; contracts: number; bestBid: number; half: boolean; halfBid: number | null; restBid: number | null; result: "open" | "win" | "loss"; pnlHold: number | null; pnlTp: number | null; hold: string };
+export type Row801 = { id: string; asset: string; ticker: string; closeTime: string; at: string; tapAt: string; side: "up" | "down"; setup: string; pink: number; W: number; spot: number; ask: number; stake?: number; contracts: number; bestBid: number; half: boolean; halfBid: number | null; restBid: number | null; result: "open" | "win" | "loss"; pnlHold: number | null; pnlTp: number | null; hold: string };
 /** her channel around the pink: the session band right above it minus the one right below (same lines her rejection hook reads) */
 export function chan801(L: { name: string; price: number }[], pink: number): number {
   const S = (L || []).filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$/.test(String(l.name))).map((l) => Number(l.price)).sort((a, b) => a - b);
@@ -44,8 +44,8 @@ export function exitStep801(r: Row801, bid: number): boolean {
 }
 export function settle801(r: Row801, won: boolean) {
   const pay = won ? 1 : 0, c = r.contracts, h = r.half ? c / 2 : 0, rest = c - h;
-  r.result = won ? "win" : "loss"; r.pnlHold = Math.round((c * pay - STAKE801) * 100) / 100;
-  r.pnlTp = Math.round(((r.half ? h * (r.halfBid as number) : 0) + rest * (r.restBid != null ? r.restBid : pay) - STAKE801) * 100) / 100;
+  r.result = won ? "win" : "loss"; r.pnlHold = Math.round((c * pay - (r.contracts * r.ask)) * 100) / 100;
+  r.pnlTp = Math.round(((r.half ? h * (r.halfBid as number) : 0) + rest * (r.restBid != null ? r.restBid : pay) - (r.contracts * r.ask)) * 100) / 100;
 }
 function st(): { rows: Row801[]; seen: Record<string, number> } { if (G.__ps801) return G.__ps801; let s = { rows: [] as Row801[], seen: {} as Record<string, number> }; try { if (existsSync(D(FILE))) s = { seen: {}, ...JSON.parse(readFileSync(D(FILE), "utf8")) }; } catch {} G.__ps801 = s; return s; }
 function save(force = false) { if (!force && G.__ps801SaveAt && Date.now() - G.__ps801SaveAt < 10000) return; G.__ps801SaveAt = Date.now(); try { const s = st(); s.rows = s.rows.slice(-4000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE)); } catch {} }

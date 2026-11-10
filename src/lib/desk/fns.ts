@@ -1005,7 +1005,7 @@ export const getBoardTrades = createServerFn({ method: "GET" })
 // 4-12-24-all buttons take up to 10 seconds"). Both paths re-read and re-parsed the whole exit-ledger (24 MB+) on every
 // click, blocking everything else while they did. Now: the 4H/12H/24H/ALL counts keep an incremental cache that only
 // parses bytes appended since the last look, and a card's inline history reads just the newest few MB of the ledger.
-const gL = globalThis as unknown as { __ledTail?: { size: number; mtime: number; max: number; lines: string[] }; __ledHist?: { size: number; rem: string; seen: Set<string>; rows: [string, string, number, number][] } };
+const gL = globalThis as unknown as { __ledTail?: { size: number; mtime: number; max: number; lines: string[] }; __ledHist?: { size: number; rem: string; seen: Set<string>; rows: [string, string, number, number, number][] } };
 // (ledgerTailLines retired Oct 19 ~1:15 PM PT: the whole-record history reads bookhist.server.ts. An unused helper here kept node:fs in the page bundle.)
 function ledgerHistRows(): [string, string, number, number, number][] {
   try {

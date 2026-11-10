@@ -32,10 +32,19 @@ export function signals704(asset: string, bars: Bar1[], open0: number, spot: num
 function st(): { rows: Row704[]; seen: Record<string, number> } { if (G.__mom704) return G.__mom704; let s = { rows: [] as Row704[], seen: {} as Record<string, number> }; try { if (existsSync(D(FILE))) s = { seen: {}, ...JSON.parse(readFileSync(D(FILE), "utf8")) }; } catch {} G.__mom704 = s; return s; }
 function save(force = false) { if (!force && G.__mom704SaveAt && Date.now() - G.__mom704SaveAt < 10000) return; G.__mom704SaveAt = Date.now(); try { const s = st(); ((globalThis as any).__purge1053 || ((x: any) => x))(s.rows, "momentum-704"); /* fix1053 */ s.rows = s.rows.slice(-4000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE)); } catch {} }
 // fix965 (Love Nov 7 2026 ~5:38 PM PT, her card pick "Price just back over it" + ~5:34 PM PT: "not the middle hun. just back over the bollinger" + ~5:22 PM PT: "okay no fix the color issue on momentum. 2M or 5M must be her color unless it is a wick rejection. even if a 1m closed above pink. and she was in the red zone over pink when she longed." + 5:32 PM: "dude momentum is very broken it's backwards in its logic / bnb broke the bollinger DOWN and she entered long"): momentum needs her 2m OR 5m candle her colour and no long at / past the red zone (5m R1), no short at / past the green zone (5m S1) - main's zone wall (fix429).
-export function gate965m(bars: { t: number; o: number }[], spot: number, nowMs: number, side: string, r1: number, s1: number): string {
-  const f2 = Math.floor(nowMs / 120000) * 120000, f5 = Math.floor(nowMs / 300000) * 300000; const b2 = bars.find((b) => b.t >= f2), b5 = bars.find((b) => b.t >= f5); const o2 = b2 ? b2.o : 0, o5 = b5 ? b5.o : 0;
-  if (!(o2 > 0) && !(o5 > 0)) return "HER COLOUR (fix965): no 2m / 5m candle to read";
-  const her = side === "up" ? (o2 > 0 && spot > o2) || (o5 > 0 && spot > o5) : (o2 > 0 && spot < o2) || (o5 > 0 && spot < o5); if (!her) return `HER COLOUR (fix965): neither the 2m nor the 5m is ${side === "up" ? "green" : "red"}`;
+export function momentumColour(bars: { t: number; h: number; l: number }[], spot: number, now: number, minute: number, side: string, asset: string): boolean {
+  if (!(spot > 0) || (side !== "up" && side !== "down")) return false;
+  const push = asset === "btc" ? 5 : asset === "eth" ? 0.25 : asset === "xrp" ? 0.00025 : 0.1;
+  return [2, 5].some((minutes) => {
+    const width = minutes * minute;
+    const start = Math.floor(now / width) * width;
+    return bars.some((bar) => bar.t >= start && bar.t <= now && (side === "up"
+      ? bar.l > 0 && spot - bar.l >= push - 1e-10
+      : bar.h > 0 && bar.h - spot >= push - 1e-10));
+  });
+}
+export function gate965m(bars: { t: number; h: number; l: number }[], spot: number, nowMs: number, side: string, r1: number, s1: number, asset: string): string {
+  if (!momentumColour(bars, spot, nowMs, 60000, side, asset)) return "HER COLOUR (fix1038): neither the 2m nor the 5m moved far enough off its extreme";
   if (side === "up" && r1 > 0 && spot >= r1) return `RED ZONE (fix965): at or past the red zone ${r1.toFixed(2)} - no long`; if (side === "down" && s1 > 0 && spot <= s1) return `GREEN ZONE (fix965): at or past the green zone ${s1.toFixed(2)} - no short`;
   return "";
 }
@@ -50,11 +59,11 @@ export async function momentumTick704(assets: Record<string, any> | null | undef
   G.__mom704Busy = true;
   try {
     const s = st(); let dirty = false; const now = Date.now(), w0 = Math.floor(now / 900000) * 900000, m0 = Math.floor(now / 60000) * 60000;
-    const M = (G.__mom704M ||= {}) as Record<string, { bars: Bar1[]; cur: Bar1 | null; open: Record<number, number> }>;
+    const M = (G.__mom704M ||= {}) as Record<string, { bars: (Bar1 & { h: number; l: number })[]; cur: (Bar1 & { h: number; l: number }) | null; open: Record<number, number> }>;
     for (const id of ["btc", "gold"]) {
       const a = assets[id], px = Number(a?.spot) || 0; if (!(px > 0)) continue;
       const k = (M[id] ||= { bars: [], cur: null, open: {} });
-      if (!k.cur || k.cur.t !== m0) { if (k.cur && m0 - k.cur.t === 60000) { k.bars.push(k.cur); k.bars = k.bars.slice(-10); } else if (k.cur) k.bars = []; k.cur = { t: m0, o: px, c: px }; } else k.cur.c = px;
+      if (!k.cur || k.cur.t !== m0) { if (k.cur && m0 - k.cur.t === 60000) { k.bars.push(k.cur); k.bars = k.bars.slice(-10); } else if (k.cur) k.bars = []; k.cur = { t: m0, o: px, h: px, l: px, c: px }; } else { k.cur.c = px; k.cur.h = Math.max(k.cur.h || k.cur.o, px); k.cur.l = Math.min(k.cur.l || k.cur.o, px); }
       if (k.open[w0] == null && now - w0 < 5000) { k.open[w0] = px; for (const x of Object.keys(k.open)) if (Number(x) < w0) delete k.open[Number(x)]; } // only a window seen from its first seconds has an open
       const m = a?.market, left = Number(a?.secondsLeft) || 0;
       if (!m?.ticker || !(left >= 120)) continue;
@@ -62,7 +71,7 @@ export async function momentumTick704(assets: Record<string, any> | null | undef
       const sig = signals704(id, fresh ? k.bars : [], Number(k.open[w0]) || 0, px, (now - w0) / 1000, Number(a?.vwap1m?.vwap) || 0, Number(a?.vwap1m?.stdev) || 0, pink704(id));
       for (const g of sig) {
         const key = `${m.ticker}:${g.key}`; if (s.seen[key]) continue;
-        { const z965 = zones965(id); if (gate965m([...k.bars, ...(k.cur ? [k.cur] : [])], px, now, g.side, z965.r1, z965.s1)) continue; } // fix965 her colour + zones
+        { const z965 = zones965(id); if (gate965m([...k.bars, ...(k.cur ? [k.cur] : [])], px, now, g.side, z965.r1, z965.s1, id)) continue; } // fix965 her colour + zones
         const ask = Number(g.side === "up" ? m.yesAsk : m.noAsk); if (!(ask > 0.01 && ask < 0.99)) continue;
         s.seen[key] = now;
         s.rows.push({ id: `${key}:mom`, setup: SETUPS704.find((x) => x.key === g.key)!.name, asset: id, ticker: m.ticker, closeTime: new Date(now + left * 1000).toISOString(), at: new Date().toISOString(), side: g.side, why: g.why, ask, floorOk: ask <= 0.667, contracts: 20 / ask, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null });

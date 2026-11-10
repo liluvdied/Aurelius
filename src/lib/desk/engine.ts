@@ -1861,10 +1861,10 @@ async function tryFive(halted, series, yahoo, tag) {
         autoFilled: true,
         probe: false,
         patternLabel: pattern.label,
-        stake: 5,
+        stake: 20,
         ask,
         multiple,
-        contracts: 5 / Math.max(ask, 0.02),
+        contracts: 20 / Math.max(ask, 0.02),
         result: "open",
         payout: null,
         profit: null,
@@ -4037,7 +4037,7 @@ async function tick() {
       const late = withRightSide(lateRaw, asset);
       if (late && studySetup(late)) await nightLook(late, asset);
       if (late && studySetup(late) && !has(late.id) && !flipped(trades, late.ticker, late.side, late.asset, locks2) && !(await pivotHold(asset, late))) {
-        g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(late, asset, book.settings.stake), asset);
+        g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(late, asset, 20), asset);
         if (paper) {
           noteFive(paper);
           noteKiss(paper, asset);
@@ -4058,7 +4058,7 @@ async function tick() {
       if (probeTicket) trades = [{ ...probeTicket, probe: true, stake: 1, contracts: 1 / Math.max(probeTicket.ask, 0.01) }, ...trades];
       if (studySetup(setup)) await nightLook(setup, asset);
       if (studySetup(setup) && !has(setup.id) && !(await pivotHold(asset, setup))) {
-        g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(setup, asset, book.settings.stake), asset);
+        g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(setup, asset, 20), asset);
         if (paper) {
           noteFive(paper);
           noteKiss(paper, asset);
@@ -4080,7 +4080,7 @@ async function tick() {
       if (!cross || has(cross.id) || flipped(trades, cross.ticker, cross.side, cross.asset, locks2)) continue;
       if (trades.some((t) => t.ticker === cross.ticker && t.result === "open")) continue;
       if (await pivotHold(asset, cross)) continue;
-      g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(cross, asset, book.settings.stake), asset);
+      g.__stage804 = "tick: kalshiFirst"; const paper = await kalshiFirst(researchFill(cross, asset, 20), asset);
       if (paper) {
         noteFive(paper);
         noteKiss(paper, asset);
@@ -4357,7 +4357,7 @@ async function nightLook(setup, asset, cross = false) {
     const frame = asset?.vwap1m?.vwap ? asset.vwap1m : asset?.vwap5m;
     const sym = String(setup.asset || asset?.asset || "");
     const prep = (mode) => {
-      const fill = researchFill(setup, asset, 10, mode);
+      const fill = researchFill(setup, asset, 20, mode);
       const ask = Number(fill?.ask || setup.ask) || 0;
       const refusal = !fill ? "band in the way" : live.wouldRefuse(setup.ticker, setup.side, {
         spot: asset?.spot || 0,
@@ -4889,6 +4889,16 @@ setLiveHook(() => {
 // LIVE BOOK (Claude, Oct 3 ~1:45 PM PT, Love: "let's run BRICK on kalshi for the time being... @ $22 position sizes").
 // Every new open row of the book named in live-switch "liveBook" (her main paper book, not a twin) is sent to Kalshi
 // once, in its own window, at liveBook.dollars. The wire guard still needs the live switch ON and caps size.
+function liveCopySince(cfg: Record<string, unknown>, book: string, oldest: number): number {
+  return Math.max(oldest, Date.parse(String(cfg.since || "")) || 0, Date.parse(String(cfg[`${book}RunSince`] || "")) || 0);
+}
+async function listExtraCopyRows() {
+  const [grok, cups] = await Promise.all([
+    import("./grokog").then((m) => m.asNightRows()).catch(() => []),
+    import("./cups").then((m) => m.cupCopyRows713()).catch(() => []),
+  ]);
+  return [...grok, ...cups];
+}
 async function copyLiveBook(assets, lane = "") {
   const runStart = Date.now();
   // SLIDE UNDER PINK - sampler (fix371/403 gold, fix423 BTC, Love Oct 28 2026 7:18 PM PT card "Put the downslope pink wall back, and on which books?" -> "Main + rejection, gold AND BTC"; Love 7:17 PM: "you see price on a downslope ?????  you see prices rejecting off of pink a hundred times ????? this was in the checkpoint."): every 5 s keep price + the 5m pink (data/pivot-now.json) for the last 30 min, per asset.
@@ -4926,7 +4936,6 @@ async function copyLiveBook(assets, lane = "") {
   const doneAtStart = { ...done };
   let rows = [];
   try {
-    const nb = await import("./nightbook");
     // FAILSAFE (Love, Oct 3 ~2:08 PM PT: "set up a failsafe so the orders go thru 1:1 and they can't get skipped"):
     // a row is finished only when it FILLED (or we already hold it). Anything else is retried every tick while the
     // window is open; only "you hold the other side" stops it, and a miss is written down loudly.
@@ -4937,14 +4946,10 @@ async function copyLiveBook(assets, lane = "") {
     // signals ride the Polymarket 1H book instead, polyhour.ts followRun).
     // OG / PIVOT lanes can go live too (Love, Oct 11 ~5:15 AM PT: "drop her on kalshi for the rest of the hour... just that one",
     // PIVOT 5M). Their paper rows (grok-og.json, shaped like night rows) join the list; only books on RUN are copied.
-    let extraRows: typeof rows = [];
-    try {
-      extraRows = (await import("./grokog")).asNightRows() as typeof rows;
-    } catch {
-      extraRows = [];
-    }
     // (Oct 19 ~2:01 PM PT, Love: "when she takes one let kalshi take one"): every session + pink trade goes to Kalshi now - the pink-only filter is gone.
-    rows = pureRows626([...nb.listNight(), ...extraRows]).filter((r) => books.includes(r.book) && /15M-/.test(String(r.ticker)) && !r.dnaMode && !r.stale && (!lane || copyLaneOf(r.ticker) === lane) && !finished(done[r.id]) && Date.parse(r.at) >= Math.max(Date.parse(cfg.since || 0), Date.now() - 3 * 3600 * 1000));
+    const nb = await import("./nightbook");
+    const extraRows = await listExtraCopyRows();
+    rows = pureRows626([...nb.listNight(), ...extraRows]).filter((r) => books.includes(r.book) && /15M-/.test(String(r.ticker)) && !r.dnaMode && !r.stale && (!lane || copyLaneOf(r.ticker) === lane) && !finished(done[r.id]) && Date.parse(r.at) >= liveCopySince(cfg, r.book, Date.now() - 3 * 3600 * 1000));
     // FRESH SIGNALS FIRST (Oct 15 ~6:35 PM PT, Love: "work on the fast rails for the pivot break books so they're ready
     // for the next window pls"). The pass works rows in list order with awaited gate checks, so a BRAND-NEW signal used
     // to stand in line behind every retrying straggler: brk10's 9:30 entry fired on paper at 01:15:37 and reached
@@ -4963,11 +4968,9 @@ async function copyLiveBook(assets, lane = "") {
     const parked = Object.entries(done).filter(([, d]) => d && d.status === "resting" && d.orderId && !d.parkedDone && (!lane || copyLaneOf(d.ticker) === lane));
     if (parked.length) {
       const nb = await import("./nightbook");
-      // Grok / pivot / PAPER-twin rows live in grok-og.json, not the night book: without them every parked copy read as
-      // "paper closed it" two seconds after it parked (Oct 11, 7:15 AM PT window: PAP247's 70c short pulled while paper held).
-      let extraParked: any[] = [];
-      try { extraParked = (await import("./grokog")).asNightRows(); } catch { extraParked = []; }
-      const byId = new Map([...nb.listNight(), ...extraParked].map((r: any) => [r.id, r]));
+      // Include the non-night books so a resting order can still find its paper row.
+      const extraRows = await listExtraCopyRows();
+      const byId = new Map([...nb.listNight(), ...extraRows].map((r: any) => [r.id, r]));
       const held = await live.heldFifteens().catch(() => []);
       for (const [id, d] of parked) {
         const r = byId.get(id);
@@ -5009,9 +5012,9 @@ async function copyLiveBook(assets, lane = "") {
     // left - the same gates and the same order path run for it, just without the wait. Scheduling only; selection,
     // pricing, sizing and exits untouched.
     try {
-      const nbQ = await import("./nightbook");
-      const ogQ = await import("./grokog");
-      const freshQ = pureRows626([...nbQ.listNight(), ...(ogQ.asNightRows() as typeof rows)]).filter((r) => books.includes(r.book) && /15M-/.test(String(r.ticker)) && !r.dnaMode && !r.stale && (!lane || copyLaneOf(r.ticker) === lane) && !seenQ.has(r.id) && !done[r.id] && Date.parse(r.at) >= Date.now() - 10 * 60 * 1000);
+      const nb = await import("./nightbook");
+      const extraRows = await listExtraCopyRows();
+      const freshQ = pureRows626([...nb.listNight(), ...extraRows]).filter((r) => books.includes(r.book) && /15M-/.test(String(r.ticker)) && !r.dnaMode && !r.stale && (!lane || copyLaneOf(r.ticker) === lane) && !seenQ.has(r.id) && !done[r.id] && Date.parse(r.at) >= liveCopySince(cfg, r.book, Date.now() - 10 * 60 * 1000));
       for (const fr of freshQ) { seenQ.add(fr.id); rows.splice(qi, 0, fr); }
     } catch {
     }
