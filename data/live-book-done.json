@@ -3546,5 +3546,49 @@
   "final": false,
   "paid": 0.6,
   "orderId": "01a1c7cd-b288-7d71-b5ba-b0cd505ac242"
+ },
+ "KXGOLD15M-26NOV101900-00:recon-rej:KXGOLD15M-26NOV101900-00:recon-rej": {
+  "at": "2026-11-10T23:45:10.021Z",
+  "ticker": "KXGOLD15M-26NOV101900-00",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-11-10T23:45:10.021Z",
+  "bookedAt": "2026-11-10T23:45:09.255Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.62,
+  "orderId": "01a1c7d9-e788-7d8a-a2ea-aa4223176508"
+ },
+ "KXGOLD15M-26NOV101900-00:recon-tog:KXGOLD15M-26NOV101900-00:recon-tog": {
+  "at": "2026-11-10T23:45:10.034Z",
+  "ticker": "KXGOLD15M-26NOV101900-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV101900-00:recon-tog:KXBTC15M-26NOV101900-00:recon-tog": {
+  "at": "2026-11-10T23:45:16.729Z",
+  "ticker": "KXBTC15M-26NOV101900-00",
+  "side": "up",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "break retry stopped: this 5m candle broke DOWN through 5m R1 (73773.54) - band breaks down = trade down",
+  "firstTryAt": "2026-11-10T23:45:12.039Z",
+  "bookedAt": "2026-11-10T23:45:10.165Z",
+  "tries": 6,
+  "final": false,
+  "paid": 0.36,
+  "orderId": "01a1c7da-02e0-7d74-b8c3-f6bb1a8f2031"
+ },
+ "KXBTC15M-26NOV101900-00:recon-rej:KXBTC15M-26NOV101900-00:recon-rej": {
+  "at": "2026-11-10T23:45:44.236Z",
+  "ticker": "KXBTC15M-26NOV101900-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
  }
 }
