@@ -61,7 +61,7 @@ export async function laneArchiveHist(exclude: Set<string>): Promise<[string, nu
   const { archiveRows } = await import("./archcache");
   const arch = archiveRows() as any[];
   let c = G.__laneHist as { n: number; rows: [string, string, number, number][] } | undefined;
-  if (!c || c.n !== arch.length) {
+  if (!c || c.n !== arch.length || !(c as any).v1048 /* fix1048: rebuild once at $20 */) {
     const byId = new Map<string, [string, string, number, number]>();
     for (const r of arch) {
       if (!r || r.pnl == null || typeof r.pnl !== "number" || r.result === "open" || !r.id || !r.ticker) continue;
@@ -70,9 +70,9 @@ export async function laneArchiveHist(exclude: Set<string>): Promise<[string, nu
       const t = Date.parse(r.at);
       if (!Number.isFinite(t)) continue;
       const id = `${r.ticker}:${book}:${r.id}`;
-      byId.set(id, [id, book, t, Number(r.pnl)]);
+      byId.set(id, [id, book, t, Number(r.stake) > 0 ? (Number(r.pnl) * 20) / Number(r.stake) : Number(r.pnl)] /* fix1048 at $20 a ticket */);
     }
-    c = G.__laneHist = { n: arch.length, rows: [...byId.values()] };
+    c = G.__laneHist = { n: arch.length, rows: [...byId.values()], v1048: true } as any;
   }
   const out: [string, number, number][] = [];
   for (const [id, book, t, p] of c!.rows) if (!exclude.has(id)) out.push([book, t, p]);

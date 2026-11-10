@@ -9,7 +9,7 @@ import { join } from "node:path";
 const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
 export const BOOK795 = "BESTIE · INVERSE", VENUE795 = "paper-bestie-inv";
-const FILE = "bestie-inv-795.json", STAKE = 5;
+const FILE = "bestie-inv-795.json", STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 function st(): { rows: any[] } {
   if (G.__bestieInv795) return G.__bestieInv795;
   let s = { rows: [] as any[] }; try { if (existsSync(D(FILE))) s = { rows: [], ...JSON.parse(readFileSync(D(FILE), "utf8")) }; } catch {}

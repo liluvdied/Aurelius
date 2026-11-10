@@ -37,7 +37,7 @@ export type ShadowTrade = {
   tpProfit: number | null;
 };
 
-const STAKE = 10;
+const STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 const FILE = () => join(process.cwd(), "data", "shadow-reject.json");
 const g = globalThis as unknown as { __shadowBars?: Record<string, Bar>; __shadowSettling?: boolean; __pathAt?: number };
 

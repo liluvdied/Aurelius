@@ -11821,5 +11821,420 @@
     "what": "<div className=\"mt-auto flex justify-end pt-1\">",
     "why": "fix1047 (her words in this change's request)",
     "R": "R608"
+  },
+  {
+    "what": "{bookTab === \"fav\" ? <NightCard scale={1} size={30} favOnly /> : null} {/* fix1047 her ♡ FAVORITES: only the books she hearted, same cards */}",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "() => rowsSN.filter((r) => (TAPS as string[]).includes(r.book) || !r.dnaMode).map((r) => ({ ...r, stake: r.stake * scale, pnl: r.pnl == null ? null : r.pnl * scale })),",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const side = (book: ShiftNight[\"book\"]) => sumQ.data?.books?.[book]?.s?.[span] ?? Z_S;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ book: \"invw-main\" as any, title: \"MAIN INVERSE-WORST · PAPER $5\", note: \"fix820 (Love, Nov 6 ~10:43 AM: create an inverse book on THOSE set ups only ... all individual inverse books): paper only. The OPPOSITE side of its family's WORST set ups (30+ trades in 7 days, under 40% hit and losing money), at the real ask inside her 1.5x floor, $5, her 75/95 exit, settled from Kalshi. The list updates as SET UP SCORES does.\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ book: \"invw-rej\" as any, title: \"REJ INVERSE-WORST · PAPER $5\", note: \"fix820 (Love, Nov 6 ~10:43 AM: create an inverse book on THOSE set ups only ... all individual inverse books): paper only. The OPPOSITE side of its family's WORST set ups (30+ trades in 7 days, under 40% hit and losing money), at the real ask inside her 1.5x floor, $5, her 75/95 exit, settled from Kalshi. The list updates as SET UP SCORES does.\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ book: \"invw-np\" as any, title: \"NO-PINK INVERSE-WORST · PAPER $5\", note: \"fix820 (Love, Nov 6 ~10:43 AM: create an inverse book on THOSE set ups only ... all individual inverse books): paper only. The OPPOSITE side of its family's WORST set ups (30+ trades in 7 days, under 40% hit and losing money), at the real ask inside her 1.5x floor, $5, her 75/95 exit, settled from Kalshi. The list updates as SET UP SCORES does.\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ book: \"invw-v1112\" as any, title: \"V.111 INVERSE-WORST · PAPER $5\", note: \"fix820 (Love, Nov 6 ~10:43 AM: create an inverse book on THOSE set ups only ... all individual inverse books): paper only. The OPPOSITE side of its family's WORST set ups (30+ trades in 7 days, under 40% hit and losing money), at the real ask inside her 1.5x floor, $5, her 75/95 exit, settled from Kalshi. The list updates as SET UP SCORES does.\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ book: \"pinkslide802\" as any, title: \"PINK SLIDE ONLY · PAPER $5\", note: \"fix802 (Love, Nov 6 ~6:42 AM: we could literally take nothing but pink slides and it would prolly be our most successful book lol): paper only, never live. Only her pink-slide take (fix801): while her SLIDE UNDER PINK hold is on, price comes back to the pink and rejects -> the short at the first ask over 1.5x while still at the pink, no flip; mirror while CLIMB OVER PINK is on -> the long. BTC + gold, one per window, $5 at the real ask, the live exit (half at 75% / rest at 95% of the way), settled from Kalshi. Scored by set up in STATS.\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ book: \"bestieinv\" as any, title: \"BESTIE · INVERSE · PAPER $5\", note: \"fix795 (Love, Nov 6 ~5:14 AM: pls make an inverse of the book running if it's at 33% that is supposed to be the other way around): paper only. Every window BESTIE actually filled on Kalshi, taken here on the OTHER side at that side's real ask the moment her fill shows, $5, the live exit (half at 75% / rest at 95% of the way), settled from Kalshi. Replay of her live fills 2:01-5:15 AM Nov 6: 7 of 7, +$16.76.\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ book: \"v1112ldc\" as any, title: \"V.111 - 2 · LDC FADE · PAPER $5\", note: \"fix794 (Love, Nov 6 ~3:53 AM: shorting when LDC ribbon is green and longing when it's red ... on its own book): paper only. V.111 - 2's take of each window, kept only when the 1m LDC fades it - a short only while the LDC is GREEN, a long only while it is RED. $5 at her real ask, the live exit (half at 75% / rest at 95% of the way), settled from Kalshi. The winner of data/reports/ldc-study-nov6.md (Nov 1-6: 204 trades, 50.5%, +$68). LDC = a rebuild of Lorentzian Classification (published defaults) on the desk's 1m bars.\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ book: \"bestiewalls\" as any, title: \"BESTIE · WALLS · MAIN'S BAND / ZONE DOOR · PAPER $5\", note: \"fix783 (Love, Nov 6 ~2:12 AM: can you include all of the same band / zone tolerances for this book too hun ... keep an unadulterated version of this one + her card: live BESTIE stays pure, the walled one on paper): paper only, never live. Exactly BESTIE's takes (same side, her real ask, $5) - each first judged by MAIN's door on the live board that second, the way the sub-auditor judges main (channel 33%, unbroken band ahead, pink cushion, pink-to-red/green 55%, Bollinger, zones, her candle / flip, her reach wall). Refused = not taken here. Held to the bell + her take-profit. BESTIE live is unchanged.\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ book: \"onetwothree835\" as any, title: \"1-2-3 · SEALED · PAPER\", note: \"fix835 (Love, Nov 6): her Oct 25-26 Polymarket BTC 5-minute 1-2-3 book as it stood in PRE295-BUILD (Oct 26 ~9:30 PM PT), sealed byte for byte - the rejection model's streak read, her walls judged at the call ($25 pink cushion, chart Bollinger), the 1m / 2m / 3m flip doors and the late door, ask+4c never past 1.38x, no buys under 30c, half at 75% / rest at 90%, -$45 day stop, 1 h pause after 4 losses. $5 paper on the desk's recorded Polymarket 5m quotes. Stops itself if the seal breaks. Paper only.\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ book: \"onetwothree836\" as any, title: \"1-2-3 · NEW · PAPER\", note: \"fix836 (Love, Nov 6): the sealed 1-2-3 base plus her late door (~3:00 left, pushing off a Bollinger, session band or red/green zone with the live 1m her colour), her 1.5x floor (66c max), the Bollinger cushion ($50 / 10% of the channel) and no trading into a line within $50 of the target. $5 paper on the desk's recorded Polymarket 5m quotes. Paper only.\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const record = (book: ShiftNight[\"book\"]) => sumQ.data?.books?.[book]?.rec ?? { n: 0, pnl: 0, wins: 0, losses: 0, from: \"9999\" };",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "<NightCard rows={night} scale={1} size={30} whatIf={whatIf} />",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const stats = (k: string) => { const s = d[k] || { n: 0, open: 0, nores: 0, w: 0, l: 0, pnl: 0, trades: [] }; return { ...s, mine: s.trades as any[] }; };",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "<p className=\"mb-1.5 text-[9px] tracking-[0.22em] text-white/60\">YOUR BOOKS · LAST 24 H · TAP ONE FOR ITS TRADES</p>",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "export const FLOOR824 = 1.5, STAKE824 = 5, FIRST_SECS824 = 300, LABEL824 = \"AWAY FROM LINE\";",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "export function stake851(side: \"up\" | \"down\", spot: number, target: number): number { const need = side === \"up\" ? target - spot : spot - target; return need <= 0 ? 10 : need < 25 ? 5 : 1; }",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": ".handler(async ({ data }): Promise<Record<string, { n: number; open: number; nores: number; w: number; l: number; pnl: number; trades: Wire1044[] }>> => {",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "out[k] = { n: mine.length, open: mine.filter((r) => r.result === \"open\").length, nores: mine.filter((r) => r.result !== \"open\" && r.pnl == null).length, w: done.filter((r) => Number(r.pnl) > 0).length, l: done.filter((r) => Number(r.pnl) <= 0).length, pnl: Math.round(done.reduce((s, r) => s + Number(r.pnl), 0) * 100) / 100, trades: mine.slice(0, 200) }; }",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "if (!c || c.n !== arch.length) {",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "byId.set(id, [id, book, t, Number(r.pnl)]);",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "c = G.__laneHist = { n: arch.length, rows: [...byId.values()] };",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "export const MIN_N819 = 30, MAX_HIT819 = 0.30, MAX_MULT819 = 2.2, FLOOR819 = 1.5, STAKE819 = 5;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "function ledgerHistRows(): [string, string, number, number][] {",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "c.rows.push([String(e.id), String(e.book), Date.parse(e.at || \"\"), Number(e.pnl)]);",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "try { const live = new Set(listNight().map((r) => r.id)); for (const [id, book, atMs, pnl] of ledgerHistRows()) if (!live.has(id)) hist.push([book, atMs, pnl]); } catch {}",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "pnl: done.reduce((t, r) => t + P(r), 0) + hx.reduce((t, h) => t + h[2], 0),",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rec: { n: dn.length, pnl: dn.reduce((t, r) => t + P(r), 0), wins: dn.filter((r) => P(r) > 0.05).length, losses: dn.filter((r) => P(r) < -0.05).length, from: rs.reduce((m, r) => (r.at < m ? r.at : m), \"9999\") },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "export const STAKE820 = 5, FLOOR820 = 1.5;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "s.rows.push({ id: `${id}:820`, book: d.book, asset: x.asset, ticker: x.ticker, side: d.side, setup: \"INVERSE of \" + d.key, at: new Date(now).toISOString(), closeTime: new Date(now + left * 1000).toISOString(), ask: d.ask, contracts: STAKE820 / d.ask, half: false, halfBid: null, restBid: null, result: \"open\", pnlTp: null });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "export const LOTTO_STAKE = 5;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const STAKE = 100; // Oct 10 (Love: \"do it at $100... same with the other scanners paper trades\")",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "export const PAPER_STAKE = 30;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : \"\"}:brk`, book: \"brk\", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: `${c.label}${line ? ` · entered on the ${line.name} ${line.price.toFixed(2)}` : \"\"}`, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, bands, spot, event: null, hourPT, entryLine: line });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : \"\"}:hold90`, book: \"hold90\", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, ...extra });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : \"\"}:bank2`, book: \"bank2\", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, ...extra });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : \"\"}:bank`, book: \"bank\", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, ...extra });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : \"\"}:new`, book: \"new\", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, ...extra });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : \"\"}:refined`, book: \"refined\", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, ...extra });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : \"\"}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, ...extra });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const stake = kind === \"tap\" ? 2.5 : kind === \"snap16\" ? 20 : 5;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ id: `${c.ticker}:squeeze`, book: \"squeeze\", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, bands, spot: typeof bands?.spot === \"number\" ? (bands.spot as number) : null, event: null, hourPT });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ id: `${c.ticker}:${book}`, book, at: new Date().toISOString(), asset: \"btc\", ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, bands, spot, event: null, hourPT });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const row: NightRow = { id: `${c.ticker}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, bands, spot: typeof bands?.spot === \"number\" ? (bands.spot as number) : null, event: null, hourPT };",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : \"\"}:hour`, book: \"hour\", at: new Date().toISOString(), asset: \"btc\", ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, bands, spot, event: null, hourPT });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : \"\"}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: book === \"optA\" && mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: book === \"optA\" ? newTp(mult) : originalTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, bands, spot: typeof bands?.spot === \"number\" ? (bands.spot as number) : null, event: null, hourPT });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ id: `${m.ticker}:${book}`, book, at: new Date().toISOString(), asset: id, ticker: m.ticker, side, setup, ask, multiple: r2(mult), stake: 10, tpPct: tp, peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, bands: null, spot: sp, event: null, hourPT } as NightRow);",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ id: `${m.ticker}:rvw`, book: \"rvw\", at: new Date().toISOString(), asset: \"btc\", ticker: m.ticker, side, setup: `REVERSAL (worst hour ${((h) => `${(Number(h) % 12) || 12} ${Number(h) < 12 ? \"AM\" : \"PM\"}`)(hourPT)} PT): broke the ${nm(ks[b.i])} ${b.dir}, tapped the ${nm(ks[nextI])}, back the other way`, ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: \"open\", pnl: null, bands: null, spot: sp, event: null, hourPT } as NightRow);",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const STAKE = 100; // Oct 10 (Love: \"do it at $100... same with the other scanners paper trades\")",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ file: \"v111-2-ldc-794.json\", book: \"v1112ldc\", title: \"V.111 - 2 · LDC FADE · PAPER $5\" }, // fix794",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ file: \"bestie-inv-795.json\", book: \"bestieinv\", title: \"BESTIE · INVERSE · PAPER $5\" }, // fix795",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ file: \"pink-slide-801.json\", book: \"pinkslide802\", title: \"PINK SLIDE ONLY · PAPER $5\" },",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ file: \"bestie-walls-783.json\", book: \"bestiewalls\", title: \"BESTIE · WALLS · MAIN'S BAND / ZONE DOOR · PAPER $5\" }, // fix783",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "mine.push({ id: `${r.id}:${pb.book}`, book: pb.book, at: r.at, asset: r.asset || (/ETH/.test(String(r.ticker)) ? \"eth\" : /GOLD/.test(String(r.ticker)) ? \"gold\" : \"btc\") /* fix765b */, ticker: r.ticker, side: r.side, setup: String(r.setup || r.way || r.label || r.key || r.list || (pb.book === \"rsi672\" && r.book ? `${r.book} · ${r.market || \"\"}` : \"\") || pb.title).slice(0, 120), ask, multiple: ask > 0 ? Math.round((1 / ask) * 100) / 100 : null, stake: pb.book === \"bestiewalls\" || pb.book === \"bestiewalls-skip\" || pb.book === \"v1112ldc\" /* fix794 */ || pb.book === \"bestieinv\" /* fix795 */ || pb.book.startsWith(\"invw-\") /* fix820 */ || pb.book === \"pinkslide802\" /* fix802 */ ? 5 /* fix783 */ : 20, result: r.result === \"open\" ? \"open\" : r.result === \"win\" ? \"win\" : \"loss\", exit: r.result === \"open\" ? \"open\" : r.soldBid != null ? `sold at ${Math.round(Number(r.soldBid) * 100)}c` : \"held to the bell\", pnl: Number.isFinite(pnl as number) ? pnl : null, paper721: true });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "export const FLOOR801 = 1.5, STAKE801 = 5, WAIT801 = 90000, MINLEFT801 = 30;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "s.rows.push({ id: `${p.ticker}:ps801`, asset: id, ticker: p.ticker, closeTime: new Date(now + left * 1000).toISOString(), at: new Date(now).toISOString(), tapAt: new Date(p.tapAt).toISOString(), side: p.side, setup, pink: Math.round(pink * 100) / 100, W: Math.round(W * 100) / 100, spot, ask, contracts: STAKE801 / ask, bestBid: 0, half: false, halfBid: null, restBid: null, result: \"open\", pnlHold: null, pnlTp: null, hold: String(p.hold).slice(0, 200) });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ id: `${m.ticker}:open-road`, lane: \"open-road\", at: new Date().toISOString(), asset: id, ticker: m.ticker, side, label: `${mm[2]} (band said no)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 25, fee: fee(n, ask), peak: ask, lastBid: 0, result: \"open\", exit: null, pnl: null });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ id: `${m.ticker}:paper-20`, lane: \"paper-20\", at: new Date().toISOString(), asset: id, ticker: m.ticker, side, label: `${mm[2]} (20% road)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 25, fee: fee(n, ask), peak: ask, lastBid: 0, result: \"open\", exit: null, pnl: null });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const stakeX = 1 / ask > 3.8 ? STAKE * 0.25 : STAKE;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ id, lane, parent: t.id, at: t.openedAt, asset: t.asset, ticker: t.ticker, side: t.side, label: /^paper-piv/.test(lane) ? `${t.patternLabel} · ${lane === \"paper-piv-skip\" ? \"skipped: \" : \"\"}${pzMap[t.id]?.why || \"\"}` : t.patternLabel, ask: r2(Number(t.ask) || 0), multiple: r2(Number(t.multiple) || 0), intoWindow: 0, stake: 25, fee: 0, result: \"open\", exit: null, pnl: null });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const PAPER_STAKE = 25;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "rows.unshift({ id: `${m.ticker}:recon-dly-add`, lane: \"recon-dly-add\", parent: tw.id, at: new Date().toISOString(), asset: id, ticker: m.ticker, spotAt: Math.round(spot * 100) / 100, side: tw.side, first: tw.side, label: `Add-on 1/4 (${touch})`, ask: r2(askA), multiple: r2(1 / askA), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 5, fee: fee(nA, askA), peak: askA, lastBid: 0, result: \"open\", exit: null, pnl: null, bar: null, sd: tw.sd ?? null, band: null, recon: true });",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const STAKE = 100; // Oct 10 (Love: \"do it at $100... same with the other scanners paper trades\")",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const FILE = \"bestie-inv-795.json\", STAKE = 5;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const FILE = \"v111-2-ldc-794.json\", STAKE = 5;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const FILE = \"bestie-walls-783.json\", SKIPS = \"bestie-walls-skips-783.json\", STAKE = 5;",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "G.__mk824 = { result: \"no\" }; G.__a824 = null; fs.writeFileSync(path.join(dir, \"data/away-824.json\"), JSON.stringify({ rows: [{ id: \"x\", book: \"recon-tog\", asset: \"gold\", ticker: \"KXGOLD15M-T0\", side: \"down\", setup: \"AWAY FROM LINE · +1σ\", ask: 0.5, contracts: 10, half: false, halfBid: null, restBid: null, result: \"open\", closeTime: new Date(now - 60000).toISOString() }], seen: {} }));",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const s = JSON.parse(fs.readFileSync(path.join(dir, \"data/away-824.json\"), \"utf8\")); t(s.rows[0].result === \"win\" && s.rows[0].pnlTp === 5, \"settling is wrong\");",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "t(B.stake851(\"up\", 76010, 76000) === 10 && B.stake851(\"up\", 75990, 76000) === 5 && B.stake851(\"up\", 75800, 76000) === 1 && B.stake851(\"down\", 75990, 76000) === 10 && B.stake851(\"down\", 76030, 76000) === 1, \"stakes by distance wrong ($10 her side / $5 under $25 / $1 at $25+)\");",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "t(r && r.setup === \"Tap-reject at +2σ\" && r.side === \"down\" && r.ask === 0.42 && r.herSide === \"up\" && r.stake === 5 && G.__bestieInv795.rows.length === 1, \"her filled long -> a short at the real no ask; a refused BESTIE ticket / another book's fill must not be mirrored: \" + JSON.stringify(G.__bestieInv795.rows));",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const r2 = await M.wallsTake783(her(\"KX-B\", \"up\", 0.45), ON); t(r2 && r2.skip === null && r2.stake === 5 && r2.ask === 0.45 && G.__bestieWalls783.rows.length === 1, \"a clear take must be taken like BESTIE\");",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "t(last(r)?.door === \"1m flip\" && last(r).ask === 0.55 && last(r).contracts === 9.09 && last(r).stake === 5, \"1m flip (green 1m with 4+ min left) did not buy at the ask: \" + JSON.stringify(last(r)) + \" \" + why(r));",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "await tick(120, 0.95, 0.97); t(last(r).result === \"win\" && Math.abs(last(r).pnlTp - (4.54 * 0.33 + 4.55 * 0.4)) < 0.02 && /rest at 90%/.test(last(r).exit), \"the rest did not sell at 90%: \" + JSON.stringify(last(r)));",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "await tick(330, 0.99, 1); t(last(r).bell === \"won\" && last(r).pnlHold === 4.09, \"held-to-the-bell record missing: \" + JSON.stringify(last(r)));",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "r = await flip(0.55); await tick(330, 0.01, 0.02); t(last(r).result === \"loss\" && last(r).pnlTp === -5 && /held to the bell - lost/.test(last(r).exit), \"the bell did not settle a loser: \" + JSON.stringify(last(r)));",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "t(P.includes('{ file: \"pink-slide-801.json\", book: \"pinkslide802\", title: \"PINK SLIDE ONLY · PAPER $5\" }'), \"no card row source\");",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "t(P.includes('pb.book === \"pinkslide802\" /* fix802 */ ? 5'), \"the card is not at $5\");",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "t(A.includes('{ book: \"pinkslide802\" as any, title: \"PINK SLIDE ONLY · PAPER $5\"'), \"no card on the page\");",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "{ const r = { ask: 0.4, contracts: 5 / 0.4, bestBid: 0, half: false, halfBid: null, restBid: null }; P.exitStep801(r, 0.85); t(r.half && r.halfBid === 0.85 && r.restBid == null, \"half at 75% of the way (0.40 -> 0.85)\"); P.exitStep801(r, 0.97); t(r.restBid === 0.97, \"the rest at 95% of the way (0.97)\"); P.settle801(r, false); t(Math.abs(r.pnlTp - (6.25 * 0.85 + 6.25 * 0.97 - 5)) < 0.01, \"her 75/95 money\"); }",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "t(r1 && r1.side === fadeSide && r1.ldc === col && r1.stake === 5 && h1.ldc794 && h1.ldc794.colour === col, \"a take that FADES the \" + col + \" LDC must be taken and coloured: \" + JSON.stringify(r1));",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
+  },
+  {
+    "what": "const c = 5 / 0.4; t(r1.result === \"win\" && Math.abs(r1.pnlTp - Math.round(((c / 2) * 0.86 + (c / 2) * 0.98 - 5) * 100) / 100) < 1e-9, \"scored on the 75/95 exit\");",
+    "why": "fix1048 (her words in this change's request)",
+    "R": "R609"
   }
 ]

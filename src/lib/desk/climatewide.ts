@@ -10,7 +10,7 @@ import { existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { kget } from "./scanner";
 
-const STAKE = 100;
+const STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 const D = (f: string) => join(process.cwd(), "data", f);
 const r2 = (n: number) => Math.round(n * 100) / 100;
 const num = (s: unknown) => { const n = Number.parseFloat(String(s ?? "")); return Number.isFinite(n) ? n : NaN; };

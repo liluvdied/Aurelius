@@ -12,7 +12,7 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 const BASE = "https://external-api.kalshi.com/trade-api/v2";
-const STAKE = 100; // Oct 10 (Love: "do it at $100... same with the other scanners paper trades")
+const STAKE = 20; // Oct 10 (Love: "do it at $100... same with the other scanners paper trades") /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 const g = globalThis as unknown as { __mnBusy?: boolean; __mnAt?: number; __mnStatus?: any };
 const D = (f: string) => join(process.cwd(), "data", f);
 const rd = (f: string, dflt: any) => { try { return existsSync(D(f)) ? JSON.parse(readFileSync(D(f), "utf8")) : dflt; } catch { return dflt; } };

@@ -13,7 +13,7 @@ import { join } from "node:path";
 const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
 export const BOOK794 = "V.111 - 2 · LDC FADE", VENUE794 = "paper-v111-2-ldc";
-const FILE = "v111-2-ldc-794.json", STAKE = 5;
+const FILE = "v111-2-ldc-794.json", STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 type B794 = { t: number; o: number; h: number; l: number; c: number };
 const emaA = (x: number[], n: number) => { const a = 2 / (n + 1), o = [x[0]]; for (let i = 1; i < x.length; i++) o.push(a * x[i] + (1 - a) * o[i - 1]); return o; };
 const rmaA = (x: number[], n: number) => { const a = 1 / n, o = [x[0]]; for (let i = 1; i < x.length; i++) o.push(a * x[i] + (1 - a) * o[i - 1]); return o; };

@@ -16,7 +16,7 @@ const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
 const FILE = "pink-slide-801.json";
 export const TAP_LABEL801 = "PINK SLIDE TAP (fix801)", AT_PINK801 = 0.25; // the same two as bandlock.ts (its waiver) - tools/pink-slide-tap-801.cjs proves they match
-export const FLOOR801 = 1.5, STAKE801 = 5, WAIT801 = 90000, MINLEFT801 = 30;
+export const FLOOR801 = 1.5, STAKE801 = 20 /* fix1048 */, WAIT801 = 90000, MINLEFT801 = 30;
 export const LIVE_ASSETS801: Record<string, boolean> = { btc: true, gold: false }; // fix810
 export const BOOKS801 = ["recon-tog", "recon-rej"]; // every live book but delayed (her standing default) - the books her slide / climb hold lives on
 export type Row801 = { id: string; asset: string; ticker: string; closeTime: string; at: string; tapAt: string; side: "up" | "down"; setup: string; pink: number; W: number; spot: number; ask: number; contracts: number; bestBid: number; half: boolean; halfBid: number | null; restBid: number | null; result: "open" | "win" | "loss"; pnlHold: number | null; pnlTp: number | null; hold: string };
@@ -76,7 +76,7 @@ export async function pinkSlideTick801(assets: Record<string, any> | null | unde
       if (!floorOk801(ask) || !(left >= MINLEFT801)) continue;
       s.seen[p.ticker] = now; delete P[id];
       const setup = `${p.side === "down" ? "Rejected down off 5m PP" : "Rejected up off 5m PP"} · ${TAP_LABEL801}`;
-      s.rows.push({ id: `${p.ticker}:ps801`, asset: id, ticker: p.ticker, closeTime: new Date(now + left * 1000).toISOString(), at: new Date(now).toISOString(), tapAt: new Date(p.tapAt).toISOString(), side: p.side, setup, pink: Math.round(pink * 100) / 100, W: Math.round(W * 100) / 100, spot, ask, contracts: STAKE801 / ask, bestBid: 0, half: false, halfBid: null, restBid: null, result: "open", pnlHold: null, pnlTp: null, hold: String(p.hold).slice(0, 200) });
+      s.rows.push({ id: `${p.ticker}:ps801`, asset: id, ticker: p.ticker, closeTime: new Date(now + left * 1000).toISOString(), at: new Date(now).toISOString(), tapAt: new Date(p.tapAt).toISOString(), side: p.side, setup, pink: Math.round(pink * 100) / 100, W: Math.round(W * 100) / 100, spot, ask, stake: STAKE801 /* fix1048 */, contracts: STAKE801 / ask, bestBid: 0, half: false, halfBid: null, restBid: null, result: "open", pnlHold: null, pnlTp: null, hold: String(p.hold).slice(0, 200) });
       dirty = true;
     }
     for (const r of s.rows) {

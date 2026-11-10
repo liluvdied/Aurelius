@@ -26,7 +26,7 @@ export type IO835 = { now: number; bars: Bar[]; spot: number; spotAt: number; fe
 export type Book835 = { book: string; file: string; title: string; nu: boolean };
 export const BOOK835: Book835 = { book: "onetwothree835", file: "onetwothree-835.json", title: "1-2-3 · SEALED · PAPER", nu: false };
 export const BOOK836: Book835 = { book: "onetwothree836", file: "onetwothree-836.json", title: "1-2-3 · NEW · PAPER", nu: true };
-const STAKE = 5;
+const STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 const r2 = (n: number) => Math.round(n * 100) / 100;
 
 // ---------------------------------------------------------------- THE SEAL ----------------------------------------------------------------

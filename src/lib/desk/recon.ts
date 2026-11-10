@@ -650,8 +650,8 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       if (askA > 0.02 && askA <= 0.222) {
         const touch = addOnTouchNow(id);
         if (touch) {
-          const nA = 5 / askA;
-          rows.unshift({ id: `${m.ticker}:recon-dly-add`, lane: "recon-dly-add", parent: tw.id, at: new Date().toISOString(), asset: id, ticker: m.ticker, spotAt: Math.round(spot * 100) / 100, side: tw.side, first: tw.side, label: `Add-on 1/4 (${touch})`, ask: r2(askA), multiple: r2(1 / askA), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 5, fee: fee(nA, askA), peak: askA, lastBid: 0, result: "open", exit: null, pnl: null, bar: null, sd: tw.sd ?? null, band: null, recon: true });
+          const nA = 20 / askA; // fix1048 her flat $20 paper ticket (was $5)
+          rows.unshift({ id: `${m.ticker}:recon-dly-add`, lane: "recon-dly-add", parent: tw.id, at: new Date().toISOString(), asset: id, ticker: m.ticker, spotAt: Math.round(spot * 100) / 100, side: tw.side, first: tw.side, label: `Add-on (${touch})`, ask: r2(askA), multiple: r2(1 / askA), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 20 /* fix1048 */, fee: fee(nA, askA), peak: askA, lastBid: 0, result: "open", exit: null, pnl: null, bar: null, sd: tw.sd ?? null, band: null, recon: true });
           changed = true;
         }
       }
