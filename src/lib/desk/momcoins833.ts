@@ -63,7 +63,7 @@ export function signals833(setups: string[], closed: Bar[], open0: number, spot:
   return out;
 }
 function st(): { rows: Row[]; seen: Record<string, number> } { if (G.__mc833) return G.__mc833; let s = { rows: [] as Row[], seen: {} as Record<string, number> }; try { if (existsSync(D(FILE))) s = { seen: {}, ...JSON.parse(readFileSync(D(FILE), "utf8")) }; } catch {} G.__mc833 = s; return s; }
-function save() { try { const s = st(); s.rows = s.rows.slice(-6000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE)); } catch {} }
+function save() { try { const s = st(); ((globalThis as any).__purge1053 || ((x: any) => x))(s.rows, "mom-coins-833"); /* fix1053 */ s.rows = s.rows.slice(-6000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE)); } catch {} }
 async function j(url: string): Promise<any> { const r = await fetch(url, { headers: { Accept: "application/json", "User-Agent": "aurelius-paper/1.0" }, signal: AbortSignal.timeout(10000) }); return r.json(); }
 async function bars(pair: string): Promise<Bar[]> {
   const B = ((G.__mc833Bars ||= {})[pair] ||= { at: 0, m: new Map<number, Bar>() });

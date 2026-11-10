@@ -19,7 +19,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const g = globalThis as unknown as { __cw2At?: number; __cw2Busy?: boolean; __cw2Series?: { at: number; v: string[] } };
 type Row = { id: string; at: string; ticker: string; series: string; kind: string; city: string; title: string; side: "yes" | "no"; ask: number; bid: number; spread: number; volume: number; strikeType: string; floor: number | null; cap: number | null; closes: string; hoursToClose: number; ptHour: number; block: number; stake: number; fee: number; result: "open" | "win" | "loss" | "void"; pnl: number | null };
 const read = (): Row[] => { try { return existsSync(D("climate-wide.json")) ? JSON.parse(readFileSync(D("climate-wide.json"), "utf8")) : []; } catch { return []; } };
-const write = (rows: Row[]) => { writeFileSync(D("climate-wide.json.tmp"), JSON.stringify(rows.slice(0, 20000))); renameSync(D("climate-wide.json.tmp"), D("climate-wide.json")); };
+const write = (rows: Row[]) => { ((globalThis as any).__purge1053 || ((x: any) => x))(rows, "climate-wide"); /* fix1053 */ writeFileSync(D("climate-wide.json.tmp"), JSON.stringify(rows.slice(0, 20000))); renameSync(D("climate-wide.json.tmp"), D("climate-wide.json")); };
 async function slow(path: string) {
   for (let i = 0; i < 3; i++) {
     try { const j = await kget(path); await sleep(1500); return j; } catch (e) { if (!/429/.test(String(e)) || i === 2) throw e; await sleep(5000 * (i + 1)); }

@@ -1746,6 +1746,7 @@ function bandSelfTest0(goldLaw: (...a: any[]) => any, n = 2000): number {
  * (incl. micro gold) or BTC must be on the closest band's side right now, or it is not recorded - the book books again on a
  * later pass if it still wants to. Can't verify (no fresh price / band list) = not recorded. Drops -> data/band-lock.jsonl. */
 export function paperBandFilter<T>(rows: T[], tag: string): T[] {
+  ((globalThis as any).__purge1053 || ((x: any) => x))(rows as any[], "paper-" + tag); // fix1053 her 1.5x floor on every paper book: no ticket over 66c is recorded
   if (!G.__inPBF467) { G.__inPBF467 = true; const prev467 = G.__curBook465; try { return paperBandFilter(rows, tag); } finally { G.__inPBF467 = false; G.__curBook465 = prev467; } } // fix467
   const seen: Map<string, string> = (G.__bandSeen ||= new Map());
   const now = Date.now();

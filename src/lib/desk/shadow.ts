@@ -98,6 +98,7 @@ function readRows(): ShadowTrade[] {
   }
 }
 function writeRows(rows: ShadowTrade[]) {
+  ((globalThis as any).__purge1053 || ((x: any) => x))(rows, "shadow"); // fix1053
   try {
     mkdirSync(join(process.cwd(), "data"), { recursive: true });
     writeFileSync(FILE(), JSON.stringify(rows.slice(0, 500), null, 1));

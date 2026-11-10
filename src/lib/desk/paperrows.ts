@@ -62,6 +62,7 @@ export function paperBookRows721(): any[] {
       for (const r of rows) {
         if (!r || !r.id || !r.at || !r.ticker || (r.side !== "up" && r.side !== "down")) continue;
         if (pb.split && pb.split(r) !== pb.book) continue;
+        if ((Number((r as any)?.ask) > 0.66)) continue; // fix1053 her record: no paper ticket over her 66c floor
         const pnl = r.result === "open" ? null : Number(r.pnlTp ?? r.pnlHold ?? r.pnl ?? NaN);
         const ask = Number(r.ask) || 0;
         mine.push({ id: `${r.id}:${pb.book}`, book: pb.book, at: r.at, asset: r.asset || (/ETH/.test(String(r.ticker)) ? "eth" : /GOLD/.test(String(r.ticker)) ? "gold" : "btc") /* fix765b */, ticker: r.ticker, side: r.side, setup: String(r.setup || r.way || r.label || r.key || r.list || (pb.book === "rsi672" && r.book ? `${r.book} · ${r.market || ""}` : "") || pb.title).slice(0, 120), ask, multiple: ask > 0 ? Math.round((1 / ask) * 100) / 100 : null, stake: pb.book === "bestiewalls" || pb.book === "bestiewalls-skip" || pb.book === "v1112ldc" /* fix794 */ || pb.book === "bestieinv" /* fix795 */ || pb.book.startsWith("invw-") /* fix820 */ || pb.book === "pinkslide802" /* fix802 */ ? (Number(r.stake) > 0 ? Number(r.stake) /* fix1048 its real ticket */ : 5) /* fix783 */ : 20, result: r.result === "open" ? "open" : r.result === "win" ? "win" : "loss", exit: r.result === "open" ? "open" : r.soldBid != null ? `sold at ${Math.round(Number(r.soldBid) * 100)}c` : "held to the bell", pnl: Number.isFinite(pnl as number) ? pnl : null, paper721: true });
