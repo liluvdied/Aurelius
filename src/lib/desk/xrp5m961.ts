@@ -81,7 +81,7 @@ export const cornerstones1004 = (x: { side: "up" | "down"; spot: number; line: n
 export function win5Open1051(bs: { t: number; o: number }[], now: number): number { const f = Math.floor(now / 300) * 300; const b = bs.find((x) => x.t === f); return b ? Number(b.o) : NaN; }
 export function openSide1051(side: "up" | "down", spot: number, open5: number): boolean { return open5 > 0 && (side === "up" ? spot > open5 : spot < open5); }
 /** pure: her XRP read on main's current configuration (now in seconds) - a call or the reason none; fix1004: every entry through her cornerstones */
-export function xrpRead961(bs: Bar[], L: { name: string; price: number }[], spot: number, now = Date.now() / 1000, pushIn?: { band: number; pink: number; wick: number } /* fix1045: the 5m paper books pass their coin's push; her XRP lane keeps PUSH1004 */, windowOpen?: number): { side: "up" | "down"; label: string } | { why: string } {
+export function xrpRead961(bs: Bar[], L: { name: string; price: number }[], spot: number, now = Date.now() / 1000, pushIn?: { band: number; pink: number; wick: number } /* fix1045: the 5m paper books pass their coin's push; her XRP lane keeps PUSH1004 */, windowOpen?: number, rules?: { blockShortBelowMinus2?: boolean }): { side: "up" | "down"; label: string } | { why: string } {
   if (!bs.length || now - bs[bs.length - 1].t > 120) return { why: "STALE FEED: no XRP minute in 120 s - no trade" };
   if (windowOpen !== undefined && !(windowOpen > 0)) return { why: "missing 5m window opening bar - still watching" };
   const k = spot / 80000, brk = 2 * k;
@@ -110,6 +110,11 @@ export function xrpRead961(bs: Bar[], L: { name: string; price: number }[], spot
   // fix1004 main's walls (bandlock.ts), scaled to XRP - "" = clear
   const reach = (W / k < 100 ? 25 : 50) * k;
   const walls = (side: "up" | "down", pinkSetup: boolean): string => { const u = side === "up";
+    if (!u && rules?.blockShortBelowMinus2) {
+      const lowerRung = px("-2σ");
+      if (!(lowerRung > 0)) return "ETH MAIN BOTTOM RUNG: no session -2σ to verify the short";
+      if (spot < lowerRung) return `ETH MAIN BOTTOM RUNG: price ${spot.toFixed(2)} is below session -2σ (${lowerRung.toFixed(2)})`;
+    }
     if (u && f >= 0.67) return "THIRDS: long in the top 33%"; if (!u && f <= 0.33) return "THIRDS: short in the bottom 33%";
     if (pk && r1 && s1) {
       if (u && spot >= r1) return "PAST THE RED ZONE (fix594)"; if (!u && spot <= s1) return "PAST THE GREEN ZONE (fix594)";
