@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R638 - fix1076 HER PINK POCKET REACHES HER READ: her Nov 7 pocket rule (fix938) went into her door but not into main's read wall (pinkRead464 in recon.ts), which kept 20% of the session-band channel. Now the read measures the pink exactly as her door does: inside the pocket between the pink and 5m R1 (shorts and longs), or the pink and 5m S1, her pink clearance is 50% of that pocket; outside the pocket her one pink rule (20%) is unchanged. The pink always counts. Every book but delayed. Proven on her 12:15:09 PM Nov 10 BTC short (Rejected down off Bollinger upper, $84.61 over the pink, pocket $76.08): the read no longer refuses it; at 12:15:22 ($65.09 over) it still holds, the same as her door. Two lines of recon.ts changed under these words; her spine lock is re-signed by this install.
+- when: 2026-11-10T20:23:13+00:00
+- Love: "Love Nov 10 2026 12:10 PM PT: "she did not enter before the floor again. she had nothing but room and the window opened on a red falling candle from the bollinger." + Nov 7 2026 ~7:00 AM PT (her pocket rule): "if price is hovering inside here and it's tight like this she only needs 50% of the distance from red to pink okay" + "anytime price is in there" + Nov 10: "please stop implementing pieces of them, and not all of them.""
+- books: main and every reconstructed book but delayed: BTC + gold
+- status: ACTIVE
+- proof: {"test": "tools/pink-pocket-read-1076.cjs"}
+- proof: {"test": "tools/spine-signed-1074.cjs"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "function pocket1076R("}
+
 ## R637 - fix1075 HER GOLD WICK IS 10%: the move back off the wick extreme that makes a gold wick rejection is 10% of her session channel (was 15%, fix1036). Both ways (longs and shorts), on every wick line: her session bands, session VWAP, 5m PP, Red / Green zone, 5m R1 / S1, Bollinger upper / middle / lower, carried lines. BTC stays $25 (or 15% when smaller, fix1072). Other assets stay 15%. Her wick still arms within 10% of the band as before. One line of bandlock.ts changed under these words; four test lines that asserted gold's 15% replaced.
 - when: 2026-11-10T20:03:20+00:00
 - Love: "Love Nov 10 2026 11:56 AM PT: "please make it a 10% wick rejection for gold.""

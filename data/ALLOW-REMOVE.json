@@ -13117,5 +13117,15 @@
     "what": "console.log(ok ? \"WICK EVERY BAND BOTH WAYS 1071 TEST: PASS ✓ her wick reads the Bollinger middle both ways; her BTC wick push is $25 (gold keeps 15%); a long inside the Green zone is on her side (her colour still judges); everything else unchanged\" : \"\");",
     "why": "fix1075 (the test asserted gold's old 15%; her words make it 10%)",
     "R": "R637"
+  },
+  {
+    "what": "const onePink565R = (id: string, b: Bar[]): Piv | null => { const f = (globalThis as any).__onePink565; return typeof f === \"function\" ? f(id, b) : null; };",
+    "why": "fix1076 (the one pink is remembered for her pocket in the read; it returns exactly what it returned)",
+    "R": "R638"
+  },
+  {
+    "what": "  const tol550 = ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkOne927R === \"function\") ? pinkOne927R(asset, W550, pct) /* fix927 */ : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY: her $25 pink, lifted with the cap-lift click */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, W550 < 180 && W550 >= 75 ? 0.75 * W550 : pct * W550)) : pct * W550));",
+    "why": "fix1076 (her Nov 7 pocket rule reaches the read wall: inside the pink-to-red / pink-to-green pocket her pink clearance is 50% of the pocket, the same as her door)",
+    "R": "R638"
   }
 ]

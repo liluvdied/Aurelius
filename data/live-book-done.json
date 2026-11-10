@@ -3205,5 +3205,51 @@
   "status": "skipped",
   "final": true,
   "reason": "REFINED's hour: only REFINED trades live"
+ },
+ "KXGOLD15M-26NOV101515-15:1m:15:CUP 😊 -> long over the rim:cup:cup713": {
+  "at": "2026-11-10T20:11:00.823Z",
+  "ticker": "KXGOLD15M-26NOV101515-15",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "GOLD hour map: BRICK's hour (12 PM PT)"
+ },
+ "KXBTC15M-26NOV101530-30:recon-rej:ps801": {
+  "at": "2026-11-10T20:17:16.890Z",
+  "ticker": "KXBTC15M-26NOV101530-30",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV101530-30:recon-tog:ps801": {
+  "at": "2026-11-10T20:23:45.839Z",
+  "ticker": "KXBTC15M-26NOV101530-30",
+  "side": "up",
+  "status": "blocked",
+  "reason": "BOLLINGER BROKEN: long at 73573.51 past the Bollinger upper (73562.09) - a broken Bollinger is never traded, only rejections off it (fix506).",
+  "firstReason": "BOLLINGER BROKEN: long at 73563.36 past the Bollinger upper (73562.09) - a broken Bollinger is never traded, only rejections off it (fix506).",
+  "firstTryAt": "2026-11-10T20:23:16.867Z",
+  "bookedAt": "2026-11-10T20:17:16.513Z",
+  "tries": 77,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXGOLD15M-26NOV101530-30:2m:15:CUP & HANDLE -> long over the rim:cup:cup713": {
+  "at": "2026-11-10T20:20:01.191Z",
+  "ticker": "KXGOLD15M-26NOV101530-30",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "GOLD hour map: BRICK's hour (12 PM PT)"
+ },
+ "KXGOLD15M-26NOV101530-30:2m:15:CUP 😊 -> long over the rim:cup:cup713": {
+  "at": "2026-11-10T20:20:01.225Z",
+  "ticker": "KXGOLD15M-26NOV101530-30",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "GOLD hour map: BRICK's hour (12 PM PT)"
  }
 }
