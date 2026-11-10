@@ -3128,5 +3128,27 @@
   "final": false,
   "paid": 0.063,
   "orderId": "01a1c6cb-b790-76c5-b365-e624dfc30826"
+ },
+ "KXBTC15M-26NOV101400-00:recon-rej:KXBTC15M-26NOV101400-00:recon-rej": {
+  "at": "2026-11-10T18:56:06.534Z",
+  "ticker": "KXBTC15M-26NOV101400-00",
+  "side": "down",
+  "status": "held",
+  "reason": "BTC CLIMB OVER PINK: btc 73431.45 is still over the pink (73379.98) since her climb - no short until price breaks down through pink by 10% of the channel (fix560).",
+  "firstReason": "BTC CLIMB OVER PINK: btc 73512.17 is still over the pink (73362.17) since her climb - no short until price breaks down through pink by 10% of the channel (fix560)."
+ },
+ "KXBTC15M-26NOV101400-00:recon-tog:KXBTC15M-26NOV101400-00:recon-tog": {
+  "at": "2026-11-10T18:56:23.210Z",
+  "ticker": "KXBTC15M-26NOV101400-00",
+  "side": "up",
+  "status": "blocked",
+  "reason": "this window already traded",
+  "firstReason": "this window already traded",
+  "firstTryAt": "2026-11-10T18:55:45.991Z",
+  "bookedAt": "2026-11-10T18:55:45.753Z",
+  "tries": 98,
+  "final": false,
+  "paid": null,
+  "orderId": null
  }
 }
