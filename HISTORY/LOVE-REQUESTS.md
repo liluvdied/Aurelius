@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R636 - fix1074 SIGN HER SPINE FOR CHANGE-406: CHANGE-406 (fix1070, log only) put 2 log lines in recon.ts but its installer did not re-sign data/spine-lock.json, so from 11:41:31 AM PT Nov 10 her reconstructed books (main) were held with SPINE DRIFT (fix575) and did not book. This signs her spine lock for the exact recon.ts she is running now. No code line changes; no rule changes. Adds one test file that fails loudly if the spine and recon.ts ever disagree.
+- when: 2026-11-10T20:00:10+00:00
+- Love: "Love Nov 10 2026 11:14 AM PT: "fix the no reason for refusal please. make sure every trade has one." + "yes. please build it." + 11:37 AM PT: "please get it to work.""
+- books: main and the reconstructed books (unheld)
+- status: ACTIVE
+- proof: {"test": "tools/spine-signed-1074.cjs"}
+
 ## R635 - fix1070 EVERY SKIP HAS A WRITTEN REASON - LOG ONLY: (1) main (gold + BTC) writes to data/main-trace-1070.jsonl, once a second per asset when it changes (and every 10 s, and after any 3 s+ gap between her looks), what her read called and where it stopped: no setup, refused in the read with its reason, booked, the ask out of bounds / under her 1.5x floor, or book() leaving without booking - plus the milliseconds since her last look. (2) her XRP 15m last line writes the board it judged (price + every line she read) to data/xrp15-board-1070.jsonl. Log only: no decision, rule, wall or order changes. This is the tracer to find the late execution and the XRP entries under a band; the fixes for those are separate changes, proven on what this writes.
 - when: 2026-11-10T19:41:29+00:00
 - Love: "Love Nov 10 2026 11:14 AM PT: "fix the no reason for refusal please. make sure every trade has one." + "yes. please build it. and please diagnose what is causing her to not see set ups. please fix the 25 second late execution." + "she just longed xrp while it was under a band.""
