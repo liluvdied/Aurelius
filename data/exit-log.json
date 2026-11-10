@@ -1,5 +1,24 @@
 [
   {
+    "at": "2026-11-10T05:26:53.137Z",
+    "ticker": "KXXRP15M-26NOV100030-30",
+    "asset": "btc",
+    "side": "down",
+    "stake": 1.4526,
+    "multiple": 1.85,
+    "bidPct": 80,
+    "targetPct": 75.93,
+    "payout": 2.62,
+    "profit": 1.17,
+    "reason": "take profit: peaked +80%, sold on the 1% trail (line +76%, 1.85x)",
+    "short": true,
+    "yesBid": 0.025,
+    "yesAsk": 0.027,
+    "secondsLeft": null,
+    "spot": null,
+    "strike": 1.0963
+  },
+  {
     "at": "2026-11-10T04:57:18.644Z",
     "ticker": "KXBTC15M-26NOV100000-00",
     "asset": "btc",
@@ -1499,24 +1518,5 @@
     "secondsLeft": null,
     "spot": 80144.07,
     "strike": 80364.28
-  },
-  {
-    "at": "2026-11-04T17:29:54.437Z",
-    "ticker": "KXGOLD15M-26NOV041230-30",
-    "asset": "gold",
-    "side": "up",
-    "stake": 3.6211,
-    "multiple": 2.04,
-    "bidPct": 100,
-    "targetPct": 91.84,
-    "payout": 7.24,
-    "profit": 3.62,
-    "reason": "take profit: peaked +100%, sold on the 1% trail (line +92%, 2.04x)",
-    "short": false,
-    "yesBid": 0.975,
-    "yesAsk": 0.988,
-    "secondsLeft": null,
-    "spot": 4065.616,
-    "strike": 4064.91
   }
 ]

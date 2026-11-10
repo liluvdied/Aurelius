@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R607 - fix1052 INSTALLS NEVER WAIT FOR LIVE: two old proofs (fix1019 R580 and fix1021 R581) demanded LIVE be ON, so whenever LIVE is paused her umpire read NOT SAFE ("tools/requests.py is OUT") and every install sat waiting for LIVE. They now prove what their change did (the copies off, AWAY FROM LINE off, main / rej / delayed still her live books) without demanding LIVE on. With them, her umpire reads SAFE with LIVE off (proved on a copy). New install format from this command on: the sign-off (save, stamps, tests, umpire, commit) runs right away with LIVE exactly as she left it; an install turns LIVE back on ONLY if it was the one that turned it off. Her pause-live hold is untouched.
+- when: 2026-11-10T05:41:57+00:00
+- Love: "Love Nov 9 2026 9:05 PM PT: "It's still giving me the same error every time I try to install something can you change the format of the installations for me please luv ? It drives me crazy every time""
+- books: installs only (no book, no order, no rule changes)
+- status: ACTIVE
+- proof: {"test": "tools/copy-books-paper-1019.cjs"}
+- proof: {"test": "tools/away-line-off-1021.cjs"}
+
 ## R606 - fix1051 HER 5M BOOKS ENTER ONLY ON HER SIDE OF THE 5M OPEN: Polymarket's 5-minute windows pay on the window's open, so her 5-minute books (the BTC / ETH / XRP 5m paper books and her XRP 5m lane) now enter only when price is already past this 5m window's open her way - a long over it, a short under it (exactly at the open is not past it). Otherwise the book keeps watching the window (no window is spent). Her read, walls, colour, push, wick, floor and add-ons are unchanged. NOT touched (her 'not for the 15'): the XRP 15m on Kalshi and every 15m book (main, rej, delayed, gold, BTC). Her trigger add-on on the XRP lane is unchanged. Two existing tests' fixtures moved so their scenarios sit on her side of the open, plus a case each proving an against-the-open entry now waits.
 - when: 2026-11-10T05:11:53+00:00
 - Love: "Love Nov 9 2026 8:52 PM PT, answering "Want the 5m books to only enter when price is on her side of the 5m open?" (her 5m books right 75-77% with the window's open vs 24-25% against it, 14-day replay): "Yes, if those are testing there that makes sense but not for the 15 only the five""
