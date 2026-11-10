@@ -9145,3 +9145,15 @@
 {"at":"2026-11-10T06:49:17.208Z","ticker":"KXXRP15M-26NOV100200-00","px":0.94,"qty":3.46,"bid":0.57,"had":null}
 {"at":"2026-11-10T06:50:50.580Z","ticker":"KXETH15M-26NOV100200-00","px":0.94,"qty":4.18,"bid":0.4,"had":null}
 {"at":"2026-11-10T06:53:23.528Z","ticker":"KXXRP15M-26NOV100200-00","px":0.93,"qty":11.45,"bid":0.31,"had":{"id":"01a1c437-d9c8-77db-a548-104ca0ca706f","px":0.94,"qty":3.46,"failed":false}}
+{"at":"2026-11-10T06:55:40.842Z","ticker":"KXBTC15M-26NOV100200-00","px":0.96,"qty":2.36,"bid":0.94,"had":null}
+{"at":"2026-11-10T06:55:48.954Z","ticker":"KXETH15M-26NOV100200-00","px":0.93,"qty":8.44,"bid":0.37,"had":{"id":"01a1c439-4510-72c6-b19a-bd8586697160","px":0.94,"qty":4.18,"failed":false}}
+{"at":"2026-11-10T06:56:08.135Z","ticker":"KXXRP15M-26NOV100200-00","px":0.92,"qty":15.76,"bid":0.21,"had":{"id":"01a1c43b-9ab8-7ebd-a8dd-fe8c26232e2b","px":0.93,"qty":11.45,"failed":false}}
+{"at":"2026-11-10T06:56:49.692Z","ticker":"KXBTC15M-26NOV100200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-10T06:56:49.768Z","ticker":"KXGOLD15M-26NOV100200-00","px":0.95,"qty":6.39,"bid":0.91,"had":null}
+{"at":"2026-11-10T06:58:02.701Z","ticker":"KXETH15M-26NOV100200-00","px":0.93,"qty":6.34,"bid":0.89,"had":null}
+{"at":"2026-11-10T06:58:31.133Z","ticker":"KXETH15M-26NOV100200-00","px":0.93,"qty":6.34,"bid":0.92,"had":null}
+{"at":"2026-11-10T06:58:32.124Z","ticker":"KXETH15M-26NOV100200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-10T06:58:41.970Z","ticker":"KXGOLD15M-26NOV100200-00","px":0.95,"qty":6.39,"bid":0.92,"had":null}
+{"at":"2026-11-10T06:59:01.861Z","ticker":"KXGOLD15M-26NOV100200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-10T07:00:05.633Z","ticker":"KXBNB15M-26NOV100200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-10T07:00:10.162Z","ticker":"KXXRP15M-26NOV100200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}

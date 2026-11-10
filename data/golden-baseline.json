@@ -1,5 +1,5 @@
 {
- "at": "2026-11-10T06:51:39.585029+00:00",
+ "at": "2026-11-10T06:58:01.440907+00:00",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -75,7 +75,7 @@
   "pivotbooks.ts": "cb7dce7b4e99148a",
   "pivotpull.ts": "d07d9b2879c44ec5",
   "poly-ledger.ts": "03a0d120db477fe7",
-  "poly-live.server.ts": "17bc4508aacc4f5c",
+  "poly-live.server.ts": "e0f2dcc547cb829f",
   "polyhour.ts": "4dfc284ae053bed8",
   "polymirror.ts": "611be196dcf59c46",
   "positions.ts": "d47e005ba5bac220",
@@ -193,7 +193,7 @@
   "maxDollars": "6b86b273ff",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "81343f2b0d",
+  "at": "2564d7f717",
   "note": "d6126203bc",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -397,7 +397,7 @@
   "data/spine-lock.json": "15a6fe1f434a186d",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "148ad0fa7843b718"
+  "data/live-switch.json": "154e70bef90b03e2"
  },
  "sealLiveBook": "18713feb41",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."
