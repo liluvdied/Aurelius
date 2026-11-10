@@ -13167,5 +13167,20 @@
     "what": "      return seenL.filter((c) => !((c.side === \"up\" && (f >= 1 - k || (fix33 && f >= 0.67) || spot > topS)) /* fix653 (Love Nov 4 2026 5:25 PM PT: \"a 2m green pushing off the band is good, no waiting for the 5m\"): a band rejection with her 2m does not wait for the 5m */ /* was: Love Nov 3 2026 7:45 PM + Nov 4 10:20 AM PT: \"A red falling 5m candle refuses the long. No 2-5m flip overrides it.\" */ || (c.side === \"down\" && (f <= k || (fix33 && f <= 0.33) || spot < botS)))); /* fix1034 (Love Nov 8 2026 5:12 PM PT: \"you were asking me if she was to ONLY GET IN IF THE CANDLE FLIPPED and i said no because it would never take a trade if candle was born red pushing off of a band\" + R579: \"FLIP (or born candle) AND PUSH. NOTHING ELSE\" + Nov 8 12:22 AM PT: \"the 'opening color' of the window or the candle has zero bearing on the trigger of the trade itself / candle flips green - push distance met ==== get in\" + R559 Nov 7 3:19 PM PT: \"the candle ALWAYS NEEDS TO BE THE SAME COLOR ... wick rejection is the ONLY instance she may enter without the candle our color\"): the RED FALLING 5M (no long) / GREEN RISING 5M (no short) refusal - this 5m candle measured from its open, with a 2-5m flip as its only way out - is gone from the main / rej read; her colour + push stays at the door and the send (fix951 / fix1032) */",
     "why": "fix1079 (her read's flip and thirds filter ask her one thirds measure, thirdsRead463)",
     "R": "R639"
+  },
+  {
+    "what": "  const [bookTab, setBookTab] = useState<\"mode\" | \"wire\" | \"fav\" | \"shift\" | \"paper\" | \"prime\" | \"lead\" | \"open\" | \"watch\" | \"lean\" | \"fuel\" | \"symbols\" | \"mirror\" | \"markets\" | \"kalshi\" | \"poly\" | \"cash\" | \"stats\" | \"scale\" | \"hedge\" | \"log\" | \"audit\" | \"look\" | \"outside\" | \"notes\" | \"pnl\" | \"day\" | \"alerts\" | \"sitrep\" | \"books\" | \"traj\" | \"scanner\" | \"positions\" | \"scope\">(\"kalshi\");",
+    "why": "fix1081 FIX LOG TAB (Love Nov 10 2026 3:30 PM PT: please create a FIX LOG tab in the app): the same line with the new tab name \"fixlog\" added to it, nothing else on the line changes",
+    "R": "R640"
+  },
+  {
+    "what": "        {bookTab === \"mode\" || bookTab === \"scale\" || bookTab === \"hedge\" || bookTab === \"log\" || bookTab === \"audit\" || bookTab === \"outside\" || bookTab === \"cash\" || bookTab === \"stats\" || bookTab === \"notes\" || bookTab === \"pnl\" || bookTab === \"day\" || bookTab === \"scope\" || bookTab === \"alerts\" || bookTab === \"scanner\" || bookTab === \"positions\" || bookTab === \"sitrep\" || bookTab === \"kalshi\" || bookTab === \"prime\" || bookTab === \"lead\" || bookTab === \"open\" || bookTab === \"watch\" || bookTab === \"lean\" || bookTab === \"fuel\" || bookTab === \"symbols\" || bookTab === \"mirror\" || bookTab === \"books\" || !hydrated || !snap ? null : (",
+    "why": "fix1081 FIX LOG TAB (Love Nov 10 2026 3:30 PM PT: please create a FIX LOG tab in the app): the same line with the new tab name \"fixlog\" added to it, nothing else on the line changes",
+    "R": "R640"
+  },
+  {
+    "what": "        ) : bookTab === \"log\" || bookTab === \"audit\" || bookTab === \"outside\" || bookTab === \"cash\" || bookTab === \"stats\" || bookTab === \"look\" || bookTab === \"notes\" || bookTab === \"pnl\" || bookTab === \"alerts\" || bookTab === \"scanner\" || bookTab === \"positions\" || bookTab === \"sitrep\" || bookTab === \"markets\" || bookTab === \"kalshi\" || bookTab === \"prime\" || bookTab === \"lead\" || bookTab === \"open\" || bookTab === \"watch\" || bookTab === \"lean\" || bookTab === \"fuel\" || bookTab === \"symbols\" || bookTab === \"mirror\" ? null : hydrated ? (",
+    "why": "fix1081 FIX LOG TAB (Love Nov 10 2026 3:30 PM PT: please create a FIX LOG tab in the app): the same line with the new tab name \"fixlog\" added to it, nothing else on the line changes",
+    "R": "R640"
   }
 ]
