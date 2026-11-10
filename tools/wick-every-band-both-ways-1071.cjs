@@ -12,14 +12,19 @@ const grab = (name) => { const i = B.indexOf("export function " + name + "("); i
 const tj = (s) => ts.transpileModule(s, { compilerOptions: { target: 99 } }).outputText;
 // ---- (1) the wick: rejBand668 with her real 11:15 AM board (session -2σ 72985.71 / -1σ 73639.77 = $654.06 channel; Bollinger middle 73236.76)
 const iW = B.indexOf("export function rejBand668("), eM = "return best; } catch { return null; } }", srcW = B.slice(iW, B.indexOf(eM, iW) + eM.length).replace(/^export /, "");
-const mk = (bbsr) => new Function("G", "DLY465", "fiveHLNow", "carryExtra617", tj(srcW) + "; return rejBand668;")({ __bbsr: bbsr, __curBook465: "recon-tog" }, new Set(["recon-dly", "recon-dlyk"]), () => null, undefined);
+const srcB = (() => { const i = B.indexOf("export function wickBack1072("); return B.slice(i, B.indexOf("\n", i)).replace(/^export /, ""); })();
+const mk = (bbsr) => new Function("G", "DLY465", "fiveHLNow", "carryExtra617", tj(srcB + "\n" + srcW) + "; return rejBand668;")({ __bbsr: bbsr, __curBook465: "recon-tog" }, new Set(["recon-dly", "recon-dlyk"]), () => null, undefined);
 const L = [["session VWAP", 74293.83], ["-1σ", 73639.77], ["-2σ", 72985.71], ["-3σ", 72331.65], ["+1σ", 74947.88]].map(([name, price]) => ({ name, price }));
-const bb = { btc: { bbU: 73611.19, bbL: 72862.33, at: Date.now() } }; const mid = (73611.19 + 72862.33) / 2; // 73236.76
+const bb = { btc: { bbU: 73611.19, bbL: 72862.33, at: Date.now() }, gold: { bbU: 73611.19, bbL: 72862.33, at: Date.now() } }; const mid = (73611.19 + 72862.33) / 2; // 73236.76
 const w = mk(bb), W = 654.06;
 let r = w("btc", "up", 73236 + 0.15 * W + 1, L, { h: 73400, l: 73236 }); t(r && r.name === "Bollinger middle", "a long wick off the Bollinger middle ($98 back off the wick low) is still not her wick");
-r = w("btc", "up", 73297, L, { h: 73400, l: 73236 }); t(r === null, "a long $61 off the wick low (under her 15% = $98) was called a wick - her measure changed");
+r = w("btc", "up", 73262, L, { h: 73400, l: 73236 }); t(r && r.name === "Bollinger middle", "her 11:15 AM BTC wick: $26 back off the wick low over the Bollinger middle is still not her wick (her $25 push)");
+r = w("btc", "up", 73258, L, { h: 73400, l: 73236 }); t(r === null, "a BTC long only $22 off the wick low was called a wick (her push is $25)");
+r = w("gold", "up", 73297, L, { h: 73400, l: 73236 }); t(r === null, "gold: a move under 15% of the channel was called a wick - gold keeps her 15%");
+r = w("gold", "up", 73236 + 0.15 * W + 1, L, { h: 73400, l: 73236 }); t(r && r.name === "Bollinger middle", "gold: 15% of the channel back off the wick is not her wick any more");
 r = w("btc", "down", 73237 - 0.15 * W - 1 + 0, L, { h: 73237.5, l: 73100 }); t(r && r.name === "Bollinger middle", "a short wick off the Bollinger middle is not her wick (one sided)");
-r = w("btc", "down", 73200, L, { h: 73237.5, l: 73100 }); t(r === null, "a short $37 off the wick high was called a wick - her measure changed");
+r = w("btc", "down", 73211, L, { h: 73237.5, l: 73100 }); t(r && r.name === "Bollinger middle", "a BTC short $26 off the wick high under the Bollinger middle is not her wick (one sided)");
+r = w("btc", "down", 73216, L, { h: 73237.5, l: 73100 }); t(r === null, "a BTC short only $21 off the wick high was called a wick");
 r = w("btc", "up", 73400, L, { h: 73450, l: 73236 + 0.11 * W }); t(r === null, "a wick that never came within 10% of the Bollinger middle was called a wick");
 const wNo = mk({}); t(wNo("btc", "up", 73236 + 0.15 * W + 1, L, { h: 73400, l: 73236 }) === null, "with no Bollinger on record she still called a Bollinger middle wick");
 const wOld = mk({ btc: { bbU: 73611.19, bbL: 72862.33, at: Date.now() - 30000 } }); t(wOld("btc", "up", 73236 + 0.15 * W + 1, L, { h: 73400, l: 73236 }) === null, "a Bollinger older than 20 s was used for her wick");
@@ -27,7 +32,8 @@ const wOld = mk({ btc: { bbU: 73611.19, bbL: 72862.33, at: Date.now() - 30000 } 
 r = w("btc", "down", 73639.77 - 0.15 * W - 1, L, { h: 73640.5, l: 73500 }); t(r && r.name === "-1σ", "her wick off -1σ changed");
 const L2 = [...L, { name: "Bollinger upper", price: 73611.19 }, { name: "Bollinger lower", price: 72862.33 }];
 r = mk({})("btc", "up", 72862 + 0.15 * W + 1, L2, { h: 73100, l: 72862 }); t(r && r.name === "Bollinger lower", "her wick off the Bollinger lower changed");
-globalThis.__x = 0; t(B.includes('/* fix1036 HER WICK 15%'), "her fix1036 wick measure line is gone");
+globalThis.__x = 0; t(B.includes('/* fix1036 HER WICK 15%'), "her fix1036 wick line is gone");
+{ const f = new Function(tj(srcB) + "; return wickBack1072;")(); t(f("btc", 655) === 25 && f("btc", 100) === 15 && Math.abs(f("gold", 40) - 6) < 1e-9, "her push: BTC $25 (15% when smaller), gold 15%"); }
 // ---- (2) the green zone mirror: herEntry951
 const src = ["line951", "linePrice951", "inGreen1071", "inRed1069", "herEntry951"].map(grab).join("\n");
 const make = (colour, wick) => new Function("rej668", "herColour949", "DLY465", "G", "carryExtra617", tj(src) + "; return herEntry951;")(() => wick, () => colour, new Set(["recon-dly", "recon-dlyk"]), { __curBook465: "recon-tog", __bbsr: {} }, undefined);
@@ -41,5 +47,5 @@ t(green("btc", "up", 73160, "Rejected up off Green zone", Z) === "", "a long ove
 t(/NOT ON HER SIDE/.test(green("btc", "up", 73150, "Break above Green zone", Z)), "a BREAK above the Green zone with price still inside it was let in");
 t(green("btc", "down", 73518.82, "Rejected down off Red zone", Z) === "", "her short inside the Red zone (fix1069) changed");
 t(/NOT ON HER SIDE/.test(green("btc", "up", 73330, "Rejected up off 5m PP", Z)), "a long off the pink from under it changed");
-console.log(ok ? "WICK EVERY BAND BOTH WAYS 1071 TEST: PASS ✓ her wick reads the Bollinger middle both ways by her same 10% / 15% measure; a long inside the Green zone is on her side (her colour still judges); everything else unchanged" : "");
+console.log(ok ? "WICK EVERY BAND BOTH WAYS 1071 TEST: PASS ✓ her wick reads the Bollinger middle both ways; her BTC wick push is $25 (gold keeps 15%); a long inside the Green zone is on her side (her colour still judges); everything else unchanged" : "");
 process.exit(ok ? 0 : 1);
