@@ -20,7 +20,7 @@ export function LiveWire1044({ snap }: { snap: any }) {
   const live = (r: any): number | null => {
     if (r.result !== "open" || !(r.ask > 0)) return null;
     const m = snap?.assets?.[r.asset]?.market;
-    if (!m || m.ticker !== r.ticker) return null;
+    if (!m || m.ticker !== r.ticker) return r.lastBid > 0 ? r.stake * (r.lastBid / r.ask - 1) : null; // fix1045: the 5m paper books carry their own live bid
     const bid = Number(r.side === "up" ? m.yesBid : m.noBid);
     return bid > 0 ? r.stake * (bid / r.ask - 1) : null;
   };

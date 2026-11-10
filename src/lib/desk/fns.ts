@@ -2294,7 +2294,7 @@ export const getScheduleLive = createServerFn({ method: "GET" }).handler(async (
     for (const [k, v] of Object.entries(done)) {
       if (!v || (v.status !== "filled" && v.status !== "partial")) continue;
       const p = k.split(":"), tk = String(v.ticker || p[0]), bk = String(p[1] || "");
-      if (!BOOKS385.has(bk) || String(v.at || "") < SCHEDULE_LIVE_START) continue;
+      if (!bk || String(v.at || "") < SCHEDULE_LIVE_START) continue; void BOOKS385; // fix1046 (Love Nov 9 2026: "have the trades she takes for all of them actually go on there, they're not showing"): every book that really traded on Kalshi shows here, not only the six main-family books
       const o = owner.get(tk);
       if (!o || String(v.at) < o.at) owner.set(tk, { book: bk, side: String(v.side || ""), at: String(v.at) });
     }

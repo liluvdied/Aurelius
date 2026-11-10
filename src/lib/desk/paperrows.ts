@@ -42,6 +42,10 @@ export const PAPER_BOOKS721: { file: string; book: string; title: string; split?
   { file: "inverse-worst-820-book.json", book: "invw-rej", title: "REJ INVERSE-WORST · PAPER $5", split: (r) => (r.book === "invw-rej" ? "invw-rej" : null) }, // fix820
   { file: "inverse-worst-820-book.json", book: "invw-np", title: "NO-PINK INVERSE-WORST · PAPER $5", split: (r) => (r.book === "invw-np" ? "invw-np" : null) }, // fix820
   { file: "inverse-worst-820-book.json", book: "invw-v1112", title: "V.111 INVERSE-WORST · PAPER $5", split: (r) => (r.book === "invw-v1112" ? "invw-v1112" : null) }, // fix820 // fix802: her pink-slide takes (fix801's record), her own card
+  { file: "p5m-1045-btc.json", book: "p5m-btc", title: "BTC 5M · NEW BRAIN · POLYMARKET · PAPER $20" }, // fix1045
+  { file: "p5m-1045-eth.json", book: "p5m-eth", title: "ETH 5M · NEW BRAIN · POLYMARKET · PAPER $20" }, // fix1045
+  { file: "p5m-1045-xrp.json", book: "p5m-xrp", title: "XRP 5M · NEW BRAIN · POLYMARKET · PAPER $20" }, // fix1045
+  { file: "p5m-1045-xrp15k.json", book: "p5m-xrp15k", title: "XRP 15M · NEW BRAIN · KALSHI · PAPER $20" }, // fix1045
   { file: "bestie-walls-783.json", book: "bestiewalls", title: "BESTIE · WALLS · MAIN'S BAND / ZONE DOOR · PAPER $5" }, // fix783
   { file: "bestie-walls-skips-783.json", book: "bestiewalls-skip", title: "BESTIE · WALLS · BLOCKED · WHAT THEY WOULD HAVE DONE" }, // fix783: every take main's door refused + its would-have result
 ];
