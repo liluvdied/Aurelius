@@ -1,0 +1,5 @@
+{
+ "minTrades": 10,
+ "minHitPct": 60,
+ "note": "fix773 SETUP SCOREBOARD verdicts - change these two numbers any time (no password, no restart; the box picks them up within a minute): CUT = minTrades+ trades and (hit under minHitPct% or $ net under 0); KEEP = minTrades+ trades, hit minHitPct%+ and $ net over 0; WATCH = fewer than minTrades trades. Display only."
+}

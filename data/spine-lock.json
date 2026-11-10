@@ -1,9 +1,9 @@
 {
- "at": "2026-11-10T20:23:13.169834+00:00",
+ "at": "2026-11-10T21:45:12.123666+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "b05c1908a51beee1"
+  "recon.ts": "ab91dea6e10c0bad"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -850,6 +850,12 @@
    "by": "Love",
    "quote": "Love Nov 10 2026 12:10 PM PT: \"she did not enter before the floor again. she had nothing but room and the window opened on a red falling candle from the bollinger.\" + Nov 7 2026 ~7:00 AM PT (her pocket rule): \"if price is hovering inside here and it's tight like this she only needs 50% of the distance from red to pink okay\" + \"anytime price is in there\" + Nov 10: \"please stop implementing pieces of them, and not all of them.\" (R638, fix1076)",
    "recon.ts": "b05c1908a51beee1"
+  },
+  {
+   "at": "2026-11-10T21:45:12.123666+00:00",
+   "by": "Love",
+   "quote": "Love Nov 10 2026 1:30 PM PT: \"YES. GET IT LIVE. PLEASE. I DONT CARE IF THE TRADES WIN. I CARE THAT SHE TAKES THEM. WE WILL REFINE HER SET UPS FROM THERE.\" + 12:36 PM PT: \"STOPPPPPP PUTTING IT IN ONE PLACE AND NOT THE OTHER.\" + 12:39 PM PT: \"ITS SESSION BAND. TO SESSION BAND.\" + Oct 29 2026 7:20 PM PT: \"gold has a sliding scale love i already answered it\" + 7:49 PM PT: \"ITS 20% AT THIS BAND WIDTH\" + Nov 7 2026 ~7:00 AM PT (her pocket rule): \"anytime price is in there\" (R639, fix1079)",
+   "recon.ts": "ab91dea6e10c0bad"
   }
  ],
  "R": "R266",

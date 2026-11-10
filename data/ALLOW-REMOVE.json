@@ -13127,5 +13127,45 @@
     "what": "  const tol550 = ((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkOne927R === \"function\") ? pinkOne927R(asset, W550, pct) /* fix927 */ : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY: her $25 pink, lifted with the cap-lift click */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, W550 < 180 && W550 >= 75 ? 0.75 * W550 : pct * W550)) : pct * W550));",
     "why": "fix1076 (her Nov 7 pocket rule reaches the read wall: inside the pink-to-red / pink-to-green pocket her pink clearance is 50% of the pocket, the same as her door)",
     "R": "R638"
+  },
+  {
+    "what": "  return Math.abs(pink - tick) > (((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkOne927 === \"function\") ? pinkOne927(asset, a.price - b.price) /* fix927 */ : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, a.price - b.price < 180 && a.price - b.price >= 75 ? 0.75 * (a.price - b.price) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price))) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price)))) /* fix526: her 3/4 at $75-$180 width + the $75 weekday floor */;",
+    "why": "fix1078 / fix1077 (her Nov 7 pocket rule at every pink wall; BTC target by a line capped at $25, her Nov 10 1:30 PM yes)",
+    "R": "R639"
+  },
+  {
+    "what": "  return pink - tick > (((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkOne927 === \"function\") ? pinkOne927(asset, a.price - b.price) /* fix927 */ : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, a.price - b.price < 180 && a.price - b.price >= 75 ? 0.75 * (a.price - b.price) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price))) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price)))) /* fix526: her 3/4 at $75-$180 width + the $75 weekday floor */;",
+    "why": "fix1078 / fix1077 (her Nov 7 pocket rule at every pink wall; BTC target by a line capped at $25, her Nov 10 1:30 PM yes)",
+    "R": "R639"
+  },
+  {
+    "what": "    if (a && b && a.price > b.price && tick - P > (((typeof __PINKFLAT25 !== \"undefined\" && __PINKFLAT25) ? 25 : (typeof pinkOne927 === \"function\") ? pinkOne927(asset, a.price - b.price) /* fix927 */ : (asset === \"btc\" ? Math.min(25 /* fix542 TEMPORARY (Love Oct 30 2026 8:17 PM PT: 'and lower her pink tolerance to $25 for the moment please , a temporary one that i can lift and put back the old one when i ask you to pls'): her $25 pink, lifted by PUT-BACK-THE-PINK */, Math.max(/Sat|Sun/.test(new Intl.DateTimeFormat(\"en-US\", { timeZone: \"America/Los_Angeles\", weekday: \"short\" }).format(new Date())) ? 0 : 75, a.price - b.price < 180 && a.price - b.price >= 75 ? 0.75 * (a.price - b.price) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price))) : (PINK_PCT459[asset] ?? PINK_PCT429) * (a.price - b.price)))) /* fix526: her 3/4 at $75-$180 width + the $75 weekday floor */) return \"\";",
+    "why": "fix1078 / fix1077 (her Nov 7 pocket rule at every pink wall; BTC target by a line capped at $25, her Nov 10 1:30 PM yes)",
+    "R": "R639"
+  },
+  {
+    "what": "    const tgt = Number(target ?? targetNow(asset)) || 0, lim = asset === \"btc\" ? (Number.isFinite(a845 - b845) ? Math.round(100 * TGT915_BTC * (a845 - b845)) / 100 : 0) /* fix915: BTC = 15% of the channel (TGT915_BTC) - no $50, no sliding-scale cap */ : Math.min(TGT821[asset] || 0, Number.isFinite(a845 - b845) && typeof slide845 === \"function\" ? Math.round(100 * slide845(asset, a845 - b845)) / 100 : Infinity) /* fix845 */; if (!(tgt > 0) || !(lim > 0)) return \"\";",
+    "why": "fix1078 / fix1077 (her Nov 7 pocket rule at every pink wall; BTC target by a line capped at $25, her Nov 10 1:30 PM yes)",
+    "R": "R639"
+  },
+  {
+    "what": "      const seen = cs.map((c) => (c.side === \"up\" && f >= 0.67) ? { ...c, side: \"down\" as const, label: `Top third - seen as a short under ${chP.hi.toFixed(2)} (was: ${c.label})` }",
+    "why": "fix1079 (her read's flip and thirds filter ask her one thirds measure, thirdsRead463)",
+    "R": "R639"
+  },
+  {
+    "what": "        : (c.side === \"down\" && f <= 0.33 && green) ? { ...c, side: \"up\" as const, label: `Bottom third, green candle - seen as a long off ${chP.lo.toFixed(2)} (was: ${c.label})` } : c);",
+    "why": "fix1079 (her read's flip and thirds filter ask her one thirds measure, thirdsRead463)",
+    "R": "R639"
+  },
+  {
+    "what": "      try { const G647 = globalThis as any, slot647 = Math.floor(Date.now() / 300000), seen647 = (G647.__skip647 ||= {}); for (const c of seenL) { const r647: string[] = []; if (c.side === \"up\") { if (f >= 1 - k) r647.push(\"THIRDS: long in her top share of the channel\"); if (fix33 && f >= 0.67) r647.push(\"BTC 33%: long in the top 33%\"); /* fix1034: RED FALLING 5M is no longer a refusal */ /* fix653 */ if (spot > topS) r647.push(\"PAST THE WHOLE CHANNEL: no long\"); } else { if (f <= k) r647.push(\"THIRDS: short in her bottom share of the channel\"); if (fix33 && f <= 0.33) r647.push(\"BTC 33%: short in the bottom 33%\"); /* fix1034: GREEN RISING 5M is no longer a refusal */ if (spot < botS) r647.push(\"PAST THE WHOLE CHANNEL: no short\"); } for (const r of r647) { const key647 = `${asset}|${rejOnly ? \"rej\" : \"main\"}|${c.side}|${r}|${slot647}`; if (seen647[key647]) continue; seen647[key647] = 1; appendFileSync(D(\"skip-reasons.jsonl\"), JSON.stringify({ at: new Date().toISOString(), asset, read: rejOnly ? \"rejections\" : \"main\", side: c.side, setup: c.label, rule: r, spot, chanPct: Math.round(f * 1000) / 10, o5: cur.o, h5: cur.h, l5: cur.l }) + \"\\n\"); } } for (const k647 of Object.keys(seen647)) if (Number(k647.split(\"|\").pop()) < slot647 - 2) delete seen647[k647]; } catch {} // fix647",
+    "why": "fix1079 (her read's flip and thirds filter ask her one thirds measure, thirdsRead463)",
+    "R": "R639"
+  },
+  {
+    "what": "      return seenL.filter((c) => !((c.side === \"up\" && (f >= 1 - k || (fix33 && f >= 0.67) || spot > topS)) /* fix653 (Love Nov 4 2026 5:25 PM PT: \"a 2m green pushing off the band is good, no waiting for the 5m\"): a band rejection with her 2m does not wait for the 5m */ /* was: Love Nov 3 2026 7:45 PM + Nov 4 10:20 AM PT: \"A red falling 5m candle refuses the long. No 2-5m flip overrides it.\" */ || (c.side === \"down\" && (f <= k || (fix33 && f <= 0.33) || spot < botS)))); /* fix1034 (Love Nov 8 2026 5:12 PM PT: \"you were asking me if she was to ONLY GET IN IF THE CANDLE FLIPPED and i said no because it would never take a trade if candle was born red pushing off of a band\" + R579: \"FLIP (or born candle) AND PUSH. NOTHING ELSE\" + Nov 8 12:22 AM PT: \"the 'opening color' of the window or the candle has zero bearing on the trigger of the trade itself / candle flips green - push distance met ==== get in\" + R559 Nov 7 3:19 PM PT: \"the candle ALWAYS NEEDS TO BE THE SAME COLOR ... wick rejection is the ONLY instance she may enter without the candle our color\"): the RED FALLING 5M (no long) / GREEN RISING 5M (no short) refusal - this 5m candle measured from its open, with a 2-5m flip as its only way out - is gone from the main / rej read; her colour + push stays at the door and the send (fix951 / fix1032) */",
+    "why": "fix1079 (her read's flip and thirds filter ask her one thirds measure, thirdsRead463)",
+    "R": "R639"
   }
 ]

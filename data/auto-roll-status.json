@@ -1,0 +1,44 @@
+{
+ "at": "2026-10-05T23:21:24.631Z",
+ "leader": "sole10",
+ "current": "sole10",
+ "note": "AUTO: SOLE10 rolled onto Kalshi (best book of the last 12h: +$441 paper, 50/78 wins).",
+ "board": [
+  {
+   "book": "sole10",
+   "n": 78,
+   "win": 64,
+   "pnl": 441
+  },
+  {
+   "book": "sole15",
+   "n": 82,
+   "win": 62,
+   "pnl": 368
+  },
+  {
+   "book": "hold90",
+   "n": 67,
+   "win": 72,
+   "pnl": 318
+  },
+  {
+   "book": "original",
+   "n": 67,
+   "win": 72,
+   "pnl": 300
+  },
+  {
+   "book": "claude",
+   "n": 40,
+   "win": 78,
+   "pnl": 271
+  },
+  {
+   "book": "brk1",
+   "n": 17,
+   "win": 82,
+   "pnl": 267
+  }
+ ]
+}

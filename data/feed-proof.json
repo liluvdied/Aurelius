@@ -1,0 +1,43 @@
+{
+ "at": "2026-10-03T03:29:08.394Z",
+ "herChart": {
+  "vwap": 84552.18,
+  "price": 84580.73,
+  "at": "2026-10-03T03:28:48Z"
+ },
+ "VANTAGE:BTCUSD": {
+  "bars": 400,
+  "lastBarAgoMin": 4,
+  "last": 84580.78,
+  "00:00 UTC": 84603.95,
+  "17:00 ET": 84552.2
+ },
+ "OANDA:BTCUSD": {
+  "bars": 400,
+  "lastBarAgoMin": 394,
+  "last": 84433.5,
+  "00:00 UTC": null,
+  "17:00 ET": null
+ },
+ "COINBASE:BTCUSD": {
+  "bars": 400,
+  "lastBarAgoMin": 4,
+  "last": 84572.65,
+  "00:00 UTC": 84596.16,
+  "17:00 ET": 84551.6
+ },
+ "INDEX:BTCUSD": {
+  "bars": 400,
+  "lastBarAgoMin": 4,
+  "last": 84577.93,
+  "00:00 UTC": 84595.03,
+  "17:00 ET": 84567.55
+ },
+ "PEPPERSTONE:BTCUSD": {
+  "bars": 400,
+  "lastBarAgoMin": 4,
+  "last": 84582.18,
+  "00:00 UTC": 84600.06,
+  "17:00 ET": 84557.56
+ }
+}

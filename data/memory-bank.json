@@ -1,0 +1,383 @@
+{
+  "lessons": [
+    {
+      "id": "vwap-line",
+      "at": "2026-09-24T13:50:00Z",
+      "assets": [
+        "btc"
+      ],
+      "rule": "The center VWAP is the strongest band. Grade A Bitcoin is price already above that line with the target on it, which is a long. The mirror, price already below it with the target on it, is a short. Take it. The other bands do not cancel this.",
+      "why": "A Bitcoin long at the VWAP was left as a watch. The main line is the trade, not the outer bands."
+    },
+    {
+      "id": "bank-green",
+      "at": "2026-09-24T09:38:00Z",
+      "assets": [
+        "btc",
+        "gold"
+      ],
+      "rule": "Bank most trades at 75% profit. A 2× comes off at 80%, every time. 4× and over is not clipped at 75%. Bitcoin can be left alone when it is already $300 through the strike. Gold cannot. A gold band can take $5 back in two seconds, so a green gold trade banks at the band.",
+      "why": "A Bitcoin down was cashed at 50% because it was near a band, then went on to be worth more, about $300 under the target. A gold down that had been in profit was held and settled at zero."
+    },
+    {
+      "id": "size-33",
+      "at": "2026-09-24T09:13:00Z",
+      "assets": [
+        "btc",
+        "gold"
+      ],
+      "rule": "Live size is $33.30. Do not raise it until the tape stays calm and it is asked for. Kalshi is the only book. Polymarket gets one $5 hedge on the next Bitcoin trade, the other side under 50 cents, then it stops.",
+      "why": "Maintenance ended at 5:00 AM ET, not PT. $50 was too fast. $33.30 is the step."
+    },
+    {
+      "id": "knife-wait",
+      "at": "2026-09-24T09:03:00Z",
+      "assets": [
+        "btc",
+        "gold"
+      ],
+      "rule": "If Bitcoin or gold is selling or buying violently through the bands, do not enter the first one. Let it clear two bands, then enter at a band.",
+      "why": "The first tag in a violent run gets run over. The entry is the later band, after a couple have already gone."
+    },
+    {
+      "id": "size-when-calm",
+      "at": "2026-09-24T09:03:00Z",
+      "assets": [
+        "btc",
+        "gold"
+      ],
+      "rule": "Do not raise size while Bitcoin is blowing through bands, or in the first minutes after Kalshi comes back. Leave size at the working number until the tape is calm and it is asked for.",
+      "why": "Size was moved to $50 at the reopen. At 09:00:42 UTC a $44.73 Bitcoin down, 131.57 contracts, filled on KXBTC15M-26SEP240515-15 before it was put back to $20."
+    },
+    {
+      "id": "manual-is-not-the-book",
+      "at": "2026-09-24T09:03:00Z",
+      "assets": [
+        "btc",
+        "gold"
+      ],
+      "rule": "A manual click, including a one-minute Gemini entry or a first test of SOL or ETH, is not a strategy miss. Do not change the book off it.",
+      "why": "Those were the user's trades. The book was not slipping."
+    },
+    {
+      "id": "no-new-setups",
+      "at": "2026-09-24T09:03:00Z",
+      "assets": [
+        "btc",
+        "gold"
+      ],
+      "rule": "Do not add opportunity types while the current book is working. Park the idea until it is asked for.",
+      "why": "The book was already past expectations. A fast 4× double was noted, not turned into a new hunt."
+    },
+    {
+      "id": "kalshi-one-side",
+      "at": "2026-09-24T09:03:00Z",
+      "assets": [
+        "btc",
+        "gold"
+      ],
+      "rule": "One order per symbol, one side. Never place the opposite side on Kalshi.",
+      "why": "Small opposite orders were canceling the banks off the book."
+    },
+    {
+      "id": "poly-held",
+      "at": "2026-09-24T09:03:00Z",
+      "assets": [
+        "btc"
+      ],
+      "rule": "Polymarket is not the main book. Hedges stay off until it is trusted again.",
+      "why": "Called sus after the maintenance window. Kalshi is the book."
+    },
+    {
+      "id": "gemini-predictions",
+      "at": "2026-09-24T09:03:00Z",
+      "assets": [
+        "btc"
+      ],
+      "rule": "An early Gemini sale sits in Predictions until that window settles. A cash number that has not moved is not a missing payout.",
+      "why": "Closed longs showed paid out while the cash pill stayed put until the bell."
+    }
+  ],
+  "events": [
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP261945-45",
+      "note": "Bitcoin is selling through the bands. Letting it clear two before an entry. 1.8 bands so far.",
+      "at": "2026-09-26T23:30:51.377Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP261930-30",
+      "note": "Bitcoin is buying through the bands. Letting it clear two before an entry. 1.5 bands so far.",
+      "at": "2026-09-26T23:17:19.172Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP261500-00",
+      "note": "Bitcoin is selling through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-26T18:45:10.289Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP261445-45",
+      "note": "Bitcoin is selling through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-26T18:30:05.897Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP261400-00",
+      "note": "Bitcoin is buying through the bands. Letting it clear two before an entry. 1.8 bands so far.",
+      "at": "2026-09-26T17:51:33.862Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP252345-45",
+      "note": "Bitcoin is buying through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-26T03:30:35.115Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP252345-45",
+      "note": "Bitcoin is buying through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-26T03:30:34.078Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP252345-45",
+      "note": "Bitcoin is buying through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-26T03:30:15.812Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP252315-15",
+      "note": "Bitcoin is selling through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-26T03:01:40.329Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP252315-15",
+      "note": "Bitcoin is selling through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-26T03:01:19.769Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP251815-15",
+      "note": "Bitcoin is selling through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T22:02:53.006Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP251815-15",
+      "note": "Bitcoin is selling through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T22:01:19.775Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP251500-00",
+      "note": "Gold is buying through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T18:49:01.149Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP251000-00",
+      "note": "Bitcoin is selling through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T13:46:14.364Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP250945-45",
+      "note": "Bitcoin is buying through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-25T13:36:14.270Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250945-45",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.8 bands so far.",
+      "at": "2026-09-25T13:31:08.380Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250945-45",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-25T13:30:17.735Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250930-30",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.5 bands so far.",
+      "at": "2026-09-25T13:21:32.731Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250930-30",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.5 bands so far.",
+      "at": "2026-09-25T13:21:24.218Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250930-30",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.6 bands so far.",
+      "at": "2026-09-25T13:19:47.381Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250915-15",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-25T13:00:30.189Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP250845-45",
+      "note": "Bitcoin is buying through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T12:31:14.461Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP250845-45",
+      "note": "Bitcoin is buying through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T12:31:13.965Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250830-30",
+      "note": "Gold is buying through the bands. Letting it clear two before an entry. 1.6 bands so far.",
+      "at": "2026-09-25T12:21:11.026Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250830-30",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-25T12:20:39.348Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250830-30",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T12:16:34.019Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250830-30",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T12:16:32.004Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250745-45",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.6 bands so far.",
+      "at": "2026-09-25T11:39:09.942Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250745-45",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T11:35:07.054Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250745-45",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-25T11:30:16.164Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "btc",
+      "ticker": "KXBTC15M-26SEP250745-45",
+      "note": "Bitcoin is selling through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-25T11:30:09.981Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250730-30",
+      "note": "Gold is selling through the bands. Letting it clear two before an entry. 1.5 bands so far.",
+      "at": "2026-09-25T11:20:57.098Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250715-15",
+      "note": "Gold is buying through the bands. Letting it clear two before an entry. 1.9 bands so far.",
+      "at": "2026-09-25T11:02:09.404Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250715-15",
+      "note": "Gold is buying through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T11:01:58.900Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250715-15",
+      "note": "Gold is buying through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T11:01:54.388Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250715-15",
+      "note": "Gold is buying through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T11:01:46.302Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250715-15",
+      "note": "Gold is buying through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T11:01:38.899Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250715-15",
+      "note": "Gold is buying through the bands. Letting it clear two before an entry. 1.7 bands so far.",
+      "at": "2026-09-25T11:01:30.297Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250715-15",
+      "note": "Gold is buying through the bands. Letting it clear two before an entry. 1.5 bands so far.",
+      "at": "2026-09-25T11:00:08.753Z"
+    },
+    {
+      "id": "knife-wait",
+      "asset": "gold",
+      "ticker": "KXGOLD15M-26SEP250715-15",
+      "note": "Gold is buying through the bands. Letting it clear two before an entry. 1.5 bands so far.",
+      "at": "2026-09-25T11:00:08.586Z"
+    }
+  ]
+}

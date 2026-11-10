@@ -1,0 +1,34 @@
+[
+  {
+    "id": "KXBTC15M-26OCT012230-30:down:150",
+    "at": "2026-10-02T02:18:57.663Z",
+    "asset": "btc",
+    "side": "down",
+    "pattern": "$150 under the strike",
+    "result": "open",
+    "ticker": "KXBTC15M-26OCT012230-30",
+    "multiple": 1.14
+  },
+  {
+    "id": "KXBTC15M-26OCT012215-15:up:150",
+    "at": "2026-10-02T02:08:43.464Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "$150 over the strike",
+    "result": "yes",
+    "ticker": "KXBTC15M-26OCT012215-15",
+    "multiple": 1.06,
+    "profit": 1.5
+  },
+  {
+    "id": "KXBTC15M-26OCT012200-00:up:150",
+    "at": "2026-10-02T01:51:10.217Z",
+    "asset": "btc",
+    "side": "up",
+    "pattern": "$150 over the strike",
+    "result": "yes",
+    "ticker": "KXBTC15M-26OCT012200-00",
+    "multiple": 1.03,
+    "profit": 0.75
+  }
+]

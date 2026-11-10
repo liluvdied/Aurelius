@@ -1,0 +1,17 @@
+{
+ "enabled": false,
+ "addOns": true,
+ "note": "fix775 BESTIE (Love Nov 5 2026 ~9:25-9:34 PM PT): V.111 - 2's BEST-table takes go live on Kalshi at $5 as BESTIE. enabled false = nothing new goes to Kalshi (V.111 - 2's paper keeps running). addOns true = your Add-on boxes apply to BESTIE's positions like every book (false = none). Not locked - change any time.",
+ "minTrades": 5,
+ "minHitPct": 0,
+ "note786": "fix786 (Love Nov 6 2026 ~2:35 AM PT: 'yes bb over 10 trades over 65%'): a set up is on BESTIE's list only when a STATS box (THIS WEEK, LAST 4 DAYS, PRIME BOOK) has it in BEST with minTrades+ trades and MORE than minHitPct% won. 11 / 65 = more than 10 trades, over 65%. Not locked - change any time.",
+ "skipIfWorstAnywhere": true,
+ "note787": "fix787 (Love Nov 6 2026 ~2:56 AM PT, her card: 'Skip it if WORST anywhere'): a set up in ANY STATS box's WORST table is off BESTIE's list even if another box has it BEST. false = BEST in one box is enough. Not locked.",
+ "note790": "fix790 (Love Nov 6 2026 ~3:26 AM PT: 'and she is still not doing her add ons bb'): addOns true - your Add-on boxes apply to BESTIE's positions like every book. false = none. Not locked.",
+ "ownRows797": true,
+ "note797": "fix797 (Love Nov 6 2026 ~5:21 AM PT: 'bestie needs to take her own best set ups'): true = BESTIE's list is built only from V.111 - 2's own settled trades (more than 10 trades, over 65%, never WORST). false = the STATS boxes again. Not locked.",
+ "targetGap799": true,
+ "note799": "fix799 (Love Nov 6 2026 ~5:18 AM PT: 'she is supposed to have the price difference on kalshi deducted from tradingview's price'): true = BESTIE's takes are refused when they'd have to cross an unbroken band to reach Kalshi's target in her chart's terms (main's check). false = off. Not locked.",
+ "note841": "fix841 (Love Nov 6 2026 ~5:06 PM PT: 'just put her on the trades that have been most successful for her bb'): BESTIE's list = every V.111 - 2 set up in profit with 5+ settled trades (never WORST) - it updates itself as each set up's record crosses the bar. Not locked.",
+ "note840": "fix840 (Love Nov 6 2026 ~4:59 PM PT: 'no we took her off for main and rej yesterday bb'): enabled false - BESTIE sends nothing new to Kalshi; her card reads PAPER; V.111 - 2 and her list keep scoring on paper. true = live again (her yes). Not locked."
+}

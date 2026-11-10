@@ -1,0 +1,105 @@
+{
+ "at": "2026-11-10T08:26:46.585845+00:00",
+ "ptDay": "2026-11-10",
+ "from": "2026-10-27T08:26:46.585845Z",
+ "trades": 2417,
+ "club70": [],
+ "herRule": [
+  {
+   "key": "btc|up|N-m rejection off|5m PP",
+   "n": 23,
+   "hit": 0.652,
+   "pnl": 60.61
+  }
+ ],
+ "ladder": [
+  {
+   "key": "gold|up|Failed break below|5m PP",
+   "n": 21,
+   "hit": 0.667,
+   "n24": 5,
+   "hit24": 0.8,
+   "pnl": 44.97
+  },
+  {
+   "key": "btc|down|Break below|-1σ",
+   "n": 6,
+   "hit": 0.667,
+   "n24": 3,
+   "hit24": 0.667,
+   "pnl": -55.72
+  },
+  {
+   "key": "btc|down|Break below|5m PP",
+   "n": 126,
+   "hit": 0.619,
+   "n24": 24,
+   "hit24": 0.583,
+   "pnl": 553.49
+  },
+  {
+   "key": "btc|down|Candle falling|-",
+   "n": 10,
+   "hit": 0.6,
+   "n24": 1,
+   "hit24": 0.0,
+   "pnl": 109.5
+  },
+  {
+   "key": "btc|up|Break above|-2σ",
+   "n": 10,
+   "hit": 0.6,
+   "n24": 1,
+   "hit24": 1.0,
+   "pnl": 576.01
+  },
+  {
+   "key": "gold|up|Break above|5m PP",
+   "n": 61,
+   "hit": 0.557,
+   "n24": 8,
+   "hit24": 0.75,
+   "pnl": 335.6
+  },
+  {
+   "key": "gold|down|Rejected down off|5m PP",
+   "n": 76,
+   "hit": 0.553,
+   "n24": 25,
+   "hit24": 0.52,
+   "pnl": 110.91
+  },
+  {
+   "key": "gold|up|Rejected up off|5m PP",
+   "n": 68,
+   "hit": 0.544,
+   "n24": 5,
+   "hit24": 0.6,
+   "pnl": 327.78
+  },
+  {
+   "key": "gold|down|Failed break above|5m PP",
+   "n": 15,
+   "hit": 0.533,
+   "n24": 3,
+   "hit24": 0.667,
+   "pnl": 92.32
+  },
+  {
+   "key": "btc|down|Break below|Red zone",
+   "n": 18,
+   "hit": 0.5,
+   "n24": 5,
+   "hit24": 0.6,
+   "pnl": 602.19
+  },
+  {
+   "key": "btc|up|Rejected up off|Green zone",
+   "n": 41,
+   "hit": 0.463,
+   "n24": 3,
+   "hit24": 0.667,
+   "pnl": 81.11
+  }
+ ]
+}
