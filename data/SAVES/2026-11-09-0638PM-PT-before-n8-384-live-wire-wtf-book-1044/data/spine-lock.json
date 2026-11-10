@@ -1,9 +1,9 @@
 {
- "at": "2026-11-09T17:40:37.529972+00:00",
+ "at": "2026-11-10T02:17:58.703717+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "8c38fabb3183714a"
+  "recon.ts": "489016c24d8da6b4"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -814,6 +814,12 @@
    "by": "Love",
    "quote": "Love Nov 8 2026 2:54 PM PT: \"she said it's still operating on the candle open. so if the candle opening price is $100 away , it could be green that whole time and not enter until after it crosses the open by $50. it's a huge flaw hun that needs to be addressed / set it to distance from the band like we discussed\" + \"the high and low of that candle not the open\" + 7:36 AM PT: \"the color check shouldn't be using the open as a barometer hun it needs to be the high or low of the candle. not the open\" + Love Nov 8 2026 5:28 PM PT: \"no no book does candle open period hun no no no 😹💘 / delayed included we don't do that at this desk 👇😹💓 / and no set all paper tickets to $20 always , i noticed some are at $1 / $20 for all of them pls / and oh my god no that's a huge move absolutely not lol same push distances bb 💓\" (R596, fix1038)",
    "recon.ts": "8c38fabb3183714a"
+  },
+  {
+   "at": "2026-11-10T02:17:58.703717+00:00",
+   "by": "Love",
+   "quote": "Love Nov 9 2026 9:30 AM PT: \"yeah 2.5 is fine bb 💓 / and yes just the 1 default 2.8x of the box amount i set , / then the second one goes to a genuine entry trigger 🏁\" + Love Nov 8 2026 7:04 PM PT: \"yes babez same side 😹💓 / and yes any band provided the multiple is above 2.8 - with a .2 margin of allowance , if price taps a band and rejects there before 2.8 is met, 2.5 - 2.6 is cool bb have her do them / sometimes they’ll be 3 sometimes they’ll be 8 / no limit on them tho bb , any band any entry trigger / and yes never worse than our initial one for sure no / all books / do $3 at 2.8x by default / and she’ll do the next one if it’s a valid rejection and push up :)\" + Love Nov 8 2026 6:55 PM PT: \"and babez i really want to implement a second entry trigger for the add ons instead of doing them by default. adding on to clearly losing trades is not the move / she does an add on at a band like she would enter any other trade , flip or born candle with a push off a band = add on / whatever the multiple is at\" (R602, fix1043)",
+   "recon.ts": "489016c24d8da6b4"
   }
  ],
  "R": "R266",

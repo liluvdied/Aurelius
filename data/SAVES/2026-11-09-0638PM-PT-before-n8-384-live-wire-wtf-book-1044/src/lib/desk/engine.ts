@@ -2410,7 +2410,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           const try38: Record<string, number> = g.__aureliusTry38 || (g.__aureliusTry38 = {});
           const cap38 = Number(a38?.maxAsk) > 0 && Number(a38.maxAsk) < 1 ? Number(a38.maxAsk) : 0.263;
           const r38g1029 = rung1029(e1029.px, cap38 > 0 ? 1 / cap38 : 0, ask1029, e1029.at, Date.now()); // fix1029 add-on 2 (box 2)
-          if (a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === "btc" || id === "gold") && (addReg[row.ticker] || r1g1029.passed /* fix1029: an add-on 1 rung her entry already passed does not hold add-on 2 back */) && r38g1029.go /* fix1029 */ && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {
+          if (false /* fix1043 (her Nov 9 9:30 AM words: only the 1 default 2.8x of her box amount; every later add-on needs a genuine entry trigger - see TRIGGER ADD-ON below) */ && a38?.on === true && ao?.on && !aoTwin && !aoOne717 /* fix717 */ && (id === "btc" || id === "gold") && (addReg[row.ticker] || r1g1029.passed /* fix1029: an add-on 1 rung her entry already passed does not hold add-on 2 back */) && r38g1029.go /* fix1029 */ && !add38[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try38[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap38 && aoLeft >= (Number(ao.minLeft) || 5) && !aoBestie775 /* fix775 */) {
             try38[row.ticker] = Date.now();
             void (async () => {
               let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
@@ -2430,7 +2430,7 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
           const try3: Record<string, number> = g.__aureliusTry3 || (g.__aureliusTry3 = {});
           const cap3 = a3m >= 1.5 ? Math.round((1 / a3m) * 10000) / 10000 : 0;
           const r3g1029 = rung1029(e1029.px, a3m, ask1029, e1029.at, Date.now()); // fix1029 add-on 3 (box 3)
-          if (a3on && a3d >= 1 && cap3 > 0 && r3g1029.go /* fix1029 */ && !aoTwin && !aoOne717 && (id === "btc" || id === "gold") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5) && !aoBestie775 /* fix775 */) {
+          if (false /* fix1043: box 3 no longer fires at its multiple - every later add-on needs a genuine entry trigger */ && a3on && a3d >= 1 && cap3 > 0 && r3g1029.go /* fix1029 */ && !aoTwin && !aoOne717 && (id === "btc" || id === "gold") && !add3[row.ticker] && botOwnsPosition(row) && !tpSell && !(Date.now() - (try3[row.ticker] || 0) < 5000) && bid > 0.02 && bid <= cap3 && aoLeft >= (Number(ao?.minLeft) || 5) && !aoBestie775 /* fix775 */) {
             try3[row.ticker] = Date.now();
             void (async () => {
               let r3: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
@@ -2438,6 +2438,23 @@ async function cashHeld(assets?: Record<string, { spot?: number; target?: number
               if (r3?.ok) add3[row.ticker] = Date.now();
               try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: `Add-on 3 at ${a3m}x (Love Nov 5)`, bid, add3: true, ...(r3 || {}) }) + "\n"); } catch {}
             })();
+          }
+        } catch {}
+        // fix1043 HER TRIGGER ADD-ON (Love Nov 9 2026 9:30 AM PT: "yeah 2.5 is fine bb / and yes just the 1 default 2.8x of the box amount i set , then the second one goes to a genuine entry trigger" + Love Nov 8 2026 7:04 PM PT: "yes babez same side / and yes any band provided the multiple is above 2.8 - with a .2 margin of allowance , if price taps a band and rejects there before 2.8 is met, 2.5 - 2.6 is cool bb have her do them / sometimes they'll be 3 sometimes they'll be 8 / no limit on them tho bb , any band any entry trigger / and yes never worse than our initial one for sure no / all books / do $3 at 2.8x by default / and she'll do the next one if it's a valid rejection and push up" + Love Nov 8 2026 6:55 PM PT: "i really want to implement a second entry trigger for the add ons instead of doing them by default. adding on to clearly losing trades is not the move / she does an add on at a band like she would enter any other trade , flip or born candle with a push off a band = add on / whatever the multiple is at"): after her one default add-on (box 1 at 2.8x, above), every later add-on needs a GENUINE ENTRY TRIGGER: her read (recon.ts, main / rej / delayed) saw a new setup on the SAME side as her position - her flip or born candle + her push off any band, through her read's walls - and it passes her door (bandLockCheck) now; the ask pays 2.5x or more (her .2 allowance under 2.8x); priced in whole cents STRICTLY better than her entry (trigPx1043, never at or worse - a cheaper entry still takes trigger add-ons under its own price); 5 s after her entry; no count limit - one add-on per distinct trigger (setup + 5m candle); $ = her Add-on 2 box (on / $), never over $5; every umpire / LIVE / wire check of addOnBuy600.
+        try {
+          const a2t = (globalThis as any).__addon664?.s?.addOn2; const tOn1043 = a2t?.on === true, tD1043 = Math.max(1, Math.min(5, Math.round(Number(a2t?.dollars) || 0)));
+          const T1043 = ((globalThis as any).__trig1043 || {})[row.ticker]; const used1043: Record<string, number> = g.__used1043 || (g.__used1043 = {}); const try1043: Record<string, number> = g.__try1043 || (g.__try1043 = {});
+          const { trigPx1043 } = await import("./xrp5m961"); const rg1043 = trigPx1043(e1029.px, ask1029, e1029.at, Date.now()); const k1043 = T1043 ? `${row.ticker}|${T1043.label}|${Math.floor(Number(T1043.at) / 300000)}` : "";
+          if (tOn1043 && T1043 && T1043.side === mySide && Date.now() - Number(T1043.at) <= 5000 && !used1043[k1043] && rg1043.go && !aoOne717 && (id === "btc" || id === "gold") && botOwnsPosition(row) && !tpSell && !(Date.now() - (try1043[row.ticker] || 0) < 5000) && bid > 0.02 && aoLeft >= (Number(ao?.minLeft) || 5) && !aoBestie775 /* fix775 */) {
+            try1043[row.ticker] = Date.now();
+            let door1043: { ok: boolean; reason?: string } = { ok: false, reason: "door unreadable" }; try { door1043 = (await import("./bandlock")).bandLockCheck(String(T1043.lane), id, mySide, row.ticker, String(T1043.label)) as any; } catch {}
+            if (!door1043.ok) { try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: `trigger add-on refused at her door: ${String(door1043.reason || "").slice(0, 160)}`, trigger1043: T1043.label, bid, ok: false }) + "\n"); } catch {} }
+            else { used1043[k1043] = Date.now(); void (async () => {
+              let rT: { ok?: boolean; reason?: string; filled?: number; px?: number; ask?: number } | null = null;
+              try { rT = await live.addOnBuy600(row.ticker, mySide, tD1043, rg1043.cap, true, e1029.px); } catch (err) { rT = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : "trigger add-on failed" }; }
+              if (!rT?.ok) delete used1043[k1043]; // a miss looks again on the next trigger tick (5 s)
+              try { appendFileSync(join(process.cwd(), "data", "addon-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: `trigger add-on (fix1043): ${T1043.label}`, trigger1043: T1043.label, lane: T1043.lane, bid, ...(rT || {}) }) + "\n"); } catch {}
+            })(); }
           }
         } catch {}
         // THE SECOND ADD-ON AT 8 PM BTC (fix455, Love Oct 29 2026 10:17 AM PT: "we can double up on 8pm hun , $10 initial entry and $5 initial add on - $5 secondary add on at the next band price encounters and rejects. same way we have our entry logic wired. candle flips near a band = second add on of $5"): the Oct 28 second add-on (taken out in the 6:45 PM restore) brought back for the hours in live-switch

@@ -579,7 +579,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       let execd = false;
       try { const od = (globalThis as any).__oneDoor; if (od instanceof Set && od.has(m.ticker)) execd = true; } catch {}
       try { const dX = JSON.parse(readFileSync(D("live-book-done.json"), "utf8")); for (const kX of Object.keys(dX)) { const vX = dX[kX]; if (kX.startsWith(m.ticker + ":" + lane) && vX && (vX.status === "filled" || vX.status === "partial" || vX.status === "resting")) execd = true; } } catch { execd = true; }
-      if (execd) return false;
+      if (execd) { const trig1042 = () => { try { if (lane === "recon-tog" || lane === "recon-rej" || lane === "recon-dly") ((globalThis as any).__trig1043 ||= {})[m.ticker] = { side: String(look.side), label: String(look.label || ""), lane, at: Date.now() }; } catch {} }; /* fix1043 her add-on trigger: the read saw a genuine entry setup (her flip or born candle + push off a band, through her read's walls) on a window she already holds */ trig1042(); return false; }
       freeId = `${m.ticker}:${lane}:n${rows.filter((r) => r.ticker === m.ticker && r.lane === lane).length + 1}`;
     }
     // fix624 (Love Nov 1 2026 9:37 PM PT: "It uses the main book's free-to-trade rule, the main book's one-call-per-window rule ... A closed or unfilled call frees the twin the same way it frees main."): the twin reads main's order record, because she never reaches Kalshi herself. Her Nth call pairs with main's Nth.
@@ -593,7 +593,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       // NOT JUST ONCE (Oct 20 ~7:51 PM PT, Love: "price now broke the vwap and pink down, she should short here" - gold's 7:45 call had already been re-aimed
       // long once and could not turn again): her law is one EXECUTED direction per window, so an unfilled call follows her bones as often as they turn.
       if (freshSameSide463(lane, String(prior.side), String(prior.label), look)) { /* fix463 (R191): an independent same-side read replaces the old unfilled call - the fill / order-on-the-wire / floor checks below still decide */ } else
-      if (prior.side === look.side) return false;
+      if (prior.side === look.side) { const trig1042 = () => { try { if (lane === "recon-tog" || lane === "recon-rej" || lane === "recon-dly") ((globalThis as any).__trig1043 ||= {})[m.ticker] = { side: String(look.side), label: String(look.label || ""), lane, at: Date.now() }; } catch {} }; /* fix1043 her add-on trigger: the read saw a genuine entry setup (her flip or born candle + push off a band, through her read's walls) on a window she already holds */ trig1042(); return false; }
       try { if (((globalThis as any).__reaim373 || {})[m.ticker + ":" + lane] && prior.side === "down" && look.side === "up") return false; } catch {} // fix373: a pink-rejection re-aim sticks - main's old long read never turns her back
       try { if (((globalThis as any).__reaim467 || {})[m.ticker + ":" + lane] && prior.side === "up" && look.side === "down") return false; } catch {} // fix467 (R213): the mirror of fix373 - a pink-rejection re-aim to a long sticks too
       // ONE CALL, NEVER RE-AIMED (Oct 21 ~11:42 AM PT, Love: "please stop having it flip the trades it says she took ... i need it to stay the one trade she
