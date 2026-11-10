@@ -3040,5 +3040,35 @@
   "status": "missed",
   "final": true,
   "reason": "window ended before it filled"
+ },
+ "KXGOLD15M-26NOV100115-15:recon-tog:KXGOLD15M-26NOV100115-15:recon-rjnp": {
+  "at": "2026-11-10T06:11:11.258Z",
+  "ticker": "KXGOLD15M-26NOV100115-15",
+  "side": "up",
+  "status": "blocked",
+  "reason": "NOT HER COLOUR (fix951): \"Rejected up off session VWAP\" - neither the 2m nor the 5m candle is green at 4123.79 (only a wick rejection may enter without her colour) - no entry.",
+  "firstReason": "GOLD CLIMB OVER PINK: 2 candles hit the pink and rejected on an up slope (last at 4121.76) with gold 4121.44 over it - no short until price breaks down through pink by 10% of the channel (fix560).",
+  "firstTryAt": "2026-11-10T06:10:19.424Z",
+  "bookedAt": "2026-11-10T06:10:17.273Z",
+  "tries": 96,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXGOLD15M-26NOV100115-15:recon-rej:KXGOLD15M-26NOV100115-15:recon-rej": {
+  "at": "2026-11-10T06:10:19.431Z",
+  "ticker": "KXGOLD15M-26NOV100115-15",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the DELAYED twin takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26NOV100115-15:recon-tog:KXGOLD15M-26NOV100115-15:recon-tog": {
+  "at": "2026-11-10T06:10:19.488Z",
+  "ticker": "KXGOLD15M-26NOV100115-15",
+  "side": "up",
+  "status": "held",
+  "reason": "PINK SLIDE (fix658): longs only off the pink while it slides - Break above session VWAP waits for the pink rejection. (no short: GOLD CLIMB OVER PINK: gold 4125.28 is still over the pink (4122.80) since her climb - no short until price breaks down through pink by 10% of the channel (fix560).)",
+  "firstReason": "GOLD CLIMB OVER PINK: 2 candles hit the pink and rejected on an up slope (last at 4121.76) with gold 4121.44 over it - no short until price breaks down through pink by 10% of the channel (fix560)."
  }
 }

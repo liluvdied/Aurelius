@@ -1,5 +1,5 @@
 {
- "at": "2026-11-10T06:00:12.577963+00:00",
+ "at": "2026-11-10T06:07:42.695872+00:00",
  "her_words": "make sure i am not reported there is a change unless it is one i solicited - intentionally. stabilize the structure, reinforce the bearings, reinforce the code.",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -8,7 +8,7 @@
   "auto.ts": "ec817b827977b355",
   "autoroll.ts": "78fb6514980c1219",
   "band-check.ts": "b237ae9c8845f659",
-  "bandlock.ts": "138c2bf3359cac75",
+  "bandlock.ts": "2bc49ff157ee29a3",
   "bankreplay.ts": "5d765962480ec439",
   "book.ts": "b68263872097dcb5",
   "bookhist.server.ts": "fe5b6341c3b83c94",
@@ -83,7 +83,7 @@
   "probe.ts": "9c0674e13b6c4516",
   "quotes.ts": "6d2848f7094ad404",
   "realtwin.ts": "2bf4098947979028",
-  "recon.ts": "9a54833ec9d3f7a2",
+  "recon.ts": "d3d28ff0facec79a",
   "research.ts": "cd5d69f9cb3ff595",
   "review.ts": "ed486d1c8a4113c0",
   "riptap.ts": "1c967350e6259666",
@@ -190,8 +190,8 @@
   "maxDollars": "6b86b273ff",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "6f29692164",
-  "note": "d6126203bc",
+  "at": "7dc92de79a",
+  "note": "34fb5e33ce",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
   "blockedSetups": "4f53cda18c",
@@ -209,7 +209,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "31e09aa209",
+  "liveBook": "aeb9b54ac8",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -391,10 +391,10 @@
  },
  "configFiles": {
   "data/HER-ANSWERS-2.json": "770a121597eb8e17",
-  "data/spine-lock.json": "c2c5a9bc5ee7e8cc",
+  "data/spine-lock.json": "15a6fe1f434a186d",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "1e433936a295dff4"
+  "data/live-switch.json": "90f78677d6f4bec6"
  },
  "sealLiveBook": "18713feb41",
  "sealNote": "sealLiveBook = sha256(json.dumps(liveBook minus dollars/note/at/since, sort_keys=True))[:10]; the wire seal (bandlock sealDrift) checks every live-switch key against config except live/maxDollars/note/at. Update both in the same breath as any settings change Love asks for."

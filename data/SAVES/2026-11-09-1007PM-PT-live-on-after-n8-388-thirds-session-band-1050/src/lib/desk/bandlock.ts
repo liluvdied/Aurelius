@@ -191,6 +191,16 @@ export function lockPctFor(asset: string, width: number): number {
   if (asset === "gold") return 0.33; /* fix237 (Oct 25 ~9:18 PM PT, Love: "fml 33% is good bb"): gold channels under $10 lock their top/bottom 33% */ /* fix235 (Oct 25 ~8:48 PM PT, Love: "ehh let's make that top 40 and bottom 40 bb / that's better"): gold channels under $10 lock their top/bottom 40% (the $2 always sits inside 40% once the channel is $5+) */ /* fix234 (Oct 25 ~8:46 PM PT, Love: "let's make it 33% under $10 or $2 , whichever comes first" - the 8:30 PM gold short sat at 31% but $2.11 off +2σ): under $10 the zone is the bottom/top 33% OR $2 from the band, whichever reaches further ($2 still capped at 40%) */ /* fix108 (Oct 22 ~7:40 PM PT, Love: "just a temporary $2 band tolerance on gold pls" + card): flat $2 from the band (capped at 40% of a tiny channel); was: */ if (asset === "gold") return width > 25 ? 0.15 : 0.2; /* fix95 (Oct 22 ~5:24 PM PT, Love: "let's lower it to 20% setting for the time being for gold hun my rules will block every trade atm"): 20% under $10 too (was 33%) */ /* fix90 (Oct 22 ~1:48 PM PT, Love card "Yes, 15% over $25": 15% when session bands exceed $25 apart) */ // Oct 22 ~6:10 AM PT, Love: "top 20% and bottom 20% when bands exceed $10 apart" (was a 33%->20% slide from $7.50)
   return 0.33;
 }
+// fix1050 HER THIRDS, SESSION BAND TO SESSION BAND AS HER CHART DRAWS THEM (Love Nov 9 2026 8:16 PM PT: "session band to session band. is how she calculates thirds. NO OTHER BANDS ARE IN THAT CALCULATION. EXAMPLE = SITTING AT A BAND / PRICE BREAKS THRU / FALLS = TOP THIRD"): her carried session bands (fix617, until $180 BTC / $5 gold) join the channel, and price sitting
+// at a session band (within 10% of her session band width) and leaving it makes that band the edge it is leaving: a short at a band = top of the channel under it, a long at a band = bottom of the one over it.
+export function carriedLines1050(asset: string): Line[] { try { return carryExtra617(asset).map((l) => ({ name: l.name, price: l.price, unit: l.unit } as Line)); } catch { return []; } }
+export function atBand1050(asset: string, L: Line[], chU: Line[], tick: number, side: string, up: Line, dn: Line): { up: Line; dn: Line } {
+  const vw = (L || []).find((l) => String(l.name) === "session VWAP"), u1 = (L || []).find((l) => String(l.name) === "+1σ");
+  const sd = vw && u1 ? Math.abs(Number(u1.price) - Number(vw.price)) : 0, t = sd > 0 ? 0.1 * sd : asset === "btc" ? 5 : 0.25;
+  if (side === "down" && tick - dn.price <= t) { const nb = chU.filter((l) => l.price < dn.price).sort((a, b) => b.price - a.price)[0]; if (nb) return { up: dn, dn: nb }; }
+  if (side === "up" && up.price - tick <= t) { const na = chU.filter((l) => l.price > up.price).sort((a, b) => a.price - b.price)[0]; if (na) return { up: na, dn: up }; }
+  return { up, dn };
+}
 export function channelOnly(asset: string, L: Line[], tick: number, side: string, Bk: Map<string, "up" | "down">): string {
   if (!(tick > 0) || !(side === "up" || side === "down")) return "";
   let brokeNow = new Set<string>();
@@ -241,11 +251,12 @@ export function channelOnly(asset: string, L: Line[], tick: number, side: string
   } catch {}
   // CHANNEL EDGES ARE UNBROKEN ONLY (Oct 20 ~8:02 AM PT, Love): a standing-broken band is not a barrier and not a channel edge -
   // the 8:00:51 AM gold short read 37% against a BROKEN +2sigma top where her chart read 20% against the true unbroken edges.
-  const chU = S; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn
+  const chU = [...S, ...(typeof carriedLines1050 === "function" ? carriedLines1050(asset) : [])]; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn - fix1050: her carried session bands too (Love Nov 9 2026 8:16 PM PT: "session band to session band. is how she calculates thirds. NO OTHER BANDS ARE IN THAT CALCULATION. EXAMPLE = SITTING AT A BAND / PRICE BREAKS THRU / FALLS = TOP THIRD")
   // fix649 (Love Nov 4 2026 4:02 PM PT: "Fix the calculation so it matches the chart." + "even after that move (the blue line i drew) it was still not 66% of the way through the channel"): the band this candle just broke in the trade's direction is the BACK edge of the channel price is now in, band to band as drawn - it no longer vanishes and merges two channels into one. 3:50:35 PM BTC short at 80487.07 read 32% of -1σ 80389.58 -> +1σ 80689.84 ($300, the broken VWAP 80539.66 skipped); her chart: 65% of -1σ -> VWAP ($150). The edge in front stays unbroken only.
   const bk649 = wallLines(asset, chanL(asset, L)).filter((l) => Number(l.price) > 0 && isChanBand(asset, l) && brokeNow.has(l.name)); // fix649
-  const up = [...chU.filter((l) => l.price > tick), ...(side === "down" ? bk649.filter((l) => l.price > tick) : [])].sort((a, b) => a.price - b.price)[0], dn = [...chU.filter((l) => l.price < tick), ...(side === "up" ? bk649.filter((l) => l.price < tick) : [])].sort((a, b) => b.price - a.price)[0]; // fix649
+  let up = [...chU.filter((l) => l.price > tick), ...(side === "down" ? bk649.filter((l) => l.price > tick) : [])].sort((a, b) => a.price - b.price)[0], dn = [...chU.filter((l) => l.price < tick), ...(side === "up" ? bk649.filter((l) => l.price < tick) : [])].sort((a, b) => b.price - a.price)[0]; // fix649
   if (!up || !dn) return "";
+  if (typeof atBand1050 === "function") ({ up, dn } = atBand1050(asset, L, chU, tick, side, up, dn)); // fix1050 sitting at a band and leaving it = that band is the edge
   const frac = (tick - dn.price) / (up.price - dn.price);
   const cp = lockPctFor(asset, up.price - dn.price); // sliding by width (Oct 20 ~1:27 PM PT, Love)
   if (side === "up" && frac >= 1 - cp) return `price is in the top ${Math.round(cp * 100)}% of her channel (${dn.name} ${dn.price.toFixed(2)} to ${up.name} ${up.price.toFixed(2)}) - no long INTO ${up.name} ($${(up.price - tick).toFixed(2)} above, unbroken) - shorts only here`;
@@ -393,10 +404,10 @@ export function awayVerdict(asset: string, L: Line[], tick: number, side: string
   const S = wallFor(wallLines(asset, L).filter((l) => Number(l.price) > 0 && isSessBand(l) && !brokeNow.has(l.name)), Bk, tick, side);
   // CHANNEL EDGES ARE UNBROKEN ONLY (Oct 20 ~8:02 AM PT, Love): a standing-broken band is not a barrier and not a channel edge -
   // the 8:00:51 AM gold short read 37% against a BROKEN +2sigma top where her chart read 20% against the true unbroken edges.
-  const chU = S; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn
+  const chU = [...S, ...(typeof carriedLines1050 === "function" ? carriedLines1050(asset) : [])]; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn - fix1050: her carried session bands too (Love Nov 9 2026 8:16 PM PT: "session band to session band. is how she calculates thirds. NO OTHER BANDS ARE IN THAT CALCULATION. EXAMPLE = SITTING AT A BAND / PRICE BREAKS THRU / FALLS = TOP THIRD")
   // fix649 (Love Nov 4 2026 4:02 PM PT: "Fix the calculation so it matches the chart." + "even after that move (the blue line i drew) it was still not 66% of the way through the channel"): the band this candle just broke in the trade's direction is the BACK edge of the channel price is now in, band to band as drawn - it no longer vanishes and merges two channels into one. 3:50:35 PM BTC short at 80487.07 read 32% of -1σ 80389.58 -> +1σ 80689.84 ($300, the broken VWAP 80539.66 skipped); her chart: 65% of -1σ -> VWAP ($150). The edge in front stays unbroken only.
   const bk649 = wallLines(asset, L).filter((l) => Number(l.price) > 0 && isSessBand(l) && brokeNow.has(l.name)); // fix649
-  const up = [...chU.filter((l) => l.price > tick), ...(side === "down" ? bk649.filter((l) => l.price > tick) : [])].sort((a, b) => a.price - b.price)[0], dn = [...chU.filter((l) => l.price < tick), ...(side === "up" ? bk649.filter((l) => l.price < tick) : [])].sort((a, b) => b.price - a.price)[0]; // fix649
+  let up = [...chU.filter((l) => l.price > tick), ...(side === "down" ? bk649.filter((l) => l.price > tick) : [])].sort((a, b) => a.price - b.price)[0], dn = [...chU.filter((l) => l.price < tick), ...(side === "up" ? bk649.filter((l) => l.price < tick) : [])].sort((a, b) => b.price - a.price)[0]; // fix649
   // PRESSED PAST AN UNBROKEN BAND IS STILL AT THE BAND - ALL BOOKS (Oct 19 ~11:23 PM PT, Love: "and yes, fix the blind spot"
   // after the 11:00:04 PM gold short 23c under unbroken -2σ): same guard as channelOnly. While this 5m candle opened on the far
   // side and price sits within break distance past an unbroken band, that band is still her floor (or ceiling) - only trades away
@@ -420,6 +431,7 @@ export function awayVerdict(asset: string, L: Line[], tick: number, side: string
   // the direction of the break"): channel = the nearest unbroken session band below to the nearest unbroken session band above. Long refused only in its
   // top 20%, short refused only in its bottom 20%; anywhere else the channel doesn't block. Replaces the closest-band rule, the 10% neutral zone and
   // the $25 cap on session bands. A break is judged by the latest-break rule (candleBreakAgainst).
+  if (up && dn) if (typeof atBand1050 === "function") ({ up, dn } = atBand1050(asset, L, chU, tick, side, up, dn)); // fix1050 sitting at a band and leaving it = that band is the edge
   const frac = up && dn ? (tick - dn.price) / (up.price - dn.price) : -1;
   // GOLD 30% (Oct 18 ~10:16 PM PT, Love: "we can make the channel on gold from 20% to 30% right now"): live-switch channelPct[asset], default 20%.
   let cp = 0.2; if (!G.__stDefaultReach) { try { const v = Number(JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.channelPct?.[asset]); if (v > 0 && v < 0.5) cp = v; } catch {} }
@@ -1166,7 +1178,7 @@ export function reconThirdAgainst(asset: string, L: Line[], tick: number, side: 
   const S = wallFor(wallLines(asset, L).filter((l) => Number(l.price) > 0 && isSessBand(l)), Bk, tick, side);
   // CHANNEL EDGES ARE UNBROKEN ONLY (Oct 20 ~8:02 AM PT, Love): a standing-broken band is not a barrier and not a channel edge -
   // the 8:00:51 AM gold short read 37% against a BROKEN +2sigma top where her chart read 20% against the true unbroken edges.
-  const chU = S; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn
+  const chU = [...S, ...(typeof carriedLines1050 === "function" ? carriedLines1050(asset) : [])]; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn - fix1050: her carried session bands too (Love Nov 9 2026 8:16 PM PT: "session band to session band. is how she calculates thirds. NO OTHER BANDS ARE IN THAT CALCULATION. EXAMPLE = SITTING AT A BAND / PRICE BREAKS THRU / FALLS = TOP THIRD")
   const up = chU.filter((l) => l.price > tick).sort((a, b) => a.price - b.price)[0], dn = chU.filter((l) => l.price < tick).sort((a, b) => b.price - a.price)[0];
   if (!up || !dn || !(o > 0) || !(dist > 0)) return "";
   const w = up.price - dn.price;

@@ -12236,5 +12236,35 @@
     "what": "const c = 5 / 0.4; t(r1.result === \"win\" && Math.abs(r1.pnlTp - Math.round(((c / 2) * 0.86 + (c / 2) * 0.98 - 5) * 100) / 100) < 1e-9, \"scored on the 75/95 exit\");",
     "why": "fix1048 (her words in this change's request)",
     "R": "R609"
+  },
+  {
+    "what": "const chU = S; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn",
+    "why": "fix1050 (her words in this change's request)",
+    "R": "R610"
+  },
+  {
+    "what": "const up = [...chU.filter((l) => l.price > tick), ...(side === \"down\" ? bk649.filter((l) => l.price > tick) : [])].sort((a, b) => a.price - b.price)[0], dn = [...chU.filter((l) => l.price < tick), ...(side === \"up\" ? bk649.filter((l) => l.price < tick) : [])].sort((a, b) => b.price - a.price)[0]; // fix649",
+    "why": "fix1050 (her words in this change's request)",
+    "R": "R610"
+  },
+  {
+    "what": "const chU = S; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn",
+    "why": "fix1050 (her words in this change's request)",
+    "R": "R610"
+  },
+  {
+    "what": "const up = [...chU.filter((l) => l.price > tick), ...(side === \"down\" ? bk649.filter((l) => l.price > tick) : [])].sort((a, b) => a.price - b.price)[0], dn = [...chU.filter((l) => l.price < tick), ...(side === \"up\" ? bk649.filter((l) => l.price < tick) : [])].sort((a, b) => b.price - a.price)[0]; // fix649",
+    "why": "fix1050 (her words in this change's request)",
+    "R": "R610"
+  },
+  {
+    "what": "const chU = S; // BAND TO BAND (Oct 20 ~8:20 AM PT, Love): the channel is the gap between the adjacent bands exactly as drawn",
+    "why": "fix1050 (her words in this change's request)",
+    "R": "R610"
+  },
+  {
+    "what": "const f = (spot - b.price) / (a.price - b.price), k483 = a.price - b.price > 1000 ? 0.2 : 0.33; // fix483 (Love Oct 29 2026 her list, c4 marked Right with her note: \"btc over 1000 - 20%\" + 6:41 PM: \"WVERYTHING I ANSERED. NEEDS. TO. BE. IN.\"): only BTC channels reach $1,000",
+    "why": "fix1050 (her words in this change's request)",
+    "R": "R610"
   }
 ]
