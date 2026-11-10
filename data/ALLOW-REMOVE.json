@@ -11696,5 +11696,35 @@
     "what": "t(ln && (E.match(/&& !aoBestie775 \\/\\* fix775 \\*\\/\\) \\{/g) || []).length === 4 && E.includes(\"const aoOne717 = false; // fix752\"), \"BESTIE's add-on gate is not on all four add-ons (or fix752's line changed)\");",
     "why": "fix1043 (her words in this change's request)",
     "R": "R602"
+  },
+  {
+    "what": "import { SetupBoard773 } from \"@/components/desk/setup-board\"; // fix773 SETUP SCOREBOARD (display only)",
+    "why": "fix1044 (her words in this change's request)",
+    "R": "R603"
+  },
+  {
+    "what": "const [bookTab, setBookTab] = useState<\"mode\" | \"shift\" | \"paper\" | \"prime\" | \"lead\" | \"open\" | \"watch\" | \"lean\" | \"fuel\" | \"symbols\" | \"mirror\" | \"markets\" | \"kalshi\" | \"poly\" | \"cash\" | \"stats\" | \"scale\" | \"hedge\" | \"log\" | \"audit\" | \"look\" | \"outside\" | \"notes\" | \"pnl\" | \"day\" | \"alerts\" | \"sitrep\" | \"books\" | \"traj\" | \"scanner\" | \"positions\" | \"scope\">(\"kalshi\");",
+    "why": "fix1044 (her words in this change's request)",
+    "R": "R603"
+  },
+  {
+    "what": "refetchInterval: foreground ? (bookTab === \"shift\" || bookTab === \"markets\" ? 2000 : 8000) : 12000,",
+    "why": "fix1044 (her words in this change's request)",
+    "R": "R603"
+  },
+  {
+    "what": "const tick = async (sec) => { G.__xrp961At = 0; feed(B.map((b) => ({ ...b, t: b.t + (sec - n0 - ((sec - n0) % 300)) }))); await M.xrpTick961(sec * 1000, pm); };",
+    "why": "fix1049 (her words in this change's request)",
+    "R": "R604"
+  },
+  {
+    "what": "} catch (e) { t(false, \"fix1017 lane test threw: \" + e.stack); } finally { process.chdir(here); delete G.__t1017L; }",
+    "why": "fix1049 (her words in this change's request)",
+    "R": "R604"
+  },
+  {
+    "what": "-> [\"recon-tog\", \"recon-rej\", \"recon-dly\", \"lastmin\", \"cup713\"]",
+    "why": "fix1049 her lineup (Love Nov 9 2026 6:22 PM PT: \"i want last minute on\" + \"cups and handles too\")",
+    "R": "R604"
   }
 ]
