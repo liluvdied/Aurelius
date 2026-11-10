@@ -674,6 +674,7 @@ export async function buySlug(
   claimTag = "", // fix1029: an add-on claims its own key (slug + tag) so the entry's one-buy-per-window claim stays as is; "" = the entry, unchanged
   onRefused?: (code: string, reason: string) => void,
   deadlineMs?: number, // fix1055x 5m entries cannot send in their last minute even after slow reads
+  recheck?: () => Promise<string>,
 ): Promise<HedgeFill | null> {
   // fix1056 Keep the venue audit and the XRP lane's refusal in sync.
   const why1056 = (code: string, why: string, details: Record<string, unknown> = {}): null => {
@@ -703,6 +704,13 @@ export async function buySlug(
     if (!(quantity >= 0.01) || quantity * price > dollars + 0.001) {
       releaseWindow(claimKey);
       return why1056("size", "order size is below the minimum or above its dollar limit", { quoted, price, quantity });
+    }
+    if (recheck) {
+      const reason = await recheck().catch(() => "could not recheck the setup");
+      if (reason) {
+        releaseWindow(claimKey);
+        return why1056("setup", reason);
+      }
     }
     if (deadlineMs !== undefined && Date.now() > deadlineMs) {
       releaseWindow(claimKey);
