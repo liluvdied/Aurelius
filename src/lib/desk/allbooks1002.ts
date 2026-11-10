@@ -30,6 +30,8 @@ export const BOOKS1002: Book1002[] = [
   { key: "mombnb833", name: "BNB · MOMENTUM", venue: "KALSHI", file: "mom-coins-833.json", kind: "paper", split: "mombnb833", status: () => "PAPER" },
   { key: "polymom830", name: "BTC · MOMENTUM", venue: "POLY", file: "poly-mom-830.jsonl", kind: "pmom", status: (sw) => (sw?.polyMom830?.on === true ? "LIVE" : "OFF"), note: "bell read off Kalshi's same window" },
   { key: "xrp5m961", name: "XRP · 5M", venue: "POLY", file: "xrp5m-961.jsonl", kind: "p5m", status: () => onLive(cfgOf("xrp5m-961-cfg.json")) },
+  { key: "btc5m1055", name: "BTC · 5M LIVE", venue: "POLY", file: "btc5m-1055.jsonl", kind: "p5m", status: () => onLive({ on: cfgOf("btc5m-1055-cfg.json").on !== false }) }, // fix1055
+  { key: "eth5m1055", name: "ETH · 5M LIVE", venue: "POLY", file: "eth5m-1055.jsonl", kind: "p5m", status: () => onLive({ on: cfgOf("eth5m-1055-cfg.json").on !== false }) }, // fix1055
   { key: "btc5m974", name: "BTC · 5M", venue: "POLY", file: "btc5m-974.jsonl", kind: "p5m", status: () => onLive(cfgOf("btc5m-974-cfg.json")) },
   { key: "eth5m975", name: "ETH · 5M", venue: "POLY", file: "eth5m-975.jsonl", kind: "p5m", status: () => onLive(cfgOf("eth5m-975-cfg.json")) },
   { key: "old5m", name: "OLD 5M LANE", venue: "POLY", file: "five-book.json", kind: "five", status: (sw) => (sw?.polyTwin?.on === true && sw?.polyTwin?.rej5m?.on === true ? "LIVE" : "OFF") },
