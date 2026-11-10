@@ -7,6 +7,7 @@ src/components/desk/app.tsx.pre-sessrj.bak
 src/components/desk/asset-card.tsx
 src/components/desk/audit.tsx
 src/components/desk/bench.tsx
+src/components/desk/book-grid.tsx
 src/components/desk/bookwatch.tsx
 src/components/desk/brk-out.tsx
 src/components/desk/cash.tsx
@@ -25,12 +26,14 @@ src/components/desk/journal.tsx
 src/components/desk/kalshi-positions.tsx
 src/components/desk/kalshi-tape.tsx
 src/components/desk/live-today.tsx
+src/components/desk/live-wire.tsx
 src/components/desk/look-panel.tsx
 src/components/desk/mainvwap.tsx
 src/components/desk/momentum-book.tsx
 src/components/desk/og-1012.tsx
 src/components/desk/poly.tsx
 src/components/desk/positions.tsx
+src/components/desk/push-shadow.tsx
 src/components/desk/rejparked.tsx
 src/components/desk/rolling-price.tsx
 src/components/desk/rsi-books.tsx
@@ -85,6 +88,7 @@ src/lib/cn.ts
 src/lib/db.ts
 src/lib/desk/akimbocard.ts
 src/lib/desk/akimbowatch.ts
+src/lib/desk/allbooks1002.ts
 src/lib/desk/archcache.ts
 src/lib/desk/audit.ts
 src/lib/desk/auto.ts
@@ -95,6 +99,7 @@ src/lib/desk/backup-closer.ts-1791686020
 src/lib/desk/backup-engine.ts-1791684499
 src/lib/desk/backup-kalshi-live.server.ts-1791684499
 src/lib/desk/backup-shadow.ts-1791689003
+src/lib/desk/backup928.ts
 src/lib/desk/band-check.ts
 src/lib/desk/bandlock.ts
 src/lib/desk/bandlock.ts.pre-addon38.bak
@@ -127,7 +132,9 @@ src/lib/desk/bandlock5m.ts
 src/lib/desk/bandlock5m27.ts
 src/lib/desk/bankreplay.ts
 src/lib/desk/bb5m851.ts
+src/lib/desk/bnblive940.ts
 src/lib/desk/book.ts
+src/lib/desk/bookgrid1046.ts
 src/lib/desk/bookhist.server.ts
 src/lib/desk/bookhist.server.ts.pre-allcards.bak
 src/lib/desk/bookwatch.ts
@@ -135,6 +142,9 @@ src/lib/desk/breaker.ts
 src/lib/desk/brick.ts
 src/lib/desk/bricktvc.ts
 src/lib/desk/brkout.ts
+src/lib/desk/btc2c.ts
+src/lib/desk/btc5m1055.ts
+src/lib/desk/btclive899.ts
 src/lib/desk/candles.ts
 src/lib/desk/charttwins.ts
 src/lib/desk/climatewide.ts
@@ -155,8 +165,12 @@ src/lib/desk/engine.ts.pre-addon38.bak
 src/lib/desk/engine.ts.pre-sesspk-all.bak
 src/lib/desk/engine.ts.pre-sesspk-live.bak
 src/lib/desk/engine.ts.pre-watchman.bak
+src/lib/desk/eth5m1055.ts
 src/lib/desk/ethbook.ts
+src/lib/desk/ethbook2.ts
+src/lib/desk/ethlive2.ts
 src/lib/desk/ethlive831.ts
+src/lib/desk/fav1047.ts
 src/lib/desk/feedmatch.ts
 src/lib/desk/fees.ts
 src/lib/desk/fill-log.ts
@@ -165,6 +179,7 @@ src/lib/desk/five5m-mem.ts
 src/lib/desk/five5m-rows.ts
 src/lib/desk/five5m.ts
 src/lib/desk/flip819.ts
+src/lib/desk/floor1053.ts
 src/lib/desk/fns.ts
 src/lib/desk/fns.ts.pre-allcards.bak
 src/lib/desk/fns.ts.pre-atomic.bak
@@ -204,6 +219,7 @@ src/lib/desk/ledger.ts
 src/lib/desk/live-guard.ts
 src/lib/desk/live-guard.ts.pre-seal.bak
 src/lib/desk/liveauto815.ts
+src/lib/desk/livewire1044.ts
 src/lib/desk/look.ts
 src/lib/desk/lotto.ts
 src/lib/desk/lovecalls.ts
@@ -228,9 +244,11 @@ src/lib/desk/onetwothree835-sandbox.ts
 src/lib/desk/onetwothree835-walls.ts
 src/lib/desk/onetwothree835.ts
 src/lib/desk/oracle.ts
+src/lib/desk/p5m1045.ts
 src/lib/desk/paper.ts
 src/lib/desk/paperrows.ts
 src/lib/desk/patternbook.ts
+src/lib/desk/perplexities1037.ts
 src/lib/desk/pinkslide801.ts
 src/lib/desk/pinktap.ts
 src/lib/desk/pivotbooks.ts
@@ -264,6 +282,7 @@ src/lib/desk/polymom830.ts
 src/lib/desk/positions.ts
 src/lib/desk/prime-book.ts
 src/lib/desk/probe.ts
+src/lib/desk/pushshadow983.ts
 src/lib/desk/quotes.ts
 src/lib/desk/realtwin.ts
 src/lib/desk/recon.ts
@@ -325,6 +344,8 @@ src/lib/desk/v1112walls.ts
 src/lib/desk/v1112zone.ts
 src/lib/desk/vwap.ts
 src/lib/desk/watchdog.ts
+src/lib/desk/xrp15k-live.ts
+src/lib/desk/xrp5m961.ts
 src/lib/env.server.ts
 src/lib/error-component.tsx
 src/lib/multiplayer/index.ts

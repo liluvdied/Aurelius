@@ -2860,7 +2860,7 @@
   "reason": "REJECTION trades live only in Love's rejection hours"
  },
  "KXBTC15M-26NOV101230-30:recon-tog:KXBTC15M-26NOV101230-30:recon-tog": {
-  "at": "2026-11-10T17:24:14.730Z",
+  "at": "2026-11-10T17:28:08.551Z",
   "ticker": "KXBTC15M-26NOV101230-30",
   "side": "up",
   "status": "blocked",
@@ -2868,7 +2868,7 @@
   "firstReason": "{\"error\":\"THE SEAL: her setting bookSkipHours changed without her - no opening order until she approves it\"}",
   "firstTryAt": "2026-11-10T17:15:20.407Z",
   "bookedAt": "2026-11-10T17:16:36.609Z",
-  "tries": 1422,
+  "tries": 1831,
   "final": false,
   "paid": null,
   "orderId": null

@@ -1,9 +1,9 @@
 {
- "at": "2026-11-07T09:35:31.553415+00:00",
+ "at": "2026-11-10T07:01:24.714005+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "ba9a22c8d84ea148"
+  "recon.ts": "1f48dc0bb349a1a2"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -772,6 +772,72 @@
    "by": "Love",
    "quote": "Love Nov 6 2026 ~10:24 PM PT (R522, fix905 - this completes the site 243 missed: main's READ copy of the pink cushion in recon.ts): \"i had you make the pink tolerance half the channel width under $100 / but change it to the regular pink tolerance during weekends.\" + Love Nov 7 2026 ~1:03 AM PT: \"she has a 20% pink tolerance. that was a full channel away.\" + \"PINK was NOT the reason\" (1:01:19 AM BTC main short \"Failed break above Bollinger upper - rejected down\" at 76,185.73 held by THE PINK in the read: pink 76,154.80 $30.93 away, channel $81.53, the read still used half = $40.77) + Love Nov 7 2026 12:55 AM PT, card \"Keep 198 'momentum only live' in tonight's batch?\" - her pick: \"Pull 198 out\" (supersedes her Nov 6 7:33 PM card \"Momentum only live\"; CHANGE-198 / fix856 taken out of the batch, kept in used-commands/resting) (R528, fix914)",
    "recon.ts": "ba9a22c8d84ea148"
+  },
+  {
+   "at": "2026-11-07T10:51:57.819163+00:00",
+   "by": "Love",
+   "quote": "Love Nov 6 2026 ~8:40-8:43 PM PT (CHANGE-213 words): \"no one read per window pls. for any book ever\" + \"no hun i don't want her to do multiple i want her to be ABLE to take valid set ups when they appear bb thats it\" + Love Nov 4 2026 8:23 PM PT (R357, her wick rejection): \"...she can enter in , even if the candle hasn't flipped\" + Love Nov 7 2026 ~1:02 AM PT: \"she has a wick rejection that takes it the second a candle wicks by 15% of the channel distance.\" (1:00:55 AM: main's top read was a thirds-flipped break, never her call; her valid \"Rejected down off +3σ\" wick rejection sat second in line and was never tried) (R531, fix917)",
+   "recon.ts": "dd1c5b555238cd60"
+  },
+  {
+   "at": "2026-11-07T10:51:59.585126+00:00",
+   "by": "Love",
+   "quote": "Love Nov 7 2026 ~1:46 AM PT: \"once it is on the same side of the band hun\" + \"doesn't need a close\" (her BTC band / zone push - fix807, weekend $5 fix837 - enters the moment the push off the wick is met with price on the trading side of the band; no 2m candle colour, no candle turn, no close) + ~1:40 AM PT: \"again not her bb mine enters immediately on the flip after $5\" + ~2:03 AM PT: \"one of the candles does need to be green\" + \"and they both are\" (the push + her side of the band + at least ONE of her 2m / 5m candles her colour; no close) (SUPERSEDES for this push: R344 Nov 4 5:40 PM PT \"She enters the second the push is met and a 2m is her color.\" and the R477 card \"Push + 2m candle in her colour\" - told to Love as a contradiction; this command is her choice) (R532, fix918)",
+   "recon.ts": "6c00a610309d3a6a"
+  },
+  {
+   "at": "2026-11-07T13:49:29.352857+00:00",
+   "by": "Love",
+   "quote": "Love Nov 7 2026 ~4:02 AM PT: \"session band to session band / distance from where price currently is / if a band channel is \\$100 wide from 0 - 1o / pink tolerance is 20% / she needs \\$20 of clearance from where price currently is. / it applies in every conceivable capacity\" + \"yes 20% of the channel width\" + \"\\$500 channel = \\$100 / 20% tolerance from where price currently stands\" + Love Nov 7 2026 ~4:02 AM PT: \"yes 20% of the channel width\" (R536, fix927)",
+   "recon.ts": "6b86261e5fc54149"
+  },
+  {
+   "at": "2026-11-08T01:41:40.374866+00:00",
+   "by": "Love",
+   "quote": "Love Nov 7 2026 ~5:17 PM PT: \"she entered properly on btc just now hun. but she entered in right above a bollinger. we need to make it a \\$25 wall in front of those\" + 5:19 PM: \"melted immediately. and yes the middle counts as a wall and as an entry. if it starts losing we will take it off but so far ignoring the middle has been very bad\" (R567, fix962)",
+   "recon.ts": "5a83b6c0ef759c5f"
+  },
+  {
+   "at": "2026-11-09T17:40:16.532564+00:00",
+   "by": "Love",
+   "quote": "Love Nov 8 2026 12:58 AM PT: \"yes thats one of the bugs we need to fix hun, and its not the candles open she needs to push past. its the band itself\" + 12:59 AM: \"can we do that bb?\" + 6:51 AM PT: \"yeah we need to lower her push down to $5 again hun by the time she gets to the push requirement shes already at the red\" + 6:53 AM PT: \"then she doesnt have a valid reason for not entering at the push of $5 off of pink hun . shes still doing that. please reinforce that, and make sure she gets in AT pink, not halfway after the move has already taken place\" + 6:53 AM PT: \"omggg we neeed to make it from the band. i asked the lasst chat to do that earlier , not sure why she said she did and then didnt but\" + 7:17 AM PT: \"lowered push distances back to $5 for btc until this afternoon, then we can put her at $25 eth 25c eth and 0.00025 for xrp pls\" (R587, fix1030)",
+   "recon.ts": "1794032b9435b289"
+  },
+  {
+   "at": "2026-11-09T17:40:32.467595+00:00",
+   "by": "Love",
+   "quote": "Love Nov 8 2026 5:12 PM PT: \"you were asking me if she was to ONLY GET IN IF THE CANDLE FLIPPED and i said no because it would never take a trade if candle was born red pushing off of a band\" + Love Nov 8 2026 1:37 AM PT: \"candle is our color , she gets in / if a flip occurs or not i don't care / candle our color + push = get in / i just don't understand the question and what the difference is in the options / are you saying she will ONLY enter on candles that flip ???? if so NO\" + 12:19 AM PT: \"okay whatever opening color candle lock you instituted that is now blocking trades please remove it and do not implement any rules that i didn't ask for anymore pls\" + 12:22 AM PT: \"color of the candle still needs to be the same as our trade, aside from the wick rejection exemption. but the 'opening color' of the window or the candle has zero bearing on the trigger of the trade itself / candle flips green - push distance met ==== get in\" + 1:39 AM PT: \"i don't understand why the 5m opening candle color lock got in there , how did that happen?\" + 7:17 AM PT: \"the open color block we need to get that gone so she can take trades again\" + her rules R559 (Nov 7 3:19 PM PT: \"the candle ALWAYS NEEDS TO BE THE SAME COLOR. EVERY TIME. NO EXCEPTIONS. PRICE ON THE SAME SIDE OF THE BAND AT ENTRY. NO EXCEPTIONS. wick rejection is the ONLY instance she may enter without the candle our color.\") + R340 (Nov 4 5:25 PM PT: \"make it so its a push from the band, not past its open. a 2m green pushing off the band is good, no waiting for the 5m . not past the candles open.\") (R594, fix1034)",
+   "recon.ts": "e01f4ec5128699d2"
+  },
+  {
+   "at": "2026-11-09T17:40:37.529972+00:00",
+   "by": "Love",
+   "quote": "Love Nov 8 2026 2:54 PM PT: \"she said it's still operating on the candle open. so if the candle opening price is $100 away , it could be green that whole time and not enter until after it crosses the open by $50. it's a huge flaw hun that needs to be addressed / set it to distance from the band like we discussed\" + \"the high and low of that candle not the open\" + 7:36 AM PT: \"the color check shouldn't be using the open as a barometer hun it needs to be the high or low of the candle. not the open\" + Love Nov 8 2026 5:28 PM PT: \"no no book does candle open period hun no no no 😹💘 / delayed included we don't do that at this desk 👇😹💓 / and no set all paper tickets to $20 always , i noticed some are at $1 / $20 for all of them pls / and oh my god no that's a huge move absolutely not lol same push distances bb 💓\" (R596, fix1038)",
+   "recon.ts": "8c38fabb3183714a"
+  },
+  {
+   "at": "2026-11-10T02:17:58.703717+00:00",
+   "by": "Love",
+   "quote": "Love Nov 9 2026 9:30 AM PT: \"yeah 2.5 is fine bb 💓 / and yes just the 1 default 2.8x of the box amount i set , / then the second one goes to a genuine entry trigger 🏁\" + Love Nov 8 2026 7:04 PM PT: \"yes babez same side 😹💓 / and yes any band provided the multiple is above 2.8 - with a .2 margin of allowance , if price taps a band and rejects there before 2.8 is met, 2.5 - 2.6 is cool bb have her do them / sometimes they’ll be 3 sometimes they’ll be 8 / no limit on them tho bb , any band any entry trigger / and yes never worse than our initial one for sure no / all books / do $3 at 2.8x by default / and she’ll do the next one if it’s a valid rejection and push up :)\" + Love Nov 8 2026 6:55 PM PT: \"and babez i really want to implement a second entry trigger for the add ons instead of doing them by default. adding on to clearly losing trades is not the move / she does an add on at a band like she would enter any other trade , flip or born candle with a push off a band = add on / whatever the multiple is at\" (R602, fix1043)",
+   "recon.ts": "489016c24d8da6b4"
+  },
+  {
+   "at": "2026-11-10T06:00:12.577963+00:00",
+   "by": "Love",
+   "quote": "Love Nov 8 2026 5:28 PM PT: \"and no set all paper tickets to $20 always , i noticed some are at $1 / $20 for all of them pls\" + Nov 9 2026 ~12:10 PM PT: \"hun pls make all books $20 on paper they’re showing here $2 and up $35 when they’re 80% positive pls fix that for me\" + Nov 9 2026 12:28 PM PT (her Desk panel's Paper size box): \"when you build it do it this way pls - the paper size / i type it in , it moves the numbers on the cards like it used to pls if we can\" (R609, fix1048)",
+   "recon.ts": "9a54833ec9d3f7a2"
+  },
+  {
+   "at": "2026-11-10T06:07:42.695872+00:00",
+   "by": "Love",
+   "quote": "Love Nov 9 2026 8:04 PM PT: \"IT WAS AT THE TOP OF THE CHANNEL. PINK AND THE SESSION BAND WERE SITTING ON TOP OF EACH OTHER. STILL READING THIRDS INCORRECTLY.\" + 8:07 PM PT: \"yes. BUT PINK WAS SITTING ONNNNNN A SESSION BAND. THAT SHOULDNT CHANGE ANYTHING.\" + 8:08 PM PT: \"NO. IT IS SESSION BAND TO SESSION BAND. PINK WAS SITTING ONNNNNN THE SESSION BAND. THAT WAS NOT THE BOTTOM THIRD OF THE CHANNEL. IT WAS THE TOP. YOU ARE STILL HAVING HER CALCULATE THINGS INCORRECTLY.\" + 8:11 PM PT: \"hun. have her calculate it session band to session band. i’ve been saying the same thing for a fucking month nothing is landing and nothing is getting done\" (R610, fix1050)",
+   "recon.ts": "d3d28ff0facec79a"
+  },
+  {
+   "at": "2026-11-10T07:01:24.714005+00:00",
+   "by": "Love",
+   "quote": "Love: \"and pls create separate files with your fixes to all of these, and put those live\" (R616)",
+   "recon.ts": "1f48dc0bb349a1a2"
   }
  ],
  "R": "R266",
