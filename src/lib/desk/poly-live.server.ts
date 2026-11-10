@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { createPrivateKey, sign, type KeyObject } from "node:crypto";
 import type { KalshiMarket, Side } from "./types";
 import { liveOn, maxDollars, noteBlock } from "./live-guard";
+void import("./umpire-gate").catch(() => {});
 
 const ROOT = "https://api.polymarket.us";
 const HEDGE_DOLLARS = 10;
@@ -85,6 +86,23 @@ async function poly(method: string, path: string, query = "", rawBody?: unknown)
   const guarded = guardPolyOrder(method, path, rawBody);
   if (guarded.refused) return new Response(JSON.stringify({ error: guarded.refused }), { status: 403, headers: { "Content-Type": "application/json" } });
   const body = guarded.body;
+  const order = body as { intent?: string; marketSlug?: string } | undefined;
+  if (method === "POST" && path.startsWith("/v1/orders") && /BUY/i.test(String(order?.intent || ""))) {
+    let reason = "";
+    try {
+      const halt = JSON.parse(readFileSync(join(process.cwd(), "data", "halt.json"), "utf8"));
+      if (halt?.off === true) reason = "ENTRIES ARE OFF (fix604)";
+    } catch {}
+    if (!reason) {
+      const gate = (globalThis as any).__umpGate461;
+      reason = typeof gate === "function" ? gate("polymarket") : "THE UMPIRE GATE is not running";
+    }
+    if (reason) {
+      const error = `THE ENFORCER (fix748): ${reason}`;
+      noteBlock({ venue: "polymarket", ticker: order?.marketSlug, reason: error });
+      return new Response(JSON.stringify({ error }), { status: 403, headers: { "Content-Type": "application/json" } });
+    }
+  }
   const timestamp = Date.now().toString();
   const signature = sign(null, Buffer.from(`${timestamp}${method}${path}`), privateKey()).toString("base64");
   return fetch(ROOT + path + query, {
