@@ -3223,16 +3223,16 @@
   "reason": "REJECTION trades live only in Love's rejection hours"
  },
  "KXBTC15M-26NOV101530-30:recon-tog:ps801": {
-  "at": "2026-11-10T20:23:45.839Z",
+  "at": "2026-11-10T20:29:31.163Z",
   "ticker": "KXBTC15M-26NOV101530-30",
   "side": "up",
-  "status": "blocked",
-  "reason": "BOLLINGER BROKEN: long at 73573.51 past the Bollinger upper (73562.09) - a broken Bollinger is never traded, only rejections off it (fix506).",
+  "status": "missed",
+  "reason": "window ended before it filled (last: BOLLINGER BROKEN: long at 73604.75 past the Bollinger upper (73601.84) - a broken Bollinger is never traded, only rejections off it (fix506).)",
   "firstReason": "BOLLINGER BROKEN: long at 73563.36 past the Bollinger upper (73562.09) - a broken Bollinger is never traded, only rejections off it (fix506).",
   "firstTryAt": "2026-11-10T20:23:16.867Z",
   "bookedAt": "2026-11-10T20:17:16.513Z",
-  "tries": 77,
-  "final": false,
+  "tries": 1164,
+  "final": true,
   "paid": null,
   "orderId": null
  },
@@ -3251,5 +3251,95 @@
   "status": "skipped",
   "final": true,
   "reason": "GOLD hour map: BRICK's hour (12 PM PT)"
+ },
+ "KXBTC15M-26NOV101545-45:recon-rej:ps801": {
+  "at": "2026-11-10T20:31:29.775Z",
+  "ticker": "KXBTC15M-26NOV101545-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV101545-45:recon-tog:ps801": {
+  "at": "2026-11-10T20:44:30.977Z",
+  "ticker": "KXBTC15M-26NOV101545-45",
+  "side": "up",
+  "status": "missed",
+  "reason": "window ended before it filled (last: THE TARGET BY A LINE (fix821): the target 73554.31 sits within $101.01 of the Bollinger upper (73631.95) - no long into it; only away from it.)",
+  "firstReason": "THE TARGET BY A LINE (fix821): the target 73554.31 sits within $101 of the Bollinger upper (73599.59) - no long into it; only away from it.",
+  "firstTryAt": "2026-11-10T20:31:29.818Z",
+  "bookedAt": "2026-11-10T20:31:29.638Z",
+  "tries": 2476,
+  "final": true,
+  "paid": null,
+  "orderId": null
+ },
+ "KXBTC15M-26NOV101545-45:1m:20:CUP 😊 -> long over the rim:cup:cup713": {
+  "at": "2026-11-10T20:42:00.387Z",
+  "ticker": "KXBTC15M-26NOV101545-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REFINED's hour: only REFINED trades live"
+ },
+ "KXBTC15M-26NOV101545-45:1m:15:CUP 😊 -> long over the rim:cup:cup713": {
+  "at": "2026-11-10T20:42:00.394Z",
+  "ticker": "KXBTC15M-26NOV101545-45",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REFINED's hour: only REFINED trades live"
+ },
+ "KXBTC15M-26NOV101600-00:recon-rej:ps801": {
+  "at": "2026-11-10T20:45:39.469Z",
+  "ticker": "KXBTC15M-26NOV101600-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV101600-00:recon-tog:ps801": {
+  "at": "2026-11-10T20:56:26.313Z",
+  "ticker": "KXBTC15M-26NOV101600-00",
+  "side": "up",
+  "status": "blocked",
+  "reason": "you hold the other side by hand (she goes in if you exit)",
+  "firstReason": "THE TARGET BY A LINE (fix821): the target 73574.58 sits within $101.01 of the red zone (73673.92) - no long into it; only away from it.",
+  "firstTryAt": "2026-11-10T20:45:39.498Z",
+  "bookedAt": "2026-11-10T20:45:39.045Z",
+  "tries": 1926,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXGOLD15M-26NOV101600-00:2m:15:INVERTED CUP ☹️ -> short under the rim:cup:cup713": {
+  "at": "2026-11-10T20:46:02.805Z",
+  "ticker": "KXGOLD15M-26NOV101600-00",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "GOLD hour map: BRICK's hour (12 PM PT)"
+ },
+ "KXBTC15M-26NOV101600-00:1m:20:CUP 😊 -> long over the rim:cup:cup713": {
+  "at": "2026-11-10T20:46:02.804Z",
+  "ticker": "KXBTC15M-26NOV101600-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "REFINED's hour: only REFINED trades live"
+ },
+ "KXBTC15M-26NOV101600-00:recon-tog:KXBTC15M-26NOV101600-00:recon-tog": {
+  "at": "2026-11-10T20:55:34.238Z",
+  "ticker": "KXBTC15M-26NOV101600-00",
+  "side": "up",
+  "status": "skipped",
+  "reason": "paper closed it (half at 75% (92c) + trail from 90%: best +48%, sold at 98c) before the copy filled",
+  "firstReason": "HER WALL (fix429): red zone $36.57 above - no long into it (her $37.74 zone reach)",
+  "firstTryAt": "2026-11-10T20:48:34.585Z",
+  "bookedAt": "2026-11-10T20:48:30.843Z",
+  "tries": 1245,
+  "final": true,
+  "paid": null,
+  "orderId": null
  }
 }
