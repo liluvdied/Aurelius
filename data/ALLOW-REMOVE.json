@@ -12366,5 +12366,190 @@
     "what": "const push = (rows: any, src: string) => { if (!Array.isArray(rows)) return; for (let i = rows.length - 1; i >= 0; i--) { const w = norm(rows[i], src); if (w && Date.parse(w.at) >= cut) out.push(w); } };",
     "why": "fix1053 (her words in this change's request)",
     "R": "R611"
+  },
+  {
+    "what": "bothWays(\"fix467: BTC no long in the top 55% of pink -> red\", \"btc\", BZ, 80130, 80110, 80130, [80700, 79300], \"up\", /PINK TO (RED|GREEN)|FROM THE (RED|GREEN) ZONE|INSIDE THE (RED|GREEN) ZONE/);",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "T(\"fix594 BTC short at 50% from pink, in the bottom 55%, is refused\", /bottom 55%/.test(B.zoneSend594(\"btc\", ZB, 77900, \"down\")));",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "T(\"fix594 BTC long at 50% from pink, in the top 55%, is refused\", /top 55%/.test(B.zoneSend594(\"btc\", ZB, 78100, \"up\")));",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "T(\"fix594 gold short at 60% from pink is refused\", /bottom 55%/.test(B.zoneSend594(\"gold\", ZG, 3874, \"down\")));",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "T(\"fix811 tiny channel: a gold long at 50% of a $4 pink-to-red goes\", !B.zoneSend594(\"gold\", Zb(3880, 3870, 3860, 3884, 3890), 3882, \"up\")); T(\"fix811 tiny channel is gold only: a BTC long at 50% of a $100 pink-to-red is still refused\", /top 55%/.test(B.zoneSend594(\"btc\", Zb(78000, 77900, 77800, 78100, 78200), 78050, \"up\")));",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "G.__door594Test = true; T(\"fix594 door: the same test refuses at the door\", /bottom 55%/.test(geo(\"btc\", ZB, 77900, \"down\", \"main\"))); T(\"fix594 door: nothing past the red boundary at the door\", /PAST THE RED/.test(geo(\"btc\", ZB, 78600, \"up\", \"main\"))); G.__door594Test = false;",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "t(lo && sh, lo, sh, `${nm}: BTC no long in the top 55% of pink->red / no short in the bottom 55% of green->pink (replayed through her own lines)`);",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "let side = \"down\"; const w1 = String(B.zoneSend594(asset, L, tick, side) || \"\"); t(w1 !== \"\", \"main's function must refuse the down here (tick \" + tick + \")\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "t(/fix758/.test(f([], \"btc\", \"up\", 76100, \"brk-sesspk\", \"\", L)), \"BTC long 50% to red not blocked\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "t(/fix758/.test(f([], \"btc\", \"down\", 75900, \"brk15\", \"\", L)), \"BTC short 50% to green not blocked\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "t(/PINK TO RED/.test(B.zoneSend594(\"gold\", W, 4057.5, \"up\")), \"a $7.84 gap still holds the 55%\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "G.__curBook465 = \"recon-dly\"; t(/PINK TO RED/.test(B.zoneSend594(\"gold\", L, 4055.04, \"up\")), \"the delayed book is unchanged\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "G.__curBook465 = \"recon-tog\"; fs.writeFileSync(path.join(dir, \"data/live-switch.json\"), JSON.stringify({ tinyChannel809: false })); t(/PINK TO RED/.test(B.zoneSend594(\"gold\", L, 4055.04, \"up\")), \"switch off = the 55% as before\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "t(/PINK TO GREEN/.test(B.zoneSend594(\"gold\", L, 4036, \"down\")), \"no slide: a short at 50% of pink -> green is refused (fix594 unchanged)\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "t(/PINK TO RED/.test(B.zoneSend594(\"gold\", L, 4045, \"up\")), \"slide on: a long in the top 55% is still refused (the slide frees shorts only)\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "G.__curBook465 = \"recon-dly\"; t(/PINK TO GREEN/.test(B.zoneSend594(\"gold\", L, 4036, \"down\")), \"the delayed book is unchanged\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "G.__curBook465 = \"recon-tog\"; fs.writeFileSync(path.join(dir, \"data/live-switch.json\"), JSON.stringify({ slideFree800: false })); t(/PINK TO GREEN/.test(B.zoneSend594(\"gold\", L, 4036, \"down\")), \"switch off = fix594 as before\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "t(/PINK TO RED \\(fix594\\)/.test(B.zoneSend594(\"btc\", L, 76052, \"up\")), \"BTC long at 60% pink -> red is refused again\");",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (u && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return \"PINK TO RED (fix594): in the top 55%\"; if (!u && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return \"PINK TO GREEN (fix594): in the bottom 55%\";",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (call.side === \"up\" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: \"PINK TO RED 45%\" };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (call.side === \"down\" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: \"PINK TO GREEN 45%\" };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && !tiny809(asset, side, L) /* fix811 */ && tick > zP && (tick - zP) / (r1 - zP) >= 0.45) return `PINK TO RED (fix594): long at ${Math.round((tick - zP) / (r1 - zP) * 100)}% of pink ${zP.toFixed(2)} to red ${r1.toFixed(2)} - in the top 55% - no long.`;",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && !tiny809(asset, side, L) /* fix811 */ && tick < zP && (zP - tick) / (zP - s1) >= 0.45) return `PINK TO GREEN (fix594): short at ${Math.round((zP - tick) / (zP - s1) * 100)}% of pink ${zP.toFixed(2)} to green ${s1.toFixed(2)} - in the bottom 55% - no short.`;",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && !tiny809(asset, side, L) /* fix811 */ && side === \"down\" && zP > 0 && zS1 > 0 && zS1 < zP && tick > zS1 && tick < zP && (tick - zS1) / (zP - zS1) <= zoneGuard) return { why: `PINK TO GREEN (BTC): short at ${Math.round((tick - zS1) / (zP - zS1) * 100)}% of the green ${zS1.toFixed(2)} -> pink ${zP.toFixed(2)} space - no short in the bottom ${Math.round(zoneGuard * 100)}%.`, below: null, above: null, pos: null, lock: null };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && !tiny809(asset, side, L) /* fix811 */ && side === \"up\" && zP > 0 && zR1 > zP && tick > zP && tick < zR1 && (tick - zP) / (zR1 - zP) >= 1 - zoneGuard) return { why: `PINK TO RED (BTC): long at ${Math.round((tick - zP) / (zR1 - zP) * 100)}% of the pink ${zP.toFixed(2)} -> red ${zR1.toFixed(2)} space - no long in the top ${Math.round(zoneGuard * 100)}%.`, below: null, above: null, pos: null, lock: null }; }",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && !tiny809(asset, side, L) /* fix811 */ && ppG > 0 && r1G > ppG && tick > ppG && tick < r1G && (((): boolean => { const vwP = Number((L || []).find((l: Line) => String(l.name) === \"session VWAP\")?.price) || 0, u1P = Number((L || []).find((l: Line) => String(l.name) === \"+1σ\")?.price) || 0, sdP = Math.abs(u1P - vwP); return (tick - ppG) / (r1G - ppG) >= (flipRule ? 0.45 : 0.50) /* fix409 (Love Oct 28 2026 5:39 PM PT: \"55% for shorts and longs pls / main rejection and copy bb\"): main + rejection + copy no gold long in the top 55% of pink -> red; others keep 50% */ /* fix276 (Oct 26 ~11:43 AM PT, Love: \"no longs into the top 40% of the channel from pink to red\" + \"let's make it an even 50% for gold hun\"): top 50% at every band width, was top 40% only once session bands are $10+ apart */ || (!(sdP > 0 && sdP >= 10) && r1G - tick <= 1.5); })()) /* fix134 (Oct 23 12:32 AM PT, Love: \"bring that down to $1.50 ... indefinitely\"): $1.50 under the red, was $2 */ /* fix111: top 40% again once session bands are $10+ apart */ && true /* fix108 (Oct 22 ~7:41 PM PT, Love card \"Both\"): $2 under the red, was top 40% (>= 0.60) */) why = `PINK TO RED: long $${(r1G - tick).toFixed(2)} under the red, at ${Math.round((tick - ppG) / (r1G - ppG) * 100)}% of the pink ${ppG.toFixed(2)} -> red ${r1G.toFixed(2)} space - no gold long in the top ${flipRule ? 55 : 50}% of it (or within $1.50 of the red). /* fix439 */ wait for the red to reject (short) or the pink to reject (long).`;",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (!slideFree800(asset, side) && !tiny809(asset, side, L) /* fix811 */ && ppH > 0 && s1H > 0 && s1H < ppH && tick < ppH && tick > s1H && (tick - s1H) / (ppH - s1H) <= (flipRule ? 0.55 /* fix409 (Love Oct 28 2026 5:37 PM PT: \"yeah let's make it 55% hun that's good\" + card \"Main + rejection + copy\"): was 0.60 */ : 0.50) /* fix365 (Love Oct 27 2026 8:39 PM PT: \"we can include the 60% into the rejection models too bb\"): main + rejection model + no-pink copy 60% (the pure no-pink skips this wall, fix363) */ /* fix364 (Love Oct 27 2026 8:38 PM PT: \"yes the flip is already supposed to be off hun, pls remove that and keep it off , and yeah go ahead and raise it to 60% hun that’s fine\"): MAIN only 60%, every other book keeps 50% */) why = `PINK TO GREEN: short $${(tick - s1H).toFixed(2)} over the green, at ${Math.round((tick - s1H) / (ppH - s1H) * 100)}% of the green ${s1H.toFixed(2)} -> pink ${ppH.toFixed(2)} space - no gold short in the bottom ${flipRule ? 55 : 50}% of it. /* fix439 */ wait for the green to reject (long) or the pink to reject (short).`;",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (side === \"up\" && tick > zP && (tick - zP) / (r1 - zP) >= 0.45) return `PINK TO RED (fix758, her 55%): long at ${Math.round((tick - zP) / (r1 - zP) * 100)}% of pink ${zP.toFixed(2)} to red ${r1.toFixed(2)} - in the top 55% - no long.`;",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (side === \"down\" && tick < zP && (zP - tick) / (zP - s1) >= 0.45) return `PINK TO GREEN (fix758, her 55%): short at ${Math.round((zP - tick) / (zP - s1) * 100)}% of pink ${zP.toFixed(2)} to green ${s1.toFixed(2)} - in the bottom 55% - no short.`;",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (call.side === \"up\" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: \"PINK TO RED 45%\" };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (call.side === \"down\" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: \"PINK TO GREEN 45%\" };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (call.side === \"up\" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: \"PINK TO RED 45%\" };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (call.side === \"down\" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: \"PINK TO GREEN 45%\" };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (call.side === \"up\" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: \"PINK TO RED 45%\" };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (call.side === \"down\" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: \"PINK TO GREEN 45%\" };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (call.side === \"up\" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: \"PINK TO RED 45%\" };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
+  },
+  {
+    "what": "if (call.side === \"down\" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: \"PINK TO GREEN 45%\" };",
+    "why": "fix1054 (her words in this change's request)",
+    "R": "R612"
   }
 ]

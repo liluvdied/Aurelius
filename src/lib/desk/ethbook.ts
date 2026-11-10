@@ -69,8 +69,8 @@ export function ethRead682(bs: Bar[], L: { name: string; price: number }[], spot
   if (call.side === "down" && f <= 0.33) return { why: "THIRDS: short in the bottom 33%" };
   if (pk && r1 && s1) {
     if (call.side === "up" && spot >= r1) return { why: "PAST THE RED ZONE" }; if (call.side === "down" && spot <= s1) return { why: "PAST THE GREEN ZONE" };
-    if (call.side === "up" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: "PINK TO RED 45%" };
-    if (call.side === "down" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: "PINK TO GREEN 45%" };
+    if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && call.side === "up" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: "PINK TO RED 45%" };
+    if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && call.side === "down" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: "PINK TO GREEN 45%" };
     const w = W / k, cush = (w < 100 ? W / 2 : w < 180 ? W / 3 : w <= 500 ? 0.2 * W : w > 1000 ? 0.1 * W : 0.15 * W); // her BTC pink cushion, by price
     if (call.side === "up" && pk > spot - brk && pk - spot <= cush && pk > spot) return { why: "PINK CUSHION" };
     if (call.side === "down" && pk < spot + brk && spot - pk <= cush && pk < spot) return { why: "PINK CUSHION" };
