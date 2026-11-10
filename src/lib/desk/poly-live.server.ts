@@ -642,7 +642,7 @@ export async function buySlug(
   target: number | null,
   claimTag = "", // fix1029: an add-on claims its own key (slug + tag) so the entry's one-buy-per-window claim stays as is; "" = the entry, unchanged
   onRefused?: (code: string, reason: string) => void,
-  deadlineMs?: number, // fix1055x XRP cannot send in its last minute even after slow reads
+  deadlineMs?: number, // fix1055x 5m entries cannot send in their last minute even after slow reads
 ): Promise<HedgeFill | null> {
   // fix1056 Keep the venue audit and the XRP lane's refusal in sync.
   const why1056 = (code: string, why: string, details: Record<string, unknown> = {}): null => {
@@ -674,7 +674,7 @@ export async function buySlug(
     }
     if (deadlineMs !== undefined && Date.now() > deadlineMs) {
       releaseWindow(slug + claimTag);
-      return why1056("late", "XRP window reached its final minute before the order could be sent"); // fix1017 final-minute cutoff
+      return why1056("late", "5m window reached its final minute before the order could be sent"); // fix1017 final-minute cutoff
     }
     const res = await poly("POST", "/v1/orders", "", {
       marketSlug: slug,

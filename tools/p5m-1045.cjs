@@ -22,7 +22,7 @@ t(/import\("\.\/p5m1045"\)\.then\(\(m\) => m\.p5mTick1045\(\)\)/.test(E), "the e
 const ts = require(path.join(root, "node_modules/typescript")), out = fs.mkdtempSync(path.join(os.tmpdir(), "p5m-"));
 fs.writeFileSync(path.join(out, "p5m1045.js"), ts.transpileModule(S, { compilerOptions: { module: 1, target: 99 } }).outputText);
 { const hx = (n) => { const i = X.indexOf("export function " + n + "("); return i < 0 ? "" : X.slice(i, X.indexOf("\n", i)).replace(/^export /, ""); }; // fix1051: her real 5m-open helpers, not a stand-in
-  fs.writeFileSync(path.join(out, "xrp5m961.js"), "exports.xrpRead961=(bs,L,spot,now,p)=>{globalThis.__push=p;return {side:'up',label:'Rejected up off -1σ'};};\n" + ts.transpileModule(hx("win5Open1051") + "\n" + hx("openSide1051") + "\nexports.win5Open1051 = win5Open1051; exports.openSide1051 = openSide1051;", { compilerOptions: { module: 1, target: 99 } }).outputText); }
+  fs.writeFileSync(path.join(out, "xrp5m961.js"), "exports.xrpRead961=(bs,L,spot,now,p,open)=>{globalThis.__push=p;return open===undefined || (open>0 && spot>open) ? {side:'up',label:'Rejected up off -1σ'} : {why:'wrong side'};};\n" + ts.transpileModule(hx("win5Open1051") + "\n" + hx("openSide1051") + "\nexports.win5Open1051 = win5Open1051; exports.openSide1051 = openSide1051;", { compilerOptions: { module: 1, target: 99 } }).outputText); }
 fs.writeFileSync(path.join(out, "ethbook.js"), "exports.ethBands682=()=>[];");
 const dir = fs.mkdtempSync(path.join(os.tmpdir(), "p5md-")); fs.mkdirSync(path.join(dir, "data")); process.chdir(dir);
 const M = require(path.join(out, "p5m1045.js")), G = globalThis;

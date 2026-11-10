@@ -18,7 +18,7 @@
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { ethBands682 } from "./ethbook";
-import { xrpRead961, win5Open1051, openSide1051, rung1029, trigPx1043, boxes1029 } from "./xrp5m961"; // fix1055 her one brain
+import { xrpRead961, win5Open1051, rung1029, trigPx1043, boxes1029 } from "./xrp5m961"; // fix1055 her one brain
 const PUSH1055 = { band: 5, pink: 5, wick: 10 }; // fix1055 BTC push - the 5m books' (fix1045) numbers behind her 5m table
 
 const G = globalThis as any;
@@ -33,14 +33,14 @@ function log(x: any) { try { appendFileSync(D("btc5m-1055.jsonl"), JSON.stringif
 type Row = { id: string; slug: string; at: string; side: "up" | "down"; label: string; spot: number; ask: number | null; live: string; closesAt: string };
 function book(): { rows: Row[]; seen: Record<string, number>; add1029?: Record<string, Record<string, number>> } { if (G.__btc1055) return G.__btc1055; let s = { rows: [] as Row[], seen: {} as Record<string, number> }; try { if (existsSync(D("btc5m-1055-book.json"))) s = { rows: [], seen: {}, ...JSON.parse(readFileSync(D("btc5m-1055-book.json"), "utf8")) }; } catch {} G.__btc1055 = s; return s; }
 function save() { try { const s = book(); s.rows = s.rows.slice(-2000); const cut = Date.now() - 2 * 86400000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D("btc5m-1055-book.json.tmp"), JSON.stringify(s)); renameSync(D("btc5m-1055-book.json.tmp"), D("btc5m-1055-book.json")); } catch {} }
-async function j(url: string): Promise<any> { const r = await fetch(url, { headers: { Accept: "application/json", "User-Agent": "aurelius-btc/1.0" }, signal: AbortSignal.timeout(8000) }); return r.json(); }
+async function j(url: string): Promise<any> { const r = await fetch(url, { headers: { Accept: "application/json", "User-Agent": "aurelius-btc/1.0" }, signal: AbortSignal.timeout(8000) }); return r.ok ? r.json() : null; }
 async function bars(): Promise<Bar[]> {
   const B = (G.__btc1055Bars ||= { at: 0, m: new Map<number, Bar>() });
   if (Date.now() - B.at < 5000 && B.m.size) return [...B.m.values()].sort((a: Bar, b: Bar) => a.t - b.t);
   const need = B.m.size < 600 ? 3 : 1;
   for (let k = need - 1; k >= 0; k--) {
-    const end = Math.floor(Date.now() / 1000) - k * 300 * 60, start = end - 300 * 60;
-    const d = await j(`https://api.exchange.coinbase.com/products/BTC-USD/candles?granularity=60&start=${new Date(start * 1000).toISOString()}&end=${new Date(end * 1000).toISOString()}`);
+    const end = Math.floor(Date.now() / 60000) * 60 - k * 300 * 60, start = end - 299 * 60;
+    const d = await j(`https://api.exchange.coinbase.com/products/BTC-USD/candles?granularity=60&start=${new Date(start * 1000).toISOString()}&end=${new Date(end * 1000).toISOString()}`).catch(() => null); // fix1055x keep usable pages after a feed timeout
     if (Array.isArray(d)) for (const x of d) B.m.set(x[0], { t: x[0], l: x[1], h: x[2], o: x[3], c: x[4], v: x[5] });
   }
   for (const k of [...B.m.keys()]) if (k < Date.now() / 1000 - 2 * 86400) B.m.delete(k);
@@ -69,9 +69,11 @@ export async function btcTick1055(nowMs = Date.now(), pmIn?: PM) {
     const RT = (G.__btc1055Retry ||= {}) as Record<string, number>, OK = (G.__btc1055Once ||= {}) as Record<string, number>; for (const k of Object.keys(RT)) if (nowMs - RT[k] > 900000) delete RT[k]; for (const k of Object.keys(OK)) if (nowMs - OK[k] > 900000) delete OK[k];
     if (nowMs - Number(RT[id] || 0) < RETRY1017_MS) return; // fix1017 after a skip the lane looks again at most every 5 s - the window is NOT spent
     const once1017 = (k: string) => { if (OK[id + "|" + k]) return false; OK[id + "|" + k] = nowMs; return true; }; // fix1017 each kind of skip is logged once a window
-    const bs = await bars(); if (!bs.length) return; const spot = bs[bs.length - 1].c;
-    const r0 = xrpRead961(bs, ethBands682(bs as any), spot, now, PUSH1055);
-    const o51 = win5Open1051(bs, now); const r: ReturnType<typeof xrpRead961> = "side" in r0 && !openSide1051(r0.side, spot, o51) ? { why: `NOT ON HER SIDE OF THE 5M OPEN (fix1051): ${r0.label} is a ${r0.side === "up" ? "long" : "short"} but price ${spot} is not ${r0.side === "up" ? "over" : "under"} this 5m window's open ${o51} - still watching` } : r0; // fix1051 her 5m books: only on her side of the 5m open
+    const bs = await bars();
+    const readAt = Date.now() / 1000;
+    if (end - readAt < 60) return;
+    const spot = bs.at(-1)?.c ?? 0;
+    const r = xrpRead961(bs, ethBands682(bs), spot, readAt, PUSH1055, win5Open1051(bs, readAt)); // fix1055x test the window side while choosing the setup
     if (!("side" in r)) { const W = (G.__btc1055Why ||= {}); if (W[id] !== r.why) { W[id] = r.why; if (!/^no setup$/.test(r.why)) log({ id, action: "waiting", why: r.why }); } return; }
     const pm: PM = pmIn || ((await import("./poly-live.server")) as any);
     const slug = await windowSlug(pm, start);
@@ -81,9 +83,10 @@ export async function btcTick1055(nowMs = Date.now(), pmIn?: PM) {
     const row: Row = { id, slug, at: new Date(nowMs).toISOString(), side: r.side, label: r.label, spot, ask, live: "", closesAt: new Date(end * 1000).toISOString() };
     if (!(ask != null && ask > 0.02 && ask <= c.maxAsk)) { RT[id] = nowMs; row.live = `skipped: ask ${ask ?? "?"} over her 66c (1.5x floor) - still watching this window (fix1017)`; if (once1017(ask == null ? "noask" : "ask")) { s.rows.push(row); save(); log({ id, action: "skipped", side: r.side, label: r.label, slug, ask, why: row.live }); } return; } // fix1017 an over-cap look does not spend the window
     try {
-      const f = await pm.buySlug(r.side, slug, c.dollars, c.maxAsk, null);
-      row.live = f && f.filled > 0 ? `bought ${f.filled} @ ${f.price}` : "no fill / refused at the wire (umpire, LIVE, cash or the ask moved) - still watching this window (fix1017)";
-      if (f && f.filled > 0) s.seen[id] = nowMs; else { RT[id] = nowMs; if (!once1017("wire")) return; } // fix1017 ONLY a fill spends the window; a no fill / refusal keeps watching
+      let wireCode = "unknown", wireReason = "";
+      const f = await pm.buySlug(r.side, slug, c.dollars, c.maxAsk, null, "", (code: string, reason: string) => { wireCode = code; wireReason = reason; }, (end - 60) * 1000);
+      row.live = f && f.filled > 0 ? `bought ${f.filled} @ ${f.price}` : `no fill / refused at the wire${wireReason ? `: ${wireReason}` : ""} - still watching this window (fix1017)`;
+      if (f && f.filled > 0) s.seen[id] = nowMs; else { RT[id] = nowMs; if (!once1017(`wire:${wireCode}`)) return; } // fix1017 ONLY a fill spends the window; a no fill / refusal keeps watching
       log({ id, action: f && f.filled > 0 ? "bought" : "skipped", side: r.side, label: r.label, slug, ask, filled: f?.filled ?? 0, price: f?.price ?? null, why: f && f.filled > 0 ? "" : row.live });
     } catch (e: any) { s.seen[id] = nowMs; row.live = "error: " + String(e?.message || e).slice(0, 120); log({ id, action: "error", why: row.live }); } // fix1017: an error at the wire spends the window (the order may have gone out - one ticket per window)
     s.rows.push(row); save();
