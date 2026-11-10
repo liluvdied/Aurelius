@@ -1,9 +1,50 @@
-# Every decision Love has made - rebuilt 2026-11-10T11:27:05.237960+00:00
+# Every decision Love has made - rebuilt 2026-11-10T15:21:43.325448+00:00
 
-1555 decisions with Love's words or card picks, out of 2316 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1565 decisions with Love's words or card picks, out of 2328 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-10T15:10:15.994Z  ·  diary line 2805
+- Full entry: 2026-11-10T15:10:15.994Z HOURS (Love, in-app schedule pill): 7 AM PT -> MAIN book (BTC only)
+
+## 2026-11-10T14:56:03Z  ·  diary line 2804
+- Love: “FIND WHAT IT IS. AND BLOCK IT FROM BLOCKING EVERY FUCKING TRADE”
+- Full entry: 2026-11-10T14:56:03Z Love Nov 10 2026 6:54 AM PT: "FIND WHAT IT IS. AND BLOCK IT FROM BLOCKING EVERY FUCKING TRADE" - golden-baseline code signed to the save point she runs
+
+## 2026-11-10T14:32:39Z  ·  diary line 2803
+- Love: “jusssssssttttttt dooooo what i'm assssking you”
+- Full entry: 2026-11-10T14:32:39Z Love Nov 10 2026 6:28 AM PT: "jusssssssttttttt dooooo what i'm assssking you" - pink-break entry up to 70c; recon.ts re-signed
+
+## 2026-11-10T14:30:45Z  ·  diary line 2802  ·  fix1080
+- Love: “under -2o is literally only longs”
+- fix1080 in her code without its number (see her words in the code comments)
+- Full entry: 2026-11-10T14:30:45Z Love Nov 10 2026 3:57 AM PT: "under -2o is literally only longs" - save point recon.ts re-signed for fix1080
+
+## 2026-11-10T14:30:22Z  ·  diary line 2801
+- Love: “dude please just put it on the save point for now”
+- Full entry: 2026-11-10T14:30:22Z Love Nov 10 2026 4:53 AM PT: "dude please just put it on the save point for now" - spine re-signed to the save point 0d56a584 recon.ts
+
+## 2026-11-10T14:29:38Z  ·  diary line 2800
+- Love: “dude please just put it on the save point for now”
+- Full entry: 2026-11-10T14:29:38Z Love Nov 10 2026 4:53 AM PT: "dude please just put it on the save point for now" - spine re-signed to the save point 0d56a584 recon.ts
+
+## 2026-11-10T14:08:44Z  ·  diary line 2799  ·  fix1080
+- Love: “under -2o is literally only longs”
+- fix1080 in her code without its number (see her words in the code comments)
+- Full entry: 2026-11-10T14:08:44Z Love Nov 10 2026 3:57 AM PT: "under -2o is literally only longs" - save point recon.ts re-signed for fix1080
+
+## 2026-11-10T13:20:02Z  ·  diary line 2798
+- Love: “dude please just put it on the save point for now”
+- Full entry: 2026-11-10T13:20:02Z Love Nov 10 2026 4:53 AM PT: "dude please just put it on the save point for now" - spine re-signed to the save point 0d56a584 recon.ts
+
+## 2026-11-10T13:19:53Z  ·  diary line 2797
+- Love: “dude please just put it on the save point for now”
+- Full entry: 2026-11-10T13:19:53Z Love Nov 10 2026 4:53 AM PT: "dude please just put it on the save point for now" - spine re-signed to the save point 0d56a584 recon.ts
+
+## 2026-11-10T11:28:59.188866+00:00  ·  diary line 2792
+- Love: “Keep each book’s strategy and update the shared checks”
+- Full entry: 2026-11-10T11:28:59.188866+00:00 Codex R626, R627, R628 | Love: "Keep each book’s strategy and update the shared checks" | Reconciled the reviewed Shared Checks with CHANGE-399 and CHANGE-400.
 
 ## 2026-11-10T08:11:17.716338+00:00  ·  diary line 2788
 - Love: “please fix the BTC add-on bug and the Kalshi retry lock, test both before anything goes live, and put the installer on my desktop”
