@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R621 - Use the same current executable quote for Kalshi BTC MAIN/REJ entry retry limits and size checks. Recheck missing or over-cap asks without sending.
+- when: 2026-11-10T09:08:40+00:00
+- Love: "please fix this hun. she only takes the ones that lose. skips every one that wins. im talking about kalshi, btc"
+- books: Kalshi BTC 15m MAIN, Kalshi BTC 15m REJ
+- status: ACTIVE
+- proof: {"test": "tools/kalshi-btc-entry-retries.cjs"}
+
 ## R620 - fix1058 Keep Polymarket entry and add-on fill keys separate and release a Kalshi retry lock only when the opposite-position check prevented any send. Keep price, position, and confirmed-fill protections.
 - when: 2026-11-10T08:11:17+00:00
 - Love: "Love: "please fix the BTC add-on bug and the Kalshi retry lock, test both before anything goes live, and put the installer on my desktop""
