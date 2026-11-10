@@ -1,5 +1,5 @@
 {
- "at": "2026-11-10T10:30:11.337471+00:00",
+ "at": "2026-11-10T10:45:12.030740+00:00",
  "her_words": "please fix this hun. she only takes the ones that lose. skips every one that wins. im talking about kalshi, btc",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -185,7 +185,7 @@
   "p5m1045.ts": "453c35500a47a5b1",
   "fav1047.ts": "52f4b47ccd1e79a8",
   "floor1053.ts": "ddf2f8e9400252c9",
-  "btc5m1055.ts": "4e81eb439e3db052",
+  "btc5m1055.ts": "d37ecf98df5de1fa",
   "eth5m1055.ts": "36476864dd97222c",
   "xrp15k-live.ts": "cbd627f8e485a0fd"
  },
@@ -194,7 +194,7 @@
   "maxDollars": "6b86b273ff",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "7f10755535",
+  "at": "6429ca065e",
   "note": "d6126203bc",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -213,7 +213,7 @@
   "model": "80270e39ab",
   "autoExits": "b5bea41b6c",
   "tpHard": "b5bea41b6c",
-  "liveBook": "513c18140d",
+  "liveBook": "48e8a092af",
   "tpOfMax": "69f59c273b",
   "netBelow": "4f53cda18c",
   "insurance": "7e56fa5011",
@@ -398,7 +398,7 @@
   "data/spine-lock.json": "e290f5ce80d85b55",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "70541aa3d97bec5c",
+  "data/live-switch.json": "b31a164f726fa64f",
   "data/xrp15k-live.json": "da0525e7e1da2747"
  },
  "sealLiveBook": "18713feb41",

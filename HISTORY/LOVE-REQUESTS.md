@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R623 - fix1063 BTC 5M THROUGH MAIN'S DOOR: every BTC 5m Polymarket entry, box add-on and trigger add-on (btc5m1055.ts) must first pass main's own order door (bandLockCheck as main's book recon-tog, asset btc - the same check every main BTC order passes) right before the order. Refused = no order, logged in data/btc5m-1055.jsonl, and the window keeps watching. Main's door unreachable = no order. ETH / XRP 5m are not in this change (main's door has no ETH / XRP walls - waiting on Love's numbers).
+- when: 2026-11-10T10:45:11+00:00
+- Love: "Love Nov 10 2026 1:32 AM PT: "she longed eth under a session band. she has lost every 5m trade she's taken. you're NOT. DOING. ANY. THING. YOURE. SAYING." + 1:35 AM PT: "I ASKED YOU TO BUILD IT ON MAINS DOOR THE FIRST TIME""
+- books: btc5m1055 (BTC 5m live lane, Polymarket)
+- status: ACTIVE
+- proof: {"test": "tools/btc5m-door-1063.cjs"}
+
 ## R622 - fix1062 PAPER NEVER TAKES A TRADE LIVE WOULD NOT TAKE: her books' new paper rows (main, rejection, delayed and their copies: recon-tog / rej / dly / dlyk / togp / togr / np / rjnp / rnp) now also pass live's own order door (bandLockCheck - the same check every live order of that book passes) inside her paper DNA gate, at the moment they book. A row live's door refuses is not recorded (logged once in data/paper-door-1062.jsonl) and is checked again if the book books it again. Nothing about live orders changes.
 - when: 2026-11-10T10:30:11+00:00
 - Love: "Love Nov 10 2026 1:15 AM PT: "they are on kalshi. I DONT WANT THE PAPER RECORDS TAKING TRADES THAT LIVE WOULD NOT TAKE HOW MANY TIMES DO I NEED TO ASK THE SAME THING""

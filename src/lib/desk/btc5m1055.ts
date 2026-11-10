@@ -58,6 +58,8 @@ async function windowSlug(pm: PM, startSec: number): Promise<string | null> {
 //   the window is spent ONLY when an order fills. An ask over her 66c (1.5x floor), no ask, or a no fill / refusal at the wire keeps the lane watching that window - it looks again
 //   at most every 5 s and logs each kind of skip once a window. One ticket per window stays: a filled window is never bought again (seen + its bought row + the desk's own window claim).
 //   An error at the wire spends the window (the order may have reached Polymarket). Not in the last minute stays. Nothing else changes: same read, same 66c / 1.5x floor, same $ cap, same buySlug guard.
+// fix1063 BTC 5M THROUGH MAIN'S DOOR (Love Nov 10 2026 1:32 AM PT: "she longed eth under a session band. she has lost every 5m trade she's taken. you're NOT. DOING. ANY. THING. YOURE. SAYING." + Nov 10 ~12:30 AM PT: built under main's configurations 1:1): every BTC 5m entry and add-on must also pass main's own order door (bandLockCheck as main's book recon-tog - the same check every main BTC order passes) right before the order. A refusal = no order, logged (data/btc5m-1055.jsonl); the window keeps watching. Main's door not loaded = no order.
+async function door1063(side: string, slug: string, label: string): Promise<string> { try { const m: any = await import("./bandlock"); const r = m.bandLockCheck("recon-tog", "btc", side, slug, String(label || "")); return r && r.ok === true ? "" : `MAIN'S DOOR (fix1063): ${String(r?.reason || "refused")}`; } catch (e: any) { return `MAIN'S DOOR (fix1063): can't reach main's door (${String(e?.message || e).slice(0, 80)}) - no order`; } }
 export const RETRY1017_MS = 5000;
 export async function btcTick1055(nowMs = Date.now(), pmIn?: PM) {
   const c = cfg1055(); if (!c.on || G.__btc1055Busy) return; if (nowMs - Number(G.__btc1055At || 0) < 3000) return; G.__btc1055At = nowMs; G.__btc1055Busy = true;
@@ -68,6 +70,7 @@ export async function btcTick1055(nowMs = Date.now(), pmIn?: PM) {
     if (s.rows.some((x) => x.id === id && /^bought/.test(x.live))) { s.seen[id] = nowMs; return; } // fix1017 one ticket per window: a window that filled is never bought again
     const RT = (G.__btc1055Retry ||= {}) as Record<string, number>, OK = (G.__btc1055Once ||= {}) as Record<string, number>; for (const k of Object.keys(RT)) if (nowMs - RT[k] > 900000) delete RT[k]; for (const k of Object.keys(OK)) if (nowMs - OK[k] > 900000) delete OK[k];
     if (nowMs - Number(RT[id] || 0) < RETRY1017_MS) return; // fix1017 after a skip the lane looks again at most every 5 s - the window is NOT spent
+    const once1063 = (k: string) => { const W = (G.__btc1063Once ||= {}); if (W[id] === k) return false; W[id] = k; return true; }; // fix1063 each door refusal logged once a window
     const once1017 = (k: string) => { if (OK[id + "|" + k]) return false; OK[id + "|" + k] = nowMs; return true; }; // fix1017 each kind of skip is logged once a window
     const bs = await bars();
     const readAt = Date.now() / 1000;
@@ -82,6 +85,7 @@ export async function btcTick1055(nowMs = Date.now(), pmIn?: PM) {
     // fix1017: the window is no longer spent here - only a fill spends it (below)
     const row: Row = { id, slug, at: new Date(nowMs).toISOString(), side: r.side, label: r.label, spot, ask, live: "", closesAt: new Date(end * 1000).toISOString() };
     if (!(ask != null && ask > 0.02 && ask <= c.maxAsk)) { RT[id] = nowMs; row.live = `skipped: ask ${ask ?? "?"} over her 66c (1.5x floor) - still watching this window (fix1017)`; if (once1017(ask == null ? "noask" : "ask")) { s.rows.push(row); save(); log({ id, action: "skipped", side: r.side, label: r.label, slug, ask, why: row.live }); } return; } // fix1017 an over-cap look does not spend the window
+    { const d1063 = await door1063(r.side, slug, r.label); if (d1063) { RT[id] = nowMs; row.live = `refused: ${d1063} - still watching this window`; if (once1063(d1063)) { s.rows.push(row); save(); log({ id, action: "skipped", side: r.side, label: r.label, slug, ask, why: row.live }); } return; } } // fix1063 main's door before the order
     try {
       let wireCode = "unknown", wireReason = "";
       const f = await pm.buySlug(r.side, slug, c.dollars, c.maxAsk, null, "", (code: string, reason: string) => { wireCode = code; wireReason = reason; }, (end - 60) * 1000);
@@ -101,7 +105,7 @@ async function addOns1029(s: any, id: string, nowMs: number, pmIn?: PM) {
   // fix1043 HER TRIGGER ADD-ON ON THE XRP LANE: her lane's own read (xrpRead961, same walls as her entry) calls the SAME side again = a genuine entry trigger; 2.5x+, strictly better than her entry (trigPx1043), $ = her Add-on 2 box, one per distinct trigger (setup + 1 minute), no count limit
   try { if (b2t.on && b2t.dollars > 0 && nowMs - Number(RT[id + "trig"] || 0) >= RETRY1017_MS) { const bsT = await bars(); const spT = bsT.length ? bsT[bsT.length - 1].c : 0; const rd = spT > 0 ? xrpRead961(bsT, ethBands682(bsT as any), spT, nowMs / 1000, PUSH1055) : ({ why: "no bars" } as any);
     const kT = "side" in rd ? "trig|" + String(rd.label) + "|" + Math.floor(nowMs / 60000) : ""; const gT = trigPx1043(px, ask, at, nowMs);
-    if ("side" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + "trig"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk);
+    if ("side" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + "trig"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk); const dT1063 = await door1063(e.side, e.slug, String(rd.label)); if (dT1063) { log({ id, action: "trigger add-on refused", side: e.side, slug: e.slug, why: dT1063 }); } else
       try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, ":add1043" + Math.floor(nowMs / 60000)); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? "trigger add-on" : "trigger add-on missed", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }
       catch (er: any) { done[kT] = nowMs; save(); log({ id, action: "trigger add-on error", why: String(er?.message || er).slice(0, 120) }); } } } } catch {}
   for (const b of bx) {
@@ -109,6 +113,7 @@ async function addOns1029(s: any, id: string, nowMs: number, pmIn?: PM) {
     if (b.k === "add2") { const b1 = boxes1029()[0]; if (!b1.on || !(done.add1 || rung1029(px, b1.mult, ask, at, nowMs).passed)) continue; } // as on main: box 2 after box 1 filled (or her entry passed box 1)
     const g = rung1029(px, b.mult, ask, at, nowMs); if (g.passed) { done[b.k] = -1; save(); log({ id, action: "add-on skipped", box: b.k, why: g.why }); continue; } if (!g.go) continue;
     const cap = Math.min(g.cap, c.maxAsk); RT[id + b.k] = nowMs;
+    { const dA1063 = await door1063(e.side, e.slug, e.label); if (dA1063) { const W = (G.__btc1063AoOnce ||= {}); if (W[id + b.k] !== dA1063) { W[id + b.k] = dA1063; log({ id, action: "add-on refused", box: b.k, side: e.side, slug: e.slug, why: dA1063 }); } continue; } } // fix1063 main's door before every add-on
     try { const f = await pm.buySlug(e.side, e.slug, b.dollars, cap, null, ":add1029" + b.k); if (f && f.filled > 0) { done[b.k] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? "add-on" : "add-on missed", box: b.k, mult: b.mult, side: e.side, slug: e.slug, ask, cap, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }
     catch (er: any) { done[b.k] = nowMs; save(); log({ id, action: "add-on error", box: b.k, why: String(er?.message || er).slice(0, 120) }); } // an error spends that box (the order may have gone out)
   }
