@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R633 - fix1069 SHORT INSIDE THE RED ZONE: a rejection short off her Red zone with price still inside the zone (5m R1 to 5m R2, the same zone fix497 reads) is on her side - at the door, in the read and at the send it no longer waits for price to drop under the zone (fix951's NOT ON HER SIDE no longer refuses it). Her colour rule still judges it word for word (2m or 5m candle red, or a true wick rejection). Additions only: a short from over the top of the zone, a break below the Red zone, every other line, every long (the green zone mirror was not named and is unchanged), the delayed books and every other rule stay exactly as they are.
+- when: 2026-11-10T19:07:10+00:00
+- Love: "Love Nov 10 2026 11:00 AM PT: "SHE DOES NOT NEED TO WAIT UNTIL PRICE IS OUT OF THE RED ZONE TO SHORT. SHORT INSIDE OF IT. THIS IS NOT A VALID EXCUSE. I HAVE ALREADY TOLD YOU THIS." (10:40:03 AM her BTC short "Rejected down off Red zone" was refused NOT ON HER SIDE with price 73518.82, $4.70 inside the Red zone 73514.12)"
+- books: every live book but delayed: BTC + gold, rejection shorts off the Red zone
+- status: ACTIVE
+- proof: {"test": "tools/short-inside-red-zone-1069.cjs"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function inRed1069("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "inRed1069(L, tick)) { const wick1069"}
+
 ## R632 - fix1068 BOLLINGER BLOCK: at the last line before every Kalshi order (every book but delayed), no long just under her Bollinger middle or upper and no short just over her Bollinger middle or lower. "Just" = gold: the smaller of $1.50 and 10% of the session-band channel price sits in; BTC: 10% of that channel. Measured from price to the line, on her chart's 5m Bollinger. A short from over the upper band or a long from under the lower band (price outside her Bollinger coming back in - her wick rejection) is not blocked. No Bollinger to read = this rule says nothing and her other walls still judge. Additions only: her fix821 target-by-a-line rule and every other rule stay exactly as they are. XRP 15m and the other assets are NOT in this change (no real fills to prove it on yet).
 - when: 2026-11-10T18:52:42+00:00
 - Love: "Love Nov 10 2026 10:17 AM PT: "she entered in properly on both this window. just put the $1.50 bollinger , or 10%. whichever is smaller. block in for gold please. 10% of the channel for the rest of the assets please." + 10:13 AM PT: "she just longed gold directly under a bollinger again. please fix this.""
