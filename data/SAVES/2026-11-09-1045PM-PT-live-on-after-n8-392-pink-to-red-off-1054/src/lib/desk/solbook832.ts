@@ -1,15 +1,15 @@
-// fix832 DOGE · REJECTIONS ONLY · NO PINK - PAPER (Love Nov 6 2026 ~3:16 PM PT (her card pick "Paper books on the desk") to "can you test all of the other 15M markets on kalshi against our rules and see if they do better than gold does bb? 🏁"): a copy of her ETH paper book (fix682 below), same rules and walls scaled by price, on Coinbase DOGE-USD and Kalshi KXDOGE15M. PAPER ONLY.
+// fix832 SOL · REJECTIONS ONLY · NO PINK - PAPER (Love Nov 6 2026 ~3:16 PM PT (her card pick "Paper books on the desk") to "can you test all of the other 15M markets on kalshi against our rules and see if they do better than gold does bb? 🏁"): a copy of her ETH paper book (fix682 below), same rules and walls scaled by price, on Coinbase SOL-USD and Kalshi KXSOL15M. PAPER ONLY.
 // fix682 ETH · REJECTIONS ONLY · NO PINK - PAPER (Love Nov 4 2026 11:38 PM PT: "yess, let us do so please ❤️‍🔥 (eth book)" - to Claude's 11:36 PM offer: an ETH rejections-only PAPER
 // book "so it gets real numbers with all of her walls during the freeze week"; the broker study: ETH rejection 64% won from the entry over 188 Kalshi-settled trades).
 // PAPER ONLY. This file never places, sizes, cancels or reads a live order and never touches a live book, wall, umpire or switch. Her live pipeline carries only BTC and gold,
 // so ETH gets its own feed and her rejections-only rules are re-drawn here with the same numbers, scaled from BTC by price where they are in $:
-//   Feed: Coinbase DOGE-USD 1m candles (public), the forming minute included. Bands: her session VWAP ±1/2/3σ (volume-weighted, 5 PM ET reset), her 5m CM pivot (EMA-8 of the typical
+//   Feed: Coinbase SOL-USD 1m candles (public), the forming minute included. Bands: her session VWAP ±1/2/3σ (volume-weighted, 5 PM ET reset), her 5m CM pivot (EMA-8 of the typical
 //         price incl. the forming candle; red zone R1 / green zone S1 = ±the 7-candle average range), Bollinger 20/2 on 5m.
 //   Read (rejections only, no pink, no breaks): this 5m candle came within 15% of the channel of a session band / the green or red zone / a Bollinger band from its near side and did
 //         not break it by her break distance, and price is back off it by her push with the live 2m candle her colour (or 20% of the channel off it - her no-flip rejection).
 //   Walls: thirds (no long in the top 33%, no short in the bottom 33% of the session channel), past the red / green zone, pink-to-red / pink-to-green 45%, her pink cushion (BTC tiers
 //         scaled by price), her 1.5x floor (ask <= 66.7c), one trade per window.
-//   Market: Kalshi KXDOGE15M (the running window), $20 paper at the live ask; her take-profit (half at 75% of the way to $1, the rest trails from 90%: sold 5c off its best bid, else the bell).
+//   Market: Kalshi KXSOL15M (the running window), $20 paper at the live ask; her take-profit (half at 75% of the way to $1, the rest trails from 90%: sold 5c off its best bid, else the bell).
 import { readFileSync, writeFileSync, existsSync, appendFileSync } from "node:fs";
 import { join } from "node:path";
 import { fetchMarket, mapMarket } from "./kalshi";
@@ -20,16 +20,16 @@ const D = (f: string) => join(process.cwd(), "data", f);
 const BASE = "https://external-api.kalshi.com/trade-api/v2";
 type Bar = { t: number; o: number; h: number; l: number; c: number; v: number };
 type Row832 = { id: string; asset?: string; ticker: string; closeTime: string; at: string; side: "up" | "down"; label: string; spot: number; ask: number; contracts: number; bestBid: number; half: boolean; halfBid: number | null; trail: boolean; soldBid: number | null; result: "open" | "win" | "loss"; pnlHold: number | null; pnlTp: number | null };
-function st(): { rows: Row832[] } { if (G.__doge832) return G.__doge832; let s = { rows: [] as Row832[] }; try { if (existsSync(D("doge-book-832.json"))) s = JSON.parse(readFileSync(D("doge-book-832.json"), "utf8")); } catch {} G.__doge832 = s; return s; }
-function save() { if (G.__doge832SaveAt && Date.now() - G.__doge832SaveAt < 15000) return; G.__doge832SaveAt = Date.now(); try { const s = st(); s.rows = s.rows.slice(-3000); writeFileSync(D("doge-book-832.json"), JSON.stringify(s)); } catch {} }
+function st(): { rows: Row832[] } { if (G.__sol832) return G.__sol832; let s = { rows: [] as Row832[] }; try { if (existsSync(D("sol-book-832.json"))) s = JSON.parse(readFileSync(D("sol-book-832.json"), "utf8")); } catch {} G.__sol832 = s; return s; }
+function save() { if (G.__sol832SaveAt && Date.now() - G.__sol832SaveAt < 15000) return; G.__sol832SaveAt = Date.now(); try { const s = st(); s.rows = s.rows.slice(-3000); writeFileSync(D("sol-book-832.json"), JSON.stringify(s)); } catch {} }
 async function j(url: string): Promise<any> { const r = await fetch(url, { headers: { Accept: "application/json", "User-Agent": "aurelius-paper/1.0" }, signal: AbortSignal.timeout(10000) }); return r.json(); }
 async function bars(): Promise<Bar[]> {
-  const B = (G.__doge832Bars ||= { at: 0, m: new Map<number, Bar>() });
+  const B = (G.__sol832Bars ||= { at: 0, m: new Map<number, Bar>() });
   if (Date.now() - B.at < 10000 && B.m.size) return [...B.m.values()].sort((a: Bar, b: Bar) => a.t - b.t);
   const need = B.m.size < 600 ? 3 : 1; // first call: the last ~15 h (3 x 300 min); then the newest 300
   for (let k = need - 1; k >= 0; k--) {
     const end = Math.floor(Date.now() / 1000) - k * 300 * 60, start = end - 300 * 60;
-    const d = await j(`https://api.exchange.coinbase.com/products/DOGE-USD/candles?granularity=60&start=${new Date(start * 1000).toISOString()}&end=${new Date(end * 1000).toISOString()}`);
+    const d = await j(`https://api.exchange.coinbase.com/products/SOL-USD/candles?granularity=60&start=${new Date(start * 1000).toISOString()}&end=${new Date(end * 1000).toISOString()}`);
     if (Array.isArray(d)) for (const x of d) B.m.set(x[0], { t: x[0], l: x[1], h: x[2], o: x[3], c: x[4], v: x[5] });
   }
   for (const k of [...B.m.keys()]) if (k < Date.now() / 1000 - 2 * 86400) B.m.delete(k);
@@ -37,7 +37,7 @@ async function bars(): Promise<Bar[]> {
 }
 const group = (bs: Bar[], n: number): Bar[] => { const out: Bar[] = []; for (const b of bs) { const k = Math.floor(b.t / (n * 60)) * n * 60, x = out[out.length - 1]; if (x && x.t === k) { x.h = Math.max(x.h, b.h); x.l = Math.min(x.l, b.l); x.c = b.c; x.v += b.v; } else out.push({ ...b, t: k }); } return out; };
 /** her bands for ETH: session VWAP ±1/2/3σ (5 PM ET reset), 5m CM pivot (pink / R1 red zone / S1 green zone), Bollinger 20/2 on 5m */
-export function dogeBands832(bs: Bar[]): { name: string; price: number }[] {
+export function solBands832(bs: Bar[]): { name: string; price: number }[] {
   const L: { name: string; price: number }[] = []; if (bs.length < 40) return L;
   const last = bs[bs.length - 1], day = (t: number) => Math.floor((t - 22 * 3600) / 86400); let sv = 0, sp = 0, sp2 = 0;
   for (const b of bs) { if (day(b.t) !== day(last.t)) continue; const tp = (b.h + b.l + b.c) / 3, w = Math.max(b.v, 1e-9); sv += w; sp += w * tp; sp2 += w * tp * tp; }
@@ -48,7 +48,7 @@ export function dogeBands832(bs: Bar[]): { name: string; price: number }[] {
   return L;
 }
 /** her rejections-only read + walls, ETH-scaled; returns a call or the reason none */
-export function dogeRead832(bs: Bar[], L: { name: string; price: number }[], spot: number): { side: "up" | "down"; label: string } | { why: string } {
+export function solRead832(bs: Bar[], L: { name: string; price: number }[], spot: number): { side: "up" | "down"; label: string } | { why: string } {
   const k = spot / 80000, brk = 2 * k, push = 6 * k; // her BTC $2 break / $6 push, by price
   const S = L.filter((l) => /σ$|^session VWAP$/.test(l.name)).map((l) => l.price).sort((a, b) => a - b);
   const up = S.find((x) => x > spot), dn = [...S].reverse().find((x) => x < spot); if (up === undefined || dn === undefined) return { why: "no session channel" };
@@ -68,8 +68,8 @@ export function dogeRead832(bs: Bar[], L: { name: string; price: number }[], spo
   if (call.side === "down" && f <= 0.33) return { why: "THIRDS: short in the bottom 33%" };
   if (pk && r1 && s1) {
     if (call.side === "up" && spot >= r1) return { why: "PAST THE RED ZONE" }; if (call.side === "down" && spot <= s1) return { why: "PAST THE GREEN ZONE" };
-    if (call.side === "up" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: "PINK TO RED 45%" };
-    if (call.side === "down" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: "PINK TO GREEN 45%" };
+    if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && call.side === "up" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: "PINK TO RED 45%" };
+    if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && call.side === "down" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: "PINK TO GREEN 45%" };
     const w = W / k, cush = (w < 100 ? W / 2 : w < 180 ? W / 3 : w <= 500 ? 0.2 * W : w > 1000 ? 0.1 * W : 0.15 * W); // her BTC pink cushion, by price
     if (call.side === "up" && pk > spot - brk && pk - spot <= cush && pk > spot) return { why: "PINK CUSHION" };
     if (call.side === "down" && pk < spot + brk && spot - pk <= cush && pk < spot) return { why: "PINK CUSHION" };
@@ -77,21 +77,21 @@ export function dogeRead832(bs: Bar[], L: { name: string; price: number }[], spo
   return call;
 }
 async function market(): Promise<KalshiMarket | null> {
-  const M = (G.__doge832Mk ||= { at: 0, m: null as KalshiMarket | null });
+  const M = (G.__sol832Mk ||= { at: 0, m: null as KalshiMarket | null });
   if (Date.now() - M.at < 5000 && M.m && Date.parse(M.m.closeTime) > Date.now()) return M.m;
-  const d = await j(`${BASE}/markets?series_ticker=KXDOGE15M&status=open&limit=20`); const ms = ((d?.markets ?? []) as any[]).map(mapMarket).filter((m) => Date.parse(m.closeTime) > Date.now()).sort((a, b) => Date.parse(a.closeTime) - Date.parse(b.closeTime));
+  const d = await j(`${BASE}/markets?series_ticker=KXSOL15M&status=open&limit=20`); const ms = ((d?.markets ?? []) as any[]).map(mapMarket).filter((m) => Date.parse(m.closeTime) > Date.now()).sort((a, b) => Date.parse(a.closeTime) - Date.parse(b.closeTime));
   M.at = Date.now(); M.m = ms[0] || null; return M.m;
 }
-export async function dogeTick832() {
-  if (G.__doge832Busy || (G.__doge832At && Date.now() - G.__doge832At < 5000)) return; G.__doge832Busy = true; G.__doge832At = Date.now();
+export async function solTick832() {
+  if (G.__sol832Busy || (G.__sol832At && Date.now() - G.__sol832At < 5000)) return; G.__sol832Busy = true; G.__sol832At = Date.now();
   try {
     const s = st(); const bs = await bars(); if (!bs.length) return;
-    const spot = bs[bs.length - 1].c, L = dogeBands832(bs), mk = await market();
+    const spot = bs[bs.length - 1].c, L = solBands832(bs), mk = await market();
     if (mk && Date.parse(mk.closeTime) - Date.now() > 120000 && !s.rows.some((r) => r.ticker === mk.ticker)) {
-      const r = dogeRead832(bs, L, spot);
+      const r = solRead832(bs, L, spot);
       if ("side" in r) { const ask = r.side === "up" ? Number(mk.yesAsk) : Number(mk.noAsk);
-        if (ask > 0.01 && ask <= 0.667) s.rows.push({ id: `${mk.ticker}:doge-rjnp`, asset: "doge", ticker: mk.ticker, closeTime: mk.closeTime, at: new Date().toISOString(), side: r.side, label: r.label, spot, ask, contracts: Math.floor((20 / ask) * 100) / 100, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null });
-        else try { const GL = (G.__doge832Log ||= {}); if (GL[mk.ticker] !== r.side) { GL[mk.ticker] = r.side; appendFileSync(D("doge-book-832-skips.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: mk.ticker, side: r.side, label: r.label, ask, why: "under her 1.5x floor / no ask" }) + "\n"); } } catch {} }
+        if (ask > 0.01 && ask <= 0.667) s.rows.push({ id: `${mk.ticker}:sol-rjnp`, asset: "sol", ticker: mk.ticker, closeTime: mk.closeTime, at: new Date().toISOString(), side: r.side, label: r.label, spot, ask, contracts: Math.floor((20 / ask) * 100) / 100, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null });
+        else try { const GL = (G.__sol832Log ||= {}); if (GL[mk.ticker] !== r.side) { GL[mk.ticker] = r.side; appendFileSync(D("sol-book-832-skips.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: mk.ticker, side: r.side, label: r.label, ask, why: "under her 1.5x floor / no ask" }) + "\n"); } } catch {} }
     }
     for (const r of s.rows.filter((x) => x.result === "open")) {
       let m: KalshiMarket | null = null; try { m = await fetchMarket(r.ticker); } catch { m = null; } if (!m) continue;
@@ -101,6 +101,6 @@ export async function dogeTick832() {
       if (closed && res) { const won = res === r.side, pay = won ? 1 : 0, c = r.contracts, h = r.half ? c / 2 : 0; r.result = won ? "win" : "loss"; r.pnlHold = Math.round((c * pay - 20) * 100) / 100; r.pnlTp = Math.round(((r.half ? h * (r.halfBid || 0) : 0) + (c - h) * (r.soldBid != null ? r.soldBid : pay) - 20) * 100) / 100; }
     }
     save();
-  } catch {} finally { G.__doge832Busy = false; }
+  } catch {} finally { G.__sol832Busy = false; }
 }
-export function dogeSummary832() { const rows = st().rows, done = rows.filter((r) => r.result !== "open"); return { at: new Date().toISOString(), n: rows.length, open: rows.length - done.length, w: done.filter((r) => r.result === "win").length, l: done.filter((r) => r.result === "loss").length, hold: Math.round(done.reduce((s, r) => s + (r.pnlHold || 0), 0) * 100) / 100, tp: Math.round(done.reduce((s, r) => s + (r.pnlTp || 0), 0) * 100) / 100, recent: rows.slice(-12).reverse().map((r) => ({ at: r.at, side: r.side, label: r.label, ask: r.ask, result: r.result, pnlTp: r.pnlTp })) }; }
+export function solSummary832() { const rows = st().rows, done = rows.filter((r) => r.result !== "open"); return { at: new Date().toISOString(), n: rows.length, open: rows.length - done.length, w: done.filter((r) => r.result === "win").length, l: done.filter((r) => r.result === "loss").length, hold: Math.round(done.reduce((s, r) => s + (r.pnlHold || 0), 0) * 100) / 100, tp: Math.round(done.reduce((s, r) => s + (r.pnlTp || 0), 0) * 100) / 100, recent: rows.slice(-12).reverse().map((r) => ({ at: r.at, side: r.side, label: r.label, ask: r.ask, result: r.result, pnlTp: r.pnlTp })) }; }

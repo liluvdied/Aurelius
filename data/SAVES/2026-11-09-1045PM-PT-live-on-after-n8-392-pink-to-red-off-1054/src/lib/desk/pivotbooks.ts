@@ -118,8 +118,8 @@ export function zoneWall741(b: Bar[], asset: string, side: string, tick: number,
     if (asset === "btc" && (lane === "brk-sesspk" || lane === "brk15")) {
       const px758 = (n: string) => Number((lines || []).find((l: any) => String(l?.name) === n)?.price) || 0, zP = px758("5m PP"), r1 = px758("5m R1"), s1 = px758("5m S1");
       if (!(zP > 0 && r1 > zP && s1 > 0 && s1 < zP)) return "";
-      if (side === "up" && tick > zP && (tick - zP) / (r1 - zP) >= 0.45) return `PINK TO RED (fix758, her 55%): long at ${Math.round((tick - zP) / (r1 - zP) * 100)}% of pink ${zP.toFixed(2)} to red ${r1.toFixed(2)} - in the top 55% - no long.`;
-      if (side === "down" && tick < zP && (zP - tick) / (zP - s1) >= 0.45) return `PINK TO GREEN (fix758, her 55%): short at ${Math.round((zP - tick) / (zP - s1) * 100)}% of pink ${zP.toFixed(2)} to green ${s1.toFixed(2)} - in the bottom 55% - no short.`;
+      if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && side === "up" && tick > zP && (tick - zP) / (r1 - zP) >= 0.45) return `PINK TO RED (fix758, her 55%): long at ${Math.round((tick - zP) / (r1 - zP) * 100)}% of pink ${zP.toFixed(2)} to red ${r1.toFixed(2)} - in the top 55% - no long.`;
+      if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && side === "down" && tick < zP && (zP - tick) / (zP - s1) >= 0.45) return `PINK TO GREEN (fix758, her 55%): short at ${Math.round((zP - tick) / (zP - s1) * 100)}% of pink ${zP.toFixed(2)} to green ${s1.toFixed(2)} - in the bottom 55% - no short.`;
       return "";
     }
     const th = lane === "brk15" ? (asset === "gold" ? 1 : 50) : (asset === "gold" ? 2 : 100);

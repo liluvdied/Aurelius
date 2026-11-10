@@ -72,8 +72,8 @@ export function ethRead682(bs: Bar[], L: { name: string; price: number }[], spot
   // fix887: no thirds wall on ETH.2 (calibrated audit: it blocked 68 trades worth +$941, both weeks)
   if (pk && r1 && s1) {
     if (call.side === "up" && spot >= r1) return { why: "PAST THE RED ZONE" }; if (call.side === "down" && spot <= s1) return { why: "PAST THE GREEN ZONE" };
-    if (call.side === "up" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: "PINK TO RED 45%" };
-    if (call.side === "down" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: "PINK TO GREEN 45%" };
+    if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && call.side === "up" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: "PINK TO RED 45%" };
+    if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && call.side === "down" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: "PINK TO GREEN 45%" };
     const w = W / k, cush = 0.2 * W /* fix927 her ONE pink rule (Love Nov 7 2026 ~4:02 AM PT: "pink tolerance is 20% ... it applies in every conceivable capacity" + "$500 channel = $100 / 20% tolerance from where price currently stands"): 20% of the session channel - replaces the tiers */; // her BTC pink cushion, by price
     void cush; // fix888: no pink cushion on ETH.2 (calibrated audit: it blocked 130 trades worth +$711, both weeks)
   }

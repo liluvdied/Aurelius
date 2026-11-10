@@ -125,7 +125,7 @@ bothWays("fix485: gold 20% share on a $14 channel - no long at 86%", "gold", GC,
 bothWays("fix485: gold 20% share - a long at 50% of the channel is hers", "gold", GF, 4007.0, 4006.6, 4007.0, [4016, 3985], "up", null);
 // BTC: zones 55% (fix450/fix467), 33% up to $500 (fix379/fix414), $50 from the zones (fix497)
 const BZ = [{ name: "-1σ", price: 79500 }, { name: "session VWAP", price: 79900 }, { name: "+1σ", price: 80300 }, { name: "5m PP", price: 80000 }, { name: "5m S1", price: 79800 }, { name: "5m R1", price: 80200 }, { name: "5m R2", price: 80260 }, { name: "5m S2", price: 79740 }];
-bothWays("fix467: BTC no long in the top 55% of pink -> red", "btc", BZ, 80130, 80110, 80130, [80700, 79300], "up", /PINK TO (RED|GREEN)|FROM THE (RED|GREEN) ZONE|INSIDE THE (RED|GREEN) ZONE/);
+if (false /* fix1054 retired (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip") */) bothWays("fix467: BTC no long in the top 55% of pink -> red", "btc", BZ, 80130, 80110, 80130, [80700, 79300], "up", /PINK TO (RED|GREEN)|FROM THE (RED|GREEN) ZONE|INSIDE THE (RED|GREEN) ZONE/);
 bothWays("fix497: BTC no long within $50 over the red zone", "btc", BZ, 80295, 80275, 80295, [80700, 79300], "up", /FROM THE (RED|GREEN) ZONE|IMPOSSIBILITY|THIRD/);
 bothWays("fix379/fix414: BTC 33% on a $400 channel - no long at 80%", "btc", BZ.filter((l) => !/5m [RS]/.test(l.name)), 80220, 80200, 80220, [80700, 79300], "up", /IMPOSSIBILITY|THIRD|top/i);
 bothWays("fix379: BTC a long at 45% of a $400 channel, zones far, is hers", "btc", BZ.filter((l) => !/5m [RS]/.test(l.name)).concat([{ name: "5m PP", price: 79850 }, { name: "5m R1", price: 79700 }, { name: "5m R2", price: 79650 }, { name: "5m S1", price: 79600 }, { name: "5m S2", price: 79550 }]), 80080, 80060, 80080, [80700, 79300], "up", null);
@@ -233,20 +233,20 @@ NOW = Date.parse("2026-10-30T05:40:25Z"); board("gold", 4006.0, 4003.9, 4006.0, 
 // fix594 (Love Nov 1 2026 9:45 AM PT): top 55% of pink to red refuses longs, bottom 55% of pink to green refuses shorts, nothing past either boundary, both assets; door and last line the same test
 { const Zb = (p, s1, s2, r1, r2) => [{ name: "5m PP", price: p }, { name: "5m S1", price: s1 }, { name: "5m S2", price: s2 }, { name: "5m R1", price: r1 }, { name: "5m R2", price: r2 }], ZB = Zb(78000, 77800, 77600, 78200, 78400) /* fix811: $200 wide */, ZG = Zb(3880, 3870, 3860, 3890, 3900);
   T("fix594 BTC short at 30% from pink goes", !B.zoneSend594("btc", ZB, 77940, "down"));
-  T("fix594 BTC short at 50% from pink, in the bottom 55%, is refused", /bottom 55%/.test(B.zoneSend594("btc", ZB, 77900, "down")));
+  if (false /* fix1054 retired (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip") */) T("fix594 BTC short at 50% from pink, in the bottom 55%, is refused", /bottom 55%/.test(B.zoneSend594("btc", ZB, 77900, "down")));
   T("fix594 BTC short inside the green zone is refused", /past the green/.test(B.zoneSend594("btc", ZB, 77400, "down")));
   T("fix594 BTC short under the whole green zone is refused, not free and clear", /past the green/.test(B.zoneSend594("btc", ZB, 77700, "down")));
   T("fix594 BTC long at 30% from pink goes", !B.zoneSend594("btc", ZB, 78060, "up"));
-  T("fix594 BTC long at 50% from pink, in the top 55%, is refused", /top 55%/.test(B.zoneSend594("btc", ZB, 78100, "up")));
+  if (false /* fix1054 retired (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip") */) T("fix594 BTC long at 50% from pink, in the top 55%, is refused", /top 55%/.test(B.zoneSend594("btc", ZB, 78100, "up")));
   T("fix594 BTC long over the whole red zone is refused, not free and clear", /past the red/.test(B.zoneSend594("btc", ZB, 78600, "up")));
   T("fix594 a long rejecting off the green zone is not flagged", !B.zoneSend594("btc", ZB, 77700, "up"));
   T("fix594 a short rejecting off the red zone is not flagged", !B.zoneSend594("btc", ZB, 78300, "down"));
-  T("fix594 gold short at 60% from pink is refused", /bottom 55%/.test(B.zoneSend594("gold", ZG, 3874, "down")));
+  if (false /* fix1054 retired (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip") */) T("fix594 gold short at 60% from pink is refused", /bottom 55%/.test(B.zoneSend594("gold", ZG, 3874, "down")));
   T("fix594 gold long at 30% from pink goes", !B.zoneSend594("gold", ZG, 3883, "up"));
   T("fix594 gold long past the red boundary is refused", /past the red/.test(B.zoneSend594("gold", ZG, 3905, "up")));
-  T("fix811 tiny channel: a gold long at 50% of a $4 pink-to-red goes", !B.zoneSend594("gold", Zb(3880, 3870, 3860, 3884, 3890), 3882, "up")); T("fix811 tiny channel is gold only: a BTC long at 50% of a $100 pink-to-red is still refused", /top 55%/.test(B.zoneSend594("btc", Zb(78000, 77900, 77800, 78100, 78200), 78050, "up")));
+  T("fix811 tiny channel: a gold long at 50% of a $4 pink-to-red goes", !B.zoneSend594("gold", Zb(3880, 3870, 3860, 3884, 3890), 3882, "up")); if (false /* fix1054 retired (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip") */) T("fix811 tiny channel is gold only: a BTC long at 50% of a $100 pink-to-red is still refused", /top 55%/.test(B.zoneSend594("btc", Zb(78000, 77900, 77800, 78100, 78200), 78050, "up")));
   T("fix594 last line: zones that can't be read are refused", /can't be read/.test(B.zoneSend594("btc", [], 78000, "up")));
-  G.__door594Test = true; T("fix594 door: the same test refuses at the door", /bottom 55%/.test(geo("btc", ZB, 77900, "down", "main"))); T("fix594 door: nothing past the red boundary at the door", /PAST THE RED/.test(geo("btc", ZB, 78600, "up", "main"))); G.__door594Test = false;
+  G.__door594Test = true; if (false /* fix1054 retired (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip") */) T("fix594 door: the same test refuses at the door", /bottom 55%/.test(geo("btc", ZB, 77900, "down", "main"))); T("fix594 door: nothing past the red boundary at the door", /PAST THE RED/.test(geo("btc", ZB, 78600, "up", "main"))); G.__door594Test = false;
 }
 // fix595 (Love Nov 1 2026 10:37 AM PT): same side of the break at the last line, every session band and pink, both assets; a band that can't be read refuses
 { const S5 = (p) => [{ name: "session VWAP", price: 77700 }, { name: "+1σ", price: 78000 }, { name: "5m PP", price: p }], G5 = [{ name: "session VWAP", price: 3880 }, { name: "+1σ", price: 3900 }, { name: "5m PP", price: 3890 }];

@@ -88,7 +88,8 @@ if (WHAT === "zones" || WHAT === "zones5") {
     // long: 75% / 50% of pink->red blocked (top 55%), 30% goes; short: 25% / 50% of green->pink blocked (bottom 55%), 70% goes; gold never (BTC rule)
     const lo = z("btc", L, 80300, "up", 0) && z("btc", L, 80200, "up", 0) && !z("btc", L, 80120, "up", 0) && !z("gold", L, 80300, "up", 0);
     const sh = z("btc", L, 79700, "down", 0) && z("btc", L, 79800, "down", 0) && !z("btc", L, 79880, "down", 0) && !z("gold", L, 79700, "down", 0);
-    t(lo && sh, lo, sh, `${nm}: BTC no long in the top 55% of pink->red / no short in the bottom 55% of green->pink (replayed through her own lines)`);
+    if (five) t(lo && sh, lo, sh, `${nm}: BTC no long in the top 55% of pink->red / no short in the bottom 55% of green->pink (replayed through her own lines)`);
+    else { const lo2 = !z("btc", L, 80300, "up", 0) && !z("btc", L, 80200, "up", 0) && !z("btc", L, 80120, "up", 0), sh2 = !z("btc", L, 79700, "down", 0) && !z("btc", L, 79800, "down", 0) && !z("btc", L, 79880, "down", 0); t(lo2 && sh2, lo2, sh2, `${nm}: PINK TO RED / PINK TO GREEN no longer refuses (fix1054, Love Nov 9 2026 9:40 PM PT) - replayed through her own lines`); } // fix1054: her frozen 5M book (five) keeps its own
   }
 }
 

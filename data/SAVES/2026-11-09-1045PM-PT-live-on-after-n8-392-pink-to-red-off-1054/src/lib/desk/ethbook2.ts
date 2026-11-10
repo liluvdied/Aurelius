@@ -1,16 +1,15 @@
-// fix899 BTC.2 · PINK + THIRDS (Love Nov 6 2026 ~9:56 PM PT: "put her on pls / let's make 3 analogues - each of those / we will see how they do over the week on real trades / give me ETH.2 pink + thirds live on btc pls 💞"): ETH.2's rules (fix872-892: her rejections off every line incl. her pink, main's failed break, any 5m open, a 7.5% break, a 25% touch, the VWAP break and the -2σ short, her 45% wall and 1.5x floor, one filled trade a window) on BTC - Coinbase BTC-USD, Kalshi KXBTC15M - pink cushion KEPT, thirds KEPT. Its own rows (data/btc2c-book.json) and card.
-// fix872 ETH.2 (Love Nov 6 2026 ~8:54-9:03 PM PT: "keep the original eth book as it is and put all these revisions into ETH.2" + "no it can go live with it hun i meant to tap that my bad bb hehe 💘" + her card pick 9:03 PM: "Paper until proven"): an exact copy of her ETH book (ethbook.ts, fix682) - its own rows (data/btc2c-book.json, ids TICKER:btc2c), its own card - so every ETH revision lands here and the original ETH book stays exactly as it is.
+// fix872 ETH.2 (Love Nov 6 2026 ~8:54-9:03 PM PT: "keep the original eth book as it is and put all these revisions into ETH.2" + "no it can go live with it hun i meant to tap that my bad bb hehe 💘" + her card pick 9:03 PM: "Paper until proven"): an exact copy of her ETH book (ethbook.ts, fix682) - its own rows (data/eth2-book.json, ids TICKER:eth2), its own card - so every ETH revision lands here and the original ETH book stays exactly as it is.
 // fix682 ETH · REJECTIONS ONLY · NO PINK - PAPER (Love Nov 4 2026 11:38 PM PT: "yess, let us do so please ❤️‍🔥 (eth book)" - to Claude's 11:36 PM offer: an ETH rejections-only PAPER
 // book "so it gets real numbers with all of her walls during the freeze week"; the broker study: ETH rejection 64% won from the entry over 188 Kalshi-settled trades).
 // PAPER ONLY. This file never places, sizes, cancels or reads a live order and never touches a live book, wall, umpire or switch. Her live pipeline carries only BTC and gold,
 // so ETH gets its own feed and her rejections-only rules are re-drawn here with the same numbers, scaled from BTC by price where they are in $:
-//   Feed: Coinbase BTC-USD 1m candles (public), the forming minute included. Bands: her session VWAP ±1/2/3σ (volume-weighted, 5 PM ET reset), her 5m CM pivot (EMA-8 of the typical
+//   Feed: Coinbase ETH-USD 1m candles (public), the forming minute included. Bands: her session VWAP ±1/2/3σ (volume-weighted, 5 PM ET reset), her 5m CM pivot (EMA-8 of the typical
 //         price incl. the forming candle; red zone R1 / green zone S1 = ±the 7-candle average range), Bollinger 20/2 on 5m.
 //   Read (rejections only, no pink, no breaks): this 5m candle came within 15% of the channel of a session band / the green or red zone / a Bollinger band from its near side and did
 //         not break it by her break distance, and price is back off it by her push with the live 2m candle her colour (or 20% of the channel off it - her no-flip rejection).
 //   Walls: thirds (no long in the top 33%, no short in the bottom 33% of the session channel), past the red / green zone, pink-to-red / pink-to-green 45%, her pink cushion (BTC tiers
 //         scaled by price), her 1.5x floor (ask <= 66.7c), one trade per window.
-//   Market: Kalshi KXBTC15M (the running window), $20 paper at the live ask; her take-profit (half at 75% of the way to $1, the rest trails from 90%: sold 5c off its best bid, else the bell).
+//   Market: Kalshi KXETH15M (the running window), $20 paper at the live ask; her take-profit (half at 75% of the way to $1, the rest trails from 90%: sold 5c off its best bid, else the bell).
 import { readFileSync, writeFileSync, existsSync, appendFileSync } from "node:fs";
 import { join } from "node:path";
 import { fetchMarket, mapMarket } from "./kalshi";
@@ -21,17 +20,16 @@ const D = (f: string) => join(process.cwd(), "data", f);
 const BASE = "https://external-api.kalshi.com/trade-api/v2";
 type Bar = { t: number; o: number; h: number; l: number; c: number; v: number };
 type Row682 = { id: string; ticker: string; closeTime: string; at: string; side: "up" | "down"; label: string; spot: number; ask: number; contracts: number; bestBid: number; half: boolean; halfBid: number | null; trail: boolean; soldBid: number | null; result: "open" | "win" | "loss"; pnlHold: number | null; pnlTp: number | null };
-function st(): { rows: Row682[] } { if (G.__btc2cx) return G.__btc2cx; let s = { rows: [] as Row682[] }; try { if (existsSync(D("btc2c-book.json"))) s = JSON.parse(readFileSync(D("btc2c-book.json"), "utf8")); } catch {} G.__btc2cx = s; return s; }
-function save() { if (G.__btc2cxSaveAt && Date.now() - G.__btc2cxSaveAt < 15000) return; G.__btc2cxSaveAt = Date.now(); try { const s = st(); s.rows = s.rows.slice(-3000); writeFileSync(D("btc2c-book.json"), JSON.stringify(s)); } catch {} }
+function st(): { rows: Row682[] } { if (G.__eth2x) return G.__eth2x; let s = { rows: [] as Row682[] }; try { if (existsSync(D("eth2-book.json"))) s = JSON.parse(readFileSync(D("eth2-book.json"), "utf8")); } catch {} G.__eth2x = s; return s; }
+function save() { if (G.__eth2xSaveAt && Date.now() - G.__eth2xSaveAt < 15000) return; G.__eth2xSaveAt = Date.now(); try { const s = st(); s.rows = s.rows.slice(-3000); writeFileSync(D("eth2-book.json"), JSON.stringify(s)); } catch {} }
 async function j(url: string): Promise<any> { const r = await fetch(url, { headers: { Accept: "application/json", "User-Agent": "aurelius-paper/1.0" }, signal: AbortSignal.timeout(10000) }); return r.json(); }
 async function bars(): Promise<Bar[]> {
-  { const pb: any[] = (globalThis as any).__pivBars?.btc?.bars || []; if (pb.length > 60) return pb.map((x: any) => ({ t: Number(x.t) > 1e12 ? Math.floor(Number(x.t) / 1000) : Number(x.t), o: +x.o, h: +x.h, l: +x.l, c: +x.c, v: +x.v || 0 })).sort((a: Bar, b: Bar) => a.t - b.t); } // fix909 main's own BTC bars (her chart feed)
-  const B = (G.__btc2cxBars ||= { at: 0, m: new Map<number, Bar>() });
+  const B = (G.__eth2xBars ||= { at: 0, m: new Map<number, Bar>() });
   if (Date.now() - B.at < 10000 && B.m.size) return [...B.m.values()].sort((a: Bar, b: Bar) => a.t - b.t);
   const need = B.m.size < 600 ? 3 : 1; // first call: the last ~15 h (3 x 300 min); then the newest 300
   for (let k = need - 1; k >= 0; k--) {
     const end = Math.floor(Date.now() / 1000) - k * 300 * 60, start = end - 300 * 60;
-    const d = await j(`https://api.exchange.coinbase.com/products/BTC-USD/candles?granularity=60&start=${new Date(start * 1000).toISOString()}&end=${new Date(end * 1000).toISOString()}`);
+    const d = await j(`https://api.exchange.coinbase.com/products/ETH-USD/candles?granularity=60&start=${new Date(start * 1000).toISOString()}&end=${new Date(end * 1000).toISOString()}`);
     if (Array.isArray(d)) for (const x of d) B.m.set(x[0], { t: x[0], l: x[1], h: x[2], o: x[3], c: x[4], v: x[5] });
   }
   for (const k of [...B.m.keys()]) if (k < Date.now() / 1000 - 2 * 86400) B.m.delete(k);
@@ -39,10 +37,7 @@ async function bars(): Promise<Bar[]> {
 }
 const group = (bs: Bar[], n: number): Bar[] => { const out: Bar[] = []; for (const b of bs) { const k = Math.floor(b.t / (n * 60)) * n * 60, x = out[out.length - 1]; if (x && x.t === k) { x.h = Math.max(x.h, b.h); x.l = Math.min(x.l, b.l); x.c = b.c; x.v += b.v; } else out.push({ ...b, t: k }); } return out; };
 /** her bands for ETH: session VWAP ±1/2/3σ (00:00 UTC reset on 5m candles, as her chart - fix862), 5m CM pivot (pink / R1 red zone / S1 green zone), Bollinger 20/2 on 5m */
-export function ethBands682(bs: Bar[]): { name: string; price: number }[] { const m909 = lines909(); if (m909) return m909; return ethBands682own(bs); }
-// fix909 MAIN'S OWN LINES: BTC.2 reads exactly the lines main reads (her session VWAP / σ bands, her pink, her zones, her Bollinger) - to the cent
-function lines909(): { name: string; price: number }[] | null { try { const G9 = globalThis as any, lb = G9.__lawBands?.btc; if (!lb || !Array.isArray(lb.L) || !lb.L.length || Date.now() - Number(lb.at) > 30000) return null; const out = lb.L.filter((l: any) => Number(l.price) > 0 && /σ$|^session VWAP$|^5m PP$/.test(String(l.name))).map((l: any) => ({ name: String(l.name), price: Number(l.price) })); const f = (n: string) => Number((lb.L.find((l: any) => String(l.name) === n) || {}).price) || 0; if (f("5m R1")) out.push({ name: "Red zone", price: f("5m R1") }); if (f("5m S1")) out.push({ name: "Green zone", price: f("5m S1") }); const z = G9.__bbsr?.btc; if (Number(z?.bbU) > 0) out.push({ name: "BB upper", price: Number(z.bbU) }); if (Number(z?.bbL) > 0) out.push({ name: "BB lower", price: Number(z.bbL) }); return out; } catch { return null; } }
-function ethBands682own(bs: Bar[]): { name: string; price: number }[] {
+export function ethBands682(bs: Bar[]): { name: string; price: number }[] {
   const L: { name: string; price: number }[] = []; if (bs.length < 40) return L;
   // fix862 HER CHART'S SESSION (Love Nov 6 2026 ~8:03-8:05 PM PT: "why did she just long eth ???????? it broke the session down????" + "both breaks down" (her TradingView ETH on Coinbase: session VWAP 2,240.79, +1σ 2,243.69, -1σ 2,237.88)): her TradingView session VWAP on Coinbase ETH resets at 00:00 UTC (4 PM PT) and is built from
   // 5m candles - the book used 5 PM ET on 1m candles, $1.43 under her chart at 8:02 PM, so a break down on her chart read as a bounce here. Now the same as her chart (to the cent at 8:04 PM).
@@ -74,29 +69,25 @@ export function ethRead682(bs: Bar[], L: { name: string; price: number }[], spot
     if (!call && o5 < P && h5 >= P + brk && spot < P && ((spot <= h5 - push && spot < o2) || h5 - spot >= 0.2 * W)) call = { side: "down", label: `Failed break above ${l.name} - rejected down` }; // fix892
   }
   if (!call) return { why: "no rejection" };
-  // fix899: her thirds wall kept on this BTC analogue
-  if (call.side === "up" && f >= 0.67) return { why: "THIRDS: long in the top 33%" };
-  if (call.side === "down" && f <= 0.33) return { why: "THIRDS: short in the bottom 33%" };
+  // fix887: no thirds wall on ETH.2 (calibrated audit: it blocked 68 trades worth +$941, both weeks)
   if (pk && r1 && s1) {
     if (call.side === "up" && spot >= r1) return { why: "PAST THE RED ZONE" }; if (call.side === "down" && spot <= s1) return { why: "PAST THE GREEN ZONE" };
-    if (call.side === "up" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: "PINK TO RED 45%" };
-    if (call.side === "down" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: "PINK TO GREEN 45%" };
+    if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && call.side === "up" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: "PINK TO RED 45%" };
+    if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && call.side === "down" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: "PINK TO GREEN 45%" };
     const w = W / k, cush = 0.2 * W /* fix927 her ONE pink rule (Love Nov 7 2026 ~4:02 AM PT: "pink tolerance is 20% ... it applies in every conceivable capacity" + "$500 channel = $100 / 20% tolerance from where price currently stands"): 20% of the session channel - replaces the tiers */; // her BTC pink cushion, by price
-    // fix899: her pink cushion kept on this BTC analogue
-    if (call.side === "up" && pk > spot - brk && pk - spot <= cush && pk > spot) return { why: "PINK CUSHION" };
-    if (call.side === "down" && pk < spot + brk && spot - pk <= cush && pk < spot) return { why: "PINK CUSHION" };
+    void cush; // fix888: no pink cushion on ETH.2 (calibrated audit: it blocked 130 trades worth +$711, both weeks)
   }
-  { // fix906 NO ENTRY INTO A LINE (main's reach wall, scaled by price): no long with an unbroken line just above, no short with one just below
+  { // fix906 NO ENTRY INTO A LINE on ETH.2 (her 245): main's reach wall scaled by price - no long with an unbroken line just above, no short with one just below
     const reach906 = 25 * k, ls906 = L.filter((l) => /σ$|^session VWAP$|^(Red|Green) zone$|^BB (upper|lower)$|^5m PP$/.test(l.name) && l.price > 0);
-    const a906 = call.side === "up" ? ls906.filter((l) => l.price > spot && l.price - spot <= reach906).sort((x, y) => x.price - y.price)[0] : ls906.filter((l) => l.price < spot && spot - l.price <= reach906).sort((x, y) => y.price - x.price)[0];
+    const a906 = call.side === "up" ? ls906.filter((l) => l.price > spot && l.price - spot <= 1.5 /* fix913 FLAT $1.50 ABOVE A LONG (Love Nov 7 12:49 AM PT card: "Flat $1.50") */).sort((x, y) => x.price - y.price)[0] : ls906.filter((l) => l.price < spot && spot - l.price <= reach906).sort((x, y) => y.price - x.price)[0];
     if (a906) return { why: `LINE IN THE WAY (fix906): ${a906.name} (${a906.price.toFixed(2)}) is $${Math.abs(a906.price - spot).toFixed(2)} ${call.side === "up" ? "above" : "below"} - no ${call.side === "up" ? "long" : "short"} into it` };
   }
   return call;
 }
 async function market(): Promise<KalshiMarket | null> {
-  const M = (G.__btc2cxMk ||= { at: 0, m: null as KalshiMarket | null });
+  const M = (G.__eth2xMk ||= { at: 0, m: null as KalshiMarket | null });
   if (Date.now() - M.at < 5000 && M.m && Date.parse(M.m.closeTime) > Date.now()) return M.m;
-  const d = await j(`${BASE}/markets?series_ticker=KXBTC15M&status=open&limit=20`); const ms = ((d?.markets ?? []) as any[]).map(mapMarket).filter((m) => Date.parse(m.closeTime) > Date.now()).sort((a, b) => Date.parse(a.closeTime) - Date.parse(b.closeTime));
+  const d = await j(`${BASE}/markets?series_ticker=KXETH15M&status=open&limit=20`); const ms = ((d?.markets ?? []) as any[]).map(mapMarket).filter((m) => Date.parse(m.closeTime) > Date.now()).sort((a, b) => Date.parse(a.closeTime) - Date.parse(b.closeTime));
   M.at = Date.now(); M.m = ms[0] || null; return M.m;
 }
 // fix871 ONLY A FILL USES THE WINDOW (Love Nov 6 2026 ~8:40-8:43 PM PT: "no one read per window pls. for any book ever" + "no hun i don't want her to do multiple i want her to be ABLE to take valid set ups when they appear bb thats it" (one FILLED trade per book per window; reads, skips and unfilled / refused orders never use the window)): the ETH book books one trade a window, and its live copy
@@ -108,35 +99,35 @@ export function open871(rows: any[], ticker: string, live: { pos?: Record<string
   if (Object.values(pos).some((p: any) => p?.ticker === ticker && Number(p?.filled) > 0)) return false;
   return mine.every((r) => !!seen[r.id] && !pos[r.id]);
 }
-function live871(): any { try { return JSON.parse(readFileSync(D("btc2c-live-899.json"), "utf8")); } catch { return null; } }
-export async function btcTick899() {
-  if (G.__btc2cxBusy || (G.__btc2cxAt && Date.now() - G.__btc2cxAt < 5000)) return; G.__btc2cxBusy = true; G.__btc2cxAt = Date.now();
+function live871(): any { try { return JSON.parse(readFileSync(D("eth2-live-872.json"), "utf8")); } catch { return null; } }
+export async function ethTick872() {
+  if (G.__eth2xBusy || (G.__eth2xAt && Date.now() - G.__eth2xAt < 5000)) return; G.__eth2xBusy = true; G.__eth2xAt = Date.now();
   try {
     const s = st(); const bs = await bars(); if (!bs.length) return;
     const spot = bs[bs.length - 1].c, L = ethBands682(bs), mk = await market();
     const L871 = mk ? live871() : null; // fix871: ETH.2's live state, read once a tick
     // fix866 THE -2σ SHORT ON THE ETH BOOK (Love Nov 6 2026 ~8:25 PM PT: "yes i want it on that book 💓 the eth book. it rejected a dillinger after hun she needs to be able to take every valid set up as well"): momentum's "short under -2σ while falling" (ETH replay this week:
     // 29 trades, 62%) - a closed 1m candle red under -2σ = a short, once per window, inside her floor, beside the rejection read (its own row).
-    if (mk && open871(s.rows, mk.ticker, L871) /* fix871 */ && Date.parse(mk.closeTime) - Date.now() > 120000 && !s.rows.some((r) => r.id === `${mk.ticker}:btc2c:u2`)) {
+    if (mk && open871(s.rows, mk.ticker, L871) /* fix871 */ && Date.parse(mk.closeTime) - Date.now() > 120000 && !s.rows.some((r) => r.id === `${mk.ticker}:eth2:u2`)) {
       const nowS866 = Math.floor(Date.now() / 1000), cl866 = bs.filter((b) => b.t + 60 <= nowS866), b866 = cl866[cl866.length - 1], vw866 = L.find((l) => l.name === "session VWAP")?.price || 0, m2866 = L.find((l) => l.name === "-2σ")?.price || 0;
       if (b866 && m2866 > 0 && vw866 > 0 && b866.c < m2866 && b866.c < b866.o && nowS866 - (b866.t + 60) < 45) { const ask866 = Number(mk.noAsk);
-        if (ask866 > 0.01 && ask866 <= 0.667) s.rows.push({ id: `${mk.ticker}:btc2c:u2`, ticker: mk.ticker, closeTime: mk.closeTime, at: new Date().toISOString(), side: "down", label: "Short under -2σ while falling", spot, ask: ask866, contracts: Math.floor((20 / ask866) * 100) / 100, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null } as any); }
+        if (ask866 > 0.01 && ask866 <= 0.667) s.rows.push({ id: `${mk.ticker}:eth2:u2`, ticker: mk.ticker, closeTime: mk.closeTime, at: new Date().toISOString(), side: "down", label: "Short under -2σ while falling", spot, ask: ask866, contracts: Math.floor((20 / ask866) * 100) / 100, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null } as any); }
     }
     // fix868 THE CLEAN BREAK OF HER BLUE VWAP (Love Nov 6 2026 ~8:23-8:27 PM PT: "it's actually above the band now, she didn't enter?" + "that's the main blue vwap hun ... if it tests well on the data and helps her go for it bb!!"): a closed 1m candle that crosses the session VWAP
     // and closes its colour (up through it green = long, down through it red = short) is its own setup - once per window, inside her floor. Replay (this week, ETH): adding it took the book
     // from -$1.97 to -$1.73 a trade on modelled prices (more trades, a better average); the live copy keeps her colour, side-of-line and held-side guards.
-    if (mk && open871(s.rows, mk.ticker, L871) /* fix871 */ && Date.parse(mk.closeTime) - Date.now() > 120000 && !s.rows.some((r) => r.id === `${mk.ticker}:btc2c:vwapbrk`)) {
+    if (mk && open871(s.rows, mk.ticker, L871) /* fix871 */ && Date.parse(mk.closeTime) - Date.now() > 120000 && !s.rows.some((r) => r.id === `${mk.ticker}:eth2:vwapbrk`)) {
       const nowS868 = Math.floor(Date.now() / 1000), cl868 = bs.filter((b) => b.t + 60 <= nowS868), b868 = cl868[cl868.length - 1], p868 = cl868[cl868.length - 2], vw868 = L.find((l) => l.name === "session VWAP")?.price || 0;
       const side868 = b868 && p868 && vw868 > 0 && nowS868 - (b868.t + 60) < 45 ? (p868.c < vw868 && b868.c > vw868 && b868.c > b868.o ? "up" : p868.c > vw868 && b868.c < vw868 && b868.c < b868.o ? "down" : "") : "";
       if (side868) { const ask868 = side868 === "up" ? Number(mk.yesAsk) : Number(mk.noAsk);
-        if (ask868 > 0.01 && ask868 <= 0.667) s.rows.push({ id: `${mk.ticker}:btc2c:vwapbrk`, ticker: mk.ticker, closeTime: mk.closeTime, at: new Date().toISOString(), side: side868, label: side868 === "up" ? "Break above session VWAP" : "Break below session VWAP", spot, ask: ask868, contracts: Math.floor((20 / ask868) * 100) / 100, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null } as any); }
+        if (ask868 > 0.01 && ask868 <= 0.667) s.rows.push({ id: `${mk.ticker}:eth2:vwapbrk`, ticker: mk.ticker, closeTime: mk.closeTime, at: new Date().toISOString(), side: side868, label: side868 === "up" ? "Break above session VWAP" : "Break below session VWAP", spot, ask: ask868, contracts: Math.floor((20 / ask868) * 100) / 100, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null } as any); }
     }
     if (mk && open871(s.rows, mk.ticker, L871) /* fix871 */ && Date.parse(mk.closeTime) - Date.now() > 120000 && !s.rows.some((r) => r.ticker === mk.ticker && !String(r.id).endsWith(":u2"))) {
       const r = ethRead682(bs, L, spot);
-      if (!("side" in r)) try { const GW879 = (G.__btc2cx879W ||= {}); if (GW879[mk.ticker] !== r.why) { GW879[mk.ticker] = r.why; appendFileSync(D("btc2c-read-879.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: mk.ticker, why: r.why }) + "\n"); } } catch {} // fix879: her skip reason (logging only)
+      if (!("side" in r)) try { const GW879 = (G.__eth2x879W ||= {}); if (GW879[mk.ticker] !== r.why) { GW879[mk.ticker] = r.why; appendFileSync(D("eth2-read-879.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: mk.ticker, why: r.why }) + "\n"); } } catch {} // fix879: her skip reason (logging only)
       if ("side" in r) { const ask = r.side === "up" ? Number(mk.yesAsk) : Number(mk.noAsk);
-        if (ask > 0.01 && ask <= 0.667) s.rows.push({ id: `${mk.ticker}:btc2c`, ticker: mk.ticker, closeTime: mk.closeTime, at: new Date().toISOString(), side: r.side, label: r.label, spot, ask, contracts: Math.floor((20 / ask) * 100) / 100, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null });
-        else try { const GL = (G.__btc2cxLog ||= {}); if (GL[mk.ticker] !== r.side) { GL[mk.ticker] = r.side; appendFileSync(D("btc2c-book-skips.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: mk.ticker, side: r.side, label: r.label, ask, why: "under her 1.5x floor / no ask" }) + "\n"); } } catch {} }
+        if (ask > 0.01 && ask <= 0.667) s.rows.push({ id: `${mk.ticker}:eth2`, ticker: mk.ticker, closeTime: mk.closeTime, at: new Date().toISOString(), side: r.side, label: r.label, spot, ask, contracts: Math.floor((20 / ask) * 100) / 100, bestBid: 0, half: false, halfBid: null, trail: false, soldBid: null, result: "open", pnlHold: null, pnlTp: null });
+        else try { const GL = (G.__eth2xLog ||= {}); if (GL[mk.ticker] !== r.side) { GL[mk.ticker] = r.side; appendFileSync(D("eth2-book-skips.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker: mk.ticker, side: r.side, label: r.label, ask, why: "under her 1.5x floor / no ask" }) + "\n"); } } catch {} }
     }
     for (const r of s.rows.filter((x) => x.result === "open")) {
       let m: KalshiMarket | null = null; try { m = await fetchMarket(r.ticker); } catch { m = null; } if (!m) continue;
@@ -146,6 +137,6 @@ export async function btcTick899() {
       if (closed && res) { const won = res === r.side, pay = won ? 1 : 0, c = r.contracts, h = r.half ? c / 2 : 0; r.result = won ? "win" : "loss"; r.pnlHold = Math.round((c * pay - 20) * 100) / 100; r.pnlTp = Math.round(((r.half ? h * (r.halfBid || 0) : 0) + (c - h) * (r.soldBid != null ? r.soldBid : pay) - 20) * 100) / 100; }
     }
     save();
-  } catch {} finally { G.__btc2cxBusy = false; }
+  } catch {} finally { G.__eth2xBusy = false; }
 }
-export function btcSummary899() { const rows = st().rows, done = rows.filter((r) => r.result !== "open"); return { at: new Date().toISOString(), n: rows.length, open: rows.length - done.length, w: done.filter((r) => r.result === "win").length, l: done.filter((r) => r.result === "loss").length, hold: Math.round(done.reduce((s, r) => s + (r.pnlHold || 0), 0) * 100) / 100, tp: Math.round(done.reduce((s, r) => s + (r.pnlTp || 0), 0) * 100) / 100, recent: rows.slice(-12).reverse().map((r) => ({ at: r.at, side: r.side, label: r.label, ask: r.ask, result: r.result, pnlTp: r.pnlTp })) }; }
+export function ethSummary872() { const rows = st().rows, done = rows.filter((r) => r.result !== "open"); return { at: new Date().toISOString(), n: rows.length, open: rows.length - done.length, w: done.filter((r) => r.result === "win").length, l: done.filter((r) => r.result === "loss").length, hold: Math.round(done.reduce((s, r) => s + (r.pnlHold || 0), 0) * 100) / 100, tp: Math.round(done.reduce((s, r) => s + (r.pnlTp || 0), 0) * 100) / 100, recent: rows.slice(-12).reverse().map((r) => ({ at: r.at, side: r.side, label: r.label, ask: r.ask, result: r.result, pnlTp: r.pnlTp })) }; }
