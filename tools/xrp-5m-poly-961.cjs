@@ -38,11 +38,21 @@ const fiveOnly = [bar(start, 2.2825, 2.285, 2.2801, 2.282), bar(start + 60, 2.28
 t(M.xrpRead961(fiveOnly, L, 2.2834, start + 130).side === "up", "a valid 5m read must survive an empty forming 2m bucket");
 t(Number.isNaN(M.win5Open1051(fiveOnly.slice(1), start + 130)), "the second minute must never stand in for the true 5m settlement open");
 
+// The old selector returned the pink long and vetoed it after selection.
+const openCase = 1794293100;
+const bothSides = [bar(openCase, 1.101, 1.104, 1.094, 1.100)];
+const dualLines = [{ name: "-1σ", price: 1.09 }, { name: "+1σ", price: 1.11 }, { name: "5m PP", price: 1.095 }, { name: "BB upper", price: 1.104 }, { name: "BB lower", price: 1.08 }];
+t(M.xrpRead961(bothSides, dualLines, 1.100, openCase + 30).side === "up", "the 15m caller keeps its unconstrained candidate order");
+r = M.xrpRead961(bothSides, dualLines, 1.100, openCase + 30, undefined, 1.101);
+t(r.side === "down" && r.label === "Rejected down off BB upper", "an ineligible pink long must not hide a valid five-minute short: " + JSON.stringify(r));
+t(/missing 5m window opening bar/.test(M.xrpRead961(bothSides, dualLines, 1.100, openCase + 30, undefined, NaN).why), "the open cannot be inferred from a later minute");
+t(!M.xrpRead961(bothSides, dualLines, 1.100, openCase + 30, undefined, 1.100).side, "price equal to the window open cannot choose a side");
+
 // fix1017 her lane keeps watching after an over-cap look; only a fill spends the window; never a second buy in a window
 (async () => {
   t(/export const RETRY1017_MS = 5000/.test(X) && !/\n    s\.seen\[id\] = nowMs;\n    const row/.test(X), "fix1017: the window must not be spent before the ask / fill");
   const G = globalThis, tmp = fs.mkdtempSync(path.join(os.tmpdir(), "x1017-")), here = process.cwd(); fs.mkdirSync(path.join(tmp, "data")); fs.writeFileSync(path.join(tmp, "data/xrp5m-961-cfg.json"), JSON.stringify({ on: true, dollars: 1, maxAsk: 0.66 })); process.chdir(tmp);
-  const realNow1049 = Date.now; // fix1049
+  const realNow1049 = Date.now, realFetch = globalThis.fetch; // fix1049
   try {
     G.__t1017L = L; const n0 = 1794100200 + 150; // the -1σ long read above, 150 s into its window
     const B = [bar(n0 - 150, 2.2825, 2.285, 2.2801, 2.282), bar(n0 - 90, 2.282, 2.283, 2.2802, 2.281), bar(n0 - 30, 2.281, 2.2835, 2.281, 2.2834)]; // fix1051: this window opens at 2.2825, so the 2.2834 long is on her side of the 5m open (was 2.284 - a long under the open, which her 5m lane now waits out)
@@ -75,7 +85,32 @@ t(Number.isNaN(M.win5Open1051(fiveOnly.slice(1), start + 130)), "the second minu
     const b5 = buys, lk = looks; G.__xrp961Retry = {}; await tick(n0 + 1300); t(buys === b5 && looks === lk, "fix1017: never in the last minute of a window");
     // over-cap ask stays refused on every look
     const n4 = n0 + 1500; ask = 0.67; for (const d of [0, 6, 12, 18, 24]) await tick(n4 + d); t(buys === b5, "fix1017: an ask over 66c is never bought, however often it looks");
-  } catch (e) { t(false, "fix1017 lane test threw: " + e.stack); } finally { process.chdir(here); delete G.__t1017L; Date.now = realNow1049; /* fix1049 */ }
+    // A cold historical page can time out without consuming a valid current read.
+    const start = n0 + 1650, sec = start + 150, end = (start + 240) * 1000;
+    Date.now = () => sec * 1000;
+    G.__xrp961At = 0;
+    delete G.__xrp961Bars;
+    G.__t1017L = dualLines;
+    const ranges = [], marketLooks = [], attempts = [];
+    globalThis.fetch = async (raw) => {
+      const url = new URL(raw);
+      const lo = Date.parse(url.searchParams.get("start")) / 1000, hi = Date.parse(url.searchParams.get("end")) / 1000;
+      ranges.push([lo, hi]);
+      if (hi < start) throw new Error("historical page timed out");
+      return { ok: true, json: async () => [
+        [start, 1.094, 1.104, 1.101, 1.100, 10],
+        [start + 120, 1.098, 1.102, 1.101, 1.100, 10],
+        [start + 180, 1.0, 2.0, 1.5, 1.9, 10],
+      ] };
+    };
+    await M.xrpTick961(sec * 1000, {
+      bookTop: async (slug) => { marketLooks.push(slug); return { ask: 0.55, bid: 0.47 }; },
+      buySlug: async (...args) => { attempts.push(args); return { filled: 1, price: 0.55 }; },
+    });
+    t(ranges.length === 3 && ranges.every(([a,b]) => Math.floor((b-a)/60)+1 <= 300), "Coinbase requests must stay within 300 inclusive minute buckets");
+    t(marketLooks.length === 1 && /^cpcxrp-xrp-updown-5m-/.test(marketLooks[0]), "first quote must come from the canonical XRP market, without a duplicate look");
+    t(attempts.length === 1 && attempts[0][0] === "down" && attempts[0][7] === end, "old page timeouts and a future bar must not veto the valid short or omit the deadline");
+  } catch (e) { t(false, "fix1017 lane test threw: " + e.stack); } finally { process.chdir(here); delete G.__t1017L; Date.now = realNow1049; globalThis.fetch = realFetch; }
 console.log(ok ? "XRP 5M POLY 961 TEST ✓ - XRP 5m on Polymarket with main's current setups and walls through her cornerstones (fix1004: real colour by her push, same side, push off the turn, Bollinger wall, rule C; only a real wick skips colour) and her walls, $1 through the Polymarket guard, stale feed = no trade; fix1017: an over-cap look / no fill keeps watching (every 5 s, logged once), only a fill spends the window, never a second buy." : "XRP 5M POLY 961 TEST: FAIL");
 process.exit(ok ? 0 : 1);
 })();

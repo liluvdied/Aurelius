@@ -21,7 +21,7 @@ if (ok) {
 // the 5m books use it; the XRP 15m on Kalshi (and every 15m book) do not
 t(/import \{ xrpRead961, openSide1051, win5Open1051 \} from "\.\/xrp5m961";/.test(P) && /if \(r && r\.side && openSide1051\(r\.side, spot, win5Open1051\(bs, now\)\)/.test(P), "the BTC / ETH / XRP 5m paper books do not check her side of the 5m open");
 t((P.match(/openSide1051\(/g) || []).length === 1 && /r = xrpRead961\(bs, ethBands682\(bs as any\), spot, now\) as any; \/\/ her XRP lane's own push/.test(P), "the XRP 15m on Kalshi must stay untouched (her 'not for the 15')");
-t(/const r0 = xrpRead961\(bs, ethBands682\(bs as any\), spot, now\);\n    const o51 = win5Open1051\(bs, now\); const r: ReturnType<typeof xrpRead961> = [^\n]*?"side" in r0 && !openSide1051\(r0\.side, spot, o51\)/.test(X), "her XRP 5m lane does not check her side of the 5m open");
+t(/xrpRead961\(bs, ethBands682\(bs\), spot, readAt, undefined, win5Open1051\(bs, readAt\)\)/.test(X) && /openSide1051\(side, spot, windowOpen\)/.test(X), "her XRP 5m lane does not check her side of the 5m open before selecting");
 for (const f of ["recon.ts", "bandlock.ts", "engine.ts"]) t(!fs.readFileSync(path.join(root, "src/lib/desk", f), "utf8").includes("openSide1051"), f + " (her 15m books) must not use the 5m open rule");
 console.log(ok ? "FIVE MIN OPEN SIDE 1051 TEST ✓ - her 5m books (BTC / ETH / XRP 5m paper + her XRP 5m lane) enter only with price past the 5m window's open her way, else keep watching; the XRP 15m on Kalshi and every 15m book are untouched" : "FIVE MIN OPEN SIDE 1051 TEST: FAIL");
 process.exit(ok ? 0 : 1);

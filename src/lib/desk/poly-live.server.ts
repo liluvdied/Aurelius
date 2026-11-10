@@ -642,16 +642,24 @@ export async function buySlug(
   target: number | null,
   claimTag = "", // fix1029: an add-on claims its own key (slug + tag) so the entry's one-buy-per-window claim stays as is; "" = the entry, unchanged
   onRefused?: (code: string, reason: string) => void,
+  deadlineMs?: number, // fix1055 XRP cannot send in its last minute even after slow reads
 ): Promise<HedgeFill | null> {
   const refuse = (code: string, reason: string) => { onRefused?.(code, reason); return null; };
   maxAsk = Math.min(maxAsk, 0.66);
   slug = await resolve5m994(slug); // fix994: an event slug -> its market
   if (hourSlugs().includes(slug)) return refuse("already-bought", "this market already has a recorded buy");
-  const cash = await polymarketCash();
+  // A read-only failure before the POST is safe to retry in the same window.
+  const cash = await polymarketCash().catch((error) => {
+    if (deadlineMs === undefined) throw error;
+    return null;
+  });
   if (cash == null || cash < dollars) return refuse("cash", cash == null ? "Polymarket balance unavailable" : "Polymarket cash below the requested ticket");
   if (!claimWindow(slug + claimTag)) return refuse("claimed", "this market already has an active order claim");
   try {
-    const quoted = await askFor(slug, side);
+    const quoted = await askFor(slug, side).catch((error) => {
+      if (deadlineMs === undefined) throw error;
+      return null;
+    });
     if (quoted == null || quoted < 0.08 || quoted > maxAsk) {
       releaseWindow(slug + claimTag);
       return refuse("quote", quoted == null ? "no buy quote available" : `the wire ask ${quoted} is outside $0.08–$${maxAsk}`);
@@ -661,6 +669,10 @@ export async function buySlug(
     if (!(quantity >= 0.01) || quantity * price > dollars + 0.001) {
       releaseWindow(slug + claimTag);
       return refuse("size", "order size is below the minimum or above its dollar limit");
+    }
+    if (deadlineMs !== undefined && Date.now() > deadlineMs) {
+      releaseWindow(slug + claimTag);
+      return refuse("late", "XRP window reached its final minute before the order could be sent"); // fix1017 final-minute cutoff
     }
     const res = await poly("POST", "/v1/orders", "", {
       marketSlug: slug,
@@ -673,6 +685,9 @@ export async function buySlug(
       manualOrderIndicator: "MANUAL_ORDER_INDICATOR_AUTOMATED",
     });
     if (!res.ok) {
+      if (deadlineMs !== undefined && res.status >= 500) {
+        throw new Error(`Polymarket returned HTTP ${res.status} after submission; the order outcome is unknown`);
+      }
       releaseWindow(slug + claimTag);
       const body: any = await res.json().catch(() => null);
       const error = typeof body?.error === "string" ? body.error : "";
