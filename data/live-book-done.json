@@ -3011,5 +3011,22 @@
   "final": false,
   "paid": 0.39,
   "orderId": "01a1c3fd-5550-74eb-8e50-f0b69d0bb5c5"
+ },
+ "KXBTC15M-26NOV100100-00:recon-rej:ps801": {
+  "at": "2026-11-10T05:57:01.652Z",
+  "ticker": "KXBTC15M-26NOV100100-00",
+  "side": "up",
+  "status": "skipped",
+  "final": false,
+  "bandWait": true,
+  "reason": "SUB-AUDITOR: PINK CUSHION: long $30.20 under the unbroken pink (74778.39) - inside her $51.99 cushion (fix514). wait for the break or the rejection."
+ },
+ "KXBTC15M-26NOV100100-00:recon-tog:ps801": {
+  "at": "2026-11-10T05:56:15.713Z",
+  "ticker": "KXBTC15M-26NOV100100-00",
+  "side": "up",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
  }
 }

@@ -33,6 +33,7 @@ import { RungStats680 } from "@/components/desk/stats-rungs"; // fix680
 import { SetupScores708 } from "@/components/desk/setup-scores"; // fix708
 import { FactorScores825 } from "@/components/desk/factor-scores"; // fix825
 import { SetupBoard773 } from "@/components/desk/setup-board";
+import { getFav1047, setFav1047 } from "@/lib/desk/fav1047"; // fix1047 her hearts (display only)
 import { LiveWire1044 } from "@/components/desk/live-wire"; // fix1044 LIVE WIRE + WTF BOOK (display + her WTF tap only) // fix773 SETUP SCOREBOARD (display only)
 import { Skips697 } from "@/components/desk/skips"; // fix697
 import { EthBook682 } from "@/components/desk/eth-book"; // fix682
@@ -988,7 +989,7 @@ function ModeSwitch({
 }
 
 export function DeskApp() {
-  const [bookTab, setBookTab] = useState<"mode" | "wire" | "shift" | "paper" | "prime" | "lead" | "open" | "watch" | "lean" | "fuel" | "symbols" | "mirror" | "markets" | "kalshi" | "poly" | "cash" | "stats" | "scale" | "hedge" | "log" | "audit" | "look" | "outside" | "notes" | "pnl" | "day" | "alerts" | "sitrep" | "books" | "traj" | "scanner" | "positions" | "scope">("kalshi");
+  const [bookTab, setBookTab] = useState<"mode" | "wire" | "fav" | "shift" | "paper" | "prime" | "lead" | "open" | "watch" | "lean" | "fuel" | "symbols" | "mirror" | "markets" | "kalshi" | "poly" | "cash" | "stats" | "scale" | "hedge" | "log" | "audit" | "look" | "outside" | "notes" | "pnl" | "day" | "alerts" | "sitrep" | "books" | "traj" | "scanner" | "positions" | "scope">("kalshi");
   const [span, setSpan] = useState<"12" | "24" | "all">("24");
   const [deskNote, setDeskNote] = useState("");
   const [cashVenue, setCashVenue] = useState<CashVenue>("kalshi");
@@ -2085,6 +2086,7 @@ export function DeskApp() {
         <div className="flex flex-nowrap gap-1 overflow-x-auto overflow-y-hidden px-3 pb-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <DeskTab active={bookTab === "mode"} label="MODE" onClick={() => setBookTab("mode")} />
           <DeskTab active={bookTab === "wire"} label="⚡ LIVE WIRE" onClick={() => setBookTab("wire")} /> {/* fix1044 */}
+          <DeskTab active={bookTab === "fav"} label="♡ FAVORITES" onClick={() => setBookTab("fav")} /> {/* fix1047 */}
           <DeskTab active={bookTab === "shift"} label="SHIFT" onClick={() => setBookTab("shift")} />
           <DeskTab active={bookTab === "alerts"} label={(bookWatchQ.data?.alerts ?? []).some((a) => a.level === "red") ? `ALERTS · ${(bookWatchQ.data?.alerts ?? []).length} ●` : (bookWatchQ.data?.alerts ?? []).length ? `ALERTS · ${(bookWatchQ.data?.alerts ?? []).length}` : "ALERTS"} onClick={() => setBookTab("alerts")} />
           <DeskTab active={bookTab === "kalshi"} label="KALSHI" onClick={() => setBookTab("kalshi")} />
@@ -2258,6 +2260,7 @@ export function DeskApp() {
         {bookTab === "stats" ? <PushShadow983 /> : null} {/* fix983 PUSH SHADOW TEST: every candidate push per asset, paper, real Kalshi asks */}
         {bookTab === "stats" ? <FactorScores825 /> : null} {/* fix825 every factor on its own, main + REJ */}
         {bookTab === "wire" ? <LiveWire1044 snap={snap} /> : null} {/* fix1044 LIVE WIRE + WTF BOOK */}
+        {bookTab === "fav" ? <NightCard scale={1} size={30} favOnly /> : null} {/* fix1047 her ♡ FAVORITES: only the books she hearted, same cards */}
         {bookTab === "stats" ? <SetupBoard773 /> : null} {/* fix773 SETUP SCOREBOARD: our setup / her band read, every book */}
 
         {bookTab === "cash" ? (
@@ -3208,7 +3211,7 @@ type ShiftNight = { id: string; book: "fivey" | "fivey123" | "recon-fresh" | "re
 
 // NIGHT PAPER: the same setups traded two ways on real Kalshi bids while LIVE is off.
 const EMPTY_ROWS: ShiftNight[] = [];
-function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scale?: number; size?: number; whatIf?: number }) {
+function NightCard({ scale = 1, size = 50, whatIf, favOnly = false }: { rows?: ShiftNight[]; scale?: number; size?: number; whatIf?: number; favOnly?: boolean }) {
   // Every ledger books at Kalshi's $30 ($15 on 3x+) since Oct 8; the cards show it as booked.
   // Love's toggle: every trade re-run with BANK's exits (trailing gate 5% off the high after +30%,
   // band-tap rejection banks, breaks hold). Computed on the server from the real bid paths.
@@ -3261,6 +3264,40 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
   const [showArch, setShowArch] = useState(false);
   const [runBusy, setRunBusy] = useState<string | null>(null);
   const runOn = (book: string) => (runQ.data?.books ?? []).includes(book);
+  // fix1047 HER HEARTS (Love Nov 9 2026 ~11:54 AM PT: "can you just give me a tiny lil hollow heart button on each card next to the run button / and then it lets me pick which books i want to look at in a favorites tab too"):
+  // a hollow ♡ next to RUN on every card; tap = hearted (♥, shows in her ♡ FAVORITES tab), tap again = off. Saved in data/fav-books.json. Display only - never an order.
+  const favQ1047 = useQuery({ queryKey: ["fav-1047"], queryFn: () => getFav1047(), staleTime: 5000, refetchInterval: 30000 });
+  const [favLocal1047, setFavLocal1047] = useState<string[] | null>(null);
+  const fav1047: string[] = favLocal1047 ?? ((favQ1047.data as string[] | undefined) ?? []);
+  const flipFav1047 = (book: string) => {
+    const on = !fav1047.includes(book);
+    setFavLocal1047(on ? [...fav1047.filter((x) => x !== book), book] : fav1047.filter((x) => x !== book));
+    void setFav1047({ data: { book, on } }).then((r) => setFavLocal1047(r as string[])).catch(() => { setFavLocal1047(null); toast("♡ didn't save, try again"); });
+  };
+  const Heart1047 = (book: string) => {
+    const on1047 = fav1047.includes(book);
+    return (
+      <span
+        role="button"
+        tabIndex={0}
+        title={on1047 ? "In your FAVORITES. Tap to take it out" : "Tap to add to your FAVORITES"}
+        onClick={(e) => {
+          e.stopPropagation();
+          flipFav1047(book);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.stopPropagation();
+            flipFav1047(book);
+          }
+        }}
+        className="px-1 text-[14px] leading-none"
+        style={{ color: on1047 ? "#ff7ab6" : "rgba(255,255,255,0.75)", textShadow: on1047 ? "0 0 8px rgba(255,122,182,0.6)" : "none" }}
+      >
+        {on1047 ? "♥" : "♡"}
+      </span>
+    );
+  };
   // fix736 (Love Nov 5 2026 10:37-10:41 AM PT: "can you put the cards in the Running Table that our other books are in hun ? i want to be able to see them without digging"): the live-today (akimbo) books' own cards ride in RUNNING too - display only (their RUN button, the lineup and the copier are untouched).
   const lt736Q = useQuery({ queryKey: ["live-today-722"], queryFn: () => getLiveToday736(), refetchInterval: 20000, staleTime: 15000 });
   const lt736: string[] = (lt736Q.data as any)?.on ? String((lt736Q.data as any).book || "").split(",").filter(Boolean) : [];
@@ -3702,7 +3739,8 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
           {s.wins}W · {s.losses}L{s.wins + s.losses ? ` · ${Math.round((s.wins / (s.wins + s.losses)) * 100)}% wins` : ""}{s.open ? ` · ${s.open} open` : ""}
         </p>
         {!isTap(book) && book !== "kalshinow766" /* fix768: a record, not a book - no RUN */ && book !== "supernova" && book !== "recon-fresh" && book !== "recon-togp-fresh" && book !== "recon-rnp-fresh" /* fix625 */ && book !== "recon-all" && (
-          <div className="mt-auto flex justify-end pt-1">
+          <div className="mt-auto flex items-center justify-end gap-1.5 pt-1">
+            {Heart1047(book)}
             <span
               role="button"
               tabIndex={0}
@@ -3731,6 +3769,7 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
             </span>
           </div>
         )}
+        {!(!isTap(book) && book !== "kalshinow766" /* fix768: a record, not a book - no RUN */ && book !== "supernova" && book !== "recon-fresh" && book !== "recon-togp-fresh" && book !== "recon-rnp-fresh" /* fix625 */ && book !== "recon-all") && <div className="mt-auto flex justify-end pt-1">{Heart1047(book)}</div>} {/* fix1047 the cards without RUN get her heart too */}
         <div className={cn("flex items-end justify-between gap-2 pt-1", isTap(book) && "mt-auto")}>
           <p className="text-[9px] tracking-[0.18em]" style={{ color: opening === book ? "#ffd479" : "rgba(255,255,255,0.45)" }}>{opening === book ? (on ? "CLOSING…" : "OPENING… ONE TAP IS ENOUGH") : on ? "SHOWING ITS TRADES · TAP AGAIN TO CLOSE" : "TAP FOR ITS TRADES"}</p>
           <span className="flex shrink-0 gap-1">
@@ -4022,6 +4061,20 @@ function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scal
       {label}
     </button>
   );
+  // fix1047 her ♡ FAVORITES tab: only the books she hearted, the same cards - tap one and its trades pull up the same way.
+  if (favOnly) {
+    const favRows1047 = fav1047.map((k) => BOOKS.find((b) => b.book === k)).filter(Boolean).map((b: any) => ({ ...b, s: side(b.book) }));
+    return (
+      <section className="rounded-[22px] border border-white/25 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
+        <p className="mb-2 text-[10px] tracking-[0.24em]" style={{ color: "#ff7ab6" }}>♡ FAVORITES · {favRows1047.length}</p>
+        {favRows1047.length ? (
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">{favRows1047.map((b) => [Col({ book: b.book, title: b.title, note: b.note, s: b.s }), Inline({ book: b.book })])}</div>
+        ) : (
+          <p className="text-[11px] text-white/60">{favQ1047.isLoading ? "loading…" : "No favorites yet. Tap the little ♡ next to RUN on any book card in SHIFT and it shows up here."}</p>
+        )}
+      </section>
+    );
+  }
   return (
     <section className="rounded-[22px] border border-white/25 px-5 py-4 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
       <LiveToday722 /> {/* fix722 the one live book today, pinned on top */}

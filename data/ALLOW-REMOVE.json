@@ -11806,5 +11806,20 @@
     "what": "t(d.live === true && d.liveBook && [\"recon-tog\", \"recon-rej\", \"recon-dly\"].every((b) => (d.liveBook.books || []).includes(b)), \"LIVE and main / rej / delayed must stay live\");",
     "why": "fix1052 (her words in this change's request)",
     "R": "R607"
+  },
+  {
+    "what": "const [bookTab, setBookTab] = useState<\"mode\" | \"wire\" | \"shift\" | \"paper\" | \"prime\" | \"lead\" | \"open\" | \"watch\" | \"lean\" | \"fuel\" | \"symbols\" | \"mirror\" | \"markets\" | \"kalshi\" | \"poly\" | \"cash\" | \"stats\" | \"scale\" | \"hedge\" | \"log\" | \"audit\" | \"look\" | \"outside\" | \"notes\" | \"pnl\" | \"day\" | \"alerts\" | \"sitrep\" | \"books\" | \"traj\" | \"scanner\" | \"positions\" | \"scope\">(\"kalshi\");",
+    "why": "fix1047 (her words in this change's request)",
+    "R": "R608"
+  },
+  {
+    "what": "function NightCard({ scale = 1, size = 50, whatIf }: { rows?: ShiftNight[]; scale?: number; size?: number; whatIf?: number }) {",
+    "why": "fix1047 (her words in this change's request)",
+    "R": "R608"
+  },
+  {
+    "what": "<div className=\"mt-auto flex justify-end pt-1\">",
+    "why": "fix1047 (her words in this change's request)",
+    "R": "R608"
   }
 ]
