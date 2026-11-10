@@ -2,6 +2,17 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R634 - fix1071 HER WICK ON EVERY BAND AND EVERY ZONE + EVERY RULE BOTH WAYS: (1) her wick rejection (rejBand668) read her session bands, VWAP, pink, red / green zones and Bollinger upper / lower - the Bollinger MIDDLE was the one line missing; it is a wick line now, longs and shorts, by her wick measure (within 10% of the band; the move back per (3)). (2) the mirror of fix1069: a rejection long off her Green zone with price still inside the zone (5m S2 to 5m S1) is on her side at the door, in the read and at the send - it no longer waits for price to climb over the zone; her colour rule still judges it word for word. Unchanged: a break above the Green zone, a long from under the bottom of the zone, every other line, the delayed books, her wick arms within 10% of the band as before; gold keeps her 15%. One line of tools/short-inside-red-zone-1069.cjs that asserted the old one-sided behaviour is replaced under these words. (3) fix1072 HER BTC WICK PUSH IS $25: the move back off the wick extreme that makes a BTC wick rejection is $25 (or 15% of the channel when that is smaller) instead of 15% of the channel - on every wick line, longs and shorts. Gold and other assets keep 15%.
+- when: 2026-11-10T19:40:11+00:00
+- Love: "Love Nov 10 2026 11:24 AM PT: "MAKE A REJECTION WICK FOR EVERY BAND AND EVERY ZONE. STOP MAKING RULES ONE SIDED. EVERY RULE APPLIES BOTH WAYS UNLESS EXPLICITLY STATED OTHERWISE. ASK IF YOU ARE NOT SURE." + 11:20 AM PT: "she did not enter on the wick rejection." + 11:31 AM PT: "please lower the push distance to $25 for btc. it is going to miss the floor on almost every trade like this.""
+- books: every live book but delayed: BTC + gold
+- status: ACTIVE
+- proof: {"test": "tools/wick-every-band-both-ways-1071.cjs"}
+- proof: {"test": "tools/short-inside-red-zone-1069.cjs"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function inGreen1071("}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "best = { name: \"Bollinger middle\", price: P1071, w: W }"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function wickBack1072("}
+
 ## R633 - fix1069 SHORT INSIDE THE RED ZONE: a rejection short off her Red zone with price still inside the zone (5m R1 to 5m R2, the same zone fix497 reads) is on her side - at the door, in the read and at the send it no longer waits for price to drop under the zone (fix951's NOT ON HER SIDE no longer refuses it). Her colour rule still judges it word for word (2m or 5m candle red, or a true wick rejection). Additions only: a short from over the top of the zone, a break below the Red zone, every other line, every long (the green zone mirror was not named and is unchanged), the delayed books and every other rule stay exactly as they are.
 - when: 2026-11-10T19:07:10+00:00
 - Love: "Love Nov 10 2026 11:00 AM PT: "SHE DOES NOT NEED TO WAIT UNTIL PRICE IS OUT OF THE RED ZONE TO SHORT. SHORT INSIDE OF IT. THIS IS NOT A VALID EXCUSE. I HAVE ALREADY TOLD YOU THIS." (10:40:03 AM her BTC short "Rejected down off Red zone" was refused NOT ON HER SIDE with price 73518.82, $4.70 inside the Red zone 73514.12)"
