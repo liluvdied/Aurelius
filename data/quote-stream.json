@@ -1,0 +1,33 @@
+{
+ "at": "2026-11-10T17:55:10.565Z",
+ "ver": 34,
+ "connected": true,
+ "sockets": [
+  true,
+  true
+ ],
+ "btc": {
+  "c": 73095.93,
+  "ageMs": 749,
+  "exAgeMs": 2565
+ },
+ "gold": {
+  "c": 4019.3,
+  "ageMs": 255,
+  "exAgeMs": 565
+ },
+ "btcFeed1018": {
+  "live": "PEPPERSTONE:BTCUSD",
+  "since": 0,
+  "seq": 0,
+  "shift": 0,
+  "gapVP": 86.56,
+  "gapAt": 1794333310565,
+  "pepStaleS": 0.7,
+  "vanStaleS": 0,
+  "last": null
+ },
+ "signedIn": true,
+ "signNote": "PRO signed in (quote_token)",
+ "note": ""
+}

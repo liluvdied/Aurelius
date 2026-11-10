@@ -1,0 +1,127 @@
+{
+ "note": "INVERSE BOOK set ups (fix688). When main / rejection opens one of these, the inverse book takes the other side on paper. Add or remove a line (or set \"on\": false) - no code change needed. side = the side SHE took; label = a pattern her label starts with. Started Nov 5 2026 from data/reports/confluence-and-inverse-nov6.md; review Nov 11. Band travel set ups (travel + how) added Nov 5 ~1:15 AM PT from the STATS table: the 1-band follows that lost the most (BTC 1 down follow 179 / 39% / -$824, gold 1 down follow 127 / 43% / -$658, gold 1 up follow 121 / 45% / -$334, all books). The label set ups are checked first. DELAYED book inverse added Nov 5 ~2:00 AM PT (Love: \"i'm pretty sure the delayed book has like a steady 30% hit rate as is, creating an inverse of that would put it at 70% off the bat\"): replay Oct 19 - Nov 4 at the other side's ask at the same moment (avg 61c, 1,031 logged): inverse won 64% of 1,768, +$1,259 held to the bell; by week -$455 / +$742 / +$972.",
+ "setups": [
+  {
+   "name": "gold pink short -> long",
+   "asset": "gold",
+   "side": "down",
+   "label": "^Rejected down off 5m PP",
+   "books": [
+    "recon-tog",
+    "recon-rej"
+   ]
+  },
+  {
+   "name": "gold red candle falling from the top third -> long",
+   "asset": "gold",
+   "side": "down",
+   "label": "^Red candle falling from the top third",
+   "books": [
+    "recon-tog",
+    "recon-rej"
+   ]
+  },
+  {
+   "name": "btc launched from the bottom third -> short",
+   "asset": "btc",
+   "side": "up",
+   "label": "^Launched from the bottom third",
+   "books": [
+    "recon-tog",
+    "recon-rej"
+   ]
+  },
+  {
+   "name": "btc rejected down off +1σ -> long",
+   "asset": "btc",
+   "side": "down",
+   "label": "^Rejected down off \\+1σ",
+   "books": [
+    "recon-tog",
+    "recon-rej"
+   ]
+  },
+  {
+   "name": "btc failed break above -1σ -> long",
+   "asset": "btc",
+   "side": "down",
+   "label": "^Failed break above -1σ",
+   "books": [
+    "recon-tog",
+    "recon-rej"
+   ]
+  },
+  {
+   "name": "btc 1 band down, she follows (short) -> long",
+   "asset": "btc",
+   "side": "down",
+   "label": ".",
+   "travel": "1 down",
+   "how": "follow",
+   "books": [
+    "recon-tog",
+    "recon-rej"
+   ]
+  },
+  {
+   "name": "gold 1 band down, she follows (short) -> long",
+   "asset": "gold",
+   "side": "down",
+   "label": ".",
+   "travel": "1 down",
+   "how": "follow",
+   "books": [
+    "recon-tog",
+    "recon-rej"
+   ]
+  },
+  {
+   "name": "gold 1 band up, she follows (long) -> short",
+   "asset": "gold",
+   "side": "up",
+   "label": ".",
+   "travel": "1 up",
+   "how": "follow",
+   "books": [
+    "recon-tog",
+    "recon-rej"
+   ]
+  },
+  {
+   "name": "btc DELAYED long -> short (every delayed call, flipped)",
+   "asset": "btc",
+   "side": "up",
+   "label": ".",
+   "books": [
+    "recon-dly"
+   ]
+  },
+  {
+   "name": "btc DELAYED short -> long (every delayed call, flipped)",
+   "asset": "btc",
+   "side": "down",
+   "label": ".",
+   "books": [
+    "recon-dly"
+   ]
+  },
+  {
+   "name": "gold DELAYED long -> short (every delayed call, flipped)",
+   "asset": "gold",
+   "side": "up",
+   "label": ".",
+   "books": [
+    "recon-dly"
+   ]
+  },
+  {
+   "name": "gold DELAYED short -> long (every delayed call, flipped)",
+   "asset": "gold",
+   "side": "down",
+   "label": ".",
+   "books": [
+    "recon-dly"
+   ]
+  }
+ ]
+}
