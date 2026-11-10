@@ -1683,7 +1683,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
       }
       if (a2 > 0.01 && a2 < 0.99) { const r2 = Math.min(capPx, Math.round((a2 + 0.06) * 100) / 100); // fix500: each knock re-prices at the live ask + 6c at most
         kPx = side === "up" ? Math.min(0.99, capPx, r2) : Math.max(0.01, 1 - capPx, Math.round((1 - r2) * 100) / 100);
-        if (bookCopy !== "recon-dly" && bookCopy !== "bestie" && topUp <= 0) {
+        if (bookCopy !== "recon-dly" && bookCopy !== "bestie" /* fix775 */ && topUp <= 0) {
           kCount = Math.min(count, Math.floor(budget / Math.max(a2, r2) * 100) / 100);
         }
       }
