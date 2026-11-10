@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R624 - fix1064 PINK SLIDE ANYWHERE IN THE CHANNEL: the 44% exception (fix944 / fix646) no longer releases a pink slide or climb. A sliding pink holds longs (gold + BTC) and a climbing pink holds shorts wherever the pink sits in its session channel. Her 2 separate rejections on the slope to turn it on and the 10%-of-channel break to free it are unchanged. Replay: tonight's 1:30:16 AM PT gold long (Rejected up off -3σ at 4090.61, pink 4096.31 at 79% of -3σ..-2σ) is held.
+- when: 2026-11-10T11:20:11+00:00
+- Love: "Love Nov 10 2026 1:58 AM PT: "as for the 44% pink slide thing, another fix i begged you to implement and another fix that took you two hours to ship, that didnt fix what i asked you to fix ... PLEASE FIX THE THINGS I AM ASKING YOU TO FIX" (after 1:33 AM PT: "SHE LONGED GOLD ON A PINK SLIDE")"
+- books: every book's pink slide / climb hold (main, rejection, every book using slideHold403 / slideHoldBtc423 / climbHold464)
+- status: ACTIVE
+- proof: {"test": "tools/pink-slide-anywhere-1064.cjs"}
+
 ## R623 - fix1063 BTC 5M THROUGH MAIN'S DOOR: every BTC 5m Polymarket entry, box add-on and trigger add-on (btc5m1055.ts) must first pass main's own order door (bandLockCheck as main's book recon-tog, asset btc - the same check every main BTC order passes) right before the order. Refused = no order, logged in data/btc5m-1055.jsonl, and the window keeps watching. Main's door unreachable = no order. ETH / XRP 5m are not in this change (main's door has no ETH / XRP walls - waiting on Love's numbers).
 - when: 2026-11-10T10:45:11+00:00
 - Love: "Love Nov 10 2026 1:32 AM PT: "she longed eth under a session band. she has lost every 5m trade she's taken. you're NOT. DOING. ANY. THING. YOURE. SAYING." + 1:35 AM PT: "I ASKED YOU TO BUILD IT ON MAINS DOOR THE FIRST TIME""

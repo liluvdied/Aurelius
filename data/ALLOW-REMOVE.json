@@ -12776,5 +12776,60 @@
     "what": "if (\"side\" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + \"trig\"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk);",
     "why": "fix1063 (her words in this change's request)",
     "R": "R623"
+  },
+  {
+    "what": "t(/!pinkThird584\\(asset, last\\.pp, \"up\"\\)\\) \\{ S\\.on = false; return \"\"; \\} \\/\\/ fix944/.test(E), \"the climb does not check her 44%\");",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
+  },
+  {
+    "what": "t(/!pinkThird584\\(\"gold\", last\\.pp, \"down\"\\)\\) \\{ S\\.on = false; return \"\"; \\} \\/\\/ fix944/.test(E) && /!pinkThird584\\(\"btc\", last\\.pp, \"down\"\\)\\) \\{ S\\.on = false; return \"\"; \\} \\/\\/ fix944/.test(E), \"the slides do not check her 44%\");",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
+  },
+  {
+    "what": "console.log(ok ? \"PINK SLIDE 44 944 TEST ✓ - every slide / climb hold needs the pink in her bottom / top 44% of its channel again (2 rejections on the slope unchanged).\" : \"PINK SLIDE 44 944 TEST: FAIL\");",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
+  },
+  {
+    "what": "t(!NEW.slideHold403(g, s1, now), \"fix944 her 44% is back (Love Nov 7 2:23-2:24 PM): gold rejections under a falling pink mid-channel must NOT hold - was fix658 (Love Nov 4 2026 6:09 PM PT: 'the pink slide rule dictates it is longs only while pink is on a slide up ... inverse for shorts' - no 44% share in her words)\");",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
+  },
+  {
+    "what": "t(!NEW.slideHoldBtc423(b, s2, now), \"fix944: BTC rejections under a falling pink mid-channel must NOT hold (her 44%)\");",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
+  },
+  {
+    "what": "const s3 = { on: false }; t(!NEW.climbHold464(c, s3, now, \"gold\"), \"fix944: gold climb over a rising pink mid-channel must NOT hold (her 44%)\");",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
+  },
+  {
+    "what": "set([], []); t(!NEW.slideHold403(g, S(), now), \"fix944: no readable channel - the slide does nothing (her R307: in every other case the slide rule does nothing)\");",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
+  },
+  {
+    "what": "console.log(ok ? \"SLIDE HER WAY 584 TEST ✓ - the pink slide holds only after 3 rejections with the pink in the bottom 33% (longs) / top 33% (shorts); every other case it does nothing; the blanket walls are gone.\" : \"SLIDE HER WAY 584 TEST: FAIL\");",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
+  },
+  {
+    "what": "if (typeof __PINKSLIDE_HERWAY584 !== \"undefined\" && __PINKSLIDE_HERWAY584 && !pinkThird584(asset, last.pp, \"up\")) { S.on = false; return \"\"; } // fix944 HER PINK IN THE BOTTOM / TOP 44% (Love Nov 7 2026 ~2:23 PM PT: \"turn it off then. but it needs to constitute what a pink slide is correctly hun a move up is not what a pink slide is\" + 2:24 PM: \"yes\" (put her 44% check back) - her rule: Love Nov 1 2026 (R307): \"The pink slide rule only applies in this case: Price has rejected the pink three times on the way down. And pink is in the bottom/top 33% of the channel. Only then are longs/shorts blocked ... In every other case the slide rule does nothing.\" + Nov 4 2:54 PM PT (fix646): \"44% for main & rejection for now pls we will test that\" + 6:04 PM: \"lets lower the pink slide rule to 2 of them instead of 3 while pink is sloped up or down as well pls\"): the slide / climb does nothing unless the pink sits in the top 44% (climb) / bottom 44% (slide) of its session channel - this check was dropped by fix658 (Nov 4 6:46 PM) by mistake",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
+  },
+  {
+    "what": "if (typeof __PINKSLIDE_HERWAY584 !== \"undefined\" && __PINKSLIDE_HERWAY584 && !pinkThird584(\"gold\", last.pp, \"down\")) { S.on = false; return \"\"; } // fix944 HER PINK IN THE BOTTOM / TOP 44% (Love Nov 7 2026 ~2:23 PM PT: \"turn it off then. but it needs to constitute what a pink slide is correctly hun a move up is not what a pink slide is\" + 2:24 PM: \"yes\" (put her 44% check back) - her rule: Love Nov 1 2026 (R307): \"The pink slide rule only applies in this case: Price has rejected the pink three times on the way down. And pink is in the bottom/top 33% of the channel. Only then are longs/shorts blocked ... In every other case the slide rule does nothing.\" + Nov 4 2:54 PM PT (fix646): \"44% for main & rejection for now pls we will test that\" + 6:04 PM: \"lets lower the pink slide rule to 2 of them instead of 3 while pink is sloped up or down as well pls\"): the slide / climb does nothing unless the pink sits in the top 44% (climb) / bottom 44% (slide) of its session channel - this check was dropped by fix658 (Nov 4 6:46 PM) by mistake",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
+  },
+  {
+    "what": "if (typeof __PINKSLIDE_HERWAY584 !== \"undefined\" && __PINKSLIDE_HERWAY584 && !pinkThird584(\"btc\", last.pp, \"down\")) { S.on = false; return \"\"; } // fix944 HER PINK IN THE BOTTOM / TOP 44% (Love Nov 7 2026 ~2:23 PM PT: \"turn it off then. but it needs to constitute what a pink slide is correctly hun a move up is not what a pink slide is\" + 2:24 PM: \"yes\" (put her 44% check back) - her rule: Love Nov 1 2026 (R307): \"The pink slide rule only applies in this case: Price has rejected the pink three times on the way down. And pink is in the bottom/top 33% of the channel. Only then are longs/shorts blocked ... In every other case the slide rule does nothing.\" + Nov 4 2:54 PM PT (fix646): \"44% for main & rejection for now pls we will test that\" + 6:04 PM: \"lets lower the pink slide rule to 2 of them instead of 3 while pink is sloped up or down as well pls\"): the slide / climb does nothing unless the pink sits in the top 44% (climb) / bottom 44% (slide) of its session channel - this check was dropped by fix658 (Nov 4 6:46 PM) by mistake",
+    "why": "fix1064 (her words in this change's request)",
+    "R": "R624"
   }
 ]
