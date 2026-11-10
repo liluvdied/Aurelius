@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R637 - fix1075 HER GOLD WICK IS 10%: the move back off the wick extreme that makes a gold wick rejection is 10% of her session channel (was 15%, fix1036). Both ways (longs and shorts), on every wick line: her session bands, session VWAP, 5m PP, Red / Green zone, 5m R1 / S1, Bollinger upper / middle / lower, carried lines. BTC stays $25 (or 15% when smaller, fix1072). Other assets stay 15%. Her wick still arms within 10% of the band as before. One line of bandlock.ts changed under these words; four test lines that asserted gold's 15% replaced.
+- when: 2026-11-10T20:03:20+00:00
+- Love: "Love Nov 10 2026 11:56 AM PT: "please make it a 10% wick rejection for gold.""
+- books: every live book but delayed: gold
+- status: ACTIVE
+- proof: {"test": "tools/wick-every-band-both-ways-1071.cjs"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "asset === \"gold\" ? 0.10 * W /* fix1075"}
+
 ## R636 - fix1074 SIGN HER SPINE FOR CHANGE-406: CHANGE-406 (fix1070, log only) put 2 log lines in recon.ts but its installer did not re-sign data/spine-lock.json, so from 11:41:31 AM PT Nov 10 her reconstructed books (main) were held with SPINE DRIFT (fix575) and did not book. This signs her spine lock for the exact recon.ts she is running now. No code line changes; no rule changes. Adds one test file that fails loudly if the spine and recon.ts ever disagree.
 - when: 2026-11-10T20:00:10+00:00
 - Love: "Love Nov 10 2026 11:14 AM PT: "fix the no reason for refusal please. make sure every trade has one." + "yes. please build it." + 11:37 AM PT: "please get it to work.""

@@ -13092,5 +13092,30 @@
     "what": "        if (Math.abs(lo - P) <= 0.10 * W /* fix1036 arms within 10% of the band (was 15%) */ && tick > P && tick - lo >= 0.15 * W /* fix1036 her wick 15% off the wick extreme past the band (mirror) - was fix937 10% */ && Math.abs(lo - P) < bd) { bd = Math.abs(lo - P); best = { name: nm, price: P, w: W }; } } }",
     "why": "fix1072 (her words in this change's request: lower the push distance to $25 for btc) - the line stays, only its 15% becomes her $25 on BTC",
     "R": "R634"
+  },
+  {
+    "what": "export function wickBack1072(asset: string, W: number): number { return asset === \"btc\" ? Math.min(25, 0.15 * W) : 0.15 * W; } // fix1072 HER BTC WICK PUSH IS $25 (Love Nov 10 2026 11:31 AM PT: \"please lower the push distance to $25 for btc. it is going to miss the floor on almost every trade like this.\"): her wick rejection's move back off the wick extreme past the band was 15% of the channel (fix1036) - $98 in today's $655 channel, so she entered after the price had already run. BTC: $25 (or 15% of the channel when that is smaller - never later than before). Gold and every other asset keep her 15%. Arming within 10% of the band is unchanged.",
+    "why": "fix1075 (her words: \"please make it a 10% wick rejection for gold.\" - the gold pull-back was 15%)",
+    "R": "R637"
+  },
+  {
+    "what": "r = w(\"gold\", \"up\", 73297, L, { h: 73400, l: 73236 }); t(r === null, \"gold: a move under 15% of the channel was called a wick - gold keeps her 15%\");",
+    "why": "fix1075 (the test asserted gold's old 15%; her words make it 10%)",
+    "R": "R637"
+  },
+  {
+    "what": "r = w(\"gold\", \"up\", 73236 + 0.15 * W + 1, L, { h: 73400, l: 73236 }); t(r && r.name === \"Bollinger middle\", \"gold: 15% of the channel back off the wick is not her wick any more\");",
+    "why": "fix1075 (the test asserted gold's old 15%; her words make it 10%)",
+    "R": "R637"
+  },
+  {
+    "what": "{ const f = new Function(tj(srcB) + \"; return wickBack1072;\")(); t(f(\"btc\", 655) === 25 && f(\"btc\", 100) === 15 && Math.abs(f(\"gold\", 40) - 6) < 1e-9, \"her push: BTC $25 (15% when smaller), gold 15%\"); }",
+    "why": "fix1075 (the test asserted gold's old 15%; her words make it 10%)",
+    "R": "R637"
+  },
+  {
+    "what": "console.log(ok ? \"WICK EVERY BAND BOTH WAYS 1071 TEST: PASS ✓ her wick reads the Bollinger middle both ways; her BTC wick push is $25 (gold keeps 15%); a long inside the Green zone is on her side (her colour still judges); everything else unchanged\" : \"\");",
+    "why": "fix1075 (the test asserted gold's old 15%; her words make it 10%)",
+    "R": "R637"
   }
 ]
