@@ -30,7 +30,7 @@ export function signals851(bars: Bar851[]): { book: string; side: "up" | "down";
   return out;
 }
 /** pure: her stake by distance to the 5m target - already her side $10, needs under $25 $5, needs $25+ $1 */
-export function stake851(side: "up" | "down", spot: number, target: number): number { const need = side === "up" ? target - spot : spot - target; return need <= 0 ? 10 : need < 25 ? 5 : 1; }
+export function stake851(side: "up" | "down", spot: number, target: number): number { const need = side === "up" ? target - spot : spot - target; void need; return 20; } // fix1048 her flat $20 paper ticket (was $10 / $5 / $1 by distance to the target)
 type Row = { id: string; book: string; asset: "btc"; ticker: string; slug: string; at: string; closeTime: string; side: "up" | "down"; setup: string; why: string; ask: number; stake: number; contracts: number; target: number; spot: number; bestBid: number; half: boolean; halfBid: number | null; trail: boolean; soldBid: number | null; result: "open" | "win" | "loss"; pnlHold: number | null; pnlTp: number | null };
 function st(): { rows: Row[]; seen: Record<string, number>; lastBar: number } { if (G.__bb851) return G.__bb851; let s = { rows: [] as Row[], seen: {} as Record<string, number>, lastBar: 0 }; try { if (existsSync(D(FILE))) s = { rows: [], seen: {}, lastBar: 0, ...JSON.parse(readFileSync(D(FILE), "utf8")) }; } catch {} G.__bb851 = s; return s; }
 function save() { try { const s = st(); s.rows = s.rows.slice(-3000); const cut = Date.now() - 6 * 3600000; for (const k of Object.keys(s.seen)) if (s.seen[k] < cut) delete s.seen[k]; writeFileSync(D(FILE + ".tmp"), JSON.stringify(s)); renameSync(D(FILE + ".tmp"), D(FILE)); } catch {} }

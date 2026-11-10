@@ -29,7 +29,7 @@ const REJ: { id: string; asset: "btc"; chart: string; sym: string }[] = [
   { id: "rej-vantage", asset: "btc", chart: "VANTAGE", sym: "VANTAGE:BTCUSD" },
   { id: "rej-pepperstone", asset: "btc", chart: "PEPPERSTONE", sym: "PEPPERSTONE:BTCUSD" },
 ];
-const RSTAKE = 5;
+const RSTAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 function sess5pmET(now = Date.now()): number {
   const p: Record<string, string> = {};
   for (const x of new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hourCycle: "h23", hour: "2-digit", minute: "2-digit", second: "2-digit" }).formatToParts(new Date(now))) p[x.type] = x.value;

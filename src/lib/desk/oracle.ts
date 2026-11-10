@@ -12,7 +12,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, statS
 import { join } from "node:path";
 import { homedir } from "node:os";
 const BASE = "https://external-api.kalshi.com/trade-api/v2";
-const STAKE = 100; // Oct 10 (Love: "do it at $100... same with the other scanners paper trades")
+const STAKE = 20; // Oct 10 (Love: "do it at $100... same with the other scanners paper trades") /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 const EDGE = 0.07;
 const SKIP = /^(KXBTC|KXETH|KXSOL|KXXRP|KXDOGE|KXGOLD|KXSILVER|KXTEMP|KXHIGH|KXLOW|KXINXU|KXNASDAQ100U)/;
 // EXCHANGE FOLDER (Oct 9 ~7:35 PM PT, Love: "every time we set one it says it doesn't have access to the folder... can you set up

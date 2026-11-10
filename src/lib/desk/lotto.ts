@@ -9,7 +9,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-export const LOTTO_STAKE = 5;
+export const LOTTO_STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 export const LOTTO_EXITS = [50, 100, 200, 300] as const;
 const MIN_X = 3;
 const MAX_X = 20;

@@ -200,7 +200,7 @@ const r2 = (n: number) => Math.round(n * 100) / 100;
 // Rows booked earlier at $10 / $5 were rescaled x5 (marked x50) so every record reads at the same size.
 // Love (Oct 8 ~4:20 PM PT): "just match the paper books to the amount we're doing on kalshi so i'm not fooling myself":
 // paper now runs at Kalshi's $30 a trade ($15 on 3x+); every $50 / $25 row already on file was rescaled x0.6 (x30).
-export const PAPER_STAKE = 30;
+export const PAPER_STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 
 /** HONEST PAPER (Oct 8): a live copy filled at `paid`; the paper trade is re-priced to that entry (paperAsk keeps the old). */
 // BRICK 1:1 · REAL (realtwin.ts, Oct 9): rows priced off Kalshi's real order book are added / closed from outside the tick.
@@ -418,7 +418,7 @@ function brkAlso(c: { ticker: string; side: "up" | "down"; ask: number; label: s
   const spot = Number(spotIn ?? (bands as { spot?: number } | null)?.spot) || 0;
   const line = entryLineOf(asset, c.side, spot, bands);
   const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
-  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:brk`, book: "brk", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: `${c.label}${line ? ` · entered on the ${line.name} ${line.price.toFixed(2)}` : ""}`, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT, entryLine: line });
+  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:brk`, book: "brk", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: `${c.label}${line ? ` · entered on the ${line.name} ${line.price.toFixed(2)}` : ""}`, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT, entryLine: line });
   write(rows);
 }
 
@@ -501,17 +501,17 @@ export function nightConsider(c: Candidate | null, originalOk: boolean, newRefus
   const created: string[] = [];
   // HOLD90: ORIGINAL's entries, hard take profit, clear winners held for 90% of the max.
   if (originalOk && !c.navCross && !open("hold90")) {
-    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:hold90`, book: "hold90", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:hold90`, book: "hold90", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
     changed = true;
   }
   // BANK2: same entries, the lab's gentler bank (arm +40%, give back 10%, no band tap).
   if (originalOk && !c.navCross && !open("bank2")) {
-    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:bank2`, book: "bank2", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:bank2`, book: "bank2", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
     changed = true;
   }
   // BANK: ORIGINAL's entries with Love's banking exits.
   if (originalOk && !c.navCross && !open("bank")) {
-    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:bank`, book: "bank", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:bank`, book: "bank", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
     changed = true;
   }
   if (originalOk && !c.navCross && !open("original")) {
@@ -519,17 +519,17 @@ export function nightConsider(c: Candidate | null, originalOk: boolean, newRefus
     changed = true;
   }
   if (!newRefusal && !open("new")) {
-    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:new`, book: "new", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:new`, book: "new", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
     changed = true;
   }
   // REFINED: same as NEW, minus BTC purple-line close entries (0-2 overnight).
   if (!newRefusal && !(c.navCross && asset === "btc") && !open("refined")) {
-    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:refined`, book: "refined", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:refined`, book: "refined", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
     changed = true;
   }
   const mk = (book: NightRow["book"]) => {
     created.push(book);
-    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
+    rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, ...extra });
     changed = true;
   };
   // OPTION A: gold exactly as NEW (BTC arrives from golden.ts on the 5 PM-start bands).
@@ -615,7 +615,7 @@ export function tapConsider(c: { ticker: string; side: "up" | "down"; ask: numbe
   let changed = false;
   for (const book of books) {
     if (rows.some((r) => r.book === book && r.ticker === c.ticker && sameMode(r))) continue;
-    const stake = kind === "tap" ? 2.5 : kind === "snap16" ? 20 : 5;
+    const stake = PAPER_STAKE; /* fix1048 her flat $20 (was $2.50 tap / $5 snap) */
     if ((kind === "snap" || kind === "snap16") && rows.some((r) => r.book === book && r.ticker === c.ticker)) continue;
     rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(1 / c.ask), stake, tpPct: book === "tap3x" ? 200 : kind === "snap" || kind === "snap16" ? SNAP_TP[book] ?? 0 : 0, peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT });
     changed = true;
@@ -631,7 +631,7 @@ export function squeezeConsider(c: { ticker: string; side: "up" | "down"; ask: n
   if (rows.some((r) => r.book === "squeeze" && r.ticker === c.ticker && !r.dnaMode)) return;
   const mult = 1 / c.ask;
   const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
-  rows.unshift({ id: `${c.ticker}:squeeze`, book: "squeeze", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT });
+  rows.unshift({ id: `${c.ticker}:squeeze`, book: "squeeze", at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT });
   write(rows);
 }
 
@@ -642,7 +642,7 @@ export function confirmConsider(c: { ticker: string; side: "up" | "down"; ask: n
   if (rows.some((r) => r.book === book && r.ticker === c.ticker && !r.dnaMode)) return;
   const mult = 1 / c.ask;
   const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
-  rows.unshift({ id: `${c.ticker}:${book}`, book, at: new Date().toISOString(), asset: "btc", ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT });
+  rows.unshift({ id: `${c.ticker}:${book}`, book, at: new Date().toISOString(), asset: "btc", ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT });
   write(rows);
 }
 
@@ -660,7 +660,7 @@ export function soleConsider(c: { ticker: string; side: "up" | "down"; ask: numb
   }
   const mult = 1 / c.ask;
   const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
-  const row: NightRow = { id: `${c.ticker}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT };
+  const row: NightRow = { id: `${c.ticker}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT };
   rows.unshift(row);
   // BANK · 5M SOLE+ (Love, Oct 5 ~1 AM PT: "lets run a BANK 5M SOLE+ book too... majority of those losses were in profit...
   // if shes just in there runnin shit and gettin out before L's"). SOLE+'s exact entries, BANK's exits: after +30% she sells
@@ -697,7 +697,7 @@ export function hourConsider(c: { ticker: string; event: string; side: "up" | "d
   if (rows.some((r) => r.book === "hour" && (r.ticker.split("-").slice(0, 2).join("-") === c.event || r.ticker === c.ticker))) return;
   const mult = 1 / c.ask;
   const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
-  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:hour`, book: "hour", at: new Date().toISOString(), asset: "btc", ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT });
+  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:hour`, book: "hour", at: new Date().toISOString(), asset: "btc", ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot, event: null, hourPT });
   write(rows);
 }
 export function hourOpen(): NightRow[] {
@@ -743,7 +743,7 @@ export function goldenConsider(c: { ticker: string; side: "up" | "down"; ask: nu
   if (rows.some((r) => r.book === book && r.ticker === c.ticker && sameMode(r))) return;
   const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
   setTimeout(() => brkAlso(c, asset, bands), 0);
-  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: book === "optA" && mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: book === "optA" ? newTp(mult) : originalTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT });
+  rows.unshift({ ...tagMode(), id: `${c.ticker}${TAG ? `:${TAG}` : ""}:${book}`, book, at: new Date().toISOString(), asset, ticker: c.ticker, side: c.side, setup: c.label, ask: c.ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: book === "optA" ? newTp(mult) : originalTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands, spot: typeof bands?.spot === "number" ? (bands.spot as number) : null, event: null, hourPT });
   write(rows);
 }
 
@@ -969,7 +969,7 @@ function ripTapTick(assets: Record<string, any>, rows: NightRow[]): boolean {
           const hourPT = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date()));
           const setup = `RIP & TAP: broke the ${nm(ks[b.i])} ${b.dir}, tapped the ${nm(ks[nextI])}; ${kind} side at ${r2(mult)}x`;
           for (const [book, tp] of [["rt100", 100], ["rt200", 200], ["rt90", Math.round(0.9 * (mult - 1) * 100)]] as const) {
-            rows.unshift({ id: `${m.ticker}:${book}`, book, at: new Date().toISOString(), asset: id, ticker: m.ticker, side, setup, ask, multiple: r2(mult), stake: 10, tpPct: tp, peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands: null, spot: sp, event: null, hourPT } as NightRow);
+            rows.unshift({ id: `${m.ticker}:${book}`, book, at: new Date().toISOString(), asset: id, ticker: m.ticker, side, setup, ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: tp, peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands: null, spot: sp, event: null, hourPT } as NightRow);
           }
           s.fired = true;
           changed = true;
@@ -1043,7 +1043,7 @@ function reversalWorstTick(assets: Record<string, any>, rows: NightRow[]): boole
       if (ask > 0.02 && ask <= 1 / 1.38) {
         const nm = (k: number) => (k === 0 ? "VWAP" : `${k > 0 ? "+" : "-"}${Math.abs(k)}σ`);
         const mult = 1 / ask;
-        rows.unshift({ id: `${m.ticker}:rvw`, book: "rvw", at: new Date().toISOString(), asset: "btc", ticker: m.ticker, side, setup: `REVERSAL (worst hour ${((h) => `${(Number(h) % 12) || 12} ${Number(h) < 12 ? "AM" : "PM"}`)(hourPT)} PT): broke the ${nm(ks[b.i])} ${b.dir}, tapped the ${nm(ks[nextI])}, back the other way`, ask, multiple: r2(mult), stake: mult >= 3 ? PAPER_STAKE / 2 : PAPER_STAKE, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands: null, spot: sp, event: null, hourPT } as NightRow);
+        rows.unshift({ id: `${m.ticker}:rvw`, book: "rvw", at: new Date().toISOString(), asset: "btc", ticker: m.ticker, side, setup: `REVERSAL (worst hour ${((h) => `${(Number(h) % 12) || 12} ${Number(h) < 12 ? "AM" : "PM"}`)(hourPT)} PT): broke the ${nm(ks[b.i])} ${b.dir}, tapped the ${nm(ks[nextI])}, back the other way`, ask, multiple: r2(mult), stake: PAPER_STAKE /* fix1048 */, tpPct: newTp(mult), peakPct: 0, exit: null, sellBid: null, result: "open", pnl: null, bands: null, spot: sp, event: null, hourPT } as NightRow);
         s.fired = true;
         changed = true;
       }

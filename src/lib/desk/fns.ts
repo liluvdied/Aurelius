@@ -1007,7 +1007,7 @@ export const getBoardTrades = createServerFn({ method: "GET" })
 // parses bytes appended since the last look, and a card's inline history reads just the newest few MB of the ledger.
 const gL = globalThis as unknown as { __ledTail?: { size: number; mtime: number; max: number; lines: string[] }; __ledHist?: { size: number; rem: string; seen: Set<string>; rows: [string, string, number, number][] } };
 // (ledgerTailLines retired Oct 19 ~1:15 PM PT: the whole-record history reads bookhist.server.ts. An unused helper here kept node:fs in the page bundle.)
-function ledgerHistRows(): [string, string, number, number][] {
+function ledgerHistRows(): [string, string, number, number, number][] {
   try {
     const file = join(process.cwd(), "data", "exit-ledger.jsonl");
     const st = statSync(file);
@@ -1027,7 +1027,7 @@ function ledgerHistRows(): [string, string, number, number][] {
           const e = JSON.parse(line);
           if (!e.id || !e.book || e.stale || c.seen.has(e.id) || typeof e.pnl !== "number") continue;
           c.seen.add(e.id);
-          c.rows.push([String(e.id), String(e.book), Date.parse(e.at || ""), Number(e.pnl)]);
+          c.rows.push([String(e.id), String(e.book), Date.parse(e.at || ""), Number(e.pnl), Number(e.stake) || 0 /* fix1048 */]);
         } catch {}
       }
       c.size = st.size;
@@ -1298,7 +1298,7 @@ export const getShiftSummary = createServerFn({ method: "GET" }).handler(async (
   const rowsAll = [...base, ...base.filter((r) => r.book === "ogp5-fast" && r.at >= SN_START).map((r) => ({ ...r, id: `${r.id}:supernova`, book: "supernova" })), ...base.filter((r) => r.book === "recon-tog" && r.at >= RF_START).map((r) => ({ ...r, id: `${r.id}:recon-fresh`, book: "recon-fresh" })), ...base.filter((r) => r.book === "recon-togp" && r.at >= TPF_START).map((r) => ({ ...r, id: `${r.id}:recon-togp-fresh`, book: "recon-togp-fresh" })), ...base.filter((r) => r.book === "recon-rnp" && r.at >= RNPF_START).map((r) => ({ ...r, id: `${r.id}:recon-rnp-fresh`, book: "recon-rnp-fresh" })) /* fix625 */, ...allTog].filter((r) => TAPS.has(r.book) || !r.dnaMode);
   const rows = rowsAll.filter((r) => !r.stale);
   const hist: [string, number, number][] = [];
-  try { const live = new Set(listNight().map((r) => r.id)); for (const [id, book, atMs, pnl] of ledgerHistRows()) if (!live.has(id)) hist.push([book, atMs, pnl]); } catch {}
+  try { const live = new Set(listNight().map((r) => r.id)); for (const [id, book, atMs, pnl, st] of ledgerHistRows()) if (!live.has(id)) hist.push([book, atMs, st > 0 ? (pnl * 20) / st : pnl /* fix1048 at $20 */]); } catch {}
   // + every lane book's archived trades, so ALL on a card is her whole record (Oct 19 ~1:55 PM PT, Love: "can you fix that for all of the cards")
   try { const { laneArchiveHist } = await import("./bookhist.server"); for (const h of await laneArchiveHist(new Set(rowsAll.map((r) => String(r.id))))) hist.push(h); } catch {}
   const cm = liveCopyMapNow();
@@ -1306,6 +1306,7 @@ export const getShiftSummary = createServerFn({ method: "GET" }).handler(async (
   const isLive = (r: any) => cm[r.id] === "live" || liveKS.has(`${r.ticker}:${r.side}`);
   const fin = (r: any) => r.result !== "open" && r.pnl != null;
   const P = (r: any) => r.pnl ?? 0;
+  const PN = (r: any) => { const st = Number(r?.stake); return (r.pnl ?? 0) * (st > 0 ? 20 / st : 1); }; // fix1048 a paper trade at $20 a ticket - her Paper size box re-figures it on the page
   const now = Date.now();
   const SPANS: [string, number][] = [["4h", now - 4 * 3600000], ["12h", now - 12 * 3600000], ["24h", now - 24 * 3600000], ["all", 0]];
   const byBook = new Map<string, any[]>();
@@ -1325,7 +1326,7 @@ export const getShiftSummary = createServerFn({ method: "GET" }).handler(async (
       s[nm] = {
         n: xs.length + hx.length,
         open: xs.filter((r) => r.result === "open" && (cm[r.id] == null || cm[r.id] === "live" || liveKS.has(`${r.ticker}:${r.side}`))).length,
-        pnl: done.reduce((t, r) => t + P(r), 0) + hx.reduce((t, h) => t + h[2], 0),
+        pnl: done.reduce((t, r) => t + PN(r), 0) + hx.reduce((t, h) => t + h[2], 0),
         wins: done.filter((r) => P(r) > 0.05).length + hx.filter((h) => h[2] > 0.05).length,
         losses: done.filter((r) => P(r) < -0.05).length + hx.filter((h) => h[2] < -0.05).length,
       };
@@ -1345,7 +1346,7 @@ export const getShiftSummary = createServerFn({ method: "GET" }).handler(async (
     const dn = rs.filter(fin);
     books[book] = {
       s, k,
-      rec: { n: dn.length, pnl: dn.reduce((t, r) => t + P(r), 0), wins: dn.filter((r) => P(r) > 0.05).length, losses: dn.filter((r) => P(r) < -0.05).length, from: rs.reduce((m, r) => (r.at < m ? r.at : m), "9999") },
+      rec: { n: dn.length, pnl: dn.reduce((t, r) => t + PN(r), 0) /* fix1048 */, wins: dn.filter((r) => P(r) > 0.05).length, losses: dn.filter((r) => P(r) < -0.05).length, from: rs.reduce((m, r) => (r.at < m ? r.at : m), "9999") },
       cnt: rs.length + (hBy.get(book) ?? []).length,
     };
   }

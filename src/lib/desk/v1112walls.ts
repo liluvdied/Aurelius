@@ -14,7 +14,7 @@ const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
 export const BOOK783 = "BESTIE · WALLS";
 export const VENUE783 = "paper-bestie-walls";
-const FILE = "bestie-walls-783.json", SKIPS = "bestie-walls-skips-783.json", STAKE = 5;
+const FILE = "bestie-walls-783.json", SKIPS = "bestie-walls-skips-783.json", STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 type Row783 = { id: string; book: string; setup: string; tf: string; kind: string; asset: string; ticker: string; closeTime: string; at: string; readAt: string; of: string; side: "up" | "down"; ask: number; multiple: number; contracts: number; stake: number; spot: number; vwap: number; stdev: number; level: number | null; tick: number; walls: string[]; skip: string | null; bestBid: number; half: boolean; halfBid: number | null; trail: boolean; soldBid: number | null; result: "open" | "win" | "loss"; pnlHold: number | null; pnlTp: number | null; logged?: boolean };
 function load(f: string, k: string): { rows: Row783[] } {
   if (G[k]) return G[k];

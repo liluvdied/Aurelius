@@ -10,7 +10,7 @@
 import { appendFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 const BASE = "https://external-api.kalshi.com/trade-api/v2";
-const STAKE = 22;
+const STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 const g = globalThis as unknown as { __rtProbe?: boolean; __rtBusy?: boolean; __rtAt?: number; __rtSeen?: Set<string>; __rtSelling?: Set<string> };
 type Lvl = [number, number]; // price (dollars), contracts
 const log = (row: Record<string, unknown>) => {

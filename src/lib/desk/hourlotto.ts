@@ -14,7 +14,7 @@ import type { KalshiMarket } from "./types";
 
 const BASE = "https://external-api.kalshi.com/trade-api/v2";
 const FILE = () => join(process.cwd(), "data", "hour-lotto.json");
-const STAKE = 5;
+const STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 export type Lotto = { id: string; rule: "signal" | "control"; at: string; ticker: string; strike: number; side: "up" | "down"; ask: number; why: string; close: string; peakBid: number; exits: Record<"x3" | "x5" | "c50" | "hold", { pnl: number | null; at?: string }>; done: boolean; result?: string };
 const g = globalThis as unknown as { __lotAt?: number; __lotBusy?: boolean; __lotMk?: { at: number; ms: KalshiMarket[] }; __lotLastBar?: string };
 const r2 = (n: number) => Math.round(n * 100) / 100;

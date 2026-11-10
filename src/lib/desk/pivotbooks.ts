@@ -814,7 +814,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
             const ask = Number(side === "up" ? m.yesAsk : m.noAsk);
             if (ask >= 0.2 && ask < 0.98 && 1 / ask >= 1.38) {
               const n = 25 / ask;
-              rows.unshift({ id: `${m.ticker}:open-road`, lane: "open-road", at: new Date().toISOString(), asset: id, ticker: m.ticker, side, label: `${mm[2]} (band said no)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 25, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null });
+              rows.unshift({ id: `${m.ticker}:open-road`, lane: "open-road", at: new Date().toISOString(), asset: id, ticker: m.ticker, side, label: `${mm[2]} (band said no)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE /* fix1048 */, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null });
               changed = true;
             }
           }
@@ -856,7 +856,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
             const ask = Number(side === "up" ? m.yesAsk : m.noAsk);
             if (!(ask >= 0.2 && ask < 0.98 && 1 / ask >= 1.38)) continue;
             const n = 25 / ask;
-            rows.unshift({ id: `${m.ticker}:paper-20`, lane: "paper-20", at: new Date().toISOString(), asset: id, ticker: m.ticker, side, label: `${mm[2]} (20% road)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: 25, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null });
+            rows.unshift({ id: `${m.ticker}:paper-20`, lane: "paper-20", at: new Date().toISOString(), asset: id, ticker: m.ticker, side, label: `${mm[2]} (20% road)`, ask: r2(ask), multiple: r2(1 / ask), secondsLeft: Math.round(left), intoWindow: Math.round(900 - left), stake: STAKE /* fix1048 */, fee: fee(n, ask), peak: ask, lastBid: 0, result: "open", exit: null, pnl: null });
             changed = true;
             break;
           }
@@ -1790,7 +1790,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
           const floorX = (() => { try { return floorFor(id, look!.side, lane); } catch { return 1.38; } })();
           if (!((og ? ask > 0.02 : ask >= 0.2) && ask < 0.98) || !(1 / ask >= floorX)) { skipNote(`${floorX}x floor / ask bounds`, { multiple: ask > 0 ? r2(1 / ask) : null }); continue; }
           // QUARTER SIZE OVER 3.8x (Oct 17 ~12:16 AM PT, Love: "at 1/4 of her normal sizing for anything over a 3.8x")
-          const stakeX = 1 / ask > 3.8 ? STAKE * 0.25 : STAKE;
+          const stakeX = STAKE; // fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") - was 1/4 over 3.8x (Oct 17)
           const n = stakeX / ask;
           // Oct 12 (Love: the 3:01 PM short into a flush): the 1m candle that brought price to the line + the session sigma,
           // so the NO FLUSH twin can tell a calm touch from a one-minute flush into the line. Record only.
@@ -1963,7 +1963,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
           const id = `${t.id}:${lane}`;
           const have = ptIx.get(id);
           if (!have) {
-            rows.unshift({ id, lane, parent: t.id, at: t.openedAt, asset: t.asset, ticker: t.ticker, side: t.side, label: /^paper-piv/.test(lane) ? `${t.patternLabel} · ${lane === "paper-piv-skip" ? "skipped: " : ""}${pzMap[t.id]?.why || ""}` : t.patternLabel, ask: r2(Number(t.ask) || 0), multiple: r2(Number(t.multiple) || 0), intoWindow: 0, stake: 25, fee: 0, result: "open", exit: null, pnl: null });
+            rows.unshift({ id, lane, parent: t.id, at: t.openedAt, asset: t.asset, ticker: t.ticker, side: t.side, label: /^paper-piv/.test(lane) ? `${t.patternLabel} · ${lane === "paper-piv-skip" ? "skipped: " : ""}${pzMap[t.id]?.why || ""}` : t.patternLabel, ask: r2(Number(t.ask) || 0), multiple: r2(Number(t.multiple) || 0), intoWindow: 0, stake: STAKE /* fix1048 */, fee: 0, result: "open", exit: null, pnl: null });
             ptIx.set(id, rows[0]); // fix335
             changed = true;
           } else if (have.result === "open" && t.result !== "open" && t.profit != null) {

@@ -361,7 +361,7 @@ type PrimeAsset = {
   lastPrints?: { o?: number; c?: number }[];
 };
 
-const PAPER_STAKE = 25;
+const PAPER_STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 
 export function scaledProfit(multiple: number | undefined, result: string): number | null {
   if (result === "no") return -PAPER_STAKE;

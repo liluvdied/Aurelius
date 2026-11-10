@@ -3013,13 +3013,13 @@
   "orderId": "01a1c3fd-5550-74eb-8e50-f0b69d0bb5c5"
  },
  "KXBTC15M-26NOV100100-00:recon-rej:ps801": {
-  "at": "2026-11-10T05:57:01.652Z",
+  "at": "2026-11-10T05:59:31.576Z",
   "ticker": "KXBTC15M-26NOV100100-00",
   "side": "up",
   "status": "skipped",
-  "final": false,
+  "final": true,
   "bandWait": true,
-  "reason": "SUB-AUDITOR: PINK CUSHION: long $30.20 under the unbroken pink (74778.39) - inside her $51.99 cushion (fix514). wait for the break or the rejection."
+  "reason": "band never broke before the window closed (last: SUB-AUDITOR: PINK CUSHION: long $17.38 under the unbroken pink (74779.56) - inside her $51.99 cushion (fix514). wait for the break or the rejection.)"
  },
  "KXBTC15M-26NOV100100-00:recon-tog:ps801": {
   "at": "2026-11-10T05:56:15.713Z",
@@ -3028,5 +3028,17 @@
   "status": "skipped",
   "final": true,
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXGOLD15M-26NOV100045-45:recon-tog:KXGOLD15M-26NOV100045-45:recon-rjnp": {
+  "at": "2026-11-10T06:00:00.360Z",
+  "status": "missed",
+  "final": true,
+  "reason": "window ended before it filled"
+ },
+ "KXGOLD15M-26NOV100030-30:recon-tog:KXGOLD15M-26NOV100030-30:recon-rjnp": {
+  "at": "2026-11-10T06:00:00.368Z",
+  "status": "missed",
+  "final": true,
+  "reason": "window ended before it filled"
  }
 }

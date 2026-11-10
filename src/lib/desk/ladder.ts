@@ -12,7 +12,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { climateDayStart, eventDate, kget, localDate, nget, stationObs, stationOf } from "./scanner";
 
-const STAKE = 100;
+const STAKE = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 const EDGE = 0.08;
 const FILE = () => join(process.cwd(), "data", "ladder-paper.json");
 const STATUS = () => join(process.cwd(), "data", "ladder-status.json");

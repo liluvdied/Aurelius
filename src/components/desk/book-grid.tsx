@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getBookGrid1046 } from "@/lib/desk/bookgrid1046";
+import { useDesk } from "@/lib/desk/store"; // fix1048 her Paper size box
 
 export const GRID_BOOKS1046: { key: string; name: string }[] = [
   { key: "recon-tog", name: "MAIN 💞" },
@@ -22,15 +23,17 @@ const clock = (at: string) => { try { return new Date(at).toLocaleTimeString("en
 
 export function BookGrid1046() {
   const [open, setOpen] = useState("");
+  const size = useDesk((s) => s.settings.stake) || 20; // fix1048 her Paper size box moves the cards (her XRP lane is real dollars - never re-figured)
+  const real = (k: string) => k === "xrp5m961";
   // fix1046c a tap on a trade in NEW SCHEDULE opens that book's record here (Love Nov 9 2026 12:42 PM PT: "if i tap one of the trades it pulls up the record for the rest of that book")
   useEffect(() => { const f = (e: Event) => { const k = String((e as CustomEvent).detail || ""); if (GRID_BOOKS1046.some((b) => b.key === k)) setOpen(k); }; window.addEventListener("open-book-1046", f); return () => window.removeEventListener("open-book-1046", f); }, []);
   const q = useQuery({ queryKey: ["book-grid-1046"], queryFn: () => getBookGrid1046({ data: { books: GRID_BOOKS1046.map((b) => b.key) } }), refetchInterval: 10000, staleTime: 5000, placeholderData: (p) => p });
   const d = (q.data ?? {}) as Record<string, any>;
-  const stats = (k: string) => { const s = d[k] || { n: 0, open: 0, nores: 0, w: 0, l: 0, pnl: 0, trades: [] }; return { ...s, mine: s.trades as any[] }; };
+  const stats = (k: string) => { const s0 = d[k] || { n: 0, open: 0, nores: 0, w: 0, l: 0, pnl: 0, pnl20: 0, trades: [] }; const s = real(k) ? s0 : { ...s0, pnl: (Number(s0.pnl20 ?? s0.pnl) * size) / 20 }; return { ...s, mine: (s.trades as any[]).map((t: any) => (real(k) || !(Number(t.stake) > 0) || t.pnl == null ? t : { ...t, pnl: (Number(t.pnl) * size) / Number(t.stake) })) }; };
   const sel = open ? stats(open) : null;
   return (
     <div className="mb-4" data-grid1046="1">
-      <p className="mb-1.5 text-[9px] tracking-[0.22em] text-white/60">YOUR BOOKS · LAST 24 H · TAP ONE FOR ITS TRADES</p>
+      <p className="mb-1.5 text-[9px] tracking-[0.22em] text-white/60">YOUR BOOKS · LAST 24 H · PAPER AT ${size} A TRADE · TAP ONE FOR ITS TRADES</p>
       <div className="grid gap-1.5" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(118px, 1fr))" }}>
         {GRID_BOOKS1046.map((b) => { const s = stats(b.key), c = s.pnl >= 0 ? UP : DOWN, hit = s.w + s.l ? Math.round((s.w / (s.w + s.l)) * 100) : null;
           return (

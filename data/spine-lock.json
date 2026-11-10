@@ -1,9 +1,9 @@
 {
- "at": "2026-11-10T02:17:58.703717+00:00",
+ "at": "2026-11-10T06:00:12.577963+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "489016c24d8da6b4"
+  "recon.ts": "9a54833ec9d3f7a2"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -820,6 +820,12 @@
    "by": "Love",
    "quote": "Love Nov 9 2026 9:30 AM PT: \"yeah 2.5 is fine bb 💓 / and yes just the 1 default 2.8x of the box amount i set , / then the second one goes to a genuine entry trigger 🏁\" + Love Nov 8 2026 7:04 PM PT: \"yes babez same side 😹💓 / and yes any band provided the multiple is above 2.8 - with a .2 margin of allowance , if price taps a band and rejects there before 2.8 is met, 2.5 - 2.6 is cool bb have her do them / sometimes they’ll be 3 sometimes they’ll be 8 / no limit on them tho bb , any band any entry trigger / and yes never worse than our initial one for sure no / all books / do $3 at 2.8x by default / and she’ll do the next one if it’s a valid rejection and push up :)\" + Love Nov 8 2026 6:55 PM PT: \"and babez i really want to implement a second entry trigger for the add ons instead of doing them by default. adding on to clearly losing trades is not the move / she does an add on at a band like she would enter any other trade , flip or born candle with a push off a band = add on / whatever the multiple is at\" (R602, fix1043)",
    "recon.ts": "489016c24d8da6b4"
+  },
+  {
+   "at": "2026-11-10T06:00:12.577963+00:00",
+   "by": "Love",
+   "quote": "Love Nov 8 2026 5:28 PM PT: \"and no set all paper tickets to $20 always , i noticed some are at $1 / $20 for all of them pls\" + Nov 9 2026 ~12:10 PM PT: \"hun pls make all books $20 on paper they’re showing here $2 and up $35 when they’re 80% positive pls fix that for me\" + Nov 9 2026 12:28 PM PT (her Desk panel's Paper size box): \"when you build it do it this way pls - the paper size / i type it in , it moves the numbers on the cards like it used to pls if we can\" (R609, fix1048)",
+   "recon.ts": "9a54833ec9d3f7a2"
   }
  ],
  "R": "R266",

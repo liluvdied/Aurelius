@@ -9,7 +9,7 @@ import { fetchMarket } from "./kalshi";
 import { norm819 } from "./flip819";
 const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
-export const STAKE820 = 5, FLOOR820 = 1.5;
+export const STAKE820 = 20, FLOOR820 = 1.5; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 export const FAMILY820: Record<string, { fam: string; book: string }> = { "recon-tog": { fam: "MAIN", book: "invw-main" }, "recon-rej": { fam: "REJ", book: "invw-rej" }, "recon-rnp": { fam: "NO PINK", book: "invw-np" }, "recon-rjnp": { fam: "NO PINK", book: "invw-np" }, "recon-togp": { fam: "NO PINK", book: "invw-np" }, v1112: { fam: "V.111", book: "invw-v1112" } };
 function lists(): Record<string, Set<string>> { try { const p = D("inverse-worst-820.json"), m = statSync(p).mtimeMs; if (G.__iw820L?.m === m) return G.__iw820L.v; const j = JSON.parse(readFileSync(p, "utf8")); const v: Record<string, Set<string>> = {}; for (const f of ["MAIN", "REJ", "NO PINK", "V.111"]) v[f] = new Set(((j?.[f] || []) as any[]).map(String)); G.__iw820L = { m, v }; return v; } catch { return {}; } }
 export function key820(asset: string, side: string, label: string, raw = false): string { return `${String(asset).toUpperCase()} ${side === "up" ? "LONG" : "SHORT"} · ${raw ? String(label) : norm819(label)}`; }
@@ -37,7 +37,7 @@ export async function invWorstTick820(assets: Record<string, any> | null | undef
       const d = decide820(x, m, L); if (!d) continue;
       const id = `${x.ticker}:${d.book}`; if (s.seen[id]) continue; s.seen[id] = now;
       const left = Number(a?.secondsLeft) || 0;
-      s.rows.push({ id: `${id}:820`, book: d.book, asset: x.asset, ticker: x.ticker, side: d.side, setup: "INVERSE of " + d.key, at: new Date(now).toISOString(), closeTime: new Date(now + left * 1000).toISOString(), ask: d.ask, contracts: STAKE820 / d.ask, half: false, halfBid: null, restBid: null, result: "open", pnlTp: null });
+      s.rows.push({ id: `${id}:820`, book: d.book, asset: x.asset, ticker: x.ticker, side: d.side, setup: "INVERSE of " + d.key, at: new Date(now).toISOString(), closeTime: new Date(now + left * 1000).toISOString(), ask: d.ask, stake: STAKE820 /* fix1048 */, contracts: STAKE820 / d.ask, half: false, halfBid: null, restBid: null, result: "open", pnlTp: null });
       dirty = true;
     }
     for (const r of s.rows) {

@@ -12,7 +12,7 @@ const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
 export const TOL824: Record<string, number> = { gold: 1.5, btc: 50 };
 export const AT824: Record<string, number> = { gold: 0.3, btc: 10 }; // a line sitting right on price is neither above nor below - no call
-export const FLOOR824 = 1.5, STAKE824 = 5, FIRST_SECS824 = 300, LABEL824 = "AWAY FROM LINE";
+export const FLOOR824 = 1.5, STAKE824 = 20 /* fix1048 */, FIRST_SECS824 = 300, LABEL824 = "AWAY FROM LINE";
 export const BOOKS824 = ["recon-tog", "recon-rej"];
 export function on824(): boolean { try { return JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.awayLine824 !== false; } catch { return true; } }
 /** her lines from the board + the Bollinger frame */

@@ -13,7 +13,7 @@ import { join } from "node:path";
 const ROOT = "https://external-api.kalshi.com";
 const NWS = "https://api.weather.gov";
 const UA = { "User-Agent": "Aurelius desk scanner (personal research)", Accept: "application/geo+json" };
-const STAKE = 100; // Oct 10 (Love: "do it at $100... same with the other scanners paper trades")
+const STAKE = 20; // Oct 10 (Love: "do it at $100... same with the other scanners paper trades") /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 const FILE = () => join(process.cwd(), "data", "scanner-paper.json");
 const MONS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 const FALLBACK_SERIES = ["KXHIGHNY", "KXHIGHCHI", "KXHIGHMIA", "KXHIGHAUS", "KXHIGHDEN", "KXHIGHLAX", "KXHIGHPHIL", "KXLOWNY", "KXLOWCHI", "KXLOWMIA", "KXLOWAUS", "KXLOWDEN", "KXLOWLAX", "KXLOWPHIL"];

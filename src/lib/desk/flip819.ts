@@ -19,7 +19,7 @@ export function norm819(label: string): string {
   return s.trim().slice(0, 60) || "?";
 }
 const D = (f: string) => join(process.cwd(), "data", f);
-export const MIN_N819 = 30, MAX_HIT819 = 0.30, MAX_MULT819 = 2.2, FLOOR819 = 1.5, STAKE819 = 5;
+export const MIN_N819 = 30, MAX_HIT819 = 0.30, MAX_MULT819 = 2.2, FLOOR819 = 1.5, STAKE819 = 20; /* fix1048 her flat $20 paper ticket (Love Nov 9 2026: "make all books $20 on paper") */
 const BOOK819: Record<string, string> = { "recon-tog": "MAIN", "recon-rej": "REJECTION" };
 export const FLIP_LABEL819 = "FLIP of ";
 function on819(): boolean { try { return JSON.parse(readFileSync(D("live-switch.json"), "utf8"))?.cutFlip819 !== false; } catch { return true; } }
