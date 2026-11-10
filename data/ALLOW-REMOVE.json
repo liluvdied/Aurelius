@@ -12551,5 +12551,30 @@
     "what": "if (call.side === \"down\" && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return { why: \"PINK TO GREEN 45%\" };",
     "why": "fix1054 (her words in this change's request)",
     "R": "R612"
+  },
+  {
+    "what": "t(src(\"livewire1044.ts\").includes('w.book !== \"xrp5m961\" && (Number((w as any)?.ask) > 0.66)) continue;'), \"LIVE WIRE / the book grid still show paper tickets over 66c (her real XRP lane must never be hidden)\");",
+    "why": "fix1055 (her words in this change's request)",
+    "R": "R613"
+  },
+  {
+    "what": "const real = (k: string) => k === \"xrp5m961\";",
+    "why": "fix1055 (her words in this change's request)",
+    "R": "R613"
+  },
+  {
+    "what": "const push = (rows: any, src: string) => { if (!Array.isArray(rows)) return; for (let i = rows.length - 1; i >= 0; i--) { const w = norm(rows[i], src); if (w && w.book !== \"xrp5m961\" && (Number((w as any)?.ask) > 0.66)) continue; /* fix1053 her record: no paper ticket over her 66c floor (her real XRP lane is never hidden) */ if (w && Date.parse(w.at) >= cut) out.push(w); } };",
+    "why": "fix1055 (her words in this change's request)",
+    "R": "R613"
+  },
+  {
+    "what": "for (const [file, book, stake] of [[\"xrp5m-961-book.json\", \"xrp5m961\", 0], [\"perplexities-book.json\", \"PERPLEXITIES\", 20]] as [string, string, number][]) {",
+    "why": "fix1055 (her words in this change's request)",
+    "R": "R613"
+  },
+  {
+    "what": "const done = r.result === \"win\" || r.result === \"loss\"; return { id: `${book}:${r.id}`, book, at: r.at, asset: \"xrp\", ticker: r.slug || r.id, side: r.side, setup: r.label, ask: Number(r.ask) || (f ? Number(f[2]) : 0), stake: st,",
+    "why": "fix1055 (her words in this change's request)",
+    "R": "R613"
   }
 ]

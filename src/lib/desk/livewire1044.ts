@@ -22,17 +22,17 @@ async function readJ(file: string): Promise<any> {
 /** every book's trades of the last `hours`, newest first */
 export async function wireRows1044(hours = 24, cap = 600): Promise<Wire1044[]> {
   const cut = Date.now() - hours * 3600000, out: Wire1044[] = [];
-  const push = (rows: any, src: string) => { if (!Array.isArray(rows)) return; for (let i = rows.length - 1; i >= 0; i--) { const w = norm(rows[i], src); if (w && w.book !== "xrp5m961" && (Number((w as any)?.ask) > 0.66)) continue; /* fix1053 her record: no paper ticket over her 66c floor (her real XRP lane is never hidden) */ if (w && Date.parse(w.at) >= cut) out.push(w); } };
+  const push = (rows: any, src: string) => { if (!Array.isArray(rows)) return; for (let i = rows.length - 1; i >= 0; i--) { const w = norm(rows[i], src); if (w && !/^(xrp5m961|btc5m1055|eth5m1055)$/.test(String(w.book)) /* fix1055 her real 5m lanes */ && (Number((w as any)?.ask) > 0.66)) continue; /* fix1053 her record: no paper ticket over her 66c floor (her real XRP lane is never hidden) */ if (w && Date.parse(w.at) >= cut) out.push(w); } };
   push(await readJ("night-book.json"), "night");
   const og = await readJ("grok-og.json"); push(Array.isArray(og) ? og : og?.rows, "lane");
   try { const pr = await import("./paperrows"); push(pr.paperBookRows721().filter((r: any) => !String(r.book).startsWith("p5m-")), "paper"); } catch {}
   // fix1045: the 5m paper books straight from their files, with the live bid they track (so LIVE WIRE moves on them too)
   for (const c of ["btc", "eth", "xrp", "xrp15k"]) { const b = await readJ(`p5m-1045-${c}.json`); if (Array.isArray(b?.rows)) push(b.rows.map((r: any) => ({ ...r, book: `p5m-${c}` })), "p5m"); }
   // her XRP 5m Polymarket lane + PERPLEXITIES (paper twin): their own files; only windows that actually bought (or paper-bought), not the skipped looks
-  for (const [file, book, stake] of [["xrp5m-961-book.json", "xrp5m961", 0], ["perplexities-book.json", "PERPLEXITIES", 20]] as [string, string, number][]) {
+  for (const [file, book, stake] of [["xrp5m-961-book.json", "xrp5m961", 0], ["btc5m-1055-book.json", "btc5m1055", 0] /* fix1055 */, ["eth5m-1055-book.json", "eth5m1055", 0] /* fix1055 */, ["perplexities-book.json", "PERPLEXITIES", 20]] as [string, string, number][]) {
     const b = await readJ(file); const rs = Array.isArray(b?.rows) ? b.rows : [];
     push(rs.filter((r: any) => /bought/i.test(String(r.live || ""))).map((r: any) => { const f = /bought ([\d.]+) @ ([\d.]+)/.exec(String(r.live || "")); const st = stake || (f ? Number(f[1]) * Number(f[2]) : 1);
-      const done = r.result === "win" || r.result === "loss"; return { id: `${book}:${r.id}`, book, at: r.at, asset: "xrp", ticker: r.slug || r.id, side: r.side, setup: r.label, ask: Number(r.ask) || (f ? Number(f[2]) : 0), stake: st,
+      const done = r.result === "win" || r.result === "loss"; return { id: `${book}:${r.id}`, book, at: r.at, asset: book.startsWith("btc") ? "btc" : book.startsWith("eth") ? "eth" : "xrp" /* fix1055 */, ticker: r.slug || r.id, side: r.side, setup: r.label, ask: Number(r.ask) || (f ? Number(f[2]) : 0), stake: st,
         result: done ? r.result : Date.parse(String(r.closesAt || "")) > Date.now() ? "open" : "settling", pnl: done ? (r.perDollar != null ? Number(r.perDollar) * st : r.result === "win" ? st * (1 / (Number(r.ask) || 0.5) - 1) : -st) : null, exit: done ? "settled at the 5m close" : "", spot: Number(r.spot) || 0 }; }), book);
   }
   const seen = new Set<string>(); const uniq = out.filter((w) => (seen.has(w.id) ? false : (seen.add(w.id), true)));

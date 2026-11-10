@@ -2846,15 +2846,15 @@
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
  },
  "KXBTC15M-26NOV100200-00:recon-rej:KXBTC15M-26NOV100200-00:recon-rej": {
-  "at": "2026-11-10T06:48:32.081Z",
+  "at": "2026-11-10T06:55:10.241Z",
   "ticker": "KXBTC15M-26NOV100200-00",
   "side": "down",
   "status": "blocked",
-  "reason": "NOT HER COLOUR (fix951): \"Fake-out turn under -1σ\" - neither the 2m nor the 5m candle is red at 74631.19 (only a wick rejection may enter without her colour) - no entry.",
+  "reason": "your hand trade holds this window (she goes in if you exit)",
   "firstReason": "break retry stopped: HER WALL (fix429): 5m PP (74600.78) is unbroken $9.29 below - no short into it (her $46.888571428571595 reach)",
   "firstTryAt": "2026-11-10T06:45:21.129Z",
-  "bookedAt": "2026-11-10T06:46:03.051Z",
-  "tries": 302,
+  "bookedAt": "2026-11-10T06:51:48.698Z",
+  "tries": 1244,
   "final": false,
   "paid": null,
   "orderId": null
@@ -2868,15 +2868,15 @@
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
  },
  "KXGOLD15M-26NOV100200-00:recon-tog:KXGOLD15M-26NOV100200-00:recon-rjnp": {
-  "at": "2026-11-10T06:48:32.089Z",
+  "at": "2026-11-10T06:55:10.244Z",
   "ticker": "KXGOLD15M-26NOV100200-00",
   "side": "down",
   "status": "blocked",
   "reason": "your hand trade holds this window (she goes in if you exit)",
   "firstReason": "Blocked: CODE CHANGED SINCE THE UMPIRE SAID SAFE (bandlock.ts) - no opening order until the umpire re-checks her (fix461)",
   "firstTryAt": "2026-11-10T06:45:37.745Z",
-  "bookedAt": "2026-11-10T06:45:41.438Z",
-  "tries": 367,
+  "bookedAt": "2026-11-10T06:53:05.204Z",
+  "tries": 1129,
   "final": false,
   "paid": null,
   "orderId": null
