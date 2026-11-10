@@ -12576,5 +12576,20 @@
     "what": "const done = r.result === \"win\" || r.result === \"loss\"; return { id: `${book}:${r.id}`, book, at: r.at, asset: \"xrp\", ticker: r.slug || r.id, side: r.side, setup: r.label, ask: Number(r.ask) || (f ? Number(f[2]) : 0), stake: st,",
     "why": "fix1055 (her words in this change's request)",
     "R": "R613"
+  },
+  {
+    "what": "if (hourSlugs().includes(slug)) return null;",
+    "why": "fix1056 (her words in this change's request)",
+    "R": "R614"
+  },
+  {
+    "what": "if (cash == null || cash < dollars) return null;",
+    "why": "fix1056 (her words in this change's request)",
+    "R": "R614"
+  },
+  {
+    "what": "if (!claimWindow(slug + claimTag)) return null;",
+    "why": "fix1056 (her words in this change's request)",
+    "R": "R614"
   }
 ]

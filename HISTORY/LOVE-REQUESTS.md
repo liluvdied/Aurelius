@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R614 - fix1056 WHY A POLYMARKET BUY DID NOT GO THROUGH: every way buySlug can come back empty now writes one line to data/poly-buy-why-1056.jsonl - already bought this hour, cash could not be read / too low, window already claimed, no ask / ask outside 8c-her cap, size rounds to zero, Polymarket refused the order (with its own status + answer), or no fill (with Polymarket's reply). Log only: the buy itself (her cap, the price, immediate-or-cancel) is exactly as it was; it never places, changes or blocks an order.
+- when: 2026-11-10T06:58:01+00:00
+- Love: "Love Nov 9 2026 ~10:28 PM PT: "she is still skipping everything" (her XRP 5m lane called all 10 of tonight's paper winners and every Polymarket buy came back "no fill / refused" with no reason on record)"
+- books: Polymarket buys (XRP / BTC / ETH 5m lanes, Polymarket twins) - log only
+- status: ACTIVE
+- proof: {"test": "tools/poly-buy-why-1056.cjs"}
+
 ## R613 - fix1055 BTC + ETH 5M LIVE ON POLYMARKET: two new live lanes, exact twins of her live XRP 5m lane (xrp5m961.ts): her ONE 5m brain (xrpRead961, imported - not copied) with the 5m books' push (BTC $5, ETH 25c - the configuration behind her 5m table), her 5m-open rule (fix1051), $1 a ticket, 66c max (her 1.5x floor), one buy a window, the same add-on boxes / trigger add-on, the same wire guards (umpire SAFE, LIVE on, Polymarket cash, the desk's $ cap). No cfg file = on at $1 / 66c on her word; data/btc5m-1055-cfg.json or eth5m-1055-cfg.json with on:false turns one off. Logs data/btc5m-1055.jsonl / eth5m-1055.jsonl; on her book tables and LIVE WIRE. NOT LOVE'S WORDS (please confirm): $1 a ticket (the XRP lane's size), the add-on boxes the XRP lane already has.
 - when: 2026-11-10T06:51:39+00:00
 - Love: "Love Nov 9 2026 9:46 PM PT (after her 5m table: ETH 77% / XRP 76% / BTC 62%, and "is the 5m configuration able to run live now?" - "BTC and ETH 5m: paper only for now ... Making them trade live is a new change that sends real money, so it needs your yes"): "Put all of them at the configuration that brings them to those numbers, and let's get them live, please""
