@@ -705,16 +705,10 @@ export async function buySlug(
       releaseWindow(claimKey);
       return why1056("size", "order size is below the minimum or above its dollar limit", { quoted, price, quantity });
     }
-    if (recheck) {
-      const reason = await recheck().catch(() => "could not recheck the setup");
-      if (reason) {
-        releaseWindow(claimKey);
-        return why1056("setup", reason);
-      }
-    }
-    if (deadlineMs !== undefined && Date.now() > deadlineMs) {
+    const setupRefusal = recheck ? await recheck().catch(() => "could not recheck the setup") : "";
+    if (setupRefusal || (deadlineMs !== undefined && Date.now() > deadlineMs)) {
       releaseWindow(claimKey);
-      return why1056("late", "5m window reached its final minute before the order could be sent"); // fix1017 final-minute cutoff
+      return why1056(setupRefusal ? "setup" : "late", setupRefusal || "5m window reached its final minute before the order could be sent"); // fix1017 final-minute cutoff
     }
     const res = await poly("POST", "/v1/orders", "", {
       marketSlug: slug,
