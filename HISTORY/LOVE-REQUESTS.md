@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R632 - fix1068 BOLLINGER BLOCK: at the last line before every Kalshi order (every book but delayed), no long just under her Bollinger middle or upper and no short just over her Bollinger middle or lower. "Just" = gold: the smaller of $1.50 and 10% of the session-band channel price sits in; BTC: 10% of that channel. Measured from price to the line, on her chart's 5m Bollinger. A short from over the upper band or a long from under the lower band (price outside her Bollinger coming back in - her wick rejection) is not blocked. No Bollinger to read = this rule says nothing and her other walls still judge. Additions only: her fix821 target-by-a-line rule and every other rule stay exactly as they are. XRP 15m and the other assets are NOT in this change (no real fills to prove it on yet).
+- when: 2026-11-10T18:52:42+00:00
+- Love: "Love Nov 10 2026 10:17 AM PT: "she entered in properly on both this window. just put the $1.50 bollinger , or 10%. whichever is smaller. block in for gold please. 10% of the channel for the rest of the assets please." + 10:13 AM PT: "she just longed gold directly under a bollinger again. please fix this.""
+- books: every Kalshi book but delayed (main, rejection, last minute, cups): gold + BTC at the last line
+- status: ACTIVE
+- proof: {"test": "tools/bollinger-block-1068.cjs"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "export function bollBlock1068("}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "bollBlock1068(sym, Number(q.c), side,"}
+
 ## R631 - LOAD save point save-2026-11-07-0055: code + the settings it holds put back and proven file by file; LIVE on/off, request book, exit log, records kept
 - when: 2026-11-10T17:56:14+00:00
 - Love: "Love: "load my nov 7 save" (clicked LOAD-A-SAVE-POINT.command)"
