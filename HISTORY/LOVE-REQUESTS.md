@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R625 - fix1065 HER PINK SLIDE TAKES PRECEDENCE OVER HER THIRDS: while main's own pink slide is on for gold / BTC (slideBlock658 says no long), her door no longer refuses a SHORT for sitting in the bottom third of her channel; while main's climb is on (no short), it no longer refuses a LONG in the top third. 14 thirds walls in bandlock.ts ask main's slide first (THE WALL top/bottom, candle from the third, THE IMPOSSIBILITY, ONLY IN HER THIRD, falling-from-the-top / rising-from-the-bottom). Every other wall still judges the trade. Main's slide unreadable = her thirds stand. Replay: at 2:15:17 AM PT main's BTC slide was on (2 rejections on a down-sloped pink, with CHANGE-400's 44% removal), so the 2:15 BTC short is no longer refused by THE IMPOSSIBILITY.
+- when: 2026-11-10T11:25:11+00:00
+- Love: "Love Nov 10 2026 2:41 AM PT: "again. i told you the pink slide rule takes precedence over the bottom 3rd for shorts. inverse for longs.""
+- books: every book through her door (gold + BTC): thirds walls yield to main's pink slide / climb
+- status: ACTIVE
+- proof: {"test": "tools/slide-over-thirds-1065.cjs"}
+
 ## R624 - fix1064 PINK SLIDE ANYWHERE IN THE CHANNEL: the 44% exception (fix944 / fix646) no longer releases a pink slide or climb. A sliding pink holds longs (gold + BTC) and a climbing pink holds shorts wherever the pink sits in its session channel. Her 2 separate rejections on the slope to turn it on and the 10%-of-channel break to free it are unchanged. Replay: tonight's 1:30:16 AM PT gold long (Rejected up off -3σ at 4090.61, pink 4096.31 at 79% of -3σ..-2σ) is held.
 - when: 2026-11-10T11:20:11+00:00
 - Love: "Love Nov 10 2026 1:58 AM PT: "as for the 44% pink slide thing, another fix i begged you to implement and another fix that took you two hours to ship, that didnt fix what i asked you to fix ... PLEASE FIX THE THINGS I AM ASKING YOU TO FIX" (after 1:33 AM PT: "SHE LONGED GOLD ON A PINK SLIDE")"

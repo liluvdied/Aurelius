@@ -28,6 +28,6 @@ t(run("btc", L, 77050, [77040, 77043], 77043, "down") === "", "the arming distan
 const Lg = [{ name: "+1σ", price: 4030 }, { name: "-1σ", price: 4000 }];
 t(/rising from the bottom third/.test(run("gold", Lg, 4002, [4001, 4005, 4006], 4005.75, "down")), "gold changed (a 25c drop off the high freed the short; gold stays 33c)");
 t(run("gold", Lg, 4002, [4001, 4005, 4006], 4005.6, "down") === "", "gold 40c drop did not free the short");
-t(/fix583/.test(B) && (B.match(/< rel583\)/g) || []).length === 4, "both thirds walls (awayVerdict + reconThirdAgainst) do not free at rel583");
+t(/fix583/.test(B) && (B.match(/< rel583( && !\(typeof slideFree1065 === "function" && slideFree1065\(asset, side\)\) \/\* fix1065 \*\/)?\)/g) || []).length === 4 /* fix1065: her slide-over-thirds guard may sit before the close */, "both thirds walls (awayVerdict + reconThirdAgainst) do not free at rel583");
 console.log(ok ? "THIRDS $2 583 TEST ✓ - the thirds wall frees on her $2 BTC break (fix651, long + short), $1 still waits, arming + gold 33c untouched." : "THIRDS $2 583 TEST: FAIL");
 process.exit(ok ? 0 : 1);
