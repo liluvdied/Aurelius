@@ -1,0 +1,86 @@
+// BENCH card (Claude, Oct 9 ~1:50 AM PT, Love: "can you please install an unlock for the bench on the terminal so i can
+// control that as well? ... a BENCH card under the symbols card between those and the exit rules").
+// Shows who the breaker benched and until when; LIFT clears that bench (a new losing run benches again); the breaker
+// itself can be turned off and on.
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getBench, setBench } from "@/lib/desk/fns";
+
+const UP = "#3ddc84";
+const DOWN = "#ff5c5c";
+const t = (iso: string) => new Date(iso).toLocaleTimeString("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit" });
+
+export function BenchCard() {
+  const qc = useQueryClient();
+  const q = useQuery({ queryKey: ["bench"], queryFn: () => getBench(), refetchInterval: 15000 });
+  const d = q.data;
+  const act = async (data: { book?: string; until?: string; breakerOn?: boolean; timeGateOn?: boolean; exemptBook?: string; exemptOn?: boolean }) => {
+    const r = await setBench({ data });
+    qc.setQueryData(["bench"], r);
+  };
+  if (!d) return null;
+  const list = Object.entries(d.benched || {});
+  return (
+    <>
+      <p className="-mb-2 px-1 text-[9px] tracking-[0.26em] text-white/55">BENCH · THE BREAKER ({d.breaker.losses} LOSSES IN A ROW = {d.breaker.hours}H OFF KALSHI)</p>
+      <section className="flex flex-col gap-2">
+        <button
+          type="button"
+          onClick={() => void act({ breakerOn: !d.breaker.on })}
+          className="rounded-full border px-4 py-2 text-[10px] tracking-[0.24em] transition-shadow"
+          style={{ borderColor: d.breaker.on ? UP : DOWN, color: d.breaker.on ? UP : DOWN, boxShadow: d.breaker.on ? "0 0 12px rgba(61,220,132,0.18)" : "0 0 12px rgba(255,92,92,0.15)" }}
+        >
+          BREAKER · {d.breaker.on ? "ON" : "OFF"}
+        </button>
+        {list.length ? (
+          list.map(([book, b]) => (
+            <div key={book} className="flex items-center justify-between gap-2 rounded-[12px] border px-3 py-2" style={{ borderColor: "rgba(255,92,92,0.5)" }}>
+              <span className="font-mono text-[10px] text-white/85">
+                {book.toUpperCase()} · BENCHED UNTIL {t(b.until)} PT · {b.losses} LOSSES
+              </span>
+              <button
+                type="button"
+                onClick={() => void act({ book, until: b.until })}
+                className="rounded-full border px-3 py-1 text-[9px] tracking-[0.22em]"
+                style={{ borderColor: UP, color: UP }}
+              >
+                LIFT
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="rounded-[12px] border px-3 py-2 font-mono text-[10px] text-white/55" style={{ borderColor: "rgba(255,255,255,0.15)" }}>
+            {d.breaker.on ? "No book is benched right now." : "Breaker is off: no book gets benched."}
+          </p>
+        )}
+        <button
+          type="button"
+          onClick={() => void act({ timeGateOn: !d.timeGate.on })}
+          className="rounded-full border px-4 py-2 text-[10px] tracking-[0.24em] transition-shadow"
+          style={{ borderColor: d.timeGate.on ? UP : DOWN, color: d.timeGate.on ? UP : DOWN }}
+        >
+          TIME GATE · {d.timeGate.on ? "ON" : "OFF"}
+        </button>
+        <p className="px-1 font-mono text-[9px] leading-snug text-white/50">
+          The time gate sits a book out of any {d.timeGate.hours}-hour block where it has won under {Math.round(d.timeGate.minWin * 100)}% (needs 15+ trades there). Tap a book to let it trade all hours.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {d.running.map((b) => {
+            const all = d.timeGate.exempt.includes(b);
+            return (
+              <button
+                key={b}
+                type="button"
+                onClick={() => void act({ exemptBook: b, exemptOn: !all })}
+                className="rounded-full border px-3 py-1.5 font-mono text-[9px] tracking-[0.18em]"
+                style={{ borderColor: all ? UP : "rgba(255,255,255,0.3)", color: all ? UP : "rgba(255,255,255,0.75)" }}
+              >
+                {b.toUpperCase()} · {all ? "ALL HOURS" : "SITS OUT WEAK HOURS"}
+              </button>
+            );
+          })}
+        </div>
+        {d.stopped ? <p className="font-mono text-[9px] text-[#ffd27a]">Daily stop is on: {d.why}</p> : null}
+      </section>
+    </>
+  );
+}

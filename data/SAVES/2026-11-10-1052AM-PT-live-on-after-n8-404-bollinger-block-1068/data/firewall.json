@@ -1,0 +1,26 @@
+{
+ "on": true,
+ "at": "2026-10-20T01:59:57.920137-07:00",
+ "by": "Love",
+ "quote": "install a firewall that can't change anything about how she executes without express consent from my side of the desk. indefinite immutable freeze until i thaw it myself. nothing moves in the code without a say-so from my side of the desk. no shifts in the code terminal-wide without express permission & intention from my side of the desk",
+ "what": "OS-level write-permission freeze (chmod 444 files / 555 directories, enforced at her Mac through the bridge) on every code file, the sentinel maps, the spine lock, the baseline, the vault and the project law. The OS refuses ALL writes, renames, deletes and plants on them - from the desk, from any script, from any session - until Love thaws it herself by name.",
+ "thaw": "ONLY Love, by name, in her Aurelius chat. Procedure: her words quoted in overnight-fixes.log -> chmod 644 (and 755 for a directory) ONLY the named files -> the change -> approved-model.json + golden-baseline.json moved in the same breath -> chmod 444/555 everything back -> tools/verify-golden.py must print GOLDEN. Anything else is a breach.",
+ "frozen": [
+  "src/** (every file)",
+  "tools/verify-golden.py",
+  "snapshots/**",
+  "AGENTS.project.md",
+  "package.json",
+  "data/golden-baseline.json",
+  "data/approved-model.json",
+  "data/spine-lock.json",
+  "data/FROZEN.json",
+  "data/freeze-2026-10-12.json",
+  "data/firewall.json"
+ ],
+ "writable_by_design": [
+  "data/* runtime state (heartbeat, halt, breaker, books, logs, live-switch via her UI levers)",
+  ".next build cache",
+  "node_modules (never touched at runtime; npm requires her shell)"
+ ]
+}
