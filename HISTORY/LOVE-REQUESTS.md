@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R608 - fix1047 HER HEARTS + ♡ FAVORITES (display only - never places, sizes, blocks or changes an order, a book, a wall or a switch): a tiny hollow heart ♡ next to the RUN button on every book card (the cards without RUN get one too). Tap it and it fills in (♥) and that book shows up in a new ♡ FAVORITES tab (next to ⚡ LIVE WIRE); tap again and it comes out. The FAVORITES tab shows only her hearted books as the same cards - tap one and its trades pull up the same way. Her picks are saved in data/fav-books.json (kept across restarts, phone + Mac see the same list). Tapping the heart never opens the card or touches RUN.
+- when: 2026-11-10T05:52:35+00:00
+- Love: "Love Nov 9 2026 ~11:54 AM PT: "okay yo can you just give me a tiny lil hollow heart button on each card next to the run button / and then it lets me pick which books i want to look at in a favorites tab too i think that’s easier than asking you to put em all in a table for me lol""
+- books: display only - her hearted books list (data/fav-books.json)
+- status: ACTIVE
+- proof: {"test": "tools/fav-hearts-1047.cjs"}
+
 ## R607 - fix1052 INSTALLS NEVER WAIT FOR LIVE: two old proofs (fix1019 R580 and fix1021 R581) demanded LIVE be ON, so whenever LIVE is paused her umpire read NOT SAFE ("tools/requests.py is OUT") and every install sat waiting for LIVE. They now prove what their change did (the copies off, AWAY FROM LINE off, main / rej / delayed still her live books) without demanding LIVE on. With them, her umpire reads SAFE with LIVE off (proved on a copy). New install format from this command on: the sign-off (save, stamps, tests, umpire, commit) runs right away with LIVE exactly as she left it; an install turns LIVE back on ONLY if it was the one that turned it off. Her pause-live hold is untouched.
 - when: 2026-11-10T05:41:57+00:00
 - Love: "Love Nov 9 2026 9:05 PM PT: "It's still giving me the same error every time I try to install something can you change the format of the installations for me please luv ? It drives me crazy every time""
