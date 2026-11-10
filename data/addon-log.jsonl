@@ -3882,3 +3882,4 @@
 {"at":"2026-11-10T17:08:38.847Z","ticker":"KXGOLD15M-26NOV101215-15","side":"up","why":"price reached 2.8x (fix600)","bid":0.34,"ok":false,"reason":"refused: {\"error\":{\"code\":\"invalid_price\",\"message\":\"invalid price\"}}"}
 {"at":"2026-11-10T17:22:12.974Z","ticker":"KXGOLD15M-26NOV101230-30","side":"up","why":"price reached 2.8x (fix600)","bid":0.28,"ok":true,"filled":3.33,"px":0.3,"ask":0.29,"orderId":"01a1c67b-4da0-7145-aafa-e34421cf14fd","reason":""}
 {"at":"2026-11-10T17:34:21.764Z","ticker":"KXGOLD15M-26NOV101245-45","side":"up","why":"price reached 2.8x (fix600)","bid":0.29,"ok":true,"filled":9.67,"px":0.31,"ask":0.3,"orderId":"01a1c686-6d48-757e-9f7d-61b864e4e85a","reason":""}
+{"at":"2026-11-10T17:55:06.103Z","ticker":"KXGOLD15M-26NOV101300-00","side":"up","why":"price reached 2.8x (fix600)","bid":0.31,"ok":true,"filled":9.09,"px":0.33,"ask":0.32,"orderId":"01a1c699-6c90-76e6-98d4-78fd65fcc8c9","reason":""}

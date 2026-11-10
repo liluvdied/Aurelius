@@ -2,6 +2,13 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R631 - LOAD save point save-2026-11-07-0055: code + the settings it holds put back and proven file by file; LIVE on/off, request book, exit log, records kept
+- when: 2026-11-10T17:56:14+00:00
+- Love: "Love: "load my nov 7 save" (clicked LOAD-A-SAVE-POINT.command)"
+- books: all
+- status: ACTIVE
+- proof: {"process": "data/LOADED-SAVE-POINT.json names save-2026-11-07-0055"}
+
 ## R630 - Polymarket 5m BTC, ETH and XRP use one $1 entry per window, with no add-ons. The old fix358 size override is superseded at the wire. IOC partial fills still spend the window.
 - when: 2026-11-10T12:33:47+00:00
 - Love: ""it is only supposed to be on at $1""
