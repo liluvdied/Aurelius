@@ -2918,5 +2918,27 @@
   "final": false,
   "paid": 0.45,
   "orderId": "01a1c441-e800-7c43-ad4d-4f0ec6fd4bce"
+ },
+ "KXGOLD15M-26NOV100215-15:recon-rej:KXGOLD15M-26NOV100215-15:recon-rej": {
+  "at": "2026-11-10T07:10:45.910Z",
+  "ticker": "KXGOLD15M-26NOV100215-15",
+  "side": "down",
+  "status": "blocked",
+  "reason": "BOLLINGER BROKEN: short at 4118.51 past the Bollinger lower (4118.86) - a broken Bollinger is never traded, only rejections off it (fix506).",
+  "firstReason": "your hand trade holds this window (she goes in if you exit)",
+  "firstTryAt": "2026-11-10T07:09:26.079Z",
+  "bookedAt": "2026-11-10T07:09:25.349Z",
+  "tries": 190,
+  "final": false,
+  "paid": null,
+  "orderId": null
+ },
+ "KXGOLD15M-26NOV100215-15:recon-tog:KXGOLD15M-26NOV100215-15:recon-tog": {
+  "at": "2026-11-10T07:09:26.086Z",
+  "ticker": "KXGOLD15M-26NOV100215-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
  }
 }

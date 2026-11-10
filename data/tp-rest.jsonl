@@ -9157,3 +9157,13 @@
 {"at":"2026-11-10T06:59:01.861Z","ticker":"KXGOLD15M-26NOV100200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
 {"at":"2026-11-10T07:00:05.633Z","ticker":"KXBNB15M-26NOV100200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
 {"at":"2026-11-10T07:00:10.162Z","ticker":"KXXRP15M-26NOV100200-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-10T07:02:04.802Z","ticker":"KXXRP15M-26NOV100215-15","px":0.92,"qty":7.49,"bid":0.21,"had":null}
+{"at":"2026-11-10T07:03:20.821Z","ticker":"KXXRP15M-26NOV100215-15","px":0.91,"qty":14.74,"bid":0.12,"had":{"id":"01a1c443-8de0-7c80-bb25-5b496b44d033","px":0.92,"qty":7.49,"failed":false}}
+{"at":"2026-11-10T07:05:01.614Z","ticker":"KXGOLD15M-26NOV100215-15","px":0.92,"qty":5.04,"bid":0.32,"had":null}
+{"at":"2026-11-10T07:10:52.419Z","ticker":"KXGOLD15M-26NOV100215-15","px":0.92,"qty":3.78,"bid":0.88,"had":null}
+{"at":"2026-11-10T07:11:50.354Z","ticker":"KXBTC15M-26NOV100215-15","px":0.85,"qty":19.3,"bid":0.3,"had":null}
+{"at":"2026-11-10T07:11:56.201Z","ticker":"KXBTC15M-26NOV100215-15","px":0.92,"qty":19.3,"bid":0.3,"had":{"id":"01a1c44c-7ef0-7d70-a380-9b31a003a0bf","px":0.85,"qty":19.3,"failed":false}}
+{"at":"2026-11-10T07:11:56.991Z","ticker":"KXGOLD15M-26NOV100215-15","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-10T07:11:58.284Z","ticker":"KXXRP15M-26NOV100215-15","px":0.84,"qty":14.74,"bid":0.1,"had":{"id":"01a1c444-baa8-7c85-9b35-52fd0d74e053","px":0.91,"qty":14.74,"failed":false}}
+{"at":"2026-11-10T07:12:06.607Z","ticker":"KXXRP15M-26NOV100215-15","px":0.91,"qty":14.74,"bid":0.1,"had":{"id":"01a1c44c-a218-71c8-9aa6-1787f623d06b","px":0.84,"qty":14.74,"failed":false}}
+{"at":"2026-11-10T07:12:38.506Z","ticker":"KXXRP15M-26NOV100215-15","px":0.91,"qty":20.52,"bid":0.3,"had":{"id":"01a1c44c-bd70-70a5-9544-7cdd4d9f3b69","px":0.91,"qty":14.74,"failed":false}}
