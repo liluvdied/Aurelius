@@ -1,9 +1,9 @@
 {
- "at": "2026-11-10T06:07:42.695872+00:00",
+ "at": "2026-11-10T07:01:24.714005+00:00",
  "lockedBy": "Love",
  "quote": "Love Oct 27 11:57 AM PT: \"all of them.\" (fix424) | Oct 29 2026 5:26 PM PT: \"she’s supposed to log every skip.\" (fix479)",
  "files": {
-  "recon.ts": "d3d28ff0facec79a"
+  "recon.ts": "1f48dc0bb349a1a2"
  },
  "howToUnlock": "Only Love re-signs: her words in data/overnight-fixes.log, then files[\"recon.ts\"] = sha256[:16] of the new src/lib/desk/recon.ts. Until then the RECONSTRUCTED books stop booking on drift (data/spine-lock-status.json).",
  "signedBy": [
@@ -832,6 +832,12 @@
    "by": "Love",
    "quote": "Love Nov 9 2026 8:04 PM PT: \"IT WAS AT THE TOP OF THE CHANNEL. PINK AND THE SESSION BAND WERE SITTING ON TOP OF EACH OTHER. STILL READING THIRDS INCORRECTLY.\" + 8:07 PM PT: \"yes. BUT PINK WAS SITTING ONNNNNN A SESSION BAND. THAT SHOULDNT CHANGE ANYTHING.\" + 8:08 PM PT: \"NO. IT IS SESSION BAND TO SESSION BAND. PINK WAS SITTING ONNNNNN THE SESSION BAND. THAT WAS NOT THE BOTTOM THIRD OF THE CHANNEL. IT WAS THE TOP. YOU ARE STILL HAVING HER CALCULATE THINGS INCORRECTLY.\" + 8:11 PM PT: \"hun. have her calculate it session band to session band. i’ve been saying the same thing for a fucking month nothing is landing and nothing is getting done\" (R610, fix1050)",
    "recon.ts": "d3d28ff0facec79a"
+  },
+  {
+   "at": "2026-11-10T07:01:24.714005+00:00",
+   "by": "Love",
+   "quote": "Love: \"and pls create separate files with your fixes to all of these, and put those live\" (R616)",
+   "recon.ts": "1f48dc0bb349a1a2"
   }
  ],
  "R": "R266",

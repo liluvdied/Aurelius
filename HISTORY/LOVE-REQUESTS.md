@@ -2,6 +2,77 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R622 - fix1062 PAPER NEVER TAKES A TRADE LIVE WOULD NOT TAKE: her books' new paper rows (main, rejection, delayed and their copies: recon-tog / rej / dly / dlyk / togp / togr / np / rjnp / rnp) now also pass live's own order door (bandLockCheck - the same check every live order of that book passes) inside her paper DNA gate, at the moment they book. A row live's door refuses is not recorded (logged once in data/paper-door-1062.jsonl) and is checked again if the book books it again. Nothing about live orders changes.
+- when: 2026-11-10T10:30:11+00:00
+- Love: "Love Nov 10 2026 1:15 AM PT: "they are on kalshi. I DONT WANT THE PAPER RECORDS TAKING TRADES THAT LIVE WOULD NOT TAKE HOW MANY TIMES DO I NEED TO ASK THE SAME THING""
+- books: paper rows of main / rej / delayed and their copies (Kalshi)
+- status: ACTIVE
+- proof: {"test": "tools/paper-door-1062.cjs"}
+
+## R621 - Use the same current executable quote for Kalshi BTC MAIN/REJ entry retry limits and size checks. Recheck missing or over-cap asks without sending.
+- when: 2026-11-10T09:08:40+00:00
+- Love: "please fix this hun. she only takes the ones that lose. skips every one that wins. im talking about kalshi, btc"
+- books: Kalshi BTC 15m MAIN, Kalshi BTC 15m REJ
+- status: ACTIVE
+- proof: {"test": "tools/kalshi-btc-entry-retries.cjs"}
+
+## R620 - fix1058 Keep Polymarket entry and add-on fill keys separate and release a Kalshi retry lock only when the opposite-position check prevented any send. Keep price, position, and confirmed-fill protections.
+- when: 2026-11-10T08:11:17+00:00
+- Love: "Love: "please fix the BTC add-on bug and the Kalshi retry lock, test both before anything goes live, and put the installer on my desktop""
+- books: BTC 5m add-ons, Kalshi live books
+- status: ACTIVE
+- proof: {"test": "tools/order-retry-locks.cjs"}
+- proof: {"test": "tools/floor-at-the-fill-1039.cjs"}
+
+## R619 - fix1057 Live XRP 15m on Kalshi alongside the paper ledger, through the existing guarded order endpoint, with the XRP model rechecked at the wire, one opening fill per window, the $1/66c limit and the paper model take profits.
+- when: 2026-11-10T07:27:54+00:00
+- Love: "Love: "i would like the 15m book for xrp live as well""
+- books: XRP 15m Kalshi
+- status: ACTIVE
+- proof: {"test": "tools/xrp-15m-kalshi-live.cjs"}
+- proof: {"test": "tools/p5m-1045.cjs"}
+
+## R618 - fix1055x Apply the same 5m window-side setup selection to live BTC and ETH and the 5m paper books. Retry known pre-submit failures and preserve existing live limits.
+- when: 2026-11-10T07:04:35+00:00
+- Love: "Love: "yes please get them all functioning and taking the set ups shes permitted to take again hun""
+- books: BTC 5m, ETH 5m, XRP 5m, 5m paper books
+- status: ACTIVE
+- proof: {"test": "tools/coin-5m-live-1055.cjs"}
+- proof: {"test": "tools/p5m-1045.cjs"}
+- proof: {"test": "tools/five-min-open-side-1051.cjs"}
+
+## R615 - Isolate the band-law self-test from live setup context and retain the order block on genuine failures.
+- when: 2026-11-10T07:01:24+00:00
+- Love: "Love: "can you find what’s tripping the band-law self-test, fix it in its own patch, and get the test copy to a signed Umpire SAFE?""
+- books: self-test
+- status: ACTIVE
+- proof: {"test": "tools/band-law-selftest-context.cjs"}
+
+## R616 - Codex rehearsal for the reviewed weekend fixes and order-blocker repairs. Shared carried-band thirds, flat paper tickets, favorites, extreme-based colour and wick rejection, guarded buy caps, Live Wire, Cup copier, retry proofs, market lookup and XRP availability and refusal logs. Rehearsed together with the independent fix1053 and fix1054 changes.
+- when: 2026-11-10T07:01:24+00:00
+- Love: "Love: "and pls create separate files with your fixes to all of these, and put those live""
+- books: reviewed desk books
+- status: ACTIVE
+- proof: {"test": "tools/kalshi-current-window.cjs"}
+- proof: {"test": "tools/thirds-session-band-1050.cjs"}
+- proof: {"test": "tools/xrp-5m-poly-961.cjs"}
+- proof: {"test": "tools/floor-at-the-fill-1039.cjs"}
+- proof: {"test": "tools/cup-book-713.cjs"}
+- proof: {"test": "tools/band-law-selftest-context.cjs"}
+- proof: {"test": "tools/paper-floor-1053.cjs"}
+- proof: {"test": "tools/pink-to-red-off-1054.cjs"}
+
+## R617 - fix1055x XRP recovery: keep valid reads through candle page timeouts, prefer the eligible setup on the same side of the five-minute open, use the canonical market, and retry pre-submit failures while retaining the last-minute and duplicate-order guards. Includes the existing R266 maximum price.
+- when: 2026-11-10T07:01:24+00:00
+- Love: "Love: "the xrp 5m is still skipping valid set ups" + "yes, please get it to start taking valid set ups when they occur.""
+- books: XRP 5m Polymarket
+- status: ACTIVE
+- proof: {"test": "tools/xrp-5m-poly-961.cjs"}
+- proof: {"test": "tools/floor-at-the-fill-1039.cjs"}
+- proof: {"test": "tools/five-min-open-side-1051.cjs"}
+- proof: {"test": "tools/coin-5m-live-1055.cjs"}
+- proof: {"test": "tools/poly-buy-why-1056.cjs"}
+
 ## R614 - fix1056 WHY A POLYMARKET BUY DID NOT GO THROUGH: every way buySlug can come back empty now writes one line to data/poly-buy-why-1056.jsonl - already bought this hour, cash could not be read / too low, window already claimed, no ask / ask outside 8c-her cap, size rounds to zero, Polymarket refused the order (with its own status + answer), or no fill (with Polymarket's reply). Log only: the buy itself (her cap, the price, immediate-or-cancel) is exactly as it was; it never places, changes or blocks an order.
 - when: 2026-11-10T06:58:01+00:00
 - Love: "Love Nov 9 2026 ~10:28 PM PT: "she is still skipping everything" (her XRP 5m lane called all 10 of tonight's paper winners and every Polymarket buy came back "no fill / refused" with no reason on record)"

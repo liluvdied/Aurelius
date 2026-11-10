@@ -488,6 +488,7 @@ export async function takeSide(
   claimTag = "",
   asset = "btc",
 ): Promise<HedgeFill | null> {
+  maxAsk = Math.min(maxAsk, 0.66); // R266: every opening buy keeps the 1.5x floor.
   const cash = await polymarketCash();
   if (cash == null || cash < dollars) return whyNull(`Polymarket cash ${cash ?? "unreadable"} < $${dollars}`);
   const window = claimTag.startsWith(":rej5m") ? await polyWindow5(asset, closesAt) /* fix170 */ : asset === "btc" ? await liveWindow(closesAt) : await polyWindowAsset(asset, closesAt); // fix112: gold 15m on Polymarket too
@@ -510,7 +511,8 @@ export async function takeSide(
     // flat $3 for the add on"): the twin's entries and add-ons (claim ":twin" / ":twinadd") size off the quoted ask, not the slipped limit, so a fill at the ask
     // spends the full amount; under 10c the limit is the ask itself (a 1c slip is half the price there). Never more than 8% over if it fills at the limit.
     const twinFlat = claimTag.startsWith(":twin");
-    const price = twinFlat && quoted < 0.1 ? Math.round(quoted * 100) / 100 : Math.min(0.9, Math.round((quoted + slip) * 100) / 100);
+    const slipped = twinFlat && quoted < 0.1 ? quoted : quoted + slip;
+    const price = Math.min(0.9, Math.floor(maxAsk * 100 + 1e-9) / 100, Math.round(slipped * 100) / 100);
     // $5 MINIMUM ON THE 5M BOOK (fix273, Oct 26 ~11:15 AM PT, Love: "orders are still going out at $2 on polymarket. please make sure that they go out at the
     // minimum of $5"): a 5m entry (claim ":rej5m") sizes off the quoted ask, not the 4c-slipped limit, so a fill at the ask spends the full amount (was ~$4.60).
     const flat5 = claimTag === ":rej5m";
@@ -560,19 +562,32 @@ export async function takeSide(
 
 const HOUR_PATH = join(process.cwd(), "data", "poly-hour.json");
 
-function hourSlugs(): string[] {
+type PolyBuys = { slugs: string[]; addOns: string[] };
+
+function readPolyBuys(): PolyBuys {
   try {
-    const row = JSON.parse(readFileSync(HOUR_PATH, "utf8")) as { slugs?: string[] };
-    return Array.isArray(row.slugs) ? row.slugs : [];
+    const row = JSON.parse(readFileSync(HOUR_PATH, "utf8"));
+    return {
+      slugs: Array.isArray(row?.slugs) ? row.slugs : [],
+      addOns: Array.isArray(row?.addOns) ? row.addOns : [],
+    };
   } catch {
-    return [];
+    return { slugs: [], addOns: [] };
   }
 }
 
-function rememberHour(slug: string) {
-  const slugs = [...new Set([slug, ...hourSlugs()])].slice(0, 48);
+// fix1058 An add-on fill has its own durable key. The legacy entry list is retained.
+function hourSlugs(claimTag = ""): string[] {
+  const buys = readPolyBuys();
+  return claimTag ? buys.addOns : buys.slugs;
+}
+
+function rememberHour(slug: string, claimTag = "") {
+  const buys = readPolyBuys();
+  const list = claimTag ? "addOns" : "slugs";
+  buys[list] = [...new Set([slug + claimTag, ...buys[list]])].slice(0, claimTag ? 240 : 48);
   mkdirSync(join(process.cwd(), "data"), { recursive: true });
-  writeFileSync(HOUR_PATH, JSON.stringify({ slugs }));
+  writeFileSync(HOUR_PATH, JSON.stringify(buys));
 }
 
 export async function upcomingHour(): Promise<{ slug: string; target: number | null; closesAt: string } | null> {
@@ -639,24 +654,41 @@ export async function buySlug(
   maxAsk: number,
   target: number | null,
   claimTag = "", // fix1029: an add-on claims its own key (slug + tag) so the entry's one-buy-per-window claim stays as is; "" = the entry, unchanged
+  onRefused?: (code: string, reason: string) => void,
+  deadlineMs?: number, // fix1055x 5m entries cannot send in their last minute even after slow reads
 ): Promise<HedgeFill | null> {
-  const why1056 = (why: string, x: Record<string, unknown> = {}): null => { try { appendFileSync(join(process.cwd(), "data", "poly-buy-why-1056.jsonl"), JSON.stringify({ at: new Date().toISOString(), slug, side, dollars, maxAsk, claimTag, why, ...x }) + "\n"); } catch {} return null; }; // fix1056 WHY A POLYMARKET BUY DID NOT GO THROUGH (Love Nov 9 2026 ~10:28 PM PT: "she is still skipping everything" - her XRP lane called all 10 of tonight's winning paper trades and every buy came back with no reason) - log only, never places, changes or blocks an order
+  // fix1056 Keep the venue audit and the XRP lane's refusal in sync.
+  const why1056 = (code: string, why: string, details: Record<string, unknown> = {}): null => {
+    try { appendFileSync(join(process.cwd(), "data", "poly-buy-why-1056.jsonl"), JSON.stringify({ at: new Date().toISOString(), slug, side, dollars, maxAsk, claimTag, code, why, ...details }) + "\n"); } catch {}
+    onRefused?.(code, why); return null;
+  };
+  maxAsk = Math.min(maxAsk, 0.66);
   slug = await resolve5m994(slug); // fix994: an event slug -> its market
-  if (hourSlugs().includes(slug)) return why1056("this market was already bought this hour (data/poly-hour.json)");
-  const cash = await polymarketCash();
-  if (cash == null || cash < dollars) return why1056(cash == null ? "Polymarket cash could not be read" : "not enough Polymarket cash", { cash });
-  if (!claimWindow(slug + claimTag)) return why1056("this window is already claimed by another buy in flight (one buy a window)");
+  const claimKey = slug + claimTag; // fix1058 match the durable record to the in-flight claim
+  if (hourSlugs(claimTag).includes(claimKey)) return why1056("already-bought", "this market already has a recorded buy for this entry or add-on");
+  // A read-only failure before the POST is safe to retry in the same window.
+  const cash = await polymarketCash().catch((error) => {
+    if (deadlineMs === undefined) throw error; return null;
+  });
+  if (cash == null || cash < dollars) return why1056("cash", cash == null ? "Polymarket balance unavailable" : "Polymarket cash below the requested ticket", { cash });
+  if (!claimWindow(claimKey)) return why1056("claimed", "this market already has an active order claim");
   try {
-    const quoted = await askFor(slug, side);
+    const quoted = await askFor(slug, side).catch((error) => {
+      if (deadlineMs === undefined) throw error; return null;
+    });
     if (quoted == null || quoted < 0.08 || quoted > maxAsk) {
-      releaseWindow(slug + claimTag);
-      return why1056(quoted == null ? "no ask on Polymarket's book" : "the ask is outside 8c - her cap", { quoted });
+      releaseWindow(claimKey);
+      return why1056("quote", quoted == null ? "no buy quote available" : `the wire ask ${quoted} is outside $0.08–$${maxAsk}`, { quoted });
     }
     const price = claimTag ? Math.min(Math.floor(maxAsk * 100 + 1e-9) / 100, Math.round((quoted + 0.02) * 100) / 100) /* fix1029 an add-on never pays over its cap (her rung, strictly better than her entry) */ : Math.min(0.9, Math.floor(maxAsk * 100 + 1e-9) / 100, Math.round((quoted + 0.02) * 100) / 100) /* fix1039 (her rule R266 (Oct 30 2026, her kept card c37): "THE 1.5x FLOOR: no order under 1.5x (66c cap)" - today 12:55:57 PM PT her XRP lane bought at 67c (1.49x): the ask was checked at 66c, then the order went out at the ask + 2c): the order price never goes over the caller's cap (her 66c) - the +2c slip stops at it */;
     const quantity = Math.floor((dollars / price) * 100) / 100;
     if (!(quantity >= 0.01) || quantity * price > dollars + 0.001) {
-      releaseWindow(slug + claimTag);
-      return why1056("the size rounds to zero", { quoted, price, quantity });
+      releaseWindow(claimKey);
+      return why1056("size", "order size is below the minimum or above its dollar limit", { quoted, price, quantity });
+    }
+    if (deadlineMs !== undefined && Date.now() > deadlineMs) {
+      releaseWindow(claimKey);
+      return why1056("late", "5m window reached its final minute before the order could be sent"); // fix1017 final-minute cutoff
     }
     const res = await poly("POST", "/v1/orders", "", {
       marketSlug: slug,
@@ -669,9 +701,21 @@ export async function buySlug(
       manualOrderIndicator: "MANUAL_ORDER_INDICATOR_AUTOMATED",
     });
     if (!res.ok) {
-      releaseWindow(slug + claimTag);
       const b1056 = await res.text().catch(() => "");
-      return why1056("Polymarket refused the order", { status: res.status, body: b1056.slice(0, 800), quoted, price, quantity });
+      const details = { status: res.status, body: b1056.slice(0, 800), quoted, price, quantity };
+      if (deadlineMs !== undefined && res.status >= 500) {
+        const message = `Polymarket returned HTTP ${res.status} after submission; the order outcome is unknown`;
+        why1056("uncertain", message, details);
+        throw new Error(message);
+      }
+      releaseWindow(claimKey);
+      let error = "";
+      try {
+        const body = JSON.parse(b1056);
+        if (typeof body?.error === "string") error = body.error;
+      } catch {}
+      const local = /^(THE ENFORCER|Live switch is OFF|Size under the cap)/.test(error);
+      return why1056(local ? "guard" : `exchange-${res.status}`, local ? error.slice(0, 180) : `Polymarket refused the order (HTTP ${res.status})`, details);
     }
     const data = (await res.json()) as {
       id?: string;
@@ -687,13 +731,13 @@ export async function buySlug(
     const avg = Number.parseFloat(order?.avgPx?.value ?? "");
     const paid = avg > 0 && avg < 1 ? sidePx(side, avg) : price;
     if (!orderId || !(filled > 0)) {
-      releaseWindow(slug + claimTag);
-      return why1056("no fill (immediate-or-cancel order found nobody at her price)", { orderId: orderId ?? null, filled, quoted, price, quantity, reply: JSON.stringify(data).slice(0, 800) });
+      releaseWindow(claimKey);
+      return why1056("unfilled", `order at ${price} returned no fill`, { orderId: orderId ?? null, filled, quoted, price, quantity, reply: JSON.stringify(data).slice(0, 800) });
     }
-    rememberHour(slug);
+    rememberHour(slug, claimTag);
     return { orderId, filled, price: paid, slug, target };
   } catch (err) {
-    releaseWindow(slug + claimTag);
+    releaseWindow(claimKey);
     throw err;
   }
 }

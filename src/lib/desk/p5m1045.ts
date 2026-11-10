@@ -6,7 +6,7 @@
 // It also writes the window's real bid / ask every ~6 s to data/poly5-quotes-<coin>.jsonl (ETH / XRP had no recorded prices) so her TP can score them later. Off: data/p5m-1045-cfg.json {"on": false}.
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { xrpRead961, openSide1051, win5Open1051 } from "./xrp5m961"; // fix1051
+import { xrpRead961, win5Open1051 } from "./xrp5m961"; // fix1051
 import { ethBands682 } from "./ethbook";
 
 const G = globalThis as any;
@@ -20,7 +20,7 @@ const file = (c: string) => D(`p5m-1045-${c}.json`);
 function book(c: string): { rows: any[] } { try { const j = JSON.parse(readFileSync(file(c), "utf8")); return Array.isArray(j?.rows) ? j : { rows: [] }; } catch { return { rows: [] }; } }
 function save(c: string, b: { rows: any[] }) { const p = file(c), t = p + ".tmp"; b.rows = b.rows.slice(-3000); writeFileSync(t, JSON.stringify(b)); renameSync(t, p); }
 async function j(url: string): Promise<any> { const r = await fetch(url, { headers: { Accept: "application/json", "User-Agent": "aurelius-p5m/1.0" }, signal: AbortSignal.timeout(8000) }); return r.ok ? r.json() : null; }
-async function bars(c: string): Promise<Bar[]> {
+export async function bars1045(c: string): Promise<Bar[]> {
   const B = ((G.__p5m1045Bars ||= {})[c] ||= { at: 0, m: new Map<number, Bar>() });
   if (Date.now() - B.at < 5000 && B.m.size) return [...B.m.values()].sort((a: Bar, b: Bar) => a.t - b.t);
   const need = B.m.size < 600 ? 3 : 1;
@@ -54,7 +54,7 @@ export function settle1045(r: any, won: boolean): any {
 }
 async function coinTick(c: string, nowMs: number, pm: PM) {
   const now = nowMs / 1000, f = Math.floor(now / 300) * 300, left = f + 300 - now, b = book(c); let dirty = false;
-  const bs = await bars(c); if (!bs.length) return;
+  const bs = await bars1045(c); if (!bs.length) return;
   // open rows: her TP on the live bid, then the close from the candles
   for (const r of b.rows.filter((x) => x.result === "open")) {
     const ws = Number(r.ws);
@@ -68,8 +68,8 @@ async function coinTick(c: string, nowMs: number, pm: PM) {
   // a new entry: one a window, 60 s+ left, her read, her floor
   const id = `${c}5m-${f}`;
   if (left >= 60 && slug && !b.rows.some((x) => x.id === id)) {
-    const spot = bs[bs.length - 1].c, r = xrpRead961(bs, ethBands682(bs as any), spot, now, { band: COINS1045[c].push, pink: COINS1045[c].push, wick: COINS1045[c].push * 2 }) as any;
-    if (r && r.side && openSide1051(r.side, spot, win5Open1051(bs, now)) /* fix1051 her 5m books: only on her side of the 5m open - else keep watching the window */) {
+    const spot = bs[bs.length - 1].c, r = xrpRead961(bs, ethBands682(bs as any), spot, now, { band: COINS1045[c].push, pink: COINS1045[c].push, wick: COINS1045[c].push * 2 }, win5Open1051(bs, now)); // fix1051 her 5m books check the window side while choosing a setup
+    if ("side" in r) {
       const top = await pm.bookTop(slug).catch(() => null);
       const ask = top ? (r.side === "up" ? Number(top.ask) : Math.round((1 - Number(top.bid)) * 100) / 100) : 0;
       if (ask > 0.02 && ask <= FLOOR1045) { b.rows.push({ id, ws: f, at: new Date(nowMs).toISOString(), asset: c, ticker: slug, side: r.side, setup: r.label, ask, stake: STAKE1045, result: "open", pnl: null, spot }); dirty = true; }
@@ -90,7 +90,7 @@ async function k15Tick(nowMs: number, km: KM) {
   }
   const ticker = km.fifteenTicker("KXXRP15M", nowMs), id = `xrp15k-${f}`;
   if (left >= 120 && !b.rows.some((x) => x.id === id)) {
-    const bs = await bars("xrp"); if (bs.length) {
+    const bs = await bars1045("xrp"); if (bs.length) {
       const spot = bs[bs.length - 1].c, r = xrpRead961(bs, ethBands682(bs as any), spot, now) as any; // her XRP lane's own push (PUSH1004)
       if (r && r.side) { const m = await km.fetchMarket(ticker).catch(() => null); const ask = m ? Number(r.side === "up" ? m.yesAsk : m.noAsk) : 0;
         if (ask > 0.02 && ask <= FLOOR1045) { b.rows.push({ id, ws: f, at: new Date(nowMs).toISOString(), asset: "xrp", ticker, side: r.side, setup: r.label, ask, stake: STAKE1045, result: "open", pnl: null, spot }); dirty = true; } }

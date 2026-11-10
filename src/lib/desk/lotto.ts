@@ -28,6 +28,7 @@ export type LottoTicket = {
   target: number | null;
   secondsLeft: number;
   ask: number;
+  stake?: number;
   multiple: number;
   peakBid: number;
   peakPct: number;
@@ -122,6 +123,7 @@ export function lottoTick(assets: Record<string, AssetLike> | null | undefined) 
       target: a.target,
       secondsLeft: Math.round(a.secondsLeft),
       ask,
+      stake: LOTTO_STAKE,
       multiple: r2(1 / ask),
       peakBid: bid > 0 ? bid : 0,
       peakPct: bid > 0 ? Math.round((bid / ask - 1) * 100) : -100,
@@ -146,13 +148,14 @@ export async function lottoSettle(result: (ticker: string) => Promise<"yes" | "n
       const res = await result(r.ticker).catch(() => null);
       if (!res) continue;
       const won = (r.side === "up" && res === "yes") || (r.side === "down" && res === "no");
-      const count = LOTTO_STAKE / r.ask;
-      const hold = r2(won ? count - LOTTO_STAKE : -LOTTO_STAKE);
+      const stake = r.stake ?? 5;
+      const count = stake / r.ask;
+      const hold = r2(won ? count - stake : -stake);
       const profits: Record<string, number> = { hold };
       for (const pct of LOTTO_EXITS) {
         const k = `+${pct}`;
         const sold = r.exits[k];
-        profits[k] = sold != null ? r2(count * sold - LOTTO_STAKE) : hold;
+        profits[k] = sold != null ? r2(count * sold - stake) : hold;
       }
       r.result = won ? "win" : "loss";
       r.profits = profits;

@@ -1,9 +1,34 @@
-# Every decision Love has made - rebuilt 2026-11-10T06:59:53.639194+00:00
+# Every decision Love has made - rebuilt 2026-11-10T10:32:20.492229+00:00
 
-1549 decisions with Love's words or card picks, out of 2309 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
+1555 decisions with Love's words or card picks, out of 2316 diary entries. Newest first. Source of truth: data/overnight-fixes.log (line numbers below).
 
 Status: IN HER CODE = the fix number is in her code right now (the umpire checks it). A setting = hours/sizes, which follow her latest pick. Taken back = Love's own later words replaced it.
 
+
+## 2026-11-10T08:11:17.716338+00:00  ·  diary line 2788
+- Love: “please fix the BTC add-on bug and the Kalshi retry lock, test both before anything goes live, and put the installer on my desktop”
+- Full entry: 2026-11-10T08:11:17.716338+00:00 R620: Love: "please fix the BTC add-on bug and the Kalshi retry lock, test both before anything goes live, and put the installer on my desktop"
+
+## 2026-11-10T07:27:54.187217+00:00  ·  diary line 2786
+- Love: “i would like the 15m book for xrp live as well”
+- Full entry: 2026-11-10T07:27:54.187217+00:00 R619: Love: "i would like the 15m book for xrp live as well"
+
+## 2026-11-10T07:04:35.306221+00:00  ·  diary line 2784
+- Love: “yes please get them all functioning and taking the set ups shes permitted to take again hun”
+- Full entry: 2026-11-10T07:04:35.306221+00:00 R618: Love: "yes please get them all functioning and taking the set ups shes permitted to take again hun"
+
+## 2026-11-10T07:01:24.714005+00:00  ·  diary line 2782
+- Love: “the xrp 5m is still skipping valid set ups”
+- Love: “yes, please get it to start taking valid set ups when they occur.”
+- Full entry: 2026-11-10T07:01:24.714005+00:00 R617: Love: "the xrp 5m is still skipping valid set ups" + "yes, please get it to start taking valid set ups when they occur."
+
+## 2026-11-10T07:01:24.714005+00:00  ·  diary line 2780
+- Love: “and pls create separate files with your fixes to all of these, and put those live”
+- Full entry: 2026-11-10T07:01:24.714005+00:00 R616: Love: "and pls create separate files with your fixes to all of these, and put those live"
+
+## 2026-11-10T07:01:24.714005+00:00  ·  diary line 2778
+- Love: “can you find what’s tripping the band-law self-test, fix it in its own patch, and get the test copy to a signed Umpire SAFE?”
+- Full entry: 2026-11-10T07:01:24.714005+00:00 R615: Love: "can you find what’s tripping the band-law self-test, fix it in its own patch, and get the test copy to a signed Umpire SAFE?"
 
 ## 2026-11-08T18:28:07.894Z  ·  diary line 2776
 - Full entry: 2026-11-08T18:28:07.894Z HOURS (Love, in-app schedule pill): 10 AM PT -> MAIN book (BTC only)

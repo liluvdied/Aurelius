@@ -88,8 +88,8 @@ export async function wallsSettle783(assets: Record<string, any> | null | undefi
         const mk = await fm(r.ticker).catch(() => null); const res = mk?.result === "yes" ? "up" : mk?.result === "no" ? "down" : "";
         if (!res) continue;
         const won = res === r.side, pay = won ? 1 : 0, c = r.contracts, h = r.half ? c / 2 : 0, rest = c - h;
-        r.result = won ? "win" : "loss"; r.pnlHold = Math.round((c * pay - STAKE) * 100) / 100;
-        r.pnlTp = Math.round(((r.half ? h * (r.halfBid as number) : 0) + rest * (r.soldBid != null ? r.soldBid : pay) - STAKE) * 100) / 100;
+        r.result = won ? "win" : "loss"; r.pnlHold = Math.round((c * pay - (r.contracts * r.ask)) * 100) / 100;
+        r.pnlTp = Math.round(((r.half ? h * (r.halfBid as number) : 0) + rest * (r.soldBid != null ? r.soldBid : pay) - (r.contracts * r.ask)) * 100) / 100;
         if (!isSkip) { logFill783(r); r.logged = true; }
         dirty = true;
       }
