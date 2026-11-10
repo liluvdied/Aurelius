@@ -3042,16 +3042,16 @@
   "reason": "window ended before it filled"
  },
  "KXGOLD15M-26NOV100115-15:recon-tog:KXGOLD15M-26NOV100115-15:recon-rjnp": {
-  "at": "2026-11-10T06:11:11.258Z",
+  "at": "2026-11-10T06:14:31.228Z",
   "ticker": "KXGOLD15M-26NOV100115-15",
   "side": "up",
-  "status": "blocked",
-  "reason": "NOT HER COLOUR (fix951): \"Rejected up off session VWAP\" - neither the 2m nor the 5m candle is green at 4123.79 (only a wick rejection may enter without her colour) - no entry.",
+  "status": "missed",
+  "reason": "window ended before it filled (last: NOT ON HER SIDE (fix951): \"Rejected up off session VWAP\" is a long off session VWAP (4123.67) but price 4123.21 is not above it - no entry.)",
   "firstReason": "GOLD CLIMB OVER PINK: 2 candles hit the pink and rejected on an up slope (last at 4121.76) with gold 4121.44 over it - no short until price breaks down through pink by 10% of the channel (fix560).",
   "firstTryAt": "2026-11-10T06:10:19.424Z",
   "bookedAt": "2026-11-10T06:10:17.273Z",
-  "tries": 96,
-  "final": false,
+  "tries": 660,
+  "final": true,
   "paid": null,
   "orderId": null
  },
@@ -3064,11 +3064,12 @@
   "reason": "the DELAYED twin takes this hour live (Love, Oct 23)"
  },
  "KXGOLD15M-26NOV100115-15:recon-tog:KXGOLD15M-26NOV100115-15:recon-tog": {
-  "at": "2026-11-10T06:10:19.488Z",
+  "at": "2026-11-10T06:14:31.256Z",
   "ticker": "KXGOLD15M-26NOV100115-15",
   "side": "up",
-  "status": "held",
-  "reason": "PINK SLIDE (fix658): longs only off the pink while it slides - Break above session VWAP waits for the pink rejection. (no short: GOLD CLIMB OVER PINK: gold 4125.28 is still over the pink (4122.80) since her climb - no short until price breaks down through pink by 10% of the channel (fix560).)",
-  "firstReason": "GOLD CLIMB OVER PINK: 2 candles hit the pink and rejected on an up slope (last at 4121.76) with gold 4121.44 over it - no short until price breaks down through pink by 10% of the channel (fix560)."
+  "status": "missed",
+  "reason": "window ended before it filled (last: PINK SLIDE (fix658): longs only off the pink while it slides - Break above session VWAP waits for the pink rejection. (no short: GOLD CLIMB OVER PINK: gold 4122.62 is still over the pink (4122.47) since her climb - no short until price breaks down through pink by 10% of the channel (fix560).))",
+  "firstReason": "GOLD CLIMB OVER PINK: 2 candles hit the pink and rejected on an up slope (last at 4121.76) with gold 4121.44 over it - no short until price breaks down through pink by 10% of the channel (fix560).",
+  "final": true
  }
 }
