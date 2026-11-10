@@ -2792,3 +2792,14 @@ LIVE back on after fix425 2026-10-29T02:37:06.682417+00:00 ({'engine.ts': 'bc53a
 2026-11-10T11:28:59.188866+00:00 Codex R626, R627, R628 | Love: "Keep each book’s strategy and update the shared checks" | Reconciled the reviewed Shared Checks with CHANGE-399 and CHANGE-400.
 
 2026-11-10T11:39:57.950102+00:00 Codex R629 | "pls fix the open issue" | XRP 15m Kalshi retries a transient stale Coinbase ticker within the existing two-second request budget and requires a fresh trade and the same setup before a send.
+
+2026-11-10T12:33:47.659983+00:00 Codex R630 | "it is only supposed to be on at $1" | Polymarket 5m BTC, ETH and XRP use one $1 entry per window, with no add-ons. The old fix358 size override is superseded at the wire. IOC partial fills still spend the window.
+2026-11-10T13:19:53Z Love Nov 10 2026 4:53 AM PT: "dude please just put it on the save point for now" - spine re-signed to the save point 0d56a584 recon.ts
+2026-11-10T13:20:02Z Love Nov 10 2026 4:53 AM PT: "dude please just put it on the save point for now" - spine re-signed to the save point 0d56a584 recon.ts
+2026-11-10T14:08:44Z Love Nov 10 2026 3:57 AM PT: "under -2o is literally only longs" - save point recon.ts re-signed for fix1080
+2026-11-10T14:29:38Z Love Nov 10 2026 4:53 AM PT: "dude please just put it on the save point for now" - spine re-signed to the save point 0d56a584 recon.ts
+2026-11-10T14:30:22Z Love Nov 10 2026 4:53 AM PT: "dude please just put it on the save point for now" - spine re-signed to the save point 0d56a584 recon.ts
+2026-11-10T14:30:45Z Love Nov 10 2026 3:57 AM PT: "under -2o is literally only longs" - save point recon.ts re-signed for fix1080
+2026-11-10T14:32:39Z Love Nov 10 2026 6:28 AM PT: "jusssssssttttttt dooooo what i'm assssking you" - pink-break entry up to 70c; recon.ts re-signed
+2026-11-10T14:56:03Z Love Nov 10 2026 6:54 AM PT: "FIND WHAT IT IS. AND BLOCK IT FROM BLOCKING EVERY FUCKING TRADE" - golden-baseline code signed to the save point she runs
+2026-11-10T15:10:15.994Z HOURS (Love, in-app schedule pill): 7 AM PT -> MAIN book (BTC only)

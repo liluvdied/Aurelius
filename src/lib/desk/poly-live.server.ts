@@ -69,10 +69,9 @@ function guardPolyOrder(method: string, path: string, body: unknown): { body?: u
   // $3 Down ticket at 5c as if it were $57.
   const px = /SHORT/i.test(String(order.intent || "")) ? 1 - yesPx : yesPx;
   const qty = Number(order.quantity);
-  // fix358 (Oct 27 2026 6:55 PM PT, Love: "raise her stake to $10 on the other hours" + card "$7.50 now"): a Polymarket 5M order (5m market slug) may go up to
-  // polyTwin.rej5m.dollars; every other order keeps the live cap (maxDollars). Kalshi never reads this.
-  let cap = maxDollars();
-  try { if (/-5m-/.test(String(order.marketSlug || ""))) { const r5c = Number(JSON.parse(readFileSync(join(process.cwd(), "data", "live-switch.json"), "utf8"))?.polyTwin?.rej5m?.dollars); if (r5c > cap) cap = r5c; } } catch {}
+  // Historical fix358 (Oct 27 2026 6:55 PM PT, Love: "raise her stake to $10 on the other hours" + card "$7.50 now").
+  // The later $1 Polymarket 5m limit supersedes that stake override.
+  const cap = /-5m-/.test(String(order.marketSlug || "")) ? Math.min(1, maxDollars()) : maxDollars();
   if (px > 0 && qty > 0 && qty * px > cap + 1e-6) {
     const fixed = Math.floor((cap / px) * 100) / 100;
     noteBlock({ venue: "polymarket", ticker: order.marketSlug, reason: `Size cut from $${(qty * px).toFixed(2)} to the $${cap} cap` });
@@ -683,8 +682,16 @@ export async function buySlug(
   };
   maxAsk = Math.min(maxAsk, 0.66);
   slug = await resolve5m994(slug); // fix994: an event slug -> its market
+  const fiveMinute = /-5m-/.test(slug);
+  if (fiveMinute) dollars = Math.min(dollars, 1);
+  // The $1 limit is for the window, including a partial entry. No additional buy.
+  const extraBuy = fiveMinute && claimTag !== "";
   const claimKey = slug + claimTag; // fix1058 match the durable record to the in-flight claim
-  if (hourSlugs(claimTag).includes(claimKey)) return why1056("already-bought", "this market already has a recorded buy for this entry or add-on");
+  if (extraBuy || hourSlugs(claimTag).includes(claimKey)) {
+    return why1056(extraBuy ? "size" : "already-bought", extraBuy
+      ? "Polymarket 5m is limited to one $1 entry per window"
+      : "this market already has a recorded buy for this entry or add-on");
+  }
   // A read-only failure before the POST is safe to retry in the same window.
   const cash = await polymarketCash().catch((error) => {
     if (deadlineMs === undefined) throw error; return null;

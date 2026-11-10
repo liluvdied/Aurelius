@@ -2,6 +2,14 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R630 - Polymarket 5m BTC, ETH and XRP use one $1 entry per window, with no add-ons. The old fix358 size override is superseded at the wire. IOC partial fills still spend the window.
+- when: 2026-11-10T12:33:47+00:00
+- Love: ""it is only supposed to be on at $1""
+- books: btc5m1055, eth5m1055, xrp5m961
+- status: ACTIVE
+- proof: {"test": "tools/poly-5m-entry-recheck.cjs"}
+- proof: {"test": "tools/poly-main-preflight.cjs"}
+
 ## R629 - XRP 15m Kalshi retries a transient stale Coinbase ticker within the existing two-second request budget and requires a fresh trade and the same setup before a send.
 - when: 2026-11-10T11:39:57+00:00
 - Love: ""pls fix the open issue""

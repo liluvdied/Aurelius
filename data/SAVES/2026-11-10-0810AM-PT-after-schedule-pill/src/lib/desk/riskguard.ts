@@ -1,0 +1,266 @@
+// RISK GUARD (Claude, Oct 6 ~12:20 PM PT, Love: "yesss ok lets do it bb, time to get serious :] lets make the daily loss
+// limit -$200 at current sizing, we'll raise as we scale... as for the breaker, that sounds good").
+//   DAILY STOP: the live books' realized Kalshi P&L for the day (Pacific day, the same count as the cards' LIVE line) at or
+//               under -dailyLossLimit -> no new live-book entries on Kalshi or the Polymarket 1H until midnight PT. Open
+//               trades keep their exits. live-switch "dailyLossLimit" (dollars, 0 = off).
+//   BREAKER:    a book's last N settled live trades all lost -> that book sits out for H hours after the last loss, then
+//               trades again (another loss re-trips it). Paper keeps booking. live-switch "breaker": { on, losses, hours }.
+// Bench lab (scripts/bench-lab.py): 3 straight losses never happened Oct 5-6, so it costs nothing on a normal day.
+// Counts every fill in a window the desk opened (her own adds in that window ride with it), like the LIVE line.
+import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { listNight } from "./nightbook";
+// Book of a live-book-done key ("TICKER:book", "TICKER:atr:book", or a 5M-X twin "TICKER:bank5p:x5" = bank5px).
+const bookOfKey = (k: string) => { const p = k.split(":"); const last = p.pop() || ""; if (last !== "x5") return last; const base = p.pop() || ""; return ({ bank5p: "bank5px", claude: "claudex", trend: "trendx" } as Record<string, string>)[base] || `${base}x`; };
+
+type Trade = { book: string; ticker: string; first: string; end: number; pnl: number };
+export type RiskNow = {
+  at: string;
+  day: string;
+  todayPnl: number;
+  todayN: number;
+  limit: number;
+  peak: number;
+  giveback: number;
+  why: string;
+  stopped: boolean;
+  breaker: { on: boolean; losses: number; hours: number };
+  benched: Record<string, { until: string; losses: number }>;
+};
+const g = globalThis as unknown as { __riskAt?: number; __risk?: RiskNow; __riskSeen?: Record<string, string> };
+const D = () => join(process.cwd(), "data");
+const r2 = (n: number) => Math.round(n * 100) / 100;
+const MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+/** Window close (ms) from a Kalshi 15M ticker: KXBTC15M-26OCT061315-15 = Oct 6 2026, 13:15 ET. */
+function closeMs(ticker: string): number | null {
+  const m = /-(\d\d)([A-Z]{3})(\d\d)(\d\d)(\d\d)/.exec(ticker);
+  if (!m) return null;
+  const y = 2000 + Number(m[1]);
+  const mo = MON.indexOf(m[2]);
+  if (mo < 0) return null;
+  const guess = Date.UTC(y, mo, Number(m[3]), Number(m[4]) + 4, Number(m[5]));
+  // New York offset at that moment (EDT -4 / EST -5)
+  const nyHour = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "2-digit", hourCycle: "h23" }).format(new Date(guess)));
+  return nyHour === Number(m[4]) ? guess : guess + 3600 * 1000;
+}
+
+function liveSwitch(): any {
+  try {
+    return JSON.parse(readFileSync(join(D(), "live-switch.json"), "utf8"));
+  } catch {
+    return {};
+  }
+}
+
+// WINDOW RESULTS (Oct 7 fix, Love: "you said kalshi was up $400+ today? its not"). Two bugs made the day look +$672:
+//  1. a window's result came only from the night book, which forgets windows after ~10 hours, so every trade that rode
+//     to the bell and LOST quietly dropped out of the count once it was old; sold trades stayed in. Results now come from
+//     Kalshi's own settlements, the permanent exit ledger and the night book, kept in data/window-results.json.
+//  2. Kalshi reports a NO purchase as ("buy", "no") at the NO price; it was being read as buying YES at the YES price.
+//     Now: buy yes / sell yes (reported "sell","no") at the YES price; buy no / sell no (reported "sell","yes") at NO.
+function windowResults(audit: any): Map<string, string> {
+  const file = join(D(), "window-results.json");
+  let cache: Record<string, string> = {};
+  try {
+    cache = JSON.parse(readFileSync(file, "utf8"));
+  } catch {
+    cache = {};
+  }
+  const before = Object.keys(cache).length;
+  try {
+    for (const s of audit?.settlements ?? []) if (s?.ticker && (s.result === "yes" || s.result === "no")) cache[s.ticker] = s.result;
+  } catch {
+  }
+  for (const r of listNight()) if (r.bell === "yes" || r.bell === "no") cache[r.ticker] = r.bell;
+  if (before === 0) {
+    try {
+      for (const line of readFileSync(join(D(), "exit-ledger.jsonl"), "utf8").split("\n")) {
+        if (!line.trim()) continue;
+        try {
+          const e = JSON.parse(line);
+          const tk = e.ticker || String(e.id || "").split(":")[0];
+          if (tk && (e.bell === "yes" || e.bell === "no")) cache[tk] = e.bell;
+        } catch {
+        }
+      }
+    } catch {
+    }
+  }
+  if (Object.keys(cache).length !== before) {
+    try {
+      writeFileSync(file, JSON.stringify(cache));
+    } catch {
+    }
+  }
+  return new Map(Object.entries(cache));
+}
+
+/** Settled live-book trades from the real Kalshi fills. null = the files could not be read this moment (mid-write). */
+export function liveTradesOrNull(): Trade[] | null {
+  const out: Trade[] = [];
+  try {
+    const done = JSON.parse(readFileSync(join(D(), "live-book-done.json"), "utf8")) as Record<string, { status?: string; ticker?: string }>;
+    const owner = new Map<string, string>();
+    for (const [k, v] of Object.entries(done)) {
+      if (v?.status !== "filled" && v?.status !== "partial") continue;
+      const tk = v.ticker || k.split(":")[0];
+      if (!owner.has(tk)) owner.set(tk, bookOfKey(k));
+    }
+    const a = JSON.parse(readFileSync(join(D(), "kalshi-audit.json"), "utf8"));
+    const fills: { t: string; ticker: string; action: string; side?: string; count: string; yes: string; fee: string }[] = Array.isArray(a) ? a : a?.fills ?? [];
+    const bell = windowResults(a);
+    const per = new Map<string, { cash: number; pos: number; no: number; fee: number; first: string; last: string }>();
+    for (const f of fills) {
+      if (!owner.has(f.ticker)) continue;
+      const x = per.get(f.ticker) || { cash: 0, pos: 0, no: 0, fee: 0, first: f.t, last: f.t };
+      const c = Number(f.count) || 0;
+      const y = Number(f.yes) || 0;
+      const k = `${f.action}|${f.side ?? ""}`;
+      if (k === "buy|no") {
+        x.cash -= c * (1 - y);
+        x.no += c;
+      } else if (k === "sell|yes") {
+        x.cash += c * (1 - y);
+        x.no -= c;
+      } else if (f.action === "buy") {
+        x.cash -= c * y;
+        x.pos += c;
+      } else {
+        x.cash += c * y;
+        x.pos -= c;
+      }
+      x.fee += Number(f.fee) || 0;
+      if (f.t < x.first) x.first = f.t;
+      if (f.t > x.last) x.last = f.t;
+      per.set(f.ticker, x);
+    }
+    for (const [tk, x] of per) {
+      let pnl: number | null = null;
+      let end = Date.parse(x.last);
+      if (Math.abs(x.pos) < 0.01 && Math.abs(x.no) < 0.01) pnl = x.cash - x.fee;
+      else {
+        const b = bell.get(tk);
+        if (!b) continue; // still open
+        pnl = x.cash + x.pos * (b === "yes" ? 1 : 0) + x.no * (b === "no" ? 1 : 0) - x.fee;
+        end = Math.max(end, closeMs(tk) ?? end);
+      }
+      out.push({ book: owner.get(tk)!, ticker: tk, first: x.first, end, pnl: r2(pnl) });
+    }
+  } catch {
+    // Oct 7: a read that lands while kalshi-audit.json is being rewritten used to count the day as $0 / 0 trades.
+    return null;
+  }
+  return out.sort((a, b) => (a.first < b.first ? -1 : 1));
+}
+export function liveTrades(): Trade[] {
+  return liveTradesOrNull() ?? [];
+}
+
+function alarm(text: string) {
+  try {
+    const af = join(D(), "alarm.json");
+    let rows: unknown[] = [];
+    try {
+      const prev = JSON.parse(readFileSync(af, "utf8"));
+      if (Array.isArray(prev)) rows = prev;
+    } catch {
+    }
+    rows.unshift({ at: new Date().toISOString(), text });
+    writeFileSync(af, JSON.stringify(rows.slice(0, 20)));
+    appendFileSync(join(D(), "risk-log.jsonl"), JSON.stringify({ at: new Date().toISOString(), text }) + "\n");
+  } catch {
+  }
+}
+
+export function riskNow(): RiskNow {
+  if (g.__risk && g.__riskAt && Date.now() - g.__riskAt < 5000) return g.__risk;
+  const sw = liveSwitch();
+  const limit = Number(sw.dailyLossLimit ?? 200) || 0;
+  // Oct 14 ~9:15 AM PT (Love: "i never decided a 3 loss bench rule... turn that off"). This bench was turned OFF on Oct 9, but
+  // breaker.ts (Oct 12) reused the same live-switch "breaker" key with on:true and no "losses", so this read came back as
+  // ON at 3 losses. It now has its own key, "benchBreaker", and is OFF unless Love turns it on.
+  const br = { on: sw.benchBreaker?.on === true, losses: Number(sw.benchBreaker?.losses) || 4, hours: Number(sw.benchBreaker?.hours) || 2 };
+  const day = new Date().toLocaleDateString("en-US", { timeZone: "America/Los_Angeles" });
+  const got = liveTradesOrNull();
+  if (got == null && g.__risk) return g.__risk; // keep the last good count; try again next call
+  const trades = got ?? [];
+  // DAY RESET (Love, Oct 9 ~8:45 AM PT: "you can reset the loss limit for the day... i don't want her to get blocked on
+  // all the good ones after the markets turned around"): live-switch riskReset { day, at } -> for the rest of that Pacific
+  // day the stop and give-back only count trades from that moment on (a fresh $200). Next day it's back to normal.
+  const rr = (sw as any).riskReset;
+  const resetAt = rr && rr.day === day ? Date.parse(String(rr.at)) || 0 : 0;
+  const today = trades.filter((t) => new Date(t.first).toLocaleDateString("en-US", { timeZone: "America/Los_Angeles" }) === day && Date.parse(t.first) >= resetAt);
+  const todayPnl = r2(today.reduce((s, t) => s + t.pnl, 0));
+  // GIVE-BACK (Oct 7 ~10:20 PM PT, Love: "it was $600 this morning... can you see why the safeguard didn't go off after
+  // $200?"). The stop only looked at the day's net, and the desk was +$229 by 6 PM PT, so it gave back $374 (+$229 to
+  // -$145) without ever being "down $200 on the day". Now it also stops when the day has given back the limit from its
+  // best point. Peak = the highest running total of the day's settled trades, in the order they settled.
+  let run = 0;
+  let peak = 0;
+  for (const t of [...today].sort((x, y) => x.end - y.end)) {
+    run += t.pnl;
+    if (run > peak) peak = run;
+  }
+  peak = r2(peak);
+  const giveLimit = Number(sw.givebackLimit ?? limit) || 0;
+  const giveback = r2(peak - todayPnl);
+  const benched: RiskNow["benched"] = {};
+  if (br.on) {
+    const byBook = new Map<string, Trade[]>();
+    for (const t of trades) byBook.set(t.book, [...(byBook.get(t.book) || []), t]);
+    for (const [book, xs] of byBook) {
+      const last = xs.slice(-br.losses);
+      if (last.length < br.losses || !last.every((t) => t.pnl < -0.05)) continue;
+      // count the whole losing run for the label
+      let run = 0;
+      for (let i = xs.length - 1; i >= 0 && xs[i].pnl < -0.05; i--) run++;
+      const until = Math.max(...last.map((t) => t.end)) + br.hours * 3600 * 1000;
+      // BENCH UNLOCK (Love, Oct 9 ~1:50 AM PT: "install an unlock for the bench on the terminal so i can control that"):
+      // live-switch benchUnlock[book] = the bench end she lifted. That bench stays lifted; a NEW losing run benches again.
+      const lifted = Date.parse(String((sw as any).benchUnlock?.[book] || "")) || 0;
+      if (until > Date.now() && until > lifted) benched[book] = { until: new Date(until).toISOString(), losses: run };
+    }
+  }
+  const downDay = limit > 0 && todayPnl <= -limit;
+  const gaveBack = giveLimit > 0 && giveback >= giveLimit;
+  const why = downDay ? `the live books are -$${Math.abs(todayPnl).toFixed(2)} on Kalshi today (limit -$${limit})` : gaveBack ? `the live books gave back $${giveback.toFixed(2)} from today's best (+$${peak.toFixed(2)} -> ${todayPnl >= 0 ? "+" : "-"}$${Math.abs(todayPnl).toFixed(2)}; limit $${giveLimit})` : "";
+  const now: RiskNow = { at: new Date().toISOString(), day, todayPnl, todayN: today.length, limit, peak, giveback, why, stopped: downDay || gaveBack, breaker: br, benched };
+  // alerts once per event
+  const seen = (g.__riskSeen ||= {});
+  if (now.stopped && seen.stop !== day) {
+    seen.stop = day;
+    alarm(`DAILY STOP: ${why}. No new live entries until midnight PT; open trades keep their exits.`);
+  }
+  for (const [book, b] of Object.entries(benched)) {
+    if (seen[book] === b.until) continue;
+    seen[book] = b.until;
+    const t = new Date(b.until).toLocaleTimeString("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit" });
+    alarm(`BREAKER: ${book.toUpperCase()} lost ${b.losses} live trades in a row. Benched on Kalshi until ${t} PT (paper keeps booking).`);
+  }
+  try {
+    writeFileSync(join(D(), "risk-now.json"), JSON.stringify(now, null, 1));
+  } catch {
+  }
+  g.__risk = now;
+  g.__riskAt = Date.now();
+  return now;
+}
+
+/** Why this book may not open a new live trade right now, or null. */
+export function riskBlock(book: string): string | null {
+  const r = riskNow();
+  if (r.stopped) return `daily stop: ${r.why}; back at midnight PT`;
+  const b = r.benched[book];
+  if (b) {
+    const t = new Date(b.until).toLocaleTimeString("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit" });
+    return `breaker: ${b.losses} live losses in a row, benched until ${t} PT`;
+  }
+  return null;
+}
+
+/** Clear the cached risk read so a switch change (bench unlock, breaker on/off) shows at once. */
+export function riskRefresh(): RiskNow {
+  g.__riskAt = 0;
+  return riskNow();
+}

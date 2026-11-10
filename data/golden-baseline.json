@@ -1,6 +1,6 @@
 {
- "at": "2026-11-10T11:39:57.950102+00:00",
- "her_words": "\"pls fix the open issue\"",
+ "at": "2026-11-10T12:33:47.659983+00:00",
+ "her_words": "\"it is only supposed to be on at $1\"",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
   "recon.ts": "1f48dc0bb349a1a2",
@@ -66,7 +66,7 @@
   "bookhist.server.ts": "185bdfe95609e8fc",
   "riskguard.ts": "f08efb70de0f2b3d",
   "brkout.ts": "fcdc024f12c386f2",
-  "poly-live.server.ts": "755d1a8b951ad6ed",
+  "poly-live.server.ts": "0f9c70adcc22e78f",
   "floor1053.ts": "ddf2f8e9400252c9",
   "rsibooks.ts": "67d5517326fd9249",
   "tap.ts": "1ffcd8e4c290059d",

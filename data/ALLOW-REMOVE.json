@@ -12970,5 +12970,107 @@
   "R": "R629",
   "file": "xrp15k-live.ts",
   "why": "Replace one ticker sample with a bounded retry while retaining the same freshness threshold."
+ },
+ {
+  "what": "// fix358 (Oct 27 2026 6:55 PM PT, Love: \"raise her stake to $10 on the other hours\" + card \"$7.50 now\"): a Polymarket 5M order (5m market slug) may go up to",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "// polyTwin.rej5m.dollars; every other order keeps the live cap (maxDollars). Kalshi never reads this.",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "let cap = maxDollars();",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "try { if (/-5m-/.test(String(order.marketSlug || \"\"))) { const r5c = Number(JSON.parse(readFileSync(join(process.cwd(), \"data\", \"live-switch.json\"), \"utf8\"))?.polyTwin?.rej5m?.dollars); if (r5c > cap) cap = r5c; } } catch {}",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "// Historical fix358 (Oct 27 2026 6:55 PM PT, Love: \"raise her stake to $10 on the other hours\" + card \"$7.50 now\").",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "// The later $1 Polymarket 5m limit supersedes that stake override.",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "const cap = /-5m-/.test(String(order.marketSlug || \"\")) ? Math.min(1, maxDollars()) : maxDollars();",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "const fiveMinute = /-5m-/.test(slug);",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "if (fiveMinute) dollars = Math.min(dollars, 1);",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "// The $1 limit is for the window, including a partial entry. No additional buy.",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "const extraBuy = fiveMinute && claimTag !== \"\";",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "if (hourSlugs(claimTag).includes(claimKey)) return why1056(\"already-bought\", \"this market already has a recorded buy for this entry or add-on\");",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "if (extraBuy || hourSlugs(claimTag).includes(claimKey)) {",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "return why1056(extraBuy ? \"size\" : \"already-bought\", extraBuy",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "? \"Polymarket 5m is limited to one $1 entry per window\"",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": ": \"this market already has a recorded buy for this entry or add-on\");",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
+ },
+ {
+  "what": "}",
+  "R": "R630",
+  "file": "poly-live.server.ts",
+  "why": "Honor the one-dollar Polymarket 5m position limit."
  }
 ]
