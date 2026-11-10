@@ -1,0 +1,31 @@
+{
+ "MAIN": [
+  "GOLD LONG · Rejected up off Green zone",
+  "GOLD SHORT · Rejected down off Red zone"
+ ],
+ "REJ": [
+  "BTC LONG · Rejected up off Bollinger lower",
+  "BTC SHORT · Rejected down off Bollinger upper",
+  "GOLD LONG · Rejected up off Green zone"
+ ],
+ "NO PINK": [
+  "BTC LONG · Break above session VWAP",
+  "BTC LONG · Rejected up off +1σ",
+  "BTC LONG · Rejected up off -2σ",
+  "BTC LONG · Rejected up off Bollinger lower",
+  "BTC LONG · Rejected up off session VWAP",
+  "BTC SHORT · Rejected down off -1σ",
+  "BTC SHORT · Rejected down off session VWAP",
+  "GOLD LONG · Rejected up off -1σ",
+  "GOLD LONG · Rejected up off session VWAP"
+ ],
+ "V.111": [
+  "BTC LONG · Tap-reject at +1.5σ",
+  "BTC LONG · Tap-reject at −0.5σ",
+  "BTC LONG · Tap-reject at −2σ",
+  "BTC SHORT · Tap-reject at −1.5σ",
+  "BTC SHORT · Tap-reject at −1σ"
+ ],
+ "rule": "15+ trades in 7 days, under 40% hit and losing money (fix820 / fix843)",
+ "at": "2026-11-10T17:04:00.534360+00:00"
+}

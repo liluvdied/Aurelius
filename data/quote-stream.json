@@ -1,0 +1,43 @@
+{
+ "at": "2026-11-10T23:31:45.393Z",
+ "ver": 34,
+ "connected": true,
+ "sockets": [
+  true,
+  true
+ ],
+ "btc": {
+  "c": 73615.66,
+  "ageMs": 568,
+  "exAgeMs": 2393
+ },
+ "gold": {
+  "c": 4035.445,
+  "ageMs": 0,
+  "exAgeMs": 393
+ },
+ "btcFeed1018": {
+  "live": "PEPPERSTONE:BTCUSD",
+  "since": 1794350737084,
+  "seq": 4,
+  "shift": 36.35,
+  "gapVP": 66.89,
+  "gapAt": 1794353504825,
+  "pepStaleS": 0.6,
+  "vanStaleS": 0.6,
+  "last": {
+   "at": "2026-11-10T22:45:37.084Z",
+   "from": "VANTAGE:BTCUSD",
+   "to": "PEPPERSTONE:BTCUSD",
+   "staleS": 2.6,
+   "fromPrice": 73724.22,
+   "toPrice": 73673.21,
+   "delta": -51.01,
+   "seq": 4,
+   "why": "Pepperstone is updating again - back on her chart"
+  }
+ },
+ "signedIn": true,
+ "signNote": "PRO signed in (quote_token)",
+ "note": ""
+}

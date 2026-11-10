@@ -1,0 +1,26 @@
+{
+ "at": "2026-11-10T23:31:28.579Z",
+ "ok": true,
+ "checks": [
+  {
+   "name": "records",
+   "ok": true,
+   "note": "291 records"
+  },
+  {
+   "name": "feed",
+   "ok": true,
+   "note": "no BTC checks in 15 min"
+  },
+  {
+   "name": "rules",
+   "ok": true,
+   "note": "every rule in place"
+  },
+  {
+   "name": "copier",
+   "ok": true,
+   "note": "last write 14 s ago"
+  }
+ ]
+}

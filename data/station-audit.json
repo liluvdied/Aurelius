@@ -1,0 +1,581 @@
+{
+ "at": "2026-11-10T17:57:31.599Z",
+ "rows": [
+  {
+   "series": "KXLOWTVABB",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTVABB&status=open&l"
+  },
+  {
+   "series": "KXLOWTMIN",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTMIN&status=open&li"
+  },
+  {
+   "series": "KXLOWLAX",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWLAX&status=open&lim"
+  },
+  {
+   "series": "KXHIGHCHI",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHCHI&status=open&li"
+  },
+  {
+   "series": "KXHIGHTEWR",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTEWR&status=open&l"
+  },
+  {
+   "series": "KXLOWTEBBR",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTEBBR&status=open&l"
+  },
+  {
+   "series": "KXHIGHTBOS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTBOS&status=open&l"
+  },
+  {
+   "series": "KXLOWTPHX",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTPHX&status=open&li"
+  },
+  {
+   "series": "KXHIGHLAX",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHLAX&status=open&li"
+  },
+  {
+   "series": "KXHIGHTTTN",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTTTN&status=open&l"
+  },
+  {
+   "series": "KXHIGHTSFO",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTSFO&status=open&l"
+  },
+  {
+   "series": "KXTEMPMIAH",
+   "title": "Hourly Directional Miami Temperature",
+   "settlement": [
+    {
+     "name": "Synoptic Data",
+     "url": "https://synopticdata.com/"
+    }
+   ],
+   "rules": "If the temperature recorded at Miami, FL for Nov 10, 2026 at 1 PM EST as reported by Synoptic Data, is above 88.99°, then the market resolves to Yes.",
+   "deskStation": "KMIA",
+   "stationName": "Miami, Miami International Airport",
+   "lat": 25.79056,
+   "lon": -80.31639
+  },
+  {
+   "series": "KXLOWTSBGR",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTSBGR&status=open&l"
+  },
+  {
+   "series": "KXTEMPDCH",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPDCH&status=open&li"
+  },
+  {
+   "series": "KXLOWTLSSG",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTLSSG&status=open&l"
+  },
+  {
+   "series": "KXTEMPAUSH",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPAUSH&status=open&l"
+  },
+  {
+   "series": "KXLOWTLAX",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTLAX&status=open&li"
+  },
+  {
+   "series": "KXLOWTSEA",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTSEA&status=open&li"
+  },
+  {
+   "series": "KXHIGHTSBGR",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTSBGR&status=open&"
+  },
+  {
+   "series": "KXLOWTBOS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTBOS&status=open&li"
+  },
+  {
+   "series": "KXTEMPCHIH",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPCHIH&status=open&l"
+  },
+  {
+   "series": "KXLOWTZSPD",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTZSPD&status=open&l"
+  },
+  {
+   "series": "KXLOWTOMDB",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTOMDB&status=open&l"
+  },
+  {
+   "series": "KXHIGHTKSAN",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTKSAN&status=open&"
+  },
+  {
+   "series": "KXLOWTLSGG",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTLSGG&status=open&l"
+  },
+  {
+   "series": "KXLOWTMIA",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTMIA&status=open&li"
+  },
+  {
+   "series": "KXLOWTDEN",
+   "title": "Lowest temperature in Denver",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Denver (CLIDEN) for Nov 11, 2026, is greater than 40° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KDEN",
+   "stationName": "Denver, Denver International Airport",
+   "lat": 39.84658,
+   "lon": -104.65622
+  },
+  {
+   "series": "KXHIGHTVABB",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTVABB&status=open&"
+  },
+  {
+   "series": "KXHIGHUS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHUS&status=open&lim"
+  },
+  {
+   "series": "KXLOWNY",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWNY&status=open&limi"
+  },
+  {
+   "series": "KXLOWDEN",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWDEN&status=open&lim"
+  },
+  {
+   "series": "KXHIGHTEBBR",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTEBBR&status=open&"
+  },
+  {
+   "series": "KXLOWTSDF",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTSDF&status=open&li"
+  },
+  {
+   "series": "KXHIGHTCYYZ",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTCYYZ&status=open&"
+  },
+  {
+   "series": "KXHIGHTOMDB",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTOMDB&status=open&"
+  },
+  {
+   "series": "KXLOWNYC",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWNYC&status=open&lim"
+  },
+  {
+   "series": "KXHIGHMIA",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHMIA&status=open&li"
+  },
+  {
+   "series": "KXLOWMIA",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWMIA&status=open&lim"
+  },
+  {
+   "series": "KXLOWTSFO",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTSFO&status=open&li"
+  },
+  {
+   "series": "KXHIGHTDC",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTDC&status=open&li"
+  },
+  {
+   "series": "KXLOWPHIL",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWPHIL&status=open&li"
+  },
+  {
+   "series": "KXLOWTTTN",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTTTN&status=open&li"
+  },
+  {
+   "series": "KXTEMPCHIHS",
+   "title": "Hourly Directional Chicago Metro Temperature",
+   "settlement": [
+    {
+     "name": "Kalshi",
+     "url": "https://kalshi.com"
+    }
+   ],
+   "rules": "If the temperature recorded at Chicago Metro Area for Nov 10, 2026 at 1 PM EST as reported by Synoptic Data, is above 63.99°, then the market resolves to Yes.",
+   "deskStation": "KORD",
+   "stationName": "Chicago, Chicago-O'Hare International Airport",
+   "lat": 41.97972,
+   "lon": -87.90444
+  },
+  {
+   "series": "KXHIGHTPHX",
+   "title": "Phoenix High Temperature Daily",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Phoenix (CLIPHX) for Nov 11, 2026, is greater than 88° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KPHX",
+   "stationName": "Phoenix, Phoenix Sky Harbor International Airport",
+   "lat": 33.427799,
+   "lon": -112.003465
+  },
+  {
+   "series": "KXLOWTSAN",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTSAN&status=open&li"
+  },
+  {
+   "series": "KXHIGHTOKC",
+   "title": "Oklahoma City Maximum High Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Oklahoma City (CLIOKC) for Nov 11, 2026, is greater than 75° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KOKC",
+   "stationName": "Oklahoma City, Will Rogers World Airport",
+   "lat": 35.38861,
+   "lon": -97.60028
+  },
+  {
+   "series": "KXHIGHTZBAA",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTZBAA&status=open&"
+  },
+  {
+   "series": "KXHIGHPHIL",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHPHIL&status=open&l"
+  },
+  {
+   "series": "KXTEMPMON",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPMON&status=open&li"
+  },
+  {
+   "series": "KXHIGHTSDF",
+   "title": "HIGHEST Temperature SATX",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Louisville (CLISDF) for Nov 11, 2026, is greater than 72° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSDF",
+   "stationName": "Louisville Muhammad Ali International Airport",
+   "lat": 38.17406,
+   "lon": -85.7365
+  },
+  {
+   "series": "KXLOWTCYYZ",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTCYYZ&status=open&l"
+  },
+  {
+   "series": "KXTEMPNYCHS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPNYCHS&status=open&"
+  },
+  {
+   "series": "KXLOWTDAL",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTDAL&status=open&li"
+  },
+  {
+   "series": "KXHIGHTSEA",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTSEA&status=open&l"
+  },
+  {
+   "series": "KXLOWTEDDB",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTEDDB&status=open&l"
+  },
+  {
+   "series": "KXLOWTNOLA",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTNOLA&status=open&l"
+  },
+  {
+   "series": "KXHIGHTNOLA",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTNOLA&status=open&"
+  },
+  {
+   "series": "KXHIGHTYSSY",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTYSSY&status=open&"
+  },
+  {
+   "series": "KXHIGHTSAN",
+   "title": "High Temperature San Diego",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at San Diego (CLISAN) for Nov 11, 2026, is greater than 88° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSAN",
+   "stationName": "San Diego International Airport",
+   "lat": 32.73361,
+   "lon": -117.18306
+  },
+  {
+   "series": "KXHIGHAUS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHAUS&status=open&li"
+  },
+  {
+   "series": "KXHIGHTEDDB",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTEDDB&status=open&"
+  },
+  {
+   "series": "KXLOWTPHIL",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTPHIL&status=open&l"
+  },
+  {
+   "series": "KXHIGHTMIN",
+   "title": "Minneapolis Daily High Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Minneapolis (CLIMSP) for Nov 11, 2026, is greater than 55° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KMSP",
+   "stationName": "Minneapolis, Minneapolis-St. Paul International Airport",
+   "lat": 44.88306,
+   "lon": -93.22889
+  },
+  {
+   "series": "KXHIGHTSATX",
+   "title": "San Antonio Daily Maximum Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at San Antonio (CLISAT) for Nov 11, 2026, is greater than 81° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSAT",
+   "stationName": "San Antonio, San Antonio International Airport",
+   "lat": 29.53278,
+   "lon": -98.46361
+  },
+  {
+   "series": "KXHIGHTATL",
+   "title": "Atlanta Max Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Atlanta (CLIATL) for Nov 11, 2026, is greater than 76° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KATL",
+   "stationName": "Atlanta, Hartsfield - Jackson Atlanta International Airport",
+   "lat": 33.64028,
+   "lon": -84.42694
+  },
+  {
+   "series": "KXLOWTLV",
+   "title": "Las Vegas Daily Low Temperature",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Las Vegas (CLILAS) for Nov 11, 2026, is greater than 56° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KLAS",
+   "stationName": "Harry Reid International Airport",
+   "lat": 36.07188,
+   "lon": -115.1634
+  },
+  {
+   "series": "KXLOWTDC",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTDC&status=open&lim"
+  },
+  {
+   "series": "KXLOWCHI",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWCHI&status=open&lim"
+  },
+  {
+   "series": "KXHIGHTEMPDEN",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTEMPDEN&status=ope"
+  },
+  {
+   "series": "KXHIGHTLV",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTLV&status=open&li"
+  },
+  {
+   "series": "KXLOWTCHI",
+   "title": "Lowest Temperature Chicago",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Chicago (CLIMDW) for Nov 11, 2026, is greater than 43° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KMDW",
+   "stationName": "Chicago, Chicago Midway Airport",
+   "lat": 41.78417,
+   "lon": -87.75528
+  },
+  {
+   "series": "KXHIGHTEDDF",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTEDDF&status=open&"
+  },
+  {
+   "series": "KXLOWTKSAN",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTKSAN&status=open&l"
+  },
+  {
+   "series": "KXLOWTOKC",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTOKC&status=open&li"
+  },
+  {
+   "series": "KXHIGHDEN",
+   "title": "Highest temperature in Denver",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the maximum temperature recorded at Denver (CLIDEN) for Nov 11, 2026, is greater than 68° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KDEN",
+   "stationName": "Denver, Denver International Airport",
+   "lat": 39.84658,
+   "lon": -104.65622
+  },
+  {
+   "series": "KXLOWTSATX",
+   "title": "Lowest Temperature SATX",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at San Antonio (CLISAT) for Nov 11, 2026, is greater than 59° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KSAT",
+   "stationName": "San Antonio, San Antonio International Airport",
+   "lat": 29.53278,
+   "lon": -98.46361
+  },
+  {
+   "series": "KXLOWTMMMX",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTMMMX&status=open&l"
+  },
+  {
+   "series": "KXHIGHTWSSS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTWSSS&status=open&"
+  },
+  {
+   "series": "KXHIGHTLFPG",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTLFPG&status=open&"
+  },
+  {
+   "series": "KXHIGHTLTFM",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTLTFM&status=open&"
+  },
+  {
+   "series": "KXLOWTHOU",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTHOU&status=open&li"
+  },
+  {
+   "series": "KXTEMPLAHS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPLAHS&status=open&l"
+  },
+  {
+   "series": "KXLOWTNYC",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTNYC&status=open&li"
+  },
+  {
+   "series": "KXHIGHTLSGG",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTLSGG&status=open&"
+  },
+  {
+   "series": "KXHIGHTDAL",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTDAL&status=open&l"
+  },
+  {
+   "series": "KXLOWTAUS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTAUS&status=open&li"
+  },
+  {
+   "series": "KXHIGHTEGLL",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTEGLL&status=open&"
+  },
+  {
+   "series": "KXHIGHTHOU",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTHOU&status=open&l"
+  },
+  {
+   "series": "KXTEMP",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMP&status=open&limit"
+  },
+  {
+   "series": "KXHIGHTRJTT",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHTRJTT&status=open&"
+  },
+  {
+   "series": "KXLOWTEWR",
+   "title": "Newark, NJ (EWR) Daily Low Temp",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Newark (CLIEWR) for Nov 11, 2026, is greater than 46° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KEWR",
+   "stationName": "Newark, Newark International Airport",
+   "lat": 40.6825,
+   "lon": -74.16944
+  },
+  {
+   "series": "KXTEMPLAXHS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPLAXHS&status=open&"
+  },
+  {
+   "series": "KXTEMPCHIMETROHS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXTEMPCHIMETROHS&status="
+  },
+  {
+   "series": "KXLOWTRJTT",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTRJTT&status=open&l"
+  },
+  {
+   "series": "KXHIGHNY",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXHIGHNY&status=open&lim"
+  },
+  {
+   "series": "KXLOWTLTFM",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTLTFM&status=open&l"
+  },
+  {
+   "series": "KXLOWAUS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWAUS&status=open&lim"
+  },
+  {
+   "series": "KXLOWTVHHH",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTVHHH&status=open&l"
+  },
+  {
+   "series": "KXLOWTWSSS",
+   "error": "Error: kalshi 429 /trade-api/v2/markets?series_ticker=KXLOWTWSSS&status=open&l"
+  },
+  {
+   "series": "KXLOWTATL",
+   "title": "Low Temperature Atlanta",
+   "settlement": [
+    {
+     "name": "The Weather Company",
+     "url": "https://weather.com/kalshi"
+    }
+   ],
+   "rules": "If the minimum temperature recorded at Atlanta (CLIATL) for Nov 11, 2026, is greater than 52° fahrenheit according to The Weather Company, then the market resolves to Yes.",
+   "deskStation": "KATL",
+   "stationName": "Atlanta, Hartsfield - Jackson Atlanta International Airport",
+   "lat": 33.64028,
+   "lon": -84.42694
+  }
+ ]
+}
