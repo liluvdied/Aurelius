@@ -12,6 +12,7 @@
 // her 1.5x floor (ask 66c or less), Polymarket cash, one buy per window (the desk remembers every bought window). A stale feed (no XRP minute in 120 s) = no trade.
 // Log: data/xrp5m-961.jsonl. Paper rows (every call, for the card): data/xrp5m-961-book.json.
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
+import { pinkSlideWall1084 } from "./pinkslide1084";
 import { join } from "node:path";
 import { ethBands682 } from "./ethbook";
 
@@ -132,6 +133,7 @@ export function xrpRead961(bs: Bar[], L: { name: string; price: number }[], spot
   for (const c of cand) {
     const base = { side: c.side, spot, line: c.line, lineName: c.lineName, label: c.label, o2, o5, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push: c.pink ? (pushIn || PUSH1004).pink : (pushIn || PUSH1004).band, wall, bbUp: bu, bbMid: bm, bbLo: bl };
     const w = walls(c.side, c.pink && !c.rej); if (w) { if (!first) first = `${c.label} REFUSED - ${w}`; continue; }
+    { const s1084 = pinkSlideWall1084(bs as any, spot, now, c.side, c.label); if (s1084) { if (!first) first = `${c.label} REFUSED - ${s1084}`; continue; } } // fix1084 HER PINK SLIDE RULE ON EVERY ASSET (Love Nov 10 2026 5:33 PM PT: "yes. pink slide rule goes to all assets.")
     const no = cornerstones1004(base);
     if (!no && allowedSide(c.side, c.label)) return { side: c.side, label: c.label };
     if (no && !first) first = `${c.label} REFUSED - ${no}`;
@@ -143,6 +145,7 @@ export function xrpRead961(bs: Bar[], L: { name: string; price: number }[], spot
     const extreme = side === "up" ? l5 : h5;
     if (Math.abs(extreme - l.price) > nr || walls(side, false)) continue;
     const label = `Rejected ${side} off ${l.name} (wick)`;
+    if (pinkSlideWall1084(bs as any, spot, now, side, label)) continue; // fix1084 her wick calls face the pink slide too
     const why = cornerstones1004({ side, spot, line: l.price, lineName: l.name, label, o2, o5, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push: 0.15 * W, wall, bbUp: bu, bbMid: bm, bbLo: bl, wick: true });
     if (!why && allowedSide(side, label)) return { side, label };
   }

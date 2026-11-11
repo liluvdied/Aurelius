@@ -14,6 +14,7 @@ import { readFileSync, writeFileSync, existsSync, appendFileSync } from "node:fs
 import { join } from "node:path";
 import { fetchMarket, mapMarket } from "./kalshi";
 import type { KalshiMarket } from "./types";
+import { pinkSlideWall1084 } from "./pinkslide1084";
 
 const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
@@ -82,6 +83,7 @@ export function ethRead682(bs: Bar[], L: { name: string; price: number }[], spot
     const a906 = call.side === "up" ? ls906.filter((l) => l.price > spot && l.price - spot <= 1.5 /* fix913 FLAT $1.50 ABOVE A LONG (Love Nov 7 12:49 AM PT card: "Flat $1.50") */).sort((x, y) => x.price - y.price)[0] : ls906.filter((l) => l.price < spot && spot - l.price <= reach906).sort((x, y) => y.price - x.price)[0];
     if (a906) return { why: `LINE IN THE WAY (fix906): ${a906.name} (${a906.price.toFixed(2)}) is $${Math.abs(a906.price - spot).toFixed(2)} ${call.side === "up" ? "above" : "below"} - no ${call.side === "up" ? "long" : "short"} into it` };
   }
+  { const s1084 = pinkSlideWall1084(bs as any, spot, Date.now() / 1000, call.side, call.label); if (s1084) return { why: s1084 }; } // fix1084 HER PINK SLIDE RULE ON EVERY ASSET (Love Nov 10 2026 5:33 PM PT: "yes. pink slide rule goes to all assets.")
   return call;
 }
 async function market(): Promise<KalshiMarket | null> {
