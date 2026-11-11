@@ -9703,3 +9703,15 @@
 {"at":"2026-11-11T09:30:11.560Z","ticker":"KXBTC15M-26NOV110430-30","cancel":"position closed - every resting order on it is null and void (fix516)"}
 {"at":"2026-11-11T09:45:03.459Z","ticker":"KXBTC15M-26NOV110445-45","cancel":"position closed - every resting order on it is null and void (fix516)"}
 {"at":"2026-11-11T09:52:54.937Z","ticker":"KXXRP15M-26NOV110500-00","px":0.89,"qty":16.66,"bid":0.03,"had":null}
+{"at":"2026-11-11T10:00:09.893Z","ticker":"KXBTC15M-26NOV110500-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T10:00:09.894Z","ticker":"KXXRP15M-26NOV110500-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T10:02:38.963Z","ticker":"KXXRP15M-26NOV110515-15","px":0.95,"qty":1.69,"bid":0.62,"had":null}
+{"at":"2026-11-11T10:07:35.649Z","ticker":"KXXRP15M-26NOV110515-15","px":0.95,"qty":1.69,"bid":0.9,"had":null}
+{"at":"2026-11-11T10:08:06.961Z","ticker":"KXXRP15M-26NOV110515-15","px":0.95,"qty":1.27,"bid":0.89,"had":{"id":null,"px":0.95,"qty":1.69,"failed":true}}
+{"at":"2026-11-11T10:08:57.406Z","ticker":"KXXRP15M-26NOV110515-15","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T10:15:10.019Z","ticker":"KXBTC15M-26NOV110515-15","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T10:22:46.634Z","ticker":"KXBTC15M-26NOV110530-30","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T10:38:53.794Z","ticker":"KXXRP15M-26NOV110545-45","px":0.89,"qty":11.11,"bid":0.06,"had":null}
+{"at":"2026-11-11T10:45:07.376Z","ticker":"KXXRP15M-26NOV110545-45","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T10:45:22.113Z","ticker":"KXGOLD15M-26NOV110545-45","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T10:45:28.831Z","ticker":"KXXRP15M-26NOV110600-00","px":0.95,"qty":1.75,"bid":0.53,"had":null}
