@@ -2,6 +2,16 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R642 - fix1083 HER WICK REJECTION HAS A MINIMUM: 50c GOLD, $25 BTC. Her gold wick rejection's move back off the wick is 10% of the channel (fix1075) and now never less than 50c. Her BTC wick rejection's move back is her $25 (fix1072) and now never less than $25 when the channel is tight (it was 15% of the channel when that was under $25). When the bands are back to their normal width nothing is different: gold 10% of the channel, BTC $25. At 4:30:14 PM Nov 10 (KXGOLD15M-26NOV101945-45, 'Rejected up off 5m PP' at 4039.33) her wick's channel measured 90c, so 10% was 9c and a 27c tick back up off the pink counted as a wick rejection; with this in, it does not. One measure (wickBack1072), used by her wick on every band, zone and the Bollinger middle, longs and shorts. Nothing else is changed: her colour check, her push off the band, her pink walls, thirds and every other asset are as they were.
+- when: 2026-11-11T04:41:44+00:00
+- Love: "Love Nov 10 2026 5:10 PM PT: "she entered on a wick rejection. was just based on a tight channel width. we need to make it a base minimum of 50c. no less than that when bands are tight. i haven't seen her make any other incorrect moves. that was the first one. just fix that. i don't want to change anything else." + 5:15 PM PT: "and $25 btc when bands are tight pls. then back to normal 10%. when bands go back to their sliding scale. nothing else.""
+- books: main and every reconstructed book but delayed: gold + BTC
+- status: ACTIVE
+- proof: {"test": "tools/wick-minimum-1083.cjs"}
+- proof: {"test": "tools/spine-signed-1074.cjs"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "Math.max(0.5 /* fix1083"}
+- proof: {"code": "src/lib/desk/bandlock.ts", "has": "Math.max(25 /* fix1083"}
+
 ## R641 - fix1084 HER PINK SLIDE RULE ON EVERY ASSET. The pink slide / climb rule gold and BTC already trade by now stands in every book that reads its own candles: XRP 15m Kalshi, XRP 5m, ETH 5m, BTC 5m, the 5m paper books (all through xrpRead961), her ETH, ETH.2, BTC.2, SOL and DOGE reads. Both ways: while the pink slides with price under it (2 separate rejections on a down slope, the pink itself lower) no long until price breaks up through the pink by 10% of the channel; while it climbs with price over it no short until price breaks down through it by 10%. During a slide her shorts are off the pink or a rejection only, mirror on a climb; a pink call goes one way only after three-plus rejections. One shared check (pinkslide1084.ts pinkSlideWall1084) with the same maths as engine.ts slideHoldBtc423 / climbHold464 / slideRun515, checked against engine.ts by the test. On the Nov 10 5:16 PM XRP long (KXXRP15M-26NOV102030-30, 'Rejected up off BB lower' at 1.0486) her real read with this in holds the long. Gold and BTC main / rejection are untouched. Not changed: BNB momentum, the walled Perplexities paper twin.
 - when: 2026-11-11T02:35:12+00:00
 - Love: "Love Nov 10 2026 5:21 PM PT: "she correctly shorted gold on the pink slide. she did the opposite on xrp. she longed on a pink slide." + 5:33 PM PT: "yes. pink slide rule goes to all assets.""
