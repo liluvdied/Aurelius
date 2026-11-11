@@ -4464,12 +4464,12 @@
   "orderId": "01a1cc92-7628-7056-876d-3244a206adb4"
  },
  "KXBTC15M-26NOV111700-00:recon-rej:KXBTC15M-26NOV111700-00:recon-rej": {
-  "at": "2026-11-11T21:50:17.097Z",
+  "at": "2026-11-11T21:51:05.751Z",
   "ticker": "KXBTC15M-26NOV111700-00",
   "side": "up",
-  "status": "held",
-  "reason": "BTC SLIDE UNDER PINK: 2 candles hit the pink and rejected on a down slope (last at 74568.28) with btc 74379.53 under it - no long until price breaks up through pink by 10% of the channel (fix560).",
-  "firstReason": "BTC SLIDE UNDER PINK: 2 candles hit the pink and rejected on a down slope (last at 74568.28) with btc 74406.56 under it - no long until price breaks up through pink by 10% of the channel (fix560)."
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
  },
  "KXGOLD15M-26NOV111700-00:recon-rej:KXGOLD15M-26NOV111700-00:recon-rej": {
   "at": "2026-11-11T21:45:44.315Z",
