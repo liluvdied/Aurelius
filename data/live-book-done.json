@@ -4563,5 +4563,27 @@
   "status": "skipped",
   "final": true,
   "reason": "the REJECTION model takes this hour live (Love, Oct 23)"
+ },
+ "KXBTC15M-26NOV111615-15:recon-rej:KXBTC15M-26NOV111615-15:recon-rej": {
+  "at": "2026-11-11T21:00:18.579Z",
+  "ticker": "KXBTC15M-26NOV111615-15",
+  "side": "down",
+  "status": "skipped",
+  "final": true,
+  "reason": "REJECTION trades live only in Love's rejection hours"
+ },
+ "KXBTC15M-26NOV111615-15:recon-tog:KXBTC15M-26NOV111615-15:recon-tog": {
+  "at": "2026-11-11T21:00:30.139Z",
+  "ticker": "KXBTC15M-26NOV111615-15",
+  "side": "down",
+  "status": "filled",
+  "reason": "",
+  "firstReason": "",
+  "firstTryAt": "2026-11-11T21:00:30.139Z",
+  "bookedAt": "2026-11-11T21:00:18.217Z",
+  "tries": 1,
+  "final": false,
+  "paid": 0.42,
+  "orderId": "01a1cc69-6a58-7c7b-a249-339290b50e78"
  }
 }
