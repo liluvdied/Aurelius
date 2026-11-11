@@ -14,6 +14,7 @@ import { readFileSync, writeFileSync, existsSync, appendFileSync } from "node:fs
 import { join } from "node:path";
 import { fetchMarket, mapMarket } from "./kalshi";
 import type { KalshiMarket } from "./types";
+import { pinkSlideWall1084 } from "./pinkslide1084";
 
 const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
@@ -74,6 +75,7 @@ export function solRead832(bs: Bar[], L: { name: string; price: number }[], spot
     if (call.side === "up" && pk > spot - brk && pk - spot <= cush && pk > spot) return { why: "PINK CUSHION" };
     if (call.side === "down" && pk < spot + brk && spot - pk <= cush && pk < spot) return { why: "PINK CUSHION" };
   }
+  { const s1084 = pinkSlideWall1084(bs as any, spot, Date.now() / 1000, call.side, call.label); if (s1084) return { why: s1084 }; } // fix1084 HER PINK SLIDE RULE ON EVERY ASSET (Love Nov 10 2026 5:33 PM PT: "yes. pink slide rule goes to all assets.")
   return call;
 }
 async function market(): Promise<KalshiMarket | null> {

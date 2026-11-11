@@ -2,6 +2,16 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R641 - fix1084 HER PINK SLIDE RULE ON EVERY ASSET. The pink slide / climb rule gold and BTC already trade by now stands in every book that reads its own candles: XRP 15m Kalshi, XRP 5m, ETH 5m, BTC 5m, the 5m paper books (all through xrpRead961), her ETH, ETH.2, BTC.2, SOL and DOGE reads. Both ways: while the pink slides with price under it (2 separate rejections on a down slope, the pink itself lower) no long until price breaks up through the pink by 10% of the channel; while it climbs with price over it no short until price breaks down through it by 10%. During a slide her shorts are off the pink or a rejection only, mirror on a climb; a pink call goes one way only after three-plus rejections. One shared check (pinkslide1084.ts pinkSlideWall1084) with the same maths as engine.ts slideHoldBtc423 / climbHold464 / slideRun515, checked against engine.ts by the test. On the Nov 10 5:16 PM XRP long (KXXRP15M-26NOV102030-30, 'Rejected up off BB lower' at 1.0486) her real read with this in holds the long. Gold and BTC main / rejection are untouched. Not changed: BNB momentum, the walled Perplexities paper twin.
+- when: 2026-11-11T02:35:12+00:00
+- Love: "Love Nov 10 2026 5:21 PM PT: "she correctly shorted gold on the pink slide. she did the opposite on xrp. she longed on a pink slide." + 5:33 PM PT: "yes. pink slide rule goes to all assets.""
+- books: XRP 15m Kalshi, XRP 5m, ETH 5m, BTC 5m, 5m paper books, ETH, ETH.2, BTC.2, SOL, DOGE
+- status: ACTIVE
+- proof: {"test": "tools/pink-slide-all-1084.cjs"}
+- proof: {"test": "tools/spine-signed-1074.cjs"}
+- proof: {"code": "src/lib/desk/xrp5m961.ts", "has": "pinkSlideWall1084(bs as any, spot, now, c.side, c.label)"}
+- proof: {"code": "src/lib/desk/pinkslide1084.ts", "has": "export function pinkSlideWall1084("}
+
 ## R640 - fix1081 FIX LOG TAB. A read only tab in her desk (FIX LOG, beside SITREP) that shows data/FIX-LOG.json: one entry per change (what was wrong, what changed, what it does not cover, how to do it again) and how to get her back from a whole save point, with her newest whole save tags listed. Outside her engine: src/lib/fixlog1081.ts + src/components/desk/fix-log.tsx, and 6 lines in src/components/desk/app.tsx that add the tab. No trading rule, gate, size or setting changes.
 - when: 2026-11-10T23:42:17+00:00
 - Love: "Love Nov 10 2026 3:30 PM PT: "please create a “FIX LOG” tab in the app, that gives a brief description of each change, and what we fixed, and how to fix it again if we EVER run into this again." + 3:37 PM PT: "please create the fix log tab, with an explanation on what we changed, and how to get back. if she evaporates on me again. please.""
