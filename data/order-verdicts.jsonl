@@ -34853,3 +34853,9 @@
 {"at":"2026-11-11T02:25:32.082Z","ticker":"KXBTC15M-26NOV102130-30","book":"recon-tog","side":"down","label":"Rejected down off 5m PP","price":0.44,"count":"1.66","tick":73376.49,"verdict":"SAFE","why":""}
 {"at":"2026-11-11T02:25:32.341Z","ticker":"KXBTC15M-26NOV102130-30","book":"recon-tog","side":"down","label":"Rejected down off 5m PP","price":0,"count":"","tick":73376.52,"verdict":"SAFE","why":""}
 {"at":"2026-11-11T02:30:22.793Z","ticker":"KXXRP15M-26NOV102145-45","book":"xrp15k","side":"down","label":"Break below -1σ","price":0.42000000000000004,"count":"1.72","tick":1.0493,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T02:37:46.439Z","ticker":"KXGOLD15M-26NOV102145-45","book":"recon-tog","side":"up","label":"Fake-out turn over +1σ","price":0.66,"count":"1.38","tick":4045.901,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T02:37:53.235Z","ticker":"KXGOLD15M-26NOV102145-45","book":"recon-tog","side":"up","label":"Fake-out turn over +1σ","price":0,"count":"","tick":4045.39,"verdict":"REFUSED","why":"FRESHNESS (fix654): her engine just froze 2037 ms - over her 2 s - no order."}
+{"at":"2026-11-11T02:45:11.388Z","ticker":"KXBTC15M-26NOV102200-00","book":"recon-tog","side":"up","label":"Break above session VWAP","price":0.66,"count":"1.51","tick":73616.99,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T02:45:11.800Z","ticker":"KXBTC15M-26NOV102200-00","book":"recon-tog","side":"up","label":"Break above session VWAP","price":0,"count":"","tick":73616.99,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T02:45:15.092Z","ticker":"KXGOLD15M-26NOV102200-00","book":"recon-tog","side":"up","label":"Break above 5m PP","price":0.5,"count":"1.88","tick":4045.208,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T02:45:15.528Z","ticker":"KXGOLD15M-26NOV102200-00","book":"recon-tog","side":"up","label":"Break above 5m PP","price":0,"count":"","tick":4045.208,"verdict":"SAFE","why":""}
