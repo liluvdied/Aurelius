@@ -349,7 +349,7 @@ async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding
       if (!/^KX(GOLD|BTC)/.test(String(ticker)) && line?.bookCopy && !(line.bookCopy === "xrp15k" && /^KXXRP15M-/.test(String(ticker)))) { sent.__aureliusBlock = "Blocked: no band framework for this market - books only open gold and BTC"; return null; }
       if (/^KX(GOLD|BTC)/.test(String(ticker)) && !line?.gateTest) {
         const bl = (await import("./bandlock")).bandLockCheck(String(line?.bookCopy || ""), String(ticker).includes("GOLD") ? "gold" : "btc", bookSide === "bid" ? "up" : "down", String(ticker), String(line?.label || "")); /* fix611 */
-        if (!bl.ok) { sent.__aureliusBlock = `Blocked by the band lock: ${bl.reason}`; return null; }
+        if (!bl.ok && !(!adding && (await import("./paperlive1080")).pass1080(String(line?.bookCopy || ""), String(ticker), bookSide === "bid" ? "up" : "down")) /* fix1080 paper is live (first entries only) */) { sent.__aureliusBlock = `Blocked by the band lock: ${bl.reason}`; return null; }
       }
     } catch {
       // EVERY ORDER PASSES HER WALLS OR DOES NOT GO (fix435, Love Oct 28 2026 9:01 PM PT: "wall check on re aims AND EVERY SINGLE TRADE THAT EVER LEAVES THIS DESK are 100% NECESSARY.
@@ -828,13 +828,13 @@ export function sideOfLine864(label: string, L: any[], bb: any, chart: number, w
   if (ln.side === "down" && !ps.every((x) => x < P)) return `ON HER SIDE OF THE LINE (fix864): "${label}" is a short off ${ln.name} (${P.toFixed(2)}) but price is not below it on both feeds (chart ${chart.toFixed(2)}, live ${wire.toFixed(2)}) - no order.`;
   return "";
 }
-async function finalGate524(ticker, bookSide, sameLine, yesPrice = 0, count = "") {
-  const why = await judgeOrder601(ticker, bookSide, sameLine);
+async function finalGate524(ticker, bookSide, sameLine, yesPrice = 0, count = "", first1080 = false) {
+  const why = await judgeOrder601(ticker, bookSide, sameLine, first1080);
   if (why) { try { (await import("./refusal-ledger")).refusal661({ where: "send", lane: String(sameLine?.bookCopy || ""), ticker: String(ticker), side: bookSide === "bid" ? "up" : "down", label: String(sameLine?.label || ""), rule: String(why), ask: Number(yesPrice) || 0 }); } catch {} } // fix661: every refused send also goes to her refusal ledger (log only)
   try { const s601 = String(ticker).includes("GOLD") ? "gold" : "btc", q601 = sameLine?.bookCopy === "xrp15k" ? { c: sameLine.spot } : (await import("./quotes")).quoteTick(s601); appendFileSync(join(process.cwd(), "data", "order-verdicts.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker, book: String(sameLine?.bookCopy || ""), side: bookSide === "bid" ? "up" : "down", label: String(sameLine?.label || "").slice(0, 80), price: Number(yesPrice) || 0, count: String(count), tick: q601?.c ?? null, verdict: why ? "REFUSED" : "SAFE", why }) + "\n"); } catch {}
   return why;
 }
-async function judgeOrder601(ticker, bookSide, sameLine) {
+async function judgeOrder601(ticker, bookSide, sameLine, first1080 = false) {
   try {
     // fix1057 The XRP book is judged against its own live feed and unchanged XRP setup reader.
     if (sameLine?.bookCopy === "xrp15k" && /^KXXRP15M-/.test(String(ticker))) {
@@ -857,6 +857,7 @@ async function judgeOrder601(ticker, bookSide, sameLine) {
     { const ug601 = (globalThis as any).__umpGate461, u601 = typeof ug601 === "function" ? ug601(book || "unknown") : "the umpire gate is not running"; if (u601) return "THE UMPIRE AT THE LAST LINE (fix601): " + String(u601).slice(0, 160) + " - no order."; }
     // fix558 (Love Oct 31 2026 12:18 AM PT: "all band tolerances apply to all books aside from the delayed entry model."): the delayed book keeps her own door (judged in place() by bandLockCheck);
     // every other book is judged by its own full flags; a book with no flags = refused (no substitute set).
+    if (first1080 && (await import("./paperlive1080")).pass1080(book, String(ticker), side)) return ""; /* fix1080 PAPER IS LIVE: paper booked this exact order - the tick is fresh and her umpire is SAFE (above); the setup is not judged a second time */
     if (book !== "recon-dly" && book !== "recon-dlyk") { const L951 = (((globalThis as any).__lawBands?.[sym]?.L) || []) as any[]; const he951 = typeof (B as any).herEntry951 === "function" ? (B as any).herEntry951(sym, side, Number(q.c), String(sameLine?.label || ""), L951) : "can't check her colour / her side (fix951) - no order."; if (he951) return he951; } // fix951 her colour and her side AT THE SEND - before every other path (akimbo, flips, away from line)
     if (book !== "recon-dly" && book !== "recon-dlyk") { const bb1068 = typeof (B as any).bollBlock1068 === "function" ? (B as any).bollBlock1068(sym, Number(q.c), side, (((globalThis as any).__lawBands?.[sym]?.L) || []) as any[]) : ""; if (bb1068) return bb1068; } // fix1068 BOLLINGER BLOCK at the last line (Love Nov 10 2026 10:17 AM PT: "just put the $1.50 bollinger , or 10%. whichever is smaller. block in for gold please. 10% of the channel for the rest of the assets please."): gold + BTC, every book but delayed (fix558); a refusal goes to her refusal ledger and order-verdicts like every other last-line refusal
     if (book !== "recon-dly" && book !== "recon-dlyk") { const lab950 = String(sameLine?.label || ""); if (/^(?:Break|Close) (?:above|below) 5m PP/i.test(lab950)) { const G950: any = globalThis as any; const tk950 = Object.keys(G950).filter((k) => /^__qtrail_\d+$/.test(k)).sort((a, b) => Number(b.slice(9)) - Number(a.slice(9)))[0]; const tr950: any[] = ((tk950 && G950[tk950]?.[sym]) || []).filter((x: any) => x && Number(x.c) > 0 && Date.now() - Number(x.t) <= 5000); const brk950 = sym === "btc" ? 2 : 0.25; if (tr950.length) { const hi950 = Math.max(Number(q.c), ...tr950.map((x: any) => Number(x.c))), lo950 = Math.min(Number(q.c), ...tr950.map((x: any) => Number(x.c))); if (side === "up" ? Number(q.c) < hi950 - brk950 : Number(q.c) > lo950 + brk950) return `PINK BREAK TURNING BACK (fix950): "${lab950.slice(0, 60)}" - price ${Number(q.c).toFixed(2)} is already ${side === "up" ? "$" + (hi950 - Number(q.c)).toFixed(2) + " under" : "$" + (Number(q.c) - lo950).toFixed(2) + " over"} its last 5 seconds, past her $${brk950} break - it is turning back, no order (she waits; if it breaks again she goes).`; } } } // fix950 HER PINK BREAK STILL GOING HER WAY (Love Nov 7 2026 ~3:17 PM PT: "she entered in 30 seconds after it broke up / it broke DOWN when she entered" + her card pick ~3:18 PM: "Candle in her colour too" (her colour lives in CHANGE-297)): at the send, a pink break goes only while price has not turned back by her break ($2 BTC / 25c gold) from its last 5 seconds
@@ -960,7 +961,7 @@ async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine
       return null;
     }
   }
-  if (!reduceOnly && !forceExit) { (globalThis as any).__wireLabel619 = String(sameLine?.label || ""); /* fix619 */ const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send
+  if (!reduceOnly && !forceExit) { (globalThis as any).__wireLabel619 = String(sameLine?.label || ""); /* fix619 */ const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count, !adding /* fix1080 */); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send
   const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
     ticker,
     client_order_id: randomUUID(),
@@ -1431,7 +1432,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   if (bookCopy) {
     try {
       const bl = (await import("./bandlock")).bandLockCheck(bookCopy, symbolOf(ticker), side, ticker, String(label || "")); /* fix611 */
-      if (!bl.ok) return { status: "blocked", reason: bl.reason };
+      if (!bl.ok && !(await import("./paperlive1080")).pass1080(String(bookCopy), String(ticker), String(side)) /* fix1080 paper is live */) return { status: "blocked", reason: bl.reason };
     } catch {
       return { status: "blocked", reason: "band lock unavailable - no order" };
     }
@@ -1665,8 +1666,8 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
   if ((!placed || !(placed.filled > 0)) && bookCopy && topUp <= 0) {
     for (let tryN = 0; tryN < 10 && (!placed || !(placed.filled > 0)); tryN += 1) {
       await new Promise((r) => setTimeout(r, 1500));
-      try { const bl = (await import("./bandlock")).bandLockCheck(String(bookCopy), symbolOf(ticker), side, ticker, String(label || "")); /* fix611 */ if (!bl.ok) { sent.__aureliusBlock = `break retry stopped: ${bl.reason}`; break; } } catch {}
-      try { const B523 = await import("./bandlock"); const q523 = (await import("./quotes")).quoteTick(symbolOf(ticker)); const lt729 = typeof (B523 as any).liveToday717 === "function" ? String((B523 as any).liveToday717() || "") : ""; const w523 = lt729 && lt729.split(",").includes(String(bookCopy)) ? "" /* fix729: the live-today (akimbo) books skip only this retry door - they are not in her flag table, judged by their own gates like at the last line */ : B523.auditGrade523(String(bookCopy), symbolOf(ticker), Number(q523 && q523.c) || 0, side); if (w523) { sent.__aureliusBlock = "auditor-grade door (fix523): " + w523; break; } } catch { sent.__aureliusBlock = "auditor-grade door unreadable - no order (fix523)"; break; } // fix523: the umpire and the auditor are the same strength, judged before the order is attempted
+      try { const bl = (await import("./bandlock")).bandLockCheck(String(bookCopy), symbolOf(ticker), side, ticker, String(label || "")); /* fix611 */ if (!bl.ok && !(await import("./paperlive1080")).pass1080(String(bookCopy), String(ticker), String(side)) /* fix1080 paper is live */) { sent.__aureliusBlock = `break retry stopped: ${bl.reason}`; break; } } catch {}
+      try { const B523 = await import("./bandlock"); const q523 = (await import("./quotes")).quoteTick(symbolOf(ticker)); const lt729 = typeof (B523 as any).liveToday717 === "function" ? String((B523 as any).liveToday717() || "") : ""; const w523 = lt729 && lt729.split(",").includes(String(bookCopy)) ? "" /* fix729: the live-today (akimbo) books skip only this retry door - they are not in her flag table, judged by their own gates like at the last line */ : B523.auditGrade523(String(bookCopy), symbolOf(ticker), Number(q523 && q523.c) || 0, side); if (w523 && !(await import("./paperlive1080")).pass1080(String(bookCopy), String(ticker), String(side)) /* fix1080 paper is live */) { sent.__aureliusBlock = "auditor-grade door (fix523): " + w523; break; } } catch { sent.__aureliusBlock = "auditor-grade door unreadable - no order (fix523)"; break; } // fix523: the umpire and the auditor are the same strength, judged before the order is attempted
       // fix530 (her 4:47 PM): the knock-loop colour re-test is RETIRED - no still-red-at-send. Her flip is tested in the full-flag door; the fill auditor still stops a flip-back before the fill (her 4:56 PM).
       // EVERY KNOCK RE-PRICES (fix135, Oct 23 ~12:50 AM PT): the 12:45 gold long knocked 11 times at its first 50c limit while the ask sat higher, and only
       // filled 30 s later at 58c when the loop restarted. Each knock now re-reads the live ask and bids ask + 20% (at least 3c), never past her floor cap;
