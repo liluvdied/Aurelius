@@ -1,5 +1,5 @@
 {
- "at": "2026-11-11T22:48:16.154367+00:00",
+ "at": "2026-11-11T23:27:00.773035+00:00",
  "her_words": "\"PUT ALL OF MY RULES ON\" (Love Nov 10 2026 9:20 AM PT) - all rules 95ae1e5: code + settings",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -46,7 +46,7 @@
   "dna.ts": "7e15f742d137607e",
   "dna5m27.ts": "0aaa1806f71406c1",
   "dogebook832.ts": "102418f801ed90cd",
-  "engine.ts": "8741e1871a7895b6",
+  "engine.ts": "575fe8c62544e499",
   "eth5m1055.ts": "36476864dd97222c",
   "ethbook.ts": "0e8c8fa884e49091",
   "ethbook2.ts": "3151b3501e4ec2a8",
@@ -135,7 +135,7 @@
   "pushshadow983.ts": "f2f5067d4e6a7cee",
   "quotes.ts": "6d2848f7094ad404",
   "realtwin.ts": "2bf4098947979028",
-  "recon.ts": "ab91dea6e10c0bad",
+  "recon.ts": "0e825a48edaa9250",
   "recon5m.ts": "730964fc710c6b2f",
   "refusal-ledger.ts": "a541ddcc3a260329",
   "rejparked.ts": "3c67bfeeb1d7e3ff",
@@ -188,15 +188,15 @@
   "watchdog.ts": "5602586aa0e3daae",
   "xrp15k-live.ts": "34e3a382f881f15b",
   "xrp5m961.ts": "d4086f09792fecdf",
-  "pinkslide1084.ts": "5bf7266171716228",
+  "pinkslide1084.ts": "e3be3acdc7202a78",
   "paperlive1080.ts": "bcbcad4e68795c86"
  },
  "config": {
   "live": "b5bea41b6c",
-  "maxDollars": "4e07408562",
+  "maxDollars": "6b86b273ff",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "eda1aad375",
+  "at": "52921fd25b",
   "note": "d6126203bc",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -393,14 +393,14 @@
   "btcLive899": "a704e673e7",
   "bnbLive940": "9dcb139c35",
   "awayLine824": "fcbcf16590",
-  "liveBook": "2fa9028d59"
+  "liveBook": "672b611ac6"
  },
  "configFiles": {
   "data/HER-ANSWERS-2.json": "770a121597eb8e17",
-  "data/spine-lock.json": "f26ae2013cb251f8",
+  "data/spine-lock.json": "5f9aa7e025ae3d06",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "922fbaff5a3e3707",
+  "data/live-switch.json": "fd9f79b21ca5f28f",
   "data/xrp15k-live.json": "da0525e7e1da2747"
  },
  "sealLiveBook": "18713feb41",

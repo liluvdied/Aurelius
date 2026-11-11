@@ -9,6 +9,19 @@ export type Smp1084 = { t: number; p: number; pp: number };
 export type Ln1084 = { name: string; price: number };
 type Bar1084 = { t: number; o: number; h: number; l: number; c: number; v: number };
 const chan1084 = (L: Ln1084[], p: number): number => { try { const S0 = L.filter((l) => Number(l.price) > 0 && /σ$|^session VWAP$|^fresh VWAP$/.test(String(l.name))); const a0 = S0.filter((l) => l.price > p).sort((x, y) => x.price - y.price)[0], b0 = S0.filter((l) => l.price < p).sort((x, y) => y.price - x.price)[0]; if (a0 && b0 && a0.price > b0.price) return a0.price - b0.price; } catch {} return 0; };
+/** fix1090 HER PINK SLIDE, ONE READ (Love Nov 11 2026 2:56 PM PT: "pink slide can just be considered 5+ 5M candles that haven't gon over/under pink yet while pink is on a decline / ascending so it's easier for her to read" + 3:02 PM PT: "yes if 5+ candles have closed under on a downslide or above on an upside is fine luv" + 2:53 PM PT: "it's supposed to be shorts only on a pink slide"): her last 5 finished 5m candles all CLOSED under the pink, the pink is lower now than at the first of those closes, and price is under the pink now = a slide DOWN (shorts only, no long).
+ *  The mirror: 5 closes over a pink that is higher now, price over it now = a slide UP (longs only, no short). Anything else is no slide. Pure: her one-a-second samples in (t ms, price, pink), nothing else read. */
+export function pinkSlide1090(sm: { t: number; p: number; pp: number }[], now: number): "down" | "up" | "" {
+  try {
+    const last = sm[sm.length - 1]; if (!last || now - last.t >= 30000 || !(last.pp > 0) || !(last.p > 0)) return "";
+    const cur = Math.floor(now / 300000), C: Record<number, { p: number; pp: number }> = {};
+    for (const x of sm) { const b = Math.floor(x.t / 300000); if (b >= cur || b < cur - 5 || !(x.pp > 0) || !(x.p > 0)) continue; C[b] = { p: x.p, pp: x.pp }; } // the last sample of a finished candle is its close
+    const a: { p: number; pp: number }[] = []; for (let b = cur - 5; b < cur; b += 1) { if (!C[b]) return ""; a.push(C[b]); } // all five, no gaps
+    if (a.every((c) => c.p < c.pp) && last.pp < a[0].pp && last.p < last.pp) return "down"; // fix1090: five closes under a declining pink, price under it now = her slide down (shorts only)
+    if (a.every((c) => c.p > c.pp) && last.pp > a[0].pp && last.p > last.pp) return "up"; // fix1090: five closes over a climbing pink, price over it now = her slide up (longs only)
+  } catch {}
+  return "";
+}
 /** engine.ts slideHoldBtc423 (dir "slide": no long) / climbHold464 (dir "climb": no short) with the bands passed in. brk = her old break, used only when the channel cannot be read. */
 export function pinkHold1084(sm: Smp1084[], S: { on: boolean }, now: number, L: Ln1084[], dir: "slide" | "climb", brk: number, nm = ""): string {
   const last = sm[sm.length - 1], sl = dir === "slide";

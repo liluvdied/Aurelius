@@ -9865,3 +9865,25 @@
 {"at":"2026-11-11T22:30:09.612Z","ticker":"KXBTC15M-26NOV111730-30","cancel":"position closed - every resting order on it is null and void (fix516)"}
 {"at":"2026-11-11T22:40:40.156Z","ticker":"KXBTC15M-26NOV111745-45","cancel":"position closed - every resting order on it is null and void (fix516)"}
 {"at":"2026-11-11T22:50:53.142Z","ticker":"KXXRP15M-26NOV111800-00","px":0.95,"qty":1.75,"bid":0.53,"had":null}
+{"at":"2026-11-11T22:59:31.081Z","ticker":"KXXRP15M-26NOV111800-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T23:00:03.440Z","ticker":"KXBTC15M-26NOV111800-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T23:01:44.461Z","ticker":"KXXRP15M-26NOV111815-15","px":0.94,"qty":2.08,"bid":0.43,"had":null}
+{"at":"2026-11-11T23:03:11.723Z","ticker":"KXXRP15M-26NOV111815-15","px":0.92,"qty":5.48,"bid":0.26,"had":{"id":"01a1ccd8-83c0-7e88-b0b6-3bfa4e950b74","px":0.94,"qty":2.08,"failed":false}}
+{"at":"2026-11-11T23:08:06.701Z","ticker":"KXXRP15M-26NOV111815-15","px":0.92,"qty":4.11,"bid":0.86,"had":null}
+{"at":"2026-11-11T23:09:15.479Z","ticker":"KXXRP15M-26NOV111815-15","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T23:10:12.336Z","ticker":"KXBTC15M-26NOV111815-15","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T23:15:10.717Z","ticker":"KXBTC15M-26NOV111830-30","px":0.94,"qty":3.79,"bid":0.5,"had":null}
+{"at":"2026-11-11T23:15:20.358Z","ticker":"KXXRP15M-26NOV111830-30","px":0.94,"qty":4.28,"bid":0.45,"had":null}
+{"at":"2026-11-11T23:16:37.788Z","ticker":"KXBTC15M-26NOV111830-30","px":0.92,"qty":12.41,"bid":0.18,"had":{"id":"01a1cce4-d030-7a6d-8bda-f191c189bd85","px":0.94,"qty":3.79,"failed":false}}
+{"at":"2026-11-11T23:17:06.826Z","ticker":"KXXRP15M-26NOV111830-30","px":0.93,"qty":11.09,"bid":0.28,"had":{"id":"01a1cce4-f740-7251-bb8a-b77ec0e523ec","px":0.94,"qty":4.28,"failed":false}}
+{"at":"2026-11-11T23:17:39.749Z","ticker":"KXBTC15M-26NOV111830-30","px":0.91,"qty":18.3,"bid":0.15,"had":{"id":"01a1cce6-2408-7652-8d2c-0a9be9f11c84","px":0.92,"qty":12.41,"failed":false}}
+{"at":"2026-11-11T23:18:06.479Z","ticker":"KXBTC15M-26NOV111830-30","px":0.92,"qty":26.15,"bid":0.11,"had":{"id":"01a1cce7-1638-7b55-a417-8e8b68e76969","px":0.91,"qty":18.3,"failed":false}}
+{"at":"2026-11-11T23:18:43.743Z","ticker":"KXBTC15M-26NOV111830-30","px":0.91,"qty":37.74,"bid":0.08,"had":{"id":"01a1cce7-7fb0-7fc1-96a8-c4f657ab62c7","px":0.92,"qty":26.15,"failed":false}}
+{"at":"2026-11-11T23:20:47.364Z","ticker":"KXBTC15M-26NOV111830-30","px":0.86,"qty":37.74,"bid":0.27,"had":{"id":"01a1cce8-1038-7a08-8505-506a08d2169b","px":0.91,"qty":37.74,"failed":false}}
+{"at":"2026-11-11T23:20:51.565Z","ticker":"KXGOLD15M-26NOV111830-30","px":0.88,"qty":20.77,"bid":0.26,"had":null}
+{"at":"2026-11-11T23:20:51.645Z","ticker":"KXBTC15M-26NOV111830-30","px":0.89,"qty":37.74,"bid":0.27,"had":{"id":"01a1cce9-f498-7d46-9b00-701ceaa9723a","px":0.86,"qty":37.74,"failed":false}}
+{"at":"2026-11-11T23:20:54.483Z","ticker":"KXGOLD15M-26NOV111830-30","px":0.92,"qty":20.77,"bid":0.26,"had":{"id":"01a1ccea-0438-7e79-ba34-ca19fa615730","px":0.88,"qty":20.77,"failed":false}}
+{"at":"2026-11-11T23:20:57.714Z","ticker":"KXXRP15M-26NOV111830-30","px":0.91,"qty":11.09,"bid":0.56,"had":{"id":"01a1cce6-9938-713e-901d-d6e4faac07a7","px":0.93,"qty":11.09,"failed":false}}
+{"at":"2026-11-11T23:20:59.990Z","ticker":"KXXRP15M-26NOV111830-30","px":0.93,"qty":11.09,"bid":0.56,"had":{"id":"01a1ccea-1f90-70af-8c54-422669a24c9e","px":0.91,"qty":11.09,"failed":false}}
+{"at":"2026-11-11T23:21:02.196Z","ticker":"KXXRP15M-26NOV111830-30","px":0.89,"qty":11.09,"bid":0.56,"had":{"id":"01a1ccea-2760-73d1-ba92-6be31bfa753a","px":0.93,"qty":11.09,"failed":false}}
+{"at":"2026-11-11T23:25:31.604Z","ticker":"KXGOLD15M-26NOV111830-30","px":0.92,"qty":26.48,"bid":0.33,"had":{"id":"01a1ccea-0ff0-7a17-901d-deabc7de645c","px":0.92,"qty":20.77,"failed":false}}

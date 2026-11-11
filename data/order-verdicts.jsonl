@@ -36194,3 +36194,10 @@
 {"at":"2026-11-11T22:45:51.083Z","ticker":"KXBTC15M-26NOV111800-00","book":"recon-tog","side":"up","label":"Rejected up off Bollinger lower","price":0.66,"count":"1.51","tick":74030.6,"verdict":"SAFE","why":""}
 {"at":"2026-11-11T22:45:51.349Z","ticker":"KXBTC15M-26NOV111800-00","book":"recon-tog","side":"up","label":"Rejected up off Bollinger lower","price":0,"count":"","tick":74030.6,"verdict":"SAFE","why":""}
 {"at":"2026-11-11T22:50:50.364Z","ticker":"KXXRP15M-26NOV111800-00","book":"xrp15k","side":"down","label":"Rejected down off -1σ","price":0.43000000000000005,"count":"1.75","tick":1.0532,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T23:00:16.654Z","ticker":"KXBTC15M-26NOV111815-15","book":"recon-tog","side":"down","label":"Break below -1σ","price":0.48,"count":"1.81","tick":73865.27,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T23:00:36.142Z","ticker":"KXBTC15M-26NOV111815-15","book":"recon-tog","side":"up","label":"Candle rising from the bottom third","price":0.54,"count":"1.72","tick":73827.73,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T23:00:39.180Z","ticker":"KXBTC15M-26NOV111815-15","book":"recon-tog","side":"up","label":"Candle rising from the bottom third","price":0.54,"count":"1.72","tick":73844.48,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T23:00:43.219Z","ticker":"KXBTC15M-26NOV111815-15","book":"recon-tog","side":"up","label":"Candle rising from the bottom third","price":0.63,"count":"1.58","tick":73878.31,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T23:00:43.811Z","ticker":"KXBTC15M-26NOV111815-15","book":"recon-tog","side":"up","label":"Candle rising from the bottom third","price":0,"count":"","tick":73866.34,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T23:01:42.133Z","ticker":"KXXRP15M-26NOV111815-15","book":"xrp15k","side":"down","label":"Failed break above -1σ - rejected down","price":0.52,"count":"2.08","tick":1.0534,"verdict":"SAFE","why":""}
+{"at":"2026-11-11T23:16:05.084Z","ticker":"KXGOLD15M-26NOV111830-30","book":"recon-rej","side":"up","label":"Rejected up off 5m S1","price":0.55,"count":"2.04","tick":3983.69,"verdict":"SAFE","why":""}
