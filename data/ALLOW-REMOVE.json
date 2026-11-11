@@ -13187,5 +13187,10 @@
     "what": "export function wickBack1072(asset: string, W: number): number { return asset === \"btc\" ? Math.min(25, 0.15 * W) : asset === \"gold\" ? 0.10 * W /* fix1075 HER GOLD WICK IS 10% (Love Nov 10 2026 11:56 AM PT: \"please make it a 10% wick rejection for gold.\") - was 15% */ : 0.15 * W; } // fix1072 HER BTC WICK PUSH IS $25 (Love Nov 10 2026 11:31 AM PT: \"please lower the push distance to $25 for btc. it is going to miss the floor on almost every trade like this.\"): her wick rejection's move back off the wick extreme past the band was 15% of the channel (fix1036) - $98 in today's $655 channel, so she entered after the price had already run. BTC: $25 (or 15% of the channel when that is smaller - never later than before). Gold and every other asset keep her 15%. Arming within 10% of the band is unchanged.",
     "why": "fix1083 (her wick rejection minimum, 50c gold / $25 BTC - Love Nov 10 2026 5:10 + 5:15 PM PT): this line is rewritten with her minimum added, nothing of hers is taken out",
     "R": "R642"
+  },
+  {
+    "what": "for (const l of [...(L || []), ...C946]) { const P = Number(l.price), nm = String(l.name); if (!(P > 0) || !/σ$|^session VWAP$|^5m PP$|^(Red|Green) zone$|^5m (R1|S1)$|^(Bollinger|BB) (upper|lower)$|^carried (mid|[+-]\\d)$/.test(nm)) continue; // fix946 her carried bands count as wick lines too",
+    "why": "fix1089 (a real wick rejection goes in past every other wall - Love Nov 11 2026 1:38 PM PT): this line is rewritten so her wick measure also reads the Bollinger upper / lower from her live Bollinger; every line it read before is still read, nothing of hers is taken out",
+    "R": "R643"
   }
 ]
