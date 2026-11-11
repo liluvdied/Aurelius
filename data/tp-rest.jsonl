@@ -9724,3 +9724,15 @@
 {"at":"2026-11-11T11:45:22.412Z","ticker":"KXGOLD15M-26NOV110645-45","cancel":"position closed - every resting order on it is null and void (fix516)"}
 {"at":"2026-11-11T11:51:47.062Z","ticker":"KXXRP15M-26NOV110700-00","px":0.92,"qty":4.76,"bid":0.17,"had":null}
 {"at":"2026-11-11T11:56:35.306Z","ticker":"KXXRP15M-26NOV110700-00","px":0.92,"qty":4.76,"bid":0.82,"had":null}
+{"at":"2026-11-11T11:57:07.257Z","ticker":"KXXRP15M-26NOV110700-00","px":0.92,"qty":3.57,"bid":0.89,"had":{"id":null,"px":0.92,"qty":4.76,"failed":true}}
+{"at":"2026-11-11T11:57:24.295Z","ticker":"KXXRP15M-26NOV110700-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T11:58:26.821Z","ticker":"KXBTC15M-26NOV110700-00","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T12:13:43.013Z","ticker":"KXBTC15M-26NOV110715-15","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T12:23:05.627Z","ticker":"KXXRP15M-26NOV110730-30","px":0.91,"qty":4,"bid":0.23,"had":null}
+{"at":"2026-11-11T12:26:08.605Z","ticker":"KXXRP15M-26NOV110730-30","px":0.91,"qty":4,"bid":0.85,"had":null}
+{"at":"2026-11-11T12:26:40.069Z","ticker":"KXXRP15M-26NOV110730-30","px":0.91,"qty":3,"bid":0.81,"had":{"id":null,"px":0.91,"qty":4,"failed":true}}
+{"at":"2026-11-11T12:26:59.869Z","ticker":"KXXRP15M-26NOV110730-30","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T12:27:19.898Z","ticker":"KXGOLD15M-26NOV110730-30","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T12:30:11.488Z","ticker":"KXBTC15M-26NOV110730-30","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T12:43:50.745Z","ticker":"KXGOLD15M-26NOV110745-45","cancel":"position closed - every resting order on it is null and void (fix516)"}
+{"at":"2026-11-11T12:45:05.979Z","ticker":"KXBTC15M-26NOV110745-45","cancel":"position closed - every resting order on it is null and void (fix516)"}
