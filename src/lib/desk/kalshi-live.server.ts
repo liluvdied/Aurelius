@@ -349,7 +349,7 @@ async function place(ticker, bookSide, yesPrice, count, reduceOnly, line, adding
       if (!/^KX(GOLD|BTC)/.test(String(ticker)) && line?.bookCopy && !(line.bookCopy === "xrp15k" && /^KXXRP15M-/.test(String(ticker)))) { sent.__aureliusBlock = "Blocked: no band framework for this market - books only open gold and BTC"; return null; }
       if (/^KX(GOLD|BTC)/.test(String(ticker)) && !line?.gateTest) {
         const bl = (await import("./bandlock")).bandLockCheck(String(line?.bookCopy || ""), String(ticker).includes("GOLD") ? "gold" : "btc", bookSide === "bid" ? "up" : "down", String(ticker), String(line?.label || "")); /* fix611 */
-        if (!bl.ok && !(!adding && (await import("./paperlive1080")).pass1080(String(line?.bookCopy || ""), String(ticker), bookSide === "bid" ? "up" : "down")) /* fix1080 paper is live (first entries only) */) { sent.__aureliusBlock = `Blocked by the band lock: ${bl.reason}`; return null; }
+        if (!bl.ok && !((!adding || line?.first1091 === true /* fix1091: enterLive's own first entry */) && (await import("./paperlive1080")).pass1080(String(line?.bookCopy || ""), String(ticker), bookSide === "bid" ? "up" : "down")) /* fix1080 paper is live (first entries only) */) { sent.__aureliusBlock = `Blocked by the band lock: ${bl.reason}`; return null; }
       }
     } catch {
       // EVERY ORDER PASSES HER WALLS OR DOES NOT GO (fix435, Love Oct 28 2026 9:01 PM PT: "wall check on re aims AND EVERY SINGLE TRADE THAT EVER LEAVES THIS DESK are 100% NECESSARY.
@@ -961,7 +961,7 @@ async function sendOrder(ticker, bookSide, yesPrice, count, reduceOnly, sameLine
       return null;
     }
   }
-  if (!reduceOnly && !forceExit) { (globalThis as any).__wireLabel619 = String(sameLine?.label || ""); /* fix619 */ const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count, !adding /* fix1080 */); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send
+  if (!reduceOnly && !forceExit) { (globalThis as any).__wireLabel619 = String(sameLine?.label || ""); /* fix619 */ const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count, !adding || sameLine?.first1091 === true /* fix1080 + fix1091: enterLive's own first entry */); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, "before", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send
   const res = await kalshi("POST", "/trade-api/v2/portfolio/events/orders", "", {
     ticker,
     client_order_id: randomUUID(),
@@ -1650,7 +1650,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
     if (btcCopy && ask > capPx) {
       sent.__aureliusBlock = `Kalshi BTC entry: ask ${(ask * 100).toFixed(1)}¢ above ${Math.round(capPx * 100)}¢ limit`;
     } else {
-      placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, line, true);
+      placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, { ...line, first1091: true } /* fix1091 (asked Love Nov 11 2026 2:25 PM PT "When paper books a trade, live sends that same order right then, with no second judging... Yes?" - Love 2:47 PM PT: "YES PLEEEEASE DO IT"): this is her first entry, so the paper pass (fix1080) can see it - it was hidden behind the add flag this call has always carried */, true);
     }
   } catch (err) {
     release(key);
@@ -1693,7 +1693,7 @@ async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, o
       // The wire size checks must see the quote this attempt was priced on.
       const retryLine = btcCopy ? { ...line, askPx: a2, multiple: Math.round(100 / a2) / 100 } : line;
       if (btcCopy) sent.__aureliusBlock = "";
-      try { placed = await place(ticker, bookSide, kPx, kCount.toFixed(2), false, retryLine, true); } catch { break; }
+      try { placed = await place(ticker, bookSide, kPx, kCount.toFixed(2), false, { ...retryLine, first1091: true } /* fix1091: her first entry, retried */, true); } catch { break; }
     }
   }
   if (!placed || !(placed.filled > 0)) {
