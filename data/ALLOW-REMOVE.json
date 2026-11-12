@@ -13287,5 +13287,25 @@
     "what": "    if (lane !== \"recon-tog\" && lane !== \"recon-rej\" && lane !== \"recon-dly\" && lane !== \"recon-dlyk\") { try { if (thirdsRead463(sessionLines(ax, id), spot, look.side, id)) return false; const pv465 = onePink565R(id, b); if (pv465 && !zoneFree515c(id, look.side, String(look.label)) && pinkRead464(id, sessionLines(ax, id), spot, look.side, Number(pv465.pp))) return false; const G465 = globalThis as any; G465.__blQuiet464 = true; try { if (!bandLockCheck464(lane === \"recon-rnp\" ? \"recon-tog\" /* fix624: the main book's door */ : lane, id, look.side, String(m.ticker), String(look.label || \"\") /* fix662: her read hands its label to her walls */).ok) return false; } finally { G465.__blQuiet464 = false; } } catch {} } // fix465 (R209, Love 1:24 PM PT: \"all books. aside from delayed.\"): every other book's read meets her 33%, the pink both sides and her walls too",
     "why": "fix1090 HER PINK SLIDE READ (Love Nov 11 2026 2:56 PM + 3:02 PM PT): the same line, now asking her one pink slide read (pinkslide1084.ts pinkSlide1090) before paper books",
     "R": "R645"
+  },
+  {
+    "what": "        if (!bl.ok && !(!adding && (await import(\"./paperlive1080\")).pass1080(String(line?.bookCopy || \"\"), String(ticker), bookSide === \"bid\" ? \"up\" : \"down\")) /* fix1080 paper is live (first entries only) */) { sent.__aureliusBlock = `Blocked by the band lock: ${bl.reason}`; return null; }",
+    "why": "fix1091 HER FIRST ENTRY IS SEEN AS A FIRST ENTRY (Love Nov 11 2026 2:47 PM PT: \"YES PLEEEEASE DO IT\"): the same line, now carrying / reading the first-entry mark so the paper pass (fix1080) reaches her band lock and her last judge",
+    "R": "R646"
+  },
+  {
+    "what": "  if (!reduceOnly && !forceExit) { (globalThis as any).__wireLabel619 = String(sameLine?.label || \"\"); /* fix619 */ const g524 = await finalGate524(ticker, bookSide, sameLine, yesPrice, count, !adding /* fix1080 */); if (g524) { sent.__aureliusBlock = g524; try { noteGate(ticker, \"before\", false, g524); } catch {} if (!reduceOnly) { heldSymbol.delete(sym); sent.__oneDoor?.delete(ticker); /* fix602: a refused order never reached Kalshi, so it never closes her window */ } return null; } } // fix524: NOTHING between this test and the send",
+    "why": "fix1091 HER FIRST ENTRY IS SEEN AS A FIRST ENTRY (Love Nov 11 2026 2:47 PM PT: \"YES PLEEEEASE DO IT\"): the same line, now carrying / reading the first-entry mark so the paper pass (fix1080) reaches her band lock and her last judge",
+    "R": "R646"
+  },
+  {
+    "what": "      placed = await place(ticker, bookSide, yesPrice, count.toFixed(2), false, line, true);",
+    "why": "fix1091 HER FIRST ENTRY IS SEEN AS A FIRST ENTRY (Love Nov 11 2026 2:47 PM PT: \"YES PLEEEEASE DO IT\"): the same line, now carrying / reading the first-entry mark so the paper pass (fix1080) reaches her band lock and her last judge",
+    "R": "R646"
+  },
+  {
+    "what": "      try { placed = await place(ticker, bookSide, kPx, kCount.toFixed(2), false, retryLine, true); } catch { break; }",
+    "why": "fix1091 HER FIRST ENTRY IS SEEN AS A FIRST ENTRY (Love Nov 11 2026 2:47 PM PT: \"YES PLEEEEASE DO IT\"): the same line, now carrying / reading the first-entry mark so the paper pass (fix1080) reaches her band lock and her last judge",
+    "R": "R646"
   }
 ]
