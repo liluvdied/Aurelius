@@ -618,6 +618,24 @@ export function fall728(asset: string, tick: number): boolean {
   } catch { return false; }
 }
 // fix728 end
+// fix1101 THE WATERFALL'S MIRROR FOR LONGS (Love Nov 13 2026 10:25 PM PT: "she only longs under the same conditions we set for the pink slide for shorts, on downslides i want her to do the same for longs, on upslides pls make sure it goes both ways"
+// + her rule Oct 29 2026 1:40 PM PT: "ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS"): over the session +2σ her top-rung wall (fix467) lets a BTC long through for main (recon-tog) and rejection (recon-rej) only,
+// when the running 1m candle is green (price over this minute's open) and no 1m candle CLOSED under pink in the last 15 minutes. The same pink history, the same 15 minutes, the same two books as fall728, flipped.
+// Every other wall still judges the long; every other book and the delayed book keep the top-rung rule as it was.
+export function rise1101(asset: string, tick: number): boolean {
+  try {
+    if (asset !== "btc" || !["recon-tog", "recon-rej"].includes(String(G.__curBook465 || "")) || !(tick > 0)) return false;
+    const bars = (G.__pivBars?.btc?.bars ?? []) as any[], nowMs = Date.now(), m0 = Math.floor(nowMs / 60000) * 60;
+    const cur = bars.find((x) => Number(x.t) === m0); if (!cur || !(tick > Number(cur.o))) return false; // green 1m: price over this minute's open
+    const s = ((G.__slide423b?.s || []) as { t: number; p: number; pp: number }[]).filter((x) => x && x.t >= nowMs - 900000 && x.t < m0 * 1000);
+    if (!s.length || s[0].t > nowMs - 900000 + 90000) return false; // under 15 min of pink history: the wall stays
+    const lastOf: Record<number, { p: number; pp: number }> = {};
+    for (const x of s) lastOf[Math.floor(x.t / 60000)] = { p: x.p, pp: x.pp }; // each minute's close vs pink at that close
+    if (Object.values(lastOf).some((x) => x.pp > 0 && x.p < x.pp)) return false; // a 1m close under pink in the last 15 min: reversing, no long
+    return true;
+  } catch { return false; }
+}
+// fix1101 end
 // fix739 PRICE ON THE BREAK SIDE (Love Nov 5 2026 11:35 AM PT: "no , it just needs price on the same side of the break when she enters hun she doesn't need a close"): for the akimbo
 // (live-today) books, a "Break/Close above|below <line>" call only goes out - first order AND every re-knock - while the live tick is still on the break side of that line (long above it,
 // short below it). Back across = stop knocking ("BACK ACROSS ... (fix739)"), written down for the silent alarm. No close needed. A line her board doesn't show (or no tick) = no change.
@@ -3417,7 +3435,7 @@ export function impossibleGeo(asset: string, L: Line[], tick: number, side: stri
   // while price sits under the session -2σ (the -2σ -> -3σ rung and past it). Longs there stay hers.
   // NO LONGS IN THE TOP RUNG - THE MIRROR (fix467, R213 - Love Oct 29 2026 1:40 PM PT: "oh my goddd bro. bollinger over pink NEEDS A LONG MIRROR. ASSUME EVERY FUCKING BAND TOLERANCEWORKS BOTH WAYS" + 1:24 PM: "both sides ... all books. aside from delayed."): on BTC no long opens while price sits over the session +2σ (the +2σ -> +3σ rung and past it); every book but the delayed book.
   if (asset === "btc" && side === "up" && !DLY465.has(String(G.__curBook465 || ""))) { const u2 = Number((L || []).find((l: Line) => String(l.name) === "+2σ")?.price) || 0;
-    if (u2 > 0 && tick > u2) return { why: `NO LONGS IN THE TOP RUNG (fix467): btc long at ${tick.toFixed(2)} is over the session +2σ (${u2.toFixed(2)}) - shorts only up here.`, below: null, above: null, pos: null, lock: null }; }
+    if (u2 > 0 && tick > u2 && !rise1101(asset, tick) /* fix1101 */) return { why: `NO LONGS IN THE TOP RUNG (fix467): btc long at ${tick.toFixed(2)} is over the session +2σ (${u2.toFixed(2)}) - shorts only up here.`, below: null, above: null, pos: null, lock: null }; }
   if (asset === "btc" && side === "down") { const d2 = Number((L || []).find((l: Line) => String(l.name) === "-2σ")?.price) || 0;
     if (d2 > 0 && tick < d2 && !fall728(asset, tick)) return { why: `NO SHORTS IN THE BOTTOM RUNG: btc short at ${tick.toFixed(2)} is under the session -2σ (${d2.toFixed(2)}) - longs only down here.`, below: null, above: null, pos: null, lock: null }; }
   // NO CHASE PAST 2σ - DROPPED (Oct 21 ~11:12 AM PT, Love picked "Drop the 2σ rule": on this morning's trend BTC rode 2-2.1σ for hours and every call

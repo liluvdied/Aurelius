@@ -1,5 +1,5 @@
 {
- "at": "2026-11-14T06:45:12.470994+00:00",
+ "at": "2026-11-14T06:55:12.113917+00:00",
  "her_words": "\"PUT ALL OF MY RULES ON\" (Love Nov 10 2026 9:20 AM PT) - all rules 95ae1e5: code + settings",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -14,7 +14,7 @@
   "away824.ts": "b4a627274f5be3fb",
   "backup928.ts": "e40126a56d6bc7ee",
   "band-check.ts": "b237ae9c8845f659",
-  "bandlock.ts": "65c36a16a7f9324f",
+  "bandlock.ts": "2134aab963765c19",
   "bandlock5m.ts": "5a3814c6e11d1c27",
   "bandlock5m27.ts": "ba53322bd66df4b8",
   "bankreplay.ts": "5d765962480ec439",
@@ -46,7 +46,7 @@
   "dna.ts": "7e15f742d137607e",
   "dna5m27.ts": "0aaa1806f71406c1",
   "dogebook832.ts": "102418f801ed90cd",
-  "engine.ts": "b0720b145879f698",
+  "engine.ts": "9b7fcf423f248d2a",
   "eth5m1055.ts": "8a6e1e78dabe9aaa",
   "ethbook.ts": "e3dc694857848f05",
   "ethbook2.ts": "da76a379e69b4e30",
@@ -203,7 +203,7 @@
   "maxDollars": "6b86b273ff",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "56136b9fc8",
+  "at": "0ca6030070",
   "note": "d6126203bc",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -407,7 +407,7 @@
   "data/spine-lock.json": "49339ee5d1bd5279",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "5f2250a9fb723120",
+  "data/live-switch.json": "d729e7d8159baff4",
   "data/xrp15k-live.json": "da0525e7e1da2747"
  },
  "sealLiveBook": "18713feb41",

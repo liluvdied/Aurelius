@@ -43,6 +43,7 @@ function judge(q) {
     if (!FLAGS[book]) return { id: q.id, ok: true, why: "", note: `${book}: her own door judges`, ms: realNow() - t0 };
     if (!(tick > 0) || !L.length) return { id: q.id, ok: false, why: "SUB-AUDITOR: no board to judge (no lines or no tick) - not taken", ms: realNow() - t0 };
     NOW = Date.parse(q.at) || realNow();
+    G.__slide423b = { s: Array.isArray(q.pink1101) ? q.pink1101 : [] }; // fix1101: the pink history her waterfall pass (fix728) and its mirror read
     G.__sdGood = {}; G.__pivBars = { [asset]: { bars: q.bars || [], at: NOW } }; G.__qtrail_1 = { [asset]: q.trail || [] }; G.__bbsr = q.bb ? { [asset]: q.bb } : {}; G.__curBook465 = book; G.__kStrike = q.kStrike ? { [asset]: q.kStrike } : {}; G.__kGap = q.kGap || null; G.__symBtc = q.symBtc || null; G.__slide403 = { on: q.slide800?.gold?.s === true }; G.__slide423bS = { on: q.slide800?.btc?.s === true }; G.__climb464g = { on: q.slide800?.gold?.c === true }; G.__climb464b = { on: q.slide800?.btc?.c === true } /* fix800: her slide / climb holds from the board she sent him */; G.__label801 = String(q.label || "") /* fix801: her pink-slide tap label - only tapFree801 reads it */; // BTC's window target travels with the setup
     const reasons = [];
     try { const g = B.impossibleGeo(asset, L, tick, side, ...FLAGS[book]); if (g && g.why) reasons.push(g.why); } catch (e) { reasons.push("SUB-AUDITOR: her door threw - " + e.message); }
@@ -81,6 +82,9 @@ fs.writeFileSync(PID, String(process.pid));
 load();
 let pos = 0; try { pos = fs.statSync(IN).size; } catch { pos = 0; }
 let carry = "";
+// fix1101: when he starts (a restart, or the install stopping him once for his new file), a set up handed to him in the last 30 s that he has not stamped is judged now - she hands each set up over once, so nothing is lost across his restart
+try { const st0 = fs.statSync(IN), from0 = Math.max(0, st0.size - 600000), fd0 = fs.openSync(IN, "r"), buf0 = Buffer.alloc(st0.size - from0); fs.readSync(fd0, buf0, 0, buf0.length, from0); fs.closeSync(fd0); let last0 = {}; try { last0 = JSON.parse(fs.readFileSync(LAST, "utf8")); } catch {}
+  for (const ln of buf0.toString("utf8").split("\n").slice(from0 > 0 ? 1 : 0)) { if (!ln.trim()) continue; let q = null; try { q = JSON.parse(ln); } catch { continue; } if (q && q.id && !last0[q.id] && realNow() - Date.parse(q.at) < 30000) stamp(judge(q)); } } catch {}
 function pump() {
   try {
     const st = fs.existsSync(IN) ? fs.statSync(IN) : null;
