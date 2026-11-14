@@ -398,7 +398,7 @@ function skipLog(lane: string, ticker: string, side: string, label: string, ask:
     const G0 = M5 as any; const k = `${ticker}:${lane}:${String(why).slice(0, 40)}`; // every distinct reason, once (Oct 20 ~9:27 AM PT)
     const seen: Set<string> = (G0.__reconSkip ||= new Set());
     if (seen.has(k)) return; seen.add(k);
-    writeFileSync(D("recon-skips.jsonl"), (existsSync(D("recon-skips.jsonl")) ? readFileSync(D("recon-skips.jsonl"), "utf8") : "") + JSON.stringify({ at: new Date().toISOString(), lane, ticker, side, label, ask, why }) + "\n");
+    appendFileSync(D("recon-skips.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker, side, label, ask, why }) + "\n"); // fix1103: the same line, added to the end of the file (was: the whole file read and written again for each note)
   } catch {}
 }
 // FIVE5M fix466: her copies of the read-side thirds + pink (fix463/464), both sides.

@@ -439,7 +439,7 @@ function skipLog(lane: string, ticker: string, side: string, label: string, ask:
     const seen: Set<string> = (G0.__reconSkip ||= new Set());
     if (seen.has(k)) return; seen.add(k);
     try { (globalThis as any).__refusal661?.({ where: "read", lane, ticker, side, label, rule: why, ask }); } catch {} // fix661: every refused read also goes to her refusal ledger (log only)
-    writeFileSync(D("recon-skips.jsonl"), (existsSync(D("recon-skips.jsonl")) ? readFileSync(D("recon-skips.jsonl"), "utf8") : "") + JSON.stringify({ at: new Date().toISOString(), lane, ticker, side, label, ask, why }) + "\n");
+    appendFileSync(D("recon-skips.jsonl"), JSON.stringify({ at: new Date().toISOString(), lane, ticker, side, label, ask, why }) + "\n"); // fix1103: the same line, added to the end of the file (was: the whole file read and written again for each note)
   } catch {}
 }
 // INDEPENDENT CALLS, NO FLIPS - FREE TO TRADE ENFORCED (fix463, R191 - Love Oct 29 2026 12:38 PM PT: "oh my god bro. i told you. no flip. independent calls. she does not get one call per window. only once she has executed a trade." + R008 Love Oct 27 2026 1:13 PM PT: "YES. ONE EXECUTED TRADE PER WINDOW. EXECUTED. EXECUTED. EXECUTED. EXECUTED. NO TRADE EXECUTED - FREEEE TO TRADE." + R016 Oct 27 1:58 PM PT: "SHE DID NOT TAKE A BTC POSITION I TOLD YOU I WANTED HER TO TAKE ANY
