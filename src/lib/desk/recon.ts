@@ -30,6 +30,7 @@ import { weekendPink914 } from "./bandlock";
 import { herColour949, thirdsChannel1050 } from "./bandlock"; // fix1034 her colour (2m OR 5m, from its high / low + her push - fix1032) for the Bollinger looks // fix914 FINISH 243: main's read pink uses the door's own weekend cushion (one function, no second copy to drift)
 import { pinkSlide1090 } from "./pinkslide1084"; // fix1090 her one pink slide read
 import { bandLockCheck as bandLockCheck464 } from "./bandlock"; // fix464 (R202): her read meets the same band tolerances as her orders
+import { liveAllows1093, WAIT1093 } from "./liveallows1093"; // fix1093 paper only takes trades live is allowed to take
 
 const D = (f: string) => join(process.cwd(), "data", f);
 const r2 = (n: number) => Math.round(n * 100) / 100;
@@ -633,6 +634,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
       const askF = askIn && askIn > 0 ? askIn : Number(look.side === "up" ? m.yesAsk : m.noAsk);
       if (!(askF > 0.02 && askF < 0.98) || !(1 / askF >= 1.5)) { skipLog(lane, m.ticker, look.side, look.label, askF, "wanted to flip the unfilled call, " + (1 / askF < 1.5 && askF < 0.98 ? "but it is under her 1.5x floor (fix520) (" + (1 / askF).toFixed(2) + "x)" : "but the ask is out of bounds")); return false; }
       prior.prevCall = prior.side + " - " + prior.label + " (never filled, re-aimed)";
+      { const w1093 = liveAllows1093(lane, id, look.side, String(m.ticker), String(look.label || "")); if (w1093) { if (w1093 !== WAIT1093) skipLog(lane, m.ticker, look.side, look.label, askF, w1093); return false; } } // fix1093 PAPER ONLY TAKES TRADES LIVE IS ALLOWED TO TAKE: the same ask where an unfilled call is turned to her new read
       prior.side = look.side; prior.label = look.label; prior.ask = r2(askF); prior.multiple = r2(1 / askF);
       prior.at = new Date().toISOString(); prior.flipped = true; prior.peak = askF; prior.fee = fee(STAKE / askF, askF);
       return true;
@@ -643,6 +645,7 @@ export function reconTick(id: string, a: any, m: any, left: number, b: Bar[], la
     // TOGETHER's first call of the window that misses her floor is remembered as the initial move for the DELAYED twin (side + price at the call).
     if (lane === "recon-tog" && ask < 0.98 && !(1 / ask >= 1.5) && !rows.some((r0) => r0.ticker === m.ticker && r0.lane === "recon-tog")) { try { const GM = ((globalThis as any).__togMiss ||= {}); if (!GM[m.ticker]) GM[m.ticker] = { side: look.side, spotAt: Math.round(spot * 100) / 100, at: Date.now(), label: look.label }; } catch {} }
     if (!(ask > 0.02 && ask < 0.98) || !(1 / ask >= 1.5)) { skipLog(lane, m.ticker, look.side, look.label, ask, 1 / ask < 1.5 && ask < 0.98 ? `under her 1.5x floor (fix520) (${(1 / ask).toFixed(2)}x at ${Math.round(ask * 100)}c)` : "ask out of bounds"); return false; }
+    { const w1093 = liveAllows1093(lane, id, look.side, String(m.ticker), String(look.label || "")); if (w1093) { if (w1093 !== WAIT1093) skipLog(lane, m.ticker, look.side, look.label, ask, w1093); return false; } } // fix1093 PAPER ONLY TAKES TRADES LIVE IS ALLOWED TO TAKE (Love Nov 11 2026 5:41 PM PT: "i need paper to ONLY TAKE TRADES THAT LIVE IS ALLOWED TO TAKE. WITH THE FLOOR. WITH THE RULES. WITH everything"): after her floor, before the row is written - the wall at the wire and her last judge are asked, and a no from either means paper does not book
     const n = STAKE / ask;
     const sdNow = Number((ax?.vwap1m?.vwap ? ax.vwap1m : ax?.vwap5m)?.stdev) || 0;
     const bar = last1m ? { o: r2(last1m.o), h: r2(last1m.h), l: r2(last1m.l), c: r2(last1m.c) } : null;

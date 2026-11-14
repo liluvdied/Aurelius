@@ -2,6 +2,16 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R647 - fix1093 PAPER ONLY TAKES TRADES LIVE IS ALLOWED TO TAKE. New file src/lib/desk/liveallows1093.ts. In src/lib/desk/recon.ts book(): before paper writes a main / rejection call on gold or BTC (the new row, and the unfilled call turned to her new read) it asks liveAllows1093: (1) the wall at the wire (bandlock.ts wireWall, asked as this book's own order) and (2) her last judge (kalshi-live.server.ts judgeOrder601 in full, through the new export judgeOnly1093, no paper pass). A no from either = paper does not book; the reason goes to her skip log. bandlock.ts wireWall gets 2 added lines so a question from paper writes nothing to band-lock.jsonl / wire-pass.jsonl; its rules are not changed. NOT changed: the wall at the wire, her last judge, her door, her floor, CHANGE-421 / 423 (live still sends what paper books), every other book and asset. Also adds the FIX LOG entry CHANGE-425.
+- when: 2026-11-14T04:23:17+00:00
+- Love: "Love Nov 11 2026 5:41 PM PT: "i need paper to ONLY TAKE TRADES THAT LIVE IS ALLOWED TO TAKE. WITH THE FLOOR. WITH THE RULES. WITH everything" + Love Nov 10 2026 6:37 PM PT: "get paper to take trades UNDER THE SAME RULES. I CANT TRUST THE PAPER RECORDS IF THEY ARE TAKING TRADES THAT LIVE IS PROHIBITED FROM TAKING.""
+- books: paper main + rejection: gold + BTC, longs and shorts
+- status: ACTIVE
+- proof: {"test": "tools/paper-asks-live-1093.cjs"}
+- proof: {"code": "src/lib/desk/recon.ts", "has": "const w1093 = liveAllows1093(lane, id, look.side, String(m.ticker), String(look.label || \"\"))"}
+- proof: {"code": "src/lib/desk/liveallows1093.ts", "has": "export function liveAllows1093"}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "export async function judgeOnly1093"}
+
 ## R646 - fix1091 HER FIRST ENTRY IS SEEN AS A FIRST ENTRY. CHANGE-421 (fix1080) put the paper pass in 12 places; 2 of them (her band lock in place() and her last judge judgeOrder601, both in src/lib/desk/kalshi-live.server.ts) only applied when place() was called without the add flag, and enterLive has always called place() for its own first entry with that flag on. So those 2 places judged a paper-booked first entry a second time (her 3:30:15 PM Nov 11 gold short: last judge refused 3:30:17 to 3:30:52, filled 3:30:54). Now enterLive marks its first entry and its retry (first1091) and those 2 places read the mark. NOT changed: the pass itself (main / rejection paper booking, exact order, 20 s, her switch), add-ons, top-ups, resting orders, her umpire, fresh tick, 66c, sizes, one per window, the wall at the wire. Also adds the FIX LOG entry CHANGE-423.
 - when: 2026-11-12T00:11:51+00:00
 - Love: "Asked Love Nov 11 2026 2:25 PM PT: "When paper books a trade, live sends that same order right then, with no second judging. Only your 66c limit, your size, one per window and the wall at the wire stay. Yes?" - Love 2:47 PM PT: "YES PLEEEEASE DO IT" + Love 3:34 PM PT, of her 3:30 PM gold short: "i saw it it looked a bit late""

@@ -834,6 +834,7 @@ async function finalGate524(ticker, bookSide, sameLine, yesPrice = 0, count = ""
   try { const s601 = String(ticker).includes("GOLD") ? "gold" : "btc", q601 = sameLine?.bookCopy === "xrp15k" ? { c: sameLine.spot } : (await import("./quotes")).quoteTick(s601); appendFileSync(join(process.cwd(), "data", "order-verdicts.jsonl"), JSON.stringify({ at: new Date().toISOString(), ticker, book: String(sameLine?.bookCopy || ""), side: bookSide === "bid" ? "up" : "down", label: String(sameLine?.label || "").slice(0, 80), price: Number(yesPrice) || 0, count: String(count), tick: q601?.c ?? null, verdict: why ? "REFUSED" : "SAFE", why }) + "\n"); } catch {}
   return why;
 }
+export async function judgeOnly1093(ticker, side, label, book) { return judgeOrder601(String(ticker), side === "up" ? "bid" : "ask", { bookCopy: String(book), label: String(label) }, false); } // fix1093 PAPER ONLY TAKES TRADES LIVE IS ALLOWED TO TAKE (Love Nov 11 2026 5:41 PM PT): paper asks her last judge - this same function, in full, no paper pass - before it books. Nothing is sent and nothing is written.
 async function judgeOrder601(ticker, bookSide, sameLine, first1080 = false) {
   try {
     // fix1057 The XRP book is judged against its own live feed and unchanged XRP setup reader.

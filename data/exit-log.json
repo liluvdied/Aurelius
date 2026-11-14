@@ -1,5 +1,24 @@
 [
   {
+    "at": "2026-11-12T00:56:06.321Z",
+    "ticker": "KXXRP15M-26NOV112000-00",
+    "asset": "btc",
+    "side": "down",
+    "stake": 0.7257,
+    "multiple": 2.15,
+    "bidPct": 109,
+    "targetPct": 102.07,
+    "payout": 1.51,
+    "profit": 0.78,
+    "reason": "take profit: peaked +109%, sold on the 1% trail (line +102%, 2.15x)",
+    "short": true,
+    "yesBid": 0.026,
+    "yesAsk": 0.027,
+    "secondsLeft": null,
+    "spot": null,
+    "strike": 1.0585
+  },
+  {
     "at": "2026-11-11T23:09:14.841Z",
     "ticker": "KXXRP15M-26NOV111815-15",
     "asset": "btc",
@@ -1499,24 +1518,5 @@
     "secondsLeft": null,
     "spot": 75998.24,
     "strike": 76054.88
-  },
-  {
-    "at": "2026-11-05T19:41:21.050Z",
-    "ticker": "KXBTC15M-26NOV051445-45",
-    "asset": "btc",
-    "side": "up",
-    "stake": 5.355,
-    "multiple": 2.22,
-    "bidPct": 120,
-    "targetPct": 108.89,
-    "payout": 11.69,
-    "profit": 6.33,
-    "reason": "mirrored BRK-SESSPK paper out: half at 75% (89c) + trail from 90%: best +129%, sold at 99c",
-    "short": false,
-    "yesBid": 0.985,
-    "yesAsk": 0.986,
-    "secondsLeft": null,
-    "spot": 76100.68,
-    "strike": 75919.59
   }
 ]

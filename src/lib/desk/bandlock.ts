@@ -3159,6 +3159,7 @@ export function wireWall(ticker: string, side: "up" | "down"): string {
   const asset = t.startsWith("KXBTC15M") ? "btc" : t.startsWith("KXGOLD15M") ? "gold" : "";
   if (!asset) return "";
   const deny = (reason: string, extra: Record<string, unknown> = {}) => {
+    if (G.__ask1093) return reason; // fix1093 paper is asking before it books: the same wall, the same answer, no log line (band-lock.jsonl stays a record of real orders)
     try { appendFileSync(D("band-lock.jsonl"), JSON.stringify({ at: new Date().toISOString(), book: "WIRE", asset, side, ticker: t, reason, ...extra }) + "\n"); } catch {}
     return reason;
   };
@@ -3199,6 +3200,7 @@ export function wireWall(ticker: string, side: "up" | "down"): string {
   if (w) return deny(`${w} (at the wire)`, { tick: q.c });
   // EVERY PASS ON THE RECORD (Oct 20 ~2:37 PM PT, Love: "please make sure nothing else can slip past her new code"): each opening order the wire
   // lets through is written with the exact channel it saw, so any fill can be checked against her 33%/20% law afterwards. data/wire-pass.jsonl.
+  if (G.__ask1093) return ""; // fix1093 paper is asking before it books: the wall lets it through - wire-pass.jsonl stays a record of real orders only
   try { appendFileSync(D("wire-pass.jsonl"), JSON.stringify({ at: new Date().toISOString(), asset, side, ticker: t, tick: q.c, below: geo.below, above: geo.above, pos: geo.pos, lock: geo.lock }) + "\n"); } catch {}
   return "";
 }
