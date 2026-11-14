@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R651 - fix1096 BUG BOX TAB. A read only tab in her desk (BUG BOX, beside FIX LOG) that shows data/BUG-BOX.json: every known bug with a check or a hollow mark, when it was found, what her records show, Love's words and where it stands. Outside her engine: src/lib/bugbox1096.ts + src/components/desk/bug-box.tsx, and 6 lines in src/components/desk/app.tsx that add the tab. No trading rule, gate, size or setting changes.
+- when: 2026-11-14T05:20:12+00:00
+- Love: "Love Nov 13 2026 9:03 PM PT: "i think it may be easier to keep track of everything if we create a bug box 🐞 every known bug, logged with either a check or hollow mark let’s make a new tab for it , and we’ll do it for any bugs we still have (that you know of & that i can remember) and every one going forward, so we know everything we have on the table""
+- books: none - display only
+- status: ACTIVE
+- proof: {"test": "tools/bug-box-1096.cjs"}
+- proof: {"code": "src/components/desk/app.tsx", "has": "{bookTab === \"bugbox\" ? <BugBox1096 /> : null}"}
+- proof: {"code": "src/lib/bugbox1096.ts", "has": "export const getBugBox1096"}
+
 ## R650 - fix1095 ONE ADD-ON PER BOX. New file src/lib/desk/addonbox1095.ts (boxPick1095). Her trigger add-on (fix1043) in its 4 places - src/lib/desk/engine.ts (gold + BTC on Kalshi), xrp5m961.ts, btc5m1055.ts, eth5m1055.ts (the 5 minute lanes) - now asks the pick which box it may spend: on, not yet spent in that window, the ask at the box's multiple or better (ask <= 1 / mult); box 2 first, then box 3; it buys that box's dollars, capped at the box's multiple. No box left or multiple not there = no add-on. A fill spends the box for the window (engine: remembered through data/addon-log.jsonl lines carrying box1095); a miss frees it; an order still out holds its box 20 s. NOT changed: the trigger itself (a genuine same-side set up, strictly better than her entry, her door), box 1's default add-on, her off-hour and twin add-ons, the lanes with their own add-on settings, top-ups of a part-filled entry. Also adds the FIX LOG entry CHANGE-427.
 - when: 2026-11-14T05:11:41+00:00
 - Love: "Love Nov 13 2026 8:34 PM PT: "yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect hun thank you" (answering: "Each add-on box fires once a window, at its own dollars and its own multiple, and nothing more. With your boxes today that is $2 once at 3.8x and $1 once at 8.8x. Yes?") + Love 8:28 PM PT: "please make sure she sticks to the add on structure we have in place, she still takes orders that total $8-9 somehow""

@@ -13392,5 +13392,20 @@
     "what": "      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, \":add1043\" + Math.floor(nowMs / 60000)); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? \"trigger add-on\" : \"trigger add-on missed\", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }",
     "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
     "R": "R650"
+  },
+  {
+    "what": "  const [bookTab, setBookTab] = useState<\"mode\" | \"wire\" | \"fav\" | \"shift\" | \"paper\" | \"prime\" | \"lead\" | \"open\" | \"watch\" | \"lean\" | \"fuel\" | \"symbols\" | \"mirror\" | \"markets\" | \"kalshi\" | \"poly\" | \"cash\" | \"stats\" | \"scale\" | \"hedge\" | \"log\" | \"audit\" | \"look\" | \"outside\" | \"notes\" | \"pnl\" | \"day\" | \"alerts\" | \"sitrep\" | \"fixlog\" /* fix1081 */ | \"books\" | \"traj\" | \"scanner\" | \"positions\" | \"scope\">(\"kalshi\");",
+    "why": "fix1096 BUG BOX TAB (Love Nov 13 2026 9:03 PM PT: \"let's make a new tab for it\"): the same line with the new tab name \"bugbox\" added to it, nothing else on the line changes",
+    "R": "R651"
+  },
+  {
+    "what": "        {bookTab === \"mode\" || bookTab === \"scale\" || bookTab === \"hedge\" || bookTab === \"log\" || bookTab === \"audit\" || bookTab === \"outside\" || bookTab === \"cash\" || bookTab === \"stats\" || bookTab === \"notes\" || bookTab === \"pnl\" || bookTab === \"day\" || bookTab === \"scope\" || bookTab === \"alerts\" || bookTab === \"scanner\" || bookTab === \"positions\" || bookTab === \"sitrep\" || bookTab === \"fixlog\" /* fix1081 */ || bookTab === \"kalshi\" || bookTab === \"prime\" || bookTab === \"lead\" || bookTab === \"open\" || bookTab === \"watch\" || bookTab === \"lean\" || bookTab === \"fuel\" || bookTab === \"symbols\" || bookTab === \"mirror\" || bookTab === \"books\" || !hydrated || !snap ? null : (",
+    "why": "fix1096 BUG BOX TAB (Love Nov 13 2026 9:03 PM PT: \"let's make a new tab for it\"): the same line with the new tab name \"bugbox\" added to it, nothing else on the line changes",
+    "R": "R651"
+  },
+  {
+    "what": "        ) : bookTab === \"log\" || bookTab === \"audit\" || bookTab === \"outside\" || bookTab === \"cash\" || bookTab === \"stats\" || bookTab === \"look\" || bookTab === \"notes\" || bookTab === \"pnl\" || bookTab === \"alerts\" || bookTab === \"scanner\" || bookTab === \"positions\" || bookTab === \"sitrep\" || bookTab === \"fixlog\" /* fix1081 */ || bookTab === \"markets\" || bookTab === \"kalshi\" || bookTab === \"prime\" || bookTab === \"lead\" || bookTab === \"open\" || bookTab === \"watch\" || bookTab === \"lean\" || bookTab === \"fuel\" || bookTab === \"symbols\" || bookTab === \"mirror\" ? null : hydrated ? (",
+    "why": "fix1096 BUG BOX TAB (Love Nov 13 2026 9:03 PM PT: \"let's make a new tab for it\"): the same line with the new tab name \"bugbox\" added to it, nothing else on the line changes",
+    "R": "R651"
   }
 ]

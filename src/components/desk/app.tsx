@@ -37,6 +37,7 @@ import { getFav1047, setFav1047 } from "@/lib/desk/fav1047"; // fix1047 her hear
 import { LiveWire1044 } from "@/components/desk/live-wire"; // fix1044 LIVE WIRE + WTF BOOK (display + her WTF tap only) // fix773 SETUP SCOREBOARD (display only)
 import { Skips697 } from "@/components/desk/skips"; // fix697
 import { FixLog1081 } from "@/components/desk/fix-log"; // fix1081 FIX LOG tab (Love Nov 10 2026 3:30 PM PT)
+import { BugBox1096 } from "@/components/desk/bug-box"; // fix1096 BUG BOX tab (Love Nov 13 2026 9:03 PM PT)
 import { EthBook682 } from "@/components/desk/eth-book"; // fix682
 import { Og1012Card } from "@/components/desk/og-1012"; // fix686
 import { BrkOut687 } from "@/components/desk/brk-out"; // fix687
@@ -990,7 +991,7 @@ function ModeSwitch({
 }
 
 export function DeskApp() {
-  const [bookTab, setBookTab] = useState<"mode" | "wire" | "fav" | "shift" | "paper" | "prime" | "lead" | "open" | "watch" | "lean" | "fuel" | "symbols" | "mirror" | "markets" | "kalshi" | "poly" | "cash" | "stats" | "scale" | "hedge" | "log" | "audit" | "look" | "outside" | "notes" | "pnl" | "day" | "alerts" | "sitrep" | "fixlog" /* fix1081 */ | "books" | "traj" | "scanner" | "positions" | "scope">("kalshi");
+  const [bookTab, setBookTab] = useState<"mode" | "wire" | "fav" | "shift" | "paper" | "prime" | "lead" | "open" | "watch" | "lean" | "fuel" | "symbols" | "mirror" | "markets" | "kalshi" | "poly" | "cash" | "stats" | "scale" | "hedge" | "log" | "audit" | "look" | "outside" | "notes" | "pnl" | "day" | "alerts" | "sitrep" | "fixlog" /* fix1081 */ | "bugbox" /* fix1096 */ | "books" | "traj" | "scanner" | "positions" | "scope">("kalshi");
   const [span, setSpan] = useState<"12" | "24" | "all">("24");
   const [deskNote, setDeskNote] = useState("");
   const [cashVenue, setCashVenue] = useState<CashVenue>("kalshi");
@@ -2116,6 +2117,7 @@ export function DeskApp() {
           <DeskTab active={bookTab === "log"} label="LOG" onClick={() => setBookTab("log")} />
           <DeskTab active={bookTab === "sitrep"} label="SITREP" onClick={() => setBookTab("sitrep")} />
           <DeskTab active={bookTab === "fixlog"} label="FIX LOG" onClick={() => setBookTab("fixlog")} /> {/* fix1081 */}
+          <DeskTab active={bookTab === "bugbox"} label="BUG BOX" onClick={() => setBookTab("bugbox")} /> {/* fix1096 */}
           <DeskTab active={bookTab === "audit"} label="MATCH" onClick={() => setBookTab("audit")} />
           <DeskTab active={bookTab === "outside"} label="OUTSIDE" onClick={() => setBookTab("outside")} />
           <DeskTab active={bookTab === "look"} label="LOOK" onClick={() => setBookTab("look")} />
@@ -2304,6 +2306,7 @@ export function DeskApp() {
         {bookTab === "log" ? <FillLog events={fillLog.data ?? []} /> : null}
 
         {bookTab === "fixlog" ? <FixLog1081 /> : null} {/* fix1081 FIX LOG: what changed and how to get back, read only */}
+        {bookTab === "bugbox" ? <BugBox1096 /> : null} {/* fix1096 BUG BOX: every known bug with a check or a hollow mark, read only */}
         {bookTab === "sitrep" ? <Skips697 /> : null} {/* fix697 every window: took it or why not, with a FLAG */}
         {bookTab === "sitrep" ? (
           <SitRep
@@ -2437,7 +2440,7 @@ export function DeskApp() {
           </div>
         ) : null}
 
-        {bookTab === "mode" || bookTab === "scale" || bookTab === "hedge" || bookTab === "log" || bookTab === "audit" || bookTab === "outside" || bookTab === "cash" || bookTab === "stats" || bookTab === "notes" || bookTab === "pnl" || bookTab === "day" || bookTab === "scope" || bookTab === "alerts" || bookTab === "scanner" || bookTab === "positions" || bookTab === "sitrep" || bookTab === "fixlog" /* fix1081 */ || bookTab === "kalshi" || bookTab === "prime" || bookTab === "lead" || bookTab === "open" || bookTab === "watch" || bookTab === "lean" || bookTab === "fuel" || bookTab === "symbols" || bookTab === "mirror" || bookTab === "books" || !hydrated || !snap ? null : (
+        {bookTab === "mode" || bookTab === "scale" || bookTab === "hedge" || bookTab === "log" || bookTab === "audit" || bookTab === "outside" || bookTab === "cash" || bookTab === "stats" || bookTab === "notes" || bookTab === "pnl" || bookTab === "day" || bookTab === "scope" || bookTab === "alerts" || bookTab === "scanner" || bookTab === "positions" || bookTab === "sitrep" || bookTab === "fixlog" /* fix1081 */ || bookTab === "bugbox" /* fix1096 */ || bookTab === "kalshi" || bookTab === "prime" || bookTab === "lead" || bookTab === "open" || bookTab === "watch" || bookTab === "lean" || bookTab === "fuel" || bookTab === "symbols" || bookTab === "mirror" || bookTab === "books" || !hydrated || !snap ? null : (
           <Positions
             trades={shown}
             assets={snap.assets}
@@ -2845,7 +2848,7 @@ export function DeskApp() {
           <ScaleBook />
         ) : bookTab === "hedge" ? (
           <HedgeBook />
-        ) : bookTab === "log" || bookTab === "audit" || bookTab === "outside" || bookTab === "cash" || bookTab === "stats" || bookTab === "look" || bookTab === "notes" || bookTab === "pnl" || bookTab === "alerts" || bookTab === "scanner" || bookTab === "positions" || bookTab === "sitrep" || bookTab === "fixlog" /* fix1081 */ || bookTab === "markets" || bookTab === "kalshi" || bookTab === "prime" || bookTab === "lead" || bookTab === "open" || bookTab === "watch" || bookTab === "lean" || bookTab === "fuel" || bookTab === "symbols" || bookTab === "mirror" ? null : hydrated ? (
+        ) : bookTab === "log" || bookTab === "audit" || bookTab === "outside" || bookTab === "cash" || bookTab === "stats" || bookTab === "look" || bookTab === "notes" || bookTab === "pnl" || bookTab === "alerts" || bookTab === "scanner" || bookTab === "positions" || bookTab === "sitrep" || bookTab === "fixlog" /* fix1081 */ || bookTab === "bugbox" /* fix1096 */ || bookTab === "markets" || bookTab === "kalshi" || bookTab === "prime" || bookTab === "lead" || bookTab === "open" || bookTab === "watch" || bookTab === "lean" || bookTab === "fuel" || bookTab === "symbols" || bookTab === "mirror" ? null : hydrated ? (
           <StillJournal trades={shown} stake={bookTab === "paper" ? 25 : bookTab === "kalshi" || bookTab === "poly" ? 0 : settings.stake} outcomes={bookTab === "paper"} exits={exitLog.data ?? []} mirrorExits={bookTab === "kalshi"} />
         ) : null}
       </div>
