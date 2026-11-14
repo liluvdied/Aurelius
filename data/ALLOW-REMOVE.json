@@ -13522,5 +13522,35 @@
     "what": "  const cash = row.value > 0 ? row.value : row.cost;",
     "why": "fix1106 HER BOTTOM LABELS SHOW THE REAL PRICE (Love Nov 14 2026 12:19 AM PT: \"the labels on the bottom, could you make them refresh price live? and roll like they used to? they kind of get stuck for a while\"): the same line, now showing a real bid of 2c or under in place of her cost. Display only.",
     "R": "R661"
+  },
+  {
+    "what": "    if (!call && o5 >= P && l5 <= P + nr && l5 > P - brk && spot > P && ((spot >= l5 + push && spot > o2) || spot - l5 >= 0.2 * W)) call = { side: \"up\", label: `Rejected up off ${l.name}` };",
+    "why": "fix1107 MAIN'S REJECTION TRIGGERS IN HER OTHER REJECTION BOOKS (Love Nov 13 2026 11:30 PM PT: \"push / flip / born candle / wick rejection ... so it takes all of the same entries, that aren't breaks ... all of the same triggers need to apply to those before they go live\" + Nov 14 2026 12:04 AM PT: \"for now you can just work on establishing the mechanics we talked about for all of the other rej books\" + 12:19 AM PT: \"yes let's get the mechanics to match, and we can go from there\"): the same line with the same band, the same nearness and the same break; only its trigger now asks main's shared trigger (mainRej1107) in place of its own.",
+    "R": "R662"
+  },
+  {
+    "what": "    if (!call && o5 <= P && h5 >= P - nr && h5 < P + brk && spot < P && ((spot <= h5 - push && spot < o2) || h5 - spot >= 0.2 * W)) call = { side: \"down\", label: `Rejected down off ${l.name}` };",
+    "why": "fix1107 MAIN'S REJECTION TRIGGERS IN HER OTHER REJECTION BOOKS (Love Nov 13 2026 11:30 PM PT: \"push / flip / born candle / wick rejection ... so it takes all of the same entries, that aren't breaks ... all of the same triggers need to apply to those before they go live\" + Nov 14 2026 12:04 AM PT: \"for now you can just work on establishing the mechanics we talked about for all of the other rej books\" + 12:19 AM PT: \"yes let's get the mechanics to match, and we can go from there\"): the same line with the same band, the same nearness and the same break; only its trigger now asks main's shared trigger (mainRej1107) in place of its own.",
+    "R": "R662"
+  },
+  {
+    "what": "    if (!call && /* fix885: any 5m open */ l5 <= P + nr && l5 > P - brk && spot > P && ((spot >= l5 + push && spot > o2) || spot - l5 >= 0.2 * W)) call = { side: \"up\", label: `Rejected up off ${l.name}` };",
+    "why": "fix1107 MAIN'S REJECTION TRIGGERS IN HER OTHER REJECTION BOOKS (Love Nov 13 2026 11:30 PM PT: \"push / flip / born candle / wick rejection ... so it takes all of the same entries, that aren't breaks ... all of the same triggers need to apply to those before they go live\" + Nov 14 2026 12:04 AM PT: \"for now you can just work on establishing the mechanics we talked about for all of the other rej books\" + 12:19 AM PT: \"yes let's get the mechanics to match, and we can go from there\"): the same line with the same band, the same nearness and the same break; only its trigger now asks main's shared trigger (mainRej1107) in place of its own.",
+    "R": "R662"
+  },
+  {
+    "what": "    if (!call && /* fix885: any 5m open */ h5 >= P - nr && h5 < P + brk && spot < P && ((spot <= h5 - push && spot < o2) || h5 - spot >= 0.2 * W)) call = { side: \"down\", label: `Rejected down off ${l.name}` };",
+    "why": "fix1107 MAIN'S REJECTION TRIGGERS IN HER OTHER REJECTION BOOKS (Love Nov 13 2026 11:30 PM PT: \"push / flip / born candle / wick rejection ... so it takes all of the same entries, that aren't breaks ... all of the same triggers need to apply to those before they go live\" + Nov 14 2026 12:04 AM PT: \"for now you can just work on establishing the mechanics we talked about for all of the other rej books\" + 12:19 AM PT: \"yes let's get the mechanics to match, and we can go from there\"): the same line with the same band, the same nearness and the same break; only its trigger now asks main's shared trigger (mainRej1107) in place of its own.",
+    "R": "R662"
+  },
+  {
+    "what": "    if (!call && o5 > P && l5 <= P - brk && spot > P && ((spot >= l5 + push && spot > o2) || spot - l5 >= 0.2 * W)) call = { side: \"up\", label: `Failed break below ${l.name} - rejected up` }; // fix892 main's failed break: broke through by her break and came back = a rejection",
+    "why": "fix1107 MAIN'S REJECTION TRIGGERS IN HER OTHER REJECTION BOOKS (Love Nov 13 2026 11:30 PM PT: \"push / flip / born candle / wick rejection ... so it takes all of the same entries, that aren't breaks ... all of the same triggers need to apply to those before they go live\" + Nov 14 2026 12:04 AM PT: \"for now you can just work on establishing the mechanics we talked about for all of the other rej books\" + 12:19 AM PT: \"yes let's get the mechanics to match, and we can go from there\"): the same line with the same band, the same nearness and the same break; only its trigger now asks main's shared trigger (mainRej1107) in place of its own.",
+    "R": "R662"
+  },
+  {
+    "what": "    if (!call && o5 < P && h5 >= P + brk && spot < P && ((spot <= h5 - push && spot < o2) || h5 - spot >= 0.2 * W)) call = { side: \"down\", label: `Failed break above ${l.name} - rejected down` }; // fix892",
+    "why": "fix1107 MAIN'S REJECTION TRIGGERS IN HER OTHER REJECTION BOOKS (Love Nov 13 2026 11:30 PM PT: \"push / flip / born candle / wick rejection ... so it takes all of the same entries, that aren't breaks ... all of the same triggers need to apply to those before they go live\" + Nov 14 2026 12:04 AM PT: \"for now you can just work on establishing the mechanics we talked about for all of the other rej books\" + 12:19 AM PT: \"yes let's get the mechanics to match, and we can go from there\"): the same line with the same band, the same nearness and the same break; only its trigger now asks main's shared trigger (mainRej1107) in place of its own.",
+    "R": "R662"
   }
 ]

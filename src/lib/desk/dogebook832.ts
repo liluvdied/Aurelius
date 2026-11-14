@@ -15,6 +15,7 @@ import { join } from "node:path";
 import { fetchMarket, mapMarket } from "./kalshi";
 import type { KalshiMarket } from "./types";
 import { pinkSlideWall1084 } from "./pinkslide1084";
+import { mainRej1107 } from "./rejtrigger1107"; // fix1107
 import { thirdsFree1104 } from "./pinkslide1084"; // fix1104
 
 const G = globalThis as any;
@@ -58,12 +59,13 @@ export function dogeRead832(bs: Bar[], L: { name: string; price: number }[], spo
   const now = Math.floor(Date.now() / 1000), f5 = Math.floor(now / 300) * 300, f2 = Math.floor(now / 120) * 120;
   const in5 = bs.filter((b) => b.t >= f5), in2 = bs.filter((b) => b.t >= f2); if (!in5.length || !in2.length) return { why: "no live candle" };
   const o5 = in5[0].o, h5 = Math.max(...in5.map((b) => b.h), spot), l5 = Math.min(...in5.map((b) => b.l), spot), o2 = in2[0].o;
+  const l2 = Math.min(...in2.map((b) => b.l), spot), h2 = Math.max(...in2.map((b) => b.h), spot); // fix1107 her 2m candle's low / high, for main's colour
   const px = (n: string) => L.find((l) => l.name === n)?.price || 0, pk = px("5m PP"), r1 = px("Red zone"), s1 = px("Green zone");
   let call: { side: "up" | "down"; label: string } | null = null;
   for (const l of L) {
     if (!/σ$|^session VWAP$|^(Red|Green) zone$|^BB (upper|lower)$/.test(l.name)) continue; const P = l.price;
-    if (!call && o5 >= P && l5 <= P + nr && l5 > P - brk && spot > P && ((spot >= l5 + push && spot > o2) || spot - l5 >= 0.2 * W)) call = { side: "up", label: `Rejected up off ${l.name}` };
-    if (!call && o5 <= P && h5 >= P - nr && h5 < P + brk && spot < P && ((spot <= h5 - push && spot < o2) || h5 - spot >= 0.2 * W)) call = { side: "down", label: `Rejected down off ${l.name}` };
+    if (!call && o5 >= P && l5 <= P + nr && l5 > P - brk && spot > P && mainRej1107({ side: "up", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.10 * W }) /* fix1107 main's trigger */) call = { side: "up", label: `Rejected up off ${l.name}` };
+    if (!call && o5 <= P && h5 >= P - nr && h5 < P + brk && spot < P && mainRej1107({ side: "down", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.10 * W }) /* fix1107 main's trigger */) call = { side: "down", label: `Rejected down off ${l.name}` };
   }
   if (!call) return { why: "no rejection" };
   if (call.side === "up" && f >= 0.67 && !thirdsFree1104(bs as any, spot, Date.now() / 1000, "up") /* fix1104 */) return { why: "THIRDS: long in the top 33%" };
