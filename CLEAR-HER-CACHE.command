@@ -53,6 +53,37 @@ print(f"  OK {moved} rows filed into the archive (kept forever). {len(keep)} row
 with open("data/overnight-fixes.log", "a") as f:
     f.write(f"{now.strftime('%Y-%m-%dT%H:%M:%SZ')} CACHE CLEARED BY HAND (Love, CLEAR-HER-CACHE.command): {moved} rows to the archive, {len(keep)} stay\n")
 PY
+# fix1105 (Love Nov 13 2026 11:35 PM PT: "what we did to fix that, i want to load that sequence into the standing command" + 11:47 PM PT: "yes , i mean the full sequence
+# we just ran to make the execution that fast again"): after her cache, this click asks her to run her WHOLE hourly clear herself, right now: her cache, her card files
+# (settled rows older than a day), her paper book (closed trades older than 4 days). All archived, nothing deleted. She does it herself, the same lines her hourly clear runs.
+echo ""
+echo "Step 2: asking her to run her full hourly clear now (her cache, her card files, her paper book)..."
+python3 - <<'PY'
+import json, time, datetime, os
+start = datetime.datetime.now(datetime.timezone.utc)
+open("data/clear-now-1105.flag", "w").write(start.isoformat())
+done = False; rows = []
+for _ in range(100):
+    time.sleep(1)
+    rows = []
+    try:
+        for l in open("data/auto-clear.jsonl").read().splitlines()[-40:]:
+            try: r = json.loads(l)
+            except Exception: continue
+            try: t = datetime.datetime.fromisoformat(str(r.get("at")).replace("Z", "+00:00"))
+            except Exception: continue
+            if t >= start - datetime.timedelta(seconds=1): rows.append(r)
+    except Exception: pass
+    if any(str(r.get("by", "")).startswith("fix1105") for r in rows): done = True; break
+if done:
+    moved = [r for r in rows if "moved" in r]
+    for r in moved: print(f"  OK {r.get('file', 'her cache (live-book-done.json)')}: {r.get('moved')} rows to the archive, {r.get('kept')} stay")
+    if not moved: print("  OK she ran it: nothing was old enough to file away this time.")
+    print("  OK her full hourly clear ran just now (written in data/auto-clear.jsonl).")
+else:
+    took = not os.path.exists("data/clear-now-1105.flag")
+    print("  She took the ask but has not written her proof line yet. Look at data/auto-clear.jsonl in a minute." if took else "  She did not answer in 100 seconds (is her desk running?). The ask stays waiting and she runs it the moment she is up. Her hourly clear runs the same thing every hour.")
+PY
 echo ""
 echo "=================================================================="
 echo "  Done. Turn LIVE back ON in the desk header whenever you're ready."

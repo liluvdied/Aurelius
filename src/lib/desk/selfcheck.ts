@@ -143,6 +143,7 @@ export function selfCheckTick() {
   // Fills and partials stay (the breaker and day board read them). The copier only looks at rows from the last 3 h, so nothing she still needs is moved.
   try {
     const G4 = globalThis as any;
+    try { if (existsSync(D("clear-now-1105.flag"))) { renameSync(D("clear-now-1105.flag"), D("clear-now-1105.taken")); G4.__doneTrimAt = 0; G4.__clearNow1105 = true; } } catch {} // fix1105 (Love Nov 13 2026 11:35 PM PT: "what we did to fix that, i want to load that sequence into the standing command" + 11:47 PM: "yes , i mean the full sequence we just ran to make the execution that fast again"): her CLEAR-HER-CACHE click leaves this flag and she runs her whole hourly clear herself within the minute - the same lines below, nothing new in them
     if (!G4.__doneTrimAt || Date.now() - G4.__doneTrimAt >= 1 * 3600000 /* fix370 (Oct 27 2026 10:01 PM PT, Love: "her entries are starting to lag a bit again hun, let's set it up to clear her cache every hour instead of every 4 pls it gets slower hour by hour , we'll have her do it each hour okay"): every hour (was 4 h); the 3.5 h age line stays so the copier (reads rows < 3 h) never loses a row */) {
       G4.__doneTrimAt = Date.now();
       const d0 = rd("live-book-done.json", null);
@@ -181,6 +182,7 @@ export function selfCheckTick() {
         }
       } catch {}
       try { bookClear1097(); } catch {} // fix1097 (Love Nov 13 2026 9:22 PM PT: "can we include that in the hourly clear of that?"): closed trades older than 4 days leave live-paper-book.json into its archive, with her hourly clear. Open trades stay. Nothing deleted.
+      try { if (G4.__clearNow1105) { G4.__clearNow1105 = false; appendFileSync(D("auto-clear.jsonl"), JSON.stringify({ at: new Date().toISOString(), by: "fix1105 CLEAR-HER-CACHE click", ran: ["her cache", "her card files", "her paper book"] }) + "\n"); } } catch {} // fix1105: written proof that her click ran the whole sequence
     }
   } catch {}
   // 1. record file
