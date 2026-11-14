@@ -66,8 +66,8 @@ export function ethRead682(bs: Bar[], L: { name: string; price: number }[], spot
   let call: { side: "up" | "down"; label: string } | null = null;
   for (const l of L) {
     if (!/σ$|^session VWAP$|^(Red|Green) zone$|^BB (upper|lower)$/.test(l.name)) continue; const P = l.price;
-    if (!call && o5 >= P && l5 <= P + nr && l5 > P - brk && spot > P && mainRej1107({ side: "up", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.10 * W }) /* fix1107 main's trigger */) call = { side: "up", label: `Rejected up off ${l.name}` };
-    if (!call && o5 <= P && h5 >= P - nr && h5 < P + brk && spot < P && mainRej1107({ side: "down", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.10 * W }) /* fix1107 main's trigger */) call = { side: "down", label: `Rejected down off ${l.name}` };
+    if (!call && o5 >= P && l5 <= P + nr && l5 > P - brk && spot > P && mainRej1107({ side: "up", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.15 * W /* fix1108 main's own wick for ETH (Love Nov 14 2026 12:58 AM PT: "15% is fine for eth hun") */ }) /* fix1107 main's trigger */) call = { side: "up", label: `Rejected up off ${l.name}` };
+    if (!call && o5 <= P && h5 >= P - nr && h5 < P + brk && spot < P && mainRej1107({ side: "down", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.15 * W /* fix1108 main's own wick for ETH (Love Nov 14 2026 12:58 AM PT: "15% is fine for eth hun") */ }) /* fix1107 main's trigger */) call = { side: "down", label: `Rejected down off ${l.name}` };
   }
   if (!call) return { why: "no rejection" };
   if (call.side === "up" && f >= 0.67 && !thirdsFree1104(bs as any, spot, Date.now() / 1000, "up") /* fix1104 */) return { why: "THIRDS: long in the top 33%" };

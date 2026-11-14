@@ -13552,5 +13552,40 @@
     "what": "    if (!call && o5 < P && h5 >= P + brk && spot < P && ((spot <= h5 - push && spot < o2) || h5 - spot >= 0.2 * W)) call = { side: \"down\", label: `Failed break above ${l.name} - rejected down` }; // fix892",
     "why": "fix1107 MAIN'S REJECTION TRIGGERS IN HER OTHER REJECTION BOOKS (Love Nov 13 2026 11:30 PM PT: \"push / flip / born candle / wick rejection ... so it takes all of the same entries, that aren't breaks ... all of the same triggers need to apply to those before they go live\" + Nov 14 2026 12:04 AM PT: \"for now you can just work on establishing the mechanics we talked about for all of the other rej books\" + 12:19 AM PT: \"yes let's get the mechanics to match, and we can go from there\"): the same line with the same band, the same nearness and the same break; only its trigger now asks main's shared trigger (mainRej1107) in place of its own.",
     "R": "R662"
+  },
+  {
+    "what": "    if (!call && o5 >= P && l5 <= P + nr && l5 > P - brk && spot > P && mainRej1107({ side: \"up\", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.10 * W }) /* fix1107 main's trigger */) call = { side: \"up\", label: `Rejected up off ${l.name}` };",
+    "why": "fix1108 ETH'S WICK IS MAIN'S 15% (Love Nov 14 2026 12:58 AM PT: \"15% is fine for eth hun , thank you for building that out for me\" + \"if the fix landed (i put the command in) can you place the eth.2 book on fand the momentum book on for bnb if it's still performing well hun? we will see if everything landed\"): the same line, its wick now 15% of her channel in place of 10%.",
+    "R": "R663"
+  },
+  {
+    "what": "    if (!call && o5 <= P && h5 >= P - nr && h5 < P + brk && spot < P && mainRej1107({ side: \"down\", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.10 * W }) /* fix1107 main's trigger */) call = { side: \"down\", label: `Rejected down off ${l.name}` };",
+    "why": "fix1108 ETH'S WICK IS MAIN'S 15% (Love Nov 14 2026 12:58 AM PT: \"15% is fine for eth hun , thank you for building that out for me\" + \"if the fix landed (i put the command in) can you place the eth.2 book on fand the momentum book on for bnb if it's still performing well hun? we will see if everything landed\"): the same line, its wick now 15% of her channel in place of 10%.",
+    "R": "R663"
+  },
+  {
+    "what": "    if (!call && /* fix885: any 5m open */ l5 <= P + nr && l5 > P - brk && spot > P && mainRej1107({ side: \"up\", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.10 * W }) /* fix1107 main's trigger */) call = { side: \"up\", label: `Rejected up off ${l.name}` };",
+    "why": "fix1108 ETH'S WICK IS MAIN'S 15% (Love Nov 14 2026 12:58 AM PT: \"15% is fine for eth hun , thank you for building that out for me\" + \"if the fix landed (i put the command in) can you place the eth.2 book on fand the momentum book on for bnb if it's still performing well hun? we will see if everything landed\"): the same line, its wick now 15% of her channel in place of 10%.",
+    "R": "R663"
+  },
+  {
+    "what": "    if (!call && /* fix885: any 5m open */ h5 >= P - nr && h5 < P + brk && spot < P && mainRej1107({ side: \"down\", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.10 * W }) /* fix1107 main's trigger */) call = { side: \"down\", label: `Rejected down off ${l.name}` };",
+    "why": "fix1108 ETH'S WICK IS MAIN'S 15% (Love Nov 14 2026 12:58 AM PT: \"15% is fine for eth hun , thank you for building that out for me\" + \"if the fix landed (i put the command in) can you place the eth.2 book on fand the momentum book on for bnb if it's still performing well hun? we will see if everything landed\"): the same line, its wick now 15% of her channel in place of 10%.",
+    "R": "R663"
+  },
+  {
+    "what": "    if (!call && o5 > P && l5 <= P - brk && spot > P && mainRej1107({ side: \"up\", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.10 * W }) /* fix1107 main's trigger */) call = { side: \"up\", label: `Failed break below ${l.name} - rejected up` }; // fix892 main's failed break: broke through by her break and came back = a rejection",
+    "why": "fix1108 ETH'S WICK IS MAIN'S 15% (Love Nov 14 2026 12:58 AM PT: \"15% is fine for eth hun , thank you for building that out for me\" + \"if the fix landed (i put the command in) can you place the eth.2 book on fand the momentum book on for bnb if it's still performing well hun? we will see if everything landed\"): the same line, its wick now 15% of her channel in place of 10%.",
+    "R": "R663"
+  },
+  {
+    "what": "    if (!call && o5 < P && h5 >= P + brk && spot < P && mainRej1107({ side: \"down\", spot, band: P, lo2: l2, hi2: h2, lo5: l5, hi5: h5, push, W, wick: 0.10 * W }) /* fix1107 main's trigger */) call = { side: \"down\", label: `Failed break above ${l.name} - rejected down` }; // fix892",
+    "why": "fix1108 ETH'S WICK IS MAIN'S 15% (Love Nov 14 2026 12:58 AM PT: \"15% is fine for eth hun , thank you for building that out for me\" + \"if the fix landed (i put the command in) can you place the eth.2 book on fand the momentum book on for bnb if it's still performing well hun? we will see if everything landed\"): the same line, its wick now 15% of her channel in place of 10%.",
+    "R": "R663"
+  },
+  {
+    "what": "  ok(f === \"btc2c.ts\" ? asks.every((l) => /wick: 25 /.test(l)) : asks.every((l) => /wick: 0\\.10 \\* W \\}/.test(l)), `${f}: wick is ${f === \"btc2c.ts\" ? \"main's $25 for BTC\" : \"10% of the channel\"}`); }",
+    "why": "fix1108 ETH'S WICK IS MAIN'S 15% (Love Nov 14 2026 12:58 AM PT: \"15% is fine for eth hun , thank you for building that out for me\" + \"if the fix landed (i put the command in) can you place the eth.2 book on fand the momentum book on for bnb if it's still performing well hun? we will see if everything landed\"): the same line, its wick now 15% of her channel in place of 10%.",
+    "R": "R663"
   }
 ]

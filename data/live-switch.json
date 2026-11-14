@@ -3,7 +3,7 @@
   "maxDollars": 1,
   "cooldownAfterLoss": false,
   "route": "paper",
-  "at": "2026-11-14T08:55:12.993Z",
+  "at": "2026-11-14T09:11:32.383Z",
   "note": "Put back on by the install - it was on before the file swap (fix1052)",
   "cooldownExcuse": [
     "KXGOLD15M-26OCT012200-00"
@@ -3152,10 +3152,11 @@
     "offNote989": "fix989 Love Nov 7 7:00 PM: \"only the new ETH rej book only the first one is out\" - ETH.1 off, ETH.2 stays. Records kept; on:true brings it back."
   },
   "ethLive872": {
-    "on": false,
+    "on": true,
     "dollars": 1.5,
-    "since": "2026-11-08T06:31:06.705380+00:00",
-    "offNote1019": "fix1019 Love Nov 7 2026 10:13 PM PT: \"POLY MOMENTUM OFFFFF / MAIN ONLY\" + 10:08 PM PT: YES to \"switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live.\" (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up) - live copy OFF until her rulebook drop; paper keeps running; settings and records kept; on:true brings it back."
+    "since": "2026-11-14T09:11:32.855552+00:00",
+    "offNote1019": "fix1019 Love Nov 7 2026 10:13 PM PT: \"POLY MOMENTUM OFFFFF / MAIN ONLY\" + 10:08 PM PT: YES to \"switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live.\" (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up) - live copy OFF until her rulebook drop; paper keeps running; settings and records kept; on:true brings it back.",
+    "onNote1108": "fix1108 Love Nov 14 2026 12:58 AM PT: \"can you place the eth.2 book on fand the momentum book on for bnb if it's still performing well hun?\" - on:false switches it off again."
   },
   "btcLive899": {
     "on": false,
@@ -3164,10 +3165,11 @@
     "offNote1019": "fix1019 Love Nov 7 2026 10:13 PM PT: \"POLY MOMENTUM OFFFFF / MAIN ONLY\" + 10:08 PM PT: YES to \"switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live.\" (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up) - live copy OFF until her rulebook drop; paper keeps running; settings and records kept; on:true brings it back."
   },
   "bnbLive940": {
-    "on": false,
+    "on": true,
     "dollars": 1.5,
-    "since": "2026-11-08T06:31:06.705577+00:00",
-    "offNote1019": "fix1019 Love Nov 7 2026 10:13 PM PT: \"POLY MOMENTUM OFFFFF / MAIN ONLY\" + 10:08 PM PT: YES to \"switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live.\" (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up) - live copy OFF until her rulebook drop; paper keeps running; settings and records kept; on:true brings it back."
+    "since": "2026-11-14T09:11:32.855552+00:00",
+    "offNote1019": "fix1019 Love Nov 7 2026 10:13 PM PT: \"POLY MOMENTUM OFFFFF / MAIN ONLY\" + 10:08 PM PT: YES to \"switch the misfiring copy books to paper right now: BTC.2, ETH.2 and BNB momentum stop sending live orders (paper keeps running). Main, rej and the rest stay live.\" (after 9:04 / 9:16 / 9:54 PM ETH.2 shorts, the 9:53 PM BTC.2 long under the band, and the 10:02 PM BNB short into a wick up) - live copy OFF until her rulebook drop; paper keeps running; settings and records kept; on:true brings it back.",
+    "onNote1108": "fix1108 Love Nov 14 2026 12:58 AM PT: \"can you place the eth.2 book on fand the momentum book on for bnb if it's still performing well hun?\" - on:false switches it off again."
   },
   "awayLine824": false
 }
