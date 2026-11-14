@@ -3916,6 +3916,8 @@ async function tick() {
     import("./perplexities1037").then((m) => { void m.perpTick1037(); void m.perpSettle1037(); }).catch(() => {});
     // fix983 PUSH SHADOW TEST - PAPER (Love Nov 7 2026 6:29 PM PT: "let's keep the numbers we set in place for now , can you test all of these numbers over night (scaled for the weekends) and the first day or two of the week? we should know rather quickly which one is the YEUP 🎯🎯🎯"): every candidate push (her live numbers, the sliding scale, % of W, the fixed-$ ladder) scored side by side on her real turns and real Kalshi asks, BTC / gold / ETH / BNB / XRP / SOL. Never sends an order; her live numbers unchanged.
     import("./pushshadow983").then((m) => m.pushShadowTick983()).catch(() => {});
+    // fix1102 BLACKCAT BOOKS - PAPER (Love Nov 13 2026 10:21 PM PT: "when they cross over on a 2, 3, 4m or 5m chart = enter in the direction it crosses over" + 10:49 PM PT: "as for the blackcat books 📕 yes"): SMA 5 crossing SMA 10 on a finished candle - PAPER ONLY, never an order
+    import("./blackcat1102").then((m) => m.blackCatTick1102()).catch(() => {});
     // fix832 SOL + DOGE REJECTIONS ONLY · NO PINK - PAPER (her card "Paper books on the desk"): copies of the ETH paper book. PAPER ONLY.
     import("./solbook832").then((m) => m.solTick832()).catch(() => {});
     import("./dogebook832").then((m) => m.dogeTick832()).catch(() => {});

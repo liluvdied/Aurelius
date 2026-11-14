@@ -47,6 +47,10 @@ export const PAPER_BOOKS721: { file: string; book: string; title: string; split?
   { file: "p5m-1045-xrp.json", book: "p5m-xrp", title: "XRP 5M · NEW BRAIN · POLYMARKET · PAPER $20" }, // fix1045
   { file: "p5m-1045-xrp15k.json", book: "p5m-xrp15k", title: "XRP 15M · NEW BRAIN · KALSHI · PAPER $20" }, // fix1045
   { file: "bestie-walls-783.json", book: "bestiewalls", title: "BESTIE · WALLS · MAIN'S BAND / ZONE DOOR · PAPER $20" }, // fix783
+  { file: "blackcat-1102.json", book: "blackcat2m", title: "BLACKCAT 📕 · 2M · SMA 5 x SMA 10 · PAPER", split: (r) => (r.book === "blackcat2m" ? "blackcat2m" : null) }, // fix1102
+  { file: "blackcat-1102.json", book: "blackcat3m", title: "BLACKCAT 📕 · 3M · SMA 5 x SMA 10 · PAPER", split: (r) => (r.book === "blackcat3m" ? "blackcat3m" : null) }, // fix1102
+  { file: "blackcat-1102.json", book: "blackcat4m", title: "BLACKCAT 📕 · 4M · SMA 5 x SMA 10 · PAPER", split: (r) => (r.book === "blackcat4m" ? "blackcat4m" : null) }, // fix1102
+  { file: "blackcat-1102.json", book: "blackcat5m", title: "BLACKCAT 📕 · 5M · SMA 5 x SMA 10 · PAPER", split: (r) => (r.book === "blackcat5m" ? "blackcat5m" : null) }, // fix1102
   { file: "bestie-walls-skips-783.json", book: "bestiewalls-skip", title: "BESTIE · WALLS · BLOCKED · WHAT THEY WOULD HAVE DONE" }, // fix783: every take main's door refused + its would-have result
 ];
 export function paperBookRows721(): any[] {
