@@ -2,6 +2,19 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R655 - fix1099 HER ETH AND BNB CANDLES ON VANTAGE. One new file (src/lib/desk/chartfeed1099.ts) hands out her ETH 1m candles from the TradingView chart VANTAGE:ETHUSD and her BNB 1m candles from VANTAGE:BNBUSD, through her own chart reader, every 5 s at most per chart. The 5 places her ETH and BNB books read candles ask it first and keep the candles in that lane's own memory as before (her ETH.2 live route and her push test read them there): her ETH book (ethbook.ts), her ETH.2 book (ethbook2.ts), her ETH 5m lane (eth5m1055.ts), her ETH 5m paper book (p5m1045.ts), her BNB momentum book (momcoins833.ts, BNB only). While a chart gives no usable candles (fewer than 600, or the newest older than 150 s) that lane reads Coinbase as it did before, and each change of chart is written to data/chart-feed-1099.jsonl. Five added lines and one new file; no line of hers is removed. Not changed: any read, push, wall, size, switch or order; DOGE, SOL, BTC, gold; her page's ETH price and alt board (Coinbase), her fuel paper book (Yahoo).
+- when: 2026-11-14T06:45:12+00:00
+- Love: "Love Nov 13 2026 10:06 PM PT: "is eth on vantage? bnb as well?" + 10:08 PM PT: "omg , yes pls eth and bnb should be on vantage that was a fix we did last week i wasn't aware they weren't on, please do""
+- books: ETH book, ETH.2 book and its live route, ETH 5m lane, ETH 5m paper book, BNB momentum book and its live copy
+- status: ACTIVE
+- proof: {"test": "tools/eth-bnb-vantage-1099.cjs"}
+- proof: {"code": "src/lib/desk/chartfeed1099.ts", "has": "eth: { chart: \"VANTAGE:ETHUSD\", was: \"COINBASE:ETHUSD\" }, bnb: { chart: \"VANTAGE:BNBUSD\", was: \"COINBASE:BNBUSD\" }"}
+- proof: {"code": "src/lib/desk/ethbook.ts", "has": "(await import(\"./chartfeed1099\")).laneBars1099(\"eth\", B)"}
+- proof: {"code": "src/lib/desk/ethbook2.ts", "has": "(await import(\"./chartfeed1099\")).laneBars1099(\"eth\", B)"}
+- proof: {"code": "src/lib/desk/eth5m1055.ts", "has": "(await import(\"./chartfeed1099\")).laneBars1099(\"eth\", B)"}
+- proof: {"code": "src/lib/desk/p5m1045.ts", "has": "(await import(\"./chartfeed1099\")).laneBars1099(\"eth\", B)"}
+- proof: {"code": "src/lib/desk/momcoins833.ts", "has": "(await import(\"./chartfeed1099\")).laneBars1099(\"bnb\", B)"}
+
 ## R654 - fix1100 HER XRP TICK STAYS FRESH WHILE THE BINANCE PRICE SITS STILL. Correction to CHANGE-430, seen on her desk 10:20 to 10:25 PM Nov 13: Binance prints XRP to 4 decimals, the price sat still for seconds at a time, her XRP quote line took a tick only when the PRICE changed, and in 140 of her first 300 looks her newest tick was older than her 2 seconds (median 1.8 s, 1 in 10 over 6.3 s) - her last line would hold an XRP order then. Her XRP quote line (xrpfeed1098.ts) now also asks the chart for its trade time and volume, which move on every trade; a message for BINANCE:XRPUSDT with no new price is a trade at the same price: she keeps her last price and marks it fresh. Three changed lines and one added line in xrpfeed1098.ts, its test extended. Her 2 second rule is NOT changed. Nothing else is touched.
 - when: 2026-11-14T06:32:05+00:00
 - Love: "Love Nov 13 2026 9:55 PM PT: "yes, we need to put her on the binance.us chart coinbase freezes very often" + 10:00 PM PT, on the picture labelled "XRPUSDT • BINANCE": "sorry yes, the chart i sent you, i was reading tetherUS and mistaking it for binance.us" + her rule R342, Nov 4 2026 5:27 PM PT: "freshness guard, 2 seconds""

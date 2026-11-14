@@ -38,6 +38,7 @@ async function j(url: string): Promise<any> { const r = await fetch(url, { heade
 async function bars(): Promise<Bar[]> {
   const B = (G.__eth1055Bars ||= { at: 0, m: new Map<number, Bar>() });
   if (Date.now() - B.at < 5000 && B.m.size) return [...B.m.values()].sort((a: Bar, b: Bar) => a.t - b.t);
+  try { const b1099 = await (await import("./chartfeed1099")).laneBars1099("eth", B); if (b1099) return b1099; } catch {} // fix1099 ETH AND BNB ON VANTAGE (Love Nov 13 2026 10:08 PM PT: "omg , yes pls eth and bnb should be on vantage that was a fix we did last week i wasn't aware they weren't on, please do"): her ETH candles come off VANTAGE:ETHUSD, kept in this lane's own memory as before (other parts of her read it there); the Coinbase read below runs only while that chart is not usable
   const need = B.m.size < 600 ? 3 : 1;
   for (let k = need - 1; k >= 0; k--) {
     const end = Math.floor(Date.now() / 60000) * 60 - k * 300 * 60, start = end - 299 * 60;
