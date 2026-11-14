@@ -15,6 +15,7 @@ import { join } from "node:path";
 import { fetchMarket, mapMarket } from "./kalshi";
 import type { KalshiMarket } from "./types";
 import { pinkSlideWall1084 } from "./pinkslide1084";
+import { thirdsFree1104 } from "./pinkslide1084"; // fix1104
 
 const G = globalThis as any;
 const D = (f: string) => join(process.cwd(), "data", f);
@@ -65,8 +66,8 @@ export function dogeRead832(bs: Bar[], L: { name: string; price: number }[], spo
     if (!call && o5 <= P && h5 >= P - nr && h5 < P + brk && spot < P && ((spot <= h5 - push && spot < o2) || h5 - spot >= 0.2 * W)) call = { side: "down", label: `Rejected down off ${l.name}` };
   }
   if (!call) return { why: "no rejection" };
-  if (call.side === "up" && f >= 0.67) return { why: "THIRDS: long in the top 33%" };
-  if (call.side === "down" && f <= 0.33) return { why: "THIRDS: short in the bottom 33%" };
+  if (call.side === "up" && f >= 0.67 && !thirdsFree1104(bs as any, spot, Date.now() / 1000, "up") /* fix1104 */) return { why: "THIRDS: long in the top 33%" };
+  if (call.side === "down" && f <= 0.33 && !thirdsFree1104(bs as any, spot, Date.now() / 1000, "down") /* fix1104 */) return { why: "THIRDS: short in the bottom 33%" };
   if (pk && r1 && s1) {
     if (call.side === "up" && spot >= r1) return { why: "PAST THE RED ZONE" }; if (call.side === "down" && spot <= s1) return { why: "PAST THE GREEN ZONE" };
     if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && call.side === "up" && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return { why: "PINK TO RED 45%" };

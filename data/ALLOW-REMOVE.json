@@ -13492,5 +13492,25 @@
     "what": "    writeFileSync(D(\"recon-skips.jsonl\"), (existsSync(D(\"recon-skips.jsonl\")) ? readFileSync(D(\"recon-skips.jsonl\"), \"utf8\") : \"\") + JSON.stringify({ at: new Date().toISOString(), lane, ticker, side, label, ask, why }) + \"\\n\");",
     "why": "fix1103 HER SKIP NOTES ARE ADDED TO THE END OF THE FILE: HER READ NO LONGER READS AND REWRITES 50 MB FOR EACH NOTE (Love Nov 13 2026 9:11 PM PT: \"the late execution is tied to another cache clear - it's several MB worth of data attached to something other than the cache\" + \"it needs to be addressed along with the hourly cache clear and be attached to it\" + Nov 13 2026 9:45 PM PT: \"this has been a problem for all assets, pls place this in the bug box and let's try to resolve that , because it's skipping a lot of genuine entries\"): the same note, the same line, added to the end of the file with appendFileSync",
     "R": "R658"
+  },
+  {
+    "what": "    if (u && f >= 0.67) return \"THIRDS: long in the top 33%\"; if (!u && f <= 0.33) return \"THIRDS: short in the bottom 33%\";",
+    "why": "fix1104 HER PINK SLIDE TAKES PRECEDENCE OVER HER THIRDS ON EVERY ASSET (XRP, ETH, BTC.2, SOL, DOGE READS) (Love Nov 10 2026 2:41 AM PT: \"again. i told you the pink slide rule takes precedence over the bottom 3rd for shorts. inverse for longs.\" + Nov 10 2026 5:33 PM PT: \"yes. pink slide rule goes to all assets.\" + Nov 13 2026 11:30 PM PT: \"she didn't execute on xrp this window , is the pink slide rule in for all assets on main + rej?\"): the same thirds line, now asking her pink slide first",
+    "R": "R659"
+  },
+  {
+    "what": "  if (call.side === \"up\" && f >= 0.67) return { why: \"THIRDS: long in the top 33%\" };",
+    "why": "fix1104 HER PINK SLIDE TAKES PRECEDENCE OVER HER THIRDS ON EVERY ASSET (XRP, ETH, BTC.2, SOL, DOGE READS) (Love Nov 10 2026 2:41 AM PT: \"again. i told you the pink slide rule takes precedence over the bottom 3rd for shorts. inverse for longs.\" + Nov 10 2026 5:33 PM PT: \"yes. pink slide rule goes to all assets.\" + Nov 13 2026 11:30 PM PT: \"she didn't execute on xrp this window , is the pink slide rule in for all assets on main + rej?\"): the same thirds line, now asking her pink slide first",
+    "R": "R659"
+  },
+  {
+    "what": "  if (call.side === \"down\" && f <= 0.33) return { why: \"THIRDS: short in the bottom 33%\" };",
+    "why": "fix1104 HER PINK SLIDE TAKES PRECEDENCE OVER HER THIRDS ON EVERY ASSET (XRP, ETH, BTC.2, SOL, DOGE READS) (Love Nov 10 2026 2:41 AM PT: \"again. i told you the pink slide rule takes precedence over the bottom 3rd for shorts. inverse for longs.\" + Nov 10 2026 5:33 PM PT: \"yes. pink slide rule goes to all assets.\" + Nov 13 2026 11:30 PM PT: \"she didn't execute on xrp this window , is the pink slide rule in for all assets on main + rej?\"): the same thirds line, now asking her pink slide first",
+    "R": "R659"
+  },
+  {
+    "what": "  ok(bnb === \"momcoins833.ts,pushshadow983.ts\", \"the places that name BNB-USD changed: \" + bnb);",
+    "why": "fix1104: this test of CHANGE-431 counts the files that name BNB-USD. Her BlackCat paper books (CHANGE-434, blackcat1102.ts) read her BNB lane's own candles from memory, so the count became 3 and the test has said FAIL on her desk since 434. The same line, now naming blackcat1102.ts, plus a check that it reads the lane's memory. No code of hers changes for this.",
+    "R": "R659"
   }
 ]

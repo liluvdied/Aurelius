@@ -97,6 +97,12 @@ export function pinkState1084(bs: Bar1084[], spot: number, now: number): { slide
     return { slide: pinkHold1084(live.sm, live.Ss, at, L, "slide", 8 * k), climb: pinkHold1084(live.sm, live.Sc, at, L, "climb", 2 * k), run: (dir) => pinkRun1084(live.sm, at, dir, L, 200 * k) };
   } catch { return none; }
 }
+// fix1104 HER PINK SLIDE TAKES PRECEDENCE OVER HER THIRDS, ON EVERY ASSET (Love Nov 10 2026 2:41 AM PT: "again. i told you the pink slide rule takes precedence over the bottom 3rd for shorts. inverse for longs." + 5:33 PM PT: "yes. pink slide rule goes to all assets."): main's fix1065 for the books that read their own candles.
+// While this book's pink slide is on (pinkState1084 slide: longs held under a sliding pink), a SHORT is not refused for sitting in the bottom third of its channel; while its climb is on
+// (shorts held over a climbing pink), a LONG is not refused for sitting in the top third. Every other wall still judges it. Slide unreadable = the thirds stand.
+export function thirdsFree1104(bs: Bar1084[], spot: number, now: number, side: "up" | "down"): boolean {
+  try { const s = pinkState1084(bs, spot, now); return side === "down" ? !!s.slide : side === "up" ? !!s.climb : false; } catch { return false; }
+}
 /** THE ONE CHECK every candle-reading book asks before it returns a call: "" = free; otherwise why this call waits while her pink slides or climbs. */
 export function pinkSlideWall1084(bs: Bar1084[], spot: number, now: number, side: "up" | "down", label: string): string {
   try {

@@ -13,6 +13,7 @@
 // Log: data/xrp5m-961.jsonl. Paper rows (every call, for the card): data/xrp5m-961-book.json.
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { pinkSlideWall1084 } from "./pinkslide1084";
+import { thirdsFree1104 } from "./pinkslide1084"; // fix1104
 import { join } from "node:path";
 import { ethBands682 } from "./ethbook";
 
@@ -112,7 +113,7 @@ export function xrpRead961(bs: Bar[], L: { name: string; price: number }[], spot
   // fix1004 main's walls (bandlock.ts), scaled to XRP - "" = clear
   const reach = (W / k < 100 ? 25 : 50) * k;
   const walls = (side: "up" | "down", pinkSetup: boolean): string => { const u = side === "up";
-    if (u && f >= 0.67) return "THIRDS: long in the top 33%"; if (!u && f <= 0.33) return "THIRDS: short in the bottom 33%";
+    if (u && f >= 0.67 && !thirdsFree1104(bs as any, spot, now, "up") /* fix1104 */) return "THIRDS: long in the top 33%"; if (!u && f <= 0.33 && !thirdsFree1104(bs as any, spot, now, "down") /* fix1104 */) return "THIRDS: short in the bottom 33%";
     if (pk && r1 && s1) {
       if (u && spot >= r1) return "PAST THE RED ZONE (fix594)"; if (!u && spot <= s1) return "PAST THE GREEN ZONE (fix594)";
       if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && u && spot > pk && (spot - pk) / (r1 - pk) >= 0.45) return "PINK TO RED (fix594): in the top 55%"; if (false /* fix1054 (Love Nov 9 2026 9:40 PM PT: "the pink to red being over 46% of the way over there, it is no longer a valid reason for a skip. The question is always why she didn't enter past the push distance of pink"): PINK TO RED / PINK TO GREEN no longer refuses - kept, not deleted */ && !u && spot < pk && (pk - spot) / (pk - s1) >= 0.45) return "PINK TO GREEN (fix594): in the bottom 55%";
