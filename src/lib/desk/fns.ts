@@ -472,7 +472,8 @@ export type HeldOrder = {
   /** When this quote was read from Kalshi. */
   at?: string;
   /** True when Kalshi could not be reached and the last known value is shown. */
-  stale?: boolean;
+  stale?: boolean;  /** fix1106: Kalshi answered and her side's bid really is 2c or under (the other side bids 90c or more) - the label shows that real value, not her cost. */
+  low?: boolean;
 };
 
 function bookName(ticker: string): string {
@@ -581,7 +582,8 @@ export const getHeldOrders = createServerFn({ method: "GET" }).handler(async ():
     const side = row.pos > 0 ? "up" : "down";
     const rawBid = side === "up" ? yesBid : noBid;
     const shown = rawBid > 0.01 && rawBid < 1 ? rawBid : screenBid(row.pos, yesBid, yesAsk, noBid, noAsk);
-    const bid = shown;
+    const low1106 = !(shown > 0) && Number.isFinite(rawBid) && rawBid >= 0 && rawBid <= 0.02 && (side === "up" ? noBid : yesBid) >= 0.9; // fix1106 HER BOTTOM LABELS SHOW THE REAL PRICE (Love Nov 14 2026 12:19 AM PT: "the labels on the bottom, could you make them refresh price live? and roll like they used to? they kind of get stuck for a while"): when her side's bid is 2c or under her bid screen answers 0 and the label fell back to her COST at 0% and sat there (12:14 AM: BTC DOWN read $5.05 · 0% with the other side bid at 97c). Kalshi answered and the other side bids 90c+ = the price is real: show it
+    const bid = low1106 ? rawBid : shown; // fix1106 (was: const bid = shown;)
     const contracts = Math.abs(row.pos);
     const value = Math.round(contracts * (Number.isFinite(bid) ? bid : 0) * 100) / 100;
     const cost = Math.round(row.cost * 100) / 100;
@@ -607,6 +609,7 @@ export const getHeldOrders = createServerFn({ method: "GET" }).handler(async ():
       near: 0,
       at: readAt,
       stale: false,
+      low: low1106, // fix1106
     });
   }
   const parked = await live.restingFifteens();

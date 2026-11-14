@@ -576,7 +576,7 @@ function DockOrder({ row, onClose: onCloseNow, onPart: onPartNow }: { row: HeldO
     if (fromSlider()) { toast("Finger was on the slider - tap once more."); return; }
     onCloseNow();
   };
-  const cash = row.value > 0 ? row.value : row.cost;
+  const cash = row.value > 0 || row.low === true /* fix1106: a real bid of 2c or under shows as it is, not as her cost */ ? row.value : row.cost;
   const roll = useRollingPrice(cash);
   const livePct = row.cost > 0 ? ((cash - row.cost) / row.cost) * 100 : 0;
   // A quote that didn't come back (or is 15 s+ old) no longer paints a stale red/green: it goes grey with "SYNCING".

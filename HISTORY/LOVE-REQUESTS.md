@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R661 - fix1106 HER BOTTOM LABELS SHOW THE REAL PRICE WHEN HER SIDE IS 2C OR UNDER. Display only. The labels at the bottom of her page (getHeldOrders in fns.ts, DockOrder in app.tsx) read Kalshi every 3 seconds. When her side's bid was 1c or 0, her bid screen answered 0 and the label showed her COST at 0% in place of the price, and sat there to the bell. Seen Nov 14 12:14 AM PT, KXBTC15M-26NOV140315-15: label BTC DOWN 0% $5.05 with $5.05 in, while her paper rows read the other side's bid at 97.5c. Now, when Kalshi answered, her side's bid is 2c or under and the other side bids 90c or more, the label shows that real value (contracts x bid) and its real percent. An empty quote, or one where the other side does not agree, keeps her cost as before. Three changed lines and one added field in fns.ts, one changed line in app.tsx, one new test. Not changed: any order, sell, exit, take-profit, close button, size, wall or rule; how often the label reads (3 s).
+- when: 2026-11-14T08:51:21+00:00
+- Love: "Love Nov 14 2026 12:19 AM PT: "the labels on the bottom, could you make them refresh price live? and roll like they used to? they kind of get stuck for a while""
+- books: her page only (the labels at the bottom, every live position)
+- status: ACTIVE
+- proof: {"test": "tools/dock-label-real-price-1106.cjs"}
+- proof: {"code": "src/lib/desk/fns.ts", "has": "const bid = low1106 ? rawBid : shown;"}
+- proof: {"code": "src/components/desk/app.tsx", "has": "const cash = row.value > 0 || row.low === true"}
+
 ## R660 - fix1105 HER CLEAR-HER-CACHE CLICK RUNS HER WHOLE HOURLY CLEAR (CACHE, CARD FILES, PAPER BOOK). Her standing command CLEAR-HER-CACHE cleared her cache only. Her hourly clear runs three things since CHANGE-429: her cache (live-book-done.json), her card files (grok-og.json, night-book.json), her paper book (live-paper-book.json). Now the command, after its own cache step, leaves data/clear-now-1105.flag; her self check (every minute) takes the flag and runs her whole hourly clear right then, the same lines, and writes one proof line in data/auto-clear.jsonl; the command shows what moved. Two added lines in selfcheck.ts, one added step at the end of CLEAR-HER-CACHE.command, one new test. No line of hers is removed. All archived, nothing deleted. Not changed: what her hourly clear moves or when it runs by itself, any read, wall, size, switch or order.
 - when: 2026-11-14T08:00:35+00:00
 - Love: "Love Nov 13 2026 11:35 PM PT: "what we did to fix that, i want to load that sequence into the standing command in the desktop" + "for that sequence to be done hourly in place of the cache only" + 11:47 PM PT: "yes , i mean the full sequence we just ran to make the execution that fast again""

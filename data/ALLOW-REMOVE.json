@@ -13512,5 +13512,15 @@
     "what": "  ok(bnb === \"momcoins833.ts,pushshadow983.ts\", \"the places that name BNB-USD changed: \" + bnb);",
     "why": "fix1104: this test of CHANGE-431 counts the files that name BNB-USD. Her BlackCat paper books (CHANGE-434, blackcat1102.ts) read her BNB lane's own candles from memory, so the count became 3 and the test has said FAIL on her desk since 434. The same line, now naming blackcat1102.ts, plus a check that it reads the lane's memory. No code of hers changes for this.",
     "R": "R659"
+  },
+  {
+    "what": "    const bid = shown;",
+    "why": "fix1106 HER BOTTOM LABELS SHOW THE REAL PRICE (Love Nov 14 2026 12:19 AM PT: \"the labels on the bottom, could you make them refresh price live? and roll like they used to? they kind of get stuck for a while\"): the same line, now showing a real bid of 2c or under in place of her cost. Display only.",
+    "R": "R661"
+  },
+  {
+    "what": "  const cash = row.value > 0 ? row.value : row.cost;",
+    "why": "fix1106 HER BOTTOM LABELS SHOW THE REAL PRICE (Love Nov 14 2026 12:19 AM PT: \"the labels on the bottom, could you make them refresh price live? and roll like they used to? they kind of get stuck for a while\"): the same line, now showing a real bid of 2c or under in place of her cost. Display only.",
+    "R": "R661"
   }
 ]
