@@ -12,6 +12,7 @@
 // Also two NO-WALL twins: BRICK and SQUEEZE's own paper trades, minus any with a 5m pivot line between price and the strike
 // (Oct 7-10 lab: those 62 trades won 53% for -$98). Twins copy the parent's result.
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync, statSync } from "node:fs";
+import { kalshiFirst1094 } from "./kalshifirst1094"; // fix1094 Kalshi first, and THEN paper
 import { join } from "node:path";
 import { chartRaw, btcSymbol1018, feedSwitchLog1018 } from "./tv"; // fix1018
 import { quoteTick, tickPush, feedHealth } from "./quotes";
@@ -1998,6 +1999,7 @@ export async function pivotBooksTick(assets: Record<string, any> | null | undefi
       }
     } catch {
     }
+    try { if (kalshiFirst1094(rows)) changed = true; } catch {} // fix1094 KALSHI FIRST, AND THEN PAPER (Love Nov 13 2026 8:21 PM PT): for the books running live, paper's record is written from Kalshi's answer
     if (changed) write(rows);
     // FAST RAIL TO THE WIRE (Oct 20 ~2:52 PM PT, Love: "make sure the fast rails are in place, reduce any friction between her executing and the order
     // making it to kalshi ... remove any shackles make sure she's free to sprint"): TOGETHER's call used to wait for the copier's own 1 s clock after it
