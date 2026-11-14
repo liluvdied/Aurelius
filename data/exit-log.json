@@ -1,5 +1,24 @@
 [
   {
+    "at": "2026-11-14T06:23:09.399Z",
+    "ticker": "KXETH15M-26NOV140130-30",
+    "asset": "btc",
+    "side": "up",
+    "stake": 1.092,
+    "multiple": 1.92,
+    "bidPct": 81,
+    "targetPct": 82.69,
+    "payout": 1.98,
+    "profit": 0.89,
+    "reason": "take profit: peaked +83%, sold on the 1% trail (line +83%, 1.92x)",
+    "short": false,
+    "yesBid": 0.941,
+    "yesAsk": 0.944,
+    "secondsLeft": null,
+    "spot": null,
+    "strike": 1903.22
+  },
+  {
     "at": "2026-11-14T04:59:04.217Z",
     "ticker": "KXBNB15M-26NOV140000-00",
     "asset": "btc",
@@ -1499,24 +1518,5 @@
     "secondsLeft": null,
     "spot": 4100.42,
     "strike": 4102.05
-  },
-  {
-    "at": "2026-11-05T22:58:20.285Z",
-    "ticker": "KXBTC15M-26NOV051800-00",
-    "asset": "btc",
-    "side": "down",
-    "stake": 6.765,
-    "multiple": 1.82,
-    "bidPct": 76,
-    "targetPct": 72.73,
-    "payout": 12.18,
-    "profit": 5.42,
-    "reason": "mirrored RECON-TOG paper out: half at 75% (90c) + trail from 90%: best +90%, sold at 97c",
-    "short": true,
-    "yesBid": 0.028,
-    "yesAsk": 0.029,
-    "secondsLeft": null,
-    "spot": 75577.43,
-    "strike": 75723.21
   }
 ]

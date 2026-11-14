@@ -16,7 +16,7 @@ type Bar = { t: number; o: number; h: number; l: number; c: number; v: number };
 type Tick = { c: number; at: number; ex?: number };
 type Target = { host: string; port: number; rejectUnauthorized?: boolean };
 const G = globalThis as any;
-const VER = 1; // bump on any change to the stream: the globalThis guards outlive module reloads
+const VER = 2; // fix1100 (was 1) // bump on any change to the stream: the globalThis guards outlive module reloads
 const D = (file: string) => join(process.cwd(), "data", file);
 function feedNote(row: Record<string, unknown>) { try { appendFileSync(D("xrp-feed-1098.jsonl"), JSON.stringify({ at: new Date().toISOString(), ...row }) + "\n"); } catch {} }
 
@@ -36,6 +36,9 @@ function packet(method: string, params: unknown[]): string {
   return `~m~${body.length}~m~${body}`;
 }
 /** pure: the prices for one chart symbol inside one TradingView quote message (her quotes.ts reading, for one symbol) */
+// fix1100 EVERY TRADE COUNTS (seen on her desk 10:20 to 10:25 PM Nov 13 2026: Binance prints XRP to 4 decimals, its price sat still for seconds at a time, the chart sent a tick only when the PRICE changed,
+// and in 140 of her first 300 looks her newest tick was older than her 2 seconds): the line also asks for the chart's trade time and volume, which move on every trade. A message for her chart with no
+// new price is a trade at the SAME price: it comes back with c = 0 and her line keeps its last price and marks it fresh.
 export function quoteParts1098(text: string, sym = XRP_CHART_1098): { c: number; ex?: number }[] {
   const out: { c: number; ex?: number }[] = [];
   for (const part of text.split(/~m~\d+~m~/)) {
@@ -47,6 +50,7 @@ export function quoteParts1098(text: string, sym = XRP_CHART_1098): { c: number;
       if (String(d?.n) !== sym) continue;
       const lp = Number(d?.v?.lp), lpt = Number(d?.v?.lp_time);
       if (Number.isFinite(lp) && lp > 0) out.push({ c: lp, ...(Number.isFinite(lpt) && lpt > 0 ? { ex: lpt * 1000 } : {}) });
+      else if (d?.v && d.v.lp === undefined && ((Number.isFinite(lpt) && lpt > 0) || Number(d.v.volume) > 0)) out.push({ c: 0, ...(Number.isFinite(lpt) && lpt > 0 ? { ex: lpt * 1000 } : {}) }); // fix1100: a trade at the same price
     } catch {}
   }
   return out;
@@ -90,7 +94,7 @@ function connectXrp1098(target: Target) {
       const qs = `qs_${crypto.randomBytes(4).toString("hex")}`;
       sock.write(frame(packet("set_auth_token", [String(G.__tvAuth?.tok || "unauthorized_user_token")])));
       sock.write(frame(packet("quote_create_session", [qs])));
-      sock.write(frame(packet("quote_set_fields", [qs, "lp", "lp_time"])));
+      sock.write(frame(packet("quote_set_fields", [qs, "lp", "lp_time", "volume"]))); // fix1100: + volume (was "lp", "lp_time")
       sock.write(frame(packet("quote_add_symbols", [qs, XRP_CHART_1098])));
       buf = buf.subarray(split + 4);
       chunk = Buffer.alloc(0);
@@ -110,7 +114,7 @@ function connectXrp1098(target: Target) {
       const text = data.toString("utf8");
       for (const part of text.split(/~m~\d+~m~/)) { if (/^~h~\d+$/.test(part)) { try { sock.write(frame(`~m~${part.length}~m~${part}`)); } catch {} } }
       if (G.__xrpStream1098 !== S) { try { sock.destroy(); } catch {} return; }
-      for (const q of quoteParts1098(text)) { const now = Date.now(); S.tick = { c: q.c, at: now, ...(q.ex ? { ex: q.ex } : {}) } as Tick; S.lastTick = now; }
+      for (const q of quoteParts1098(text)) { const now = Date.now(); if (q.c > 0) S.tick = { c: q.c, at: now, ...(q.ex ? { ex: q.ex } : {}) } as Tick; else if (S.tick) { S.tick = { ...S.tick, at: now, ...(q.ex ? { ex: q.ex } : {}) } as Tick; S.same = (S.same || 0) + 1; } else continue; S.lastTick = now; } // fix1100: a trade at the same price keeps her last price and marks it fresh
     }
   });
 }
