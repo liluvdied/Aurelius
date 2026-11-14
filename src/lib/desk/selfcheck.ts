@@ -11,6 +11,7 @@
 // Writes data/selfcheck.json (shown on ALERTS); alarms go to the desk's alarm bar once per issue per hour.
 import { appendFileSync, copyFileSync, existsSync, readFileSync, renameSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { bookClear1097 } from "./bookclear1097"; // fix1097 her hourly clear covers her paper book file too
 const D = (f: string) => join(process.cwd(), "data", f);
 const rd = (f: string, d: any) => {
   try {
@@ -179,6 +180,7 @@ export function selfCheckTick() {
           }
         }
       } catch {}
+      try { bookClear1097(); } catch {} // fix1097 (Love Nov 13 2026 9:22 PM PT: "can we include that in the hourly clear of that?"): closed trades older than 4 days leave live-paper-book.json into its archive, with her hourly clear. Open trades stay. Nothing deleted.
     }
   } catch {}
   // 1. record file

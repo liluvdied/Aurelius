@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R652 - fix1097 HER HOURLY CLEAR COVERS HER PAPER BOOK FILE TOO. Every hour, with her hourly clear, each closed trade older than 4 days moves out of data/live-paper-book.json into data/live-paper-book-archive.jsonl (the fix305 archive her book already knows). Open trades stay at any age. Nothing is deleted. 4 days is what her page already asks for. New src/lib/desk/bookclear1097.ts + 2 added lines in src/lib/desk/selfcheck.ts. No order, wall, size, switch or setting is touched.
+- when: 2026-11-14T05:35:11+00:00
+- Love: "Love Nov 13 2026 9:11 PM PT: "the late execution is tied to another cache clear - it’s several MB worth of data attached to something other than the cache, and i can’t remember what it was but it needs to be addressed along with the hourly cache clear and be attached to it" + 9:22 PM PT: "yess that’s what it was. can we include that in the hourly clear of that?""
+- books: none - her records file only
+- status: ACTIVE
+- proof: {"test": "tools/hourly-book-clear-1097.cjs"}
+- proof: {"code": "src/lib/desk/selfcheck.ts", "has": "try { bookClear1097(); } catch {}"}
+- proof: {"code": "src/lib/desk/bookclear1097.ts", "has": "export function bookClear1097"}
+
 ## R651 - fix1096 BUG BOX TAB. A read only tab in her desk (BUG BOX, beside FIX LOG) that shows data/BUG-BOX.json: every known bug with a check or a hollow mark, when it was found, what her records show, Love's words and where it stands. Outside her engine: src/lib/bugbox1096.ts + src/components/desk/bug-box.tsx, and 6 lines in src/components/desk/app.tsx that add the tab. No trading rule, gate, size or setting changes.
 - when: 2026-11-14T05:20:12+00:00
 - Love: "Love Nov 13 2026 9:03 PM PT: "i think it may be easier to keep track of everything if we create a bug box 🐞 every known bug, logged with either a check or hollow mark let’s make a new tab for it , and we’ll do it for any bugs we still have (that you know of & that i can remember) and every one going forward, so we know everything we have on the table""
