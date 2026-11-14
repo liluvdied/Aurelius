@@ -19,6 +19,7 @@ import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } f
 import { join } from "node:path";
 import { ethBands682 } from "./ethbook";
 import { xrpRead961, win5Open1051, rung1029, trigPx1043, boxes1029 } from "./xrp5m961"; // fix1055 her one brain
+import { boxPick1095 } from "./addonbox1095"; // fix1095 one add-on per box
 const PUSH1055 = { band: 0.25, pink: 0.25, wick: 0.5 }; // fix1055 ETH push - the 5m books' (fix1045) numbers behind her 5m table
 
 const G = globalThis as any;
@@ -95,14 +96,14 @@ export async function ethTick1055(nowMs = Date.now(), pmIn?: PM) {
 async function addOns1029(s: any, id: string, nowMs: number, pmIn?: PM) {
   const e = (s.rows as Row[]).find((x) => x.id === id && /^bought/.test(x.live)); if (!e) return; const px = Number(/@ ([\d.]+)/.exec(e.live)?.[1]), at = Date.parse(e.at); if (!(px > 0 && px < 1) || !(at > 0)) return;
   const A = (s.add1029 ||= {}) as Record<string, Record<string, number>>, done = (A[id] ||= {}), RT = (G.__eth1055AoRetry ||= {}) as Record<string, number>, c = cfg1055();
-  const bx = boxes1029().filter((b) => b.k === "add1" /* fix1043: only the 1 default add-on at its multiple */ && b.on && b.dollars > 0 && b.mult >= 1.5 && !done[b.k]); const b2t = boxes1029()[1]; if (!bx.length && !(b2t.on && b2t.dollars > 0)) return;
+  const bx = boxes1029().filter((b) => b.k === "add1" /* fix1043: only the 1 default add-on at its multiple */ && b.on && b.dollars > 0 && b.mult >= 1.5 && !done[b.k]); const b2t = boxes1029()[1]; void b2t; if (!bx.length && !boxes1029().some((b) => (b.k === "add2" || b.k === "add3") && b.on && b.dollars > 0) /* fix1095: box 2 or box 3 */) return;
   const pm: PM = pmIn || ((await import("./poly-live.server")) as any); const top = await pm.bookTop(e.slug).catch(() => null); if (!top) return;
   const ask = e.side === "up" ? Number(top.ask) : Math.round((1 - Number(top.bid)) * 100) / 100;
   // fix1043 HER TRIGGER ADD-ON ON THE XRP LANE: her lane's own read (xrpRead961, same walls as her entry) calls the SAME side again = a genuine entry trigger; 2.5x+, strictly better than her entry (trigPx1043), $ = her Add-on 2 box, one per distinct trigger (setup + 1 minute), no count limit
-  try { if (b2t.on && b2t.dollars > 0 && nowMs - Number(RT[id + "trig"] || 0) >= RETRY1017_MS) { const bsT = await bars(); const spT = bsT.length ? bsT[bsT.length - 1].c : 0; const rd = spT > 0 ? xrpRead961(bsT, ethBands682(bsT as any), spT, nowMs / 1000, PUSH1055) : ({ why: "no bars" } as any);
+  try { const pk1095 = boxPick1095(boxes1029(), ask, done, nowMs); /* fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT): the box this trigger may spend */ if (pk1095 && nowMs - Number(RT[id + "trig"] || 0) >= RETRY1017_MS) { const bsT = await bars(); const spT = bsT.length ? bsT[bsT.length - 1].c : 0; const rd = spT > 0 ? xrpRead961(bsT, ethBands682(bsT as any), spT, nowMs / 1000, PUSH1055) : ({ why: "no bars" } as any);
     const kT = "side" in rd ? "trig|" + String(rd.label) + "|" + Math.floor(nowMs / 60000) : ""; const gT = trigPx1043(px, ask, at, nowMs);
-    if ("side" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + "trig"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk);
-      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, ":add1043" + Math.floor(nowMs / 60000)); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? "trigger add-on" : "trigger add-on missed", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }
+    if ("side" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + "trig"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk, pk1095.cap /* fix1095 */);
+      try { const f = await pm.buySlug(e.side, e.slug, pk1095.dollars /* fix1095 */, capT, null, ":add1043" + Math.floor(nowMs / 60000)); if (f && f.filled > 0) { done[kT] = nowMs; done["box1095:" + pk1095.k] = nowMs; /* fix1095: this box is spent for the window */ save(); } log({ id, action: f && f.filled > 0 ? "trigger add-on" : "trigger add-on missed", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }
       catch (er: any) { done[kT] = nowMs; save(); log({ id, action: "trigger add-on error", why: String(er?.message || er).slice(0, 120) }); } } } } catch {}
   for (const b of bx) {
     if (nowMs - Number(RT[id + b.k] || 0) < RETRY1017_MS) continue;

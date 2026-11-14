@@ -13307,5 +13307,90 @@
     "what": "      try { placed = await place(ticker, bookSide, kPx, kCount.toFixed(2), false, retryLine, true); } catch { break; }",
     "why": "fix1091 HER FIRST ENTRY IS SEEN AS A FIRST ENTRY (Love Nov 11 2026 2:47 PM PT: \"YES PLEEEEASE DO IT\"): the same line, now carrying / reading the first-entry mark so the paper pass (fix1080) reaches her band lock and her last judge",
     "R": "R646"
+  },
+  {
+    "what": "          const a2t = (globalThis as any).__addon664?.s?.addOn2; const tOn1043 = a2t?.on === true, tD1043 = Math.max(1, Math.min(5, Math.round(Number(a2t?.dollars) || 0)));",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "          if (tOn1043 && T1043 && T1043.side === mySide && Date.now() - Number(T1043.at) <= 5000 && !used1043[k1043] && rg1043.go && !aoOne717 && (id === \"btc\" || id === \"gold\") && botOwnsPosition(row) && !tpSell && !(Date.now() - (try1043[row.ticker] || 0) < 5000) && bid > 0.02 && aoLeft >= (Number(ao?.minLeft) || 5) && !aoBestie775 /* fix775 */) {",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "            else { used1043[k1043] = Date.now(); void (async () => {",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "              try { rT = await live.addOnBuy600(row.ticker, mySide, tD1043, rg1043.cap, true, e1029.px); } catch (err) { rT = { ok: false, reason: err instanceof Error ? err.message.slice(0, 120) : \"trigger add-on failed\" }; }",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "              try { appendFileSync(join(process.cwd(), \"data\", \"addon-log.jsonl\"), JSON.stringify({ at: new Date().toISOString(), ticker: row.ticker, side: mySide, why: `trigger add-on (fix1043): ${T1043.label}`, trigger1043: T1043.label, lane: T1043.lane, bid, ...(rT || {}) }) + \"\\n\"); } catch {}",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "  const bx = boxes1029().filter((b) => b.k === \"add1\" /* fix1043: only the 1 default add-on at its multiple */ && b.on && b.dollars > 0 && b.mult >= 1.5 && !done[b.k]); const b2t = boxes1029()[1]; if (!bx.length && !(b2t.on && b2t.dollars > 0)) return;",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "  try { if (b2t.on && b2t.dollars > 0 && nowMs - Number(RT[id + \"trig\"] || 0) >= RETRY1017_MS) { const bsT = await bars(); const spT = bsT.length ? bsT[bsT.length - 1].c : 0; const rd = spT > 0 ? xrpRead961(bsT, ethBands682(bsT as any), spT, nowMs / 1000) : ({ why: \"no bars\" } as any);",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "    if (\"side\" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + \"trig\"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk);",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, \":add1043\" + Math.floor(nowMs / 60000)); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? \"trigger add-on\" : \"trigger add-on missed\", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "  const bx = boxes1029().filter((b) => b.k === \"add1\" /* fix1043: only the 1 default add-on at its multiple */ && b.on && b.dollars > 0 && b.mult >= 1.5 && !done[b.k]); const b2t = boxes1029()[1]; if (!bx.length && !(b2t.on && b2t.dollars > 0)) return;",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "  try { if (b2t.on && b2t.dollars > 0 && nowMs - Number(RT[id + \"trig\"] || 0) >= RETRY1017_MS) { const bsT = await bars(); const spT = bsT.length ? bsT[bsT.length - 1].c : 0; const rd = spT > 0 ? xrpRead961(bsT, ethBands682(bsT as any), spT, nowMs / 1000, PUSH1055) : ({ why: \"no bars\" } as any);",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "    if (\"side\" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + \"trig\"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk); const dT1063 = await door1063(e.side, e.slug, String(rd.label)); if (dT1063) { log({ id, action: \"trigger add-on refused\", side: e.side, slug: e.slug, why: dT1063 }); } else",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, \":add1043\" + Math.floor(nowMs / 60000)); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? \"trigger add-on\" : \"trigger add-on missed\", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "  const bx = boxes1029().filter((b) => b.k === \"add1\" /* fix1043: only the 1 default add-on at its multiple */ && b.on && b.dollars > 0 && b.mult >= 1.5 && !done[b.k]); const b2t = boxes1029()[1]; if (!bx.length && !(b2t.on && b2t.dollars > 0)) return;",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "  try { if (b2t.on && b2t.dollars > 0 && nowMs - Number(RT[id + \"trig\"] || 0) >= RETRY1017_MS) { const bsT = await bars(); const spT = bsT.length ? bsT[bsT.length - 1].c : 0; const rd = spT > 0 ? xrpRead961(bsT, ethBands682(bsT as any), spT, nowMs / 1000, PUSH1055) : ({ why: \"no bars\" } as any);",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "    if (\"side\" in rd && rd.side === e.side && !done[kT] && gT.go) { RT[id + \"trig\"] = nowMs; const capT = Math.min(gT.cap, c.maxAsk);",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
+  },
+  {
+    "what": "      try { const f = await pm.buySlug(e.side, e.slug, b2t.dollars, capT, null, \":add1043\" + Math.floor(nowMs / 60000)); if (f && f.filled > 0) { done[kT] = nowMs; save(); } log({ id, action: f && f.filled > 0 ? \"trigger add-on\" : \"trigger add-on missed\", trigger: rd.label, side: e.side, slug: e.slug, ask, cap: capT, entry: px, filled: f?.filled ?? 0, price: f?.price ?? null }); }",
+    "why": "fix1095 ONE ADD-ON PER BOX (Love Nov 13 2026 8:34 PM PT: \"yes please , when i said no limit i was referring to the multiple itself hun /: not the amount of add ons to take , 1 add on , at the numbers in the boxes would be perfect\"): the same line, now asking the one shared pick which box her trigger add-on may spend (was: box 2's dollars on every trigger, any count)",
+    "R": "R650"
   }
 ]
