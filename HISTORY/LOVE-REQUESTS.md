@@ -2,6 +2,15 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R648 - fix1092 ONE POSITION A WINDOW, AND NOTHING AFTER IT IS EXITED. New file src/lib/desk/windowexit1092.ts: every full read of her Kalshi positions notes which 15 minute / 5 minute windows hold a position; a window that held one and then holds none is marked exited (data/window-exited-1092.json, log data/window-exited-1092.jsonl), whoever opened or closed it. In src/lib/desk/kalshi-live.server.ts: guardKalshiOrder (the one door every opening order leaves by) refuses a new opening order in an exited window; enterXrp15 and enterLive ask first. This changes, for an exited window only, what fix920 (Nov 7) left open: after an outside or hand position in a window is exited, she no longer opens in that window. NOT changed: a window with an outside position still open (fix920 as it is), add-ons on a position still held or partly sold, exits, the paper pass, her umpire, 66c, sizes, the wall at the wire. Also adds the FIX LOG entry CHANGE-424.
+- when: 2026-11-14T04:27:16+00:00
+- Love: "Love Nov 11 2026 4:11 PM PT: "hun it is still entering positions after exiting the first one , can you look into it pls?" - asked Love 4:13 PM PT: "Once a position in a window has been exited, she opens nothing more in that window. Every book, every asset. Yes?" - Love 4:15 PM PT: "yes i noticed it yesterday" + Love 4:22 PM PT: "yess i was answering luv""
+- books: every Kalshi book, every asset: 15 minute and 5 minute windows
+- status: ACTIVE
+- proof: {"test": "tools/one-position-a-window-1092.cjs"}
+- proof: {"code": "src/lib/desk/kalshi-live.server.ts", "has": "const w1092 = exited1092(String(body.ticker || \"\"))"}
+- proof: {"code": "src/lib/desk/windowexit1092.ts", "has": "export function exited1092"}
+
 ## R647 - fix1093 PAPER ONLY TAKES TRADES LIVE IS ALLOWED TO TAKE. New file src/lib/desk/liveallows1093.ts. In src/lib/desk/recon.ts book(): before paper writes a main / rejection call on gold or BTC (the new row, and the unfilled call turned to her new read) it asks liveAllows1093: (1) the wall at the wire (bandlock.ts wireWall, asked as this book's own order) and (2) her last judge (kalshi-live.server.ts judgeOrder601 in full, through the new export judgeOnly1093, no paper pass). A no from either = paper does not book; the reason goes to her skip log. bandlock.ts wireWall gets 2 added lines so a question from paper writes nothing to band-lock.jsonl / wire-pass.jsonl; its rules are not changed. NOT changed: the wall at the wire, her last judge, her door, her floor, CHANGE-421 / 423 (live still sends what paper books), every other book and asset. Also adds the FIX LOG entry CHANGE-425.
 - when: 2026-11-14T04:23:17+00:00
 - Love: "Love Nov 11 2026 5:41 PM PT: "i need paper to ONLY TAKE TRADES THAT LIVE IS ALLOWED TO TAKE. WITH THE FLOOR. WITH THE RULES. WITH everything" + Love Nov 10 2026 6:37 PM PT: "get paper to take trades UNDER THE SAME RULES. I CANT TRUST THE PAPER RECORDS IF THEY ARE TAKING TRADES THAT LIVE IS PROHIBITED FROM TAKING.""

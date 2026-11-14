@@ -1,5 +1,5 @@
 {
- "at": "2026-11-14T04:23:17.602177+00:00",
+ "at": "2026-11-14T04:27:16.925397+00:00",
  "her_words": "\"PUT ALL OF MY RULES ON\" (Love Nov 10 2026 9:20 AM PT) - all rules 95ae1e5: code + settings",
  "rule": "This file is the baseline her scheduled checks compare against. It is updated ONLY in the same breath as a change Love asked for (each update has a matching overnight-fixes.log entry quoting her). Drift from THIS file = unsolicited = alert her loudly. Matching this file = she is exactly where Love left her.",
  "code": {
@@ -81,7 +81,7 @@
   "insurance.ts": "4c605102c7a99ab6",
   "inverse.ts": "59ba3d55fd97f562",
   "invworst820.ts": "15ebfb38f60db7b2",
-  "kalshi-live.server.ts": "7cdac637911c13a3",
+  "kalshi-live.server.ts": "bf6790a983133bf7",
   "kalshi.ts": "61fc19350c75853e",
   "labjob.ts": "f1466c1ac9b1bdc0",
   "labpull.ts": "d6a06f758c25e88e",
@@ -190,14 +190,15 @@
   "xrp5m961.ts": "d4086f09792fecdf",
   "pinkslide1084.ts": "e3be3acdc7202a78",
   "paperlive1080.ts": "bcbcad4e68795c86",
-  "liveallows1093.ts": "d3a0ef3795a42141"
+  "liveallows1093.ts": "d3a0ef3795a42141",
+  "windowexit1092.ts": "06a84c09cdd78fc2"
  },
  "config": {
   "live": "b5bea41b6c",
   "maxDollars": "6b86b273ff",
   "cooldownAfterLoss": "fcbcf16590",
   "route": "9d53f79e71",
-  "at": "09e75afa4f",
+  "at": "ad4f0e1f8d",
   "note": "d6126203bc",
   "cooldownExcuse": "1570b63708",
   "shiftStart": "3a2984a939",
@@ -401,7 +402,7 @@
   "data/spine-lock.json": "49339ee5d1bd5279",
   "data/FROZEN.json": "96bf1e60e4b50fe3",
   "data/freeze-2026-10-12.json": "304dbd7b7f576480",
-  "data/live-switch.json": "8968c51adf968bfd",
+  "data/live-switch.json": "1f5890b79c11b1a0",
   "data/xrp15k-live.json": "da0525e7e1da2747"
  },
  "sealLiveBook": "18713feb41",

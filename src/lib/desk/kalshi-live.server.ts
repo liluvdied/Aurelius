@@ -1,5 +1,6 @@
 import { appendFileSync, renameSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { exited1092, notePositions1092 } from "./windowexit1092"; // fix1092 one position a window, and nothing after it is exited
 import { createPrivateKey, randomUUID, sign, constants } from "node:crypto";
 import { closeCash, halfCuts, screenBid } from "./paper";
 import { bandInWay, bandOnPath, bandReach, centerWrong, shortBandOnTarget, shortTap, survivalBlock } from "./auto";
@@ -46,6 +47,7 @@ function guardKalshiOrder(method, path, body) {
     noteBlock({ venue: "kalshi", ticker: body.ticker, reason: "Live switch is OFF" });
     return { refused: "Live switch is OFF. No new Kalshi order was sent." };
   }
+  { const w1092 = exited1092(String(body.ticker || "")); if (w1092) { noteBlock({ venue: "kalshi", ticker: body.ticker, reason: w1092 }); return { refused: w1092 }; } } // fix1092 ONE POSITION A WINDOW (Love Nov 11 2026 4:11 PM PT: "it is still entering positions after exiting the first one"): every opening order, every book, every asset - once a position in this window has been exited, nothing more opens in it. Exits never reach this line.
   const yes = Number(body.price);
   const px = body.side === "bid" ? yes : 1 - yes;
   const count = Number.parseFloat(body.count);
@@ -133,6 +135,7 @@ async function kalshi(method, path, query = "", body) {
     pr.then(async (r) => { let id; try { const j = await r.clone().json(); id = j?.order?.order_id || j?.order_id || j?.id || j?.rfq_id || undefined; } catch {} trail({ result: r.status, orderId: id }); }, (e) => trail({ result: "error", why: String(e).slice(0, 120) }));
     return pr;
   }
+  if (path === "/trade-api/v2/portfolio/positions" && !/[?&](ticker|event_ticker|cursor)=/.test(String(query || ""))) { const p1092 = go().catch(() => go()); p1092.then(async (r) => { try { if (r && r.ok) { const j1092 = await r.clone().json(); notePositions1092(j1092?.market_positions, !j1092?.cursor); } } catch {} }, () => {}); return p1092; } // fix1092: every full read of her positions also tells her which windows have had their position (read only - the answer goes back unchanged)
   return go().catch(() => go());
 }
 async function marketResult(ticker) {
@@ -1304,6 +1307,7 @@ async function sendPaperBook(side, ticker, yesAsk, noAsk, opts) {
 /** fix1057 XRP 15m is one IOC through the same guarded Kalshi send, with no top-ups. */
 export async function enterXrp15(ticker: string, side: "up" | "down", label: string, target: number) {
   if (!/^KXXRP15M-/.test(ticker) || !liveOn() || !kalshiArmed()) return null;
+  { const w1092 = exited1092(ticker); if (w1092) throw new Error(w1092); } // fix1092: asked here first so she does not even build the order (the door in guardKalshiOrder is the one that holds for every book); her XRP tick writes this reason to her XRP log
   const key = `xrp15:${ticker}`;
   if (!hold(key)) return null;
   try {
@@ -1347,6 +1351,7 @@ export async function exitXrp15(ticker: string, side: "up" | "down", owned: numb
 }
 
 async function enterLive(side, ticker, yesAsk, noAsk, _dollars = LIVE_DOLLARS, opts) {
+  { const w1092 = exited1092(String(ticker)); if (w1092) return { status: "blocked", reason: w1092 }; } // fix1092: asked here first so a refused window is not retried all the way to the wire (the door in guardKalshiOrder is the one that holds for every book)
   try { const j730 = JSON.parse(readFileSync(join(process.cwd(), "data", "live-today.json"), "utf8")); const bc730 = String(opts?.bookCopy || ""); if (bc730 && j730?.on === true && Date.now() < Date.parse(String(j730.until)) && !(Array.isArray(j730?.skipHoursPT) && j730.skipHoursPT.map(Number).includes(Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", hourCycle: "h23" }).format(new Date())) % 24)) /* fix755: AKIMBO steps aside in live-today skipHoursPT (Love: 2-3 PM PT = main) */ && String(j730.book || "").split(",").includes(bc730)) ((globalThis as any).__akimboWire730 ||= {})[String(ticker).toUpperCase() + "|" + side] = { at: Date.now(), book: bc730 }; } catch {} // fix730: mark the akimbo book's own order for the wall at the wire
   if (opts?.paperBook) {
     try {
