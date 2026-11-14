@@ -1,6 +1,7 @@
 import { appendFileSync, existsSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { bars1045 } from "./p5m1045";
+import { xrpWireTick1098 } from "./xrpfeed1098"; // fix1098
 import { xrpRead961 } from "./xrp5m961";
 import { ethBands682 } from "./ethbook";
 import type { KalshiMarket } from "./types";
@@ -49,8 +50,7 @@ export async function judgeXrp15(ticker: string, side: Xrp15Side, label: string,
   const km = await import("./kalshi");
   const bs = await bars1045("xrp");
   if (!bs.length) return "XRP 15m has no candles at the wire";
-  const tick = await fetch("https://api.exchange.coinbase.com/products/XRP-USD/ticker", { signal: AbortSignal.timeout(2000) })
-    .then((response) => response.ok ? response.json() : null).catch(() => null);
+  const tick = await xrpWireTick1098(2000); // fix1098 XRP ON HER BINANCE CHART (Love Nov 13 2026 9:55 PM PT: "yes, we need to put her on the binance.us chart coinbase freezes very often" + 10:00 PM PT on the picture labelled "XRPUSDT • BINANCE": "sorry yes, the chart i sent you"): her last line reads the newest trade on the chart her candles came from (BINANCE:XRPUSDT; Coinbase as before only while that chart is not usable). The same 2 second rule.
   const now = Date.now(), spot = Number(tick?.price), age = now - Date.parse(String(tick?.time ?? ""));
   if (ticker !== km.fifteenTicker("KXXRP15M", now + 1) || xrp15End(now) - now < XRP15_CLOSE_GUARD_MS) return "XRP 15m window is no longer eligible";
   if (!(spot > 0) || !(age >= 0 && age <= 2000)) return "XRP 15m has no trade tick within 2 seconds";
@@ -66,10 +66,28 @@ export async function judgeXrp15(ticker: string, side: Xrp15Side, label: string,
   return r.side === side && r.label === label ? "" : "XRP 15m setup changed before the order";
 }
 
+// fix1098 XRP LOOKS EVERY SECOND OFF THE LIVE PRICE (Love Nov 13 2026 9:45 PM PT: "can you fix the bug that is causing her to miss the push by half of a ten thousandth, and then stop looking for the rest of the window? because xrp definitely met the push requirement afterwards").
+// Her XRP 15m lane looked once per pass of her main loop and never more than once in 5 s: 26 looks in the 7 minutes from 9:30 PM Nov 13, 5 to 35 s apart, each on the last candle close.
+// A push that was met between two looks was never seen. Now: her own 1 s clock, the live trade price off her chart (xrpfeed1098.ts: BINANCE:XRPUSDT), and one line per look in data/xrp-tick-1098.jsonl (she kept no XRP ticks).
+// Not changed: her read (xrpRead961), her push size, her walls, her last-line check (judgeXrp15), her one position a window, her 66c ask limit, her $1, her exits and their pace.
+export async function xrpSpot1098(read?: string): Promise<{ spot: number | null; src: string }> {
+  const tick = await xrpWireTick1098(900), now = Date.now();
+  const spot = Number(tick?.price), age = now - Date.parse(String(tick?.time ?? ""));
+  const ok = spot > 0 && age >= -1000 && age <= 2000;
+  try { appendFileSync(D("xrp-tick-1098.jsonl"), JSON.stringify({ t: now, a: "xrp", c: spot > 0 ? spot : null, src: tick?.src ?? null, ageMs: Number.isFinite(age) ? Math.round(age) : null, used: ok, ...(read ? { read } : {}) }) + "\n"); } catch {}
+  return { spot: ok ? spot : null, src: String(tick?.src ?? "") };
+}
+export function ensureXrp15Clock1098(): void {
+  G.__xrp15Fn1098 = xrp15Tick; // a reloaded file hands the running clock its new self
+  if (G.__xrp15Clock1098) return;
+  G.__xrp15Clock1098 = setInterval(() => { const fn = G.__xrp15Fn1098; if (typeof fn === "function") void fn().catch(() => {}); }, 1000);
+  try { G.__xrp15Clock1098.unref?.(); } catch {}
+}
 type KM = Pick<typeof import("./kalshi"), "fetchMarket" | "fifteenTicker">;
 type Xrp15Wire = Pick<typeof import("./kalshi-live.server"), "enterXrp15" | "exitXrp15">;
 export async function xrp15Tick(nowMs = Date.now(), kmIn?: KM, wireIn?: Xrp15Wire) {
-  if (G.__xrp15Busy || nowMs - Number(G.__xrp15At || 0) < 5000) return;
+  ensureXrp15Clock1098(); // fix1098: her own 1 s clock, so she does not wait on the main loop to look
+  if (G.__xrp15Busy || nowMs - Number(G.__xrp15At || 0) < 1000 /* fix1098: was 5000 - she looks every second now */) return;
   const enabled = xrp15Enabled();
   const ledgerExists = existsSync(D("xrp15k-live-book.json"));
   if (!enabled && !ledgerExists) return;
@@ -81,7 +99,8 @@ export async function xrp15Tick(nowMs = Date.now(), kmIn?: KM, wireIn?: Xrp15Wir
     const wire = wireIn || await import("./kalshi-live.server");
     const ticker = km.fifteenTicker("KXXRP15M", nowMs + 1);
     // An existing live position is managed independently of whether new entries are enabled.
-    for (const row of state.rows.filter((r) => r.result === "open")) {
+    const exitDue1098 = nowMs - Number(G.__xrp15ExitAt1098 || 0) >= 5000; if (exitDue1098) G.__xrp15ExitAt1098 = nowMs; // fix1098: her exits keep the pace they had (every 5 s at most), so Kalshi is not asked more often for them
+    for (const row of (exitDue1098 ? state.rows.filter((r) => r.result === "open") : [])) {
       const market = await km.fetchMarket(row.ticker).catch(() => null);
       if (!market || market.ticker !== row.ticker) continue;
       const remaining = Number(row.remaining), paid = Number(row.ask);
@@ -115,10 +134,14 @@ export async function xrp15Tick(nowMs = Date.now(), kmIn?: KM, wireIn?: Xrp15Wir
     }
     if (!enabled || !(wireIn || (await import("./live-guard")).liveOn()) ||
         xrp15End(nowMs) - nowMs < XRP15_CLOSE_GUARD_MS || state.rows.some((r) => r.ticker === ticker)) return;
-    const [market, bs] = await Promise.all([km.fetchMarket(ticker), bars1045("xrp")]);
-    if (!market || !xrp15MarketOK(market, ticker, Date.now()) || !bs.length) return;
-    const r = xrpRead961(bs, ethBands682(bs), bs[bs.length - 1].c, Date.now() / 1000);
+    const bs = await bars1045("xrp");
+    if (!bs.length) return;
+    const live1098 = await xrpSpot1098(), spot1098 = live1098.spot ?? bs[bs.length - 1].c; // fix1098: the live trade price off her chart (the same one her last-line check reads); no trade within 2 s = the last candle close, as before
+    const r = xrpRead961(bs, ethBands682(bs), spot1098, Date.now() / 1000);
     if (!("side" in r)) { xrp15Note(ticker, r.why); return; }
+    if (nowMs - Number(G.__xrp15TryAt1098 || 0) < 5000) return; G.__xrp15TryAt1098 = nowMs; // fix1098: she LOOKS every second; an order try that Kalshi did not take is tried again no sooner than 5 s later (the pace her tries had at best), so Kalshi is not asked 4 times a second all window
+    const market = await km.fetchMarket(ticker); // fix1098: Kalshi is asked for the market only once her read has a set up, so looking every second does not ask Kalshi every second
+    if (!market || !xrp15MarketOK(market, ticker, Date.now())) return;
     const ask = Number(r.side === "up" ? market.yesAsk : market.noAsk);
     if (!(ask > 0.02 && ask <= 0.66)) { xrp15Note(ticker, "no eligible ask at or below 66c"); return; }
     const row: Xrp15Trade = { ticker, at: new Date().toISOString(), side: r.side, setup: r.label, result: "pending" };

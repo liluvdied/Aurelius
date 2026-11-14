@@ -2,6 +2,18 @@
 
 Append-only and hash-chained (data/LOVE-REQUESTS.jsonl). Rebuilt on every umpire run. A request leaves only on Love's own words.
 
+## R653 - fix1098 HER XRP ON HER BINANCE CHART, LOOKING EVERY SECOND. One new file (src/lib/desk/xrpfeed1098.ts) hands out her XRP candles and her live XRP price from the TradingView chart BINANCE:XRPUSDT: candles through her own chart reader, live price on its own quote line (her BTC / gold line is not touched). Every place she reads XRP asks it first, and keeps the candles in that lane's own memory as before (her push test reads them there): her Kalshi XRP 15m lane (look and last line, xrp15k-live.ts), her XRP paper books (p5m1045.ts), her XRP Polymarket 5m lane (xrp5m961.ts), her Perplexities paper twin (perplexities1037.ts). While that chart gives no usable candles (fewer than 600, or the newest older than 150 s) each lane reads Coinbase as it did before, candles and price together, and each change of chart is written to data/xrp-feed-1098.jsonl. Her Kalshi XRP 15m lane now looks every second on its own clock, on the live price, and writes one line a look to data/xrp-tick-1098.jsonl; Kalshi is asked for the market only when her read has a set up, and an order try Kalshi did not take is tried again no sooner than 5 s later; her open-row checks keep their 5 s pace. Not changed: her read, her push size (0.00025), her walls, her last-line 2 second rule, one position a window, 66c, $1, her exits.
+- when: 2026-11-14T06:20:12+00:00
+- Love: "Love Nov 13 2026 9:55 PM PT: "yes, we need to put her on the binance.us chart coinbase freezes very often" + 10:00 PM PT, on the picture labelled "XRPUSDT • BINANCE": "sorry yes, the chart i sent you, i was reading tetherUS and mistaking it for binance.us" + Love Nov 13 2026 9:45 PM PT: "can you fix the bug that is causing her to miss the push by half of a ten thousandth, and then stop looking for the rest of the window? because xrp definitely met the push requirement afterwards""
+- books: XRP Kalshi 15m live lane, XRP paper books (5m, 15m), XRP Polymarket 5m lane, Perplexities paper twin
+- status: ACTIVE
+- proof: {"test": "tools/xrp-binance-every-second-1098.cjs"}
+- proof: {"code": "src/lib/desk/xrpfeed1098.ts", "has": "export const XRP_CHART_1098 = \"BINANCE:XRPUSDT\";"}
+- proof: {"code": "src/lib/desk/xrp15k-live.ts", "has": "nowMs - Number(G.__xrp15At || 0) < 1000"}
+- proof: {"code": "src/lib/desk/p5m1045.ts", "has": "(await import(\"./xrpfeed1098\")).xrpLaneBars1098(B)"}
+- proof: {"code": "src/lib/desk/xrp5m961.ts", "has": "(await import(\"./xrpfeed1098\")).xrpLaneBars1098(B)"}
+- proof: {"code": "src/lib/desk/perplexities1037.ts", "has": "(await import(\"./xrpfeed1098\")).xrpLaneBars1098(B)"}
+
 ## R652 - fix1097 HER HOURLY CLEAR COVERS HER PAPER BOOK FILE TOO. Every hour, with her hourly clear, each closed trade older than 4 days moves out of data/live-paper-book.json into data/live-paper-book-archive.jsonl (the fix305 archive her book already knows). Open trades stay at any age. Nothing is deleted. 4 days is what her page already asks for. New src/lib/desk/bookclear1097.ts + 2 added lines in src/lib/desk/selfcheck.ts. No order, wall, size, switch or setting is touched.
 - when: 2026-11-14T05:35:11+00:00
 - Love: "Love Nov 13 2026 9:11 PM PT: "the late execution is tied to another cache clear - it’s several MB worth of data attached to something other than the cache, and i can’t remember what it was but it needs to be addressed along with the hourly cache clear and be attached to it" + 9:22 PM PT: "yess that’s what it was. can we include that in the hourly clear of that?""

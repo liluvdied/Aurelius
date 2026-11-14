@@ -32,6 +32,7 @@ function save() { try { const s = book(); s.rows = s.rows.slice(-2000); const cu
 // usable recent batch when Coinbase times out on an older page.
 async function bars(): Promise<Bar[]> {
   const B = (G.__xrp961Bars ||= { at: 0, m: new Map<number, Bar>() });
+  try { const b1098 = await (await import("./xrpfeed1098")).xrpLaneBars1098(B); if (b1098) return b1098; } catch {} // fix1098 XRP ON HER BINANCE CHART (Love Nov 13 2026 9:55 PM PT: "yes, we need to put her on the binance.us chart coinbase freezes very often" + 10:00 PM PT on the picture labelled "XRPUSDT • BINANCE": "sorry yes, the chart i sent you"): her XRP candles come off BINANCE:XRPUSDT, kept in this lane's own memory as before (her push test reads it); the Coinbase read below runs only while that chart is not usable
   const sorted = () => [...B.m.values()].sort((a: Bar, b: Bar) => a.t - b.t) as Bar[];
   const now = Math.floor(Date.now() / 1000);
   if (Date.now() - B.at < 5000 && B.m.size) return sorted();

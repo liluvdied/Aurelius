@@ -54,6 +54,7 @@ function save() { try { const s = book(); s.rows = s.rows.slice(-2000); const cu
 async function j(url: string): Promise<any> { const r = await fetch(url, { headers: { Accept: "application/json", "User-Agent": "aurelius-paper/1.0" }, signal: AbortSignal.timeout(8000) }); return r.json(); }
 async function bars(): Promise<Bar[]> {
   const B = (G.__perp1037Bars ||= { at: 0, m: new Map<number, Bar>() });
+  try { const b1098 = await (await import("./xrpfeed1098")).xrpLaneBars1098(B); if (b1098) return b1098; } catch {} // fix1098 XRP ON HER BINANCE CHART (Love Nov 13 2026 9:55 PM PT: "yes, we need to put her on the binance.us chart coinbase freezes very often" + 10:00 PM PT on the picture labelled "XRPUSDT • BINANCE": "sorry yes, the chart i sent you"): her XRP candles come off BINANCE:XRPUSDT, kept in this lane's own memory as before (her push test reads it); the Coinbase read below runs only while that chart is not usable
   if (Date.now() - B.at < 5000 && B.m.size) return [...B.m.values()].sort((a: Bar, b: Bar) => a.t - b.t);
   const need = B.m.size < 600 ? 3 : 1;
   for (let k = need - 1; k >= 0; k--) {

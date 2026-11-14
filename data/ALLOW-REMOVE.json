@@ -13407,5 +13407,40 @@
     "what": "        ) : bookTab === \"log\" || bookTab === \"audit\" || bookTab === \"outside\" || bookTab === \"cash\" || bookTab === \"stats\" || bookTab === \"look\" || bookTab === \"notes\" || bookTab === \"pnl\" || bookTab === \"alerts\" || bookTab === \"scanner\" || bookTab === \"positions\" || bookTab === \"sitrep\" || bookTab === \"fixlog\" /* fix1081 */ || bookTab === \"markets\" || bookTab === \"kalshi\" || bookTab === \"prime\" || bookTab === \"lead\" || bookTab === \"open\" || bookTab === \"watch\" || bookTab === \"lean\" || bookTab === \"fuel\" || bookTab === \"symbols\" || bookTab === \"mirror\" ? null : hydrated ? (",
     "why": "fix1096 BUG BOX TAB (Love Nov 13 2026 9:03 PM PT: \"let's make a new tab for it\"): the same line with the new tab name \"bugbox\" added to it, nothing else on the line changes",
     "R": "R651"
+  },
+  {
+    "what": "  const tick = await fetch(\"https://api.exchange.coinbase.com/products/XRP-USD/ticker\", { signal: AbortSignal.timeout(2000) })",
+    "why": "fix1098 HER XRP ON HER BINANCE CHART (Love Nov 13 2026 9:55 PM PT: \"yes, we need to put her on the binance.us chart coinbase freezes very often\" + 10:00 PM PT, on the picture labelled \"XRPUSDT • BINANCE\": \"sorry yes, the chart i sent you, i was reading tetherUS and mistaking it for binance.us\"): her last line read the Coinbase trade here; it now reads the newest trade on the chart her candles came from (BINANCE:XRPUSDT), Coinbase as before only while that chart is not usable; the same 2 second rule",
+    "R": "R653"
+  },
+  {
+    "what": "    .then((response) => response.ok ? response.json() : null).catch(() => null);",
+    "why": "fix1098 HER XRP ON HER BINANCE CHART (Love Nov 13 2026 9:55 PM PT: \"yes, we need to put her on the binance.us chart coinbase freezes very often\" + 10:00 PM PT, on the picture labelled \"XRPUSDT • BINANCE\": \"sorry yes, the chart i sent you, i was reading tetherUS and mistaking it for binance.us\"): her last line read the Coinbase trade here; it now reads the newest trade on the chart her candles came from (BINANCE:XRPUSDT), Coinbase as before only while that chart is not usable; the same 2 second rule",
+    "R": "R653"
+  },
+  {
+    "what": "  if (G.__xrp15Busy || nowMs - Number(G.__xrp15At || 0) < 5000) return;",
+    "why": "fix1098 XRP LOOKS EVERY SECOND ON THE LIVE PRICE (Love Nov 13 2026 9:45 PM PT: \"can you fix the bug that is causing her to miss the push by half of a ten thousandth, and then stop looking for the rest of the window? because xrp definitely met the push requirement afterwards\"): the same line with her look made every second (was 5 s), her open-row checks kept at 5 s, her read on the live trade price in place of the last candle close, and Kalshi asked for the market after her read has a set up; the same checks before the same order",
+    "R": "R653"
+  },
+  {
+    "what": "    for (const row of state.rows.filter((r) => r.result === \"open\")) {",
+    "why": "fix1098 XRP LOOKS EVERY SECOND ON THE LIVE PRICE (Love Nov 13 2026 9:45 PM PT: \"can you fix the bug that is causing her to miss the push by half of a ten thousandth, and then stop looking for the rest of the window? because xrp definitely met the push requirement afterwards\"): the same line with her look made every second (was 5 s), her open-row checks kept at 5 s, her read on the live trade price in place of the last candle close, and Kalshi asked for the market after her read has a set up; the same checks before the same order",
+    "R": "R653"
+  },
+  {
+    "what": "    const [market, bs] = await Promise.all([km.fetchMarket(ticker), bars1045(\"xrp\")]);",
+    "why": "fix1098 XRP LOOKS EVERY SECOND ON THE LIVE PRICE (Love Nov 13 2026 9:45 PM PT: \"can you fix the bug that is causing her to miss the push by half of a ten thousandth, and then stop looking for the rest of the window? because xrp definitely met the push requirement afterwards\"): the same line with her look made every second (was 5 s), her open-row checks kept at 5 s, her read on the live trade price in place of the last candle close, and Kalshi asked for the market after her read has a set up; the same checks before the same order",
+    "R": "R653"
+  },
+  {
+    "what": "    if (!market || !xrp15MarketOK(market, ticker, Date.now()) || !bs.length) return;",
+    "why": "fix1098 XRP LOOKS EVERY SECOND ON THE LIVE PRICE (Love Nov 13 2026 9:45 PM PT: \"can you fix the bug that is causing her to miss the push by half of a ten thousandth, and then stop looking for the rest of the window? because xrp definitely met the push requirement afterwards\"): the same line with her look made every second (was 5 s), her open-row checks kept at 5 s, her read on the live trade price in place of the last candle close, and Kalshi asked for the market after her read has a set up; the same checks before the same order",
+    "R": "R653"
+  },
+  {
+    "what": "    const r = xrpRead961(bs, ethBands682(bs), bs[bs.length - 1].c, Date.now() / 1000);",
+    "why": "fix1098 XRP LOOKS EVERY SECOND ON THE LIVE PRICE (Love Nov 13 2026 9:45 PM PT: \"can you fix the bug that is causing her to miss the push by half of a ten thousandth, and then stop looking for the rest of the window? because xrp definitely met the push requirement afterwards\"): the same line with her look made every second (was 5 s), her open-row checks kept at 5 s, her read on the live trade price in place of the last candle close, and Kalshi asked for the market after her read has a set up; the same checks before the same order",
+    "R": "R653"
   }
 ]
